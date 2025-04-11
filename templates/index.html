@@ -1,0 +1,113 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard - AI Assistant Monitor{% endblock %}
+
+{% block content %}
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    <!-- System Health Card -->
+    <div class="bg-white rounded-lg shadow-md p-6">
+        <h2 class="text-xl font-semibold mb-4">System Health</h2>
+        <div class="space-y-4">
+            <div class="flex justify-between items-center">
+                <span>CPU Usage</span>
+                <span id="cpu-usage" class="font-mono">0%</span>
+            </div>
+            <div class="flex justify-between items-center">
+                <span>Memory Usage</span>
+                <span id="memory-usage" class="font-mono">0MB</span>
+            </div>
+            <div class="flex justify-between items-center">
+                <span>Disk Usage</span>
+                <span id="disk-usage" class="font-mono">0%</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- AI Sensor Stats -->
+    <div class="bg-white rounded-lg shadow-md p-6">
+        <h2 class="text-xl font-semibold mb-4">AI Sensor</h2>
+        <div class="space-y-4">
+            <div class="flex justify-between items-center">
+                <span>Events Processed</span>
+                <span id="events-processed" class="font-mono">0</span>
+            </div>
+            <div class="flex justify-between items-center">
+                <span>Active Predictions</span>
+                <span id="active-predictions" class="font-mono">0</span>
+            </div>
+            <div class="flex justify-between items-center">
+                <span>Insights Generated</span>
+                <span id="insights-generated" class="font-mono">0</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Recent Events -->
+    <div class="bg-white rounded-lg shadow-md p-6">
+        <h2 class="text-xl font-semibold mb-4">Recent Events</h2>
+        <div id="recent-events" class="space-y-2">
+            <p class="text-gray-500 italic">No recent events</p>
+        </div>
+    </div>
+
+    <!-- Chat Interface - Full Width -->
+    <div class="bg-white rounded-lg shadow-md p-6 col-span-full">
+        <h2 class="text-xl font-semibold mb-4">AI Assistant Chat</h2>
+        <div id="chat-messages" class="space-y-4 h-64 overflow-y-auto mb-4 p-4 border rounded-lg">
+            <p class="text-gray-500 italic">Start a conversation with the AI Assistant...</p>
+        </div>
+        <div class="flex space-x-4">
+            <input type="text" id="chat-input" class="flex-1 p-2 border rounded-lg" placeholder="Type your message here...">
+            <button id="send-message" class="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600">Send</button>
+        </div>
+    </div>
+
+    <!-- Resource Predictions -->
+    <div class="bg-white rounded-lg shadow-md p-6">
+        <h2 class="text-xl font-semibold mb-4">Resource Predictions</h2>
+        <div id="resource-predictions" class="space-y-4">
+            <div class="flex justify-between items-center">
+                <span>Predicted CPU Usage (1h)</span>
+                <span id="predicted-cpu" class="font-mono">-</span>
+            </div>
+            <div class="flex justify-between items-center">
+                <span>Predicted Memory Usage (1h)</span>
+                <span id="predicted-memory" class="font-mono">-</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- System Insights -->
+    <div class="bg-white rounded-lg shadow-md p-6">
+        <h2 class="text-xl font-semibold mb-4">System Insights</h2>
+        <div id="system-insights" class="space-y-2">
+            <p class="text-gray-500 italic">No insights available</p>
+        </div>
+    </div>
+
+    <!-- Health Status -->
+    <div class="bg-white rounded-lg shadow-md p-6">
+        <h2 class="text-xl font-semibold mb-4">Health Status</h2>
+        <div id="health-status" class="space-y-4">
+            <div class="flex items-center space-x-2">
+                <div id="health-indicator" class="w-4 h-4 rounded-full bg-gray-300"></div>
+                <span id="health-text">System Status Unknown</span>
+            </div>
+            <div id="health-details" class="text-sm text-gray-600">
+                Initializing system health checks...
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/main.js') }}"></script>
+<script>
+    // Initialize updates when the page loads
+    document.addEventListener('DOMContentLoaded', function() {
+        initializeUpdates();
+        initializeChat();
+    });
+</script>
+{% endblock %} 

@@ -1,0 +1,85 @@
+# Local Assistant Configuration - MVP Version
+
+# LLM Configuration
+llm:
+  model_name: mistral
+  host: localhost
+  port: 11434
+  timeout_sec: 30
+  max_retries: 3
+  max_tokens: 1024
+  temperature: 0.7
+
+# Sensor Configuration
+sensors:
+  # File Sensor Settings
+  file:
+    enabled: true
+    monitor_paths:
+      - ~/Documents
+    exclude_patterns:
+      - "*.tmp"
+      - "*.log"
+      - "*.swp"
+      - ".git/*"
+    max_file_size_mb: 100
+    max_files_monitored: 100
+    max_memory_mb: 50
+    cleanup_threshold_mb: 40
+    monitor_interval_sec: 10
+    max_errors: 10
+    max_file_descriptors: 100
+
+  # Process Sensor Settings
+  process:
+    enabled: true
+    interval_sec: 15
+    max_processes: 100
+    exclude_patterns:
+      - "python"
+      - "node"
+    cache_timeout_sec: 60
+    max_memory_mb: 50
+    cleanup_threshold_mb: 40
+    max_errors: 10
+    history_size: 100
+
+  # AI Sensor Settings
+  ai:
+    enabled: false
+    monitor_interval_sec: 60
+    analysis_interval_sec: 300
+    prediction_interval_sec: 600
+    max_memory_mb: 200
+    max_cpu_percent: 50
+    max_disk_usage: 80
+    max_network_usage: 1000
+    event_queue_size: 1000
+    insight_queue_size: 100
+    alert_queue_size: 50
+    anomaly_threshold: 0.8
+    pattern_window: 3600
+    prediction_window: 7200
+    sequence_length: 100
+    batch_size: 32
+
+# Logging Configuration
+logging:
+  level: INFO
+  file: assistant.log
+  max_size_mb: 5
+  backup_count: 2
+  console_enabled: true
+
+# System Configuration
+system:
+  max_total_memory_mb: 200
+  max_total_cpu_percent: 30
+  health_check_interval_sec: 120
+  shutdown_timeout_sec: 15
+
+# Security settings
+security:
+  allow_read_file_content: true
+  allow_network_access: false
+  bind_to_localhost: true

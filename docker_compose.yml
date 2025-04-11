@@ -1,0 +1,58 @@
+version: '3'
+
+services:
+  # Local AI Assistant application
+  assistant:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: local-ai-assistant:latest
+    container_name: local-ai-assistant
+    volumes:
+      # Mount the config directory for easier configuration
+      - ./config:/app/config
+      # Mount a directory for persistent storage if needed
+      - local_assistant_data:/root/.local_assistant
+    ports:
+      # Expose the web UI
+      - "5000:5000"
+    networks:
+      - ai_assistant_net
+    environment:
+      - OLLAMA_HOST=ollama
+      - OLLAMA_PORT=11434
+    depends_on:
+      - ollama
+    restart: unless-stopped
+
+  # Ollama service for running local LLMs
+  ollama:
+    image: ollama/ollama:latest
+    container_name: local-ollama
+    volumes:
+      # Mount Ollama data directory for persistence
+      - ollama_data:/root/.ollama
+    ports:
+      # Only expose Ollama API within the container network by default
+      # Uncomment to expose to host if needed for other applications
+      # - "11434:11434"
+    networks:
+      - ai_assistant_net
+    restart: unless-stopped
+    # Health check to ensure Ollama API is running
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:11434/api/version"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
+
+networks:
+  ai_assistant_net:
+    driver: bridge
+
+volumes:
+  local_assistant_data:
+    name: local_assistant_data
+  ollama_data:
+    name: ollama_data
