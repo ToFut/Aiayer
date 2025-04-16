@@ -1,158 +1,106 @@
-# Local AI Assistant
+# Aiayer - Local AI Assistant
 
-A privacy-focused AI assistant that runs entirely on your local machine, with no data leaving your system. This application uses multiple sensor modules (screen, file system, processes, and more) to understand your context and provide helpful responses using a local language model.
+Aiayer is an intelligent local AI assistant that provides context-aware assistance using local AI models. It monitors your system activities and provides intelligent responses based on your current context.
 
-## 🚀 Features
+## Features
 
-- **Complete Privacy**: All processing happens locally - no data is sent to the cloud
-- **Context-Aware**: Understands what you're working on by monitoring:
-  - Screen content (via screenshots + OCR)
-  - File system changes (files you create/modify)
-  - Running applications and active windows
-  - (Optional) Browser activity
-- **Local LLM**: Uses [Mistral 7B](https://mistral.ai/news/announcing-mistral-7b/) (or other models) via [Ollama](https://ollama.ai/)
-- **Security-Focused**: Filters sensitive information to prevent accidental exposure
-- **Easy Deployment**: Run with Docker or a Python virtual environment
+- **Context-Aware Assistance**: Understands your current activities and provides relevant help
+- **Local Processing**: All processing happens on your machine, ensuring privacy
+- **Multiple Sensors**: Monitors screen, files, processes, and browser activities
+- **Conversation Memory**: Maintains context across conversations
+- **Real-time Analysis**: Continuously analyzes your context for better assistance
 
-## 📋 Requirements
-
-- macOS or Linux (Windows support via Docker/WSL2)
-- 8GB+ RAM (recommended 16GB for optimal performance)
-- Python 3.8+ (if not using Docker)
-- [Ollama](https://ollama.ai/) (installed automatically in Docker)
-
-## 🔧 Installation
-
-### Using Docker (Recommended)
-
-1. Clone this repository:
-   ```
-   git clone https://github.com/yourusername/local-ai-assistant.git
-   cd local-ai-assistant
-   ```
-
-2. Start with Docker Compose:
-   ```
-   docker-compose up
-   ```
-
-3. Open your browser to http://localhost:5000 to use the assistant.
-
-### Manual Installation (macOS/Linux)
+## Installation
 
 1. Clone the repository:
-   ```
-   git clone https://github.com/yourusername/local-ai-assistant.git
-   cd local-ai-assistant
-   ```
-
-2. Install Tesseract OCR:
-   - macOS: `brew install tesseract`
-   - Linux: `sudo apt-get install tesseract-ocr`
-
-3. Install Ollama from https://ollama.ai/
-
-4. Create a virtual environment and install dependencies:
-   ```
-   python3 -m venv venv
-   source venv/bin/activate
-   pip install -r requirements.txt
-   ```
-
-5. Run the assistant:
-   ```
-   python main.py
-   ```
-
-6. Open your browser to http://localhost:5000.
-
-### Windows Installation
-
-For Windows, we recommend using Docker Desktop with WSL2. Alternatively, see the [Windows Installation Guide](docs/windows-install.md) for native setup instructions.
-
-## ⚙️ Configuration
-
-The assistant is configured through the `config/config.yaml` file. You can customize:
-
-- Which folders to monitor
-- Screenshot interval
-- LLM settings
-- UI preferences
-- And more
-
-Example configuration:
-
-```yaml
-# Edit config/config.yaml
-sensors:
-  screen:
-    interval_sec: 5
-  file:
-    paths:
-      - "~/Documents"
-      - "~/Desktop"
-      - "~/Downloads"
+```bash
+git clone https://github.com/ToFut/Aiayer.git
+cd Aiayer
 ```
 
-## 🔒 Security & Privacy
+2. Create and activate a virtual environment:
+```bash
+python -m venv venv
+source venv/bin/activate  # On Windows: venv\Scripts\activate
+```
 
-- All data stays on your machine
-- The assistant can filter sensitive information (passwords, personal data, etc.)
-- No telemetry or analytics are collected
-- Docker containers are isolated from your network by default
+3. Install dependencies:
+```bash
+pip install -r requirements.txt
+```
 
-## 🤝 Usage Examples
+4. Install test dependencies (optional):
+```bash
+pip install -r tests/requirements-test.txt
+```
 
-The assistant can:
+## Configuration
 
-- Answer questions about what's on your screen
-- Provide context-aware help based on the application you're using
-- Remember files you've recently worked on
-- Assist with coding, writing, and other tasks based on what it can see
+1. Copy the example configuration:
+```bash
+cp config/config.example.yaml config/config.yaml
+```
 
-Simply ask in natural language:
+2. Edit `config/config.yaml` to customize:
+- Sensor intervals
+- Memory settings
+- LLM model configuration
+- Browser monitoring settings
 
-- "What's in this document I'm looking at?"
-- "What files did I edit today?"
-- "Explain the error message on my screen"
-- "Summarize what I'm working on"
+## Usage
 
-## 🔍 How It Works
+### Starting the Assistant
 
-This assistant combines several key components:
+1. Start the main application:
+```bash
+python main.py
+```
 
-1. **Sensor Modules**: Capture your real-time context (screen, files, apps)
-2. **Local LLM**: Processes your questions with contextual understanding
-3. **Task Agent**: Orchestrates between sensors, memory, and the LLM
-4. **Memory**: Maintains conversation history for continuity
-5. **UI**: Provides a simple chat interface for interaction
+2. Or use the simple runner script:
+```bash
+./run_simple.sh
+```
 
-All components run locally and communicate within your device.
+### Interacting with the Assistant
 
-## 🧩 Extending the System
+1. The assistant will automatically start monitoring your system
+2. Use the chat interface to interact with the assistant
+3. The assistant will respond based on your current context
 
-The project is designed to be modular and extensible. You can:
+### Available Commands
 
-- Add new sensor types
-- Integrate with other LLMs
-- Enhance the UI
-- Add additional tools and capabilities
+- `help`: Show available commands
+- `status`: Show current system status
+- `context`: Show current context analysis
+- `memory`: Show conversation history
+- `sensors`: Show sensor status
+- `exit`: Stop the assistant
 
-See the [Developer Documentation](docs/developer.md) for details on the architecture.
+## Development
 
-## 📄 License
+### Running Tests
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+```bash
+python -m pytest tests/
+```
 
-## ⚠️ Limitations
+### Code Structure
 
-- Requires appropriate permissions (screen recording, accessibility)
-- Uses CPU/RAM resources for running the LLM
-- Limited to what it can observe through the provided sensors
+- `agent/`: Core AI agent functionality
+- `memory/`: Conversation and context memory
+- `llm/`: Local language model integration
+- `sensors/`: System monitoring sensors
+- `tests/`: Test suite
+- `ui/`: User interface components
 
-## 🙏 Acknowledgements
+## Contributing
 
-- [Mistral AI](https://mistral.ai/) for their excellent open models
-- [Ollama](https://ollama.ai/) for easy local LLM deployment
-- [Tesseract OCR](https://github.com/tesseract-ocr/tesseract) for text extraction
-- All the open-source libraries used in this project
+1. Fork the repository
+2. Create a feature branch
+3. Commit your changes
+4. Push to the branch
+5. Create a Pull Request
+
+## License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
