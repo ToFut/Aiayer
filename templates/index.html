@@ -1,113 +1,500 @@
-{% extends "base.html" %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Local AI Assistant</title>
+    <style>
+        :root {
+            --bg-color: #f5f5f5;
+            --primary-color: #3a7ca5;
+            --secondary-color: #2f6690;
+            --text-color: #333;
+            --user-bubble: #d1e8f0;
+            --assistant-bubble: #e6f4ea;
+            --user-text: #0c5460;
+            --assistant-text: #155724;
+            --border-color: #dee2e6;
+            --light-accent: #f8f9fa;
+        }
 
-{% block title %}Dashboard - AI Assistant Monitor{% endblock %}
+        /* Dark mode support - activate with system preferences */
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg-color: #1a1a1a;
+                --primary-color: #3a7ca5;
+                --secondary-color: #2f6690;
+                --text-color: #e0e0e0;
+                --user-bubble: #2c5a77;
+                --assistant-bubble: #2e4d3a;
+                --user-text: #d1e8f0;
+                --assistant-text: #e6f4ea;
+                --border-color: #444;
+                --light-accent: #2a2a2a;
+            }
+        }
 
-{% block content %}
-<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-    <!-- System Health Card -->
-    <div class="bg-white rounded-lg shadow-md p-6">
-        <h2 class="text-xl font-semibold mb-4">System Health</h2>
-        <div class="space-y-4">
-            <div class="flex justify-between items-center">
-                <span>CPU Usage</span>
-                <span id="cpu-usage" class="font-mono">0%</span>
-            </div>
-            <div class="flex justify-between items-center">
-                <span>Memory Usage</span>
-                <span id="memory-usage" class="font-mono">0MB</span>
-            </div>
-            <div class="flex justify-between items-center">
-                <span>Disk Usage</span>
-                <span id="disk-usage" class="font-mono">0%</span>
-            </div>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+        }
+
+        header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 1rem;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 1.5rem;
+            font-weight: 500;
+        }
+
+        .version-info {
+            font-size: 0.8rem;
+            opacity: 0.8;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        #chat-container {
+            flex: 1;
+            overflow-y: auto;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            background-color: var(--light-accent);
+        }
+
+        .message {
+            margin-bottom: 1rem;
+            max-width: 80%;
+            clear: both;
+        }
+
+        .user {
+            float: right;
+            background-color: var(--user-bubble);
+            color: var(--user-text);
+            border-radius: 18px 18px 3px 18px;
+            padding: 0.8rem 1rem;
+            text-align: right;
+        }
+
+        .assistant {
+            float: left;
+            background-color: var(--assistant-bubble);
+            color: var(--assistant-text);
+            border-radius: 18px 18px 18px 3px;
+            padding: 0.8rem 1rem;
+        }
+
+        .system, .error {
+            float: none;
+            margin-left: auto;
+            margin-right: auto;
+            text-align: center;
+            background-color: var(--light-accent);
+            border: 1px solid var(--border-color);
+            color: var(--text-color);
+            border-radius: 18px;
+            padding: 0.5rem 1rem;
+            font-style: italic;
+            opacity: 0.8;
+            font-size: 0.9rem;
+            max-width: 60%;
+        }
+
+        .error {
+            background-color: #fdecea;
+            color: #b71c1c;
+        }
+
+        .message-content {
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+        }
+
+        .timestamp {
+            font-size: 0.7rem;
+            opacity: 0.7;
+            margin-top: 0.2rem;
+        }
+
+        #input-area {
+            display: flex;
+            margin-top: auto;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        #query-input {
+            flex: 1;
+            padding: 0.8rem;
+            border: none;
+            font-size: 1rem;
+            color: var(--text-color);
+            background-color: var(--light-accent);
+            outline: none;
+        }
+
+        #send-btn {
+            padding: 0.8rem 1.2rem;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        #send-btn:hover {
+            background-color: var(--secondary-color);
+        }
+
+        .loading-indicator {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 2px solid var(--primary-color);
+            border-radius: 50%;
+            border-top-color: transparent;
+            animation: spin 1s linear infinite;
+            margin: 0 10px;
+        }
+
+        .waiting {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 10px;
+            font-style: italic;
+            color: var(--text-color);
+            opacity: 0.7;
+        }
+
+        /* Code blocks and markdown styling */
+        pre, code {
+            font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+            font-size: 0.9em;
+            background-color: rgba(0, 0, 0, 0.05);
+            border-radius: 4px;
+        }
+
+        code {
+            padding: 2px 4px;
+        }
+
+        pre {
+            padding: 1rem;
+            overflow-x: auto;
+        }
+
+        pre code {
+            background-color: transparent;
+            padding: 0;
+        }
+
+        /* Command buttons */
+        #command-buttons {
+            display: flex;
+            margin-bottom: 1rem;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .command-btn {
+            background-color: var(--light-accent);
+            border: 1px solid var(--border-color);
+            color: var(--text-color);
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: background-color 0.2s;
+        }
+
+        .command-btn:hover {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Clear float after messages */
+        .clearfix::after {
+            content: "";
+            clear: both;
+            display: table;
+        }
+
+        /* Connection status styles */
+        #connection-status {
+            z-index: 1000;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        #connection-status.connected {
+            background-color: #10B981;
+        }
+
+        #connection-status.disconnected {
+            background-color: #F59E0B;
+        }
+
+        #connection-status.error {
+            background-color: #EF4444;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Local AI Assistant</h1>
+        <div class="version-info">
+            {{ version.assistant }} | {{ version.model }}
+        </div>
+    </header>
+
+    <div class="container">
+        <div id="command-buttons">
+            <button class="command-btn" data-command="/clear">Clear History</button>
+            <button class="command-btn" data-command="/status">System Status</button>
+        </div>
+
+        <div id="chat-container">
+            <!-- Initial welcome message if no conversation -->
+            {% if not conversation %}
+                <div class="message assistant clearfix">
+                    <div class="message-content">
+                        Hi there! I'm your local AI assistant. I'm running completely on your machine - no data is sent to the cloud. 
+                        I can see your screen content, track which applications you have open, and observe file system changes to provide context-aware assistance.
+                        <br><br>
+                        How can I help you today?
+                    </div>
+                </div>
+            {% endif %}
+
+            <!-- Existing conversation -->
+            {% for msg in conversation %}
+                <div class="message {{ msg.role }} clearfix">
+                    <div class="message-content">{{ msg.content|safe }}</div>
+                    {% if msg.timestamp %}
+                        <div class="timestamp">{{ msg.timestamp|datetime }}</div>
+                    {% endif %}
+                </div>
+            {% endfor %}
+        </div>
+
+        <div id="input-area">
+            <input type="text" id="query-input" placeholder="Ask me something..." autocomplete="off">
+            <button id="send-btn">Send</button>
         </div>
     </div>
 
-    <!-- AI Sensor Stats -->
-    <div class="bg-white rounded-lg shadow-md p-6">
-        <h2 class="text-xl font-semibold mb-4">AI Sensor</h2>
-        <div class="space-y-4">
-            <div class="flex justify-between items-center">
-                <span>Events Processed</span>
-                <span id="events-processed" class="font-mono">0</span>
-            </div>
-            <div class="flex justify-between items-center">
-                <span>Active Predictions</span>
-                <span id="active-predictions" class="font-mono">0</span>
-            </div>
-            <div class="flex justify-between items-center">
-                <span>Insights Generated</span>
-                <span id="insights-generated" class="font-mono">0</span>
-            </div>
-        </div>
-    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const chatContainer = document.getElementById('chat-container');
+            const queryInput = document.getElementById('query-input');
+            const sendBtn = document.getElementById('send-btn');
+            const commandBtns = document.querySelectorAll('.command-btn');
 
-    <!-- Recent Events -->
-    <div class="bg-white rounded-lg shadow-md p-6">
-        <h2 class="text-xl font-semibold mb-4">Recent Events</h2>
-        <div id="recent-events" class="space-y-2">
-            <p class="text-gray-500 italic">No recent events</p>
-        </div>
-    </div>
+            // Scroll to bottom of chat
+            function scrollToBottom() {
+                chatContainer.scrollTop = chatContainer.scrollHeight;
+            }
 
-    <!-- Chat Interface - Full Width -->
-    <div class="bg-white rounded-lg shadow-md p-6 col-span-full">
-        <h2 class="text-xl font-semibold mb-4">AI Assistant Chat</h2>
-        <div id="chat-messages" class="space-y-4 h-64 overflow-y-auto mb-4 p-4 border rounded-lg">
-            <p class="text-gray-500 italic">Start a conversation with the AI Assistant...</p>
-        </div>
-        <div class="flex space-x-4">
-            <input type="text" id="chat-input" class="flex-1 p-2 border rounded-lg" placeholder="Type your message here...">
-            <button id="send-message" class="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600">Send</button>
-        </div>
-    </div>
+            // Initialize
+            scrollToBottom();
 
-    <!-- Resource Predictions -->
-    <div class="bg-white rounded-lg shadow-md p-6">
-        <h2 class="text-xl font-semibold mb-4">Resource Predictions</h2>
-        <div id="resource-predictions" class="space-y-4">
-            <div class="flex justify-between items-center">
-                <span>Predicted CPU Usage (1h)</span>
-                <span id="predicted-cpu" class="font-mono">-</span>
-            </div>
-            <div class="flex justify-between items-center">
-                <span>Predicted Memory Usage (1h)</span>
-                <span id="predicted-memory" class="font-mono">-</span>
-            </div>
-        </div>
-    </div>
+            // Add a message to the chat
+            function addMessage(role, content) {
+                const messageDiv = document.createElement('div');
+                messageDiv.className = `message ${role} clearfix`;
+                
+                const contentDiv = document.createElement('div');
+                contentDiv.className = 'message-content';
+                contentDiv.innerHTML = content;
+                
+                messageDiv.appendChild(contentDiv);
+                chatContainer.appendChild(messageDiv);
+                
+                scrollToBottom();
+                return messageDiv;
+            }
 
-    <!-- System Insights -->
-    <div class="bg-white rounded-lg shadow-md p-6">
-        <h2 class="text-xl font-semibold mb-4">System Insights</h2>
-        <div id="system-insights" class="space-y-2">
-            <p class="text-gray-500 italic">No insights available</p>
-        </div>
-    </div>
+            // Show loading indicator
+            function showLoading() {
+                const loadingDiv = document.createElement('div');
+                loadingDiv.className = 'waiting';
+                loadingDiv.id = 'loading-indicator';
+                loadingDiv.innerHTML = `
+                    <div class="loading-indicator"></div>
+                    <span>Thinking...</span>
+                `;
+                chatContainer.appendChild(loadingDiv);
+                scrollToBottom();
+                return loadingDiv;
+            }
 
-    <!-- Health Status -->
-    <div class="bg-white rounded-lg shadow-md p-6">
-        <h2 class="text-xl font-semibold mb-4">Health Status</h2>
-        <div id="health-status" class="space-y-4">
-            <div class="flex items-center space-x-2">
-                <div id="health-indicator" class="w-4 h-4 rounded-full bg-gray-300"></div>
-                <span id="health-text">System Status Unknown</span>
-            </div>
-            <div id="health-details" class="text-sm text-gray-600">
-                Initializing system health checks...
-            </div>
-        </div>
-    </div>
-</div>
-{% endblock %}
+            // Remove loading indicator
+            function removeLoading() {
+                const loadingDiv = document.getElementById('loading-indicator');
+                if (loadingDiv) {
+                    loadingDiv.remove();
+                }
+            }
 
-{% block scripts %}
-<script src="{{ url_for('static', filename='js/main.js') }}"></script>
-<script>
-    // Initialize updates when the page loads
-    document.addEventListener('DOMContentLoaded', function() {
-        initializeUpdates();
-        initializeChat();
-    });
-</script>
-{% endblock %} 
+            // Process escaped HTML (for code blocks etc.)
+            function processMarkdown(text) {
+                // This is a very basic implementation
+                // Replace code blocks
+                text = text.replace(/```(\w+)?\n([\s\S]*?)```/g, function(match, language, code) {
+                    return `<pre><code class="language-${language || ''}">${escapeHtml(code)}</code></pre>`;
+                });
+                
+                // Replace inline code
+                text = text.replace(/`([^`]+)`/g, '<code>$1</code>');
+                
+                // Replace links
+                text = text.replace(/\[(.*?)\]\((.*?)\)/g, '<a href="$2" target="_blank">$1</a>');
+                
+                // Replace bold
+                text = text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+                
+                // Replace italic
+                text = text.replace(/\*(.*?)\*/g, '<em>$1</em>');
+                
+                // Replace line breaks
+                text = text.replace(/\n/g, '<br>');
+                
+                return text;
+            }
+
+            // Escape HTML
+            function escapeHtml(text) {
+                const div = document.createElement('div');
+                div.textContent = text;
+                return div.innerHTML;
+            }
+
+            // Send query to server
+            async function sendQuery(query) {
+                if (!query.trim()) return;
+                
+                // Add user message to chat
+                addMessage('user', escapeHtml(query));
+                
+                // Clear input
+                queryInput.value = '';
+                
+                // Show loading indicator
+                const loadingDiv = showLoading();
+                
+                try {
+                    // Prepare form data
+                    const formData = new FormData();
+                    formData.append('query', query);
+                    
+                    // Send request
+                    const response = await fetch('/ask', {
+                        method: 'POST',
+                        body: formData
+                    });
+                    
+                    // Parse response
+                    const data = await response.json();
+                    
+                    // Remove loading indicator
+                    removeLoading();
+                    
+                    if (data.error) {
+                        // Show error
+                        addMessage('error', `Error: ${data.error}`);
+                    } else if (data.command === 'clear') {
+                        // Clear chat
+                        chatContainer.innerHTML = '';
+                        addMessage('system', data.reply);
+                    } else {
+                        // Process and add assistant message
+                        const processedContent = processMarkdown(data.reply);
+                        addMessage('assistant', processedContent);
+                    }
+                    
+                } catch (error) {
+                    console.error('Error sending query:', error);
+                    removeLoading();
+                    addMessage('error', 'Failed to communicate with the server. Please try again.');
+                }
+            }
+
+            // Handle command buttons
+            commandBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const command = btn.getAttribute('data-command');
+                    sendQuery(command);
+                });
+            });
+
+            // Handle send button click
+            sendBtn.addEventListener('click', () => {
+                sendQuery(queryInput.value);
+            });
+
+            // Handle Enter key in input
+            queryInput.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter') {
+                    sendQuery(queryInput.value);
+                }
+            });
+
+            // Focus input on page load
+            queryInput.focus();
+
+            // Optional: Setup Server-Sent Events for real-time updates
+            if (!!window.EventSource) {
+                const eventSource = new EventSource('/events');
+                
+                eventSource.addEventListener('message', function(e) {
+                    const data = JSON.parse(e.data);
+                    if (data.event === 'new_message') {
+                        // Refresh or fetch new messages
+                        console.log('New message available');
+                    } else if (data.event === 'context_update') {
+                        // Context was updated (e.g. screen content changed)
+                        console.log('Context updated:', data.source);
+                    }
+                });
+                
+                eventSource.addEventListener('error', function() {
+                    console.log('SSE connection error, reconnecting...');
+                });
+            }
+        });
+    </script>
+</body>
+</html> 

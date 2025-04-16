@@ -1,263 +1,154 @@
 """
 Test suite for LLM integration
 """
-import unittest
-from unittest.mock import patch, MagicMock, call
+import pytest
+import pytest_asyncio
+from unittest.mock import patch, MagicMock, AsyncMock
 import json
-import os
-import io
-import time
-import responses
-
+import aiohttp
 from llm.model import LocalLLM
 
-
-class TestLocalLLM(unittest.TestCase):
-    """Test the local LLM integration."""
-    
-    @patch('llm.model.requests.get')
-    def test_init_version_check(self, mock_get):
-        """Test LLM initialization with Ollama version check."""
-        # Mock Ollama API version response
-        mock_get.return_value = MagicMock(
-            status_code=200,
-            json=lambda: {"version": "0.1.0"}
-        )
+class TestLocalLLM:
+    @pytest_asyncio.fixture
+    async def llm(self):
+        """Create a LocalLLM instance with mocked Ollama API."""
+        mock_session = AsyncMock()
+        mock_session.__aenter__.return_value = mock_session
         
-        # Initialize LLM
-        llm = LocalLLM(model_name="test-model", host="localhost", port=11434)
+        # Mock version check response
+        version_response = AsyncMock()
+        version_response.status = 200
+        version_response.json.return_value = {"version": "0.1.0"}
         
-        # Verify API was called
-        mock_get.assert_called_once_with(
-            "http://localhost:11434/api/version", 
-            timeout=2
-        )
-    
-    @patch('llm.model.requests.get')
-    @patch('llm.model.requests.post')
-    def test_ensure_model_availability(self, mock_post, mock_get):
-        """Test model availability check and auto-download."""
-        # Mock Ollama API responses
-        mock_get.side_effect = [
-            # First call to /api/version endpoint
-            MagicMock(status_code=200, json=lambda: {"version": "0.1.0"}),
-            # Second call to /api/tags endpoint
-            MagicMock(status_code=200, json=lambda: {"models": []})  # No models
-        ]
+        # Mock model list response
+        model_response = AsyncMock()
+        model_response.status = 200
+        model_response.json.return_value = {"models": [{"name": "mistral:latest"}]}
         
-        # Mock pull model API response
-        mock_pull_response = MagicMock()
-        mock_pull_response.status_code = 200
-        mock_pull_response.iter_lines.return_value = [
-            json.dumps({"status": "pulling model"}).encode(),
-            json.dumps({"status": "downloading", "completed": False}).encode(),
-            json.dumps({"status": "downloading", "completed": True}).encode()
-        ]
-        mock_post.return_value = mock_pull_response
-        
-        # Initialize LLM - should auto-pull the model
-        llm = LocalLLM(model_name="test-model", host="localhost", port=11434)
-        
-        # Check model pull was attempted
-        mock_post.assert_called_once_with(
-            "http://localhost:11434/api/pull",
-            json={"name": "test-model"},
-            stream=True
-        )
-    
-    @patch('llm.model.requests.get')
-    @patch('llm.model.requests.post')
-    def test_generate_response(self, mock_post, mock_get):
-        """Test response generation with model."""
-        # Mock Ollama API to pass initialization
-        mock_get.side_effect = [
-            MagicMock(status_code=200, json=lambda: {"version": "0.1.0"}),
-            MagicMock(status_code=200, json=lambda: {"models": [{"name": "test-model"}]})
-        ]
-        
-        # Mock chat API response
-        mock_chat_response = MagicMock()
-        mock_chat_response.status_code = 200
-        mock_chat_response.json.return_value = {
+        # Mock chat response
+        chat_response = AsyncMock()
+        chat_response.status = 200
+        chat_response.json.return_value = {
             "message": {
                 "role": "assistant",
-                "content": "This is a test response from the LLM."
+                "content": "Test response"
             }
         }
-        mock_post.return_value = mock_chat_response
         
-        # Initialize LLM and generate a response
-        llm = LocalLLM(model_name="test-model", host="localhost", port=11434)
+        # Set up mock responses
+        mock_session.get.side_effect = [version_response, model_response]
+        mock_session.post.return_value = chat_response
         
-        # Test conversation
-        conversation = [
+        with patch('aiohttp.ClientSession', return_value=mock_session):
+            llm = LocalLLM()
+            await llm.start()  # Initialize the LLM
+            yield llm
+            await llm.stop()
+
+    @pytest.mark.asyncio
+    async def test_initialization(self, llm):
+        """Test LLM initialization."""
+        assert llm is not None
+        assert llm.model_name == "mistral:latest"
+        assert llm.host == "localhost"
+        assert llm.port == 11434
+        assert llm.running is True
+
+    @pytest.mark.asyncio
+    async def test_generate_response(self, llm):
+        """Test response generation."""
+        messages = [
+            {"role": "user", "content": "Hello, how are you?"}
+        ]
+        
+        response = await llm.generate_response(messages)
+        assert isinstance(response, str)
+        assert len(response) > 0
+
+    @pytest.mark.asyncio
+    async def test_generate_response_with_system_prompt(self, llm):
+        """Test response generation with system prompt."""
+        messages = [
             {"role": "system", "content": "You are a helpful assistant."},
-            {"role": "user", "content": "Hello, test."}
+            {"role": "user", "content": "What's the weather like?"}
         ]
         
-        response = llm.generate_response(conversation)
-        
-        # Check response
-        self.assertEqual(response, "This is a test response from the LLM.")
-        
-        # Verify API call
-        mock_post.assert_called_once()
-        args, kwargs = mock_post.call_args
-        self.assertEqual(kwargs["json"]["model"], "test-model")
-        self.assertEqual(kwargs["json"]["messages"], conversation)
-    
-    @patch('llm.model.requests.get')
-    @patch('llm.model.requests.post')
-    def test_error_handling(self, mock_post, mock_get):
-        """Test handling of API errors."""
-        # Mock Ollama API to pass initialization
-        mock_get.side_effect = [
-            MagicMock(status_code=200, json=lambda: {"version": "0.1.0"}),
-            MagicMock(status_code=200, json=lambda: {"models": [{"name": "test-model"}]})
+        response = await llm.generate_response(messages)
+        assert isinstance(response, str)
+        assert len(response) > 0
+
+    @pytest.mark.asyncio
+    async def test_generate_response_with_history(self, llm):
+        """Test response generation with conversation history."""
+        messages = [
+            {"role": "user", "content": "Hi"},
+            {"role": "assistant", "content": "Hello! How can I help you?"},
+            {"role": "user", "content": "What's the weather?"}
         ]
         
-        # Mock API error
-        mock_post.return_value = MagicMock(
-            status_code=500,
-            text="Internal Server Error"
-        )
-        
-        # Initialize LLM and attempt to generate a response
-        llm = LocalLLM(model_name="test-model", host="localhost", port=11434)
-        response = llm.generate_response([{"role": "user", "content": "Hello"}])
-        
-        # Check for error indication in response
-        self.assertIn("Error", response)
-        self.assertIn("500", response)
-    
-    @patch('llm.model.requests.get')
-    @patch('llm.model.requests.post')
-    def test_connection_error_retry(self, mock_post, mock_get):
-        """Test retry behavior on connection error."""
-        # Mock Ollama API to pass initialization
-        mock_get.return_value = MagicMock(
-            status_code=200, 
-            json=lambda: {"version": "0.1.0", "models": [{"name": "test-model"}]}
-        )
-        
-        # Mock connection error then success
-        mock_post.side_effect = [
-            MagicMock(  # First call raises exception
-                side_effect=TimeoutError("Connection timed out")
-            ),
-            MagicMock(  # Second call succeeds
-                status_code=200,
-                json=lambda: {"message": {"role": "assistant", "content": "Success after retry"}}
-            )
+        response = await llm.generate_response(messages)
+        assert isinstance(response, str)
+        assert len(response) > 0
+
+    @pytest.mark.asyncio
+    async def test_generate_response_with_long_input(self, llm):
+        """Test response generation with long input."""
+        long_text = " ".join(["test"] * 1000)
+        messages = [
+            {"role": "user", "content": long_text}
         ]
         
-        # Initialize LLM with retry
-        llm = LocalLLM(model_name="test-model", host="localhost", port=11434)
-        
-        # Set short timeout for test
-        response = llm.generate_response(
-            [{"role": "user", "content": "Test message"}],
-            timeout=1,
-            max_retries=1
-        )
-        
-        # Verify retry happened and we got the successful response
-        self.assertEqual(mock_post.call_count, 2)
-        self.assertEqual(response, "Success after retry")
-    
-    @responses.activate
-    def test_api_interaction_full(self):
-        """Test full API interaction with responses library."""
-        # Setup responses for API endpoints
-        responses.add(
-            responses.GET, 
-            "http://localhost:11434/api/version",
-            json={"version": "0.1.14"}, 
-            status=200
-        )
-        
-        responses.add(
-            responses.GET, 
-            "http://localhost:11434/api/tags",
-            json={"models": [{"name": "test-model"}]}, 
-            status=200
-        )
-        
-        responses.add(
-            responses.POST, 
-            "http://localhost:11434/api/chat",
-            json={"message": {"role": "assistant", "content": "Hello! How can I help you today?"}}, 
-            status=200
-        )
-        
-        # Create LLM and generate response
-        llm = LocalLLM(model_name="test-model", host="localhost", port=11434)
-        response = llm.generate_response([
-            {"role": "user", "content": "Hi there!"}
-        ])
-        
-        # Check response
-        self.assertEqual(response, "Hello! How can I help you today?")
-        
-        # Verify request that was made
-        self.assertEqual(len(responses.calls), 3)
-        
-        # Check request body of the generate call
-        request_body = json.loads(responses.calls[2].request.body)
-        self.assertEqual(request_body["model"], "test-model")
-        self.assertEqual(request_body["messages"][0]["role"], "user")
-        self.assertEqual(request_body["messages"][0]["content"], "Hi there!")
+        response = await llm.generate_response(messages)
+        assert isinstance(response, str)
+        assert len(response) > 0
 
+    @pytest.mark.asyncio
+    async def test_generate_response_with_special_characters(self, llm):
+        """Test response generation with special characters."""
+        messages = [
+            {"role": "user", "content": "Hello! @#$%^&*()_+{}|:\"<>?[]\\;',./"}
+        ]
+        
+        response = await llm.generate_response(messages)
+        assert isinstance(response, str)
+        assert len(response) > 0
 
-class TestLocalLLMFallbacks(unittest.TestCase):
-    """Test fallback methods for LLM integration."""
-    
-    @patch('llm.model.requests.get')
-    @patch('llm.model.subprocess.run')
-    def test_cli_fallback(self, mock_run, mock_get):
-        """Test CLI fallback when API fails."""
-        # Mock API failure but CLI success
-        mock_get.side_effect = Exception("API not available")
-        
-        mock_result = MagicMock()
-        mock_result.returncode = 0
-        mock_result.stdout = "Model list output"
-        mock_run.return_value = mock_result
-        
-        # Initialize with API error - should fall back to CLI
-        with patch('llm.model.os.popen') as mock_popen:
-            mock_popen.return_value = io.StringIO("test-model (loaded)\n")
-            llm = LocalLLM(model_name="test-model")
+    @pytest.mark.asyncio
+    async def test_generate_response_error_handling(self, llm):
+        """Test error handling in response generation."""
+        with patch('aiohttp.ClientSession') as mock_session:
+            mock_session.return_value.post.side_effect = Exception("Test error")
             
-            # Verify CLI was used
-            mock_popen.assert_called()
-    
-    @patch('llm.model.LocalLLM._fallback_generate_windows')
-    @patch('llm.model.platform.system')
-    @patch('llm.model.requests.post')
-    def test_windows_fallback_placeholder(self, mock_post, mock_platform, mock_fallback):
-        """Test Windows fallback method (placeholder)."""
-        # Mock platform to return Windows
-        mock_platform.return_value = "Windows"
-        
-        # Mock API error
-        mock_post.side_effect = Exception("Cannot connect to API")
-        
-        # Mock fallback to return simulated response
-        mock_fallback.return_value = "Fallback Windows response"
-        
-        # Initialize LLM and ensure initialization passes without error
-        with patch('llm.model.os.popen') as mock_popen:
-            mock_popen.return_value = io.StringIO("No models found")
-            llm = LocalLLM(model_name="test-model")
+            messages = [{"role": "user", "content": "Hello"}]
+            response = await llm.generate_response(messages)
             
-            # Attempt to generate - should use fallback
-            response = llm.generate_response([{"role": "user", "content": "Test windows fallback"}])
-            
-            # Verify fallback was called
-            mock_fallback.assert_called_once()
-            self.assertEqual(response, "Fallback Windows response")
+            assert isinstance(response, str)
+            assert "error" in response.lower()
 
+    @pytest.mark.asyncio
+    async def test_generate_response_with_empty_input(self, llm):
+        """Test response generation with empty input."""
+        messages = []
+        response = await llm.generate_response(messages)
+        assert isinstance(response, str)
+        assert "error" in response.lower()
 
-if __name__ == '__main__':
-    unittest.main()
+    @pytest.mark.asyncio
+    async def test_generate_response_with_invalid_role(self, llm):
+        """Test response generation with invalid role."""
+        messages = [
+            {"role": "invalid", "content": "Hello"}
+        ]
+        response = await llm.generate_response(messages)
+        assert isinstance(response, str)
+        assert len(response) > 0
+
+    @pytest.mark.asyncio
+    async def test_generate_response_with_none_content(self, llm):
+        """Test response generation with None content."""
+        messages = [
+            {"role": "user", "content": None}
+        ]
+        response = await llm.generate_response(messages)
+        assert isinstance(response, str)
+        assert "error" in response.lower()

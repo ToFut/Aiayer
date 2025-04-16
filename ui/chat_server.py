@@ -7,18 +7,14 @@ import sys
 import time
 import logging
 import threading
+import asyncio
 from flask import Flask, request, jsonify, render_template, send_from_directory, Response
+from flask_cors import CORS
 
 # Add the project root to the Python path
 project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
 if project_root not in sys.path:
     sys.path.insert(0, project_root)
-
-# Placeholders for global instances that will be set on startup
-agent = None
-memory = None
-sensors = {}
-server_start_time = time.time()
 
 # Initialize Flask app with correct static and template paths
 static_folder = os.path.join(os.path.dirname(__file__), 'static')
@@ -29,6 +25,15 @@ app = Flask(__name__,
     static_url_path='/static',
     template_folder=template_folder
 )
+
+# Enable CORS
+CORS(app)
+
+# Placeholders for global instances that will be set on startup
+app.agent = None
+app.memory = None
+app.sensors = {}
+server_start_time = time.time()
 
 # Add request logging
 @app.before_request
@@ -53,10 +58,11 @@ def index():
     """Render the main chat interface."""
     try:
         logging.info("Rendering index page")
-        all_messages = memory.get_all() if memory else []
+        all_messages = app.memory.get_all() if app.memory else []
         version_info = {
             'assistant': 'Local AI Assistant v0.1.0',
-            'model': agent.llm.model_name if agent and agent.llm else 'Unknown model'
+            'model': app.agent.llm.model_name if app.agent and app.agent.llm else 'Unknown model',
+            'status': 'ready' if app.agent and app.agent.llm else 'not ready'
         }
         return render_template('chat.html', 
                              conversation=all_messages,
@@ -66,70 +72,49 @@ def index():
         return "Error loading chat interface", 500
 
 @app.route('/ask', methods=['POST'])
-def ask():
-    """Handle chat queries."""
+async def ask():
+    """Handle incoming chat requests."""
     try:
         data = request.get_json()
-        query = data.get('query', '').strip()
+        query = data.get('query', '')
         
         if not query:
             return jsonify({
-                'response': '*(Please enter a query)*',
-                'error': True
+                'error': True,
+                'reply': 'Please enter a query'
             })
         
-        if not agent:
-            return jsonify({
-                'response': '*(Error: Agent not initialized)*',
-                'error': True
-            })
+        # Process query through task agent
+        response = await app.agent.handle_query(query)
         
-        try:
-            # Set a timeout for the agent response
-            response = agent.process_query(query, timeout=30)
-            
-            # Check if response is an error message
-            if response.startswith('*(') and response.endswith(')*'):
-                return jsonify({
-                    'response': response,
-                    'error': True
-                })
-            
-            return jsonify({
-                'response': response,
-                'error': False
-            })
-            
-        except Exception as e:
-            logger.error(f"Error processing query: {e}")
-            return jsonify({
-                'response': '*(Error processing query. Please try again.)*',
-                'error': True
-            })
-            
-    except Exception as e:
-        logger.error(f"Error in /ask route: {e}")
         return jsonify({
-            'response': '*(Error: Could not process request)*',
-            'error': True
+            'error': False,
+            'reply': response
+        })
+        
+    except Exception as e:
+        logging.error(f"Error processing query: {str(e)}", exc_info=True)
+        return jsonify({
+            'error': True,
+            'reply': f"Error processing query: {str(e)}"
         })
 
 @app.route('/events')
 def server_sent_events():
     """Server-Sent Events endpoint for real-time updates."""
     def event_stream():
-        last_message_count = len(memory.get_all()) if memory else 0
+        last_message_count = len(app.memory.get_all()) if app.memory else 0
         
         while True:
             try:
                 # Check for new messages
-                current_count = len(memory.get_all()) if memory else 0
+                current_count = len(app.memory.get_all()) if app.memory else 0
                 if current_count > last_message_count:
                     last_message_count = current_count
                     yield f"data: {{'event': 'new_message', 'count': {current_count}}}\n\n"
                 
                 # Check sensor updates
-                for name, sensor in sensors.items():
+                for name, sensor in app.sensors.items():
                     if hasattr(sensor, 'has_updates') and sensor.has_updates():
                         yield f"data: {{'event': 'context_update', 'source': '{name}'}}\n\n"
                 
@@ -151,15 +136,15 @@ def _get_system_status():
         status_lines = [
             "# System Status",
             f"- **Uptime**: {runtime_str}",
-            f"- **Model**: {agent.llm.model_name if agent and agent.llm else 'Unknown'}",
+            f"- **Model**: {app.agent.llm.model_name if app.agent and app.agent.llm else 'Unknown'}",
             "- **Active Sensors**:"
         ]
         
-        for name in sensors:
+        for name in app.sensors:
             status_lines.append(f"  - {name}")
         
-        if memory:
-            mem_stats = memory.get_summary()
+        if app.memory:
+            mem_stats = app.memory.get_summary()
             status_lines.append(f"- **Memory Usage**: {mem_stats.get('count', 0)} messages " +
                                f"({mem_stats.get('usage_percent', 0):.1f}% of capacity)")
         
@@ -168,42 +153,13 @@ def _get_system_status():
         logging.error(f"Error generating status: {str(e)}")
         return "Error generating status report"
 
-def start_server(task_agent, mem=None, sensor_dict=None, host='127.0.0.1', port=5001, debug=False):
-    """
-    Start the Flask server with the provided components.
-    """
-    global agent, memory, sensors, server_start_time
+def start_server(agent_instance, memory_instance, sensors_instance, port=5002):
+    """Start the chat server."""
+    app.agent = agent_instance
+    app.memory = memory_instance
+    app.sensors = sensors_instance
     
-    agent = task_agent
-    memory = mem if mem else task_agent.memory
-    sensors = sensor_dict if sensor_dict else task_agent.sensors
-    server_start_time = time.time()
-    
-    # Configure logging
-    logging.basicConfig(level=logging.DEBUG)
-    
-    # Try different ports if the default is in use
-    max_attempts = 5
-    current_port = port
-    
-    for attempt in range(max_attempts):
-        try:
-            # Log server startup
-            logging.info(f"Starting chat server on {host}:{current_port}")
-            logging.info(f"Open http://{host}:{current_port} in your browser to interact with the assistant")
-            
-            # Run Flask app
-            app.run(host=host, port=current_port, debug=debug, use_reloader=False)
-            break
-        except OSError as e:
-            if "Address already in use" in str(e):
-                logging.warning(f"Port {current_port} is in use, trying port {current_port + 1}")
-                current_port += 1
-                if attempt == max_attempts - 1:
-                    logging.error("Could not find an available port. Please check your running processes.")
-                    raise
-            else:
-                raise
+    app.run(host='127.0.0.1', port=port, debug=True)
 
 # Direct execution - only for development/testing
 if __name__ == '__main__':
@@ -216,23 +172,57 @@ if __name__ == '__main__':
     class MockAgent:
         def __init__(self):
             self.llm = type('obj', (object,), {'model_name': 'mock-model'})
+            self.context_analyzer = MockContextAnalyzer()
         
-        def handle_query(self, query):
-            return f"Mock response to: {query}"
-    
+        async def handle_query(self, query):
+            # Simulate context analysis
+            context_analysis = await self.context_analyzer.analyze_context()
+            
+            # Format response with context
+            response = f"""
+Context Analysis:
+- Current Activity: {context_analysis.current_activity}
+- Context Summary: {context_analysis.context_summary}
+- Potential Needs: {', '.join(context_analysis.potential_needs)}
+- Attention Level: {context_analysis.attention_level}
+
+Response:
+This is a mock response to: {query}
+"""
+            return response
+
+    class MockContextAnalyzer:
+        async def analyze_context(self):
+            return type('obj', (object,), {
+                'current_activity': 'Testing the chat interface',
+                'context_summary': 'User is interacting with the mock chat interface',
+                'potential_needs': ['Testing', 'Debugging', 'Development'],
+                'attention_level': 'high',
+                'confidence_score': 0.95,
+                'semantic_understanding': {
+                    'task_purpose': 'Testing the chat interface',
+                    'workflow': 'User interaction testing',
+                    'challenges': ['Async handling', 'Mock responses'],
+                    'related_concepts': ['Testing', 'Development'],
+                    'implicit_goals': ['Verify functionality']
+                }
+            })
+
     class MockSensor:
         def __init__(self, name):
             self.name = name
             self.active_app = "MockApp"
             self.active_window_title = "Mock Window"
-    
+            self.has_updates = lambda: True
+
     # Create instances
     mock_memory = ConversationMemory()
     mock_agent = MockAgent()
     mock_sensors = {
         "screen": MockSensor("screen"),
-        "process": MockSensor("process")
+        "process": MockSensor("process"),
+        "file": MockSensor("file")
     }
     
     # Start server
-    start_server(mock_agent, mock_memory, mock_sensors, debug=True)
+    start_server(mock_agent, mock_memory, mock_sensors, port=5002)

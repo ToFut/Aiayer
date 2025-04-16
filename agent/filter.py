@@ -18,14 +18,17 @@ class DataFilter:
         Initialize the data filter.
         
         Args:
-            patterns_path (str): Path to file containing regex patterns for sensitive data
+            patterns_path (str or list): Path to file containing regex patterns for sensitive data,
+                                       or a list of patterns
         """
         self.patterns = []
         self.logger = logging.getLogger(__name__)
         
-        # Load patterns from file or use defaults
-        if patterns_path and os.path.exists(patterns_path):
+        # Load patterns from file or list
+        if isinstance(patterns_path, str) and os.path.exists(patterns_path):
             self._load_patterns_from_file(patterns_path)
+        elif isinstance(patterns_path, list):
+            self._load_patterns_from_list(patterns_path)
         else:
             self._load_default_patterns()
             
@@ -56,6 +59,18 @@ class DataFilter:
             self.logger.error(f"Error loading patterns from {file_path}: {e}")
             # Fall back to defaults on error
             self._load_default_patterns()
+    
+    def _load_patterns_from_list(self, patterns_list):
+        """Load sensitive data patterns from a list."""
+        for pattern in patterns_list:
+            try:
+                compiled = re.compile(pattern, flags=re.IGNORECASE)
+                self.patterns.append((compiled, pattern))
+            except re.error:
+                # If not a valid regex, escape it and treat as literal
+                escaped = re.escape(pattern)
+                compiled = re.compile(escaped, flags=re.IGNORECASE)
+                self.patterns.append((compiled, pattern))
     
     def _load_default_patterns(self):
         """Load default sensitive data detection patterns."""

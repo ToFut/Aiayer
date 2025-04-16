@@ -2,6 +2,7 @@
 Flask application for Local Assistant Dashboard
 """
 from flask import Flask, render_template, jsonify, request
+from flask_sock import Sock
 import psutil
 import os
 import subprocess
@@ -41,6 +42,7 @@ def load_config():
 class FlaskApp:
     def __init__(self):
         self.app = Flask(__name__, static_folder='static', static_url_path='/static')
+        self.sock = Sock(self.app)
         self.config = load_config()
         self.system_state = {
             'running': False,
@@ -55,6 +57,7 @@ class FlaskApp:
         }
         self.monitor_thread = None
         self.should_run = True
+        self.clients = set()
         
         # Initialize LLM
         try:
@@ -93,6 +96,35 @@ class FlaskApp:
             """Serve static files."""
             return self.app.send_static_file(filename)
             
+        @self.sock.route('/ws')
+        def websocket(ws):
+            """Handle WebSocket connections."""
+            self.clients.add(ws)
+            logger.info(f"New WebSocket connection. Total clients: {len(self.clients)}")
+            
+            try:
+                while True:
+                    data = ws.receive()
+                    if data is None:
+                        break
+                        
+                    try:
+                        message = json.loads(data)
+                        if message.get('type') == 'chat_message':
+                            response = self.handle_chat_message(message.get('message', ''))
+                            ws.send(json.dumps({
+                                'type': 'chat_message',
+                                'message': response
+                            }))
+                    except json.JSONDecodeError:
+                        logger.warning(f"Invalid JSON received: {data}")
+                        
+            except Exception as e:
+                logger.error(f"WebSocket error: {e}")
+            finally:
+                self.clients.remove(ws)
+                logger.info(f"WebSocket connection closed. Remaining clients: {len(self.clients)}")
+                
         @self.app.route('/api/system/status')
         def system_status():
             """Get current system status."""
@@ -255,30 +287,67 @@ class FlaskApp:
                 logger.error(f"Error in chat endpoint: {e}")
                 return jsonify({'error': str(e)}), 500
                 
+    def broadcast(self, message_type, data):
+        """Broadcast a message to all connected WebSocket clients."""
+        message = json.dumps({
+            'type': message_type,
+            'data': data
+        })
+        
+        for client in self.clients.copy():
+            try:
+                client.send(message)
+            except Exception as e:
+                logger.error(f"Error broadcasting to client: {e}")
+                self.clients.remove(client)
+                
+    def handle_chat_message(self, message):
+        """Handle chat messages and return response."""
+        try:
+            response = requests.post(
+                f"http://localhost:11434/api/generate",
+                json={
+                    "model": "mistral",
+                    "prompt": message,
+                    "stream": False
+                },
+                timeout=30
+            )
+            
+            if response.status_code == 200:
+                result = response.json()
+                if "response" in result:
+                    return result['response']
+                    
+            return "Sorry, I couldn't process your message right now."
+            
+        except Exception as e:
+            logger.error(f"Error handling chat message: {e}")
+            return "Sorry, there was an error processing your message."
+            
     def get_system_stats(self):
         """Get current system statistics."""
-        try:
-            return {
-                'cpu_percent': psutil.cpu_percent(),
-                'memory_percent': psutil.virtual_memory().percent,
-                'disk_percent': psutil.disk_usage('/').percent,
-                'process_count': len(psutil.pids())
-            }
-        except Exception as e:
-            logger.error(f"Error getting system stats: {e}")
-            return {}
-            
+        stats = {
+            'cpu_percent': psutil.cpu_percent(),
+            'memory_percent': psutil.virtual_memory().percent,
+            'disk_percent': psutil.disk_usage('/').percent
+        }
+        
+        # Broadcast stats to WebSocket clients
+        self.broadcast('system_health', stats)
+        return stats
+        
     def monitor_components(self):
-        """Monitor component health in a separate thread."""
+        """Monitor system components and update their status."""
         while self.should_run:
-            try:
-                for component in self.system_state['components']:
-                    self.check_component_health(component)
-                time.sleep(10)  # Check every 10 seconds
-            except Exception as e:
-                logger.error(f"Error in monitor thread: {e}")
-                time.sleep(30)  # Wait longer on error
+            for component in self.system_state['components']:
+                health = self.check_component_health(component)
+                self.system_state['components'][component]['health'] = health
                 
+            # Broadcast component status
+            self.broadcast('component_status', self.system_state['components'])
+            time.sleep(5)
+            
     def check_component_health(self, component):
         """Check health of a specific component."""
         try:

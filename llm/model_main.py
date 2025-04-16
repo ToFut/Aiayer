@@ -36,33 +36,19 @@ def setup_logging():
 
 def load_config():
     """Load configuration from YAML file."""
-    config_path = os.path.join(os.path.dirname(__file__), '..', 'config', 'config.yaml')
+    config_path = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'config', 'config.yaml')
     try:
         with open(config_path, 'r') as f:
             config = yaml.safe_load(f)
             llm_config = config.get('llm', {})
-            if not llm_config:
-                logger.warning("No LLM configuration found in config file")
-                llm_config = {
-                    'model_name': 'mistral',
-                    'host': 'localhost',
-                    'port': 11434
-                }
-            # Extract only the necessary parameters
+            # Only return the parameters that LocalLLM accepts
             return {
                 'model_name': llm_config.get('model_name', 'mistral'),
                 'host': llm_config.get('host', 'localhost'),
                 'port': llm_config.get('port', 11434)
             }
     except FileNotFoundError:
-        logger.warning(f"Config file not found at {config_path}. Using default settings.")
-        return {
-            'model_name': 'mistral',
-            'host': 'localhost',
-            'port': 11434
-        }
-    except Exception as e:
-        logger.error(f"Error loading config: {e}")
+        print(f"Config file not found at {config_path}. Using default settings.")
         return {
             'model_name': 'mistral',
             'host': 'localhost',
@@ -89,23 +75,17 @@ def main():
         except Exception as e:
             logger.error(f"Failed to initialize LLM model: {e}")
             return False
-        
-        # Start the model
-        if not model.start():
-            logger.error("Failed to start LLM Model")
-            return False
             
-        logger.info("LLM Model started successfully")
+        logger.info("LLM Model ready")
         
         # Main loop
         while True:
             try:
-                # Check model health
-                if not model.is_healthy():
+                # Check model availability
+                if not model.ensure_model_available():
                     logger.warning("LLM Model health check failed")
-                    if not model._ensure_model_available():
-                        logger.error("Failed to recover model health")
-                        return False
+                    time.sleep(5)  # Wait before retrying
+                    continue
                 
                 # Sleep briefly
                 time.sleep(5)
@@ -121,8 +101,6 @@ def main():
         logger.error(f"Fatal error: {e}")
         return False
     finally:
-        if model:
-            model.stop()
         logger.info("LLM Model shutdown complete")
         
     return True

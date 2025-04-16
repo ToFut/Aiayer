@@ -1,0 +1,103 @@
+/* Context Analysis Sections */
+.context-section,
+.response-section,
+.semantic-section {
+    margin: 1rem 0;
+    padding: 1rem;
+    border-radius: 8px;
+    background-color: var(--message-bg);
+}
+
+.context-section h4,
+.response-section h4,
+.semantic-section h4 {
+    margin: 0 0 0.5rem 0;
+    color: var(--text-color);
+    font-size: 1.1rem;
+}
+
+.context-content,
+.response-content,
+.semantic-content {
+    white-space: pre-wrap;
+    line-height: 1.5;
+}
+
+.semantic-section pre {
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    background-color: var(--code-bg);
+    padding: 0.5rem;
+    border-radius: 4px;
+    margin: 0;
+}
+
+.response-section p {
+    margin: 0;
+    line-height: 1.5;
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+    .context-section,
+    .semantic-section,
+    .response-section {
+        background-color: var(--message-bg-dark);
+    }
+    
+    .semantic-section pre {
+        background-color: var(--code-bg-dark);
+    }
+}
+
+/* Different background colors for each section */
+.context-section {
+    background-color: rgba(76, 175, 80, 0.1);
+    border-left: 4px solid #4CAF50;
+}
+
+.response-section {
+    background-color: rgba(33, 150, 243, 0.1);
+    border-left: 4px solid #2196F3;
+}
+
+.semantic-section {
+    background-color: rgba(156, 39, 176, 0.1);
+    border-left: 4px solid #9C27B0;
+}
+
+/* Message sections */
+.context-section,
+.response-section {
+    margin: 1rem 0;
+    padding: 1rem;
+    border-radius: 8px;
+    background: var(--message-bg);
+}
+
+.context-section h3,
+.response-section h3 {
+    margin: 0 0 0.5rem 0;
+    color: var(--text-color);
+    font-size: 1.1rem;
+}
+
+.context-content,
+.response-content {
+    color: var(--text-color);
+    line-height: 1.5;
+}
+
+.context-section {
+    border-left: 4px solid var(--accent-color);
+}
+
+.response-section {
+    border-left: 4px solid var(--primary-color);
+}
+
+/* Loading indicator */
+.message.assistant .message-content {
+    color: var(--text-color);
+    font-style: italic;
+} 

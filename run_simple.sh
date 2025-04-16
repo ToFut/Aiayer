@@ -153,7 +153,6 @@ components=(
     "ai_sensor:ai_sensor_main.py"
     "file_sensor:sensors/file_sensor_main.py"
     "process_sensor:sensors/process_sensor_main.py"
-    "llm_model:llm/model_main.py"
     "main:main.py"
 )
 

@@ -2,6 +2,7 @@
 const UPDATE_INTERVAL = 5000; // 5 seconds
 const PREDICTION_INTERVAL = 60000; // 1 minute
 const MAX_EVENTS = 10;
+const RECONNECT_DELAY = 3000; // 3 seconds
 const HEALTH_STATES = {
     GOOD: { class: 'bg-green-500', text: 'System Healthy' },
     WARNING: { class: 'bg-yellow-500', text: 'System Warning' },
@@ -18,6 +19,87 @@ let previousValues = {
     predictions: 0,
     insights: 0
 };
+
+// WebSocket connection
+let ws = null;
+let reconnectTimeout = null;
+let isConnected = false;
+
+// Connection status element
+const connectionStatus = document.createElement('div');
+connectionStatus.id = 'connection-status';
+connectionStatus.className = 'fixed top-4 right-4 px-4 py-2 rounded-lg text-white';
+document.body.appendChild(connectionStatus);
+
+// Initialize WebSocket connection
+function initWebSocket() {
+    if (ws) {
+        ws.close();
+    }
+
+    ws = new WebSocket(`ws://${window.location.host}/ws`);
+
+    ws.onopen = () => {
+        console.log('WebSocket connected');
+        isConnected = true;
+        updateConnectionStatus('connected');
+        clearTimeout(reconnectTimeout);
+    };
+
+    ws.onclose = () => {
+        console.log('WebSocket disconnected');
+        isConnected = false;
+        updateConnectionStatus('disconnected');
+        reconnectTimeout = setTimeout(initWebSocket, RECONNECT_DELAY);
+    };
+
+    ws.onerror = (error) => {
+        console.error('WebSocket error:', error);
+        updateConnectionStatus('error');
+    };
+
+    ws.onmessage = (event) => {
+        const data = JSON.parse(event.data);
+        handleWebSocketMessage(data);
+    };
+}
+
+// Update connection status UI
+function updateConnectionStatus(status) {
+    const statusMap = {
+        connected: { class: 'bg-green-500', text: 'Connected' },
+        disconnected: { class: 'bg-yellow-500', text: 'Disconnected - Reconnecting...' },
+        error: { class: 'bg-red-500', text: 'Connection Error' }
+    };
+
+    const statusInfo = statusMap[status] || statusMap.disconnected;
+    connectionStatus.className = `fixed top-4 right-4 px-4 py-2 rounded-lg text-white ${statusInfo.class}`;
+    connectionStatus.textContent = statusInfo.text;
+}
+
+// Handle WebSocket messages
+function handleWebSocketMessage(data) {
+    switch (data.type) {
+        case 'system_health':
+            updateSystemHealthUI(data.data);
+            break;
+        case 'ai_sensor_stats':
+            updateAISensorStatsUI(data.data);
+            break;
+        case 'recent_events':
+            updateRecentEventsUI(data.data);
+            break;
+        case 'resource_predictions':
+            updateResourcePredictionsUI(data.data);
+            break;
+        case 'system_insights':
+            updateSystemInsightsUI(data.data);
+            break;
+        case 'chat_message':
+            addMessage(data.message, false);
+            break;
+    }
+}
 
 // Update system health
 async function updateSystemHealth() {
@@ -193,19 +275,31 @@ function formatTime(timestamp) {
 function initializeUpdates() {
     console.log('Initializing updates...');
     
-    // Initial updates
+    // Initialize WebSocket
+    initWebSocket();
+    
+    // Initial updates (fallback if WebSocket fails)
     updateSystemHealth();
     updateAISensorStats();
     updateRecentEvents();
     updateResourcePredictions();
     updateSystemInsights();
     
-    // Set update intervals
-    setInterval(updateSystemHealth, UPDATE_INTERVAL);
-    setInterval(updateAISensorStats, UPDATE_INTERVAL);
-    setInterval(updateRecentEvents, UPDATE_INTERVAL);
-    setInterval(updateResourcePredictions, PREDICTION_INTERVAL);
-    setInterval(updateSystemInsights, UPDATE_INTERVAL);
+    // Set update intervals (fallback if WebSocket fails)
+    setInterval(() => {
+        if (!isConnected) {
+            updateSystemHealth();
+            updateAISensorStats();
+            updateRecentEvents();
+            updateSystemInsights();
+        }
+    }, UPDATE_INTERVAL);
+    
+    setInterval(() => {
+        if (!isConnected) {
+            updateResourcePredictions();
+        }
+    }, PREDICTION_INTERVAL);
 }
 
 // Chat functionality
@@ -220,6 +314,7 @@ function initializeChat() {
         messageElement.innerHTML = `
             <div class="flex items-center space-x-2">
                 <span class="font-medium">${isUser ? 'You' : 'AI Assistant'}</span>
+                <span class="text-xs text-gray-500">${new Date().toLocaleTimeString()}</span>
             </div>
             <p class="text-gray-700 mt-1">${message}</p>
         `;
@@ -238,24 +333,25 @@ function initializeChat() {
         addMessage(message, true);
 
         try {
-            const response = await fetch('/api/chat', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ message })
-            });
-
-            const data = await response.json();
-            
-            if (data.error) {
-                addMessage('Error: ' + data.error);
+            if (isConnected && ws) {
+                // Send via WebSocket if available
+                ws.send(JSON.stringify({ type: 'chat_message', message }));
             } else {
+                // Fallback to HTTP
+                const response = await fetch('/api/chat', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ message })
+                });
+
+                const data = await response.json();
                 addMessage(data.response);
             }
         } catch (error) {
             console.error('Error sending message:', error);
-            addMessage('Error: Could not connect to the AI Assistant');
+            addMessage('Sorry, there was an error processing your message. Please try again.', false);
         }
     }
 
@@ -284,7 +380,7 @@ if (typeof module !== 'undefined' && module.exports) {
     };
 }
 
-// Start updates when DOM is loaded
+// Initialize when DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
     initializeUpdates();
     initializeChat();

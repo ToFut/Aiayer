@@ -1,85 +1,117 @@
-# Local Assistant Configuration - MVP Version
+# Local AI Assistant Configuration
 
-# LLM Configuration
+# System settings
+system:
+  name: "Local AI Assistant"
+  version: "0.1.0"
+  debug: false
+
+# Agent settings
+agent:
+  filter_patterns:
+    - "password"
+    - "secret"
+    - "key"
+    - "token"
+    - "api_key"
+    - "private_key"
+    - "ssh_key"
+    - "credential"
+    - "authentication"
+    - "authorization"
+
+# Sensor settings
+sensors:
+  # Screen sensor
+  screen:
+    enabled: true
+    interval_sec: 5
+    capture_active_window_only: false  # If true, only captures the active window instead of full screen
+    ocr_language: "eng"  # Tesseract language config (can be multiple, e.g., "eng+fra")
+    max_text_length: 5000  # Maximum characters to keep from screen text
+
+  # File system sensor
+  file:
+    enabled: true
+    # Paths to monitor (will be expanded for ~ to user home)
+    paths:
+      - "~/Documents"
+      - "~/Desktop"
+      - "~/Downloads"
+    ignore_patterns:
+      - "*.tmp"
+      - "~*"
+      - ".DS_Store"
+      - "Thumbs.db"
+      - ".git/*"
+      - "__pycache__/*"
+      - "node_modules/*"
+    max_events: 100  # Maximum number of recent events to store
+
+  # Process sensor
+  process:
+    enabled: true
+    interval_sec: 3
+    track_all_processes: false  # If false, only track GUI applications
+
+  # Browser sensor (optional)
+  browser:
+    enabled: false
+    polling_interval_sec: 10  # How often to poll browser info (only used if enabled)
+    browsers:
+      - "Chrome"
+      - "Safari"
+      - "Firefox"
+
+# LLM settings
+llm:
+  model_name: "mistral:latest"
+  host: "localhost"
+  port: 11434
+
+# Memory settings
+memory:
+  max_conversation_length: 50
+
+# LLM settings
 llm:
   model_name: mistral
   host: localhost
-  port: 11434
-  timeout_sec: 30
-  max_retries: 3
-  max_tokens: 1024
+  port: 11434  # Default Ollama port
+  request_timeout_sec: 60
   temperature: 0.7
+  max_tokens: 1000  # Max output tokens
+  top_p: 0.95
+  frequency_penalty: 0.0
+  presence_penalty: 0.0
+  retry_attempts: 2
 
-# Sensor Configuration
-sensors:
-  # File Sensor Settings
-  file:
-    enabled: true
-    monitor_paths:
-      - ~/Documents
-    exclude_patterns:
-      - "*.tmp"
-      - "*.log"
-      - "*.swp"
-      - ".git/*"
-    max_file_size_mb: 100
-    max_files_monitored: 100
-    max_memory_mb: 50
-    cleanup_threshold_mb: 40
-    monitor_interval_sec: 10
-    max_errors: 10
-    max_file_descriptors: 100
-
-  # Process Sensor Settings
-  process:
-    enabled: true
-    interval_sec: 15
-    max_processes: 100
-    exclude_patterns:
-      - "python"
-      - "node"
-    cache_timeout_sec: 60
-    max_memory_mb: 50
-    cleanup_threshold_mb: 40
-    max_errors: 10
-    history_size: 100
-
-  # AI Sensor Settings
-  ai:
-    enabled: false
-    monitor_interval_sec: 60
-    analysis_interval_sec: 300
-    prediction_interval_sec: 600
-    max_memory_mb: 200
-    max_cpu_percent: 50
-    max_disk_usage: 80
-    max_network_usage: 1000
-    event_queue_size: 1000
-    insight_queue_size: 100
-    alert_queue_size: 50
-    anomaly_threshold: 0.8
-    pattern_window: 3600
-    prediction_window: 7200
-    sequence_length: 100
-    batch_size: 32
-
-# Logging Configuration
-logging:
-  level: INFO
-  file: assistant.log
-  max_size_mb: 5
-  backup_count: 2
-  console_enabled: true
-
-# System Configuration
-system:
-  max_total_memory_mb: 200
-  max_total_cpu_percent: 30
-  health_check_interval_sec: 120
-  shutdown_timeout_sec: 15
+# Memory settings
+memory:
+  max_conversation_length: 1  # Only keep the last message
+  max_token_budget: 100  # Minimal token budget
+  store_timestamps: false  # Don't store timestamps to save memory
 
 # Security settings
 security:
-  allow_read_file_content: true
-  allow_network_access: false
-  bind_to_localhost: true
+  sensitivity_patterns_path: "config/sensitivity_patterns.txt"
+  allow_read_file_content: true  # If true, allows reading file content on explicit user request
+  allow_network_access: false  # If true, allows the assistant to access internet (FUTURE)
+  sanitize_sensitive_data: true  # If true, sanitizes sensitive data from responses
+  bind_to_localhost: true  # If true, binds the web UI only to localhost
+
+# UI settings
+ui:
+  host: "127.0.0.1"  # Change to 0.0.0.0 to allow access from other devices (not recommended)
+  port: 5002
+  title: "Local AI Assistant"
+  theme: "auto"  # auto (system preference), light, dark
+  enable_markdown: true
+
+# Logging settings
+logging:
+  level: "INFO"  # DEBUG, INFO, WARNING, ERROR, CRITICAL
+  file: "local_assistant.log"
+  max_size_mb: 10
+  backup_count: 3
+  log_to_console: true

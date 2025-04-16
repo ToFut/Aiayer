@@ -5,9 +5,12 @@ Provides interface to local language models via Ollama.
 import os
 import json
 import logging
-import requests
-import time
+import aiohttp
+import asyncio
 from collections import deque
+from typing import List, Dict
+
+import requests
 
 class LocalLLM:
     """
@@ -15,7 +18,7 @@ class LocalLLM:
     Provides methods to ensure model availability and generate responses.
     """
     
-    def __init__(self, model_name="mistral", host="localhost", port=11434):
+    def __init__(self, model_name="mistral:latest", host="localhost", port=11434):
         """
         Initialize the LLM interface.
         
@@ -32,45 +35,145 @@ class LocalLLM:
         self.running = False
         self.last_request_time = 0
         self.min_request_interval = 1  # 1 second between requests
+        self.timeout = 60  # Increased timeout to 60 seconds
+        self.max_retries = 3  # Maximum number of retries
         
-    def start(self):
+        # Check Ollama version and model availability during initialization
+        try:
+            async def check_ollama():
+                async with aiohttp.ClientSession() as session:
+                    response = await session.get(f"{self.base_url}/api/version", timeout=2)
+                    if response.status != 200:
+                        raise ConnectionError("Failed to connect to Ollama")
+                    
+                    # Check if model is available
+                    response = await session.get(f"{self.base_url}/api/tags", timeout=2)
+                    if response.status != 200:
+                        raise ConnectionError("Failed to get model list")
+                    
+                    models = [model['name'] for model in await response.json().get('models', [])]
+                    
+                    if self.model_name not in models:
+                        self.logger.info(f"Model {self.model_name} not found, pulling...")
+                        response = await session.post(
+                            f"{self.base_url}/api/pull",
+                            json={"name": self.model_name},
+                            timeout=30  # Longer timeout for pull
+                        )
+                        if response.status != 200:
+                            raise ConnectionError("Failed to pull model")
+                        
+                        # Wait for model to be pulled
+                        async for line in response.content:
+                            if line:
+                                data = json.loads(line)
+                                if 'error' in data:
+                                    raise ConnectionError(f"Error pulling model: {data['error']}")
+                            
+            check_ollama()
+            self.running = True
+            
+        except Exception as e:
+            self.logger.error(f"Error during initialization: {e}")
+            self.running = False
+        
+    async def ensure_model_available(self):
+        """
+        Ensure the model is available locally.
+        Returns True if model is available or successfully pulled, False otherwise.
+        """
+        try:
+            async with aiohttp.ClientSession() as session:
+                # Check if Ollama is running
+                response = await session.get(f"{self.base_url}/api/version", timeout=5)
+                if response.status != 200:
+                    self.logger.error("Failed to connect to Ollama")
+                    return False
+                
+                # Check if model is available
+                response = await session.get(f"{self.base_url}/api/tags")
+                if response.status != 200:
+                    self.logger.error("Failed to get model list")
+                    return False
+                
+                models = [model['name'] for model in await response.json().get('models', [])]
+                
+                if self.model_name not in models:
+                    self.logger.info(f"Model {self.model_name} not found, pulling...")
+                    response = await session.post(
+                        f"{self.base_url}/api/pull",
+                        json={"name": self.model_name},
+                        timeout=30  # Longer timeout for pull
+                    )
+                    if response.status != 200:
+                        self.logger.error("Failed to pull model")
+                        return False
+                    
+                    # Wait for model to be pulled
+                    async for line in response.content:
+                        if line:
+                            data = json.loads(line)
+                            if 'error' in data:
+                                self.logger.error(f"Error pulling model: {data['error']}")
+                                return False
+                            
+                self.running = True
+                return True
+            
+        except Exception as e:
+            self.logger.error(f"Error ensuring model availability: {e}")
+            return False
+    
+    async def start(self):
         """Start the LLM model."""
         try:
-            # Check if Ollama is running
-            response = requests.get(f"{self.base_url}/api/version", timeout=5)
-            if response.status_code != 200:
-                self.logger.error("Failed to connect to Ollama")
-                return False
-                
-            self.logger.info(f"Connected to Ollama version: {response.json().get('version')}")
-            
-            # Check if model is available
-            response = requests.get(f"{self.base_url}/api/tags")
-            models = [model['name'] for model in response.json().get('models', [])]
-            
-            if self.model_name not in models:
-                self.logger.info(f"Model {self.model_name} not found, pulling...")
-                response = requests.post(
-                    f"{self.base_url}/api/pull",
-                    json={"name": self.model_name},
-                    stream=True
-                )
-                if response.status_code != 200:
-                    self.logger.error("Failed to pull model")
+            async with aiohttp.ClientSession() as session:
+                # Check if Ollama is running
+                response = await session.get(f"{self.base_url}/api/version", timeout=5)
+                if response.status != 200:
+                    self.logger.error("Failed to connect to Ollama")
                     return False
+                version_data = await response.json()
+                self.logger.info(f"Connected to Ollama version: {version_data.get('version')}")
+                
+                # Check if model is available
+                response = await session.get(f"{self.base_url}/api/tags")
+                if response.status != 200:
+                    self.logger.error("Failed to get model list")
+                    return False
+                
+                models = [model['name'] for model in await response.json().get('models', [])]
+                
+                if self.model_name not in models:
+                    self.logger.info(f"Model {self.model_name} not found, pulling...")
+                    response = await session.post(
+                        f"{self.base_url}/api/pull",
+                        json={"name": self.model_name},
+                        timeout=30  # Longer timeout for pull
+                    )
+                    if response.status != 200:
+                        self.logger.error("Failed to pull model")
+                        return False
                     
-            self.running = True
-            return True
-            
+                    # Wait for model to be pulled
+                    async for line in response.content:
+                        if line:
+                            data = json.loads(line)
+                            if 'error' in data:
+                                self.logger.error(f"Error pulling model: {data['error']}")
+                                return False
+                
+                self.running = True
+                return True
+                
         except Exception as e:
             self.logger.error(f"Error starting LLM: {e}")
             return False
-            
-    def stop(self):
+    
+    async def stop(self):
         """Stop the LLM model."""
         self.running = False
-        return True
-        
+
     def is_healthy(self):
         """Check if the LLM is healthy."""
         if not self.running:
@@ -82,70 +185,64 @@ class LocalLLM:
         except:
             return False
             
-    def generate_response(self, conversation, timeout=30):
-        """Generate a response using the model."""
+    async def generate_response(self, messages: List[Dict[str, str]]) -> str:
+        """
+        Generate a response from the model.
+        
+        Args:
+            messages (List[Dict[str, str]]): List of message dictionaries with 'role' and 'content'
+            
+        Returns:
+            str: Generated response text
+        """
+        if not self.running:
+            self.logger.error("LLM not running")
+            return "Error: LLM not running"
+            
+        if not messages:
+            self.logger.error("Empty messages list")
+            return "Error: Empty messages list"
+            
+        # Validate messages
+        for message in messages:
+            if not isinstance(message, dict):
+                self.logger.error("Invalid message format")
+                return "Error: Invalid message format"
+                
+            if 'role' not in message or 'content' not in message:
+                self.logger.error("Message missing required fields")
+                return "Error: Message missing required fields"
+                
+            if message['content'] is None:
+                self.logger.error("Message content is None")
+                return "Error: Message content is None"
+                
         try:
-            if not self.running:
-                if not self.start():
-                    return "Error: Could not start LLM service"
-                    
-            # Rate limiting
-            current_time = time.time()
-            if current_time - self.last_request_time < self.min_request_interval:
-                time.sleep(self.min_request_interval)
-            self.last_request_time = current_time
-            
-            # Format prompt from conversation
-            prompt = ""
-            for msg in conversation:
-                if msg["role"] == "system":
-                    prompt += f"System: {msg['content']}\n\n"
-                elif msg["role"] == "user":
-                    prompt += f"User: {msg['content']}\n\n"
-                elif msg["role"] == "assistant":
-                    prompt += f"Assistant: {msg['content']}\n\n"
-            
-            prompt += "Assistant:"
-            
-            # Make request to Ollama
-            response = requests.post(
-                f"{self.base_url}/api/generate",
-                json={
-                    "model": self.model_name,
-                    "prompt": prompt,
-                    "stream": False,
-                    "options": {
-                        "temperature": 0.7,
-                        "top_p": 0.9,
-                        "top_k": 40,
-                        "num_predict": 100,
-                    }
-                },
-                timeout=timeout
-            )
-            
-            if response.status_code == 200:
-                result = response.json()
-                if "response" in result:
-                    return result["response"].strip()
-                    
-            self.logger.error(f"Error from Ollama API: {response.text}")
-            return "Error: Failed to generate response"
-            
-        except requests.exceptions.Timeout:
-            self.logger.error("Request timed out")
-            return "Error: Request timed out"
-        except requests.exceptions.ConnectionError:
-            self.logger.error("Connection error")
-            return "Error: Could not connect to LLM service"
+            async with aiohttp.ClientSession() as session:
+                response = await session.post(
+                    f"{self.base_url}/api/chat",
+                    json={
+                        "model": self.model_name,
+                        "messages": messages
+                    },
+                    timeout=self.timeout
+                )
+                
+                if response.status != 200:
+                    self.logger.error(f"Error generating response: {response.status}")
+                    return f"Error: Failed to generate response (status {response.status})"
+                
+                data = await response.json()
+                return data.get('message', {}).get('content', '')
+                
         except Exception as e:
-            self.logger.error(f"Unexpected error: {e}")
+            self.logger.error(f"Error generating response: {e}")
             return f"Error: {str(e)}"
 
 # For testing if run directly
 if __name__ == "__main__":
     logging.basicConfig(level=logging.INFO)
-    llm = LocalLLM(model_name="mistral")
+    llm = LocalLLM(model_name="mistral:latest")
     
     if llm.start():
         print("LLM Model started successfully")

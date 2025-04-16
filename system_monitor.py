@@ -74,11 +74,7 @@ class SystemMonitor:
         self.llm = LocalLLM(
             model_name=config['llm']['model_name'],
             host=config['llm']['host'],
-            port=config['llm']['port'],
-            max_retries=config['llm']['max_retries'],
-            timeout_sec=config['llm']['timeout_sec'],
-            max_tokens=config['llm']['max_tokens'],
-            temperature=config['llm']['temperature']
+            port=config['llm']['port']
         )
         
         # Enable debug mode if configured
