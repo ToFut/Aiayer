@@ -200,7 +200,7 @@ class BrowserSensor:
         """Get tab count on Linux."""
         # Placeholder for Linux implementation
         return 0
-
+    
     def update_from_browser(self, url, title=None, text=None):
         """
         Update browser data (for browser extension push method).

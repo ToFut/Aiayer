@@ -1,0 +1,38 @@
+OCR Results - 2025-04-16 01:30:34.841066
+==================================================
+
+Total characters: 1709
+Total words: 184
+Total lines: 29
+
+Extracted Text:
+==================================================
+onst| backendTotalf=Ydatatotal; | We pa eS IDirectAvailabilityiter
+onst] backendPage]=]data. page; 127, (validationErrors. Length
+. 128 console.warn(s [Handler] \Validation ferrorsiny] w
+etListings(value:’prevListings r=>¥ {] 129 Z @
+if[ (append) Xi} 130 7 statusCode:
+//4Appendfonly[unique}new]listings =W131; a&B@ CORS /)
+Keonsty existingldsf=jnew] Set(\iterable:MNprevListings map ( 3 132 / (body) Fisonvstringify( {ferro} Bose cao
+const[uniqueNew[=]fetchedResults*filter(pT=>J!existinglds tMr35 /
+freturn} [+ prevlListings, 134 7
+Wetseyi}
+| //JReplaceflistings) (forfatnew{search) 136 j {const} parsedMinOccupancy{=]parseInt (minOccupancy,
+return} fetchedResults; 137, / Mm |MconstlimitNum{-parseint (Limit) 3}
+ELY (const{ pageNum] [=YparseInt (page, rseInt (page, $10) ;
+(EDY
+140 {| W//[Handle}potential[NaN]fron}parsemnt]
+etTotalBackendResults(value:] backendTotal); 141 (isNaN(parsedMinOccupancy) r} isNaN( LimitNum)
+etCurrentPageFetched(value:] backendPage) ;¥//Alrust} backend]p. a2 7 fj
+; 143 7 statusCode:
+/[determineyi t{more}pagesfexist[xon] the] backend) naa 7 GLEN 8 B cco GUD cco
+onst{morePagesExist{=} (append }7?Alistings: Length\+) omen |E 145 j ‘body :] Fisonstringify({ferror:) (numeri
+etHasMorePages (value: morePagesExist) ; 146 j
+147, /
+oongt[set[displayedListings}hereJdi rectly” 149 7] const skipNig =] (pageNum{-}1) [*}LimitNum;
+firetfrnefritrerfetrect[handleJinitialfai splayfonInon. append liso Mam |
+/[LetBloadMoreListings}handle}displayYonYappend. is
+] B CER CYS ED CAND RED GOD eH! |I | = & Rada Gey Csmn Gama
+153 / (constfallStrategiesPromisef=]fetchAllStrategyDe
+154 / consoles log(4 [Handler] BInitiated|fetch}forzally:
+apdate [mapJonlyfon{new) search/filterf(append=false)

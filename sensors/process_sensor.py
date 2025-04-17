@@ -193,7 +193,7 @@ class ProcessSensor:
             ).strip()
         except subprocess.CalledProcessError:
             return None
-
+    
     def update_process_list(self):
         """Update list of running applications."""
         try:

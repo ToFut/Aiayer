@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Assistant Overlay</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            background-color: #f5f5f7;
+        }
+        
+        .assistant-widget {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 9999;
+            background-color: rgba(255, 255, 255, 0.95);
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+            transition: all 0.3s ease;
+            overflow: hidden;
+            width: 400px;
+        }
+        
+        .widget-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 15px;
+            background-color: #f8f9fa;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .widget-header h3 {
+            margin: 0;
+            font-size: 16px;
+            font-weight: 600;
+        }
+        
+        .connection-badge {
+            font-size: 12px;
+            padding: 4px 8px;
+            border-radius: 12px;
+            background-color: #e0e0e0;
+            color: #666;
+        }
+        
+        .connection-badge.connecting {
+            background-color: #FFF8E1;
+            color: #FF8F00;
+        }
+        
+        .connection-badge.connected {
+            background-color: #E8F5E9;
+            color: #2E7D32;
+        }
+        
+        .connection-badge.error {
+            background-color: #FFEBEE;
+            color: #C62828;
+        }
+        
+        .close-button {
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: #666;
+            padding: 0;
+            margin-left: 10px;
+        }
+        
+        .messages {
+            overflow-y: auto;
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            max-height: 350px;
+            min-height: 200px;
+        }
+        
+        .empty-state {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100px;
+            color: #666;
+            text-align: center;
+            font-style: italic;
+        }
+        
+        .message {
+            max-width: 85%;
+            padding: 12px 16px;
+            border-radius: 18px;
+            position: relative;
+            word-wrap: break-word;
+            line-height: 1.5;
+        }
+        
+        .message.user {
+            background-color: #E3F2FD;
+            color: #0D47A1;
+            align-self: flex-end;
+            border-bottom-right-radius: 4px;
+        }
+        
+        .message.assistant {
+            background-color: #F5F5F5;
+            color: #333;
+            align-self: flex-start;
+            border-bottom-left-radius: 4px;
+        }
+        
+        .message-content {
+            font-size: 14px;
+        }
+        
+        .input-area {
+            display: flex;
+            gap: 10px;
+            padding: 15px;
+            border-top: 1px solid #eee;
+        }
+        
+        input {
+            flex: 1;
+            padding: 12px 16px;
+            border: 1px solid #ddd;
+            border-radius: 24px;
+            font-size: 14px;
+            outline: none;
+            transition: border-color 0.2s ease;
+        }
+        
+        input:focus {
+            border-color: #4CAF50;
+        }
+        
+        input:disabled {
+            background-color: #f5f5f5;
+            cursor: not-allowed;
+        }
+        
+        .send-button {
+            padding: 0 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 24px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background-color 0.2s ease;
+        }
+        
+        .send-button:hover {
+            background-color: #45a049;
+        }
+        
+        .send-button:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+        }
+        
+        .actions {
+            display: flex;
+            padding: 10px 15px 15px;
+            gap: 10px;
+            justify-content: space-between;
+        }
+        
+        .action-button {
+            flex: 1;
+            padding: 8px 0;
+            background-color: #f0f0f0;
+            color: #333;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 12px;
+            transition: background-color 0.2s ease;
+        }
+        
+        .action-button:hover {
+            background-color: #e0e0e0;
+        }
+        
+        @keyframes pulse {
+            0% { opacity: 0.5; }
+            50% { opacity: 1; }
+            100% { opacity: 0.5; }
+        }
+    </style>
+</head>
+<body>
+    <div class="assistant-widget" id="assistantWidget">
+        <div class="widget-header">
+            <h3>AI Assistant</h3>
+            <div class="connection-badge" id="connectionBadge">Disconnected</div>
+        </div>
+        
+        <div class="messages" id="messagesContainer">
+            <div class="empty-state">
+                <p>Ask me anything about what you're working on!</p>
+            </div>
+        </div>
+        
+        <div class="input-area">
+            <input 
+                type="text" 
+                id="userInput" 
+                placeholder="Type your message..." 
+                aria-label="Message input"
+            />
+            <button 
+                class="send-button" 
+                id="sendButton"
+                aria-label="Send message"
+            >
+                Send
+            </button>
+        </div>
+        
+        <div class="actions">
+            <button class="action-button" id="clearButton">Clear Chat</button>
+            <button class="action-button" id="transformButton">Transform UI</button>
+        </div>
+    </div>
+
+    <script>
+        // DOM Elements
+        const connectionBadge = document.getElementById('connectionBadge');
+        const messagesContainer = document.getElementById('messagesContainer');
+        const userInput = document.getElementById('userInput');
+        const sendButton = document.getElementById('sendButton');
+        const clearButton = document.getElementById('clearButton');
+        const transformButton = document.getElementById('transformButton');
+        
+        // Connection state
+        let websocket = null;
+        let connectionState = 'disconnected';
+        let messages = [];
+        
+        // Initialize
+        function initialize() {
+            connectWebSocket();
+            setupEventListeners();
+            updateConnectionUI();
+        }
+        
+        // Connect to WebSocket
+        function connectWebSocket() {
+            try {
+                connectionState = 'connecting';
+                updateConnectionUI();
+                
+                websocket = new WebSocket('ws://localhost:8765');
+                
+                websocket.onopen = () => {
+                    console.log('Connected to WebSocket server');
+                    connectionState = 'connected';
+                    updateConnectionUI();
+                    
+                    // Send initial connection message
+                    sendMessage('connection_established', {
+                        client: 'web-overlay',
+                        version: '0.1.0',
+                        timestamp: Date.now()
+                    });
+                };
+                
+                websocket.onclose = () => {
+                    console.log('Disconnected from WebSocket server');
+                    connectionState = 'disconnected';
+                    updateConnectionUI();
+                    
+                    // Try to reconnect after a delay
+                    setTimeout(connectWebSocket, 3000);
+                };
+                
+                websocket.onerror = (error) => {
+                    console.error('WebSocket error:', error);
+                    connectionState = 'error';
+                    updateConnectionUI();
+                };
+                
+                websocket.onmessage = (event) => {
+                    handleWebSocketMessage(event.data);
+                };
+            } catch (error) {
+                console.error('Error connecting to WebSocket:', error);
+                connectionState = 'error';
+                updateConnectionUI();
+            }
+        }
+        
+        // Setup event listeners
+        function setupEventListeners() {
+            sendButton.addEventListener('click', sendUserMessage);
+            userInput.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter') {
+                    sendUserMessage();
+                }
+            });
+            
+            clearButton.addEventListener('click', clearMessages);
+            transformButton.addEventListener('click', requestTransformation);
+        }
+        
+        // Send a message to the server
+        function sendMessage(type, payload) {
+            if (websocket && websocket.readyState === WebSocket.OPEN) {
+                websocket.send(JSON.stringify({
+                    type: type,
+                    payload: payload
+                }));
+                return true;
+            }
+            return false;
+        }
+        
+        // Send user message
+        function sendUserMessage() {
+            const text = userInput.value.trim();
+            
+            // For testing, allow sending even if not connected
+            if (!text) return;
+            
+            // Add message to UI
+            addMessage('user', text);
+            
+            // Clear input
+            userInput.value = '';
+            
+            // Send to server (if connected)
+            if (connectionState === 'connected') {
+                sendMessage('user_interaction', {
+                    type: 'query',
+                    query: text
+                });
+            } else {
+                // Show a message that we're not connected
+                setTimeout(() => {
+                    addMessage('assistant', 'Not connected to the backend. Please check if the WebSocket server is running.');
+                }, 500);
+            }
+        }
+        
+        // Handle incoming WebSocket messages
+        function handleWebSocketMessage(data) {
+            try {
+                const message = JSON.parse(data);
+                console.log('Received message:', message);
+                
+                const { type, payload } = message;
+                
+                switch (type) {
+                    case 'connection_status':
+                        connectionState = payload.state;
+                        updateConnectionUI();
+                        break;
+                    case 'query_response':
+                        addMessage('assistant', payload.response);
+                        break;
+                    case 'transform-interface':
+                        console.log('Received transformation data:', payload);
+                        // In a real overlay, this would transform the interface
+                        addMessage('assistant', 'Interface transformation received. Would transform: ' + 
+                            (payload.metadata?.purpose || 'Unknown purpose'));
+                        break;
+                    case 'transform-error':
+                        console.error('Transformation error:', payload);
+                        addMessage('assistant', 'Error transforming interface: ' + payload.message);
+                        break;
+                }
+            } catch (error) {
+                console.error('Error handling WebSocket message:', error);
+            }
+        }
+        
+        // Update connection UI
+        function updateConnectionUI() {
+            connectionBadge.textContent = connectionState.charAt(0).toUpperCase() + connectionState.slice(1);
+            connectionBadge.className = 'connection-badge';
+            
+            if (connectionState === 'connected') {
+                connectionBadge.classList.add('connected');
+                userInput.disabled = false;
+                sendButton.disabled = false;
+            } else if (connectionState === 'connecting') {
+                connectionBadge.classList.add('connecting');
+                connectionBadge.textContent = 'Connecting...';
+                userInput.disabled = false; // Allow typing even when connecting
+                sendButton.disabled = false; // Allow sending even when connecting
+            } else {
+                connectionBadge.classList.add('error');
+                userInput.disabled = false; // Always allow typing for testing
+                sendButton.disabled = false; // Always allow sending for testing
+            }
+        }
+        
+        // Add a message to the UI
+        function addMessage(type, content) {
+            // Remove empty state if it exists
+            const emptyState = document.querySelector('.empty-state');
+            if (emptyState) {
+                emptyState.remove();
+            }
+            
+            // Create message element
+            const messageEl = document.createElement('div');
+            messageEl.className = `message ${type}`;
+            
+            const contentEl = document.createElement('div');
+            contentEl.className = 'message-content';
+            contentEl.textContent = content;
+            
+            messageEl.appendChild(contentEl);
+            messagesContainer.appendChild(messageEl);
+            
+            // Scroll to bottom
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+            
+            // Add to messages array
+            messages.push({ type, content });
+        }
+        
+        // Clear all messages
+        function clearMessages() {
+            messagesContainer.innerHTML = '';
+            messages = [];
+            
+            // Add empty state
+            const emptyState = document.createElement('div');
+            emptyState.className = 'empty-state';
+            const text = document.createElement('p');
+            text.textContent = 'Ask me anything about what you\'re working on!';
+            emptyState.appendChild(text);
+            messagesContainer.appendChild(emptyState);
+        }
+        
+        // Request UI transformation
+        function requestTransformation() {
+            if (connectionState !== 'connected') return;
+            
+            sendMessage('transform_request', {
+                preferences: {
+                    simplifyUI: true,
+                    highlight: true,
+                    accessibility: false
+                }
+            });
+            
+            addMessage('user', 'Please transform the current interface');
+        }
+        
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', initialize);
+    </script>
+</body>
+</html>

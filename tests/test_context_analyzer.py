@@ -3,6 +3,18 @@ from datetime import datetime
 from unittest.mock import MagicMock, AsyncMock
 from agent.context_analyzer import ContextAnalyzer, ContextInsight
 import json
+import logging
+
+# Configure logging
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
+    handlers=[
+        logging.FileHandler('logs/context_insight.log'),
+        logging.StreamHandler()
+    ]
+)
+logger = logging.getLogger(__name__)
 
 class TestContextAnalyzer:
     @pytest.fixture
@@ -223,3 +235,49 @@ class TestContextAnalyzer:
         assert "workflow_state" in combined
         assert "focus_areas" in combined
         assert "interaction_patterns" in combined 
+
+def test_log_context_insight():
+    """Test logging a ContextInsight object."""
+    # Create a ContextInsight instance
+    insight = ContextInsight(
+        current_activity="Testing the system",
+        context_summary="Running unit tests for context analyzer",
+        potential_needs=["Code verification", "Bug detection"],
+        attention_level="high",
+        confidence_score=0.95,
+        source_model="test-model",
+        semantic_understanding={
+            "task_purpose": "Testing",
+            "workflow": "Unit Tests",
+            "challenges": ["Test coverage"],
+            "related_concepts": ["Mocking", "Assertions"],
+            "implicit_goals": ["Code quality"]
+        }
+    )
+    
+    # Print the insight
+    print("\nContext Insight:")
+    print(f"Current Activity: {insight.current_activity}")
+    print(f"Context Summary: {insight.context_summary}")
+    print(f"Potential Needs: {', '.join(insight.potential_needs)}")
+    print(f"Attention Level: {insight.attention_level}")
+    print(f"Confidence Score: {insight.confidence_score}")
+    print(f"Source Model: {insight.source_model}")
+    print(f"Timestamp: {insight.timestamp}")
+    print("Semantic Understanding:")
+    for key, value in insight.semantic_understanding.items():
+        print(f"  {key}: {value}")
+    
+    # Print as JSON
+    insight_dict = {
+        "current_activity": insight.current_activity,
+        "context_summary": insight.context_summary,
+        "potential_needs": insight.potential_needs,
+        "attention_level": insight.attention_level,
+        "confidence_score": insight.confidence_score,
+        "source_model": insight.source_model,
+        "timestamp": insight.timestamp.isoformat(),
+        "semantic_understanding": insight.semantic_understanding
+    }
+    print("\nContext Insight (JSON):")
+    print(json.dumps(insight_dict, indent=2)) 

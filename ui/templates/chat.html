@@ -3,38 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Local AI Assistant</title>
+    <title>Personal AI Assistant</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/chat.css') }}">
 </head>
 <body>
-    <header>
-        <h1>Local AI Assistant</h1>
-        <div class="version-info">
-            {{ version.assistant }} - {{ version.model }} ({{ version.status }})
+    <div class="assistant-widget">
+        <div class="widget-header">
+            <div class="widget-title">
+                <span class="widget-icon">🤖</span>
+                <span class="widget-name">Personal Assistant</span>
+            </div>
+            <div class="widget-controls">
+                <button id="minimize-btn" class="control-btn">−</button>
+                <button id="close-btn" class="control-btn">×</button>
         </div>
-    </header>
-
-    <div class="container">
-        <div id="chat-messages">
+        </div>
+        
+        <div class="widget-content">
+            <div id="chat-messages" class="chat-messages">
             {% for message in conversation %}
             <div class="message {{ message.role }}">
-                <div class="message-content">{{ message.content }}</div>
-                <div class="timestamp">{{ message.timestamp }}</div>
-            </div>
-            {% endfor %}
+                    <div class="message-content">{{ message.content }}</div>
+                </div>
+                {% endfor %}
         </div>
-
-        <div id="command-buttons">
-            <button class="command-btn" data-command="status">System Status</button>
-            <button class="command-btn" data-command="clear">Clear Chat</button>
-        </div>
-
-        <div id="input-area">
-            <input type="text" id="query-input" placeholder="Type your message...">
+        
+            <div class="input-area">
+                <input type="text" id="query-input" placeholder="Ask me anything..." autocomplete="off">
             <button id="send-btn">Send</button>
+            </div>
         </div>
     </div>
-
+    
     <script src="{{ url_for('static', filename='js/chat.js') }}"></script>
 </body>
 </html>

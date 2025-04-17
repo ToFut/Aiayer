@@ -37,46 +37,52 @@ class LocalLLM:
         self.min_request_interval = 1  # 1 second between requests
         self.timeout = 60  # Increased timeout to 60 seconds
         self.max_retries = 3  # Maximum number of retries
-        
-        # Check Ollama version and model availability during initialization
+    
+    async def initialize(self):
+        """
+        Asynchronously initialize the LLM by checking Ollama version and model availability.
+        """
         try:
-            async def check_ollama():
-                async with aiohttp.ClientSession() as session:
-                    response = await session.get(f"{self.base_url}/api/version", timeout=2)
+            async with aiohttp.ClientSession() as session:
+                # Check Ollama version
+                response = await session.get(f"{self.base_url}/api/version", timeout=2)
+                if response.status != 200:
+                    raise ConnectionError("Failed to connect to Ollama")
+                
+                # Check if model is available
+                response = await session.get(f"{self.base_url}/api/tags", timeout=2)
+                if response.status != 200:
+                    raise ConnectionError("Failed to get model list")
+                
+                # Get models list
+                response_data = await response.json()
+                models = [model['name'] for model in response_data.get('models', [])]
+                
+                if self.model_name not in models:
+                    self.logger.info(f"Model {self.model_name} not found, pulling...")
+                    response = await session.post(
+                        f"{self.base_url}/api/pull",
+                        json={"name": self.model_name},
+                        timeout=30  # Longer timeout for pull
+                    )
                     if response.status != 200:
-                        raise ConnectionError("Failed to connect to Ollama")
+                        raise ConnectionError("Failed to pull model")
                     
-                    # Check if model is available
-                    response = await session.get(f"{self.base_url}/api/tags", timeout=2)
-                    if response.status != 200:
-                        raise ConnectionError("Failed to get model list")
-                    
-                    models = [model['name'] for model in await response.json().get('models', [])]
-                    
-                    if self.model_name not in models:
-                        self.logger.info(f"Model {self.model_name} not found, pulling...")
-                        response = await session.post(
-                            f"{self.base_url}/api/pull",
-                            json={"name": self.model_name},
-                            timeout=30  # Longer timeout for pull
-                        )
-                        if response.status != 200:
-                            raise ConnectionError("Failed to pull model")
-                        
-                        # Wait for model to be pulled
-                        async for line in response.content:
-                            if line:
-                                data = json.loads(line)
-                                if 'error' in data:
-                                    raise ConnectionError(f"Error pulling model: {data['error']}")
-                            
-            check_ollama()
+                    # Wait for model to be pulled
+                    async for line in response.content:
+                        if line:
+                            data = json.loads(line)
+                            if 'error' in data:
+                                raise ConnectionError(f"Error pulling model: {data['error']}")
+            
             self.running = True
+            return self
             
         except Exception as e:
             self.logger.error(f"Error during initialization: {e}")
             self.running = False
-        
+            raise
+    
     async def ensure_model_available(self):
         """
         Ensure the model is available locally.
@@ -116,7 +122,7 @@ class LocalLLM:
                             if 'error' in data:
                                 self.logger.error(f"Error pulling model: {data['error']}")
                                 return False
-                            
+                
                 self.running = True
                 return True
             
@@ -233,8 +239,14 @@ class LocalLLM:
                     return f"Error: Failed to generate response (status {response.status})"
                 
                 data = await response.json()
-                return data.get('message', {}).get('content', '')
-                
+                if isinstance(data, dict) and 'message' in data:
+                    return data['message'].get('content', '')
+                elif isinstance(data, str):
+                    return data
+                else:
+                    self.logger.error(f"Unexpected response format: {data}")
+                    return "Error: Unexpected response format"
+        
         except Exception as e:
             self.logger.error(f"Error generating response: {e}")
             return f"Error: {str(e)}"

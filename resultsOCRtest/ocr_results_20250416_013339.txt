@@ -1,0 +1,26 @@
+OCR Results - 2025-04-16 01:33:39.348886
+==================================================
+
+Total characters: 701
+Total words: 104
+Total lines: 17
+
+Extracted Text:
+==================================================
+menities ...
+er constants, interfaces, etc. ...
+mponent: AvailabilitySearch }
+labilitySearch: React.FC = () => { // <-- Component starts here
+tate ---
+Hooks MUST be called INSIDE the component body, like these: <---
+oading, setLoading] = useState<boolean>(false) ;
+nitialLoading, setInitialLoading] = useState<boolean>(true) ;
+oadingMore, setLoadingMore] = useState<boolean>(false); // Line 57 from ¢
+ther existing useState calls ...
+u need to move the hasMorePages and totalBackendResults lines HERE **
+h
+efs ---
+ee)
+ooks like (useState’, (useEf fect, (useCallback’, etc., must be called directly
+ly of a React functional component or a custom Hook. They cannot be called at the
+?Gemini-7 N7XW 77 Y|

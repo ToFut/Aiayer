@@ -1,15 +1,78 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // Initialize chat elements
+    const widget = document.querySelector('.assistant-widget');
+    const header = document.querySelector('.widget-header');
+    const minimizeBtn = document.getElementById('minimize-btn');
+    const closeBtn = document.getElementById('close-btn');
     const chatMessages = document.getElementById('chat-messages');
     const queryInput = document.getElementById('query-input');
     const sendBtn = document.getElementById('send-btn');
     const commandBtns = document.querySelectorAll('.command-btn');
 
-    // Check if required elements exist
-    if (!chatMessages || !queryInput || !sendBtn) {
-        console.error('Required chat elements not found in the DOM');
-        return;
+    // Drag functionality
+    let isDragging = false;
+    let currentX;
+    let currentY;
+    let initialX;
+    let initialY;
+    let xOffset = 0;
+    let yOffset = 0;
+
+    header.addEventListener('mousedown', dragStart);
+    document.addEventListener('mousemove', drag);
+    document.addEventListener('mouseup', dragEnd);
+
+    function dragStart(e) {
+        initialX = e.clientX - xOffset;
+        initialY = e.clientY - yOffset;
+
+        if (e.target === header) {
+            isDragging = true;
+        }
     }
+
+    function drag(e) {
+        if (isDragging) {
+            e.preventDefault();
+            currentX = e.clientX - initialX;
+            currentY = e.clientY - initialY;
+
+            xOffset = currentX;
+            yOffset = currentY;
+
+            setTranslate(currentX, currentY, widget);
+        }
+    }
+
+    function dragEnd() {
+        initialX = currentX;
+        initialY = currentY;
+        isDragging = false;
+    }
+
+    function setTranslate(xPos, yPos, el) {
+        el.style.transform = `translate3d(${xPos}px, ${yPos}px, 0)`;
+    }
+
+    // Minimize functionality
+    minimizeBtn.addEventListener('click', () => {
+        widget.classList.toggle('minimized');
+        if (widget.classList.contains('minimized')) {
+            widget.style.height = '40px';
+            chatMessages.style.display = 'none';
+            queryInput.style.display = 'none';
+            sendBtn.style.display = 'none';
+        } else {
+            widget.style.height = '500px';
+            chatMessages.style.display = 'flex';
+            queryInput.style.display = 'block';
+            sendBtn.style.display = 'block';
+        }
+    });
+
+    // Close functionality
+    closeBtn.addEventListener('click', () => {
+        widget.style.display = 'none';
+    });
 
     // Scroll to bottom of chat
     function scrollToBottom() {

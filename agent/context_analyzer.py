@@ -92,13 +92,13 @@ class ModelOrchestrator:
             
             # Support different model interfaces
             if hasattr(model, 'generate_response'):
-                response = model.generate_response(messages)
+                response = await model.generate_response(messages)
             elif hasattr(model, 'predict'):
-                response = model.predict(messages)
+                response = await model.predict(messages)
             elif hasattr(model, 'completion'):
-                response = model.completion(messages)
+                response = await model.completion(messages)
             else:
-                response = model(messages)  # Fallback to direct calling
+                response = await model(messages)  # Fallback to direct calling
                 
             execution_time = (datetime.now() - start_time).total_seconds()
             
@@ -443,6 +443,9 @@ class ContextAnalyzer:
                 best_response = max(responses, key=lambda r: r.get("confidence", 0))
                 content = json.loads(best_response["message"]["content"])
                 
+                # Get semantic understanding asynchronously
+                semantic_understanding = await self._analyze_semantic_context(context_data)
+                
                 insight = ContextInsight(
                     current_activity=content.get("activity", "Unknown"),
                     context_summary=content.get("summary", "No summary available"),
@@ -450,7 +453,7 @@ class ContextAnalyzer:
                     attention_level=content.get("attention", "medium"),  # Default to medium
                     confidence_score=content.get("confidence", 0.5),
                     source_model=selected_models[0],
-                    semantic_understanding=await self._analyze_semantic_context(context_data)
+                    semantic_understanding=semantic_understanding
                 )
             else:
                 # Create default insight if no valid responses
@@ -515,10 +518,17 @@ Format your response as a JSON object with these fields:
 {json.dumps(context_data, indent=2)}"""
             
             # Use the orchestrator to perform semantic analysis
-            response = await self.orchestrator.execute_model('main', user_prompt, system_prompt)
+            response, _ = await self.orchestrator.execute_model('main', user_prompt, system_prompt)
             
             try:
-                return json.loads(response[0])
+                if isinstance(response, dict) and "message" in response:
+                    content = response["message"].get("content", "{}")
+                    if isinstance(content, str):
+                        return json.loads(content)
+                    return content
+                elif isinstance(response, str):
+                    return json.loads(response)
+                return response
             except json.JSONDecodeError as e:
                 self.logger.error(f"Error parsing semantic analysis: {e}")
                 return {
@@ -604,3 +614,8 @@ class SensorBridge:
                 data[name] = {"error": str(e)}
                 
         return data
+
+def event_stream():
+    while True:
+        # ... check for updates ...
+        time.sleep(2)  # Poll every 2 seconds

@@ -1,0 +1,44 @@
+OCR Results - 2025-04-16 01:34:38.557864
+==================================================
+
+Total characters: 1584
+Total words: 162
+Total lines: 35
+
+Extracted Text:
+==================================================
+102m export {const {handlerd>) iDirectAvailabilitylter
+onstffetchedResults —[datavresults) O @ 127, j (validationErrors. length
+onst| backendTotal{=Jdata. totals) yn 128 7 console.warn(s [Handler ][Validationjerrors:. qva
+onst] backendPage]=Jdata- page; 129 @
+
+30,
+etListings(value:!prevListings{=>}{{ 131) @B coo oo &
+
+TED 6 ey] | || | Cats ama came eques
+(constfexistinglds]=[new]Set (iterable:prevListings.map(ca oa;
+(const{uniqueNew][=]fetchedResults. filter(p\=>¥! existingldsht 35)
+aa [.--prevListings, 136 {MM | const} parsedMinOccupancy]=JparseInt (minOccupancy
+felse) 137, 7m |constglimitNum{=\parseInt (limityg10) 5)
+/Jreplaceflistings| rofafnewfsearch) 138 JM [const pageNunf_Toarsernt (page 10);
+freturn}fetchedResults; 739 /
+
+140 | W//[Handle}potential{NaN[fromparsemnt)
+
+5) 141 7 (isNaN(parsedMinOccupancy) 1 I) isNaN(limitNum)
+
+142 7 {
+etTotalBackendResults(value:] backendTotal) ; 143 3
+etCurrentPageFetched(value:| backendPage) ;¥//ATrust]backend]p. naa 7 @@ coo ooo
+
+145 / body :RISON-stringify({ferror:) a
+[oetermine}i tnore}pagesfexistyron\the}backendyy li 146 /
+onst{morePagesExist[=}(append|7Alistings* length}+JfetchedResh] TAT, 3
+etHasMorePages (value: morePagesExist) ; 148)
+
+SQ || Gum ame GasimMe M o Ummm
+foongt{set{displayedListings}here[di rectly) cay || aye
+A-et[thefritterfettect}handlefinitialfdisplayfonInon- append. Mires / YF iret chYallpstrategy{definitions}(Concu
+) OB og ee a 153 / (constfallStrategiesPromisef=]fetchAllStrategyDe
+ft Pappend-truefmaybeXcalifloadMoreListingsPxaftery 154 / console. log(s [Handler] BInitiated[ fetch} forfal ly:
+|
