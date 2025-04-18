@@ -7,6 +7,7 @@ export class Bridge {
         this.reconnectAttempts = 0;
         this.maxReconnectAttempts = 5;
         this.reconnectDelay = 1000;
+        this.systemContextData = null;
     }
 
     async connect() {
@@ -34,6 +35,14 @@ export class Bridge {
                     const { type, payload } = data;
                     
                     console.log(`Received message of type: ${type}`);
+                    
+                    // Store system context data if applicable
+                    if (type === 'sensor_data') {
+                        this.systemContextData = payload;
+                        window.dispatchEvent(new CustomEvent('system-context-updated', { 
+                            detail: payload 
+                        }));
+                    }
                     
                     if (this.messageHandlers.has(type)) {
                         this.messageHandlers.get(type).forEach(handler => handler(payload));

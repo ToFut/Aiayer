@@ -54,10 +54,12 @@ sensors:
     enabled: true
     interval_sec: 5  # Increased from 3
     track_all_processes: false
+    check_interval: 5
 
   # Browser sensor
   browser:
-    enabled: false  # Disabled for now
+    enabled: true
+    check_interval: 5
 
 # LLM settings
 llm:
@@ -90,6 +92,8 @@ overlay:
     decorations: false
   tauri:
     dev_mode: true
+  overlay_path: "overlay"
+  check_interval: 5
 
 # Security settings
 security:

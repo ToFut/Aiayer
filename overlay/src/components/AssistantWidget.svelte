@@ -4,6 +4,7 @@
     
     let bridge;
     let isExpanded = false;
+    let isMinimized = true;
     let isInteractive = false;
     let showControls = false;
     let userInput = '';
@@ -11,6 +12,9 @@
     let connectionStatus = 'disconnected';
     let isConnecting = false;
     let transformInterface;
+    let notificationCount = 0;
+    let activities = [];
+    let sensorData = null;
     
     onMount(() => {
         setupBridge();
@@ -50,6 +54,8 @@
         bridge.on('query_response', handleQueryResponse);
         bridge.on('transform-interface', handleTransformation);
         bridge.on('connection_status', handleConnectionStatus);
+        bridge.on('system_activity', handleSystemActivity);
+        bridge.on('sensor_data', handleSensorData);
         
         // Connect to the backend
         isConnecting = true;
@@ -59,6 +65,45 @@
             console.error('Failed to connect:', error);
             isConnecting = false;
         });
+    }
+    
+    function handleSystemActivity(data) {
+        console.log('System activity:', data);
+        
+        const activity = data.activity;
+        
+        // Add to activities array
+        activities = [...activities, activity];
+        
+        // Increment notification count if minimized
+        if (isMinimized) {
+            notificationCount++;
+        }
+        
+        // If we have a suggestion, show it as a message
+        if (activity?.details?.suggestion) {
+            // Add the suggestion to messages if we're in expanded mode
+            if (isExpanded && !isMinimized) {
+                messages = [...messages, {
+                    type: 'assistant',
+                    content: activity.details.suggestion,
+                    isSystemGenerated: true
+                }];
+                
+                // Auto-scroll to bottom
+                setTimeout(() => {
+                    const messagesDiv = document.querySelector('.messages');
+                    if (messagesDiv) {
+                        messagesDiv.scrollTop = messagesDiv.scrollHeight;
+                    }
+                }, 0);
+            }
+        }
+    }
+    
+    function handleSensorData(data) {
+        console.log('Sensor data:', data);
+        sensorData = data;
     }
     
     function handleBridgeConnected() {
@@ -97,6 +142,21 @@
     
     function toggleExpanded() {
         isExpanded = !isExpanded;
+    }
+    
+    function toggleWidget() {
+        if (isMinimized) {
+            isMinimized = false;
+            isExpanded = true;
+            notificationCount = 0; // Clear notifications when expanding
+        } else {
+            isExpanded = !isExpanded;
+        }
+    }
+    
+    function minimizeWidget() {
+        isMinimized = true;
+        isExpanded = false;
     }
     
     async function toggleInteraction() {
@@ -178,101 +238,150 @@
     }
 </script>
 
-<div class="assistant-widget" class:expanded={isExpanded} class:connecting={isConnecting} class:connected={connectionStatus === 'connected'} class:error={connectionStatus === 'error'}>
-    <button 
-        class="widget-icon" 
-        on:click={toggleExpanded}
-        on:keydown={(e) => e.key === 'Enter' && toggleExpanded()}
-        aria-label="Toggle assistant widget"
-    >
-        <span>🤖</span>
-        <span class="connection-status" title={connectionStatus}></span>
-    </button>
-    
-    {#if isExpanded}
-        <div class="widget-content">
-            <div class="widget-header">
-                <h3>AI Assistant</h3>
-                <div class="connection-badge" class:connecting={isConnecting} class:connected={connectionStatus === 'connected'} class:error={connectionStatus === 'error'}>
-                    {#if isConnecting}
-                        Connecting...
-                    {:else if connectionStatus === 'connected'}
-                        Connected
-                    {:else if connectionStatus === 'error'}
-                        Connection Error
+<div class="assistant-widget" class:minimized={isMinimized} class:expanded={isExpanded} class:connecting={isConnecting} class:connected={connectionStatus === 'connected'} class:error={connectionStatus === 'error'}>
+    {#if isMinimized}
+        <!-- Small widget in minimized state -->
+        <button 
+            class="widget-icon" 
+            on:click={toggleWidget}
+            aria-label="Open AI assistant"
+        >
+            <span>🤖</span>
+            <span class="connection-status" title={connectionStatus}></span>
+            {#if notificationCount > 0}
+                <span class="notification-badge">{notificationCount}</span>
+            {/if}
+        </button>
+    {:else}
+        <!-- Normal widget state with expand/collapse -->
+        <button 
+            class="widget-icon" 
+            on:click={toggleExpanded}
+            on:keydown={(e) => e.key === 'Enter' && toggleExpanded()}
+            aria-label="Toggle assistant widget"
+        >
+            <span>🤖</span>
+            <span class="connection-status" title={connectionStatus}></span>
+        </button>
+        
+        {#if isExpanded}
+            <div class="widget-content">
+                <div class="widget-header">
+                    <h3>AI Assistant</h3>
+                    <div class="connection-badge" class:connecting={isConnecting} class:connected={connectionStatus === 'connected'} class:error={connectionStatus === 'error'}>
+                        {#if isConnecting}
+                            Connecting...
+                        {:else if connectionStatus === 'connected'}
+                            Connected
+                        {:else if connectionStatus === 'error'}
+                            Connection Error
+                        {:else}
+                            Disconnected
+                        {/if}
+                    </div>
+                    <div class="header-buttons">
+                        <button class="minimize-button" on:click={minimizeWidget} title="Minimize">_</button>
+                        <button class="close-button" on:click={toggleExpanded}>×</button>
+                    </div>
+                </div>
+                
+                <!-- Show current context if available -->
+                {#if sensorData}
+                    <div class="context-banner">
+                        <div class="context-app">
+                            <strong>Current: </strong> {sensorData.process?.app || 'Unknown'} 
+                            {#if sensorData.process?.title}
+                                - {sensorData.process.title}
+                            {/if}
+                        </div>
+                    </div>
+                {/if}
+                
+                <div class="messages">
+                    {#if messages.length === 0}
+                        <div class="empty-state">
+                            <p>Ask me anything about what you're working on!</p>
+                            {#if activities.length > 0}
+                                <p class="suggestion">{activities[activities.length-1]?.details?.suggestion || "I'm monitoring your activity to provide relevant assistance."}</p>
+                            {/if}
+                        </div>
                     {:else}
-                        Disconnected
+                        {#each messages as message}
+                            <div class="message {message.type}" class:system={message.isSystemGenerated}>
+                                <div class="message-content">{message.content}</div>
+                            </div>
+                        {/each}
                     {/if}
                 </div>
-                <button class="close-button" on:click={toggleExpanded}>×</button>
+                
+                <div class="input-area">
+                    <input
+                        type="text"
+                        bind:value={userInput}
+                        on:keydown={(e) => e.key === 'Enter' && sendQuery()}
+                        placeholder="Type your message..."
+                        aria-label="Message input"
+                        disabled={connectionStatus !== 'connected'}
+                    />
+                    <button 
+                        class="send-button"
+                        on:click={sendQuery}
+                        on:keydown={(e) => e.key === 'Enter' && sendQuery()}
+                        aria-label="Send message"
+                        disabled={connectionStatus !== 'connected'}
+                    >
+                        Send
+                    </button>
+                </div>
+                
+                <div class="actions">
+                    <button class="action-button" on:click={clearConversation}>Clear Chat</button>
+                    <button class="action-button" on:click={requestTransformation}>Transform UI</button>
+                </div>
             </div>
-            
-            <div class="messages">
-                {#if messages.length === 0}
-                    <div class="empty-state">
-                        <p>Ask me anything about what you're working on!</p>
-                    </div>
-                {:else}
-                    {#each messages as message}
-                        <div class="message {message.type}">
-                            <div class="message-content">{message.content}</div>
-                        </div>
-                    {/each}
-                {/if}
-            </div>
-            
-            <div class="input-area">
-                <input
-                    type="text"
-                    bind:value={userInput}
-                    on:keydown={(e) => e.key === 'Enter' && sendQuery()}
-                    placeholder="Type your message..."
-                    aria-label="Message input"
-                    disabled={connectionStatus !== 'connected'}
-                />
-                <button 
-                    class="send-button"
-                    on:click={sendQuery}
-                    on:keydown={(e) => e.key === 'Enter' && sendQuery()}
-                    aria-label="Send message"
-                    disabled={connectionStatus !== 'connected'}
+        {/if}
+        
+        {#if showControls || isExpanded}
+            <div class="controls">
+                <button
+                    class="control-button"
+                    class:active={isInteractive}
+                    on:click={toggleInteraction}
+                    title={isInteractive ? 'Disable Interaction' : 'Enable Interaction'}
                 >
-                    Send
+                    {isInteractive ? '🔒' : '🖱️'}
                 </button>
             </div>
-            
-            <div class="actions">
-                <button class="action-button" on:click={clearConversation}>Clear Chat</button>
-                <button class="action-button" on:click={requestTransformation}>Transform UI</button>
-            </div>
-        </div>
-    {/if}
-    
-    {#if showControls || isExpanded}
-        <div class="controls">
-            <button
-                class="control-button"
-                class:active={isInteractive}
-                on:click={toggleInteraction}
-                title={isInteractive ? 'Disable Interaction' : 'Enable Interaction'}
-            >
-                {isInteractive ? '🔒' : '🖱️'}
-            </button>
-        </div>
+        {/if}
     {/if}
 </div>
 
 <style>
+    :global(body) {
+        background: transparent !important;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+    }
+    
     .assistant-widget {
         position: fixed;
         top: 20px;
         right: 20px;
         z-index: 9999;
+        transition: all 0.3s ease;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    }
+    
+    .assistant-widget.minimized {
+        background-color: transparent;
+        box-shadow: none;
+    }
+    
+    .assistant-widget:not(.minimized) {
         background-color: rgba(255, 255, 255, 0.95);
         border-radius: 12px;
         box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
-        transition: all 0.3s ease;
-        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     }
     
     .widget-icon {
@@ -299,6 +408,23 @@
     .widget-icon span {
         font-size: 24px;
         color: white;
+    }
+    
+    .notification-badge {
+        position: absolute;
+        top: -5px;
+        right: -5px;
+        background-color: #f44336;
+        color: white;
+        border-radius: 50%;
+        width: 20px;
+        height: 20px;
+        font-size: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: 2px solid white;
+        font-weight: bold;
     }
     
     .connection-status {
@@ -339,14 +465,16 @@
         flex-direction: column;
         border-radius: 12px;
         overflow: hidden;
+        background-color: rgba(255, 255, 255, 0.85);
+        backdrop-filter: blur(5px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
     }
     
     .widget-header {
         display: flex;
         align-items: center;
-        justify-content: space-between;
         padding: 15px;
-        background-color: #f8f9fa;
+        background-color: rgba(248, 249, 250, 0.9);
         border-bottom: 1px solid #eee;
     }
     
@@ -354,6 +482,12 @@
         margin: 0;
         font-size: 16px;
         font-weight: 600;
+        flex: 1;
+    }
+    
+    .header-buttons {
+        display: flex;
+        gap: 5px;
     }
     
     .connection-badge {
@@ -362,6 +496,7 @@
         border-radius: 12px;
         background-color: #e0e0e0;
         color: #666;
+        margin-right: 10px;
     }
     
     .connection-badge.connecting {
@@ -379,14 +514,32 @@
         color: #C62828;
     }
     
-    .close-button {
+    .close-button, .minimize-button {
         background: none;
         border: none;
-        font-size: 24px;
         cursor: pointer;
         color: #666;
-        padding: 0;
-        margin-left: 10px;
+        padding: 0 8px;
+        font-size: 18px;
+        line-height: 1;
+    }
+    
+    .close-button {
+        font-size: 24px;
+    }
+    
+    .context-banner {
+        padding: 8px 15px;
+        background-color: rgba(240, 240, 240, 0.7);
+        font-size: 12px;
+        color: #333;
+        border-bottom: 1px solid #eee;
+    }
+    
+    .context-app {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
     }
     
     .messages {
@@ -397,6 +550,7 @@
         flex-direction: column;
         gap: 12px;
         max-height: 350px;
+        background-color: rgba(255, 255, 255, 0.6);
     }
     
     .empty-state {
@@ -404,10 +558,17 @@
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        height: 100px;
+        min-height: 100px;
         color: #666;
         text-align: center;
         font-style: italic;
+    }
+    
+    .suggestion {
+        margin-top: 10px;
+        font-style: normal;
+        color: #4CAF50;
+        font-weight: 500;
     }
     
     .message {
@@ -433,6 +594,11 @@
         border-bottom-left-radius: 4px;
     }
     
+    .message.system {
+        background-color: #E8F5E9;
+        border-left: 3px solid #4CAF50;
+    }
+    
     .message-content {
         font-size: 14px;
     }
@@ -442,6 +608,7 @@
         gap: 10px;
         padding: 15px;
         border-top: 1px solid #eee;
+        background-color: rgba(255, 255, 255, 0.8);
     }
     
     input {
@@ -488,6 +655,7 @@
         padding: 10px 15px 15px;
         gap: 10px;
         justify-content: space-between;
+        background-color: rgba(255, 255, 255, 0.8);
     }
     
     .action-button {

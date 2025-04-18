@@ -19,21 +19,10 @@
         "open": true
       },
       "window": {
-        "all": false,
-        "create": true,
-        "show": true,
-        "hide": true,
-        "close": true,
-        "minimize": true,
-        "maximize": true,
-        "unmaximize": true,
-        "startDragging": true,
-        "setPosition": true,
-        "setSize": true,
-        "setDecorations": true,
-        "setAlwaysOnTop": true
+        "all": true
       }
     },
+    "macOSPrivateApi": true,
     "bundle": {
       "active": true,
       "icon": [

@@ -559,6 +559,31 @@ Format your response as a JSON object with these fields:
             return (datetime.now() - self.last_analysis_time).total_seconds()
         return None
 
+    def analyze_overlay_context(self) -> Dict[str, Any]:
+        """Analyze the current state of the overlay widget."""
+        try:
+            overlay_sensor = self.sensors.get('overlay')
+            if not overlay_sensor:
+                return {"status": "unavailable"}
+
+            status = overlay_sensor.get_status()
+            return {
+                "status": "running" if status["is_running"] else "stopped",
+                "process_id": status["process_id"]
+            }
+        except Exception as e:
+            return {"status": "error", "error": str(e)}
+
+    def get_current_context(self) -> Dict[str, Any]:
+        """Get the current context from all sensors."""
+        context = {
+            "browser": self.analyze_browser_context(),
+            "process": self.analyze_process_context(),
+            "overlay": self.analyze_overlay_context(),
+            "timestamp": datetime.now().isoformat()
+        }
+        return context
+
 class SensorBridge:
     """
     Provides sensor abstraction and standardization for multi-modal context understanding.

@@ -5,6 +5,7 @@ import threading
 import time
 from typing import Dict, Any, Callable, List, Set
 import logging
+from collections import deque
 
 logger = logging.getLogger(__name__)
 
@@ -20,8 +21,10 @@ class OverlayBridge:
         self.loop = None
         self.thread = None
         self.is_running = False
+        self.activity_queue = deque(maxlen=20)  # Store recent user activities
+        self.queue_lock = threading.Lock()
         
-    async def _handler(self, websocket, path):
+    async def _handler(self, websocket):
         """Handle WebSocket connection"""
         self.clients.add(websocket)
         self.logger.info(f"New client connected. Total clients: {len(self.clients)}")
@@ -76,13 +79,19 @@ class OverlayBridge:
         self.is_running = True
         
         async def start_server():
-            self.server = await websockets.serve(
-                self._handler, "localhost", self.port)
-            await self.server.wait_closed()
+            async with websockets.serve(self._handler, "localhost", self.port):
+                self.logger.info(f"WebSocket server running on localhost:{self.port}")
+                # Keep the server running until closed
+                await asyncio.Future()  # This will run forever until cancelled
             
         def run_loop():
             asyncio.set_event_loop(self.loop)
-            self.loop.run_until_complete(start_server())
+            try:
+                self.loop.run_until_complete(start_server())
+            except asyncio.CancelledError:
+                self.logger.info("WebSocket server task cancelled")
+            except Exception as e:
+                self.logger.error(f"Error in WebSocket server: {e}")
             
         self.thread = threading.Thread(target=run_loop, daemon=True)
         self.thread.start()
@@ -94,15 +103,29 @@ class OverlayBridge:
             return
             
         self.is_running = False
-        if self.server:
-            asyncio.run_coroutine_threadsafe(self.server.close(), self.loop)
         
         # Close all client connections
         if self.clients:
             for client in list(self.clients):
-                self.loop.call_soon_threadsafe(client.close)
+                close_coro = client.close()
+                if self.loop.is_running():
+                    asyncio.run_coroutine_threadsafe(close_coro, self.loop)
+        
+        # Cancel all tasks
+        if self.loop and self.loop.is_running():
+            for task in asyncio.all_tasks(self.loop):
+                task.cancel()
+            
+            # Create a task to stop the loop
+            asyncio.run_coroutine_threadsafe(self._shutdown_loop(), self.loop)
             
         self.logger.info("WebSocket server stopped")
+    
+    async def _shutdown_loop(self):
+        """Shutdown the event loop gracefully"""
+        # Sleep briefly to allow other tasks to be cancelled
+        await asyncio.sleep(0.1)
+        self.loop.stop()
     
     async def send_message(self, message_type: str, payload: Dict[str, Any]):
         """Send message to all connected clients"""
@@ -122,6 +145,30 @@ class OverlayBridge:
         except Exception as e:
             self.logger.error(f"Error sending message: {e}")
             return False
+            
+    async def add_system_activity(self, activity_type: str, details: Dict[str, Any]):
+        """Add user activity to the queue and notify clients"""
+        timestamp = time.time()
+        activity = {
+            "type": activity_type,
+            "details": details,
+            "timestamp": timestamp
+        }
+        
+        with self.queue_lock:
+            self.activity_queue.append(activity)
+        
+        # Notify all connected clients about the new activity
+        await self.send_message("system_activity", {
+            "activity": activity,
+            "recent_count": len(self.activity_queue)
+        })
+        
+        return True
+        
+    async def send_sensor_data(self, sensor_data: Dict[str, Any]):
+        """Send sensor data to all connected clients"""
+        return await self.send_message("sensor_data", sensor_data)
         
     def register_callback(self, message_type: str, callback: Callable):
         """Register callback for specific message type"""

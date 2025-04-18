@@ -447,6 +447,37 @@ Task: Generate a transformation layout that simplifies this interface while main
             pass
         # Add more action types as needed
 
+    def handle_overlay_task(self, task: Dict[str, Any]) -> Dict[str, Any]:
+        """Handle tasks related to the overlay widget."""
+        try:
+            overlay_sensor = self._sensors.get('overlay')
+            if not overlay_sensor:
+                return {"success": False, "error": "Overlay sensor not available"}
+
+            action = task.get('action')
+            if action == 'start':
+                success = overlay_sensor.start()
+                return {"success": success}
+            elif action == 'stop':
+                success = overlay_sensor.stop()
+                return {"success": success}
+            elif action == 'send_message':
+                message = task.get('message', '')
+                success = overlay_sensor.send_message(message)
+                return {"success": success}
+            else:
+                return {"success": False, "error": f"Unknown overlay action: {action}"}
+        except Exception as e:
+            return {"success": False, "error": str(e)}
+
+    def process_task(self, task: Dict[str, Any]) -> Dict[str, Any]:
+        """Process a single task."""
+        try:
+            task_type = task.get('type')
+            if task_type == 'overlay':
+                return self.handle_overlay_task(task)
+            # ... existing code ...
+
 # For testing if run directly
 if __name__ == "__main__":
     print("This module should be imported and used via main.py")

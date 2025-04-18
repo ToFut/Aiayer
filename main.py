@@ -7,6 +7,7 @@ import os
 import logging
 from flask import Flask, jsonify, render_template
 from flask_cors import CORS
+from sensors.overlay_sensor import OverlaySensor
 
 # Configure logging
 logging.basicConfig(
