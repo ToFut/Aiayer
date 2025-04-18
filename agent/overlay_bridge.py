@@ -17,6 +17,9 @@ class OverlayBridge:
         self.clients = set()
         self.callback_registry = {}
         self.logger = logger
+        self.loop = None
+        self.thread = None
+        self.is_running = False
         
     async def _handler(self, websocket, path):
         """Handle WebSocket connection"""
@@ -69,7 +72,8 @@ class OverlayBridge:
     
     def start(self):
         """Start WebSocket server in background thread"""
-        loop = asyncio.new_event_loop()
+        self.loop = asyncio.new_event_loop()
+        self.is_running = True
         
         async def start_server():
             self.server = await websockets.serve(
@@ -77,12 +81,28 @@ class OverlayBridge:
             await self.server.wait_closed()
             
         def run_loop():
-            asyncio.set_event_loop(loop)
-            loop.run_until_complete(start_server())
+            asyncio.set_event_loop(self.loop)
+            self.loop.run_until_complete(start_server())
             
-        thread = threading.Thread(target=run_loop, daemon=True)
-        thread.start()
-        return thread
+        self.thread = threading.Thread(target=run_loop, daemon=True)
+        self.thread.start()
+        return self.thread
+    
+    def stop(self):
+        """Stop the WebSocket server"""
+        if not self.is_running:
+            return
+            
+        self.is_running = False
+        if self.server:
+            asyncio.run_coroutine_threadsafe(self.server.close(), self.loop)
+        
+        # Close all client connections
+        if self.clients:
+            for client in list(self.clients):
+                self.loop.call_soon_threadsafe(client.close)
+            
+        self.logger.info("WebSocket server stopped")
     
     async def send_message(self, message_type: str, payload: Dict[str, Any]):
         """Send message to all connected clients"""

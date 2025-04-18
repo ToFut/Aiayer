@@ -29,6 +29,7 @@ tauri = { version = "1.5", features = [
     "window-set-decorations",
     "window-set-always-on-top"
 ] }
+window-vibrancy = "0.3.2"
 
 [features]
 default = ["custom-protocol"]

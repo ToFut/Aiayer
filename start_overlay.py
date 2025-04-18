@@ -23,20 +23,20 @@ logger = logging.getLogger(__name__)
 overlay_bridge = OverlayBridge(port=8765)
 bridge_thread = None
 
-async def shutdown(signal, loop):
-    """Shutdown the application gracefully"""
-    logger.info(f"Received exit signal {signal.name}...")
-    tasks = [t for t in asyncio.all_tasks() if t is not asyncio.current_task()]
-    
-    for task in tasks:
-        task.cancel()
-    
-    await asyncio.gather(*tasks, return_exceptions=True)
-    loop.stop()
+def signal_handler(sig, frame):
+    """Handle shutdown signals"""
+    logger.info("Received shutdown signal...")
+    if bridge_thread:
+        overlay_bridge.stop()
+    sys.exit(0)
 
 def main():
     """Start the overlay bridge"""
     logger.info("Starting overlay bridge on port 8765...")
+    
+    # Set up signal handlers
+    signal.signal(signal.SIGINT, signal_handler)
+    signal.signal(signal.SIGTERM, signal_handler)
     
     # Start the overlay bridge in a background thread
     bridge_thread = overlay_bridge.start()
@@ -52,11 +52,15 @@ def main():
                     break
             except KeyboardInterrupt:
                 break
+            except EOFError:
+                # Handle EOF (when running in background)
+                break
     except KeyboardInterrupt:
         pass
     finally:
         logger.info("Shutting down...")
-        # Note: The bridge is running in a daemon thread, so it will terminate when the main thread exits
+        if bridge_thread:
+            overlay_bridge.stop()
         
 if __name__ == "__main__":
     main()

@@ -1,9 +1,8 @@
 // Prevents additional console window on Windows in release, DO NOT REMOVE!!
 #![cfg_attr(not(debug_assertions), windows_subsystem = "windows")]
 
-use tauri::{WindowBuilder, WindowUrl, Manager};
+use tauri::{Manager};
 use std::sync::{Arc, Mutex};
-use std::process::Command;
 
 // Define states
 struct ScreenCaptureState(Arc<Mutex<Option<String>>>);
@@ -41,23 +40,6 @@ fn main() {
     
     tauri::Builder::default()
         .manage(screen_capture_state)
-        .setup(|app| {
-            WindowBuilder::new(app, "main", WindowUrl::default())
-                .title("AI Assistant Overlay")
-                .resizable(true)
-                .transparent(true)
-                .decorations(false)
-                .always_on_top(true)
-                .build()?;
-                
-            // Start with interaction disabled (click-through)
-            if let Some(window) = app.get_window("main") {
-                window.set_ignore_cursor_events(true)
-                    .expect("Failed to set cursor events");
-            }
-            
-            Ok(())
-        })
         .invoke_handler(tauri::generate_handler![
             send_message,
             capture_screen,
