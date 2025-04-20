@@ -1,7 +1,77 @@
-.coverage
-.running_pids
+# Python
 __pycache__/
-*.pyc
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Virtual Environment
 venv/
+env/
+ENV/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Logs
+*.log
+logs/
+logs_backup_*/
+
+# Local development
 .env
+.env.local
+.env.*.local
+
+# Project specific
+output/
+resultsOCRtest/
+bridge.log
+ollama.log
+overlay.log
+websocket.log
+main_app.log
+
+# Docker
+docker/
+docker-compose.yml
+
+# Temporary files
+*.tmp
+*.bak
+*.backup
+
+# Documentation
+docs/_build/
+docs/_static/
+docs/_templates/
+
+# Test coverage
+.coverage
+htmlcov/
+.pytest_cache/
+
+# System files
 .DS_Store
+Thumbs.db
+
+.running_pids
+.qodo

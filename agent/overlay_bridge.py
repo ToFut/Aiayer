@@ -142,10 +142,25 @@ class OverlayBridge:
     async def send_message(self, message_type: str, payload: Dict[str, Any]):
         """Send message to all connected clients"""
         try:
-            # Log important message types for debugging
-            if message_type in ['chat_response', 'query_response', 'query_status']:
-                self.logger.info(f"Sending important message type: {message_type}")
-                self.logger.info(f"Payload: {payload}")
+            # Get transaction ID for tracking if available
+            transaction_id = payload.get('transaction_id', f"tx_{int(time.time())}")
+            
+            # CRITICAL - Log EVERY important message type for debugging with transaction ID
+            if message_type in ['chat_response', 'query_response', 'query_status', 'status_update', 'direct_response']:
+                self.logger.info(f"[TRANSACTION:{transaction_id}] Sending important message type: {message_type}")
+                # Create a sanitized copy of the payload for logging (to prevent massive logs)
+                log_payload = payload.copy()
+                # Truncate long text fields for logging
+                if 'text' in log_payload and isinstance(log_payload['text'], str) and len(log_payload['text']) > 100:
+                    log_payload['text'] = log_payload['text'][:100] + "..."
+                if 'response' in log_payload and isinstance(log_payload['response'], str) and len(log_payload['response']) > 100:
+                    log_payload['response'] = log_payload['response'][:100] + "..."
+                    
+                self.logger.info(f"[TRANSACTION:{transaction_id}] Payload: {log_payload}")
+                
+            # Always add message ID for tracking
+            if 'message_id' not in payload:
+                payload['message_id'] = f"msg_{int(time.time()*1000)}"
                 
             message = json.dumps({
                 'type': message_type,
@@ -153,30 +168,85 @@ class OverlayBridge:
             })
             
             if not self.clients:
-                self.logger.warning(f"No clients connected to send message: {message_type}")
+                self.logger.warning(f"[TRANSACTION:{transaction_id}] No clients connected to send message: {message_type}")
                 return False
                 
-            # Use a more robust approach for sending messages
+            # Use a more robust approach for sending messages with multiple retries
             failures = 0
             successful_sends = 0
             client_count = len(self.clients)
+            max_retries = 3 if message_type in ['chat_response', 'query_status'] else 1
             
+            # First, try a broadcast to all clients
             for client in list(self.clients):  # Create a copy of the list to safely iterate
-                try:
-                    await client.send(message)
-                    successful_sends += 1
-                except websockets.exceptions.ConnectionClosed:
-                    self.logger.warning(f"Connection closed when trying to send message type: {message_type}")
-                    failures += 1
-                    # Connection already closed, it will be removed in the handler
-                    continue
-                except Exception as e:
-                    self.logger.error(f"Error sending message to client: {e}")
-                    failures += 1
-                    
+                retry_count = 0
+                while retry_count < max_retries:
+                    try:
+                        await client.send(message)
+                        successful_sends += 1
+                        self.logger.debug(f"[TRANSACTION:{transaction_id}] Successfully sent {message_type} to client after {retry_count} retries")
+                        break  # Success, exit retry loop
+                    except websockets.exceptions.ConnectionClosed:
+                        self.logger.warning(f"[TRANSACTION:{transaction_id}] Connection closed when trying to send {message_type}")
+                        failures += 1
+                        # Connection already closed, it will be removed in the handler
+                        break  # Exit retry loop for this client
+                    except Exception as e:
+                        self.logger.error(f"[TRANSACTION:{transaction_id}] Error sending {message_type} to client: {e}")
+                        retry_count += 1
+                        if retry_count >= max_retries:
+                            failures += 1
+                        await asyncio.sleep(0.05)  # Brief pause before retry
+            
             # Log results for important message types
-            if message_type in ['chat_response', 'query_response', 'query_status']:
-                self.logger.info(f"Message send results for {message_type}: {successful_sends} successful, {failures} failed, {client_count} total clients")
+            if message_type in ['chat_response', 'query_response', 'query_status', 'direct_response']:
+                self.logger.info(f"[TRANSACTION:{transaction_id}] Message send results for {message_type}: {successful_sends} successful, {failures} failed, {client_count} total clients")
+                
+                # CRITICAL FIX: Detect and resolve "I'm processing your request..." message
+                if message_type == 'chat_response' and isinstance(payload, dict) and isinstance(payload.get('text'), str) and "I'm processing your request" in payload.get('text', ''):
+                    self.logger.warning(f"[TRANSACTION:{transaction_id}] Detected 'processing' message, scheduling automatic completion status")
+                    
+                    # Create emergency task to send a completion status after this message
+                    async def send_completion_status():
+                        await asyncio.sleep(1.0)  # Wait a moment before sending completion
+                        try:
+                            complete_payload = {
+                                'status': 'complete',
+                                'transaction_id': f"autocomplete_{int(time.time())}",
+                                'timestamp': time.time(),
+                                'is_emergency': True
+                            }
+                            await self.send_message('query_status', complete_payload)
+                            self.logger.info(f"[TRANSACTION:{transaction_id}] Auto-sent completion status after detecting processing message")
+                        except Exception as e:
+                            self.logger.error(f"[TRANSACTION:{transaction_id}] Failed to auto-send completion: {e}")
+                    
+                    # Launch the task without waiting for it
+                    asyncio.create_task(send_completion_status())
+                
+                # If this is a critical message that needs to be delivered, try emergency route
+                if message_type in ['chat_response', 'query_status'] and successful_sends == 0 and client_count > 0:
+                    self.logger.warning(f"[TRANSACTION:{transaction_id}] Critical message {message_type} failed to send, trying emergency direct send")
+                    try:
+                        # Create emergency version of message
+                        emergency_payload = payload.copy()
+                        emergency_payload['is_emergency'] = True
+                        emergency_message = json.dumps({
+                            'type': 'emergency_' + message_type,
+                            'payload': emergency_payload
+                        })
+                        
+                        # Try sending to each client directly one more time
+                        for client in list(self.clients):
+                            try:
+                                await client.send(emergency_message)
+                                self.logger.info(f"[TRANSACTION:{transaction_id}] Emergency {message_type} successfully sent")
+                                successful_sends += 1
+                                break  # Exit after first successful emergency send
+                            except Exception:
+                                pass  # Silently continue to next client
+                    except Exception as emergency_err:
+                        self.logger.error(f"[TRANSACTION:{transaction_id}] Emergency send failed: {emergency_err}")
             
             return successful_sends > 0  # Return True if at least one message was sent successfully
         except Exception as e:

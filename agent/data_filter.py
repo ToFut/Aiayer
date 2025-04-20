@@ -11,9 +11,17 @@ class DataFilter:
     Handles data filtering and preprocessing for the task agent.
     """
     
-    def __init__(self):
-        """Initialize the data filter."""
+    def __init__(self, load_sensitive_patterns=False, enable_ml_detection=False):
+        """
+        Initialize the data filter.
+        
+        Args:
+            load_sensitive_patterns (bool): Flag to load sensitive patterns from config file
+            enable_ml_detection (bool): Flag to enable machine learning detection
+        """
         self.logger = logging.getLogger(__name__)
+        self.load_sensitive_patterns = load_sensitive_patterns
+        self.enable_ml_detection = enable_ml_detection
         
     def filter_sensor_data(self, data: Dict[str, Any]) -> Dict[str, Any]:
         """

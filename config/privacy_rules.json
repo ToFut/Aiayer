@@ -1,0 +1,27 @@
+{
+    "sensitive_keywords": [
+        "password",
+        "credit card",
+        "ssn",
+        "social security",
+        "bank account",
+        "login",
+        "secret",
+        "private",
+        "confidential"
+    ],
+    "private_regions": [
+        {
+            "x": 0,
+            "y": 0,
+            "width": 100,
+            "height": 100,
+            "description": "Top-left corner sensitive area"
+        }
+    ],
+    "privacy_levels": {
+        "public": 0,
+        "sensitive": 1,
+        "private": 2
+    }
+} 

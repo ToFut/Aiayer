@@ -10,6 +10,8 @@ import threading
 import platform
 import subprocess
 from collections import deque
+from typing import Dict, Optional
+import asyncio
 
 class BrowserSensor:
     """
@@ -31,9 +33,9 @@ class BrowserSensor:
         self._stop_event = threading.Event()
         self.sensor_type = "browser"
         self._last_update = time.time()
-        self._current_url = None
-        self._current_title = None
-        self._tab_count = 0
+        self._last_url = None
+        self._last_title = None
+        self._last_tab_count = 0
         self.url_history = deque(maxlen=100)
         self.selected_text = None
         
@@ -87,17 +89,164 @@ class BrowserSensor:
             return True
         return False
 
-    def get_data(self):
-        """Get the current sensor data."""
-        return {
-            "timestamp": datetime.now().isoformat(),
-            "type": "browser_info",
-            "data": {
-                "url": self.get_current_url(),
-                "title": self.get_current_title(),
-                "tab_count": self.get_tab_count()
+    async def get_data(self) -> Dict:
+        """Get current browser data with proper async handling."""
+        try:
+            if self.platform == "darwin":
+                data = await asyncio.get_event_loop().run_in_executor(
+                    None, self._get_macos_data
+                )
+                return {
+                    'status': 'success',
+                    **data
+                }
+            else:
+                return {
+                    'status': 'error',
+                    'error': 'Unsupported platform',
+                    'current_url': '',
+                    'current_title': '',
+                    'tab_count': 0,
+                    'browser_state': 'unavailable'
+                }
+        except Exception as e:
+            self.logger.error(f"Error getting browser data: {e}")
+            return {
+                'status': 'error',
+                'error': str(e),
+                'current_url': self._last_url or '',
+                'current_title': self._last_title or '',
+                'tab_count': self._last_tab_count or 0,
+                'browser_state': 'error'
             }
-        }
+            
+    def _get_macos_data(self) -> Dict:
+        """Get browser data on macOS."""
+        try:
+            # Try Chrome first
+            chrome_data = self._get_chrome_data()
+            if chrome_data.get("current_url"):
+                return chrome_data
+                
+            # Try Safari as fallback
+            safari_data = self._get_safari_data()
+            if safari_data.get("current_url"):
+                return safari_data
+                
+            # Return last known values if both failed
+            return {
+                "current_url": self._last_url,
+                "current_title": self._last_title,
+                "tab_count": self._last_tab_count,
+                "browser_state": "inactive"
+            }
+            
+        except Exception as e:
+            self.logger.error(f"Error in macOS browser data collection: {e}")
+            return {
+                "current_url": self._last_url,
+                "current_title": self._last_title,
+                "tab_count": self._last_tab_count,
+                "browser_state": "error"
+            }
+            
+    def _get_chrome_data(self) -> Dict:
+        """Get data from Chrome browser."""
+        try:
+            chrome_script = """
+            tell application "Google Chrome"
+                if running then
+                    set currentTab to active tab of front window
+                    set tabCount to count of tabs of front window
+                    return {URL of currentTab & ":::" & title of currentTab & ":::" & tabCount}
+                end if
+            end tell
+            """
+            
+            result = subprocess.run(['osascript', '-e', chrome_script], 
+                                  capture_output=True, text=True, timeout=1.0)
+            
+            if result.returncode == 0 and result.stdout.strip():
+                data = result.stdout.strip().split(":::")
+                if len(data) >= 3:
+                    self._last_url = data[0]
+                    self._last_title = data[1]
+                    self._last_tab_count = int(data[2])
+                    return {
+                        "current_url": self._last_url,
+                        "current_title": self._last_title,
+                        "tab_count": self._last_tab_count,
+                        "browser_state": "active"
+                    }
+            
+            return {
+                "current_url": "",
+                "current_title": "",
+                "tab_count": 0,
+                "browser_state": "inactive"
+            }
+            
+        except subprocess.TimeoutExpired:
+            self.logger.warning("Chrome query timed out")
+            return {"error": "timeout"}
+        except Exception as e:
+            self.logger.error(f"Error getting Chrome data: {e}")
+            return {"error": str(e)}
+            
+    def _get_safari_data(self) -> Dict:
+        """Get data from Safari browser."""
+        try:
+            safari_script = """
+            tell application "Safari"
+                if running then
+                    try
+                        set currentTab to current tab of front window
+                        set tabCount to count of tabs of front window
+                        return {URL of currentTab & ":::" & name of currentTab & ":::" & tabCount}
+                    on error
+                        return "not_available"
+                    end try
+                end if
+            end tell
+            """
+            
+            result = subprocess.run(['osascript', '-e', safari_script], 
+                                  capture_output=True, text=True, timeout=1.0)
+            
+            if result.returncode == 0 and result.stdout.strip():
+                if result.stdout.strip() == "not_available":
+                    return {
+                        "current_url": "",
+                        "current_title": "",
+                        "tab_count": 0,
+                        "browser_state": "inactive"
+                    }
+                    
+                data = result.stdout.strip().split(":::")
+                if len(data) >= 3:
+                    self._last_url = data[0]
+                    self._last_title = data[1]
+                    self._last_tab_count = int(data[2])
+                    return {
+                        "current_url": self._last_url,
+                        "current_title": self._last_title,
+                        "tab_count": self._last_tab_count,
+                        "browser_state": "active"
+                    }
+            
+            return {
+                "current_url": "",
+                "current_title": "",
+                "tab_count": 0,
+                "browser_state": "inactive"
+            }
+            
+        except subprocess.TimeoutExpired:
+            self.logger.warning("Safari query timed out")
+            return {"error": "timeout"}
+        except Exception as e:
+            self.logger.error(f"Error getting Safari data: {e}")
+            return {"error": str(e)}
 
     def get_current_url(self):
         """Get the current browser URL."""
@@ -211,8 +360,8 @@ class BrowserSensor:
             text (str): Selected text on page (if any)
         """
         timestamp = time.time()
-        self._current_url = url
-        self._current_title = title
+        self._last_url = url
+        self._last_title = title
         
         if text:
             self.selected_text = text

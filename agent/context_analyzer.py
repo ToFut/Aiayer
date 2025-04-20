@@ -19,6 +19,7 @@ import asyncio
 import numpy as np
 from dataclasses import dataclass, field
 import re
+import time
 
 @dataclass
 class ContextInsight:
@@ -242,24 +243,20 @@ class ContextAnalyzer:
     """
     
     def __init__(self, models: Dict[str, Any], sensors: Dict, model_profiles: Optional[Dict] = None):
-        """
-        Initialize the enhanced context analyzer.
-        
-        Args:
-            models: Dictionary of local AI model instances
-            sensors: Dictionary of sensor instances
-            model_profiles: Optional dictionary of model profiles
-        """
+        """Initialize the enhanced context analyzer."""
         self.models = models
         self.orchestrator = ModelOrchestrator(models, model_profiles)
         self.sensors = sensors
         self.logger = logging.getLogger(__name__)
-        self.logger.setLevel(logging.WARNING)  # Set logging level to WARNING
+        self.logger.setLevel(logging.INFO)
         self.last_analysis = None
         self.last_analysis_time = None
         self.context_history = []
         self.analysis_history = []
         self.memory_buffer = self._init_memory_buffer()
+        self._last_context = None
+        self._last_context_time = 0
+        self._context_lock = asyncio.Lock()
         
     def _init_memory_buffer(self) -> Dict:
         """Initialize the memory buffer for persistent context awareness."""
@@ -274,63 +271,71 @@ class ContextAnalyzer:
         }
         
     def _clean_text(self, text: str) -> str:
-        """Clean and normalize text content."""
-        # Remove extra whitespace but preserve single spaces
-        text = re.sub(r'\s+', ' ', text)
-        # Ensure space between numbers and words
-        text = re.sub(r'(\d)([a-zA-Z])', r'\1 \2', text)
-        text = re.sub(r'([a-zA-Z])(\d)', r'\1 \2', text)
-        return text.strip()
+        """Clean and format text for analysis."""
+        if not isinstance(text, str):
+            return ""
+            
+        # Remove extra whitespace
+        text = ' '.join(text.split())
         
-    def _format_sensor_data(self) -> Dict:
-        """Format sensor data for analysis."""
+        # Remove common OCR artifacts
+        text = re.sub(r'[^\w\s.,!?@#$%&*()\[\]{}<>:;-_+=|\\/"\']', '', text)
+        
+        # Remove duplicate lines
+        lines = text.split('\n')
+        unique_lines = []
+        for line in lines:
+            if line.strip() and line not in unique_lines:
+                unique_lines.append(line)
+        
+        return '\n'.join(unique_lines)
+        
+    def _format_sensor_data(self, sensor_name: str, data: Dict) -> Dict:
+        """Format sensor data for context analysis."""
         try:
-            formatted_data = {}
-            
-            # Format screen data
-            if 'screen' in self.sensors and self.sensors['screen']:
-                screen_data = self.sensors['screen'].get_data()
-                if screen_data:
-                    formatted_data['screen'] = {
-                        'text': str(screen_data.get('text', '')),
-                        'has_updates': bool(screen_data.get('has_updates', False))
-                    }
-            
-            # Format file data
-            if 'file' in self.sensors and self.sensors['file']:
-                file_data = self.sensors['file'].get_data()
-                if file_data:
-                    formatted_data['file'] = {
-                        'events': [str(event) for event in file_data.get('events', [])],
-                        'has_updates': bool(file_data.get('has_updates', False))
-                    }
-            
-            # Format process data
-            if 'process' in self.sensors and self.sensors['process']:
-                process_data = self.sensors['process'].get_data()
-                if process_data:
-                    formatted_data['process'] = {
-                        'active_app': str(process_data.get('active_app', '')),
-                        'window_title': str(process_data.get('window_title', '')),
-                        'has_updates': bool(process_data.get('has_updates', False))
-                    }
-            
-            # Format browser data
-            if 'browser' in self.sensors and self.sensors['browser']:
-                browser_data = self.sensors['browser'].get_data()
-                if browser_data:
-                    formatted_data['browser'] = {
-                        'current_url': str(browser_data.get('current_url', '')),
-                        'current_title': str(browser_data.get('current_title', '')),
-                        'tab_count': int(browser_data.get('tab_count', 0)),
-                        'has_updates': bool(browser_data.get('has_updates', False))
-                    }
-            
-            return formatted_data
-            
+            if not data:
+                return {'status': 'unavailable'}
+                
+            # Check for error or timeout status
+            if data.get('status') in ['error', 'timeout']:
+                return data
+                
+            # Format based on sensor type
+            if sensor_name == 'screen':
+                return {
+                    'status': data.get('status', 'unknown'),
+                    'text': data.get('text', ''),
+                    'timestamp': data.get('timestamp', time.time())
+                }
+            elif sensor_name == 'process':
+                return {
+                    'status': data.get('status', 'unknown'),
+                    'active_app': data.get('active_app', ''),
+                    'window_title': data.get('window_title', ''),
+                    'app_category': data.get('app_category', 'unknown'),
+                    'running_apps': data.get('running_apps', [])[:10],  # Limit to 10 apps
+                    'usage_duration': data.get('usage_duration', 0)
+                }
+            elif sensor_name == 'browser':
+                return {
+                    'status': data.get('status', 'unknown'),
+                    'current_url': data.get('current_url', ''),
+                    'current_title': data.get('current_title', ''),
+                    'tab_count': data.get('tab_count', 0),
+                    'browser_state': data.get('browser_state', 'unknown')
+                }
+            elif sensor_name == 'overlay':
+                return {
+                    'status': data.get('status', 'unknown'),
+                    'process_id': data.get('process_id', 'None'),
+                    'port': data.get('port', 0)
+                }
+            else:
+                return {'status': 'unknown', 'error': f'Unknown sensor type: {sensor_name}'}
+                
         except Exception as e:
-            self.logger.error(f"Error formatting sensor data: {str(e)}", exc_info=True)
-            return {}
+            self.logger.error(f"Error formatting {sensor_name} data: {e}")
+            return {'status': 'error', 'error': str(e)}
     
     def _determine_app_category(self, app_name: str) -> str:
         """Determine the category of an application based on its name and usage patterns."""
@@ -343,7 +348,7 @@ class ContextAnalyzer:
             "system": ["settings", "finder", "explorer", "terminal", "cmd"]
         }
         
-        app_name = app_name.lower()
+        app_name = str(app_name).lower()
         for category, keywords in categories.items():
             if any(keyword in app_name for keyword in keywords):
                 return category
@@ -354,7 +359,7 @@ class ContextAnalyzer:
         file_types = set()
         for event in events:
             if isinstance(event, dict) and 'path' in event:
-                path = event['path']
+                path = str(event['path'])
                 ext = path.split('.')[-1].lower()
                 if ext:
                     file_types.add(ext)
@@ -364,15 +369,16 @@ class ContextAnalyzer:
         """Categorize files based on their extensions and paths."""
         categories = set()
         for event in events:
-            path = event.get("path", "").lower()
-            if any(ext in path for ext in [".py", ".js", ".cpp", ".java"]):
-                categories.add("code")
-            elif any(ext in path for ext in [".doc", ".pdf", ".txt"]):
-                categories.add("document")
-            elif any(ext in path for ext in [".csv", ".json", ".xml"]):
-                categories.add("data")
-            elif any(ext in path for ext in [".jpg", ".png", ".gif"]):
-                categories.add("media")
+            if isinstance(event, dict):
+                path = str(event.get("path", "")).lower()
+                if any(ext in path for ext in [".py", ".js", ".cpp", ".java"]):
+                    categories.add("code")
+                elif any(ext in path for ext in [".doc", ".pdf", ".txt"]):
+                    categories.add("document")
+                elif any(ext in path for ext in [".csv", ".json", ".xml"]):
+                    categories.add("data")
+                elif any(ext in path for ext in [".jpg", ".png", ".gif"]):
+                    categories.add("media")
         return list(categories)
     
     def _extract_file_operations(self, events: List[Dict]) -> List[str]:
@@ -380,12 +386,18 @@ class ContextAnalyzer:
         operations = set()
         for event in events:
             if isinstance(event, dict) and 'operation' in event:
-                operations.add(event['operation'])
+                operation = str(event['operation'])
+                if operation:
+                    operations.add(operation)
         return list(operations)
     
     def _determine_browser_state(self, browser: Union[str, Any]) -> str:
         """Determine the current state of browser activity."""
-        url = browser.current_url if hasattr(browser, 'current_url') else str(browser)
+        # Convert browser input to string if it's not already
+        if isinstance(browser, dict):
+            url = str(browser.get('current_url', ''))
+        else:
+            url = str(browser)
         
         if not url:
             return "inactive"
@@ -411,28 +423,35 @@ class ContextAnalyzer:
         
         # Analyze application context
         app_context = context_data.get("application_context", {})
-        if app_context.get("active_app"):
-            combined["activity_pattern"] = f"Using {app_context['active_app']} ({app_context.get('app_category', 'unknown')})"
-            combined["focus_areas"].append(app_context.get("app_category", "unknown"))
-            
-            # Determine workflow state based on app category
-            if app_context.get("app_category") == "development":
-                combined["workflow_state"] = "coding"
-            elif app_context.get("app_category") == "document":
-                combined["workflow_state"] = "document_editing"
-            elif app_context.get("app_category") == "browser":
-                combined["workflow_state"] = context_data.get("browser_context", {}).get("browser_state", "browsing")
-            else:
-                combined["workflow_state"] = "general_use"
+        if app_context and isinstance(app_context, dict):
+            active_app = str(app_context.get('active_app', ''))
+            app_category = str(app_context.get('app_category', 'unknown'))
+            if active_app:
+                combined["activity_pattern"] = f"Using {active_app} ({app_category})"
+                combined["focus_areas"].append(app_category)
+                
+                # Determine workflow state based on app category
+                if app_category == "development":
+                    combined["workflow_state"] = "coding"
+                elif app_category == "document":
+                    combined["workflow_state"] = "document_editing"
+                elif app_category == "browser":
+                    browser_state = context_data.get("browser_context", {}).get("browser_state", "browsing")
+                    combined["workflow_state"] = str(browser_state)
+                else:
+                    combined["workflow_state"] = "general_use"
         
         # Analyze file context
         file_context = context_data.get("file_context", {})
-        if file_context.get("file_operations"):
-            combined["interaction_patterns"].extend(file_context["file_operations"])
+        if file_context and isinstance(file_context, dict):
+            file_operations = file_context.get("file_operations", [])
+            if isinstance(file_operations, list):
+                combined["interaction_patterns"].extend([str(op) for op in file_operations])
             
-        # Add file categories if available
-        if file_context.get("file_categories"):
-            combined["focus_areas"].extend(file_context["file_categories"])
+            # Add file categories if available
+            file_categories = file_context.get("file_categories", [])
+            if isinstance(file_categories, list):
+                combined["focus_areas"].extend([str(cat) for cat in file_categories])
         
         return combined
     
@@ -630,16 +649,17 @@ class ContextAnalyzer:
         
         # Extract process information
         process_data = sensor_data.get('process', {})
-        if process_data:
-            context_data['current_app'] = process_data.get('active_app', 'Unknown')
-            context_data['window_title'] = process_data.get('window_title', '')
-            context_data['app_category'] = self._determine_app_category(process_data.get('active_app', ''))
+        if process_data and isinstance(process_data, dict):
+            context_data['current_app'] = str(process_data.get('active_app', 'Unknown'))
+            context_data['window_title'] = str(process_data.get('window_title', ''))
+            context_data['app_category'] = self._determine_app_category(str(process_data.get('active_app', '')))
         
         # Extract screen information
         screen_data = sensor_data.get('screen', {})
-        if screen_data:
+        if screen_data and isinstance(screen_data, dict):
             # Truncate and clean screen text
-            screen_text = self._clean_text(screen_data.get('text', ''))
+            screen_text = str(screen_data.get('text', ''))
+            screen_text = self._clean_text(screen_text)
             
             # Extract key information based on app category
             if context_data.get('app_category') == 'browser':
@@ -657,7 +677,7 @@ class ContextAnalyzer:
         
         # Extract file information
         file_data = sensor_data.get('file', {})
-        if file_data and isinstance(file_data.get('events'), list):
+        if file_data and isinstance(file_data, dict) and isinstance(file_data.get('events'), list):
             file_events = file_data.get('events', [])
             context_data['file_types'] = self._extract_file_types(file_events)
             context_data['file_operations'] = self._extract_file_operations(file_events)[:5]  # Limit to 5 recent operations
@@ -665,10 +685,10 @@ class ContextAnalyzer:
         
         # Extract browser information
         browser_data = sensor_data.get('browser', {})
-        if browser_data:
-            context_data['browser_url'] = browser_data.get('current_url', '')
-            context_data['browser_title'] = browser_data.get('current_title', '')
-            context_data['browser_state'] = self._determine_browser_state(browser_data) 
+        if browser_data and isinstance(browser_data, dict):
+            context_data['browser_url'] = str(browser_data.get('current_url', ''))
+            context_data['browser_title'] = str(browser_data.get('current_title', ''))
+            context_data['browser_state'] = self._determine_browser_state(str(browser_data.get('current_url', '')))
         
         # Add recent activities from history
         if self.analysis_history:
@@ -676,8 +696,8 @@ class ContextAnalyzer:
                 {
                     "type": "activity",
                     "details": {
-                        "summary": analysis.current_activity,
-                        "needs": analysis.potential_needs[:2]  # Limit to 2 needs per activity
+                        "summary": str(analysis.current_activity),
+                        "needs": [str(need) for need in analysis.potential_needs[:2]]  # Limit to 2 needs per activity
                     }
                 }
                 for analysis in self.analysis_history[-5:]  # Last 5 analyses
@@ -687,78 +707,107 @@ class ContextAnalyzer:
         return context_data
     
     async def _analyze_semantic_context(self, context_data: Dict) -> Dict:
-        """Perform deep semantic analysis of the context."""
+        """Perform deep semantic analysis of the context with enhanced understanding."""
         try:
-            system_prompt = """You are an advanced semantic analyzer that understands the deeper meaning and implications of user activities.
-Analyze the provided context and provide insights about:
-1. The purpose behind the current activity
-2. The workflow or process being followed
-3. Potential challenges or obstacles
-4. Related concepts or domains
-5. Implicit goals or intentions
+            system_prompt = """You are an advanced semantic analyzer with exceptional cognitive abilities to understand the deeper meaning and implications of user activities.
+Analyze the provided context and deliver comprehensive insights about:
+1. The precise purpose behind the current activity, including underlying motivations and intentionality
+2. The detailed workflow or process being followed, with recognition of established patterns
+3. Specific challenges or obstacles the user is facing or likely to encounter
+4. The complete ecosystem of related concepts, domains, and knowledge areas 
+5. Implicit goals or intentions the user may not have explicitly stated
+6. Potential emotional state based on activity patterns
+7. Next logical steps in the user's workflow or process
 
-Format your response as a JSON object with these fields:
+Format your response as a JSON object with these specific fields:
 {
-    "purpose": "detailed purpose analysis",
-    "workflow": "workflow description",
-    "challenges": ["challenge 1", "challenge 2", ...],
+    "purpose": "comprehensive purpose analysis with motivational factors",
+    "workflow": "detailed workflow description with stage identification",
+    "challenges": ["specific challenge 1", "specific challenge 2", ...],
     "related_concepts": ["concept 1", "concept 2", ...],
-    "implicit_goals": ["goal 1", "goal 2", ...]
+    "implicit_goals": ["specific goal 1", "specific goal 2", ...], 
+    "emotional_state": "inferred emotional state",
+    "next_steps": ["likely next step 1", "likely next step 2", ...],
+    "confidence": 0.0-1.0
 }"""
             
-            user_prompt = f"""Context Data for Semantic Analysis:
-
-{json.dumps(context_data, indent=2)}"""
+            # Create detailed, structured context with more information for better analysis
+            enhanced_context = self._enrich_context_for_analysis(context_data)
             
-            # Use the orchestrator to perform semantic analysis
+            user_prompt = f"""Context Data for Advanced Semantic Analysis:
+
+{json.dumps(enhanced_context, indent=2)}
+
+Perform a comprehensive analysis that captures nuanced patterns and intentions.
+Focus on identifying interconnected workflows rather than isolated actions.
+Consider historical context if available when determining purpose and goals."""
+            
+            # Use multiple models for semantic analysis with fallback mechanisms
             try:
+                # Try primary model first
                 response, _ = await self.orchestrator.execute_model('main', user_prompt, system_prompt)
+                
+                # If primary model fails or returns insufficient data, try fallback model
+                if not response or (isinstance(response, dict) and len(response) <= 2):
+                    self.logger.info("Primary model returned insufficient data, trying fallback model")
+                    fallback_response, _ = await self.orchestrator.execute_model('context', user_prompt, system_prompt)
+                    if fallback_response and (not response or len(fallback_response) > len(response)):
+                        response = fallback_response
             except Exception as e:
-                self.logger.error(f"Error executing model for semantic analysis: {e}")
+                self.logger.error(f"Error executing models for semantic analysis: {e}")
                 return {
                     "purpose": "Analysis execution error",
                     "workflow": "Error in analysis execution",
-                    "challenges": [],
+                    "challenges": ["Model execution failure", "Communication error"],
                     "related_concepts": [],
-                    "implicit_goals": []
+                    "implicit_goals": [],
+                    "emotional_state": "unknown",
+                    "next_steps": ["Retry analysis", "Use alternative approach"],
+                    "confidence": 0.1
                 }
             
-            # Safely handle the response
+            # Safely handle the response with improved error recovery
             if not response:
                 return {
                     "purpose": "No analysis available",
                     "workflow": "No workflow identified",
-                    "challenges": [],
+                    "challenges": ["Insufficient data for analysis"],
                     "related_concepts": [],
-                    "implicit_goals": []
+                    "implicit_goals": [],
+                    "emotional_state": "unknown",
+                    "next_steps": ["Gather additional context data"],
+                    "confidence": 0.0
                 }
                 
             try:
-                if isinstance(response, dict):
-                    if "message" in response:
-                        content = response["message"].get("content", "{}")
-                        if isinstance(content, str):
-                            try:
-                                return json.loads(content)
-                            except json.JSONDecodeError:
-                                return {"purpose": content[:100] if content else "Unknown"}
-                        return content
-                    return response
-                elif isinstance(response, str):
-                    try:
-                        return json.loads(response)
-                    except json.JSONDecodeError:
-                        return {"purpose": response[:100] if response else "Unknown"}
-                else:
-                    return {"purpose": "Unknown format", "format_type": str(type(response))}
+                result = self._parse_semantic_response(response)
+                
+                # Verify and ensure all required fields exist
+                required_fields = ["purpose", "workflow", "challenges", "related_concepts", 
+                                  "implicit_goals", "emotional_state", "next_steps", "confidence"]
+                
+                for field in required_fields:
+                    if field not in result:
+                        if field in ["challenges", "related_concepts", "implicit_goals", "next_steps"]:
+                            result[field] = []
+                        elif field == "confidence":
+                            result[field] = 0.5
+                        else:
+                            result[field] = "Not available"
+                
+                return result
+                
             except Exception as e:
                 self.logger.error(f"Error parsing semantic analysis: {e}")
                 return {
                     "purpose": "Error in parsing",
                     "error": str(e),
-                    "challenges": [],
+                    "challenges": ["Parsing failure", "Invalid format"],
                     "related_concepts": [],
-                    "implicit_goals": []
+                    "implicit_goals": [],
+                    "emotional_state": "unknown",
+                    "next_steps": ["Review analyzer module"],
+                    "confidence": 0.2
                 }
                 
         except Exception as e:
@@ -766,10 +815,114 @@ Format your response as a JSON object with these fields:
             return {
                 "purpose": "Error in analysis",
                 "error": str(e),
-                "challenges": [],
+                "challenges": ["Analysis failure"],
                 "related_concepts": [],
-                "implicit_goals": []
+                "implicit_goals": [],
+                "emotional_state": "unknown",
+                "next_steps": ["Diagnostic check"],
+                "confidence": 0.1
             }
+    
+    def _enrich_context_for_analysis(self, context_data: Dict) -> Dict:
+        """Enrich context data with additional information for deeper semantic analysis."""
+        enriched_context = context_data.copy()
+        
+        # Add contextual memory patterns if available
+        if hasattr(self, 'memory_buffer') and isinstance(self.memory_buffer, dict):
+            # Extract frequent patterns
+            if 'frequent_apps' in self.memory_buffer:
+                enriched_context['usage_patterns'] = {
+                    'frequent_apps': self.memory_buffer['frequent_apps'],
+                    'frequent_activities': self.memory_buffer.get('recurring_activities', {})
+                }
+            
+            # Extract semantic patterns
+            if 'semantic_patterns' in self.memory_buffer:
+                enriched_context['semantic_patterns'] = self.memory_buffer['semantic_patterns']
+        
+        # Add temporal context (time of day, day of week, etc.)
+        now = datetime.now()
+        enriched_context['temporal_context'] = {
+            'time_of_day': now.hour,
+            'day_of_week': now.weekday(),
+            'part_of_day': self._determine_part_of_day(now.hour)
+        }
+        
+        # Add previous analyses if available
+        if self.analysis_history and len(self.analysis_history) > 0:
+            enriched_context['previous_analyses'] = [
+                {
+                    'activity': a.current_activity,
+                    'summary': a.context_summary,
+                    'timestamp': a.timestamp.isoformat() if hasattr(a, 'timestamp') else None
+                }
+                for a in self.analysis_history[-3:]  # Last 3 analyses
+            ]
+        
+        # Add attention trajectory if available
+        if self.analysis_history and len(self.analysis_history) > 2:
+            attention_levels = [a.attention_level for a in self.analysis_history[-5:]]
+            enriched_context['attention_trajectory'] = attention_levels
+        
+        return enriched_context
+    
+    def _determine_part_of_day(self, hour: int) -> str:
+        """Determine the part of day based on hour."""
+        if 5 <= hour < 12:
+            return "morning"
+        elif 12 <= hour < 17:
+            return "afternoon"
+        elif 17 <= hour < 22:
+            return "evening"
+        else:
+            return "night"
+            
+    def _parse_semantic_response(self, response: Any) -> Dict:
+        """Parse and validate semantic analysis response with improved error handling."""
+        if isinstance(response, dict):
+            if "message" in response:
+                content = response["message"].get("content", "{}")
+                if isinstance(content, str):
+                    try:
+                        parsed = json.loads(content)
+                        return parsed
+                    except json.JSONDecodeError:
+                        # Try to extract JSON if content contains it
+                        try:
+                            json_match = re.search(r'```json\n(.*?)\n```', content, re.DOTALL)
+                            if json_match:
+                                return json.loads(json_match.group(1))
+                            
+                            # Last resort: try to extract anything that looks like JSON
+                            json_match = re.search(r'{.*}', content, re.DOTALL)
+                            if json_match:
+                                return json.loads(json_match.group(0))
+                                
+                            return {"purpose": content[:200] if content else "Unknown"}
+                        except Exception:
+                            return {"purpose": content[:200] if content else "Unknown"}
+                return content
+            return response
+        elif isinstance(response, str):
+            try:
+                return json.loads(response)
+            except json.JSONDecodeError:
+                # Try to extract JSON if response contains it
+                try:
+                    json_match = re.search(r'```json\n(.*?)\n```', response, re.DOTALL)
+                    if json_match:
+                        return json.loads(json_match.group(1))
+                    
+                    # Last resort: try to extract anything that looks like JSON
+                    json_match = re.search(r'{.*}', response, re.DOTALL)
+                    if json_match:
+                        return json.loads(json_match.group(0))
+                        
+                    return {"purpose": response[:200] if response else "Unknown"}
+                except Exception:
+                    return {"purpose": response[:200] if response else "Unknown"}
+        else:
+            return {"purpose": "Unknown format", "format_type": str(type(response))}
             
     def get_last_analysis(self) -> Optional[ContextInsight]:
         """Get the most recent context analysis."""
@@ -789,22 +942,117 @@ Format your response as a JSON object with these fields:
                 return {"status": "unavailable"}
 
             status = overlay_sensor.get_status()
+            if not isinstance(status, dict):
+                return {"status": "error", "error": "Invalid status format"}
+
             return {
-                "status": "running" if status["is_running"] else "stopped",
-                "process_id": status["process_id"]
+                "status": "running" if status.get("is_running", False) else "stopped",
+                "process_id": str(status.get("process_id", ""))
             }
         except Exception as e:
             return {"status": "error", "error": str(e)}
 
-    def get_current_context(self) -> Dict[str, Any]:
-        """Get the current context from all sensors."""
-        context = {
-            "browser": self.analyze_browser_context(),
-            "process": self.analyze_process_context(),
-            "overlay": self.analyze_overlay_context(),
-            "timestamp": datetime.now().isoformat()
-        }
-        return context
+    def analyze_browser_context(self) -> Dict[str, Any]:
+        """Analyze the current state of browser activity."""
+        try:
+            browser_sensor = self.sensors.get('browser')
+            if not browser_sensor:
+                return {"status": "unavailable"}
+
+            browser_data = browser_sensor.get_data()
+            if not isinstance(browser_data, dict):
+                return {"status": "error", "error": "Invalid browser data format"}
+
+            return {
+                "current_url": str(browser_data.get("current_url", "")),
+                "current_title": str(browser_data.get("current_title", "")),
+                "tab_count": int(browser_data.get("tab_count", 0)),
+                "browser_state": self._determine_browser_state(str(browser_data.get("current_url", "")))
+            }
+        except Exception as e:
+            return {"status": "error", "error": str(e)}
+
+    def analyze_process_context(self) -> Dict[str, Any]:
+        """Analyze the current state of process activity."""
+        try:
+            process_sensor = self.sensors.get('process')
+            if not process_sensor:
+                return {"status": "unavailable"}
+
+            process_data = process_sensor.get_data()
+            if not isinstance(process_data, dict):
+                return {"status": "error", "error": "Invalid process data format"}
+
+            return {
+                "active_app": str(process_data.get("active_app", "")),
+                "window_title": str(process_data.get("window_title", "")),
+                "app_category": self._determine_app_category(str(process_data.get("active_app", ""))),
+                "running_apps": [str(app) for app in process_data.get("running_apps", []) if isinstance(app, str)],
+                "usage_duration": int(process_data.get("usage_duration", 0))
+            }
+        except Exception as e:
+            return {"status": "error", "error": str(e)}
+
+    async def get_current_context(self) -> Dict:
+        """Get the current context from all sensors with proper async handling."""
+        try:
+            async with self._context_lock:
+                # Use cached context if less than 5 seconds old
+                if self._last_context and time.time() - self._last_context_time < 5:
+                    return self._last_context
+
+                # Get data from each sensor with individual timeouts
+                browser_data = await self._get_sensor_data_with_timeout('browser', 2.0)
+                process_data = await self._get_sensor_data_with_timeout('process', 1.5)
+                overlay_data = await self._get_sensor_data_with_timeout('overlay', 1.0)
+
+                # Format the data
+                context = {
+                    'browser': self._format_sensor_data('browser', browser_data),
+                    'process': self._format_sensor_data('process', process_data),
+                    'overlay': self._format_sensor_data('overlay', overlay_data),
+                    'timestamp': datetime.now().isoformat()
+                }
+
+                # Cache the context
+                self._last_context = context
+                self._last_context_time = time.time()
+
+                return context
+
+        except Exception as e:
+            self.logger.error(f"Error getting current context: {e}")
+            return {
+                'browser': {'status': 'error', 'error': str(e)},
+                'process': {'status': 'error', 'error': str(e)},
+                'overlay': {'status': 'error', 'error': str(e)},
+                'timestamp': datetime.now().isoformat()
+            }
+
+    async def _get_sensor_data_with_timeout(self, sensor_name: str, timeout: float) -> Dict:
+        """Get data from a sensor with a timeout."""
+        try:
+            if sensor_name not in self.sensors:
+                return {'status': 'unavailable'}
+
+            sensor = self.sensors[sensor_name]
+            if not hasattr(sensor, 'get_data'):
+                return {'status': 'error', 'error': f'Sensor {sensor_name} has no get_data method'}
+
+            # Wait for the sensor data with timeout
+            try:
+                data = await asyncio.wait_for(sensor.get_data(), timeout=timeout)
+                return data
+            except asyncio.TimeoutError:
+                self.logger.warning(f"Timeout getting {sensor_name} data after {timeout}s")
+                return {'status': 'timeout'}
+            except Exception as e:
+                self.logger.error(f"Error getting {sensor_name} data: {e}")
+                return {'status': 'error', 'error': str(e)}
+
+        except Exception as e:
+            self.logger.error(f"Error in sensor data collection: {e}")
+            return {'status': 'error', 'error': str(e)}
 
 """
 Sensor Enhancement Roadmap:

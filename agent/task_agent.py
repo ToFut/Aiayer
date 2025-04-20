@@ -17,6 +17,12 @@ from memory.memory import ConversationMemory
 from agent.data_filter import DataFilter
 from agent.context_analyzer import ContextAnalyzer, ContextInsight
 from agent.overlay_bridge import OverlayBridge
+from agent.knowledge_base import KnowledgeBase
+from sensors.llm_analyzer import LocalLLMAnalyzer
+from screen_controller import ScreenController
+from memory import Memory
+
+logger = logging.getLogger(__name__)
 
 class TaskAgent:
     """
@@ -25,7 +31,10 @@ class TaskAgent:
     
     def __init__(self, sensors: Dict, llm: LocalLLM, memory: ConversationMemory, 
                  data_filter: DataFilter, context_analyzer: ContextAnalyzer, 
-                 overlay_bridge: Optional[OverlayBridge] = None):
+                 overlay_bridge: Optional[OverlayBridge] = None,
+                 knowledge_base: Optional[KnowledgeBase] = None,
+                 screen_controller: Optional[ScreenController] = None,
+                 llm_analyzer: Optional[LocalLLMAnalyzer] = None):
         """
         Initialize the task agent.
         
@@ -36,6 +45,9 @@ class TaskAgent:
             data_filter: Data filter instance
             context_analyzer: Context analyzer instance
             overlay_bridge: Optional existing bridge instance to use
+            knowledge_base: Optional knowledge base instance to use
+            screen_controller: Optional screen controller instance to use
+            llm_analyzer: Optional LLM analyzer instance to use
         """
         self._sensors = sensors
         self._llm = llm
@@ -50,6 +62,13 @@ class TaskAgent:
         self._context_update_interval = 30  # seconds
         self._last_insights = []  # Store recent context insights to share with user
         self._user_query_count = 0
+        self._knowledge_base = knowledge_base or KnowledgeBase()
+        
+        # Use shared screen controller if provided
+        self.screen_controller = screen_controller
+        
+        # Use shared analyzer if provided, otherwise create new one
+        self.llm_analyzer = llm_analyzer
         
         # Initialize overlay bridge - reuse existing bridge if provided
         if overlay_bridge:
@@ -177,27 +196,16 @@ Confidence: {self._last_context.confidence_score:.2f}"""
         messages = []
         
         # Add system message with context
-        system_message = "You are a helpful AI assistant with access to the user's screen content through sensors. "
+        system_message = "You are a helpful AI assistant. Keep your responses concise and to the point, under 150 words. "
         
         # Add base context
         if context:
             system_message += f"Current context: {context.context_summary}. "
         
-        # Add detailed instructions for screen-related queries
+        # Add simplified instructions for screen-related queries
         if enhanced_context and self._is_screen_related_query(query):
             system_message += """
-You have access to the text content of the user's screen through OCR. When answering questions about what's on the screen,
-use this information to give detailed, helpful responses. Describe what the user is seeing clearly and accurately.
-
-Guidelines for screen-related questions:
-1. Focus on the most relevant parts of the screen content for the user's query
-2. Be specific about what you see - mention app names, window titles, visible text
-3. If there are images or videos detected, mention their presence but don't try to describe their contents
-4. If the user asks "what am I looking at" or similar questions, give a complete summary of the screen
-5. Suggest relevant actions based on what's on the screen
-6. Note that OCR may not be perfect, so acknowledge any uncertainty
-
-Based on the screen content, suggest relevant actions the user might want to take.
+You have access to the text content of the user's screen. Be concise and only describe the most relevant information.
 """
         
         messages.append({"role": "system", "content": system_message})
@@ -206,25 +214,15 @@ Based on the screen content, suggest relevant actions the user might want to tak
         if enhanced_context and "screen_text" in enhanced_context:
             screen_content = enhanced_context["screen_text"]
             
-            # Truncate if too long
-            if len(screen_content) > 2000:
-                screen_content = screen_content[:2000] + "... [screen content truncated]"
+            # Truncate more aggressively
+            if len(screen_content) > 800:
+                screen_content = screen_content[:800] + "... [content truncated]"
                 
             app_info = ""
             if enhanced_context.get("active_app"):
-                app_info = f"\nActive application: {enhanced_context.get('active_app')}"
-            if enhanced_context.get("window_title"):
-                app_info += f"\nWindow title: {enhanced_context.get('window_title')}"
+                app_info = f"\nApp: {enhanced_context.get('active_app')}"
                 
-            media_info = ""
-            if enhanced_context.get("has_images"):
-                media_info += "\nImages detected on screen: Yes"
-            if enhanced_context.get("has_videos"):
-                media_info += "\nVideos detected on screen: Yes"
-                
-            screen_message = f"""Current screen content detected via OCR:{app_info}{media_info}
-
-SCREEN TEXT:
+            screen_message = f"""Screen content: {app_info}
 {screen_content}
 """
             messages.append({"role": "system", "content": screen_message})
@@ -368,168 +366,87 @@ SCREEN TEXT:
             
         return None
 
-    async def handle_query(self, query: str) -> str:
-        """Handle a user query with context awareness."""
-        if not query or not isinstance(query, str):
-            raise ValueError("Query must be a non-empty string")
-            
-        if not query.strip():
-            raise ValueError("Query cannot be empty")
-        
-        # Increment query counter for tracking user interaction frequency
-        self._user_query_count += 1
-
+    async def handle_query(self, query: str) -> Dict:
+        """Handle a user query with proper async/await patterns and timeout handling."""
         try:
-            # Send immediate typing indicator 
+            # Send immediate typing indicator
             await self.overlay_bridge.send_message('query_status', {
                 'status': 'processing',
                 'query': query
             })
-            
-            # Get current context
-            context = await self.get_current_context()
-            
-            # Check if this is a screen-related query
-            screen_related = self._is_screen_related_query(query)
-            
-            # If screen related, gather detailed screen data
-            enhanced_context = None
-            if screen_related:
-                self._logger.info("Detected screen-related query, gathering screen data")
-                enhanced_context = await self._gather_screen_data()
-                
-                # Let the user know we're processing screen data
-                await self.overlay_bridge.send_message('query_status', {
-                    'status': 'processing',
-                    'message': 'Analyzing your screen content...',
-                    'query': query
-                })
-            
-            # Share context analysis with the user if appropriate
-            if context and self._user_query_count % 3 == 1:  # Share insights every 3rd query
-                await self.overlay_bridge.send_context_update({
-                    'activity': context.current_activity,
-                    'summary': context.context_summary,
-                    'needs': context.potential_needs[:3] if hasattr(context, 'potential_needs') else [],
-                    'attention_level': context.attention_level,
-                    'timestamp': time.time()
-                })
-            
-            # Build conversation messages with enhanced context
-            messages = await self._build_conversation(query, context, enhanced_context)
-            
-            # Generate response
+
+            # Get current context with timeout
             try:
-                # Set a timeout for the LLM response
-                response_task = asyncio.create_task(self._llm.generate_response(messages))
-                response = await asyncio.wait_for(response_task, timeout=30.0)  # 30 second timeout
-            except asyncio.TimeoutError:
-                self._logger.warning("LLM response timed out after 30 seconds")
-                response = "I apologize, but it's taking me longer than expected to process your request. Let me try again with a simpler approach."
-                
-                # Try again with a simplified prompt
-                simple_messages = [
-                    {"role": "system", "content": "You are a helpful assistant."},
-                    {"role": "user", "content": query}
-                ]
-                response = await self._llm.generate_response(simple_messages)
-            
-            # Create a cleaner response for the chat
-            clean_response = response
-            if isinstance(response, str) and len(response) > 100:
-                # Keep it clean for the UI without all the context markers
-                clean_response = response.replace("[Context Analysis]\n", "").replace("[Semantic Understanding]\n", "")
-                if "[Response]\n" in clean_response:
-                    clean_response = clean_response.split("[Response]\n", 1)[1]
-            
-            # Add to memory (synchronous operation)
-            self._memory.add_message({"role": "user", "content": query})
-            self._memory.add_message({"role": "assistant", "content": clean_response})
-            
-            # Store interaction in knowledge base if available
-            try:
-                from memory.knowledge_base import KnowledgeBase
-                kb = KnowledgeBase()
-                kb.store(
-                    f"interaction_{int(time.time())}", 
-                    {
-                        "query": query,
-                        "response": clean_response,
-                        "context": {
-                            "activity": context.current_activity,
-                            "summary": context.context_summary,
-                            "screen_content": enhanced_context.get("screen_text", "") if enhanced_context else ""
-                        }
-                    },
-                    category="user_interactions"
+                context = await asyncio.wait_for(
+                    self._context_analyzer.get_current_context(),
+                    timeout=5.0
                 )
-            except Exception as kb_err:
-                self._logger.warning(f"Failed to store in knowledge base: {kb_err}")
-            
-            # Create suggestions based on the query and response
-            suggestions = self._generate_suggestions(query, clean_response, context, enhanced_context)
-            
-            # Format response with context but send a cleaner version to the UI
-            formatted_response = self._format_response(response, context, query)
-            
-            # Send response to client (most important part)
-            self._logger.info(f"Sending response: {clean_response[:100]}...")
-            
-            # Send as chat_response format first (what the widget actually displays)
-            chat_resp_success = await self.overlay_bridge.send_message('chat_response', {
-                'text': clean_response,
-                'timestamp': time.time()
-            })
-            
-            self._logger.info(f"chat_response message sent successfully: {chat_resp_success}")
-            
-            # Also send as query_response format (alternative format)
-            query_resp_success = await self.overlay_bridge.send_message('query_response', {
-                'query': query,
-                'response': clean_response,
-                'timestamp': time.time()
-            })
-            
-            self._logger.info(f"query_response message sent successfully: {query_resp_success}")
-            
-            # If both sends failed, try one more time with a delay
-            if not chat_resp_success and not query_resp_success:
-                self._logger.warning("Both response sends failed, trying again after delay...")
-                await asyncio.sleep(0.5)  # Short delay
-                await self.overlay_bridge.send_message('chat_response', {
-                    'text': clean_response,
-                    'timestamp': time.time()
-                })
-            
-            # Send suggestions through overlay bridge
-            await self.overlay_bridge.add_system_activity("suggestion", {
-                "query": query,
-                "suggestion": suggestions[0] if suggestions else "Would you like me to help with anything else?",
-                "all_suggestions": suggestions
-            })
-            
-            # Send completion status to overlay
+            except asyncio.TimeoutError:
+                self._logger.warning("Context analysis timed out, using cached context")
+                context = self._last_context or {
+                    'browser': {'status': 'timeout'},
+                    'process': {'status': 'timeout'},
+                    'overlay': {'status': 'timeout'},
+                    'timestamp': datetime.now().isoformat()
+                }
+
+            # Generate response with timeout
+            try:
+                response = await asyncio.wait_for(
+                    self._generate_response(query, context),
+                    timeout=10.0
+                )
+            except asyncio.TimeoutError:
+                self._logger.warning("Response generation timed out")
+                response = "I'm having trouble processing that right now. Please try again."
+
+            # Send completion status
             await self.overlay_bridge.send_message('query_status', {
                 'status': 'complete',
                 'query': query
             })
-            
-            return clean_response
+
+            return {
+                'status': 'success',
+                'response': response,
+                'context': context
+            }
+
         except Exception as e:
             self._logger.error(f"Error handling query: {e}")
+            # Send error status
             await self.overlay_bridge.send_message('query_status', {
                 'status': 'error',
-                'message': str(e)
+                'error': str(e)
             })
+            return {
+                'status': 'error',
+                'error': str(e)
+            }
+
+    async def _generate_response(self, query: str, context: Dict) -> str:
+        """Generate a response using the language model and context."""
+        try:
+            # Prepare context for the model
+            context_str = json.dumps(context, indent=2)
             
-            # Try to save the interaction even if something failed
-            try:
-                self._memory.add_message({"role": "user", "content": query})
-                self._memory.add_message({"role": "assistant", "content": f"Error: {str(e)}"})
-            except:
-                pass
-                
-            return f"Error processing your request: {str(e)}"
+            # Generate response with timeout
+            response = await asyncio.wait_for(
+                self._llm.generate(
+                    f"Context: {context_str}\n\nQuery: {query}\n\nResponse:"
+                ),
+                timeout=10.0
+            )
+            
+            return response
+            
+        except asyncio.TimeoutError:
+            self._logger.warning("Response generation timed out")
+            return "I'm having trouble processing that right now. Please try again."
+            
+        except Exception as e:
+            self._logger.error(f"Error generating response: {e}")
+            return "I encountered an error while processing your request."
 
     def _is_screen_related_query(self, query: str) -> bool:
         """Determine if the query is related to the screen content."""
@@ -541,32 +458,25 @@ SCREEN TEXT:
         query_lower = query.lower()
         return any(keyword in query_lower for keyword in screen_keywords)
         
-    async def _gather_screen_data(self) -> dict:
-        """Gather detailed data from screen sensor."""
-        screen_data = {}
-        
+    async def _gather_screen_data(self) -> Optional[Dict[str, Any]]:
+        """Gather screen data using shared components when possible."""
         try:
-            if 'screen' in self._sensors:
-                # Get fresh screen capture
-                screen_sensor = self._sensors['screen']
-                latest_text = screen_sensor.capture()
-                screen_data["screen_text"] = latest_text
-                screen_data["has_images"] = screen_sensor.has_images
-                screen_data["has_videos"] = screen_sensor.has_videos
-                
-                # Add process information if available
-                if 'process' in self._sensors:
-                    process_sensor = self._sensors['process']
-                    screen_data["active_app"] = process_sensor.active_app
-                    screen_data["window_title"] = process_sensor.active_window_title
+            # If we have a screen controller, use its latest analysis
+            if self.screen_controller:
+                latest = self.screen_controller.get_latest_analysis()
+                if latest:
+                    return latest
                     
-                self._logger.info(f"Gathered screen data: {len(latest_text)} chars of text, "
-                                 f"images: {screen_data.get('has_images')}, "
-                                 f"videos: {screen_data.get('has_videos')}")
-        except Exception as e:
-            self._logger.error(f"Error gathering screen data: {e}")
+            # If we have a shared analyzer but no controller
+            if self.llm_analyzer:
+                # TODO: Implement direct screen capture and analysis
+                pass
+                
+            return None
             
-        return screen_data
+        except Exception as e:
+            logger.error(f"Error gathering screen data: {e}")
+            return None
             
     def _generate_suggestions(self, query: str, response: str, context: ContextInsight, 
                           enhanced_context: Optional[dict] = None) -> List[str]:
@@ -687,34 +597,161 @@ SCREEN TEXT:
     async def get_current_context(self) -> Optional[ContextInsight]:
         """Get the current context analysis."""
         try:
-            if not self._last_context or (datetime.now() - self._last_context_time).total_seconds() > 30:
-                # Create a new event loop for this operation
-                loop = asyncio.new_event_loop()
-                asyncio.set_event_loop(loop)
+            # Check if we have a recent context
+            if self._last_context and self._last_context_time:
+                context_age = (datetime.now() - self._last_context_time).total_seconds()
+                if context_age < 5:  # Use cached context if less than 5 seconds old
+                    return self._last_context
+            
+            # Get fresh context with timeout and better error handling
+            try:
+                # First try to get process info since it's most reliable
+                process_context = await asyncio.wait_for(
+                    asyncio.get_event_loop().run_in_executor(
+                        None, self._context_analyzer.analyze_process_context
+                    ),
+                    timeout=2.0
+                )
+                
+                # Then try browser context with shorter timeout
                 try:
-                    self._last_context = await self._context_analyzer.analyze_context()
-                    self._last_context_time = datetime.now()
-                finally:
-                    loop.close()
-            return self._last_context
+                    browser_context = await asyncio.wait_for(
+                        asyncio.get_event_loop().run_in_executor(
+                            None, self._context_analyzer.analyze_browser_context
+                        ),
+                        timeout=1.5
+                    )
+                except asyncio.TimeoutError:
+                    self._logger.warning("Browser context timed out, using default")
+                    browser_context = {"status": "timeout"}
+                except Exception as e:
+                    self._logger.error(f"Error getting browser context: {e}")
+                    browser_context = {"status": "error", "error": str(e)}
+                
+                # Finally try overlay context
+                try:
+                    overlay_context = await asyncio.wait_for(
+                        asyncio.get_event_loop().run_in_executor(
+                            None, self._context_analyzer.analyze_overlay_context
+                        ),
+                        timeout=1.0
+                    )
+                except asyncio.TimeoutError:
+                    self._logger.warning("Overlay context timed out, using default")
+                    overlay_context = {"status": "timeout"}
+                except Exception as e:
+                    self._logger.error(f"Error getting overlay context: {e}")
+                    overlay_context = {"status": "error", "error": str(e)}
+                
+                # Combine contexts
+                context = {
+                    "process": process_context,
+                    "browser": browser_context,
+                    "overlay": overlay_context,
+                    "timestamp": datetime.now().isoformat()
+                }
+                
+                # Create a new context insight with more detailed info
+                self._last_context = ContextInsight(
+                    current_activity=process_context.get('active_app', 'Unknown'),
+                    context_summary=f"Using {process_context.get('active_app', 'Unknown')} - {process_context.get('window_title', '')}",
+                    potential_needs=self._determine_potential_needs(context),
+                    attention_level=self._determine_attention_level(context),
+                    confidence_score=self._calculate_confidence(context),
+                    source_model="context_analyzer",
+                    semantic_understanding={
+                        "purpose": "Context analysis with partial data",
+                        "workflow": process_context.get('app_category', 'unknown'),
+                        "challenges": ["Some sensors timed out"],
+                        "related_concepts": [],
+                        "implicit_goals": []
+                    }
+                )
+                self._last_context_time = datetime.now()
+                
+                return self._last_context
+                
+            except asyncio.TimeoutError:
+                self._logger.warning("Process context timed out, using cached context")
+                return self._last_context or ContextInsight(
+                    current_activity="Unknown",
+                    context_summary="Context analysis timed out",
+                    potential_needs=[],
+                    attention_level="medium",
+                    confidence_score=0.0,
+                    source_model="timeout"
+                )
+                
         except Exception as e:
             self._logger.error(f"Error getting current context: {e}")
-            # Return a default context if there's an error
             return ContextInsight(
                 current_activity="Unknown",
                 context_summary="Error analyzing context",
                 potential_needs=[],
                 attention_level="medium",
                 confidence_score=0.0,
-                source_model="error",
-                semantic_understanding={
-                    "purpose": "Error in context analysis",
-                    "workflow": "Error in context analysis",
-                    "challenges": ["Context analysis error"],
-                    "related_concepts": [],
-                    "implicit_goals": []
-                }
+                source_model="error"
             )
+            
+    def _determine_potential_needs(self, context: Dict) -> List[str]:
+        """Determine potential user needs based on context."""
+        needs = []
+        
+        # Check process context
+        process = context.get('process', {})
+        if process.get('active_app'):
+            app_category = process.get('app_category', '')
+            if app_category == 'development':
+                needs.append("Code assistance or documentation")
+            elif app_category == 'browser':
+                needs.append("Web content analysis or search help")
+            elif app_category == 'document':
+                needs.append("Document editing or formatting help")
+                
+        # Check browser context
+        browser = context.get('browser', {})
+        if browser.get('status') == 'timeout':
+            needs.append("Browser response optimization")
+            
+        # Check overlay context
+        overlay = context.get('overlay', {})
+        if overlay.get('status') == 'stopped':
+            needs.append("Overlay service restart")
+            
+        return needs or ["General assistance"]
+        
+    def _determine_attention_level(self, context: Dict) -> str:
+        """Determine the required attention level based on context."""
+        # Default to medium
+        attention = "medium"
+        
+        # Check for error conditions that might need high attention
+        if any(c.get('status') == 'error' for c in context.values()):
+            attention = "high"
+        
+        # Check for timeouts that might need medium-high attention
+        elif any(c.get('status') == 'timeout' for c in context.values()):
+            attention = "medium-high"
+            
+        return attention
+        
+    def _calculate_confidence(self, context: Dict) -> float:
+        """Calculate confidence score based on available context."""
+        # Start with base confidence
+        confidence = 0.5
+        
+        # Add confidence for each successful sensor
+        for sensor_data in context.values():
+            if isinstance(sensor_data, dict):
+                if sensor_data.get('status') not in ['error', 'timeout', 'unavailable']:
+                    confidence += 0.1
+                elif sensor_data.get('status') == 'timeout':
+                    confidence -= 0.05
+                elif sensor_data.get('status') == 'error':
+                    confidence -= 0.1
+                    
+        # Ensure confidence stays in valid range
+        return max(0.1, min(0.9, confidence))
 
     @property
     def llm(self) -> LocalLLM:
@@ -722,84 +759,193 @@ SCREEN TEXT:
         return self._llm
 
     async def _handle_overlay_interaction(self, interaction_data):
-        """Handle user interaction from the overlay"""
+        """Handle user interaction with knowledge base support"""
         try:
-            self._logger.info(f"Handling overlay interaction: {interaction_data}")
+            # Extract query
+            query = self._extract_query(interaction_data)
+            if not query:
+                return
+                
+            # Send thinking status
+            await self._send_thinking_status(query)
             
-            if interaction_data.get('type') == 'query':
-                # User asked a question through the overlay (original format)
-                query = interaction_data.get('query', '')
-                self._logger.info(f"Processing query: {query}")
-                
-                # Notify that we're thinking - important to use a direct message here
-                thinking_sent = await self.overlay_bridge.send_message('query_status', {
-                    'status': 'processing',
-                    'query': query,
-                    'message': 'Thinking...',
-                    'timestamp': time.time()
-                })
-                
-                self._logger.info(f"Thinking status sent: {thinking_sent}")
-                
-                # For better UI feedback, also send a typing chat message
-                await self.overlay_bridge.send_message('chat_response', {
-                    'text': '...',
-                    'isTyping': True,
-                    'timestamp': time.time()
-                })
-                
-                # Generate response through the main handler
-                response = await self.handle_query(query)
-                self._logger.info(f"Query handled, response length: {len(response) if response else 0}")
-                
-            elif interaction_data.get('type') == 'chat_message' and 'text' in interaction_data.get('data', {}):
-                # User sent a message in the chat format
-                query = interaction_data['data']['text']
-                self._logger.info(f"Processing chat message: {query}")
-                
-                # Notify that we're thinking - important to use a direct message here
-                thinking_sent = await self.overlay_bridge.send_message('query_status', {
-                    'status': 'processing',
-                    'query': query,
-                    'message': 'Thinking...',
-                    'timestamp': time.time()
-                })
-                
-                self._logger.info(f"Thinking status sent: {thinking_sent}")
-                
-                # For better UI feedback, also send a typing chat message
-                await self.overlay_bridge.send_message('chat_response', {
-                    'text': '...',
-                    'isTyping': True,
-                    'timestamp': time.time()
-                })
-                
-                # Generate response through the main handler
-                response = await self.handle_query(query)
-                self._logger.info(f"Chat message handled, response length: {len(response) if response else 0}")
-                
-            elif interaction_data.get('type') == 'action':
-                # Handle specific actions from overlay
-                await self._handle_overlay_action(interaction_data)
-            else:
-                self._logger.warning(f"Unknown interaction type: {interaction_data.get('type')}")
-                
+            # Check knowledge base first
+            knowledge_results = await self._knowledge_base.retrieve(query)
+            
+            # Gather context from sensors
+            context = await self._gather_sensor_context()
+            
+            # Prepare messages for LLM with knowledge base results
+            messages = self._prepare_messages(query, context, knowledge_results)
+            
+            # Generate response
+            response = await self.llm.generate_response(messages)
+            
+            # Store useful information in knowledge base
+            await self._store_useful_knowledge(query, response, context)
+            
+            # Send response back
+            await self._send_response(query, response, context)
+            
         except Exception as e:
             self._logger.error(f"Error handling overlay interaction: {e}")
-            # Send error status - important to use a direct message
-            await self.overlay_bridge.send_message('query_status', {
-                'status': 'error',
-                'message': str(e),
-                'timestamp': time.time()
+            await self._send_error_response(query, str(e))
+            
+    def _prepare_messages(self, query: str, context: Dict, knowledge_results: List[Dict]) -> List[Dict]:
+        """Prepare messages with knowledge base results"""
+        messages = []
+        
+        # Add system message with context
+        system_message = """You are a helpful AI assistant with access to a knowledge base.
+Use the provided knowledge and context to give accurate, helpful responses."""
+        
+        # Add knowledge base results if available
+        if knowledge_results:
+            system_message += "\n\nRelevant knowledge from previous interactions:"
+            for result in knowledge_results:
+                system_message += f"\n- {result['content']}"
+                if result.get('context'):
+                    system_message += f"\n  Context: {json.dumps(result['context'])}"
+                    
+        messages.append({"role": "system", "content": system_message})
+        
+        # Add current context
+        if context:
+            messages.append({
+                "role": "system",
+                "content": f"Current context: {json.dumps(context)}"
             })
             
-            # Also send an error message in chat format
-            await self.overlay_bridge.send_message('chat_response', {
-                'text': f"I'm sorry, I encountered an error: {str(e)}",
-                'isError': True,
-                'timestamp': time.time()
-            })
-    
+        # Add conversation history
+        messages.extend(self._memory.get_recent())
+        
+        # Add current query
+        messages.append({"role": "user", "content": query})
+        
+        return messages
+        
+    async def _store_useful_knowledge(self, query: str, response: str, context: Dict):
+        """Store useful information in knowledge base"""
+        try:
+            # Determine if the response contains useful information
+            if self._is_useful_knowledge(response):
+                # Extract key information
+                knowledge_content = self._extract_knowledge(response)
+                
+                # Store in knowledge base
+                await self._knowledge_base.store(
+                    content=knowledge_content,
+                    context={
+                        'query': query,
+                        'response': response,
+                        'timestamp': datetime.now().isoformat()
+                    },
+                    category=self._determine_category(query),
+                    confidence=0.8  # Initial confidence
+                )
+                
+        except Exception as e:
+            self._logger.error(f"Error storing knowledge: {e}")
+            
+    def _is_useful_knowledge(self, response: str) -> bool:
+        """Determine if response contains useful information to store"""
+        # Check for factual information, instructions, or explanations
+        useful_patterns = [
+            r"how to",
+            r"steps to",
+            r"explanation",
+            r"definition",
+            r"fact",
+            r"tip",
+            r"best practice"
+        ]
+        
+        response_lower = response.lower()
+        return any(pattern in response_lower for pattern in useful_patterns)
+        
+    def _extract_knowledge(self, response: str) -> str:
+        """Extract key information from response"""
+        # Simple extraction for now
+        # TODO: Implement more sophisticated extraction
+        return response
+        
+    def _determine_category(self, query: str) -> str:
+        """Determine category for knowledge entry"""
+        categories = {
+            'how_to': ['how to', 'how do i', 'steps to'],
+            'explanation': ['what is', 'explain', 'define'],
+            'troubleshooting': ['error', 'fix', 'problem', 'issue'],
+            'best_practices': ['best way', 'should i', 'recommendation']
+        }
+        
+        query_lower = query.lower()
+        for category, patterns in categories.items():
+            if any(pattern in query_lower for pattern in patterns):
+                return category
+                
+        return 'general'
+
+    async def _gather_sensor_context(self) -> Dict[str, Any]:
+        """Gather context from all available sensors"""
+        context = {}
+        for name, sensor in self._sensors.items():
+            try:
+                if hasattr(sensor, 'get_context'):
+                    context[name] = await sensor.get_context()
+                elif hasattr(sensor, 'capture'):
+                    context[name] = await sensor.capture()
+                else:
+                    context[name] = {"status": "unavailable"}
+            except Exception as e:
+                self._logger.error(f"Error getting context from sensor {name}: {e}")
+                context[name] = {"error": str(e), "status": "error"}
+        return context
+
+    async def _send_thinking_status(self, query: str):
+        """Send thinking status to overlay"""
+        await self.overlay_bridge.send_message('query_status', {
+            'status': 'processing',
+            'query': query,
+            'message': 'Analyzing context and preparing response...',
+            'timestamp': time.time()
+        })
+        
+        await self.overlay_bridge.send_message('chat_response', {
+            'text': '...',
+            'isTyping': True,
+            'timestamp': time.time()
+        })
+
+    async def _send_response(self, query: str, response: str, context: Dict[str, Any]):
+        """Send response back to overlay with context"""
+        await self.overlay_bridge.send_message('chat_response', {
+            'text': response,
+            'timestamp': time.time(),
+            'context': context
+        })
+        
+        await self.overlay_bridge.send_message('query_status', {
+            'status': 'completed',
+            'query': query,
+            'message': 'Response sent',
+            'timestamp': time.time()
+        })
+
+    async def _send_error_response(self, query: str, error: str):
+        """Send error response to overlay"""
+        await self.overlay_bridge.send_message('query_status', {
+            'status': 'error',
+            'query': query,
+            'message': f'Error: {error}',
+            'timestamp': time.time()
+        })
+        
+        await self.overlay_bridge.send_message('chat_response', {
+            'text': f"I'm sorry, I encountered an error: {error}",
+            'isError': True,
+            'timestamp': time.time()
+        })
+
     async def _handle_transform_request(self, request_data):
         """Handle interface transformation request"""
         try:
