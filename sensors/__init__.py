@@ -1,6 +1,15 @@
 """
-Sensor modules package
-Provides modules for capturing real-time context from user environment.
+Sensors Package
+A collection of system monitoring sensors.
 """
+from .screen_sensor import ScreenSensor
+from .process_sensor import ProcessSensor
+from .file_sensor import FileSensor
+from .manager import SensorManager
 
-__version__ = '0.1.0'
+__all__ = [
+    'ScreenSensor',
+    'ProcessSensor',
+    'FileSensor',
+    'SensorManager'
+]

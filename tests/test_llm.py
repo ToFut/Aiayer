@@ -23,7 +23,7 @@ class TestLocalLLM:
         # Mock model list response
         model_response = AsyncMock()
         model_response.status = 200
-        model_response.json.return_value = {"models": [{"name": "mistral:latest"}]}
+        model_response.json.return_value = {"models": [{"name": "ollam3.2:latest"}]}
         
         # Mock chat response
         chat_response = AsyncMock()
@@ -49,7 +49,7 @@ class TestLocalLLM:
     async def test_initialization(self, llm):
         """Test LLM initialization."""
         assert llm is not None
-        assert llm.model_name == "mistral:latest"
+        assert llm.model_name == "ollam3.2:latest"
         assert llm.host == "localhost"
         assert llm.port == 11434
         assert llm.running is True

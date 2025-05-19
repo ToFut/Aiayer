@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Overlay Interface</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f7f7f7;
+        }
+        
+        .overlay-container {
+            background-color: rgba(255, 255, 255, 0.95);
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+            overflow: hidden;
+        }
+        
+        .overlay-header {
+            background-color: #4285f4;
+            color: white;
+            padding: 12px 20px;
+            font-weight: bold;
+        }
+        
+        .overlay-content {
+            padding: 15px 20px;
+        }
+        
+        .status-indicator {
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            margin-right: 8px;
+        }
+        
+        .status-connected {
+            background-color: #0f9d58;
+        }
+        
+        .status-disconnected {
+            background-color: #db4437;
+        }
+        
+        .message {
+            margin-bottom: 10px;
+            padding: 8px 12px;
+            border-radius: 4px;
+            background-color: #f1f1f1;
+        }
+        
+        .message-system {
+            background-color: #e8f0fe;
+            border-left: 4px solid #4285f4;
+        }
+        
+        .message-process {
+            background-color: #e6f4ea;
+            border-left: 4px solid #0f9d58;
+        }
+        
+        .message-error {
+            background-color: #fce8e6;
+            border-left: 4px solid #db4437;
+        }
+        
+        button {
+            background-color: #4285f4;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-right: 8px;
+        }
+        
+        button:hover {
+            background-color: #3367d6;
+        }
+        
+        #connection-status {
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+<body>
+    <div class="overlay-container">
+        <div class="overlay-header">
+            Aiayer Overlay Interface
+        </div>
+        <div class="overlay-content">
+            <div id="connection-status">
+                <span class="status-indicator status-disconnected" id="status-indicator"></span>
+                <span id="status-text">Disconnected</span>
+            </div>
+            
+            <button id="connect-btn">Connect</button>
+            <button id="test-btn">Send Test Message</button>
+        </div>
+    </div>
+    
+    <div class="overlay-container">
+        <div class="overlay-header">
+            Active Process
+        </div>
+        <div class="overlay-content">
+            <div class="message message-process" id="active-process">
+                No active process data
+            </div>
+        </div>
+    </div>
+    
+    <div class="overlay-container">
+        <div class="overlay-header">
+            Messages
+        </div>
+        <div class="overlay-content">
+            <div id="messages-container">
+                <div class="message message-system">
+                    System ready. Connect to see messages.
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // WebSocket connection
+        let socket = null;
+        const connectBtn = document.getElementById('connect-btn');
+        const testBtn = document.getElementById('test-btn');
+        const statusIndicator = document.getElementById('status-indicator');
+        const statusText = document.getElementById('status-text');
+        const messagesContainer = document.getElementById('messages-container');
+        const activeProcess = document.getElementById('active-process');
+        
+        // Connect to WebSocket server
+        function connect() {
+            // Close any existing connection
+            if (socket) {
+                socket.close();
+            }
+            
+            // Create new connection
+            socket = new WebSocket('ws://localhost:8765');
+            
+            // Connection opened
+            socket.addEventListener('open', (event) => {
+                updateStatus(true);
+                addMessage('Connected to overlay bridge', 'system');
+                console.log('Connected to WebSocket server');
+            });
+            
+            // Listen for messages
+            socket.addEventListener('message', (event) => {
+                try {
+                    const data = JSON.parse(event.data);
+                    console.log('Message from server:', data);
+                    
+                    // Handle different message types
+                    if (data.type === 'connection') {
+                        addMessage(`Connection: ${data.status}`, 'system');
+                    } else if (data.type === 'process_update') {
+                        handleProcessUpdate(data.data);
+                    } else if (data.type === 'echo') {
+                        addMessage(`Echo: ${JSON.stringify(data.data)}`, 'system');
+                    } else {
+                        addMessage(`Received: ${JSON.stringify(data)}`, 'system');
+                    }
+                } catch (e) {
+                    console.error('Error parsing message:', e);
+                    addMessage(`Error parsing message: ${e.message}`, 'error');
+                }
+            });
+            
+            // Connection closed
+            socket.addEventListener('close', (event) => {
+                updateStatus(false);
+                addMessage('Disconnected from server', 'system');
+                console.log('Disconnected from WebSocket server');
+                
+                // Attempt to reconnect after 5 seconds
+                setTimeout(connect, 5000);
+            });
+            
+            // Connection error
+            socket.addEventListener('error', (event) => {
+                updateStatus(false);
+                addMessage('Connection error', 'error');
+                console.error('WebSocket error:', event);
+            });
+        }
+        
+        // Update connection status
+        function updateStatus(connected) {
+            if (connected) {
+                statusIndicator.className = 'status-indicator status-connected';
+                statusText.textContent = 'Connected';
+                connectBtn.textContent = 'Disconnect';
+            } else {
+                statusIndicator.className = 'status-indicator status-disconnected';
+                statusText.textContent = 'Disconnected';
+                connectBtn.textContent = 'Connect';
+            }
+        }
+        
+        // Add message to container
+        function addMessage(text, type = 'system') {
+            const messageElem = document.createElement('div');
+            messageElem.className = `message message-${type}`;
+            messageElem.textContent = text;
+            
+            messagesContainer.appendChild(messageElem);
+            
+            // Scroll to bottom
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+            
+            // Limit number of messages (keep last 20)
+            while (messagesContainer.children.length > 20) {
+                messagesContainer.removeChild(messagesContainer.firstChild);
+            }
+        }
+        
+        // Handle process update
+        function handleProcessUpdate(data) {
+            const app = data.active_app || 'Unknown';
+            const window = data.active_window || '';
+            const timestamp = new Date(data.timestamp * 1000).toLocaleTimeString();
+            
+            activeProcess.textContent = `App: ${app}${window ? ' - ' + window : ''} (${timestamp})`;
+            addMessage(`Process update: ${app}${window ? ' - ' + window : ''}`, 'process');
+        }
+        
+        // Connect button event
+        connectBtn.addEventListener('click', () => {
+            if (socket && socket.readyState === WebSocket.OPEN) {
+                socket.close();
+            } else {
+                connect();
+            }
+        });
+        
+        // Test button event
+        testBtn.addEventListener('click', () => {
+            if (socket && socket.readyState === WebSocket.OPEN) {
+                const testMessage = {
+                    type: 'test',
+                    data: {
+                        message: 'Test message',
+                        timestamp: Date.now()
+                    }
+                };
+                socket.send(JSON.stringify(testMessage));
+                addMessage('Sent test message', 'system');
+            } else {
+                addMessage('Cannot send test: not connected', 'error');
+            }
+        });
+        
+        // Connect on page load
+        connect();
+    </script>
+</body>
+</html>

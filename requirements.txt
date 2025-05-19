@@ -1,12 +1,2 @@
-# Minimal requirements to get the app running
-Flask>=2.0.0
-python-dotenv>=0.19.0
-PyYAML>=5.1
-flask-cors>=3.0.0
-requests>=2.20.0
-pillow>=11.0.0
-flask-sock>=0.7.0
-mss>=10.0.0
-pytesseract>=0.3.13
-watchdog>=6.0.0
-websockets>=15.0.0
+sentence-transformers==4.1.0
+urllib3==1.26.6

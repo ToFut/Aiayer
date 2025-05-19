@@ -1,6 +1,11 @@
 """
-Memory package
-Provides modules for storing conversation history and context.
+Memory System Package
+Provides memory management functionality for the AI Eye system.
 """
 
-__version__ = '0.1.0'
+from .memory_system import MemorySystem
+from .memory import ConversationMemory, ContextMemory
+from .memory_logger import MemoryLogger
+
+__all__ = ['MemorySystem', 'ConversationMemory', 'ContextMemory', 'MemoryLogger']
+__version__ = '0.1.0' 

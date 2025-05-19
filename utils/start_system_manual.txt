@@ -1,0 +1,8 @@
+If you need to manually start Tauri, run these commands:
+cd /Users/segevbin/Desktop/SensAI/Aiayer/utils/overlay
+npm install
+npm run tauri dev
+
+To stop the backend system:
+pkill -f 'python.*bridge_server.py' && pkill -f 'python.*_sensor.py' && pkill -f 'python.*memory.py'
+

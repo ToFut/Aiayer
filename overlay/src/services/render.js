@@ -26,7 +26,7 @@ export class Renderer {
 
         requestAnimationFrame(() => {
             this.clear();
-            this.renderElements(layout.elements);
+            this.renderElements(layout?.elements || []);
             this.isRendering = false;
         });
     }

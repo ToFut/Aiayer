@@ -1,0 +1,152 @@
+import asyncio
+import json
+import logging
+import uuid
+from datetime import datetime
+from typing import Optional
+from websockets.server import WebSocketServer, serve
+from websockets.legacy.server import WebSocketServerProtocol
+from .message_bridge import MessageBridge, MessageType, MessagePriority, Message
+
+# Configure logging
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
+
+class BridgeServer:
+    """WebSocket server that manages frontend and backend connections using MessageBridge"""
+    
+    def __init__(self, host: str = "127.0.0.1", frontend_port: int = 8765, backend_port: int = 8766):
+        self.host = host
+        self.frontend_port = frontend_port
+        self.backend_port = backend_port
+        self.bridge = MessageBridge()
+        self.running = False
+        
+    async def handle_frontend_connection(self, websocket: WebSocketServerProtocol, path: str):
+        """Handle connection from frontend client"""
+        client_id = await self.bridge.add_frontend_client(websocket)
+        try:
+            # Send welcome message
+            welcome_message = Message(
+                id=str(uuid.uuid4()),
+                type=MessageType.SYSTEM,
+                content="Connected to AI Assistant Bridge",
+                priority=MessagePriority.HIGH,
+                timestamp=datetime.now(),
+                source="bridge",
+                destination="frontend",
+                metadata={"client_id": client_id}
+            )
+            await self.bridge.send_message(welcome_message)
+            
+            # Handle incoming messages
+            async for message in websocket:
+                try:
+                    data = json.loads(message)
+                    await self.bridge.handle_frontend_message(websocket, data)
+                except json.JSONDecodeError:
+                    logger.error(f"Invalid JSON from frontend client {client_id}")
+                except Exception as e:
+                    logger.error(f"Error handling frontend message: {e}")
+                    
+        except Exception as e:
+            logger.error(f"Error in frontend connection: {e}")
+        finally:
+            await self.bridge.remove_frontend_client(websocket)
+            
+    async def handle_backend_connection(self, websocket: WebSocketServerProtocol, path: str):
+        """Handle connection from backend client"""
+        client_id = await self.bridge.add_backend_client(websocket)
+        try:
+            # Send welcome message
+            welcome_message = Message(
+                id=str(uuid.uuid4()),
+                type=MessageType.SYSTEM,
+                content="Connected to AI Assistant Bridge",
+                priority=MessagePriority.HIGH,
+                timestamp=datetime.now(),
+                source="bridge",
+                destination="backend",
+                metadata={"client_id": client_id}
+            )
+            await self.bridge.send_message(welcome_message)
+            
+            # Handle incoming messages
+            async for message in websocket:
+                try:
+                    data = json.loads(message)
+                    await self.bridge.handle_backend_message(websocket, data)
+                except json.JSONDecodeError:
+                    logger.error(f"Invalid JSON from backend client {client_id}")
+                except Exception as e:
+                    logger.error(f"Error handling backend message: {e}")
+                    
+        except Exception as e:
+            logger.error(f"Error in backend connection: {e}")
+        finally:
+            await self.bridge.remove_backend_client(websocket)
+            
+    async def start(self):
+        """Start the bridge server"""
+        if self.running:
+            return
+            
+        self.running = True
+        
+        # Start message bridge
+        bridge_task = asyncio.create_task(self.bridge.start())
+        
+        # Start frontend server
+        frontend_server = await serve(
+            self.handle_frontend_connection,
+            self.host,
+            self.frontend_port,
+            ping_interval=None,
+            ping_timeout=None
+        )
+        
+        # Start backend server
+        backend_server = await serve(
+            self.handle_backend_connection,
+            self.host,
+            self.backend_port,
+            ping_interval=None,
+            ping_timeout=None
+        )
+        
+        logger.info(f"Bridge server started")
+        logger.info(f"Frontend server running on ws://{self.host}:{self.frontend_port}")
+        logger.info(f"Backend server running on ws://{self.host}:{self.backend_port}")
+        
+        try:
+            # Keep the server running
+            await asyncio.Future()
+        except asyncio.CancelledError:
+            logger.info("Server shutting down")
+            self.running = False
+            frontend_server.close()
+            backend_server.close()
+            await frontend_server.wait_closed()
+            await backend_server.wait_closed()
+            await self.bridge.stop()
+            bridge_task.cancel()
+            
+    async def stop(self):
+        """Stop the bridge server"""
+        if not self.running:
+            return
+            
+        self.running = False
+        await self.bridge.stop()
+        logger.info("Bridge server stopped")
+
+if __name__ == "__main__":
+    # Create and start the bridge server
+    server = BridgeServer()
+    try:
+        asyncio.run(server.start())
+    except KeyboardInterrupt:
+        logger.info("Server stopped by user")
+    except Exception as e:
+        logger.error(f"Server error: {e}")
+        raise 

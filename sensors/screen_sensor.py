@@ -1,35 +1,58 @@
 """
 Screen Sensor Module
-Captures screenshots and extracts text via OCR.
+Captures screenshots for LLaVA processing.
 """
 import mss
 import mss.tools
-import pytesseract
-from PIL import Image, ImageEnhance, ImageFilter
 import threading
 import time
 import logging
-import cv2
-import numpy as np
 import os
 from datetime import datetime
 import psutil
+import io
+import base64
+import asyncio
+from typing import Dict, Any, Optional
+import hashlib
+import json
+from dataclasses import dataclass
+from PIL import Image
+import numpy as np
+
+logger = logging.getLogger(__name__)
+
+@dataclass
+class ScreenData:
+    timestamp: float
+    image_data: bytes
+    image_hash: str
+    screen_size: tuple
+    is_unchanged: bool = False
 
 class ScreenSensor:
     """
-    Captures screenshots and performs OCR to extract text.
+    Captures screenshots for LLaVA processing.
     Runs in a background thread at specified intervals.
     """
     
-    def __init__(self, interval_sec=5):
-        """
-        Initialize the screen sensor.
+    def __init__(self, config: Dict[str, Any]):
+        self.config = config
+        self.interval = config.get('interval_sec', 2.0)
+        self.sct = None
+        self.last_data: Optional[ScreenData] = None
+        self.cache_dir = "cache/screen_sensor"
+        self.cache_file = f"{self.cache_dir}/last_screen.json"
+        self.unchanged_count = 0
+        self.max_unchanged = 5  # Skip processing after 5 unchanged frames
         
-        Args:
-            interval_sec (int): Seconds between screenshots
-        """
-        self.interval = interval_sec
-        self.latest_text = ""
+        # Create cache directory if it doesn't exist
+        os.makedirs(self.cache_dir, exist_ok=True)
+        
+        # Load last screen data from cache
+        self._load_cache()
+        
+        self.latest_image = None
         self.running = False
         self.thread = None
         self.logger = logging.getLogger(__name__)
@@ -40,164 +63,286 @@ class ScreenSensor:
         self._last_update = time.time()
         
         # Create results directory if it doesn't exist
-        self.results_dir = "resultsOCRtest"
+        self.results_dir = "results"
         os.makedirs(self.results_dir, exist_ok=True)
         
-        # Set up OCR-specific logger
-        self.ocr_logger = logging.getLogger('ocr_logger')
-        self.ocr_logger.setLevel(logging.INFO)
-        
-        # Create OCR log file handler
-        ocr_handler = logging.FileHandler(os.path.join(self.results_dir, 'ocr_results.log'))
-        ocr_handler.setLevel(logging.INFO)
-        
-        # Create formatter and add it to the handler
-        formatter = logging.Formatter('%(asctime)s - OCR Results:\n%(message)s\n')
-        ocr_handler.setFormatter(formatter)
-        
-        # Add the handler to the logger
-        self.ocr_logger.addHandler(ocr_handler)
-        
-        # Configure pytesseract path if needed
-        # Uncomment and set this for Windows if tesseract is not in PATH
-        # pytesseract.pytesseract.tesseract_cmd = r'C:\Program Files\Tesseract-OCR\tesseract.exe'
-    
-    def preprocess_image(self, img):
-        """
-        Preprocess image to improve OCR quality.
-        
-        Args:
-            img (PIL.Image): Input image
-            
-        Returns:
-            PIL.Image: Preprocessed image
-        """
-        # Convert to grayscale
-        img = img.convert('L')
-        
-        # Increase contrast
-        enhancer = ImageEnhance.Contrast(img)
-        img = enhancer.enhance(3.0)  # Increased contrast
-        
-        # Convert to numpy array for OpenCV operations
-        img_np = np.array(img)
-        
-        # Apply adaptive thresholding with larger block size
-        img_np = cv2.adaptiveThreshold(
-            img_np, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C, 
-            cv2.THRESH_BINARY, 21, 5  # Increased block size and constant
-        )
-        
-        # Apply slight blur to reduce noise
-        img_np = cv2.GaussianBlur(img_np, (5, 5), 0)
-        
-        # Convert back to PIL Image
-        img = Image.fromarray(img_np)
-        
-        # Apply additional sharpening
-        img = img.filter(ImageFilter.SHARPEN)
-        
-        return img
-    
-    def capture_screen_text(self):
-        """
-        Capture screenshot and extract text via OCR.
-        
-        Returns:
-            str: Extracted text from screen
-        """
+        # Initialize screen capture immediately
+        logger.info("Initializing screen capture in constructor...")
         try:
-            timestamp = datetime.now()
-            with mss.mss() as sct:
-                # Capture primary monitor
-                monitor = sct.monitors[1]  # Primary monitor is usually 1
-                
-                # Define a region of interest (ROI) for the chat area
-                # Adjust these values based on your screen resolution and chat window position
-                roi = {
-                    'left': monitor['left'] + int(monitor['width'] * 0.2),  # 20% from left
-                    'top': monitor['top'] + int(monitor['height'] * 0.2),   # 20% from top
-                    'width': int(monitor['width'] * 0.6),                   # 60% width
-                    'height': int(monitor['height'] * 0.6)                  # 60% height
-                }
-                
-                screenshot = sct.grab(roi)
-                
-                # Convert to PIL Image
-                img = Image.frombytes("RGB", (screenshot.width, screenshot.height), screenshot.rgb)
-                
-                # Preprocess image
-                img = self.preprocess_image(img)
-                
-                # OCR: extract text from image with custom configuration
-                custom_config = r'--oem 3 --psm 6 -l eng --dpi 300 --tessdata-dir /opt/homebrew/share/tessdata'  # Added tessdata path
-                text = pytesseract.image_to_string(img, config=custom_config)
-                
-                # Clean up the text
-                text = text.replace('§', '')  # Remove special characters
-                text = text.replace('®', '')
-                text = text.replace('™', '')
-                text = text.replace('~', '')
-                text = text.replace('©', '')
-                
-                # Write results to file and log
-                self.write_ocr_results(text, timestamp)
-                
-                self.latest_text = text.strip()
-                
-                # Check for images and videos
-                self.has_images = self._detect_images(img)
-                self.has_videos = self._detect_videos()
-                
-                return text
+            self.sct = mss.mss()
+            if self.sct:
+                logger.info("Screen capture initialized successfully in constructor")
+                monitors = self.sct.monitors
+                logger.info(f"Found {len(monitors)} monitors: {monitors}")
+            else:
+                logger.error("Failed to initialize screen capture in constructor")
         except Exception as e:
-            self.logger.error(f"Error capturing screen: {str(e)}", exc_info=True)
-            return ""
+            logger.error(f"Error initializing screen capture in constructor: {e}")
     
-    def write_ocr_results(self, text, timestamp):
-        """
-        Write OCR results to a file and log.
-        
-        Args:
-            text (str): Extracted text from OCR
-            timestamp (datetime): Timestamp of the capture
-        """
-        filename = os.path.join(self.results_dir, f"ocr_results_{timestamp.strftime('%Y%m%d_%H%M%S')}.txt")
+    def _load_cache(self):
         try:
-            with open(filename, 'w', encoding='utf-8') as f:
-                f.write(f"OCR Results - {timestamp}\n")
-                f.write("=" * 50 + "\n\n")
-                f.write(f"Total characters: {len(text)}\n")
-                f.write(f"Total words: {len(text.split())}\n")
-                f.write(f"Total lines: {len(text.splitlines())}\n\n")
-                f.write("Extracted Text:\n")
-                f.write("=" * 50 + "\n")
-                f.write(text)
-            
-            # Log OCR results
-            log_message = f"""
-Total characters: {len(text)}
-Total words: {len(text.split())}
-Total lines: {len(text.splitlines())}
+            if os.path.exists(self.cache_file):
+                with open(self.cache_file, 'r') as f:
+                    data = json.load(f)
+                    if data:
+                        self.last_data = ScreenData(
+                            timestamp=data['timestamp'],
+                            image_data=base64.b64decode(data['image_data']),
+                            image_hash=data['image_hash'],
+                            screen_size=tuple(data['screen_size']),
+                            is_unchanged=data.get('is_unchanged', False)
+                        )
+        except Exception as e:
+            logger.warning(f"Failed to load screen cache: {e}")
 
-Extracted Text:
-{text[:500]}...  # First 500 characters
-"""
-            self.ocr_logger.info(log_message)
+    def _save_cache(self, data: ScreenData):
+        try:
+            with open(self.cache_file, 'w') as f:
+                json.dump({
+                    'timestamp': data.timestamp,
+                    'image_data': base64.b64encode(data.image_data).decode('utf-8'),
+                    'image_hash': data.image_hash,
+                    'screen_size': data.screen_size,
+                    'is_unchanged': data.is_unchanged
+                }, f)
+        except Exception as e:
+            logger.warning(f"Failed to save screen cache: {e}")
+
+    async def initialize(self):
+        """Initialize the sensor with proper error handling and retries"""
+        max_retries = 3
+        retry_delay = 2.0
+        
+        for attempt in range(max_retries):
+            try:
+                logger.info(f"Initializing ScreenSensor (attempt {attempt + 1}/{max_retries})")
+                
+                # Initialize screen capture with explicit monitor selection
+                self.sct = mss.mss()
+                if not self.sct:
+                    raise Exception("Failed to initialize mss")
+                
+                # Get monitor information
+                monitors = self.sct.monitors
+                if not monitors:
+                    raise Exception("No monitors found")
+                
+                # Use primary monitor (usually index 1)
+                primary_monitor = monitors[1]
+                logger.info(f"Using primary monitor: {primary_monitor}")
+                
+                # Test capture
+                test_screenshot = self.sct.grab(primary_monitor)
+                if not test_screenshot:
+                    raise Exception("Failed to capture test screenshot")
+                
+                test_image = Image.frombytes('RGB', test_screenshot.size, test_screenshot.rgb)
+                if not test_image:
+                    raise Exception("Failed to convert screenshot to image")
+                
+                logger.info("ScreenSensor initialized successfully")
+                return True
+                
+            except Exception as e:
+                logger.error(f"ScreenSensor initialization failed (attempt {attempt + 1}): {str(e)}")
+                if self.sct:
+                    try:
+                        self.sct.close()
+                    except:
+                        pass
+                    self.sct = None
+                
+                if attempt < max_retries - 1:
+                    await asyncio.sleep(retry_delay)
+                    retry_delay *= 2  # Exponential backoff
+                else:
+                    logger.error("ScreenSensor initialization failed after all retries")
+                    return False
+
+    def _calculate_image_hash(self, image: Image.Image) -> str:
+        """Calculate a hash of the image for change detection"""
+        return hashlib.md5(image.tobytes()).hexdigest()
+
+    def _should_process_image(self, current_time: float, image_hash: str) -> bool:
+        """Determine if image should be processed based on various factors"""
+        if self.last_data and image_hash == self.last_data.image_hash:
+            self.unchanged_count += 1
+            if self.unchanged_count >= self.max_unchanged:
+                return False
+        else:
+            self.unchanged_count = 0
+            
+        return True
+
+    async def capture_screen(self) -> ScreenData:
+        """Capture and process screen content with optimizations"""
+        try:
+            current_time = time.time()
+            
+            # Ensure screen capture is initialized
+            if not self.sct:
+                logger.error("Screen capture not initialized")
+                raise Exception("Screen capture not initialized")
+            
+            # Get primary monitor
+            monitors = self.sct.monitors
+            if not monitors:
+                raise Exception("No monitors found")
+            primary_monitor = monitors[1]
+            
+            # Capture screen
+            screenshot = self.sct.grab(primary_monitor)
+            if not screenshot:
+                raise Exception("Failed to capture screenshot")
+                
+            image = Image.frombytes('RGB', screenshot.size, screenshot.rgb)
+            if not image:
+                raise Exception("Failed to convert screenshot to image")
+                
+            image_hash = self._calculate_image_hash(image)
+            
+            # Check if we should process the image
+            should_process = self._should_process_image(current_time, image_hash)
+            
+            # Convert image to bytes for storage
+            img_byte_arr = io.BytesIO()
+            image.save(img_byte_arr, format='PNG')
+            img_byte_arr = img_byte_arr.getvalue()
+            
+            # Create screen data
+            screen_data = ScreenData(
+                timestamp=current_time,
+                image_data=img_byte_arr,
+                image_hash=image_hash,
+                screen_size=image.size,
+                is_unchanged=not should_process
+            )
+            
+            # Update cache
+            self._save_cache(screen_data)
+            self.last_data = screen_data
+            
+            return screen_data
             
         except Exception as e:
-            self.logger.error(f"Error writing OCR results to file: {str(e)}", exc_info=True)
+            logger.error(f"Error in screen capture: {str(e)}")
+            # Try to reinitialize if we get a NoneType error
+            if "'NoneType' object has no attribute 'grab'" in str(e):
+                logger.info("Attempting to reinitialize screen capture...")
+                if await self.initialize():
+                    # Retry capture once after reinitialization
+                    try:
+                        return await self.capture_screen()
+                    except Exception as retry_error:
+                        logger.error(f"Retry capture failed: {str(retry_error)}")
+            
+            # Return last known data if available
+            if self.last_data:
+                return self.last_data
+            return ScreenData(
+                timestamp=time.time(),
+                image_data=b'',
+                image_hash='',
+                screen_size=(0, 0),
+                is_unchanged=True
+            )
+
+    async def get_data(self) -> Dict[str, Any]:
+        """Get current screen data."""
+        try:
+            # Capture screen
+            screen_data = await self.capture_screen()
+            if not screen_data:
+                raise Exception("Failed to capture screen")
+            
+            # Convert image to base64
+            image_bytes = io.BytesIO()
+            image = Image.frombytes('RGB', (screen_data.screen_size[0], screen_data.screen_size[1]), screen_data.image_data)
+            image.save(image_bytes, format='PNG')
+            image_base64 = base64.b64encode(image_bytes.getvalue()).decode('utf-8')
+            
+            # Create data object
+            data = {
+                'timestamp': datetime.now().isoformat(),
+                'type': 'screen_sensor',
+                'image_hash': screen_data.image_hash,
+                'image_data': image_base64,
+                'screen_size': screen_data.screen_size,
+                'has_images': self.has_images,
+                'has_videos': self.has_videos,
+                'is_unchanged': screen_data.is_unchanged
+            }
+            
+            # Write to cache file
+            try:
+                cache_dir = "cache/screen_sensor"
+                os.makedirs(cache_dir, exist_ok=True)
+                cache_file = f"{cache_dir}/screen_cache.json"
+                
+                with open(cache_file, 'w') as f:
+                    json.dump({
+                        'timestamp': datetime.now().isoformat(),
+                        'data': data
+                    }, f, indent=2)
+                
+                self.logger.info(f"Screen data written to cache: {screen_data.screen_size}, hash: {screen_data.image_hash[:8]}")
+            except Exception as e:
+                self.logger.error(f"Error writing screen data to cache: {e}")
+            
+            return data
+            
+        except Exception as e:
+            self.logger.error(f"Error getting screen data: {e}")
+            return {
+                'error': str(e),
+                'timestamp': datetime.now().isoformat()
+            }
+
+    async def cleanup(self):
+        """Cleanup resources"""
+        try:
+            if self.sct:
+                self.sct.close()
+        except Exception as e:
+            logger.error(f"Error in screen sensor cleanup: {str(e)}")
+
+    def get_latest_image(self) -> Image.Image:
+        """Get the latest captured image."""
+        return self.latest_image
+    
+    def get_latest_image_base64(self) -> str:
+        """Get the latest captured image as base64 string."""
+        if self.latest_image is None:
+            return ""
+            
+        buffered = io.BytesIO()
+        self.latest_image.save(buffered, format="PNG")
+        return base64.b64encode(buffered.getvalue()).decode('utf-8')
     
     def _run_capture_loop(self):
         """Background thread function for periodic screenshot capture."""
         self.running = True
-        
         while self.running:
             try:
-                self.capture_screen_text()
+                # Ensure initialization before capturing
+                if not self.sct:
+                    self.logger.info("Screen capture not initialized in loop, initializing now...")
+                    asyncio.run(self.initialize())
+                # Only capture if initialized
+                if self.sct:
+                    data = asyncio.run(self.capture_screen())
+                    # Update latest_image if capture was successful
+                    if data and data.image_data:
+                        try:
+                            from PIL import Image
+                            import io
+                            self.latest_image = Image.open(io.BytesIO(data.image_data))
+                        except Exception as img_e:
+                            self.logger.error(f"Failed to update latest_image: {img_e}")
+                else:
+                    self.logger.warning("Screen capture still not initialized, will retry...")
             except Exception as e:
                 self.logger.error(f"Error in screen capture loop: {str(e)}", exc_info=True)
-            
             # Sleep for the specified interval
             time.sleep(self.interval)
     
@@ -260,7 +405,7 @@ Extracted Text:
             "timestamp": datetime.now().isoformat(),
             "type": "screen_capture",
             "data": {
-                "text": self.latest_text,
+                "image": self.get_latest_image_base64(),
                 "has_images": self.has_images,
                 "has_videos": self.has_videos
             }
@@ -268,17 +413,17 @@ Extracted Text:
 
     def capture(self):
         """Capture the current screen state."""
-        return self.capture_screen_text()
+        return asyncio.run(self.capture_screen())
 
 # For testing if run directly
 if __name__ == "__main__":
     logging.basicConfig(level=logging.INFO)
-    sensor = ScreenSensor(interval_sec=3)
+    sensor = ScreenSensor({"interval_sec": 3})
     sensor.start()
     
     try:
         # Test for 15 seconds
         time.sleep(15)
-        print("Latest captured text:", sensor.latest_text[:100] + "..." if len(sensor.latest_text) > 100 else sensor.latest_text)
+        print("Latest captured image:", sensor.get_latest_image_base64())
     finally:
         sensor.stop()

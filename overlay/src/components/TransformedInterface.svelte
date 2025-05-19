@@ -83,8 +83,13 @@
     
     export function updateLayout(layout, map) {
         currentLayout = layout;
-        interactionMap = new Map(Object.entries(map));
-        renderer.render(layout);
+        // Check if map is null or undefined before using Object.entries
+        interactionMap = map && typeof map === 'object' ? 
+            new Map(Object.entries(map)) : new Map();
+        
+        if (renderer) {
+            renderer.render(layout);
+        }
     }
     
     export function setInteractive(value) {

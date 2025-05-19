@@ -7,6 +7,7 @@ import psutil
 from typing import Dict, Any, List, Optional
 from dataclasses import dataclass
 from datetime import datetime
+from queue import Queue
 
 # Configure logging
 logging.basicConfig(
@@ -34,28 +35,52 @@ class AISensorEvent:
 
 
 class AISensor:
-    """Lightweight system monitoring sensor."""
+    """AI sensor for system monitoring and analysis."""
     
-    def __init__(self, config: Optional[Dict[str, Any]] = None):
+    def __init__(self, config=None):
+        """Initialize AI sensor with configuration.
+        
+        Args:
+            config (dict): Configuration dictionary with sensor settings and resource limits
+        """
+        self.config = config or {}
+        
+        # Set monitoring intervals
+        self.monitor_interval_sec = self.config.get('monitor_interval_sec', 60)
+        self.analysis_interval_sec = self.config.get('analysis_interval_sec', 300)
+        self.prediction_interval_sec = self.config.get('prediction_interval_sec', 600)
+        
+        # Set resource limits
+        self.max_memory_mb = self.config.get('max_memory_mb', 2048)
+        self.max_cpu_percent = self.config.get('max_cpu_percent', 80)
+        self.max_disk_usage = self.config.get('max_disk_usage', 10240)  # MB
+        self.max_network_usage = self.config.get('max_network_usage', 40)  # Mbps
+        
+        # Set queue sizes
+        self.event_queue_size = self.config.get('event_queue_size', 1000)
+        self.insight_queue_size = self.config.get('insight_queue_size', 100)
+        self.alert_queue_size = self.config.get('alert_queue_size', 50)
+        
+        # Set analysis parameters
+        self.anomaly_threshold = self.config.get('anomaly_threshold', 0.8)
+        self.pattern_window = self.config.get('pattern_window', 24)  # hours
+        self.prediction_window = self.config.get('prediction_window', 6)  # hours
+        self.sequence_length = self.config.get('sequence_length', 128)
+        self.batch_size = self.config.get('batch_size', 32)
+        
+        # Initialize queues
+        self.event_queue = Queue(maxsize=self.event_queue_size)
+        self.insight_queue = Queue(maxsize=self.insight_queue_size)
+        self.alert_queue = Queue(maxsize=self.alert_queue_size)
+        
+        # Initialize logging
+        self.logger = logging.getLogger(__name__)
+        self.logger.info("AI sensor initialized with config: %s", self.config)
+        
         self.running = False
-        self.logger = logger
         self.last_stats = None
         self.error_count = 0
         self.max_errors = 3
-        self.config = config or {
-            'event_queue_size': 100,
-            'insight_queue_size': 50,
-            'alert_queue_size': 20,
-            'history_size': 50,
-            'performance_metrics_size': 50,
-            'monitor_interval_sec': 120,
-            'analysis_interval_sec': 600,
-            'prediction_interval_sec': 1200,
-            'max_memory_mb': 100,
-            'max_cpu_percent': 30,
-            'max_disk_usage': 80,
-            'max_network_usage': 1000
-        }
         self.events = []
         self.insights = []
         self.alerts = []
@@ -124,14 +149,14 @@ class AISensor:
             self.logger.error(f"Health check failed: {str(e)}")
             return False
             
-    async def _process_event_async(self, event: AISensorEvent) -> bool:
-        """Process an event asynchronously."""
+    def process_event(self, event: AISensorEvent) -> bool:
+        """Process an event synchronously."""
         try:
             # Add event to history
             self.events.append(event)
             
             # Trim events if needed
-            while len(self.events) > self.config['event_queue_size']:
+            while len(self.events) > self.event_queue_size:
                 self.events.pop(0)
             
             # Generate insights if needed
@@ -144,7 +169,7 @@ class AISensor:
                 })
                 
                 # Trim insights if needed
-                while len(self.insights) > self.config['insight_queue_size']:
+                while len(self.insights) > self.insight_queue_size:
                     self.insights.pop(0)
             
             # Generate alerts if needed
@@ -157,7 +182,7 @@ class AISensor:
                 })
                 
                 # Trim alerts if needed
-                while len(self.alerts) > self.config['alert_queue_size']:
+                while len(self.alerts) > self.alert_queue_size:
                     self.alerts.pop(0)
             
             return True
@@ -166,17 +191,21 @@ class AISensor:
             self.logger.error(f"Error processing event: {str(e)}")
             return False
             
+    async def _process_event_async(self, event: AISensorEvent) -> bool:
+        """Process an event asynchronously."""
+        return self.process_event(event)
+            
     def _should_generate_alert(self, event: AISensorEvent) -> bool:
         """Check if an event should generate an alert."""
         try:
             if event.event_type == 'cpu_usage':
-                return event.data.get('value', 0) > self.config['max_cpu_percent']
+                return event.data.get('value', 0) > self.max_cpu_percent
             elif event.event_type == 'memory_usage':
-                return event.data.get('value', 0) > self.config['max_memory_mb']
+                return event.data.get('value', 0) > self.max_memory_mb
             elif event.event_type == 'disk_usage':
-                return event.data.get('value', 0) > self.config['max_disk_usage']
+                return event.data.get('value', 0) > self.max_disk_usage
             elif event.event_type == 'network_usage':
-                return event.data.get('value', 0) > self.config['max_network_usage']
+                return event.data.get('value', 0) > self.max_network_usage
             return False
         except Exception as e:
             self.logger.error(f"Error checking alert condition: {str(e)}")

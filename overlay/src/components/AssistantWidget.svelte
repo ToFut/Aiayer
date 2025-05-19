@@ -307,8 +307,27 @@
                         </div>
                     {:else}
                         {#each messages as message}
-                            <div class="message {message.type}" class:system={message.isSystemGenerated}>
-                                <div class="message-content">{message.content}</div>
+                            <div class="message {message.role}">
+                                <div class="message-avatar">
+                                    {#if message.role === 'assistant'}
+                                        <div class="iris-pattern"></div>
+                                        <div class="pupil"></div>
+                                        <div class="reflection"></div>
+                                        <div class="reflection-secondary"></div>
+                                    {:else if message.role === 'user'}
+                                        👤
+                                    {:else}
+                                        {message.role === 'system' ? '⚙️' : '💬'}
+                                    {/if}
+                                </div>
+                                <div class="message-content-wrapper">
+                                    <div class="message-content">
+                                        {message.content}
+                                    </div>
+                                    <div class="message-timestamp">
+                                        {message.timestamp}
+                                    </div>
+                                </div>
                             </div>
                         {/each}
                     {/if}
@@ -390,7 +409,7 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        background-color: #4CAF50;
+        background-color: #f44336;
         border-radius: 50%;
         cursor: pointer;
         border: none;
@@ -401,8 +420,25 @@
         transition: transform 0.2s ease, background-color 0.2s ease;
     }
     
+    .connected .widget-icon {
+        background-color: #4CAF50;
+    }
+    
+    .connecting .widget-icon {
+        background-color: #FFC107;
+        animation: pulse 1.5s infinite;
+    }
+    
     .widget-icon:hover {
         transform: scale(1.05);
+    }
+    
+    .connected .widget-icon:hover {
+        background-color: #45a049;
+    }
+    
+    .error .widget-icon:hover {
+        background-color: #e53935;
     }
     
     .widget-icon span {
@@ -436,25 +472,6 @@
         border-radius: 50%;
         background-color: #999;
         border: 2px solid white;
-    }
-    
-    .connecting .connection-status {
-        background-color: #FFC107;
-        animation: pulse 1.5s infinite;
-    }
-    
-    .connected .connection-status {
-        background-color: #4CAF50;
-    }
-    
-    .error .connection-status {
-        background-color: #F44336;
-    }
-    
-    @keyframes pulse {
-        0% { opacity: 0.5; }
-        50% { opacity: 1; }
-        100% { opacity: 0.5; }
     }
     
     .widget-content {
@@ -706,5 +723,195 @@
     .control-button.active {
         background: #4CAF50;
         color: white;
+    }
+    
+    .message-avatar {
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 18px;
+        background: rgba(255, 255, 255, 0.9);
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        position: relative;
+        overflow: hidden;
+    }
+
+    /* Add eye widget to assistant messages */
+    .message.assistant .message-avatar {
+        background: #f0f0f0;
+        transform-style: preserve-3d;
+        perspective: 1000px;
+    }
+
+    .message.assistant .message-avatar::before {
+        content: '';
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(135deg, #f0f0f0, #e0e0e0);
+        border-radius: 50%;
+        overflow: hidden;
+        box-shadow: 
+            inset 0 0 10px rgba(0, 0, 0, 0.1),
+            inset 0 0 20px rgba(0, 0, 0, 0.05);
+    }
+
+    .message.assistant .message-avatar::after {
+        content: '';
+        position: absolute;
+        width: 70%;
+        height: 70%;
+        top: 15%;
+        left: 15%;
+        background: radial-gradient(circle at 30% 30%, 
+            #a855f7 0%,
+            #7c3aed 50%,
+            #4c1d95 100%);
+        border-radius: 50%;
+        animation: irisPulse 4s infinite;
+    }
+
+    /* Add iris pattern to assistant avatar */
+    .message.assistant .message-avatar .iris-pattern {
+        position: absolute;
+        width: 200%;
+        height: 200%;
+        top: -50%;
+        left: -50%;
+        background: 
+            repeating-radial-gradient(
+                circle at center,
+                transparent 0,
+                transparent 10px,
+                rgba(255, 255, 255, 0.1) 10px,
+                rgba(255, 255, 255, 0.1) 20px
+            ),
+            repeating-conic-gradient(
+                from 0deg,
+                transparent 0deg,
+                transparent 10deg,
+                rgba(255, 255, 255, 0.05) 10deg,
+                rgba(255, 255, 255, 0.05) 20deg
+            );
+        animation: irisRotate 20s linear infinite;
+        z-index: 1;
+    }
+
+    /* Add pupil to assistant avatar */
+    .message.assistant .message-avatar .pupil {
+        position: absolute;
+        width: 40%;
+        height: 40%;
+        top: 30%;
+        left: 30%;
+        background: radial-gradient(circle at 30% 30%, #000, #111);
+        border-radius: 50%;
+        box-shadow: 
+            inset 0 0 10px rgba(0, 0, 0, 0.5),
+            0 0 5px rgba(0, 0, 0, 0.3);
+        z-index: 2;
+    }
+
+    /* Add pupil highlight to assistant avatar */
+    .message.assistant .message-avatar .pupil::after {
+        content: '';
+        position: absolute;
+        width: 30%;
+        height: 30%;
+        top: 20%;
+        left: 20%;
+        background: rgba(255, 255, 255, 0.9);
+        border-radius: 50%;
+        box-shadow: 0 0 2px rgba(255, 255, 255, 0.6);
+    }
+
+    /* Add reflection to assistant avatar */
+    .message.assistant .message-avatar .reflection {
+        position: absolute;
+        width: 30%;
+        height: 30%;
+        top: 20%;
+        left: 20%;
+        background: radial-gradient(circle at 30% 30%, 
+            rgba(255, 255, 255, 0.9),
+            rgba(255, 255, 255, 0.6));
+        border-radius: 50%;
+        z-index: 3;
+        box-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+    }
+
+    /* Add secondary reflection to assistant avatar */
+    .message.assistant .message-avatar .reflection-secondary {
+        position: absolute;
+        width: 15%;
+        height: 15%;
+        top: 30%;
+        left: 40%;
+        background: radial-gradient(circle at 30% 30%, 
+            rgba(255, 255, 255, 0.8),
+            rgba(255, 255, 255, 0.4));
+        border-radius: 50%;
+        z-index: 3;
+        box-shadow: 0 0 3px rgba(255, 255, 255, 0.3);
+    }
+
+    /* Add glow effect to assistant messages */
+    .message.assistant::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: radial-gradient(circle at center, 
+            rgba(168, 85, 247, 0.1) 0%,
+            rgba(168, 85, 247, 0) 70%);
+        border-radius: 12px;
+        pointer-events: none;
+        animation: glowPulse 4s infinite;
+        mix-blend-mode: screen;
+    }
+
+    @keyframes irisPulse {
+        0%, 100% { transform: scale(0.8); }
+        50% { transform: scale(0.85); }
+    }
+
+    @keyframes irisRotate {
+        0% { transform: rotate(0deg) scale(1); }
+        50% { transform: rotate(180deg) scale(1.1); }
+        100% { transform: rotate(360deg) scale(1); }
+    }
+
+    @keyframes glowPulse {
+        0%, 100% { 
+            opacity: 0.6;
+            transform: scale(1);
+        }
+        50% { 
+            opacity: 1;
+            transform: scale(1.05);
+        }
+    }
+
+    /* Dark mode support for messages */
+    @media (prefers-color-scheme: dark) {
+        .message.assistant .message-avatar {
+            background: #e0e0e0;
+        }
+        
+        .message.assistant .message-avatar::before {
+            background: linear-gradient(135deg, #e0e0e0, #d0d0d0);
+        }
+        
+        .message.assistant .message-avatar::after {
+            background: radial-gradient(circle at 30% 30%, 
+                #7c3aed 0%,
+                #6d28d9 50%,
+                #4c1d95 100%);
+        }
     }
 </style>

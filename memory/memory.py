@@ -1,218 +1,260 @@
+#!/usr/bin/env python3
 """
-Conversation Memory Module
-Manages conversation history and contextual memory.
+Memory Module
+Provides conversation and context memory management with vector-based storage.
 """
-import time
+import json
 import logging
+import os
+from datetime import datetime
 from collections import deque
+import numpy as np
+from sentence_transformers import SentenceTransformer
+from sklearn.metrics.pairwise import cosine_similarity
 
+logger = logging.getLogger(__name__)
 
-class ConversationMemory:
-    """
-    Manages the conversation history between user and assistant.
-    Allows retrieving recent history for context window, and provides
-    memory management to prevent context overflow.
-    """
+class BaseMemory:
+    """Base class for vector-based memory storage."""
     
     def __init__(self, max_length=50):
-        """
-        Initialize the conversation memory.
-        
-        Args:
-            max_length (int): Maximum number of messages to store
-        """
-        self.messages = deque(maxlen=max_length)
         self.max_length = max_length
-        self.logger = logging.getLogger(__name__)
-    
-    def add_message(self, message):
-        """
-        Add a message to the conversation history.
+        self.vector_model = None
+        self.vectors = []
+        self.metadata = []
+        self._init_vector_model()
         
-        Args:
-            message (dict): Message object with 'role' and 'content' keys
-        """
-        if not isinstance(message, dict) or 'role' not in message or 'content' not in message:
-            self.logger.error(f"Invalid message format: {message}")
-            return False
-        
-        # Add timestamp for tracking purposes
-        message_with_meta = message.copy()
-        message_with_meta['timestamp'] = time.time()
-        
-        self.messages.append(message_with_meta)
-        self.logger.debug(f"Added {message['role']} message: {message['content'][:30]}...")
-        return True
-    
-    def get_all(self):
-        """
-        Get all messages in the conversation history.
-        
-        Returns:
-            list: All messages in conversation history
-        """
-        # Return messages without metadata
-        return [self._strip_metadata(msg) for msg in self.messages]
-    
-    def get_recent(self, count=None, max_tokens=3000):
-        """
-        Get recent messages within token budget.
-        
-        Args:
-            count (int): Maximum number of messages to retrieve
-            max_tokens (int): Approximate token budget
+    def _init_vector_model(self):
+        """Initialize the vector model for semantic search."""
+        try:
+            self.vector_model = SentenceTransformer('all-MiniLM-L6-v2')
+            logger.info("Vector model initialized successfully")
+        except Exception as e:
+            logger.error(f"Error initializing vector model: {e}")
+            self.vector_model = None
             
-        Returns:
-            list: Recent messages that fit within budget
-        """
-        if count is None:
-            count = self.max_length
-        
-        # Get the most recent 'count' messages
-        recent_msgs = list(self.messages)[-count:]
-        
-        # Estimate token count and trim if needed
-        # Note: This is a very rough estimate (4 chars ≈ 1 token)
-        total_chars = sum(len(msg.get('content', '')) for msg in recent_msgs)
-        estimated_tokens = total_chars / 4
-        
-        if estimated_tokens <= max_tokens:
-            return [self._strip_metadata(msg) for msg in recent_msgs]
-        
-        # If we exceed token budget, keep removing oldest messages until we fit
-        # Always keep the most recent user message
-        while estimated_tokens > max_tokens and len(recent_msgs) > 1:
-            # Remove the oldest message (but not if it's the only one left)
-            removed = recent_msgs.pop(0)
-            chars = len(removed.get('content', ''))
-            estimated_tokens -= chars / 4
-            self.logger.debug(f"Trimmed message to fit token budget: {removed['role']}")
-        
-        return [self._strip_metadata(msg) for msg in recent_msgs]
-    
-    def clear(self):
-        """Clear the conversation history."""
-        self.messages.clear()
-        self.logger.info("Conversation memory cleared")
-    
-    def _strip_metadata(self, message):
-        """Remove metadata fields from message."""
-        if not isinstance(message, dict):
-            return message
-        
-        result = {}
-        for key, value in message.items():
-            if key not in ['timestamp']:  # Fields to exclude
-                result[key] = value
-        return result
-    
-    def get_summary(self):
-        """
-        Get a summary of the conversation state.
-        
-        Returns:
-            dict: Summary stats about the conversation
-        """
-        if not self.messages:
-            return {"count": 0, "empty": True}
-        
-        # Count message types
-        role_counts = {}
-        for msg in self.messages:
-            role = msg.get('role', 'unknown')
-            role_counts[role] = role_counts.get(role, 0) + 1
-        
-        # Get timestamps for first and last message
-        first_ts = self.messages[0].get('timestamp', 0)
-        last_ts = self.messages[-1].get('timestamp', 0)
-        duration = last_ts - first_ts if first_ts and last_ts else 0
-        
-        return {
-            "count": len(self.messages),
-            "roles": role_counts,
-            "duration_seconds": round(duration, 1),
-            "usage_percent": (len(self.messages) / self.max_length) * 100
-        }
-
-
-class ContextMemory:
-    """
-    Optional extension for storing longer-term context beyond conversation.
-    Can be used to remember user preferences, frequently used commands, etc.
-    """
-    
-    def __init__(self):
-        """Initialize the context memory."""
-        self.context = {}
-        self.logger = logging.getLogger(__name__)
-    
-    def set(self, key, value):
-        """
-        Store a value in context memory.
-        
-        Args:
-            key (str): Context identifier
-            value: Value to store
-        """
-        self.context[key] = {
-            'value': value,
-            'updated_at': time.time()
-        }
-        self.logger.debug(f"Stored context: {key}")
-    
-    def get(self, key, default=None):
-        """
-        Retrieve a value from context memory.
-        
-        Args:
-            key (str): Context identifier
-            default: Value to return if key not found
+    def _get_text_for_vectorization(self, item):
+        """Extract text content for vectorization."""
+        try:
+            if isinstance(item, dict):
+                text_parts = []
+                for key, value in item.items():
+                    if isinstance(value, (str, int, float)):
+                        text_parts.append(str(value))
+                return ' '.join(text_parts)
+            return str(item)
+        except Exception as e:
+            logger.error(f"Error extracting text for vectorization: {e}")
+            return ""
             
-        Returns:
-            Value stored for key or default
-        """
-        if key not in self.context:
-            return default
+    def _update_vectors(self, item):
+        """Update vector storage with new item."""
+        try:
+            if not self.vector_model:
+                return
+                
+            text = self._get_text_for_vectorization(item)
+            if not text:
+                return
+                
+            # Generate vector embedding
+            vector = self.vector_model.encode(text)
+            
+            # Add to vector storage
+            self.vectors.append(vector)
+            self.metadata.append({
+                'timestamp': datetime.now().isoformat(),
+                'original_item': item
+            })
+            
+            # Keep only the most recent vectors
+            if len(self.vectors) > self.max_length:
+                self.vectors = self.vectors[-self.max_length:]
+                self.metadata = self.metadata[-self.max_length:]
+                
+        except Exception as e:
+            logger.error(f"Error updating vectors: {e}")
+            
+    def search(self, query, limit=5):
+        """Search memory using vector similarity."""
+        try:
+            if not self.vector_model or not self.vectors:
+                return []
+                
+            # Generate query vector
+            query_vector = self.vector_model.encode(query)
+            
+            # Calculate similarities
+            vectors = np.array(self.vectors)
+            similarities = cosine_similarity([query_vector], vectors)[0]
+            
+            # Get top matches
+            top_indices = np.argsort(similarities)[-limit:][::-1]
+            
+            results = []
+            for idx in top_indices:
+                similarity = similarities[idx]
+                if similarity >= 0.7:  # Similarity threshold
+                    metadata = self.metadata[idx]
+                    results.append({
+                        'content': self._get_text_for_vectorization(metadata['original_item']),
+                        'timestamp': metadata['timestamp'],
+                        'score': float(similarity),
+                        'original_item': metadata['original_item']
+                    })
+            
+            return results
+            
+        except Exception as e:
+            logger.error(f"Error in vector search: {e}")
+            return []
+
+class ConversationMemory(BaseMemory):
+    def __init__(self, max_length=50):
+        super().__init__(max_length)
+        self.memory_file = "memory/conversation_memory.json"
         
-        item = self.context[key]
-        # Update access time
-        item['accessed_at'] = time.time()
-        return item['value']
-    
-    def clear(self):
-        """Clear all context data."""
-        self.context = {}
-        self.logger.info("Context memory cleared")
+    def add(self, message):
+        """Add a message to conversation memory."""
+        try:
+            # Add timestamp if not present
+            if 'timestamp' not in message:
+                message['timestamp'] = datetime.now().isoformat()
+                
+            # Update vector storage
+            self._update_vectors(message)
+            
+            # Save to file
+            self._save()
+            logger.debug(f"Added message to conversation memory: {message.get('type', 'unknown')}")
+        except Exception as e:
+            logger.error(f"Error adding message to conversation memory: {e}")
+            
+    def get_recent(self, count=5):
+        """Get recent messages."""
+        return [m['original_item'] for m in self.metadata[-count:]]
+        
+    def _save(self):
+        """Save conversation memory to file."""
+        try:
+            os.makedirs(os.path.dirname(self.memory_file), exist_ok=True)
+            with open(self.memory_file, 'w') as f:
+                json.dump({
+                    'vectors': [v.tolist() for v in self.vectors],
+                    'metadata': self.metadata
+                }, f)
+        except Exception as e:
+            logger.error(f"Error saving conversation memory: {e}")
+            
+    def load(self):
+        """Load conversation memory from file."""
+        try:
+            if os.path.exists(self.memory_file):
+                with open(self.memory_file, 'r') as f:
+                    data = json.load(f)
+                    self.vectors = [np.array(v) for v in data.get('vectors', [])]
+                    self.metadata = data.get('metadata', [])
+                    logger.info(f"Loaded {len(self.metadata)} messages from conversation memory")
+        except Exception as e:
+            logger.error(f"Error loading conversation memory: {e}")
 
+class ContextMemory(BaseMemory):
+    def __init__(self, max_history=20):
+        super().__init__(max_history)
+        self.memory_file = "memory/context_memory.json"
+        
+    def update(self, context):
+        """Update context memory with new context."""
+        try:
+            # Add timestamp if not present
+            if 'timestamp' not in context:
+                context['timestamp'] = datetime.now().isoformat()
+                
+            # Update vector storage
+            self._update_vectors(context)
+            
+            # Save to file
+            self._save()
+            logger.debug("Updated context memory")
+        except Exception as e:
+            logger.error(f"Error updating context memory: {e}")
+            
+    def get_relevant_context(self, query):
+        """Get relevant context based on query."""
+        try:
+            results = self.search(query, limit=1)
+            if results:
+                return results[0]['original_item']
+            return {}
+        except Exception as e:
+            logger.error(f"Error getting relevant context: {e}")
+            return {}
+            
+    def _save(self):
+        """Save context memory to file."""
+        try:
+            os.makedirs(os.path.dirname(self.memory_file), exist_ok=True)
+            with open(self.memory_file, 'w') as f:
+                json.dump({
+                    'vectors': [v.tolist() for v in self.vectors],
+                    'metadata': self.metadata
+                }, f)
+        except Exception as e:
+            logger.error(f"Error saving context memory: {e}")
+            
+    def load(self):
+        """Load context memory from file."""
+        try:
+            if os.path.exists(self.memory_file):
+                with open(self.memory_file, 'r') as f:
+                    data = json.load(f)
+                    self.vectors = [np.array(v) for v in data.get('vectors', [])]
+                    self.metadata = data.get('metadata', [])
+                    logger.info(f"Loaded {len(self.metadata)} contexts from context memory")
+        except Exception as e:
+            logger.error(f"Error loading context memory: {e}")
 
-# For testing if run directly
-if __name__ == "__main__":
-    logging.basicConfig(level=logging.INFO)
-    
-    # Test conversation memory
-    memory = ConversationMemory(max_length=5)
-    
-    # Add some test messages
-    memory.add_message({"role": "system", "content": "You are a helpful AI assistant."})
-    memory.add_message({"role": "user", "content": "Hello, who are you?"})
-    memory.add_message({"role": "assistant", "content": "I'm a local AI assistant that runs entirely on your machine. How can I help you today?"})
-    memory.add_message({"role": "user", "content": "What time is it?"})
-    
-    # Print all messages
-    print("All messages:")
-    for msg in memory.get_all():
-        print(f"{msg['role']}: {msg['content']}")
-    
-    # Print summary
-    print("\nMemory summary:")
-    print(memory.get_summary())
-    
-    # Test max length
-    print("\nTesting max length (adding more messages)...")
-    memory.add_message({"role": "assistant", "content": "I can tell you the current time based on your system clock."})
-    memory.add_message({"role": "user", "content": "Thanks! Can you also tell me the weather?"})  # Should push out oldest message
-    
-    # Print all messages after overflow
-    print("\nMessages after overflow:")
-    for msg in memory.get_all():
-        print(f"{msg['role']}: {msg['content']}")
+class LongTermMemory(BaseMemory):
+    def __init__(self, max_length=1000):
+        super().__init__(max_length)
+        self.memory_file = "memory/long_term_memory.json"
+        
+    def add(self, item):
+        """Add item to long-term memory."""
+        try:
+            # Add timestamp if not present
+            if 'timestamp' not in item:
+                item['timestamp'] = datetime.now().isoformat()
+                
+            # Update vector storage
+            self._update_vectors(item)
+            
+            # Save to file
+            self._save()
+            logger.debug("Added item to long-term memory")
+        except Exception as e:
+            logger.error(f"Error adding item to long-term memory: {e}")
+            
+    def _save(self):
+        """Save long-term memory to file."""
+        try:
+            os.makedirs(os.path.dirname(self.memory_file), exist_ok=True)
+            with open(self.memory_file, 'w') as f:
+                json.dump({
+                    'vectors': [v.tolist() for v in self.vectors],
+                    'metadata': self.metadata
+                }, f)
+        except Exception as e:
+            logger.error(f"Error saving long-term memory: {e}")
+            
+    def load(self):
+        """Load long-term memory from file."""
+        try:
+            if os.path.exists(self.memory_file):
+                with open(self.memory_file, 'r') as f:
+                    data = json.load(f)
+                    self.vectors = [np.array(v) for v in data.get('vectors', [])]
+                    self.metadata = data.get('metadata', [])
+                    logger.info(f"Loaded {len(self.metadata)} items from long-term memory")
+        except Exception as e:
+            logger.error(f"Error loading long-term memory: {e}")

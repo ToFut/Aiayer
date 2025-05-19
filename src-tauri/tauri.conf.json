@@ -1,0 +1,24 @@
+{
+  "windows": [
+    {
+      "label": "main",
+      "url": "index.html",
+      "width": 800,
+      "height": 600,
+      "decorations": false,
+      "transparent": true,
+      "alwaysOnTop": true
+    },
+    {
+      "label": "widget",
+      "url": "../eye_widget_overlay.html",
+      "width": 800,
+      "height": 600,
+      "decorations": false,
+      "transparent": true,
+      "alwaysOnTop": true,
+      "resizable": true,
+      "skipTaskbar": false
+    }
+  ]
+} 

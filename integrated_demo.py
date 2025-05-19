@@ -83,7 +83,7 @@ class IntegratedDemo:
     """Integrated demo that combines all components"""
     def __init__(self):
         self.overlay_bridge = OverlayBridge(port=8765)
-        self.llm = LocalLLM(model_name="mistral:latest")
+        self.llm = LocalLLM(model_name="ollam3.2:latest")
         self.sensors = {
             'screen': ScreenSensor(),
             'process': ProcessSensor()

@@ -63,7 +63,7 @@ sensors:
 
 # LLM settings
 llm:
-  model_name: "mistral:latest"  # Ollama model name
+  model_name: "ollam3.2:latest"  # Ollama model name
   host: "localhost"
   port: 11434  # Default Ollama port
   request_timeout_sec: 60

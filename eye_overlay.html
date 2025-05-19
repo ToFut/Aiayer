@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eye Widget Overlay</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background-color: transparent;
+            overflow: hidden;
+        }
+        
+        .assistant-widget {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 9999;
+            transition: all 0.3s ease;
+        }
+        
+        .widget-icon {
+            width: 48px;
+            height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: rgba(0, 0, 0, 0.6);
+            color: white;
+            border-radius: 50%;
+            cursor: pointer;
+            border: none;
+            font-size: 24px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+            transition: transform 0.2s ease, background-color 0.2s ease;
+        }
+        
+        .widget-icon:hover {
+            transform: scale(1.05);
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+        
+        .connection-status {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: #999;
+            border: 2px solid rgba(0, 0, 0, 0.6);
+        }
+        
+        .connected .connection-status {
+            background-color: #4CAF50;
+        }
+        
+        .connecting .connection-status {
+            background-color: #FFC107;
+            animation: pulse 1.5s infinite;
+        }
+        
+        .error .connection-status {
+            background-color: #F44336;
+        }
+        
+        @keyframes pulse {
+            0% { opacity: 0.5; }
+            50% { opacity: 1; }
+            100% { opacity: 0.5; }
+        }
+        
+        .widget-content {
+            display: none;
+            width: 350px;
+            max-height: 500px;
+            background-color: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+            margin-top: 60px;
+        }
+        
+        .widget-expanded .widget-content {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .widget-header {
+            padding: 15px;
+            background-color: #f8f9fa;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .widget-header h3 {
+            margin: 0;
+            font-size: 16px;
+            font-weight: 600;
+        }
+        
+        .close-button {
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: #666;
+            font-size: 20px;
+        }
+        
+        .messages {
+            flex: 1;
+            overflow-y: auto;
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            max-height: 350px;
+        }
+        
+        .message {
+            max-width: 85%;
+            padding: 12px 16px;
+            border-radius: 18px;
+            word-wrap: break-word;
+            line-height: 1.5;
+        }
+        
+        .message.user {
+            background-color: #E3F2FD;
+            color: #0D47A1;
+            align-self: flex-end;
+            border-bottom-right-radius: 4px;
+        }
+        
+        .message.assistant {
+            background-color: #F5F5F5;
+            color: #333;
+            align-self: flex-start;
+            border-bottom-left-radius: 4px;
+        }
+        
+        .empty-state {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100px;
+            color: #666;
+            text-align: center;
+            font-style: italic;
+        }
+        
+        .input-area {
+            padding: 15px;
+            display: flex;
+            gap: 10px;
+            border-top: 1px solid #eee;
+        }
+        
+        #query-input {
+            flex: 1;
+            padding: 12px 16px;
+            border: 1px solid #ddd;
+            border-radius: 24px;
+            font-size: 14px;
+            outline: none;
+        }
+        
+        #query-input:focus {
+            border-color: #4CAF50;
+        }
+        
+        #send-button {
+            padding: 0 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 24px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+        
+        #send-button:hover {
+            background-color: #45a049;
+        }
+        
+        #send-button:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+        }
+    </style>
+</head>
+<body>
+    <div id="assistant-widget" class="assistant-widget">
+        <button id="widget-icon" class="widget-icon">👁️
+            <span id="connection-status" class="connection-status"></span>
+        </button>
+        
+        <div id="widget-content" class="widget-content">
+            <div class="widget-header">
+                <h3>AI Assistant</h3>
+                <button id="close-button" class="close-button">×</button>
+            </div>
+            
+            <div id="messages" class="messages">
+                <div class="empty-state">
+                    <p>Ask me anything about what you're working on!</p>
+                </div>
+            </div>
+            
+            <div class="input-area">
+                <input type="text" id="query-input" placeholder="Type your message..." />
+                <button id="send-button">Send</button>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Elements
+        const widgetElement = document.getElementById('assistant-widget');
+        const widgetIcon = document.getElementById('widget-icon');
+        const connectionStatus = document.getElementById('connection-status');
+        const widgetContent = document.getElementById('widget-content');
+        const closeButton = document.getElementById('close-button');
+        const messagesContainer = document.getElementById('messages');
+        const queryInput = document.getElementById('query-input');
+        const sendButton = document.getElementById('send-button');
+        
+        // State
+        let ws = null;
+        let isExpanded = false;
+        let connectionState = 'disconnected';
+        let messages = [];
+        
+        // Toggle expanded state
+        function toggleExpanded() {
+            isExpanded = !isExpanded;
+            if (isExpanded) {
+                widgetElement.classList.add('widget-expanded');
+            } else {
+                widgetElement.classList.remove('widget-expanded');
+            }
+        }
+        
+        // Add a message to the chat
+        function addMessage(type, content) {
+            const messageElement = document.createElement('div');
+            messageElement.classList.add('message', type);
+            
+            const contentElement = document.createElement('div');
+            contentElement.classList.add('message-content');
+            contentElement.textContent = content;
+            
+            messageElement.appendChild(contentElement);
+            messagesContainer.appendChild(messageElement);
+            
+            // Remove empty state if present
+            const emptyState = messagesContainer.querySelector('.empty-state');
+            if (emptyState) {
+                messagesContainer.removeChild(emptyState);
+            }
+            
+            // Auto-scroll to bottom
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+            
+            // Store message
+            messages.push({ type, content });
+        }
+        
+        // Send a message to the server
+        function sendMessage() {
+            const query = queryInput.value.trim();
+            if (!query || connectionState !== 'connected') return;
+            
+            // Add user message to chat
+            addMessage('user', query);
+            
+            // Send to server
+            if (ws && ws.readyState === WebSocket.OPEN) {
+                ws.send(JSON.stringify({
+                    type: 'user_interaction',
+                    payload: {
+                        type: 'query',
+                        query: query
+                    }
+                }));
+            }
+            
+            // Clear input
+            queryInput.value = '';
+        }
+        
+        // Update connection status UI
+        function updateConnectionStatus(status) {
+            connectionState = status;
+            widgetElement.classList.remove('connected', 'connecting', 'error');
+            
+            switch(status) {
+                case 'connected':
+                    widgetElement.classList.add('connected');
+                    sendButton.disabled = false;
+                    break;
+                case 'connecting':
+                    widgetElement.classList.add('connecting');
+                    sendButton.disabled = true;
+                    break;
+                case 'error':
+                case 'disconnected':
+                    widgetElement.classList.add('error');
+                    sendButton.disabled = true;
+                    break;
+            }
+        }
+        
+        // Connect to WebSocket
+        function connect() {
+            updateConnectionStatus('connecting');
+            
+            // Create WebSocket connection
+            ws = new WebSocket('ws://localhost:8765');
+            
+            ws.onopen = () => {
+                console.log('Connected to WebSocket server');
+                updateConnectionStatus('connected');
+                
+                // Send initial connection message
+                ws.send(JSON.stringify({
+                    type: 'connection_established',
+                    payload: {
+                        client: 'eye_overlay',
+                        version: '0.1.0',
+                        timestamp: Date.now()
+                    }
+                }));
+            };
+            
+            ws.onmessage = (event) => {
+                try {
+                    const data = JSON.parse(event.data);
+                    const type = data.type;
+                    
+                    console.log('Received message:', type);
+                    
+                    // Handle different message types
+                    if (type === 'welcome' || type === 'server_ready') {
+                        console.log('Server ready:', data);
+                    } else if (type === 'query_response') {
+                        addMessage('assistant', data.response);
+                    } else if (type === 'sensor_data') {
+                        // Just log sensor data for now
+                        console.log('Sensor data:', data.payload);
+                    }
+                } catch (error) {
+                    console.error('Error processing message:', error);
+                }
+            };
+            
+            ws.onclose = () => {
+                console.log('Connection closed');
+                updateConnectionStatus('disconnected');
+                
+                // Try to reconnect after 3 seconds
+                setTimeout(connect, 3000);
+            };
+            
+            ws.onerror = (error) => {
+                console.error('WebSocket error:', error);
+                updateConnectionStatus('error');
+            };
+        }
+        
+        // Event listeners
+        widgetIcon.addEventListener('click', toggleExpanded);
+        closeButton.addEventListener('click', toggleExpanded);
+        
+        sendButton.addEventListener('click', sendMessage);
+        queryInput.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') {
+                sendMessage();
+            }
+        });
+        
+        // Initialize
+        updateConnectionStatus('connecting');
+        connect();
+    </script>
+</body>
+</html>

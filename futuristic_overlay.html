@@ -1,0 +1,1001 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Futuristic AI Assistant Overlay</title>
+    <style>
+        :root {
+            --primary-color: #10a37f;
+            --primary-hover: #0c8a6b;
+            --secondary-color: #f7f7f8;
+            --text-color: #202123;
+            --light-text: #8e8ea0;
+            --border-color: #e5e5e5;
+            --hover-bg: #f5f5f5;
+            --dark-bg: #202123;
+            --white: #ffffff;
+            --error-color: #ef4146;
+            --icon-size: 48px;
+            --chat-width: 380px;
+            --chat-max-height: 85vh;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+        }
+
+        body {
+            background-color: transparent;
+            overflow: hidden;
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        /* Main Container */
+        .overlay-container {
+            position: fixed;
+            top: 0;
+            right: 0;
+            z-index: 9999;
+            pointer-events: none;
+        }
+
+        /* Eye Widget */
+        .eye-widget {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            width: var(--icon-size);
+            height: var(--icon-size);
+            background-color: var(--dark-bg);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+            color: var(--white);
+            font-size: 24px;
+            pointer-events: auto;
+            transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .eye-widget:hover {
+            transform: scale(1.05);
+            background-color: var(--primary-color);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .eye-widget:active {
+            transform: scale(0.98);
+        }
+
+        .eye-widget .connection-indicator {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            bottom: 2px;
+            right: 2px;
+            background-color: var(--light-text);
+            border: 2px solid var(--dark-bg);
+        }
+
+        .eye-widget.connected .connection-indicator {
+            background-color: var(--primary-color);
+        }
+
+        .eye-widget.error .connection-indicator {
+            background-color: var(--error-color);
+        }
+
+        .eye-widget.connecting .connection-indicator {
+            background-color: #f6c342;
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+            0% { opacity: 0.6; }
+            50% { opacity: 1; }
+            100% { opacity: 0.6; }
+        }
+
+        /* Chat Interface */
+        .chat-interface {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            width: var(--chat-width);
+            max-height: var(--chat-max-height);
+            display: flex;
+            flex-direction: column;
+            background-color: var(--white);
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+            overflow: hidden;
+            pointer-events: auto;
+            opacity: 0;
+            transform: translateY(-10px);
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+
+        .chat-interface.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .chat-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 14px 16px;
+            border-bottom: 1px solid var(--border-color);
+            background-color: var(--white);
+        }
+
+        .chat-title {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 600;
+            font-size: 16px;
+            color: var(--text-color);
+        }
+
+        .chat-title .icon {
+            color: var(--primary-color);
+            font-size: 20px;
+        }
+
+        .status-indicator {
+            font-size: 12px;
+            padding: 3px 8px;
+            border-radius: 10px;
+            background-color: var(--secondary-color);
+            color: var(--light-text);
+        }
+
+        .status-indicator.connected {
+            background-color: #e7f7f0;
+            color: var(--primary-color);
+        }
+
+        .status-indicator.error {
+            background-color: #feeced;
+            color: var(--error-color);
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 5px;
+        }
+
+        .header-button {
+            background: none;
+            border: none;
+            color: var(--light-text);
+            cursor: pointer;
+            width: 30px;
+            height: 30px;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background-color 0.2s;
+        }
+
+        .header-button:hover {
+            background-color: var(--hover-bg);
+            color: var(--text-color);
+        }
+
+        .chat-messages {
+            flex: 1;
+            overflow-y: auto;
+            padding: 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            min-height: 250px;
+            max-height: calc(var(--chat-max-height) - 130px);
+            scroll-behavior: smooth;
+        }
+
+        .chat-messages::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .chat-messages::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        .chat-messages::-webkit-scrollbar-thumb {
+            background-color: rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+        }
+
+        .welcome-message {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 20px;
+            gap: 10px;
+            border-radius: 10px;
+            background-color: var(--secondary-color);
+            color: var(--text-color);
+        }
+
+        .welcome-message h3 {
+            font-size: 18px;
+            font-weight: 600;
+        }
+
+        .welcome-message p {
+            font-size: 14px;
+            line-height: 1.5;
+            color: var(--light-text);
+        }
+
+        .message {
+            display: flex;
+            gap: 12px;
+            width: 100%;
+            max-width: 100%;
+            padding-right: 5px;
+        }
+
+        .message .avatar {
+            width: 30px;
+            height: 30px;
+            min-width: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 4px;
+            font-size: 16px;
+            margin-top: 2px;
+        }
+
+        .message.user .avatar {
+            background-color: #e9f5ff;
+            color: #2d82ff;
+        }
+
+        .message.assistant .avatar {
+            background-color: #e7f7f0;
+            color: var(--primary-color);
+        }
+
+        .message-content {
+            flex: 1;
+            font-size: 14px;
+            line-height: 1.6;
+            overflow-wrap: break-word;
+            padding-top: 4px;
+        }
+
+        .message.user .message-content {
+            color: var(--text-color);
+        }
+
+        .message.assistant .message-content {
+            color: var(--text-color);
+        }
+
+        .thinking {
+            display: flex;
+            gap: 4px;
+            margin-top: 8px;
+        }
+
+        .thinking .dot {
+            width: 8px;
+            height: 8px;
+            background-color: var(--light-text);
+            border-radius: 50%;
+            animation: thinking 1.4s infinite ease-in-out;
+        }
+
+        .thinking .dot:nth-child(1) {
+            animation-delay: 0s;
+        }
+
+        .thinking .dot:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .thinking .dot:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+
+        @keyframes thinking {
+            0%, 60%, 100% { transform: translateY(0); }
+            30% { transform: translateY(-5px); }
+        }
+
+        .message-timestamp {
+            font-size: 11px;
+            color: var(--light-text);
+            margin-top: 5px;
+        }
+
+        .chat-input-container {
+            padding: 12px 16px;
+            border-top: 1px solid var(--border-color);
+            background-color: var(--white);
+        }
+
+        .chat-input-box {
+            position: relative;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            background-color: var(--white);
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+
+        .chat-input-box:focus-within {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 2px rgba(16, 163, 127, 0.2);
+        }
+
+        .input-textarea {
+            width: 100%;
+            min-height: 50px;
+            max-height: 150px;
+            padding: 12px 50px 12px 16px;
+            border: none;
+            background: none;
+            font-size: 14px;
+            line-height: 1.5;
+            color: var(--text-color);
+            resize: none;
+            outline: none;
+        }
+
+        .input-textarea::placeholder {
+            color: var(--light-text);
+        }
+
+        .send-button {
+            position: absolute;
+            right: 10px;
+            bottom: 10px;
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: var(--primary-color);
+            color: var(--white);
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .send-button:hover {
+            background-color: var(--primary-hover);
+        }
+
+        .send-button:disabled {
+            background-color: var(--border-color);
+            cursor: not-allowed;
+        }
+
+        .input-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 8px;
+            font-size: 12px;
+            color: var(--light-text);
+        }
+
+        .context-indicator {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .context-indicator .icon {
+            font-size: 14px;
+        }
+
+        .memory-indicator {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .memory-indicator .icon {
+            font-size: 14px;
+        }
+
+        /* Mobile Optimization */
+        @media (max-width: 480px) {
+            :root {
+                --chat-width: 95vw;
+            }
+
+            .chat-interface {
+                right: 2.5vw;
+                left: 2.5vw;
+            }
+        }
+
+        /* Dark Mode Support */
+        @media (prefers-color-scheme: dark) {
+            .chat-interface, .chat-header {
+                background-color: var(--dark-bg);
+            }
+
+            .chat-title, .message.user .message-content, .message.assistant .message-content {
+                color: var(--white);
+            }
+
+            .chat-input-box {
+                background-color: #2d2d2d;
+                border-color: #3a3a3a;
+            }
+
+            .input-textarea {
+                color: var(--white);
+                background-color: transparent;
+            }
+
+            .header-button:hover {
+                background-color: #2d2d2d;
+                color: var(--white);
+            }
+
+            .welcome-message {
+                background-color: #2d2d2d;
+                color: var(--white);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="overlay-container">
+        <!-- Eye Widget -->
+        <div id="eye-widget" class="eye-widget connecting">
+            <span>👁️</span>
+            <div class="connection-indicator"></div>
+        </div>
+
+        <!-- Chat Interface -->
+        <div id="chat-interface" class="chat-interface">
+            <div class="chat-header">
+                <div class="chat-title">
+                    <span class="icon">🤖</span>
+                    <span>AI Assistant</span>
+                </div>
+                <div id="status-indicator" class="status-indicator">Connecting...</div>
+                <div class="action-buttons">
+                    <button id="clear-button" class="header-button" title="Clear conversation">🗑️</button>
+                    <button id="close-button" class="header-button" title="Close">✕</button>
+                </div>
+            </div>
+
+            <div id="chat-messages" class="chat-messages">
+                <div class="welcome-message">
+                    <h3>Welcome to your AI Assistant</h3>
+                    <p>I can help you understand your work context and answer questions about what you're doing. Ask me anything!</p>
+                </div>
+            </div>
+
+            <div class="chat-input-container">
+                <div class="chat-input-box">
+                    <textarea id="input-textarea" class="input-textarea" placeholder="Message AI Assistant..." rows="1"></textarea>
+                    <button id="send-button" class="send-button" disabled>➤</button>
+                </div>
+                <div class="input-footer">
+                    <div class="context-indicator">
+                        <span class="icon">📋</span>
+                        <span id="context-status">Context: Active</span>
+                    </div>
+                    <div class="memory-indicator">
+                        <span class="icon">💾</span>
+                        <span id="memory-status">Memory: Connected</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // DOM Elements
+            const eyeWidget = document.getElementById('eye-widget');
+            const chatInterface = document.getElementById('chat-interface');
+            const statusIndicator = document.getElementById('status-indicator');
+            const chatMessages = document.getElementById('chat-messages');
+            const inputTextarea = document.getElementById('input-textarea');
+            const sendButton = document.getElementById('send-button');
+            const clearButton = document.getElementById('clear-button');
+            const closeButton = document.getElementById('close-button');
+            const contextStatus = document.getElementById('context-status');
+            const memoryStatus = document.getElementById('memory-status');
+
+            // State
+            let isConnected = false;
+            let isChatVisible = false;
+            let isThinking = false;
+            let ws = null;
+            let reconnectAttempts = 0;
+            let maxReconnectAttempts = 5;
+            let reconnectDelay = 2000;
+            let contextAvailable = false;
+            let memoryConnected = false;
+            let messages = [];
+            
+            // Initialize
+            setupEventListeners();
+            connectWebSocket();
+            adjustTextareaHeight();
+            
+            function setupEventListeners() {
+                // Toggle chat visibility when eye widget is clicked
+                eyeWidget.addEventListener('click', toggleChatVisibility);
+                
+                // Close chat when close button is clicked
+                closeButton.addEventListener('click', hideChatInterface);
+                
+                // Send message when send button is clicked or Enter is pressed (without shift)
+                sendButton.addEventListener('click', sendMessage);
+                inputTextarea.addEventListener('keydown', (e) => {
+                    if (e.key === 'Enter' && !e.shiftKey) {
+                        e.preventDefault();
+                        sendMessage();
+                    }
+                });
+                
+                // Auto-resize textarea as user types
+                inputTextarea.addEventListener('input', adjustTextareaHeight);
+                
+                // Clear conversation
+                clearButton.addEventListener('click', clearConversation);
+            }
+            
+            function connectWebSocket() {
+                updateConnectionStatus('connecting');
+                
+                try {
+                    ws = new WebSocket('ws://localhost:8765');
+                    
+                    ws.onopen = () => {
+                        console.log('Connected to WebSocket server');
+                        isConnected = true;
+                        reconnectAttempts = 0;
+                        updateConnectionStatus('connected');
+                        
+                        // Send initial connection message
+                        sendToServer('connection_established', {
+                            client: 'futuristic_overlay',
+                            version: '1.0.0',
+                            capabilities: ['text', 'memory', 'context'],
+                            timestamp: Date.now()
+                        });
+                        
+                        // Request initial context
+                        sendToServer('context_request', {
+                            requestId: generateId(),
+                            timestamp: Date.now()
+                        });
+                    };
+                    
+                    ws.onclose = () => {
+                        console.log('Disconnected from WebSocket server');
+                        isConnected = false;
+                        updateConnectionStatus('error');
+                        
+                        // Attempt to reconnect
+                        if (reconnectAttempts < maxReconnectAttempts) {
+                            reconnectAttempts++;
+                            setTimeout(connectWebSocket, reconnectDelay);
+                            reconnectDelay *= 1.5; // Exponential backoff
+                        } else {
+                            console.error('Max reconnection attempts reached');
+                        }
+                    };
+                    
+                    ws.onerror = (error) => {
+                        console.error('WebSocket error:', error);
+                        updateConnectionStatus('error');
+                    };
+                    
+                    ws.onmessage = (event) => {
+                        handleServerMessage(event.data);
+                    };
+                } catch (error) {
+                    console.error('Error connecting to WebSocket:', error);
+                    updateConnectionStatus('error');
+                }
+            }
+            
+            function handleServerMessage(data) {
+                try {
+                    const message = JSON.parse(data);
+                    console.log('Received message:', message);
+                    
+                    const { type, payload } = message;
+                    
+                    switch (type) {
+                        case 'connection_status':
+                            handleConnectionStatus(payload);
+                            break;
+                            
+                        case 'query_response':
+                            handleQueryResponse(payload);
+                            break;
+                            
+                        case 'context_update':
+                            handleContextUpdate(payload);
+                            break;
+                            
+                        case 'memory_status':
+                            handleMemoryStatus(payload);
+                            break;
+                            
+                        case 'system_message':
+                            handleSystemMessage(payload);
+                            break;
+                            
+                        case 'echo':
+                            // Just log echoed messages
+                            console.log('Echo:', payload);
+                            break;
+                            
+                        default:
+                            console.log('Unknown message type:', type);
+                    }
+                } catch (error) {
+                    console.error('Error handling server message:', error);
+                }
+            }
+            
+            function handleConnectionStatus(payload) {
+                const { state } = payload;
+                updateConnectionStatus(state);
+                
+                if (state === 'connected') {
+                    console.log('Successfully connected to backend');
+                }
+            }
+            
+            function handleQueryResponse(payload) {
+                const { response, conversation_id, request_id } = payload;
+                
+                // Remove thinking indicator if present
+                removeThinkingIndicator();
+                
+                // Add assistant message
+                addMessage('assistant', response);
+                
+                // Store in memory
+                saveToMemory();
+            }
+            
+            function handleContextUpdate(payload) {
+                const { available, summary } = payload;
+                contextAvailable = available;
+                
+                // Update context status
+                contextStatus.textContent = `Context: ${available ? 'Active' : 'Inactive'}`;
+                
+                if (summary) {
+                    console.log('Context summary updated:', summary);
+                }
+            }
+            
+            function handleMemoryStatus(payload) {
+                const { connected, last_saved } = payload;
+                memoryConnected = connected;
+                
+                // Update memory status
+                memoryStatus.textContent = `Memory: ${connected ? 'Connected' : 'Disconnected'}`;
+                
+                if (last_saved) {
+                    console.log('Last memory save:', new Date(last_saved));
+                }
+            }
+            
+            function handleSystemMessage(payload) {
+                const { message, severity } = payload;
+                console.log(`System message (${severity}):`, message);
+                
+                // Only show important system messages in the chat
+                if (severity === 'important' || severity === 'error') {
+                    addSystemMessage(message, severity);
+                }
+            }
+            
+            function sendMessage() {
+                const message = inputTextarea.value.trim();
+                if (!message || !isConnected || isThinking) {
+                    return;
+                }
+                
+                // Add user message to chat
+                addMessage('user', message);
+                
+                // Clear input
+                inputTextarea.value = '';
+                adjustTextareaHeight();
+                
+                // Show thinking indicator
+                showThinkingIndicator();
+                
+                // Send to server
+                sendToServer('user_interaction', {
+                    type: 'query',
+                    query: message,
+                    source: 'overlay',
+                    conversation_id: generateConversationId(),
+                    request_id: generateId(),
+                    timestamp: Date.now()
+                });
+                
+                // Save to memory
+                saveToMemory();
+            }
+            
+            function addMessage(role, content) {
+                const timestamp = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+                
+                // Create message elements
+                const messageDiv = document.createElement('div');
+                messageDiv.className = `message ${role}`;
+                
+                const avatarDiv = document.createElement('div');
+                avatarDiv.className = 'avatar';
+                avatarDiv.textContent = role === 'user' ? '👤' : '🤖';
+                
+                const contentDiv = document.createElement('div');
+                contentDiv.className = 'message-content';
+                contentDiv.textContent = content;
+                
+                const timestampDiv = document.createElement('div');
+                timestampDiv.className = 'message-timestamp';
+                timestampDiv.textContent = timestamp;
+                
+                // Assemble message
+                messageDiv.appendChild(avatarDiv);
+                const messageContentWrapper = document.createElement('div');
+                messageContentWrapper.appendChild(contentDiv);
+                messageContentWrapper.appendChild(timestampDiv);
+                messageDiv.appendChild(messageContentWrapper);
+                
+                // Add to DOM
+                chatMessages.appendChild(messageDiv);
+                
+                // Remove welcome message if it exists
+                const welcomeMessage = document.querySelector('.welcome-message');
+                if (welcomeMessage) {
+                    welcomeMessage.remove();
+                }
+                
+                // Store message
+                messages.push({ role, content, timestamp });
+                
+                // Scroll to bottom
+                scrollToBottom();
+            }
+            
+            function addSystemMessage(message, severity) {
+                const timestamp = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+                
+                // Create message elements
+                const messageDiv = document.createElement('div');
+                messageDiv.className = `message system ${severity}`;
+                
+                const avatarDiv = document.createElement('div');
+                avatarDiv.className = 'avatar';
+                avatarDiv.textContent = '⚙️';
+                
+                const contentDiv = document.createElement('div');
+                contentDiv.className = 'message-content';
+                contentDiv.textContent = message;
+                
+                const timestampDiv = document.createElement('div');
+                timestampDiv.className = 'message-timestamp';
+                timestampDiv.textContent = timestamp;
+                
+                // Assemble message
+                messageDiv.appendChild(avatarDiv);
+                const messageContentWrapper = document.createElement('div');
+                messageContentWrapper.appendChild(contentDiv);
+                messageContentWrapper.appendChild(timestampDiv);
+                messageDiv.appendChild(messageContentWrapper);
+                
+                // Add to DOM
+                chatMessages.appendChild(messageDiv);
+                
+                // Scroll to bottom
+                scrollToBottom();
+            }
+            
+            function showThinkingIndicator() {
+                isThinking = true;
+                
+                // Create thinking indicator
+                const thinkingDiv = document.createElement('div');
+                thinkingDiv.className = 'message assistant';
+                thinkingDiv.id = 'thinking-indicator';
+                
+                const avatarDiv = document.createElement('div');
+                avatarDiv.className = 'avatar';
+                avatarDiv.textContent = '🤖';
+                
+                const contentDiv = document.createElement('div');
+                contentDiv.className = 'message-content';
+                
+                const thinkingDotsDiv = document.createElement('div');
+                thinkingDotsDiv.className = 'thinking';
+                for (let i = 0; i < 3; i++) {
+                    const dot = document.createElement('div');
+                    dot.className = 'dot';
+                    thinkingDotsDiv.appendChild(dot);
+                }
+                
+                contentDiv.appendChild(thinkingDotsDiv);
+                
+                // Assemble thinking indicator
+                thinkingDiv.appendChild(avatarDiv);
+                thinkingDiv.appendChild(contentDiv);
+                
+                // Add to DOM
+                chatMessages.appendChild(thinkingDiv);
+                
+                // Scroll to bottom
+                scrollToBottom();
+            }
+            
+            function removeThinkingIndicator() {
+                isThinking = false;
+                const thinkingIndicator = document.getElementById('thinking-indicator');
+                if (thinkingIndicator) {
+                    thinkingIndicator.remove();
+                }
+            }
+            
+            function clearConversation() {
+                // Clear chat messages
+                while (chatMessages.firstChild) {
+                    chatMessages.removeChild(chatMessages.firstChild);
+                }
+                
+                // Add welcome message back
+                const welcomeDiv = document.createElement('div');
+                welcomeDiv.className = 'welcome-message';
+                welcomeDiv.innerHTML = `
+                    <h3>Welcome to your AI Assistant</h3>
+                    <p>I can help you understand your work context and answer questions about what you're doing. Ask me anything!</p>
+                `;
+                chatMessages.appendChild(welcomeDiv);
+                
+                // Clear message history
+                messages = [];
+                
+                // Notify server
+                sendToServer('clear_conversation', {
+                    timestamp: Date.now()
+                });
+            }
+            
+            function saveToMemory() {
+                if (!memoryConnected || messages.length === 0) {
+                    return;
+                }
+                
+                sendToServer('memory_store', {
+                    conversation: messages,
+                    timestamp: Date.now()
+                });
+            }
+            
+            function toggleChatVisibility() {
+                if (isChatVisible) {
+                    hideChatInterface();
+                } else {
+                    showChatInterface();
+                }
+            }
+            
+            function showChatInterface() {
+                isChatVisible = true;
+                chatInterface.classList.add('visible');
+                inputTextarea.focus();
+            }
+            
+            function hideChatInterface() {
+                isChatVisible = false;
+                chatInterface.classList.remove('visible');
+            }
+            
+            function updateConnectionStatus(status) {
+                // Update eye widget
+                eyeWidget.classList.remove('connected', 'connecting', 'error');
+                eyeWidget.classList.add(status);
+                
+                // Update status indicator
+                statusIndicator.classList.remove('connected', 'error');
+                
+                switch (status) {
+                    case 'connected':
+                        statusIndicator.textContent = 'Connected';
+                        statusIndicator.classList.add('connected');
+                        sendButton.disabled = false;
+                        break;
+                    case 'connecting':
+                        statusIndicator.textContent = 'Connecting...';
+                        sendButton.disabled = true;
+                        break;
+                    case 'error':
+                    case 'disconnected':
+                        statusIndicator.textContent = 'Disconnected';
+                        statusIndicator.classList.add('error');
+                        sendButton.disabled = true;
+                        break;
+                }
+            }
+            
+            function adjustTextareaHeight() {
+                // Reset height to auto to correctly calculate the new height
+                inputTextarea.style.height = 'auto';
+                
+                // Set new height based on scrollHeight (clamped between min and max height)
+                const newHeight = Math.min(Math.max(inputTextarea.scrollHeight, 50), 150);
+                inputTextarea.style.height = `${newHeight}px`;
+            }
+            
+            function scrollToBottom() {
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+            }
+            
+            function sendToServer(type, payload) {
+                if (!ws || ws.readyState !== WebSocket.OPEN) {
+                    console.warn('Cannot send message - WebSocket not connected');
+                    return false;
+                }
+                
+                try {
+                    ws.send(JSON.stringify({
+                        type,
+                        payload
+                    }));
+                    return true;
+                } catch (error) {
+                    console.error('Error sending message to server:', error);
+                    return false;
+                }
+            }
+            
+            // Utility functions
+            function generateId() {
+                return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+                    const r = Math.random() * 16 | 0;
+                    const v = c === 'x' ? r : (r & 0x3 | 0x8);
+                    return v.toString(16);
+                });
+            }
+            
+            function generateConversationId() {
+                // Use a static ID for the session or generate a new one if needed
+                if (!window.conversationId) {
+                    window.conversationId = generateId();
+                }
+                return window.conversationId;
+            }
+        });
+    </script>
+</body>
+</html>

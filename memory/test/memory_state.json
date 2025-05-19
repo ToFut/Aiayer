@@ -1,0 +1,33 @@
+{
+  "memory": {
+    "test_key": "test_value",
+    "datetime_key": {
+      "time": "2025-05-13T14:43:39.334977",
+      "value": 42
+    }
+  },
+  "importance_scores": {
+    "test_key": 1.0,
+    "datetime_key": 0.8
+  },
+  "creation_timestamps": {
+    "test_key": "2025-05-13T14:43:39.334966",
+    "datetime_key": "2025-05-13T14:43:39.334981"
+  },
+  "access_timestamps": {
+    "test_key": "2025-05-13T14:43:39.339960",
+    "datetime_key": "2025-05-13T14:43:39.340020"
+  },
+  "screen_data": [
+    {
+      "window_title": "Test Window",
+      "screen_text": "This is test screen text",
+      "image_data": null,
+      "timestamp": "2025-05-13T14:43:39.334988"
+    }
+  ],
+  "process_data": [],
+  "file_data": [],
+  "network_data": [],
+  "sensor_data": {}
+}

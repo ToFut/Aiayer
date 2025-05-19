@@ -1,0 +1,1065 @@
+#!/usr/bin/env python3
+"""
+Enhanced WebSocket Server for Aiayer
+
+This is a self-contained implementation that includes:
+1. Real LLM connection (using Ollama)
+2. Context awareness (with screen capture)
+3. Proactive suggestions
+
+All functionality is included in this single file to avoid import issues.
+"""
+
+import asyncio
+import base64
+import datetime
+import json
+import logging
+import os
+import random
+import re
+import signal
+import subprocess
+import sys
+import time
+import traceback
+import uuid
+from concurrent.futures import ThreadPoolExecutor
+from dataclasses import dataclass, field
+from io import BytesIO
+from logging.handlers import RotatingFileHandler
+from typing import Any, Callable, Dict, List, Optional, Set, Tuple, Union
+
+try:
+    import numpy as np
+    import PIL.Image
+    import PIL.ImageGrab
+    import requests
+    import websockets
+    from websockets.exceptions import ConnectionClosed
+except ImportError:
+    print("Installing required dependencies...")
+    subprocess.check_call([sys.executable, "-m", "pip", "install", 
+                          "websockets", "numpy", "pillow", "requests"])
+    import numpy as np
+    import PIL.Image
+    import PIL.ImageGrab
+    import requests
+    import websockets
+    from websockets.exceptions import ConnectionClosed
+
+# Configure logging
+LOG_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "logs")
+os.makedirs(LOG_DIR, exist_ok=True)
+
+# Get log level from environment variable or default to INFO
+log_level_name = os.environ.get("LOG_LEVEL", "INFO").upper()
+log_level = getattr(logging, log_level_name, logging.INFO)
+
+# Set up rotating file handler
+log_file = os.path.join(LOG_DIR, "enhanced_server.log")
+file_handler = RotatingFileHandler(log_file, maxBytes=5*1024*1024, backupCount=5)
+file_handler.setFormatter(logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s'))
+
+# Set up console handler
+console_handler = logging.StreamHandler()
+console_handler.setFormatter(logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s'))
+
+# Configure root logger
+root_logger = logging.getLogger()
+root_logger.setLevel(log_level)
+root_logger.addHandler(file_handler)
+root_logger.addHandler(console_handler)
+
+logger = logging.getLogger("enhanced_server")
+logger.info(f"Starting Enhanced Server with log level: {log_level_name}")
+
+# ======================== DATA MODELS ========================
+
+@dataclass
+class Message:
+    """Base message class for all messages in the system."""
+    id: str = field(default_factory=lambda: str(uuid.uuid4()))
+    timestamp: float = field(default_factory=time.time)
+    type: str = "message"
+    
+    def to_dict(self) -> Dict[str, Any]:
+        """Convert message to dictionary for JSON serialization."""
+        return {
+            "id": self.id,
+            "timestamp": self.timestamp,
+            "type": self.type
+        }
+
+@dataclass
+class ChatMessage(Message):
+    """Chat message between user and assistant."""
+    content: str = ""
+    sender: str = "user"  # "user" or "assistant"
+    
+    def __post_init__(self):
+        """Ensure the type is set correctly for chat messages."""
+        self.type = "message"  # Ensure the type is consistently "message"
+    
+    def to_dict(self) -> Dict[str, Any]:
+        """Convert chat message to dictionary for JSON serialization."""
+        result = super().to_dict()
+        result.update({
+            "content": self.content,
+            "sender": self.sender
+        })
+        return result
+
+@dataclass
+class ContextItem:
+    """Represents a piece of context from the user's environment."""
+    source: str  # e.g., "screen", "clipboard", "active_window"
+    content: str
+    timestamp: float = field(default_factory=time.time)
+    score: float = 0.0  # Relevance score
+    
+    def to_dict(self) -> Dict[str, Any]:
+        """Convert context item to dictionary for JSON serialization."""
+        return {
+            "source": self.source,
+            "content": self.content,
+            "timestamp": self.timestamp,
+            "score": self.score
+        }
+
+@dataclass
+class Suggestion:
+    """Proactive suggestion for the user."""
+    id: str = field(default_factory=lambda: str(uuid.uuid4()))
+    content: str = ""
+    context_source: str = ""  # What context triggered this suggestion
+    timestamp: float = field(default_factory=time.time)
+    accepted: bool = False
+    
+    def to_dict(self) -> Dict[str, Any]:
+        """Convert suggestion to dictionary for JSON serialization."""
+        return {
+            "id": self.id,
+            "content": self.content,
+            "context_source": self.context_source,
+            "timestamp": self.timestamp,
+            "accepted": self.accepted
+        }
+
+# ======================== LLM INTEGRATION ========================
+
+class OllamaLLM:
+    """Client for interacting with a local Ollama instance."""
+    
+    def __init__(self, base_url: str = "http://localhost:11434", model: str = "llama3"):
+        """
+        Initialize the Ollama client.
+        
+        Args:
+            base_url: URL of the Ollama server
+            model: Name of the model to use
+        """
+        self.base_url = base_url
+        self.model = model
+        self.logger = logging.getLogger(__name__)
+        
+        # Test connection
+        self.is_available = self._test_connection()
+        if self.is_available:
+            self.logger.info(f"Successfully connected to Ollama at {base_url}")
+        else:
+            self.logger.warning(f"Failed to connect to Ollama at {base_url}. Using fallback responses.")
+    
+    def _test_connection(self) -> bool:
+        """Test connection to Ollama server and check model availability."""
+        try:
+            # First check if the server is running
+            response = requests.get(f"{self.base_url}/api/version", timeout=2)
+            if response.status_code != 200:
+                self.logger.error(f"Ollama server returned status {response.status_code}")
+                return False
+                
+            # Then check if we can access the specified model
+            try:
+                model_response = requests.post(
+                    f"{self.base_url}/api/generate", 
+                    json={"model": self.model, "prompt": "test", "stream": False},
+                    timeout=5
+                )
+                
+                if model_response.status_code == 200:
+                    self.logger.info(f"Successfully connected to Ollama with model: {self.model}")
+                    return True
+                else:
+                    self.logger.error(f"Model {self.model} not available. Status: {model_response.status_code}")
+                    
+                    # Try to list available models
+                    list_response = requests.get(f"{self.base_url}/api/tags", timeout=2)
+                    if list_response.status_code == 200:
+                        models = list_response.json().get("models", [])
+                        model_names = [m.get("name") for m in models]
+                        if model_names:
+                            self.logger.info(f"Available models: {', '.join(model_names)}")
+                            
+                            # Try to use an available model instead
+                            if model_names:
+                                self.model = model_names[0]
+                                self.logger.info(f"Switching to available model: {self.model}")
+                                return True
+                    
+                    return False
+                    
+            except Exception as e:
+                self.logger.error(f"Error checking model availability: {e}")
+                return False
+                
+        except (requests.RequestException, ConnectionError) as e:
+            self.logger.error(f"Error connecting to Ollama: {e}")
+            return False
+    
+    async def generate(self, prompt: str, system_prompt: str = "", 
+                      temperature: float = 0.7, max_tokens: int = 500) -> str:
+        """
+        Generate text completion from the LLM.
+        
+        Args:
+            prompt: Input text prompt
+            system_prompt: System instructions for the model
+            temperature: Sampling temperature (0.0 to 1.0)
+            max_tokens: Maximum tokens to generate
+            
+        Returns:
+            Generated text as string
+        """
+        if not self.is_available:
+            return self._fallback_generate(prompt)
+        
+        try:
+            payload = {
+                "model": self.model,
+                "prompt": prompt,
+                "system": system_prompt,
+                "temperature": temperature,
+                "max_tokens": max_tokens
+            }
+            
+            loop = asyncio.get_event_loop()
+            with ThreadPoolExecutor() as pool:
+                response = await loop.run_in_executor(
+                    pool, 
+                    lambda: requests.post(
+                        f"{self.base_url}/api/generate", 
+                        json=payload,
+                        timeout=30
+                    )
+                )
+            
+            if response.status_code == 200:
+                try:
+                    return response.json()["response"]
+                except (json.JSONDecodeError, KeyError) as e:
+                    self.logger.error(f"Error parsing Ollama response: {e}")
+                    return self._fallback_generate(prompt)
+            else:
+                self.logger.error(f"Ollama returned status code {response.status_code}")
+                return self._fallback_generate(prompt)
+                
+        except Exception as e:
+            self.logger.error(f"Error calling Ollama generate API: {e}")
+            return self._fallback_generate(prompt)
+    
+    async def chat(self, messages: List[Dict[str, str]], system_prompt: str = "",
+                  temperature: float = 0.7, max_tokens: int = 500) -> str:
+        """
+        Chat with the LLM using a conversation format.
+        
+        Args:
+            messages: List of message dicts with "role" and "content" keys
+            system_prompt: System instructions for the model
+            temperature: Sampling temperature (0.0 to 1.0)
+            max_tokens: Maximum tokens to generate
+            
+        Returns:
+            Generated response as string
+        """
+        if not self.is_available:
+            if messages and messages[-1]["role"] == "user":
+                return self._fallback_generate(messages[-1]["content"])
+            return self._fallback_generate("How can I help you?")
+        
+        try:
+            payload = {
+                "model": self.model,
+                "messages": messages,
+                "system": system_prompt,
+                "temperature": temperature,
+                "max_tokens": max_tokens
+            }
+            
+            loop = asyncio.get_event_loop()
+            with ThreadPoolExecutor() as pool:
+                response = await loop.run_in_executor(
+                    pool, 
+                    lambda: requests.post(
+                        f"{self.base_url}/api/chat", 
+                        json=payload,
+                        timeout=30
+                    )
+                )
+            
+            if response.status_code == 200:
+                try:
+                    return response.json()["message"]["content"]
+                except (json.JSONDecodeError, KeyError) as e:
+                    self.logger.error(f"Error parsing Ollama chat response: {e}")
+                    if messages and messages[-1]["role"] == "user":
+                        return self._fallback_generate(messages[-1]["content"])
+                    return self._fallback_generate("How can I help you?")
+            else:
+                self.logger.error(f"Ollama returned status code {response.status_code}")
+                if messages and messages[-1]["role"] == "user":
+                    return self._fallback_generate(messages[-1]["content"])
+                return self._fallback_generate("How can I help you?")
+                
+        except Exception as e:
+            self.logger.error(f"Error calling Ollama chat API: {e}")
+            if messages and messages[-1]["role"] == "user":
+                return self._fallback_generate(messages[-1]["content"])
+            return self._fallback_generate("How can I help you?")
+    
+    def _fallback_generate(self, prompt: str) -> str:
+        """
+        Provide a fallback response when Ollama is not available.
+        
+        Args:
+            prompt: The user's prompt
+            
+        Returns:
+            A simple fallback response
+        """
+        self.logger.warning("Using fallback response generator")
+        
+        # Extract a question if it exists
+        question_match = re.search(r'\b(what|who|where|when|why|how|can|could|should|would|is|are|was|were)\b.*\?', 
+                                  prompt.lower())
+        
+        templates = [
+            f"I received your message: '{prompt}'. I'm currently operating in fallback mode without LLM connection.",
+            "I'm listening. To get full functionality, please make sure the Ollama server is running locally.",
+            "I understand you're trying to interact with me. For best results, please ensure Ollama is running.",
+            "I'm currently in fallback mode. To use full AI capabilities, start Ollama with 'ollama serve'.",
+            "I'm here, but operating with limited capabilities. Start Ollama for full functionality."
+        ]
+        
+        if question_match:
+            question_templates = [
+                "I'd like to answer your question fully, but I'm currently in fallback mode without LLM access.",
+                "That's a good question. To get a proper answer, please ensure Ollama is running on your system.",
+                "I need my AI capabilities to properly answer this. Please start Ollama with 'ollama serve'.",
+            ]
+            templates.extend(question_templates)
+        
+        return random.choice(templates)
+
+# ======================== CONTEXT AWARENESS ========================
+
+class ScreenCapture:
+    """Captures and processes screen content for context awareness."""
+    
+    def __init__(self, capture_interval: int = 10):
+        """
+        Initialize screen capture.
+        
+        Args:
+            capture_interval: Time between captures in seconds
+        """
+        self.capture_interval = capture_interval
+        self.logger = logging.getLogger(__name__)
+        self.last_capture_time = 0
+        self.last_image = None
+        self.executor = ThreadPoolExecutor(max_workers=2)
+    
+    async def capture(self) -> Optional[PIL.Image.Image]:
+        """
+        Capture the screen if enough time has passed since last capture.
+        
+        Returns:
+            PIL Image object or None if capture failed
+        """
+        current_time = time.time()
+        if current_time - self.last_capture_time < self.capture_interval:
+            return self.last_image
+            
+        try:
+            loop = asyncio.get_event_loop()
+            self.last_image = await loop.run_in_executor(
+                self.executor, PIL.ImageGrab.grab
+            )
+            self.last_capture_time = current_time
+            self.logger.debug("Screen captured successfully")
+            return self.last_image
+        except Exception as e:
+            self.logger.error(f"Error capturing screen: {e}")
+            return None
+    
+    @staticmethod
+    def image_to_base64(image: PIL.Image.Image, format: str = 'JPEG', quality: int = 70) -> str:
+        """
+        Convert PIL image to base64 encoded string.
+        
+        Args:
+            image: PIL Image object
+            format: Image format to save as
+            quality: JPEG quality (0-100)
+            
+        Returns:
+            Base64 encoded image string
+        """
+        if image is None:
+            return ""
+            
+        buffer = BytesIO()
+        image.save(buffer, format=format, quality=quality)
+        img_str = base64.b64encode(buffer.getvalue()).decode('utf-8')
+        return f"data:image/{format.lower()};base64,{img_str}"
+    
+    async def extract_text(self, image: PIL.Image.Image) -> str:
+        """
+        Extract text from image using OCR.
+        
+        This is a placeholder - a real implementation would use tesseract or
+        another OCR library, but we're keeping dependencies minimal.
+        
+        Args:
+            image: PIL Image object
+            
+        Returns:
+            Extracted text or empty string
+        """
+        # In a real implementation, this would use OCR
+        # For now, we'll return a placeholder
+        return "[Text content would be extracted from screen]"
+
+class EnhancedContextManager:
+    """Manages context from various sources including screen capture."""
+    
+    def __init__(self, max_history: int = 50):
+        """
+        Initialize context manager.
+        
+        Args:
+            max_history: Maximum number of context items to store
+        """
+        self.logger = logging.getLogger(__name__)
+        self.max_history = max_history
+        self.screen_capture = ScreenCapture()
+        self.context_history: List[ContextItem] = []
+        self.llm = OllamaLLM()
+        self.executor = ThreadPoolExecutor(max_workers=2)
+    
+    async def collect_context(self) -> List[ContextItem]:
+        """
+        Collect context from various sources.
+        
+        Returns:
+            List of context items
+        """
+        screen_image = await self.screen_capture.capture()
+        context_items = []
+        
+        # Add screen content
+        if screen_image:
+            # Extract text from screen (placeholder)
+            extracted_text = await self.screen_capture.extract_text(screen_image)
+            if extracted_text:
+                context_items.append(ContextItem(
+                    source="screen",
+                    content=extracted_text
+                ))
+                
+            # Also save the screen image as a separate context item
+            base64_image = self.screen_capture.image_to_base64(screen_image)
+            if base64_image:
+                context_items.append(ContextItem(
+                    source="screen_image",
+                    content=base64_image
+                ))
+        
+        # In a real implementation, you would also collect context from:
+        # - Active window title and content
+        # - Clipboard content
+        # - Recently used applications
+        # - User's calendar events
+        # - etc.
+        
+        # Add collected items to history
+        self.context_history.extend(context_items)
+        
+        # Trim history if needed
+        if len(self.context_history) > self.max_history:
+            self.context_history = self.context_history[-self.max_history:]
+        
+        return context_items
+    
+    async def analyze_context(self, query: str = "") -> List[ContextItem]:
+        """
+        Analyze and score context items for relevance to the current query.
+        
+        Args:
+            query: Optional query to score context against
+            
+        Returns:
+            List of context items sorted by relevance
+        """
+        if not self.context_history:
+            return []
+            
+        # A real implementation would use embedding-based search or an LLM
+        # For now, we just return the most recent items
+        sorted_context = sorted(
+            self.context_history, 
+            key=lambda x: x.timestamp, 
+            reverse=True
+        )
+        
+        if query and self.llm.is_available:
+            try:
+                # Score items with LLM (in parallel)
+                async def score_item(item):
+                    prompt = f"""
+                    Rate the relevance of this content to the query on a scale of 0.0 to 1.0:
+                    
+                    Query: {query}
+                    
+                    Content: {item.content[:500]}  # Limit content size
+                    
+                    Return only a number between 0.0 and 1.0, with 1.0 being extremely relevant.
+                    """
+                    
+                    try:
+                        score_text = await self.llm.generate(prompt)
+                        score_match = re.search(r'([0-9]*[.]?[0-9]+)', score_text)
+                        if score_match:
+                            item.score = float(score_match.group(1))
+                            if item.score > 1.0:
+                                item.score = 1.0
+                            elif item.score < 0.0:
+                                item.score = 0.0
+                    except Exception as e:
+                        self.logger.error(f"Error scoring context item: {e}")
+                    
+                    return item
+                
+                # Score items in parallel (limit to top 5 for performance)
+                tasks = [score_item(item) for item in sorted_context[:5]]
+                scored_items = await asyncio.gather(*tasks)
+                
+                # Sort by score
+                sorted_context = sorted(
+                    scored_items + sorted_context[5:],
+                    key=lambda x: x.score,
+                    reverse=True
+                )
+            
+            except Exception as e:
+                self.logger.error(f"Error analyzing context: {e}")
+        
+        return sorted_context
+    
+    def get_context_for_prompt(self, max_items: int = 3) -> str:
+        """
+        Get context formatted for inclusion in a prompt.
+        
+        Args:
+            max_items: Maximum number of context items to include
+            
+        Returns:
+            Formatted context string
+        """
+        if not self.context_history:
+            return ""
+            
+        sorted_context = sorted(
+            self.context_history, 
+            key=lambda x: x.timestamp, 
+            reverse=True
+        )
+        
+        # Filter out image content which can't be included in a text prompt
+        text_context = [item for item in sorted_context 
+                       if item.source != "screen_image"]
+        
+        context_str = "Current context:\n\n"
+        for i, item in enumerate(text_context[:max_items]):
+            context_str += f"[{item.source}] {item.content[:1000]}\n\n"
+            
+        return context_str
+
+# ======================== PROACTIVE SUGGESTIONS ========================
+
+class ProactiveSuggestionEngine:
+    """Generates proactive suggestions based on context."""
+    
+    def __init__(self, context_manager: EnhancedContextManager, 
+                suggestion_interval: int = 30):
+        """
+        Initialize suggestion engine.
+        
+        Args:
+            context_manager: EnhancedContextManager instance
+            suggestion_interval: Minimum time between suggestions in seconds
+        """
+        self.logger = logging.getLogger(__name__)
+        self.context_manager = context_manager
+        self.suggestion_interval = suggestion_interval
+        self.last_suggestion_time = 0
+        self.suggestions: List[Suggestion] = []
+        self.max_suggestions = 20
+        self.llm = OllamaLLM()
+    
+    async def generate_suggestion(self) -> Optional[Suggestion]:
+        """
+        Generate a proactive suggestion based on current context.
+        
+        Returns:
+            Suggestion object or None if generation failed
+        """
+        current_time = time.time()
+        if current_time - self.last_suggestion_time < self.suggestion_interval:
+            return None
+            
+        # Only proceed if LLM is available - no fallback for suggestions
+        if not self.llm.is_available:
+            return None
+            
+        try:
+            # Get recent context
+            context = await self.context_manager.analyze_context()
+            if not context:
+                return None
+                
+            # Use up to 3 most recent context items
+            recent_context = context[:3]
+            
+            # Create a prompt for the LLM
+            context_str = "\n".join([
+                f"[{item.source}] {item.content[:500]}"  # Limit content size
+                for item in recent_context
+                if item.source != "screen_image"  # Skip image content in prompt
+            ])
+            
+            if not context_str:
+                return None
+                
+            prompt = f"""
+            Based on the user's current context, generate ONE helpful, proactive suggestion. 
+            The suggestion should be specific, actionable, and relevant to what the user is currently doing.
+            
+            USER CONTEXT:
+            {context_str}
+            
+            RULES FOR SUGGESTIONS:
+            1. Be specific and actionable - suggest a concrete action
+            2. Keep it brief (max 1-2 sentences)
+            3. Make it relevant to the user's current activity
+            4. Don't be pushy or interrupt the user's flow
+            5. Provide value - suggest something that saves time or improves the user's work
+            
+            SUGGESTION:
+            """
+            
+            # Generate suggestion with LLM
+            suggestion_text = await self.llm.generate(prompt)
+            
+            # Clean up the suggestion text
+            suggestion_text = suggestion_text.strip()
+            
+            # Create suggestion object
+            suggestion = Suggestion(
+                content=suggestion_text,
+                context_source=recent_context[0].source
+            )
+            
+            self.last_suggestion_time = current_time
+            
+            # Add to suggestions list
+            self.suggestions.append(suggestion)
+            
+            # Trim suggestions list if needed
+            if len(self.suggestions) > self.max_suggestions:
+                self.suggestions = self.suggestions[-self.max_suggestions:]
+                
+            return suggestion
+            
+        except Exception as e:
+            self.logger.error(f"Error generating suggestion: {e}")
+            return None
+    
+    def process_feedback(self, suggestion_id: str, accepted: bool) -> None:
+        """
+        Process user feedback on a suggestion.
+        
+        Args:
+            suggestion_id: ID of the suggestion
+            accepted: Whether the suggestion was accepted
+        """
+        for suggestion in self.suggestions:
+            if suggestion.id == suggestion_id:
+                suggestion.accepted = accepted
+                self.logger.info(f"Suggestion {suggestion_id} marked as {'accepted' if accepted else 'rejected'}")
+                break
+
+# ======================== WEBSOCKET SERVER ========================
+
+class WebSocketServer:
+    """Enhanced WebSocket server with LLM, context awareness, and proactive suggestions."""
+    
+    def __init__(self, host: str = "localhost", port: int = 8765):
+        """
+        Initialize WebSocket server.
+        
+        Args:
+            host: Host to bind server to
+            port: Port to bind server to
+        """
+        self.host = host
+        self.port = port
+        self.clients: Set[websockets.WebSocketServerProtocol] = set()
+        self.server = None
+        self.logger = logging.getLogger(__name__)
+        self.conversation_history: List[ChatMessage] = []
+        
+        # Initialize components
+        self.llm = OllamaLLM()
+        self.context_manager = EnhancedContextManager()
+        self.suggestion_engine = ProactiveSuggestionEngine(self.context_manager)
+        
+        # Setup tasks
+        self.tasks = []
+    
+    async def start(self) -> bool:
+        """
+        Start the WebSocket server and background tasks.
+        
+        Returns:
+            True if server started successfully, False otherwise
+        """
+        try:
+            # Start server
+            self.server = await websockets.serve(
+                self._handle_client,
+                self.host,
+                self.port,
+                ping_interval=30,  # Send ping every 30 seconds
+                ping_timeout=10,   # Wait 10 seconds for pong response
+                close_timeout=5    # Wait 5 seconds for a connection to close
+            )
+            self.logger.info(f"WebSocket server started on {self.host}:{self.port}")
+            
+            # Start background tasks
+            self.tasks.append(asyncio.create_task(self._background_context_collection()))
+            self.tasks.append(asyncio.create_task(self._background_suggestion_generation()))
+            
+            return True
+        except Exception as e:
+            self.logger.error(f"Error starting WebSocket server: {e}")
+            self.logger.error(traceback.format_exc())
+            return False
+    
+    async def stop(self) -> None:
+        """Stop the WebSocket server and background tasks."""
+        # Cancel background tasks
+        for task in self.tasks:
+            if not task.done():
+                task.cancel()
+                try:
+                    await task
+                except asyncio.CancelledError:
+                    pass
+        
+        # Close server
+        if self.server:
+            self.server.close()
+            await self.server.wait_closed()
+            self.logger.info("WebSocket server stopped")
+    
+    async def _handle_client(self, websocket: websockets.WebSocketServerProtocol, 
+                           path: str) -> None:
+        """
+        Handle new client connection.
+        
+        Args:
+            websocket: WebSocket connection
+            path: Connection path
+        """
+        self.clients.add(websocket)
+        client_id = id(websocket)
+        self.logger.info(f"New client connected: {client_id}")
+        
+        try:
+            # Send welcome message
+            welcome_msg = ChatMessage(
+                content="Welcome to the enhanced Aiayer assistant! How can I help you today?",
+                sender="assistant"
+            )
+            await self._send_message(websocket, welcome_msg)
+            
+            # Handle messages from this client
+            async for message in websocket:
+                try:
+                    await self._process_message(websocket, message)
+                except Exception as e:
+                    self.logger.error(f"Error processing message: {e}")
+                    self.logger.error(traceback.format_exc())
+                    
+                    # Send error message to client
+                    error_msg = ChatMessage(
+                        content=f"Sorry, an error occurred while processing your message. Please try again.",
+                        sender="assistant"
+                    )
+                    await self._send_message(websocket, error_msg)
+        
+        except ConnectionClosed:
+            self.logger.info(f"Client disconnected: {client_id}")
+        except Exception as e:
+            self.logger.error(f"Error handling client: {e}")
+            self.logger.error(traceback.format_exc())
+        finally:
+            self.clients.remove(websocket)
+    
+    async def _process_message(self, websocket: websockets.WebSocketServerProtocol, 
+                              message: str) -> None:
+        """
+        Process a message from a client.
+        
+        Args:
+            websocket: WebSocket connection
+            message: Message string
+        """
+        try:
+            # Log received message
+            self.logger.debug(f"Received message: {message}")
+            
+            # Parse message
+            data = json.loads(message)
+            message_type = data.get("type", "")
+            
+            # Debug: Log parsed message type
+            self.logger.debug(f"Parsed message type: {message_type}")
+            
+            # Check for content in any message type
+            content = data.get("content", "")
+            
+            # Handle based on type or fallback to treating it as chat if it has content
+            if message_type == "chat" or (not message_type and content):
+                # Process chat message
+                if not content:
+                    return
+                    
+                # Create chat message object
+                user_msg = ChatMessage(
+                    content=content,
+                    sender="user"
+                )
+                
+                # Add to conversation history
+                self.conversation_history.append(user_msg)
+                
+                # Get context for LLM
+                context_str = self.context_manager.get_context_for_prompt()
+                
+                # Convert history to format for LLM
+                messages = []
+                for msg in self.conversation_history[-10:]:  # Use last 10 messages max
+                    role = "user" if msg.sender == "user" else "assistant"
+                    messages.append({"role": role, "content": msg.content})
+                
+                # Create system prompt with context
+                system_prompt = f"""
+                You are Aiayer, an AI assistant with context awareness of the user's screen and activities.
+                
+                {context_str}
+                
+                Be helpful, concise, and informative. If you refer to something from the context,
+                be specific about what you're referring to.
+                """
+                
+                # Generate response from LLM
+                response_content = await self.llm.chat(messages, system_prompt)
+                
+                # Create response message
+                assistant_msg = ChatMessage(
+                    content=response_content,
+                    sender="assistant"
+                )
+                
+                # Add to conversation history
+                self.conversation_history.append(assistant_msg)
+                
+                # Log that we're sending a response
+                self.logger.debug(f"Sending response for message: {content[:30]}...")
+                
+                # Send response to client
+                await self._send_message(websocket, assistant_msg)
+                
+            elif message_type == "get_context":
+                # Process context request
+                context_items = await self.context_manager.analyze_context()
+                
+                # Filter and convert to dict
+                context_dict = {
+                    "type": "context_update",
+                    "items": [item.to_dict() for item in context_items],
+                    "timestamp": time.time()
+                }
+                
+                # Send context to client
+                await websocket.send(json.dumps(context_dict))
+                
+            elif message_type == "suggestion_feedback":
+                # Process suggestion feedback
+                suggestion_id = data.get("suggestion_id", "")
+                accepted = data.get("accepted", False)
+                
+                if suggestion_id:
+                    self.suggestion_engine.process_feedback(suggestion_id, accepted)
+                    
+                    # Send acknowledgment
+                    await websocket.send(json.dumps({
+                        "type": "feedback_received",
+                        "suggestion_id": suggestion_id
+                    }))
+            
+            else:
+                # Treat any message with content as a chat message for robustness
+                if content:
+                    self.logger.warning(f"Unknown message type: {message_type}, treating as chat message")
+                    # Create user message and call this method again with type=chat
+                    modified_data = data.copy()
+                    modified_data["type"] = "chat"
+                    await self._process_message(websocket, json.dumps(modified_data))
+                else:
+                    self.logger.warning(f"Unknown message type: {message_type} with no content")
+        
+        except json.JSONDecodeError:
+            self.logger.error(f"Error decoding message: {message}")
+            
+        except Exception as e:
+            self.logger.error(f"Error processing message: {e}")
+            self.logger.error(traceback.format_exc())
+    
+    async def _send_message(self, websocket: websockets.WebSocketServerProtocol, 
+                           message: Message) -> None:
+        """
+        Send a message to a client.
+        
+        Args:
+            websocket: WebSocket connection
+            message: Message object
+        """
+        try:
+            message_dict = message.to_dict()
+            self.logger.debug(f"Sending message: {json.dumps(message_dict)}")
+            await websocket.send(json.dumps(message_dict))
+        except Exception as e:
+            self.logger.error(f"Error sending message: {e}")
+    
+    async def _broadcast_message(self, message: Message) -> None:
+        """
+        Broadcast a message to all connected clients.
+        
+        Args:
+            message: Message object
+        """
+        if not self.clients:
+            return
+            
+        # Convert message to JSON once
+        message_json = json.dumps(message.to_dict())
+        
+        # Send to all clients
+        for client in self.clients:
+            try:
+                await client.send(message_json)
+            except Exception as e:
+                self.logger.error(f"Error broadcasting message to client: {e}")
+    
+    async def _background_context_collection(self) -> None:
+        """Background task for collecting context continuously."""
+        try:
+            while True:
+                await self.context_manager.collect_context()
+                await asyncio.sleep(10)  # Collect context every 10 seconds
+        except asyncio.CancelledError:
+            # Task was cancelled, cleanup
+            pass
+        except Exception as e:
+            self.logger.error(f"Error in context collection task: {e}")
+            self.logger.error(traceback.format_exc())
+    
+    async def _background_suggestion_generation(self) -> None:
+        """Background task for generating proactive suggestions."""
+        try:
+            # Wait a bit before starting suggestions
+            await asyncio.sleep(30)
+            
+            while True:
+                if self.clients:  # Only generate suggestions if clients are connected
+                    suggestion = await self.suggestion_engine.generate_suggestion()
+                    
+                    if suggestion:
+                        # Broadcast suggestion to all clients
+                        await self._broadcast_message(ChatMessage(
+                            content=suggestion.content,
+                            sender="assistant"
+                        ))
+                        
+                await asyncio.sleep(30)  # Check for new suggestions every 30 seconds
+        except asyncio.CancelledError:
+            # Task was cancelled, cleanup
+            pass
+        except Exception as e:
+            self.logger.error(f"Error in suggestion generation task: {e}")
+            self.logger.error(traceback.format_exc())
+
+# ======================== MAIN ENTRYPOINT ========================
+
+async def main() -> None:
+    """Main entrypoint for the application."""
+    # Create server
+    server = WebSocketServer()
+    
+    # Start server
+    if not await server.start():
+        logger.error("Failed to start server, exiting")
+        return
+    
+    # Handle shutdown signals
+    loop = asyncio.get_event_loop()
+    
+    def signal_handler():
+        """Handle shutdown signals."""
+        logger.info("Shutdown signal received, stopping server")
+        loop.create_task(server.stop())
+    
+    # Register signal handlers
+    for sig in (signal.SIGINT, signal.SIGTERM):
+        loop.add_signal_handler(sig, signal_handler)
+    
+    # Keep server running
+    try:
+        # Create a never-ending task
+        await asyncio.Future()
+    finally:
+        # Stop server when exiting
+        await server.stop()
+
+if __name__ == "__main__":
+    try:
+        # Run the main function
+        asyncio.run(main())
+    except KeyboardInterrupt:
+        logger.info("Server stopped by keyboard interrupt")
+    except Exception as e:
+        logger.error(f"Unhandled exception: {e}")
+        logger.error(traceback.format_exc())

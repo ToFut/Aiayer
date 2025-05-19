@@ -44,6 +44,17 @@ function initWebSocket() {
         isConnected = true;
         updateConnectionStatus('connected');
         clearTimeout(reconnectTimeout);
+        
+        // Send initial connection message
+        ws.send(JSON.stringify({
+            type: 'connection_established',
+            payload: {
+                client_type: 'frontend',
+                version: '1.0.0',
+                capabilities: ['text', 'memory', 'context'],
+                timestamp: Date.now()
+            }
+        }));
     };
 
     ws.onclose = () => {
@@ -59,45 +70,62 @@ function initWebSocket() {
     };
 
     ws.onmessage = (event) => {
-        const data = JSON.parse(event.data);
-        handleWebSocketMessage(data);
+        try {
+            const data = JSON.parse(event.data);
+            handleWebSocketMessage(data);
+        } catch (error) {
+            console.error('Error parsing WebSocket message:', error);
+        }
     };
 }
 
 // Update connection status UI
 function updateConnectionStatus(status) {
-    const statusMap = {
-        connected: { class: 'bg-green-500', text: 'Connected' },
-        disconnected: { class: 'bg-yellow-500', text: 'Disconnected - Reconnecting...' },
-        error: { class: 'bg-red-500', text: 'Connection Error' }
-    };
-
-    const statusInfo = statusMap[status] || statusMap.disconnected;
-    connectionStatus.className = `fixed top-4 right-4 px-4 py-2 rounded-lg text-white ${statusInfo.class}`;
-    connectionStatus.textContent = statusInfo.text;
+    const statusElement = document.getElementById('connection-status');
+    if (statusElement) {
+        statusElement.textContent = status;
+        statusElement.className = `status-${status}`;
+    }
 }
 
 // Handle WebSocket messages
 function handleWebSocketMessage(data) {
-    switch (data.type) {
-        case 'system_health':
-            updateSystemHealthUI(data.data);
+    const type = data.type;
+    const payload = data.data || data.payload;
+    
+    switch (type) {
+        case 'welcome':
+            console.log('Received welcome message:', payload);
             break;
-        case 'ai_sensor_stats':
-            updateAISensorStatsUI(data.data);
+            
+        case 'server_ready':
+            console.log('Server ready:', payload);
+            updateConnectionStatus('connected');
             break;
-        case 'recent_events':
-            updateRecentEventsUI(data.data);
+            
+        case 'status_update':
+            updateSystemStatus(payload);
             break;
-        case 'resource_predictions':
-            updateResourcePredictionsUI(data.data);
+            
+        case 'memory_update':
+            updateMemoryDisplay(payload);
             break;
-        case 'system_insights':
-            updateSystemInsightsUI(data.data);
+            
+        case 'llm_response':
+            handleLLMResponse(payload);
             break;
-        case 'chat_message':
-            addMessage(data.message, false);
+            
+        case 'sensor_data':
+            updateSensorDisplay(payload);
             break;
+            
+        case 'error':
+            console.error('Server error:', payload);
+            showError(payload.message);
+            break;
+            
+        default:
+            console.log('Received message:', data);
     }
 }
 

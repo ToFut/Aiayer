@@ -1,0 +1,213 @@
+#!/usr/bin/env python3
+"""
+Simple WebSocket Server with Ollama Integration
+
+A clean, simplified server that uses the OllamaAdapter for reliable LLM integration.
+"""
+
+import os
+import sys
+import json
+import asyncio
+import logging
+import signal
+from datetime import datetime
+from typing import Dict, Set, List, Any
+
+# Configure logging
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
+    handlers=[
+        logging.StreamHandler(),
+        logging.FileHandler(os.path.join("logs", "simple_server.log"))
+    ]
+)
+logger = logging.getLogger("simple_server")
+
+# Create logs directory
+os.makedirs("logs", exist_ok=True)
+
+# Install required packages if missing
+required_packages = ["websockets"]
+for package in required_packages:
+    try:
+        __import__(package)
+    except ImportError:
+        logger.info(f"Installing {package}...")
+        import subprocess
+        subprocess.check_call([sys.executable, "-m", "pip", "install", package])
+
+# Import after ensuring it's installed
+import websockets
+
+# Import our adapter
+from ollama_adapter import OllamaAdapter
+
+# Global flag for running state
+running = True
+
+class SimpleServer:
+    """Simple WebSocket server with Ollama integration"""
+    
+    def __init__(self, host="localhost", port=8765):
+        """Initialize the server"""
+        self.host = host
+        self.port = port
+        self.clients = set()
+        self.ollama = OllamaAdapter()
+        self.conversation_history = {}
+    
+    async def start(self):
+        """Start the WebSocket server"""
+        self.server = await websockets.serve(
+            self.handle_client,
+            self.host,
+            self.port,
+            ping_interval=None,  # Disable ping to avoid issues
+            ping_timeout=None
+        )
+        logger.info(f"Server started on {self.host}:{self.port}")
+        return self.server
+    
+    async def handle_client(self, websocket, path):
+        """Handle a client connection"""
+        # Generate a unique ID for this client
+        client_id = f"client_{len(self.clients) + 1}"
+        self.clients.add(websocket)
+        self.conversation_history[client_id] = []
+        
+        logger.info(f"Client connected: {client_id}")
+        
+        # Send welcome message
+        await self.send_message(
+            websocket,
+            "Welcome to the AI assistant! How can I help you today?",
+            "assistant"
+        )
+        
+        try:
+            async for message in websocket:
+                try:
+                    # Parse the message
+                    try:
+                        data = json.loads(message)
+                        content = data.get("content", "")
+                        message_type = data.get("type", "")
+                    except json.JSONDecodeError:
+                        # Treat raw text as content
+                        content = message
+                        message_type = "chat"
+                    
+                    # Skip empty messages
+                    if not content:
+                        continue
+                    
+                    # Process the message
+                    if message_type == "chat" or not message_type:
+                        await self.process_chat(websocket, content, client_id)
+                    else:
+                        logger.warning(f"Unknown message type: {message_type}")
+                        
+                except Exception as e:
+                    logger.error(f"Error processing message: {e}")
+                    await self.send_message(
+                        websocket,
+                        f"Sorry, I encountered an error: {str(e)}",
+                        "assistant"
+                    )
+        except websockets.exceptions.ConnectionClosed:
+            logger.info(f"Client disconnected: {client_id}")
+        finally:
+            # Clean up
+            self.clients.remove(websocket)
+            if client_id in self.conversation_history:
+                del self.conversation_history[client_id]
+    
+    async def process_chat(self, websocket, content, client_id):
+        """Process a chat message"""
+        logger.info(f"Received message from {client_id}: {content[:50]}...")
+        
+        # Add message to conversation history
+        self.conversation_history[client_id].append({
+            "role": "user",
+            "content": content
+        })
+        
+        # Get the response from Ollama
+        try:
+            # Show typing indicator
+            await self.send_message(websocket, "...", "assistant_typing")
+            
+            # Get response
+            response = await self.ollama.chat(self.conversation_history[client_id])
+            
+            # Add to history
+            self.conversation_history[client_id].append({
+                "role": "assistant",
+                "content": response
+            })
+            
+            # Keep history manageable
+            if len(self.conversation_history[client_id]) > 20:
+                self.conversation_history[client_id] = self.conversation_history[client_id][-20:]
+            
+            # Send the response
+            await self.send_message(websocket, response, "assistant")
+            
+        except Exception as e:
+            logger.error(f"Error getting response: {e}")
+            await self.send_message(
+                websocket,
+                "I'm sorry, I couldn't generate a response. Please try again.",
+                "assistant"
+            )
+    
+    async def send_message(self, websocket, content, sender):
+        """Send a message to a client"""
+        message = {
+            "id": f"msg_{datetime.now().timestamp()}",
+            "content": content,
+            "sender": sender,
+            "type": "message",
+            "timestamp": datetime.now().timestamp()
+        }
+        
+        try:
+            await websocket.send(json.dumps(message))
+        except Exception as e:
+            logger.error(f"Error sending message: {e}")
+
+async def main():
+    """Main function"""
+    global running
+    
+    # Create and start the server
+    server = SimpleServer()
+    server_task = await server.start()
+    
+    logger.info("Server is running. Press Ctrl+C to stop.")
+    
+    # Keep running until stopped
+    while running:
+        await asyncio.sleep(1)
+    
+    # Clean shutdown
+    server_task.close()
+    await server_task.wait_closed()
+    logger.info("Server shut down")
+
+def signal_handler():
+    """Handle termination signals"""
+    global running
+    running = False
+    logger.info("Shutdown signal received")
+
+if __name__ == "__main__":
+    # Register signal handlers
+    loop = asyncio.get_event_loop()
+    for sig in (signal.SIGINT, signal.SIGTERM):
+        loop.add_signal_handler(sig, signal_handler)
+    
+    # Run the main function
+    asyncio.run(main())
