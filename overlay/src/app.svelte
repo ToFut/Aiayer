@@ -16,14 +16,7 @@
     
     onMount(() => {
         console.log('Initializing advanced overlay app');
-        
-        // Run WebSocket connection tests
-        setTimeout(() => {
-            runTests().then(success => {
-                console.log(`WebSocket connection tests ${success ? 'passed' : 'failed'}`);
-            });
-        }, 2000);
-        
+                
         // Initialize bridge with better options
         bridge = new EnhancedBridge({
             url: 'ws://localhost:8765',

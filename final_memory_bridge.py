@@ -51,28 +51,20 @@ class SafeJSON:
             logger.error(f"Error dumping JSON: {e}")
             return default if default is not None else "{}"
 
-class VectorMemorySearch:
-    """Enhanced memory search with vector capabilities when available."""
+class TextMemorySearch:
+    """Text-based memory search system (replaces vector-based search)."""
     
-    def __init__(self, use_vectors=True):
+    def __init__(self):
         """Initialize the memory search system."""
         self.memories = []
         self.max_memories = 100
-        self.use_vectors = use_vectors
-        self.vector_model = None
+        self.vector_model = None  # Kept for backward compatibility
+        self.use_vectors = False  # Always use text search
         
-        # Try to load vector model if requested
-        if self.use_vectors:
-            try:
-                from sentence_transformers import SentenceTransformer
-                self.vector_model = SentenceTransformer('all-MiniLM-L6-v2')
-                logger.info("Vector model loaded successfully - semantic search enabled")
-            except Exception as e:
-                logger.warning(f"Could not load vector model - falling back to text search: {e}")
-                self.use_vectors = False
+        logger.info("Text-based memory search initialized - using token matching")
     
     def add_memory(self, content, type="message", metadata=None):
-        """Add a memory item with vector encoding if available."""
+        """Add a memory item with tokenization for text search."""
         try:
             # Create base memory item
             memory = {
@@ -83,14 +75,6 @@ class VectorMemorySearch:
                 "tokens": self._tokenize(content),
                 "metadata": metadata or {}
             }
-            
-            # Add vector embedding if vector model is available
-            if self.use_vectors and self.vector_model:
-                try:
-                    vector = self.vector_model.encode(content)
-                    memory["vector"] = vector.tolist()
-                except Exception as e:
-                    logger.error(f"Error creating vector embedding: {e}")
             
             # Store memory
             self.memories.append(memory)
@@ -112,63 +96,19 @@ class VectorMemorySearch:
         return re.findall(r'\w+', text.lower())
     
     def search(self, query, limit=5):
-        """Search for memories using vectors if available, otherwise fall back to text search."""
+        """Search for memories using token-based text search."""
         try:
             if not self.memories:
                 logger.warning("No memories to search")
                 return []
-            
-            # Use vector search if available
-            if self.use_vectors and self.vector_model and any("vector" in memory for memory in self.memories):
-                return self._vector_search(query, limit)
-            else:
-                # Fall back to token search
-                return self._token_search(query, limit)
+                
+            # Use token-based search
+            return self._token_search(query, limit)
             
         except Exception as e:
             logger.error(f"Error in search: {e}")
             logger.error(traceback.format_exc())
             return []
-    
-    def _vector_search(self, query, limit=5):
-        """Search using vector similarity."""
-        try:
-            # Encode the query
-            query_vector = self.vector_model.encode(query)
-            
-            # Calculate similarity for each memory with a vector
-            results = []
-            for memory in self.memories:
-                if "vector" in memory:
-                    try:
-                        memory_vector = np.array(memory["vector"])
-                        # Calculate cosine similarity
-                        similarity = np.dot(query_vector, memory_vector) / (
-                            np.linalg.norm(query_vector) * np.linalg.norm(memory_vector)
-                        )
-                        
-                        result = memory.copy()
-                        # Remove vector and tokens from result to save bandwidth
-                        if "vector" in result:
-                            del result["vector"]
-                        if "tokens" in result:
-                            del result["tokens"]
-                            
-                        result["score"] = float(similarity)  # Convert from numpy type to float
-                        results.append(result)
-                    except Exception as e:
-                        logger.error(f"Error calculating vector similarity: {e}")
-            
-            # Sort by score and return top results
-            results.sort(key=lambda x: x["score"], reverse=True)
-            
-            logger.info(f"Vector search for '{query}' found {len(results[:limit])} results")
-            return results[:limit]
-            
-        except Exception as e:
-            logger.error(f"Error in vector search: {e}")
-            # Fall back to token search
-            return self._token_search(query, limit)
     
     def _token_search(self, query, limit=5):
         """Search using token overlap (fallback method)."""
@@ -229,7 +169,7 @@ class VectorMemorySearch:
         return True
 
 class MemoryBridge:
-    """Bridge between client and server with semantic search capabilities."""
+    """Bridge between client and server with text-based search capabilities."""
     
     def __init__(self, server_port=8765, bridge_port=8766):
         """Initialize the memory bridge."""
@@ -237,7 +177,7 @@ class MemoryBridge:
         self.bridge_port = bridge_port
         self.server_ws = None
         self.clients = set()
-        self.search_engine = VectorMemorySearch()
+        self.search_engine = TextMemorySearch()
         self.last_messages = deque(maxlen=10)  # Store recent messages for context
         self.recent_queries = deque(maxlen=5)  # Store recent queries
         self.stats = {
@@ -613,13 +553,12 @@ class MemoryBridge:
 
 async def main():
     """Main entry point."""
-    print("\n=== Enhanced Memory Bridge with Semantic Search ===")
+    print("\n=== Enhanced Memory Bridge with Text Search ===")
     print(f"Connecting to main server on port 8765")
     print(f"Starting bridge server on port 8766")
-    print("Initializing semantic search capabilities...")
+    print("Initializing text-based search capabilities...")
     print("\nFeatures:")
-    print("✓ Vector-based semantic search when available")
-    print("✓ Automatic fallback to token-based search")
+    print("✓ Token-based text search for efficient memory retrieval")
     print("✓ Persistent memory for queries and responses")
     print("✓ Robust connection handling with auto-reconnect")
     print("\nUsage:")

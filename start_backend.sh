@@ -88,14 +88,14 @@ echo "Cache files initialized"
 # Step 3: Start the fixed bridge server (using the most robust implementation)
 echo "Step 3: Starting fixed bridge server..."
 # First check if there's already a bridge server running
-if ps aux | grep -v grep | grep -q "fixed_bridge_server.py"; then
+if ps aux | grep -v grep | grep -q "fixed_bridge_server_new.py"; then
   echo "Bridge server already running. Stopping it first..."
-  pkill -f "python.*fixed_bridge_server.py" || true
+  pkill -f "python.*fixed_bridge_server_new.py" || true
   sleep 2
 fi
 
 # Start the bridge server
-python3 fixed_bridge_server.py > logs/fixed_bridge.log 2>&1 &
+python3 fixed_bridge_server_new.py > logs/fixed_bridge.log 2>&1 &
 BRIDGE_PID=$!
 echo $BRIDGE_PID > pids/bridge_server.pid
 echo "Bridge server started with PID $BRIDGE_PID"
@@ -124,20 +124,20 @@ MEMORY_PID=$!
 echo $MEMORY_PID > pids/memory_service.pid
 echo "Memory service started with PID $MEMORY_PID"
 
-# Step 6: Start the LLM service
-echo "Step 6: Starting LLM service..."
+# Step 6: Start the Enhanced LLM service
+echo "Step 6: Starting Enhanced LLM service with context, memory and sensor integration..."
 # Check if there's already an LLM service running
-if ps aux | grep -v grep | grep -q "simple_llm_service.py"; then
-  echo "LLM service already running. Stopping it first..."
-  pkill -f "python.*simple_llm_service.py" || true
+if ps aux | grep -v grep | grep -q "ollama_service_fixed.py"; then
+  echo "Enhanced LLM service already running. Stopping it first..."
+  pkill -f "python.*ollama_service_fixed.py" || true
   sleep 2
 fi
 
-# Start the LLM service
-python3 simple_llm_service.py > logs/llm/llm_service.log 2>&1 &
+# Start the Enhanced LLM service
+python3 ollama_service_fixed.py > logs/llm/ollama_service.log 2>&1 &
 LLM_PID=$!
-echo $LLM_PID > pids/llm_service.pid
-echo "LLM service started with PID $LLM_PID"
+echo $LLM_PID > pids/ollama_service.pid
+echo "Enhanced LLM service started with PID $LLM_PID"
 
 # Wait for services to initialize
 echo "Waiting for services to initialize..."

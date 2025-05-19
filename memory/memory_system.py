@@ -16,12 +16,11 @@ import asyncio
 import zlib
 import psutil
 import gc
-import numpy as np
-from sentence_transformers import SentenceTransformer
-from sklearn.metrics.pairwise import cosine_similarity
+# Removed numpy, sklearn and sentence_transformers dependencies
 import websockets
 import traceback
 
+# Change relative imports to absolute imports
 from memory.memory import ConversationMemory, ContextMemory
 from memory.memory_logger import MemoryLogger
 from memory.memory_diagnostic_logger import MemoryDiagnosticLogger
@@ -47,7 +46,7 @@ class MemorySystem:
     MAX_MEMORY_SIZE_MB = 100  # Maximum memory size in MB
     MAX_MESSAGE_SIZE_KB = 10  # Maximum size of a single message in KB
     COMPRESSION_THRESHOLD_MB = 50  # Threshold to trigger compression
-    VECTOR_SIMILARITY_THRESHOLD = 0.7
+    TEXT_SIMILARITY_THRESHOLD = 0.7  # Renamed from VECTOR_SIMILARITY_THRESHOLD
     
     # Sensor configuration
     SENSOR_CONFIG = {
@@ -94,7 +93,7 @@ class MemorySystem:
         self.logger = logging.getLogger(__name__)
         
         # Initialize diagnostic logger
-        from memory.memory_diagnostic_logger import MemoryDiagnosticLogger
+        # MemoryDiagnosticLogger already imported at the top of the file
         self.diagnostic_logger = MemoryDiagnosticLogger()
         self.logger.info("Diagnostic logger initialized")
         
@@ -102,13 +101,8 @@ class MemorySystem:
         self.last_cleanup_time = time.time()
         self.cleanup_interval = 3600  # 1 hour in seconds
         
-        # Initialize vector model for semantic search
-        try:
-            self.vector_model = SentenceTransformer('all-MiniLM-L6-v2')
-            self.logger.info("Vector model initialized successfully")
-        except Exception as e:
-            self.logger.error(f"Error initializing vector model: {e}")
-            self.vector_model = None
+        # Using text-based search instead of vector-based
+        self.logger.info("Using text-based search for memory retrieval")
         
         # Initialize memory components
         self.short_term_memory = []
@@ -197,21 +191,9 @@ class MemorySystem:
                 "context_count": len(self.context_memory) if isinstance(self.context_memory, dict) else 0
             })
             
-            # Prepare serializable representation of memory
-            serializable_short_term = []
-            for item in self.short_term_memory:
-                if isinstance(item, np.ndarray):
-                    # Convert numpy arrays to lists for serialization
-                    serializable_short_term.append(item.tolist())
-                else:
-                    serializable_short_term.append(item)
-                    
-            serializable_long_term = []
-            for item in self.long_term_memory:
-                if isinstance(item, np.ndarray):
-                    serializable_long_term.append(item.tolist())
-                else:
-                    serializable_long_term.append(item)
+            # We no longer have numpy arrays, so we can simplify this logic
+            serializable_short_term = self.short_term_memory
+            serializable_long_term = self.long_term_memory
             
             # Create state object
             state = {
@@ -598,28 +580,19 @@ class MemorySystem:
             self.logger.error(f"Error extracting text for vectorization: {e}")
             return ""
 
-    def _update_vector_storage(self, item: Dict[str, Any], storage_type: str) -> None:
-        """Update vector storage with new item."""
+    def _add_to_memory_storage(self, item: Dict[str, Any], storage_type: str) -> None:
+        """Add item to appropriate memory storage with text for search."""
         try:
-            self.logger.debug(f"Updating vector storage for type: {storage_type}")
+            self.logger.debug(f"Adding item to memory storage type: {storage_type}")
             
-            if not self.vector_model:
-                self.logger.warning("Vector model not available, skipping vector storage update")
-                return
-                
-            # Extract text for vectorization
+            # Extract text content for searching
             text = self._get_text_for_vectorization(item)
             if not text:
-                self.logger.warning("No text available for vectorization, skipping update")
+                self.logger.warning("No text available for storage, skipping update")
                 return
-                
-            # Generate vector embedding
-            self.logger.debug(f"Generating vector embedding for text: {text[:50]}...")
-            vector = self.vector_model.encode(text)
             
-            # Create vector entry with metadata
-            vector_entry = {
-                'vector': vector.tolist(),  # Convert numpy array to list for JSON serialization
+            # Create entry with metadata
+            memory_entry = {
                 'text': text,
                 'original_item': item,
                 'timestamp': datetime.now().isoformat()
@@ -627,37 +600,27 @@ class MemorySystem:
             
             # Add to appropriate storage
             if storage_type == 'short_term':
-                # For short-term, create a list structure that includes both the item and its vector
                 if not isinstance(self.short_term_memory, list):
                     self.short_term_memory = []
                 
-                # Keep track if the item exists in a format without vector
-                item_exists = False
-                for existing_item in self.short_term_memory:
-                    if isinstance(existing_item, dict) and not isinstance(existing_item.get('vector'), list):
-                        item_exists = True
-                        break
-                
-                if not item_exists:
-                    self.short_term_memory.append(vector_entry)
-                    self.logger.debug(f"Added vector entry to short-term memory, total: {len(self.short_term_memory)}")
+                self.short_term_memory.append(memory_entry)
+                self.logger.debug(f"Added entry to short-term memory, total: {len(self.short_term_memory)}")
                 
             elif storage_type == 'long_term':
-                # For long-term, same structure as short-term
                 if not isinstance(self.long_term_memory, list):
                     self.long_term_memory = []
                     
-                self.long_term_memory.append(vector_entry)
-                self.logger.debug(f"Added vector entry to long-term memory, total: {len(self.long_term_memory)}")
+                self.long_term_memory.append(memory_entry)
+                self.logger.debug(f"Added entry to long-term memory, total: {len(self.long_term_memory)}")
                 
             elif storage_type == 'context':
-                # For context memory, store with timestamp key in vectors sub-dictionary
-                if 'vectors' not in self.context_memory:
-                    self.context_memory['vectors'] = {}
+                # For context memory, store in a searchable format
+                if 'searchable_items' not in self.context_memory:
+                    self.context_memory['searchable_items'] = {}
                 
                 timestamp = datetime.now().isoformat()
-                self.context_memory['vectors'][timestamp] = vector_entry
-                self.logger.debug(f"Added vector entry to context memory, key: {timestamp}")
+                self.context_memory['searchable_items'][timestamp] = memory_entry
+                self.logger.debug(f"Added entry to context memory, key: {timestamp}")
             
             # Enforce memory limits to prevent unbounded growth
             max_length = 30 if storage_type in ['short_term', 'long_term'] else 50
@@ -671,27 +634,27 @@ class MemorySystem:
                 self.long_term_memory = self.long_term_memory[-max_length:]
                 self.logger.debug(f"Trimmed long-term memory to {max_length} items")
                 
-            elif storage_type == 'context' and 'vectors' in self.context_memory:
-                vectors = self.context_memory['vectors']
-                if len(vectors) > max_length:
+            elif storage_type == 'context' and 'searchable_items' in self.context_memory:
+                items = self.context_memory['searchable_items']
+                if len(items) > max_length:
                     # Sort by timestamp and keep only the most recent
-                    sorted_keys = sorted(vectors.keys())
+                    sorted_keys = sorted(items.keys())
                     keys_to_remove = sorted_keys[:-max_length]
                     for key in keys_to_remove:
-                        del vectors[key]
-                    self.logger.debug(f"Trimmed context vectors to {max_length} items")
+                        del items[key]
+                    self.logger.debug(f"Trimmed context items to {max_length} items")
             
             # Log successful update
-            self.diagnostic_logger.log_memory_event("vector_storage_updated", {
+            self.diagnostic_logger.log_memory_event("memory_storage_updated", {
                 "storage_type": storage_type,
                 "text_length": len(text),
                 "timestamp": datetime.now().isoformat()
             })
                 
         except Exception as e:
-            self.logger.error(f"❌ Error updating vector storage: {e}")
+            self.logger.error(f"❌ Error updating memory storage: {e}")
             self.diagnostic_logger.log_memory_error(e, {
-                "context": "update_vector_storage",
+                "context": "add_to_memory_storage",
                 "storage_type": storage_type,
                 "error_type": type(e).__name__
             })
@@ -716,15 +679,15 @@ class MemorySystem:
             # Add message to conversation memory
             self.short_term_memory.append(message)
             
-            # Update vector storage
-            self._update_vector_storage(message, 'short_term')
+            # Add to searchable memory
+            self._add_to_memory_storage(message, 'short_term')
             
             # Create and store context
             context = self._create_context_summary(message)
             self.context_memory[context['timestamp']] = context
             
-            # Update context vector storage
-            self._update_vector_storage(context, 'context')
+            # Add context to searchable memory
+            self._add_to_memory_storage(context, 'context')
             
             # Save memory state
             self._save_memory_state()
@@ -950,9 +913,9 @@ class MemorySystem:
             return []
     
     async def search_memory(self, query: str, limit: int = 5) -> List[Dict[str, Any]]:
-        """Search memory using vector similarity."""
+        """Search memory using text-based search."""
         try:
-            self.logger.info(f"🔍 VECTOR SEARCHING MEMORY")
+            self.logger.info(f"🔍 SEARCHING MEMORY")
             self.logger.info(f"  - Query: {query}")
             self.logger.info(f"  - Limit: {limit}")
             
@@ -962,154 +925,50 @@ class MemorySystem:
                 "timestamp": datetime.now().isoformat()
             })
             
-            # If vector model isn't available, fall back to text-based search
-            if not self.vector_model:
-                self.logger.warning("Vector model not available, falling back to text-based search")
-                return await self._text_based_search(query, limit)
-            
-            # Generate query vector
-            query_vector = self.vector_model.encode(query)
-            
-            # Collect all vector entries from different memory stores
-            vector_entries = []
-            
-            # Process short-term memory
-            for item in self.short_term_memory:
-                if isinstance(item, dict) and 'vector' in item:
-                    # Already in the right format with vector
-                    vector_entries.append({
-                        'source': 'short_term',
-                        'vector': np.array(item['vector']) if isinstance(item['vector'], list) else item['vector'],
-                        'text': item.get('text', ''),
-                        'timestamp': item.get('timestamp', datetime.now().isoformat()),
-                        'original_item': item.get('original_item', item)
-                    })
-                elif isinstance(item, dict):
-                    # Item without vector, try to extract text and vectorize
-                    text = self._get_text_for_vectorization(item)
-                    if text:
-                        try:
-                            vector = self.vector_model.encode(text)
-                            vector_entries.append({
-                                'source': 'short_term',
-                                'vector': vector,
-                                'text': text,
-                                'timestamp': item.get('timestamp', datetime.now().isoformat()),
-                                'original_item': item
-                            })
-                        except Exception as e:
-                            self.logger.error(f"Error vectorizing short-term item: {e}")
-            
-            # Process long-term memory (similar to short-term)
-            for item in self.long_term_memory:
-                if isinstance(item, dict) and 'vector' in item:
-                    vector_entries.append({
-                        'source': 'long_term',
-                        'vector': np.array(item['vector']) if isinstance(item['vector'], list) else item['vector'],
-                        'text': item.get('text', ''),
-                        'timestamp': item.get('timestamp', datetime.now().isoformat()),
-                        'original_item': item.get('original_item', item)
-                    })
-                elif isinstance(item, dict):
-                    text = self._get_text_for_vectorization(item)
-                    if text:
-                        try:
-                            vector = self.vector_model.encode(text)
-                            vector_entries.append({
-                                'source': 'long_term',
-                                'vector': vector,
-                                'text': text,
-                                'timestamp': item.get('timestamp', datetime.now().isoformat()),
-                                'original_item': item
-                            })
-                        except Exception as e:
-                            self.logger.error(f"Error vectorizing long-term item: {e}")
-            
-            # Process context memory vectors
-            if 'vectors' in self.context_memory and isinstance(self.context_memory['vectors'], dict):
-                for timestamp, vector_item in self.context_memory['vectors'].items():
-                    if isinstance(vector_item, dict) and 'vector' in vector_item:
-                        vector_entries.append({
-                            'source': 'context',
-                            'vector': np.array(vector_item['vector']) if isinstance(vector_item['vector'], list) else vector_item['vector'],
-                            'text': vector_item.get('text', ''),
-                            'timestamp': vector_item.get('timestamp', timestamp),
-                            'original_item': vector_item.get('original_item', vector_item)
-                        })
-            
-            # If no vector entries were found, fall back to text search
-            if not vector_entries:
-                self.logger.warning("No vector entries found, falling back to text-based search")
-                return await self._text_based_search(query, limit)
-            
-            # Perform similarity search
-            self.logger.info(f"Performing similarity search with {len(vector_entries)} vector entries")
-            all_results = []
-            
-            # Extract all vectors for batch similarity computation
-            vectors = np.array([entry['vector'] for entry in vector_entries])
-                    
-            # Compute similarities
-            try:
-                similarities = cosine_similarity([query_vector], vectors)[0]
-                
-                # Get top matches
-                top_indices = np.argsort(similarities)[-limit:][::-1]
-                
-                for idx in top_indices:
-                    similarity = similarities[idx]
-                    if similarity >= self.VECTOR_SIMILARITY_THRESHOLD:
-                        entry = vector_entries[idx]
-                        result = {
-                            'source': entry['source'],
-                            'content': entry['text'],
-                            'timestamp': entry['timestamp'],
-                            'score': float(similarity),
-                            'original_item': entry['original_item']
-                        }
-                        all_results.append(result)
-                
-                # Log search results
-                self.logger.info(f"✅ Found {len(all_results)} relevant results")
-                self.diagnostic_logger.log_memory_event("memory_search_completed", {
-                    "results_count": len(all_results),
-                    "top_score": float(similarities[top_indices[0]]) if len(top_indices) > 0 else 0,
-                    "timestamp": datetime.now().isoformat()
-                })
-                
-                # Sort by similarity score and return top results
-            all_results.sort(key=lambda x: x['score'], reverse=True)
-            return all_results[:limit]
+            # Use text-based search
+            return await self._text_based_search(query, limit)
             
         except Exception as e:
-                self.logger.error(f"Error computing similarities: {e}")
-                return await self._text_based_search(query, limit)
-            
-        except Exception as e:
-            self.logger.error(f"❌ Error in vector search: {e}")
+            self.logger.error(f"❌ Error in memory search: {e}")
             self.diagnostic_logger.log_memory_error(e, {
                 "context": "search_memory",
                 "query": query,
                 "error_type": type(e).__name__
             })
-            # Fall back to text-based search in case of errors
-            return await self._text_based_search(query, limit)
+            # Return empty results in case of errors
+            return []
             
     async def _text_based_search(self, query: str, limit: int = 5) -> List[Dict[str, Any]]:
-        """Fallback text-based search when vector search is not available."""
-        self.logger.info("Performing text-based search")
+        """Perform enhanced text-based search on memory data."""
+        self.logger.info("Performing enhanced text-based search")
         results = []
+        query_lower = query.lower()
+        
+        # Helper function to calculate a simple relevance score
+        def calculate_score(text, search_query):
+            # Count query term occurrences
+            count = text.lower().count(search_query)
+            # Higher score for exact matches or more occurrences
+            if count > 0:
+                base_score = 0.5
+                bonus = min(0.4, 0.1 * count)  # Bonus for multiple occurrences, max 0.4
+                # Bonus for exact match (case-insensitive whole word)
+                if f" {search_query} " in f" {text.lower()} ":
+                    bonus += 0.1
+                return base_score + bonus
+            return 0.0
         
         # Search in short-term memory
         for item in self.short_term_memory:
             if isinstance(item, dict):
                 text = self._get_text_for_vectorization(item)
-                if query.lower() in text.lower():
+                if text and query_lower in text.lower():
+                    score = calculate_score(text, query_lower)
                     results.append({
                         'source': 'short_term',
                         'content': text,
                         'timestamp': item.get('timestamp', datetime.now().isoformat()),
-                        'score': 0.5,  # Default score for text matching
+                        'score': score,
                         'original_item': item
                     })
         
@@ -1117,27 +976,59 @@ class MemorySystem:
         for item in self.long_term_memory:
             if isinstance(item, dict):
                 text = self._get_text_for_vectorization(item)
-                if query.lower() in text.lower():
+                if text and query_lower in text.lower():
+                    score = calculate_score(text, query_lower)
                     results.append({
                         'source': 'long_term',
                         'content': text,
                         'timestamp': item.get('timestamp', datetime.now().isoformat()),
-                        'score': 0.5,
+                        'score': score,
                         'original_item': item
                     })
         
         # Search in context memory
+        # First check searchable items if they exist
+        if 'searchable_items' in self.context_memory and isinstance(self.context_memory['searchable_items'], dict):
+            for key, item in self.context_memory['searchable_items'].items():
+                if isinstance(item, dict) and 'text' in item:
+                    text = item['text']
+                    if text and query_lower in text.lower():
+                        score = calculate_score(text, query_lower)
+                        results.append({
+                            'source': 'context',
+                            'content': text,
+                            'timestamp': item.get('timestamp', datetime.now().isoformat()),
+                            'score': score,
+                            'original_item': item.get('original_item', item)
+                        })
+        
+        # Also check regular context items
         for key, value in self.context_memory.items():
-            if isinstance(value, dict):
+            if key != 'searchable_items' and isinstance(value, dict):
                 text = self._get_text_for_vectorization(value)
-                if query.lower() in text.lower():
+                if text and query_lower in text.lower():
+                    score = calculate_score(text, query_lower)
                     results.append({
                         'source': 'context',
                         'content': text,
                         'timestamp': value.get('timestamp', datetime.now().isoformat()),
-                        'score': 0.5,
+                        'score': score,
                         'original_item': value
                     })
+        
+        # Sort by score (highest first)
+        results.sort(key=lambda x: x['score'], reverse=True)
+        
+        # Log search results
+        self.logger.info(f"✅ Found {len(results)} results for query: '{query}'")
+        if results:
+            self.logger.info(f"  - Top result score: {results[0]['score']}")
+            
+        self.diagnostic_logger.log_memory_event("text_search_completed", {
+            "results_count": len(results),
+            "top_score": results[0]['score'] if results else 0,
+            "timestamp": datetime.now().isoformat()
+        })
         
         # Return top results (limited by count)
         return results[:limit]

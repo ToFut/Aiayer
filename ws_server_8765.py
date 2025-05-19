@@ -23,17 +23,17 @@ logger = logging.getLogger('ws_server_8765')
 connected_clients = set()
 
 # Handle WebSocket connections (with both websocket and path parameters)
-async def handler(websocket, path=None):
-    """Handler with optional path parameter for compatibility"""
+async def handler(websocket, path):
+    """Handler with required path parameter for compatibility"""
     client_id = f"client_{id(websocket)}"
     connected_clients.add(websocket)
-    logger.info(f"Client {client_id} connected" + (f" at path: {path}" if path else ""))
+    logger.info(f"Client {client_id} connected at path: {path}")
     
     try:
         # Send welcome message
         await websocket.send(json.dumps({
             "type": "welcome",
-            "message": f"Hello client {client_id}! You are connected" + (f" on path: {path}" if path else ""),
+            "message": f"Hello client {client_id}! You are connected on path: {path}",
             "timestamp": datetime.now().isoformat()
         }))
         

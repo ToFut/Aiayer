@@ -669,25 +669,40 @@ async def broadcast_status():
     while True:
         if connected_clients:
             # Get memory system metrics if available
-            memory_metrics = {}
+            memory_metrics = {"memory_system_active": False}
+            
             if memory_system:
                 try:
                     process = psutil.Process()
                     memory_info = process.memory_info()
                     memory_usage_mb = memory_info.rss / (1024 * 1024)  # Convert to MB
                     
-                    # Safely get memory metrics
+                    # Get conversation count safely based on the type of memory system
+                    conversation_count = 0
+                    try:
+                        # First try memory_dict for SimpleMemoryFallback
+                        if hasattr(memory_system, 'memory_dict') and isinstance(memory_system.memory_dict, dict):
+                            messages = memory_system.memory_dict.get('messages', [])
+                            if isinstance(messages, list):
+                                conversation_count = len(messages)
+                        # Then try conversation_memory for regular MemorySystem
+                        elif hasattr(memory_system, 'conversation_memory'):
+                            if hasattr(memory_system.conversation_memory, 'messages'):
+                                if isinstance(memory_system.conversation_memory.messages, list):
+                                    conversation_count = len(memory_system.conversation_memory.messages)
+                    except Exception as detail_error:
+                        logger.error(f"Error getting conversation count: {detail_error}")
+                    
+                    # Simplified and safer memory metrics
                     memory_metrics = {
                         "memory_system_active": True,
                         "memory_usage_mb": round(memory_usage_mb, 2),
-                        "conversation_length": len(getattr(memory_system, 'conversation_memory', {}).get('messages', [])) if hasattr(memory_system, 'conversation_memory') else 0,
-                        "context_entries": len(getattr(memory_system, 'context_memory', {}).get('context_history', [])) if hasattr(memory_system, 'context_memory') else 0
+                        "conversation_length": conversation_count,
+                        "context_entries": 0  # Simplified 
                     }
                 except Exception as e:
                     logger.error(f"Error getting memory metrics: {e}")
                     memory_metrics = {"memory_system_active": True, "error": str(e)}
-            else:
-                memory_metrics = {"memory_system_active": False}
             
             # Create status message
             message = json.dumps({

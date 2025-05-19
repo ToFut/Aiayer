@@ -250,88 +250,46 @@ class KnowledgeBase:
 
 # Optional: Vector-based semantic search extension
 # This requires additional dependencies like sentence-transformers
-class VectorKnowledgeBase(KnowledgeBase):
+class TextSearchKnowledgeBase(KnowledgeBase):
     """
-    Knowledge base with semantic search capabilities.
-    Note: This requires additional dependencies:
-    - sentence-transformers
-    - numpy
-    - faiss-cpu or faiss-gpu
+    Knowledge base with text-based search capabilities.
+    This is a replacement for VectorKnowledgeBase that doesn't require 
+    sentence-transformers or other heavy dependencies.
     """
     
-    def __init__(self, storage_path: Optional[str] = None, embedding_model: str = "all-MiniLM-L6-v2"):
+    def __init__(self, storage_path: Optional[str] = None):
         """
-        Initialize vector knowledge base.
+        Initialize text search knowledge base.
         
         Args:
             storage_path: Path to store knowledge base files
-            embedding_model: Model name for sentence-transformers
         """
         super().__init__(storage_path)
-        self.logger.info("Vector knowledge base initialized - semantic search capabilities available")
-        self.embedding_model_name = embedding_model
-        self.vector_index = None
-        self.vector_data = {}
+        self.logger.info("Text search knowledge base initialized")
+        self.text_index = {}  # Key -> tokenized content
         
-        # Lazy init - we'll load the embedding model and build the index on first use
-        self._embedding_model = None
-        self._index_built = False
+    def _tokenize_text(self, text: str) -> List[str]:
+        """Convert text to tokens for search."""
+        if not isinstance(text, str):
+            return []
+        # Simple tokenization - split on whitespace and convert to lowercase
+        return text.lower().split()
     
-    def _get_embedding_model(self):
-        """Lazy-load the embedding model."""
-        if self._embedding_model is None:
-            try:
-                # This import is conditional since these are optional dependencies
-                from sentence_transformers import SentenceTransformer
-                self._embedding_model = SentenceTransformer(self.embedding_model_name)
-                self.logger.info(f"Loaded embedding model: {self.embedding_model_name}")
-            except ImportError:
-                self.logger.error("sentence-transformers is required for VectorKnowledgeBase")
-                raise
-        return self._embedding_model
-    
-    def _build_index(self):
-        """Build or rebuild the vector index."""
+    def _update_index(self):
+        """Update the text search index."""
         try:
-            import numpy as np
-            import faiss
+            self.text_index = {}
             
-            # Get all text values for indexing
-            texts = []
-            keys = []
-            
+            # Index all text content
             for key, value in self.data.items():
                 if isinstance(value, str):
-                    texts.append(value)
-                    keys.append(key)
+                    self.text_index[key] = self._tokenize_text(value)
                 elif isinstance(value, dict) and "text" in value:
-                    texts.append(value["text"])
-                    keys.append(key)
+                    self.text_index[key] = self._tokenize_text(value["text"])
             
-            if not texts:
-                self.logger.warning("No text entries to index")
-                return
-            
-            # Get embeddings
-            model = self._get_embedding_model()
-            embeddings = model.encode(texts)
-            
-            # Build index
-            dimension = embeddings.shape[1]
-            index = faiss.IndexFlatL2(dimension)
-            index.add(np.array(embeddings).astype('float32'))
-            
-            # Store index and data mapping
-            self.vector_index = index
-            self.vector_data = {i: keys[i] for i in range(len(keys))}
-            self._index_built = True
-            
-            self.logger.info(f"Built vector index with {len(texts)} entries")
-        except ImportError:
-            self.logger.error("faiss-cpu is required for vector search")
-            raise
+            self.logger.info(f"Built text index with {len(self.text_index)} entries")
         except Exception as e:
-            self.logger.error(f"Error building vector index: {e}")
+            self.logger.error(f"Error building text index: {e}")
     
     def store(self, key: str, value: Any, category: Optional[str] = None, 
               ttl: Optional[int] = None) -> bool:
@@ -349,15 +307,18 @@ class VectorKnowledgeBase(KnowledgeBase):
         """
         result = super().store(key, value, category, ttl)
         
-        # Mark index as needing rebuild
+        # Update index with new content
         if result:
-            self._index_built = False
+            if isinstance(value, str):
+                self.text_index[key] = self._tokenize_text(value)
+            elif isinstance(value, dict) and "text" in value:
+                self.text_index[key] = self._tokenize_text(value["text"])
         
         return result
     
     def search(self, query: str, top_k: int = 5) -> List[Dict[str, Any]]:
         """
-        Search the knowledge base semantically.
+        Search the knowledge base using text matching.
         
         Args:
             query: Text to search for
@@ -367,49 +328,55 @@ class VectorKnowledgeBase(KnowledgeBase):
             List of matching entries with scores and metadata
         """
         try:
-            import numpy as np
+            # Make sure index is up to date
+            if not self.text_index:
+                self._update_index()
             
-            # Build/rebuild index if needed
-            if not self._index_built or self.vector_index is None:
-                self._build_index()
-            
-            if not self._index_built:
+            # Tokenize query
+            query_tokens = self._tokenize_text(query)
+            if not query_tokens:
                 return []
             
-            # Get query embedding
-            model = self._get_embedding_model()
-            query_embedding = model.encode([query])
-            
-            # Search index
-            distances, indices = self.vector_index.search(
-                np.array(query_embedding).astype('float32'), 
-                min(top_k, len(self.vector_data))
-            )
-            
-            # Format results
-            results = []
-            for i, idx in enumerate(indices[0]):
-                if idx >= 0 and idx < len(self.vector_data):
-                    key = self.vector_data[idx]
-                    data = self.data.get(key)
-                    metadata = self.metadata.get(key, {})
+            # Calculate text similarity for each entry
+            scored_results = []
+            for key, tokens in self.text_index.items():
+                # Skip if key is no longer in data (might have been deleted)
+                if key not in self.data:
+                    continue
                     
-                    # Check if expired
-                    expires_at = metadata.get("expires_at")
-                    if expires_at and time.time() > expires_at:
-                        continue
+                # Check if expired
+                metadata = self.metadata.get(key, {})
+                expires_at = metadata.get("expires_at")
+                if expires_at and time.time() > expires_at:
+                    continue
+                
+                # Calculate text similarity (token overlap)
+                if not tokens:
+                    continue
                     
-                    results.append({
+                # Find common tokens
+                common_tokens = set(query_tokens).intersection(set(tokens))
+                if not common_tokens:
+                    continue
+                
+                # Score based on percentage of query tokens found
+                score = len(common_tokens) / len(query_tokens)
+                
+                if score >= 0.3:  # Minimum relevance threshold
+                    scored_results.append({
                         "key": key,
-                        "data": data,
-                        "score": float(1.0 / (1.0 + distances[0][i])),  # Convert distance to similarity score
+                        "data": self.data.get(key),
+                        "score": float(score),
                         "category": metadata.get("category"),
                         "created_at": metadata.get("created_at")
                     })
             
-            return results
+            # Sort by score (descending)
+            scored_results.sort(key=lambda x: x["score"], reverse=True)
+            
+            return scored_results[:top_k]
         except Exception as e:
-            self.logger.error(f"Error performing vector search: {e}")
+            self.logger.error(f"Error performing text search: {e}")
             return []
 
 

@@ -25,7 +25,7 @@ class OllamaLLM:
     def __init__(self, server_uri="ws://localhost:8765", ollama_url="http://localhost:11434"):
         self.server_uri = server_uri
         self.ollama_url = ollama_url
-        self.model_name = "ollama:latest3.2"  # Use the specified model
+        self.model_name = "llama3.2:latest"  # This should match the model name from API listing
         self.running = True
         self.context_data = {}
         
@@ -49,39 +49,63 @@ class OllamaLLM:
             else:
                 prompt = query
             
-            # Call Ollama API
-            async with aiohttp.ClientSession() as session:
-                payload = {
-                    "model": self.model_name,
-                    "prompt": prompt,
-                    "stream": False
-                }
-                
-                start_time = datetime.now()
-                async with session.post(f"{self.ollama_url}/api/generate", json=payload) as resp:
-                    if resp.status != 200:
-                        error_text = await resp.text()
-                        logger.error(f"Ollama API error: {resp.status} - {error_text}")
-                        return {
-                            "response": f"Error generating response: {resp.status}",
-                            "model": self.model_name,
-                            "context_used": bool(context),
-                            "processing_time": 0,
-                            "timestamp": datetime.now().isoformat()
+            # Models to try in order
+            models_to_try = [
+                self.model_name,  # Try the specified model first
+                "llama3:latest",  # Then try llama3
+                "mistral:latest", # Then mistral
+                "llava:latest"    # Finally try llava
+            ]
+            
+            # Try each model in sequence
+            for model in models_to_try:
+                try:
+                    logger.info(f"Trying model: {model}")
+                    
+                    # Call Ollama API
+                    async with aiohttp.ClientSession() as session:
+                        payload = {
+                            "model": model,
+                            "prompt": prompt,
+                            "stream": False
                         }
-                    
-                    result = await resp.json()
-                    processing_time = (datetime.now() - start_time).total_seconds()
-                    
-                    logger.info(f"Generated response in {processing_time:.2f}s")
-                    
-                    return {
-                        "response": result.get("response", "No response generated"),
-                        "model": self.model_name,
-                        "context_used": bool(context),
-                        "processing_time": processing_time,
-                        "timestamp": datetime.now().isoformat()
-                    }
+                        
+                        start_time = datetime.now()
+                        async with session.post(f"{self.ollama_url}/api/generate", json=payload) as resp:
+                            if resp.status == 200:
+                                result = await resp.json()
+                                processing_time = (datetime.now() - start_time).total_seconds()
+                                
+                                logger.info(f"Generated response with {model} in {processing_time:.2f}s")
+                                
+                                # Update model name to the one that worked
+                                if model != self.model_name:
+                                    logger.info(f"Updating default model to {model}")
+                                    self.model_name = model
+                                
+                                return {
+                                    "response": result.get("response", "No response generated"),
+                                    "model": model,
+                                    "context_used": bool(context),
+                                    "processing_time": processing_time,
+                                    "timestamp": datetime.now().isoformat()
+                                }
+                            else:
+                                error_text = await resp.text()
+                                logger.warning(f"Model {model} failed with: {resp.status} - {error_text}")
+                except Exception as e:
+                    logger.warning(f"Error trying model {model}: {e}")
+            
+            # If we get here, all models failed
+            logger.error("All models failed to generate a response")
+            return {
+                "response": "I'm sorry, I wasn't able to generate a response at this time. All available language models failed to process your request.",
+                "model": "none",
+                "error": True,
+                "context_used": bool(context),
+                "processing_time": 0,
+                "timestamp": datetime.now().isoformat()
+            }
                     
         except Exception as e:
             logger.error(f"Error generating response: {e}")
@@ -159,14 +183,52 @@ class OllamaLLM:
                 logger.error(traceback.format_exc())
                 await asyncio.sleep(5)
     
+    async def find_available_models(self):
+        """Find available Ollama models"""
+        try:
+            async with aiohttp.ClientSession() as session:
+                async with session.get(f"{self.ollama_url}/api/tags") as resp:
+                    if resp.status == 200:
+                        data = await resp.json()
+                        logger.info(f"Available models: {data}")
+                        
+                        if "models" in data and data["models"]:
+                            models = data["models"]
+                            available_models = [model["name"] for model in models]
+                            logger.info(f"Found {len(available_models)} models: {available_models}")
+                            
+                            # Try to find the best model in this order of preference
+                            preferred_models = ["llama3.2:latest", "llama3:latest", "mistral:latest", "llava:latest"]
+                            
+                            for preferred in preferred_models:
+                                if preferred in available_models:
+                                    self.model_name = preferred
+                                    logger.info(f"Selected model: {self.model_name}")
+                                    return
+                            
+                            # If none of our preferred models are available, use the first one
+                            self.model_name = available_models[0]
+                            logger.info(f"Using first available model: {self.model_name}")
+                        else:
+                            logger.warning("No models found in Ollama")
+                    else:
+                        logger.error(f"Failed to fetch models: {resp.status}")
+        except Exception as e:
+            logger.error(f"Error finding available models: {e}")
+            logger.error(traceback.format_exc())
+    
     async def run(self):
         """Main method to run the LLM service"""
-        logger.info(f"Starting Ollama LLM service with model {self.model_name}")
+        logger.info(f"Starting Ollama LLM service with initial model {self.model_name}")
         
         # Save PID
         os.makedirs("pids", exist_ok=True)
         with open('pids/ollama_service.pid', 'w') as f:
             f.write(str(os.getpid()))
+        
+        # Find available models
+        await self.find_available_models()
+        logger.info(f"Using model: {self.model_name}")
         
         # Connect to server
         await self.connect_to_server()

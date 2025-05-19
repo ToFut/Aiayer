@@ -29,8 +29,13 @@
   let typingMessage = null;
   let typingText = '';
   let typingIndex = 0;
-  let typingSpeed = { min: 15, max: 35 }; // Random speed between min and max ms
+  let typingSpeed = { min: 10, max: 30 }; // Slightly faster typing for smoother appearance
   let typingInterval;
+  let typingPaused = false;
+  let typingQueue = [];
+  let animationBuffer = '';
+  let lastRenderTime = 0;
+  let pendingAnimationUpdate = false;
 
   const quickQuestions = [
     "What can you help me with?",
@@ -38,6 +43,26 @@
     "How does this work?",
     "What are you monitoring?"
   ];
+  
+  // Add suggestion chips that can appear after assistant responses
+  const suggestionChips = {
+    general: [
+      "Tell me more",
+      "How does this work?",
+      "Can you explain further?",
+      "Show me an example"
+    ],
+    confirmation: [
+      "Yes, that's helpful",
+      "I need more details",
+      "That answers my question"
+    ],
+    feedback: [
+      "This is useful",
+      "I'm still confused",
+      "Thanks!"
+    ]
+  };
 
   // UI state toggles
   let showSettings = false;
@@ -113,6 +138,8 @@
       if (audioContext) {
         audioContext.close();
       }
+      // Clear any ongoing animations
+      clearTypingAnimation();
     };
   });
   
@@ -234,14 +261,42 @@
     };
   }
 
+  let activeSuggestions = [];
+  
   function addMessage(message) {
     // Add timestamp to the message
     message.timestamp = new Date().toISOString();
+    
+    // Add isNew flag to highlight new messages
+    message.isNew = true;
     
     // For assistant messages, use typing animation
     if (message.role === 'assistant' && !message.isError) {
       // Clear any existing typing animation
       clearTypingAnimation();
+      
+      // Add suggestion chips after assistant messages (for better engagement)
+      if (messages.length > 0 && messages[messages.length-1].role === 'user') {
+        // Clear previous suggestions
+        activeSuggestions = [];
+        
+        // Generate new suggestions based on context
+        setTimeout(() => {
+          const suggestType = Math.random() > 0.7 ? 'confirmation' : 'general';
+          
+          // Randomly select 2-3 suggestions
+          const count = Math.floor(Math.random() * 2) + 2; // 2-3
+          const selectedSuggestions = [...suggestionChips[suggestType]];
+          
+          // Shuffle and take the first few
+          activeSuggestions = selectedSuggestions
+            .sort(() => Math.random() - 0.5)
+            .slice(0, count);
+          
+          // Force UI update
+          messages = [...messages];
+        }, 1000); // Show suggestions 1 second after message appears
+      }
       
       // Start new typing animation
       typingMessage = { ...message, content: '' };
@@ -252,6 +307,9 @@
       // For display, add an empty message that will be filled in by the animation
       messages = [...messages, typingMessage];
     } else {
+      // For user messages, clear suggestion chips
+      activeSuggestions = [];
+      
       // For user messages or error messages, add them immediately
       messages = [...messages, message];
     }
@@ -259,6 +317,20 @@
     if (autoScrollEnabled) {
       scrollToBottom();
     }
+    
+    // Remove the "new" highlight after a short delay
+    if (message.isNew) {
+      setTimeout(() => {
+        message.isNew = false;
+        messages = [...messages]; // Force update UI
+      }, 2000);
+    }
+  }
+  
+  // Handler for suggestion chips
+  function handleSuggestion(text) {
+    sendMessage(text);
+    activeSuggestions = []; // Clear suggestions after selecting one
   }
   
   function clearTypingAnimation() {
@@ -273,45 +345,146 @@
       messages = [...messages]; // Force update
     }
     
+    // Clear all animation state
     typingMessage = null;
     typingText = '';
     typingIndex = 0;
+    typingPaused = false;
+    typingQueue = [];
+    animationBuffer = '';
+    pendingAnimationUpdate = false;
   }
   
   function startTypingAnimation() {
     // Clear any existing animation
     if (typingInterval) clearInterval(typingInterval);
     
-    // Function to get random typing delay (simulates human typing)
-    const getRandomDelay = () => Math.floor(Math.random() * 
-      (typingSpeed.max - typingSpeed.min + 1)) + typingSpeed.min;
+    // Process text into chunks for more natural typing
+    processTypingText();
     
-    // Start the animation
+    // Reset animation variables
+    animationBuffer = '';
+    typingMessage.content = '';
+    lastRenderTime = Date.now();
+    pendingAnimationUpdate = false;
+    
+    // Function to get random typing delay (simulates human typing)
+    const getRandomDelay = () => {
+      // Adjust delay based on character type for natural effect
+      const currentChar = typingText.charAt(typingIndex);
+      const nextChar = typingText.charAt(typingIndex + 1);
+      
+      // Pause longer at punctuation
+      if (['.', '!', '?', ',', ';', ':'].includes(currentChar)) {
+        // Longer pause at end of sentences
+        if (['.', '!', '?'].includes(currentChar) && (nextChar === ' ' || !nextChar)) {
+          return typingSpeed.max * 3;
+        }
+        // Medium pause for other punctuation
+        return typingSpeed.max * 1.5;
+      }
+      
+      // Small pause at spaces
+      if (currentChar === ' ') {
+        return typingSpeed.max;
+      }
+      
+      // Regular typing speed for most characters
+      return Math.floor(Math.random() * (typingSpeed.max - typingSpeed.min + 1)) + typingSpeed.min;
+    };
+    
+    // Instead of updating the UI on every character, batch updates
+    const updateMessageDisplay = () => {
+      if (!pendingAnimationUpdate) return;
+      
+      // Apply buffered changes
+      typingMessage.content = animationBuffer;
+      
+      // Avoid frequent UI reflows by throttling updates
+      const now = Date.now();
+      if (now - lastRenderTime > 100) { // Only update UI every 100ms at most
+        messages = [...messages]; // Force Svelte to update the UI
+        lastRenderTime = now;
+      }
+      
+      if (autoScrollEnabled && typingIndex % 10 === 0) {
+        scrollToBottom();
+      }
+      
+      pendingAnimationUpdate = false;
+    };
+    
+    // Run display updates using requestAnimationFrame for smoother rendering
+    const scheduleRender = () => {
+      if (pendingAnimationUpdate) {
+        requestAnimationFrame(updateMessageDisplay);
+      }
+    };
+    
+    // Start the animation with improved performance
     typingInterval = setInterval(() => {
+      if (typingPaused) {
+        return; // Skip this interval if paused
+      }
+      
       if (typingIndex < typingText.length) {
-        // Add the next character to the message
-        typingMessage.content += typingText.charAt(typingIndex);
+        // Add character to buffer instead of directly to message
+        animationBuffer += typingText.charAt(typingIndex);
         typingIndex++;
         
-        // Force Svelte to update the UI
-        messages = [...messages];
-        
-        // Keep scrolling to the bottom during typing
-        if (autoScrollEnabled) {
-          scrollToBottom();
-        }
+        pendingAnimationUpdate = true;
+        scheduleRender();
       } else {
         // Typing finished
         clearInterval(typingInterval);
         typingInterval = null;
+        
+        // Ensure the complete message is displayed
+        animationBuffer = typingText;
+        pendingAnimationUpdate = true;
+        scheduleRender();
+        
+        // Final update and scroll
+        setTimeout(() => {
+          messages = [...messages];
+          if (autoScrollEnabled) {
+            scrollToBottom();
+          }
+        }, 50);
       }
     }, getRandomDelay());
+  }
+  
+  function processTypingText() {
+    // Process text into logical chunks for more natural typing
+    typingQueue = [];
+    let chunks = typingText.match(/[^\s.!?,;:]+|[.!?,;:\s]/g) || [];
+    
+    chunks.forEach(chunk => {
+      if (chunk.length > 0) {
+        typingQueue.push(chunk);
+      }
+    });
   }
 
   async function scrollToBottom() {
     await tick(); // Wait for DOM update
     if (chatContainer) {
-      chatContainer.scrollTop = chatContainer.scrollHeight;
+      try {
+        // Use smooth scrolling when not typing (for better user experience)
+        // But instant scroll during typing (to prevent jumpiness)
+        if (!typingInterval) {
+          chatContainer.scrollTo({
+            top: chatContainer.scrollHeight,
+            behavior: 'smooth'
+          });
+        } else {
+          chatContainer.scrollTop = chatContainer.scrollHeight;
+        }
+      } catch (e) {
+        // Fallback for browsers that don't support smooth scrolling
+        chatContainer.scrollTop = chatContainer.scrollHeight;
+      }
     }
   }
 
@@ -334,13 +507,19 @@
     console.log('SENDING MESSAGE TO SERVER:', text);
     console.log('Current connection status:', connectionStatus);
     
+    // Clear any ongoing typing animation before adding new messages
+    clearTypingAnimation();
+    
     addMessage({ role: 'user', content: text });
     loading = true;
     
-    // Use the correct message format expected by the server
+    // Use the correct message format expected by the backend server
     const message = {
-      type: 'user_interaction',
-      content: text
+      type: 'llm_request',
+      payload: {
+        query: text,
+        timestamp: Date.now()
+      }
     };
     
     console.log('Sending message object:', JSON.stringify(message));
@@ -676,8 +855,10 @@
           {/if}
 
           {#each messages as msg, i}
-            <div class="message-wrapper {msg.role}" in:fade={{ duration: 200, delay: i * 50 }}>
-              <div class="message {msg.isSuggestion ? 'suggestion' : ''} {msg.isError ? 'error' : ''}">
+            <div class="message-wrapper {msg.role} {msg.isNew ? 'new-message' : ''}" 
+                in:fade={{ duration: 200, delay: i * 50 }}>
+              <div class="message {msg.isSuggestion ? 'suggestion' : ''} {msg.isError ? 'error' : ''} 
+                          {typingMessage === msg ? 'typing-active' : ''}">
                 <div class="message-avatar">
                   {#if msg.role === 'user'}
                     <div class="user-avatar">👤</div>
@@ -695,28 +876,27 @@
                     {#if msg.action}
                       <button class="message-action-btn" on:click={msg.action}>Reconnect</button>
                     {/if}
+                    {#if msg.isNew && !typingMessage}
+                      <span class="new-badge">New</span>
+                    {/if}
                   </div>
                   <div class="message-time">
                     {formatTime(msg.timestamp)}
                   </div>
                 </div>
+                {#if msg.isNew && !typingMessage}
+                  <div class="pulse-indicator"></div>
+                {/if}
               </div>
             </div>
           {/each}
 
-          {#if loading}
-            <div class="message-wrapper assistant" in:fade={{ duration: 200 }}>
-              <div class="message">
-                <div class="message-avatar">
-                  <div class="ai-avatar">👁️</div>
-                </div>
-                <div class="message-content">
-                  <div class="typing-indicator">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                  </div>
-                </div>
+          {#if loading && !typingMessage}
+            <div class="message-wrapper assistant thinking-wrapper" in:fade={{ duration: 200 }}>
+              <div class="typing-indicator">
+                <span></span>
+                <span></span>
+                <span></span>
               </div>
             </div>
           {/if}
@@ -725,6 +905,19 @@
             <button class="scroll-bottom-btn" on:click={scrollToBottom}>
               ↓
             </button>
+          {/if}
+          
+          {#if activeSuggestions.length > 0}
+            <div class="suggestion-chips" transition:scale={{ duration: 200, start: 0.95 }}>
+              {#each activeSuggestions as suggestion}
+                <button 
+                  class="suggestion-chip"
+                  on:click={() => handleSuggestion(suggestion)}
+                >
+                  {suggestion}
+                </button>
+              {/each}
+            </div>
           {/if}
         </div>
 
@@ -822,19 +1015,47 @@
     flex-direction: column;
     height: 100%;
     width: 100%;
-    background: rgba(17, 17, 17, 0.95);
-    backdrop-filter: blur(20px);
+    background: rgba(16, 18, 26, 0.94);
+    backdrop-filter: blur(30px);
     border-radius: 24px;
     overflow: hidden;
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    border: none;
+    box-shadow: 
+      0 14px 40px rgba(0, 0, 0, 0.4),
+      0 0 0 1px rgba(70, 100, 255, 0.15),
+      inset 0 0 0 1px rgba(255, 255, 255, 0.05);
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     animation: chatAppear 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    isolation: isolate;
+  }
+  
+  .chat-box::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 23px;
+    padding: 1px;
+    background: linear-gradient(140deg, rgba(80, 120, 255, 0.5), rgba(70, 100, 220, 0.01) 70%);
+    -webkit-mask: linear-gradient(#000 0 0) content-box, 
+                  linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+    z-index: -1;
   }
   
   .light-mode .chat-box {
-    background: rgba(250, 250, 250, 0.95);
-    backdrop-filter: blur(20px);
-    border: 1px solid rgba(0, 0, 0, 0.1);
+    background: rgba(245, 248, 255, 0.94);
+    backdrop-filter: blur(30px);
+    box-shadow: 
+      0 14px 40px rgba(0, 30, 100, 0.12),
+      0 0 0 1px rgba(70, 100, 255, 0.15),
+      inset 0 0 0 1px rgba(255, 255, 255, 0.7);
+  }
+  
+  .light-mode .chat-box::before {
+    background: linear-gradient(140deg, rgba(80, 120, 255, 0.3), rgba(70, 100, 220, 0.01) 70%);
   }
 
   @keyframes chatAppear {
@@ -850,16 +1071,31 @@
 
   /* Header Styles */
   .chat-header {
-    padding: 16px 20px;
-    background: linear-gradient(135deg, rgba(52, 152, 219, 0.1), rgba(41, 128, 185, 0.1));
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(10px);
+    padding: 18px 22px;
+    background: linear-gradient(135deg, rgba(70, 90, 255, 0.08), rgba(40, 80, 220, 0.12));
+    border-bottom: 1px solid rgba(100, 130, 255, 0.15);
+    backdrop-filter: blur(15px);
     cursor: move;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .chat-header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, 
+      rgba(70, 90, 255, 0), 
+      rgba(70, 130, 255, 0.5), 
+      rgba(70, 90, 255, 0));
   }
   
   .light-mode .chat-header {
-    background: linear-gradient(135deg, rgba(52, 152, 219, 0.1), rgba(41, 128, 185, 0.1));
-    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    background: linear-gradient(135deg, rgba(100, 140, 255, 0.07), rgba(70, 110, 245, 0.09));
+    border-bottom: 1px solid rgba(100, 130, 255, 0.1);
   }
 
   .header-content {
@@ -869,14 +1105,16 @@
   }
 
   .title {
-    font-size: 20px;
+    font-size: 22px;
     font-weight: 600;
-    background: linear-gradient(135deg, #3498db, #2980b9);
+    background: linear-gradient(135deg, #4a6eff, #2b5bde);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 12px;
+    letter-spacing: 0.5px;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
   }
 
   .title-icon {
@@ -1004,58 +1242,178 @@
       opacity: 1;
     }
   }
+  
+  /* Suggestion chips */
+  .suggestion-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 16px 0;
+    justify-content: center;
+    padding: 10px;
+    animation: slideUpFade 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  .suggestion-chip {
+    background: rgba(28, 32, 50, 0.95);
+    color: rgba(255, 255, 255, 0.9);
+    border: none;
+    border-radius: 12px;
+    padding: 10px 16px;
+    font-size: 13px;
+    cursor: pointer;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    white-space: nowrap;
+    box-shadow: 
+      0 4px 12px rgba(0, 10, 50, 0.2),
+      inset 0 0 0 1px rgba(70, 100, 255, 0.3);
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .suggestion-chip::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 11px;
+    padding: 1px;
+    background: linear-gradient(140deg, rgba(100, 140, 255, 0.5), rgba(70, 100, 255, 0.01) 70%);
+    -webkit-mask: linear-gradient(#000 0 0) content-box, 
+                 linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+    opacity: 0.7;
+  }
+  
+  .light-mode .suggestion-chip {
+    background: rgba(245, 248, 255, 0.95);
+    color: rgba(40, 60, 120, 0.9);
+    box-shadow: 
+      0 4px 12px rgba(70, 100, 255, 0.08),
+      inset 0 0 0 1px rgba(70, 100, 255, 0.2);
+  }
+  
+  .light-mode .suggestion-chip::before {
+    background: linear-gradient(140deg, rgba(100, 140, 255, 0.3), rgba(70, 100, 255, 0.01) 70%);
+  }
+  
+  .suggestion-chip:hover {
+    transform: translateY(-2px);
+    box-shadow: 
+      0 6px 16px rgba(70, 100, 255, 0.25),
+      inset 0 0 0 1px rgba(70, 100, 255, 0.4);
+  }
+  
+  .suggestion-chip:active {
+    transform: translateY(1px);
+    box-shadow: 
+      0 2px 8px rgba(70, 100, 255, 0.2),
+      inset 0 0 0 1px rgba(70, 100, 255, 0.4);
+  }
+  
+  .light-mode .suggestion-chip:hover {
+    box-shadow: 
+      0 6px 16px rgba(70, 100, 255, 0.12),
+      inset 0 0 0 1px rgba(70, 100, 255, 0.3);
+  }
+  
+  @keyframes slideUpFade {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
 
   /* Minimized View */
   .minimized-icon {
-    width: 60px;
-    height: 60px;
+    width: 65px;
+    height: 65px;
     border-radius: 50%;
-    background: linear-gradient(135deg, #3498db, #2980b9);
+    background: linear-gradient(135deg, #4a6eff, #2b5bde);
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3), 
-                0 0 0 1px rgba(255, 255, 255, 0.1);
-    transition: all 0.3s;
+    box-shadow: 
+      0 8px 20px rgba(0, 0, 0, 0.3), 
+      0 0 0 1px rgba(100, 130, 255, 0.3),
+      0 0 20px rgba(70, 100, 255, 0.5),
+      inset 0 1px 2px rgba(255, 255, 255, 0.2);
+    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
     position: relative;
     z-index: 10001;
-    font-size: 24px;
+    font-size: 28px;
     color: white;
+    overflow: visible;
+  }
+  
+  .minimized-icon::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 50%;
+    background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+    z-index: 1;
   }
   
   .minimized-icon:hover {
-    transform: scale(1.1);
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4), 
-                0 0 0 1px rgba(255, 255, 255, 0.2);
+    transform: scale(1.12) rotate(5deg);
+    box-shadow: 
+      0 10px 30px rgba(0, 0, 0, 0.4), 
+      0 0 0 1px rgba(100, 130, 255, 0.4),
+      0 0 30px rgba(70, 100, 255, 0.6),
+      inset 0 1px 2px rgba(255, 255, 255, 0.3);
   }
   
   .unread-badge {
     position: absolute;
-    top: -6px;
-    right: -6px;
-    background: #e74c3c;
+    top: -8px;
+    right: -8px;
+    background: linear-gradient(135deg, #ff5a5f, #ff3a3f);
     color: white;
-    font-size: 12px;
-    padding: 2px 6px;
-    border-radius: 10px;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+    font-size: 13px;
+    padding: 3px 8px;
+    border-radius: 12px;
+    box-shadow: 
+      0 4px 10px rgba(255, 60, 60, 0.5),
+      0 0 0 1px rgba(255, 255, 255, 0.1),
+      inset 0 1px 1px rgba(255, 255, 255, 0.3);
     font-weight: bold;
-    min-width: 20px;
-    height: 20px;
+    min-width: 24px;
+    height: 24px;
     display: flex;
     align-items: center;
     justify-content: center;
+    z-index: 2;
+    letter-spacing: 0.5px;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+    animation: pulse-badge 2s infinite ease-in-out;
+  }
+  
+  @keyframes pulse-badge {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.15); }
+    100% { transform: scale(1); }
   }
   
   .icon {
     animation: float 4s infinite ease-in-out;
+    position: relative;
+    z-index: 2;
   }
   
   @keyframes float {
-    0% { transform: translateY(0); }
-    50% { transform: translateY(-5px); }
-    100% { transform: translateY(0); }
+    0% { transform: translateY(0) scale(1); }
+    50% { transform: translateY(-5px) scale(1.05); }
+    100% { transform: translateY(0) scale(1); }
   }
 
   /* Messages Area */
@@ -1069,6 +1427,10 @@
     background: rgba(20, 20, 20, 0.5);
     scroll-behavior: smooth;
     position: relative;
+    overscroll-behavior: contain; /* Prevent scroll chaining */
+    -webkit-overflow-scrolling: touch; /* Improve scroll on iOS */
+    scroll-padding: 20px; /* Space for auto-scrolling */
+    will-change: transform; /* Optimize scrolling */
   }
   
   .light-mode .messages {
@@ -1197,6 +1559,38 @@
     max-width: 85%;
     animation: messageSlide 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
     position: relative;
+    contain: content; /* Improve rendering performance */
+    margin-bottom: 14px; /* Increase spacing between messages */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  /* New message highlight effect */
+  .message-wrapper:has(.message:not(.typing-active)) .message-content:has(+ .message-time)::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: inherit;
+    pointer-events: none;
+    animation: newMessageGlow 2s ease-out forwards;
+    z-index: -1;
+  }
+  
+  @keyframes newMessageGlow {
+    0% { 
+      box-shadow: 0 0 0 0 rgba(80, 120, 255, 0.8);
+      opacity: 1;
+    }
+    70% { 
+      box-shadow: 0 0 0 10px rgba(80, 120, 255, 0);
+      opacity: 0.5;
+    }
+    100% { 
+      box-shadow: 0 0 0 0 rgba(80, 120, 255, 0);
+      opacity: 0;
+    }
   }
 
   .message-wrapper.user {
@@ -1209,43 +1603,105 @@
 
   .message {
     display: flex;
-    gap: 12px;
-    padding: 16px;
-    border-radius: 20px;
-    background: rgba(40, 40, 40, 0.9);
+    gap: 14px;
+    padding: 18px;
+    border-radius: 18px;
+    background: rgba(28, 32, 44, 0.92);
     color: #fff;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    box-shadow: 
+      0 6px 16px rgba(0, 0, 0, 0.35),
+      0 1px 3px rgba(0, 0, 0, 0.1),
+      inset 0 0 0 1px rgba(80, 120, 255, 0.15);
     position: relative;
     overflow: hidden;
-    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-    backdrop-filter: blur(10px);
+    transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1),
+                box-shadow 0.3s cubic-bezier(0.34, 1.56, 0.64, 1),
+                background-color 0.3s ease;
+    backdrop-filter: blur(20px);
+    border: none;
+    will-change: transform, opacity; /* Optimize for animations */
+    transform: translateZ(0); /* Force GPU acceleration */
+  }
+  
+  .message::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 17px; /* 1px less than parent */
+    padding: 1px;
+    background: linear-gradient(140deg, rgba(80, 120, 255, 0.4), rgba(70, 100, 220, 0.01) 70%);
+    -webkit-mask: linear-gradient(#000 0 0) content-box, 
+                  linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
   }
   
   .light-mode .message {
-    background: rgba(255, 255, 255, 0.9);
+    background: rgba(250, 252, 255, 0.92);
     color: #333;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    box-shadow: 
+      0 6px 16px rgba(0, 30, 100, 0.08),
+      0 1px 3px rgba(0, 50, 150, 0.05),
+      inset 0 0 0 1px rgba(255, 255, 255, 0.7);
+    border: none;
+  }
+  
+  .light-mode .message::before {
+    background: linear-gradient(140deg, rgba(70, 100, 255, 0.3), rgba(70, 100, 220, 0.01) 70%);
   }
 
   .message.suggestion {
-    background: linear-gradient(135deg, rgba(52, 152, 219, 0.1), rgba(41, 128, 185, 0.1));
-    border: 1px solid rgba(52, 152, 219, 0.2);
-    animation: suggestionPulse 2s infinite;
+    background: rgba(28, 32, 50, 0.95);
+    border: none;
+    animation: suggestionPulse 3s infinite;
+    box-shadow: 
+      0 8px 20px rgba(70, 100, 255, 0.15),
+      0 2px 5px rgba(70, 100, 255, 0.1),
+      inset 0 0 0 1px rgba(70, 100, 255, 0.3);
+  }
+  
+  .message.suggestion::before {
+    background: linear-gradient(140deg, rgba(100, 150, 255, 0.5), rgba(70, 100, 255, 0.01) 80%);
+    border-radius: 17px;
   }
   
   .light-mode .message.suggestion {
-    background: linear-gradient(135deg, rgba(52, 152, 219, 0.1), rgba(41, 128, 185, 0.1));
-    border: 1px solid rgba(52, 152, 219, 0.2);
+    background: rgba(245, 250, 255, 0.95);
+    box-shadow: 
+      0 8px 20px rgba(70, 100, 255, 0.08),
+      0 2px 5px rgba(70, 100, 255, 0.05),
+      inset 0 0 0 1px rgba(70, 100, 255, 0.2);
+  }
+  
+  .light-mode .message.suggestion::before {
+    background: linear-gradient(140deg, rgba(100, 150, 255, 0.3), rgba(70, 100, 255, 0.01) 80%);
   }
 
   .message.error {
-    background: linear-gradient(135deg, rgba(231, 76, 60, 0.1), rgba(192, 57, 43, 0.1));
-    border: 1px solid rgba(231, 76, 60, 0.2);
+    background: rgba(35, 28, 30, 0.95);
+    border: none;
+    box-shadow: 
+      0 8px 20px rgba(255, 70, 80, 0.15),
+      0 2px 5px rgba(255, 70, 80, 0.1),
+      inset 0 0 0 1px rgba(255, 70, 80, 0.3);
+  }
+  
+  .message.error::before {
+    background: linear-gradient(140deg, rgba(255, 70, 80, 0.5), rgba(230, 50, 70, 0.01) 80%);
+    border-radius: 17px;
   }
   
   .light-mode .message.error {
-    background: linear-gradient(135deg, rgba(231, 76, 60, 0.1), rgba(192, 57, 43, 0.1));
-    border: 1px solid rgba(231, 76, 60, 0.2);
+    background: rgba(255, 245, 245, 0.95);
+    box-shadow: 
+      0 8px 20px rgba(255, 70, 80, 0.08),
+      0 2px 5px rgba(255, 70, 80, 0.05),
+      inset 0 0 0 1px rgba(255, 70, 80, 0.2);
+  }
+  
+  .light-mode .message.error::before {
+    background: linear-gradient(140deg, rgba(255, 70, 80, 0.3), rgba(230, 50, 70, 0.01) 80%);
   }
 
   @keyframes suggestionPulse {
@@ -1265,14 +1721,35 @@
   }
 
   .user .message {
-    background: linear-gradient(135deg, #3498db, #2980b9);
+    background: linear-gradient(145deg, #4568ff, #3050e0);
     color: white;
-    border-radius: 20px 20px 4px 20px;
+    border-radius: 18px 18px 4px 18px;
+    box-shadow: 
+      0 8px 20px rgba(50, 80, 255, 0.25),
+      0 2px 5px rgba(50, 80, 255, 0.15),
+      inset 0 1px 1px rgba(255, 255, 255, 0.15);
+    border: none;
+  }
+  
+  .user .message::before {
+    background: linear-gradient(140deg, rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.01) 60%);
+  }
+  
+  .thinking-wrapper {
+    justify-content: center;
+    margin: 10px 0;
+    transition: none;
+    max-width: 200px;
+    align-self: center;
   }
   
   .light-mode .user .message {
-    background: linear-gradient(135deg, #3498db, #2980b9);
+    background: linear-gradient(135deg, #4a6eff, #2b5bde);
     color: white;
+    box-shadow: 
+      0 6px 16px rgba(70, 100, 255, 0.15),
+      0 0 15px rgba(70, 100, 255, 0.1),
+      inset 0 0 10px rgba(255, 255, 255, 0.15);
   }
 
   .message.assistant .message-avatar {
@@ -1299,26 +1776,59 @@
   }
 
   .message-avatar {
-    width: 36px;
-    height: 36px;
-    border-radius: 50%;
+    width: 38px;
+    height: 38px;
+    border-radius: 12px;
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 18px;
-    background: rgba(60, 60, 60, 0.9);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    background: rgba(40, 45, 60, 0.9);
+    box-shadow: 
+      0 4px 12px rgba(0, 0, 0, 0.15),
+      inset 0 0 0 1px rgba(255, 255, 255, 0.1);
     transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
     flex-shrink: 0;
+    position: relative;
+    transform: translateZ(0);
+  }
+  
+  .message-avatar::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 11px;
+    padding: 1px;
+    background: linear-gradient(140deg, rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.01) 70%);
+    -webkit-mask: linear-gradient(#000 0 0) content-box, 
+                  linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
   }
   
   .light-mode .message-avatar {
-    background: rgba(235, 235, 235, 0.9);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    background: rgba(240, 245, 255, 0.95);
+    box-shadow: 
+      0 4px 12px rgba(0, 30, 100, 0.1),
+      inset 0 0 0 1px rgba(70, 100, 255, 0.2);
+  }
+  
+  .light-mode .message-avatar::before {
+    background: linear-gradient(140deg, rgba(70, 100, 255, 0.3), rgba(70, 100, 255, 0.01) 70%);
   }
 
   .message:hover .message-avatar {
-    transform: scale(1.1) rotate(5deg);
+    transform: translateY(-2px) scale(1.05);
+    box-shadow: 
+      0 6px 16px rgba(0, 0, 0, 0.2),
+      inset 0 0 0 1px rgba(255, 255, 255, 0.15);
+  }
+  
+  .light-mode .message:hover .message-avatar {
+    box-shadow: 
+      0 6px 16px rgba(0, 30, 100, 0.15),
+      inset 0 0 0 1px rgba(70, 100, 255, 0.3);
   }
 
   .user-avatar, .ai-avatar {
@@ -1327,26 +1837,30 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: 50%;
-    background: linear-gradient(135deg, #6366f1, #4f46e5);
+    border-radius: 10px;
+    background: linear-gradient(135deg, #4568ff, #3050e0);
     color: white;
     font-size: 16px;
   }
   
   .light-mode .user-avatar {
-    background: linear-gradient(135deg, #3498db, #2980b9);
+    background: linear-gradient(135deg, #4568ff, #3050e0);
   }
   
   .light-mode .ai-avatar {
-    background: linear-gradient(135deg, #2ecc71, #27ae60);
+    background: linear-gradient(135deg, #3060ff, #2040dd);
+  }
+  
+  .ai-avatar {
+    background: linear-gradient(135deg, #3060ff, #2040dd);
   }
   
   .suggestion-avatar {
-    background: linear-gradient(135deg, #f39c12, #e67e22);
+    background: linear-gradient(135deg, #5f8aff, #496cff);
   }
   
   .error-avatar {
-    background: linear-gradient(135deg, #e74c3c, #c0392b);
+    background: linear-gradient(135deg, #ff3a50, #e62040);
   }
 
   .message-content {
@@ -1355,6 +1869,9 @@
     display: flex;
     flex-direction: column;
     gap: 4px;
+    contain: layout; /* Improve performance by containing layout changes */
+    position: relative; /* For proper containment */
+    isolation: isolate; /* Create stacking context to prevent z-index issues */
   }
 
   .message-text {
@@ -1362,6 +1879,10 @@
     line-height: 1.6;
     word-wrap: break-word;
     position: relative;
+    transform: translateZ(0); /* Force GPU acceleration */
+    will-change: contents; /* Hint for browser optimization */
+    overflow: hidden; /* Prevent layout shifts */
+    min-height: 1.6em; /* Maintain minimum height to reduce jumping */
   }
 
   .message-time {
@@ -1378,6 +1899,52 @@
 
   .user .message-time {
     color: rgba(255, 255, 255, 0.8);
+  }
+  
+  /* New message indicator */
+  .new-badge {
+    display: inline-block;
+    font-size: 10px;
+    background: linear-gradient(135deg, #ff3a7c, #ff1f5a);
+    color: white;
+    padding: 2px 6px;
+    border-radius: 10px;
+    margin-left: 8px;
+    vertical-align: middle;
+    font-weight: bold;
+    box-shadow: 0 2px 6px rgba(255, 60, 100, 0.4);
+    animation: fadeInOut 2s infinite;
+  }
+  
+  .pulse-indicator {
+    position: absolute;
+    top: -4px;
+    right: -4px;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: #5a7eff;
+    box-shadow: 0 0 0 rgba(90, 126, 255, 0.6);
+    animation: pulse-ring 2s cubic-bezier(0.455, 0.03, 0.515, 0.955) infinite;
+  }
+  
+  @keyframes pulse-ring {
+    0% {
+      transform: scale(0.8);
+      box-shadow: 0 0 0 0 rgba(90, 126, 255, 0.6);
+    }
+    70% {
+      transform: scale(1);
+      box-shadow: 0 0 0 10px rgba(90, 126, 255, 0);
+    }
+    100% {
+      transform: scale(0.8);
+      box-shadow: 0 0 0 0 rgba(90, 126, 255, 0);
+    }
+  }
+  
+  .new-message .message {
+    transform: translateZ(0);
   }
   
   .message-action-btn {
@@ -1408,37 +1975,84 @@
 
   /* Input Area */
   .input-area {
-    padding: 16px;
-    background: rgba(40, 40, 40, 0.9);
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 18px;
+    background: rgba(20, 22, 32, 0.95);
+    border-top: none;
     position: relative;
+    backdrop-filter: blur(20px);
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+    z-index: 2;
+  }
+  
+  .input-area::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 15%;
+    right: 15%;
+    height: 1px;
+    background: linear-gradient(90deg, 
+      rgba(70, 100, 255, 0), 
+      rgba(70, 100, 255, 0.2), 
+      rgba(70, 100, 255, 0));
   }
   
   .light-mode .input-area {
-    background: rgba(245, 245, 245, 0.9);
-    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    background: rgba(240, 245, 255, 0.95);
+    box-shadow: 0 -2px 10px rgba(70, 100, 255, 0.05);
+  }
+  
+  .light-mode .input-area::before {
+    background: linear-gradient(90deg, 
+      rgba(70, 100, 255, 0), 
+      rgba(70, 100, 255, 0.15), 
+      rgba(70, 100, 255, 0));
   }
 
   .input-wrapper {
     display: flex;
-    gap: 10px;
-    background: rgba(30, 30, 30, 0.9);
-    border: 1px solid rgba(52, 152, 219, 0.3);
-    border-radius: 16px;
-    padding: 10px 12px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    gap: 12px;
+    background: rgba(28, 32, 44, 0.9);
+    border: none;
+    border-radius: 14px;
+    padding: 14px 16px;
+    box-shadow: 
+      0 4px 12px rgba(0, 0, 0, 0.2),
+      inset 0 0 0 1px rgba(70, 100, 255, 0.2);
     transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .input-wrapper::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 13px;
+    padding: 1px;
+    background: linear-gradient(140deg, rgba(80, 120, 255, 0.4), rgba(70, 100, 220, 0.01) 70%);
+    -webkit-mask: linear-gradient(#000 0 0) content-box, 
+                  linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
   }
   
   .light-mode .input-wrapper {
-    background: rgba(255, 255, 255, 0.9);
-    border: 1px solid rgba(52, 152, 219, 0.3);
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    background: rgba(250, 252, 255, 0.9);
+    box-shadow: 
+      0 4px 12px rgba(70, 100, 255, 0.08),
+      inset 0 0 0 1px rgba(70, 100, 255, 0.15);
+  }
+  
+  .light-mode .input-wrapper::before {
+    background: linear-gradient(140deg, rgba(80, 120, 255, 0.3), rgba(70, 100, 220, 0.01) 70%);
   }
 
   .input-wrapper:focus-within {
-    border-color: #3498db;
-    box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2);
+    box-shadow: 
+      0 6px 16px rgba(70, 100, 255, 0.2),
+      inset 0 0 0 1px rgba(70, 100, 255, 0.4);
     transform: translateY(-2px);
   }
   
@@ -1447,83 +2061,122 @@
     border: none;
     font-size: 18px;
     cursor: pointer;
-    color: #888;
-    width: 36px;
-    height: 36px;
+    color: #aab;
+    width: 38px;
+    height: 38px;
     display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: 8px;
+    border-radius: 12px;
     transition: all 0.2s;
+    margin-left: 4px;
   }
   
   .emoji-button:hover {
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(80, 120, 255, 0.15);
     color: #fff;
+    transform: translateY(-1px) scale(1.05);
   }
   
   .light-mode .emoji-button:hover {
-    background: rgba(0, 0, 0, 0.1);
-    color: #333;
+    background: rgba(80, 120, 255, 0.1);
+    color: rgb(80, 120, 255);
   }
 
   .message-input {
     flex: 1;
     border: none;
-    padding: 8px;
-    font-size: 14px;
+    padding: 10px;
+    font-size: 15px;
     line-height: 1.5;
     resize: none;
     background: transparent;
     outline: none;
     max-height: 120px;
     min-height: 24px;
-    color: #fff;
+    color: rgba(255, 255, 255, 0.9);
     width: 100%;
     font-family: inherit;
+    letter-spacing: 0.3px;
+    backdrop-filter: blur(12px);
+    caret-color: rgb(80, 120, 255); /* Blue cursor */
+    transition: all 0.2s ease;
   }
   
   .light-mode .message-input {
-    color: #333;
+    color: rgba(30, 40, 60, 0.9);
+    caret-color: rgb(70, 100, 250);
   }
 
   .message-input::placeholder {
-    color: #888;
+    color: rgba(180, 190, 255, 0.5);
+    font-style: italic;
   }
   
   .light-mode .message-input::placeholder {
-    color: #aaa;
+    color: rgba(100, 130, 200, 0.4);
   }
 
   .send-button {
-    width: 36px;
-    height: 36px;
+    width: 42px;
+    height: 42px;
     border: none;
     border-radius: 12px;
-    background: #3498db;
+    background: linear-gradient(145deg, #4568ff, #3050e0);
     color: white;
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
     transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    box-shadow: 
+      0 4px 12px rgba(70, 100, 255, 0.3),
+      inset 0 1px 2px rgba(255, 255, 255, 0.2);
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .send-button::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 11px;
+    padding: 1px;
+    background: linear-gradient(140deg, rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.01) 70%);
+    -webkit-mask: linear-gradient(#000 0 0) content-box, 
+                  linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
   }
 
   .send-button:hover:not(:disabled) {
-    background: #2980b9;
-    transform: translateY(-2px) scale(1.05);
-    box-shadow: 0 4px 12px rgba(52, 152, 219, 0.3);
+    background: linear-gradient(145deg, #5a7eff, #4060f0);
+    transform: translateY(-2px);
+    box-shadow: 
+      0 6px 16px rgba(70, 100, 255, 0.4),
+      inset 0 1px 2px rgba(255, 255, 255, 0.3);
+  }
+  
+  .send-button:active:not(:disabled) {
+    transform: translateY(1px);
+    box-shadow: 
+      0 2px 8px rgba(70, 100, 255, 0.3),
+      inset 0 1px 1px rgba(255, 255, 255, 0.2);
+    transition: all 0.1s ease;
   }
 
   .send-button:disabled {
-    background: #505050;
+    background: linear-gradient(135deg, #3a4a68, #2a3a58);
     cursor: not-allowed;
     transform: none;
     box-shadow: none;
+    opacity: 0.6;
   }
   
   .light-mode .send-button:disabled {
-    background: #ccc;
+    background: linear-gradient(135deg, #c0c8e0, #b0b8d0);
+    box-shadow: none;
   }
 
   .send-button svg {
@@ -1537,19 +2190,44 @@
     bottom: 80px;
     left: 16px;
     right: 16px;
-    background: rgba(40, 40, 40, 0.95);
-    backdrop-filter: blur(20px);
-    border-radius: 16px;
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
-    padding: 12px;
+    background: rgba(28, 32, 44, 0.95);
+    backdrop-filter: blur(25px);
+    border-radius: 14px;
+    box-shadow: 
+      0 10px 30px rgba(0, 0, 0, 0.4),
+      inset 0 0 0 1px rgba(70, 100, 255, 0.25);
+    padding: 16px;
     z-index: 1000;
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    border: none;
+    overflow: hidden;
+    position: relative;
+  }
+  
+  .emoji-picker::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 13px;
+    padding: 1px;
+    background: linear-gradient(140deg, rgba(80, 120, 255, 0.4), rgba(70, 100, 220, 0.01) 70%);
+    -webkit-mask: linear-gradient(#000 0 0) content-box, 
+                  linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+    z-index: -1;
   }
   
   .light-mode .emoji-picker {
-    background: rgba(255, 255, 255, 0.95);
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
-    border: 1px solid rgba(0, 0, 0, 0.1);
+    background: rgba(250, 252, 255, 0.95);
+    box-shadow: 
+      0 10px 30px rgba(0, 30, 100, 0.15),
+      inset 0 0 0 1px rgba(70, 100, 255, 0.18);
+    border: none;
+  }
+  
+  .light-mode .emoji-picker::before {
+    background: linear-gradient(140deg, rgba(80, 120, 255, 0.3), rgba(70, 100, 220, 0.01) 70%);
   }
   
   .emoji-categories {
@@ -1615,32 +2293,102 @@
   /* Typing Indicator */
   .typing-indicator {
     display: flex;
-    gap: 4px;
-    padding: 8px;
+    gap: 8px;
+    padding: 12px 16px;
     align-items: center;
+    position: relative;
+    height: 40px; /* Fix height to prevent container resizing */
+    min-width: 150px; /* Set minimum width */
+    transform: translateZ(0); /* Force GPU acceleration */
+    background: rgba(40, 60, 120, 0.15);
+    border-radius: 20px;
+    box-shadow: inset 0 0 0 1px rgba(70, 100, 255, 0.2);
+    backdrop-filter: blur(8px);
+    margin: 0 auto;
+  }
+
+  .typing-indicator::after {
+    content: "Thinking...";
+    font-size: 13px;
+    color: rgba(120, 160, 255, 0.9);
+    opacity: 0.9;
+    animation: fadeInOut 1.5s infinite;
+    margin-left: 4px;
+    font-weight: 500;
+    letter-spacing: 0.3px;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+  }
+  
+  .light-mode .typing-indicator {
+    background: rgba(70, 100, 255, 0.08);
+    box-shadow: inset 0 0 0 1px rgba(70, 100, 255, 0.15);
+  }
+  
+  .light-mode .typing-indicator::after {
+    color: rgba(60, 90, 180, 0.9);
+    text-shadow: none;
   }
 
   .typing-indicator span {
     width: 8px;
     height: 8px;
-    background: #3498db;
+    background: linear-gradient(135deg, rgb(100, 160, 255), rgb(70, 110, 255));
     border-radius: 50%;
-    animation: typing 1.2s infinite cubic-bezier(0.34, 1.56, 0.64, 1);
-    box-shadow: 0 0 8px rgba(52, 152, 219, 0.5);
+    animation: typing 1.4s infinite cubic-bezier(0.34, 1.56, 0.64, 1);
+    box-shadow: 
+      0 0 10px rgba(100, 140, 255, 0.7),
+      0 0 4px rgba(80, 120, 255, 0.4);
+    position: relative;
+    filter: blur(0.3px);
+    will-change: transform, opacity;
+    opacity: 0.9;
+  }
+  
+  .typing-indicator span::before {
+    content: '';
+    position: absolute;
+    top: 1px;
+    left: 2px;
+    width: 3px;
+    height: 3px;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 50%;
+    filter: blur(0.3px);
   }
 
+  .typing-indicator span:nth-child(1) { 
+    animation-delay: 0s;
+    transform-origin: center bottom;
+  }
+  
   .typing-indicator span:nth-child(2) { 
-    animation-delay: 0.2s;
+    animation-delay: 0.3s;
+    transform-origin: center;
   }
 
   .typing-indicator span:nth-child(3) { 
-    animation-delay: 0.4s;
+    animation-delay: 0.6s;
+    transform-origin: center top;
+  }
+  
+  .light-mode .typing-indicator span {
+    background: linear-gradient(135deg, rgb(70, 120, 255), rgb(50, 90, 240));
+    box-shadow: 
+      0 0 10px rgba(70, 100, 255, 0.5),
+      0 0 4px rgba(70, 100, 255, 0.3);
   }
 
   @keyframes typing {
-    0% { transform: scale(1); opacity: 1; }
-    50% { transform: scale(1.5); opacity: 0.5; }
-    100% { transform: scale(1); opacity: 1; }
+    0% { transform: scale(0.8) translateY(0); opacity: 0.7; }
+    40% { transform: scale(1.2) translateY(-3px); opacity: 1; }
+    70% { transform: scale(1.1) translateY(-2px); opacity: 0.9; }
+    100% { transform: scale(0.8) translateY(0); opacity: 0.7; }
+  }
+  
+  @keyframes fadeInOut {
+    0% { opacity: 0.7; }
+    50% { opacity: 1; }
+    100% { opacity: 0.7; }
   }
 
   @keyframes messageSlide {

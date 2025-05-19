@@ -12,7 +12,7 @@ logger = logging.getLogger(__name__)
 class OverlayBridge:
     """Bridge between Python backend and overlay interface"""
     
-    def __init__(self, port=8765):
+    def __init__(self, port=8766):  # Updated to use the interceptor service port
         self.port = port
         self.server = None
         self.clients = set()

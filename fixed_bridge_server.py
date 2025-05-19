@@ -21,6 +21,7 @@ logger = logging.getLogger('fixed_bridge')
 
 # Track connected clients
 connected_clients = set()
+llm_service = None
 sensor_data = {
     "processes": [],
     "screen": {},
@@ -31,7 +32,9 @@ sensor_data = {
 # IMPORTANT: The handler MUST accept both websocket AND path parameters
 async def handler(websocket, path):
     """WebSocket connection handler with the correct signature including path parameter"""
+    global llm_service
     client_id = f"client_{id(websocket)}"
+    client_type = "unknown"
     connected_clients.add(websocket)
     logger.info(f"Client {client_id} connected at path: {path}")
     
@@ -63,6 +66,11 @@ async def handler(websocket, path):
                     client_info = data.get('payload', {})
                     client_type = client_info.get('client', 'unknown')
                     logger.info(f"Client {client_id} identified as: {client_type}")
+                    
+                    # If this is the LLM service connecting, save the reference
+                    if 'ollama_llm_service' in client_type:
+                        llm_service = websocket
+                        logger.info("LLM service connected and registered")
                     
                     # Send ready confirmation
                     await websocket.send(json.dumps({
@@ -112,25 +120,39 @@ async def handler(websocket, path):
                     # Forward to LLM system if we have one connected
                     logger.info(f"LLM request received: {data.get('payload', {}).get('query', 'empty')}")
                     
-                    # Simulate LLM response for now
-                    await websocket.send(json.dumps({
-                        "type": "llm_response",
-                        "payload": {
-                            "response": "This is a simulated LLM response. The full LLM system will provide actual responses.",
-                            "model": "simulator",
-                            "context_used": True,
-                            "processing_time": 0.5
-                        },
-                        "timestamp": datetime.now().isoformat()
-                    }))
+                    if llm_service and llm_service in connected_clients:
+                        # Forward the request to the LLM service
+                        logger.info(f"Forwarding request to LLM service")
+                        await llm_service.send(json.dumps(data))
+                    else:
+                        # No LLM service connected, send simulated response
+                        logger.warning("No LLM service connected, sending simulated response")
+                        await websocket.send(json.dumps({
+                            "type": "llm_response",
+                            "payload": {
+                                "response": "This is a simulated LLM response. No LLM service is connected to the system.",
+                                "model": "simulator",
+                                "context_used": True,
+                                "processing_time": 0.5
+                            },
+                            "timestamp": datetime.now().isoformat()
+                        }))
+                
+                elif msg_type == 'llm_response':
+                    # Forward LLM response to all clients except the LLM service
+                    logger.info("Received LLM response, forwarding to clients")
                     
+                    # Forward to all clients except the LLM service
+                    for client in connected_clients:
+                        if client != llm_service:
+                            await client.send(json.dumps(data))
+                
                 else:
                     # Default echo response
                     response = {
-                        "type": "response",
+                        "type": "echo",
                         "payload": {
-                            "original_type": msg_type,
-                            "message": f"Received your {msg_type} message",
+                            "data": data,
                             "timestamp": datetime.now().isoformat()
                         }
                     }
@@ -149,7 +171,10 @@ async def handler(websocket, path):
         logger.error(f"Error handling client {client_id}: {e}")
     finally:
         connected_clients.remove(websocket)
-        logger.info(f"Client {client_id} disconnected")
+        if websocket == llm_service:
+            llm_service = None
+            logger.info("LLM service disconnected")
+        logger.info(f"Client {client_id} ({client_type}) disconnected")
 
 async def broadcast(message):
     """Broadcast a message to all connected clients"""
@@ -168,7 +193,8 @@ async def heartbeat():
                 await broadcast({
                     "type": "heartbeat",
                     "timestamp": datetime.now().isoformat(),
-                    "clients_connected": len(connected_clients)
+                    "clients_connected": len(connected_clients),
+                    "llm_service_connected": llm_service is not None and llm_service in connected_clients
                 })
                 logger.debug(f"Heartbeat sent to {len(connected_clients)} clients")
             except Exception as e:
@@ -183,16 +209,11 @@ async def main():
     # Start server
     logger.info(f"Starting WebSocket bridge server on {host}:{port}")
     
-    # VERY IMPORTANT: The handler must have 2 parameters (websocket, path)
-    # Make sure the handler is properly wrapped to include path parameter
-    # This is important because websockets library sometimes changes the handler signature requirements
-    async def handler_wrapper(websocket, path):
-        await handler(websocket, path)
-    
-    # Use serve with the wrapped handler to ensure correct signature
-    server = await websockets.serve(handler_wrapper, host, port)
+    # Create server with the handler directly
+    server = await websockets.serve(handler, host, port)
     
     # Save PID
+    os.makedirs("pids", exist_ok=True)
     with open('pids/bridge_server.pid', 'w') as f:
         f.write(str(os.getpid()))
     

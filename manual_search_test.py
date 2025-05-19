@@ -3,14 +3,14 @@
 Direct Memory Search Test
 
 This script directly tests the memory search functionality
-by implementing a simple memory system with vector search.
+by implementing a simple memory system with text-based search.
 """
 import os
 import json
 import time
 import logging
 import numpy as np
-from sentence_transformers import SentenceTransformer
+# Removed sentence_transformers dependency
 from sklearn.metrics.pairwise import cosine_similarity
 
 # Configure logging
@@ -26,23 +26,21 @@ logging.basicConfig(
 logger = logging.getLogger(__name__)
 
 class SimpleMemorySystem:
-    """A simplified memory system with vector search capabilities."""
+    """A simplified memory system with text search capabilities."""
     
     def __init__(self):
         """Initialize the memory system."""
         try:
-            # Load the sentence transformer model
-            logger.info("Loading sentence transformer model...")
-            self.model = SentenceTransformer('all-MiniLM-L6-v2')
-            logger.info("Model loaded successfully")
+            # No model loading needed for text search
+            logger.info("Initializing text-based search system...")
             
             # Initialize memory storage
             self.memories = []
-            self.vectors = []
+            self.token_lists = []  # Store tokenized text instead of vectors
             
             # Log initialization success
             logger.info("SimpleMemorySystem initialized successfully")
-            print("Memory system initialized successfully")
+            print("Memory system initialized successfully (text search)")
         except Exception as e:
             logger.error(f"Error initializing memory system: {e}")
             print(f"Error initializing memory system: {e}")
@@ -58,12 +56,12 @@ class SimpleMemorySystem:
                 "id": str(len(self.memories) + 1)
             }
             
-            # Generate vector embedding
-            vector = self.model.encode(content)
+            # Tokenize content for text search
+            tokens = content.lower().split()
             
-            # Store memory and vector
+            # Store memory and tokens
             self.memories.append(memory)
-            self.vectors.append(vector)
+            self.token_lists.append(tokens)
             
             logger.info(f"Added memory: {content[:50]}...")
             return True
@@ -72,27 +70,40 @@ class SimpleMemorySystem:
             return False
     
     def search_memory(self, query, limit=3):
-        """Search for memories similar to the query."""
+        """Search for memories similar to the query using text matching."""
         try:
             if not self.memories:
                 logger.warning("No memories to search")
                 return []
             
-            # Generate query vector
-            query_vector = self.model.encode(query)
+            # Tokenize query
+            query_tokens = query.lower().split()
             
-            # Calculate similarities
-            similarities = cosine_similarity([query_vector], self.vectors)[0]
+            # Calculate token overlap for each memory
+            scores = []
+            for idx, tokens in enumerate(self.token_lists):
+                # Calculate token overlap score (percentage of query tokens found)
+                if not query_tokens or not tokens:
+                    scores.append(0)
+                    continue
+                    
+                # Find common tokens
+                common_tokens = set(query_tokens).intersection(set(tokens))
+                
+                # Calculate score as percentage of query tokens found
+                score = len(common_tokens) / len(query_tokens) if query_tokens else 0
+                scores.append(score)
             
             # Get top matches
-            top_indices = np.argsort(similarities)[-limit:][::-1]
+            top_indices = np.argsort(scores)[-limit:][::-1]
             
             # Collect results
             results = []
             for idx in top_indices:
-                memory = self.memories[idx].copy()
-                memory["score"] = float(similarities[idx])
-                results.append(memory)
+                if scores[idx] > 0:  # Only include results with some relevance
+                    memory = self.memories[idx].copy()
+                    memory["score"] = float(scores[idx])
+                    results.append(memory)
             
             logger.info(f"Found {len(results)} results for query: {query}")
             return results
@@ -117,7 +128,7 @@ def display_results(query, results):
 def main():
     """Run the memory search test."""
     try:
-        print("\n=== SEMANTIC MEMORY SEARCH TEST ===\n")
+        print("\n=== TEXT-BASED MEMORY SEARCH TEST ===\n")
         
         # Initialize memory system
         memory = SimpleMemorySystem()
@@ -141,7 +152,7 @@ def main():
         print(f"Added {len(test_memories)} memories to the system")
         
         # Test search queries
-        print("\n=== TESTING SEMANTIC SEARCH ===\n")
+        print("\n=== TESTING TEXT-BASED SEARCH ===\n")
         
         test_queries = [
             "Tell me about programming languages",

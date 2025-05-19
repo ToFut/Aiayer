@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+all #!/usr/bin/env python3
 import asyncio
 import websockets
 import json

@@ -1,0 +1,2431 @@
+{
+  "timestamp": 1747638247.455831,
+  "type": "process_sensor",
+  "processes": [
+    {
+      "pid": 0,
+      "name": "kernel_task",
+      "username": "root",
+      "cpu_percent": null,
+      "memory_percent": null
+    },
+    {
+      "pid": 1,
+      "name": "launchd",
+      "username": "root",
+      "cpu_percent": null,
+      "memory_percent": null
+    },
+    {
+      "pid": 309,
+      "name": "logd",
+      "username": "root",
+      "cpu_percent": null,
+      "memory_percent": null
+    },
+    {
+      "pid": 311,
+      "name": "UserEventAgent",
+      "username": "root",
+      "cpu_percent": null,
+      "memory_percent": null
+    },
+    {
+      "pid": 313,
+      "name": "uninstalld",
+      "username": "root",
+      "cpu_percent": null,
+      "memory_percent": null
+    },
+    {
+      "pid": 314,
+      "name": "fseventsd",
+      "username": "root",
+      "cpu_percent": null,
+      "memory_percent": null
+    },
+    {
+      "pid": 315,
+      "name": "mediaremoted",
+      "username": "root",
+      "cpu_percent": null,
+      "memory_percent": null
+    },
+    {
+      "pid": 318,
+      "name": "systemstats",
+      "username": "root",
+      "cpu_percent": null,
+      "memory_percent": null
+    },
+    {
+      "pid": 321,
+      "name": "configd",
+      "username": "root",
+      "cpu_percent": null,
+      "memory_percent": null
+    },
+    {
+      "pid": 323,
+      "name": "powerd",
+      "username": "root",
+      "cpu_percent": null,
+      "memory_percent": null
+    },
+    {
+      "pid": 324,
+      "name": "IOMFB_bics_daemo",
+      "username": "root",
+      "cpu_percent": null,
+      "memory_percent": null
+    },
+    {
+      "pid": 329,
+      "name": "remoted",
+      "username": "root",
+      "cpu_percent": null,
+      "memory_percent": null
+    },
+    {
+      "pid": 334,
+      "name": "watchdogd",
+      "username": "root",
+      "cpu_percent": null,
+      "memory_percent": null
+    },
+    {
+      "pid": 338,
+      "name": "mds",
+      "username": "root",
+      "cpu_percent": null,
+      "memory_percent": null
+    },
+    {
+      "pid": 340,
+      "name": "kernelmanagerd",
+      "username": "root",
+      "cpu_percent": null,
+      "memory_percent": null
+    },
+    {
+      "pid": 341,
+      "name": "diskarbitrationd",
+      "username": "root",
+      "cpu_percent": null,
+      "memory_percent": null
+    },
+    {
+      "pid": 345,
+      "name": "syslogd",
+      "username": "root",
+      "cpu_percent": null,
+      "memory_percent": null
+    },
+    {
+      "pid": 348,
+      "name": "thermalmonitord",
+      "username": "root",
+      "cpu_percent": null,
+      "memory_percent": null
+    },
+    {
+      "pid": 349,
+      "name": "opendirectoryd",
+      "username": "root",
+      "cpu_percent": null,
+      "memory_percent": null
+    },
+    {
+      "pid": 350,
+      "name": "apsd",
+      "username": "root",
+      "cpu_percent": null,
+      "memory_percent": null
+    },
+    {
+      "pid": 351,
+      "name": "launchservicesd",
+      "username": "root",
+      "cpu_percent": null,
+      "memory_percent": null
+    },
+    {
+      "pid": 352,
+      "name": "timed",
+      "username": "_timed",
+      "cpu_percent": null,
+      "memory_percent": null
+    },
+    {
+      "pid": 353,
+      "name": "usbmuxd",
+      "username": "_usbmuxd",
+      "cpu_percent": null,
+      "memory_percent": null
+    },
+    {
+      "pid": 354,
+      "name": "securityd",
+      "username": "root",
+      "cpu_percent": null,
+      "memory_percent": null
+    },
+    {
+      "pid": 356,
+      "name": "locationd",
+      "username": "_locationd",
+      "cpu_percent": null,
+      "memory_percent": null
+    },
+    {
+      "pid": 358,
+      "name": "autofsd",
+      "username": "root",
+      "cpu_percent": null,
+      "memory_percent": null
+    },
+    {
+      "pid": 359,
+      "name": "dasd",
+      "username": "root",
+      "cpu_percent": null,
+      "memory_percent": null
+    },
+    {
+      "pid": 361,
+      "name": "distnoted",
+      "username": "_distnote",
+      "cpu_percent": null,
+      "memory_percent": null
+    },
+    {
+      "pid": 365,
+      "name": "logind",
+      "username": "root",
+      "cpu_percent": null,
+      "memory_percent": null
+    },
+    {
+      "pid": 366,
+      "name": "revisiond",
+      "username": "root",
+      "cpu_percent": null,
+      "memory_percent": null
+    },
+    {
+      "pid": 367,
+      "name": "KernelEventAgent",
+      "username": "root",
+      "cpu_percent": null,
+      "memory_percent": null
+    },
+    {
+      "pid": 370,
+      "name": "bluetoothd",
+      "username": "root",
+      "cpu_percent": null,
+      "memory_percent": null
+    },
+    {
+      "pid": 371,
+      "name": "notifyd",
+      "username": "root",
+      "cpu_percent": null,
+      "memory_percent": null
+    },
+    {
+      "pid": 373,
+      "name": "corebrightnessd",
+      "username": "root",
+      "cpu_percent": null,
+      "memory_percent": null
+    },
+    {
+      "pid": 374,
+      "name": "AirPlayXPCHelper",
+      "username": "root",
+      "cpu_percent": null,
+      "memory_percent": null
+    },
+    {
+      "pid": 375,
+      "name": "com.apple.cmio.r",
+      "username": "root",
+      "cpu_percent": null,
+      "memory_percent": null
+    },
+    {
+      "pid": 377,
+      "name": "WindowServer",
+      "username": "root",
+      "cpu_percent": null,
+      "memory_percent": null
+    },
+    {
+      "pid": 379,
+      "name": "tccd",
+      "username": "root",
+      "cpu_percent": null,
+      "memory_percent": null
+    },
+    {
+      "pid": 380,
+      "name": "cfprefsd",
+      "username": "root",
+      "cpu_percent": null,
+      "memory_percent": null
+    },
+    {
+      "pid": 381,
+      "name": "loginwindow",
+      "username": "root",
+      "cpu_percent": 0.0,
+      "memory_percent": 0.0301361083984375
+    },
+    {
+      "pid": 393,
+      "name": "runningboardd",
+      "username": "root",
+      "cpu_percent": null,
+      "memory_percent": null
+    },
+    {
+      "pid": 396,
+      "name": "contextstored",
+      "username": "root",
+      "cpu_percent": null,
+      "memory_percent": null
+    },
+    {
+      "pid": 402,
+      "name": "coreservicesd",
+      "username": "root",
+      "cpu_percent": null,
+      "memory_percent": null
+    },
+    {
+      "pid": 413,
+      "name": "lsd",
+      "username": "root",
+      "cpu_percent": null,
+      "memory_percent": null
+    },
+    {
+      "pid": 426,
+      "name": "systemstatusd",
+      "username": "root",
+      "cpu_percent": null,
+      "memory_percent": null
+    },
+    {
+      "pid": 427,
+      "name": "trustd",
+      "username": "_trustd",
+      "cpu_percent": null,
+      "memory_percent": null
+    },
+    {
+      "pid": 428,
+      "name": "analyticsd",
+      "username": "_analyticsd",
+      "cpu_percent": null,
+      "memory_percent": null
+    },
+    {
+      "pid": 430,
+      "name": "nsurlsessiond",
+      "username": "_nsurlsessiond",
+      "cpu_percent": null,
+      "memory_percent": null
+    },
+    {
+      "pid": 431,
+      "name": "apfsd",
+      "username": "root",
+      "cpu_percent": null,
+      "memory_percent": null
+    },
+    {
+      "pid": 432,
+      "name": "airportd",
+      "username": "root",
+      "cpu_percent": null,
+      "memory_percent": null
+    },
+    {
+      "pid": 442,
+      "name": "coreaudiod",
+      "username": "_coreaudiod",
+      "cpu_percent": null,
+      "memory_percent": null
+    },
+    {
+      "pid": 446,
+      "name": "distnoted",
+      "username": "_windowserver",
+      "cpu_percent": null,
+      "memory_percent": null
+    },
+    {
+      "pid": 447,
+      "name": "distnoted",
+      "username": "root",
+      "cpu_percent": null,
+      "memory_percent": null
+    },
+    {
+      "pid": 450,
+      "name": "distnoted",
+      "username": "_coreaudiod",
+      "cpu_percent": null,
+      "memory_percent": null
+    },
+    {
+      "pid": 457,
+      "name": "authd",
+      "username": "root",
+      "cpu_percent": null,
+      "memory_percent": null
+    },
+    {
+      "pid": 459,
+      "name": "symptomsd",
+      "username": "_networkd",
+      "cpu_percent": null,
+      "memory_percent": null
+    },
+    {
+      "pid": 460,
+      "name": "syspolicyd",
+      "username": "root",
+      "cpu_percent": null,
+      "memory_percent": null
+    },
+    {
+      "pid": 461,
+      "name": "audioclocksyncd",
+      "username": "root",
+      "cpu_percent": null,
+      "memory_percent": null
+    },
+    {
+      "pid": 462,
+      "name": "storagekitd",
+      "username": "root",
+      "cpu_percent": null,
+      "memory_percent": null
+    },
+    {
+      "pid": 470,
+      "name": "mDNSResponder",
+      "username": "_mdnsresponder",
+      "cpu_percent": null,
+      "memory_percent": null
+    },
+    {
+      "pid": 475,
+      "name": "distnoted",
+      "username": "_cmiodalassistants",
+      "cpu_percent": null,
+      "memory_percent": null
+    },
+    {
+      "pid": 480,
+      "name": "appleeventsd",
+      "username": "_appleevents",
+      "cpu_percent": null,
+      "memory_percent": null
+    },
+    {
+      "pid": 481,
+      "name": "mDNSResponderHel",
+      "username": "root",
+      "cpu_percent": null,
+      "memory_percent": null
+    },
+    {
+      "pid": 487,
+      "name": "appleh13camerad",
+      "username": "_cmiodalassistants",
+      "cpu_percent": null,
+      "memory_percent": null
+    },
+    {
+      "pid": 488,
+      "name": "UVCAssistant",
+      "username": "_cmiodalassistants",
+      "cpu_percent": null,
+      "memory_percent": null
+    },
+    {
+      "pid": 501,
+      "name": "socketfilterfw",
+      "username": "root",
+      "cpu_percent": null,
+      "memory_percent": null
+    },
+    {
+      "pid": 503,
+      "name": "distnoted",
+      "username": "_locationd",
+      "cpu_percent": null,
+      "memory_percent": null
+    },
+    {
+      "pid": 516,
+      "name": "distnoted",
+      "username": "_softwareupdate",
+      "cpu_percent": null,
+      "memory_percent": null
+    },
+    {
+      "pid": 517,
+      "name": "com.apple.Driver",
+      "username": "_driverkit",
+      "cpu_percent": null,
+      "memory_percent": null
+    },
+    {
+      "pid": 518,
+      "name": "com.apple.AppleU",
+      "username": "_driverkit",
+      "cpu_percent": null,
+      "memory_percent": null
+    },
+    {
+      "pid": 529,
+      "name": "searchpartyd",
+      "username": "root",
+      "cpu_percent": null,
+      "memory_percent": null
+    },
+    {
+      "pid": 531,
+      "name": "wifianalyticsd",
+      "username": "root",
+      "cpu_percent": null,
+      "memory_percent": null
+    },
+    {
+      "pid": 533,
+      "name": "mds_stores",
+      "username": "root",
+      "cpu_percent": null,
+      "memory_percent": null
+    },
+    {
+      "pid": 539,
+      "name": "securityd_servic",
+      "username": "root",
+      "cpu_percent": null,
+      "memory_percent": null
+    },
+    {
+      "pid": 547,
+      "name": "distnoted",
+      "username": "_spotlight",
+      "cpu_percent": null,
+      "memory_percent": null
+    },
+    {
+      "pid": 550,
+      "name": "distnoted",
+      "username": "segevbin",
+      "cpu_percent": 0.2,
+      "memory_percent": 0.04138946533203125
+    },
+    {
+      "pid": 552,
+      "name": "cfprefsd",
+      "username": "segevbin",
+      "cpu_percent": 0.0,
+      "memory_percent": 0.0202178955078125
+    },
+    {
+      "pid": 556,
+      "name": "UserEventAgent",
+      "username": "segevbin",
+      "cpu_percent": 0.0,
+      "memory_percent": 0.0308990478515625
+    },
+    {
+      "pid": 562,
+      "name": "universalaccessd",
+      "username": "segevbin",
+      "cpu_percent": 0.0,
+      "memory_percent": 0.02307891845703125
+    },
+    {
+      "pid": 566,
+      "name": "lsd",
+      "username": "segevbin",
+      "cpu_percent": 0.0,
+      "memory_percent": 0.04253387451171875
+    },
+    {
+      "pid": 568,
+      "name": "WindowManager",
+      "username": "segevbin",
+      "cpu_percent": 0.0,
+      "memory_percent": 0.05702972412109375
+    },
+    {
+      "pid": 574,
+      "name": "nsurlsessiond",
+      "username": "segevbin",
+      "cpu_percent": 0.1,
+      "memory_percent": 0.06656646728515625
+    },
+    {
+      "pid": 575,
+      "name": "rapportd",
+      "username": "segevbin",
+      "cpu_percent": 0.0,
+      "memory_percent": 0.10433197021484375
+    },
+    {
+      "pid": 576,
+      "name": "secd",
+      "username": "segevbin",
+      "cpu_percent": 0.0,
+      "memory_percent": 0.084686279296875
+    },
+    {
+      "pid": 578,
+      "name": "usernoted",
+      "username": "segevbin",
+      "cpu_percent": 0.0,
+      "memory_percent": 0.05168914794921875
+    },
+    {
+      "pid": 579,
+      "name": "lockoutagent",
+      "username": "segevbin",
+      "cpu_percent": 0.0,
+      "memory_percent": 0.03719329833984375
+    },
+    {
+      "pid": 585,
+      "name": "accountsd",
+      "username": "segevbin",
+      "cpu_percent": 0.1,
+      "memory_percent": 0.1129150390625
+    },
+    {
+      "pid": 587,
+      "name": "BTLEServer",
+      "username": "root",
+      "cpu_percent": null,
+      "memory_percent": null
+    },
+    {
+      "pid": 591,
+      "name": "trustd",
+      "username": "segevbin",
+      "cpu_percent": 0.0,
+      "memory_percent": 0.06198883056640625
+    },
+    {
+      "pid": 592,
+      "name": "pboard",
+      "username": "segevbin",
+      "cpu_percent": 0.0,
+      "memory_percent": 0.02040863037109375
+    },
+    {
+      "pid": 593,
+      "name": "identityservicesd",
+      "username": "segevbin",
+      "cpu_percent": 0.0,
+      "memory_percent": 0.06351470947265625
+    },
+    {
+      "pid": 594,
+      "name": "distnoted",
+      "username": "_appleevents",
+      "cpu_percent": null,
+      "memory_percent": null
+    },
+    {
+      "pid": 595,
+      "name": "usernotificationsd",
+      "username": "segevbin",
+      "cpu_percent": 0.0,
+      "memory_percent": 0.0396728515625
+    },
+    {
+      "pid": 596,
+      "name": "audioaccessoryd",
+      "username": "segevbin",
+      "cpu_percent": 0.0,
+      "memory_percent": 0.0476837158203125
+    },
+    {
+      "pid": 598,
+      "name": "NotificationCenter",
+      "username": "segevbin",
+      "cpu_percent": 0.1,
+      "memory_percent": 0.24814605712890625
+    },
+    {
+      "pid": 599,
+      "name": "exchangesyncd",
+      "username": "segevbin",
+      "cpu_percent": 0.0,
+      "memory_percent": 0.06427764892578125
+    },
+    {
+      "pid": 611,
+      "name": "sharedfilelistd",
+      "username": "segevbin",
+      "cpu_percent": 0.0,
+      "memory_percent": 0.04062652587890625
+    },
+    {
+      "pid": 622,
+      "name": "Google Chrome",
+      "username": "segevbin",
+      "cpu_percent": 0.6,
+      "memory_percent": 0.2185821533203125
+    },
+    {
+      "pid": 623,
+      "name": "Dock",
+      "username": "segevbin",
+      "cpu_percent": 0.0,
+      "memory_percent": 0.08392333984375
+    },
+    {
+      "pid": 624,
+      "name": "ControlCenter",
+      "username": "segevbin",
+      "cpu_percent": 0.3,
+      "memory_percent": 0.14438629150390625
+    },
+    {
+      "pid": 625,
+      "name": "fontd",
+      "username": "segevbin",
+      "cpu_percent": 0.0,
+      "memory_percent": 0.03299713134765625
+    },
+    {
+      "pid": 626,
+      "name": "SystemUIServer",
+      "username": "segevbin",
+      "cpu_percent": 0.0,
+      "memory_percent": 0.0370025634765625
+    },
+    {
+      "pid": 627,
+      "name": "Finder",
+      "username": "segevbin",
+      "cpu_percent": 0.4,
+      "memory_percent": 0.154876708984375
+    },
+    {
+      "pid": 630,
+      "name": "WallpaperAgent",
+      "username": "segevbin",
+      "cpu_percent": 0.0,
+      "memory_percent": 0.0469207763671875
+    },
+    {
+      "pid": 631,
+      "name": "Spotlight",
+      "username": "segevbin",
+      "cpu_percent": 0.0,
+      "memory_percent": 0.0484466552734375
+    },
+    {
+      "pid": 632,
+      "name": "filecoordination",
+      "username": "root",
+      "cpu_percent": null,
+      "memory_percent": null
+    },
+    {
+      "pid": 634,
+      "name": "fontworker",
+      "username": "segevbin",
+      "cpu_percent": 0.0,
+      "memory_percent": 0.009918212890625
+    },
+    {
+      "pid": 639,
+      "name": "automountd",
+      "username": "root",
+      "cpu_percent": null,
+      "memory_percent": null
+    },
+    {
+      "pid": 640,
+      "name": "ViewBridgeAuxiliary",
+      "username": "segevbin",
+      "cpu_percent": 0.1,
+      "memory_percent": 0.04863739013671875
+    },
+    {
+      "pid": 642,
+      "name": "AMPDeviceDiscoveryAgent",
+      "username": "segevbin",
+      "cpu_percent": 0.0,
+      "memory_percent": 0.02193450927734375
+    },
+    {
+      "pid": 645,
+      "name": "corespotlightd",
+      "username": "segevbin",
+      "cpu_percent": 0.3,
+      "memory_percent": 0.11310577392578125
+    },
+    {
+      "pid": 650,
+      "name": "ContinuityCaptureAgent",
+      "username": "segevbin",
+      "cpu_percent": 0.0,
+      "memory_percent": 0.037384033203125
+    },
+    {
+      "pid": 657,
+      "name": "awdd",
+      "username": "root",
+      "cpu_percent": null,
+      "memory_percent": null
+    },
+    {
+      "pid": 661,
+      "name": "oahd",
+      "username": "_oahd",
+      "cpu_percent": null,
+      "memory_percent": null
+    },
+    {
+      "pid": 662,
+      "name": "sharingd",
+      "username": "segevbin",
+      "cpu_percent": 0.1,
+      "memory_percent": 0.1750946044921875
+    },
+    {
+      "pid": 664,
+      "name": "familycircled",
+      "username": "segevbin",
+      "cpu_percent": 0.0,
+      "memory_percent": 0.0274658203125
+    },
+    {
+      "pid": 665,
+      "name": "nearbyd",
+      "username": "_nearbyd",
+      "cpu_percent": null,
+      "memory_percent": null
+    },
+    {
+      "pid": 666,
+      "name": "imagent",
+      "username": "segevbin",
+      "cpu_percent": 0.0,
+      "memory_percent": 0.09441375732421875
+    },
+    {
+      "pid": 669,
+      "name": "WiFiAgent",
+      "username": "segevbin",
+      "cpu_percent": 0.0,
+      "memory_percent": 0.05035400390625
+    },
+    {
+      "pid": 673,
+      "name": "useractivityd",
+      "username": "segevbin",
+      "cpu_percent": 0.0,
+      "memory_percent": 0.0377655029296875
+    },
+    {
+      "pid": 674,
+      "name": "mediaremoteagent",
+      "username": "segevbin",
+      "cpu_percent": 0.0,
+      "memory_percent": 0.01468658447265625
+    },
+    {
+      "pid": 676,
+      "name": "avconferenced",
+      "username": "segevbin",
+      "cpu_percent": 0.0,
+      "memory_percent": 0.02994537353515625
+    },
+    {
+      "pid": 679,
+      "name": "commerce",
+      "username": "segevbin",
+      "cpu_percent": 0.0,
+      "memory_percent": 0.03414154052734375
+    },
+    {
+      "pid": 683,
+      "name": "gamepolicyd",
+      "username": "root",
+      "cpu_percent": null,
+      "memory_percent": null
+    },
+    {
+      "pid": 701,
+      "name": "StatusKitAgent",
+      "username": "segevbin",
+      "cpu_percent": 0.0,
+      "memory_percent": 0.03871917724609375
+    },
+    {
+      "pid": 709,
+      "name": "chrome_crashpad_handler",
+      "username": "segevbin",
+      "cpu_percent": 0.0,
+      "memory_percent": 0.00667572021484375
+    },
+    {
+      "pid": 710,
+      "name": "com.apple.dock.extra",
+      "username": "segevbin",
+      "cpu_percent": 0.0,
+      "memory_percent": 0.04291534423828125
+    },
+    {
+      "pid": 791,
+      "name": "CVMServer",
+      "username": "root",
+      "cpu_percent": null,
+      "memory_percent": null
+    },
+    {
+      "pid": 955,
+      "name": "passd",
+      "username": "segevbin",
+      "cpu_percent": 0.0,
+      "memory_percent": 0.03299713134765625
+    },
+    {
+      "pid": 1278,
+      "name": "chrome_crashpad_handler",
+      "username": "segevbin",
+      "cpu_percent": 0.0,
+      "memory_percent": 0.00629425048828125
+    },
+    {
+      "pid": 1301,
+      "name": "mdwrite",
+      "username": "segevbin",
+      "cpu_percent": 0.0,
+      "memory_percent": 0.0141143798828125
+    },
+    {
+      "pid": 1311,
+      "name": "Google Chrome Helper (GPU)",
+      "username": "segevbin",
+      "cpu_percent": 0.1,
+      "memory_percent": 0.05512237548828125
+    },
+    {
+      "pid": 1313,
+      "name": "Google Chrome Helper",
+      "username": "segevbin",
+      "cpu_percent": 0.1,
+      "memory_percent": 0.06847381591796875
+    },
+    {
+      "pid": 1321,
+      "name": "Google Chrome Helper",
+      "username": "segevbin",
+      "cpu_percent": 0.0,
+      "memory_percent": 0.0347137451171875
+    },
+    {
+      "pid": 1347,
+      "name": "Google Chrome Helper (Renderer)",
+      "username": "segevbin",
+      "cpu_percent": 0.0,
+      "memory_percent": 0.0274658203125
+    },
+    {
+      "pid": 1354,
+      "name": "IOUserBluetoothS",
+      "username": "_driverkit",
+      "cpu_percent": null,
+      "memory_percent": null
+    },
+    {
+      "pid": 1529,
+      "name": "syncdefaultsd",
+      "username": "segevbin",
+      "cpu_percent": 0.0,
+      "memory_percent": 0.04634857177734375
+    },
+    {
+      "pid": 1747,
+      "name": "WallpaperVideoExtension",
+      "username": "segevbin",
+      "cpu_percent": 0.0,
+      "memory_percent": 0.0335693359375
+    },
+    {
+      "pid": 1963,
+      "name": "corespeechd",
+      "username": "segevbin",
+      "cpu_percent": 0.4,
+      "memory_percent": 0.05588531494140625
+    },
+    {
+      "pid": 1974,
+      "name": "imklaunchagent",
+      "username": "segevbin",
+      "cpu_percent": 0.0,
+      "memory_percent": 0.025177001953125
+    },
+    {
+      "pid": 1978,
+      "name": "icdd",
+      "username": "segevbin",
+      "cpu_percent": 0.0,
+      "memory_percent": 0.00972747802734375
+    },
+    {
+      "pid": 1988,
+      "name": "AirPlayUIAgent",
+      "username": "segevbin",
+      "cpu_percent": 0.0,
+      "memory_percent": 0.0274658203125
+    },
+    {
+      "pid": 1995,
+      "name": "diagnostics_agent",
+      "username": "segevbin",
+      "cpu_percent": 0.0,
+      "memory_percent": 0.03108978271484375
+    },
+    {
+      "pid": 1996,
+      "name": "TextInputMenuAgent",
+      "username": "segevbin",
+      "cpu_percent": 0.0,
+      "memory_percent": 0.03757476806640625
+    },
+    {
+      "pid": 2001,
+      "name": "ctkahp",
+      "username": "root",
+      "cpu_percent": null,
+      "memory_percent": null
+    },
+    {
+      "pid": 2005,
+      "name": "Microsoft SharePoint",
+      "username": "segevbin",
+      "cpu_percent": 0.0,
+      "memory_percent": 0.04138946533203125
+    },
+    {
+      "pid": 2007,
+      "name": "ctkahp",
+      "username": "segevbin",
+      "cpu_percent": 0.0,
+      "memory_percent": 0.01544952392578125
+    },
+    {
+      "pid": 2012,
+      "name": "OneDrive",
+      "username": "segevbin",
+      "cpu_percent": 0.1,
+      "memory_percent": 0.07171630859375
+    },
+    {
+      "pid": 2017,
+      "name": "CursorUIViewService",
+      "username": "segevbin",
+      "cpu_percent": 0.0,
+      "memory_percent": 0.057220458984375
+    },
+    {
+      "pid": 2019,
+      "name": "PAH_Extension",
+      "username": "segevbin",
+      "cpu_percent": 0.0,
+      "memory_percent": 0.03719329833984375
+    },
+    {
+      "pid": 2040,
+      "name": "remotepairingd",
+      "username": "segevbin",
+      "cpu_percent": 0.0,
+      "memory_percent": 0.0640869140625
+    },
+    {
+      "pid": 2123,
+      "name": "simdiskimaged",
+      "username": "root",
+      "cpu_percent": null,
+      "memory_percent": null
+    },
+    {
+      "pid": 2135,
+      "name": "storedownloadd",
+      "username": "segevbin",
+      "cpu_percent": 0.0,
+      "memory_percent": 0.00972747802734375
+    },
+    {
+      "pid": 2315,
+      "name": "mdbulkimport",
+      "username": "segevbin",
+      "cpu_percent": 0.0,
+      "memory_percent": 0.0263214111328125
+    },
+    {
+      "pid": 2493,
+      "name": "installcoordinat",
+      "username": "_installcoordinationd",
+      "cpu_percent": null,
+      "memory_percent": null
+    },
+    {
+      "pid": 2501,
+      "name": "distnoted",
+      "username": "_applepay",
+      "cpu_percent": null,
+      "memory_percent": null
+    },
+    {
+      "pid": 2512,
+      "name": "SubmitDiagInfo",
+      "username": "root",
+      "cpu_percent": null,
+      "memory_percent": null
+    },
+    {
+      "pid": 2564,
+      "name": "distnoted",
+      "username": "_nsurlsessiond",
+      "cpu_percent": null,
+      "memory_percent": null
+    },
+    {
+      "pid": 2567,
+      "name": "StandaloneUpdate",
+      "username": "root",
+      "cpu_percent": null,
+      "memory_percent": null
+    },
+    {
+      "pid": 2572,
+      "name": "distnoted",
+      "username": "_gamecontrollerd",
+      "cpu_percent": null,
+      "memory_percent": null
+    },
+    {
+      "pid": 2576,
+      "name": "distnoted",
+      "username": "_accessoryupdater",
+      "cpu_percent": null,
+      "memory_percent": null
+    },
+    {
+      "pid": 2585,
+      "name": "fairplayd",
+      "username": "_fpsd",
+      "cpu_percent": null,
+      "memory_percent": null
+    },
+    {
+      "pid": 2591,
+      "name": "systemstats",
+      "username": "root",
+      "cpu_percent": null,
+      "memory_percent": null
+    },
+    {
+      "pid": 2601,
+      "name": "distnoted",
+      "username": "_assetcache",
+      "cpu_percent": null,
+      "memory_percent": null
+    },
+    {
+      "pid": 2669,
+      "name": "mdbulkimport",
+      "username": "_spotlight",
+      "cpu_percent": null,
+      "memory_percent": null
+    },
+    {
+      "pid": 2739,
+      "name": "diskimagesiod",
+      "username": "_diskimagesiod",
+      "cpu_percent": null,
+      "memory_percent": null
+    },
+    {
+      "pid": 2748,
+      "name": "diskimagesiod",
+      "username": "_diskimagesiod",
+      "cpu_percent": null,
+      "memory_percent": null
+    },
+    {
+      "pid": 2757,
+      "name": "SimLaunchHost.arm64",
+      "username": "segevbin",
+      "cpu_percent": 0.0,
+      "memory_percent": 0.00553131103515625
+    },
+    {
+      "pid": 2930,
+      "name": "CrashReporterSup",
+      "username": "root",
+      "cpu_percent": null,
+      "memory_percent": null
+    },
+    {
+      "pid": 2931,
+      "name": "distnoted",
+      "username": "_rmd",
+      "cpu_percent": null,
+      "memory_percent": null
+    },
+    {
+      "pid": 3357,
+      "name": "BiomeAgent",
+      "username": "segevbin",
+      "cpu_percent": 0.0,
+      "memory_percent": 0.04482269287109375
+    },
+    {
+      "pid": 3396,
+      "name": "UIKitSystem",
+      "username": "segevbin",
+      "cpu_percent": 0.2,
+      "memory_percent": 0.0881195068359375
+    },
+    {
+      "pid": 3501,
+      "name": "PowerChime",
+      "username": "segevbin",
+      "cpu_percent": 0.0,
+      "memory_percent": 0.02651214599609375
+    },
+    {
+      "pid": 4711,
+      "name": "ollama",
+      "username": "segevbin",
+      "cpu_percent": 0.0,
+      "memory_percent": 0.01354217529296875
+    },
+    {
+      "pid": 6575,
+      "name": "cloudd",
+      "username": "segevbin",
+      "cpu_percent": 0.2,
+      "memory_percent": 0.2178192138671875
+    },
+    {
+      "pid": 9184,
+      "name": "com.apple.hiservices-xpcservice",
+      "username": "segevbin",
+      "cpu_percent": 0.2,
+      "memory_percent": 0.0263214111328125
+    },
+    {
+      "pid": 9297,
+      "name": "Cursor",
+      "username": "segevbin",
+      "cpu_percent": 1.4,
+      "memory_percent": 0.76751708984375
+    },
+    {
+      "pid": 9306,
+      "name": "chrome_crashpad_handler",
+      "username": "segevbin",
+      "cpu_percent": 0.0,
+      "memory_percent": 0.0087738037109375
+    },
+    {
+      "pid": 9309,
+      "name": "Cursor Helper (GPU)",
+      "username": "segevbin",
+      "cpu_percent": 1.2,
+      "memory_percent": 0.35457611083984375
+    },
+    {
+      "pid": 9310,
+      "name": "Cursor Helper",
+      "username": "segevbin",
+      "cpu_percent": 0.3,
+      "memory_percent": 0.1171112060546875
+    },
+    {
+      "pid": 9591,
+      "name": "Cursor Helper",
+      "username": "segevbin",
+      "cpu_percent": 0.4,
+      "memory_percent": 0.3177642822265625
+    },
+    {
+      "pid": 9594,
+      "name": "Cursor Helper",
+      "username": "segevbin",
+      "cpu_percent": 0.0,
+      "memory_percent": 0.2162933349609375
+    },
+    {
+      "pid": 9929,
+      "name": "zsh",
+      "username": "segevbin",
+      "cpu_percent": 0.0,
+      "memory_percent": 0.0034332275390625
+    },
+    {
+      "pid": 11120,
+      "name": "zsh",
+      "username": "segevbin",
+      "cpu_percent": 0.0,
+      "memory_percent": 0.0034332275390625
+    },
+    {
+      "pid": 12404,
+      "name": "searchpartyuseragent",
+      "username": "segevbin",
+      "cpu_percent": 1.4,
+      "memory_percent": 0.122833251953125
+    },
+    {
+      "pid": 14795,
+      "name": "zsh",
+      "username": "segevbin",
+      "cpu_percent": 0.0,
+      "memory_percent": 0.0049591064453125
+    },
+    {
+      "pid": 15116,
+      "name": "node",
+      "username": "segevbin",
+      "cpu_percent": 0.0,
+      "memory_percent": 0.00705718994140625
+    },
+    {
+      "pid": 16261,
+      "name": "UserNotificationCenter",
+      "username": "segevbin",
+      "cpu_percent": 0.0,
+      "memory_percent": 0.0507354736328125
+    },
+    {
+      "pid": 16273,
+      "name": "Firewall",
+      "username": "segevbin",
+      "cpu_percent": 0.0,
+      "memory_percent": 0.011444091796875
+    },
+    {
+      "pid": 16475,
+      "name": "chronod",
+      "username": "segevbin",
+      "cpu_percent": 0.0,
+      "memory_percent": 0.05245208740234375
+    },
+    {
+      "pid": 16479,
+      "name": "Siri",
+      "username": "segevbin",
+      "cpu_percent": 0.3,
+      "memory_percent": 0.08831024169921875
+    },
+    {
+      "pid": 16516,
+      "name": "ContextStoreAgent",
+      "username": "segevbin",
+      "cpu_percent": 0.0,
+      "memory_percent": 0.05283355712890625
+    },
+    {
+      "pid": 16566,
+      "name": "contentlinkingd",
+      "username": "segevbin",
+      "cpu_percent": 0.0,
+      "memory_percent": 0.0438690185546875
+    },
+    {
+      "pid": 16573,
+      "name": "proactived",
+      "username": "segevbin",
+      "cpu_percent": 0.0,
+      "memory_percent": 0.04749298095703125
+    },
+    {
+      "pid": 16610,
+      "name": "com.apple.CodeSi",
+      "username": "root",
+      "cpu_percent": null,
+      "memory_percent": null
+    },
+    {
+      "pid": 16638,
+      "name": "SiriNCService",
+      "username": "segevbin",
+      "cpu_percent": 0.1,
+      "memory_percent": 0.06542205810546875
+    },
+    {
+      "pid": 16646,
+      "name": "suggestd",
+      "username": "segevbin",
+      "cpu_percent": 0.4,
+      "memory_percent": 0.10089874267578125
+    },
+    {
+      "pid": 16996,
+      "name": "tccd",
+      "username": "segevbin",
+      "cpu_percent": 0.0,
+      "memory_percent": 0.054931640625
+    },
+    {
+      "pid": 17022,
+      "name": "SafariBookmarksSyncAgent",
+      "username": "segevbin",
+      "cpu_percent": 0.0,
+      "memory_percent": 0.04253387451171875
+    },
+    {
+      "pid": 17038,
+      "name": "mobileassetd",
+      "username": "root",
+      "cpu_percent": null,
+      "memory_percent": null
+    },
+    {
+      "pid": 17046,
+      "name": "rtcreportingd",
+      "username": "root",
+      "cpu_percent": null,
+      "memory_percent": null
+    },
+    {
+      "pid": 17048,
+      "name": "triald",
+      "username": "segevbin",
+      "cpu_percent": 0.0,
+      "memory_percent": 0.06198883056640625
+    },
+    {
+      "pid": 17053,
+      "name": "WirelessRadioMan",
+      "username": "root",
+      "cpu_percent": null,
+      "memory_percent": null
+    },
+    {
+      "pid": 17066,
+      "name": "pkd",
+      "username": "segevbin",
+      "cpu_percent": 0.6,
+      "memory_percent": 0.08449554443359375
+    },
+    {
+      "pid": 17086,
+      "name": "AssetCacheLocatorService",
+      "username": "segevbin",
+      "cpu_percent": 0.0,
+      "memory_percent": 0.0385284423828125
+    },
+    {
+      "pid": 17090,
+      "name": "akd",
+      "username": "segevbin",
+      "cpu_percent": 0.6,
+      "memory_percent": 0.103759765625
+    },
+    {
+      "pid": 17091,
+      "name": "adid",
+      "username": "_fpsd",
+      "cpu_percent": null,
+      "memory_percent": null
+    },
+    {
+      "pid": 17099,
+      "name": "usermanagerd",
+      "username": "root",
+      "cpu_percent": null,
+      "memory_percent": null
+    },
+    {
+      "pid": 17331,
+      "name": "python3.11",
+      "username": "segevbin",
+      "cpu_percent": 0.0,
+      "memory_percent": 0.00591278076171875
+    },
+    {
+      "pid": 17342,
+      "name": "parsecd",
+      "username": "segevbin",
+      "cpu_percent": 0.2,
+      "memory_percent": 0.0553131103515625
+    },
+    {
+      "pid": 17375,
+      "name": "ThemeWidgetControlViewService",
+      "username": "segevbin",
+      "cpu_percent": 0.0,
+      "memory_percent": 0.048065185546875
+    },
+    {
+      "pid": 17431,
+      "name": "wifivelocityd",
+      "username": "root",
+      "cpu_percent": null,
+      "memory_percent": null
+    },
+    {
+      "pid": 17452,
+      "name": "netbiosd",
+      "username": "_netbios",
+      "cpu_percent": null,
+      "memory_percent": null
+    },
+    {
+      "pid": 17798,
+      "name": "com.apple.Safari.SandboxBroker",
+      "username": "segevbin",
+      "cpu_percent": 0.0,
+      "memory_percent": 0.0514984130859375
+    },
+    {
+      "pid": 17834,
+      "name": "com.apple.quicklook.ThumbnailsAgent",
+      "username": "segevbin",
+      "cpu_percent": 2.2,
+      "memory_percent": 0.20656585693359375
+    },
+    {
+      "pid": 19150,
+      "name": "ThumbnailExtension_macOS",
+      "username": "segevbin",
+      "cpu_percent": 3.5,
+      "memory_percent": 0.1361846923828125
+    },
+    {
+      "pid": 19155,
+      "name": "coreauthd",
+      "username": "root",
+      "cpu_percent": null,
+      "memory_percent": null
+    },
+    {
+      "pid": 19184,
+      "name": "zsh",
+      "username": "segevbin",
+      "cpu_percent": 0.0,
+      "memory_percent": 0.0049591064453125
+    },
+    {
+      "pid": 19484,
+      "name": "node",
+      "username": "segevbin",
+      "cpu_percent": 0.0,
+      "memory_percent": 0.00743865966796875
+    },
+    {
+      "pid": 22794,
+      "name": "com.apple.WebKit.WebContent",
+      "username": "segevbin",
+      "cpu_percent": 0.0,
+      "memory_percent": 0.00247955322265625
+    },
+    {
+      "pid": 22824,
+      "name": "com.apple.WebKit.WebContent",
+      "username": "segevbin",
+      "cpu_percent": 0.8,
+      "memory_percent": 0.13179779052734375
+    },
+    {
+      "pid": 22843,
+      "name": "com.apple.WebKit.WebContent",
+      "username": "segevbin",
+      "cpu_percent": 2.6,
+      "memory_percent": 0.189971923828125
+    },
+    {
+      "pid": 22853,
+      "name": "com.apple.WebKit.WebContent",
+      "username": "segevbin",
+      "cpu_percent": 0.0,
+      "memory_percent": 0.00247955322265625
+    },
+    {
+      "pid": 22859,
+      "name": "com.apple.WebKit.WebContent",
+      "username": "segevbin",
+      "cpu_percent": 0.0,
+      "memory_percent": 0.00247955322265625
+    },
+    {
+      "pid": 22945,
+      "name": "com.apple.WebKit.WebContent",
+      "username": "segevbin",
+      "cpu_percent": 0.0,
+      "memory_percent": 0.00553131103515625
+    },
+    {
+      "pid": 23414,
+      "name": "contactsd",
+      "username": "segevbin",
+      "cpu_percent": 0.0,
+      "memory_percent": 0.0576019287109375
+    },
+    {
+      "pid": 23490,
+      "name": "assistantd",
+      "username": "segevbin",
+      "cpu_percent": 0.0,
+      "memory_percent": 0.05588531494140625
+    },
+    {
+      "pid": 23699,
+      "name": "Python",
+      "username": "segevbin",
+      "cpu_percent": 1.6,
+      "memory_percent": 0.244140625
+    },
+    {
+      "pid": 23720,
+      "name": "Python",
+      "username": "segevbin",
+      "cpu_percent": 42.7,
+      "memory_percent": 0.45680999755859375
+    },
+    {
+      "pid": 23728,
+      "name": "Python",
+      "username": "segevbin",
+      "cpu_percent": 0.0,
+      "memory_percent": 0.03147125244140625
+    },
+    {
+      "pid": 23902,
+      "name": "distnoted",
+      "username": "_audiomxd",
+      "cpu_percent": null,
+      "memory_percent": null
+    },
+    {
+      "pid": 23943,
+      "name": "Python",
+      "username": "segevbin",
+      "cpu_percent": 0.0,
+      "memory_percent": 0.02040863037109375
+    },
+    {
+      "pid": 24099,
+      "name": "Python",
+      "username": "segevbin",
+      "cpu_percent": 0.0,
+      "memory_percent": 0.03261566162109375
+    },
+    {
+      "pid": 24162,
+      "name": "audioanalyticsd",
+      "username": "root",
+      "cpu_percent": null,
+      "memory_percent": null
+    },
+    {
+      "pid": 24180,
+      "name": "ollama",
+      "username": "segevbin",
+      "cpu_percent": 1.7,
+      "memory_percent": 0.01773834228515625
+    },
+    {
+      "pid": 24219,
+      "name": "containermanager",
+      "username": "_locationd",
+      "cpu_percent": null,
+      "memory_percent": null
+    },
+    {
+      "pid": 24247,
+      "name": "containermanager",
+      "username": "root",
+      "cpu_percent": null,
+      "memory_percent": null
+    },
+    {
+      "pid": 24249,
+      "name": "containermanager",
+      "username": "_cmiodalassistants",
+      "cpu_percent": null,
+      "memory_percent": null
+    },
+    {
+      "pid": 24283,
+      "name": "storeaccountd",
+      "username": "segevbin",
+      "cpu_percent": 0.0,
+      "memory_percent": 0.02765655517578125
+    },
+    {
+      "pid": 24304,
+      "name": "aslmanager",
+      "username": "root",
+      "cpu_percent": null,
+      "memory_percent": null
+    },
+    {
+      "pid": 24315,
+      "name": "seserviced",
+      "username": "segevbin",
+      "cpu_percent": 0.0,
+      "memory_percent": 0.0125885009765625
+    },
+    {
+      "pid": 24371,
+      "name": "com.apple.WebKit.WebContent",
+      "username": "segevbin",
+      "cpu_percent": 0.0,
+      "memory_percent": 0.00362396240234375
+    },
+    {
+      "pid": 24389,
+      "name": "fbahelperd",
+      "username": "root",
+      "cpu_percent": null,
+      "memory_percent": null
+    },
+    {
+      "pid": 24435,
+      "name": "aned",
+      "username": "root",
+      "cpu_percent": null,
+      "memory_percent": null
+    },
+    {
+      "pid": 24504,
+      "name": "AppleSpell",
+      "username": "segevbin",
+      "cpu_percent": 1.3,
+      "memory_percent": 0.11043548583984375
+    },
+    {
+      "pid": 24515,
+      "name": "callservicesd",
+      "username": "segevbin",
+      "cpu_percent": 0.0,
+      "memory_percent": 0.05855560302734375
+    },
+    {
+      "pid": 24519,
+      "name": "idleassetsd",
+      "username": "root",
+      "cpu_percent": null,
+      "memory_percent": null
+    },
+    {
+      "pid": 24522,
+      "name": "siriknowledged",
+      "username": "segevbin",
+      "cpu_percent": 0.0,
+      "memory_percent": 0.05626678466796875
+    },
+    {
+      "pid": 24542,
+      "name": "Keychain Circle Notification",
+      "username": "segevbin",
+      "cpu_percent": 0.0,
+      "memory_percent": 0.06008148193359375
+    },
+    {
+      "pid": 24545,
+      "name": "securityd_system",
+      "username": "root",
+      "cpu_percent": null,
+      "memory_percent": null
+    },
+    {
+      "pid": 24548,
+      "name": "CommCenter",
+      "username": "segevbin",
+      "cpu_percent": 0.0,
+      "memory_percent": 0.05168914794921875
+    },
+    {
+      "pid": 24549,
+      "name": "networkserviceproxy",
+      "username": "segevbin",
+      "cpu_percent": 0.0,
+      "memory_percent": 0.05054473876953125
+    },
+    {
+      "pid": 24550,
+      "name": "CoreLocationAgent",
+      "username": "segevbin",
+      "cpu_percent": 0.0,
+      "memory_percent": 0.05664825439453125
+    },
+    {
+      "pid": 24551,
+      "name": "nehelper",
+      "username": "root",
+      "cpu_percent": null,
+      "memory_percent": null
+    },
+    {
+      "pid": 24553,
+      "name": "neagent",
+      "username": "segevbin",
+      "cpu_percent": 0.0,
+      "memory_percent": 0.05512237548828125
+    },
+    {
+      "pid": 24554,
+      "name": "nfcd",
+      "username": "_applepay",
+      "cpu_percent": null,
+      "memory_percent": null
+    },
+    {
+      "pid": 24555,
+      "name": "cdpd",
+      "username": "segevbin",
+      "cpu_percent": 0.0,
+      "memory_percent": 0.05512237548828125
+    },
+    {
+      "pid": 24556,
+      "name": "ospredictiond",
+      "username": "root",
+      "cpu_percent": null,
+      "memory_percent": null
+    },
+    {
+      "pid": 24557,
+      "name": "biomed",
+      "username": "_biome",
+      "cpu_percent": null,
+      "memory_percent": null
+    },
+    {
+      "pid": 24558,
+      "name": "SidecarRelay",
+      "username": "segevbin",
+      "cpu_percent": 0.0,
+      "memory_percent": 0.038909912109375
+    },
+    {
+      "pid": 24562,
+      "name": "amfid",
+      "username": "root",
+      "cpu_percent": null,
+      "memory_percent": null
+    },
+    {
+      "pid": 24567,
+      "name": "com.apple.FaceTime.FTConversationService",
+      "username": "segevbin",
+      "cpu_percent": 0.0,
+      "memory_percent": 0.04425048828125
+    },
+    {
+      "pid": 24568,
+      "name": "online-auth-agen",
+      "username": "root",
+      "cpu_percent": null,
+      "memory_percent": null
+    },
+    {
+      "pid": 24571,
+      "name": "UniversalControl",
+      "username": "segevbin",
+      "cpu_percent": 0.0,
+      "memory_percent": 0.057220458984375
+    },
+    {
+      "pid": 24575,
+      "name": "intelligentroutingd",
+      "username": "segevbin",
+      "cpu_percent": 0.0,
+      "memory_percent": 0.04978179931640625
+    },
+    {
+      "pid": 24576,
+      "name": "containermanagerd",
+      "username": "segevbin",
+      "cpu_percent": 0.0,
+      "memory_percent": 0.03528594970703125
+    },
+    {
+      "pid": 24577,
+      "name": "com.apple.Safari.History",
+      "username": "segevbin",
+      "cpu_percent": 0.0,
+      "memory_percent": 0.045013427734375
+    },
+    {
+      "pid": 24578,
+      "name": "replayd",
+      "username": "segevbin",
+      "cpu_percent": 0.0,
+      "memory_percent": 0.06618499755859375
+    },
+    {
+      "pid": 24586,
+      "name": "mdworker_shared",
+      "username": "segevbin",
+      "cpu_percent": 0.2,
+      "memory_percent": 0.14400482177734375
+    },
+    {
+      "pid": 24588,
+      "name": "ctkd",
+      "username": "segevbin",
+      "cpu_percent": 0.0,
+      "memory_percent": 0.04367828369140625
+    },
+    {
+      "pid": 24589,
+      "name": "coreauthd",
+      "username": "segevbin",
+      "cpu_percent": 0.0,
+      "memory_percent": 0.04367828369140625
+    },
+    {
+      "pid": 24590,
+      "name": "ctkd",
+      "username": "_ctkd",
+      "cpu_percent": null,
+      "memory_percent": null
+    },
+    {
+      "pid": 24591,
+      "name": "calaccessd",
+      "username": "segevbin",
+      "cpu_percent": 1.2,
+      "memory_percent": 0.133514404296875
+    },
+    {
+      "pid": 24606,
+      "name": "keyboardservicesd",
+      "username": "segevbin",
+      "cpu_percent": 0.0,
+      "memory_percent": 0.067901611328125
+    },
+    {
+      "pid": 24615,
+      "name": "mdworker_shared",
+      "username": "segevbin",
+      "cpu_percent": 0.0,
+      "memory_percent": 0.13675689697265625
+    },
+    {
+      "pid": 24616,
+      "name": "sandboxd",
+      "username": "root",
+      "cpu_percent": null,
+      "memory_percent": null
+    },
+    {
+      "pid": 24617,
+      "name": "spindump",
+      "username": "root",
+      "cpu_percent": null,
+      "memory_percent": null
+    },
+    {
+      "pid": 24618,
+      "name": "spindump_agent",
+      "username": "segevbin",
+      "cpu_percent": 0.0,
+      "memory_percent": 0.0316619873046875
+    },
+    {
+      "pid": 24623,
+      "name": "logd_helper",
+      "username": "root",
+      "cpu_percent": null,
+      "memory_percent": null
+    },
+    {
+      "pid": 24624,
+      "name": "followupd",
+      "username": "segevbin",
+      "cpu_percent": 0.0,
+      "memory_percent": 0.052642822265625
+    },
+    {
+      "pid": 24626,
+      "name": "mdworker_shared",
+      "username": "segevbin",
+      "cpu_percent": 0.6,
+      "memory_percent": 0.1819610595703125
+    },
+    {
+      "pid": 24628,
+      "name": "TrustedPeersHelper",
+      "username": "segevbin",
+      "cpu_percent": 0.0,
+      "memory_percent": 0.05970001220703125
+    },
+    {
+      "pid": 24629,
+      "name": "iconservicesagent",
+      "username": "segevbin",
+      "cpu_percent": 0.0,
+      "memory_percent": 0.054168701171875
+    },
+    {
+      "pid": 24630,
+      "name": "DockHelper",
+      "username": "segevbin",
+      "cpu_percent": 0.0,
+      "memory_percent": 0.10833740234375
+    },
+    {
+      "pid": 24631,
+      "name": "mdworker_shared",
+      "username": "segevbin",
+      "cpu_percent": 0.0,
+      "memory_percent": 0.07076263427734375
+    },
+    {
+      "pid": 24632,
+      "name": "mdworker_shared",
+      "username": "segevbin",
+      "cpu_percent": 0.0,
+      "memory_percent": 0.06809234619140625
+    },
+    {
+      "pid": 24633,
+      "name": "mdworker_shared",
+      "username": "segevbin",
+      "cpu_percent": 0.0,
+      "memory_percent": 0.07076263427734375
+    },
+    {
+      "pid": 24634,
+      "name": "mdworker_shared",
+      "username": "segevbin",
+      "cpu_percent": 0.0,
+      "memory_percent": 0.06809234619140625
+    },
+    {
+      "pid": 24635,
+      "name": "mdworker_shared",
+      "username": "segevbin",
+      "cpu_percent": 0.0,
+      "memory_percent": 0.07076263427734375
+    },
+    {
+      "pid": 24636,
+      "name": "mdworker_shared",
+      "username": "segevbin",
+      "cpu_percent": 0.0,
+      "memory_percent": 0.06809234619140625
+    },
+    {
+      "pid": 24637,
+      "name": "mdworker_shared",
+      "username": "segevbin",
+      "cpu_percent": 0.0,
+      "memory_percent": 0.06809234619140625
+    },
+    {
+      "pid": 24638,
+      "name": "mdworker_shared",
+      "username": "segevbin",
+      "cpu_percent": 0.0,
+      "memory_percent": 0.06809234619140625
+    },
+    {
+      "pid": 24639,
+      "name": "mdworker_shared",
+      "username": "segevbin",
+      "cpu_percent": 0.0,
+      "memory_percent": 0.06809234619140625
+    },
+    {
+      "pid": 24640,
+      "name": "mdworker_shared",
+      "username": "segevbin",
+      "cpu_percent": 0.0,
+      "memory_percent": 0.07076263427734375
+    },
+    {
+      "pid": 24641,
+      "name": "iconservicesd",
+      "username": "_iconservices",
+      "cpu_percent": null,
+      "memory_percent": null
+    },
+    {
+      "pid": 24642,
+      "name": "Cursor Helper (Renderer)",
+      "username": "segevbin",
+      "cpu_percent": 3.7,
+      "memory_percent": 1.6489028930664062
+    },
+    {
+      "pid": 24643,
+      "name": "wifip2pd",
+      "username": "root",
+      "cpu_percent": null,
+      "memory_percent": null
+    },
+    {
+      "pid": 24644,
+      "name": "SCHelper",
+      "username": "root",
+      "cpu_percent": null,
+      "memory_percent": null
+    },
+    {
+      "pid": 24645,
+      "name": "ScopedBookmarkAgent",
+      "username": "segevbin",
+      "cpu_percent": 0.0,
+      "memory_percent": 0.0690460205078125
+    },
+    {
+      "pid": 24646,
+      "name": "Cursor Helper",
+      "username": "segevbin",
+      "cpu_percent": 0.1,
+      "memory_percent": 0.33435821533203125
+    },
+    {
+      "pid": 24647,
+      "name": "Cursor Helper (Plugin): extension-host [8-3]",
+      "username": "segevbin",
+      "cpu_percent": 0.7,
+      "memory_percent": 0.9172439575195312
+    },
+    {
+      "pid": 24648,
+      "name": "zsh",
+      "username": "segevbin",
+      "cpu_percent": 0.0,
+      "memory_percent": 0.01220703125
+    },
+    {
+      "pid": 24649,
+      "name": "zsh",
+      "username": "segevbin",
+      "cpu_percent": 0.0,
+      "memory_percent": 0.01220703125
+    },
+    {
+      "pid": 24650,
+      "name": "zsh",
+      "username": "segevbin",
+      "cpu_percent": 0.0,
+      "memory_percent": 0.01220703125
+    },
+    {
+      "pid": 24651,
+      "name": "zsh",
+      "username": "segevbin",
+      "cpu_percent": 0.0,
+      "memory_percent": 0.01220703125
+    },
+    {
+      "pid": 24652,
+      "name": "zsh",
+      "username": "segevbin",
+      "cpu_percent": 0.0,
+      "memory_percent": 0.01220703125
+    },
+    {
+      "pid": 24960,
+      "name": "mdworker_shared",
+      "username": "segevbin",
+      "cpu_percent": 0.0,
+      "memory_percent": 0.07076263427734375
+    },
+    {
+      "pid": 25058,
+      "name": "ThemeWidgetControlViewService",
+      "username": "segevbin",
+      "cpu_percent": 0.0,
+      "memory_percent": 0.09059906005859375
+    },
+    {
+      "pid": 25731,
+      "name": "pet",
+      "username": "segevbin",
+      "cpu_percent": 0.0,
+      "memory_percent": 0.00438690185546875
+    },
+    {
+      "pid": 25798,
+      "name": "zsh",
+      "username": "segevbin",
+      "cpu_percent": 0.0,
+      "memory_percent": 0.01220703125
+    },
+    {
+      "pid": 26368,
+      "name": "Python",
+      "username": "segevbin",
+      "cpu_percent": 0.0,
+      "memory_percent": 0.03871917724609375
+    },
+    {
+      "pid": 26453,
+      "name": "node",
+      "username": "segevbin",
+      "cpu_percent": 2.1,
+      "memory_percent": 0.4505157470703125
+    },
+    {
+      "pid": 26485,
+      "name": "zsh",
+      "username": "segevbin",
+      "cpu_percent": 0.0,
+      "memory_percent": 0.01220703125
+    },
+    {
+      "pid": 26511,
+      "name": "mdworker_shared",
+      "username": "segevbin",
+      "cpu_percent": 0.0,
+      "memory_percent": 0.06809234619140625
+    },
+    {
+      "pid": 26635,
+      "name": "mdworker_shared",
+      "username": "segevbin",
+      "cpu_percent": 0.0,
+      "memory_percent": 0.13904571533203125
+    },
+    {
+      "pid": 26655,
+      "name": "Cursor Helper (Plugin)",
+      "username": "segevbin",
+      "cpu_percent": 0.0,
+      "memory_percent": 0.24242401123046875
+    },
+    {
+      "pid": 26997,
+      "name": "zsh",
+      "username": "segevbin",
+      "cpu_percent": 0.7,
+      "memory_percent": 0.0385284423828125
+    },
+    {
+      "pid": 27646,
+      "name": "Google Chrome Helper (Renderer)",
+      "username": "segevbin",
+      "cpu_percent": 0.0,
+      "memory_percent": 0.08220672607421875
+    },
+    {
+      "pid": 30051,
+      "name": "Notes",
+      "username": "segevbin",
+      "cpu_percent": 0.0,
+      "memory_percent": 0.067901611328125
+    },
+    {
+      "pid": 30079,
+      "name": "universalAccessAuthWarn",
+      "username": "segevbin",
+      "cpu_percent": 0.0,
+      "memory_percent": 0.029754638671875
+    },
+    {
+      "pid": 30133,
+      "name": "mbuseragent",
+      "username": "segevbin",
+      "cpu_percent": 0.0,
+      "memory_percent": 0.00972747802734375
+    },
+    {
+      "pid": 30305,
+      "name": "IMAutomaticHistoryDeletionAgent",
+      "username": "segevbin",
+      "cpu_percent": 0.0,
+      "memory_percent": 0.01964569091796875
+    },
+    {
+      "pid": 30307,
+      "name": "logd_reporter",
+      "username": "root",
+      "cpu_percent": null,
+      "memory_percent": null
+    },
+    {
+      "pid": 30341,
+      "name": "distnoted",
+      "username": "_neuralengine",
+      "cpu_percent": null,
+      "memory_percent": null
+    },
+    {
+      "pid": 30375,
+      "name": "PerfPowerService",
+      "username": "root",
+      "cpu_percent": null,
+      "memory_percent": null
+    },
+    {
+      "pid": 30622,
+      "name": "bird",
+      "username": "segevbin",
+      "cpu_percent": 9.7,
+      "memory_percent": 0.562286376953125
+    },
+    {
+      "pid": 30766,
+      "name": "fileproviderd",
+      "username": "segevbin",
+      "cpu_percent": 10.9,
+      "memory_percent": 0.45146942138671875
+    },
+    {
+      "pid": 30769,
+      "name": "com.apple.CloudDocs.iCloudDriveFileProvider",
+      "username": "segevbin",
+      "cpu_percent": 0.7,
+      "memory_percent": 0.145721435546875
+    },
+    {
+      "pid": 54922,
+      "name": "Google Chrome Helper (Renderer)",
+      "username": "segevbin",
+      "cpu_percent": 0.1,
+      "memory_percent": 0.04825592041015625
+    },
+    {
+      "pid": 63440,
+      "name": "chrome_crashpad_handler",
+      "username": "segevbin",
+      "cpu_percent": 0.0,
+      "memory_percent": 0.0080108642578125
+    },
+    {
+      "pid": 81871,
+      "name": "audiomxd",
+      "username": "_audiomxd",
+      "cpu_percent": null,
+      "memory_percent": null
+    },
+    {
+      "pid": 85449,
+      "name": "python3.11",
+      "username": "segevbin",
+      "cpu_percent": 0.0,
+      "memory_percent": 0.01659393310546875
+    },
+    {
+      "pid": 85978,
+      "name": "Safari",
+      "username": "segevbin",
+      "cpu_percent": 0.0,
+      "memory_percent": 0.119781494140625
+    },
+    {
+      "pid": 85983,
+      "name": "com.apple.WebKit.Networking",
+      "username": "segevbin",
+      "cpu_percent": 0.1,
+      "memory_percent": 0.10051727294921875
+    },
+    {
+      "pid": 85988,
+      "name": "Microsoft Bing for Safari Extension",
+      "username": "segevbin",
+      "cpu_percent": 0.0,
+      "memory_percent": 0.02384185791015625
+    },
+    {
+      "pid": 85994,
+      "name": "com.apple.CoreSimulator.CoreSimulatorService",
+      "username": "segevbin",
+      "cpu_percent": 0.0,
+      "memory_percent": 0.02288818359375
+    },
+    {
+      "pid": 85995,
+      "name": "webinspectord",
+      "username": "segevbin",
+      "cpu_percent": 0.0,
+      "memory_percent": 0.03681182861328125
+    },
+    {
+      "pid": 86003,
+      "name": "SimulatorTrampoline",
+      "username": "segevbin",
+      "cpu_percent": 0.0,
+      "memory_percent": 0.02231597900390625
+    },
+    {
+      "pid": 87850,
+      "name": "python3.11",
+      "username": "segevbin",
+      "cpu_percent": 0.0,
+      "memory_percent": 0.02117156982421875
+    },
+    {
+      "pid": 88837,
+      "name": "com.apple.WebKit.GPU",
+      "username": "segevbin",
+      "cpu_percent": 0.1,
+      "memory_percent": 0.06561279296875
+    },
+    {
+      "pid": 97072,
+      "name": "knowledge-agent",
+      "username": "segevbin",
+      "cpu_percent": 0.0,
+      "memory_percent": 0.05054473876953125
+    },
+    {
+      "pid": 98096,
+      "name": "homed",
+      "username": "segevbin",
+      "cpu_percent": 0.0,
+      "memory_percent": 0.05645751953125
+    }
+  ],
+  "windows": [
+    {
+      "name": "Menubar",
+      "owner": "Window Server",
+      "bounds": {
+        "x": 0.0,
+        "y": 0.0,
+        "width": 1470.0,
+        "height": 36.0
+      },
+      "layer": 24
+    },
+    {
+      "name": "zsh \u2014 Aiayer",
+      "owner": "Cursor",
+      "bounds": {
+        "x": 0.0,
+        "y": 36.0,
+        "width": 1470.0,
+        "height": 920.0
+      },
+      "layer": 0
+    }
+  ],
+  "stats": {
+    "total_processes": 342,
+    "active_windows": 2,
+    "last_scan_time": 1747638247.455831,
+    "is_running": true
+  },
+  "last_update": 1747638245.411187
+}

@@ -9,7 +9,7 @@ import os
 from datetime import datetime
 from collections import deque
 import numpy as np
-from sentence_transformers import SentenceTransformer
+# Removed sentence_transformers dependency
 from sklearn.metrics.pairwise import cosine_similarity
 
 logger = logging.getLogger(__name__)
@@ -26,12 +26,9 @@ class BaseMemory:
         
     def _init_vector_model(self):
         """Initialize the vector model for semantic search."""
-        try:
-            self.vector_model = SentenceTransformer('all-MiniLM-L6-v2')
-            logger.info("Vector model initialized successfully")
-        except Exception as e:
-            logger.error(f"Error initializing vector model: {e}")
-            self.vector_model = None
+        # Vector model disabled, using simple text search instead
+        self.vector_model = None
+        logger.info("Vector model disabled - using text-based search instead")
             
     def _get_text_for_vectorization(self, item):
         """Extract text content for vectorization."""
@@ -50,63 +47,68 @@ class BaseMemory:
     def _update_vectors(self, item):
         """Update vector storage with new item."""
         try:
-            if not self.vector_model:
-                return
-                
             text = self._get_text_for_vectorization(item)
             if not text:
                 return
                 
-            # Generate vector embedding
-            vector = self.vector_model.encode(text)
+            # Simple text storage instead of vector embeddings
+            # Store the text as a list of tokens for simple text search
+            tokens = text.lower().split()
             
-            # Add to vector storage
-            self.vectors.append(vector)
+            # Add to storage
+            self.vectors.append(tokens)  # storing tokens instead of vectors
             self.metadata.append({
                 'timestamp': datetime.now().isoformat(),
-                'original_item': item
+                'original_item': item,
+                'text': text
             })
             
-            # Keep only the most recent vectors
+            # Keep only the most recent items
             if len(self.vectors) > self.max_length:
                 self.vectors = self.vectors[-self.max_length:]
                 self.metadata = self.metadata[-self.max_length:]
                 
         except Exception as e:
-            logger.error(f"Error updating vectors: {e}")
+            logger.error(f"Error updating text storage: {e}")
             
     def search(self, query, limit=5):
-        """Search memory using vector similarity."""
+        """Search memory using text matching instead of vector similarity."""
         try:
-            if not self.vector_model or not self.vectors:
+            if not self.vectors:
                 return []
                 
-            # Generate query vector
-            query_vector = self.vector_model.encode(query)
-            
-            # Calculate similarities
-            vectors = np.array(self.vectors)
-            similarities = cosine_similarity([query_vector], vectors)[0]
-            
-            # Get top matches
-            top_indices = np.argsort(similarities)[-limit:][::-1]
+            # Simple text search approach
+            query_tokens = query.lower().split()
             
             results = []
-            for idx in top_indices:
-                similarity = similarities[idx]
-                if similarity >= 0.7:  # Similarity threshold
+            for idx, tokens in enumerate(self.vectors):
+                if not tokens:
+                    continue
+                    
+                # Calculate a simple similarity score based on token overlap
+                common_tokens = set(query_tokens).intersection(set(tokens))
+                if not common_tokens:
+                    continue
+                    
+                # Score based on the percentage of query tokens found
+                score = len(common_tokens) / len(query_tokens)
+                
+                if score >= 0.3:  # Lower threshold for text matching
                     metadata = self.metadata[idx]
                     results.append({
-                        'content': self._get_text_for_vectorization(metadata['original_item']),
+                        'content': metadata.get('text', self._get_text_for_vectorization(metadata['original_item'])),
                         'timestamp': metadata['timestamp'],
-                        'score': float(similarity),
+                        'score': float(score),
                         'original_item': metadata['original_item']
                     })
             
-            return results
+            # Sort by score (highest first)
+            results.sort(key=lambda x: x['score'], reverse=True)
+            
+            return results[:limit]
             
         except Exception as e:
-            logger.error(f"Error in vector search: {e}")
+            logger.error(f"Error in text search: {e}")
             return []
 
 class ConversationMemory(BaseMemory):
@@ -140,7 +142,7 @@ class ConversationMemory(BaseMemory):
             os.makedirs(os.path.dirname(self.memory_file), exist_ok=True)
             with open(self.memory_file, 'w') as f:
                 json.dump({
-                    'vectors': [v.tolist() for v in self.vectors],
+                    'vectors': self.vectors,  # Now storing token lists instead of numpy arrays
                     'metadata': self.metadata
                 }, f)
         except Exception as e:
@@ -152,7 +154,7 @@ class ConversationMemory(BaseMemory):
             if os.path.exists(self.memory_file):
                 with open(self.memory_file, 'r') as f:
                     data = json.load(f)
-                    self.vectors = [np.array(v) for v in data.get('vectors', [])]
+                    self.vectors = data.get('vectors', [])
                     self.metadata = data.get('metadata', [])
                     logger.info(f"Loaded {len(self.metadata)} messages from conversation memory")
         except Exception as e:
@@ -196,7 +198,7 @@ class ContextMemory(BaseMemory):
             os.makedirs(os.path.dirname(self.memory_file), exist_ok=True)
             with open(self.memory_file, 'w') as f:
                 json.dump({
-                    'vectors': [v.tolist() for v in self.vectors],
+                    'vectors': self.vectors,  # Now storing token lists instead of numpy arrays
                     'metadata': self.metadata
                 }, f)
         except Exception as e:
@@ -208,7 +210,7 @@ class ContextMemory(BaseMemory):
             if os.path.exists(self.memory_file):
                 with open(self.memory_file, 'r') as f:
                     data = json.load(f)
-                    self.vectors = [np.array(v) for v in data.get('vectors', [])]
+                    self.vectors = data.get('vectors', [])
                     self.metadata = data.get('metadata', [])
                     logger.info(f"Loaded {len(self.metadata)} contexts from context memory")
         except Exception as e:
@@ -241,7 +243,7 @@ class LongTermMemory(BaseMemory):
             os.makedirs(os.path.dirname(self.memory_file), exist_ok=True)
             with open(self.memory_file, 'w') as f:
                 json.dump({
-                    'vectors': [v.tolist() for v in self.vectors],
+                    'vectors': self.vectors,  # Now storing token lists instead of numpy arrays
                     'metadata': self.metadata
                 }, f)
         except Exception as e:
@@ -253,7 +255,7 @@ class LongTermMemory(BaseMemory):
             if os.path.exists(self.memory_file):
                 with open(self.memory_file, 'r') as f:
                     data = json.load(f)
-                    self.vectors = [np.array(v) for v in data.get('vectors', [])]
+                    self.vectors = data.get('vectors', [])
                     self.metadata = data.get('metadata', [])
                     logger.info(f"Loaded {len(self.metadata)} items from long-term memory")
         except Exception as e:

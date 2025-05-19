@@ -72,7 +72,7 @@ done
 # Step 2: Stop any remaining services by pattern
 echo "Step 2: Stopping any remaining services by pattern..."
 kill_by_pattern "python.*fixed_bridge_server\.py" "bridge server"
-kill_by_pattern "python.*simple_llm_service\.py" "LLM service"
+kill_by_pattern "python.*ollama_service_fixed\.py" "Enhanced LLM service"
 kill_by_pattern "python.*process_sensor\.py" "process sensor"
 kill_by_pattern "python.*simple_memory_service\.py" "memory service"
 kill_by_pattern "python.*memory_system\.py" "memory system"
@@ -85,7 +85,7 @@ echo "Step 3: Cleaning up temporary files..."
 # Final check if any processes are still running
 echo "Checking for any remaining processes..."
 bridge_procs=$(ps aux | grep -i "fixed_bridge_server\.py" | grep -v grep)
-llm_procs=$(ps aux | grep -i "simple_llm_service\.py" | grep -v grep)
+llm_procs=$(ps aux | grep -i "ollama_service_fixed\.py" | grep -v grep)
 sensor_procs=$(ps aux | grep -i "process_sensor\.py" | grep -v grep)
 memory_procs=$(ps aux | grep -i "simple_memory_service\.py\|memory_system\.py" | grep -v grep)
 tauri_procs=$(ps aux | grep -i "npm run tauri" | grep -v grep)
