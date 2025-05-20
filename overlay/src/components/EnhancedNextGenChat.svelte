@@ -838,213 +838,109 @@
     }
   }
 
-  function startDrag(event) {
-    if (event.target.closest('.chat-header') && !event.target.closest('.chat-controls')) {
-      // Add dragging class for visual feedback
-      document.body.classList.add('dragging');
-      
-      // Cancel any ongoing animations
-      isAnimating = false;
-      
-      // Reset velocity from previous drags
-      velocityX = 0;
-      velocityY = 0;
-      
-      // Initialize drag state
-      isDragging = true;
-      startX = event.clientX;
-      startY = event.clientY;
-      initialX = position.x;
-      initialY = position.y;
-      
-      // Initialize smoothing variables
-      currentDragX = position.x;
-      currentDragY = position.y;
-      targetX = position.x;
-      targetY = position.y;
-      
-      // Set initial transition to none for immediate response
-      setTimeout(() => {
-        const chatContainer = document.querySelector('.enhanced-chat-container');
-        if (chatContainer) {
-          chatContainer.style.transition = 'none';
-        }
-      }, 0);
-    }
-  }
-
-  // Smoothing variables for drag
-  let currentDragX = 0;
-  let currentDragY = 0;
-  let targetX = 0;
-  let targetY = 0;
-  let isAnimating = false;
-  
-  function handleDrag(event) {
-    if (isDragging) {
-      // Store previous position and time for momentum calculation
-      lastDragX = position.x;
-      lastDragY = position.y;
-      lastDragTime = Date.now();
-      
-      const dx = event.clientX - startX;
-      const dy = event.clientY - startY;
-      
-      // Set target position directly for more accurate response
-      targetX = initialX + dx;
-      targetY = initialY + dy;
-      
-      // Keep the window within viewport bounds with a small margin
-      const margin = 5; // 5px margin from edges
-      const viewportWidth = window.innerWidth;
-      const viewportHeight = window.innerHeight;
-      
-      // Apply boundary constraints to targets
-      if (targetX < margin) targetX = margin;
-      if (targetY < margin) targetY = margin;
-      if (targetX + size.width > viewportWidth - margin) {
-        targetX = viewportWidth - size.width - margin;
-      }
-      if (targetY + size.height > viewportHeight - margin) {
-        targetY = viewportHeight - size.height - margin;
-      }
-      
-      // Start animation if not already running
-      if (!isAnimating) {
-        isAnimating = true;
-        smoothDragAnimation();
-      }
-    } else if (isResizing) {
-      const width = startWidth + (event.clientX - startX);
-      const height = startHeight + (event.clientY - startY);
-      
-      // Enforce minimum and maximum dimensions
-      size.width = Math.max(300, Math.min(800, width));
-      size.height = Math.max(400, Math.min(800, height));
-    }
-  }
-
-  // Variables for momentum
+  // Drag handling variables
   let lastDragTime = 0;
   let lastDragX = 0;
   let lastDragY = 0;
   let velocityX = 0;
   let velocityY = 0;
   
-  function stopDrag() {
-    if (isDragging) {
-      // Calculate momentum effect
-      const now = Date.now();
-      const timeDelta = now - lastDragTime;
+  function startDrag(event) {
+    if (event.target.closest('.chat-header') && !event.target.closest('.chat-controls')) {
+      document.body.classList.add('dragging');
+      isDragging = true;
+      startX = event.clientX;
+      startY = event.clientY;
+      initialX = position.x;
+      initialY = position.y;
+      lastDragTime = Date.now();
+      lastDragX = position.x;
+      lastDragY = position.y;
       
-      if (timeDelta < 100) { // Only apply momentum if the drag was fast enough
-        velocityX = (position.x - lastDragX) * 0.5; // Reduce momentum strength
-        velocityY = (position.y - lastDragY) * 0.5;
-        
-        // Apply momentum effect with decay
-        applyMomentum();
-      } else {
-        // If dragging was slow, just restore transition
-        resetChatContainerTransition();
+      // Remove transition during drag for immediate response
+      const chatContainer = document.querySelector('.enhanced-chat-container');
+      if (chatContainer) {
+        chatContainer.style.transition = 'none';
       }
     }
-    
-    // Remove dragging class
-    document.body.classList.remove('dragging');
-    
-    isDragging = false;
-    isResizing = false;
   }
   
-  function smoothDragAnimation() {
-    if (!isDragging && !isAnimating) return;
+  function handleDrag(event) {
+    if (!isDragging) return;
     
-    // Use a high-quality easing function for ultra-smooth movement
-    // Apply lerp (linear interpolation) with a stronger smoothing factor
-    const smoothingFactor = isDragging ? 0.4 : 0.2; // More responsive during active drag
+    const now = Date.now();
+    const timeDelta = now - lastDragTime;
     
-    // Calculate the eased position
-    currentDragX = currentDragX || position.x;
-    currentDragY = currentDragY || position.y;
-    
-    // Apply spring-like physics for more natural feel
-    currentDragX += (targetX - currentDragX) * smoothingFactor;
-    currentDragY += (targetY - currentDragY) * smoothingFactor;
-    
-    // Update position with sub-pixel accuracy
-    position.x = currentDragX;
-    position.y = currentDragY;
-    
-    // Check if we need to continue animating
-    const isCloseEnough = 
-      Math.abs(position.x - targetX) < 0.1 && 
-      Math.abs(position.y - targetY) < 0.1;
-    
-    if (isCloseEnough && !isDragging) {
-      // We've reached the target position, stop animating
-      isAnimating = false;
-    } else {
-      // Continue animation
-      requestAnimationFrame(smoothDragAnimation);
+    // Calculate velocity for momentum
+    if (timeDelta > 0) {
+      velocityX = (position.x - lastDragX) / timeDelta;
+      velocityY = (position.y - lastDragY) / timeDelta;
     }
-  }
-  
-  function applyMomentum() {
-    // Set the target position based on velocity
-    targetX = position.x + velocityX * 10; // Amplify momentum effect
-    targetY = position.y + velocityY * 10;
     
-    // Apply boundary constraints to targets
+    // Update position directly for immediate response
+    const dx = event.clientX - startX;
+    const dy = event.clientY - startY;
+    
+    // Apply position with boundary constraints
     const margin = 5;
     const viewportWidth = window.innerWidth;
     const viewportHeight = window.innerHeight;
     
-    if (targetX < margin) {
-      targetX = margin;
-      velocityX = -velocityX * 0.2; // Gentler bounce
-    }
-    if (targetY < margin) {
-      targetY = margin;
-      velocityY = -velocityY * 0.2;
-    }
-    if (targetX + size.width > viewportWidth - margin) {
-      targetX = viewportWidth - size.width - margin;
-      velocityX = -velocityX * 0.2;
-    }
-    if (targetY + size.height > viewportHeight - margin) {
-      targetY = viewportHeight - size.height - margin;
-      velocityY = -velocityY * 0.2;
-    }
+    position.x = Math.max(margin, Math.min(initialX + dx, viewportWidth - size.width - margin));
+    position.y = Math.max(margin, Math.min(initialY + dy, viewportHeight - size.height - margin));
     
-    // Apply decay to velocity
-    velocityX *= 0.95; // Slower decay for smoother deceleration
-    velocityY *= 0.95;
+    // Store last position and time for velocity calculation
+    lastDragX = position.x;
+    lastDragY = position.y;
+    lastDragTime = now;
+  }
+  
+  function stopDrag() {
+    if (!isDragging) return;
     
-    // Compute the next position
-    currentDragX = position.x;
-    currentDragY = position.y;
+    document.body.classList.remove('dragging');
+    isDragging = false;
     
-    // Start the smooth animation
-    isAnimating = true;
-    smoothDragAnimation();
-    
-    // If still has significant velocity, continue momentum in the next frame
-    if (Math.abs(velocityX) > 0.1 || Math.abs(velocityY) > 0.1) {
-      setTimeout(() => requestAnimationFrame(applyMomentum), 16); // ~60fps
+    // Apply momentum if drag was fast enough
+    const speed = Math.sqrt(velocityX * velocityX + velocityY * velocityY);
+    if (speed > 0.5) {
+      applyMomentum();
     } else {
-      // Finish with a gentle settle animation
-      setTimeout(resetChatContainerTransition, 300);
+      resetChatContainerTransition();
     }
+  }
+  
+  function applyMomentum() {
+    // Simplified momentum calculation
+    const momentumX = velocityX * 300; // Reduced multiplier for more controlled movement
+    const momentumY = velocityY * 300;
+    
+    // Apply boundary constraints
+    const margin = 5;
+    const viewportWidth = window.innerWidth;
+    const viewportHeight = window.innerHeight;
+    
+    let targetX = position.x + momentumX;
+    let targetY = position.y + momentumY;
+    
+    // Keep within viewport
+    targetX = Math.max(margin, Math.min(targetX, viewportWidth - size.width - margin));
+    targetY = Math.max(margin, Math.min(targetY, viewportHeight - size.height - margin));
+    
+    // Apply position with smooth transition
+    position.x = targetX;
+    position.y = targetY;
+    
+    resetChatContainerTransition();
   }
   
   function resetChatContainerTransition() {
-    // Restore smooth transition after dragging
     const chatContainer = document.querySelector('.enhanced-chat-container');
     if (chatContainer) {
-      chatContainer.style.transition = 'all 0.3s cubic-bezier(0.16, 1, 0.3, 1)';
+      chatContainer.style.transition = 'transform 0.2s cubic-bezier(0.2, 0, 0, 1)';
     }
   }
-  
+
   function startResize(event, position) {
     isResizing = true;
     startX = event.clientX;
@@ -1487,6 +1383,8 @@
 {/if}
 
 <style>
+  /* Existing styles */
+  
   /* Dragging styles */
   :global(body.dragging) {
     cursor: grabbing !important;

@@ -1,0 +1,78 @@
+{
+  "application": "Microsoft Word",
+  "confidence": 0.9,
+  "category": "Office",
+  "view": "Editing mode - document open for editing",
+  "workflow": "User appears to be typing or editing text in a word processing document",
+  "ui_elements": [
+    {
+      "element": "Toolbar with options like cut"
+    },
+    {
+      "element": "copy"
+    },
+    {
+      "element": "paste"
+    },
+    {
+      "element": "undo"
+    },
+    {
+      "element": "redo"
+    },
+    {
+      "element": "file"
+    },
+    {
+      "element": "edit"
+    },
+    {
+      "element": "view"
+    },
+    {
+      "element": "insert"
+    },
+    {
+      "element": "layout"
+    },
+    {
+      "element": "references"
+    },
+    {
+      "element": "mailings"
+    },
+    {
+      "element": "review"
+    },
+    {
+      "element": "and more"
+    },
+    {
+      "element": "Ribbon at the top with tabs like Home"
+    },
+    {
+      "element": "Insert"
+    },
+    {
+      "element": "Layout"
+    },
+    {
+      "element": "References"
+    },
+    {
+      "element": "Mailings"
+    },
+    {
+      "element": "Review"
+    },
+    {
+      "element": "and more"
+    },
+    {
+      "element": "Task pane on the right side of the window displaying additional options or information related to the document"
+    }
+  ],
+  "raw_analysis": " APPLICATION: Microsoft Word\nCATEGORY: Office\nVIEW: Editing mode - document open for editing\nWORKFLOW: User appears to be typing or editing text in a word processing document\nUI ELEMENTS: Toolbar with options like cut, copy, paste, undo, redo, file, edit, view, insert, layout, references, mailings, review, and more, Ribbon at the top with tabs like Home, Insert, Layout, References, Mailings, Review, and more, Task pane on the right side of the window displaying additional options or information related to the document\n\nIf you need further analysis or have questions about this process, please let me know! ",
+  "analysis_time": 52.93029808998108,
+  "screenshot_hash": "ae8bcf67d40018259b0aa4fe082063c2"
+}

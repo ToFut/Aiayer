@@ -10,11 +10,6 @@ cp config/logging.conf config/backups/logging_${timestamp}.conf
 echo "Applying new optimized logging configuration..."
 cp config/logging.conf.optimized config/logging.conf
 
-# Create archive directory for logs
-echo "Creating log archive directories..."
-mkdir -p logs/archive
-mkdir -p logs/memory/archive
-
 # Clean up existing logs
 echo "Cleaning up existing logs..."
 python scripts/log_cleanup.py --log-dir logs --max-size 20 --max-age 3 --clear-empty

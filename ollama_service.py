@@ -52,8 +52,8 @@ class OllamaLLM:
             # Models to try in order
             models_to_try = [
                 self.model_name,  # Try the specified model first
+                "llama3.2:latest",  # Then try llama3.2
                 "llama3:latest",  # Then try llama3
-                "mistral:latest", # Then mistral
                 "llava:latest"    # Finally try llava
             ]
             

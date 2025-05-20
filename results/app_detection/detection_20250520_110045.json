@@ -1,0 +1,33 @@
+{
+  "application": "Slack",
+  "confidence": 0.9,
+  "category": "Communication",
+  "view": "Conversation view (direct message conversation)",
+  "workflow": "Sending or receiving a message",
+  "ui_elements": [
+    {
+      "element": "Channel navigation bar on the left"
+    },
+    {
+      "element": "message input field at the bottom"
+    },
+    {
+      "element": "message content area"
+    },
+    {
+      "element": "user profile picture"
+    },
+    {
+      "element": "file attachment icon"
+    },
+    {
+      "element": "reaction emoji picker"
+    },
+    {
+      "element": "and more."
+    }
+  ],
+  "raw_analysis": " - APPLICATION: Slack\n- CATEGORY: Communication\n- VIEW: Conversation view (direct message conversation)\n- WORKFLOW: Sending or receiving a message\n- UI ELEMENTS: Channel navigation bar on the left, message input field at the bottom, message content area, user profile picture, file attachment icon, reaction emoji picker, and more. ",
+  "analysis_time": 44.12003302574158,
+  "screenshot_hash": "60e1f24eb8f4f46f299513ea44a61bbc"
+}

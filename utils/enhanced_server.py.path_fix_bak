@@ -151,7 +151,7 @@ class Suggestion:
 class OllamaLLM:
     """Client for interacting with a local Ollama instance."""
     
-    def __init__(self, base_url: str = "http://localhost:11434", model: str = "llama3"):
+    def __init__(self, base_url: str = "http://localhost:11434", model: str = "llama3.2:latest"):
         """
         Initialize the Ollama client.
         

@@ -1,55 +1,100 @@
+#!/usr/bin/env python3
+"""
+Test script to demonstrate memory search functionality in the MemorySystem
+"""
 import asyncio
-from memory.memory_system import MemorySystem
 import json
+from datetime import datetime
+
+# Import the memory system
+from memory.memory_system import MemorySystem
+from memory.enhanced_semantic_search import enhanced_search
 
 async def main():
+    print("=== Testing Memory Search Functionality ===")
+    
     # Initialize memory system
-    memory_system = MemorySystem()
-    await memory_system.initialize()
+    print("\nInitializing memory system...")
+    memory = MemorySystem()
+    await memory.initialize()
+    print("Memory system initialized")
     
-    # Print current context memory contents
-    print("\n=== Current Context Memory Contents ===")
-    print("\nContext Memory Keys:")
-    for key in memory_system.context_memory.keys():
-        print(f"  - {key}")
+    # Add sample data to memory
+    print("\nAdding test data to memory...")
     
-    print("\nSensor Data:")
-    if 'sensor_data' in memory_system.context_memory:
-        for sensor_type, data in memory_system.context_memory['sensor_data'].items():
-            print(f"\n  {sensor_type.upper()} SENSOR:")
-            print(f"    Latest timestamp: {list(data.keys())[-1] if data else 'No data'}")
-            if data:
-                latest_data = data[list(data.keys())[-1]]
-                print(f"    Data keys: {list(latest_data.get('data', {}).keys())}")
+    # Add message about coding
+    coding_message = {
+        'type': 'user_message',
+        'content': 'I am working on a Python project with semantic search capabilities',
+        'timestamp': datetime.now().isoformat()
+    }
+    await memory.add_message(coding_message)
+    print("Added coding message")
     
-    print("\nSearchable Items:")
-    if 'searchable_items' in memory_system.context_memory:
-        items = memory_system.context_memory['searchable_items']
-        print(f"  Total items: {len(items)}")
-        for timestamp, item in list(items.items())[-3:]:  # Show last 3 items
-            print(f"\n  Item from {timestamp}:")
-            print(f"    Content: {item.get('text', '')[:100]}...")
+    # Add message about yesterday
+    yesterday_message = {
+        'type': 'user_message',
+        'content': 'Yesterday I was debugging the screen sensor integration',
+        'timestamp': datetime.now().isoformat()
+    }
+    await memory.add_message(yesterday_message)
+    print("Added yesterday message")
     
-    # Run memory search test
-    test_results = await memory_system.test_memory_search()
+    # Add current screen context
+    screen_context = {
+        'type': 'context',
+        'content': 'Current screen shows code editor with Python files',
+        'window_title': 'VS Code - memory_system.py',
+        'timestamp': datetime.now().isoformat()
+    }
+    await memory.add_to_context_memory(screen_context)
+    print("Added screen context")
     
-    # Print results in a readable format
-    print("\n=== Memory Search Test Results ===")
-    for memory_type, results in test_results.items():
-        print(f"\n{memory_type.upper()} MEMORY RESULTS:")
-        if not results:
-            print("  No results found")
-            continue
-            
-        for i, result in enumerate(results):
-            print(f"\n  Result {i+1}:")
-            print(f"    Score: {result['score']:.2f}")
-            print(f"    Content: {result['content'][:100]}...")
-            print(f"    Source: {result['source']}")
-            print(f"    Timestamp: {result['timestamp']}")
+    # Wait briefly for indexing
+    print("\nWaiting for indexing to complete...")
+    await asyncio.sleep(1)
+    
+    # Test various searches
+    print("\n=== Search Results ===")
+    
+    # Search for yesterday's activities
+    print("\n1. Searching for 'what was I working on yesterday'...")
+    results = await memory.search_memory('what was I working on yesterday', limit=2)
+    print(f"Found {len(results)} results:")
+    for i, result in enumerate(results):
+        print(f"  Result {i+1}: Score: {result.get('score', 0):.2f}")
+        print(f"  Content: {result.get('content', '')[:100]}...")
+        print(f"  Source: {result.get('source', 'unknown')}")
+        print("  ---")
+    
+    # Search for current screen
+    print("\n2. Searching for 'what is on my screen'...")
+    results = await memory.search_memory('what is on my screen', limit=2)
+    print(f"Found {len(results)} results:")
+    for i, result in enumerate(results):
+        print(f"  Result {i+1}: Score: {result.get('score', 0):.2f}")
+        print(f"  Content: {result.get('content', '')[:100]}...")
+        print(f"  Source: {result.get('source', 'unknown')}")
+        print("  ---")
+    
+    # Search for Python project
+    print("\n3. Searching for 'python project'...")
+    results = await memory.search_memory('python project', limit=2)
+    print(f"Found {len(results)} results:")
+    for i, result in enumerate(results):
+        print(f"  Result {i+1}: Score: {result.get('score', 0):.2f}")
+        print(f"  Content: {result.get('content', '')[:100]}...")
+        print(f"  Source: {result.get('source', 'unknown')}")
+        print("  ---")
+    
+    # Get memory stats
+    stats = enhanced_search.get_stats()
+    print("\nMemory search stats:")
+    print(json.dumps(stats, indent=2))
     
     # Cleanup
-    await memory_system.cleanup()
+    await memory.cleanup()
+    print("\nMemory system cleaned up")
 
 if __name__ == "__main__":
-    asyncio.run(main()) 
+    asyncio.run(main())

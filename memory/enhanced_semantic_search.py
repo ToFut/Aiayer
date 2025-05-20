@@ -154,8 +154,48 @@ class EnhancedSemanticSearch:
             return None
     
     def _extract_text(self, item: Dict[str, Any]) -> str:
-        """Extract usable text from a memory item for vectorization."""
+        """
+        Extract usable text from a memory item for vectorization.
+        Enhanced with application-specific awareness.
+        """
         text_parts = []
+        
+        # Extract application-specific data with high priority
+        if 'application' in item and isinstance(item['application'], dict):
+            app_data = item['application']
+            app_info = []
+            
+            if app_data.get('name'):
+                app_info.append(f"Application: {app_data['name']}")
+            if app_data.get('view'):
+                app_info.append(f"View: {app_data['view']}")
+            if app_data.get('workflow_stage'):
+                app_info.append(f"Task: {app_data['workflow_stage']}")
+                
+            if app_info:
+                text_parts.append(' | '.join(app_info))
+        
+        # Extract email data with high priority
+        if 'email_data' in item and isinstance(item['email_data'], dict):
+            email_info = []
+            email_data = item['email_data']
+            
+            if email_data.get('from'):
+                email_info.append(f"From: {email_data['from']}")
+            if email_data.get('to'):
+                email_info.append(f"To: {email_data['to']}")
+            if email_data.get('subject'):
+                email_info.append(f"Subject: {email_data['subject']}")
+                
+            if email_info:
+                text_parts.append('Email: ' + ' | '.join(email_info))
+        
+        # Extract form data with high priority
+        if 'form_data' in item and isinstance(item['form_data'], dict):
+            if 'form_fields' in item['form_data'] and item['form_data']['form_fields']:
+                form_fields = item['form_data']['form_fields']
+                if isinstance(form_fields, list):
+                    text_parts.append('Form fields: ' + ', '.join(form_fields[:5]))
         
         # Extract content field (primary text)
         if 'content' in item and item['content']:
@@ -167,13 +207,21 @@ class EnhancedSemanticSearch:
         
         # Extract screen text for context
         if 'screen_content' in item and item['screen_content']:
-            text_parts.append(str(item['screen_content']))
+            # Limit long screen content
+            screen_content = str(item['screen_content'])
+            if len(screen_content) > 1000:
+                screen_content = screen_content[:1000]
+            text_parts.append(screen_content)
         
         # Extract window title
         if 'window_title' in item and item['window_title']:
             text_parts.append(str(item['window_title']))
         elif 'window' in item and item['window']:
             text_parts.append(str(item['window']))
+        
+        # Extract visual context for improved understanding
+        if 'visual_context' in item and item['visual_context']:
+            text_parts.append(str(item['visual_context']))
         
         # Extract text from sensor_states
         if 'sensor_states' in item and isinstance(item['sensor_states'], dict):
@@ -196,8 +244,15 @@ class EnhancedSemanticSearch:
             else:
                 text_parts.append(str(item['active_apps']))
         
-        # Join all parts with spaces
-        return ' '.join(text_parts)
+        # Concatenate all parts with spaces, but give more weight to application-specific info
+        # by placing it at both the beginning and end of the text
+        result_text = ' '.join(text_parts)
+        
+        # For very long texts, truncate to a reasonable size to avoid embedding issues
+        if len(result_text) > 5000:
+            result_text = result_text[:5000]
+            
+        return result_text
     
     def _add_to_token_index(self, item_id: str, text: str) -> None:
         """Add item to token-based inverted index for hybrid search."""
@@ -236,15 +291,16 @@ class EnhancedSemanticSearch:
             logger.info(f"Pruned vector index to {len(self.memory_vectors)} items")
     
     def search(self, query: str, limit: int = 5, memory_types: List[str] = None, 
-               min_score: float = 0.5) -> List[Dict[str, Any]]:
+               min_score: float = 0.5, application_context: str = None) -> List[Dict[str, Any]]:
         """
-        Search for relevant memory items using vector similarity.
+        Search for relevant memory items using vector similarity with application context awareness.
         
         Args:
             query: The search query
             limit: Maximum number of results to return
             memory_types: Types of memory to search (None for all)
             min_score: Minimum similarity score threshold
+            application_context: Optional application context to enhance relevance
         
         Returns:
             List of memory items with score and metadata
@@ -257,15 +313,21 @@ class EnhancedSemanticSearch:
             if not memory_types:
                 memory_types = ['short_term', 'long_term', 'context', 'conscious']
             
-            # Generate vector embedding for query
-            query_vector = self.embedding_fn(query)
+            # Enhance query with application context if provided
+            enhanced_query = query
+            if application_context:
+                enhanced_query = f"{query} {application_context}"
+                logger.info(f"Enhanced query with application context: {enhanced_query[:50]}...")
+            
+            # Generate vector embedding for enhanced query
+            query_vector = self.embedding_fn(enhanced_query)
             
             # Search results - vector-based
             vector_results = self._vector_search(query_vector, memory_types, limit*2)
             
             # If hybrid search enabled, also do token-based search
             if self.use_hybrid:
-                token_results = self._token_search(query, memory_types, limit*2)
+                token_results = self._token_search(enhanced_query, memory_types, limit*2)
                 # Combine results with score normalization
                 combined_results = self._combine_search_results(vector_results, token_results)
             else:
@@ -279,6 +341,37 @@ class EnhancedSemanticSearch:
             
             # Sort by score (highest first) and limit results
             filtered_results.sort(key=lambda x: x.get('score', 0), reverse=True)
+            
+            # Application-aware re-ranking if context provided
+            if application_context:
+                # Boost scores for items that match the application context
+                app_terms = set(application_context.lower().split())
+                for result in filtered_results:
+                    item_id = result.get('id')
+                    original_item = self.memory_items.get(item_id, {})
+                    
+                    # Check for application-specific data in the item
+                    if 'application' in original_item:
+                        # Significant boost for items from the same application
+                        app_name = original_item['application'].get('name', '').lower()
+                        if app_name and any(term in app_name for term in app_terms):
+                            result['score'] *= 1.5  # 50% boost for matching application
+                            
+                        # Boost for items with workflow stage info
+                        if original_item['application'].get('workflow_stage'):
+                            result['score'] *= 1.2  # 20% boost for workflow stage info
+                    
+                    # Also check email and form data if relevant to the application context
+                    if 'email' in application_context.lower() and 'email_data' in original_item:
+                        result['score'] *= 1.3  # 30% boost for email data
+                    
+                    if 'form' in application_context.lower() and 'form_data' in original_item:
+                        result['score'] *= 1.3  # 30% boost for form data
+                
+                # Re-sort after boosting
+                filtered_results.sort(key=lambda x: x.get('score', 0), reverse=True)
+            
+            # Apply limit after all processing
             limited_results = filtered_results[:limit]
             
             # Prepare final results
@@ -293,7 +386,9 @@ class EnhancedSemanticSearch:
                     'id': item_id,
                     'source': result.get('memory_type', 'unknown'),
                     'timestamp': original_item.get('timestamp', ''),
-                    'original_item': original_item
+                    'original_item': original_item,
+                    # Add application context if available
+                    'application_context': original_item.get('application', {}).get('name', '') if 'application' in original_item else ''
                 })
             
             logger.info(f"Search for '{query[:30]}...' found {len(final_results)} results.")

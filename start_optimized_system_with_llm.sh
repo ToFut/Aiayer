@@ -22,10 +22,12 @@ fi
 echo "Creating necessary directories..."
 mkdir -p logs/sensors
 mkdir -p logs/llm
-mkdir -p logs/archive
-mkdir -p cache/screen_sensor
-mkdir -p memory/screen_data
+mkdir -p logs/memory
+mkdir -p logs/backend
 mkdir -p pids
+mkdir -p cache/screen_sensor
+mkdir -p cache/process_sensor
+mkdir -p cache/file_sensor
 
 # Use minimal logging configuration
 echo "Setting up minimal logging configuration..."
@@ -52,19 +54,31 @@ if ! ps -p $BRIDGE_PID > /dev/null; then
     exit 1
 fi
 
-# Start our fixed screen sensor
-echo "Starting fixed screen sensor..."
-python3 fixed_screen_sensor.py > logs/sensors/screen_sensor.log 2>&1 &
-SCREEN_SENSOR_PID=$!
-echo $SCREEN_SENSOR_PID > pids/screen_sensor.pid
-echo "Screen sensor started with PID: $SCREEN_SENSOR_PID"
-
-# Start the self-contained LLM service
-echo "Starting self-contained LLM service..."
+# Start the LLM service
+echo "Starting LLM service..."
 python3 self_contained_llm_ws.py > logs/llm/self_contained_llm.log 2>&1 &
-LLM_SERVICE_PID=$!
-echo $LLM_SERVICE_PID > pids/llm_service.pid
-echo "Self-contained LLM service started with PID: $LLM_SERVICE_PID"
+echo $! > pids/llm_service.pid
+
+# Start the enhanced backend server with log rotation
+echo "Starting enhanced backend server..."
+python3 enhanced_backend_server.py 2>&1 | rotatelogs -n 5 logs/backend/backend_server.log 1M &
+echo $! > pids/backend_server.pid
+
+# Start the memory system
+echo "Starting memory system..."
+python3 memory/memory_system.py > logs/memory/memory_system.log 2>&1 &
+echo $! > pids/memory_system.pid
+
+# Start the sensors
+echo "Starting sensors..."
+python3 sensors/screen_sensor.py > logs/sensors/screen_sensor.log 2>&1 &
+echo $! > pids/screen_sensor.pid
+
+python3 sensors/process_sensor.py > logs/sensors/process_sensor.log 2>&1 &
+echo $! > pids/process_sensor.pid
+
+python3 sensors/file_sensor.py > logs/sensors/file_sensor.log 2>&1 &
+echo $! > pids/file_sensor.pid
 
 # Wait for LLM service to initialize
 sleep 3
@@ -78,10 +92,6 @@ done) > logs/log_cleanup.log 2>&1 &
 CLEANUP_PID=$!
 echo $CLEANUP_PID > pids/log_cleanup.pid
 echo "Log cleanup process started with PID: $CLEANUP_PID"
-
-# Now start the enhanced backend server
-echo "Starting enhanced backend server..."
-./start_enhanced_backend.sh
 
 echo -e "\n\033[0;32mComplete system is now running with all components initialized!\033[0m"
 echo -e "\033[0;34mFrontend can connect to ws://localhost:8765 to communicate with the backend\033[0m"

@@ -87,7 +87,7 @@ WS_PORT = 8766
 class OllamaService:
     def __init__(self, ollama_url="http://localhost:11434"):
         self.ollama_url = ollama_url
-        self.model_name = "llama3"  # Default model, will try to find best available
+        self.model_name = "llama3.2:latest"  # Default model, will try to find best available
         
     async def list_models(self):
         """List available models from Ollama API"""

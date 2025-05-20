@@ -333,24 +333,69 @@ async def call_local_llm(query, context=None):
                 return "The LLM service is missing the required generate_response method. I'm operating in fallback mode."
             
             # Format messages for the LocalLLM format (which uses the OpenAI-style format)
-            system_message = "You are a helpful assistant with access to the user's screen content and active applications. Use this context to provide more helpful responses."
-            
-            # Add context to system message
+            system_message = """You are a helpful assistant with access to the user's screen content and active applications. 
+Use this context to provide more helpful responses. Your responses should be informed by both the current context and relevant past interactions."""
+
+            # Add context to system message in a structured format
             if context:
-                system_message += "\n\nContext:"
+                system_message += "\n\nCurrent Context:"
+                
+                # Add current environment information
                 if isinstance(context, dict):
+                    # Current window and applications
                     if 'window' in context:
-                        system_message += f"\nActive Window: {context.get('window', 'Unknown')}"
+                        system_message += f"\n- Active Window: {context.get('window', 'Unknown')}"
                     if 'active_apps' in context:
-                        system_message += f"\nActive Applications: {', '.join(context.get('active_apps', []))}"
+                        apps = context.get('active_apps', [])
+                        if isinstance(apps, list):
+                            apps = [str(app) for app in apps]
+                        system_message += f"\n- Active Applications: {', '.join(apps)}"
+                    
+                    # Screen content
                     if 'screen_content' in context:
                         screen_content = context.get('screen_content', '')
                         shortened = screen_content[:500] + "..." if len(screen_content) > 500 else screen_content
-                        system_message += f"\nScreen Content: {shortened}"
+                        system_message += f"\n- Screen Content: {shortened}"
+                    
+                    # Current file information
+                    if 'current_file' in context:
+                        file_info = context.get('current_file', {})
+                        if isinstance(file_info, dict):
+                            system_message += f"\n- Current File: {file_info.get('path', 'Unknown')}"
+                            if 'type' in file_info:
+                                system_message += f" (Type: {file_info['type']})"
+                    
+                    # Recent files
+                    if 'recent_files' in context:
+                        recent_files = context.get('recent_files', [])
+                        if recent_files:
+                            system_message += "\n- Recent Files:"
+                            for file in recent_files[:3]:  # Show only 3 most recent
+                                system_message += f"\n  * {file}"
+                    
+                    # Add relevant memories with proper formatting
                     if 'relevant_memories' in context:
-                        system_message += "\nRelevant Past Information:"
-                        for i, memory in enumerate(context['relevant_memories']):
-                            system_message += f"\n - {memory.get('content', 'No content')}"
+                        memories = context.get('relevant_memories', [])
+                        if memories:
+                            system_message += "\n\nRelevant Past Information:"
+                            for i, memory in enumerate(memories, 1):
+                                if isinstance(memory, dict):
+                                    content = memory.get('content', '')
+                                    score = memory.get('_search_score', 0)
+                                    source = memory.get('_search_source', 'unknown')
+                                    if content:
+                                        system_message += f"\n{i}. {content}"
+                                        system_message += f"\n   (Relevance: {score:.2f}, Source: {source})"
+                    
+                    # Add any additional context
+                    additional_context = {k: v for k, v in context.items() 
+                                       if k not in ['window', 'active_apps', 'screen_content', 
+                                                  'current_file', 'recent_files', 'relevant_memories']}
+                    if additional_context:
+                        system_message += "\n\nAdditional Context:"
+                        for key, value in additional_context.items():
+                            if isinstance(value, (str, int, float, bool)):
+                                system_message += f"\n- {key}: {value}"
             
             # Prepare messages in the format expected by the LocalLLM
             messages = [
@@ -381,35 +426,7 @@ async def call_local_llm(query, context=None):
             else:
                 # If we've exhausted retries, return fallback response
                 logger.warning(f"Exhausted all {max_retries} retries for LLM call")
-                
-                # Generate a fallback response based on the query
-                import random
-                
-                # Predefined response templates for fallback
-                fallback_templates = [
-                    "I'm sorry, but I encountered an issue while processing your query about '{topic}'. {detail}",
-                    "Due to a technical limitation, I couldn't fully process your question about '{topic}'. {detail}",
-                    "While I'd like to help with your question about '{topic}', I'm currently experiencing a technical issue. {detail}",
-                    "Your query about '{topic}' is important, but I'm having trouble providing a complete answer right now. {detail}"
-                ]
-                
-                fallback_details = [
-                    "I'm operating in a fallback mode with limited capabilities at the moment.",
-                    "The advanced language model is currently unavailable, but I'll try to assist with basic information.",
-                    "My normal language processing capabilities are temporarily limited.",
-                    "I'm using a simplified response system while the main system is unavailable."
-                ]
-                
-                # Extract topic from query (first few words)
-                query_words = query.split()
-                topic = query if len(query_words) <= 5 else " ".join(query_words[:5]) + "..."
-                
-                # Format fallback response
-                template = random.choice(fallback_templates)
-                detail = random.choice(fallback_details)
-                fallback_response = template.format(topic=topic, detail=detail)
-                
-                return fallback_response
+                return "I apologize, but I'm having trouble processing your request right now. Please try again in a moment."
 
 async def generate_response(query, context=None):
     """Generate a response to a user query using LocalLLM with memory context."""

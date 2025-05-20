@@ -33,22 +33,17 @@ def compress_file(file_path, delete_original=True):
 def rotate_logs(log_dir, max_size_mb=50, max_age_days=7, archive_dir=None):
     """
     Rotate log files that exceed max_size_mb or are older than max_age_days.
+    Archive functionality is disabled.
     
     Args:
         log_dir: Directory containing log files
         max_size_mb: Maximum size in MB before rotation (default: 50MB)
         max_age_days: Maximum age in days before rotation (default: 7 days)
-        archive_dir: Directory to move rotated logs to (default: log_dir/archive)
+        archive_dir: Not used - archive functionality is disabled
     """
     if not os.path.exists(log_dir):
         print(f"Log directory {log_dir} does not exist.")
         return
-    
-    # Create archive directory if it doesn't exist
-    if archive_dir is None:
-        archive_dir = os.path.join(log_dir, 'archive')
-    
-    os.makedirs(archive_dir, exist_ok=True)
     
     # Get current time
     now = time.time()
@@ -61,17 +56,21 @@ def rotate_logs(log_dir, max_size_mb=50, max_age_days=7, archive_dir=None):
         log_files.extend(glob.glob(os.path.join(log_dir, f"**/*{ext}"), recursive=True))
     
     rotated_count = 0
-    compressed_count = 0
     
     for log_file in log_files:
-        # Skip directories and already archived/compressed files
-        if os.path.isdir(log_file) or '.gz' in log_file or '/archive/' in log_file:
+        # Skip directories and already compressed files
+        if os.path.isdir(log_file) or '.gz' in log_file:
             continue
         
         try:
             file_stat = os.stat(log_file)
             file_age = now - file_stat.st_mtime
             file_size = file_stat.st_size
+            
+            # Special handling for backend logs
+            if 'backend' in log_file:
+                max_size_bytes = 1 * 1024 * 1024  # 1MB for backend logs
+                max_age_seconds = 24 * 60 * 60  # 1 day for backend logs
             
             # Determine if the file should be rotated
             should_rotate = False
@@ -87,17 +86,6 @@ def rotate_logs(log_dir, max_size_mb=50, max_age_days=7, archive_dir=None):
                 reason = f"age ({age_days:.1f} days > {max_age_days} days)"
             
             if should_rotate:
-                # Create timestamped name for the rotated file
-                timestamp = datetime.datetime.now().strftime('%Y%m%d_%H%M%S')
-                filename = os.path.basename(log_file)
-                name, ext = os.path.splitext(filename)
-                archive_path = os.path.join(archive_dir, f"{name}_{timestamp}{ext}")
-                
-                # Copy file to archive and compress it
-                shutil.copy2(log_file, archive_path)
-                if compress_file(archive_path):
-                    compressed_count += 1
-                
                 # Clear the original file
                 with open(log_file, 'w') as f:
                     f.write(f"Log rotated at {datetime.datetime.now()} due to {reason}\n")
@@ -108,33 +96,12 @@ def rotate_logs(log_dir, max_size_mb=50, max_age_days=7, archive_dir=None):
         except Exception as e:
             print(f"Error processing {log_file}: {e}")
     
-    print(f"Rotation complete: {rotated_count} files rotated, {compressed_count} files compressed")
-    
-    # Clean up old archives - keep only last 10 days of archives by default
-    cleanup_archives(archive_dir, max_age_days=30)
+    print(f"Rotation complete: {rotated_count} files rotated")
 
 def cleanup_archives(archive_dir, max_age_days=30):
-    """Remove archives older than max_age_days."""
-    if not os.path.exists(archive_dir):
-        return
-    
-    now = time.time()
-    max_age_seconds = max_age_days * 24 * 60 * 60
-    deleted_count = 0
-    
-    for archive_file in glob.glob(os.path.join(archive_dir, "*.gz")):
-        try:
-            file_stat = os.stat(archive_file)
-            file_age = now - file_stat.st_mtime
-            
-            if file_age > max_age_seconds:
-                os.remove(archive_file)
-                deleted_count += 1
-                print(f"Deleted old archive: {archive_file}")
-        except Exception as e:
-            print(f"Error cleaning up {archive_file}: {e}")
-    
-    print(f"Cleanup complete: {deleted_count} old archives removed")
+    """Archive cleanup is disabled."""
+    print("Archive cleanup is disabled")
+    return
 
 def clear_empty_logs(log_dir, exclude_patterns=None):
     """Clear logs that contain only empty data records to save space."""
