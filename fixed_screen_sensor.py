@@ -1,11 +1,10 @@
 #!/usr/bin/env python3
 """
 Enhanced Screen Sensor
-Captures screenshots every 10 seconds and sends them to the bridge server.
+Captures screenshots every 10 seconds and stores them in cache.
 With improved error handling and continuous operation.
 """
 import asyncio
-import websockets
 import json
 import logging
 import os
@@ -34,12 +33,12 @@ logger = logging.getLogger('screen_sensor')
 
 # Global variables
 running = True
-websocket_connected = False
 last_image_hash = None
 capture_interval = 10  # seconds
-reconnect_timeout = 5  # seconds
 cache_dir = "cache/screen_sensor"
+memory_dir = "memory/screen_data"
 os.makedirs(cache_dir, exist_ok=True)
+os.makedirs(memory_dir, exist_ok=True)
 cache_file = f"{cache_dir}/last_screen.json"
 
 
@@ -106,59 +105,13 @@ class ScreenCapture:
                 logger.error(f"Error closing screen capture: {e}")
 
 
-async def connect_websocket():
-    """Connect to the bridge server"""
-    global websocket_connected
-    uri = "ws://localhost:8765"
-    retries = 0
-    max_retries = 10
-    
-    while running and retries < max_retries:
-        try:
-            async with websockets.connect(uri, ping_interval=20, ping_timeout=30) as websocket:
-                websocket_connected = True
-                logger.info(f"Connected to bridge server at {uri}")
-                
-                # Process initial welcome message
-                response = await websocket.recv()
-                data = json.loads(response)
-                logger.info(f"Received from server: {data.get('type')}")
-                
-                # Send identification
-                await websocket.send(json.dumps({
-                    "type": "connection_established",
-                    "payload": {
-                        "client": "screen_sensor",
-                        "version": "1.0.0"
-                    }
-                }))
-                
-                # Start the capture loop after connection is established
-                await capture_and_send_loop(websocket)
-                
-        except (websockets.exceptions.ConnectionClosed, ConnectionRefusedError) as e:
-            websocket_connected = False
-            retries += 1
-            logger.warning(f"Connection to bridge server failed (attempt {retries}/{max_retries}): {e}")
-            await asyncio.sleep(min(30, reconnect_timeout * retries))  # Exponential backoff
-        except Exception as e:
-            websocket_connected = False
-            logger.error(f"Unexpected error in WebSocket connection: {e}")
-            await asyncio.sleep(reconnect_timeout)
-            
-    if retries >= max_retries:
-        logger.error(f"Failed to connect to bridge server after {max_retries} attempts")
-        return False
-    return True
-
-
-async def capture_and_send_loop(websocket):
-    """Continuously capture and send screen data"""
+async def capture_loop():
+    """Continuously capture and store screen data"""
     global last_image_hash
     screen_capture = ScreenCapture()
     
     try:
-        while running and websocket_connected:
+        while running:
             try:
                 # Capture screen
                 screen_data = screen_capture.capture()
@@ -178,14 +131,17 @@ async def capture_and_send_loop(websocket):
                     except Exception as cache_e:
                         logger.warning(f"Error writing to cache: {cache_e}")
                     
-                    # Send to bridge server
-                    await websocket.send(json.dumps({
-                        "type": "screen_data",
-                        "payload": screen_data,
-                        "timestamp": datetime.now().isoformat()
-                    }))
+                    # Save to memory if screen changed
+                    if screen_data["changed"]:
+                        memory_file = f"{memory_dir}/screen_{screen_data['timestamp'].replace(':', '-')}.json"
+                        try:
+                            with open(memory_file, 'w') as f:
+                                json.dump(screen_data, f)
+                            logger.info(f"Saved screen data to memory: {memory_file}")
+                        except Exception as mem_e:
+                            logger.warning(f"Error writing to memory: {mem_e}")
                     
-                    logger.info(f"Sent screen data: {screen_data['screen_size']}, hash: {screen_data['image_hash'][:8]}")
+                    logger.info(f"Captured screen: {screen_data['screen_size']}, hash: {screen_data['image_hash'][:8]}")
                 
                 # Wait before next capture
                 await asyncio.sleep(capture_interval)
@@ -198,39 +154,26 @@ async def capture_and_send_loop(websocket):
         screen_capture.close()
 
 
-def handle_exit(signum, frame):
-    """Handle exit signals gracefully"""
-    global running
-    logger.info("Received exit signal, shutting down...")
-    running = False
-
-
 async def main():
-    """Main function"""
-    # Register signal handlers
-    signal.signal(signal.SIGINT, handle_exit)
-    signal.signal(signal.SIGTERM, handle_exit)
-    
-    # Save PID
-    os.makedirs("pids", exist_ok=True)
-    with open('pids/screen_sensor.pid', 'w') as f:
-        f.write(str(os.getpid()))
-    
+    """Main function to run the screen sensor"""
     logger.info("Starting enhanced screen sensor...")
     
-    while running:
-        success = await connect_websocket()
-        if not success and running:
-            logger.info("Waiting before retry...")
-            await asyncio.sleep(30)  # Wait longer before retrying connection
+    # Set up signal handlers
+    def signal_handler(sig, frame):
+        global running
+        logger.info("Received shutdown signal")
+        running = False
     
-    logger.info("Screen sensor stopped")
-
-
-if __name__ == "__main__":
+    signal.signal(signal.SIGINT, signal_handler)
+    signal.signal(signal.SIGTERM, signal_handler)
+    
     try:
-        asyncio.run(main())
+        await capture_loop()
     except Exception as e:
         logger.error(f"Fatal error in screen sensor: {e}")
     finally:
         logger.info("Screen sensor stopped")
+
+
+if __name__ == "__main__":
+    asyncio.run(main())

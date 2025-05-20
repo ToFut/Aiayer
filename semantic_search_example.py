@@ -10,11 +10,11 @@ class SemanticSearch:
         """
         self.vectorizer = TfidfVectorizer(
             stop_words='english',
-            ngram_range=(1, 2),  # Use both unigrams and bigrams
-            max_features=10000
+            ngram_range=(1, 2),  # Use both single words and pairs
+            max_features=1000
         )
-        self.corpus_vectors = None
-        self.corpus = None
+        self.documents = []
+        self.embeddings = None
 
     def index_documents(self, documents):
         """
@@ -22,75 +22,80 @@ class SemanticSearch:
         Args:
             documents: List of strings (documents to index)
         """
-        self.corpus = documents
+        self.documents = documents
         # Convert documents to TF-IDF vectors
-        self.corpus_vectors = self.vectorizer.fit_transform(documents)
+        self.embeddings = self.vectorizer.fit_transform(documents)
 
-    def search(self, query, top_k=5):
+    def search(self, query, top_k=2):
         """
         Search for similar documents.
         Args:
             query: String (search query)
             top_k: Number of results to return
         Returns:
-            List of tuples (document, similarity_score)
+            List of dictionaries with 'score' and 'text' keys
         """
-        if self.corpus_vectors is None:
+        if self.embeddings is None:
             raise ValueError("No documents indexed. Call index_documents first.")
 
         # Convert query to TF-IDF vector
         query_vector = self.vectorizer.transform([query])
         
         # Calculate similarity scores
-        similarity_scores = cosine_similarity(query_vector, self.corpus_vectors).flatten()
+        similarity_scores = cosine_similarity(query_vector, self.embeddings).flatten()
         
-        # Get top-k results
+        # Get top k results
         top_indices = np.argsort(similarity_scores)[-top_k:][::-1]
         
         # Format results
         results = []
         for idx in top_indices:
-            results.append((self.corpus[idx], similarity_scores[idx]))
-            
+            results.append({
+                'score': similarity_scores[idx],
+                'text': self.documents[idx]
+            })
+        
         return results
 
 def main():
-    # Example usage
-    search_engine = SemanticSearch()
+    # Create semantic search instance
+    search = SemanticSearch()
     
-    # Example documents
+    # Example documents about memory and context
     documents = [
-        "The quick brown fox jumps over the lazy dog",
-        "A fast orange fox leaps over a sleepy canine",
-        "The weather is beautiful today",
-        "It's raining cats and dogs outside",
-        "The stock market is performing well",
-        "Investors are seeing good returns on their investments",
-        "Python is a popular programming language",
-        "Many developers use Python for machine learning",
-        "The restaurant serves delicious Italian food",
-        "You can get authentic pasta and pizza here"
+        "The system maintains conversation history for context awareness",
+        "Memory management includes both short-term and long-term storage",
+        "Context window size affects how much history can be retained",
+        "The AI can recall previous interactions and user preferences",
+        "Memory compression techniques help manage large conversation histories",
+        "Token limits determine maximum context length in conversations",
+        "The system uses semantic memory for understanding concepts",
+        "Memory pruning removes irrelevant information to save space",
+        "Context switching allows handling multiple conversation threads",
+        "Memory persistence ensures conversations survive system restarts"
     ]
     
     # Index the documents
-    print("Indexing documents...")
-    search_engine.index_documents(documents)
+    print("Indexing documents...\n")
+    search.index_documents(documents)
     
-    # Example searches
+    # Example queries
     queries = [
-        "Tell me about foxes",
-        "What's the weather like?",
-        "How are investments doing?",
-        "What programming language is good for ML?",
-        "Where can I get good food?"
+        "How does the system remember past conversations?",
+        "What happens when memory gets too large?",
+        "Can the AI recall previous interactions?",
+        "How is context maintained in conversations?",
+        "What are the memory limitations?"
     ]
     
-    print("\nPerforming semantic searches:")
+    # Perform searches
+    print("Performing semantic searches:\n")
     for query in queries:
-        print(f"\nQuery: {query}")
-        results = search_engine.search(query, top_k=2)
-        for doc, score in results:
-            print(f"Score: {score:.4f} - {doc}")
+        print(f"Query: {query}")
+        results = search.search(query)
+        for result in results:
+            print(f"Score: {result['score']:.4f} - {result['text']}")
+        print()
 
 if __name__ == "__main__":
     main() 

@@ -6,18 +6,71 @@ import logging
 import os
 import sys
 from datetime import datetime
+import time
+from logging.handlers import RotatingFileHandler
 
 # Configure logging
 os.makedirs('logs', exist_ok=True)
+
+# Create a custom filter to prevent duplicate logs
+class DuplicateFilter(logging.Filter):
+    def __init__(self):
+        super().__init__()
+        self.last_log = None
+        self.last_time = None
+        self.min_interval = 30  # Minimum seconds between similar logs
+        self.connection_logs = set()  # Track unique connections
+
+    def filter(self, record):
+        # Skip connection logs for already logged connections
+        if "WebSocket connection established" in record.getMessage():
+            client_id = record.getMessage().split("from ")[-1]
+            if client_id in self.connection_logs:
+                return False
+            self.connection_logs.add(client_id)
+            return True
+
+        # Handle other logs
+        current_log = (record.levelno, record.getMessage())
+        current_time = time.time()
+        
+        if current_log != self.last_log:
+            self.last_log = current_log
+            self.last_time = current_time
+            return True
+            
+        if current_time - self.last_time >= self.min_interval:
+            self.last_time = current_time
+            return True
+            
+        return False
+
+# Configure logging with rotation
 logging.basicConfig(
-    level=logging.INFO,
-    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
+    level=logging.WARNING,  # Changed from INFO to WARNING
+    format='%(asctime)s - %(levelname)s - %(message)s',
     handlers=[
-        logging.FileHandler('logs/fixed_bridge.log'),
+        RotatingFileHandler(
+            'logs/bridge_server.log',
+            maxBytes=5*1024*1024,  # 5MB
+            backupCount=2
+        ),
         logging.StreamHandler()
     ]
 )
 logger = logging.getLogger('fixed_bridge')
+logger.addFilter(DuplicateFilter())
+
+# Reduce logging level for all modules
+logging.getLogger('websockets').setLevel(logging.ERROR)
+logging.getLogger('aiohttp').setLevel(logging.ERROR)
+logging.getLogger('asyncio').setLevel(logging.ERROR)
+logging.getLogger('uvicorn').setLevel(logging.ERROR)
+logging.getLogger('fastapi').setLevel(logging.ERROR)
+
+# WebSocket server configuration
+WS_HOST = "localhost"
+WS_PORT = 8767
 
 # Track connected clients
 connected_clients = set()
@@ -29,20 +82,19 @@ sensor_data = {
     "last_update": datetime.now().isoformat()
 }
 
-# IMPORTANT: The handler MUST accept both websocket AND path parameters
-async def handler(websocket, path):
-    """WebSocket connection handler with the correct signature including path parameter"""
+async def handler(websocket):
+    """WebSocket connection handler"""
     global llm_service
     client_id = f"client_{id(websocket)}"
     client_type = "unknown"
     connected_clients.add(websocket)
-    logger.info(f"Client {client_id} connected at path: {path}")
+    logger.info(f"Client {client_id} connected")
     
     try:
         # Send welcome message
         await websocket.send(json.dumps({
             "type": "welcome",
-            "message": f"Connected to Aiayer system. Path: {path}",
+            "message": "Connected to Aiayer system",
             "timestamp": datetime.now().isoformat()
         }))
         
@@ -202,40 +254,63 @@ async def heartbeat():
         await asyncio.sleep(30)  # Heartbeat every 30 seconds
 
 async def main():
-    # Bind to localhost on port 8765 (for overlay connections)
-    port = 8765
-    host = "localhost"
-    
-    # Start server
-    logger.info(f"Starting WebSocket bridge server on {host}:{port}")
-    
-    # Create server with the handler directly
-    server = await websockets.serve(handler, host, port)
-    
-    # Save PID
-    os.makedirs("pids", exist_ok=True)
-    with open('pids/bridge_server.pid', 'w') as f:
-        f.write(str(os.getpid()))
-    
-    # Start heartbeat task
-    heartbeat_task = asyncio.create_task(heartbeat())
-    
-    logger.info(f"WebSocket bridge server started on ws://{host}:{port}")
-    logger.info(f"Heartbeat system active")
-    
-    # Keep running forever
-    await asyncio.Future()
+    """Main function to start the WebSocket server"""
+    try:
+        # Try to start the server with retry logic
+        max_retries = 3
+        retry_delay = 2  # seconds
+        port = 8767  # Changed from 8765 to avoid conflict with backend server
+        
+        for attempt in range(max_retries):
+            try:
+                logger.info(f"Starting WebSocket bridge server on localhost:{port} (attempt {attempt + 1}/{max_retries})")
+                
+                # Start the server
+                async with websockets.serve(handler, "localhost", port):
+                    logger.info(f"Bridge server started successfully on port {port}")
+                    
+                    # Save PID
+                    os.makedirs("pids", exist_ok=True)
+                    with open('pids/bridge_server.pid', 'w') as f:
+                        f.write(str(os.getpid()))
+                    
+                    # Start heartbeat task
+                    heartbeat_task = asyncio.create_task(heartbeat())
+                    
+                    # Keep the server running
+                    await asyncio.Future()
+                    
+            except OSError as e:
+                if "address already in use" in str(e):
+                    logger.warning(f"Port {port} is in use, attempting to free it...")
+                    
+                    # Try to kill any process using the port
+                    try:
+                        import subprocess
+                        subprocess.run(f"lsof -ti :{port} | xargs kill -9", shell=True)
+                        await asyncio.sleep(1)  # Wait for port to be freed
+                    except Exception as kill_error:
+                        logger.error(f"Failed to free port: {kill_error}")
+                    
+                    if attempt < max_retries - 1:
+                        logger.info(f"Retrying in {retry_delay} seconds...")
+                        await asyncio.sleep(retry_delay)
+                        continue
+                    else:
+                        logger.error(f"Failed to start server after {max_retries} attempts")
+                        raise
+                else:
+                    raise
+                    
+    except Exception as e:
+        logger.error(f"Error starting server: {e}")
+        sys.exit(1)
 
 if __name__ == "__main__":
-    # Ensure directories exist
-    os.makedirs("pids", exist_ok=True)
-    os.makedirs("logs", exist_ok=True)
-    
     try:
         asyncio.run(main())
     except KeyboardInterrupt:
         logger.info("Server stopped by user")
-        sys.exit(0)
     except Exception as e:
-        logger.error(f"Error starting server: {e}")
+        logger.error(f"Server error: {e}")
         sys.exit(1)

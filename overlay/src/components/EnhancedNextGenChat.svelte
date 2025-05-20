@@ -88,7 +88,24 @@
   let notificationAudio;
   let audioContext;
   let audioInitialized = false;
-
+  
+  // Audio recording variables
+  let mediaRecorder = null;
+  let audioChunks = [];
+  let isRecording = false;
+  let recordingStartTime = null;
+  let recordingDuration = 0;
+  let recordingTimer = null;
+  let audioBlob = null;
+  let audioUrl = null;
+  let currentAudio = null;
+  let analyser = null;
+  let visualizer = null;
+  let visualizerContext = null;
+  let visualizerData = null;
+  let visualizationActive = false;
+  let isPlayingAudio = false;
+  
   async function initializeAudio() {
     if (audioInitialized) return;
     
@@ -118,6 +135,196 @@
       console.log('Audio initialized successfully');
     } catch (e) {
       console.error('Error initializing audio:', e);
+    }
+  }
+  
+  async function startRecording() {
+    try {
+      // Reset previous recording data
+      audioChunks = [];
+      recordingDuration = 0;
+      
+      // Request microphone access
+      const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+      
+      // Create media recorder
+      mediaRecorder = new MediaRecorder(stream);
+      
+      // Set up event handlers
+      mediaRecorder.ondataavailable = (event) => {
+        if (event.data.size > 0) {
+          audioChunks.push(event.data);
+        }
+      };
+      
+      mediaRecorder.onstop = () => {
+        // Create audio blob from chunks
+        audioBlob = new Blob(audioChunks, { type: 'audio/webm' });
+        
+        // Create URL for the audio blob
+        if (audioUrl) {
+          URL.revokeObjectURL(audioUrl);
+        }
+        audioUrl = URL.createObjectURL(audioBlob);
+        
+        // Clean up recording state
+        clearInterval(recordingTimer);
+        isRecording = false;
+        
+        // Stop all tracks in the stream
+        mediaRecorder.stream.getTracks().forEach(track => track.stop());
+        
+        // Send the audio message
+        sendAudioMessage();
+      };
+      
+      // Start recording
+      mediaRecorder.start();
+      isRecording = true;
+      recordingStartTime = Date.now();
+      
+      // Set up timer to update recording duration
+      recordingTimer = setInterval(() => {
+        recordingDuration = Math.floor((Date.now() - recordingStartTime) / 1000);
+      }, 1000);
+      
+      // Set up visualization if supported
+      setupAudioVisualization(stream);
+      
+    } catch (error) {
+      console.error('Error starting audio recording:', error);
+      alert('Could not access microphone. Please check permissions and try again.');
+    }
+  }
+  
+  function stopRecording() {
+    if (mediaRecorder && isRecording) {
+      mediaRecorder.stop();
+      stopVisualization();
+    }
+  }
+  
+  function cancelRecording() {
+    if (mediaRecorder && isRecording) {
+      // Stop recording without processing the audio
+      mediaRecorder.stream.getTracks().forEach(track => track.stop());
+      clearInterval(recordingTimer);
+      isRecording = false;
+      stopVisualization();
+      
+      // Reset recording state
+      audioChunks = [];
+      recordingDuration = 0;
+    }
+  }
+  
+  function setupAudioVisualization(stream) {
+    try {
+      if (!audioContext) return;
+      
+      // Create analyser node
+      analyser = audioContext.createAnalyser();
+      analyser.fftSize = 256;
+      
+      // Connect audio stream to analyser
+      const source = audioContext.createMediaStreamSource(stream);
+      source.connect(analyser);
+      
+      // Set up visualization data
+      visualizerData = new Uint8Array(analyser.frequencyBinCount);
+      visualizationActive = true;
+      
+      // Start visualization loop
+      visualizeAudio();
+    } catch (error) {
+      console.error('Error setting up audio visualization:', error);
+    }
+  }
+  
+  function visualizeAudio() {
+    if (!visualizationActive) return;
+    
+    // Draw visualization
+    if (visualizer && visualizerContext && analyser) {
+      visualizerContext.clearRect(0, 0, visualizer.width, visualizer.height);
+      analyser.getByteFrequencyData(visualizerData);
+      
+      const width = visualizer.width;
+      const height = visualizer.height;
+      const barWidth = width / analyser.frequencyBinCount;
+      
+      visualizerContext.fillStyle = '#4CAF50';
+      
+      for (let i = 0; i < analyser.frequencyBinCount; i++) {
+        const barHeight = (visualizerData[i] / 255) * height;
+        visualizerContext.fillRect(
+          i * barWidth, 
+          height - barHeight, 
+          barWidth - 1, 
+          barHeight
+        );
+      }
+    }
+    
+    // Continue loop
+    if (visualizationActive) {
+      requestAnimationFrame(visualizeAudio);
+    }
+  }
+  
+  function stopVisualization() {
+    visualizationActive = false;
+  }
+  
+  function sendAudioMessage() {
+    if (!audioBlob || !audioUrl) return;
+    
+    // Create a FormData object to send the audio
+    const formData = new FormData();
+    formData.append('audio', audioBlob, 'audio.webm');
+    
+    // For now, we'll just add it as a message locally with a player
+    // In a real implementation, you'd upload this to a server
+    addMessage({
+      role: 'user',
+      content: '',
+      audioUrl: audioUrl,
+      audioDuration: recordingDuration
+    });
+    
+    // Play sent message sound
+    if (!isMuted) {
+      playSound(messageSentAudio);
+    }
+  }
+  
+  function playAudioMessage(audioUrl) {
+    if (isPlayingAudio && currentAudio) {
+      currentAudio.pause();
+      currentAudio = null;
+      isPlayingAudio = false;
+    }
+    
+    currentAudio = new Audio(audioUrl);
+    currentAudio.addEventListener('ended', () => {
+      isPlayingAudio = false;
+    });
+    
+    currentAudio.play();
+    isPlayingAudio = true;
+  }
+  
+  function pauseAudioMessage() {
+    if (currentAudio) {
+      currentAudio.pause();
+      isPlayingAudio = false;
+    }
+  }
+  
+  function setVisualizer(canvas) {
+    if (canvas) {
+      visualizer = canvas;
+      visualizerContext = canvas.getContext('2d');
     }
   }
 
@@ -173,6 +380,22 @@
         const data = JSON.parse(event.data);
         console.log('Parsed message:', data);
         
+        // Skip system messages that don't need UI display
+        const systemMessageTypes = [
+          'connection_established', 
+          'echo', 
+          'status_response', 
+          'status_update',
+          'context_update_received', 
+          'sensor_data_received', 
+          'pong'
+        ];
+        
+        if (systemMessageTypes.includes(data.type)) {
+          console.log(`Received system message type: ${data.type}`);
+          return;
+        }
+        
         if (data.type === 'llm_response' || data.type === 'query_response') {
           // Handle LLM or query responses - support both new and old formats
           const responseText = data.content || data.payload?.response || data.payload?.message || "I received your message.";
@@ -199,6 +422,51 @@
           const errorText = data.content || data.payload?.message || data.error || "An error occurred while processing your request.";
           addMessage({ role: 'assistant', content: errorText, isError: true });
           loading = false;
+        } else {
+          // Handle any other response types that might contain user-visible content
+          // Extract content from various possible locations in the response
+          let content = null;
+          
+          if (data.content) {
+            content = data.content;
+          } else if (data.payload) {
+            if (typeof data.payload === 'string') {
+              content = data.payload;
+            } else if (data.payload.response) {
+              content = data.payload.response;
+            } else if (data.payload.message) {
+              content = data.payload.message;
+            } else if (data.payload.content) {
+              content = data.payload.content;
+            } else if (data.payload.text) {
+              content = data.payload.text;
+            }
+          } else if (data.message) {
+            content = data.message;
+          } else if (data.response) {
+            content = data.response;
+          } else if (data.text) {
+            content = data.text;
+          }
+          
+          // If we found some content to display, add it as a message
+          if (content) {
+            console.log(`Adding message from type ${data.type} with content:`, content);
+            addMessage({ 
+              role: 'assistant', 
+              content: content,
+              messageType: data.type
+            });
+            loading = false;
+            if (showMinimized) {
+              unreadCount++;
+              playSound(notificationAudio);
+            } else if (!isMuted) {
+              playSound(messageReceivedAudio);
+            }
+          } else {
+            console.log(`Received message with type ${data.type} but no displayable content`);
+          }
         }
       } catch (error) {
         console.error('Error parsing WebSocket message:', error);
@@ -572,29 +840,80 @@
 
   function startDrag(event) {
     if (event.target.closest('.chat-header') && !event.target.closest('.chat-controls')) {
+      // Add dragging class for visual feedback
+      document.body.classList.add('dragging');
+      
+      // Cancel any ongoing animations
+      isAnimating = false;
+      
+      // Reset velocity from previous drags
+      velocityX = 0;
+      velocityY = 0;
+      
+      // Initialize drag state
       isDragging = true;
       startX = event.clientX;
       startY = event.clientY;
       initialX = position.x;
       initialY = position.y;
+      
+      // Initialize smoothing variables
+      currentDragX = position.x;
+      currentDragY = position.y;
+      targetX = position.x;
+      targetY = position.y;
+      
+      // Set initial transition to none for immediate response
+      setTimeout(() => {
+        const chatContainer = document.querySelector('.enhanced-chat-container');
+        if (chatContainer) {
+          chatContainer.style.transition = 'none';
+        }
+      }, 0);
     }
   }
 
+  // Smoothing variables for drag
+  let currentDragX = 0;
+  let currentDragY = 0;
+  let targetX = 0;
+  let targetY = 0;
+  let isAnimating = false;
+  
   function handleDrag(event) {
     if (isDragging) {
+      // Store previous position and time for momentum calculation
+      lastDragX = position.x;
+      lastDragY = position.y;
+      lastDragTime = Date.now();
+      
       const dx = event.clientX - startX;
       const dy = event.clientY - startY;
-      position.x = initialX + dx;
-      position.y = initialY + dy;
       
-      // Keep the window within viewport bounds
+      // Set target position directly for more accurate response
+      targetX = initialX + dx;
+      targetY = initialY + dy;
+      
+      // Keep the window within viewport bounds with a small margin
+      const margin = 5; // 5px margin from edges
       const viewportWidth = window.innerWidth;
       const viewportHeight = window.innerHeight;
       
-      if (position.x < 0) position.x = 0;
-      if (position.y < 0) position.y = 0;
-      if (position.x + size.width > viewportWidth) position.x = viewportWidth - size.width;
-      if (position.y + size.height > viewportHeight) position.y = viewportHeight - size.height;
+      // Apply boundary constraints to targets
+      if (targetX < margin) targetX = margin;
+      if (targetY < margin) targetY = margin;
+      if (targetX + size.width > viewportWidth - margin) {
+        targetX = viewportWidth - size.width - margin;
+      }
+      if (targetY + size.height > viewportHeight - margin) {
+        targetY = viewportHeight - size.height - margin;
+      }
+      
+      // Start animation if not already running
+      if (!isAnimating) {
+        isAnimating = true;
+        smoothDragAnimation();
+      }
     } else if (isResizing) {
       const width = startWidth + (event.clientX - startX);
       const height = startHeight + (event.clientY - startY);
@@ -605,9 +924,125 @@
     }
   }
 
+  // Variables for momentum
+  let lastDragTime = 0;
+  let lastDragX = 0;
+  let lastDragY = 0;
+  let velocityX = 0;
+  let velocityY = 0;
+  
   function stopDrag() {
+    if (isDragging) {
+      // Calculate momentum effect
+      const now = Date.now();
+      const timeDelta = now - lastDragTime;
+      
+      if (timeDelta < 100) { // Only apply momentum if the drag was fast enough
+        velocityX = (position.x - lastDragX) * 0.5; // Reduce momentum strength
+        velocityY = (position.y - lastDragY) * 0.5;
+        
+        // Apply momentum effect with decay
+        applyMomentum();
+      } else {
+        // If dragging was slow, just restore transition
+        resetChatContainerTransition();
+      }
+    }
+    
+    // Remove dragging class
+    document.body.classList.remove('dragging');
+    
     isDragging = false;
     isResizing = false;
+  }
+  
+  function smoothDragAnimation() {
+    if (!isDragging && !isAnimating) return;
+    
+    // Use a high-quality easing function for ultra-smooth movement
+    // Apply lerp (linear interpolation) with a stronger smoothing factor
+    const smoothingFactor = isDragging ? 0.4 : 0.2; // More responsive during active drag
+    
+    // Calculate the eased position
+    currentDragX = currentDragX || position.x;
+    currentDragY = currentDragY || position.y;
+    
+    // Apply spring-like physics for more natural feel
+    currentDragX += (targetX - currentDragX) * smoothingFactor;
+    currentDragY += (targetY - currentDragY) * smoothingFactor;
+    
+    // Update position with sub-pixel accuracy
+    position.x = currentDragX;
+    position.y = currentDragY;
+    
+    // Check if we need to continue animating
+    const isCloseEnough = 
+      Math.abs(position.x - targetX) < 0.1 && 
+      Math.abs(position.y - targetY) < 0.1;
+    
+    if (isCloseEnough && !isDragging) {
+      // We've reached the target position, stop animating
+      isAnimating = false;
+    } else {
+      // Continue animation
+      requestAnimationFrame(smoothDragAnimation);
+    }
+  }
+  
+  function applyMomentum() {
+    // Set the target position based on velocity
+    targetX = position.x + velocityX * 10; // Amplify momentum effect
+    targetY = position.y + velocityY * 10;
+    
+    // Apply boundary constraints to targets
+    const margin = 5;
+    const viewportWidth = window.innerWidth;
+    const viewportHeight = window.innerHeight;
+    
+    if (targetX < margin) {
+      targetX = margin;
+      velocityX = -velocityX * 0.2; // Gentler bounce
+    }
+    if (targetY < margin) {
+      targetY = margin;
+      velocityY = -velocityY * 0.2;
+    }
+    if (targetX + size.width > viewportWidth - margin) {
+      targetX = viewportWidth - size.width - margin;
+      velocityX = -velocityX * 0.2;
+    }
+    if (targetY + size.height > viewportHeight - margin) {
+      targetY = viewportHeight - size.height - margin;
+      velocityY = -velocityY * 0.2;
+    }
+    
+    // Apply decay to velocity
+    velocityX *= 0.95; // Slower decay for smoother deceleration
+    velocityY *= 0.95;
+    
+    // Compute the next position
+    currentDragX = position.x;
+    currentDragY = position.y;
+    
+    // Start the smooth animation
+    isAnimating = true;
+    smoothDragAnimation();
+    
+    // If still has significant velocity, continue momentum in the next frame
+    if (Math.abs(velocityX) > 0.1 || Math.abs(velocityY) > 0.1) {
+      setTimeout(() => requestAnimationFrame(applyMomentum), 16); // ~60fps
+    } else {
+      // Finish with a gentle settle animation
+      setTimeout(resetChatContainerTransition, 300);
+    }
+  }
+  
+  function resetChatContainerTransition() {
+    // Restore smooth transition after dragging
+    const chatContainer = document.querySelector('.enhanced-chat-container');
+    if (chatContainer) {
+      chatContainer.style.transition = 'all 0.3s cubic-bezier(0.16, 1, 0.3, 1)';
+    }
   }
   
   function startResize(event, position) {
@@ -858,7 +1293,7 @@
             <div class="message-wrapper {msg.role} {msg.isNew ? 'new-message' : ''}" 
                 in:fade={{ duration: 200, delay: i * 50 }}>
               <div class="message {msg.isSuggestion ? 'suggestion' : ''} {msg.isError ? 'error' : ''} 
-                          {typingMessage === msg ? 'typing-active' : ''}">
+                          {typingMessage === msg ? 'typing-active' : ''} {msg.audioUrl ? 'audio-message' : ''}">
                 <div class="message-avatar">
                   {#if msg.role === 'user'}
                     <div class="user-avatar">👤</div>
@@ -871,15 +1306,50 @@
                   {/if}
                 </div>
                 <div class="message-content">
-                  <div class="message-text">
-                    {msg.content}
-                    {#if msg.action}
-                      <button class="message-action-btn" on:click={msg.action}>Reconnect</button>
-                    {/if}
-                    {#if msg.isNew && !typingMessage}
-                      <span class="new-badge">New</span>
-                    {/if}
-                  </div>
+                  {#if msg.audioUrl}
+                    <div class="audio-message-player">
+                      <button 
+                        class="audio-play-btn" 
+                        on:click={() => isPlayingAudio && currentAudio?.src === msg.audioUrl ? pauseAudioMessage() : playAudioMessage(msg.audioUrl)}
+                      >
+                        {#if isPlayingAudio && currentAudio?.src === msg.audioUrl}
+                          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="6" y="4" width="4" height="16"/>
+                            <rect x="14" y="4" width="4" height="16"/>
+                          </svg>
+                        {:else}
+                          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polygon points="5 3 19 12 5 21 5 3"/>
+                          </svg>
+                        {/if}
+                      </button>
+                      
+                      <div class="audio-waveform">
+                        <div class="audio-waveform-bars">
+                          {#each Array(20) as _, i}
+                            <div 
+                              class="waveform-bar" 
+                              style="height: {Math.random() * 100}%;"
+                            ></div>
+                          {/each}
+                        </div>
+                      </div>
+                      
+                      <div class="audio-duration">
+                        {Math.floor(msg.audioDuration / 60)}:{(msg.audioDuration % 60).toString().padStart(2, '0')}
+                      </div>
+                    </div>
+                  {:else}
+                    <div class="message-text">
+                      {msg.content}
+                      {#if msg.action}
+                        <button class="message-action-btn" on:click={msg.action}>Reconnect</button>
+                      {/if}
+                      {#if msg.isNew && !typingMessage}
+                        <span class="new-badge">New</span>
+                      {/if}
+                    </div>
+                  {/if}
                   <div class="message-time">
                     {formatTime(msg.timestamp)}
                   </div>
@@ -922,30 +1392,62 @@
         </div>
 
         <div class="input-area">
-          <div class="input-wrapper">
-            <button class="emoji-button" on:click={toggleEmojiPicker} title="Insert emoji">
-              😊
-            </button>
-            <textarea
-              bind:value={input}
-              on:keydown={handleKeydown}
-              on:focus={handleInputFocus}
-              placeholder="Type your message..."
-              rows="1"
-              autocomplete="off"
-              class="message-input"
-            ></textarea>
-            <button 
-              class="send-button" 
-              on:click={() => sendMessage()}
-              disabled={!input.trim() || loading || connectionStatus !== 'connected'}
-              title="Send message"
-            >
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M22 2L11 13M22 2L15 22L11 13L2 9L22 2Z"/>
-              </svg>
-            </button>
-          </div>
+          {#if isRecording}
+            <div class="recording-ui" transition:scale={{ duration: 200, start: 0.95 }}>
+              <div class="recording-info">
+                <div class="recording-indicator"></div>
+                <span class="recording-time">{Math.floor(recordingDuration / 60)}:{(recordingDuration % 60).toString().padStart(2, '0')}</span>
+              </div>
+              
+              <canvas bind:this={visualizer} class="audio-visualizer" width="200" height="40"></canvas>
+              
+              <div class="recording-controls">
+                <button class="cancel-recording" on:click={cancelRecording} title="Cancel recording">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M18 6L6 18M6 6l12 12"/>
+                  </svg>
+                </button>
+                <button class="stop-recording" on:click={stopRecording} title="Send audio message">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M5 12h14M12 5l7 7-7 7"/>
+                  </svg>
+                </button>
+              </div>
+            </div>
+          {:else}
+            <div class="input-wrapper">
+              <button class="emoji-button" on:click={toggleEmojiPicker} title="Insert emoji">
+                😊
+              </button>
+              <button class="audio-button" on:click={startRecording} title="Record audio message">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/>
+                  <path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
+                  <path d="M12 19v4"/>
+                  <path d="M8 23h8"/>
+                </svg>
+              </button>
+              <textarea
+                bind:value={input}
+                on:keydown={handleKeydown}
+                on:focus={handleInputFocus}
+                placeholder="Type your message..."
+                rows="1"
+                autocomplete="off"
+                class="message-input"
+              ></textarea>
+              <button 
+                class="send-button" 
+                on:click={() => sendMessage()}
+                disabled={!input.trim() || loading || connectionStatus !== 'connected'}
+                title="Send message"
+              >
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M22 2L11 13M22 2L15 22L11 13L2 9L22 2Z"/>
+                </svg>
+              </button>
+            </div>
+          {/if}
           
           {#if emojiPickerVisible}
             <div class="emoji-picker" transition:scale={{ duration: 200, start: 0.95, easing: cubicOut }}>
@@ -985,6 +1487,242 @@
 {/if}
 
 <style>
+  /* Dragging styles */
+  :global(body.dragging) {
+    cursor: grabbing !important;
+  }
+  
+  :global(body.dragging *) {
+    cursor: grabbing !important;
+    user-select: none;
+  }
+  
+  .chat-header {
+    cursor: grab;
+  }
+  
+  .chat-header:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+  
+  .chat-header:active {
+    cursor: grabbing;
+  }
+  
+  /* Enhanced animation properties */
+  .enhanced-chat-container {
+    will-change: transform, width, height;
+    transform-origin: center center;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    perspective: 1000px;
+    -webkit-perspective: 1000px;
+    transition: width 0.3s cubic-bezier(0.25, 1, 0.5, 1), 
+                height 0.3s cubic-bezier(0.25, 1, 0.5, 1),
+                opacity 0.2s ease-in-out,
+                background-color 0.3s ease,
+                box-shadow 0.3s ease;
+    touch-action: none; /* Prevents default touch actions on touchscreens */
+    contain: layout style; /* Improves performance by containing layout updates */
+    filter: drop-shadow(0 8px 23px rgba(0, 0, 0, 0.2));
+  }
+  
+  /* Add subtle shadow when dragging for depth perception */
+  :global(body.dragging) .enhanced-chat-container {
+    filter: drop-shadow(0 12px 28px rgba(0, 0, 0, 0.3));
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.2);
+  }
+  
+  /* Audio message styles */
+  .audio-message-player {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background-color: rgba(255, 255, 255, 0.08);
+    border-radius: 16px;
+    padding: 8px 12px;
+    margin: 4px 0;
+    width: 100%;
+  }
+  
+  .audio-play-btn {
+    background-color: rgba(0, 128, 255, 0.7);
+    border: none;
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: white;
+    transition: all 0.2s ease;
+    flex-shrink: 0;
+  }
+  
+  .audio-play-btn:hover {
+    background-color: rgba(0, 128, 255, 0.9);
+    transform: scale(1.05);
+  }
+  
+  .audio-play-btn svg {
+    width: 18px;
+    height: 18px;
+    fill: currentColor;
+  }
+  
+  .audio-waveform {
+    flex: 1;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    position: relative;
+    background-color: rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  
+  .audio-waveform-bars {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    height: 100%;
+    padding: 0 4px;
+  }
+  
+  .waveform-bar {
+    width: 2px;
+    background-color: rgba(0, 128, 255, 0.7);
+    border-radius: 2px;
+    transition: height 0.2s ease;
+  }
+  
+  .user .waveform-bar {
+    background-color: #4CAF50;
+  }
+  
+  .audio-duration {
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.7);
+    width: 40px;
+    text-align: right;
+    flex-shrink: 0;
+  }
+  
+  /* Recording UI styles */
+  .recording-ui {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    width: 100%;
+    padding: 12px;
+    background-color: rgba(34, 36, 44, 0.95);
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  
+  .recording-info {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  
+  .recording-indicator {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: #ff4d4d;
+    animation: pulse 1.5s ease-in-out infinite;
+  }
+  
+  .recording-time {
+    font-size: 14px;
+    font-weight: 500;
+    color: white;
+  }
+  
+  .audio-visualizer {
+    width: 100%;
+    height: 40px;
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+  }
+  
+  .recording-controls {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 8px;
+  }
+  
+  .cancel-recording, .stop-recording {
+    background-color: rgba(255, 255, 255, 0.1);
+    border: none;
+    border-radius: 8px;
+    padding: 8px 16px;
+    color: white;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .cancel-recording:hover {
+    background-color: rgba(255, 77, 77, 0.3);
+  }
+  
+  .stop-recording {
+    background-color: rgba(76, 175, 80, 0.3);
+  }
+  
+  .stop-recording:hover {
+    background-color: rgba(76, 175, 80, 0.5);
+  }
+  
+  .cancel-recording svg, .stop-recording svg {
+    width: 20px;
+    height: 20px;
+  }
+  
+  @keyframes pulse {
+    0% {
+      transform: scale(0.95);
+      box-shadow: 0 0 0 0 rgba(255, 77, 77, 0.7);
+    }
+    70% {
+      transform: scale(1);
+      box-shadow: 0 0 0 10px rgba(255, 77, 77, 0);
+    }
+    100% {
+      transform: scale(0.95);
+      box-shadow: 0 0 0 0 rgba(255, 77, 77, 0);
+    }
+  }
+  
+  /* Add audio button */
+  .audio-button {
+    background: transparent;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 6px;
+    color: rgba(255, 255, 255, 0.6);
+    cursor: pointer;
+    border-radius: 50%;
+    transition: all 0.2s ease;
+  }
+  
+  .audio-button:hover {
+    color: rgba(255, 255, 255, 0.9);
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+  
+  .audio-button svg {
+    width: 18px;
+    height: 18px;
+  }
   /* Base Styles */
   .chat-container {
     position: fixed;

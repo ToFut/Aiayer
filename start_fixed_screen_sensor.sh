@@ -1,6 +1,11 @@
 #!/bin/bash
 # Start the robust screen sensor
 
+# Create necessary directories
+mkdir -p logs/sensors/screen_sensor
+mkdir -p cache/screen_sensor
+mkdir -p pids
+
 # Kill any existing screen sensor instances
 if [ -f "pids/screen_sensor.pid" ]; then
     echo "Stopping existing screen sensor..."
@@ -8,10 +13,12 @@ if [ -f "pids/screen_sensor.pid" ]; then
     rm -f pids/screen_sensor.pid
 fi
 
-# Start new robust screen sensor
-echo "Starting robust screen sensor..."
-mkdir -p logs/sensors
-python3 robust_screen_sensor.py > logs/sensors/screen_sensor_stdout.log 2>&1 &
+# Start the fixed screen sensor
+echo "Starting fixed screen sensor..."
+python3 fixed_screen_sensor.py > logs/sensors/screen_sensor/screen_sensor.log 2>&1 &
+SCREEN_SENSOR_PID=$!
+echo $SCREEN_SENSOR_PID > pids/screen_sensor.pid
+echo "Screen sensor started with PID: $SCREEN_SENSOR_PID"
 
 # Check if sensor started
 sleep 2

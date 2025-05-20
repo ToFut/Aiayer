@@ -19,9 +19,9 @@ import traceback
 # Configure logging
 logging.basicConfig(
     level=logging.INFO,
-    format='%(asctime)s - %(levelname)s - %(message)s',
+    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
     handlers=[
-        logging.FileHandler('logs/enhanced_ws_8765.log'),
+        logging.FileHandler('logs/aiayer.log'),
         logging.StreamHandler()
     ]
 )
@@ -97,7 +97,8 @@ async def generate_response(query, context=None):
     try:
         global memory_system, llm_client
         
-        logger.info(f"Generating response for query: {query}")
+        # Log the user message
+        logger.info(f"📝 USER MESSAGE: {query}")
         
         # If memory system is initialized, get relevant context
         memory_context = {}
@@ -105,195 +106,46 @@ async def generate_response(query, context=None):
             try:
                 # Get context summary from memory system
                 memory_context = await memory_system.get_context_summary()
-                logger.info(f"Retrieved memory context with {len(str(memory_context))} chars")
+                logger.info(f"🔍 MEMORY CONTEXT RETRIEVED:")
+                logger.info(f"  - Active window: {memory_context.get('window', 'Unknown')}")
+                logger.info(f"  - Active apps: {memory_context.get('active_apps', [])}")
+                logger.info(f"  - Screen content length: {len(memory_context.get('screen_content', ''))}")
+                logger.info(f"  - Recent messages count: {len(memory_context.get('recent_messages', []))}")
                 
                 # Search for relevant memories
                 relevant_memories = await memory_system.search_memory(query, limit=3)
                 if relevant_memories:
                     memory_context['relevant_memories'] = relevant_memories
-                    logger.info(f"Found {len(relevant_memories)} relevant memories")
+                    logger.info(f"  - Found {len(relevant_memories)} relevant memories")
             except Exception as memory_ex:
                 logger.error(f"Error retrieving memory context: {memory_ex}")
                 logger.error(traceback.format_exc())
         
-        # Check if LocalLLM is available
-        if llm_client and hasattr(llm_client, 'generate_response'):
-            try:
-                # Format messages for the LocalLLM format (which uses the OpenAI-style format)
-                system_message = "You are a helpful assistant with access to the user's screen content and active applications. Use this context to provide more helpful responses."
-                
-                # Add context to system message
-                if memory_context:
-                    system_message += "\n\nContext:"
-                    if 'window' in memory_context:
-                        system_message += f"\nActive Window: {memory_context.get('window', 'Unknown')}"
-                    if 'active_apps' in memory_context:
-                        system_message += f"\nActive Applications: {', '.join(memory_context.get('active_apps', []))}"
-                    if 'screen_content' in memory_context:
-                        screen_content = memory_context.get('screen_content', '')
-                        shortened = screen_content[:500] + "..." if len(screen_content) > 500 else screen_content
-                        system_message += f"\nScreen Content: {shortened}"
-                    if 'relevant_memories' in memory_context:
-                        system_message += "\nRelevant Past Information:"
-                        for i, memory in enumerate(memory_context['relevant_memories']):
-                            system_message += f"\n - {memory.get('content', 'No content')}"
-                
-                # Prepare messages in the format expected by the LocalLLM
-                messages = [
-                    {"role": "system", "content": system_message},
-                    {"role": "user", "content": query}
-                ]
-                
-                # Call the LocalLLM generate_response method
-                logger.info("Calling local LLM with user query and context")
-                response_text = await llm_client.generate_response(messages)
-                
-                logger.info(f"LocalLLM returned response: {response_text[:100]}...")
-                
-                # Store interaction in memory if available
-                if memory_system:
-                    try:
-                        await memory_system.add_message({
-                            "type": "user_query",
-                            "content": query,
-                            "timestamp": datetime.now().isoformat()
-                        })
-                        await memory_system.add_message({
-                            "type": "assistant_response",
-                            "content": response_text,
-                            "timestamp": datetime.now().isoformat()
-                        })
-                    except Exception as mem_ex:
-                        logger.error(f"Error storing in memory: {mem_ex}")
-                
-                return {
-                    "type": "query_response",
-                    "payload": {
-                        "query": query,
-                        "response": response_text,
-                        "timestamp": datetime.now().isoformat(),
-                        "context_used": bool(context),
-                        "memory_used": bool(memory_context),
-                        "advanced_llm": True
-                    }
-                }
-            except Exception as llm_ex:
-                logger.error(f"Error using LocalLLM: {llm_ex}")
-                logger.error(traceback.format_exc())
-        
-        # Fallback to mock responses if LLM service fails or is not available
-        logger.warning("Using fallback mock response generation")
-        
-        # Predefined response templates
-        response_templates = [
-            "I understand you're asking about '{query}'. Here's what I can help with: {detail}",
-            "Thanks for your query about '{query}'. {detail}",
-            "I've analyzed your request about '{query}'. {detail}",
-            "Regarding '{query}', I can provide the following information: {detail}"
-        ]
-        
-        personalized_responses = {
-            "what can you help me with": [
-                "I can help you with analyzing your environment, monitoring system activity, answering questions about your work, and providing personalized assistance based on what you're doing.",
-                "I'm designed to assist with a variety of tasks including analyzing your screen content, monitoring running applications, answering questions, and providing contextual assistance.",
-                "I can assist you by monitoring your work environment, providing relevant information based on your context, answering questions, and helping with productivity tasks."
-            ],
-            "my name is segev": [
-                "Hello Segev! It's nice to meet you. I'll remember your name for our conversation.",
-                "Great to meet you, Segev! I'll keep that in mind as we work together.",
-                "Thanks for introducing yourself, Segev! How can I assist you today?"
-            ],
-            "how does this work": [
-                "This system monitors your environment through sensors that track your screen content and running applications. It then uses this context to provide more relevant assistance.",
-                "The system uses various sensors to understand your work context, including what's on your screen and which applications you're using. This helps me provide more personalized responses.",
-                "I work by collecting contextual information about your activities, which helps me understand what you're working on and provide more relevant assistance."
-            ],
-            "and now": [
-                "Is there something specific you'd like help with? I'm ready to assist based on your current context.",
-                "Now that we're connected, I can help answer questions, provide information based on your current tasks, or assist with productivity tasks.",
-                "I'm now fully operational and monitoring your context. What would you like assistance with?"
-            ],
-            "now": [
-                "I'm ready to assist you with your current tasks. What specifically would you like help with?",
-                "Now that the system is running, I can provide assistance based on your current work context. How can I help?",
-                "I'm actively monitoring your work environment and ready to provide assistance. What would you like to know?"
-            ],
-            "eh": [
-                "I'm sorry if there was any confusion. I'm here to assist with your work or answer questions. How can I help you?",
-                "Would you like me to explain more about how I can assist you? I'm designed to provide contextual assistance based on your current activities.",
-                "I'm here to help with your work. Let me know if you have any specific questions or tasks you need assistance with."
-            ],
-            "hey": [
-                "Hello! I'm here to assist you. What can I help with today?",
-                "Hi there! I'm ready to help with your questions or tasks.",
-                "Greetings! How can I assist you with your current activities?"
-            ],
-            "nyc": [
-                "NYC stands for New York City, the most populous city in the United States. It's a global center for finance, culture, fashion, and entertainment.",
-                "New York City (NYC) is a major metropolitan area located in the state of New York. It consists of five boroughs: Manhattan, Brooklyn, Queens, The Bronx, and Staten Island.",
-                "NYC refers to New York City, known for landmarks like the Empire State Building, Central Park, Times Square, and the Statue of Liberty."
-            ]
-        }
-        
-        # Find most appropriate response
-        query_lower = query.lower()
-        response_detail = "I can provide information and assistance based on your current context."
-        
-        # Check if we have a personalized response
-        for key, responses in personalized_responses.items():
-            if key in query_lower:
-                response_detail = random.choice(responses)
-                break
-        
-        # Add context information if available
+        # Combine the provided context with memory context
+        combined_context = {}
         if context:
-            active_window = context.get('active_window', 'Unknown')
-            response_detail += f" I notice you're currently using {active_window}."
+            combined_context.update(context)
+        if memory_context:
+            combined_context.update(memory_context)
+            
+        # Log the final prompt that will be sent to the LLM
+        logger.info(f"🤖 FINAL PROMPT TO LLM:")
+        logger.info(f"  - Query: {query}")
+        logger.info(f"  - Combined context keys: {list(combined_context.keys())}")
+        logger.info(f"  - Context size: {len(str(combined_context))} chars")
         
-        # Format the response
-        template = random.choice(response_templates)
-        response = template.format(query=query, detail=response_detail)
+        # Generate response using LLM
+        response = await llm_client.generate_response([{
+            "role": "user",
+            "content": query
+        }])
         
-        # Store in memory if available
-        if memory_system:
-            try:
-                await memory_system.add_message({
-                    "type": "user_query",
-                    "content": query,
-                    "timestamp": datetime.now().isoformat()
-                })
-                await memory_system.add_message({
-                    "type": "assistant_response",
-                    "content": response,
-                    "timestamp": datetime.now().isoformat()
-                })
-            except Exception as mem_ex:
-                logger.error(f"Error storing in memory: {mem_ex}")
+        return response
         
-        # Add a short delay to simulate processing
-        await asyncio.sleep(0.5)
-        
-        return {
-            "type": "query_response",
-            "payload": {
-                "query": query,
-                "response": response,
-                "timestamp": datetime.now().isoformat(),
-                "is_fallback": True
-            }
-        }
     except Exception as e:
         logger.error(f"Error generating response: {e}")
         logger.error(traceback.format_exc())
-        return {
-            "type": "query_response",
-            "payload": {
-                "query": query,
-                "response": "I'm sorry, I encountered an error processing your request.",
-                "timestamp": datetime.now().isoformat(),
-                "error": str(e)
-            }
-        }
+        return f"Error: {str(e)}"
 
 async def process_user_interaction(message_data, websocket):
     """Process a user interaction message"""
@@ -567,74 +419,33 @@ def is_port_in_use(port):
 async def main():
     """Main function to start the WebSocket server."""
     try:
-        global memory_system, llm_client
+        # Initialize memory system first
+        if not await initialize_memory_system():
+            logger.error("Failed to initialize memory system. Exiting...")
+            return
         
-        # Use port 8765 to match the Tauri app's expectation
+        # Initialize LLM service
+        if not await initialize_llm_service():
+            logger.warning("Failed to initialize LLM service. Continuing without LLM support...")
+        
+        # Start WebSocket server
         port = 8765
-        
-        # Check if port is in use
         if is_port_in_use(port):
-            logger.error(f"Port {port} is already in use")
+            logger.error(f"Port {port} is already in use. Exiting...")
+            return
             
-            # Try to forcefully release the port by killing any process using it
-            os.system(f"lsof -ti :{port} | xargs kill -9 2>/dev/null || true")
-            os.system(f"pkill -f 'port {port}' 2>/dev/null || true")
+        async with websockets.serve(handler, "localhost", port):
+            logger.info(f"WebSocket server started on port {port}")
             
-            # Wait a moment for the port to be released
-            await asyncio.sleep(1)
+            # Start status broadcast task
+            broadcast_task = asyncio.create_task(broadcast_status())
             
-            # Check again
-            if is_port_in_use(port):
-                logger.error("Failed to release port")
-                sys.exit(1)
-        
-        # Initialize memory system
-        logger.info("Initializing memory system...")
-        memory_initialized = await initialize_memory_system()
-        if memory_initialized:
-            logger.info("Memory system initialized successfully")
-        else:
-            logger.warning("Memory system initialization failed, will use fallback responses")
+            # Keep the server running
+            await asyncio.Future()
             
-        # Initialize advanced LLM service
-        logger.info("Initializing advanced LLM service...")
-        llm_initialized = await initialize_llm_service()
-        if llm_initialized:
-            logger.info("Advanced LLM service initialized successfully")
-        else:
-            logger.warning("Advanced LLM service initialization failed, will use fallback responses")
-            
-        # Ensure we don't use a WebSocket connection here
-        # The LocalLLM class from llm/model.py will handle the direct API calls
-                
-        # Create the server
-        server = await websockets.serve(
-            handler,
-            "0.0.0.0",  # Bind to all interfaces
-            port,
-            ping_interval=10,
-            ping_timeout=5
-        )
-        
-        logger.info(f"WebSocket server started on ws://0.0.0.0:{port}")
-        logger.info(f"Memory system: {'ACTIVE' if memory_system else 'INACTIVE'}")
-        logger.info(f"Advanced LLM service: {'INITIALIZED' if llm_client else 'NOT AVAILABLE'}")
-        
-        # Save PID to file
-        os.makedirs('pids', exist_ok=True)
-        with open('pids/ws_server_8765.pid', 'w') as f:
-            f.write(str(os.getpid()))
-        
-        # Start broadcast task
-        broadcast_task = asyncio.create_task(broadcast_status())
-        
-        # Keep the server running
-        await asyncio.Future()
-        
     except Exception as e:
-        logger.error(f"Error starting server: {e}")
+        logger.error(f"Error in main: {e}")
         logger.error(traceback.format_exc())
-        sys.exit(1)
 
 if __name__ == "__main__":
     # Ensure directories exist

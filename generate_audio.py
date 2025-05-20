@@ -63,53 +63,108 @@ def apply_adsr(tone, attack=0.01, decay=0.05, sustain=0.7, release=0.1, sample_r
     return tone * envelope
 
 def generate_message_sent():
-    """Generate a futuristic sound for sent messages."""
-    # Create a rich tone with multiple frequencies and noise
-    base_tone = generate_tone(880, 0.2, modulation_freq=20, modulation_depth=0.1, noise_level=0.05)  # A5
-    overtone = generate_tone(1320, 0.2, modulation_freq=15, modulation_depth=0.05)  # E6
+    """Generate a WhatsApp-like sound for sent messages."""
+    # WhatsApp sent sound is a short, subtle 'pop' with a slight upward pitch
+    sample_rate = 44100
+    duration = 0.15  # shorter, subtle sound
     
-    # Mix the tones
-    tone = 0.7 * base_tone + 0.3 * overtone
+    # Create a quick rising tone (WhatsApp-like pop)
+    t = np.linspace(0, duration, int(sample_rate * duration), False)
     
-    # Apply ADSR envelope
-    tone = apply_adsr(tone, attack=0.01, decay=0.05, sustain=0.7, release=0.1)
+    # Base frequency rising from 800 to 1200 Hz
+    freqs = np.linspace(800, 1200, len(t))
+    tone = np.sin(2 * np.pi * freqs * t)
+    
+    # Add a bit of harmonics for richer sound
+    tone += 0.3 * np.sin(2 * np.pi * freqs * 2 * t)
+    
+    # Apply a quick envelope for the pop effect
+    tone = apply_adsr(tone, attack=0.01, decay=0.04, sustain=0.1, release=0.1)
     
     return (tone * 32767).astype(np.int16)
 
 def generate_message_received():
-    """Generate a futuristic sound for received messages."""
-    # Create a descending sequence with noise
-    t1 = generate_tone(660, 0.15, modulation_freq=15, modulation_depth=0.1, noise_level=0.03)  # E5
-    t2 = generate_tone(523.25, 0.15, modulation_freq=10, modulation_depth=0.1)  # C5
-    t3 = generate_tone(392, 0.15, modulation_freq=5, modulation_depth=0.05)  # G4
+    """Generate a Telegram-like sound for received messages."""
+    # Telegram received message has a distinctive short "pop" sound
+    sample_rate = 44100
     
-    # Add some silence between tones
-    silence = np.zeros(int(44100 * 0.02))  # 20ms silence
+    # Primary tone - crisp and clear
+    duration = 0.07  # Very short duration
+    t = np.linspace(0, duration, int(sample_rate * duration), False)
     
-    # Mix and concatenate
-    tone = np.concatenate([t1, silence, t2, silence, t3])
+    # Use a combination of frequencies for a more pleasant sound
+    # Starting with higher frequencies that quickly transition to lower ones
+    freq_start = 1800
+    freq_end = 1200
+    freqs = np.linspace(freq_start, freq_end, len(t))
     
-    # Apply ADSR envelope
-    tone = apply_adsr(tone, attack=0.02, decay=0.1, sustain=0.6, release=0.15)
+    # Create the main tone with frequency modulation
+    tone = 0.7 * np.sin(2 * np.pi * freqs * t)
     
-    return (tone * 32767).astype(np.int16)
+    # Add harmonics for richness
+    tone += 0.4 * np.sin(2 * np.pi * freqs * 1.5 * t)  # 1.5x harmonic
+    tone += 0.2 * np.sin(2 * np.pi * freqs * 2 * t)    # 2x harmonic
+    
+    # Add a subtle "click" at the beginning
+    click_duration = 0.01
+    click_samples = int(sample_rate * click_duration)
+    click = np.random.normal(0, 0.1, click_samples) * np.linspace(1, 0, click_samples)
+    
+    # Create final tone with click at the beginning
+    full_tone = np.concatenate([click, tone])
+    
+    # Apply envelope for clean shape
+    full_tone = apply_adsr(full_tone, attack=0.005, decay=0.03, sustain=0.5, release=0.03)
+    
+    return (full_tone * 32767).astype(np.int16)
 
 def generate_notification():
-    """Generate a complex futuristic notification sound."""
-    # Create a sequence of modulated tones with noise
-    t1 = generate_tone(880, 0.12, modulation_freq=20, modulation_depth=0.15, noise_level=0.05)  # A5
-    t2 = generate_tone(1108.73, 0.12, modulation_freq=15, modulation_depth=0.1)  # C#6
-    t3 = generate_tone(1318.51, 0.12, modulation_freq=10, modulation_depth=0.05)  # E6
-    t4 = generate_tone(1567.98, 0.12, modulation_freq=5, modulation_depth=0.02)  # G6
+    """Generate a Telegram-like notification sound."""
+    # Telegram notification is a distinctive two-tone melodic sound
+    sample_rate = 44100
     
-    # Add some silence between tones
-    silence = np.zeros(int(44100 * 0.02))  # 20ms silence
+    # First tone - bright and clean
+    duration1 = 0.10
+    t1 = np.linspace(0, duration1, int(sample_rate * duration1), False)
+    freq1 = 1047  # C6
     
-    # Mix and concatenate
-    tone = np.concatenate([t1, silence, t2, silence, t3, silence, t4])
+    # Add a slight frequency rise for more interest
+    freq_mod1 = np.linspace(freq1 * 0.98, freq1, len(t1))
+    tone1 = np.sin(2 * np.pi * freq_mod1 * t1)
     
-    # Apply ADSR envelope
-    tone = apply_adsr(tone, attack=0.01, decay=0.05, sustain=0.8, release=0.1)
+    # Add harmonics for richness
+    tone1 += 0.5 * np.sin(2 * np.pi * freq_mod1 * 1.5 * t1)
+    tone1 += 0.2 * np.sin(2 * np.pi * freq_mod1 * 2 * t1)
+    
+    # Apply envelope with quick attack
+    tone1 = apply_adsr(tone1, attack=0.008, decay=0.03, sustain=0.7, release=0.06)
+    
+    # Very short silence between tones
+    silence = np.zeros(int(sample_rate * 0.02))
+    
+    # Second tone - higher with more character
+    duration2 = 0.12
+    t2 = np.linspace(0, duration2, int(sample_rate * duration2), False)
+    freq2 = 1319  # E6
+    
+    # Add a slight frequency modulation for character
+    mod_freq = 15  # 15 Hz modulation
+    mod_depth = 0.01
+    freq_mod = 1 + mod_depth * np.sin(2 * np.pi * mod_freq * t2)
+    tone2 = np.sin(2 * np.pi * freq2 * freq_mod * t2)
+    
+    # Add harmonics with slightly different modulation for complexity
+    tone2 += 0.4 * np.sin(2 * np.pi * freq2 * 1.4 * (1 + 0.8 * mod_depth * np.sin(2 * np.pi * 1.1 * mod_freq * t2)) * t2)
+    tone2 += 0.15 * np.sin(2 * np.pi * freq2 * 2 * t2)
+    
+    # Apply envelope with gentle fade
+    tone2 = apply_adsr(tone2, attack=0.01, decay=0.08, sustain=0.6, release=0.08)
+    
+    # Combine the tones
+    tone = np.concatenate([tone1, silence, tone2])
+    
+    # Apply a subtle overall compression for a more professional sound
+    tone = np.tanh(1.2 * tone) / 1.2
     
     return (tone * 32767).astype(np.int16)
 

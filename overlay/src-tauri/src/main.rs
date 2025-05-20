@@ -1,7 +1,7 @@
 // Prevents additional console window on Windows in release, DO NOT REMOVE!!
 #![cfg_attr(not(debug_assertions), windows_subsystem = "windows")]
 
-use tauri::{Manager};
+use tauri::Manager;
 use std::sync::{Arc, Mutex};
 
 // Define states
@@ -40,6 +40,25 @@ fn main() {
     
     tauri::Builder::default()
         .manage(screen_capture_state)
+        .setup(|app| {
+            println!("Setting up Tauri application");
+            
+            // Make sure main window is created
+            if let Some(main_window) = app.get_window("main") {
+                match main_window.set_focus() {
+                    Ok(_) => println!("Main window focused"),
+                    Err(e) => println!("Error focusing main window: {}", e)
+                }
+            } else {
+                println!("Main window not found in setup!");
+            }
+            
+            // List all windows for debugging
+            let window_labels: Vec<String> = app.windows().keys().cloned().collect();
+            println!("Available windows: {:?}", window_labels);
+            
+            Ok(())
+        })
         .invoke_handler(tauri::generate_handler![
             send_message,
             capture_screen,

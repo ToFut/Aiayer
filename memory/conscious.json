@@ -1,0 +1,190 @@
+{
+  "timestamp": "2025-05-19T23:49:23.141793",
+  "sensor_buffers": {
+    "screen": [
+      {
+        "timestamp": "2025-05-19T23:49:15.598183",
+        "image_hash": "d79e504894086df12647de4dec03ed37",
+        "screen_size": [
+          2940,
+          1912
+        ]
+      },
+      {
+        "timestamp": "2025-05-19T23:49:05.320135",
+        "image_hash": "e657400745c6f5d8087f5b2a73c2a45d",
+        "screen_size": [
+          2940,
+          1912
+        ]
+      },
+      {
+        "timestamp": "2025-05-19T23:48:55.151477",
+        "image_hash": "78fbd5dd6432fb7fce5e310b7af9dc5e",
+        "screen_size": [
+          2940,
+          1912
+        ]
+      },
+      {
+        "timestamp": "2025-05-19T23:48:44.985245",
+        "image_hash": "31c43ef69d2874ef852bf9b6ad7eb9ff",
+        "screen_size": [
+          2940,
+          1912
+        ]
+      },
+      {
+        "timestamp": "2025-05-19T23:48:34.833224",
+        "image_hash": "4d1329806546828e6b0125d5ca209dfc",
+        "screen_size": [
+          2940,
+          1912
+        ]
+      },
+      {
+        "timestamp": "2025-05-19T23:48:24.658404",
+        "image_hash": "7d94baa31252eab8f17f66a67aa2d86f",
+        "screen_size": [
+          2940,
+          1912
+        ]
+      },
+      {
+        "timestamp": "2025-05-19T23:48:04.231692",
+        "image_hash": "d4fe3477b1f0dd4df8b94be0f31721ec",
+        "screen_size": [
+          2940,
+          1912
+        ]
+      },
+      {
+        "timestamp": "2025-05-19T23:47:54.055090",
+        "image_hash": "b7396d92a341cd05ff815fc2e269085e",
+        "screen_size": [
+          2940,
+          1912
+        ]
+      },
+      {
+        "timestamp": "2025-05-19T23:47:43.869413",
+        "image_hash": "80baf04a5e8ef90a2c26c28962ad0aa4",
+        "screen_size": [
+          2940,
+          1912
+        ]
+      },
+      {
+        "timestamp": "2025-05-19T23:47:33.685522",
+        "image_hash": "b58fcf57a0d03fd338ab0625aeab1a25",
+        "screen_size": [
+          2940,
+          1912
+        ]
+      }
+    ],
+    "process": [
+      {
+        "timestamp": 1747712632.431249,
+        "active_processes": [
+          {
+            "pid": 0,
+            "name": "kernel_task",
+            "username": "root",
+            "cpu_percent": null,
+            "memory_percent": null
+          },
+          {
+            "pid": 1,
+            "name": "launchd",
+            "username": "root",
+            "cpu_percent": null,
+            "memory_percent": null
+          },
+          {
+            "pid": 301,
+            "name": "logd",
+            "username": "root",
+            "cpu_percent": null,
+            "memory_percent": null
+          },
+          {
+            "pid": 303,
+            "name": "UserEventAgent",
+            "username": "root",
+            "cpu_percent": null,
+            "memory_percent": null
+          },
+          {
+            "pid": 305,
+            "name": "uninstalld",
+            "username": "root",
+            "cpu_percent": null,
+            "memory_percent": null
+          },
+          {
+            "pid": 306,
+            "name": "fseventsd",
+            "username": "root",
+            "cpu_percent": null,
+            "memory_percent": null
+          },
+          {
+            "pid": 307,
+            "name": "mediaremoted",
+            "username": "root",
+            "cpu_percent": null,
+            "memory_percent": null
+          },
+          {
+            "pid": 310,
+            "name": "systemstats",
+            "username": "root",
+            "cpu_percent": null,
+            "memory_percent": null
+          },
+          {
+            "pid": 313,
+            "name": "configd",
+            "username": "root",
+            "cpu_percent": null,
+            "memory_percent": null
+          },
+          {
+            "pid": 315,
+            "name": "powerd",
+            "username": "root",
+            "cpu_percent": null,
+            "memory_percent": null
+          }
+        ]
+      }
+    ],
+    "file": [
+      {
+        "timestamp": "2025-05-19T23:49:23.141776",
+        "file_events": []
+      }
+    ]
+  },
+  "last_processing_time": 0,
+  "insights": [
+    {
+      "timestamp": "2025-05-19T23:49:23.141795",
+      "content": "Latest screen capture with dimensions [2940, 1912] and hash d79e504894086df12647de4dec03ed37",
+      "type": "screen_insight"
+    },
+    {
+      "timestamp": "2025-05-19T23:49:23.141804",
+      "content": "Current top processes: kernel_task, launchd, logd, UserEventAgent, uninstalld",
+      "type": "process_insight"
+    },
+    {
+      "timestamp": "2025-05-19T23:49:23.141807",
+      "content": "Integrated sensor data collection active: screen, process, and file sensors operational",
+      "type": "system_insight"
+    }
+  ],
+  "status": "initialized",
+  "version": "1.0.0"
+}

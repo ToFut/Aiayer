@@ -14,29 +14,63 @@ import psutil
 import traceback
 import importlib.util
 from datetime import datetime
-from typing import Optional, Dict
+from typing import Optional, Dict, Any
 import base64
 import uuid
+from logging.handlers import RotatingFileHandler
+import time
 
 # Ensure logs directory exists
 os.makedirs("logs", exist_ok=True)
 
-# Configure logging
-logging.basicConfig(
-    level=logging.INFO,
-    format='%(asctime)s - %(levelname)s - %(message)s',
-    handlers=[
-        logging.FileHandler('logs/fixed_ws_8765.log'),
-        logging.StreamHandler()
-    ]
-)
+# Configure logging with optimized settings
 logger = logging.getLogger(__name__)
+logger.setLevel(logging.WARNING)  # Set base level to WARNING
+
+# Create rotating file handler
+file_handler = RotatingFileHandler(
+    'logs/fixed_ws_8765.log',
+    maxBytes=5*1024*1024,  # 5MB
+    backupCount=3
+)
+file_handler.setLevel(logging.WARNING)  # Only log warnings and above
+file_formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+file_handler.setFormatter(file_formatter)
+
+# Configure console handler with reduced output
+console_handler = logging.StreamHandler()
+console_handler.setLevel(logging.ERROR)  # Only show errors in console
+console_formatter = logging.Formatter('%(asctime)s - %(levelname)s - %(message)s')
+console_handler.setFormatter(console_formatter)
+
+# Add handlers to logger
+logger.addHandler(file_handler)
+logger.addHandler(console_handler)
 
 # Track connected clients
 connected_clients = set()
 llm_client = None
 memory_system = None
 context_data = {}
+
+# Track last logged data to avoid duplicate logging
+_last_logged = {}
+_log_throttle = 300  # Only log similar events every 5 minutes
+
+def _should_log(data: Dict[str, Any]) -> bool:
+    """Determine if this entry should be logged based on content and time."""
+    current_time = time.time()
+    data_hash = hash(json.dumps(data, sort_keys=True))
+    
+    # Get last logged time for this data hash
+    last_time = _last_logged.get(data_hash, 0)
+    
+    # Only log if enough time has passed since the same data was logged
+    if current_time - last_time > _log_throttle:
+        _last_logged[data_hash] = current_time
+        return True
+        
+    return False
 
 async def initialize_memory_system():
     """Initialize the memory system for context-aware responses."""
@@ -180,7 +214,8 @@ async def process_user_interaction(message_data, websocket):
     try:
         # Extract message type and content
         message_type = message_data.get('type')
-        logger.info(f"Processing message type: {message_type}")
+        if _should_log(message_data):
+            logger.warning(f"Processing message type: {message_type}")
         
         # Handle different message types
         if message_type == 'user_interaction':
@@ -201,11 +236,13 @@ async def process_user_interaction(message_data, websocket):
                 }))
                 return
                 
-            logger.info(f"Processing user message: {content}")
+            if _should_log({'content': content}):
+                logger.warning(f"Processing user message: {content}")
             
             # Generate response for chat message
             response = await generate_response(content)
-            logger.info(f"Generated response: {response[:100]}...")
+            if _should_log({'response': response}):
+                logger.warning(f"Generated response: {response[:100]}...")
             
             await websocket.send(json.dumps({
                 'type': 'llm_response',
@@ -233,7 +270,8 @@ async def process_user_interaction(message_data, websocket):
                 }))
                 
         else:
-            logger.warning(f"Unknown message type: {message_type}")
+            if _should_log({'type': message_type}):
+                logger.warning(f"Unknown message type: {message_type}")
             await websocket.send(json.dumps({
                 'type': 'error',
                 'content': f'Unknown message type: {message_type}'
@@ -483,7 +521,6 @@ async def broadcast_status():
                     }
                 except Exception as e:
                     logger.error(f"Error getting memory metrics: {e}")
-                    logger.error(traceback.format_exc())  # Add stack trace for better debugging
                     memory_metrics = {"memory_system_active": True, "error": str(e)}
             else:
                 memory_metrics = {"memory_system_active": False}

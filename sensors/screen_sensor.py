@@ -16,19 +16,35 @@ import asyncio
 from typing import Dict, Any, Optional
 import hashlib
 import json
-from dataclasses import dataclass
+from dataclasses import dataclass, asdict
 from PIL import Image
 import numpy as np
+import pytesseract
+from pytesseract import Output
+import cv2
 
+# Configure logging
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
+    handlers=[
+        logging.FileHandler('logs/screen_sensor.log'),
+        logging.StreamHandler()
+    ]
+)
 logger = logging.getLogger(__name__)
 
 @dataclass
 class ScreenData:
+    """Data class for screen capture results."""
     timestamp: float
-    image_data: bytes
-    image_hash: str
-    screen_size: tuple
-    is_unchanged: bool = False
+    image: Optional[bytes] = None
+    image_hash: Optional[str] = None
+    text: Optional[str] = None
+    text_content: Optional[str] = None
+    active_window: Optional[str] = None
+    active_apps: Optional[list] = None
+    error: Optional[str] = None
 
 class ScreenSensor:
     """
@@ -78,6 +94,32 @@ class ScreenSensor:
                 logger.error("Failed to initialize screen capture in constructor")
         except Exception as e:
             logger.error(f"Error initializing screen capture in constructor: {e}")
+        
+        # Initialize OCR settings
+        self.ocr_config = {
+            'lang': 'eng',
+            'config': '--psm 3'  # Assume a single uniform block of text
+        }
+    
+    def _extract_text(self, image: Image.Image) -> str:
+        """Extract text from image using OCR"""
+        try:
+            # Convert image to grayscale for better OCR
+            gray_image = image.convert('L')
+            
+            # Use pytesseract to extract text
+            data = pytesseract.image_to_data(gray_image, output_type=Output.DICT)
+            
+            # Combine all text blocks
+            text_blocks = []
+            for i in range(len(data['text'])):
+                if int(data['conf'][i]) > 60:  # Only include text with confidence > 60%
+                    text_blocks.append(data['text'][i])
+            
+            return ' '.join(text_blocks)
+        except Exception as e:
+            logger.error(f"Error extracting text from image: {e}")
+            return ""
     
     def _load_cache(self):
         try:
@@ -87,24 +129,32 @@ class ScreenSensor:
                     if data:
                         self.last_data = ScreenData(
                             timestamp=data['timestamp'],
-                            image_data=base64.b64decode(data['image_data']),
-                            image_hash=data['image_hash'],
-                            screen_size=tuple(data['screen_size']),
-                            is_unchanged=data.get('is_unchanged', False)
+                            image=data.get('image'),
+                            image_hash=data.get('image_hash'),
+                            text=data.get('text'),
+                            text_content=data.get('text_content'),
+                            active_window=data.get('active_window'),
+                            active_apps=data.get('active_apps', []),
+                            error=data.get('error')
                         )
         except Exception as e:
             logger.warning(f"Failed to load screen cache: {e}")
 
     def _save_cache(self, data: ScreenData):
         try:
+            # Create a memory-optimized version of the screen data without the image
+            cache_data = asdict(data)
+            
+            # Remove large binary data before saving to cache
+            if 'image' in cache_data:
+                # Keep a small thumbnail or just remove the image completely
+                cache_data['image'] = None
+                
+            # Save only essential data to cache
             with open(self.cache_file, 'w') as f:
-                json.dump({
-                    'timestamp': data.timestamp,
-                    'image_data': base64.b64encode(data.image_data).decode('utf-8'),
-                    'image_hash': data.image_hash,
-                    'screen_size': data.screen_size,
-                    'is_unchanged': data.is_unchanged
-                }, f)
+                json.dump(cache_data, f)
+                
+            logger.debug("Saved memory-optimized screen data to cache")
         except Exception as e:
             logger.warning(f"Failed to save screen cache: {e}")
 
@@ -198,104 +248,69 @@ class ScreenSensor:
             image = Image.frombytes('RGB', screenshot.size, screenshot.rgb)
             if not image:
                 raise Exception("Failed to convert screenshot to image")
-                
+            
+            # Calculate image hash
             image_hash = self._calculate_image_hash(image)
             
-            # Check if we should process the image
-            should_process = self._should_process_image(current_time, image_hash)
+            # Check if we should process this image
+            if not self._should_process_image(current_time, image_hash):
+                if self.last_data:
+                    self.last_data.is_unchanged = True
+                    return self.last_data
             
-            # Convert image to bytes for storage
+            # Extract text from image
+            text_content = self._extract_text(image)
+            
+            # Convert image to bytes
             img_byte_arr = io.BytesIO()
             image.save(img_byte_arr, format='PNG')
             img_byte_arr = img_byte_arr.getvalue()
             
+            # Get active window info
+            window_info = self._get_window_info()
+            
             # Create screen data
             screen_data = ScreenData(
                 timestamp=current_time,
-                image_data=img_byte_arr,
+                image=img_byte_arr,
                 image_hash=image_hash,
-                screen_size=image.size,
-                is_unchanged=not should_process
+                text=text_content,
+                text_content=text_content,
+                active_window=window_info.get('active_window'),
+                active_apps=window_info.get('active_apps', [])
             )
             
-            # Update cache
+            # Save to cache
             self._save_cache(screen_data)
             self.last_data = screen_data
             
             return screen_data
             
         except Exception as e:
-            logger.error(f"Error in screen capture: {str(e)}")
-            # Try to reinitialize if we get a NoneType error
-            if "'NoneType' object has no attribute 'grab'" in str(e):
-                logger.info("Attempting to reinitialize screen capture...")
-                if await self.initialize():
-                    # Retry capture once after reinitialization
-                    try:
-                        return await self.capture_screen()
-                    except Exception as retry_error:
-                        logger.error(f"Retry capture failed: {str(retry_error)}")
-            
-            # Return last known data if available
-            if self.last_data:
-                return self.last_data
+            logger.error(f"Error capturing screen: {e}")
             return ScreenData(
                 timestamp=time.time(),
-                image_data=b'',
-                image_hash='',
-                screen_size=(0, 0),
-                is_unchanged=True
+                error=str(e)
             )
-
+    
     async def get_data(self) -> Dict[str, Any]:
-        """Get current screen data."""
+        """Get current screen data"""
         try:
-            # Capture screen
             screen_data = await self.capture_screen()
-            if not screen_data:
-                raise Exception("Failed to capture screen")
             
-            # Convert image to base64
-            image_bytes = io.BytesIO()
-            image = Image.frombytes('RGB', (screen_data.screen_size[0], screen_data.screen_size[1]), screen_data.image_data)
-            image.save(image_bytes, format='PNG')
-            image_base64 = base64.b64encode(image_bytes.getvalue()).decode('utf-8')
-            
-            # Create data object
-            data = {
-                'timestamp': datetime.now().isoformat(),
-                'type': 'screen_sensor',
-                'image_hash': screen_data.image_hash,
-                'image_data': image_base64,
-                'screen_size': screen_data.screen_size,
-                'has_images': self.has_images,
-                'has_videos': self.has_videos,
-                'is_unchanged': screen_data.is_unchanged
-            }
-            
-            # Write to cache file
-            try:
-                cache_dir = "cache/screen_sensor"
-                os.makedirs(cache_dir, exist_ok=True)
-                cache_file = f"{cache_dir}/screen_cache.json"
-                
-                with open(cache_file, 'w') as f:
-                    json.dump({
-                        'timestamp': datetime.now().isoformat(),
-                        'data': data
-                    }, f, indent=2)
-                
-                self.logger.info(f"Screen data written to cache: {screen_data.screen_size}, hash: {screen_data.image_hash[:8]}")
-            except Exception as e:
-                self.logger.error(f"Error writing screen data to cache: {e}")
-            
-            return data
-            
-        except Exception as e:
-            self.logger.error(f"Error getting screen data: {e}")
             return {
-                'error': str(e),
-                'timestamp': datetime.now().isoformat()
+                'timestamp': screen_data.timestamp,
+                'image': base64.b64encode(screen_data.image).decode('utf-8'),
+                'image_hash': screen_data.image_hash,
+                'text': screen_data.text,
+                'has_images': self.has_images,
+                'has_videos': self.has_videos
+            }
+        except Exception as e:
+            logger.error(f"Error getting screen data: {e}")
+            return {
+                'timestamp': time.time(),
+                'error': str(e)
             }
 
     async def cleanup(self):
@@ -332,11 +347,11 @@ class ScreenSensor:
                 if self.sct:
                     data = asyncio.run(self.capture_screen())
                     # Update latest_image if capture was successful
-                    if data and data.image_data:
+                    if data and data.image:
                         try:
                             from PIL import Image
                             import io
-                            self.latest_image = Image.open(io.BytesIO(data.image_data))
+                            self.latest_image = Image.open(io.BytesIO(data.image))
                         except Exception as img_e:
                             self.logger.error(f"Failed to update latest_image: {img_e}")
                 else:
@@ -414,6 +429,38 @@ class ScreenSensor:
     def capture(self):
         """Capture the current screen state."""
         return asyncio.run(self.capture_screen())
+
+    def _get_window_info(self) -> Dict[str, Any]:
+        """Get information about active window and applications."""
+        try:
+            self.logger.info("Getting window information...")
+            
+            # Get active window
+            active_window = os.popen('osascript -e \'tell application "System Events" to get name of first window of first process whose frontmost is true\'').read().strip()
+            self.logger.debug(f"Active window: {active_window}")
+            
+            # Get active applications
+            active_apps = []
+            for proc in psutil.process_iter(['name', 'pid']):
+                try:
+                    if proc.info['name'] not in active_apps:
+                        active_apps.append(proc.info['name'])
+                except (psutil.NoSuchProcess, psutil.AccessDenied):
+                    continue
+            
+            self.logger.debug(f"Active applications: {active_apps}")
+            
+            return {
+                'active_window': active_window,
+                'active_apps': active_apps
+            }
+            
+        except Exception as e:
+            self.logger.error(f"Error getting window info: {e}")
+            return {
+                'active_window': 'Unknown',
+                'active_apps': []
+            }
 
 # For testing if run directly
 if __name__ == "__main__":

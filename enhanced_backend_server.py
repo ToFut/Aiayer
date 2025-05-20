@@ -16,20 +16,87 @@ import psutil
 import traceback
 import importlib.util
 from datetime import datetime
+import time
 
 # Ensure logs directory exists
 os.makedirs("logs", exist_ok=True)
 
+# Create a custom filter to prevent duplicate logs
+class DuplicateFilter(logging.Filter):
+    def __init__(self):
+        super().__init__()
+        self.last_log = None
+        self.last_time = None
+        self.min_interval = 30  # Minimum seconds between similar logs
+        self.connection_logs = set()  # Track unique connections
+        self.error_counts = {}  # Track error frequencies
+
+    def filter(self, record):
+        # Skip connection logs for already logged connections
+        if "WebSocket connection established" in record.getMessage():
+            client_id = record.getMessage().split("from ")[-1]
+            if client_id in self.connection_logs:
+                return False
+            self.connection_logs.add(client_id)
+            return True
+
+        # Handle connection errors with rate limiting
+        if "Error initializing LLM service" in record.getMessage():
+            error_key = "llm_init_error"
+            current_time = time.time()
+            
+            if error_key not in self.error_counts:
+                self.error_counts[error_key] = {"count": 0, "last_time": current_time}
+            
+            # Only log every 5 minutes if it's the same error
+            if current_time - self.error_counts[error_key]["last_time"] < 300:
+                self.error_counts[error_key]["count"] += 1
+                return False
+            
+            self.error_counts[error_key] = {"count": 1, "last_time": current_time}
+            return True
+
+        # Handle other logs
+        current_log = (record.levelno, record.getMessage())
+        current_time = time.time()
+        
+        if current_log != self.last_log:
+            self.last_log = current_log
+            self.last_time = current_time
+            return True
+            
+        if current_time - self.last_time >= self.min_interval:
+            self.last_time = current_time
+            return True
+            
+        return False
+
+# Configure logging with rotation
+from logging.handlers import RotatingFileHandler
+
 # Configure logging
 logging.basicConfig(
-    level=logging.INFO,
+    level=logging.WARNING,  # Changed from INFO to WARNING
     format='%(asctime)s - %(levelname)s - %(message)s',
     handlers=[
-        logging.FileHandler('logs/backend_server.log'),
+        RotatingFileHandler(
+            'logs/backend_server.log',
+            maxBytes=5*1024*1024,  # 5MB
+            backupCount=2
+        ),
         logging.StreamHandler()
     ]
 )
-logger = logging.getLogger(__name__)
+logger = logging.getLogger('enhanced_backend')
+logger.addFilter(DuplicateFilter())
+
+# Reduce logging level for all modules
+logging.getLogger('websockets').setLevel(logging.ERROR)
+logging.getLogger('aiohttp').setLevel(logging.ERROR)
+logging.getLogger('asyncio').setLevel(logging.ERROR)
+logging.getLogger('uvicorn').setLevel(logging.ERROR)
+logging.getLogger('fastapi').setLevel(logging.ERROR)
+logging.getLogger('psutil').setLevel(logging.ERROR)
 
 # Track connected clients
 connected_clients = set()
@@ -136,122 +203,116 @@ async def initialize_memory_system():
             return False
 
 async def initialize_llm_service():
-    """Initialize the advanced LLM service using the LocalLLM implementation."""
+    """Initialize connection to the self-contained LLM service."""
     global llm_client
     
-    llm_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "llm/model.py")
-    
-    # Try primary LLM implementation
     try:
-        # Check if LLM module exists
-        if not os.path.exists(llm_path):
-            logger.warning(f"LLM module not found at {llm_path}")
-            raise FileNotFoundError(f"LLM module not found at {llm_path}")
+        logger.info("Initializing connection to self-contained LLM service...")
         
-        # Import the LocalLLM class
-        logger.info("Initializing advanced LLM service...")
-        
-        # Dynamically import LocalLLM
-        spec = importlib.util.spec_from_file_location("model", llm_path)
-        llm_module = importlib.util.module_from_spec(spec)
-        spec.loader.exec_module(llm_module)
-        
-        # Initialize the LocalLLM instance (try llava first)
-        try:
-            llm_client = llm_module.LocalLLM(model_name="llava")
-            logger.info("Checking llava model availability...")
-            await llm_client.initialize()
-            logger.info("Advanced LLM service initialized successfully with llava")
-            return True
-        except Exception as llava_e:
-            logger.warning(f"Failed to initialize llava model: {llava_e}")
-            logger.info("Trying mistral model as fallback...")
+        # Create a WebSocket client for the LLM service
+        class LLMWebSocketClient:
+            def __init__(self):
+                self.websocket = None
+                self.is_initialized = False
+                self.url = "ws://localhost:8766"
+                self.retry_count = 0
+                self.max_retries = 3
             
-            # Try with mistral as fallback
-            try:
-                llm_client = llm_module.LocalLLM(model_name="mistral")
-                await llm_client.initialize()
-                logger.info("Advanced LLM service initialized with mistral fallback")
-                return True
-            except Exception as mistral_e:
-                logger.warning(f"Failed to initialize mistral model: {mistral_e}")
-                raise mistral_e
+            async def initialize(self):
+                if self.retry_count >= self.max_retries:
+                    return False
+                    
+                self.retry_count += 1
                 
-    except Exception as e:
-        logger.error(f"Error initializing advanced LLM service: {e}")
-        logger.error(traceback.format_exc())
-        
-        # Try simplified mock LLM as fallback
-        try:
-            logger.info("Creating simplified mock LLM as ultimate fallback...")
+                try:
+                    # Close existing connection if any
+                    if self.websocket:
+                        try:
+                            await self.websocket.close()
+                        except:
+                            pass
+                        self.websocket = None
+                    
+                    # Create new connection with basic configuration
+                    self.websocket = await websockets.connect(
+                        self.url,
+                        ping_interval=None,
+                        ping_timeout=None,
+                        close_timeout=1,
+                        max_size=1024*1024,
+                        compression=None
+                    )
+                    
+                    # Wait for welcome message
+                    response = await self.websocket.recv()
+                    response_data = json.loads(response)
+                    
+                    if response_data.get("type") == "welcome":
+                        self.is_initialized = True
+                        self.retry_count = 0
+                        return True
+                    return False
+                    
+                except Exception as e:
+                    logger.error(f"Failed to connect to LLM service: {str(e)}")
+                    return False
             
-            # Create a minimal LLM class on the fly with basic features
-            class MockLLM:
-                def __init__(self, model_name="mock"):
-                    self.model_name = model_name
+            async def generate_response(self, messages):
+                if not self.is_initialized:
+                    success = await self.initialize()
+                    if not success:
+                        return "LLM service is currently unavailable. Please try again later."
+                
+                try:
+                    # Format the message for the LLM service
+                    query = messages[-1]["content"] if isinstance(messages, list) else str(messages)
+                    
+                    # Send request
+                    await self.websocket.send(json.dumps({
+                        "type": "llm_request",
+                        "payload": {
+                            "message": query
+                        }
+                    }))
+                    
+                    # Get response
+                    response = await self.websocket.recv()
+                    response_data = json.loads(response)
+                    
+                    if response_data.get("type") == "llm_response":
+                        return response_data.get("content", "No response generated")
+                    else:
+                        self.is_initialized = False
+                        return "Error: Unexpected response from LLM service"
+                        
+                except Exception as e:
                     self.is_initialized = False
-                    self.response_templates = [
-                        "Based on your query about '{topic}', I can provide this information: {detail}",
-                        "Regarding '{topic}', here's what I found: {detail}",
-                        "I've analyzed your question about '{topic}'. {detail}",
-                        "Here's my response about '{topic}': {detail}"
-                    ]
-                    self.knowledge_base = {
-                        "help": "I can assist with analyzing your environment, answering questions, and providing contextual information.",
-                        "system": "I'm a simplified assistant operating in fallback mode. Some advanced features may be unavailable.",
-                        "context": "I can work with basic context information from your environment.",
-                        "default": "While I'm operating in a limited mode, I'll do my best to assist you with basic information."
-                    }
-                
-                async def initialize(self):
-                    self.is_initialized = True
-                    return True
-                
-                async def generate_response(self, messages):
-                    """Generate a response based on the input messages"""
-                    import random
-                    
-                    # Extract query from messages
-                    query = ""
-                    if isinstance(messages, list) and len(messages) > 0:
-                        for msg in messages:
-                            if msg.get("role") == "user":
-                                query = msg.get("content", "")
-                                break
-                    
-                    # Fall back to last message if no user message found
-                    if not query and len(messages) > 0:
-                        query = messages[-1].get("content", "")
-                    
-                    # Generate a topic from the query
-                    query_words = query.split()
-                    topic = query
-                    if len(query_words) > 5:
-                        topic = " ".join(query_words[:5]) + "..."
-                    
-                    # Find relevant detail from knowledge base or use default
-                    detail = self.knowledge_base.get("default")
-                    for key, value in self.knowledge_base.items():
-                        if key in query.lower():
-                            detail = value
-                            break
-                    
-                    # Format the response
-                    template = random.choice(self.response_templates)
-                    response = template.format(topic=topic, detail=detail)
-                    
-                    return response
+                    return f"Error: {str(e)}"
             
-            # Initialize mock LLM
-            llm_client = MockLLM()
-            await llm_client.initialize()
-            logger.info("Mock LLM initialized as fallback")
+            async def close(self):
+                """Properly close the WebSocket connection"""
+                if self.websocket:
+                    try:
+                        await self.websocket.close()
+                    except:
+                        pass
+                    self.websocket = None
+                self.is_initialized = False
+        
+        llm_client = LLMWebSocketClient()
+        success = await llm_client.initialize()
+        
+        if success:
+            logger.info("Successfully initialized connection to self-contained LLM service")
             return True
-            
-        except Exception as fallback_e:
-            logger.error(f"Failed to create mock LLM fallback: {fallback_e}")
-            llm_client = None
+        else:
+            logger.error("Failed to initialize connection to self-contained LLM service")
             return False
+            
+    except Exception as e:
+        logger.error(f"Error initializing LLM service connection: {e}")
+        logger.error(traceback.format_exc())
+        return False
 
 async def call_local_llm(query, context=None):
     """Call the LocalLLM directly with the user query and context."""
@@ -757,82 +818,33 @@ async def main():
                 # Check again
                 if is_port_in_use(port):
                     logger.error("Failed to release port")
-                    
-                    # Try alternate port as fallback
-                    alternate_port = 8766
-                    logger.info(f"Trying alternate port {alternate_port} as fallback")
-                    
-                    if not is_port_in_use(alternate_port):
-                        port = alternate_port
-                        logger.info(f"Using alternate port {port}")
-                    else:
-                        logger.error(f"Alternate port {alternate_port} also in use, server cannot start")
-                        sys.exit(1)
+                    sys.exit(1)
             except Exception as port_ex:
                 logger.error(f"Error while trying to release port: {port_ex}")
-                logger.error(traceback.format_exc())
-                # Try alternate port
-                alternate_port = 8766
-                if not is_port_in_use(alternate_port):
-                    port = alternate_port
-                    logger.info(f"Using alternate port {port}")
-                else:
-                    logger.error(f"Alternate port {alternate_port} also in use, server cannot start")
-                    sys.exit(1)
+                sys.exit(1)
         
-        # Initialize memory system with retry logic
+        # Initialize memory system
         logger.info("Initializing memory system...")
-        max_memory_retries = 2
-        memory_retry_count = 0
-        memory_initialized = False
+        memory_initialized = await initialize_memory_system()
         
-        while not memory_initialized and memory_retry_count <= max_memory_retries:
-            memory_initialized = await initialize_memory_system()
-            if memory_initialized:
-                logger.info("Memory system initialized successfully")
-                break
-            
-            memory_retry_count += 1
-            if memory_retry_count <= max_memory_retries:
-                logger.warning(f"Memory system initialization failed (attempt {memory_retry_count}/{max_memory_retries}), retrying in 2 seconds...")
-                await asyncio.sleep(2)
+        # Initialize LLM service
+        logger.info("Initializing LLM service...")
+        llm_initialized = await initialize_llm_service()
         
-        if not memory_initialized:
-            logger.warning(f"Memory system initialization failed after {max_memory_retries} attempts, will use simplified fallback")
-            
-        # Initialize advanced LLM service with retry logic
-        logger.info("Initializing advanced LLM service...")
-        max_llm_retries = 2
-        llm_retry_count = 0
-        llm_initialized = False
-        
-        while not llm_initialized and llm_retry_count <= max_llm_retries:
-            llm_initialized = await initialize_llm_service()
-            if llm_initialized:
-                logger.info("Advanced LLM service initialized successfully")
-                break
-            
-            llm_retry_count += 1
-            if llm_retry_count <= max_llm_retries:
-                logger.warning(f"LLM service initialization failed (attempt {llm_retry_count}/{max_llm_retries}), retrying in 2 seconds...")
-                await asyncio.sleep(2)
-        
-        if not llm_initialized:
-            logger.warning(f"LLM service initialization failed after {max_llm_retries} attempts, will use rule-based fallback responses")
-                
-        # Create the server with error handling
+        # Create the server with basic configuration
         try:
             server = await websockets.serve(
                 handler,
-                "0.0.0.0",  # Bind to all interfaces
+                "0.0.0.0",
                 port,
-                ping_interval=10,
-                ping_timeout=5
+                ping_interval=None,
+                ping_timeout=None,
+                close_timeout=1,
+                max_size=1024*1024,
+                compression=None
             )
             
             logger.info(f"Backend server started on ws://0.0.0.0:{port}")
-            logger.info(f"Memory system: {'ACTIVE' if memory_system else 'INACTIVE'}")
-            logger.info(f"Advanced LLM service: {'INITIALIZED' if llm_client else 'NOT AVAILABLE'}")
             
             # Save PID to file
             try:
@@ -841,60 +853,18 @@ async def main():
             except Exception as pid_ex:
                 logger.error(f"Failed to write PID file: {pid_ex}")
             
-            # Record server status to a status file for monitoring
-            try:
-                status_data = {
-                    "server": "enhanced_backend_server",
-                    "status": "running",
-                    "port": port,
-                    "pid": os.getpid(),
-                    "memory_system": memory_initialized,
-                    "llm_service": llm_initialized,
-                    "llm_model": llm_client.model_name if llm_client else "none",
-                    "start_time": datetime.now().isoformat()
-                }
-                
-                with open('logs/server_status.json', 'w') as f:
-                    json.dump(status_data, f, indent=2)
-            except Exception as status_ex:
-                logger.error(f"Failed to write status file: {status_ex}")
-            
-            # Start broadcast task with error handling
-            try:
-                broadcast_task = asyncio.create_task(broadcast_status())
-                broadcast_task.add_done_callback(
-                    lambda task: logger.error(f"Broadcast task ended: {task.exception()}") if task.exception() else None
-                )
-            except Exception as broadcast_ex:
-                logger.error(f"Failed to start broadcast task: {broadcast_ex}")
+            # Start broadcast task
+            broadcast_task = asyncio.create_task(broadcast_status())
             
             # Keep the server running
-            await asyncio.Future()
+            await server.wait_closed()
             
         except Exception as server_ex:
             logger.error(f"Error starting WebSocket server: {server_ex}")
-            logger.error(traceback.format_exc())
-            
-            # Try starting with simpler configuration as last resort
-            try:
-                logger.info("Attempting to start server with minimal configuration as last resort")
-                basic_server = await websockets.serve(
-                    handler,
-                    "localhost",  # Only bind to localhost as fallback
-                    port,
-                    ping_interval=None,  # Disable ping/pong to reduce complexity
-                    ping_timeout=None
-                )
-                
-                logger.info(f"Basic server started on ws://localhost:{port} (limited functionality)")
-                await asyncio.Future()
-            except Exception as basic_ex:
-                logger.error(f"Failed to start even basic server: {basic_ex}")
-                sys.exit(1)
+            sys.exit(1)
         
     except Exception as e:
         logger.error(f"Fatal error starting server: {e}")
-        logger.error(traceback.format_exc())
         sys.exit(1)
 
 if __name__ == "__main__":

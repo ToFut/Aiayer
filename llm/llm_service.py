@@ -15,12 +15,11 @@ import websockets
 from websockets.client import WebSocketClientProtocol
 
 # Configure logging
-os.makedirs('logs/llm', exist_ok=True)
 logging.basicConfig(
     level=logging.INFO,
-    format='%(asctime)s - %(levelname)s - %(message)s',
+    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
     handlers=[
-        logging.FileHandler('logs/llm/llm_service.log'),
+        logging.FileHandler('logs/aiayer.log'),
         logging.StreamHandler()
     ]
 )
@@ -159,8 +158,24 @@ class LLMService:
             if not prompt:
                 raise ValueError("No prompt provided")
             
+            # Log the final prompt being sent to the LLM
+            logger.info(f"🤖 SENDING PROMPT TO LLM:")
+            logger.info(f"  - Prompt: {prompt[:200]}...")
+            if len(prompt) > 200:
+                logger.info(f"  - Full prompt length: {len(prompt)} chars")
+            
+            # Log any additional context or parameters
+            if 'context' in data:
+                logger.info(f"  - Context keys: {list(data['context'].keys())}")
+                logger.info(f"  - Context size: {len(str(data['context']))} chars")
+            
             # Generate text using LLM
             response = await self.llm_client.generate_text(prompt)
+            
+            # Log the response
+            logger.info(f"✅ LLM RESPONSE RECEIVED:")
+            logger.info(f"  - Response length: {len(response)} chars")
+            logger.info(f"  - Response preview: {response[:200]}...")
             
             # Send response
             await self.ws.send(json.dumps({

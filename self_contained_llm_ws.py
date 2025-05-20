@@ -11,22 +11,78 @@ import os
 import sys
 import aiohttp
 from datetime import datetime
+import time
 
 # Configure logging
 os.makedirs('logs', exist_ok=True)
+os.makedirs('logs/llm', exist_ok=True)
+
+# Create a custom filter to prevent duplicate logs
+class DuplicateFilter(logging.Filter):
+    def __init__(self):
+        super().__init__()
+        self.last_log = None
+        self.last_time = None
+        self.min_interval = 30  # Minimum seconds between similar logs
+        self.connection_logs = set()  # Track unique connections
+
+    def filter(self, record):
+        # Skip connection logs for already logged connections
+        if "WebSocket connection established" in record.getMessage():
+            client_id = record.getMessage().split("from ")[-1]
+            if client_id in self.connection_logs:
+                return False
+            self.connection_logs.add(client_id)
+            return True
+
+        # Handle other logs
+        current_log = (record.levelno, record.getMessage())
+        current_time = time.time()
+        
+        if current_log != self.last_log:
+            self.last_log = current_log
+            self.last_time = current_time
+            return True
+            
+        if current_time - self.last_time >= self.min_interval:
+            self.last_time = current_time
+            return True
+            
+        return False
+
+# Configure logging with rotation
+from logging.handlers import RotatingFileHandler
+
+# Configure logging
 logging.basicConfig(
-    level=logging.INFO,
-    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
+    level=logging.WARNING,  # Changed from INFO to WARNING
+    format='%(asctime)s - %(levelname)s - %(message)s',
     handlers=[
-        logging.FileHandler('logs/self_contained_llm_ws.log'),
+        RotatingFileHandler(
+            'logs/llm/self_contained_llm.log',
+            maxBytes=5*1024*1024,  # 5MB
+            backupCount=2
+        ),
         logging.StreamHandler()
     ]
 )
 logger = logging.getLogger('self_contained_llm')
+logger.addFilter(DuplicateFilter())
+
+# Reduce logging level for all modules
+logging.getLogger('websockets').setLevel(logging.ERROR)
+logging.getLogger('aiohttp').setLevel(logging.ERROR)
+logging.getLogger('asyncio').setLevel(logging.ERROR)
+logging.getLogger('uvicorn').setLevel(logging.ERROR)
+logging.getLogger('fastapi').setLevel(logging.ERROR)
 
 # WebSocket clients
 connected_clients = set()
 client_info = {}  # Store client info by ID
+
+# WebSocket server configuration
+WS_HOST = "0.0.0.0"
+WS_PORT = 8766
 
 class OllamaService:
     def __init__(self, ollama_url="http://localhost:11434"):
@@ -136,156 +192,51 @@ def extract_message(data):
     return ""
 
 # WebSocket handler
-async def websocket_handler(websocket, path):
+async def websocket_handler(websocket):
     """Handle WebSocket connections"""
-    client_id = f"client_{id(websocket)}"
-    connected_clients.add(websocket)
-    client_info[client_id] = {"type": "unknown", "connected_at": datetime.now().isoformat(), "path": path}
-    logger.info(f"Client {client_id} connected on path: {path}")
-    
     try:
-        # Send welcome message
-        await websocket.send(json.dumps({
-            "type": "welcome",
-            "message": "Connected to Self-contained LLM WebSocket Server",
-            "timestamp": datetime.now().isoformat()
-        }))
+        # Simple welcome message
+        await websocket.send(json.dumps({"type": "welcome"}))
         
-        # Handle incoming messages
         async for message in websocket:
             try:
                 data = json.loads(message)
                 msg_type = data.get('type', 'unknown')
-                logger.info(f"Received from {client_id}: {msg_type}")
                 
-                # Handle connection establishment
-                if msg_type == 'connection_established':
-                    client_info[client_id]["type"] = data.get('payload', {}).get('client', 'unknown')
-                    logger.info(f"Client {client_id} identified as: {client_info[client_id]['type']}")
-                    
-                    # Send ready confirmation
-                    await websocket.send(json.dumps({
-                        "type": "server_ready",
-                        "payload": {
-                            "status": "connected",
-                            "server_version": "1.0.0",
-                            "model": ollama_service.model_name,
-                            "timestamp": datetime.now().isoformat()
-                        }
-                    }))
-                
-                # Handle status or context request
-                elif msg_type == 'status_request' or msg_type == 'context_request':
-                    # Send status response
-                    await websocket.send(json.dumps({
-                        "type": "status_response",
-                        "payload": {
-                            "connected_clients": len(connected_clients),
-                            "model": ollama_service.model_name,
-                            "timestamp": datetime.now().isoformat()
-                        }
-                    }))
-                    
-                    # Also send a context update that the overlay expects
-                    await websocket.send(json.dumps({
-                        "type": "context_update",
-                        "payload": {
-                            "context": {
-                                "active_window": "Self-contained LLM Chat",
-                                "active_app": "Chat Overlay"
-                            },
-                            "timestamp": datetime.now().isoformat()
-                        }
-                    }))
-                    
-                    # Send a welcome message for better visibility
-                    welcome_message = "Hello! I'm your local LLM assistant (using " + ollama_service.model_name + "). You can send me messages and I'll respond using your local Ollama installation. What would you like to talk about?"
-                    await websocket.send(json.dumps({
-                        "type": "llm_response",
-                        "content": welcome_message,
-                        "payload": {
-                            "response": welcome_message,
-                            "model": ollama_service.model_name,
-                            "timestamp": datetime.now().isoformat()
-                        }
-                    }))
-                
-                # Handle LLM requests (different message types that could contain a user query)
-                elif msg_type in ['llm_request', 'chat_message', 'user_message']:
-                    # Extract the query from the message
+                if msg_type == 'llm_request':
                     user_message = extract_message(data)
-                    
                     if user_message:
-                        logger.info(f"Processing user message: {user_message[:100]}...")
-                        
-                        # Generate LLM response
                         response_data = await ollama_service.generate_response(user_message)
-                        
-                        # Send response back in a format compatible with both old and new clients
                         await websocket.send(json.dumps({
                             "type": "llm_response",
-                            "content": response_data.get("response", "No response generated"),
-                            "payload": response_data,
-                            "timestamp": datetime.now().isoformat()
+                            "content": response_data.get("response", "No response generated")
                         }))
-                        
-                        logger.info(f"Sent LLM response: {response_data.get('response', '')[:100]}...")
                     else:
-                        logger.warning("Received empty message")
                         await websocket.send(json.dumps({
                             "type": "error",
-                            "content": "Empty message received",
-                            "message": "Empty message received",
-                            "timestamp": datetime.now().isoformat()
+                            "message": "Empty message received"
                         }))
                 
-                # Handle ping messages
-                elif msg_type == 'ping':
-                    # Respond with pong
-                    await websocket.send(json.dumps({
-                        "type": "pong",
-                        "timestamp": datetime.now().isoformat()
-                    }))
-                    
-                    # Also send a status update to keep the connection active
-                    status_msg = f"Server is online and ready. Using model: {ollama_service.model_name}"
-                    await websocket.send(json.dumps({
-                        "type": "status_update",
-                        "content": status_msg,
-                        "payload": {
-                            "server_status": "online",
-                            "llm_status": "ready",
-                            "model": ollama_service.model_name,
-                            "timestamp": datetime.now().isoformat()
-                        }
-                    }))
-                
-                # Default response for unknown message types
-                else:
-                    await websocket.send(json.dumps({
-                        "type": "echo",
-                        "original_type": msg_type,
-                        "message": f"Received unknown message type: {msg_type}",
-                        "timestamp": datetime.now().isoformat()
-                    }))
-                
             except json.JSONDecodeError:
-                logger.error(f"Invalid JSON from {client_id}: {message[:100]}...")
                 await websocket.send(json.dumps({
                     "type": "error",
-                    "message": "Invalid JSON format",
-                    "timestamp": datetime.now().isoformat()
+                    "message": "Invalid JSON format"
+                }))
+            except Exception as e:
+                await websocket.send(json.dumps({
+                    "type": "error",
+                    "message": str(e)
                 }))
                 
-    except websockets.exceptions.ConnectionClosed as e:
-        logger.info(f"Connection closed with {client_id}: {e}")
+    except websockets.exceptions.ConnectionClosed:
+        pass
     except Exception as e:
-        logger.error(f"Error handling client {client_id}: {e}")
+        logger.error(f"Error handling client: {e}")
     finally:
-        connected_clients.remove(websocket)
-        if client_id in client_info:
-            del client_info[client_id]
-        logger.info(f"Client {client_id} disconnected")
+        try:
+            await websocket.close()
+        except:
+            pass
 
 async def broadcast(message):
     """Broadcast a message to all connected clients"""
@@ -312,34 +263,28 @@ async def heartbeat():
         await asyncio.sleep(30)  # Heartbeat every 30 seconds
 
 async def main():
-    # Initialize ollama service
-    logger.info("Initializing Ollama service...")
-    await ollama_service.list_models()
-    
-    # Set up WebSocket server
-    port = 8765
-    host = "0.0.0.0"  # Listen on all interfaces
-    
-    # Create directories
-    os.makedirs("pids", exist_ok=True)
-    
+    """Main function to start the WebSocket server"""
     try:
-        logger.info(f"Starting WebSocket server on {host}:{port}")
+        # Initialize Ollama service
+        if not await ollama_service.list_models():
+            logger.error("Failed to initialize Ollama service")
+            return
         
-        # Start heartbeat task
-        heartbeat_task = asyncio.create_task(heartbeat())
+        # Start WebSocket server with basic configuration
+        server = await websockets.serve(
+            websocket_handler, 
+            WS_HOST, 
+            WS_PORT,
+            ping_interval=None,
+            ping_timeout=None,
+            close_timeout=1,
+            max_size=1024*1024,
+            compression=None
+        )
         
-        # Start the WebSocket server
-        async with websockets.serve(websocket_handler, host, port):
-            # Save PID
-            with open('pids/self_contained_llm_ws.pid', 'w') as f:
-                f.write(str(os.getpid()))
-                
-            logger.info(f"WebSocket server started on ws://{host}:{port}")
-            logger.info(f"Using LLM model: {ollama_service.model_name}")
+        logger.info(f"WebSocket server started on ws://{WS_HOST}:{WS_PORT}")
+        await server.wait_closed()
             
-            # Keep running forever
-            await asyncio.Future()
     except Exception as e:
         logger.error(f"Error starting server: {e}")
         sys.exit(1)
@@ -349,7 +294,6 @@ if __name__ == "__main__":
         asyncio.run(main())
     except KeyboardInterrupt:
         logger.info("Server stopped by user")
-        sys.exit(0)
     except Exception as e:
-        logger.error(f"Error in main: {e}")
+        logger.error(f"Server error: {e}")
         sys.exit(1)

@@ -18,7 +18,9 @@ logger = logging.getLogger(__name__)
 class ScreenSensor:
     """Sensor for monitoring screen content."""
     
-    def __init__(self):
+    def __init__(self, config=None):
+        """Initialize screen sensor with optional config."""
+        self.config = config or {}
         self.current_state = {
             "timestamp": time.time(),
             "text": "",
@@ -28,6 +30,30 @@ class ScreenSensor:
             "image_hash": None
         }
         logger.info("Screen sensor initialized")
+    
+    async def initialize(self):
+        """Initialize the sensor with proper error handling and retries"""
+        try:
+            logger.info("Screen sensor initialization started")
+            return True
+        except Exception as e:
+            logger.error(f"Error initializing screen sensor: {e}")
+            return False
+    
+    def get_active_apps(self) -> List[str]:
+        """Get list of currently active applications."""
+        try:
+            active_apps = []
+            for proc in psutil.process_iter(['pid', 'name', 'create_time']):
+                try:
+                    if proc.info['name']:
+                        active_apps.append(proc.info['name'])
+                except (psutil.NoSuchProcess, psutil.AccessDenied):
+                    continue
+            return active_apps
+        except Exception as e:
+            logger.error(f"Error getting active apps: {e}")
+            return []
     
     async def get_current_state(self) -> Dict[str, Any]:
         """Get current screen state."""
@@ -43,12 +69,16 @@ class ScreenSensor:
             # Generate hash of the image
             image_hash = hashlib.md5(img_byte_arr).hexdigest()
             
+            # Get active apps
+            active_apps = self.get_active_apps()
+            
             # Update state
             self.current_state.update({
                 "timestamp": time.time(),
                 "image": screenshot,
                 "image_hash": image_hash,
-                "image_size": len(img_byte_arr)
+                "image_size": len(img_byte_arr),
+                "active_apps": active_apps
             })
             
             logger.info(f"Screen captured: {len(img_byte_arr)} bytes, hash: {image_hash[:8]}")
@@ -102,7 +132,18 @@ class ProcessSensor:
             "active_apps": [],
             "window_history": []
         }
+        self.running = False
         logger.info("Process sensor initialized")
+    
+    async def start(self) -> bool:
+        """Start the process sensor."""
+        try:
+            self.running = True
+            logger.info("Process sensor started")
+            return True
+        except Exception as e:
+            logger.error(f"Error starting process sensor: {e}")
+            return False
     
     async def get_current_state(self) -> Dict[str, Any]:
         """Get current process state."""

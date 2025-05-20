@@ -3,34 +3,64 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Personal AI Assistant</title>
+    <title>SensAI Assistant</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/chat.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
     <div class="assistant-widget">
         <div class="widget-header">
             <div class="widget-title">
-                <span class="widget-icon">🤖</span>
-                <span class="widget-name">Personal Assistant</span>
+                <span class="widget-icon">👁️</span>
+                <span class="widget-name">SensAI Assistant</span>
             </div>
             <div class="widget-controls">
-                <button id="minimize-btn" class="control-btn">−</button>
-                <button id="close-btn" class="control-btn">×</button>
-        </div>
+                <button id="minimize-btn" class="control-btn" title="Minimize"><i class="fas fa-minus"></i></button>
+                <button id="close-btn" class="control-btn" title="Close"><i class="fas fa-times"></i></button>
+            </div>
         </div>
         
         <div class="widget-content">
             <div id="chat-messages" class="chat-messages">
-            {% for message in conversation %}
-            <div class="message {{ message.role }}">
-                    <div class="message-content">{{ message.content }}</div>
+                {% if conversation|length == 0 %}
+                <div class="welcome-message">
+                    <div class="welcome-icon">👋</div>
+                    <h3>Welcome to SensAI</h3>
+                    <p>How can I assist you today?</p>
+                    <div class="quick-questions">
+                        <button class="quick-question-btn" data-question="What can you help me with?">What can you help me with?</button>
+                        <button class="quick-question-btn" data-question="Show me some examples">Show me some examples</button>
+                        <button class="quick-question-btn" data-question="How does this work?">How does this work?</button>
+                    </div>
+                </div>
+                {% endif %}
+                
+                {% for message in conversation %}
+                <div class="message-wrapper {{ message.role }}">
+                    <div class="message">
+                        <div class="message-avatar">
+                            {% if message.role == 'user' %}
+                            <div class="user-avatar">👤</div>
+                            {% else %}
+                            <div class="ai-avatar">👁️</div>
+                            {% endif %}
+                        </div>
+                        <div class="message-content">
+                            <div class="message-text">{{ message.content }}</div>
+                            <div class="message-time">{{ message.timestamp|default(now) }}</div>
+                        </div>
+                    </div>
                 </div>
                 {% endfor %}
-        </div>
+            </div>
         
             <div class="input-area">
-                <input type="text" id="query-input" placeholder="Ask me anything..." autocomplete="off">
-            <button id="send-btn">Send</button>
+                <div class="input-wrapper">
+                    <textarea id="query-input" placeholder="Ask me anything..." rows="1" autocomplete="off"></textarea>
+                    <button id="send-btn" title="Send message">
+                        <i class="fas fa-paper-plane"></i>
+                    </button>
+                </div>
             </div>
         </div>
     </div>

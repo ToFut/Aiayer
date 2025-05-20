@@ -6,7 +6,12 @@ document.addEventListener('DOMContentLoaded', function() {
     const chatMessages = document.getElementById('chat-messages');
     const queryInput = document.getElementById('query-input');
     const sendBtn = document.getElementById('send-btn');
-    const commandBtns = document.querySelectorAll('.command-btn');
+    const quickQuestionBtns = document.querySelectorAll('.quick-question-btn');
+
+    // For message grouping
+    let lastMessageTime = null;
+    let lastMessageDate = null;
+    let lastMessageRole = null;
 
     // Drag functionality
     let isDragging = false;
@@ -22,10 +27,12 @@ document.addEventListener('DOMContentLoaded', function() {
     document.addEventListener('mouseup', dragEnd);
 
     function dragStart(e) {
+        if (e.target.closest('.control-btn')) return;
+        
         initialX = e.clientX - xOffset;
         initialY = e.clientY - yOffset;
 
-        if (e.target === header) {
+        if (e.target.closest('.widget-header')) {
             isDragging = true;
         }
     }
@@ -53,19 +60,31 @@ document.addEventListener('DOMContentLoaded', function() {
         el.style.transform = `translate3d(${xPos}px, ${yPos}px, 0)`;
     }
 
+    // Auto-resize textarea
+    function autoResizeTextarea() {
+        queryInput.style.height = 'auto';
+        const newHeight = Math.min(Math.max(queryInput.scrollHeight, 38), 120);
+        queryInput.style.height = newHeight + 'px';
+    }
+
+    queryInput.addEventListener('input', autoResizeTextarea);
+    
+    // Initial sizing
+    setTimeout(autoResizeTextarea, 10);
+
     // Minimize functionality
     minimizeBtn.addEventListener('click', () => {
         widget.classList.toggle('minimized');
         if (widget.classList.contains('minimized')) {
-            widget.style.height = '40px';
+            widget.style.height = '60px';
             chatMessages.style.display = 'none';
-            queryInput.style.display = 'none';
-            sendBtn.style.display = 'none';
+            document.querySelector('.input-area').style.display = 'none';
         } else {
-            widget.style.height = '500px';
+            widget.style.height = '600px';
             chatMessages.style.display = 'flex';
-            queryInput.style.display = 'block';
-            sendBtn.style.display = 'block';
+            document.querySelector('.input-area').style.display = 'block';
+            scrollToBottom();
+            queryInput.focus();
         }
     });
 
@@ -81,91 +100,211 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Initialize
     scrollToBottom();
-
-    // Format context analysis sections
-    function formatContextSections(content) {
+    
+    // Format message content for different sections
+    function formatMessageContent(content) {
+        // Check if content contains markdown code blocks
+        if (content.includes('```')) {
+            content = formatCodeBlocks(content);
+        }
+        
         // Split content into sections
         const sections = content.split('\n\n');
         let formattedContent = '';
         
-        sections.forEach(section => {
-            if (section.startsWith('[Context Analysis]')) {
-                formattedContent += '<div class="context-section">';
-                formattedContent += '<h3>Context Analysis</h3>';
-                formattedContent += '<div class="context-content">';
-                formattedContent += section.replace('[Context Analysis]', '');
-                formattedContent += '</div></div>';
-            } else if (section.startsWith('[Response]')) {
-                formattedContent += '<div class="response-section">';
-                formattedContent += '<h3>Response</h3>';
-                formattedContent += '<div class="response-content">';
-                formattedContent += section.replace('[Response]', '');
-                formattedContent += '</div></div>';
-            } else if (section.startsWith('[Semantic Understanding]')) {
-                formattedContent += '<div class="semantic-section">';
-                formattedContent += '<h3>Semantic Understanding</h3>';
-                formattedContent += '<div class="semantic-content">';
-                formattedContent += section.replace('[Semantic Understanding]', '');
-                formattedContent += '</div></div>';
-            } else {
-                formattedContent += section;
-            }
-        });
+        let isInSection = false;
         
-        return formattedContent;
+        for (const section of sections) {
+            if (section.startsWith('Context Analysis:') || section.startsWith('[Context Analysis]')) {
+                isInSection = true;
+                formattedContent += `<div class="context-section">
+                    <h4>Context Analysis</h4>
+                    <div class="context-content">${section.replace(/(Context Analysis:|^\[Context Analysis\])/g, '').trim()}</div>
+                </div>`;
+            } else if (section.startsWith('Response:') || section.startsWith('[Response]')) {
+                isInSection = true;
+                formattedContent += `<div class="response-section">
+                    <h4>Response</h4>
+                    <div class="response-content">${section.replace(/(Response:|^\[Response\])/g, '').trim()}</div>
+                </div>`;
+            } else if (section.startsWith('Semantic Understanding:') || section.startsWith('[Semantic Understanding]')) {
+                isInSection = true;
+                formattedContent += `<div class="semantic-section">
+                    <h4>Semantic Understanding</h4>
+                    <div class="semantic-content">${section.replace(/(Semantic Understanding:|^\[Semantic Understanding\])/g, '').trim()}</div>
+                </div>`;
+            } else if (section.toLowerCase().includes('error:')) {
+                isInSection = true;
+                formattedContent += `<div class="error-message">${section}</div>`;
+            } else {
+                formattedContent += `<p>${section}</p>`;
+            }
+        }
+        
+        return isInSection ? formattedContent : content;
+    }
+    
+    // Format code blocks with syntax highlighting
+    function formatCodeBlocks(content) {
+        // Simple code block formatting
+        return content.replace(/```(\w*)([\s\S]*?)```/g, function(match, language, code) {
+            return `<pre><code class="language-${language}">${code.trim()}</code></pre>`;
+        });
+    }
+
+    // Add timestamp separator if needed
+    function addTimestampIfNeeded() {
+        const now = new Date();
+        const nowDate = now.toLocaleDateString();
+        const isNewDay = lastMessageDate !== nowDate;
+        
+        // Check if we need to add a new day separator
+        if (lastMessageDate && isNewDay) {
+            const dateSeparator = document.createElement('div');
+            dateSeparator.className = 'date-separator';
+            dateSeparator.innerHTML = `<div class="separator-line"></div>
+                                      <div class="separator-text">${formatDateForDisplay(now)}</div>
+                                      <div class="separator-line"></div>`;
+            chatMessages.appendChild(dateSeparator);
+        }
+        
+        // Check if we need to add a time separator (if more than 5 minutes have passed)
+        const nowTime = now.getTime();
+        if (lastMessageTime && (nowTime - lastMessageTime > 5 * 60 * 1000)) {
+            const timeSeparator = document.createElement('div');
+            timeSeparator.className = 'time-separator';
+            timeSeparator.textContent = formatTimeForDisplay(now);
+            chatMessages.appendChild(timeSeparator);
+        }
+        
+        // Update the last message time and date
+        lastMessageTime = nowTime;
+        lastMessageDate = nowDate;
+    }
+    
+    // Format date for display
+    function formatDateForDisplay(date) {
+        const today = new Date();
+        const yesterday = new Date(today);
+        yesterday.setDate(yesterday.getDate() - 1);
+        
+        if (date.toDateString() === today.toDateString()) {
+            return 'Today';
+        } else if (date.toDateString() === yesterday.toDateString()) {
+            return 'Yesterday';
+        } else {
+            return date.toLocaleDateString(undefined, { 
+                weekday: 'long', 
+                year: 'numeric', 
+                month: 'long', 
+                day: 'numeric' 
+            });
+        }
+    }
+    
+    // Format time for display
+    function formatTimeForDisplay(date) {
+        return date.toLocaleTimeString([], { 
+            hour: '2-digit', 
+            minute: '2-digit'
+        });
+    }
+
+    // Get current timestamp in HH:MM format
+    function getCurrentTime() {
+        const now = new Date();
+        return now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+    }
+
+    // Check if message should be grouped
+    function shouldGroupMessage(role) {
+        // Group messages from the same sender if they're close in time
+        return lastMessageRole === role && (Date.now() - lastMessageTime < 60000); // 1 minute
     }
 
     // Add message to chat
-    function addMessage(role, content) {
-        const messageDiv = document.createElement('div');
-        messageDiv.className = `message ${role}`;
+    function addMessage(role, content, isError = false) {
+        // Add timestamp separator if needed
+        addTimestampIfNeeded();
         
-        // Format content based on sections
-        let formattedContent = content;
-        if (role === 'assistant') {
-            // Split content into sections
-            const sections = content.split('\n\n');
-            formattedContent = '';
-            
-            for (const section of sections) {
-                if (section.startsWith('Context Analysis:')) {
-                    formattedContent += `<div class="context-section">
-                        <h3>Context Analysis</h3>
-                        <div class="context-content">${section.replace('Context Analysis:', '').trim()}</div>
-                    </div>`;
-                } else if (section.startsWith('Response:')) {
-                    formattedContent += `<div class="response-section">
-                        <h3>Response</h3>
-                        <div class="response-content">${section.replace('Response:', '').trim()}</div>
-                    </div>`;
-                } else {
-                    formattedContent += `<div class="message-content">${section}</div>`;
-                }
-            }
+        // Create message wrapper
+        const messageWrapper = document.createElement('div');
+        messageWrapper.className = `message-wrapper ${role}`;
+        
+        if (shouldGroupMessage(role)) {
+            messageWrapper.classList.add('grouped');
         } else {
-            formattedContent = `<div class="message-content">${content}</div>`;
+            lastMessageRole = role;
         }
         
-        messageDiv.innerHTML = formattedContent;
-        chatMessages.appendChild(messageDiv);
+        const formattedContent = formatMessageContent(content);
+        const timestamp = getCurrentTime();
+        
+        const avatarIcon = role === 'user' ? '👤' : '👁️';
+        const avatarClass = role === 'user' ? 'user-avatar' : 'ai-avatar';
+        
+        // Create avatar or add placeholder for grouped messages
+        const avatarHtml = shouldGroupMessage(role) 
+            ? '<div class="message-avatar-placeholder"></div>' 
+            : `<div class="message-avatar">
+                 <div class="${avatarClass}">${avatarIcon}</div>
+               </div>`;
+        
+        messageWrapper.innerHTML = `
+            <div class="message ${isError ? 'error' : ''}">
+                ${avatarHtml}
+                <div class="message-content">
+                    <div class="message-text">${formattedContent}</div>
+                    <div class="message-time">${timestamp}</div>
+                </div>
+            </div>
+        `;
+        
+        chatMessages.appendChild(messageWrapper);
         scrollToBottom();
     }
 
-    // Show loading indicator
-    function showLoading() {
-        const loadingDiv = document.createElement('div');
-        loadingDiv.className = 'message assistant';
-        loadingDiv.innerHTML = '<div class="message-content">Thinking...</div>';
-        chatMessages.appendChild(loadingDiv);
+    // Show typing indicator
+    function showTypingIndicator() {
+        // Add timestamp separator if needed
+        addTimestampIfNeeded();
+        
+        const messageWrapper = document.createElement('div');
+        messageWrapper.className = 'message-wrapper assistant typing';
+        
+        if (shouldGroupMessage('assistant')) {
+            messageWrapper.classList.add('grouped');
+        }
+        
+        const avatarHtml = shouldGroupMessage('assistant') 
+            ? '<div class="message-avatar-placeholder"></div>' 
+            : `<div class="message-avatar">
+                 <div class="ai-avatar">👁️</div>
+               </div>`;
+        
+        messageWrapper.innerHTML = `
+            <div class="message">
+                ${avatarHtml}
+                <div class="message-content">
+                    <div class="typing-indicator">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                </div>
+            </div>
+        `;
+        
+        chatMessages.appendChild(messageWrapper);
         scrollToBottom();
-        return loadingDiv;
+        return messageWrapper;
     }
 
-    // Remove loading indicator
-    function removeLoading() {
-        const loadingDiv = chatMessages.querySelector('.message:last-child');
-        if (loadingDiv && loadingDiv.querySelector('.message-content').textContent === 'Thinking...') {
-            loadingDiv.remove();
+    // Remove typing indicator
+    function removeTypingIndicator() {
+        const typingIndicator = chatMessages.querySelector('.message-wrapper.typing');
+        if (typingIndicator) {
+            typingIndicator.remove();
         }
     }
 
@@ -176,11 +315,12 @@ document.addEventListener('DOMContentLoaded', function() {
         // Add user message to chat
         addMessage('user', query);
         
-        // Clear input
+        // Clear input and reset height
         queryInput.value = '';
+        queryInput.style.height = 'auto';
         
-        // Show loading indicator
-        const loadingDiv = showLoading();
+        // Show typing indicator
+        const typingIndicator = showTypingIndicator();
         
         try {
             // Send request with JSON data
@@ -200,29 +340,29 @@ document.addEventListener('DOMContentLoaded', function() {
             // Parse response
             const data = await response.json();
             
-            // Remove loading indicator
-            removeLoading();
+            // Remove typing indicator
+            removeTypingIndicator();
             
             if (data.error) {
                 // Show error
-                addMessage('assistant', `Error: ${data.reply}`);
+                addMessage('assistant', `Error: ${data.reply}`, true);
             } else {
-                // Add assistant message with formatted context
+                // Add assistant message with formatted content
                 addMessage('assistant', data.reply);
             }
             
         } catch (error) {
             console.error('Error sending query:', error);
-            removeLoading();
-            addMessage('assistant', 'Failed to communicate with the server. Please try again.');
+            removeTypingIndicator();
+            addMessage('assistant', 'Failed to communicate with the server. Please try again.', true);
         }
     }
 
-    // Handle command buttons
-    commandBtns.forEach(btn => {
+    // Handle quick question buttons
+    quickQuestionBtns.forEach(btn => {
         btn.addEventListener('click', () => {
-            const command = btn.getAttribute('data-command');
-            sendQuery(command);
+            const question = btn.getAttribute('data-question') || btn.textContent;
+            sendQuery(question);
         });
     });
 
@@ -231,15 +371,26 @@ document.addEventListener('DOMContentLoaded', function() {
         sendQuery(queryInput.value);
     });
 
-    // Handle Enter key in input
+    // Handle Enter key in input (but allow Shift+Enter for new line)
     queryInput.addEventListener('keydown', (e) => {
-        if (e.key === 'Enter') {
+        if (e.key === 'Enter' && !e.shiftKey) {
+            e.preventDefault();
             sendQuery(queryInput.value);
         }
     });
 
     // Focus input on page load
     queryInput.focus();
+
+    // Make chat messages container interactive
+    chatMessages.addEventListener('click', (e) => {
+        // Handle clickable elements within messages if needed
+        const codeBlock = e.target.closest('pre');
+        if (codeBlock) {
+            // Add code copy functionality if desired
+            console.log('Code block clicked');
+        }
+    });
 
     // Setup Server-Sent Events for real-time updates
     if (!!window.EventSource) {

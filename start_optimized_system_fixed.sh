@@ -49,7 +49,9 @@ ensure_dir "cache/process_sensor"
 ensure_dir "cache/screen_sensor"
 ensure_dir "cache/file_sensor"
 ensure_dir "memory"
-ensure_dir "logs/sensors"
+ensure_dir "logs/sensors/sensor_process"
+ensure_dir "logs/sensors/screen_sensor"
+ensure_dir "logs/sensors/file_sensor"
 ensure_dir "logs/memory"
 ensure_dir "pids"
 
@@ -190,11 +192,11 @@ start_service() {
 }
 
 # Start process sensor
-start_service "process sensor" "python3 sensors/process_sensor.py" "logs/sensors/process_sensor.log" "pids/process_sensor.pid"
+start_service "process sensor" "python3 sensors/fixed_process_sensor.py" "logs/sensors/sensor_process/process_sensor.log" "pids/process_sensor.pid"
 PROCESS_SENSOR_SUCCESS=$?
 
 # Start screen sensor
-start_service "screen sensor" "python3 sensors/screen_sensor.py" "logs/sensors/screen_sensor.log" "pids/screen_sensor.pid"
+start_service "screen sensor" "python3 sensors/fixed_screen_sensor.py" "logs/sensors/screen_sensor/screen_sensor.log" "pids/screen_sensor.pid"
 SCREEN_SENSOR_SUCCESS=$?
 
 # Start file sensor with specified paths
@@ -203,95 +205,8 @@ HOME_DIR=$(cd ~ && pwd)
 CURRENT_DIR=$(pwd)
 MONITORED_PATHS="[\"$HOME_DIR/Desktop\", \"$CURRENT_DIR\"]"
 
-# Create a temporary file sensor script with proper paths
-cat > temp_file_sensor.py << EOF
-import os
-import json
-import sys
-import time
-import logging
-from watchdog.observers import Observer
-from watchdog.events import FileSystemEventHandler
-import threading
-
-# Set up logging
-logging.basicConfig(level=logging.INFO, 
-                   format='%(asctime)s - %(levelname)s - %(message)s')
-logger = logging.getLogger('file_sensor')
-
-# Import the FileSensor class
-sys.path.append('.')
-from sensors.file_sensor import FileSensor
-
-if __name__ == "__main__":
-    # Create cache directory if it doesn't exist
-    os.makedirs('cache/file_sensor', exist_ok=True)
-    
-    # Paths to monitor
-    paths = $MONITORED_PATHS
-    
-    # Create file sensor instance
-    sensor = FileSensor(paths=paths, interval_sec=5)
-    
-    # Define a function to periodically save events to cache
-    def save_to_cache():
-        while True:
-            try:
-                events = sensor.get_recent_events(count=20, format_str=False)
-                
-                # Convert events to serializable format
-                serializable_events = []
-                for timestamp, event_type, path in events:
-                    serializable_events.append({
-                        "timestamp": timestamp,
-                        "type": event_type,
-                        "path": path
-                    })
-                
-                # Save to cache
-                cache_data = {
-                    "timestamp": time.time(),
-                    "events": serializable_events
-                }
-                
-                with open('cache/file_sensor/last_file.json', 'w') as f:
-                    json.dump(cache_data, f, indent=2)
-                    
-                logger.debug(f"Saved {len(serializable_events)} events to cache")
-            except Exception as e:
-                logger.error(f"Error saving to cache: {e}")
-                
-            # Sleep before next save
-            time.sleep(10)
-    
-    # Start the sensor
-    sensor.start()
-    
-    # Start cache saving thread
-    cache_thread = threading.Thread(target=save_to_cache, daemon=True)
-    cache_thread.start()
-    
-    logger.info(f"Monitoring paths: {paths}")
-    logger.info("File sensor started")
-    
-    try:
-        # Keep the script running
-        while True:
-            time.sleep(5)
-            
-            # Print heartbeat every 30 seconds
-            if int(time.time()) % 30 == 0:
-                logger.info("HEARTBEAT: File sensor is alive")
-                
-    except KeyboardInterrupt:
-        logger.info("Stopping file sensor...")
-    finally:
-        sensor.stop()
-        logger.info("File sensor stopped")
-EOF
-
-# Start file sensor using our minimal implementation that doesn't require watchdog
-start_service "file sensor" "python3 minimal_file_sensor.py" "logs/sensors/file_sensor.log" "pids/file_sensor.pid" 
+# Start file sensor using our new implementation
+start_service "file sensor" "python3 sensors/file_sensor.py" "logs/sensors/file_sensor.log" "pids/file_sensor.pid" 
 FILE_SENSOR_SUCCESS=$?
 
 # Start memory connector
@@ -519,8 +434,8 @@ if [ -n "$FAILED_SERVICES" ]; then
     print_colored "red" "ERROR: The following services failed to start: $FAILED_SERVICES"
     print_colored "yellow" "Check logs for more information."
     
-    print_colored "yellow" "For process sensor: tail -f logs/sensors/process_sensor.log"
-    print_colored "yellow" "For screen sensor: tail -f logs/sensors/screen_sensor.log"
+    print_colored "yellow" "For process sensor: tail -f logs/sensors/sensor_process/process_sensor.log"
+    print_colored "yellow" "For screen sensor: tail -f logs/sensors/screen_sensor/screen_sensor.log"
     print_colored "yellow" "For file sensor: tail -f logs/sensors/file_sensor.log"
     print_colored "yellow" "For memory connector: tail -f logs/memory/connector.log"
     print_colored "yellow" "For WebSocket server: tail -f logs/ws_server_8767.log"
@@ -551,8 +466,8 @@ echo ""
 print_colored "yellow" "To check logs, use:"
 echo "tail -f logs/ws_server_8767.log          # WebSocket server logs"
 echo "tail -f logs/memory/connector.log        # Memory connector logs"
-echo "tail -f logs/sensors/process_sensor.log  # Process sensor logs"
-echo "tail -f logs/sensors/screen_sensor.log   # Screen sensor logs"
+echo "tail -f logs/sensors/sensor_process/process_sensor.log  # Process sensor logs"
+echo "tail -f logs/sensors/screen_sensor/screen_sensor.log   # Screen sensor logs"
 echo "tail -f logs/sensors/file_sensor.log     # File sensor logs"
 
 echo ""

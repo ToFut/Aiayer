@@ -1,0 +1,120 @@
+# Local AI Assistant Configuration
+
+# System settings
+system:
+  name: "Local AI Assistant"
+  version: "0.1.0"
+  debug: false  # Disable debug mode
+
+# Agent settings
+agent:
+  filter_patterns:
+    - "password"
+    - "secret"
+    - "key"
+    - "token"
+    - "api_key"
+    - "private_key"
+    - "ssh_key"
+    - "credential"
+    - "authentication"
+    - "authorization"
+
+# Sensor settings
+sensors:
+  # Screen sensor
+  screen:
+    enabled: true
+    interval_sec: 10  # Increased from 5 to 10 seconds
+    capture_active_window_only: true  # Only capture active window to reduce processing
+    ocr_language: "eng"
+    max_text_length: 3000  # Reduced from 5000
+
+  # File system sensor
+  file:
+    enabled: true
+    paths:
+      - "/Users/segevbin/Desktop/local_assistant"
+      - "/Users/segevbin/Documents"
+    ignore_patterns:
+      - "*.tmp"
+      - "~*"
+      - ".DS_Store"
+      - "Thumbs.db"
+      - ".git/*"
+      - "__pycache__/*"
+      - "node_modules/*"
+      - "*.pyc"
+      - "*.pyo"
+      - "*.log"
+    max_events: 50  # Reduced from 100
+
+  # Process sensor
+  process:
+    enabled: true
+    interval_sec: 5  # Increased from 3
+    track_all_processes: false
+    check_interval: 5
+
+  # Browser sensor
+  browser:
+    enabled: true
+    check_interval: 5
+
+# LLM settings
+llm:
+  model_name: "ollam3.2:latest"  # Ollama model name
+  host: "localhost"
+  port: 11434  # Default Ollama port
+  request_timeout_sec: 60
+  temperature: 0.7
+  max_tokens: 1000  # Max output tokens
+  top_p: 0.95
+  frequency_penalty: 0.0
+  presence_penalty: 0.0
+  retry_attempts: 2
+
+# Memory settings
+memory:
+  max_conversation_length: 20  # Reduced from 50
+  max_token_budget: 50  # Reduced from 100
+  store_timestamps: false
+
+# Overlay settings
+overlay:
+  enabled: true
+  websocket_port: 8765
+  window:
+    width: 800
+    height: 600
+    transparent: true
+    always_on_top: true
+    decorations: false
+  tauri:
+    dev_mode: true
+  overlay_path: "overlay"
+  check_interval: 5
+
+# Security settings
+security:
+  sensitivity_patterns_path: "config/sensitivity_patterns.txt"
+  allow_read_file_content: true  # If true, allows reading file content on explicit user request
+  allow_network_access: false  # If true, allows the assistant to access internet (FUTURE)
+  sanitize_sensitive_data: true  # If true, sanitizes sensitive data from responses
+  bind_to_localhost: true  # If true, binds the web UI only to localhost
+
+# UI settings
+ui:
+  host: "127.0.0.1"  # Change to 0.0.0.0 to allow access from other devices (not recommended)
+  port: 5001
+  title: "Local AI Assistant"
+  theme: "auto"  # auto (system preference), light, dark
+  enable_markdown: true
+
+# Logging settings
+logging:
+  level: "DEBUG"  # DEBUG, INFO, WARNING, ERROR, CRITICAL
+  file: "local_assistant.log"
+  max_size_mb: 10
+  backup_count: 3
+  log_to_console: true

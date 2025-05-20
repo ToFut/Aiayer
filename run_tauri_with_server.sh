@@ -252,8 +252,8 @@ if [ -f "package.json" ]; then
     WRAPPER_SCRIPT="/tmp/run_tauri_$$.sh"
     cat > $WRAPPER_SCRIPT << 'EOF'
 #!/bin/bash
-# Run Tauri and save PID
-npm run tauri dev &
+# Run Tauri with transparent window and save PID
+TAURI_LOG=info npm run tauri dev -- --no-watch &
 TAURI_PID=$!
 echo $TAURI_PID > $1/tauri.pid
 wait $TAURI_PID

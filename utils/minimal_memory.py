@@ -7,15 +7,63 @@ from datetime import datetime
 
 # Configure logging
 os.makedirs('logs/memory', exist_ok=True)
+
+# Create a custom filter to prevent duplicate logs
+class DuplicateFilter(logging.Filter):
+    def __init__(self):
+        super().__init__()
+        self.last_log = None
+        self.last_time = None
+        self.min_interval = 5  # Minimum seconds between similar logs
+
+    def filter(self, record):
+        current_log = (record.levelno, record.getMessage())
+        current_time = time.time()
+        
+        # Allow if it's a different message
+        if current_log != self.last_log:
+            self.last_log = current_log
+            self.last_time = current_time
+            return True
+            
+        # Allow if enough time has passed since last similar log
+        if current_time - self.last_time >= self.min_interval:
+            self.last_time = current_time
+            return True
+            
+        return False
+
+# Configure logging with rotation
+from logging.handlers import RotatingFileHandler
+
+# Configure logging
 logging.basicConfig(
-    level=logging.INFO,
+    level=logging.WARNING,  # Changed from INFO to WARNING
     format='%(asctime)s - %(levelname)s - %(message)s',
     handlers=[
-        logging.FileHandler('logs/memory/memory.log'),
+        RotatingFileHandler(
+            'logs/memory/memory.log',
+            maxBytes=10*1024*1024,  # 10MB
+            backupCount=3
+        ),
+        RotatingFileHandler(
+            'logs/memory/short_term.log',
+            maxBytes=10*1024*1024,  # 10MB
+            backupCount=3
+        ),
+        RotatingFileHandler(
+            'logs/memory/context.log',
+            maxBytes=10*1024*1024,  # 10MB
+            backupCount=3
+        ),
         logging.StreamHandler()
     ]
 )
-logger = logging.getLogger('memory_system')
+logger = logging.getLogger('minimal_memory')
+logger.addFilter(DuplicateFilter())
+
+# Reduce logging level for all modules
+logging.getLogger('asyncio').setLevel(logging.ERROR)
 
 class MinimalMemory:
     def __init__(self, memory_file="memory/memory_state.json"):

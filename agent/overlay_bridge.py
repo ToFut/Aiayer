@@ -215,16 +215,34 @@ class OverlayBridge:
         self.callback_registry[message_type].append(callback)
         
     async def _handle_context_update(self, payload):
-        """Handle context update messages"""
+        """Handle context update messages with semantic search support"""
         self.current_context = payload
-        self.logger.info(f"Context updated: {payload.get('summary', 'No summary')}")
+        
+        # Check if this is a semantic search-based context
+        if 'search_method' in payload and payload['search_method'] == 'semantic_search':
+            relevant_count = len(payload.get('relevant_messages', []))
+            self.logger.info(f"Context updated with semantic search: {relevant_count} relevant messages")
+            
+            # Create a summary from the relevant messages
+            if not payload.get('summary') and relevant_count > 0:
+                # Generate a simple summary based on relevant messages
+                payload['summary'] = f"Context includes {relevant_count} semantically relevant messages"
+        else:
+            self.logger.info(f"Context updated: {payload.get('summary', 'No summary')}")
         
         # If there are suggestions, send them as a separate message
         if 'suggestions' in payload and payload['suggestions']:
-            await self.send_message('suggestions', {
+            context_data = {
                 'suggestions': payload['suggestions'],
-                'context': payload.get('summary', '')
-            })
+                'context': payload.get('summary', ''),
+                'search_method': payload.get('search_method', 'standard')
+            }
+            
+            # Add relevant messages if available
+            if 'relevant_messages' in payload:
+                context_data['relevant_messages'] = payload['relevant_messages']
+                
+            await self.send_message('suggestions', context_data)
     
     async def _handle_heartbeat(self, payload):
         """Handle heartbeat messages"""
@@ -232,7 +250,7 @@ class OverlayBridge:
         pass
         
     async def _handle_user_interaction(self, payload):
-        """Handle user interaction messages"""
+        """Handle user interaction messages with semantic search-based context"""
         self.logger.info(f"Received user interaction: {payload}")
         
         # Add context to interaction
@@ -245,15 +263,29 @@ class OverlayBridge:
         # Add to activity queue
         await self.add_system_activity("user_interaction", interaction_with_context)
         
-        # If this is a query, include relevant context in the response
+        # If this is a query, include semantically relevant context in the response
         if payload.get('type') == 'query':
             query = payload.get('query', '')
-            context_summary = self.current_context.get('summary', '')
             
-            # Send response with context
+            # Use semantic search context if available, otherwise fall back to summary
+            if 'relevant_messages' in self.current_context:
+                context_data = {
+                    'relevant_messages': self.current_context.get('relevant_messages', []),
+                    'search_method': self.current_context.get('search_method', 'semantic_search'),
+                    'summary': self.current_context.get('summary', '')
+                }
+            else:
+                context_data = {
+                    'summary': self.current_context.get('summary', ''),
+                    'search_method': 'legacy'
+                }
+            
+            self.logger.info(f"Including semantic search context in query response (method: {context_data.get('search_method', 'unknown')})")
+            
+            # Send response with semantically relevant context
             await self.send_message('query_response', {
                 'query': query,
-                'context': context_summary,
+                'context': context_data,
                 'suggestions': self.current_context.get('suggestions', []),
                 'timestamp': time.time()
             }) 

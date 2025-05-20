@@ -53,9 +53,23 @@
           const data = JSON.parse(event.data);
           console.log('Parsed message:', data);
           
-          if (data.type === 'connection_established') {
-            isConnected = true;
-            connectionStatus = 'connected';
+          // Skip system messages that don't need to be displayed
+          const systemMessageTypes = [
+            'connection_established', 
+            'echo', 
+            'status_response', 
+            'status_update',
+            'context_update_received', 
+            'sensor_data_received', 
+            'pong'
+          ];
+          
+          if (systemMessageTypes.includes(data.type)) {
+            console.log(`Received system message type: ${data.type}`);
+            if (data.type === 'connection_established') {
+              isConnected = true;
+              connectionStatus = 'connected';
+            }
             return;
           }
           
@@ -66,27 +80,55 @@
             loading = false;
             scrollToBottom();
           } else if (data.type === 'suggestion' || data.type === 'suggestions') {
-            const suggestionText = data.payload?.content || 
-                                 (Array.isArray(data.payload) ? data.payload[0]?.content : null) || 
-                                 "I have a suggestion for you.";
+            const suggestionText = data.content || data.payload?.content || 
+                               (Array.isArray(data.payload) ? data.payload[0]?.content : null) || 
+                               "I have a suggestion for you.";
             messages = [...messages, { role: 'assistant', content: suggestionText, isSuggestion: true }];
             scrollToBottom();
           } else if (data.type === 'error') {
-            const errorText = data.payload?.message || data.error || "An error occurred while processing your request.";
+            const errorText = data.content || data.payload?.message || data.error || "An error occurred while processing your request.";
             messages = [...messages, { role: 'assistant', content: errorText, isError: true }];
             loading = false;
             scrollToBottom();
-          } else if (data.type === 'echo' || data.type === 'status_response' || 
-                    data.type === 'context_update_received' || data.type === 'sensor_data_received') {
-            console.log('Received system message:', data.type);
           } else {
-            console.log('Received unknown message type:', data.type);
-            const content = data.payload?.response || data.payload?.message || 
-                           (typeof data.payload === 'string' ? data.payload : 
-                            "I received your message and am processing it.");
-            messages = [...messages, { role: 'assistant', content: content }];
-            loading = false;
-            scrollToBottom();
+            // Handle any other message types by extracting content from various possible locations
+            let content = null;
+            
+            if (data.content) {
+              content = data.content;
+            } else if (data.payload) {
+              if (typeof data.payload === 'string') {
+                content = data.payload;
+              } else if (data.payload.response) {
+                content = data.payload.response;
+              } else if (data.payload.message) {
+                content = data.payload.message;
+              } else if (data.payload.content) {
+                content = data.payload.content;
+              } else if (data.payload.text) {
+                content = data.payload.text;
+              }
+            } else if (data.message) {
+              content = data.message;
+            } else if (data.response) {
+              content = data.response;
+            } else if (data.text) {
+              content = data.text;
+            }
+            
+            // If we found content to display, add it as a message
+            if (content) {
+              console.log(`Adding message from type ${data.type} with content:`, content);
+              messages = [...messages, { 
+                role: 'assistant', 
+                content: content,
+                messageType: data.type 
+              }];
+              loading = false;
+              scrollToBottom();
+            } else {
+              console.log(`Received message with type ${data.type} but no displayable content`);
+            }
           }
         } catch (error) {
           console.error('Error parsing WebSocket message:', error);

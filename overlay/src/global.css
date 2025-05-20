@@ -1,0 +1,31 @@
+/* Global styles for transparency */
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  background: transparent !important;
+  background-color: rgba(0, 0, 0, 0) !important;
+}
+
+#app {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: transparent !important;
+  background-color: rgba(0, 0, 0, 0) !important;
+}
+
+/* For tauri window */
+.tauri-window-transparent {
+  background: transparent !important;
+  background-color: rgba(0, 0, 0, 0) !important;
+}
+
+/* For debugging - add this class to see elements */
+.debug-outline {
+  outline: 1px solid red;
+}

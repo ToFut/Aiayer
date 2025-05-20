@@ -111,6 +111,7 @@ function handleWebSocketMessage(data) {
             updateMemoryDisplay(payload);
             break;
             
+        case 'query_response':
         case 'llm_response':
             handleLLMResponse(payload);
             break;
@@ -127,6 +128,30 @@ function handleWebSocketMessage(data) {
         default:
             console.log('Received message:', data);
     }
+}
+
+// Handle LLM responses
+function handleLLMResponse(payload) {
+    const chatMessages = document.getElementById('chat-messages');
+    if (!chatMessages) return;
+
+    // Extract response text from payload
+    const responseText = payload.response || payload.content || payload.message || "I received your message.";
+    
+    // Create message element
+    const messageElement = document.createElement('div');
+    messageElement.className = 'p-3 rounded-lg bg-gray-100 mr-8';
+    messageElement.innerHTML = `
+        <div class="flex items-center space-x-2">
+            <span class="font-medium">AI Assistant</span>
+            <span class="text-xs text-gray-500">${new Date().toLocaleTimeString()}</span>
+        </div>
+        <p class="text-gray-700 mt-1">${responseText}</p>
+    `;
+    
+    // Add message to chat
+    chatMessages.appendChild(messageElement);
+    chatMessages.scrollTop = chatMessages.scrollHeight;
 }
 
 // Update system health

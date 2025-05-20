@@ -1,22 +1,16 @@
 <script>
     import { onMount } from 'svelte';
     import EyeWidget from './components/EyeWidget.svelte';
-    import TransformedInterface from './components/TransformedInterface.svelte';
-    import { EnhancedBridge } from './services/enhanced_bridge';
     import EnhancedNextGenChat from './components/EnhancedNextGenChat.svelte';
+    import { EnhancedBridge } from './services/enhanced_bridge';
     
-    let bridge;
-    let transformedInterface;
-    let isInteractive = false;
-    let appReady = false;
     let showChat = false;
+    let bridge;
     
-    // Import the WebSocket connection test
-    import { runTests } from './services/test_bridge';
-    
+    // Initialize bridge with proper options
     onMount(() => {
         console.log('Initializing advanced overlay app');
-                
+        
         // Initialize bridge with better options
         bridge = new EnhancedBridge({
             url: 'ws://localhost:8765',
@@ -29,95 +23,24 @@
         bridge.connect()
             .then(() => {
                 console.log('Successfully connected to backend');
-                appReady = true;
             })
             .catch(error => {
                 console.error('Failed to connect on startup:', error);
-                // App will still be usable, connection will be retried automatically
-                appReady = true;
             });
-        
-        // Register message handlers
-        bridge.on('transform-interface', handleTransformation);
-        bridge.on('toggle-interaction', handleInteractionToggle);
-        
+            
         // Make bridge available globally for debugging
         window.bridge = bridge;
         
-        // Set up event listeners for window resizing and visibility changes
-        window.addEventListener('resize', handleResize);
-        document.addEventListener('visibilitychange', handleVisibilityChange);
-        
-        // Set up keyboard shortcuts
-        window.addEventListener('keydown', handleKeydown);
-        
         // Clean up on unmount
         return () => {
-            bridge.disconnect();
-            window.removeEventListener('resize', handleResize);
-            window.removeEventListener('keydown', handleKeydown);
-            document.removeEventListener('visibilitychange', handleVisibilityChange);
+            if (bridge) bridge.disconnect();
         };
     });
     
-    // Handle keyboard shortcuts
-    function handleKeydown(event) {
-        // Ctrl+/ to toggle chat visibility
-        if (event.ctrlKey && event.key === '/') {
-            event.preventDefault();
-            handleChatToggle();
-        }
-    }
-    
-    // Handle window resize
-    function handleResize() {
-        // Update any size-dependent components
-        if (transformedInterface) {
-            transformedInterface.updateLayout();
-        }
-    }
-    
-    // Handle tab/window visibility changes
-    function handleVisibilityChange() {
-        if (document.visibilityState === 'visible') {
-            // Reconnect if needed when tab becomes visible again
-            if (bridge && bridge.getStatus() !== 'connected') {
-                bridge.connect().catch(error => {
-                    console.error('Failed to reconnect on visibility change:', error);
-                });
-            }
-        }
-    }
-    
-    // Handle interface transformation requests
-    function handleTransformation(data) {
-        if (transformedInterface) {
-            transformedInterface.updateLayout(data.rules || data.layout, data.interactionMap);
-        }
-    }
-    
-    // Handle interaction toggling
-    function handleInteractionToggle(shouldInteract) {
-        isInteractive = shouldInteract;
-        if (transformedInterface) {
-            transformedInterface.setInteractive(shouldInteract);
-        }
-    }
-    
-    // Handle widget's request to toggle interaction
-    function handleWidgetInteraction(event) {
-        const shouldInteract = event.detail?.shouldInteract ?? !isInteractive;
-        bridge.toggleInteraction(shouldInteract).catch(e => console.error('Error toggling interaction:', e));
-        isInteractive = shouldInteract;
-        
-        if (transformedInterface) {
-            transformedInterface.setInteractive(shouldInteract);
-        }
-    }
-
     // Handle chat visibility toggle
     function handleChatToggle() {
         showChat = !showChat;
+        console.log('Chat visibility toggled:', showChat);
     }
     
     // Calculate initial position based on viewport size
@@ -132,9 +55,10 @@
     }
 </script>
 
-<main class:ready={appReady}>
-    <TransformedInterface bind:this={transformedInterface} />
-    <EyeWidget on:toggleInteraction={handleWidgetInteraction} on:click={handleChatToggle} />
+<main>
+    <!-- Include both components -->
+    <EyeWidget on:click={handleChatToggle} />
+    
     <EnhancedNextGenChat 
         show={showChat} 
         initialPosition={getInitialPosition()}
@@ -160,11 +84,8 @@
         width: 100%;
         height: 100%;
         overflow: hidden;
-        pointer-events: none;
-        /* Children will need pointer-events: auto to be interactive */
+        pointer-events: none; /* Allow click-through by default */
     }
     
-    main.ready {
-        opacity: 1;
-    }
+    /* Child components will set pointer-events: auto for interactivity */
 </style>
