@@ -19,14 +19,14 @@ import gc
 import websockets
 import traceback
 
-# Use absolute imports
-from memory.memory_logger import MemoryLogger
-from memory.memory_diagnostic_logger import MemoryDiagnosticLogger
-from memory.conscious_memory import ConsciousMemory
-from memory.enhanced_semantic_search import EnhancedSemanticSearch
-from memory.sensors import ScreenSensor, ProcessSensor
-from memory.safe_json import safe_load, safe_dump, safe_dumps
-from memory.memory_types import ConversationMemory, ContextMemory
+# Use direct imports (same directory)
+from .memory_logger import MemoryLogger
+from .memory_diagnostic_logger import MemoryDiagnosticLogger
+from .conscious_memory import ConsciousMemory
+from .enhanced_semantic_search import EnhancedSemanticSearch
+from sensors import ScreenSensor, ProcessSensor
+from .safe_json import safe_load, safe_dump, safe_dumps
+from .memory_types import ConversationMemory, ContextMemory
 
 # Configure logging
 logging.basicConfig(
@@ -164,11 +164,16 @@ class MemorySystem:
                 else:
                     self.logger.info("  - No context memory found, initializing empty")
                     self.context_memory = {
+                        'current_context': {},
+                        'application_context': {},
                         'sensor_data': {
                             'screen': {},
                             'process': {},
                             'file': {}
-                        }
+                        },
+                        'activities': [],
+                        'relationships': {},
+                        'by_timestamp': {}
                     }
                 
                 self.logger.info(f"✅ Successfully loaded memory state")
@@ -192,7 +197,12 @@ class MemorySystem:
                         'file': {}
                     }
                 }
-                self._save_memory_state()
+                # Note: This is a synchronous context, so we'll use a synchronous alternative
+                try:
+                    # Save memory state directly without await
+                    self._save_memory_state_sync()
+                except Exception as e:
+                    self.logger.error(f"Error in _save_memory_state_sync: {e}")
                 
                 # Log initialization with diagnostic logger
                 self.diagnostic_logger.log_memory_event("memory_state_initialized", {
@@ -204,8 +214,42 @@ class MemorySystem:
                 "context": "load_memory_state",
                 "error_type": type(e).__name__
             })
-            self._save_memory_state()  # Create new state file if loading fails
+            # Note: This is a synchronous context, so we'll use a synchronous alternative
+            try:
+                # Create new state file if loading fails
+                self._save_memory_state_sync()
+            except Exception as e:
+                self.logger.error(f"Error in _save_memory_state_sync fallback: {e}")
 
+    def _save_memory_state_sync(self):
+        """Synchronous version of save_memory_state for use in __init__ and error handling."""
+        try:
+            self.logger.debug(f"[DEBUG] _save_memory_state_sync called. Short-term: {len(self.short_term_memory)}, Long-term: {len(self.long_term_memory)}, Context keys: {list(self.context_memory.keys()) if isinstance(self.context_memory, dict) else 'N/A'}")
+            
+            # Log memory state before saving
+            state = {
+                'short_term': self.short_term_memory,
+                'long_term': self.long_term_memory,
+                'context': self.context_memory,
+                'conscious': self.conscious_memory.get_state() if hasattr(self.conscious_memory, 'get_state') else {},
+                'last_update': datetime.now().isoformat()
+            }
+            
+            # Save to file without archiving - create a minimal valid state file
+            with open(self.memory_state_file, 'w') as f:
+                json.dump(state, f, indent=2)
+            
+            self.logger.info(f"✅ Saved memory state with {len(self.short_term_memory)} short-term memories (sync)")
+            self.diagnostic_logger.log_memory_event("memory_state_saved", {
+                "timestamp": datetime.now().isoformat(),
+                "success": True
+            })
+        except Exception as e:
+            self.logger.error(f"❌ Error saving memory state (sync): {e}")
+            self.diagnostic_logger.log_memory_error(e, {
+                "context": "save_memory_state_sync"
+            })
+            
     async def _save_memory_state(self):
         """Save current memory state to file."""
         try:
@@ -224,6 +268,9 @@ class MemorySystem:
             with open(self.memory_state_file, 'w') as f:
                 json.dump(state, f, indent=2)
             
+            # Also update the last_context.json file for LLM integration
+            await self._update_last_context()
+            
             self.logger.info(f"✅ Saved memory state with {len(self.short_term_memory)} short-term memories")
             self.diagnostic_logger.log_memory_event("memory_state_saved", {
                 "timestamp": datetime.now().isoformat(),
@@ -236,49 +283,60 @@ class MemorySystem:
             })
 
     async def initialize(self):
-        """Initialize the memory system with sensors and LLaVA client."""
+        """Initialize the memory system with automatic sensor data collection."""
         try:
-            # Initialize screen sensor
-            self.screen_sensor = ScreenSensor(self.SENSOR_CONFIG['screen'])
-            await self.screen_sensor.initialize()
-            self.logger.info("Screen sensor initialized")
+            self.logger.info("Initializing memory system...")
             
-            # Initialize process sensor with proper configuration
-            self.process_sensor = ProcessSensor()
-            await self.process_sensor.start()
-            self.logger.info("Process sensor initialized and started")
-            
-            # Initialize LLaVA client
-            self.llava_client = None  # Will be initialized when needed
-            self.logger.info("LLaVA client initialized")
+            # Load existing memory state
+            self._load_memory_state()
             
             # Start sensor data collection
+            self.logger.info("Starting sensor data collection...")
             asyncio.create_task(self._collect_sensor_data())
-            self.logger.info("Sensor data collection started")
             
+            # Start periodic memory cleanup
+            self.logger.info("Starting periodic memory cleanup...")
+            asyncio.create_task(self._periodic_cleanup())
+            
+            self.logger.info("Memory system initialized successfully")
             return True
+            
         except Exception as e:
             self.logger.error(f"Error initializing memory system: {e}")
             return False
-
-    async def _collect_sensor_data(self):
-        """Collect data from all sensors periodically."""
+            
+    async def _periodic_cleanup(self):
+        """Periodically clean up old memory data."""
         while True:
             try:
-                # Collect screen data
+                await asyncio.sleep(self.cleanup_interval)
+                self._cleanup_old_data()
+                self._compress_memory()
+                await self._save_memory_state()
+            except Exception as e:
+                self.logger.error(f"Error in periodic cleanup: {e}")
+                
+    async def _collect_sensor_data(self):
+        """Continuously collect data from sensors."""
+        while True:
+            try:
+                # Collect screen sensor data
                 if self.screen_sensor:
                     screen_data = await self.screen_sensor.get_current_state()
-                    await self.process_sensor_data('screen', screen_data)
-                    self.logger.debug(f"Screen data collected: {screen_data.get('image_hash', 'no hash')}")
+                    if screen_data:
+                        await self.process_sensor_data('screen', screen_data)
                 
-                # Collect process data
+                # Collect process sensor data
                 if self.process_sensor:
                     process_data = await self.process_sensor.get_current_state()
-                    await self.process_sensor_data('process', process_data)
-                    self.logger.debug(f"Process data collected: {len(process_data.get('active_apps', []))} processes")
+                    if process_data:
+                        await self.process_sensor_data('process', process_data)
+                
+                # Save memory state periodically
+                await self._save_memory_state()
                 
                 # Wait before next collection
-                await asyncio.sleep(5)  # Collect every 5 seconds
+                await asyncio.sleep(self.SENSOR_CONFIG['screen']['interval_sec'])
                 
             except Exception as e:
                 self.logger.error(f"Error collecting sensor data: {e}")
@@ -335,7 +393,7 @@ class MemorySystem:
             
             # Extract essential information based on sensor type
             if sensor_type == 'screen' and isinstance(data, dict):
-                # For screen data, only keep text content and metadata, not the image
+                # For screen data, include LLaVA analysis if available
                 processed_data = {
                     'content': data.get('text', ''),  # Use 'content' for searchability
                     'window_title': data.get('window_title', ''),
@@ -345,17 +403,42 @@ class MemorySystem:
                     'type': 'screen'  # Add type for better search
                 }
                 
-                # Add application-specific data if available (new)
+                # Add LLaVA analysis if available from screen sensor
+                if self.screen_sensor and hasattr(self.screen_sensor, 'last_data'):
+                    screen_data = self.screen_sensor.last_data
+                    if screen_data and hasattr(screen_data, 'llava_analysis'):
+                        processed_data["llava_analysis"] = screen_data.llava_analysis
+                        self.logger.info("Added LLaVA analysis from screen sensor to processed data")
+                    elif screen_data and hasattr(screen_data, 'llava_description'):
+                        processed_data["llava_description"] = screen_data.llava_description
+                        self.logger.info("Added LLaVA description from screen sensor to processed data")
+                
+                # Fallback to data's LLaVA analysis if available
+                if not processed_data.get("llava_analysis") and data.get("llava_analysis"):
+                    processed_data["llava_analysis"] = data.get("llava_analysis")
+                    self.logger.info("Added LLaVA analysis from data to processed screen data")
+                
+                # Add application-specific data if available
                 if data.get("application"):
                     processed_data["application"] = data.get("application")
                 
-                # Add LLaVA analysis results if available (new)
+                # Add other screen-specific data
                 if data.get("llava_description"):
                     processed_data["llava_description"] = data.get("llava_description")
                 if data.get("visual_context"):
                     processed_data["visual_context"] = data.get("visual_context")
                 if data.get("screen_elements"):
                     processed_data["screen_elements"] = data.get("screen_elements")
+                
+                # Add user activity and workflow data
+                if data.get("user_activity"):
+                    processed_data["user_activity"] = data.get("user_activity")
+                if data.get("workflow_stage"):
+                    processed_data["workflow_stage"] = data.get("workflow_stage")
+                
+                # Add visual content data
+                if data.get("visual_content"):
+                    processed_data["visual_content"] = data.get("visual_content")
                     
             elif sensor_type == 'process' and isinstance(data, dict):
                 # For process data, only keep essential process info
@@ -425,66 +508,24 @@ class MemorySystem:
                         if key not in ['image', 'raw_data', 'binary_content', 'timestamp'] and isinstance(value, (str, int, float, bool)):
                             content_parts.append(f"{key}: {value}")
                     processed_data['content'] = "; ".join(content_parts)
-
-            # Create memory item for storage with improved structure
-            memory_item = {
-                'type': sensor_type,
-                'data': processed_data,
-                'content': processed_data.get('content', ''),  # Add content field for search
-                'timestamp': datetime.now().isoformat(),
-                'is_processed_by_conscious': False  # Flag to indicate this was direct processing
-            }
-
-            # Add processed by fallback flag to avoid duplicate processing
-            memory_item['processed_by'] = 'direct_fallback'
-
-            # Store in short-term memory
-            self.short_term_memory.append(memory_item)
             
-            # Add to enhanced semantic search index with proper metadata
-            try:
-                self.semantic_search.add_to_index(
-                    memory_item,
-                    'sensor_data',
-                    metadata={
-                        'sensor_type': sensor_type,
-                        'timestamp': memory_item['timestamp'],
-                        'content_type': 'sensor_data',
-                        'relevance_score': 0.7  # Lower relevance for fallback-processed data
-                    }
-                )
-                self.logger.debug(f"Added sensor data to semantic search index: {sensor_type}")
-            except Exception as search_e:
-                self.logger.error(f"Error adding to semantic search index: {search_e}")
-
-            # Update context memory with essential information
-            if sensor_type == 'screen':
-                self.context_memory['screen_content'] = data.get('text', '')
-                self.context_memory['window_title'] = data.get('window_title', '')
+            # Store processed data in appropriate memory
+            if processed_data:
+                # Add to short-term memory
+                await self.add_to_short_term_memory(processed_data)
                 
-                # Add application-specific data if available (new)
-                if data.get("application"):
-                    self.context_memory['application'] = data.get("application")
+                # Add to context memory if it's screen or process data
+                if sensor_type in ['screen', 'process']:
+                    await self.add_to_context_memory(processed_data)
                 
-                # Add visual context if available (new)
-                if data.get("visual_context"):
-                    self.context_memory['visual_context'] = data.get("visual_context")
-                    
-            elif sensor_type == 'process':
-                self.context_memory['active_processes'] = data.get('processes', [])
-                self.context_memory['active_window'] = data.get('active_window', '')
-            elif sensor_type == 'file':
-                self.context_memory['recent_files'] = data.get('files', [])
-                self.context_memory['recent_file_event'] = data.get('file_event', '')
-
-            # Save memory state
-            await self._save_memory_state()
+                self.logger.info(f"Successfully processed and stored {sensor_type} data")
+                return True
             
-            self.logger.debug(f"Processed {sensor_type} sensor data: {processed_data.get('content', '')[:50]}...")
-            return True
+            return False
+            
         except Exception as e:
-            logger.error(f"Error processing sensor data: {e}")
-            logger.error(traceback.format_exc())
+            self.logger.error(f"Error processing {sensor_type} data: {e}")
+            self.logger.error(traceback.format_exc())
             return False
 
     def _should_process_sensor_data(self, sensor_type: str, data: Dict[str, Any]) -> bool:
@@ -954,7 +995,7 @@ class MemorySystem:
             self._add_to_memory_storage(message, 'short_term')
             
             # Create and store context
-            context = self._create_context_summary(message)
+            context = await self._create_context_summary(message)
             self.context_memory[context['timestamp']] = context
             self.memory_logger.log_context_memory(context, "context_created")
             
@@ -983,125 +1024,69 @@ class MemorySystem:
             self.logger.error(f"Error truncating message: {e}")
             return message
 
-    def _create_context_summary(self, message: Dict[str, Any]) -> Dict[str, Any]:
+    async def _create_context_summary(self, message: Dict[str, Any]) -> Dict[str, Any]:
         """Create a summary of the current context using enhanced vector-based semantic search."""
         try:
-            self.logger.info("Creating context summary using enhanced vector-based semantic search")
+            current_time = time.time()
             
-            # Get message content to use as search query
-            message_content = message.get('content', '')
-            if not message_content:
-                message_content = message.get('message_content', '')
+            # Get latest screen data
+            screen_data = None
+            llava_analysis = None
             
-            # Use enhanced semantic search to get relevant messages for context
-            relevant_messages = []
-            seen_contents = set()
-            search_method = 'enhanced_vector_search'
+            # First try to get LLaVA analysis from screen sensor
+            if self.screen_sensor and hasattr(self.screen_sensor, 'last_data'):
+                screen_data = self.screen_sensor.last_data
+                if screen_data and hasattr(screen_data, 'llava_analysis'):
+                    llava_analysis = screen_data.llava_analysis
             
-            if message_content:
-                start_time = time.time()
-                self.logger.info(f"Performing enhanced semantic search for context with query: {message_content[:50]}...")
-                
-                # Use vector-based semantic search
-                search_results = self.semantic_search.search(
-                    query=message_content,
-                    limit=8,  # Get more results to account for duplicates
-                    memory_types=['short_term', 'context', 'conscious'],  # Prioritize recent and contextual memory
-                    min_score=0.25  # Lower threshold to ensure we get enough results
-                )
-                
-                # Extract the original items from search results and avoid duplicates
-                for result in search_results:
-                    original_item = result.get('original_item', {})
-                    content = original_item.get('content', '')
-                    if content and content not in seen_contents:
-                        # Add search metadata to the item
-                        original_item['_search_score'] = result.get('score', 0)
-                        original_item['_search_source'] = result.get('source', 'unknown')
-                        relevant_messages.append(original_item)
-                        seen_contents.add(content)
-                
-                search_time = time.time() - start_time
-                self.logger.info(f"Enhanced search completed in {search_time:.3f}s")
-                self.logger.info(f"Found {len(relevant_messages)} relevant messages through enhanced semantic search")
-            
-            # If no relevant messages found, fall back to recent messages
-            if not relevant_messages:
-                self.logger.info("No relevant messages found through enhanced search, falling back to recent messages")
-                search_method = 'chronological_fallback'
-                for msg in self.get_recent_messages(count=5):
-                    content = msg.get('content', '')
-                    if content and content not in seen_contents:
-                        msg['_search_score'] = 0
-                        msg['_search_source'] = 'recent'
-                        relevant_messages.append(msg)
-                        seen_contents.add(content)
-            
-            # Get current sensor states
-            sensor_states = {}
-            if self.screen_sensor:
+            # If not available, try to get from conscious memory
+            if not llava_analysis and self.conscious_memory:
                 try:
-                    sensor_states['screen'] = {
-                        'active_apps': self.screen_sensor.get_active_apps(),
-                        'window_info': self.screen_sensor._get_window_info()
-                    }
+                    llava_analysis = await self.conscious_memory.get_latest_llava_analysis()
                 except Exception as e:
-                    self.logger.error(f"Error getting screen sensor state: {e}")
-                    sensor_states['screen'] = {'error': str(e)}
-                    
-            if self.process_sensor:
-                try:
-                    sensor_states['process'] = {
-                        'active_processes': self.process_sensor.get_active_processes()
-                    }
-                except Exception as e:
-                    self.logger.error(f"Error getting process sensor state: {e}")
-                    sensor_states['process'] = {'error': str(e)}
+                    logger.warning(f"Failed to get LLaVA analysis from conscious memory: {e}")
             
-            # Create context summary with timestamp
-            current_time = datetime.now()
+            # Create context summary with LLaVA analysis if available
             context_summary = {
-                'timestamp': current_time.isoformat(),
-                'date': current_time.strftime('%Y-%m-%d'),
-                'time': current_time.strftime('%H:%M:%S'),
-                'relevant_messages': relevant_messages,
-                'sensor_states': sensor_states,
-                'message_type': message.get('type', 'unknown'),
-                'message_content': message_content,
-                'search_query': message_content[:100] if message_content else '',
-                'search_method': search_method,
-                'search_memory_types': ['short_term', 'context', 'conscious'],
-                'search_results_count': len(relevant_messages)
+                "timestamp": current_time,
+                "screen_context": {
+                    "application": llava_analysis.get("application", {}).get("name", "unknown") if llava_analysis else "unknown",
+                    "application_state": llava_analysis.get("application", {}).get("state", "unknown") if llava_analysis else "unknown",
+                    "ui_elements": llava_analysis.get("ui_elements", []) if llava_analysis else [],
+                    "user_activity": llava_analysis.get("user_activity", {}) if llava_analysis else {},
+                    "visual_content": llava_analysis.get("visual_content", {}) if llava_analysis else {},
+                    "text_content": screen_data.get("text", "") if screen_data else "",
+                    "active_window": screen_data.get("active_window", "unknown") if screen_data else "unknown"
+                },
+                "process_context": {
+                    "foreground_processes": llava_analysis.get("process_classification", {}).get("foreground", []) if llava_analysis else [],
+                    "supporting_processes": llava_analysis.get("process_classification", {}).get("supporting", []) if llava_analysis else [],
+                    "background_processes": llava_analysis.get("process_classification", {}).get("background", []) if llava_analysis else []
+                },
+                "search_method": "enhanced_vector_search",
+                "relevance_quality": {
+                    "score": 0.95 if llava_analysis else 0.5,  # High confidence if LLaVA analysis available
+                    "confidence": "high" if llava_analysis else "medium",
+                    "reason": "Direct visual analysis with LLaVA" if llava_analysis else "Basic screen analysis"
+                }
             }
             
-            # Add any additional context from the message, avoiding duplicates
-            if 'context' in message:
-                for key, value in message['context'].items():
-                    if key not in context_summary:
-                        context_summary[key] = value
+            # Log the rich context summary
+            logger.info(f"=== CONTEXT SUMMARY ===\n{json.dumps(context_summary, indent=2)}")
             
-            # Generate a brief summary of the most relevant context
-            top_scores = [m.get('_search_score', 0) for m in relevant_messages[:3]]
-            avg_score = sum(top_scores) / len(top_scores) if top_scores else 0
-            context_summary['relevance_quality'] = 'high' if avg_score > 0.7 else ('medium' if avg_score > 0.4 else 'low')
-            
-            self.logger.info(f"Successfully created context summary using enhanced semantic search (quality: {context_summary['relevance_quality']})")
             return context_summary
             
         except Exception as e:
-            self.logger.error(f"Error creating context summary with enhanced semantic search: {e}")
-            self.diagnostic_logger.log_memory_error(e, {
-                "context": "create_context_summary_enhanced",
-                "message": str(message),
-                "error_type": type(e).__name__
-            })
-            # Fall back to basic context summary in case of error
+            logger.error(f"Error creating context summary: {e}")
             return {
-                'timestamp': datetime.now().isoformat(),
-                'error': str(e),
-                'message_type': message.get('type', 'unknown'),
-                'recent_messages': self.get_recent_messages(count=3),  # Fall back to recent messages
-                'search_method': 'error_fallback'
+                "timestamp": current_time,
+                "error": str(e),
+                "search_method": "fallback",
+                "relevance_quality": {
+                    "score": 0.0,
+                    "confidence": "low",
+                    "reason": f"Error in context creation: {str(e)}"
+                }
             }
 
     async def get_context_summary(self, query=None, limit=3):
@@ -1254,14 +1239,30 @@ class MemorySystem:
             self.logger.error(f"❌ Error retrieving recent messages: {str(e)} [VERIFICATION FAILED]")
             return []
     
-    async def search_memory(self, query: str, limit: int = 5, memory_types: List[str] = None) -> List[Dict[str, Any]]:
-        """Search memory using enhanced semantic search with vector embeddings."""
+    async def search_memory(self, query: str, limit: int = 5, memory_types: List[str] = None, 
+                          context_aware: bool = True, time_window: Optional[int] = None) -> List[Dict[str, Any]]:
+        """
+        Search memory using enhanced semantic search with context awareness and relationship tracking.
+        
+        Args:
+            query: Search query string
+            limit: Maximum number of results to return
+            memory_types: List of memory types to search in (short_term, long_term, context)
+            context_aware: Whether to enhance search with current context
+            time_window: Optional time window in seconds to limit search (e.g., 3600 for last hour)
+            
+        Returns:
+            List of matching memory items with metadata
+        """
         try:
-            self.logger.info(f"🔍 SEARCHING MEMORY WITH ENHANCED SEMANTIC SEARCH")
+            self.logger.info(f"🔍 SEARCHING MEMORY WITH ENHANCED CONTEXT-AWARE SEMANTIC SEARCH")
             self.logger.info(f"  - Query: {query}")
             self.logger.info(f"  - Limit: {limit}")
+            self.logger.info(f"  - Context-aware: {context_aware}")
             if memory_types:
                 self.logger.info(f"  - Memory types: {memory_types}")
+            if time_window:
+                self.logger.info(f"  - Time window: {time_window} seconds")
             
             start_time = time.time()
             
@@ -1269,39 +1270,168 @@ class MemorySystem:
                 "query": query,
                 "limit": limit,
                 "memory_types": memory_types,
+                "context_aware": context_aware,
+                "time_window": time_window,
                 "timestamp": datetime.now().isoformat(),
-                "search_type": "vector_enhanced"
+                "search_type": "context_aware_vector"
             })
             
-            # Use enhanced semantic search with vector embeddings
+            # Enhance query with current context if context_aware is enabled
+            enhanced_query = query
+            application_context = None
+            
+            if context_aware and hasattr(self, 'context_memory') and self.context_memory:
+                context_enhancers = []
+                
+                # Get current application context if available
+                if 'current_context' in self.context_memory:
+                    current_ctx = self.context_memory['current_context']
+                    
+                    # Add application context
+                    if 'application' in current_ctx:
+                        app_name = current_ctx['application']
+                        context_enhancers.append(f"application:{app_name}")
+                        application_context = app_name
+                        
+                    # Add workflow context
+                    if 'workflow_stage' in current_ctx:
+                        context_enhancers.append(f"task:{current_ctx['workflow_stage']}")
+                        
+                    # Add window title context
+                    if 'window_title' in current_ctx:
+                        window_parts = current_ctx['window_title'].split(' - ')
+                        if window_parts:
+                            context_enhancers.append(f"window:{window_parts[0]}")
+                
+                # Add recent activity contexts
+                if 'activities' in self.context_memory and self.context_memory['activities']:
+                    # Take the most recent activity
+                    latest_activity = self.context_memory['activities'][-1]
+                    activity_text = latest_activity.get('activity', '')
+                    if activity_text:
+                        # Extract key phrases (simplified)
+                        activity_keywords = ' '.join([
+                            word for word in activity_text.split()
+                            if len(word) > 3 and word.lower() not in 
+                            {'this', 'that', 'with', 'from', 'have', 'has', 'had', 'using', 'used'}
+                        ])
+                        if activity_keywords:
+                            context_enhancers.append(f"activity:{activity_keywords[:50]}")
+                
+                # Combine context enhancers
+                if context_enhancers:
+                    context_string = ' '.join(context_enhancers)
+                    enhanced_query = f"{query} {context_string}"
+                    self.logger.info(f"Enhanced query with context: {enhanced_query[:100]}...")
+            
+            # Apply time window filter if provided
+            min_timestamp = None
+            if time_window:
+                min_timestamp = datetime.now() - timedelta(seconds=time_window)
+                min_timestamp = min_timestamp.isoformat()
+            
+            # Use enhanced semantic search with vector embeddings and context awareness
             results = self.semantic_search.search(
-                query=query,
-                limit=limit,
+                query=enhanced_query,
+                limit=limit * 2,  # Request more results to filter by timestamp
                 memory_types=memory_types,
-                min_score=0.3  # Lower threshold to ensure we get enough results
+                min_score=0.3,  # Lower threshold to ensure we get enough results
+                application_context=application_context  # Pass application context for better relevance
             )
+            
+            # Apply time window filtering if needed
+            if min_timestamp:
+                filtered_results = []
+                for result in results:
+                    result_ts = result.get('timestamp', '')
+                    if result_ts and result_ts >= min_timestamp:
+                        filtered_results.append(result)
+                results = filtered_results
+            
+            # Apply relationship-based relevance boosting
+            if context_aware and 'relationships' in self.context_memory:
+                # Try to identify memory items with relationships to current context
+                for i, result in enumerate(results):
+                    # Check if this memory has connections to other memories
+                    memory_id = result.get('id')
+                    original_item = result.get('original_item', {})
+                    
+                    if 'memory_connections' in original_item:
+                        for connection in original_item['memory_connections']:
+                            conn_type = connection.get('type')
+                            conn_id = connection.get('id')
+                            
+                            # Check if this connection relates to current context
+                            if conn_type and conn_id:
+                                # Boost score if related to current application context
+                                if (conn_type == 'application' and 
+                                    'current_context' in self.context_memory and
+                                    self.context_memory['current_context'].get('application') == conn_id):
+                                    result['score'] *= 1.3  # 30% boost
+                                    self.logger.debug(f"Boosted result {memory_id} due to application relationship")
+                                
+                                # Boost score if related to current sensor data
+                                elif (conn_type == 'source' and 
+                                      'sensor_data' in self.context_memory and
+                                      conn_id in self.context_memory['sensor_data']):
+                                    result['score'] *= 1.2  # 20% boost
+                                    self.logger.debug(f"Boosted result {memory_id} due to sensor relationship")
+            
+            # Sort by score and apply limit
+            results.sort(key=lambda x: x.get('score', 0), reverse=True)
+            limited_results = results[:limit]
             
             search_time = time.time() - start_time
             
+            # Enhance results with additional metadata
+            for result in limited_results:
+                # Add memory type and update timestamp format for consistency
+                memory_id = result.get('id', '')
+                original_item = result.get('original_item', {})
+                
+                # Add relationship information to help user understand connections
+                if 'memory_connections' in original_item:
+                    connections_summary = []
+                    for conn in original_item.get('memory_connections', [])[:3]:  # Show at most 3 connections
+                        conn_type = conn.get('type', 'unknown')
+                        conn_id = conn.get('id', 'unknown')
+                        connections_summary.append(f"{conn_type}:{conn_id}")
+                    
+                    if connections_summary:
+                        result['connections'] = connections_summary
+                
+                # Add insight information if available
+                if 'insights' in original_item and isinstance(original_item['insights'], list):
+                    insight_types = [insight.get('type', 'unknown') for insight in original_item['insights'][:3]]
+                    if insight_types:
+                        result['insight_types'] = insight_types
+            
             # Log search stats
-            self.logger.info(f"✅ Enhanced semantic search completed in {search_time:.3f}s")
-            self.logger.info(f"  - Found {len(results)} results")
-            if results:
-                self.logger.info(f"  - Top result score: {results[0]['score']:.4f}")
+            self.logger.info(f"✅ Context-aware semantic search completed in {search_time:.3f}s")
+            self.logger.info(f"  - Found {len(limited_results)} results (from {len(results)} total matches)")
+            if limited_results:
+                self.logger.info(f"  - Top result score: {limited_results[0]['score']:.4f}")
+                if 'content' in limited_results[0]:
+                    content_preview = limited_results[0]['content'][:50].replace('\n', ' ')
+                    self.logger.info(f"  - Top result preview: {content_preview}...")
             
             self.diagnostic_logger.log_memory_event("memory_search_completed", {
                 "query": query,
-                "results_count": len(results),
-                "top_score": results[0]['score'] if results else 0,
+                "enhanced_query": enhanced_query != query,
+                "results_count": len(limited_results),
+                "total_matches": len(results),
+                "top_score": limited_results[0]['score'] if limited_results else 0,
                 "search_time_ms": int(search_time * 1000),
                 "timestamp": datetime.now().isoformat(),
-                "search_type": "vector_enhanced"
+                "search_type": "context_aware_vector",
+                "context_enhanced": context_aware and enhanced_query != query
             })
             
-            return results
+            return limited_results
             
         except Exception as e:
-            self.logger.error(f"❌ Error in enhanced semantic search: {e}")
+            self.logger.error(f"❌ Error in context-aware semantic search: {e}")
+            self.logger.error(traceback.format_exc())
             self.diagnostic_logger.log_memory_error(e, {
                 "context": "search_memory_enhanced",
                 "query": query,
@@ -1455,6 +1585,191 @@ class MemorySystem:
                 "timestamp": datetime.now().isoformat()
             })
 
+    async def get_related_memories(self, memory_id: str, relationship_types: List[str] = None, 
+                                limit: int = 5) -> List[Dict[str, Any]]:
+        """
+        Retrieve memories related to a specific memory by memory_id.
+        This method uses the relationship tracking system to find connected memories.
+        
+        Args:
+            memory_id: The ID of the memory to find relations for
+            relationship_types: Optional list of relationship types to filter by
+            limit: Maximum number of related memories to return
+            
+        Returns:
+            List of related memory items sorted by relevance
+        """
+        try:
+            self.logger.info(f"Finding related memories for memory_id: {memory_id}")
+            
+            if not memory_id:
+                return []
+                
+            # Initialize result collection
+            related_memories = []
+            seen_ids = set()
+            
+            # First, try to find the target memory to get its connections
+            target_memory = None
+            
+            # Check short-term memory
+            for mem in self.short_term_memory:
+                if mem.get('memory_id') == memory_id:
+                    target_memory = mem
+                    break
+            
+            # Check long-term memory if not found
+            if not target_memory:
+                for mem in self.long_term_memory:
+                    if mem.get('memory_id') == memory_id:
+                        target_memory = mem
+                        break
+            
+            # Check context memory if not found
+            if not target_memory and 'by_timestamp' in self.context_memory:
+                for ts, mem in self.context_memory['by_timestamp'].items():
+                    if mem.get('memory_id') == memory_id:
+                        target_memory = mem
+                        break
+            
+            # If target memory is found, get direct connections
+            if target_memory and 'memory_connections' in target_memory:
+                self.logger.info(f"Found target memory: {memory_id}, extracting connections")
+                
+                # Get connections from target memory
+                for connection in target_memory.get('memory_connections', []):
+                    conn_type = connection.get('type')
+                    conn_id = connection.get('id')
+                    
+                    # Skip if not a requested relationship type
+                    if relationship_types and conn_type not in relationship_types:
+                        continue
+                    
+                    # Look for memories with this connection
+                    if 'relationships' in self.context_memory and conn_type in self.context_memory['relationships']:
+                        if conn_id in self.context_memory['relationships'][conn_type]:
+                            for related_ref in self.context_memory['relationships'][conn_type][conn_id]:
+                                related_id = related_ref.get('memory_id')
+                                if related_id and related_id != memory_id and related_id not in seen_ids:
+                                    # Find the actual memory object
+                                    related_memory = None
+                                    
+                                    # Check in various memory stores
+                                    for mem in self.short_term_memory:
+                                        if mem.get('memory_id') == related_id:
+                                            related_memory = mem
+                                            break
+                                    
+                                    if not related_memory:
+                                        for mem in self.long_term_memory:
+                                            if mem.get('memory_id') == related_id:
+                                                related_memory = mem
+                                                break
+                                    
+                                    if not related_memory and 'by_timestamp' in self.context_memory:
+                                        for ts, mem in self.context_memory['by_timestamp'].items():
+                                            if mem.get('memory_id') == related_id:
+                                                related_memory = mem
+                                                break
+                                    
+                                    if related_memory:
+                                        # Calculate relevance score based on relationship type
+                                        relevance = 1.0
+                                        if conn_type == 'source':
+                                            relevance = 0.8  # Same source but lower relevance
+                                        elif conn_type == 'insight':
+                                            relevance = 0.9  # Insights are more relevant
+                                        elif conn_type == 'application':
+                                            relevance = 1.0  # Application context is highly relevant
+                                        
+                                        # Add to result with relevance info
+                                        related_memories.append({
+                                            'memory': related_memory,
+                                            'relevance': relevance,
+                                            'relationship_type': conn_type,
+                                            'relationship_id': conn_id
+                                        })
+                                        seen_ids.add(related_id)
+            
+            # If we don't have enough related memories yet, try semantic similarity
+            if len(related_memories) < limit and target_memory:
+                self.logger.info(f"Not enough relation-based memories, adding semantic similarity matches")
+                
+                # Extract text for similarity search
+                query_text = self._get_text_for_vectorization(target_memory)
+                if query_text:
+                    # Use semantic search to find similar memories
+                    similar_results = await self.search_memory(
+                        query=query_text,
+                        limit=(limit - len(related_memories)) * 2,  # Get more to filter
+                        context_aware=False  # Don't re-use current context for this search
+                    )
+                    
+                    # Add similar results that aren't already in related_memories
+                    for result in similar_results:
+                        result_id = result.get('id')
+                        if result_id and result_id != memory_id and result_id not in seen_ids:
+                            # Get the full memory for consistency
+                            similar_memory = None
+                            for mem in self.short_term_memory:
+                                if mem.get('memory_id') == result_id:
+                                    similar_memory = mem
+                                    break
+                            
+                            if not similar_memory:
+                                for mem in self.long_term_memory:
+                                    if mem.get('memory_id') == result_id:
+                                        similar_memory = mem
+                                        break
+                            
+                            if not similar_memory and 'by_timestamp' in self.context_memory:
+                                for ts, mem in self.context_memory['by_timestamp'].items():
+                                    if mem.get('memory_id') == result_id:
+                                        similar_memory = mem
+                                        break
+                            
+                            if similar_memory:
+                                # Add to result with similarity score as relevance
+                                related_memories.append({
+                                    'memory': similar_memory,
+                                    'relevance': result.get('score', 0.5),
+                                    'relationship_type': 'semantic_similarity',
+                                    'relationship_id': None
+                                })
+                                seen_ids.add(result_id)
+            
+            # Sort by relevance and apply limit
+            related_memories.sort(key=lambda x: x.get('relevance', 0), reverse=True)
+            limited_results = related_memories[:limit]
+            
+            # Format results for return
+            formatted_results = []
+            for item in limited_results:
+                memory = item['memory']
+                formatted_result = {
+                    'memory_id': memory.get('memory_id', 'unknown'),
+                    'content': memory.get('content', ''),
+                    'timestamp': memory.get('timestamp', ''),
+                    'memory_type': memory.get('memory_type', 'unknown'),
+                    'relevance': item.get('relevance', 0),
+                    'relationship_type': item.get('relationship_type', 'unknown'),
+                    'sensor_type': memory.get('sensor_type', 'unknown')
+                }
+                
+                # Add insights if available
+                if 'insights' in memory and isinstance(memory['insights'], list):
+                    formatted_result['insights'] = memory['insights']
+                
+                formatted_results.append(formatted_result)
+            
+            self.logger.info(f"Found {len(formatted_results)} related memories for {memory_id}")
+            return formatted_results
+            
+        except Exception as e:
+            self.logger.error(f"Error finding related memories: {e}")
+            self.logger.error(traceback.format_exc())
+            return []
+
     async def cleanup(self):
         """Cleanup resources"""
         try:
@@ -1545,7 +1860,7 @@ class MemorySystem:
         
         while self.running:
             try:
-                async with websockets.connect(self.server_uri) as websocket:
+                async with websockets.connect(self.server_uri, ping_interval=30, ping_timeout=90) as websocket:
                     logger.info(f"Connected to server at {self.server_uri}")
                     retry_count = 0  # Reset retry count on successful connection
                     
@@ -1773,6 +2088,42 @@ class MemorySystem:
             self.logger.error(traceback.format_exc())
             return None
     
+    async def _update_last_context(self):
+        """
+        Update the last_context.json file with the most recent context data for LLM integration.
+        This file is used by the LLM service to include context in responses.
+        """
+        try:
+            # Get the most recent context data
+            context_summary = await self.get_context_summary()
+            
+            if not context_summary:
+                self.logger.warning("No context summary available for updating last_context.json")
+                return
+                
+            # Create a structured context for LLM
+            last_context = {
+                "timestamp": int(time.time()),
+                "active_window": context_summary.get('window', ''),
+                "active_app": context_summary.get('active_app', ''),
+                "active_apps": context_summary.get('active_apps', []),
+                "window_history": context_summary.get('window_history', []),
+                "screen_text": context_summary.get('screen_content', '')
+            }
+            
+            # Save to the last_context.json file
+            last_context_file = os.path.join(os.path.dirname(self.memory_state_file), 'last_context.json')
+            with open(last_context_file, 'w') as f:
+                json.dump(last_context, f, indent=2)
+                
+            self.logger.info(f"✅ Updated last_context.json with active app: {last_context['active_app']}")
+            
+        except Exception as e:
+            self.logger.error(f"❌ Error updating last_context.json: {e}")
+            self.diagnostic_logger.log_memory_error(e, {
+                "context": "update_last_context"
+            })
+    
     async def add_to_context_memory(self, data: Dict[str, Any]) -> str:
         """
         Add data to context memory with enhanced structure and relationship tracking.
@@ -1814,6 +2165,29 @@ class MemorySystem:
                     'relationships': {},
                     'by_timestamp': {}
                 }
+            
+            # Ensure all required keys exist in context_memory
+            if 'by_timestamp' not in self.context_memory:
+                self.context_memory['by_timestamp'] = {}
+            if 'current_context' not in self.context_memory:
+                self.context_memory['current_context'] = {}
+            if 'application_context' not in self.context_memory:
+                self.context_memory['application_context'] = {}
+            if 'activities' not in self.context_memory:
+                self.context_memory['activities'] = []
+            if 'relationships' not in self.context_memory:
+                self.context_memory['relationships'] = {}
+            if 'sensor_data' not in self.context_memory:
+                self.context_memory['sensor_data'] = {
+                    'screen': {},
+                    'process': {},
+                    'file': {}
+                }
+            elif isinstance(self.context_memory['sensor_data'], dict):
+                # Ensure sensor_data contains required keys
+                for sensor_type in ['screen', 'process', 'file']:
+                    if sensor_type not in self.context_memory['sensor_data']:
+                        self.context_memory['sensor_data'][sensor_type] = {}
             
             # Timestamp for context organization
             timestamp = data.get('timestamp', datetime.now().isoformat())
@@ -2035,4 +2409,59 @@ class MemorySystem:
         except Exception as e:
             self.logger.error(f"Error adding to long-term memory: {e}")
             self.logger.error(traceback.format_exc())
-            return None 
+            return None
+            
+    async def get_latest_sensor_data(self):
+        """Return the most recent sensor data from context_memory['sensor_data']."""
+        try:
+            # Try to get the latest screen data
+            screen_data = self.context_memory.get('sensor_data', {}).get('screen', {})
+            if screen_data:
+                # Get the most recent screen data by timestamp
+                latest_screen = max(screen_data.values(), key=lambda x: x.get('timestamp', ''), default=None)
+                if latest_screen:
+                    return latest_screen
+            # Try to get the latest process data
+            process_data = self.context_memory.get('sensor_data', {}).get('process', {})
+            if process_data:
+                latest_process = max(process_data.values(), key=lambda x: x.get('timestamp', ''), default=None)
+                if latest_process:
+                    return latest_process
+            # Try to get the latest file data
+            file_data = self.context_memory.get('sensor_data', {}).get('file', {})
+            if file_data:
+                latest_file = max(file_data.values(), key=lambda x: x.get('timestamp', ''), default=None)
+                if latest_file:
+                    return latest_file
+            return {}
+        except Exception as e:
+            self.logger.error(f"Error getting latest sensor data: {e}")
+            return {}
+
+# Add main function to allow direct execution
+if __name__ == "__main__":
+    import asyncio
+    
+    async def main():
+        """Main function to run the memory system."""
+        logger.info("Starting memory system as standalone service")
+        memory_system = MemorySystem()
+        await memory_system.initialize()
+        
+        try:
+            # Keep the memory system running
+            while True:
+                await asyncio.sleep(10)
+                logger.info("Memory system is running...")
+        except KeyboardInterrupt:
+            logger.info("Memory system stopped by user")
+        except Exception as e:
+            logger.error(f"Error in memory system: {e}")
+            logger.error(traceback.format_exc())
+        finally:
+            # Clean up resources
+            if hasattr(memory_system, "stop"):
+                await memory_system.stop()
+    
+    # Run the main function
+    asyncio.run(main()) 

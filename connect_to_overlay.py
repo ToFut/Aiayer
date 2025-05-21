@@ -95,15 +95,13 @@ async def connect_to_overlay(server_url="ws://localhost:8765"):
                 async with websockets.connect(server_url) as websocket:
                     logger.info("Connected to overlay server")
                     
-                    # Send connection message
+                    # Send registration message
                     await websocket.send(json.dumps({
-                        "type": "connection_established",
-                        "payload": {
-                            "client": "enhanced_connector",
-                            "version": "1.0.0",
-                            "capabilities": ["search", "memory"],
-                            "timestamp": time.time()
-                        }
+                        "type": "register",
+                        "client_type": "application",
+                        "version": "1.0.0",
+                        "capabilities": ["search", "memory"],
+                        "timestamp": time.time()
                     }))
                     
                     # Start listener for incoming messages

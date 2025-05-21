@@ -21,12 +21,12 @@ class LocalLLM:
     Provides methods to ensure model availability and generate responses.
     """
     
-    def __init__(self, model_name="ollama3.2:latest", host="localhost", port=11434):
+    def __init__(self, model_name="llama3.2:latest", host="localhost", port=11434):
         """
         Initialize the LLM interface.
         
         Args:
-            model_name (str): Name of the Ollama model to use (ollama3.2:latest for chat, llava for screen sensor)
+            model_name (str): Name of the Ollama model to use (llama3.2:latest for chat, llava for screen sensor)
             host (str): Hostname where Ollama API is running
             port (int): Port for Ollama API
         """
@@ -46,7 +46,7 @@ class LocalLLM:
             self.is_vision_model = True
             self.temperature = 0.7
             self.max_tokens = 1024
-        else:  # ollama3.2:latest
+        else:  # llama3.2:latest
             self.is_vision_model = False
             self.temperature = 0.8
             self.max_tokens = 2048
@@ -315,8 +315,23 @@ When analyzing images:
             return False
     
     async def stop(self):
-        """Stop the LLM model."""
-        self.running = False
+        """Stop the LLM model and clean up resources."""
+        try:
+            self.running = False
+            
+            # Close any active sessions
+            if hasattr(self, 'session') and self.session:
+                await self.session.close()
+                self.session = None
+            
+            # Clear any cached data
+            if hasattr(self, 'last_request_time'):
+                self.last_request_time = 0
+                
+            self.logger.info("LLM model stopped and resources cleaned up")
+            
+        except Exception as e:
+            self.logger.error(f"Error stopping LLM model: {e}")
 
     def is_healthy(self):
         """Check if the LLM is healthy."""
@@ -352,7 +367,8 @@ When analyzing images:
             "model": self.model_name,
             "messages": messages,
             "temperature": self.temperature,
-            "max_tokens": self.max_tokens
+            "max_tokens": self.max_tokens,
+            "stream": False  # Disable streaming for now
         }
         
         # Retry logic for reliability
@@ -405,7 +421,7 @@ When analyzing images:
 # For testing if run directly
 if __name__ == "__main__":
     logging.basicConfig(level=logging.INFO)
-    llm = LocalLLM(model_name="ollam3.2:latest")
+    llm = LocalLLM(model_name="llama3.2:latest")
     
     if llm.start():
         print("LLM Model started successfully")

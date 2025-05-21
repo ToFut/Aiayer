@@ -255,18 +255,20 @@
         
         // Connect to WebSocket server
         function connectWebSocket() {
-            ws = new WebSocket('ws://localhost:8765');
+            ws = new WebSocket('ws://localhost:8768');
             
             ws.onopen = function() {
                 console.log('Connected to WebSocket server');
                 eyeWidget.classList.add('connected');
                 isConnected = true;
                 
-                // Send connection message
+                // Send registration message
                 ws.send(JSON.stringify({
-                    type: 'connection_established',
+                    type: 'register',
                     payload: {
-                        client: 'eye_widget_overlay',
+                        client_type: 'ui',
+                        version: '1.0.0',
+                        capabilities: ['overlay_display', 'user_interaction', 'context_tracking'],
                         timestamp: Date.now()
                     }
                 }));

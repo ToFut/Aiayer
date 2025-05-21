@@ -5,7 +5,7 @@
   
   export let show = false;
   export let initialPosition = { x: 20, y: 90 };
-  export let wsEndpoint = 'ws://localhost:8765';
+  export let wsEndpoint = 'ws://localhost:8767';  // Updated to match backend server port
   
   let messages = [];
   let input = '';
@@ -380,6 +380,13 @@
         const data = JSON.parse(event.data);
         console.log('Parsed message:', data);
         
+        // Handle registration confirmation
+        if (data.type === 'registration_confirmed') {
+          console.log('Registration confirmed:', data);
+          connectionStatus = 'connected';
+          return;
+        }
+        
         // Skip system messages that don't need UI display
         const systemMessageTypes = [
           'connection_established', 
@@ -388,7 +395,8 @@
           'status_update',
           'context_update_received', 
           'sensor_data_received', 
-          'pong'
+          'pong',
+          'ack' // Added to suppress ack logs
         ];
         
         if (systemMessageTypes.includes(data.type)) {
@@ -396,7 +404,7 @@
           return;
         }
         
-        if (data.type === 'llm_response' || data.type === 'query_response') {
+        if (data.type === 'llm_response' || data.type === 'query_response' || data.type === 'response') {
           // Handle LLM or query responses - support both new and old formats
           const responseText = data.content || data.payload?.response || data.payload?.message || "I received your message.";
           addMessage({ role: 'assistant', content: responseText });
@@ -407,10 +415,14 @@
           } else if (!isMuted) {
             playSound(messageReceivedAudio);
           }
-        } else if (data.type === 'suggestion') {
+        } else if (data.type === 'suggestion' || data.type === 'suggestions') {
           // Handle proactive suggestions - support both new and old formats
-          const suggestionText = data.content || data.payload?.content || "I have a suggestion for you.";
+          console.log("Received suggestion message:", data);
+          const suggestionText = data.content || data.payload?.content || 
+                             (Array.isArray(data.payload) ? data.payload[0]?.content : null) || 
+                             "I have a suggestion for you.";
           addMessage({ role: 'assistant', content: suggestionText, isSuggestion: true });
+          console.log("Added suggestion message with isSuggestion=true");
           if (showMinimized) {
             unreadCount++;
             playSound(notificationAudio);
@@ -483,6 +495,15 @@
       console.log('Connected to LLM service');
       connectionStatus = 'connected';
       reconnectAttempts = 0; // Reset reconnect attempts on successful connection
+      
+      // Send registration message
+      ws.send(JSON.stringify({
+        type: 'register',
+        client_type: 'ui',
+        version: '1.0.0',
+        capabilities: ['overlay_display', 'user_interaction', 'context_tracking'],
+        timestamp: Date.now()
+      }));
       
       // Send initial connection identification
       ws.send(JSON.stringify({
@@ -783,11 +804,11 @@
     
     // Use the correct message format expected by the backend server
     const message = {
-      type: 'llm_request',
+      type: 'user_message',
       payload: {
-        query: text,
-        timestamp: Date.now()
-      }
+        query: text
+      },
+      timestamp: Date.now()
     };
     
     console.log('Sending message object:', JSON.stringify(message));
@@ -822,6 +843,17 @@
     } else if (event.key === 'Escape') {
       emojiPickerVisible = false;
       showSettings = false;
+    }
+    
+    // Test function to create suggestions (press Ctrl+S to trigger)
+    if (event.key === 's' && event.ctrlKey) {
+      event.preventDefault();
+      addMessage({ 
+        role: 'assistant', 
+        content: "I noticed you're working on this project. Would you like me to help optimize the code?", 
+        isSuggestion: true 
+      });
+      console.log("Added test suggestion message with isSuggestion=true");
     }
   }
   
@@ -1240,6 +1272,12 @@
                       {msg.content}
                       {#if msg.action}
                         <button class="message-action-btn" on:click={msg.action}>Reconnect</button>
+                      {/if}
+                      {#if msg.isSuggestion}
+                        <div class="suggestion-actions">
+                          <button class="suggestion-btn" on:click={() => sendMessage("/dismiss")}>Dismiss</button>
+                          <button class="suggestion-btn" on:click={() => sendMessage("/adjust")}>Adjust</button>
+                        </div>
                       {/if}
                       {#if msg.isNew && !typingMessage}
                         <span class="new-badge">New</span>
@@ -3005,6 +3043,30 @@
   .typing-indicator span:nth-child(3) { 
     animation-delay: 0.6s;
     transform-origin: center top;
+  }
+
+  .suggestion-actions {
+    display: flex;
+    gap: 8px;
+    margin-top: 10px;
+    margin-bottom: 6px;
+  }
+
+  .suggestion-btn {
+    background: rgba(52, 152, 219, 0.2);
+    border: 1px solid rgba(52, 152, 219, 0.3);
+    border-radius: 10px;
+    padding: 6px 14px;
+    color: #3498db;
+    font-size: 12px;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+  }
+
+  .suggestion-btn:hover {
+    background: rgba(52, 152, 219, 0.3);
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(52, 152, 219, 0.2);
   }
   
   .light-mode .typing-indicator span {

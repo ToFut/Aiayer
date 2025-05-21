@@ -262,13 +262,12 @@
                 eyeWidget.classList.add('connected');
                 isConnected = true;
                 
-                // Send connection message
+                // Send registration message
                 ws.send(JSON.stringify({
-                    type: 'connection_established',
-                    payload: {
-                        client: 'eye_widget_overlay',
-                        timestamp: Date.now()
-                    }
+                    type: 'register',
+                    client_type: 'ui',
+                    version: '1.0.0',
+                    timestamp: Date.now()
                 }));
             };
             

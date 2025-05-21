@@ -9,10 +9,12 @@ import logging
 import os
 import sys
 import uuid
+import time
 from datetime import datetime
 from typing import Dict, Set, Any, Optional
 import websockets
 from websockets.server import WebSocketServerProtocol
+from collections import defaultdict
 
 # Configure logging
 os.makedirs('logs', exist_ok=True)
@@ -39,14 +41,19 @@ class BridgeServer:
             'llm': set()
         }
         self.client_info: Dict[str, Dict[str, Any]] = {}
+        self.client_heartbeats: Dict[str, float] = {}
+        self.message_stats: Dict[str, int] = defaultdict(int)
         self.running = False
         self.server = None
+        self.heartbeat_interval = 30
+        self.heartbeat_timeout = 60
+        self.cleanup_interval = 10
         
     async def start(self):
         """Start the WebSocket server."""
         try:
             self.server = await websockets.serve(
-                self._handle_client,
+                lambda ws, path: self._handle_client(ws, path),
                 self.host,
                 self.port,
                 ping_interval=30,
@@ -58,6 +65,7 @@ class BridgeServer:
             
             # Start background tasks
             asyncio.create_task(self._broadcast_status())
+            asyncio.create_task(self._cleanup_stale_connections())
             
             return True
         except Exception as e:
@@ -93,6 +101,10 @@ class BridgeServer:
                 try:
                     data = json.loads(message)
                     msg_type = data.get('type', 'unknown')
+                    self.message_stats[msg_type] += 1
+                    
+                    # Update heartbeat
+                    self.client_heartbeats[client_id] = time.time()
                     
                     # Handle connection establishment
                     if msg_type == 'connection_established':
@@ -102,7 +114,8 @@ class BridgeServer:
                             self.client_info[client_id] = {
                                 'type': client_type,
                                 'connected_at': datetime.now().isoformat(),
-                                'info': data.get('payload', {})
+                                'info': data.get('payload', {}),
+                                'last_activity': time.time()
                             }
                             logger.info(f"Client {client_id} ({client_type}) connected")
                             
@@ -125,8 +138,22 @@ class BridgeServer:
                                 }
                             }))
                     
+                    # Handle heartbeat
+                    elif msg_type == 'heartbeat':
+                        self.client_heartbeats[client_id] = time.time()
+                        await websocket.send(json.dumps({
+                            "type": "heartbeat_ack",
+                            "data": {
+                                "timestamp": time.time()
+                            }
+                        }))
+                    
                     # Handle other message types
                     else:
+                        # Update last activity
+                        if client_id in self.client_info:
+                            self.client_info[client_id]['last_activity'] = time.time()
+                        
                         # Broadcast message to appropriate clients
                         await self._broadcast_message(data, client_type, client_id)
                         
@@ -152,6 +179,8 @@ class BridgeServer:
                 self.clients[client_type].discard(websocket)
             if client_id in self.client_info:
                 del self.client_info[client_id]
+            if client_id in self.client_heartbeats:
+                del self.client_heartbeats[client_id]
     
     async def _broadcast_message(self, message: Dict[str, Any], source_type: str, source_id: str):
         """Broadcast message to appropriate clients."""
@@ -182,6 +211,27 @@ class BridgeServer:
         except Exception as e:
             logger.error(f"Error broadcasting message: {e}")
     
+    async def _cleanup_stale_connections(self):
+        """Periodically clean up stale connections."""
+        while self.running:
+            try:
+                current_time = time.time()
+                for client_id, last_heartbeat in list(self.client_heartbeats.items()):
+                    if current_time - last_heartbeat > self.heartbeat_timeout:
+                        logger.warning(f"Client {client_id} heartbeat timeout")
+                        if client_id in self.client_info:
+                            client_type = self.client_info[client_id]['type']
+                            # Find and remove the client's websocket
+                            for client in self.clients[client_type]:
+                                if client.id == client_id:
+                                    self.clients[client_type].discard(client)
+                                    break
+                            del self.client_info[client_id]
+                        del self.client_heartbeats[client_id]
+            except Exception as e:
+                logger.error(f"Error in cleanup task: {e}")
+            await asyncio.sleep(self.cleanup_interval)
+    
     async def _broadcast_status(self):
         """Periodically broadcast server status to all clients."""
         while self.running:
@@ -193,7 +243,8 @@ class BridgeServer:
                         "clients": {
                             client_type: len(clients)
                             for client_type, clients in self.clients.items()
-                        }
+                        },
+                        "message_stats": dict(self.message_stats)
                     }
                 }
                 
@@ -206,11 +257,11 @@ class BridgeServer:
                             self.clients[client_type].discard(client)
                         except Exception as e:
                             logger.error(f"Error sending status to {client_type} client: {e}")
-            
+                
             except Exception as e:
                 logger.error(f"Error broadcasting status: {e}")
             
-            await asyncio.sleep(5)
+            await asyncio.sleep(5)  # Update every 5 seconds
 
 async def main():
     """Main function to start the bridge server."""

@@ -5,16 +5,18 @@ import threading
 import time
 from typing import Dict, Any, Callable, List, Set
 import logging
+import traceback
 from collections import deque
+from datetime import datetime
 
 logger = logging.getLogger(__name__)
 
 class OverlayBridge:
     """Bridge between Python backend and overlay interface"""
     
-    def __init__(self, port=8766):  # Updated to use the interceptor service port
+    def __init__(self, host="localhost", port=8765):
+        self.host = host
         self.port = port
-        self.server = None
         self.clients = set()
         self.callback_registry = {}
         self.logger = logger
@@ -25,12 +27,94 @@ class OverlayBridge:
         self.queue_lock = threading.Lock()
         self.last_heartbeat = {}  # Track last heartbeat per client
         self.current_context = {}  # Store current context
+        self.message_queue = asyncio.Queue()
+        self.batch_size = 5  # Process messages in batches
+        self.batch_timeout = 0.1  # 100ms timeout for batching
+        self.running = True
         
         # Register default handlers
         self.register_callback('heartbeat', self._handle_heartbeat)
         self.register_callback('user_interaction', self._handle_user_interaction)
         self.register_callback('context_update', self._handle_context_update)
         
+    async def start(self):
+        """Start the WebSocket server with optimized settings"""
+        server = await websockets.serve(
+            self.handle_client,
+            self.host,
+            self.port,
+            ping_interval=20,  # Reduced from default
+            ping_timeout=10,   # Reduced from default
+            max_size=1024*1024,  # 1MB max message size
+            compression=None  # Disable compression for lower latency
+        )
+        
+        # Start message processing task
+        asyncio.create_task(self._process_message_queue())
+        
+        logger.info(f"WebSocket server started on ws://{self.host}:{self.port}")
+        await server.wait_closed()
+        
+    async def _process_message_queue(self):
+        """Process messages in batches for better performance"""
+        while self.running:
+            try:
+                # Collect messages for batch processing
+                messages = []
+                try:
+                    # Get first message
+                    messages.append(await asyncio.wait_for(
+                        self.message_queue.get(),
+                        timeout=self.batch_timeout
+                    ))
+                    
+                    # Try to get more messages without blocking
+                    while len(messages) < self.batch_size:
+                        try:
+                            messages.append(self.message_queue.get_nowait())
+                        except asyncio.QueueEmpty:
+                            break
+                            
+                except asyncio.TimeoutError:
+                    if not messages:
+                        continue
+                
+                # Process batch
+                if messages:
+                    await self._broadcast_batch(messages)
+                    
+            except Exception as e:
+                logger.error(f"Error processing message queue: {e}")
+                
+    async def _broadcast_batch(self, messages):
+        """Broadcast a batch of messages to all clients"""
+        if not self.clients:
+            return
+            
+        # Prepare batch message
+        batch = {
+            "type": "batch",
+            "messages": messages,
+            "timestamp": datetime.now().isoformat()
+        }
+        
+        # Convert to JSON once
+        batch_json = json.dumps(batch)
+        
+        # Broadcast to all clients
+        websockets_to_remove = set()
+        for websocket in self.clients:
+            try:
+                await websocket.send(batch_json)
+            except websockets.exceptions.ConnectionClosed:
+                websockets_to_remove.add(websocket)
+            except Exception as e:
+                logger.error(f"Error broadcasting to client: {e}")
+                websockets_to_remove.add(websocket)
+                
+        # Remove disconnected clients
+        self.clients -= websockets_to_remove
+    
     async def _handler(self, websocket, path):
         """Handle WebSocket connection with correct path parameter"""
         client_id = id(websocket)
@@ -38,42 +122,61 @@ class OverlayBridge:
         self.last_heartbeat[client_id] = time.time()
         self.logger.info(f"New client connected. Total clients: {len(self.clients)}")
         
-        # Send initial status message
+        # Send initial registration message
         try:
             await websocket.send(json.dumps({
-                'type': 'connection_status',
-                'payload': {
-                    'state': 'connected',
-                    'server_time': time.time(),
-                    'client_count': len(self.clients)
-                }
+                'type': 'register',
+                'client_type': 'ui',
+                'version': '1.0.0',
+                'capabilities': ['overlay_display', 'user_interaction', 'context_tracking']
             }))
+            self.logger.info("Sent registration message to bridge server")
+            
+            # Wait for registration confirmation
+            registered = False
+            registration_timeout = 10  # seconds
+            registration_start = time.time()
+            
+            while not registered and time.time() - registration_start < registration_timeout:
+                try:
+                    response = await asyncio.wait_for(websocket.recv(), timeout=2.0)
+                    data = json.loads(response)
+                    
+                    if data.get('type') == 'registration_confirmed':
+                        self.logger.info("Registration confirmed by bridge server")
+                        registered = True
+                        break
+                    elif data.get('type') == 'error':
+                        self.logger.error(f"Registration error: {data.get('message', 'Unknown error')}")
+                        # Store message for processing
+                        await self._process_message(websocket, data)
+                    else:
+                        # Other messages should be processed normally
+                        await self._process_message(websocket, data)
+                except asyncio.TimeoutError:
+                    self.logger.warning("Waiting for registration confirmation...")
+                except Exception as e:
+                    self.logger.error(f"Error during registration confirmation: {e}")
+                    await asyncio.sleep(1)
+            
+            if not registered:
+                self.logger.error("Failed to confirm registration with bridge server")
+                await websocket.close(1000, "Registration failed")
+                return
+                
         except Exception as e:
-            self.logger.error(f"Error sending initial status: {e}")
+            self.logger.error(f"Error sending registration: {e}")
         
         try:
             async for message in websocket:
                 try:
                     data = json.loads(message)
                     message_type = data.get('type')
-                    payload = data.get('payload')
                     
                     self.logger.info(f"Received message of type: {message_type}")
                     
-                    # Update last heartbeat on any message
-                    self.last_heartbeat[client_id] = time.time()
-                    
-                    # Special handling for connection established message
-                    if message_type == 'connection_established':
-                        self.logger.info(f"Client identified: {payload.get('client', 'unknown')}, version: {payload.get('version', 'unknown')}")
-                        continue
-                    
-                    # Process registered callbacks
-                    if message_type in self.callback_registry:
-                        for callback in self.callback_registry[message_type]:
-                            await callback(payload)
-                    else:
-                        self.logger.warning(f"No handler registered for message type: {message_type}")
+                    # Process the message using the common method
+                    await self._process_message(websocket, data)
                         
                 except json.JSONDecodeError as e:
                     self.logger.error(f"Error decoding message: {e}")
@@ -81,6 +184,7 @@ class OverlayBridge:
             self.logger.info(f"Client connection closed: {e}")
         except Exception as e:
             self.logger.error(f"Error in websocket handler: {e}")
+            self.logger.error(traceback.format_exc())
         finally:
             self.clients.remove(websocket)
             if client_id in self.last_heartbeat:
@@ -103,37 +207,6 @@ class OverlayBridge:
             await client.close()
             self.clients.remove(client)
             del self.last_heartbeat[id(client)]
-    
-    def start(self):
-        """Start WebSocket server in background thread"""
-        self.loop = asyncio.new_event_loop()
-        self.is_running = True
-        
-        async def start_server():
-            async with websockets.serve(self._handler, "localhost", self.port):
-                self.logger.info(f"WebSocket server running on localhost:{self.port}")
-                
-                # Start heartbeat checker
-                heartbeat_task = asyncio.create_task(self._check_heartbeats())
-                
-                # Keep the server running until closed
-                await asyncio.Future()  # This will run forever until cancelled
-                
-                # Cleanup
-                heartbeat_task.cancel()
-            
-        def run_loop():
-            asyncio.set_event_loop(self.loop)
-            try:
-                self.loop.run_until_complete(start_server())
-            except asyncio.CancelledError:
-                self.logger.info("WebSocket server task cancelled")
-            except Exception as e:
-                self.logger.error(f"Error in WebSocket server: {e}")
-            
-        self.thread = threading.Thread(target=run_loop, daemon=True)
-        self.thread.start()
-        return self.thread
     
     def stop(self):
         """Stop the WebSocket server"""
@@ -164,6 +237,53 @@ class OverlayBridge:
         # Sleep briefly to allow other tasks to be cancelled
         await asyncio.sleep(0.1)
         self.loop.stop()
+        
+    async def _process_message(self, websocket, data):
+        """Process a WebSocket message"""
+        try:
+            message_type = data.get('type')
+            payload = data.get('payload', {})
+            
+            # Update last heartbeat on any message
+            client_id = id(websocket)
+            self.last_heartbeat[client_id] = time.time()
+            
+            # Process registered callbacks
+            if message_type in self.callback_registry:
+                for callback in self.callback_registry[message_type]:
+                    await callback(payload)
+            else:
+                self.logger.debug(f"No handler registered for message type: {message_type}")
+                
+            # Handle LLM requests with context
+            if message_type in ['llm_request', 'chat_message', 'user_message']:
+                # Get current context
+                context = self.current_context.copy()
+                
+                # Add screen sensor data if available
+                if hasattr(self, 'screen_data') and self.screen_data:
+                    context['screen'] = self.screen_data
+                
+                # Add process data if available
+                if hasattr(self, 'process_data') and self.process_data:
+                    context['processes'] = self.process_data
+                
+                # Add context to the message
+                enriched_data = {
+                    'type': message_type,
+                    'payload': {
+                        **payload,
+                        'context': context
+                    },
+                    'timestamp': datetime.now().isoformat()
+                }
+                
+                # Forward to LLM service
+                await self.send_message('llm_request', enriched_data['payload'])
+                
+        except Exception as e:
+            self.logger.error(f"Error processing message: {e}")
+            self.logger.error(traceback.format_exc())
     
     async def send_message(self, message_type: str, payload: Dict[str, Any]):
         """Send message to all connected clients"""
@@ -334,7 +454,17 @@ class OverlayBridge:
                     'urgency': suggestion.get('urgency', 3)
                 })
         
-        # Send suggestions
+        # Send individual suggestion messages to ensure proper handling in UI
+        for suggestion in formatted_suggestions:
+            # Send as a single suggestion for better UI compatibility
+            await self.send_message('suggestion', {
+                'content': suggestion['content'],
+                'title': suggestion['title'],
+                'isSuggestion': True, # Explicitly mark as suggestion for UI
+                'buttons': suggestion['buttons']
+            })
+            
+        # Also send the batch for backwards compatibility
         return await self.send_message('suggestions', formatted_suggestions)
         
     def register_suggestion_feedback_handler(self, callback: Callable):

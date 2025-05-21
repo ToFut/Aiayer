@@ -31,7 +31,7 @@
       }
 
       console.log('Attempting to connect to WebSocket server...');
-      ws = new WebSocket('ws://localhost:8765');
+      ws = new WebSocket('ws://localhost:8768');  // Updated from 8765 to match our new bridge server port
       
       ws.onopen = () => {
         console.log('Connected to LLM service');
@@ -80,10 +80,12 @@
             loading = false;
             scrollToBottom();
           } else if (data.type === 'suggestion' || data.type === 'suggestions') {
+            console.log("Received suggestion message:", data);
             const suggestionText = data.content || data.payload?.content || 
                                (Array.isArray(data.payload) ? data.payload[0]?.content : null) || 
                                "I have a suggestion for you.";
             messages = [...messages, { role: 'assistant', content: suggestionText, isSuggestion: true }];
+            console.log("Added suggestion message:", messages[messages.length-1]);
             scrollToBottom();
           } else if (data.type === 'error') {
             const errorText = data.content || data.payload?.message || data.error || "An error occurred while processing your request.";
@@ -233,6 +235,18 @@
       event.preventDefault();
       sendMessage();
     }
+    
+    // Test function to create suggestions (press Ctrl+S to trigger)
+    if (event.key === 's' && event.ctrlKey) {
+      event.preventDefault();
+      messages = [...messages, { 
+        role: 'assistant', 
+        content: "I noticed you're working on this project. Would you like me to help optimize the code?", 
+        isSuggestion: true 
+      }];
+      scrollToBottom();
+      console.log("Added test suggestion message:", messages[messages.length-1]);
+    }
   }
 
   function startDrag(event) {
@@ -326,6 +340,7 @@
 
         {#each messages as msg, i}
           <div class="message-wrapper {msg.role}" in:fade={{ duration: 200, delay: i * 50 }}>
+            <!-- {JSON.stringify(msg)} --> <!-- Debug info for UI -->
             <div class="message {msg.isSuggestion ? 'isSuggestion' : ''} {msg.isError ? 'isError' : ''}">
               <div class="message-avatar">
                 {#if msg.role === 'user'}
@@ -340,8 +355,17 @@
               </div>
               <div class="message-content">
                 <div class="message-text">{msg.content}</div>
+                {#if msg.isSuggestion === true}
+                  <div class="suggestion-actions">
+                    <button class="suggestion-btn" on:click={() => sendMessage("/dismiss")}>Dismiss</button>
+                    <button class="suggestion-btn" on:click={() => sendMessage("/adjust")}>Adjust</button>
+                  </div>
+                {/if}
                 <div class="message-time">
                   {new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+                  {#if msg.isSuggestion}
+                    <span class="suggestion-indicator">💡 Suggestion</span>
+                  {/if}
                 </div>
               </div>
             </div>
@@ -841,6 +865,39 @@
 
   .typing-indicator span:nth-child(3) { 
     animation-delay: 0.4s;
+  }
+
+  .suggestion-actions {
+    display: flex;
+    gap: 8px;
+    margin-top: 8px;
+    margin-bottom: 4px;
+  }
+
+  .suggestion-btn {
+    background: rgba(52, 152, 219, 0.2);
+    border: 1px solid rgba(52, 152, 219, 0.3);
+    border-radius: 10px;
+    padding: 4px 12px;
+    color: #3498db;
+    font-size: 12px;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+  }
+
+  .suggestion-btn:hover {
+    background: rgba(52, 152, 219, 0.3);
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(52, 152, 219, 0.2);
+  }
+  
+  .suggestion-indicator {
+    margin-left: 8px;
+    font-size: 10px;
+    background: rgba(52, 152, 219, 0.1);
+    padding: 2px 6px;
+    border-radius: 8px;
+    color: rgba(52, 152, 219, 0.8);
   }
 
   @keyframes messageSlide {

@@ -13,7 +13,7 @@
         
         // Initialize bridge with better options
         bridge = new EnhancedBridge({
-            url: 'ws://localhost:8765',
+            url: 'ws://localhost:8767',  // Updated to match backend server port
             reconnectAttempts: 10,
             reconnectDelay: 1000,
             debug: true
@@ -62,7 +62,7 @@
     <EnhancedNextGenChat 
         show={showChat} 
         initialPosition={getInitialPosition()}
-        wsEndpoint="ws://localhost:8765"
+        wsEndpoint="ws://localhost:8767"
     />
 </main>
 

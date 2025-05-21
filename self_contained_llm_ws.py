@@ -82,7 +82,7 @@ client_info = {}  # Store client info by ID
 
 # WebSocket server configuration
 WS_HOST = "0.0.0.0"
-WS_PORT = 8766
+WS_PORT = 8770  # Changed from 8766 to avoid port conflict
 
 class OllamaService:
     def __init__(self, ollama_url="http://localhost:11434"):

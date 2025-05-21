@@ -22,6 +22,7 @@ import numpy as np
 import pytesseract
 from pytesseract import Output
 import cv2
+from llava_visual_processor import LLaVAVisualProcessor
 
 # Configure logging
 logging.basicConfig(
@@ -45,6 +46,7 @@ class ScreenData:
     active_window: Optional[str] = None
     active_apps: Optional[list] = None
     error: Optional[str] = None
+    llava_analysis: Optional[Dict[str, Any]] = None  # Added LLaVA analysis field
 
 class ScreenSensor:
     """
@@ -61,6 +63,9 @@ class ScreenSensor:
         self.cache_file = f"{self.cache_dir}/last_screen.json"
         self.unchanged_count = 0
         self.max_unchanged = 5  # Skip processing after 5 unchanged frames
+        
+        # Initialize LLaVA processor
+        self.llava = LLaVAVisualProcessor()
         
         # Create cache directory if it doesn't exist
         os.makedirs(self.cache_dir, exist_ok=True)
@@ -135,7 +140,8 @@ class ScreenSensor:
                             text_content=data.get('text_content'),
                             active_window=data.get('active_window'),
                             active_apps=data.get('active_apps', []),
-                            error=data.get('error')
+                            error=data.get('error'),
+                            llava_analysis=data.get('llava_analysis')
                         )
         except Exception as e:
             logger.warning(f"Failed to load screen cache: {e}")
@@ -190,23 +196,24 @@ class ScreenSensor:
                 if not test_image:
                     raise Exception("Failed to convert screenshot to image")
                 
+                # Initialize LLaVA processor
+                if not self.llava:
+                    self.llava = LLaVAVisualProcessor()
+                    if not self.llava.initialized:
+                        logger.warning("LLaVA processor not initialized, will retry on first analysis")
+                    else:
+                        logger.info("LLaVA processor initialized successfully")
+                
                 logger.info("ScreenSensor initialized successfully")
                 return True
                 
             except Exception as e:
-                logger.error(f"ScreenSensor initialization failed (attempt {attempt + 1}): {str(e)}")
-                if self.sct:
-                    try:
-                        self.sct.close()
-                    except:
-                        pass
-                    self.sct = None
-                
+                logger.error(f"Error initializing ScreenSensor (attempt {attempt + 1}): {e}")
                 if attempt < max_retries - 1:
+                    logger.info(f"Retrying in {retry_delay} seconds...")
                     await asyncio.sleep(retry_delay)
-                    retry_delay *= 2  # Exponential backoff
                 else:
-                    logger.error("ScreenSensor initialization failed after all retries")
+                    logger.error("Failed to initialize ScreenSensor after all retries")
                     return False
 
     def _calculate_image_hash(self, image: Image.Image) -> str:
@@ -224,65 +231,68 @@ class ScreenSensor:
             
         return True
 
-    async def capture_screen(self) -> ScreenData:
-        """Capture and process screen content with optimizations"""
+    async def _process_with_llava(self, image: Image.Image, context: Dict[str, Any]) -> Dict[str, Any]:
+        """Process screen capture with LLaVA for semantic understanding"""
         try:
-            current_time = time.time()
+            # Get process context
+            process_context = {
+                "processes": context.get("processes", []),
+                "active_window": context.get("active_window"),
+                "active_apps": context.get("active_apps", [])
+            }
             
-            # Ensure screen capture is initialized
-            if not self.sct:
-                logger.error("Screen capture not initialized")
-                raise Exception("Screen capture not initialized")
+            # Analyze with LLaVA
+            analysis = await self.llava.analyze_screen(image, process_context)
             
-            # Get primary monitor
-            monitors = self.sct.monitors
-            if not monitors:
-                raise Exception("No monitors found")
-            primary_monitor = monitors[1]
+            if analysis.get("error"):
+                logger.warning(f"LLaVA analysis error: {analysis['error']}")
+                return {}
+                
+            logger.info(f"LLaVA analysis completed: {json.dumps(analysis, indent=2)}")
+            return analysis
+            
+        except Exception as e:
+            logger.error(f"Error processing with LLaVA: {e}")
+            return {}
+
+    async def capture_screen(self) -> ScreenData:
+        """Capture and process screen with LLaVA analysis"""
+        try:
+            # Get window info first
+            window_info = self._get_window_info()
             
             # Capture screen
-            screenshot = self.sct.grab(primary_monitor)
-            if not screenshot:
-                raise Exception("Failed to capture screenshot")
-                
+            screenshot = self.sct.grab(self.sct.monitors[1])
             image = Image.frombytes('RGB', screenshot.size, screenshot.rgb)
-            if not image:
-                raise Exception("Failed to convert screenshot to image")
             
             # Calculate image hash
             image_hash = self._calculate_image_hash(image)
             
-            # Check if we should process this image
+            # Check if we should process this frame
+            current_time = time.time()
             if not self._should_process_image(current_time, image_hash):
-                if self.last_data:
-                    self.last_data.is_unchanged = True
-                    return self.last_data
+                return self.last_data
+                
+            # Extract text using OCR
+            text = self._extract_text(image)
             
-            # Extract text from image
-            text_content = self._extract_text(image)
-            
-            # Convert image to bytes
-            img_byte_arr = io.BytesIO()
-            image.save(img_byte_arr, format='PNG')
-            img_byte_arr = img_byte_arr.getvalue()
-            
-            # Get active window info
-            window_info = self._get_window_info()
-            
-            # Create screen data
+            # Create base screen data
             screen_data = ScreenData(
                 timestamp=current_time,
-                image=img_byte_arr,
+                image=screenshot.rgb,
                 image_hash=image_hash,
-                text=text_content,
-                text_content=text_content,
-                active_window=window_info.get('active_window'),
-                active_apps=window_info.get('active_apps', [])
+                text=text,
+                active_window=window_info.get("active_window"),
+                active_apps=window_info.get("active_apps", [])
             )
             
-            # Save to cache
-            self._save_cache(screen_data)
+            # Process with LLaVA
+            llava_analysis = await self._process_with_llava(image, window_info)
+            screen_data.llava_analysis = llava_analysis
+            
+            # Update last data and cache
             self.last_data = screen_data
+            self._save_cache(screen_data)
             
             return screen_data
             

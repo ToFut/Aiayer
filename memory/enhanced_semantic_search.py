@@ -102,13 +102,14 @@ class EnhancedSemanticSearch:
             
         return mock_embedding
     
-    def add_to_index(self, item: Dict[str, Any], memory_type: str) -> str:
+    def add_to_index(self, item: Dict[str, Any], memory_type: str, metadata: Optional[Dict[str, Any]] = None) -> str:
         """
         Add a memory item to the search index.
         
         Args:
             item: The memory item to add
             memory_type: Type of memory ('short_term', 'long_term', 'context', 'conscious')
+            metadata: Optional metadata about the item
         
         Returns:
             item_id: Unique ID for the indexed item
@@ -130,7 +131,8 @@ class EnhancedSemanticSearch:
             self.memory_vectors[item_id] = {
                 'vector': vector,
                 'timestamp': item.get('timestamp', datetime.now().isoformat()),
-                'memory_type': memory_type
+                'memory_type': memory_type,
+                'metadata': metadata or {}
             }
             
             # Store the original item

@@ -65,6 +65,8 @@ class MessageBridge:
         self.logger = logging.getLogger(__name__)
         self.start_time = None
         self.bridge_id = id(self)
+        self.processed_messages = 0
+        self.error_count = 0
 
     async def start(self):
         """Start the message bridge processing loop."""
@@ -72,6 +74,7 @@ class MessageBridge:
             return
 
         self.running = True
+        self.start_time = datetime.now().timestamp()
         self.logger.info(f"🚀 STARTING MESSAGE BRIDGE: [VERIFICATION CHECK 7/10]")
         self.logger.info(f"  - Bridge instance ID: {self.bridge_id}")
         self.logger.info(f"  - Queue size at start: {self.message_queue.qsize()}")
@@ -84,6 +87,7 @@ class MessageBridge:
                 try:
                     message = await self.message_queue.get()
                     # Process message here
+                    self.processed_messages += 1
                     self.message_queue.task_done()
                 except asyncio.CancelledError:
                     self.logger.warning("⚠️ BRIDGE TASK CANCELLED: [VERIFICATION WARNING]")
@@ -91,10 +95,13 @@ class MessageBridge:
                     break
                 except Exception as e:
                     self.logger.error(f"Error processing message: {e}")
+                    self.error_count += 1
 
         finally:
+            end_time = datetime.now().timestamp()
+            runtime = end_time - self.start_time if self.start_time else 0
             self.logger.info("✅ BRIDGE LOOP COMPLETED: [VERIFICATION PASSED]")
-            self.logger.info(f"  - Total runtime: {datetime.now().timestamp() - self.start_time:.2f} seconds")
+            self.logger.info(f"  - Total runtime: {runtime:.2f} seconds")
             self.logger.info(f"  - Messages processed: {self.processed_messages}")
             self.logger.info(f"  - Errors encountered: {self.error_count}")
 

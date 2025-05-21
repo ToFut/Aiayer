@@ -1002,7 +1002,7 @@ async def main():
     await agent.update_memory_vectors()
     
     # Set up WebSocket server
-    port = 8765
+    port = 8770
     host = "0.0.0.0"  # Listen on all interfaces
     
     # Create directories

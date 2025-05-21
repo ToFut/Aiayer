@@ -208,16 +208,27 @@ class AlternativeScreenAnalyzer:
                         line_num = data['line_num'][i]
                         if line_num != current_line:
                             if current_line != -1 and line_text:
-                                boxes.append({
-                                    'line_num': current_line,
-                                    'text': ' '.join(line_text),
-                                    'bbox': [
-                                        min(box['left'] for box in boxes if box['line_num'] == current_line),
-                                        min(box['top'] for box in boxes if box['line_num'] == current_line),
-                                        max(box['left'] + box['width'] for box in boxes if box['line_num'] == current_line),
-                                        max(box['top'] + box['height'] for box in boxes if box['line_num'] == current_line)
-                                    ]
-                                })
+                                # Get filtered boxes for this line
+                                line_boxes = [box for box in boxes if box.get('line_num') == current_line and 'left' in box and 'top' in box and 'width' in box and 'height' in box]
+                                
+                                # Only proceed if we have valid boxes with required fields
+                                if line_boxes:
+                                    boxes.append({
+                                        'line_num': current_line,
+                                        'text': ' '.join(line_text),
+                                        'bbox': [
+                                            min(box['left'] for box in line_boxes),
+                                            min(box['top'] for box in line_boxes),
+                                            max(box['left'] + box['width'] for box in line_boxes),
+                                            max(box['top'] + box['height'] for box in line_boxes)
+                                        ]
+                                    })
+                                else:
+                                    # Fallback for when we don't have boxes with required fields
+                                    boxes.append({
+                                        'line_num': current_line,
+                                        'text': ' '.join(line_text)
+                                    })
                             line_text = []
                             current_line = line_num
                         
@@ -235,16 +246,27 @@ class AlternativeScreenAnalyzer:
             
             # Add the last line
             if current_line != -1 and line_text:
-                boxes.append({
-                    'line_num': current_line,
-                    'text': ' '.join(line_text),
-                    'bbox': [
-                        min(box['left'] for box in boxes if box['line_num'] == current_line),
-                        min(box['top'] for box in boxes if box['line_num'] == current_line),
-                        max(box['left'] + box['width'] for box in boxes if box['line_num'] == current_line),
-                        max(box['top'] + box['height'] for box in boxes if box['line_num'] == current_line)
-                    ]
-                })
+                # Get filtered boxes for this line
+                line_boxes = [box for box in boxes if box.get('line_num') == current_line and 'left' in box and 'top' in box and 'width' in box and 'height' in box]
+                
+                # Only proceed if we have valid boxes with required fields
+                if line_boxes:
+                    boxes.append({
+                        'line_num': current_line,
+                        'text': ' '.join(line_text),
+                        'bbox': [
+                            min(box['left'] for box in line_boxes),
+                            min(box['top'] for box in line_boxes),
+                            max(box['left'] + box['width'] for box in line_boxes),
+                            max(box['top'] + box['height'] for box in line_boxes)
+                        ]
+                    })
+                else:
+                    # Fallback for when we don't have boxes with required fields
+                    boxes.append({
+                        'line_num': current_line,
+                        'text': ' '.join(line_text)
+                    })
             
             # Alternative pass for sparse text
             sparse_text = pytesseract.image_to_string(thresh, config=self.ocr_configs['sparse_text'])
@@ -255,7 +277,7 @@ class AlternativeScreenAnalyzer:
                 'full_text': pytesseract.image_to_string(thresh, config=self.ocr_configs['default']),
                 'sparse_text': sparse_text,
                 'word_count': len([b for b in boxes if len(b['text'].split()) == 1]),
-                'line_count': len(set(b['line_num'] for b in boxes))
+                'line_count': len(set(b.get('line_num', 0) for b in boxes))
             }
             
             # Advanced layout analysis - group text by regions
@@ -279,9 +301,18 @@ class AlternativeScreenAnalyzer:
             
         regions = []
         
-        # Sort boxes by vertical position (top)
-        sorted_boxes = sorted(text_boxes, key=lambda box: box.get('top', 0))
+        # Filter out boxes missing required positional attributes
+        valid_boxes = [box for box in text_boxes if all(k in box for k in ['top', 'left', 'height', 'width'])]
         
+        if not valid_boxes:
+            return []
+            
+        # Sort boxes by vertical position (top)
+        sorted_boxes = sorted(valid_boxes, key=lambda box: box.get('top', 0))
+        
+        if not sorted_boxes:
+            return []
+            
         # Group into regions using a simple position-based clustering
         current_region = [sorted_boxes[0]]
         current_top = sorted_boxes[0].get('top', 0)
@@ -794,6 +825,76 @@ class ScreenData:
     screen_elements: Optional[List[Dict[str, Any]]] = field(default_factory=list)  # Detected UI elements
     visual_context: Optional[str] = None  # High-level context description from LLaVA
 
+class ScreenCapture:
+    def __init__(self):
+        self.sct = None
+        self.last_capture_time = 0
+        self.min_capture_interval = 0.5  # Minimum time between captures
+        self.image_cache = {}  # Cache for recent captures
+        self.max_cache_size = 10  # Maximum number of cached images
+        try:
+            self.sct = mss.mss()
+            logger.info("Screen capture initialized successfully")
+        except Exception as e:
+            logger.error(f"Error initializing screen capture: {e}")
+        
+    async def capture(self):
+        """Capture the current screen with rate limiting and caching"""
+        try:
+            current_time = time.time()
+            if current_time - self.last_capture_time < self.min_capture_interval:
+                # Return cached result if available
+                if self.image_cache:
+                    return list(self.image_cache.values())[-1]
+                await asyncio.sleep(self.min_capture_interval)
+            
+            if not self.sct:
+                self.sct = mss.mss()
+                
+            # Get primary monitor (usually monitor 1)
+            monitor = self.sct.monitors[1]
+            screenshot = self.sct.grab(monitor)
+            
+            # Convert to PIL Image
+            img = Image.frombytes('RGB', screenshot.size, screenshot.rgb)
+            
+            # Calculate image hash for change detection
+            img_hash = self._calculate_hash(img)
+            
+            # Compress and convert to base64
+            img_bytes = io.BytesIO()
+            img.save(img_bytes, format='JPEG', quality=70, optimize=True)
+            img_base64 = base64.b64encode(img_bytes.getvalue()).decode('utf-8')
+            
+            result = {
+                "timestamp": datetime.now().isoformat(),
+                "image_data": img_base64,
+                "image_hash": img_hash,
+                "screen_size": img.size,
+                "changed": img_hash != last_image_hash
+            }
+            
+            # Update cache
+            self.image_cache[img_hash] = result
+            if len(self.image_cache) > self.max_cache_size:
+                # Remove oldest entry
+                self.image_cache.pop(next(iter(self.image_cache)))
+            
+            self.last_capture_time = current_time
+            return result
+            
+        except Exception as e:
+            logger.error(f"Error during screen capture: {e}")
+            # Try to reinitialize
+            try:
+                if self.sct:
+                    self.sct.close()
+                self.sct = mss.mss()
+                logger.info("Re-initialized screen capture")
+            except Exception as re_e:
+                logger.error(f"Failed to reinitialize screen capture: {re_e}")
+            return None
+
 class FixedScreenSensor:
     """
     Captures screenshots for LLaVA processing with enhanced image analysis.
@@ -815,12 +916,18 @@ class FixedScreenSensor:
         self.llava_endpoint = f"{llava_url}/api/chat"
         self.llava_model = "llava"  # The model name for LLaVA in Ollama
         self.use_llava = True  # Enable/disable LLaVA analysis
-        self.llava_timeout = 60  # Increased timeout for LLaVA requests to 60 seconds
+        self.llava_timeout = 15  # Reduced timeout from 60 to 15 seconds
+        self.llava_retry_count = 0
+        self.max_llava_retries = 2  # Reduced from 3 to 2 retries
+        self.llava_backoff_time = 2  # Reduced initial backoff time from 5 to 2 seconds
         
         # Alternative analysis settings
         self.use_alternative_analysis = True  # Enable local computer vision analysis
-        self.always_run_alternative = False  # Whether to always run alternative analysis even if LLaVA works
-        self.hybrid_mode = True  # Combine results from LLaVA and alternative analysis when both are available
+        self.always_run_alternative = False  # Changed to False - only run when LLaVA fails
+        self.hybrid_mode = False  # Changed to False - use either LLaVA or alternative, not both
+        
+        # Initialize alternative analyzer
+        self.alt_analyzer = AlternativeScreenAnalyzer()
         
         # Create cache directory if it doesn't exist
         os.makedirs(self.cache_dir, exist_ok=True)
@@ -831,6 +938,17 @@ class FixedScreenSensor:
         self.latest_image = None
         self.running = False
         self.thread = None
+        
+        # Error tracking
+        self.error_count = 0
+        self.max_errors = 5
+        self.error_reset_time = 300  # 5 minutes
+        self.last_error_time = 0
+        
+        # Performance tracking
+        self.processing_times = []
+        self.max_processing_times = 10  # Keep track of last 10 processing times
+        
         self.logger = logging.getLogger(__name__)
         self.has_images = False
         self.has_videos = False
@@ -860,14 +978,6 @@ class FixedScreenSensor:
             'lang': 'eng',
             'config': '--psm 3'  # Assume a single uniform block of text
         }
-        
-        # Initialize the alternative screen analyzer
-        logger.info("Initializing alternative screen analyzer...")
-        self.alt_analyzer = AlternativeScreenAnalyzer()
-        logger.info("Alternative screen analyzer initialized successfully")
-        
-        # Test LLaVA connection
-        self._test_llava_connection()
     
     def _test_llava_connection(self):
         """Test connection to LLaVA service"""
@@ -974,424 +1084,147 @@ class FixedScreenSensor:
             }
             
     async def _analyze_with_llava(self, image: Image.Image) -> Dict[str, Any]:
-        """
-        Analyze the screen image with LLaVA to get detailed visual understanding
-        with robust error handling and fallback mechanisms
-        
-        Returns:
-            Dict containing visual description, UI elements, and high-level context
-        """
+        """Analyze screen with LLaVA with enhanced error handling and fallbacks"""
         if not self.use_llava:
-            logger.warning("LLaVA analysis disabled or unavailable")
-            return {
-                "llava_description": "",
-                "screen_elements": [],
-                "visual_context": ""
-            }
+            logger.info("LLaVA analysis disabled, skipping")
+            return None
             
-        # Track retry attempts for exponential backoff
-        retry_count = 0
-        max_retries = 3
-        base_delay = 1.0  # Initial backoff delay in seconds
+        try:
+            start_time = time.time()
             
-        while retry_count <= max_retries:
-            try:
-                # Convert image to base64
-                img_byte_array = io.BytesIO()
-                # Save as JPEG with reduced quality to minimize size
-                image.save(img_byte_array, format='JPEG', quality=85)
-                img_bytes = img_byte_array.getvalue()
-                img_base64 = base64.b64encode(img_bytes).decode('utf-8')
+            # Check if we should retry LLaVA based on error count and backoff
+            if self.llava_retry_count >= self.max_llava_retries:
+                logger.warning("Max LLaVA retries reached, falling back to alternative analysis")
+                self.use_llava = False
+                return None
                 
-                # Prepare message for LLaVA with enhanced application-specific analysis prompt
-                messages = [
-                    {
-                        "role": "system",
-                        "content": """You are an expert screen content analyzer specializing in application-specific interface detection. When given a screen capture:
-
-1. IMPORTANT: Identify which application the user is using (e.g., Gmail, Google Docs, Visual Studio Code, Slack, or a specific SaaS platform)
-2. Detect specific views or modes within the application (e.g., inbox view, compose email, settings page, editing mode)
-3. Identify UI components with their EXACT labels and functions (buttons, forms, navigation elements, dialogs)
-4. Extract important text content visible on screen, especially from main content areas
-5. Determine the USER'S EXACT task or workflow stage (e.g., "composing new email to sales@example.com", "editing document title", "reviewing code in function calculateTotal")
-6. If email client is visible, identify sender/recipient information and subject lines
-7. If form is visible, identify input fields and their current state (filled/empty)
-8. For known applications, identify application-specific elements:
-   - Gmail: Inbox, compose, labels, email content
-   - Google Docs: Document editing, comments, sharing options
-   - SaaS platforms: Dashboard elements, data tables, configuration panels
-   - Code editors: File tree, editing window, terminal, debugging panels"""
-                    },
+            # Convert image to base64
+            buffered = io.BytesIO()
+            image.save(buffered, format="PNG")
+            img_base64 = base64.b64encode(buffered.getvalue()).decode()
+            
+            # Prepare LLaVA prompt
+            prompt = {
+                "model": self.llava_model,
+                "messages": [
                     {
                         "role": "user",
-                        "content": "Analyze this screen with special attention to application-specific UI patterns. If you see a known application (like Gmail, Google Docs, Slack, etc.), provide very detailed information about what EXACT view the user is in and what SPECIFIC action they are taking. Focus on identifying the precise stage in the user's workflow."
+                        "content": "Analyze this screen capture and provide: 1) A detailed description of the content, 2) List of UI elements and their states, 3) Any text content visible, 4) The main application or context. Format the response as JSON with these fields: description, elements, text_content, application."
                     }
-                ]
-                
-                # Prepare request payload
-                payload = {
-                    "model": self.llava_model,
-                    "messages": messages,
-                    "images": [img_base64],
-                    "temperature": 0.2,  # Lower temperature for more factual analysis
-                    "max_tokens": 1024
-                }
-                
-                # Make async request to LLaVA with streaming support
-                logger.info(f"Sending screen capture to LLaVA for analysis (attempt {retry_count + 1}/{max_retries + 1})")
-                
-                # Set up request with circuit breaker timeout
-                timeout = min(self.llava_timeout * (retry_count + 1), 120)  # Increase timeout with retries, max 120s
-                
-                async with aiohttp.ClientSession() as session:
-                    try:
-                        async with session.post(
-                            self.llava_endpoint,
-                            json=payload,
-                            timeout=aiohttp.ClientTimeout(total=timeout, connect=10, sock_read=30)
-                        ) as response:
-                            if response.status != 200:
-                                logger.warning(f"LLaVA request failed with status {response.status}")
-                                # Increment retry counter and apply exponential backoff
-                                retry_count += 1
-                                if retry_count <= max_retries:
-                                    delay = base_delay * (2 ** (retry_count - 1))  # Exponential backoff
-                                    logger.info(f"Retrying in {delay} seconds...")
-                                    await asyncio.sleep(delay)
-                                    continue
-                                return {
-                                    "llava_description": "",
-                                    "screen_elements": [],
-                                    "visual_context": ""
-                                }
-                            
-                            # Handle streaming NDJSON response from Ollama
-                            full_response = ""
-                            try:
-                                async for line in response.content:
-                                    if not line.strip():
-                                        continue
-                                        
-                                    # Parse the line as JSON
-                                    try:
-                                        chunk = json.loads(line)
-                                        # Handle different response formats
-                                        if isinstance(chunk, dict):
-                                            if 'message' in chunk and 'content' in chunk['message']:
-                                                full_response += chunk['message']['content']
-                                            elif 'response' in chunk:
-                                                full_response += chunk['response']
-                                            elif 'content' in chunk:
-                                                full_response += chunk['content']
-                                            else:
-                                                logger.warning(f"Unexpected response format: {chunk}")
-                                        elif isinstance(chunk, str):
-                                            full_response += chunk
-                                    except json.JSONDecodeError as json_err:
-                                        logger.warning(f"Failed to parse JSON line: {line}, error: {json_err}")
-                                        # Try to use the raw line if it looks like text
-                                        if isinstance(line, (str, bytes)):
-                                            try:
-                                                text = line.decode('utf-8') if isinstance(line, bytes) else line
-                                                if text.strip():
-                                                    full_response += text
-                                            except Exception as decode_err:
-                                                logger.warning(f"Failed to decode line: {decode_err}")
-                                        
-                                if not full_response:
-                                    logger.warning("Empty response from LLaVA")
-                                    # Increment retry counter and apply exponential backoff
-                                    retry_count += 1
-                                    if retry_count <= max_retries:
-                                        delay = base_delay * (2 ** (retry_count - 1))
-                                        logger.info(f"Retrying in {delay} seconds...")
-                                        await asyncio.sleep(delay)
-                                        continue
-                                    return {
-                                        "llava_description": "",
-                                        "screen_elements": [],
-                                        "visual_context": ""
-                                    }
-                                    
-                                # Use the gathered response
-                                llava_response = full_response
-                                logger.info(f"Received LLaVA analysis: {len(llava_response)} chars")
-                                
-                                # Process the response to extract structured information
-                                analysis = self._parse_llava_response(llava_response)
-                                return analysis
-                                
-                            except asyncio.TimeoutError as timeout_err:
-                                logger.warning(f"Timeout while reading LLaVA response: {timeout_err}")
-                                # If we have partial response, use it
-                                if full_response:
-                                    llava_response = full_response
-                                    logger.info(f"Using partial LLaVA response: {len(llava_response)} chars")
-                                    # Process the partial response
-                                    analysis = self._parse_llava_response(llava_response)
-                                    return analysis
-                                else:
-                                    # Increment retry counter and apply exponential backoff
-                                    retry_count += 1
-                                    if retry_count <= max_retries:
-                                        delay = base_delay * (2 ** (retry_count - 1))
-                                        logger.info(f"Retrying in {delay} seconds...")
-                                        await asyncio.sleep(delay)
-                                        continue
-                                    return {
-                                        "llava_description": "",
-                                        "screen_elements": [],
-                                        "visual_context": ""
-                                    }
-                            except Exception as e:
-                                logger.error(f"Error processing streaming response: {e}")
-                                logger.error(f"Error details: {traceback.format_exc()}")
-                                # If we have partial response, use it
-                                if full_response:
-                                    llava_response = full_response
-                                    logger.info(f"Using partial LLaVA response after error: {len(llava_response)} chars")
-                                    # Process the partial response
-                                    analysis = self._parse_llava_response(llava_response)
-                                    return analysis
-                                else:
-                                    # Increment retry counter and apply exponential backoff
-                                    retry_count += 1
-                                    if retry_count <= max_retries:
-                                        delay = base_delay * (2 ** (retry_count - 1))
-                                        logger.info(f"Retrying in {delay} seconds...")
-                                        await asyncio.sleep(delay)
-                                        continue
-                                    return {
-                                        "llava_description": "",
-                                        "screen_elements": [],
-                                        "visual_context": ""
-                                    }
-                    except asyncio.TimeoutError as timeout_err:
-                        logger.warning(f"LLaVA request timed out: {timeout_err}")
-                        # Increment retry counter and apply exponential backoff
-                        retry_count += 1
-                        if retry_count <= max_retries:
-                            delay = base_delay * (2 ** (retry_count - 1))
-                            logger.info(f"Retrying in {delay} seconds...")
-                            await asyncio.sleep(delay)
-                            continue
-                    except Exception as e:
-                        logger.error(f"Error in LLaVA request: {e}")
-                        logger.error(f"Error details: {traceback.format_exc()}")
-                        # Increment retry counter and apply exponential backoff
-                        retry_count += 1
-                        if retry_count <= max_retries:
-                            delay = base_delay * (2 ** (retry_count - 1))
-                            logger.info(f"Retrying in {delay} seconds...")
-                            await asyncio.sleep(delay)
-                            continue
-            
-            except Exception as e:
-                logger.error(f"Error in LLaVA analysis preparation: {e}")
-                # Increment retry counter and apply exponential backoff
-                retry_count += 1
-                if retry_count <= max_retries:
-                    delay = base_delay * (2 ** (retry_count - 1))
-                    logger.info(f"Retrying in {delay} seconds...")
-                    await asyncio.sleep(delay)
-                    continue
-            
-            # If we reach here, all retries have failed
-            break
-            
-        logger.warning(f"LLaVA analysis failed after {max_retries + 1} attempts")
-        # Attempt OCR-based fallback analysis
-        try:
-            # Create basic analysis with OCR results
-            ocr_text = self._extract_text(image)
-            ocr_analysis = {
-                "llava_description": f"OCR analysis: {ocr_text[:500]}...",
-                "screen_elements": [],
-                "visual_context": "Analysis performed using OCR as LLaVA was unavailable"
-            }
-            logger.info("Generated OCR-based fallback analysis")
-            return ocr_analysis
-        except Exception as ocr_e:
-            logger.error(f"Error in OCR fallback analysis: {ocr_e}")
-            
-        return {
-            "llava_description": "",
-            "screen_elements": [],
-            "visual_context": ""
-        }
-    
-    def _parse_llava_response(self, llava_response: str) -> Dict[str, Any]:
-        """Parse the LLaVA response into structured data with application-specific understanding"""
-        try:
-            lines = llava_response.split('\n')
-            
-            # Extract main sections
-            description = ""
-            ui_elements_text = ""
-            context = ""
-            
-            # New application-specific fields
-            application_name = ""
-            application_view = ""
-            workflow_stage = ""
-            email_data = {}
-            form_data = {}
-            
-            current_section = "description"
-            for line in lines:
-                line = line.strip()
-                if not line:
-                    continue
-                    
-                # Check for section headers
-                lower_line = line.lower()
-                
-                # Enhanced section detection with application-specific patterns
-                if "application:" in lower_line or "app:" in lower_line:
-                    # Extract application name
-                    app_match = re.search(r"(?:application|app):\s*(.+)", line, re.IGNORECASE)
-                    if app_match:
-                        application_name = app_match.group(1).strip()
-                    current_section = "description"
-                    continue
-                elif "view:" in lower_line or "mode:" in lower_line or "page:" in lower_line:
-                    # Extract application view/mode
-                    view_match = re.search(r"(?:view|mode|page):\s*(.+)", line, re.IGNORECASE)
-                    if view_match:
-                        application_view = view_match.group(1).strip()
-                    current_section = "description"
-                    continue
-                elif "workflow:" in lower_line or "task:" in lower_line or "user is" in lower_line:
-                    # Extract workflow stage
-                    wf_match = re.search(r"(?:workflow|task|user is):\s*(.+)", line, re.IGNORECASE)
-                    if wf_match:
-                        workflow_stage = wf_match.group(1).strip()
-                    current_section = "context"
-                    continue
-                elif "ui element" in lower_line or "interface" in lower_line or "component" in lower_line:
-                    current_section = "ui_elements"
-                    continue
-                elif "text content" in lower_line:
-                    current_section = "text_content"
-                    continue
-                elif "email" in lower_line and ("from:" in lower_line or "to:" in lower_line or "subject:" in lower_line):
-                    # Extract email metadata
-                    if "from:" in lower_line:
-                        email_data["from"] = lower_line.split("from:", 1)[1].strip()
-                    elif "to:" in lower_line:
-                        email_data["to"] = lower_line.split("to:", 1)[1].strip()
-                    elif "subject:" in lower_line:
-                        email_data["subject"] = lower_line.split("subject:", 1)[1].strip()
-                    continue
-                elif "form field" in lower_line or "input field" in lower_line:
-                    # Extract form field
-                    field_match = re.search(r"(?:form|input) field[s]?:?\s*(.+)", line, re.IGNORECASE)
-                    if field_match:
-                        field_text = field_match.group(1).strip()
-                        if "form_fields" not in form_data:
-                            form_data["form_fields"] = []
-                        form_data["form_fields"].append(field_text)
-                    continue
-                    
-                # Add content to appropriate section
-                if current_section == "description":
-                    description += line + " "
-                elif current_section == "ui_elements":
-                    ui_elements_text += line + "\n"
-                elif current_section == "context":
-                    context += line + " "
-            
-            # Extract UI elements as structured data
-            ui_elements = []
-            if ui_elements_text:
-                # Split by bullet points or numbered items
-                element_lines = ui_elements_text.split('\n')
-                for line in element_lines:
-                    line = line.strip()
-                    if not line:
-                        continue
-                        
-                    # Remove bullet points or numbers
-                    if line.startswith('- ') or line.startswith('* '):
-                        line = line[2:]
-                    elif line[0].isdigit() and line[1:].startswith('. '):
-                        line = line[line.find('. ')+2:]
-                    
-                    # Enhanced element extraction with more structured data
-                    element_type = "unknown"
-                    element_name = line
-                    element_state = ""
-                    
-                    # Attempt to classify UI element with more detail
-                    if "button" in line.lower():
-                        element_type = "button"
-                    elif "input" in line.lower() or "field" in line.lower() or "text box" in line.lower():
-                        element_type = "input_field"
-                    elif "menu" in line.lower() or "dropdown" in line.lower():
-                        element_type = "menu"
-                    elif "link" in line.lower() or "hyperlink" in line.lower():
-                        element_type = "link"
-                    elif "tab" in line.lower():
-                        element_type = "tab"
-                    elif "checkbox" in line.lower():
-                        element_type = "checkbox"
-                        if "checked" in line.lower():
-                            element_state = "checked"
-                        else:
-                            element_state = "unchecked"
-                    
-                    element_data = {
-                        "element": line, 
-                        "type": element_type,
-                        "name": element_name
-                    }
-                    
-                    if element_state:
-                        element_data["state"] = element_state
-                        
-                    ui_elements.append(element_data)
-            
-            # Try to infer application if not explicitly mentioned
-            if not application_name:
-                lower_desc = description.lower()
-                if "gmail" in lower_desc or "email" in lower_desc or "inbox" in lower_desc:
-                    application_name = "Gmail" if "gmail" in lower_desc else "Email Client"
-                elif "google doc" in lower_desc or "document editor" in lower_desc:
-                    application_name = "Google Docs" if "google doc" in lower_desc else "Document Editor"
-                elif "slack" in lower_desc or "chat" in lower_desc or "message" in lower_desc:
-                    application_name = "Slack" if "slack" in lower_desc else "Chat Application"
-                elif "code" in lower_desc or "editor" in lower_desc or "programming" in lower_desc:
-                    application_name = "Code Editor"
-            
-            # Create enhanced response with all extracted information
-            response_data = {
-                "llava_description": description.strip(),
-                "screen_elements": ui_elements,
-                "visual_context": context.strip(),
-                "application": {
-                    "name": application_name,
-                    "view": application_view,
-                    "workflow_stage": workflow_stage
-                }
+                ],
+                "stream": False,
+                "images": [img_base64]
             }
             
-            # Add email data if present
-            if email_data:
-                response_data["email_data"] = email_data
+            # Make request to LLaVA with timeout
+            async with aiohttp.ClientSession() as session:
+                async with session.post(
+                    self.llava_endpoint,
+                    json=prompt,
+                    timeout=self.llava_timeout
+                ) as response:
+                    if response.status != 200:
+                        raise Exception(f"LLaVA API returned status {response.status}")
+                        
+                    result = await response.json()
+                    
+            # Process LLaVA response
+            if not result or 'message' not in result:
+                raise Exception("Invalid response from LLaVA")
                 
-            # Add form data if present
-            if form_data:
-                response_data["form_data"] = form_data
+            # Parse LLaVA response
+            try:
+                content = result['message']['content']
+                analysis = json.loads(content)
+            except json.JSONDecodeError:
+                # If response isn't valid JSON, try to extract structured data
+                analysis = self._parse_llava_text_response(content)
             
-            return response_data
+            # Reset error tracking on success
+            self.llava_retry_count = 0
+            self.error_count = 0
+            
+            # Track processing time
+            processing_time = time.time() - start_time
+            self.processing_times.append(processing_time)
+            if len(self.processing_times) > self.max_processing_times:
+                self.processing_times.pop(0)
+            
+            return analysis
+            
+        except asyncio.TimeoutError:
+            logger.warning("LLaVA analysis timed out")
+            self.llava_retry_count += 1
+            await asyncio.sleep(self.llava_backoff_time * (2 ** self.llava_retry_count))
+            return None
+            
         except Exception as e:
-            logger.error(f"Error parsing LLaVA response: {e}")
-            return {
-                "llava_description": llava_response[:500],  # Use truncated raw response
-                "screen_elements": [],
-                "visual_context": ""
+            logger.error(f"Error in LLaVA analysis: {e}")
+            self.llava_retry_count += 1
+            self.error_count += 1
+            
+            # Check if we should disable LLaVA temporarily
+            if self.error_count >= self.max_errors:
+                logger.warning("Too many errors, temporarily disabling LLaVA")
+                self.use_llava = False
+                self.last_error_time = time.time()
+            
+            return None
+
+    def _parse_llava_text_response(self, content: str) -> Dict[str, Any]:
+        """Parse unstructured LLaVA response into structured data"""
+        try:
+            # Initialize result structure
+            result = {
+                "description": "",
+                "elements": [],
+                "text_content": "",
+                "application": {"name": "unknown", "confidence": 0.0}
             }
-    
+            
+            # Extract description
+            if "description:" in content.lower():
+                desc_parts = content.split("description:", 1)[1].split("\n", 1)
+                result["description"] = desc_parts[0].strip()
+            
+            # Extract elements
+            if "elements:" in content.lower():
+                elements_text = content.split("elements:", 1)[1]
+                if "text_content:" in elements_text:
+                    elements_text = elements_text.split("text_content:", 1)[0]
+                elements = elements_text.strip().split("\n")
+                for element in elements:
+                    if element.strip():
+                        result["elements"].append({
+                            "name": element.strip(),
+                            "type": "unknown",
+                            "confidence": 0.7
+                        })
+            
+            # Extract text content
+            if "text_content:" in content.lower():
+                text_parts = content.split("text_content:", 1)[1]
+                if "application:" in text_parts:
+                    text_parts = text_parts.split("application:", 1)[0]
+                result["text_content"] = text_parts.strip()
+            
+            # Extract application
+            if "application:" in content.lower():
+                app_parts = content.split("application:", 1)[1].strip()
+                result["application"]["name"] = app_parts.split("\n")[0].strip()
+                result["application"]["confidence"] = 0.8
+            
+            return result
+            
+        except Exception as e:
+            logger.error(f"Error parsing LLaVA text response: {e}")
+            return {
+                "description": content,
+                "elements": [],
+                "text_content": "",
+                "application": {"name": "unknown", "confidence": 0.0}
+            }
+
     def _load_cache(self):
         """Load screen data from cache with proper handling of new LLaVA fields"""
         try:
@@ -1531,9 +1364,16 @@ class FixedScreenSensor:
         return True
 
     async def capture_screen(self) -> ScreenData:
-        """Capture and process screen content with optimizations and LLaVA integration"""
+        """Capture and process screen content with enhanced error handling and fallbacks"""
         try:
             current_time = time.time()
+            
+            # Check if we should re-enable LLaVA after error timeout
+            if not self.use_llava and (current_time - self.last_error_time) > self.error_reset_time:
+                logger.info("Re-enabling LLaVA after error timeout")
+                self.use_llava = True
+                self.error_count = 0
+                self.llava_retry_count = 0
             
             # Ensure screen capture is initialized
             if not self.sct:
@@ -1561,204 +1401,147 @@ class FixedScreenSensor:
             # Check if we should process this image
             if not self._should_process_image(current_time, image_hash):
                 if self.last_data:
-                    logger.info("Screen unchanged, reusing previous data")
                     return self.last_data
+                return ScreenData(timestamp=current_time)
             
-            # Extract text from image using enhanced OCR
-            logger.info("Extracting text from screen capture using OCR")
-            text = self._extract_text(image)
+            # Create new screen data
+            screen_data = ScreenData(
+                timestamp=current_time,
+                image_hash=image_hash
+            )
+            
+            # Extract text using OCR
+            screen_data.text = self._extract_text(image)
+            screen_data.text_content = screen_data.text
             
             # Get window info
             window_info = self._get_window_info()
+            screen_data.active_window = window_info.get('active_window', '')
+            screen_data.active_apps = window_info.get('active_apps', [])
             
-            # Create initial screen data without LLaVA analysis and without storing image
-            # OPTIMIZATION: Don't store the full image bytes to save memory
-            screen_data = ScreenData(
-                timestamp=current_time,
-                image=None,  # Don't store raw image data to reduce memory usage
-                image_hash=image_hash,
-                text=text,
-                text_content=text,
-                active_window=window_info.get('active_window'),
-                active_apps=window_info.get('active_apps', [])
-            )
+            # Run analysis in parallel
+            analysis_tasks = []
+            if self.use_llava:
+                analysis_tasks.append(self._analyze_with_llava(image))
+            if self.use_alternative_analysis:
+                analysis_tasks.append(self._analyze_with_alternative_methods(image))
             
-            # Track analysis results
-            llava_analysis = None
-            alt_analysis = None
+            # Wait for analysis results
+            results = await asyncio.gather(*analysis_tasks, return_exceptions=True)
             
-            # Run analyses in parallel if hybrid mode is enabled
-            if self.hybrid_mode and self.use_llava and self.use_alternative_analysis:
-                logger.info("Running both LLaVA and alternative analyses in parallel (hybrid mode)")
+            # Process results
+            if self.hybrid_mode:
+                # Handle hybrid mode results
+                llava_analysis = None
+                alt_analysis = None
                 
-                # Create two tasks to run in parallel
-                llava_task = asyncio.create_task(self._analyze_with_llava(image))
-                alt_task = asyncio.create_task(self._analyze_with_alternative_methods(image))
+                for result in results:
+                    if isinstance(result, Exception):
+                        logger.error(f"Analysis failed: {result}")
+                        continue
+                    if result and 'llava_description' in result:
+                        llava_analysis = result
+                    else:
+                        alt_analysis = result
                 
-                # Wait for both to complete
-                results = await asyncio.gather(llava_task, alt_task, return_exceptions=True)
+                # Combine results
+                if llava_analysis:
+                    screen_data.llava_description = llava_analysis.get('llava_description', '')
+                    screen_data.screen_elements.extend(llava_analysis.get('screen_elements', []))
                 
-                # Process results
-                if isinstance(results[0], Exception):
-                    logger.error(f"LLaVA analysis failed in hybrid mode: {results[0]}")
-                    llava_analysis = None
-                else:
-                    llava_analysis = results[0]
-                
-                if isinstance(results[1], Exception):
-                    logger.error(f"Alternative analysis failed in hybrid mode: {results[1]}")
-                    alt_analysis = None
-                else:
-                    alt_analysis = results[1]
-                    
-                # If both succeeded, combine results
-                if llava_analysis and alt_analysis:
-                    logger.info("Combining results from both analysis methods")
-                    
-                    # Prefer LLaVA description (usually higher quality), but supplement with alt analysis
-                    screen_data.llava_description = llava_analysis.get("llava_description", "")
-                    
-                    # Combine screen elements from both sources, ensuring no duplicates
-                    llava_elements = llava_analysis.get("screen_elements", [])
-                    alt_elements = alt_analysis.get("screen_elements", [])
-                    
-                    # Use a simple heuristic to avoid duplicates: if element names are very similar, consider them the same element
-                    combined_elements = llava_elements.copy()
+                if alt_analysis:
+                    # Add alternative analysis results
+                    alt_elements = alt_analysis.get('screen_elements', [])
                     for alt_elem in alt_elements:
-                        # Check if this element is already in the list
-                        alt_name = alt_elem.get("name", "").lower()
+                        # Check for duplicates
                         is_duplicate = False
-                        for llava_elem in llava_elements:
-                            llava_name = llava_elem.get("name", "").lower()
-                            # Simple string similarity check
-                            if alt_name and llava_name and (alt_name in llava_name or llava_name in alt_name):
+                        for existing_elem in screen_data.screen_elements:
+                            if self._is_similar_element(alt_elem, existing_elem):
                                 is_duplicate = True
                                 break
-                        
                         if not is_duplicate:
-                            combined_elements.append(alt_elem)
-                    
-                    screen_data.screen_elements = combined_elements
-                    
-                    # Combine visual context
-                    llava_context = llava_analysis.get("visual_context", "")
-                    alt_context = alt_analysis.get("visual_context", "")
-                    
-                    # If both have content, combine them
-                    if llava_context and alt_context:
-                        screen_data.visual_context = f"{llava_context}\n\nAdditional details from local analysis:\n{alt_context}"
-                    else:
-                        screen_data.visual_context = llava_context or alt_context
-                    
-                    # Log success
-                    logger.info(f"Hybrid analysis successful: combined {len(llava_elements)} LLaVA elements with " +
-                               f"{len(alt_elements)} local CV elements, yielding {len(combined_elements)} unique elements")
-                
-                # If only one succeeded, use its results
-                elif llava_analysis:
-                    screen_data.llava_description = llava_analysis.get("llava_description", "")
-                    screen_data.screen_elements = llava_analysis.get("screen_elements", [])
-                    screen_data.visual_context = llava_analysis.get("visual_context", "")
-                    logger.info(f"Using LLaVA analysis only (alternative analysis failed)")
-                
-                elif alt_analysis:
-                    screen_data.llava_description = alt_analysis.get("llava_description", "")
-                    screen_data.screen_elements = alt_analysis.get("screen_elements", [])
-                    screen_data.visual_context = alt_analysis.get("visual_context", "")
-                    logger.info(f"Using alternative analysis only (LLaVA analysis failed)")
-            
-            # Non-hybrid mode: sequential fallback approach
+                            screen_data.screen_elements.append(alt_elem)
             else:
-                # Try LLaVA first if enabled
-                if self.use_llava:
-                    logger.info("Performing LLaVA analysis for screen capture")
-                    llava_analysis = await self._analyze_with_llava(image)
-                    
-                    # If LLaVA succeeded, use its results
-                    if llava_analysis and llava_analysis.get("llava_description"):
-                        # Add LLaVA results to screen data
-                        screen_data.llava_description = llava_analysis.get("llava_description", "")
-                        screen_data.screen_elements = llava_analysis.get("screen_elements", [])
-                        screen_data.visual_context = llava_analysis.get("visual_context", "")
-                        
-                        # Log success
-                        logger.info(f"LLaVA analysis successful: {len(screen_data.llava_description)} chars description, " +
-                                  f"{len(screen_data.screen_elements)} UI elements identified")
-                    else:
-                        logger.warning("LLaVA analysis produced no results or failed")
-                        llava_analysis = None
-                else:
-                    logger.info("Skipping LLaVA analysis (disabled or unavailable)")
-                    
-                # If LLaVA failed or is disabled, and alternative analysis is enabled, use that instead
-                if (not llava_analysis or not llava_analysis.get("llava_description")) and self.use_alternative_analysis:
-                    logger.info("Performing alternative analysis as primary or fallback")
-                    alt_analysis = await self._analyze_with_alternative_methods(image)
-                    
-                    # If alternative analysis succeeded, use its results
-                    if alt_analysis:
-                        screen_data.llava_description = alt_analysis.get("llava_description", "")
-                        screen_data.screen_elements = alt_analysis.get("screen_elements", [])
-                        screen_data.visual_context = alt_analysis.get("visual_context", "")
-                        
-                        logger.info(f"Alternative analysis successful: {len(screen_data.screen_elements)} UI elements identified")
-                
-                # If we always want to run alternative analysis as a supplement (even if LLaVA worked)
-                elif self.always_run_alternative and self.use_alternative_analysis and llava_analysis:
-                    logger.info("Running alternative analysis as supplement to LLaVA")
-                    alt_analysis = await self._analyze_with_alternative_methods(image)
-                    
-                    # If alternative analysis succeeded, supplement LLaVA results
-                    if alt_analysis:
-                        # Supplement screen elements from LLaVA with unique elements from alternative analysis
-                        llava_elements = screen_data.screen_elements
-                        alt_elements = alt_analysis.get("screen_elements", [])
-                        
-                        # Add elements from alternative analysis that don't overlap with LLaVA
-                        for alt_elem in alt_elements:
-                            alt_name = alt_elem.get("name", "").lower()
-                            is_duplicate = False
-                            for llava_elem in llava_elements:
-                                llava_name = llava_elem.get("name", "").lower()
-                                if alt_name and llava_name and (alt_name in llava_name or llava_name in alt_name):
-                                    is_duplicate = True
-                                    break
-                            
-                            if not is_duplicate:
-                                llava_elements.append(alt_elem)
-                        
-                        screen_data.screen_elements = llava_elements
-                        
-                        # Add supplementary information to visual context
-                        alt_context = alt_analysis.get("visual_context", "")
-                        if alt_context:
-                            if screen_data.visual_context:
-                                screen_data.visual_context += f"\n\nAdditional details from local analysis:\n{alt_context}"
-                            else:
-                                screen_data.visual_context = alt_context
-                        
-                        logger.info(f"Enhanced LLaVA results with alternative analysis: now {len(screen_data.screen_elements)} UI elements")
+                # Use first successful result
+                for result in results:
+                    if not isinstance(result, Exception) and result:
+                        if 'llava_description' in result:
+                            screen_data.llava_description = result.get('llava_description', '')
+                        screen_data.screen_elements.extend(result.get('screen_elements', []))
+                        break
             
-            # Save to cache (without image data)
+            # Update cache
             self._save_cache(screen_data)
             self.last_data = screen_data
-            
-            # Explicitly delete image to free memory immediately
-            del image
-            screenshot = None
-            
-            # Force garbage collection
-            import gc
-            gc.collect()
             
             return screen_data
             
         except Exception as e:
             logger.error(f"Error capturing screen: {e}")
+            logger.error(traceback.format_exc())
             return ScreenData(
                 timestamp=time.time(),
                 error=str(e)
             )
+
+    def _is_similar_element(self, elem1: Dict[str, Any], elem2: Dict[str, Any]) -> bool:
+        """Check if two UI elements are similar enough to be considered the same"""
+        # Compare names
+        name1 = elem1.get('name', '').lower()
+        name2 = elem2.get('name', '').lower()
+        
+        if name1 and name2:
+            # Check for exact match
+            if name1 == name2:
+                return True
+            # Check for substring match
+            if name1 in name2 or name2 in name1:
+                return True
+            # Check for high similarity
+            if self._calculate_similarity(name1, name2) > 0.8:
+                return True
+        
+        # Compare types
+        type1 = elem1.get('type', '').lower()
+        type2 = elem2.get('type', '').lower()
+        if type1 and type2 and type1 == type2:
+            # If types match and names are similar, consider them the same
+            if self._calculate_similarity(name1, name2) > 0.6:
+                return True
+        
+        return False
+
+    def _calculate_similarity(self, str1: str, str2: str) -> float:
+        """Calculate string similarity using Levenshtein distance"""
+        if not str1 or not str2:
+            return 0.0
+            
+        # Convert to lowercase for comparison
+        str1 = str1.lower()
+        str2 = str2.lower()
+        
+        # Calculate Levenshtein distance
+        if len(str1) < len(str2):
+            str1, str2 = str2, str1
+            
+        if len(str2) == 0:
+            return 0.0
+            
+        previous_row = range(len(str2) + 1)
+        for i, c1 in enumerate(str1):
+            current_row = [i + 1]
+            for j, c2 in enumerate(str2):
+                insertions = previous_row[j + 1] + 1
+                deletions = current_row[j] + 1
+                substitutions = previous_row[j] + (c1 != c2)
+                current_row.append(min(insertions, deletions, substitutions))
+            previous_row = current_row
+            
+        # Calculate similarity ratio
+        max_len = max(len(str1), len(str2))
+        if max_len == 0:
+            return 1.0
+        return 1.0 - (previous_row[-1] / max_len)
 
     def _get_window_info(self) -> Dict[str, Any]:
         """Get information about the active window and applications with fallbacks"""

@@ -138,11 +138,17 @@ done
 
 # Step 2: Stop any remaining services by pattern
 echo "Step 2: Stopping any remaining services by pattern..."
+kill_by_pattern "python.*fixed_bridge_server_enhanced\.py" "enhanced bridge server"
 kill_by_pattern "python.*fixed_bridge_server\.py" "bridge server"
 kill_by_pattern "python.*ollama_service_fixed\.py" "Enhanced LLM service"
+kill_by_pattern "python.*self_contained_llm_ws\.py" "Self-contained LLM service"
+kill_by_pattern "python.*enhanced_fixed_process_sensor\.py" "enhanced process sensor"
+kill_by_pattern "python.*enhanced_fixed_screen_sensor\.py" "enhanced screen sensor"
 kill_by_pattern "python.*process_sensor\.py" "process sensor"
+kill_by_pattern "python.*screen_sensor\.py" "screen sensor"
 kill_by_pattern "python.*simple_memory_service\.py" "memory service"
 kill_by_pattern "python.*memory_system\.py" "memory system"
+kill_by_pattern "python.*enhanced_memory_connector\.py" "enhanced memory connector"
 kill_by_pattern "npm run tauri" "Tauri overlay"
 
 # Step 3: Clean up logs

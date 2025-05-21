@@ -38,7 +38,7 @@ from logging.handlers import RotatingFileHandler
 
 # Configure logging
 logging.basicConfig(
-    level=logging.WARNING,  # Changed from INFO to WARNING
+    level=logging.INFO,  # Changed from WARNING to INFO to capture context summaries
     format='%(asctime)s - %(levelname)s - %(message)s',
     handlers=[
         RotatingFileHandler(

@@ -94,9 +94,9 @@ echo $CLEANUP_PID > pids/log_cleanup.pid
 echo "Log cleanup process started with PID: $CLEANUP_PID"
 
 echo -e "\n\033[0;32mComplete system is now running with all components initialized!\033[0m"
-echo -e "\033[0;34mFrontend can connect to ws://localhost:8765 to communicate with the backend\033[0m"
-echo -e "\033[0;34mBridge server is available at ws://localhost:8767\033[0m"
-echo -e "\033[0;34mLLM service is available at ws://localhost:8766\033[0m"
+echo -e "\033[0;34mFrontend can connect to ws://localhost:8768 to communicate with the backend\033[0m"
+echo -e "\033[0;34mBridge server is available at ws://localhost:8768\033[0m"
+echo -e "\033[0;34mLLM service is available at ws://localhost:8770\033[0m"
 echo -e "\033[0;34mBackend will manage requests and use Self-contained LLM for context-aware responses\033[0m"
 echo -e "\033[0;34mMemory system will provide context for more relevant responses\033[0m"
 echo -e "\033[0;34mLog monitor is running in background to manage log file sizes\033[0m"

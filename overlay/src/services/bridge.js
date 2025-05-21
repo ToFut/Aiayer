@@ -12,16 +12,17 @@ export class Bridge {
 
     async connect() {
         try {
-            this.ws = new WebSocket('ws://localhost:8765');
+            this.ws = new WebSocket('ws://localhost:8768');  // Bridge server port (not LLM port which is 8770)
             
             this.ws.onopen = () => {
                 console.log('Connected to Python backend');
                 this.reconnectAttempts = 0;
                 
-                // Send initial connection message
-                this.send('connection_established', {
-                    client: 'overlay',
-                    version: '0.1.0',
+                // Send registration message
+                this.send('register', {
+                    client_type: 'ui',
+                    version: '1.0.0',
+                    capabilities: ['overlay_display', 'user_interaction', 'context_tracking'],
                     timestamp: Date.now()
                 });
                 

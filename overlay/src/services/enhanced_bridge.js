@@ -9,14 +9,14 @@ export class EnhancedBridge {
     /**
      * Create a new enhanced bridge
      * @param {Object} options - Configuration options
-     * @param {string} options.url - WebSocket URL (default: ws://localhost:8765)
+     * @param {string} options.url - WebSocket URL (default: ws://localhost:8767)
      * @param {number} options.reconnectAttempts - Max reconnect attempts (default: 10)
      * @param {number} options.reconnectDelay - Initial delay between reconnects in ms (default: 1000)
      * @param {boolean} options.debug - Enable debug logging (default: false)
      */
     constructor(options = {}) {
         // Configuration
-        this.url = options.url || 'ws://localhost:8765';
+        this.url = options.url || 'ws://localhost:8767';  // Backend server port
         this.maxReconnectAttempts = options.reconnectAttempts || 10;
         this.reconnectDelay = options.reconnectDelay || 1000;
         this.debug = options.debug || false;
@@ -144,9 +144,9 @@ export class EnhancedBridge {
         // Start ping interval to keep connection alive
         this._startPingInterval();
         
-        // Send initial connection message
-        this.send('connection_established', {
-            client: 'enhanced_eye_widget',
+        // Send registration message
+        this.send('register', {
+            client_type: 'ui',
             version: '2.0.0',
             capabilities: ['memory', 'context', 'notification'],
             timestamp: Date.now()
@@ -173,46 +173,55 @@ export class EnhancedBridge {
     _handleMessage(event) {
         try {
             const data = JSON.parse(event.data);
-            const { type, payload } = data;
             
-            this._log(`Received message of type: ${type}`);
-            
-            // Handle pong messages to keep connection alive
-            if (type === 'pong') {
+            // Handle ping/pong messages
+            if (data.type === 'ping') {
+                this.send('pong', { timestamp: Date.now() });
+                return;
+            }
+            if (data.type === 'pong') {
                 this.lastPingTime = Date.now();
                 return;
             }
-            
-            // Store context data
-            if (type === 'context_update' || type === 'sensor_data') {
-                this.systemContextData = payload;
-                window.dispatchEvent(new CustomEvent('system-context-updated', { 
-                    detail: payload 
-                }));
+            if (data.type === 'registration_confirmed') {
+                this._log('Registration confirmed by server');
+                return;
+            }
+            if (data.type === 'error') {
+                this._log('Server error:', data.message);
+                return;
             }
             
-            // Store query responses in conversation history
-            if (type === 'query_response' && this.memoryEnabled) {
-                this.conversationHistory.push({
-                    role: 'assistant',
-                    content: payload.response,
-                    timestamp: Date.now()
-                });
-            }
-            
-            // Dispatch to registered handlers
-            if (this.messageHandlers.has(type)) {
-                this.messageHandlers.get(type).forEach(handler => {
+            // Handle other messages
+            if (this.messageHandlers.has(data.type)) {
+                this.messageHandlers.get(data.type).forEach(handler => {
                     try {
-                        handler(payload);
-                    } catch (handlerError) {
-                        console.error('Error in message handler:', handlerError);
+                        handler(data);
+                    } catch (error) {
+                        this._log('Error in message handler:', error);
                     }
                 });
             }
             
+            // Store context data
+            if (data.type === 'context_update' || data.type === 'sensor_data') {
+                this.systemContextData = data;
+                window.dispatchEvent(new CustomEvent('system-context-updated', { 
+                    detail: data 
+                }));
+            }
+            
+            // Store query responses in conversation history
+            if (data.type === 'query_response' && this.memoryEnabled) {
+                this.conversationHistory.push({
+                    role: 'assistant',
+                    content: data.response,
+                    timestamp: Date.now()
+                });
+            }
+            
         } catch (error) {
-            console.error('Error processing message:', error);
+            this._log('Error handling message:', error);
         }
     }
     
@@ -338,12 +347,12 @@ export class EnhancedBridge {
         
         this.pingInterval = setInterval(() => {
             if (this.ws && this.ws.readyState === WebSocket.OPEN) {
-                // Send ping message every 30 seconds
+                // Send ping message every 25 seconds (slightly before server's ping)
                 this.send('ping', { timestamp: Date.now() });
                 
                 // Check if we've received a pong
                 const elapsed = Date.now() - this.lastPingTime;
-                if (elapsed > 60000) { // No response for 60 seconds
+                if (elapsed > 90000) { // No response for 90 seconds
                     this._log('No pong received, reconnecting...');
                     this.disconnect();
                     this.connect().catch(error => {
@@ -351,7 +360,7 @@ export class EnhancedBridge {
                     });
                 }
             }
-        }, 30000);
+        }, 25000);
     }
     
     /**
@@ -434,18 +443,11 @@ export class EnhancedBridge {
         this._stopPingInterval();
         
         if (this.ws) {
-            if (this.ws.readyState === WebSocket.OPEN) {
-                // Send a graceful disconnect message
-                try {
-                    this.ws.send(JSON.stringify({
-                        type: 'disconnect',
-                        payload: { reason: 'user_disconnect' }
-                    }));
-                } catch (e) {
-                    // Ignore errors when sending disconnect message
-                }
+            try {
+                this.ws.close(1000, 'Client disconnecting');
+            } catch (error) {
+                this._log('Error closing WebSocket:', error);
             }
-            this.ws.close(1000, 'Normal closure');
             this.ws = null;
         }
         

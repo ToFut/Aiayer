@@ -268,10 +268,11 @@
                     connectionState = 'connected';
                     updateConnectionUI();
                     
-                    // Send initial connection message
-                    sendMessage('connection_established', {
-                        client: 'web-overlay',
-                        version: '0.1.0',
+                    // Send registration message
+                    sendMessage('register', {
+                        client_type: 'ui',
+                        version: '1.0.0',
+                        capabilities: ['overlay_display', 'user_interaction', 'context_tracking'],
                         timestamp: Date.now()
                     });
                 };

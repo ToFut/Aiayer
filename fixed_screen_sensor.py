@@ -45,6 +45,10 @@ cache_file = f"{cache_dir}/last_screen.json"
 class ScreenCapture:
     def __init__(self):
         self.sct = None
+        self.last_capture_time = 0
+        self.min_capture_interval = 0.5  # Minimum time between captures
+        self.image_cache = {}  # Cache for recent captures
+        self.max_cache_size = 10  # Maximum number of cached images
         try:
             self.sct = mss.mss()
             logger.info("Screen capture initialized successfully")
@@ -52,8 +56,15 @@ class ScreenCapture:
             logger.error(f"Error initializing screen capture: {e}")
         
     def capture(self):
-        """Capture the current screen"""
+        """Capture the current screen with rate limiting and caching"""
         try:
+            current_time = time.time()
+            if current_time - self.last_capture_time < self.min_capture_interval:
+                # Return cached result if available
+                if self.image_cache:
+                    return list(self.image_cache.values())[-1]
+                await asyncio.sleep(self.min_capture_interval)
+            
             if not self.sct:
                 self.sct = mss.mss()
                 
@@ -69,16 +80,26 @@ class ScreenCapture:
             
             # Compress and convert to base64
             img_bytes = io.BytesIO()
-            img.save(img_bytes, format='JPEG', quality=70)
+            img.save(img_bytes, format='JPEG', quality=70, optimize=True)
             img_base64 = base64.b64encode(img_bytes.getvalue()).decode('utf-8')
             
-            return {
+            result = {
                 "timestamp": datetime.now().isoformat(),
                 "image_data": img_base64,
                 "image_hash": img_hash,
                 "screen_size": img.size,
                 "changed": img_hash != last_image_hash
             }
+            
+            # Update cache
+            self.image_cache[img_hash] = result
+            if len(self.image_cache) > self.max_cache_size:
+                # Remove oldest entry
+                self.image_cache.pop(next(iter(self.image_cache)))
+            
+            self.last_capture_time = current_time
+            return result
+            
         except Exception as e:
             logger.error(f"Error during screen capture: {e}")
             # Try to reinitialize
@@ -90,7 +111,7 @@ class ScreenCapture:
             except Exception as re_e:
                 logger.error(f"Failed to reinitialize screen capture: {re_e}")
             return None
-            
+        
     def _calculate_hash(self, image):
         """Calculate a hash of the image for change detection"""
         return hashlib.md5(image.tobytes()).hexdigest()

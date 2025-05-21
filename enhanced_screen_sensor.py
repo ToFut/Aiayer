@@ -307,41 +307,95 @@ class EnhancedScreenSensor:
         
         while not self._stop_event.is_set() and retries < max_retries:
             try:
-                async with websockets.connect(self.bridge_url) as ws:
+                async with websockets.connect(
+                    self.bridge_url,
+                    ping_interval=30,
+                    ping_timeout=90,
+                    close_timeout=30,
+                    max_size=10 * 1024 * 1024,  # 10MB max message size
+                    max_queue=32,  # Maximum number of messages in queue
+                    compression=None  # Disable compression for better performance
+                ) as ws:
                     logger.info(f"Connected to bridge server at {self.bridge_url}")
                     self.connected = True
                     
                     # Process initial welcome message
-                    response = await ws.recv()
-                    data = json.loads(response)
-                    logger.info(f"Received from server: {data.get('type', 'unknown')}")
+                    try:
+                        response = await asyncio.wait_for(ws.recv(), timeout=10)
+                        data = json.loads(response)
+                        logger.info(f"Received from server: {data.get('type', 'unknown')}")
+                    except (asyncio.TimeoutError, websockets.exceptions.ConnectionClosed) as e:
+                        logger.warning(f"Error receiving welcome message: {e}")
+                        continue
                     
                     # Send identification
-                    await ws.send(json.dumps({
-                        "type": "connection_established",
-                        "payload": {
-                            "client": "screen_sensor",
+                    try:
+                        await ws.send(json.dumps({
+                            "type": "register",
+                            "client_type": "sensor",
                             "version": "1.0.0",
                             "capabilities": ["screen_capture"]
-                        }
-                    }))
+                        }))
+                    except websockets.exceptions.ConnectionClosed:
+                        logger.warning("Connection closed during registration")
+                        continue
                     
                     with self._websocket_lock:
                         self._websocket = ws
                     
                     # Keep connection alive and handle incoming messages
+                    last_ping_time = time.time()
                     while not self._stop_event.is_set():
                         try:
+                            current_time = time.time()
+                            
+                            # Send periodic ping if needed
+                            if current_time - last_ping_time >= 25:  # Send ping slightly before server's ping
+                                try:
+                                    await ws.send(json.dumps({
+                                        "type": "ping",
+                                        "timestamp": current_time
+                                    }))
+                                    last_ping_time = current_time
+                                except websockets.exceptions.ConnectionClosed:
+                                    logger.warning("Connection closed while sending ping")
+                                    break
+                            
                             # Check for any messages from the server (non-blocking)
-                            message = await asyncio.wait_for(ws.recv(), timeout=0.1)
-                            data = json.loads(message)
-                            if data.get("type") == "ping":
-                                await ws.send(json.dumps({"type": "pong", "timestamp": time.time()}))
-                        except asyncio.TimeoutError:
-                            # No messages, continue
-                            pass
+                            try:
+                                message = await asyncio.wait_for(ws.recv(), timeout=5)  # Short timeout for responsiveness
+                                data = json.loads(message)
+                                
+                                if data.get("type") == "ping":
+                                    await ws.send(json.dumps({
+                                        "type": "pong",
+                                        "timestamp": time.time()
+                                    }))
+                                elif data.get("type") == "pong":
+                                    last_ping_time = current_time
+                                elif data.get("type") == "registration_confirmed":
+                                    logger.info("Registration confirmed by server")
+                                elif data.get("type") == "error":
+                                    logger.error(f"Server error: {data.get('message', 'Unknown error')}")
+                                
+                            except asyncio.TimeoutError:
+                                # No messages, continue
+                                continue
+                            except websockets.exceptions.ConnectionClosed:
+                                logger.warning("Connection closed while receiving message")
+                                break
+                            except Exception as e:
+                                logger.error(f"Error processing message: {e}")
+                                continue
+                            
+                            # Small delay to prevent CPU spinning
+                            await asyncio.sleep(0.1)
+                            
+                        except websockets.exceptions.ConnectionClosed:
+                            logger.warning("WebSocket connection closed")
+                            break
                         except Exception as e:
-                            logger.error(f"Error processing message: {e}")
+                            logger.error(f"Error in message loop: {e}")
                             break
                     
                     # If we're here, either stop was requested or connection broke
@@ -352,6 +406,7 @@ class EnhancedScreenSensor:
                     
                     if self._stop_event.is_set():
                         return
+                        
             except (websockets.exceptions.ConnectionClosed, ConnectionRefusedError) as e:
                 logger.warning(f"Connection to bridge server failed: {e}")
                 self.connected = False

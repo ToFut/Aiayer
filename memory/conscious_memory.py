@@ -287,12 +287,32 @@ class ConsciousMemory:
             
             # Process based on sensor type with enhanced meaning extraction
             if sensor_type == "screen":
-                # Extract standard screen data
+                # Extract standard screen data and ensure it's not empty
+                window_title = data.get("active_window", data.get("window_title", "Unknown Window"))
+                screen_content = data.get("text", data.get("screen_content", ""))
+                
                 processed_data.update({
-                    "window_title": data.get("active_window", data.get("window_title", "")),
-                    "screen_content": data.get("text", data.get("screen_content", "")),
-                    # No raw image data stored
+                    "window_title": window_title,
+                    "screen_content": screen_content,
+                    # Extract active app from window title if not present
+                    "active_app": data.get("active_app", window_title.split(" - ")[0] if " - " in window_title else window_title)
                 })
+                
+                # Add basic window insight regardless of other data
+                window_insight = f"Active window: {window_title}"
+                processed_data["insights"].append({
+                    "type": "window",
+                    "content": window_insight
+                })
+                
+                # Add screen content insight if available
+                if screen_content:
+                    # Truncate to prevent excessively large context
+                    content_preview = screen_content[:200] + ("..." if len(screen_content) > 200 else "")
+                    processed_data["insights"].append({
+                        "type": "screen_content",
+                        "content": f"Screen content: {content_preview}"
+                    })
                 
                 # Enhanced application context extraction
                 if data.get("application"):
@@ -310,6 +330,8 @@ class ConsciousMemory:
                         # Application name and view
                         if app_data.get("name"):
                             activity_context.append(f"Using {app_data['name']}")
+                            # Ensure active_app is set
+                            processed_data["active_app"] = app_data["name"]
                         if app_data.get("view"):
                             activity_context.append(f"in {app_data['view']} view")
                             
@@ -373,31 +395,37 @@ class ConsciousMemory:
                                 "content": form_summary
                             })
                 
-                # Enhanced LLaVA analysis processing
+                # Enhanced LLaVA analysis processing - This is critical for "what am I seeing" queries
                 if data.get("llava_description") or data.get("visual_context"):
                     self.logger.info("Adding enhanced LLaVA analysis to conscious memory")
                     
                     # Store original LLaVA data
+                    visual_context = data.get("visual_context", "")
+                    llava_description = data.get("llava_description", "")
+                    
                     processed_data.update({
-                        "llava_description": data.get("llava_description", ""),
-                        "visual_context": data.get("visual_context", ""),
+                        "llava_description": llava_description,
+                        "visual_context": visual_context,
                         "has_llava_data": True
                     })
                     
                     # Extract meaningful insights from LLaVA analysis
-                    if data.get("visual_context"):
-                        visual_context = data["visual_context"]
+                    if visual_context:
+                        # Mark as significant if LLaVA detected meaningful content
+                        processed_data["is_significant"] = True
                         
-                        # Extract key phrases from visual context for better understanding
-                        if len(visual_context) > 30:
-                            # Mark as significant if LLaVA detected meaningful content
-                            processed_data["is_significant"] = True
-                            
-                            # Add as an insight
-                            processed_data["insights"].append({
-                                "type": "visual_understanding",
-                                "content": visual_context[:250] + ("..." if len(visual_context) > 250 else "")
-                            })
+                        # Add as an insight - prioritize this for "what am I seeing" queries
+                        processed_data["insights"].append({
+                            "type": "visual_understanding",
+                            "content": f"Visual content: {visual_context[:250]}" + ("..." if len(visual_context) > 250 else "")
+                        })
+                    
+                    # Add LLaVA description as a separate insight if available
+                    if llava_description:
+                        processed_data["insights"].append({
+                            "type": "llava_description",
+                            "content": f"LLaVA description: {llava_description[:250]}" + ("..." if len(llava_description) > 250 else "")
+                        })
                     
                     # Process UI elements with enhanced understanding
                     screen_elements = data.get("screen_elements", [])
