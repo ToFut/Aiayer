@@ -241,6 +241,40 @@ class ScreenSensor:
                 "active_apps": context.get("active_apps", [])
             }
             
+            # Enhanced prompt for better context understanding
+            prompt = {
+                "model": self.llava_model,
+                "messages": [
+                    {
+                        "role": "user",
+                        "content": """Analyze this screen capture and provide a comprehensive analysis including:
+1. Detailed description of the content and layout
+2. List of UI elements and their states
+3. Any text content visible
+4. The main application or context
+5. Current workflow stage (e.g., editing, viewing, composing)
+6. User's likely intent based on the screen content
+7. Any forms, inputs, or interactive elements
+8. Visual hierarchy and important elements
+9. Any error messages or notifications
+
+Format the response as JSON with these fields:
+{
+    "description": "Detailed description",
+    "elements": [{"name": "element name", "type": "element type", "state": "current state"}],
+    "text_content": "Extracted text",
+    "application": {"name": "app name", "workflow_stage": "current stage"},
+    "user_intent": "likely user intent",
+    "interactive_elements": [{"type": "element type", "purpose": "likely purpose"}],
+    "visual_hierarchy": ["list of elements in order of importance"],
+    "notifications": ["any alerts or notifications"]
+}"""
+                    }
+                ],
+                "stream": False,
+                "images": [img_base64]
+            }
+            
             # Analyze with LLaVA
             analysis = await self.llava.analyze_screen(image, process_context)
             
@@ -248,12 +282,106 @@ class ScreenSensor:
                 logger.warning(f"LLaVA analysis error: {analysis['error']}")
                 return {}
                 
+            # Enhance analysis with workflow detection
+            if "application" in analysis:
+                app_info = analysis["application"]
+                workflow_stage = self._detect_workflow_stage(analysis, app_info)
+                app_info["workflow_stage"] = workflow_stage
+                
+                # Add productivity context
+                app_info["productivity_context"] = self._analyze_productivity_context(analysis, workflow_stage)
+            
             logger.info(f"LLaVA analysis completed: {json.dumps(analysis, indent=2)}")
             return analysis
             
         except Exception as e:
             logger.error(f"Error processing with LLaVA: {e}")
             return {}
+            
+    def _detect_workflow_stage(self, analysis: Dict[str, Any], app_info: Dict[str, Any]) -> str:
+        """Detect the current workflow stage based on screen content and application"""
+        try:
+            app_name = app_info.get("name", "").lower()
+            description = analysis.get("description", "").lower()
+            elements = analysis.get("elements", [])
+            
+            # Common workflow patterns
+            if "compose" in description or "new" in description:
+                return "composing"
+            elif "edit" in description or "modify" in description:
+                return "editing"
+            elif "view" in description or "read" in description:
+                return "viewing"
+            elif "search" in description or "find" in description:
+                return "searching"
+            elif "settings" in description or "preferences" in description:
+                return "configuring"
+            elif "upload" in description or "import" in description:
+                return "importing"
+            elif "download" in description or "export" in description:
+                return "exporting"
+            
+            # Check for form elements
+            form_elements = [e for e in elements if e.get("type") in ["input", "textarea", "form"]]
+            if form_elements:
+                return "filling_form"
+            
+            return "unknown"
+        except Exception as e:
+            logger.error(f"Error detecting workflow stage: {e}")
+            return "unknown"
+            
+    def _analyze_productivity_context(self, analysis: Dict[str, Any], workflow_stage: str) -> Dict[str, Any]:
+        """Analyze productivity context based on screen content and workflow stage"""
+        try:
+            context = {
+                "is_productive": False,
+                "focus_level": "low",
+                "distractions": [],
+                "task_complexity": "low"
+            }
+            
+            # Check for productivity indicators
+            description = analysis.get("description", "").lower()
+            elements = analysis.get("elements", [])
+            
+            # Check for distractions
+            distractions = []
+            if "notification" in description or "alert" in description:
+                distractions.append("notifications")
+            if "chat" in description or "message" in description:
+                distractions.append("messaging")
+            if "social" in description:
+                distractions.append("social_media")
+            
+            context["distractions"] = distractions
+            
+            # Determine focus level
+            if not distractions and workflow_stage != "unknown":
+                context["focus_level"] = "high"
+            elif len(distractions) < 2:
+                context["focus_level"] = "medium"
+            
+            # Determine task complexity
+            if len(elements) > 10 or "complex" in description:
+                context["task_complexity"] = "high"
+            elif len(elements) > 5:
+                context["task_complexity"] = "medium"
+            
+            # Determine if productive
+            productive_stages = ["editing", "composing", "filling_form"]
+            context["is_productive"] = workflow_stage in productive_stages and context["focus_level"] != "low"
+            
+            return context
+            
+        except Exception as e:
+            logger.error(f"Error analyzing productivity context: {e}")
+            return {
+                "is_productive": False,
+                "focus_level": "unknown",
+                "distractions": [],
+                "task_complexity": "unknown"
+            }
 
     async def capture_screen(self) -> ScreenData:
         """Capture and process screen with LLaVA analysis"""
@@ -436,9 +564,9 @@ class ScreenSensor:
             }
         }
 
-    def capture(self):
+    async def capture(self):
         """Capture the current screen state."""
-        return asyncio.run(self.capture_screen())
+        return await self.capture_screen()
 
     def _get_window_info(self) -> Dict[str, Any]:
         """Get information about active window and applications."""

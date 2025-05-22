@@ -129,6 +129,9 @@ class MemoryService:
             if msg_type == 'memory_update':
                 # Update memory with new data
                 await self._handle_memory_update(data.get('data', {}))
+            elif msg_type == 'enhanced_memory_data':
+                # Handle enhanced memory data from Total Screen Analyzer
+                await self._handle_enhanced_memory_data(data.get('payload', {}))
             elif msg_type == 'context_request':
                 # Send current context
                 await self._send_context(data.get('data', {}))
@@ -158,6 +161,80 @@ class MemoryService:
             logger.info("Memory updated successfully")
         except Exception as e:
             logger.error(f"Error updating memory: {e}")
+    
+    async def _handle_enhanced_memory_data(self, memory_item: Dict[str, Any]):
+        """Handle enhanced memory data from Total Screen Analyzer."""
+        try:
+            priority = memory_item.get('priority', 'medium')
+            memory_type = memory_item.get('memory_type', 'short_term')
+            content = memory_item.get('content', {})
+            
+            logger.info(f"Processing enhanced memory item: priority={priority}, type={memory_type}")
+            
+            # Route to appropriate memory layer based on priority and type
+            if memory_type == 'long_term' or priority == 'high':
+                # Add to long-term memory for high priority or explicitly long-term items
+                if not hasattr(self.memory_system, 'long_term_memory'):
+                    self.memory_system.long_term_memory = []
+                self.memory_system.long_term_memory.append({
+                    'timestamp': datetime.now().isoformat(),
+                    'priority': priority,
+                    'source': 'total_screen_analyzer',
+                    'data': content,
+                    'tags': memory_item.get('tags', []),
+                    'relationships': memory_item.get('relationships', [])
+                })
+                
+            elif memory_type == 'context' or 'context' in memory_item.get('tags', []):
+                # Add to context memory for context-related items
+                if not hasattr(self.memory_system, 'context_memory'):
+                    self.memory_system.context_memory = {}
+                
+                # Use application context as key
+                app_context = content.get('application_context', {}).get('name', 'unknown_app')
+                if app_context not in self.memory_system.context_memory:
+                    self.memory_system.context_memory[app_context] = []
+                
+                self.memory_system.context_memory[app_context].append({
+                    'timestamp': datetime.now().isoformat(),
+                    'priority': priority,
+                    'source': 'total_screen_analyzer',
+                    'data': content,
+                    'tags': memory_item.get('tags', [])
+                })
+                
+            else:
+                # Default to short-term memory
+                if not hasattr(self.memory_system, 'short_term_memory'):
+                    self.memory_system.short_term_memory = []
+                self.memory_system.short_term_memory.append({
+                    'timestamp': datetime.now().isoformat(),
+                    'priority': priority,
+                    'source': 'total_screen_analyzer',
+                    'data': content,
+                    'tags': memory_item.get('tags', [])
+                })
+            
+            # If this is a high-priority item with insights, also add to conscious memory
+            if priority == 'high' and content.get('insights'):
+                try:
+                    # Update conscious memory with insights
+                    if hasattr(self.memory_system, 'conscious_memory') and self.memory_system.conscious_memory:
+                        await self.memory_system.conscious_memory.update_conscious_memory(content)
+                        logger.info("Updated conscious memory with high-priority insights")
+                except Exception as conscious_error:
+                    logger.warning(f"Failed to update conscious memory: {conscious_error}")
+            
+            # Save memory state
+            if hasattr(self.memory_system, '_save_memory_state'):
+                self.memory_system._save_memory_state()
+            
+            logger.info(f"Successfully stored enhanced memory item in {memory_type} memory")
+            
+        except Exception as e:
+            logger.error(f"Error handling enhanced memory data: {e}")
+            import traceback
+            logger.error(traceback.format_exc())
     
     async def _send_context(self, request: Dict[str, Any]):
         """Send current context to server."""

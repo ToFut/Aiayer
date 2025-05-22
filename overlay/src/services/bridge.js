@@ -1,18 +1,19 @@
 import { invoke } from '@tauri-apps/api/tauri';
 
 export class Bridge {
-    constructor() {
+    constructor(options = {}) {
         this.ws = null;
         this.messageHandlers = new Map();
         this.reconnectAttempts = 0;
-        this.maxReconnectAttempts = 5;
-        this.reconnectDelay = 1000;
+        this.maxReconnectAttempts = options.maxReconnectAttempts || 5;
+        this.reconnectDelay = options.reconnectDelay || 1000;
         this.systemContextData = null;
+        this.wsUrl = options.url || 'ws://localhost:8765';  // Default to WebSocket server port
     }
 
     async connect() {
         try {
-            this.ws = new WebSocket('ws://localhost:8768');  // Bridge server port (not LLM port which is 8770)
+            this.ws = new WebSocket(this.wsUrl);
             
             this.ws.onopen = () => {
                 console.log('Connected to Python backend');

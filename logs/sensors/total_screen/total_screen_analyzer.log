@@ -1,0 +1,585 @@
+2025-05-21 23:17:18,791 - llava_processor - INFO - Connected to Ollama API v0.6.8
+2025-05-21 23:17:18,791 - total_screen_analyzer - INFO - LLaVA visual processor initialized for total screen analysis
+2025-05-21 23:17:18,791 - total_screen_analyzer - INFO - Total Screen Analyzer initialized with 4s interval
+2025-05-21 23:17:18,791 - total_screen_analyzer - INFO - Starting Total Screen Analyzer
+2025-05-21 23:17:18,805 - total_screen_analyzer - INFO - Connected to bridge server at ws://localhost:8765
+2025-05-21 23:17:18,805 - total_screen_analyzer - INFO - Received welcome: welcome
+2025-05-21 23:17:18,806 - total_screen_analyzer - INFO - Total Screen Analyzer registered as total_screen_analyzer
+2025-05-21 23:17:19,122 - total_screen_analyzer - INFO - Starting total screen analysis (hash: 318e8b70)
+2025-05-21 23:17:44,752 - llava_processor - ERROR - Error normalizing image: 'LLaVAVisualProcessor' object has no attribute '_process_with_llava'
+2025-05-21 23:17:44,753 - total_screen_analyzer - INFO - Completed total screen analysis in 25.63s
+2025-05-21 23:17:44,754 - total_screen_analyzer - INFO - Sent total screen analysis: Cursor - general_computing
+2025-05-21 23:17:49,049 - total_screen_analyzer - INFO - Starting total screen analysis (hash: e9773e4b)
+2025-05-21 23:18:16,574 - llava_processor - ERROR - Error normalizing image: 'LLaVAVisualProcessor' object has no attribute '_process_with_llava'
+2025-05-21 23:18:16,575 - total_screen_analyzer - INFO - Completed total screen analysis in 27.53s
+2025-05-21 23:18:16,576 - total_screen_analyzer - ERROR - WebSocket connection closed, attempting to reconnect...
+2025-05-21 23:34:03,068 - llava_processor - INFO - Connected to Ollama API v0.6.8
+2025-05-21 23:34:03,068 - total_screen_analyzer - INFO - LLaVA visual processor initialized for total screen analysis
+2025-05-21 23:34:03,068 - total_screen_analyzer - INFO - Total Screen Analyzer initialized with 4s interval
+2025-05-21 23:34:03,068 - total_screen_analyzer - INFO - Starting Total Screen Analyzer
+2025-05-21 23:34:03,087 - total_screen_analyzer - INFO - Connected to bridge server at ws://localhost:8765
+2025-05-21 23:34:03,087 - total_screen_analyzer - INFO - Received welcome: welcome
+2025-05-21 23:34:03,088 - total_screen_analyzer - INFO - Total Screen Analyzer registered as total_screen_analyzer
+2025-05-21 23:34:04,308 - total_screen_analyzer - INFO - Starting total screen analysis (hash: 07d2ed84)
+2025-05-21 23:34:55,409 - llava_processor - ERROR - Error normalizing image: 'LLaVAVisualProcessor' object has no attribute '_process_with_llava'
+2025-05-21 23:34:55,410 - total_screen_analyzer - INFO - Completed total screen analysis in 51.10s
+2025-05-21 23:34:55,411 - total_screen_analyzer - INFO - Sent total screen analysis: Cursor - general_computing
+2025-05-21 23:34:59,703 - total_screen_analyzer - INFO - Starting total screen analysis (hash: ac8e3938)
+2025-05-21 23:35:20,205 - llava_processor - ERROR - Error normalizing image: 'LLaVAVisualProcessor' object has no attribute '_process_with_llava'
+2025-05-21 23:35:20,206 - total_screen_analyzer - INFO - Completed total screen analysis in 20.50s
+2025-05-21 23:35:20,208 - total_screen_analyzer - ERROR - WebSocket connection closed, attempting to reconnect...
+2025-05-21 23:36:29,740 - llava_processor - INFO - Connected to Ollama API v0.6.8
+2025-05-21 23:36:29,741 - total_screen_analyzer - INFO - LLaVA visual processor initialized for total screen analysis
+2025-05-21 23:36:29,741 - total_screen_analyzer - INFO - Total Screen Analyzer initialized with 4s interval
+2025-05-21 23:36:29,741 - total_screen_analyzer - INFO - Starting Total Screen Analyzer
+2025-05-21 23:36:29,760 - total_screen_analyzer - INFO - Connected to bridge server at ws://localhost:8765
+2025-05-21 23:36:29,761 - total_screen_analyzer - INFO - Received welcome: welcome
+2025-05-21 23:36:29,761 - total_screen_analyzer - INFO - Total Screen Analyzer registered as total_screen_analyzer
+2025-05-21 23:36:30,108 - total_screen_analyzer - INFO - Starting total screen analysis (hash: 64c0ec6b)
+2025-05-21 23:37:29,199 - llava_processor - INFO - Sending LLaVA request (attempt 1/4)
+2025-05-21 23:37:59,236 - llava_processor - WARNING - Request timeout
+2025-05-21 23:37:59,246 - llava_processor - INFO - Retrying in 1.0 seconds...
+2025-05-21 23:38:00,277 - llava_processor - INFO - Sending LLaVA request (attempt 2/4)
+2025-05-21 23:39:40,442 - llava_processor - WARNING - Timeout while reading LLaVA response
+2025-05-21 23:39:40,462 - llava_processor - INFO - Using partial response: 331 chars
+2025-05-21 23:39:40,560 - total_screen_analyzer - INFO - Completed total screen analysis in 190.43s
+2025-05-21 23:39:40,586 - total_screen_analyzer - ERROR - WebSocket connection closed: received 1011 (internal error) keepalive ping timeout; then sent 1011 (internal error) keepalive ping timeout
+2025-05-21 23:39:40,694 - total_screen_analyzer - INFO - Connected to bridge server at ws://localhost:8765
+2025-05-21 23:39:40,694 - total_screen_analyzer - INFO - Received welcome: welcome
+2025-05-21 23:39:40,698 - total_screen_analyzer - INFO - Total Screen Analyzer registered as total_screen_analyzer
+2025-05-21 23:39:43,454 - total_screen_analyzer - INFO - Starting total screen analysis (hash: 7366c972)
+2025-05-21 23:40:46,502 - total_screen_analyzer - INFO - Total Screen Analyzer stopped by user
+2025-05-21 23:40:48,409 - llava_processor - INFO - Connected to Ollama API v0.6.8
+2025-05-21 23:40:48,410 - total_screen_analyzer - INFO - LLaVA visual processor initialized for total screen analysis
+2025-05-21 23:40:48,410 - total_screen_analyzer - INFO - Total Screen Analyzer initialized with 4s interval
+2025-05-21 23:40:48,410 - total_screen_analyzer - INFO - Starting Total Screen Analyzer
+2025-05-21 23:40:48,440 - total_screen_analyzer - INFO - Connected to bridge server at ws://localhost:8765
+2025-05-21 23:40:48,440 - total_screen_analyzer - INFO - Received welcome: welcome
+2025-05-21 23:40:48,443 - total_screen_analyzer - INFO - Total Screen Analyzer registered as total_screen_analyzer
+2025-05-21 23:40:49,297 - total_screen_analyzer - INFO - Starting total screen analysis (hash: b7974d5e)
+2025-05-21 23:40:49,298 - total_screen_analyzer - ERROR - Error synthesizing comprehensive context: 'productivity_context'
+2025-05-21 23:40:49,298 - total_screen_analyzer - ERROR - Error in total screen analysis: unhashable type: 'dict'
+2025-05-21 23:40:49,301 - total_screen_analyzer - ERROR - Traceback (most recent call last):
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/sensors/total_screen_analyzer.py", line 168, in _perform_total_screen_analysis
+    results = await asyncio.gather(*analysis_tasks, return_exceptions=True)
+                    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.13/3.13.3/Frameworks/Python.framework/Versions/3.13/lib/python3.13/asyncio/tasks.py", line 883, in gather
+    if arg not in arg_to_fut:
+       ^^^^^^^^^^^^^^^^^^^^^
+TypeError: unhashable type: 'dict'
+
+2025-05-21 23:42:01,474 - llava_processor - INFO - Sending LLaVA request (attempt 1/4)
+2025-05-21 23:42:01,787 - total_screen_analyzer - INFO - Starting total screen analysis (hash: 98a660cf)
+2025-05-21 23:42:01,787 - total_screen_analyzer - ERROR - Error synthesizing comprehensive context: 'productivity_context'
+2025-05-21 23:42:01,787 - total_screen_analyzer - ERROR - Error in total screen analysis: unhashable type: 'dict'
+2025-05-21 23:42:01,789 - total_screen_analyzer - ERROR - Traceback (most recent call last):
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/sensors/total_screen_analyzer.py", line 168, in _perform_total_screen_analysis
+    results = await asyncio.gather(*analysis_tasks, return_exceptions=True)
+                    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.13/3.13.3/Frameworks/Python.framework/Versions/3.13/lib/python3.13/asyncio/tasks.py", line 883, in gather
+    if arg not in arg_to_fut:
+       ^^^^^^^^^^^^^^^^^^^^^
+TypeError: unhashable type: 'dict'
+
+2025-05-21 23:42:09,693 - llava_processor - INFO - Sending LLaVA request (attempt 1/4)
+2025-05-21 23:42:10,025 - total_screen_analyzer - INFO - Starting total screen analysis (hash: f32ed65f)
+2025-05-21 23:42:10,026 - total_screen_analyzer - ERROR - Error synthesizing comprehensive context: 'productivity_context'
+2025-05-21 23:42:10,027 - total_screen_analyzer - ERROR - Error in total screen analysis: unhashable type: 'dict'
+2025-05-21 23:42:10,028 - total_screen_analyzer - ERROR - Traceback (most recent call last):
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/sensors/total_screen_analyzer.py", line 168, in _perform_total_screen_analysis
+    results = await asyncio.gather(*analysis_tasks, return_exceptions=True)
+                    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.13/3.13.3/Frameworks/Python.framework/Versions/3.13/lib/python3.13/asyncio/tasks.py", line 883, in gather
+    if arg not in arg_to_fut:
+       ^^^^^^^^^^^^^^^^^^^^^
+TypeError: unhashable type: 'dict'
+
+2025-05-21 23:43:13,062 - llava_processor - INFO - Sending LLaVA request (attempt 1/4)
+2025-05-21 23:43:13,352 - total_screen_analyzer - INFO - Starting total screen analysis (hash: fb3e4c78)
+2025-05-21 23:43:13,353 - total_screen_analyzer - ERROR - Error synthesizing comprehensive context: 'productivity_context'
+2025-05-21 23:43:13,353 - total_screen_analyzer - ERROR - Error in total screen analysis: unhashable type: 'dict'
+2025-05-21 23:43:13,353 - total_screen_analyzer - ERROR - Traceback (most recent call last):
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/sensors/total_screen_analyzer.py", line 168, in _perform_total_screen_analysis
+    results = await asyncio.gather(*analysis_tasks, return_exceptions=True)
+                    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.13/3.13.3/Frameworks/Python.framework/Versions/3.13/lib/python3.13/asyncio/tasks.py", line 883, in gather
+    if arg not in arg_to_fut:
+       ^^^^^^^^^^^^^^^^^^^^^
+TypeError: unhashable type: 'dict'
+
+2025-05-21 23:43:40,262 - llava_processor - INFO - Sending LLaVA request (attempt 1/4)
+2025-05-21 23:43:40,265 - llava_processor - ERROR - Error in LLaVA request: 
+2025-05-21 23:43:40,274 - llava_processor - ERROR - Traceback (most recent call last):
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/aiohttp/client.py", line 703, in _request
+    conn = await self._connector.connect(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        req, traces=traces, timeout=real_timeout
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/aiohttp/connector.py", line 548, in connect
+    proto = await self._create_connection(req, traces, timeout)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/aiohttp/connector.py", line 1056, in _create_connection
+    _, proto = await self._create_direct_connection(req, traces, timeout)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/aiohttp/connector.py", line 1357, in _create_direct_connection
+    hosts = await self._resolve_host(host, port, traces=traces)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/aiohttp/connector.py", line 995, in _resolve_host
+    return await asyncio.shield(resolved_host_task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+asyncio.exceptions.CancelledError
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/sensors/llava_visual_processor.py", line 300, in _request_llava_analysis
+    async with session.post(
+               ~~~~~~~~~~~~^
+        self.llava_endpoint,
+        ^^^^^^^^^^^^^^^^^^^^
+        json=payload,
+        ^^^^^^^^^^^^^
+        timeout=aiohttp.ClientTimeout(total=timeout, connect=10, sock_read=30)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ) as response:
+    ^
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/aiohttp/client.py", line 1425, in __aenter__
+    self._resp: _RetType = await self._coro
+                           ^^^^^^^^^^^^^^^^
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/aiohttp/client.py", line 607, in _request
+    with timer:
+         ^^^^^
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/aiohttp/helpers.py", line 685, in __exit__
+    raise asyncio.TimeoutError from exc_val
+TimeoutError
+
+2025-05-21 23:43:40,274 - llava_processor - INFO - Retrying in 1.0 seconds...
+2025-05-21 23:43:40,274 - llava_processor - ERROR - Error in LLaVA request: 
+2025-05-21 23:43:40,278 - llava_processor - ERROR - Traceback (most recent call last):
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/aiohttp/client.py", line 703, in _request
+    conn = await self._connector.connect(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        req, traces=traces, timeout=real_timeout
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/aiohttp/connector.py", line 548, in connect
+    proto = await self._create_connection(req, traces, timeout)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/aiohttp/connector.py", line 1056, in _create_connection
+    _, proto = await self._create_direct_connection(req, traces, timeout)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/aiohttp/connector.py", line 1375, in _create_direct_connection
+    transp, proto = await self._wrap_create_connection(
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<7 lines>...
+    )
+    ^
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/aiohttp/connector.py", line 1115, in _wrap_create_connection
+    sock = await aiohappyeyeballs.start_connection(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<5 lines>...
+    )
+    ^
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/aiohappyeyeballs/impl.py", line 87, in start_connection
+    sock, _, _ = await _staggered.staggered_race(
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<13 lines>...
+    )
+    ^
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/aiohappyeyeballs/_staggered.py", line 165, in staggered_race
+    done = await _wait_one(
+           ^^^^^^^^^^^^^^^^
+        (*tasks, start_next) if start_next else tasks, loop
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/aiohappyeyeballs/_staggered.py", line 46, in _wait_one
+    return await wait_next
+           ^^^^^^^^^^^^^^^
+asyncio.exceptions.CancelledError
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/sensors/llava_visual_processor.py", line 300, in _request_llava_analysis
+    async with session.post(
+               ~~~~~~~~~~~~^
+        self.llava_endpoint,
+        ^^^^^^^^^^^^^^^^^^^^
+        json=payload,
+        ^^^^^^^^^^^^^
+        timeout=aiohttp.ClientTimeout(total=timeout, connect=10, sock_read=30)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ) as response:
+    ^
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/aiohttp/client.py", line 1425, in __aenter__
+    self._resp: _RetType = await self._coro
+                           ^^^^^^^^^^^^^^^^
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/aiohttp/client.py", line 607, in _request
+    with timer:
+         ^^^^^
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/aiohttp/helpers.py", line 685, in __exit__
+    raise asyncio.TimeoutError from exc_val
+TimeoutError
+
+2025-05-21 23:43:40,279 - llava_processor - INFO - Retrying in 1.0 seconds...
+2025-05-21 23:43:40,653 - total_screen_analyzer - INFO - Starting total screen analysis (hash: 8d7a4915)
+2025-05-21 23:43:40,653 - total_screen_analyzer - ERROR - Error synthesizing comprehensive context: 'productivity_context'
+2025-05-21 23:43:40,654 - total_screen_analyzer - ERROR - Error in total screen analysis: unhashable type: 'dict'
+2025-05-21 23:43:40,657 - total_screen_analyzer - ERROR - Traceback (most recent call last):
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/sensors/total_screen_analyzer.py", line 168, in _perform_total_screen_analysis
+    return await self._analyze_content_semantics("", {})
+                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.13/3.13.3/Frameworks/Python.framework/Versions/3.13/lib/python3.13/asyncio/tasks.py", line 883, in gather
+    if arg not in arg_to_fut:
+       ^^^^^^^^^^^^^^^^^^^^^
+TypeError: unhashable type: 'dict'
+
+2025-05-21 23:44:28,121 - llava_processor - INFO - Sending LLaVA request (attempt 1/4)
+2025-05-21 23:44:28,126 - llava_processor - ERROR - Error in LLaVA request: Connection timeout to host http://localhost:11434/api/chat
+2025-05-21 23:44:28,130 - llava_processor - ERROR - Traceback (most recent call last):
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/aiohttp/connector.py", line 548, in connect
+    proto = await self._create_connection(req, traces, timeout)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/aiohttp/connector.py", line 1056, in _create_connection
+    _, proto = await self._create_direct_connection(req, traces, timeout)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/aiohttp/connector.py", line 1357, in _create_direct_connection
+    hosts = await self._resolve_host(host, port, traces=traces)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/aiohttp/connector.py", line 995, in _resolve_host
+    return await asyncio.shield(resolved_host_task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+asyncio.exceptions.CancelledError
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/aiohttp/client.py", line 703, in _request
+    conn = await self._connector.connect(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        req, traces=traces, timeout=real_timeout
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/aiohttp/connector.py", line 530, in connect
+    async with ceil_timeout(timeout.connect, timeout.ceil_threshold):
+               ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.13/3.13.3/Frameworks/Python.framework/Versions/3.13/lib/python3.13/asyncio/timeouts.py", line 116, in __aexit__
+    raise TimeoutError from exc_val
+TimeoutError
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/sensors/llava_visual_processor.py", line 300, in _request_llava_analysis
+    async with session.post(
+               ~~~~~~~~~~~~^
+        self.llava_endpoint,
+        ^^^^^^^^^^^^^^^^^^^^
+        json=payload,
+        ^^^^^^^^^^^^^
+        timeout=aiohttp.ClientTimeout(total=timeout, connect=10, sock_read=30)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ) as response:
+    ^
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/aiohttp/client.py", line 1425, in __aenter__
+    self._resp: _RetType = await self._coro
+                           ^^^^^^^^^^^^^^^^
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/aiohttp/client.py", line 707, in _request
+    raise ConnectionTimeoutError(
+        f"Connection timeout to host {url}"
+    ) from exc
+aiohttp.client_exceptions.ConnectionTimeoutError: Connection timeout to host http://localhost:11434/api/chat
+
+2025-05-21 23:44:28,130 - llava_processor - INFO - Retrying in 1.0 seconds...
+2025-05-21 23:44:28,131 - llava_processor - INFO - Sending LLaVA request (attempt 2/4)
+2025-05-21 23:44:28,132 - llava_processor - INFO - Sending LLaVA request (attempt 2/4)
+2025-05-21 23:44:28,473 - total_screen_analyzer - INFO - Starting total screen analysis (hash: 5bc75860)
+2025-05-21 23:44:28,473 - total_screen_analyzer - ERROR - Error synthesizing comprehensive context: 'productivity_context'
+2025-05-21 23:44:28,474 - total_screen_analyzer - ERROR - Error in total screen analysis: unhashable type: 'dict'
+2025-05-21 23:44:28,474 - total_screen_analyzer - ERROR - Traceback (most recent call last):
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/sensors/total_screen_analyzer.py", line 168, in _perform_total_screen_analysis
+    return await self._analyze_content_semantics("", {})
+                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.13/3.13.3/Frameworks/Python.framework/Versions/3.13/lib/python3.13/asyncio/tasks.py", line 883, in gather
+    if arg not in arg_to_fut:
+       ^^^^^^^^^^^^^^^^^^^^^
+TypeError: unhashable type: 'dict'
+
+2025-05-21 23:44:32,078 - total_screen_analyzer - INFO - Total Screen Analyzer stopped by user
+2025-05-21 23:44:33,923 - llava_processor - INFO - Connected to Ollama API v0.6.8
+2025-05-21 23:44:33,923 - total_screen_analyzer - INFO - LLaVA visual processor initialized for total screen analysis
+2025-05-21 23:44:33,924 - total_screen_analyzer - INFO - Total Screen Analyzer initialized with 4s interval
+2025-05-21 23:44:33,924 - total_screen_analyzer - INFO - Starting Total Screen Analyzer
+2025-05-21 23:44:33,949 - total_screen_analyzer - INFO - Connected to bridge server at ws://localhost:8765
+2025-05-21 23:44:33,950 - total_screen_analyzer - INFO - Received welcome: welcome
+2025-05-21 23:44:33,950 - total_screen_analyzer - INFO - Total Screen Analyzer registered as total_screen_analyzer
+2025-05-21 23:44:34,415 - total_screen_analyzer - INFO - Starting total screen analysis (hash: de022215)
+2025-05-21 23:45:37,225 - llava_processor - INFO - Sending LLaVA request (attempt 1/4)
+2025-05-21 23:45:37,232 - total_screen_analyzer - ERROR - Error synthesizing comprehensive context: 'productivity_context'
+2025-05-21 23:46:07,272 - llava_processor - ERROR - Error in LLaVA request: Timeout on reading data from socket
+2025-05-21 23:46:07,298 - llava_processor - ERROR - Traceback (most recent call last):
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/sensors/llava_visual_processor.py", line 300, in _request_llava_analysis
+    async with session.post(
+               ~~~~~~~~~~~~^
+        self.llava_endpoint,
+        ^^^^^^^^^^^^^^^^^^^^
+        json=payload,
+        ^^^^^^^^^^^^^
+        timeout=aiohttp.ClientTimeout(total=timeout, connect=10, sock_read=30)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ) as response:
+    ^
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/aiohttp/client.py", line 1425, in __aenter__
+    self._resp: _RetType = await self._coro
+                           ^^^^^^^^^^^^^^^^
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/aiohttp/client.py", line 730, in _request
+    await resp.start(conn)
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/aiohttp/client_reqrep.py", line 1059, in start
+    message, payload = await protocol.read()  # type: ignore[union-attr]
+                       ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/aiohttp/streams.py", line 672, in read
+    await self._waiter
+aiohttp.client_exceptions.SocketTimeoutError: Timeout on reading data from socket
+
+2025-05-21 23:46:07,298 - llava_processor - INFO - Retrying in 1.0 seconds...
+2025-05-21 23:46:08,300 - llava_processor - INFO - Sending LLaVA request (attempt 2/4)
+2025-05-21 23:46:38,384 - llava_processor - ERROR - Error in LLaVA request: Timeout on reading data from socket
+2025-05-21 23:46:38,407 - llava_processor - ERROR - Traceback (most recent call last):
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/sensors/llava_visual_processor.py", line 300, in _request_llava_analysis
+    async with session.post(
+               ~~~~~~~~~~~~^
+        self.llava_endpoint,
+        ^^^^^^^^^^^^^^^^^^^^
+        json=payload,
+        ^^^^^^^^^^^^^
+        timeout=aiohttp.ClientTimeout(total=timeout, connect=10, sock_read=30)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ) as response:
+    ^
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/aiohttp/client.py", line 1425, in __aenter__
+    self._resp: _RetType = await self._coro
+                           ^^^^^^^^^^^^^^^^
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/aiohttp/client.py", line 730, in _request
+    await resp.start(conn)
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/aiohttp/client_reqrep.py", line 1059, in start
+    message, payload = await protocol.read()  # type: ignore[union-attr]
+                       ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/aiohttp/streams.py", line 672, in read
+    await self._waiter
+aiohttp.client_exceptions.SocketTimeoutError: Timeout on reading data from socket
+
+2025-05-21 23:46:38,408 - llava_processor - INFO - Retrying in 2.0 seconds...
+2025-05-21 23:46:40,427 - llava_processor - INFO - Sending LLaVA request (attempt 3/4)
+2025-05-21 23:47:10,704 - llava_processor - ERROR - Error in LLaVA request: Timeout on reading data from socket
+2025-05-21 23:47:10,725 - llava_processor - ERROR - Traceback (most recent call last):
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/sensors/llava_visual_processor.py", line 300, in _request_llava_analysis
+    async with session.post(
+               ~~~~~~~~~~~~^
+        self.llava_endpoint,
+        ^^^^^^^^^^^^^^^^^^^^
+        json=payload,
+        ^^^^^^^^^^^^^
+        timeout=aiohttp.ClientTimeout(total=timeout, connect=10, sock_read=30)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ) as response:
+    ^
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/aiohttp/client.py", line 1425, in __aenter__
+    self._resp: _RetType = await self._coro
+                           ^^^^^^^^^^^^^^^^
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/aiohttp/client.py", line 730, in _request
+    await resp.start(conn)
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/aiohttp/client_reqrep.py", line 1059, in start
+    message, payload = await protocol.read()  # type: ignore[union-attr]
+                       ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/aiohttp/streams.py", line 672, in read
+    await self._waiter
+aiohttp.client_exceptions.SocketTimeoutError: Timeout on reading data from socket
+
+2025-05-21 23:47:10,725 - llava_processor - INFO - Retrying in 4.0 seconds...
+2025-05-21 23:47:14,767 - llava_processor - INFO - Sending LLaVA request (attempt 4/4)
+2025-05-21 23:47:45,204 - llava_processor - ERROR - Error in LLaVA request: Timeout on reading data from socket
+2025-05-21 23:47:45,241 - llava_processor - ERROR - Traceback (most recent call last):
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/sensors/llava_visual_processor.py", line 300, in _request_llava_analysis
+    async with session.post(
+               ~~~~~~~~~~~~^
+        self.llava_endpoint,
+        ^^^^^^^^^^^^^^^^^^^^
+        json=payload,
+        ^^^^^^^^^^^^^
+        timeout=aiohttp.ClientTimeout(total=timeout, connect=10, sock_read=30)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ) as response:
+    ^
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/aiohttp/client.py", line 1425, in __aenter__
+    self._resp: _RetType = await self._coro
+                           ^^^^^^^^^^^^^^^^
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/aiohttp/client.py", line 730, in _request
+    await resp.start(conn)
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/aiohttp/client_reqrep.py", line 1059, in start
+    message, payload = await protocol.read()  # type: ignore[union-attr]
+                       ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/aiohttp/streams.py", line 672, in read
+    await self._waiter
+aiohttp.client_exceptions.SocketTimeoutError: Timeout on reading data from socket
+
+2025-05-21 23:47:45,243 - llava_processor - ERROR - Error in LLaVA request: Timeout on reading data from socket
+2025-05-21 23:47:45,259 - llava_processor - ERROR - LLaVA analysis failed: Error in LLaVA request: Timeout on reading data from socket
+2025-05-21 23:47:45,383 - total_screen_analyzer - INFO - Completed total screen analysis in 190.96s
+2025-05-21 23:47:45,398 - total_screen_analyzer - ERROR - WebSocket connection closed: received 1011 (internal error) keepalive ping timeout; then sent 1011 (internal error) keepalive ping timeout
+2025-05-21 23:47:45,432 - total_screen_analyzer - INFO - Connected to bridge server at ws://localhost:8765
+2025-05-21 23:47:45,432 - total_screen_analyzer - INFO - Received welcome: welcome
+2025-05-21 23:47:45,433 - total_screen_analyzer - INFO - Total Screen Analyzer registered as total_screen_analyzer
+2025-05-21 23:47:46,218 - total_screen_analyzer - INFO - Starting total screen analysis (hash: ad4e4768)
+2025-05-21 23:47:57,459 - llava_processor - INFO - Sending LLaVA request (attempt 1/4)
+2025-05-21 23:47:57,486 - total_screen_analyzer - ERROR - Error synthesizing comprehensive context: 'productivity_context'
+2025-05-21 23:48:21,276 - llava_processor - WARNING - Error checking LLaVA availability: HTTPConnectionPool(host='localhost', port=11434): Read timed out. (read timeout=2)
+2025-05-21 23:48:21,281 - total_screen_analyzer - INFO - LLaVA visual processor initialized for total screen analysis
+2025-05-21 23:48:21,283 - total_screen_analyzer - INFO - Total Screen Analyzer initialized with 4s interval
+2025-05-21 23:48:21,283 - total_screen_analyzer - INFO - Starting Total Screen Analyzer
+2025-05-21 23:48:21,357 - total_screen_analyzer - INFO - Connected to bridge server at ws://localhost:8765
+2025-05-21 23:48:21,357 - total_screen_analyzer - INFO - Received welcome: welcome
+2025-05-21 23:48:21,358 - total_screen_analyzer - INFO - Total Screen Analyzer registered as total_screen_analyzer
+2025-05-21 23:48:22,436 - total_screen_analyzer - INFO - Starting total screen analysis (hash: 77c59407)
+2025-05-21 23:48:27,584 - llava_processor - ERROR - Error in LLaVA request: Timeout on reading data from socket
+2025-05-21 23:48:27,671 - llava_processor - ERROR - Traceback (most recent call last):
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/sensors/llava_visual_processor.py", line 300, in _request_llava_analysis
+    async with session.post(
+               ~~~~~~~~~~~~^
+        self.llava_endpoint,
+        ^^^^^^^^^^^^^^^^^^^^
+        json=payload,
+        ^^^^^^^^^^^^^
+        timeout=aiohttp.ClientTimeout(total=timeout, connect=10, sock_read=30)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ) as response:
+    ^
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/aiohttp/client.py", line 1425, in __aenter__
+    self._resp: _RetType = await self._coro
+                           ^^^^^^^^^^^^^^^^
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/aiohttp/client.py", line 730, in _request
+    await resp.start(conn)
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/aiohttp/client_reqrep.py", line 1059, in start
+    message, payload = await protocol.read()  # type: ignore[union-attr]
+                       ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/aiohttp/streams.py", line 672, in read
+    await self._waiter
+aiohttp.client_exceptions.SocketTimeoutError: Timeout on reading data from socket
+
+2025-05-21 23:48:27,672 - llava_processor - INFO - Retrying in 1.0 seconds...
+2025-05-21 23:48:28,697 - llava_processor - INFO - Sending LLaVA request (attempt 2/4)
+2025-05-21 23:48:58,845 - llava_processor - ERROR - Error in LLaVA request: Timeout on reading data from socket
+2025-05-21 23:48:58,904 - llava_processor - ERROR - Traceback (most recent call last):
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/sensors/llava_visual_processor.py", line 300, in _request_llava_analysis
+    async with session.post(
+               ~~~~~~~~~~~~^
+        self.llava_endpoint,
+        ^^^^^^^^^^^^^^^^^^^^
+        json=payload,
+        ^^^^^^^^^^^^^
+        timeout=aiohttp.ClientTimeout(total=timeout, connect=10, sock_read=30)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ) as response:
+    ^
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/aiohttp/client.py", line 1425, in __aenter__
+    self._resp: _RetType = await self._coro
+                           ^^^^^^^^^^^^^^^^
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/aiohttp/client.py", line 730, in _request
+    await resp.start(conn)
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/aiohttp/client_reqrep.py", line 1059, in start
+    message, payload = await protocol.read()  # type: ignore[union-attr]
+                       ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/aiohttp/streams.py", line 672, in read
+    await self._waiter
+aiohttp.client_exceptions.SocketTimeoutError: Timeout on reading data from socket
+
+2025-05-21 23:48:58,905 - llava_processor - INFO - Retrying in 2.0 seconds...
+2025-05-21 23:49:00,912 - llava_processor - INFO - Sending LLaVA request (attempt 3/4)
+2025-05-21 23:49:09,525 - llava_processor - INFO - Sending LLaVA request (attempt 1/4)
+2025-05-21 23:49:09,682 - total_screen_analyzer - ERROR - Error synthesizing comprehensive context: 'productivity_context'
+2025-05-21 23:49:30,960 - llava_processor - ERROR - Error in LLaVA request: Timeout on reading data from socket
+2025-05-21 23:49:31,004 - llava_processor - ERROR - Traceback (most recent call last):
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/sensors/llava_visual_processor.py", line 300, in _request_llava_analysis
+    async with session.post(
+               ~~~~~~~~~~~~^
+        self.llava_endpoint,
+        ^^^^^^^^^^^^^^^^^^^^
+        json=payload,
+        ^^^^^^^^^^^^^
+        timeout=aiohttp.ClientTimeout(total=timeout, connect=10, sock_read=30)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ) as response:
+    ^
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/aiohttp/client.py", line 1425, in __aenter__
+    self._resp: _RetType = await self._coro
+                           ^^^^^^^^^^^^^^^^
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/aiohttp/client.py", line 730, in _request
+    await resp.start(conn)
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/aiohttp/client_reqrep.py", line 1059, in start
+    message, payload = await protocol.read()  # type: ignore[union-attr]
+                       ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/aiohttp/streams.py", line 672, in read
+    await self._waiter
+aiohttp.client_exceptions.SocketTimeoutError: Timeout on reading data from socket
+
+2025-05-21 23:49:31,004 - llava_processor - INFO - Retrying in 4.0 seconds...
+2025-05-21 23:49:35,029 - llava_processor - INFO - Sending LLaVA request (attempt 4/4)
+2025-05-21 23:49:39,834 - llava_processor - ERROR - Error in LLaVA request: Timeout on reading data from socket
+2025-05-21 23:49:39,966 - llava_processor - ERROR - Traceback (most recent call last):
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/sensors/llava_visual_processor.py", line 300, in _request_llava_analysis
+    async with session.post(
+               ~~~~~~~~~~~~^
+        self.llava_endpoint,
+        ^^^^^^^^^^^^^^^^^^^^
+        json=payload,
+        ^^^^^^^^^^^^^
+        timeout=aiohttp.ClientTimeout(total=timeout, connect=10, sock_read=30)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ) as response:
+    ^
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/aiohttp/client.py", line 1425, in __aenter__
+    self._resp: _RetType = await self._coro
+                           ^^^^^^^^^^^^^^^^
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/aiohttp/client.py", line 730, in _request
+    await resp.start(conn)
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/aiohttp/client_reqrep.py", line 1059, in start
+    message, payload = await protocol.read()  # type: ignore[union-attr]
+                       ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/aiohttp/streams.py", line 672, in read
+    await self._waiter
+aiohttp.client_exceptions.SocketTimeoutError: Timeout on reading data from socket
+
+2025-05-21 23:49:39,968 - llava_processor - INFO - Retrying in 1.0 seconds...
+2025-05-21 23:49:40,991 - llava_processor - INFO - Sending LLaVA request (attempt 2/4)
+2025-05-21 23:50:01,653 - total_screen_analyzer - INFO - Total Screen Analyzer stopped by user
+2025-05-21 23:50:11,512 - llava_processor - ERROR - Error in LLaVA request: Timeout on reading data from socket
+2025-05-21 23:50:11,682 - llava_processor - ERROR - Traceback (most recent call last):
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/sensors/llava_visual_processor.py", line 300, in _request_llava_analysis
+    async with session.post(
+               ~~~~~~~~~~~~^
+        self.llava_endpoint,
+        ^^^^^^^^^^^^^^^^^^^^
+        json=payload,
+        ^^^^^^^^^^^^^
+        timeout=aiohttp.ClientTimeout(total=timeout, connect=10, sock_read=30)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ) as response:
+    ^
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/aiohttp/client.py", line 1425, in __aenter__
+    self._resp: _RetType = await self._coro
+                           ^^^^^^^^^^^^^^^^
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/aiohttp/client.py", line 730, in _request
+    await resp.start(conn)
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/aiohttp/client_reqrep.py", line 1059, in start
+    message, payload = await protocol.read()  # type: ignore[union-attr]
+                       ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/aiohttp/streams.py", line 672, in read
+    await self._waiter
+aiohttp.client_exceptions.SocketTimeoutError: Timeout on reading data from socket
+
+2025-05-21 23:50:11,720 - llava_processor - INFO - Retrying in 2.0 seconds...
+2025-05-21 23:50:13,738 - llava_processor - INFO - Sending LLaVA request (attempt 3/4)

@@ -1,0 +1,945 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SensAI Agent Testing Dashboard - Complex UI</title>
+    <style>
+        :root {
+            --primary-color: #2563eb;
+            --secondary-color: #64748b;
+            --success-color: #10b981;
+            --warning-color: #f59e0b;
+            --error-color: #ef4444;
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8fafc;
+            --bg-dark: #1e293b;
+            --text-primary: #1e293b;
+            --text-secondary: #64748b;
+            --border-color: #e2e8f0;
+            --shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: var(--text-primary);
+        }
+
+        .dashboard {
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            grid-template-rows: auto 1fr;
+            grid-template-areas: 
+                "sidebar header"
+                "sidebar main";
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .header {
+            grid-area: header;
+            background: var(--bg-primary);
+            padding: 1rem 2rem;
+            border-bottom: 1px solid var(--border-color);
+            box-shadow: var(--shadow);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header h1 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+
+        .connection-status {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            font-size: 0.875rem;
+            font-weight: 500;
+        }
+
+        .connection-status.connected {
+            background: rgba(16, 185, 129, 0.1);
+            color: var(--success-color);
+        }
+
+        .connection-status.disconnected {
+            background: rgba(239, 68, 68, 0.1);
+            color: var(--error-color);
+        }
+
+        .sidebar {
+            grid-area: sidebar;
+            background: var(--bg-dark);
+            color: white;
+            padding: 1.5rem;
+            overflow-y: auto;
+        }
+
+        .sidebar h2 {
+            font-size: 1.25rem;
+            margin-bottom: 1rem;
+            color: #e2e8f0;
+        }
+
+        .agent-list {
+            margin-bottom: 2rem;
+        }
+
+        .agent-card {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 0.5rem;
+            padding: 1rem;
+            margin-bottom: 0.75rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .agent-card h3 {
+            font-size: 0.875rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .agent-status {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.75rem;
+        }
+
+        .status-indicator {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        .status-indicator.running {
+            background: var(--success-color);
+        }
+
+        .status-indicator.idle {
+            background: var(--warning-color);
+        }
+
+        .status-indicator.error {
+            background: var(--error-color);
+        }
+
+        .scenario-controls {
+            margin-top: 1rem;
+        }
+
+        .scenario-button {
+            width: 100%;
+            padding: 0.75rem;
+            margin-bottom: 0.5rem;
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 0.375rem;
+            font-size: 0.875rem;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .scenario-button:hover {
+            background: #1d4ed8;
+            transform: translateY(-1px);
+        }
+
+        .scenario-button:active {
+            transform: translateY(0);
+        }
+
+        .scenario-button.danger {
+            background: var(--error-color);
+        }
+
+        .scenario-button.danger:hover {
+            background: #dc2626;
+        }
+
+        .main-content {
+            grid-area: main;
+            padding: 2rem;
+            overflow-y: auto;
+            background: var(--bg-secondary);
+        }
+
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .metric-card {
+            background: var(--bg-primary);
+            padding: 1.5rem;
+            border-radius: 0.75rem;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border-color);
+        }
+
+        .metric-card h3 {
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .metric-value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 0.25rem;
+        }
+
+        .metric-change {
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+        }
+
+        .activity-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+
+        .activity-panel {
+            background: var(--bg-primary);
+            border-radius: 0.75rem;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border-color);
+            overflow: hidden;
+        }
+
+        .activity-header {
+            padding: 1rem 1.5rem;
+            background: var(--bg-secondary);
+            border-bottom: 1px solid var(--border-color);
+            font-weight: 600;
+        }
+
+        .activity-content {
+            height: 400px;
+            overflow-y: auto;
+            padding: 1rem;
+        }
+
+        .log-entry {
+            padding: 0.5rem;
+            margin-bottom: 0.5rem;
+            border-radius: 0.375rem;
+            font-size: 0.875rem;
+            border-left: 3px solid;
+        }
+
+        .log-entry.info {
+            background: rgba(59, 130, 246, 0.1);
+            border-color: var(--primary-color);
+        }
+
+        .log-entry.success {
+            background: rgba(16, 185, 129, 0.1);
+            border-color: var(--success-color);
+        }
+
+        .log-entry.warning {
+            background: rgba(245, 158, 11, 0.1);
+            border-color: var(--warning-color);
+        }
+
+        .log-entry.error {
+            background: rgba(239, 68, 68, 0.1);
+            border-color: var(--error-color);
+        }
+
+        .log-timestamp {
+            color: var(--text-secondary);
+            font-size: 0.75rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .task-card {
+            background: var(--bg-primary);
+            border: 1px solid var(--border-color);
+            border-radius: 0.5rem;
+            padding: 1rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .task-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.5rem;
+        }
+
+        .task-title {
+            font-weight: 600;
+            font-size: 0.875rem;
+        }
+
+        .task-status {
+            padding: 0.25rem 0.5rem;
+            border-radius: 0.25rem;
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+
+        .task-status.running {
+            background: rgba(59, 130, 246, 0.1);
+            color: var(--primary-color);
+        }
+
+        .task-status.completed {
+            background: rgba(16, 185, 129, 0.1);
+            color: var(--success-color);
+        }
+
+        .task-status.failed {
+            background: rgba(239, 68, 68, 0.1);
+            color: var(--error-color);
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 6px;
+            background: var(--bg-secondary);
+            border-radius: 3px;
+            overflow: hidden;
+            margin-top: 0.5rem;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: var(--success-color);
+            transition: width 0.3s ease;
+        }
+
+        .performance-chart {
+            height: 200px;
+            margin-top: 1rem;
+            display: flex;
+            align-items: end;
+            gap: 2px;
+            padding: 0 1rem;
+        }
+
+        .chart-bar {
+            flex: 1;
+            background: var(--primary-color);
+            min-height: 2px;
+            border-radius: 1px 1px 0 0;
+            opacity: 0.7;
+            transition: all 0.3s ease;
+        }
+
+        .chart-bar:hover {
+            opacity: 1;
+            transform: scaleY(1.1);
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .fade-in {
+            animation: fadeIn 0.3s ease-out;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: var(--bg-primary);
+            border-radius: 0.75rem;
+            padding: 2rem;
+            max-width: 500px;
+            width: 90%;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .modal-close {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text-secondary);
+        }
+
+        .json-viewer {
+            background: var(--bg-dark);
+            color: #e2e8f0;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            font-family: 'Monaco', 'Consolas', monospace;
+            font-size: 0.75rem;
+            line-height: 1.4;
+            overflow-x: auto;
+            white-space: pre-wrap;
+        }
+
+        @media (max-width: 768px) {
+            .dashboard {
+                grid-template-columns: 1fr;
+                grid-template-areas: 
+                    "header"
+                    "main";
+            }
+            
+            .sidebar {
+                display: none;
+            }
+            
+            .activity-section {
+                grid-template-columns: 1fr;
+            }
+            
+            .metrics-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="dashboard">
+        <header class="header">
+            <h1>🤖 SensAI Agent Testing Dashboard</h1>
+            <div class="connection-status disconnected" id="connectionStatus">
+                <span class="status-indicator"></span>
+                <span id="statusText">Connecting...</span>
+            </div>
+        </header>
+
+        <aside class="sidebar">
+            <h2>🔧 Active Agents</h2>
+            <div class="agent-list" id="agentList">
+                <!-- Agents will be populated here -->
+            </div>
+
+            <h2>🎯 Test Scenarios</h2>
+            <div class="scenario-controls">
+                <button class="scenario-button" onclick="executeScenario('simple_success')">
+                    ✅ Simple Success Test
+                </button>
+                <button class="scenario-button" onclick="executeScenario('complex_workflow')">
+                    ⚙️ Complex Workflow
+                </button>
+                <button class="scenario-button" onclick="executeScenario('stress_test')">
+                    🚀 Stress Test
+                </button>
+                <button class="scenario-button danger" onclick="executeScenario('failure_scenario')">
+                    💥 Failure Test
+                </button>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <div class="metrics-grid">
+                <div class="metric-card">
+                    <h3>Active Tasks</h3>
+                    <div class="metric-value" id="activeTasks">0</div>
+                    <div class="metric-change">Currently running</div>
+                </div>
+                <div class="metric-card">
+                    <h3>Success Rate</h3>
+                    <div class="metric-value" id="successRate">0%</div>
+                    <div class="metric-change">Last 24 hours</div>
+                </div>
+                <div class="metric-card">
+                    <h3>Avg Response Time</h3>
+                    <div class="metric-value" id="avgResponseTime">0ms</div>
+                    <div class="metric-change">Per task execution</div>
+                </div>
+                <div class="metric-card">
+                    <h3>Total Processed</h3>
+                    <div class="metric-value" id="totalProcessed">0</div>
+                    <div class="metric-change">Since startup</div>
+                </div>
+            </div>
+
+            <div class="activity-section">
+                <div class="activity-panel">
+                    <div class="activity-header">
+                        📊 Real-time Activity Log
+                        <button onclick="clearLogs()" style="float: right; background: none; border: none; cursor: pointer;">🗑️</button>
+                    </div>
+                    <div class="activity-content" id="activityLog">
+                        <!-- Activity logs will appear here -->
+                    </div>
+                </div>
+
+                <div class="activity-panel">
+                    <div class="activity-header">
+                        🔄 Active Tasks
+                        <button onclick="refreshTasks()" style="float: right; background: none; border: none; cursor: pointer;">🔄</button>
+                    </div>
+                    <div class="activity-content" id="taskList">
+                        <!-- Active tasks will appear here -->
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Modal for detailed task information -->
+    <div class="modal" id="taskModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Task Details</h3>
+                <button class="modal-close" onclick="closeModal()">&times;</button>
+            </div>
+            <div id="taskDetails"></div>
+        </div>
+    </div>
+
+    <script>
+        class AgentDashboard {
+            constructor() {
+                this.ws = null;
+                this.isConnected = false;
+                this.agents = new Map();
+                this.tasks = new Map();
+                this.logs = [];
+                this.maxLogs = 100;
+                this.performanceData = [];
+                
+                this.init();
+            }
+
+            init() {
+                this.connectWebSocket();
+                this.setupEventHandlers();
+                this.startPeriodicUpdates();
+            }
+
+            connectWebSocket() {
+                const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
+                const wsUrl = `${protocol}//${window.location.host}/ws`;
+                
+                try {
+                    this.ws = new WebSocket(wsUrl);
+                    
+                    this.ws.onopen = () => {
+                        this.isConnected = true;
+                        this.updateConnectionStatus();
+                        this.addLog('info', 'Connected to Agent Demo Server');
+                    };
+                    
+                    this.ws.onmessage = (event) => {
+                        const data = JSON.parse(event.data);
+                        this.handleWebSocketMessage(data);
+                    };
+                    
+                    this.ws.onclose = () => {
+                        this.isConnected = false;
+                        this.updateConnectionStatus();
+                        this.addLog('error', 'Disconnected from server');
+                        
+                        // Attempt to reconnect after 3 seconds
+                        setTimeout(() => this.connectWebSocket(), 3000);
+                    };
+                    
+                    this.ws.onerror = (error) => {
+                        this.addLog('error', `WebSocket error: ${error.message || 'Connection failed'}`);
+                    };
+                    
+                } catch (error) {
+                    this.addLog('error', `Failed to connect: ${error.message}`);
+                    setTimeout(() => this.connectWebSocket(), 5000);
+                }
+            }
+
+            handleWebSocketMessage(data) {
+                switch (data.type) {
+                    case 'connection_established':
+                        this.addLog('success', `Connected! ${data.agents_count} agents, ${data.scenarios_count} scenarios available`);
+                        break;
+                        
+                    case 'status_update':
+                        this.updateStatus(data);
+                        break;
+                        
+                    case 'agent_state_change':
+                        this.handleAgentStateChange(data);
+                        break;
+                        
+                    case 'task_start':
+                        this.handleTaskStart(data);
+                        break;
+                        
+                    case 'task_complete':
+                        this.handleTaskComplete(data);
+                        break;
+                        
+                    case 'agent_error':
+                        this.handleAgentError(data);
+                        break;
+                        
+                    case 'pong':
+                        // Heartbeat response
+                        break;
+                        
+                    default:
+                        console.log('Unknown message type:', data.type);
+                }
+            }
+
+            updateStatus(data) {
+                // Update orchestrator metrics
+                const orchestrator = data.orchestrator;
+                document.getElementById('activeTasks').textContent = orchestrator.active_tasks || 0;
+                
+                const successRate = orchestrator.completed_tasks > 0 ? 
+                    Math.round((orchestrator.completed_tasks / (orchestrator.completed_tasks + orchestrator.failed_tasks)) * 100) : 0;
+                document.getElementById('successRate').textContent = `${successRate}%`;
+                
+                document.getElementById('totalProcessed').textContent = orchestrator.total_tasks || 0;
+                
+                // Update agents
+                this.updateAgents(data.agents);
+                
+                // Update performance data
+                this.updatePerformanceData(data);
+            }
+
+            updateAgents(agentsData) {
+                const agentList = document.getElementById('agentList');
+                agentList.innerHTML = '';
+                
+                Object.entries(agentsData).forEach(([agentId, agentData]) => {
+                    const agentCard = document.createElement('div');
+                    agentCard.className = 'agent-card';
+                    
+                    const statusClass = agentData.state === 'running' ? 'running' : 
+                                       agentData.state === 'idle' ? 'idle' : 'error';
+                    
+                    const avgResponseTime = agentData.metrics ? 
+                        Math.round(agentData.metrics.avg_response_time * 1000) : 0;
+                    
+                    agentCard.innerHTML = `
+                        <h3>${agentData.name}</h3>
+                        <div class="agent-status">
+                            <span class="status-indicator ${statusClass}"></span>
+                            <span>${agentData.state} | ${agentData.active_tasks} active</span>
+                        </div>
+                        <div style="font-size: 0.75rem; margin-top: 0.5rem; color: #94a3b8;">
+                            Success: ${agentData.metrics ? Math.round(agentData.metrics.success_rate * 100) : 0}% | 
+                            Avg: ${avgResponseTime}ms
+                        </div>
+                    `;
+                    
+                    agentList.appendChild(agentCard);
+                    this.agents.set(agentId, agentData);
+                });
+            }
+
+            handleAgentStateChange(data) {
+                this.addLog('info', `Agent ${data.agent_id.substring(0, 8)} state: ${data.old_state} → ${data.new_state}`);
+            }
+
+            handleTaskStart(data) {
+                this.addLog('info', `Task started: ${data.task_id.substring(0, 8)} on agent ${data.agent_id.substring(0, 8)}`);
+                
+                // Add to tasks map
+                this.tasks.set(data.task_id, {
+                    id: data.task_id,
+                    agent_id: data.agent_id,
+                    start_time: data.timestamp,
+                    status: 'running',
+                    data: data.task_data
+                });
+                
+                this.updateTaskList();
+            }
+
+            handleTaskComplete(data) {
+                const task = this.tasks.get(data.task_id);
+                if (task) {
+                    task.status = 'completed';
+                    task.result = data.result;
+                    task.end_time = data.timestamp;
+                    
+                    const duration = Math.round((task.end_time - task.start_time) * 1000);
+                    this.addLog('success', `Task completed: ${data.task_id.substring(0, 8)} (${duration}ms)`);
+                    
+                    this.updateTaskList();
+                }
+            }
+
+            handleAgentError(data) {
+                this.addLog('error', `Agent error [${data.agent_id.substring(0, 8)}]: ${data.error}`);
+                
+                // Update task status if applicable
+                const taskId = data.context?.task_id;
+                if (taskId && this.tasks.has(taskId)) {
+                    const task = this.tasks.get(taskId);
+                    task.status = 'failed';
+                    task.error = data.error;
+                    this.updateTaskList();
+                }
+            }
+
+            updateTaskList() {
+                const taskList = document.getElementById('taskList');
+                taskList.innerHTML = '';
+                
+                // Sort tasks by start time (newest first)
+                const sortedTasks = Array.from(this.tasks.values())
+                    .sort((a, b) => b.start_time - a.start_time)
+                    .slice(0, 10); // Show last 10 tasks
+                
+                sortedTasks.forEach(task => {
+                    const taskCard = document.createElement('div');
+                    taskCard.className = 'task-card fade-in';
+                    taskCard.onclick = () => this.showTaskDetails(task.id);
+                    taskCard.style.cursor = 'pointer';
+                    
+                    const duration = task.end_time ? 
+                        Math.round((task.end_time - task.start_time) * 1000) : 
+                        Math.round((Date.now() / 1000 - task.start_time) * 1000);
+                    
+                    taskCard.innerHTML = `
+                        <div class="task-header">
+                            <div class="task-title">Task ${task.id.substring(0, 8)}</div>
+                            <div class="task-status ${task.status}">${task.status}</div>
+                        </div>
+                        <div style="font-size: 0.75rem; color: var(--text-secondary);">
+                            Agent: ${task.agent_id.substring(0, 8)} | Duration: ${duration}ms
+                        </div>
+                        ${task.status === 'running' ? '<div class="progress-bar"><div class="progress-fill" style="width: 60%; animation: pulse 2s infinite;"></div></div>' : ''}
+                    `;
+                    
+                    taskList.appendChild(taskCard);
+                });
+                
+                if (sortedTasks.length === 0) {
+                    taskList.innerHTML = '<div style="text-align: center; color: var(--text-secondary); padding: 2rem;">No tasks yet</div>';
+                }
+            }
+
+            showTaskDetails(taskId) {
+                const task = this.tasks.get(taskId);
+                if (!task) return;
+                
+                const modal = document.getElementById('taskModal');
+                const details = document.getElementById('taskDetails');
+                
+                details.innerHTML = `
+                    <div style="margin-bottom: 1rem;">
+                        <strong>Task ID:</strong> ${task.id}<br>
+                        <strong>Agent:</strong> ${task.agent_id}<br>
+                        <strong>Status:</strong> <span class="task-status ${task.status}">${task.status}</span><br>
+                        <strong>Start Time:</strong> ${new Date(task.start_time * 1000).toLocaleString()}
+                        ${task.end_time ? `<br><strong>End Time:</strong> ${new Date(task.end_time * 1000).toLocaleString()}` : ''}
+                    </div>
+                    
+                    <div style="margin-bottom: 1rem;">
+                        <strong>Task Data:</strong>
+                        <div class="json-viewer">${JSON.stringify(task.data, null, 2)}</div>
+                    </div>
+                    
+                    ${task.result ? `
+                        <div style="margin-bottom: 1rem;">
+                            <strong>Result:</strong>
+                            <div class="json-viewer">${JSON.stringify(task.result, null, 2)}</div>
+                        </div>
+                    ` : ''}
+                    
+                    ${task.error ? `
+                        <div style="margin-bottom: 1rem;">
+                            <strong>Error:</strong>
+                            <div class="json-viewer" style="background: var(--error-color); color: white;">${task.error}</div>
+                        </div>
+                    ` : ''}
+                `;
+                
+                modal.classList.add('active');
+            }
+
+            addLog(level, message) {
+                const timestamp = new Date().toLocaleTimeString();
+                const logEntry = { level, message, timestamp };
+                
+                this.logs.unshift(logEntry);
+                if (this.logs.length > this.maxLogs) {
+                    this.logs = this.logs.slice(0, this.maxLogs);
+                }
+                
+                this.updateLogDisplay();
+            }
+
+            updateLogDisplay() {
+                const logContainer = document.getElementById('activityLog');
+                logContainer.innerHTML = '';
+                
+                this.logs.forEach(log => {
+                    const logElement = document.createElement('div');
+                    logElement.className = `log-entry ${log.level} fade-in`;
+                    logElement.innerHTML = `
+                        <div class="log-timestamp">${log.timestamp}</div>
+                        <div>${log.message}</div>
+                    `;
+                    logContainer.appendChild(logElement);
+                });
+            }
+
+            updateConnectionStatus() {
+                const statusElement = document.getElementById('connectionStatus');
+                const statusText = document.getElementById('statusText');
+                
+                if (this.isConnected) {
+                    statusElement.className = 'connection-status connected';
+                    statusText.textContent = 'Connected';
+                } else {
+                    statusElement.className = 'connection-status disconnected';
+                    statusText.textContent = 'Disconnected';
+                }
+            }
+
+            updatePerformanceData(data) {
+                // Update average response time
+                let totalResponseTime = 0;
+                let responseCount = 0;
+                
+                Object.values(data.agents).forEach(agent => {
+                    if (agent.metrics && agent.metrics.avg_response_time > 0) {
+                        totalResponseTime += agent.metrics.avg_response_time;
+                        responseCount++;
+                    }
+                });
+                
+                const avgResponseTime = responseCount > 0 ? 
+                    Math.round((totalResponseTime / responseCount) * 1000) : 0;
+                
+                document.getElementById('avgResponseTime').textContent = `${avgResponseTime}ms`;
+                
+                // Add to performance data for chart
+                this.performanceData.push({
+                    timestamp: Date.now(),
+                    activeTasks: data.orchestrator.active_tasks || 0,
+                    avgResponseTime: avgResponseTime
+                });
+                
+                // Keep only last 50 data points
+                if (this.performanceData.length > 50) {
+                    this.performanceData = this.performanceData.slice(-50);
+                }
+            }
+
+            setupEventHandlers() {
+                // Heartbeat to keep connection alive
+                setInterval(() => {
+                    if (this.isConnected && this.ws) {
+                        this.ws.send(JSON.stringify({ type: 'ping' }));
+                    }
+                }, 30000);
+            }
+
+            startPeriodicUpdates() {
+                // Update performance chart every 5 seconds
+                setInterval(() => {
+                    this.updatePerformanceChart();
+                }, 5000);
+            }
+
+            updatePerformanceChart() {
+                // This would create a simple bar chart with the performance data
+                // For now, we'll just log the data
+                if (this.performanceData.length > 0) {
+                    const latest = this.performanceData[this.performanceData.length - 1];
+                    console.log('Performance Update:', latest);
+                }
+            }
+        }
+
+        // Global functions for UI interactions
+        function executeScenario(scenarioId) {
+            fetch(`/api/execute/${scenarioId}`, { method: 'POST' })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        dashboard.addLog('info', `Executing scenario: ${scenarioId}`);
+                    } else {
+                        dashboard.addLog('error', `Failed to execute scenario: ${data.error}`);
+                    }
+                })
+                .catch(error => {
+                    dashboard.addLog('error', `API error: ${error.message}`);
+                });
+        }
+
+        function clearLogs() {
+            dashboard.logs = [];
+            dashboard.updateLogDisplay();
+        }
+
+        function refreshTasks() {
+            dashboard.updateTaskList();
+        }
+
+        function closeModal() {
+            document.getElementById('taskModal').classList.remove('active');
+        }
+
+        // Initialize dashboard when page loads
+        let dashboard;
+        document.addEventListener('DOMContentLoaded', () => {
+            dashboard = new AgentDashboard();
+        });
+
+        // Close modal when clicking outside
+        document.getElementById('taskModal').addEventListener('click', (e) => {
+            if (e.target.id === 'taskModal') {
+                closeModal();
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,38 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(ls:*)",
+      "Bash(chmod:*)",
+      "Bash(pip3 list:*)",
+      "Bash(pip3 install:*)",
+      "Bash(cat:*)",
+      "Bash(npm install:*)",
+      "Bash(rm:*)",
+      "Bash(npm cache clean:*)",
+      "Bash(./comprehensive_start.sh:*)",
+      "Bash(./run_with_overlay.sh)",
+      "Bash(python main_with_overlay.py)",
+      "Bash(bash -c:*)",
+      "Bash(find:*)",
+      "Bash(python3:*)",
+      "Bash(grep:*)",
+      "Bash(sudo lsof:*)",
+      "Bash(pip show:*)",
+      "Bash(npm uninstall:*)",
+      "Bash(npm run dev:*)",
+      "Bash(pip install:*)",
+      "Bash(bash:*)",
+      "Bash(pkill:*)",
+      "Bash(true)",
+      "Bash(./fixed_start_optimized_system_v3.sh:*)",
+      "Bash(./fixed_start_optimized_system_final.sh:*)",
+      "Bash(./absolute_final_fixed_system.sh:*)",
+      "Bash(./start_optimized_system.sh:*)",
+      "Bash(npm run build:*)",
+      "Bash(/Users/segevbin/Desktop/SensAI/Aiayer/start_compatibility_chat.sh)",
+      "Bash(curl:*)",
+      "Bash(./start_enhanced_backend.sh:*)"
+    ],
+    "deny": []
+  }
+}

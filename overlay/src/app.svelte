@@ -1,46 +1,18 @@
 <script>
     import { onMount } from 'svelte';
     import EyeWidget from './components/EyeWidget.svelte';
-    import EnhancedNextGenChat from './components/EnhancedNextGenChat.svelte';
-    import { EnhancedBridge } from './services/enhanced_bridge';
+    import EnterpriseChatWidget from './components/EnterpriseChatWidget.svelte';
     
     let showChat = false;
-    let bridge;
     
-    // Initialize bridge with proper options
     onMount(() => {
-        console.log('Initializing advanced overlay app');
-        
-        // Initialize bridge with better options
-        bridge = new EnhancedBridge({
-            url: 'ws://localhost:8767',  // Updated to match backend server port
-            reconnectAttempts: 10,
-            reconnectDelay: 1000,
-            debug: true
-        });
-        
-        // Connect to backend
-        bridge.connect()
-            .then(() => {
-                console.log('Successfully connected to backend');
-            })
-            .catch(error => {
-                console.error('Failed to connect on startup:', error);
-            });
-            
-        // Make bridge available globally for debugging
-        window.bridge = bridge;
-        
-        // Clean up on unmount
-        return () => {
-            if (bridge) bridge.disconnect();
-        };
+        console.log('Initializing Enterprise SensAI Overlay');
     });
     
     // Handle chat visibility toggle
     function handleChatToggle() {
         showChat = !showChat;
-        console.log('Chat visibility toggled:', showChat);
+        console.log('Enterprise chat visibility toggled:', showChat);
     }
     
     // Calculate initial position based on viewport size
@@ -59,7 +31,7 @@
     <!-- Include both components -->
     <EyeWidget on:click={handleChatToggle} />
     
-    <EnhancedNextGenChat 
+    <EnterpriseChatWidget 
         show={showChat} 
         initialPosition={getInitialPosition()}
         wsEndpoint="ws://localhost:8767"

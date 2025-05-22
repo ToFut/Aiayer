@@ -37,7 +37,7 @@ except ImportError:
 class MinimalScreenSensor:
     """A minimal screen sensor that captures screenshots and basic information."""
     
-    def __init__(self, websocket_url="ws://localhost:8768"):
+    def __init__(self, websocket_url="ws://localhost:8765"):
         self.websocket_url = websocket_url
         self.capture_interval = 10  # Capture every 10 seconds
         self.running = False

@@ -5,7 +5,7 @@
   
   export let show = false;
   export let initialPosition = { x: 20, y: 90 };
-  export let wsEndpoint = 'ws://localhost:8767';  // Updated to match backend server port
+  export let wsEndpoint = 'ws://localhost:8765';  // Updated to match WebSocket server port
   
   let messages = [];
   let input = '';
@@ -98,6 +98,47 @@
   let recordingTimer = null;
   let audioBlob = null;
   let audioUrl = null;
+
+  // Chat Mode System - 4 modes for different interaction types
+  let currentMode = 'Ask'; // Default mode
+  const chatModes = [
+    {
+      id: 'Agent',
+      name: 'Agent',
+      icon: '🤖',
+      description: 'Agent will plan and execute tasks step-by-step',
+      color: '#ff6b6b',
+      bgColor: 'rgba(255, 107, 107, 0.1)'
+    },
+    {
+      id: 'Ask', 
+      name: 'Ask',
+      icon: '❓',
+      description: 'Ask questions about context and memory',
+      color: '#4ecdc4',
+      bgColor: 'rgba(78, 205, 196, 0.1)'
+    },
+    {
+      id: 'Suggest',
+      name: 'Suggest',
+      icon: '💡',
+      description: 'Get proactive suggestions based on screen analysis',
+      color: '#45b7d1',
+      bgColor: 'rgba(69, 183, 209, 0.1)'
+    },
+    {
+      id: 'General',
+      name: 'General',
+      icon: '💬',
+      description: 'Simple chat with local LLM (minimal context)',
+      color: '#96ceb4',
+      bgColor: 'rgba(150, 206, 180, 0.1)'
+    }
+  ];
+
+  // Mode-specific settings
+  let showModeSelector = false;
+  let modeTransitioning = false;
   let currentAudio = null;
   let analyser = null;
   let visualizer = null;
@@ -350,204 +391,147 @@
     };
   });
   
-  function connectWebSocket() {
-    if (ws && ws.readyState === WebSocket.OPEN) {
-      console.log('WebSocket already connected');
-      return;
-    }
+  async function connectWebSocket() {
+    try {
+      connectionStatus = 'connecting';
+      
+      // Add a connection timeout
+      const connectionTimeout = setTimeout(() => {
+        if (connectionStatus === 'connecting') {
+          ws?.close();
+          connectionStatus = 'error';
+          addMessage({ 
+            role: 'assistant', 
+            content: "Connection timed out. Please check if the server is running and try again.", 
+            isError: true,
+            action: connectWebSocket
+          });
+        }
+      }, 10000); // 10 second timeout
 
-    connectionStatus = 'connecting';
-    ws = new WebSocket(wsEndpoint);
-    
-    let reconnectAttempts = 0;
-    const maxReconnectAttempts = 5;
-    const reconnectDelay = 1000; // 1 second
-
-    function attemptReconnect() {
-      if (reconnectAttempts < maxReconnectAttempts) {
-        reconnectAttempts++;
-        console.log(`Attempting to reconnect (${reconnectAttempts}/${maxReconnectAttempts})...`);
-        setTimeout(connectWebSocket, reconnectDelay * reconnectAttempts);
-      } else {
-        console.error('Max reconnection attempts reached');
+      ws = new WebSocket(wsEndpoint);
+      
+      ws.onopen = () => {
+        clearTimeout(connectionTimeout);
+        console.log('WebSocket connected');
+        connectionStatus = 'connected';
+        
+        // Register as chat_overlay client
+        ws.send(JSON.stringify({
+          type: 'register',
+          client_type: 'chat_overlay',
+          payload: {
+            client_type: 'chat_overlay'
+          }
+        }));
+      };
+      
+      ws.onmessage = (event) => {
+        try {
+          const data = JSON.parse(event.data);
+          
+          switch (data.type) {
+            case 'llm_service_status':
+              connectionStatus = data.payload.status;
+              if (data.payload.status === 'disconnected') {
+                addMessage({ 
+                  role: 'assistant', 
+                  content: "LLM service disconnected. Please check if the service is running.", 
+                  isError: true,
+                  action: connectWebSocket
+                });
+              }
+              break;
+            case 'query_response':
+              loading = false;
+              addMessage({ 
+                role: 'assistant', 
+                content: data.payload.response || data.response,
+                timestamp: data.timestamp || Date.now()
+              });
+              break;
+            case 'message':
+              addMessage(data.payload);
+              break;
+            default:
+              console.log('Received unknown message type:', data.type);
+          }
+        } catch (error) {
+          console.error('Error handling WebSocket message:', error);
+          addMessage({ 
+            role: 'assistant', 
+            content: "Error processing server message. Please try again.", 
+            isError: true 
+          });
+        }
+      };
+      
+      ws.onerror = (error) => {
+        clearTimeout(connectionTimeout);
+        console.error('WebSocket error:', error);
         connectionStatus = 'error';
-      }
-    }
-
-    ws.onmessage = (event) => {
-      console.log('Received message:', event.data);
-      try {
-        const data = JSON.parse(event.data);
-        console.log('Parsed message:', data);
         
-        // Handle registration confirmation
-        if (data.type === 'registration_confirmed') {
-          console.log('Registration confirmed:', data);
-          connectionStatus = 'connected';
-          return;
-        }
-        
-        // Skip system messages that don't need UI display
-        const systemMessageTypes = [
-          'connection_established', 
-          'echo', 
-          'status_response', 
-          'status_update',
-          'context_update_received', 
-          'sensor_data_received', 
-          'pong',
-          'ack' // Added to suppress ack logs
-        ];
-        
-        if (systemMessageTypes.includes(data.type)) {
-          console.log(`Received system message type: ${data.type}`);
-          return;
-        }
-        
-        if (data.type === 'llm_response' || data.type === 'query_response' || data.type === 'response') {
-          // Handle LLM or query responses - support both new and old formats
-          const responseText = data.content || data.payload?.response || data.payload?.message || "I received your message.";
-          addMessage({ role: 'assistant', content: responseText });
-          loading = false;
-          if (showMinimized) {
-            unreadCount++;
-            playSound(notificationAudio);
-          } else if (!isMuted) {
-            playSound(messageReceivedAudio);
-          }
-        } else if (data.type === 'suggestion' || data.type === 'suggestions') {
-          // Handle proactive suggestions - support both new and old formats
-          console.log("Received suggestion message:", data);
-          const suggestionText = data.content || data.payload?.content || 
-                             (Array.isArray(data.payload) ? data.payload[0]?.content : null) || 
-                             "I have a suggestion for you.";
-          addMessage({ role: 'assistant', content: suggestionText, isSuggestion: true });
-          console.log("Added suggestion message with isSuggestion=true");
-          if (showMinimized) {
-            unreadCount++;
-            playSound(notificationAudio);
-          } else if (!isMuted) {
-            playSound(messageReceivedAudio);
-          }
-        } else if (data.type === 'error') {
-          // Handle error messages - support both new and old formats
-          const errorText = data.content || data.payload?.message || data.error || "An error occurred while processing your request.";
-          addMessage({ role: 'assistant', content: errorText, isError: true });
-          loading = false;
+        // Provide more specific error messages based on the error type
+        let errorMessage = "Connection error. ";
+        if (error.type === 'error') {
+          errorMessage += "Please check if the server is running and try again.";
+        } else if (error.type === 'close') {
+          errorMessage += "Connection was closed unexpectedly.";
         } else {
-          // Handle any other response types that might contain user-visible content
-          // Extract content from various possible locations in the response
-          let content = null;
-          
-          if (data.content) {
-            content = data.content;
-          } else if (data.payload) {
-            if (typeof data.payload === 'string') {
-              content = data.payload;
-            } else if (data.payload.response) {
-              content = data.payload.response;
-            } else if (data.payload.message) {
-              content = data.payload.message;
-            } else if (data.payload.content) {
-              content = data.payload.content;
-            } else if (data.payload.text) {
-              content = data.payload.text;
-            }
-          } else if (data.message) {
-            content = data.message;
-          } else if (data.response) {
-            content = data.response;
-          } else if (data.text) {
-            content = data.text;
-          }
-          
-          // If we found some content to display, add it as a message
-          if (content) {
-            console.log(`Adding message from type ${data.type} with content:`, content);
-            addMessage({ 
-              role: 'assistant', 
-              content: content,
-              messageType: data.type
-            });
-            loading = false;
-            if (showMinimized) {
-              unreadCount++;
-              playSound(notificationAudio);
-            } else if (!isMuted) {
-              playSound(messageReceivedAudio);
-            }
-          } else {
-            console.log(`Received message with type ${data.type} but no displayable content`);
-          }
+          errorMessage += "An unexpected error occurred.";
         }
-      } catch (error) {
-        console.error('Error parsing WebSocket message:', error);
+        
         addMessage({ 
           role: 'assistant', 
-          content: "I received your message but had trouble processing it.", 
-          isError: true 
+          content: errorMessage, 
+          isError: true,
+          action: connectWebSocket
         });
-        loading = false;
-      }
-    };
-
-    ws.onopen = () => {
-      console.log('Connected to LLM service');
-      connectionStatus = 'connected';
-      reconnectAttempts = 0; // Reset reconnect attempts on successful connection
+      };
       
-      // Send registration message
-      ws.send(JSON.stringify({
-        type: 'register',
-        client_type: 'ui',
-        version: '1.0.0',
-        capabilities: ['overlay_display', 'user_interaction', 'context_tracking'],
-        timestamp: Date.now()
-      }));
-      
-      // Send initial connection identification
-      ws.send(JSON.stringify({
-        type: 'connection_established',
-        payload: { 
-          client: 'enhanced_eye_widget',
-          version: '1.0.0',
-          capabilities: ['chat', 'context_aware']
+      ws.onclose = (event) => {
+        clearTimeout(connectionTimeout);
+        console.log('WebSocket closed:', event.code, event.reason);
+        connectionStatus = 'disconnected';
+        
+        // Provide more specific messages based on close codes
+        let closeMessage = "Disconnected from server. ";
+        if (event.code === 1006) {
+          closeMessage += "Connection was closed abnormally. Please check your network connection.";
+        } else if (event.code === 1015) {
+          closeMessage += "TLS handshake failed. Please check your server configuration.";
+        } else if (!event.wasClean) {
+          closeMessage += "Connection was not clean, attempting to reconnect...";
+          setTimeout(connectWebSocket, 3000); // Retry after 3 seconds
         }
-      }));
-      
-      // Send initial context request
-      ws.send(JSON.stringify({
-        type: 'context_request',
-        payload: { type: 'initial' }
-      }));
-    };
-
-    ws.onerror = (error) => {
-      console.error('WebSocket error:', error);
+        
+        addMessage({ 
+          role: 'assistant', 
+          content: closeMessage, 
+          isError: true,
+          action: connectWebSocket
+        });
+      };
+    } catch (error) {
+      console.error('Error connecting to WebSocket:', error);
       connectionStatus = 'error';
-      addMessage({ 
-        role: 'assistant', 
-        content: "Connection error. Please check if the LLM service is running.", 
-        isError: true 
-      });
-    };
-
-    ws.onclose = (event) => {
-      console.log('WebSocket closed:', event.code, event.reason);
-      connectionStatus = 'disconnected';
       
-      if (!event.wasClean) {
-        console.log('Connection was not clean, attempting to reconnect...');
-        attemptReconnect();
+      let errorMessage = "Failed to connect to the server. ";
+      if (error.name === 'SecurityError') {
+        errorMessage += "Security error: Please check your server's security settings.";
+      } else if (error.name === 'SyntaxError') {
+        errorMessage += "Invalid WebSocket URL. Please check your configuration.";
+      } else {
+        errorMessage += "Please check your connection and try again.";
       }
       
       addMessage({ 
         role: 'assistant', 
-        content: "Disconnected from LLM service. Click to reconnect.", 
+        content: errorMessage, 
         isError: true,
         action: connectWebSocket
       });
-    };
+    }
   }
 
   let activeSuggestions = [];
@@ -795,6 +779,7 @@
     
     console.log('SENDING MESSAGE TO SERVER:', text);
     console.log('Current connection status:', connectionStatus);
+    console.log('Current chat mode:', currentMode);
     
     // Clear any ongoing typing animation before adding new messages
     clearTypingAnimation();
@@ -802,11 +787,13 @@
     addMessage({ role: 'user', content: text });
     loading = true;
     
-    // Use the correct message format expected by the backend server
+    // Use the correct message format expected by the backend server with chat mode
     const message = {
-      type: 'user_message',
+      type: 'user_interaction',
       payload: {
-        query: text
+        type: 'query',
+        query: text,
+        chat_mode: currentMode // Include current chat mode
       },
       timestamp: Date.now()
     };
@@ -836,6 +823,39 @@
     emojiPickerVisible = false;
   }
 
+  // Switch chat mode function
+  function switchMode(newMode) {
+    if (modeTransitioning || currentMode === newMode) return;
+    
+    modeTransitioning = true;
+    const oldMode = currentMode;
+    currentMode = newMode;
+    
+    // Add mode switch message to show the change
+    addMessage({
+      role: 'system',
+      content: `Switched from ${oldMode} mode to ${currentMode} mode`,
+      isSystemMessage: true
+    });
+    
+    // Reset transitioning state after animation
+    setTimeout(() => {
+      modeTransitioning = false;
+    }, 300);
+    
+    // Hide mode selector
+    showModeSelector = false;
+    
+    console.log(`Chat mode switched from ${oldMode} to ${currentMode}`);
+  }
+
+  // Handle clicks outside mode selector to close it
+  function handleOutsideClick(event) {
+    if (showModeSelector && !event.target.closest('.mode-selector')) {
+      showModeSelector = false;
+    }
+  }
+
   function handleKeydown(event) {
     if (event.key === 'Enter' && !event.shiftKey) {
       event.preventDefault();
@@ -843,6 +863,7 @@
     } else if (event.key === 'Escape') {
       emojiPickerVisible = false;
       showSettings = false;
+      showModeSelector = false;
     }
     
     // Test function to create suggestions (press Ctrl+S to trigger)
@@ -1100,7 +1121,7 @@
   }
 </script>
 
-<svelte:window on:mousemove={handleDrag} on:mouseup={stopDrag} />
+<svelte:window on:mousemove={handleDrag} on:mouseup={stopDrag} on:click={handleOutsideClick} />
 
 {#if show}
   <div 
@@ -1151,6 +1172,36 @@
             <div class="status-info">
               {loading ? 'Thinking...' : 'Ready'}
             </div>
+          </div>
+          
+          <!-- Chat Mode Selector -->
+          <div class="mode-selector">
+            <button 
+              class="mode-selector-button" 
+              on:click={() => showModeSelector = !showModeSelector}
+              title="Switch Chat Mode"
+            >
+              <span class="mode-icon">{chatModes.find(m => m.id === currentMode)?.icon || '💬'}</span>
+              <span class="mode-name">{currentMode}</span>
+            </button>
+            
+            {#if showModeSelector}
+              <div class="mode-dropdown" transition:fly={{ y: -10, duration: 200 }}>
+                {#each chatModes as mode}
+                  <button 
+                    class="mode-option" 
+                    on:click={() => switchMode(mode.id)}
+                    disabled={modeTransitioning}
+                  >
+                    <span class="mode-icon">{mode.icon}</span>
+                    <div class="mode-info">
+                      <span class="mode-name">{mode.name}</span>
+                      <span class="mode-description">{mode.description}</span>
+                    </div>
+                  </button>
+                {/each}
+              </div>
+            {/if}
           </div>
         </div>
 
@@ -1221,7 +1272,8 @@
             <div class="message-wrapper {msg.role} {msg.isNew ? 'new-message' : ''}" 
                 in:fade={{ duration: 200, delay: i * 50 }}>
               <div class="message {msg.isSuggestion ? 'suggestion' : ''} {msg.isError ? 'error' : ''} 
-                          {typingMessage === msg ? 'typing-active' : ''} {msg.audioUrl ? 'audio-message' : ''}">
+                          {msg.isSystemMessage ? 'system' : ''} {typingMessage === msg ? 'typing-active' : ''} 
+                          {msg.audioUrl ? 'audio-message' : ''}">
                 <div class="message-avatar">
                   {#if msg.role === 'user'}
                     <div class="user-avatar">👤</div>
@@ -1351,7 +1403,12 @@
           {:else}
             <div class="input-wrapper">
               <button class="emoji-button" on:click={toggleEmojiPicker} title="Insert emoji">
-                😊
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/>
+                  <path d="M8 14s1.5 2 4 2 4-2 4-2"/>
+                  <path d="M9 9h.01"/>
+                  <path d="M15 9h.01"/>
+                </svg>
               </button>
               <button class="audio-button" on:click={startRecording} title="Record audio message">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -2733,28 +2790,64 @@
   .emoji-button {
     background: transparent;
     border: none;
-    font-size: 18px;
-    cursor: pointer;
-    color: #aab;
     width: 38px;
     height: 38px;
     display: flex;
     align-items: center;
     justify-content: center;
     border-radius: 12px;
-    transition: all 0.2s;
-    margin-left: 4px;
+    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    position: relative;
+    overflow: hidden;
+    color: rgba(70, 100, 255, 0.8);
   }
-  
+
+  .emoji-button svg {
+    width: 20px;
+    height: 20px;
+    transition: all 0.3s ease;
+  }
+
+  .emoji-button::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(70, 100, 255, 0.1), rgba(70, 100, 255, 0.05));
+    border-radius: 11px;
+    transition: all 0.3s ease;
+  }
+
   .emoji-button:hover {
-    background: rgba(80, 120, 255, 0.15);
-    color: #fff;
-    transform: translateY(-1px) scale(1.05);
+    transform: translateY(-2px);
+    color: rgba(70, 100, 255, 1);
   }
-  
+
+  .emoji-button:hover::before {
+    background: linear-gradient(135deg, rgba(70, 100, 255, 0.15), rgba(70, 100, 255, 0.1));
+  }
+
+  .emoji-button:hover svg {
+    transform: scale(1.1);
+  }
+
+  .emoji-button:active {
+    transform: translateY(1px);
+  }
+
+  .light-mode .emoji-button {
+    color: rgba(70, 100, 255, 0.6);
+  }
+
+  .light-mode .emoji-button::before {
+    background: linear-gradient(135deg, rgba(70, 100, 255, 0.08), rgba(70, 100, 255, 0.03));
+  }
+
   .light-mode .emoji-button:hover {
-    background: rgba(80, 120, 255, 0.1);
-    color: rgb(80, 120, 255);
+    color: rgba(70, 100, 255, 0.9);
+  }
+
+  .light-mode .emoji-button:hover::before {
+    background: linear-gradient(135deg, rgba(70, 100, 255, 0.12), rgba(70, 100, 255, 0.08));
   }
 
   .message-input {
@@ -3359,11 +3452,354 @@
     color: #333;
   }
   
+  /* Chat Mode Selector Styles */
+  .mode-selector-container {
+    padding: 12px 16px 0 16px;
+    border-bottom: 1px solid rgba(70, 100, 255, 0.15);
+    background: rgba(25, 30, 45, 0.7);
+    backdrop-filter: blur(10px);
+    position: relative;
+    overflow: visible;
+    z-index: 10000;
+  }
+  
+  .mode-selector-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, 
+      rgba(70, 90, 255, 0), 
+      rgba(70, 130, 255, 0.5), 
+      rgba(70, 90, 255, 0));
+  }
+  
+  .light-mode .mode-selector-container {
+    background: rgba(245, 248, 255, 0.7);
+    border-bottom: 1px solid rgba(70, 100, 255, 0.1);
+  }
+
+  .mode-selector {
+    position: relative;
+    z-index: 10002;
+    margin: 0 16px;
+  }
+
+  .mode-selector-button {
+    background: rgba(70, 100, 255, 0.1);
+    border: 1px solid rgba(70, 100, 255, 0.2);
+    color: #fff;
+    font-size: 14px;
+    cursor: pointer;
+    padding: 12px 20px;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    backdrop-filter: blur(10px);
+    box-shadow: 
+      0 4px 12px rgba(70, 100, 255, 0.15),
+      inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .mode-selector-button::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(70, 100, 255, 0.2), rgba(70, 100, 255, 0.05));
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .mode-selector-button:hover::before {
+    opacity: 1;
+  }
+
+  .mode-selector-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 
+      0 6px 16px rgba(70, 100, 255, 0.25),
+      inset 0 0 0 1px rgba(255, 255, 255, 0.2);
+  }
+
+  .mode-icon {
+    font-size: 20px;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(70, 100, 255, 0.15);
+    border-radius: 12px;
+    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .mode-icon::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.2), transparent);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .mode-selector-button:hover .mode-icon::after {
+    opacity: 1;
+  }
+
+  .mode-name {
+    font-weight: 600;
+    letter-spacing: 0.3px;
+    position: relative;
+  }
+
+  .mode-dropdown {
+    position: absolute;
+    top: calc(100% + 12px);
+    left: 0;
+    width: 320px;
+    background: rgba(25, 30, 45, 0.95);
+    backdrop-filter: blur(20px);
+    border-radius: 20px;
+    box-shadow: 
+      0 8px 32px rgba(0, 0, 0, 0.4),
+      0 0 0 1px rgba(70, 100, 255, 0.2);
+    overflow: hidden;
+    z-index: 10002;
+    transform: translateZ(0);
+    animation: modeDropdownAppear 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+
+  .mode-dropdown::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 19px;
+    padding: 1px;
+    background: linear-gradient(140deg, rgba(70, 100, 255, 0.5), rgba(70, 100, 255, 0.1) 70%);
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+  }
+
+  .mode-option {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 16px 20px;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    border-bottom: 1px solid rgba(70, 100, 255, 0.1);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .mode-option:last-child {
+    border-bottom: none;
+  }
+
+  .mode-option::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, 
+      rgba(70, 100, 255, 0) 0%,
+      rgba(70, 100, 255, 0.1) 50%,
+      rgba(70, 100, 255, 0) 100%);
+    transform: translateX(-100%);
+    transition: transform 0.5s ease;
+  }
+
+  .mode-option:hover::before {
+    transform: translateX(100%);
+  }
+
+  .mode-option:hover {
+    background: rgba(70, 100, 255, 0.1);
+    transform: translateX(4px);
+  }
+
+  .mode-option .mode-icon {
+    width: 44px;
+    height: 44px;
+    font-size: 22px;
+    background: rgba(70, 100, 255, 0.15);
+    border-radius: 14px;
+    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+
+  .mode-option:hover .mode-icon {
+    transform: scale(1.1) rotate(5deg);
+    background: rgba(70, 100, 255, 0.25);
+  }
+
+  .mode-info {
+    flex: 1;
+  }
+
+  .mode-option .mode-name {
+    font-weight: 600;
+    color: #fff;
+    margin-bottom: 4px;
+    font-size: 15px;
+    letter-spacing: 0.3px;
+  }
+
+  .mode-option .mode-description {
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.7);
+    line-height: 1.4;
+  }
+
+  @keyframes modeDropdownAppear {
+    from {
+      opacity: 0;
+      transform: translateY(10px) scale(0.95);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+  }
+
+  /* Light mode adjustments */
+  .light-mode .mode-selector-button {
+    background: rgba(70, 100, 255, 0.08);
+    border: 1px solid rgba(70, 100, 255, 0.15);
+    color: #333;
+    box-shadow: 
+      0 4px 12px rgba(70, 100, 255, 0.08),
+      inset 0 0 0 1px rgba(255, 255, 255, 0.7);
+  }
+
+  .light-mode .mode-dropdown {
+    background: rgba(255, 255, 255, 0.95);
+    box-shadow: 
+      0 8px 32px rgba(70, 100, 255, 0.15),
+      0 0 0 1px rgba(70, 100, 255, 0.15);
+  }
+
+  .light-mode .mode-option {
+    border-bottom: 1px solid rgba(70, 100, 255, 0.08);
+  }
+
+  .light-mode .mode-option .mode-name {
+    color: #333;
+  }
+
+  .light-mode .mode-option .mode-description {
+    color: rgba(0, 0, 0, 0.6);
+  }
+
+  .light-mode .mode-option .mode-icon {
+    background: rgba(70, 100, 255, 0.08);
+  }
+
+  .light-mode .mode-option:hover .mode-icon {
+    background: rgba(70, 100, 255, 0.15);
+  }
+
+  /* Mode transition animation */
+  .mode-selector.transitioning .mode-selector-button {
+    transform: scale(0.98);
+    opacity: 0.8;
+  }
+
+  /* System message styling for mode switches */
+  .message.system {
+    background: rgba(70, 100, 255, 0.15);
+    border: 1px solid rgba(70, 100, 255, 0.25);
+    color: rgba(70, 100, 255, 0.9);
+    font-size: 13px;
+    text-align: center;
+    margin: 8px auto;
+    max-width: 250px;
+    padding: 12px 20px;
+    border-radius: 20px;
+    box-shadow: 
+      0 4px 12px rgba(70, 100, 255, 0.1),
+      inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+    animation: systemMessageAppear 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    backdrop-filter: blur(10px);
+  }
+
+  @keyframes systemMessageAppear {
+    from {
+      opacity: 0;
+      transform: scale(0.95) translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1) translateY(0);
+    }
+  }
+  
+  .light-mode .message.system {
+    background: rgba(70, 100, 255, 0.08);
+    border: 1px solid rgba(70, 100, 255, 0.15);
+    color: rgba(60, 90, 180, 0.9);
+    box-shadow: 
+      0 4px 12px rgba(70, 100, 255, 0.08),
+      inset 0 0 0 1px rgba(255, 255, 255, 0.7);
+  }
+
+  /* Active mode indicator */
+  .mode-selector-button::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg, rgba(70, 100, 255, 0), rgba(70, 100, 255, 0.8), rgba(70, 100, 255, 0));
+    transition: width 0.3s ease;
+  }
+
+  .mode-selector-button:hover::after {
+    width: 80%;
+  }
+
+  /* Mode transition overlay */
+  .mode-transition-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(4px);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+    z-index: 10001;
+  }
+
+  .mode-transition-overlay.active {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
   /* Media Queries */
   @media (max-width: 600px) {
     .chat-container {
       width: 90vw !important;
       max-width: 400px;
+    }
+    
+    .mode-dropdown {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      right: auto;
+      transform: translate(-50%, -50%);
+      width: 90vw;
+      max-width: 320px;
     }
   }
 </style>

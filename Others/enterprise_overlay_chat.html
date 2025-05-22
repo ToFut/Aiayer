@@ -1,0 +1,859 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enterprise SensAI Chat Overlay</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: transparent;
+            overflow: hidden;
+        }
+
+        .chat-overlay {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            width: 400px;
+            height: 600px;
+            background: rgba(15, 15, 15, 0.95);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            backdrop-filter: blur(20px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            display: flex;
+            flex-direction: column;
+            z-index: 10000;
+            transition: all 0.3s ease;
+        }
+
+        .chat-overlay.minimized {
+            height: 80px;
+            width: 300px;
+        }
+
+        .chat-header {
+            padding: 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: grab;
+        }
+
+        .chat-header:active {
+            cursor: grabbing;
+        }
+
+        .chat-title {
+            color: #fff;
+            font-size: 18px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .status-indicator {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #ff4444;
+            transition: background 0.3s ease;
+        }
+
+        .status-indicator.connected {
+            background: #00ff88;
+        }
+
+        .status-indicator.connecting {
+            background: #ffaa00;
+            animation: pulse 1s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.3; }
+        }
+
+        .header-controls {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .control-btn {
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            color: #fff;
+            padding: 8px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .control-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .mode-selector {
+            padding: 15px 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .mode-tabs {
+            display: flex;
+            gap: 5px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 4px;
+        }
+
+        .mode-tab {
+            flex: 1;
+            padding: 10px 8px;
+            text-align: center;
+            border-radius: 8px;
+            background: transparent;
+            border: none;
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 12px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .mode-tab.active {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #fff;
+            box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
+        }
+
+        .mode-tab:not(.active):hover {
+            background: rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .chat-messages {
+            flex: 1;
+            overflow-y: auto;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .chat-overlay.minimized .chat-messages {
+            display: none;
+        }
+
+        .message {
+            max-width: 85%;
+            animation: messageSlide 0.3s ease-out;
+        }
+
+        @keyframes messageSlide {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .message.user {
+            align-self: flex-end;
+        }
+
+        .message.assistant {
+            align-self: flex-start;
+        }
+
+        .message-content {
+            padding: 12px 16px;
+            border-radius: 18px;
+            word-wrap: break-word;
+            line-height: 1.4;
+        }
+
+        .message.user .message-content {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #fff;
+        }
+
+        .message.assistant .message-content {
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .message-meta {
+            font-size: 11px;
+            color: rgba(255, 255, 255, 0.5);
+            margin-top: 4px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .confidence-score {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .confidence-bar {
+            width: 30px;
+            height: 3px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 2px;
+            overflow: hidden;
+        }
+
+        .confidence-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #ff4444, #ffaa00, #00ff88);
+            transition: width 0.3s ease;
+        }
+
+        .typing-indicator {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 16px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 18px;
+            max-width: 85%;
+        }
+
+        .typing-dots {
+            display: flex;
+            gap: 4px;
+        }
+
+        .typing-dot {
+            width: 6px;
+            height: 6px;
+            background: rgba(255, 255, 255, 0.6);
+            border-radius: 50%;
+            animation: typingBounce 1.4s infinite;
+        }
+
+        .typing-dot:nth-child(2) { animation-delay: 0.2s; }
+        .typing-dot:nth-child(3) { animation-delay: 0.4s; }
+
+        @keyframes typingBounce {
+            0%, 60%, 100% { transform: translateY(0); }
+            30% { transform: translateY(-10px); }
+        }
+
+        .chat-input-area {
+            padding: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .chat-overlay.minimized .chat-input-area {
+            display: none;
+        }
+
+        .input-container {
+            display: flex;
+            gap: 10px;
+            align-items: flex-end;
+        }
+
+        .chat-input {
+            flex: 1;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            padding: 12px 16px;
+            color: #fff;
+            font-size: 14px;
+            resize: none;
+            max-height: 100px;
+            min-height: 40px;
+            line-height: 1.4;
+            outline: none;
+            transition: all 0.2s ease;
+        }
+
+        .chat-input:focus {
+            border-color: rgba(102, 126, 234, 0.5);
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        .chat-input::placeholder {
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .send-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border: none;
+            color: #fff;
+            padding: 12px 16px;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 44px;
+        }
+
+        .send-btn:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+        }
+
+        .send-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .quick-actions {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+        }
+
+        .quick-action {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: #fff;
+            padding: 8px 12px;
+            border-radius: 15px;
+            font-size: 12px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .quick-action:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-1px);
+        }
+
+        .connection-status {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            font-size: 10px;
+            color: rgba(255, 255, 255, 0.7);
+            background: rgba(0, 0, 0, 0.3);
+            padding: 4px 8px;
+            border-radius: 10px;
+        }
+
+        .error-message {
+            background: rgba(255, 68, 68, 0.2);
+            border: 1px solid rgba(255, 68, 68, 0.3);
+            color: #ff6b6b;
+            padding: 10px;
+            border-radius: 10px;
+            margin: 10px 20px;
+            font-size: 12px;
+        }
+
+        /* Scrollbar styling */
+        .chat-messages::-webkit-scrollbar {
+            width: 4px;
+        }
+
+        .chat-messages::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 2px;
+        }
+
+        .chat-messages::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 2px;
+        }
+
+        .chat-messages::-webkit-scrollbar-thumb:hover {
+            background: rgba(255, 255, 255, 0.5);
+        }
+
+        /* Mode descriptions */
+        .mode-description {
+            font-size: 11px;
+            color: rgba(255, 255, 255, 0.6);
+            text-align: center;
+            margin-top: 8px;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+    <div class="chat-overlay" id="chatOverlay">
+        <div class="connection-status" id="connectionStatus">Disconnected</div>
+        
+        <div class="chat-header" id="chatHeader">
+            <div class="chat-title">
+                <div class="status-indicator" id="statusIndicator"></div>
+                Enterprise SensAI
+            </div>
+            <div class="header-controls">
+                <button class="control-btn" id="minimizeBtn" title="Minimize">−</button>
+                <button class="control-btn" id="closeBtn" title="Close">×</button>
+            </div>
+        </div>
+
+        <div class="mode-selector">
+            <div class="mode-tabs">
+                <button class="mode-tab active" data-mode="Ask">
+                    🤔 Ask
+                </button>
+                <button class="mode-tab" data-mode="Agent">
+                    🤖 Agent
+                </button>
+                <button class="mode-tab" data-mode="Suggest">
+                    💡 Suggest
+                </button>
+                <button class="mode-tab" data-mode="General">
+                    💬 General
+                </button>
+            </div>
+            <div class="mode-description" id="modeDescription">
+                Ask questions and get intelligent answers with memory context
+            </div>
+        </div>
+
+        <div class="chat-messages" id="chatMessages">
+            <div class="message assistant">
+                <div class="message-content">
+                    👋 Welcome to Enterprise SensAI! I'm ready to help you with all 4 modes:
+                    <br><br>
+                    <strong>🤔 Ask</strong> - Questions with memory context<br>
+                    <strong>🤖 Agent</strong> - Task planning and execution<br>
+                    <strong>💡 Suggest</strong> - Proactive recommendations<br>
+                    <strong>💬 General</strong> - Casual conversation
+                    <br><br>
+                    Choose a mode and start chatting!
+                </div>
+                <div class="message-meta">
+                    <span>Just now</span>
+                    <div class="confidence-score">
+                        <span>100%</span>
+                        <div class="confidence-bar">
+                            <div class="confidence-fill" style="width: 100%;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="chat-input-area">
+            <div class="quick-actions" id="quickActions">
+                <button class="quick-action" data-question="What can you help me with?">What can you help me with?</button>
+                <button class="quick-action" data-question="Show me your capabilities">Show capabilities</button>
+                <button class="quick-action" data-question="Test all modes">Test all modes</button>
+            </div>
+            
+            <div class="input-container">
+                <textarea 
+                    class="chat-input" 
+                    id="chatInput" 
+                    placeholder="Type your message..."
+                    rows="1"
+                ></textarea>
+                <button class="send-btn" id="sendBtn">
+                    <span>→</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        class EnterpriseChatOverlay {
+            constructor() {
+                this.ws = null;
+                this.currentMode = 'Ask';
+                this.connectionStatus = 'disconnected';
+                this.reconnectAttempts = 0;
+                this.maxReconnectAttempts = 5;
+                this.reconnectDelay = 1000;
+                this.isMinimized = false;
+                this.userId = 'overlay_user_' + Date.now();
+                this.sessionId = 'overlay_session_' + Date.now();
+                
+                this.initializeElements();
+                this.attachEventListeners();
+                this.connect();
+                this.makeDraggable();
+            }
+
+            initializeElements() {
+                this.overlay = document.getElementById('chatOverlay');
+                this.statusIndicator = document.getElementById('statusIndicator');
+                this.connectionStatusEl = document.getElementById('connectionStatus');
+                this.chatMessages = document.getElementById('chatMessages');
+                this.chatInput = document.getElementById('chatInput');
+                this.sendBtn = document.getElementById('sendBtn');
+                this.minimizeBtn = document.getElementById('minimizeBtn');
+                this.closeBtn = document.getElementById('closeBtn');
+                this.modeDescription = document.getElementById('modeDescription');
+                this.quickActions = document.getElementById('quickActions');
+                
+                this.modeDescriptions = {
+                    'Ask': 'Ask questions and get intelligent answers with memory context',
+                    'Agent': 'Task planning and execution with step-by-step guidance',
+                    'Suggest': 'Proactive recommendations and workflow improvements',
+                    'General': 'Casual conversation and general assistance'
+                };
+            }
+
+            attachEventListeners() {
+                // Mode selection
+                document.querySelectorAll('.mode-tab').forEach(tab => {
+                    tab.addEventListener('click', (e) => {
+                        this.selectMode(e.target.dataset.mode);
+                    });
+                });
+
+                // Send message
+                this.sendBtn.addEventListener('click', () => this.sendMessage());
+                this.chatInput.addEventListener('keydown', (e) => {
+                    if (e.key === 'Enter' && !e.shiftKey) {
+                        e.preventDefault();
+                        this.sendMessage();
+                    }
+                });
+
+                // Quick actions
+                this.quickActions.addEventListener('click', (e) => {
+                    if (e.target.classList.contains('quick-action')) {
+                        const question = e.target.dataset.question;
+                        this.chatInput.value = question;
+                        this.sendMessage();
+                    }
+                });
+
+                // Window controls
+                this.minimizeBtn.addEventListener('click', () => this.toggleMinimize());
+                this.closeBtn.addEventListener('click', () => this.close());
+
+                // Auto-resize textarea
+                this.chatInput.addEventListener('input', () => {
+                    this.chatInput.style.height = 'auto';
+                    this.chatInput.style.height = Math.min(this.chatInput.scrollHeight, 100) + 'px';
+                });
+            }
+
+            makeDraggable() {
+                const header = document.getElementById('chatHeader');
+                let isDragging = false;
+                let startX, startY, initialX, initialY;
+
+                header.addEventListener('mousedown', (e) => {
+                    isDragging = true;
+                    startX = e.clientX;
+                    startY = e.clientY;
+                    
+                    const rect = this.overlay.getBoundingClientRect();
+                    initialX = rect.left;
+                    initialY = rect.top;
+                    
+                    document.addEventListener('mousemove', onMouseMove);
+                    document.addEventListener('mouseup', onMouseUp);
+                });
+
+                const onMouseMove = (e) => {
+                    if (!isDragging) return;
+                    
+                    const deltaX = e.clientX - startX;
+                    const deltaY = e.clientY - startY;
+                    
+                    const newX = initialX + deltaX;
+                    const newY = initialY + deltaY;
+                    
+                    this.overlay.style.left = Math.max(0, Math.min(newX, window.innerWidth - this.overlay.offsetWidth)) + 'px';
+                    this.overlay.style.top = Math.max(0, Math.min(newY, window.innerHeight - this.overlay.offsetHeight)) + 'px';
+                    this.overlay.style.right = 'auto';
+                };
+
+                const onMouseUp = () => {
+                    isDragging = false;
+                    document.removeEventListener('mousemove', onMouseMove);
+                    document.removeEventListener('mouseup', onMouseUp);
+                };
+            }
+
+            selectMode(mode) {
+                this.currentMode = mode;
+                
+                // Update active tab
+                document.querySelectorAll('.mode-tab').forEach(tab => {
+                    tab.classList.remove('active');
+                    if (tab.dataset.mode === mode) {
+                        tab.classList.add('active');
+                    }
+                });
+
+                // Update description
+                this.modeDescription.textContent = this.modeDescriptions[mode];
+
+                // Update quick actions based on mode
+                this.updateQuickActions(mode);
+
+                console.log(`Switched to ${mode} mode`);
+            }
+
+            updateQuickActions(mode) {
+                const quickActionData = {
+                    'Ask': [
+                        { text: 'What can you help me with?', question: 'What can you help me with?' },
+                        { text: 'Explain the system', question: 'How does this system work?' },
+                        { text: 'Check my patterns', question: 'What do you know about my work patterns?' }
+                    ],
+                    'Agent': [
+                        { text: 'Organize files', question: 'Help me organize my project files' },
+                        { text: 'Create workflow', question: 'Create an automated workflow for my daily tasks' },
+                        { text: 'Setup environment', question: 'Set up a development environment for Python' }
+                    ],
+                    'Suggest': [
+                        { text: 'Improve productivity', question: 'I want to improve my productivity' },
+                        { text: 'Learning path', question: 'I\'m learning data science, what do you suggest?' },
+                        { text: 'Optimize workflow', question: 'My current workflow feels inefficient' }
+                    ],
+                    'General': [
+                        { text: 'Hello', question: 'Hello, how are you today?' },
+                        { text: 'Tell me something', question: 'Tell me something interesting' },
+                        { text: 'About AI', question: 'What do you think about artificial intelligence?' }
+                    ]
+                };
+
+                this.quickActions.innerHTML = '';
+                quickActionData[mode].forEach(action => {
+                    const btn = document.createElement('button');
+                    btn.className = 'quick-action';
+                    btn.textContent = action.text;
+                    btn.dataset.question = action.question;
+                    this.quickActions.appendChild(btn);
+                });
+            }
+
+            connect() {
+                this.updateConnectionStatus('connecting');
+                
+                try {
+                    this.ws = new WebSocket('ws://127.0.0.1:8767');
+                    
+                    this.ws.onopen = () => {
+                        console.log('Connected to Enterprise SensAI backend');
+                        this.updateConnectionStatus('connected');
+                        this.reconnectAttempts = 0;
+                    };
+
+                    this.ws.onmessage = (event) => {
+                        try {
+                            const data = JSON.parse(event.data);
+                            this.handleMessage(data);
+                        } catch (error) {
+                            console.error('Error parsing message:', error);
+                        }
+                    };
+
+                    this.ws.onclose = () => {
+                        console.log('Disconnected from backend');
+                        this.updateConnectionStatus('disconnected');
+                        this.attemptReconnect();
+                    };
+
+                    this.ws.onerror = (error) => {
+                        console.error('WebSocket error:', error);
+                        this.updateConnectionStatus('error');
+                    };
+
+                } catch (error) {
+                    console.error('Connection error:', error);
+                    this.updateConnectionStatus('error');
+                    this.attemptReconnect();
+                }
+            }
+
+            attemptReconnect() {
+                if (this.reconnectAttempts < this.maxReconnectAttempts) {
+                    this.reconnectAttempts++;
+                    console.log(`Reconnect attempt ${this.reconnectAttempts}/${this.maxReconnectAttempts}`);
+                    
+                    setTimeout(() => {
+                        this.connect();
+                    }, this.reconnectDelay * this.reconnectAttempts);
+                } else {
+                    this.showError('Unable to connect to Enterprise SensAI backend. Please check if the server is running.');
+                }
+            }
+
+            updateConnectionStatus(status) {
+                this.connectionStatus = status;
+                
+                const statusTexts = {
+                    'disconnected': 'Disconnected',
+                    'connecting': 'Connecting...',
+                    'connected': 'Connected',
+                    'error': 'Connection Error'
+                };
+                
+                this.connectionStatusEl.textContent = statusTexts[status];
+                this.statusIndicator.className = `status-indicator ${status}`;
+                
+                // Enable/disable send button based on connection
+                this.sendBtn.disabled = status !== 'connected';
+            }
+
+            handleMessage(data) {
+                console.log('Received message:', data);
+                
+                if (data.type === 'connection_established') {
+                    console.log('Connection established with capabilities:', data.capabilities);
+                    return;
+                }
+                
+                if (data.type === 'chat_response') {
+                    this.hideTypingIndicator();
+                    this.addMessage('assistant', data.payload.response, {
+                        confidence: data.payload.confidence,
+                        mode: data.payload.mode,
+                        processingTime: data.payload.processing_time,
+                        resources: data.payload.resources_used
+                    });
+                } else if (data.type === 'error') {
+                    this.hideTypingIndicator();
+                    this.showError(data.message || 'An error occurred');
+                }
+            }
+
+            sendMessage() {
+                const message = this.chatInput.value.trim();
+                if (!message || this.connectionStatus !== 'connected') return;
+
+                // Add user message to chat
+                this.addMessage('user', message);
+                
+                // Clear input
+                this.chatInput.value = '';
+                this.chatInput.style.height = 'auto';
+
+                // Show typing indicator
+                this.showTypingIndicator();
+
+                // Send to backend
+                const payload = {
+                    type: 'chat_request',
+                    mode: this.currentMode,
+                    query: message,
+                    user_id: this.userId,
+                    session_id: this.sessionId,
+                    timestamp: Date.now() / 1000
+                };
+
+                console.log('Sending message:', payload);
+                this.ws.send(JSON.stringify(payload));
+            }
+
+            addMessage(sender, content, metadata = {}) {
+                const messageEl = document.createElement('div');
+                messageEl.className = `message ${sender}`;
+                
+                const timestamp = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+                
+                let metaHtml = `<span>${timestamp}</span>`;
+                if (metadata.confidence !== undefined) {
+                    const confidencePercent = Math.round(metadata.confidence * 100);
+                    metaHtml += `
+                        <div class="confidence-score">
+                            <span>${confidencePercent}%</span>
+                            <div class="confidence-bar">
+                                <div class="confidence-fill" style="width: ${confidencePercent}%;"></div>
+                            </div>
+                        </div>
+                    `;
+                }
+                
+                messageEl.innerHTML = `
+                    <div class="message-content">${content}</div>
+                    <div class="message-meta">${metaHtml}</div>
+                `;
+                
+                this.chatMessages.appendChild(messageEl);
+                this.scrollToBottom();
+            }
+
+            showTypingIndicator() {
+                const typingEl = document.createElement('div');
+                typingEl.className = 'typing-indicator';
+                typingEl.id = 'typingIndicator';
+                typingEl.innerHTML = `
+                    <div class="typing-dots">
+                        <div class="typing-dot"></div>
+                        <div class="typing-dot"></div>
+                        <div class="typing-dot"></div>
+                    </div>
+                    <span style="color: rgba(255,255,255,0.6); font-size: 12px;">AI is thinking...</span>
+                `;
+                
+                this.chatMessages.appendChild(typingEl);
+                this.scrollToBottom();
+            }
+
+            hideTypingIndicator() {
+                const typingEl = document.getElementById('typingIndicator');
+                if (typingEl) {
+                    typingEl.remove();
+                }
+            }
+
+            showError(message) {
+                const errorEl = document.createElement('div');
+                errorEl.className = 'error-message';
+                errorEl.textContent = `Error: ${message}`;
+                
+                this.chatMessages.appendChild(errorEl);
+                this.scrollToBottom();
+                
+                // Remove error after 5 seconds
+                setTimeout(() => {
+                    errorEl.remove();
+                }, 5000);
+            }
+
+            scrollToBottom() {
+                this.chatMessages.scrollTop = this.chatMessages.scrollHeight;
+            }
+
+            toggleMinimize() {
+                this.isMinimized = !this.isMinimized;
+                this.overlay.classList.toggle('minimized', this.isMinimized);
+                this.minimizeBtn.textContent = this.isMinimized ? '+' : '−';
+            }
+
+            close() {
+                if (this.ws) {
+                    this.ws.close();
+                }
+                this.overlay.style.display = 'none';
+            }
+        }
+
+        // Initialize the chat overlay when the page loads
+        window.addEventListener('DOMContentLoaded', () => {
+            new EnterpriseChatOverlay();
+        });
+
+        // Make overlay globally accessible for debugging
+        window.startEnterpriseChat = () => {
+            new EnterpriseChatOverlay();
+        };
+    </script>
+</body>
+</html>

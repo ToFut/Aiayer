@@ -31,7 +31,7 @@
       }
 
       console.log('Attempting to connect to WebSocket server...');
-      ws = new WebSocket('ws://localhost:8768');  // Updated from 8765 to match our new bridge server port
+      ws = new WebSocket('ws://localhost:8766');  // Updated to use bridge server port
       
       ws.onopen = () => {
         console.log('Connected to LLM service');
@@ -40,10 +40,15 @@
         reconnectAttempts = 0;
         reconnectDelay = 1000;
         
-        // Send initial context request
+        // Send registration message
         ws.send(JSON.stringify({
-          type: 'context_request',
-          payload: { type: 'initial' }
+          type: 'register',
+          payload: {
+            client_type: 'ui',
+            version: '1.0.0',
+            capabilities: ['overlay_display', 'user_interaction'],
+            timestamp: Date.now()
+          }
         }));
       };
 
@@ -59,9 +64,11 @@
             'echo', 
             'status_response', 
             'status_update',
-            'context_update_received', 
             'sensor_data_received', 
-            'pong'
+            'pong',
+            'context_update',
+            'context_update_received',
+            'ack'
           ];
           
           if (systemMessageTypes.includes(data.type)) {
@@ -70,22 +77,15 @@
               isConnected = true;
               connectionStatus = 'connected';
             }
+            loading = false;
             return;
           }
           
-          if (data.type === 'llm_response' || data.type === 'query_response') {
-            // Handle both formats - new format uses 'content', old format uses payload.response
-            const responseText = data.content || data.payload?.response || data.payload?.message || "I received your message.";
+          // Handle response messages
+          if (data.type === 'llm_response' || data.type === 'query_response' || data.type === 'response') {
+            const responseText = data.content || data.payload?.response || data.payload?.message || data.message || "I received your message.";
             messages = [...messages, { role: 'assistant', content: responseText }];
             loading = false;
-            scrollToBottom();
-          } else if (data.type === 'suggestion' || data.type === 'suggestions') {
-            console.log("Received suggestion message:", data);
-            const suggestionText = data.content || data.payload?.content || 
-                               (Array.isArray(data.payload) ? data.payload[0]?.content : null) || 
-                               "I have a suggestion for you.";
-            messages = [...messages, { role: 'assistant', content: suggestionText, isSuggestion: true }];
-            console.log("Added suggestion message:", messages[messages.length-1]);
             scrollToBottom();
           } else if (data.type === 'error') {
             const errorText = data.content || data.payload?.message || data.error || "An error occurred while processing your request.";
@@ -130,6 +130,7 @@
               scrollToBottom();
             } else {
               console.log(`Received message with type ${data.type} but no displayable content`);
+              loading = false;  // Reset loading state even if no content
             }
           }
         } catch (error) {
@@ -214,8 +215,11 @@
       
       // Send message in the correct format
       ws.send(JSON.stringify({
-        type: 'user_interaction',
-        content: text
+        type: 'query',
+        payload: {
+          message: text,
+          timestamp: Date.now()
+        }
       }));
       
       input = '';

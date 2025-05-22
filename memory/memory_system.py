@@ -19,12 +19,34 @@ import gc
 import websockets
 import traceback
 
-# Use direct imports (same directory)
-from .memory_logger import MemoryLogger
-from .memory_diagnostic_logger import MemoryDiagnosticLogger
-from .conscious_memory import ConsciousMemory
-from .enhanced_semantic_search import EnhancedSemanticSearch
-from sensors import ScreenSensor, ProcessSensor
+# Use relative imports for same package
+try:
+    from .memory_logger import MemoryLogger
+except ImportError:
+    from memory_logger import MemoryLogger
+
+try:
+    from .memory_diagnostic_logger import MemoryDiagnosticLogger
+except ImportError:
+    from memory_diagnostic_logger import MemoryDiagnosticLogger
+
+try:
+    from .conscious_memory import ConsciousMemory
+except ImportError:
+    from conscious_memory import ConsciousMemory
+
+try:
+    from .enhanced_semantic_search import EnhancedSemanticSearch
+except ImportError:
+    # Fallback to basic search
+    EnhancedSemanticSearch = None
+
+try:
+    from sensors import ScreenSensor, ProcessSensor
+except ImportError:
+    # Fallback - sensors not available
+    ScreenSensor = ProcessSensor = None
+
 from .safe_json import safe_load, safe_dump, safe_dumps
 from .memory_types import ConversationMemory, ContextMemory
 
@@ -88,9 +110,15 @@ class MemorySystem:
         self.llm = llm_provider
         self.messages = []
         self.screen_sensor = None
-        self.process_sensor = None
+        self.process_sensor = ProcessSensor(config=self.SENSOR_CONFIG['process'])
         self.llava_client = None
         self.logger = logging.getLogger(__name__)
+        self.ws = None
+        self.ws_uri = "ws://localhost:8765"
+        self.connected = False
+        self.reconnect_delay = 3
+        self.max_reconnect_attempts = 5
+        self.reconnect_attempts = 0
         
         # Initialize memory logger
         self.memory_logger = MemoryLogger()
@@ -128,6 +156,93 @@ class MemorySystem:
         self._load_memory_state()
         
         self.logger.info("Memory system initialized")
+        # Set initialized to True at the end
+        self.initialized = True
+        
+    async def connect(self):
+        """Establish WebSocket connection."""
+        try:
+            self.ws = await websockets.connect(self.ws_uri)
+            self.connected = True
+            self.reconnect_attempts = 0
+            self.logger.info("WebSocket connection established")
+            
+            # Start message handling loop
+            asyncio.create_task(self._handle_messages())
+            return True
+        except Exception as e:
+            self.logger.error(f"Failed to establish WebSocket connection: {e}")
+            return False
+            
+    async def _handle_messages(self):
+        """Handle incoming WebSocket messages."""
+        try:
+            while self.connected:
+                try:
+                    message = await self.ws.recv()
+                    await self._process_message(message)
+                except websockets.exceptions.ConnectionClosed:
+                    self.logger.warning("WebSocket connection closed")
+                    await self._reconnect()
+                except Exception as e:
+                    self.logger.error(f"Error handling message: {e}")
+        except Exception as e:
+            self.logger.error(f"Message handling loop error: {e}")
+            self.connected = False
+            
+    async def _reconnect(self):
+        """Attempt to reconnect to WebSocket server."""
+        while self.reconnect_attempts < self.max_reconnect_attempts:
+            try:
+                self.logger.info(f"Attempting to reconnect (attempt {self.reconnect_attempts + 1}/{self.max_reconnect_attempts})")
+                await asyncio.sleep(self.reconnect_delay)
+                self.ws = await websockets.connect(self.ws_uri)
+                self.connected = True
+                self.reconnect_attempts = 0
+                self.logger.info("Reconnected successfully")
+                return True
+            except Exception as e:
+                self.reconnect_attempts += 1
+                self.logger.error(f"Reconnection attempt failed: {e}")
+        self.logger.error("Max reconnection attempts reached")
+        return False
+        
+    async def _process_message(self, message):
+        """Process incoming WebSocket message."""
+        try:
+            data = json.loads(message)
+            message_type = data.get('type')
+            
+            if message_type == 'sensor_data':
+                await self.process_sensor_data(data.get('sensor_type'), data.get('data'))
+            elif message_type == 'memory_query':
+                response = await self.search_memory(data.get('query'), data.get('limit', 3))
+                await self._send_response(data.get('id'), response)
+            elif message_type == 'memory_update':
+                await self.add_to_memory(data.get('memory_type'), data.get('data'))
+            else:
+                self.logger.warning(f"Unknown message type: {message_type}")
+        except Exception as e:
+            self.logger.error(f"Error processing message: {e}")
+            
+    async def _send_response(self, message_id, response):
+        """Send response back through WebSocket."""
+        try:
+            if self.connected and self.ws:
+                await self.ws.send(json.dumps({
+                    'type': 'response',
+                    'id': message_id,
+                    'data': response
+                }))
+        except Exception as e:
+            self.logger.error(f"Error sending response: {e}")
+            
+    async def disconnect(self):
+        """Close WebSocket connection."""
+        if self.ws:
+            await self.ws.close()
+            self.connected = False
+            self.logger.info("WebSocket connection closed")
     
     def _load_memory_state(self):
         """Load memory state from file if it exists."""
@@ -138,7 +253,7 @@ class MemorySystem:
                 with open(self.memory_state_file, 'r') as f:
                     state = json.load(f)
                     
-                # Load short-term memory
+                # Load short-term memory with increased capacity
                 loaded_short_term = state.get('short_term', [])
                 if loaded_short_term:
                     self.logger.info(f"  - Found {len(loaded_short_term)} short-term memory items")
@@ -147,7 +262,7 @@ class MemorySystem:
                     self.logger.info("  - No short-term memory found, initializing empty")
                     self.short_term_memory = []
                 
-                # Load long-term memory
+                # Load long-term memory with increased capacity
                 loaded_long_term = state.get('long_term', [])
                 if loaded_long_term:
                     self.logger.info(f"  - Found {len(loaded_long_term)} long-term memory items")
@@ -156,7 +271,7 @@ class MemorySystem:
                     self.logger.info("  - No long-term memory found, initializing empty")
                     self.long_term_memory = []
                 
-                # Load context memory
+                # Load context memory with increased capacity
                 loaded_context = state.get('context', {})
                 if loaded_context:
                     self.logger.info(f"  - Found context memory with {len(loaded_context)} items")
@@ -187,7 +302,7 @@ class MemorySystem:
                 })
             else:
                 self.logger.info("No existing memory state found, starting fresh")
-                # Initialize empty memory state
+                # Initialize empty memory state with increased capacity
                 self.short_term_memory = []
                 self.long_term_memory = []
                 self.context_memory = {
@@ -197,12 +312,8 @@ class MemorySystem:
                         'file': {}
                     }
                 }
-                # Note: This is a synchronous context, so we'll use a synchronous alternative
-                try:
-                    # Save memory state directly without await
-                    self._save_memory_state_sync()
-                except Exception as e:
-                    self.logger.error(f"Error in _save_memory_state_sync: {e}")
+                # Save initial state
+                self._save_memory_state_sync()
                 
                 # Log initialization with diagnostic logger
                 self.diagnostic_logger.log_memory_event("memory_state_initialized", {
@@ -214,12 +325,8 @@ class MemorySystem:
                 "context": "load_memory_state",
                 "error_type": type(e).__name__
             })
-            # Note: This is a synchronous context, so we'll use a synchronous alternative
-            try:
-                # Create new state file if loading fails
-                self._save_memory_state_sync()
-            except Exception as e:
-                self.logger.error(f"Error in _save_memory_state_sync fallback: {e}")
+            # Create new state file if loading fails
+            self._save_memory_state_sync()
 
     def _save_memory_state_sync(self):
         """Synchronous version of save_memory_state for use in __init__ and error handling."""
@@ -235,11 +342,11 @@ class MemorySystem:
                 'last_update': datetime.now().isoformat()
             }
             
-            # Save to file without archiving - create a minimal valid state file
+            # Update existing file without creating backups
             with open(self.memory_state_file, 'w') as f:
                 json.dump(state, f, indent=2)
             
-            self.logger.info(f"✅ Saved memory state with {len(self.short_term_memory)} short-term memories (sync)")
+            self.logger.info(f"✅ Updated memory state with {len(self.short_term_memory)} short-term memories (sync)")
             self.diagnostic_logger.log_memory_event("memory_state_saved", {
                 "timestamp": datetime.now().isoformat(),
                 "success": True
@@ -249,7 +356,7 @@ class MemorySystem:
             self.diagnostic_logger.log_memory_error(e, {
                 "context": "save_memory_state_sync"
             })
-            
+
     async def _save_memory_state(self):
         """Save current memory state to file."""
         try:
@@ -264,14 +371,14 @@ class MemorySystem:
                 'last_update': datetime.now().isoformat()
             }
             
-            # Save to file without archiving
+            # Update existing file without creating backups
             with open(self.memory_state_file, 'w') as f:
                 json.dump(state, f, indent=2)
             
             # Also update the last_context.json file for LLM integration
             await self._update_last_context()
             
-            self.logger.info(f"✅ Saved memory state with {len(self.short_term_memory)} short-term memories")
+            self.logger.info(f"✅ Updated memory state with {len(self.short_term_memory)} short-term memories")
             self.diagnostic_logger.log_memory_event("memory_state_saved", {
                 "timestamp": datetime.now().isoformat(),
                 "success": True
@@ -290,6 +397,16 @@ class MemorySystem:
             # Load existing memory state
             self._load_memory_state()
             
+            # Initialize sensors
+            self.logger.info("Initializing sensors...")
+            try:
+                self.screen_sensor = ScreenSensor(config=self.SENSOR_CONFIG['screen'])
+                self.process_sensor = ProcessSensor()
+                self.logger.info("Sensors initialized successfully")
+            except Exception as e:
+                self.logger.error(f"Error initializing sensors: {e}")
+                return False
+            
             # Start sensor data collection
             self.logger.info("Starting sensor data collection...")
             asyncio.create_task(self._collect_sensor_data())
@@ -297,6 +414,10 @@ class MemorySystem:
             # Start periodic memory cleanup
             self.logger.info("Starting periodic memory cleanup...")
             asyncio.create_task(self._periodic_cleanup())
+            
+            # Start WebSocket connection to bridge server
+            self.logger.info("Connecting to bridge server...")
+            asyncio.create_task(self.connect_to_server())
             
             self.logger.info("Memory system initialized successfully")
             return True
@@ -364,170 +485,85 @@ class MemorySystem:
             })
             return None
             
-    async def process_sensor_data(self, sensor_type: str, data: Dict[str, Any]) -> bool:
-        """
-        Process and store sensor data in the appropriate memory.
-        
-        IMPORTANT: This method now redirects all sensor data through ConsciousMemory
-        for proper processing before storing in memory.
-        """
+    def process_sensor_data(self, sensor_data):
+        """Process and store sensor data with enhanced context awareness"""
         try:
-            self.logger.info(f"Processing {sensor_type} sensor data through conscious memory pipeline")
+            # Extract screen and process data
+            screen_data = sensor_data.get('screen', {})
+            process_data = sensor_data.get('process', {})
             
-            # FIX: Route all sensor data through ConsciousMemory for processing
-            if hasattr(self, 'conscious_memory') and self.conscious_memory:
-                # Pass data to conscious memory for processing
-                success = await self.conscious_memory.add_sensor_data(sensor_type, data)
-                if success:
-                    self.logger.info(f"Successfully processed {sensor_type} data through conscious memory")
-                    return True
-                else:
-                    self.logger.warning(f"Conscious memory processing failed for {sensor_type}, using fallback")
-                    # Continue with fallback processing if conscious memory fails
-            else:
-                self.logger.warning(f"No conscious memory available, using direct processing for {sensor_type}")
-            
-            # FALLBACK: Only used if conscious memory processing fails or is unavailable
-            # Extract only required data from sensor input to reduce memory usage
-            processed_data = {}
-            
-            # Extract essential information based on sensor type
-            if sensor_type == 'screen' and isinstance(data, dict):
-                # For screen data, include LLaVA analysis if available
-                processed_data = {
-                    'content': data.get('text', ''),  # Use 'content' for searchability
-                    'window_title': data.get('window_title', ''),
-                    'active_window': data.get('active_window', ''),
-                    'timestamp': datetime.now().isoformat(),
-                    'sensor_type': 'screen',
-                    'type': 'screen'  # Add type for better search
-                }
-                
-                # Add LLaVA analysis if available from screen sensor
-                if self.screen_sensor and hasattr(self.screen_sensor, 'last_data'):
-                    screen_data = self.screen_sensor.last_data
-                    if screen_data and hasattr(screen_data, 'llava_analysis'):
-                        processed_data["llava_analysis"] = screen_data.llava_analysis
-                        self.logger.info("Added LLaVA analysis from screen sensor to processed data")
-                    elif screen_data and hasattr(screen_data, 'llava_description'):
-                        processed_data["llava_description"] = screen_data.llava_description
-                        self.logger.info("Added LLaVA description from screen sensor to processed data")
-                
-                # Fallback to data's LLaVA analysis if available
-                if not processed_data.get("llava_analysis") and data.get("llava_analysis"):
-                    processed_data["llava_analysis"] = data.get("llava_analysis")
-                    self.logger.info("Added LLaVA analysis from data to processed screen data")
-                
-                # Add application-specific data if available
-                if data.get("application"):
-                    processed_data["application"] = data.get("application")
-                
-                # Add other screen-specific data
-                if data.get("llava_description"):
-                    processed_data["llava_description"] = data.get("llava_description")
-                if data.get("visual_context"):
-                    processed_data["visual_context"] = data.get("visual_context")
-                if data.get("screen_elements"):
-                    processed_data["screen_elements"] = data.get("screen_elements")
-                
-                # Add user activity and workflow data
-                if data.get("user_activity"):
-                    processed_data["user_activity"] = data.get("user_activity")
-                if data.get("workflow_stage"):
-                    processed_data["workflow_stage"] = data.get("workflow_stage")
-                
-                # Add visual content data
-                if data.get("visual_content"):
-                    processed_data["visual_content"] = data.get("visual_content")
-                    
-            elif sensor_type == 'process' and isinstance(data, dict):
-                # For process data, only keep essential process info
-                try:
-                    active_apps = data.get('active_apps', [])
-                    self.logger.debug(f"Processing active apps: {active_apps}")
-                    
-                    # Extract app names if they are dictionaries
-                    app_names = []
-                    for app in active_apps[:10]:  # Limit to first 10 apps
-                        try:
-                            if isinstance(app, dict):
-                                app_name = app.get('name', str(app))
-                                self.logger.debug(f"Extracted app name from dict: {app_name}")
-                            else:
-                                app_name = str(app)
-                                self.logger.debug(f"Using app name as string: {app_name}")
-                            app_names.append(app_name)
-                        except Exception as app_e:
-                            self.logger.error(f"Error processing app {app}: {app_e}")
-                            app_names.append("unknown")
-                    
-                    processed_data = {
-                        'content': f"Active window: {data.get('active_window', '')}, Apps: {', '.join(app_names)}",
-                        'active_apps': active_apps,
-                        'active_window': data.get('active_window', ''),
-                        'timestamp': datetime.now().isoformat(),
-                        'sensor_type': 'process',
-                        'type': 'process'  # Add type for better search
+            # Create meaningful summary
+            summary = {
+                'timestamp': time.time(),
+                'active_applications': {
+                    'foreground': [
+                        {
+                            'name': app.get('name', ''),
+                            'type': app.get('type', ''),
+                            'category': app.get('category', ''),
+                            'state': app.get('state', {})
+                        }
+                        for app in process_data.get('foreground', [])
+                    ],
+                    'background': [
+                        {
+                            'name': app.get('name', ''),
+                            'type': app.get('type', ''),
+                            'category': app.get('category', '')
+                        }
+                        for app in process_data.get('background', [])
+                        if app.get('type') != 'unknown'  # Only include relevant background apps
+                    ]
+                },
+                'visual_context': {
+                    'active_window': screen_data.get('active_window', {}),
+                    'main_content': screen_data.get('content', {}).get('main_content', ''),
+                    'ui_elements': {
+                        'controls': len(screen_data.get('ui_elements', {}).get('controls', [])),
+                        'text_fields': len(screen_data.get('ui_elements', {}).get('text_fields', [])),
+                        'navigation': len(screen_data.get('ui_elements', {}).get('navigation', []))
+                    },
+                    'text_content': {
+                        'headers': screen_data.get('text_content', {}).get('headers', []),
+                        'main_text': screen_data.get('text_content', {}).get('main_text', [])
                     }
-                except Exception as process_e:
-                    self.logger.error(f"Error processing process data: {process_e}")
-                    self.logger.error(f"Data structure: {data}")
-                    processed_data = {
-                        'content': f"Error processing process data: {str(process_e)}",
-                        'timestamp': datetime.now().isoformat(),
-                        'sensor_type': 'process',
-                        'type': 'process'
-                    }
-            elif sensor_type == 'file' and isinstance(data, dict):
-                # For file data, only keep file metadata without content
-                processed_data = {
-                    'content': f"File event: {data.get('file_event', '')} on {data.get('file_path', '')}",
-                    'file_path': data.get('file_path', ''),
-                    'file_type': data.get('file_type', ''),
-                    'file_event': data.get('file_event', ''),
-                    'timestamp': datetime.now().isoformat(),
-                    'sensor_type': 'file',
-                    'type': 'file'  # Add type for better search
+                },
+                'system_state': {
+                    'resources': process_data.get('system_resources', {}),
+                    'network': process_data.get('network_state', {}),
+                    'session_duration': process_data.get('session_duration', 0)
                 }
-            else:
-                # For other data types, create minimal representation
-                processed_data = {
-                    'timestamp': datetime.now().isoformat(),
-                    'sensor_type': sensor_type,
-                    'type': sensor_type
-                }
-                # Add any critical fields but avoid large data structures
-                for key, value in data.items():
-                    if key not in ['image', 'raw_data', 'binary_content'] and isinstance(value, (str, int, float, bool)):
-                        processed_data[key] = value
-                
-                # Create a content field for search if not already present
-                if 'content' not in processed_data:
-                    content_parts = []
-                    for key, value in data.items():
-                        if key not in ['image', 'raw_data', 'binary_content', 'timestamp'] and isinstance(value, (str, int, float, bool)):
-                            content_parts.append(f"{key}: {value}")
-                    processed_data['content'] = "; ".join(content_parts)
+            }
             
-            # Store processed data in appropriate memory
-            if processed_data:
-                # Add to short-term memory
-                await self.add_to_short_term_memory(processed_data)
-                
-                # Add to context memory if it's screen or process data
-                if sensor_type in ['screen', 'process']:
-                    await self.add_to_context_memory(processed_data)
-                
-                self.logger.info(f"Successfully processed and stored {sensor_type} data")
-                return True
+            # Store in short-term memory
+            self.short_term_memory.append(summary)
             
-            return False
+            # Update context memory
+            self.context_memory.update({
+                'current_context': summary,
+                'application_context': {
+                    'active_apps': summary['active_applications'],
+                    'app_states': process_data.get('app_states', {}),
+                    'app_workflows': process_data.get('app_workflows', {})
+                },
+                'visual_context': summary['visual_context'],
+                'system_state': summary['system_state']
+            })
+            
+            # Save memory state
+            self.save_memory_state()
+            
+            # Update last context
+            self._update_last_context(sensor_data)
+            
+            logger.info("Processed and stored sensor data with enhanced context")
+            logger.debug(f"Memory update stats: {len(summary['active_applications']['foreground'])} foreground apps, "
+                        f"{len(summary['active_applications']['background'])} background apps, "
+                        f"{summary['visual_context']['ui_elements']['controls']} UI controls")
             
         except Exception as e:
-            self.logger.error(f"Error processing {sensor_type} data: {e}")
-            self.logger.error(traceback.format_exc())
-            return False
-
+            logger.error(f"Error processing sensor data: {e}")
+            
     def _should_process_sensor_data(self, sensor_type: str, data: Dict[str, Any]) -> bool:
         """Advanced smart batching approach that considers multiple factors:
         1. Data importance and change significance
@@ -2088,38 +2124,110 @@ class MemorySystem:
             self.logger.error(traceback.format_exc())
             return None
     
-    async def _update_last_context(self):
-        """
-        Update the last_context.json file with the most recent context data for LLM integration.
-        This file is used by the LLM service to include context in responses.
-        """
+    def _update_last_context(self, sensor_data):
+        """Update last_context.json with comprehensive context data"""
         try:
-            # Get the most recent context data
-            context_summary = await self.get_context_summary()
+            # Get the most recent context summary
+            context_summary = self.get_latest_context_summary()
             
-            if not context_summary:
-                self.logger.warning("No context summary available for updating last_context.json")
-                return
-                
-            # Create a structured context for LLM
+            # Get the most recent screen and process data
+            screen_data = sensor_data.get('screen', {})
+            process_data = sensor_data.get('process', {})
+            
+            # Get active window and application info
+            active_window = screen_data.get('active_window', {})
+            active_app = process_data.get('foreground', [{}])[0] if process_data.get('foreground') else {}
+            
+            # Create rich context structure
             last_context = {
-                "timestamp": int(time.time()),
-                "active_window": context_summary.get('window', ''),
-                "active_app": context_summary.get('active_app', ''),
-                "active_apps": context_summary.get('active_apps', []),
-                "window_history": context_summary.get('window_history', []),
-                "screen_text": context_summary.get('screen_content', '')
+                'timestamp': time.time(),
+                'visual_context': {
+                    'active_window': {
+                        'title': active_window.get('title', ''),
+                        'application': active_window.get('application', ''),
+                        'path': active_window.get('path', '')
+                    },
+                    'screen_elements': {
+                        'controls': screen_data.get('ui_elements', {}).get('controls', []),
+                        'text_fields': screen_data.get('ui_elements', {}).get('text_fields', []),
+                        'navigation': screen_data.get('ui_elements', {}).get('navigation', [])
+                    },
+                    'text_content': {
+                        'headers': screen_data.get('text_content', {}).get('headers', []),
+                        'main_text': screen_data.get('text_content', {}).get('main_text', []),
+                        'raw_text': screen_data.get('text_content', {}).get('raw_text', '')
+                    },
+                    'visual_hierarchy': screen_data.get('visual_hierarchy', {}),
+                    'ui_state': screen_data.get('ui_state', {})
+                },
+                'application_context': {
+                    'active_app': {
+                        'name': active_app.get('name', ''),
+                        'type': active_app.get('type', ''),
+                        'category': active_app.get('category', ''),
+                        'state': active_app.get('state', {})
+                    },
+                    'foreground_apps': [
+                        {
+                            'name': app.get('name', ''),
+                            'type': app.get('type', ''),
+                            'category': app.get('category', ''),
+                            'state': app.get('state', {})
+                        }
+                        for app in process_data.get('foreground', [])
+                    ],
+                    'background_apps': [
+                        {
+                            'name': app.get('name', ''),
+                            'type': app.get('type', ''),
+                            'category': app.get('category', '')
+                        }
+                        for app in process_data.get('background', [])
+                        if app.get('type') != 'unknown'
+                    ],
+                    'app_states': process_data.get('app_states', {}),
+                    'app_workflows': process_data.get('app_workflows', {})
+                },
+                'user_activity': {
+                    'current_activity': context_summary.get('current_activity', {}),
+                    'recent_actions': context_summary.get('recent_actions', []),
+                    'interaction_state': screen_data.get('ui_state', {}),
+                    'workflow_stage': process_data.get('app_workflows', {}).get('current_stage', '')
+                },
+                'system_state': {
+                    'active_processes': process_data.get('foreground', []) + process_data.get('background', []),
+                    'system_resources': {
+                        'cpu_usage': process_data.get('system_resources', {}).get('cpu_usage', 0),
+                        'memory_usage': process_data.get('system_resources', {}).get('memory_usage', 0),
+                        'disk_usage': process_data.get('system_resources', {}).get('disk_usage', 0)
+                    },
+                    'network_state': process_data.get('network_state', {}),
+                    'session_duration': process_data.get('session_duration', 0)
+                },
+                'temporal_context': {
+                    'time_of_day': datetime.now().strftime('%H:%M:%S'),
+                    'session_duration': process_data.get('session_duration', 0),
+                    'last_update': time.time()
+                },
+                'semantic_context': {
+                    'current_task': context_summary.get('current_task', ''),
+                    'related_insights': context_summary.get('related_insights', []),
+                    'workflow_context': process_data.get('app_workflows', {}).get('context', {}),
+                    'user_intent': context_summary.get('user_intent', '')
+                }
             }
             
-            # Save to the last_context.json file
-            last_context_file = os.path.join(os.path.dirname(self.memory_state_file), 'last_context.json')
-            with open(last_context_file, 'w') as f:
+            # Save to last_context.json
+            with open('last_context.json', 'w') as f:
                 json.dump(last_context, f, indent=2)
-                
-            self.logger.info(f"✅ Updated last_context.json with active app: {last_context['active_app']}")
+            
+            logger.info("Updated last_context.json with comprehensive context data")
+            logger.debug(f"Context update stats: {len(last_context['visual_context']['screen_elements']['controls'])} UI controls, "
+                        f"{len(last_context['application_context']['foreground_apps'])} foreground apps, "
+                        f"{len(last_context['user_activity']['recent_actions'])} recent actions")
             
         except Exception as e:
-            self.logger.error(f"❌ Error updating last_context.json: {e}")
+            logger.error(f"Error updating last context: {e}")
             self.diagnostic_logger.log_memory_error(e, {
                 "context": "update_last_context"
             })

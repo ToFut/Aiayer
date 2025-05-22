@@ -99,19 +99,22 @@ def load_screen_data(file_path: str) -> Optional[Dict[str, Any]]:
         if not data:
             return None
             
+        # Handle timestamp conversion
+        timestamp = data.get("timestamp", time.time())
+        if isinstance(timestamp, str):
+            try:
+                timestamp = float(timestamp)
+            except ValueError:
+                timestamp = time.time()
+            
         # Extract relevant fields and ensure they exist
         screen_data = {
-            "timestamp": data.get("timestamp", datetime.now().isoformat()),
+            "timestamp": timestamp,
             "image_hash": data.get("image_hash", ""),
             "screen_size": data.get("screen_size", [0, 0]),
-            "source_file": file_path
+            "source_file": file_path,
+            "datetime": datetime.fromtimestamp(timestamp).isoformat()
         }
-        
-        # Add formatted datetime if timestamp is a unix timestamp
-        if isinstance(screen_data["timestamp"], (int, float)):
-            screen_data["datetime"] = datetime.fromtimestamp(screen_data["timestamp"]).isoformat()
-        else:
-            screen_data["datetime"] = screen_data["timestamp"]
             
         return screen_data
     except Exception as e:
@@ -125,10 +128,17 @@ def load_process_data() -> Optional[Dict[str, Any]]:
         if not data:
             return None
             
-        # Extract relevant information
+        # Extract relevant information and handle timestamp conversion
+        timestamp = data.get("timestamp", time.time())
+        if isinstance(timestamp, str):
+            try:
+                timestamp = float(timestamp)
+            except ValueError:
+                timestamp = time.time()
+                
         process_data = {
-            "timestamp": data.get("timestamp", time.time()),
-            "datetime": datetime.fromtimestamp(data.get("timestamp", time.time())).isoformat(),
+            "timestamp": timestamp,
+            "datetime": datetime.fromtimestamp(timestamp).isoformat(),
             "active_processes": []
         }
         
@@ -143,11 +153,13 @@ def load_process_data() -> Optional[Dict[str, Any]]:
                     if name.startswith(("kernel", "launchd", "com.apple", "system")):
                         continue
                     
-                    # Create a simplified process entry
+                    # Create a simplified process entry with proper numeric conversion
                     proc_entry = {
                         "name": name,
-                        "pid": proc.get("pid", 0),
-                        "username": proc.get("username", "")
+                        "pid": int(proc.get("pid", 0)) if isinstance(proc.get("pid"), (int, str)) else 0,
+                        "username": proc.get("username", ""),
+                        "cpu_percent": float(proc.get("cpu_percent", 0.0)) if isinstance(proc.get("cpu_percent"), (int, float, str)) else 0.0,
+                        "memory_percent": float(proc.get("memory_percent", 0.0)) if isinstance(proc.get("memory_percent"), (int, float, str)) else 0.0
                     }
                     top_processes.append(proc_entry)
                     
@@ -171,10 +183,18 @@ def load_file_data() -> Optional[Dict[str, Any]]:
         if not data:
             return None
             
+        # Handle timestamp conversion
+        timestamp = data.get("timestamp", time.time())
+        if isinstance(timestamp, str):
+            try:
+                timestamp = float(timestamp)
+            except ValueError:
+                timestamp = time.time()
+            
         # Create a properly structured entry
         file_data = {
-            "timestamp": data.get("timestamp", time.time()),
-            "datetime": datetime.fromtimestamp(data.get("timestamp", time.time())).isoformat(),
+            "timestamp": timestamp,
+            "datetime": datetime.fromtimestamp(timestamp).isoformat(),
             "events": data.get("events", []),
             "event_count": data.get("event_count", 0)
         }
@@ -268,51 +288,113 @@ def generate_llm_prompt(conscious: Dict[str, Any]) -> str:
     
     prompt = f"# System Context Analysis\nTimestamp: {timestamp}\n\n"
     
-    # Add recent insights
+    # Add user's current state and activity
+    prompt += "## Current User State\n"
+    if "context_understanding" in conscious:
+        prompt += f"Current Activity: {conscious['context_understanding']}\n\n"
+    
+    # Add recent insights with timestamps and significance
     if "insights" in conscious and conscious["insights"]:
         prompt += "## Recent Insights\n"
         for i, insight in enumerate(conscious["insights"][:5]):
-            prompt += f"{i+1}. {insight.get('content', '')}\n"
+            timestamp = insight.get('timestamp', '')
+            if timestamp:
+                time_str = datetime.fromtimestamp(timestamp).strftime('%H:%M:%S')
+                prompt += f"{i+1}. [{time_str}] {insight.get('content', '')}\n"
+            else:
+                prompt += f"{i+1}. {insight.get('content', '')}\n"
         prompt += "\n"
     
-    # Add active applications
+    # Add active applications with context
     process_buffer = conscious.get("sensor_buffers", {}).get("process", [])
     if process_buffer:
-        prompt += "## Active Applications\n"
-        for process_data in process_buffer[:1]:  # Just use the most recent
+        prompt += "## Active Applications and Context\n"
+        for process_data in process_buffer[:1]:  # Most recent
             active_apps = process_data.get("active_apps", [])
             if active_apps:
-                for app in active_apps[:10]:
-                    prompt += f"- {app}\n"
+                # Group apps by type
+                app_groups = {
+                    "Development": [],
+                    "Communication": [],
+                    "Productivity": [],
+                    "System": [],
+                    "Other": []
+                }
+                
+                for app in active_apps:
+                    app_lower = app.lower()
+                    if any(x in app_lower for x in ["code", "studio", "vim", "emacs", "terminal", "python", "node"]):
+                        app_groups["Development"].append(app)
+                    elif any(x in app_lower for x in ["chrome", "safari", "firefox", "slack", "teams", "zoom"]):
+                        app_groups["Communication"].append(app)
+                    elif any(x in app_lower for x in ["word", "excel", "notes", "calendar", "mail"]):
+                        app_groups["Productivity"].append(app)
+                    elif any(x in app_lower for x in ["finder", "system", "settings", "preferences"]):
+                        app_groups["System"].append(app)
+                    else:
+                        app_groups["Other"].append(app)
+                
+                for category, apps in app_groups.items():
+                    if apps:
+                        prompt += f"{category}: {', '.join(apps)}\n"
             else:
                 prompt += "- No significant applications detected\n"
         prompt += "\n"
     
-    # Add file activity
+    # Add file activity with context
     file_buffer = conscious.get("sensor_buffers", {}).get("file", [])
     if file_buffer:
         prompt += "## Recent File Activity\n"
-        for file_data in file_buffer[:1]:  # Just use the most recent
+        for file_data in file_buffer[:1]:  # Most recent
             events = file_data.get("events", [])
             if events:
+                # Group by file type
+                file_groups = {}
                 for event in events[:5]:
                     if isinstance(event, dict) and "path" in event:
                         path = event.get("path", "")
                         event_type = event.get("type", "modified")
-                        prompt += f"- {event_type}: {path}\n"
-                    elif isinstance(event, str):
-                        prompt += f"- {event}\n"
+                        file_ext = path.split('.')[-1] if '.' in path else 'unknown'
+                        
+                        if file_ext not in file_groups:
+                            file_groups[file_ext] = []
+                        file_groups[file_ext].append(f"{event_type}: {path}")
+                
+                for ext, files in file_groups.items():
+                    prompt += f"{ext.upper()} Files:\n"
+                    for file in files:
+                        prompt += f"- {file}\n"
             else:
                 prompt += "- No recent file activity\n"
         prompt += "\n"
     
-    # Add analysis request
+    # Add visual context if available
+    if "visual_context" in conscious:
+        prompt += "## Visual Context\n"
+        prompt += f"{conscious['visual_context']}\n\n"
+    
+    # Add analysis request with specific focus areas
     prompt += "## Analysis Request\n"
     prompt += "Please analyze the user's current context and provide the following:\n\n"
-    prompt += "1. What is the user currently working on?\n"
-    prompt += "2. What tools or applications are they using?\n"
-    prompt += "3. What might they need help with based on this context?\n"
-    prompt += "4. Are there any patterns or trends in their recent activity?\n"
+    prompt += "1. Current Task Analysis:\n"
+    prompt += "   - What specific task is the user working on?\n"
+    prompt += "   - What stage of the task are they in?\n"
+    prompt += "   - What tools are they actively using for this task?\n\n"
+    
+    prompt += "2. Context Understanding:\n"
+    prompt += "   - What is the broader context of their work?\n"
+    prompt += "   - What files or resources are they focusing on?\n"
+    prompt += "   - Are there any patterns in their recent activity?\n\n"
+    
+    prompt += "3. Potential Assistance:\n"
+    prompt += "   - What might they need help with based on their current activity?\n"
+    prompt += "   - Are there any potential blockers or inefficiencies?\n"
+    prompt += "   - What related information might be helpful?\n\n"
+    
+    prompt += "4. Memory Integration:\n"
+    prompt += "   - What aspects of this context should be remembered for future interactions?\n"
+    prompt += "   - Are there any recurring patterns or preferences to note?\n"
+    prompt += "   - What context might be relevant for future tasks?\n"
     
     return prompt
 
@@ -339,6 +421,12 @@ def update_conscious_memory():
                     "last_insight_generation": None
                 },
                 "insights": []
+            }
+        # PATCH: Ensure 'system_state' exists
+        if "system_state" not in conscious or not isinstance(conscious["system_state"], dict):
+            conscious["system_state"] = {
+                "last_update": datetime.now().isoformat(),
+                "last_insight_generation": None
             }
         
         # Get the latest screen data

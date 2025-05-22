@@ -1,0 +1,346 @@
+{
+  "port_availability": {
+    "8765": {
+      "status": "in_use",
+      "process": {
+        "pid": 4411,
+        "name": "Python",
+        "cmdline": "/opt/homebrew/Cellar/python@3.13/3.13.3/Frameworks/Python.framework/Versions/3.13/Resources/Python.app/Contents/MacOS/Python fixed_ws_8765.py"
+      }
+    },
+    "8766": {
+      "status": "in_use",
+      "process": {
+        "pid": 4429,
+        "name": "Python",
+        "cmdline": "/opt/homebrew/Cellar/python@3.13/3.13.3/Frameworks/Python.framework/Versions/3.13/Resources/Python.app/Contents/MacOS/Python fixed_bridge_server_enhanced.py"
+      }
+    },
+    "8767": {
+      "status": "in_use",
+      "process": {
+        "pid": 4462,
+        "name": "Python",
+        "cmdline": "/opt/homebrew/Cellar/python@3.13/3.13.3/Frameworks/Python.framework/Versions/3.13/Resources/Python.app/Contents/MacOS/Python simple_ws_server_8767.py"
+      }
+    },
+    "8768": {
+      "status": "available",
+      "process": null
+    },
+    "1421": {
+      "status": "available",
+      "process": null
+    }
+  },
+  "server_processes": {
+    "bridge_server": [
+      {
+        "pid": 4429,
+        "name": "Python",
+        "cmdline": "/opt/homebrew/Cellar/python@3.13/3.13.3/Frameworks/Python.framework/Versions/3.13/Resources/Python.app/Contents/MacOS/Python fixed_bridge_server_enhanced.py",
+        "status": "running"
+      }
+    ],
+    "enhanced_backend_server": [],
+    "memory_service": [],
+    "llm_service": [],
+    "ws_server": [
+      {
+        "pid": 4462,
+        "name": "Python",
+        "cmdline": "/opt/homebrew/Cellar/python@3.13/3.13.3/Frameworks/Python.framework/Versions/3.13/Resources/Python.app/Contents/MacOS/Python simple_ws_server_8767.py",
+        "status": "running"
+      }
+    ],
+    "ollama": [
+      {
+        "pid": 752,
+        "name": "ollama",
+        "cmdline": "/opt/homebrew/opt/ollama/bin/ollama serve",
+        "status": "running"
+      }
+    ]
+  },
+  "websocket_connections": {
+    "main_ws_server": {
+      "status": "error",
+      "url": "ws://localhost:8765",
+      "error": "BaseEventLoop.create_connection() got an unexpected keyword argument 'timeout'"
+    },
+    "bridge_server": {
+      "status": "error",
+      "url": "ws://localhost:8766",
+      "error": "BaseEventLoop.create_connection() got an unexpected keyword argument 'timeout'"
+    },
+    "enhanced_bridge": {
+      "status": "error",
+      "url": "ws://localhost:8767",
+      "error": "BaseEventLoop.create_connection() got an unexpected keyword argument 'timeout'"
+    },
+    "fallback_server": {
+      "status": "error",
+      "url": "ws://localhost:8768",
+      "error": "BaseEventLoop.create_connection() got an unexpected keyword argument 'timeout'"
+    }
+  },
+  "message_flow": {},
+  "backend_responses": {},
+  "errors": [
+    {
+      "file": "logs/ollama_service.log",
+      "line": "2025-05-21 19:41:59,717 - ollama_service - ERROR - Error processing message: no close frame received or sent",
+      "timestamp": "2025-05-21T20:08:36.742527"
+    },
+    {
+      "file": "logs/aiayer.log",
+      "line": "2025-05-21 12:24:36,024 - agent_based_llm - ERROR - Error initializing memory system: attempted relative import with no known parent package",
+      "timestamp": "2025-05-21T20:08:36.742913"
+    },
+    {
+      "file": "logs/aiayer.log",
+      "line": "2025-05-21 12:24:36,025 - agent_based_llm - ERROR - Traceback (most recent call last):",
+      "timestamp": "2025-05-21T20:08:36.742917"
+    },
+    {
+      "file": "logs/ws_server_8767.log",
+      "line": "2025-05-21 20:08:36,593 - ERROR - opening handshake failed",
+      "timestamp": "2025-05-21T20:08:36.752989"
+    },
+    {
+      "file": "logs/bridge_output.log",
+      "line": "2025-05-21 18:26:04,703 - websockets.server - ERROR - opening handshake failed",
+      "timestamp": "2025-05-21T20:08:36.754764"
+    },
+    {
+      "file": "logs/bridge.log",
+      "line": "2025-05-21 15:05:39 - [ERROR] - [BRIDGE] Task was destroyed but it is pending!",
+      "timestamp": "2025-05-21T20:08:36.755381"
+    },
+    {
+      "file": "logs/bridge.log",
+      "line": "2025-05-21 15:05:39 - [ERROR] - [BRIDGE] Task was destroyed but it is pending!",
+      "timestamp": "2025-05-21T20:08:36.755385"
+    },
+    {
+      "file": "logs/backend_server.log",
+      "line": "2025-05-21 13:03:30,698 - ERROR - connection handler failed",
+      "timestamp": "2025-05-21T20:08:36.758914"
+    },
+    {
+      "file": "logs/backend_server.log",
+      "line": "2025-05-21 13:03:31,777 - ERROR - connection handler failed",
+      "timestamp": "2025-05-21T20:08:36.758917"
+    },
+    {
+      "file": "logs/backend_server.log",
+      "line": "2025-05-21 13:03:32,883 - ERROR - connection handler failed",
+      "timestamp": "2025-05-21T20:08:36.758920"
+    },
+    {
+      "file": "logs/backend_server.log",
+      "line": "2025-05-21 13:03:34,009 - ERROR - connection handler failed",
+      "timestamp": "2025-05-21T20:08:36.758922"
+    },
+    {
+      "file": "logs/backend_server.log",
+      "line": "2025-05-21 13:03:35,064 - ERROR - connection handler failed",
+      "timestamp": "2025-05-21T20:08:36.758924"
+    },
+    {
+      "file": "logs/backend_server.log",
+      "line": "2025-05-21 13:03:36,185 - ERROR - connection handler failed",
+      "timestamp": "2025-05-21T20:08:36.758927"
+    },
+    {
+      "file": "logs/backend_server.log",
+      "line": "2025-05-21 13:03:37,295 - ERROR - connection handler failed",
+      "timestamp": "2025-05-21T20:08:36.758929"
+    },
+    {
+      "file": "logs/bridge/bridge_server.log",
+      "line": "2025-05-21 20:08:36,585 - websockets.server - ERROR - opening handshake failed",
+      "timestamp": "2025-05-21T20:08:36.759087"
+    },
+    {
+      "file": "logs/memory/memory.log",
+      "line": "2025-05-21 20:08:36,585 - websockets.server - ERROR - opening handshake failed",
+      "timestamp": "2025-05-21T20:08:36.761414"
+    },
+    {
+      "file": "logs/llm/ollama_service.log",
+      "line": "2025-05-21 19:41:59,717 - ollama_service - ERROR - Error processing message: no close frame received or sent",
+      "timestamp": "2025-05-21T20:08:36.761948"
+    },
+    {
+      "file": "logs/llm/enhanced_ollama_service.log",
+      "line": "2025-05-21 14:56:57,459 - enhanced_ollama_service - ERROR - Connection closed: received 1011 (internal error); then sent 1011 (internal error)",
+      "timestamp": "2025-05-21T20:08:36.762631"
+    },
+    {
+      "file": "logs/llm/enhanced_ollama_service.log",
+      "line": "2025-05-21 14:56:57,460 - enhanced_ollama_service - ERROR - Connection closed: received 1011 (internal error); then sent 1011 (internal error)",
+      "timestamp": "2025-05-21T20:08:36.762634"
+    },
+    {
+      "file": "logs/llm/enhanced_ollama_service.log",
+      "line": "2025-05-21 14:56:57,461 - enhanced_ollama_service - ERROR - Connection closed: received 1011 (internal error); then sent 1011 (internal error)",
+      "timestamp": "2025-05-21T20:08:36.762636"
+    },
+    {
+      "file": "logs/llm/enhanced_ollama_service.log",
+      "line": "2025-05-21 14:56:57,463 - enhanced_ollama_service - ERROR - Connection closed: received 1011 (internal error); then sent 1011 (internal error)",
+      "timestamp": "2025-05-21T20:08:36.762638"
+    },
+    {
+      "file": "logs/llm/enhanced_ollama_service.log",
+      "line": "2025-05-21 14:56:57,464 - enhanced_ollama_service - ERROR - Connection closed: received 1011 (internal error); then sent 1011 (internal error)",
+      "timestamp": "2025-05-21T20:08:36.762639"
+    },
+    {
+      "file": "logs/llm/enhanced_ollama_service.log",
+      "line": "2025-05-21 14:56:57,465 - enhanced_ollama_service - ERROR - Connection closed: received 1011 (internal error); then sent 1011 (internal error)",
+      "timestamp": "2025-05-21T20:08:36.762641"
+    },
+    {
+      "file": "logs/llm/enhanced_ollama_service.log",
+      "line": "2025-05-21 14:56:57,467 - enhanced_ollama_service - ERROR - Connection closed: received 1011 (internal error); then sent 1011 (internal error)",
+      "timestamp": "2025-05-21T20:08:36.762643"
+    },
+    {
+      "file": "logs/llm/enhanced_ollama_service.log",
+      "line": "2025-05-21 14:56:57,468 - enhanced_ollama_service - ERROR - Connection closed: received 1011 (internal error); then sent 1011 (internal error)",
+      "timestamp": "2025-05-21T20:08:36.762644"
+    },
+    {
+      "file": "logs/llm/enhanced_ollama_service.log",
+      "line": "2025-05-21 14:56:57,469 - enhanced_ollama_service - ERROR - Connection closed: received 1011 (internal error); then sent 1011 (internal error)",
+      "timestamp": "2025-05-21T20:08:36.762646"
+    },
+    {
+      "file": "logs/llm/enhanced_ollama_service.log",
+      "line": "2025-05-21 14:56:57,470 - enhanced_ollama_service - ERROR - Connection closed: received 1011 (internal error); then sent 1011 (internal error)",
+      "timestamp": "2025-05-21T20:08:36.762648"
+    },
+    {
+      "file": "logs/llm/enhanced_ollama_service.log",
+      "line": "2025-05-21 14:56:57,471 - enhanced_ollama_service - ERROR - Connection closed: received 1011 (internal error); then sent 1011 (internal error)",
+      "timestamp": "2025-05-21T20:08:36.762650"
+    },
+    {
+      "file": "logs/llm/enhanced_ollama_service.log",
+      "line": "2025-05-21 14:56:57,472 - enhanced_ollama_service - ERROR - Connection closed: received 1011 (internal error); then sent 1011 (internal error)",
+      "timestamp": "2025-05-21T20:08:36.762652"
+    },
+    {
+      "file": "logs/llm/enhanced_ollama_service.log",
+      "line": "2025-05-21 14:56:57,473 - enhanced_ollama_service - ERROR - Connection closed: received 1011 (internal error); then sent 1011 (internal error)",
+      "timestamp": "2025-05-21T20:08:36.762653"
+    },
+    {
+      "file": "logs/llm/enhanced_ollama_service.log",
+      "line": "2025-05-21 14:57:02,478 - enhanced_ollama_service - ERROR - Connection closed: received 1011 (internal error); then sent 1011 (internal error)",
+      "timestamp": "2025-05-21T20:08:36.762658"
+    },
+    {
+      "file": "logs/llm/enhanced_ollama_service.log",
+      "line": "2025-05-21 14:57:02,479 - enhanced_ollama_service - ERROR - Connection closed: received 1011 (internal error); then sent 1011 (internal error)",
+      "timestamp": "2025-05-21T20:08:36.762660"
+    },
+    {
+      "file": "logs/llm/enhanced_ollama_service.log",
+      "line": "2025-05-21 14:57:02,481 - enhanced_ollama_service - ERROR - Connection closed: received 1011 (internal error); then sent 1011 (internal error)",
+      "timestamp": "2025-05-21T20:08:36.762661"
+    },
+    {
+      "file": "logs/llm/enhanced_ollama_service.log",
+      "line": "2025-05-21 14:57:02,483 - enhanced_ollama_service - ERROR - Connection closed: received 1011 (internal error); then sent 1011 (internal error)",
+      "timestamp": "2025-05-21T20:08:36.762663"
+    },
+    {
+      "file": "logs/llm/enhanced_ollama_service.log",
+      "line": "2025-05-21 14:57:02,485 - enhanced_ollama_service - ERROR - Connection closed: received 1011 (internal error); then sent 1011 (internal error)",
+      "timestamp": "2025-05-21T20:08:36.762665"
+    },
+    {
+      "file": "logs/llm/enhanced_ollama_service.log",
+      "line": "2025-05-21 14:57:02,487 - enhanced_ollama_service - ERROR - Connection closed: received 1011 (internal error); then sent 1011 (internal error)",
+      "timestamp": "2025-05-21T20:08:36.762666"
+    },
+    {
+      "file": "logs/llm/enhanced_ollama_service.log",
+      "line": "2025-05-21 14:57:02,489 - enhanced_ollama_service - ERROR - Connection closed: received 1011 (internal error); then sent 1011 (internal error)",
+      "timestamp": "2025-05-21T20:08:36.762668"
+    },
+    {
+      "file": "logs/llm/enhanced_ollama_service.log",
+      "line": "2025-05-21 14:57:02,491 - enhanced_ollama_service - ERROR - Connection closed: received 1011 (internal error); then sent 1011 (internal error)",
+      "timestamp": "2025-05-21T20:08:36.762670"
+    },
+    {
+      "file": "logs/llm/enhanced_ollama_service.log",
+      "line": "2025-05-21 14:57:02,492 - enhanced_ollama_service - ERROR - Connection closed: received 1011 (internal error); then sent 1011 (internal error)",
+      "timestamp": "2025-05-21T20:08:36.762671"
+    },
+    {
+      "file": "logs/llm/enhanced_ollama_service.log",
+      "line": "2025-05-21 14:57:02,494 - enhanced_ollama_service - ERROR - Connection closed: received 1011 (internal error); then sent 1011 (internal error)",
+      "timestamp": "2025-05-21T20:08:36.762673"
+    },
+    {
+      "file": "overlay/logs/ws_server_8765.log",
+      "line": "2025-05-20 13:52:35,678 - ERROR - connection handler failed",
+      "timestamp": "2025-05-21T20:08:36.773914"
+    },
+    {
+      "file": "overlay/logs/ws_server_8765.log",
+      "line": "2025-05-20 13:52:35,680 - ERROR - connection handler failed",
+      "timestamp": "2025-05-21T20:08:36.773919"
+    },
+    {
+      "file": "overlay/logs/ws_server_8765.log",
+      "line": "2025-05-20 13:52:35,681 - ERROR - Task exception was never retrieved",
+      "timestamp": "2025-05-21T20:08:36.773923"
+    },
+    {
+      "file": "overlay/logs/ws_server_8765.log",
+      "line": "2025-05-20 13:52:35,682 - ERROR - Task exception was never retrieved",
+      "timestamp": "2025-05-21T20:08:36.773926"
+    },
+    {
+      "file": "overlay/logs/fixed_bridge.log",
+      "line": "2025-05-18 21:17:45,713 - fixed_bridge - ERROR - Error starting server: [Errno 48] error while attempting to bind on address ('127.0.0.1', 8765): address already in use",
+      "timestamp": "2025-05-21T20:08:36.774291"
+    },
+    {
+      "file": "overlay/logs/minimal_ws.log",
+      "line": "2025-05-16 12:28:38,003 - ERROR - connection handler failed",
+      "timestamp": "2025-05-21T20:08:36.774921"
+    },
+    {
+      "file": "overlay/logs/minimal_ws.log",
+      "line": "2025-05-16 12:28:38,050 - ERROR - connection handler failed",
+      "timestamp": "2025-05-21T20:08:36.774924"
+    },
+    {
+      "file": "overlay/logs/minimal_ws.log",
+      "line": "2025-05-16 12:28:39,011 - ERROR - connection handler failed",
+      "timestamp": "2025-05-21T20:08:36.774926"
+    },
+    {
+      "file": "overlay/logs/minimal_ws.log",
+      "line": "2025-05-16 12:28:39,057 - ERROR - connection handler failed",
+      "timestamp": "2025-05-21T20:08:36.774928"
+    },
+    {
+      "file": "overlay/logs/minimal_ws.log",
+      "line": "2025-05-16 12:28:40,019 - ERROR - connection handler failed",
+      "timestamp": "2025-05-21T20:08:36.774930"
+    },
+    {
+      "file": "overlay/logs/minimal_ws.log",
+      "line": "2025-05-16 12:28:40,068 - ERROR - connection handler failed",
+      "timestamp": "2025-05-21T20:08:36.774932"
+    }
+  ]
+}

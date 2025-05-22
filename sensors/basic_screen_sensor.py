@@ -30,7 +30,7 @@ logger = logging.getLogger('screen_sensor')
 class BasicScreenSensor:
     """Captures screen information and updates context."""
     
-    def __init__(self, bridge_uri="ws://localhost:8768", capture_interval=5):
+    def __init__(self, bridge_uri="ws://localhost:8765", capture_interval=5):
         self.bridge_uri = bridge_uri
         self.capture_interval = capture_interval
         self.running = False

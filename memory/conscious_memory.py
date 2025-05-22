@@ -24,20 +24,20 @@ file_handler = RotatingFileHandler(
     maxBytes=10*1024*1024,  # 10MB
     backupCount=5
 )
-file_handler.setLevel(logging.WARNING)  # Only log warnings and above
+file_handler.setLevel(logging.INFO)  # Changed from WARNING to INFO
 file_formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 file_handler.setFormatter(file_formatter)
 
 # Configure console handler with reduced output
 console_handler = logging.StreamHandler()
-console_handler.setLevel(logging.ERROR)  # Only show errors in console
+console_handler.setLevel(logging.INFO)  # Changed from ERROR to INFO
 console_formatter = logging.Formatter('%(asctime)s - %(levelname)s - %(message)s')
 console_handler.setFormatter(console_formatter)
 
 # Add handlers to logger
 logger.addHandler(file_handler)
 logger.addHandler(console_handler)
-logger.setLevel(logging.WARNING)  # Set base level to WARNING
+logger.setLevel(logging.INFO)  # Changed from WARNING to INFO
 
 class ConsciousMemory:
     """Acts as a middle layer to process sensor data and feed it to the main memory system."""
@@ -64,204 +64,96 @@ class ConsciousMemory:
         self.logger.info("[ConsciousMemory] Initialized as middle layer for memory system")
     
     async def add_sensor_data(self, sensor_type: str, data: Dict[str, Any]) -> bool:
-        """Add sensor data to the buffer for processing."""
+        """Add sensor data to the buffer and process it."""
         try:
-            if not sensor_type or not data:
-                self.logger.error("Invalid sensor data: type=%s, data=%s", sensor_type, data)
-                return False
+            self.logger.info(f"[ConsciousMemory] Adding {sensor_type} sensor data")
             
+            # Validate input
             if not isinstance(data, dict):
-                self.logger.error("Invalid data type: expected dict, got %s", type(data))
+                self.logger.error(f"[ConsciousMemory] Invalid data type: {type(data)}")
                 return False
                 
-            self.logger.info("[ConsciousMemory] Adding %s sensor data to buffer", sensor_type)
-            
             # Add timestamp if not present
             if 'timestamp' not in data:
-                data['timestamp'] = time.time()
+                data['timestamp'] = datetime.now().isoformat()
+                
+            # Add to buffer
+            if sensor_type not in self.sensor_buffer:
+                self.sensor_buffer[sensor_type] = []
+                
+            # Add new data to buffer
+            self.sensor_buffer[sensor_type].append(data)
             
-            # Add to appropriate buffer
-            if sensor_type in self.sensor_buffer:
-                # Add new data to the beginning of the list
-                self.sensor_buffer[sensor_type].insert(0, data)
+            # Keep buffer size within limits
+            if len(self.sensor_buffer[sensor_type]) > self.max_buffer_size:
+                self.sensor_buffer[sensor_type] = self.sensor_buffer[sensor_type][-self.max_buffer_size:]
                 
-                # Keep only the most recent entries
-                self.sensor_buffer[sensor_type] = self.sensor_buffer[sensor_type][:self.max_buffer_size]
-                
-                # Process the data before feeding to memory
+            self.logger.info(f"[ConsciousMemory] Added {sensor_type} data to buffer. Buffer size: {len(self.sensor_buffer[sensor_type])}")
+            
+            # Process the data
+            try:
                 processed_data = await self._process_sensor_data(sensor_type, data)
                 if processed_data:
-                    # Feed processed data to memory system
+                    # Feed to memory system
                     await self._feed_to_memory(processed_data)
-                    self.logger.info("[ConsciousMemory] Added %s sensor data to buffer and fed to memory system", sensor_type)
+                    self.logger.info(f"[ConsciousMemory] Successfully processed and stored {sensor_type} data")
                     return True
                 else:
-                    self.logger.warning("[ConsciousMemory] Failed to process %s sensor data", sensor_type)
+                    self.logger.warning(f"[ConsciousMemory] Failed to process {sensor_type} data")
                     return False
-            else:
-                self.logger.warning("[ConsciousMemory] Unknown sensor type: %s", sensor_type)
+            except Exception as e:
+                self.logger.error(f"[ConsciousMemory] Error processing {sensor_type} data: {e}")
                 return False
                 
         except Exception as e:
-            self.logger.error("[ConsciousMemory] Error adding sensor data: %s", str(e), exc_info=True)
+            self.logger.error(f"[ConsciousMemory] Error adding sensor data: {e}")
             return False
     
-    async def _feed_to_memory(self, processed_data: Dict[str, Any]) -> None:
-        """
-        Feed processed data to memory system with enhanced relationship tracking
-        and better categorization of memory types based on data characteristics.
-        """
+    async def _feed_to_memory(self, data: Dict[str, Any]) -> bool:
+        """Feed processed data to the memory system."""
         try:
-            # Ensure input data is valid
-            if not processed_data or not isinstance(processed_data, dict):
-                self.logger.error(f"Invalid processed data: {type(processed_data)}")
-                return
+            if not data:
+                return False
                 
-            # Debug logging
-            self.logger.info(f"Processing data type: {type(processed_data)}")
-            if 'active_apps' in processed_data:
-                self.logger.info(f"Active apps type: {type(processed_data['active_apps'])}")
-                self.logger.info(f"Active apps content: {processed_data['active_apps']}")
+            self.logger.info("[ConsciousMemory] Feeding data to memory system")
             
-            # Add critical metadata for memory tracking
-            current_time = datetime.now().isoformat()
-            memory_id = f"mem_{int(time.time() * 1000)}"
+            # Determine memory type based on data characteristics
+            memory_type = self._determine_memory_type(data)
             
-            # Enhance processed data with memory management fields
-            processed_data.update({
-                'memory_id': memory_id,
-                'memory_created': current_time,
-                'processed_by': 'conscious_memory',
-                'memory_connections': [],  # Relationship tracking between memory items
-                'memory_type': 'sensor_data'  # Base type for this memory
-            })
-            
-            # Handle active apps if present - normalize format 
-            if 'active_apps' in processed_data:
-                apps = processed_data['active_apps']
-                if isinstance(apps, list):
-                    # Simple string conversion for consistency
-                    processed_data['active_apps'] = [str(app) for app in apps]
-                elif isinstance(apps, str):
-                    # Handle case where active_apps is a single string
-                    processed_data['active_apps'] = [apps]
-                else:
-                    # Handle other cases
-                    processed_data['active_apps'] = [str(apps)]
-            
-            # Determine memory categorization based on data characteristics
-            should_add_to_short_term = True  # Always add to short-term
-            should_add_to_context = True     # Always add to context
-            should_add_to_long_term = processed_data.get('is_significant', False)  # Only if significant
-            
-            # Enhanced categorization rules based on content
-            
-            # Check if data contains application information (high value)
-            if 'application' in processed_data and isinstance(processed_data['application'], dict):
-                # Application workflow information is highly valuable for long-term storage
-                if processed_data['application'].get('workflow_stage'):
-                    should_add_to_long_term = True
-                    processed_data['memory_type'] = 'application_workflow'
-            
-            # Email data is typically significant and worth preserving
-            if 'email_data' in processed_data and isinstance(processed_data['email_data'], dict):
-                should_add_to_long_term = True
-                processed_data['memory_type'] = 'email_data'
-            
-            # Form interactions are often significant
-            if 'form_data' in processed_data and isinstance(processed_data['form_data'], dict):
-                should_add_to_long_term = True
-                processed_data['memory_type'] = 'form_interaction'
-            
-            # Significant visual context should be preserved
-            if 'visual_context' in processed_data and len(processed_data['visual_context']) > 100:
-                should_add_to_long_term = True
-                processed_data['memory_type'] = 'visual_data'
-            
-            # Meaningful context understanding is valuable
-            if 'context_understanding' in processed_data:
-                should_add_to_long_term = True
-                processed_data['memory_type'] = 'context_understanding'
-            
-            # Add relationships between memory items
-            # Track source sensors and related memory items
-            processed_data['memory_connections'] = [
-                {
-                    'type': 'source',
-                    'id': processed_data.get('sensor_type', 'unknown'),
-                    'timestamp': current_time
-                }
-            ]
-            
-            # Related insights tracking
-            if 'insights' in processed_data and isinstance(processed_data['insights'], list):
-                for insight in processed_data['insights']:
-                    processed_data['memory_connections'].append({
-                        'type': 'insight',
-                        'content_type': insight.get('type', 'unknown'),
-                        'timestamp': current_time
-                    })
-            
-            # Create different variants of the data for different memory stores
-            # to optimize storage and retrieval
-            
-            # For short-term memory: full data
-            short_term_data = processed_data.copy()
-            
-            # For context memory: optimize by removing any large data structures
-            context_data = processed_data.copy()
-            # Remove potentially large data fields from context copy
-            for field in ['screen_elements', 'raw_data', 'binary_content']:
-                if field in context_data:
-                    del context_data[field]
-            
-            # For long-term memory: only essential data needed for future recall
-            long_term_data = {
-                'memory_id': memory_id,
-                'memory_created': current_time,
-                'content': processed_data.get('content', ''),
-                'context_understanding': processed_data.get('context_understanding', ''),
-                'window_title': processed_data.get('window_title', ''),
-                'sensor_type': processed_data.get('sensor_type', ''),
-                'memory_type': processed_data.get('memory_type', 'sensor_data'),
-                'insights': processed_data.get('insights', []),
-                'memory_connections': processed_data.get('memory_connections', []),
-                'is_significant': should_add_to_long_term
-            }
-            
-            # Add application data if present (important for context)
-            if 'application' in processed_data:
-                long_term_data['application'] = processed_data['application']
-            
-            # Add email data if present (important for context)
-            if 'email_data' in processed_data:
-                long_term_data['email_data'] = processed_data['email_data']
-            
-            # Store to memory system with proper distribution
-            if should_add_to_short_term:
-                await self.memory_system.add_to_short_term_memory(short_term_data)
-                self.logger.info(f"Added item {memory_id} to short-term memory")
-            
-            if should_add_to_context:
-                await self.memory_system.add_to_context_memory(context_data)
-                self.logger.info(f"Added item {memory_id} to context memory")
-            
-            if should_add_to_long_term:
-                await self.memory_system.add_to_long_term_memory(long_term_data)
-                self.logger.info(f"Added item {memory_id} to long-term memory (significant: {should_add_to_long_term})")
+            # Add to appropriate memory
+            if memory_type == 'short_term':
+                await self.memory_system.add_to_short_term_memory(data)
+                self.logger.info("[ConsciousMemory] Added to short-term memory")
+            elif memory_type == 'context':
+                await self.memory_system.add_to_context_memory(data)
+                self.logger.info("[ConsciousMemory] Added to context memory")
+            elif memory_type == 'long_term':
+                await self.memory_system.add_to_long_term_memory(data)
+                self.logger.info("[ConsciousMemory] Added to long-term memory")
                 
-            # Track the number of items by memory type for logging
-            memory_count = sum([
-                1 if should_add_to_short_term else 0,
-                1 if should_add_to_context else 0,
-                1 if should_add_to_long_term else 0
-            ])
-            
-            self.logger.info(f"Fed memory item {memory_id} to {memory_count} memory systems")
+            return True
             
         except Exception as e:
-            self.logger.error(f"Error feeding data to memory: {e}")
-            self.logger.error(traceback.format_exc())
+            self.logger.error(f"[ConsciousMemory] Error feeding to memory: {e}")
+            return False
+    
+    def _determine_memory_type(self, data: Dict[str, Any]) -> str:
+        """Determine which memory type to use based on data characteristics."""
+        try:
+            # Check for high significance
+            if data.get('significance', 0) >= 0.8:
+                return 'long_term'
+                
+            # Check for context relevance
+            if data.get('sensor_type') in ['screen', 'process']:
+                return 'context'
+                
+            # Default to short-term memory
+            return 'short_term'
+            
+        except Exception as e:
+            self.logger.error(f"[ConsciousMemory] Error determining memory type: {e}")
+            return 'short_term'  # Default to short-term on error
     
     async def _process_sensor_data(self, sensor_type: str, data: Dict[str, Any]) -> Dict[str, Any]:
         """
@@ -270,9 +162,11 @@ class ConsciousMemory:
         application-specific understanding, and relationships between items.
         """
         try:
+            self.logger.info(f"[ConsciousMemory] Starting _process_sensor_data for {sensor_type}")
+            
             # Ensure data is a dictionary
             if not isinstance(data, dict):
-                self.logger.error(f"Invalid data type for {sensor_type}: {type(data)}")
+                self.logger.error(f"[ConsciousMemory] Invalid data type for {sensor_type}: {type(data)}")
                 return None
                 
             # Create base processed data with enhanced structure
@@ -634,11 +528,11 @@ class ConsciousMemory:
             self.logger.debug(f"Enhanced processed {sensor_type} data size: {len(str(processed_data))} chars")
             self.logger.info(f"Generated {len(processed_data.get('insights', []))} insights from {sensor_type} data")
             
+            self.logger.info(f"[ConsciousMemory] Completed processing {sensor_type} sensor data")
             return processed_data
             
         except Exception as e:
-            self.logger.error(f"Error processing {sensor_type} data: {e}")
-            self.logger.error(traceback.format_exc())
+            self.logger.error(f"[ConsciousMemory] Error processing sensor data: {str(e)}", exc_info=True)
             return None
     
     async def process_data(self) -> bool:

@@ -21,8 +21,6 @@
     let notificationCount = 0;
     let sensorData = null;
     let persistToMemory = true;
-    let contextAvailable = false;
-    let contextSummary = '';
     
     // Position tracking for draggable widget
     let widgetX = 20;
@@ -82,7 +80,6 @@
             
             // Clean up event listeners
             bridge.off('query_response', handleQueryResponse);
-            bridge.off('context_update', handleContextUpdate);
             bridge.off('memory_status', handleMemoryStatus);
             bridge.off('system_message', handleSystemMessage);
         }
@@ -94,7 +91,6 @@
             
             // Register message handlers
             bridge.on('query_response', handleQueryResponse);
-            bridge.on('context_update', handleContextUpdate);
             bridge.on('memory_status', handleMemoryStatus);
             bridge.on('system_message', handleSystemMessage);
             bridge.on('sensor_data', handleSensorData);
@@ -146,15 +142,6 @@
         
         // Add the response to messages
         addMessage('assistant', payload.response);
-    }
-    
-    function handleContextUpdate(payload) {
-        contextAvailable = payload.available || false;
-        contextSummary = payload.summary || '';
-        
-        if (contextAvailable) {
-            console.log('Context updated:', contextSummary);
-        }
     }
     
     function handleMemoryStatus(payload) {
@@ -895,29 +882,6 @@
         top: -3px;
     }
     
-    .context-bar {
-        padding: 12px 20px;
-        background: linear-gradient(135deg, rgba(52, 152, 219, 0.1), rgba(41, 128, 185, 0.1));
-        border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-        font-size: 13px;
-        color: #2c3e50;
-        display: flex;
-        align-items: center;
-        gap: 10px;
-    }
-    
-    .context-icon {
-        font-size: 16px;
-        color: #3498db;
-    }
-    
-    .context-text {
-        flex: 1;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-    }
-    
     .messages {
         flex: 1;
         overflow-y: auto;
@@ -1340,12 +1304,6 @@
         .connection-badge.error {
             background-color: #3e2c2c;
             color: #ff8a8a;
-        }
-        
-        .context-bar {
-            background-color: #333;
-            border-color: #444;
-            color: #ccc;
         }
         
         .message.user .message-content {

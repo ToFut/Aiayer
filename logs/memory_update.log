@@ -1,0 +1,11 @@
+2025-05-21 22:42:06,006 - memory.update - INFO - Starting conscious memory update
+2025-05-21 22:42:06,008 - memory.update - ERROR - Error updating conscious memory: 'system_state'
+2025-05-21 22:42:06,017 - memory.update - ERROR - Traceback (most recent call last):
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/memory/update_conscious.py", line 435, in update_conscious_memory
+    conscious["system_state"]["last_update"] = current_time
+    ~~~~~~~~~^^^^^^^^^^^^^^^^
+KeyError: 'system_state'
+
+2025-05-21 22:42:06,017 - memory.update - INFO - Finished conscious memory update
+2025-05-21 22:48:59,974 - memory.update - INFO - Starting conscious memory update
+2025-05-21 22:48:59,975 - memory.update - INFO - Updated conscious memory with 1 screen entry, 1 process entry, 1 file entry

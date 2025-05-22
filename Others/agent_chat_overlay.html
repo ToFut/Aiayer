@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Agent Chat Overlay</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .chat-overlay {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            width: 400px;
+            height: 600px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 16px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+            display: flex;
+            flex-direction: column;
+            z-index: 10000;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .chat-overlay.minimized {
+            height: 60px;
+            width: 200px;
+        }
+
+        .chat-header {
+            padding: 16px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 16px 16px 0 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .chat-title {
+            font-weight: 600;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .status-indicator {
+            width: 8px;
+            height: 8px;
+            background: #4ade80;
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        .chat-controls {
+            display: flex;
+            gap: 8px;
+        }
+
+        .control-btn {
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            padding: 6px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .control-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        .emergency-btn {
+            background: #ef4444 !important;
+            font-weight: bold;
+        }
+
+        .emergency-btn:hover {
+            background: #dc2626 !important;
+        }
+
+        .chat-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .chat-messages {
+            flex: 1;
+            padding: 16px;
+            overflow-y: auto;
+            scroll-behavior: smooth;
+        }
+
+        .message {
+            margin-bottom: 16px;
+            animation: slideIn 0.3s ease;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .message.user {
+            text-align: right;
+        }
+
+        .message.assistant {
+            text-align: left;
+        }
+
+        .message.system {
+            text-align: center;
+            opacity: 0.7;
+        }
+
+        .message-bubble {
+            display: inline-block;
+            max-width: 80%;
+            padding: 12px 16px;
+            border-radius: 16px;
+            font-size: 14px;
+            line-height: 1.4;
+        }
+
+        .message.user .message-bubble {
+            background: #667eea;
+            color: white;
+        }
+
+        .message.assistant .message-bubble {
+            background: #f3f4f6;
+            color: #374151;
+        }
+
+        .message.system .message-bubble {
+            background: rgba(59, 130, 246, 0.1);
+            color: #3b82f6;
+            font-size: 12px;
+        }
+
+        .automation-suggestions {
+            margin-top: 12px;
+            padding: 12px;
+            background: rgba(34, 197, 94, 0.1);
+            border: 1px solid rgba(34, 197, 94, 0.3);
+            border-radius: 8px;
+        }
+
+        .suggestion-header {
+            font-weight: 600;
+            color: #059669;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .suggestion-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px;
+            margin: 4px 0;
+            background: white;
+            border-radius: 6px;
+            border: 1px solid rgba(34, 197, 94, 0.2);
+        }
+
+        .suggestion-text {
+            font-size: 13px;
+            color: #374151;
+        }
+
+        .suggestion-buttons {
+            display: flex;
+            gap: 4px;
+        }
+
+        .suggestion-btn {
+            padding: 4px 8px;
+            border: none;
+            border-radius: 4px;
+            font-size: 11px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .suggestion-btn.approve {
+            background: #22c55e;
+            color: white;
+        }
+
+        .suggestion-btn.approve:hover {
+            background: #16a34a;
+        }
+
+        .suggestion-btn.reject {
+            background: #ef4444;
+            color: white;
+        }
+
+        .suggestion-btn.reject:hover {
+            background: #dc2626;
+        }
+
+        .typing-indicator {
+            padding: 8px 16px;
+            opacity: 0.7;
+            font-style: italic;
+            color: #6b7280;
+            font-size: 13px;
+        }
+
+        .typing-dots {
+            display: inline-block;
+        }
+
+        .typing-dots span {
+            display: inline-block;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: #6b7280;
+            margin: 0 2px;
+            animation: typing 1.4s infinite ease-in-out;
+        }
+
+        .typing-dots span:nth-child(1) { animation-delay: -0.32s; }
+        .typing-dots span:nth-child(2) { animation-delay: -0.16s; }
+
+        @keyframes typing {
+            0%, 80%, 100% {
+                transform: scale(0);
+                opacity: 0.5;
+            }
+            40% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        .chat-input {
+            padding: 16px;
+            border-top: 1px solid rgba(0, 0, 0, 0.1);
+            background: white;
+            border-radius: 0 0 16px 16px;
+        }
+
+        .input-container {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+        }
+
+        .message-input {
+            flex: 1;
+            padding: 12px 16px;
+            border: 1px solid #d1d5db;
+            border-radius: 8px;
+            font-size: 14px;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        .message-input:focus {
+            border-color: #667eea;
+        }
+
+        .send-btn {
+            padding: 12px 16px;
+            background: #667eea;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.2s;
+            font-weight: 600;
+        }
+
+        .send-btn:hover {
+            background: #5a67d8;
+        }
+
+        .send-btn:disabled {
+            background: #d1d5db;
+            cursor: not-allowed;
+        }
+
+        .capabilities-list {
+            font-size: 12px;
+            margin-top: 8px;
+            color: #6b7280;
+        }
+
+        .capabilities-list ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .capabilities-list li {
+            margin: 2px 0;
+        }
+
+        .status-message {
+            padding: 8px 12px;
+            border-radius: 6px;
+            font-size: 12px;
+            margin: 8px 0;
+        }
+
+        .status-message.success {
+            background: rgba(34, 197, 94, 0.1);
+            color: #059669;
+            border: 1px solid rgba(34, 197, 94, 0.3);
+        }
+
+        .status-message.error {
+            background: rgba(239, 68, 68, 0.1);
+            color: #dc2626;
+            border: 1px solid rgba(239, 68, 68, 0.3);
+        }
+
+        .status-message.warning {
+            background: rgba(245, 158, 11, 0.1);
+            color: #d97706;
+            border: 1px solid rgba(245, 158, 11, 0.3);
+        }
+
+        .minimized .chat-content,
+        .minimized .chat-input {
+            display: none;
+        }
+
+        .connection-status {
+            font-size: 12px;
+            margin-left: 8px;
+            opacity: 0.8;
+        }
+    </style>
+</head>
+<body>
+    <div class="chat-overlay" id="chatOverlay">
+        <div class="chat-header" onclick="toggleMinimized()">
+            <div class="chat-title">
+                🤖 AI Agent
+                <div class="status-indicator" id="statusIndicator"></div>
+                <span class="connection-status" id="connectionStatus">Connecting...</span>
+            </div>
+            <div class="chat-controls">
+                <button class="control-btn" onclick="toggleMinimized()" title="Minimize/Maximize">
+                    <span id="minimizeIcon">−</span>
+                </button>
+                <button class="control-btn emergency-btn" onclick="emergencyStop()" title="Emergency Stop (Ctrl+1)">
+                    🚨
+                </button>
+            </div>
+        </div>
+
+        <div class="chat-content">
+            <div class="chat-messages" id="chatMessages">
+                <!-- Messages will be added here -->
+            </div>
+            
+            <div class="typing-indicator" id="typingIndicator" style="display: none;">
+                AI is typing
+                <span class="typing-dots">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </span>
+            </div>
+        </div>
+
+        <div class="chat-input">
+            <div class="input-container">
+                <input 
+                    type="text" 
+                    class="message-input" 
+                    id="messageInput" 
+                    placeholder="Ask me to automate something..."
+                    onkeypress="handleKeyPress(event)"
+                >
+                <button class="send-btn" id="sendBtn" onclick="sendMessage()">Send</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        class AgentChatOverlay {
+            constructor() {
+                this.ws = null;
+                this.isConnected = false;
+                this.isMinimized = false;
+                this.reconnectAttempts = 0;
+                this.maxReconnectAttempts = 5;
+                this.reconnectDelay = 3000;
+                
+                this.elements = {
+                    overlay: document.getElementById('chatOverlay'),
+                    messages: document.getElementById('chatMessages'),
+                    input: document.getElementById('messageInput'),
+                    sendBtn: document.getElementById('sendBtn'),
+                    typingIndicator: document.getElementById('typingIndicator'),
+                    statusIndicator: document.getElementById('statusIndicator'),
+                    connectionStatus: document.getElementById('connectionStatus'),
+                    minimizeIcon: document.getElementById('minimizeIcon')
+                };
+                
+                this.connect();
+                this.setupEventListeners();
+            }
+            
+            connect() {
+                try {
+                    this.ws = new WebSocket('ws://localhost:8765');
+                    
+                    this.ws.onopen = () => {
+                        console.log('Connected to AI Agent');
+                        this.isConnected = true;
+                        this.reconnectAttempts = 0;
+                        this.updateConnectionStatus('Connected', true);
+                        this.elements.sendBtn.disabled = false;
+                    };
+                    
+                    this.ws.onmessage = (event) => {
+                        this.handleMessage(JSON.parse(event.data));
+                    };
+                    
+                    this.ws.onclose = () => {
+                        console.log('Disconnected from AI Agent');
+                        this.isConnected = false;
+                        this.updateConnectionStatus('Disconnected', false);
+                        this.elements.sendBtn.disabled = true;
+                        this.attemptReconnect();
+                    };
+                    
+                    this.ws.onerror = (error) => {
+                        console.error('WebSocket error:', error);
+                        this.updateConnectionStatus('Error', false);
+                    };
+                    
+                } catch (error) {
+                    console.error('Failed to connect:', error);
+                    this.updateConnectionStatus('Failed to connect', false);
+                    this.attemptReconnect();
+                }
+            }
+            
+            attemptReconnect() {
+                if (this.reconnectAttempts < this.maxReconnectAttempts) {
+                    this.reconnectAttempts++;
+                    this.updateConnectionStatus(`Reconnecting (${this.reconnectAttempts}/${this.maxReconnectAttempts})...`, false);
+                    setTimeout(() => this.connect(), this.reconnectDelay);
+                } else {
+                    this.updateConnectionStatus('Connection failed', false);
+                }
+            }
+            
+            updateConnectionStatus(status, connected) {
+                this.elements.connectionStatus.textContent = status;
+                this.elements.statusIndicator.style.background = connected ? '#4ade80' : '#ef4444';
+            }
+            
+            setupEventListeners() {
+                // Emergency stop shortcut (Ctrl+1)
+                document.addEventListener('keydown', (event) => {
+                    if (event.ctrlKey && event.key === '1') {
+                        event.preventDefault();
+                        this.emergencyStop();
+                    }
+                });
+            }
+            
+            handleMessage(message) {
+                console.log('Received message:', message);
+                
+                switch (message.type) {
+                    case 'system_message':
+                        this.addSystemMessage(message.message, message.capabilities);
+                        break;
+                        
+                    case 'assistant_response':
+                        this.hideTypingIndicator();
+                        this.addAssistantMessage(message.message, message.automation_suggestions);
+                        break;
+                        
+                    case 'automation_confirmation_request':
+                        this.showAutomationConfirmation(message.suggestions);
+                        break;
+                        
+                    case 'automation_started':
+                        this.addStatusMessage(message.message, 'success');
+                        break;
+                        
+                    case 'automation_completed':
+                        this.addStatusMessage(message.message, 'success');
+                        break;
+                        
+                    case 'automation_failed':
+                        this.addStatusMessage(message.message, 'error');
+                        break;
+                        
+                    case 'emergency_stop_activated':
+                        this.addStatusMessage(message.message, 'warning');
+                        break;
+                        
+                    case 'typing_indicator':
+                        if (message.status === 'typing') {
+                            this.showTypingIndicator();
+                        } else {
+                            this.hideTypingIndicator();
+                        }
+                        break;
+                        
+                    case 'error':
+                        this.addStatusMessage(message.message, 'error');
+                        break;
+                }
+            }
+            
+            sendMessage() {
+                const message = this.elements.input.value.trim();
+                if (!message || !this.isConnected) return;
+                
+                // Add user message to chat
+                this.addUserMessage(message);
+                
+                // Send to backend
+                this.ws.send(JSON.stringify({
+                    type: 'chat_message',
+                    message: message,
+                    timestamp: new Date().toISOString()
+                }));
+                
+                // Clear input and show typing
+                this.elements.input.value = '';
+                this.showTypingIndicator();
+            }
+            
+            addUserMessage(message) {
+                const messageElement = this.createMessageElement('user', message);
+                this.elements.messages.appendChild(messageElement);
+                this.scrollToBottom();
+            }
+            
+            addAssistantMessage(message, automationSuggestions = []) {
+                const messageElement = this.createMessageElement('assistant', message);
+                
+                // Add automation suggestions if present
+                if (automationSuggestions && automationSuggestions.length > 0) {
+                    const suggestionsElement = this.createAutomationSuggestions(automationSuggestions);
+                    messageElement.querySelector('.message-bubble').appendChild(suggestionsElement);
+                }
+                
+                this.elements.messages.appendChild(messageElement);
+                this.scrollToBottom();
+            }
+            
+            addSystemMessage(message, capabilities = []) {
+                const messageElement = this.createMessageElement('system', message);
+                
+                // Add capabilities list if present
+                if (capabilities && capabilities.length > 0) {
+                    const capabilitiesElement = document.createElement('div');
+                    capabilitiesElement.className = 'capabilities-list';
+                    capabilitiesElement.innerHTML = `
+                        <ul>
+                            ${capabilities.map(cap => `<li>${cap}</li>`).join('')}
+                        </ul>
+                    `;
+                    messageElement.querySelector('.message-bubble').appendChild(capabilitiesElement);
+                }
+                
+                this.elements.messages.appendChild(messageElement);
+                this.scrollToBottom();
+            }
+            
+            addStatusMessage(message, type = 'success') {
+                const statusElement = document.createElement('div');
+                statusElement.className = `status-message ${type}`;
+                statusElement.textContent = message;
+                
+                this.elements.messages.appendChild(statusElement);
+                this.scrollToBottom();
+            }
+            
+            createMessageElement(type, message) {
+                const messageDiv = document.createElement('div');
+                messageDiv.className = `message ${type}`;
+                
+                const bubbleDiv = document.createElement('div');
+                bubbleDiv.className = 'message-bubble';
+                bubbleDiv.textContent = message;
+                
+                messageDiv.appendChild(bubbleDiv);
+                return messageDiv;
+            }
+            
+            createAutomationSuggestions(suggestions) {
+                const container = document.createElement('div');
+                container.className = 'automation-suggestions';
+                
+                const header = document.createElement('div');
+                header.className = 'suggestion-header';
+                header.innerHTML = '🤖 Available Automations:';
+                container.appendChild(header);
+                
+                suggestions.forEach(suggestion => {
+                    if (suggestion.requires_confirmation) {
+                        const item = document.createElement('div');
+                        item.className = 'suggestion-item';
+                        
+                        const text = document.createElement('div');
+                        text.className = 'suggestion-text';
+                        text.textContent = suggestion.description;
+                        
+                        const buttons = document.createElement('div');
+                        buttons.className = 'suggestion-buttons';
+                        
+                        const approveBtn = document.createElement('button');
+                        approveBtn.className = 'suggestion-btn approve';
+                        approveBtn.textContent = '✓';
+                        approveBtn.onclick = () => this.confirmAutomation(suggestion.id, true);
+                        
+                        const rejectBtn = document.createElement('button');
+                        rejectBtn.className = 'suggestion-btn reject';
+                        rejectBtn.textContent = '✗';
+                        rejectBtn.onclick = () => this.confirmAutomation(suggestion.id, false);
+                        
+                        buttons.appendChild(approveBtn);
+                        buttons.appendChild(rejectBtn);
+                        
+                        item.appendChild(text);
+                        item.appendChild(buttons);
+                        container.appendChild(item);
+                    }
+                });
+                
+                return container;
+            }
+            
+            confirmAutomation(actionId, confirmed) {
+                if (!this.isConnected) return;
+                
+                this.ws.send(JSON.stringify({
+                    type: 'action_confirmation',
+                    action_id: actionId,
+                    confirmed: confirmed,
+                    timestamp: new Date().toISOString()
+                }));
+            }
+            
+            showAutomationConfirmation(suggestions) {
+                this.addSystemMessage('🤖 I found some actions I can automate. Please review and approve:');
+                // Suggestions will be shown with the next assistant message
+            }
+            
+            showTypingIndicator() {
+                this.elements.typingIndicator.style.display = 'block';
+                this.scrollToBottom();
+            }
+            
+            hideTypingIndicator() {
+                this.elements.typingIndicator.style.display = 'none';
+            }
+            
+            scrollToBottom() {
+                setTimeout(() => {
+                    this.elements.messages.scrollTop = this.elements.messages.scrollHeight;
+                }, 100);
+            }
+            
+            toggleMinimized() {
+                this.isMinimized = !this.isMinimized;
+                this.elements.overlay.classList.toggle('minimized', this.isMinimized);
+                this.elements.minimizeIcon.textContent = this.isMinimized ? '+' : '−';
+            }
+            
+            emergencyStop() {
+                if (!this.isConnected) {
+                    alert('🚨 Emergency Stop: Not connected to agent');
+                    return;
+                }
+                
+                // Send emergency stop to backend
+                this.ws.send(JSON.stringify({
+                    type: 'emergency_stop',
+                    timestamp: new Date().toISOString()
+                }));
+                
+                // Show immediate feedback
+                this.addStatusMessage('🚨 Emergency stop requested!', 'warning');
+            }
+        }
+        
+        // Global functions for HTML onclick handlers
+        let chatOverlay;
+        
+        function toggleMinimized() {
+            chatOverlay.toggleMinimized();
+        }
+        
+        function emergencyStop() {
+            chatOverlay.emergencyStop();
+        }
+        
+        function handleKeyPress(event) {
+            if (event.key === 'Enter') {
+                chatOverlay.sendMessage();
+            }
+        }
+        
+        function sendMessage() {
+            chatOverlay.sendMessage();
+        }
+        
+        // Initialize when page loads
+        document.addEventListener('DOMContentLoaded', () => {
+            chatOverlay = new AgentChatOverlay();
+        });
+    </script>
+</body>
+</html>

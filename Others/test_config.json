@@ -1,0 +1,42 @@
+{
+    "test_page": {
+        "url": "file:///Users/segevbin/Desktop/SensAI/Aiayer/test_automation.html",
+        "load_timeout": 3
+    },
+    "mouse": {
+        "movement_speed": 0.5,
+        "click_delay": 0.3
+    },
+    "keyboard": {
+        "typing_speed": 0.1,
+        "shortcut_delay": 0.5
+    },
+    "form_data": {
+        "name": "John Doe",
+        "email": "john@example.com",
+        "phone": "+1-555-0123",
+        "country": "United States",
+        "message": "This is a test message from the AI agent automation system."
+    },
+    "test_targets": {
+        "click_positions": [
+            {"name": "Target 1", "x": 300, "y": 600},
+            {"name": "Target 2", "x": 500, "y": 600},
+            {"name": "Target 3", "x": 700, "y": 600}
+        ]
+    },
+    "retry": {
+        "max_attempts": 3,
+        "delay": 1.0
+    },
+    "screenshots": {
+        "enabled": true,
+        "directory": "test_screenshots",
+        "on_failure_only": true
+    },
+    "logging": {
+        "level": "INFO",
+        "file": "test_automation.log",
+        "format": "%(asctime)s - %(levelname)s - %(message)s"
+    }
+} 

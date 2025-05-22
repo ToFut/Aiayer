@@ -1,0 +1,1348 @@
+{
+  "timestamp": "2025-05-20T19:13:22.866585",
+  "processes": [
+    {
+      "pid": 1,
+      "name": "launchd",
+      "user": "root"
+    },
+    {
+      "pid": 301,
+      "name": "logd",
+      "user": "root"
+    },
+    {
+      "pid": 303,
+      "name": "UserEventAgent",
+      "user": "root"
+    },
+    {
+      "pid": 305,
+      "name": "uninstalld",
+      "user": "root"
+    },
+    {
+      "pid": 306,
+      "name": "fseventsd",
+      "user": "root"
+    },
+    {
+      "pid": 307,
+      "name": "mediaremoted",
+      "user": "root"
+    },
+    {
+      "pid": 310,
+      "name": "systemstats",
+      "user": "root"
+    },
+    {
+      "pid": 313,
+      "name": "configd",
+      "user": "root"
+    },
+    {
+      "pid": 315,
+      "name": "powerd",
+      "user": "root"
+    },
+    {
+      "pid": 316,
+      "name": "IOMFB_bics_daemo",
+      "user": "root"
+    },
+    {
+      "pid": 321,
+      "name": "remoted",
+      "user": "root"
+    },
+    {
+      "pid": 326,
+      "name": "watchdogd",
+      "user": "root"
+    },
+    {
+      "pid": 330,
+      "name": "mds",
+      "user": "root"
+    },
+    {
+      "pid": 332,
+      "name": "kernelmanagerd",
+      "user": "root"
+    },
+    {
+      "pid": 333,
+      "name": "diskarbitrationd",
+      "user": "root"
+    },
+    {
+      "pid": 337,
+      "name": "syslogd",
+      "user": "root"
+    },
+    {
+      "pid": 340,
+      "name": "thermalmonitord",
+      "user": "root"
+    },
+    {
+      "pid": 341,
+      "name": "opendirectoryd",
+      "user": "root"
+    },
+    {
+      "pid": 342,
+      "name": "apsd",
+      "user": "root"
+    },
+    {
+      "pid": 343,
+      "name": "launchservicesd",
+      "user": "root"
+    },
+    {
+      "pid": 344,
+      "name": "timed",
+      "user": "_timed"
+    },
+    {
+      "pid": 345,
+      "name": "usbmuxd",
+      "user": "_usbmuxd"
+    },
+    {
+      "pid": 346,
+      "name": "securityd",
+      "user": "root"
+    },
+    {
+      "pid": 348,
+      "name": "locationd",
+      "user": "_locationd"
+    },
+    {
+      "pid": 350,
+      "name": "autofsd",
+      "user": "root"
+    },
+    {
+      "pid": 351,
+      "name": "dasd",
+      "user": "root"
+    },
+    {
+      "pid": 353,
+      "name": "distnoted",
+      "user": "_distnote"
+    },
+    {
+      "pid": 357,
+      "name": "logind",
+      "user": "root"
+    },
+    {
+      "pid": 358,
+      "name": "revisiond",
+      "user": "root"
+    },
+    {
+      "pid": 359,
+      "name": "KernelEventAgent",
+      "user": "root"
+    },
+    {
+      "pid": 363,
+      "name": "notifyd",
+      "user": "root"
+    },
+    {
+      "pid": 365,
+      "name": "corebrightnessd",
+      "user": "root"
+    },
+    {
+      "pid": 366,
+      "name": "AirPlayXPCHelper",
+      "user": "root"
+    },
+    {
+      "pid": 367,
+      "name": "com.apple.cmio.r",
+      "user": "root"
+    },
+    {
+      "pid": 369,
+      "name": "WindowServer",
+      "user": "root"
+    },
+    {
+      "pid": 370,
+      "name": "cfprefsd",
+      "user": "root"
+    },
+    {
+      "pid": 371,
+      "name": "tccd",
+      "user": "root"
+    },
+    {
+      "pid": 373,
+      "name": "lsd",
+      "user": "root"
+    },
+    {
+      "pid": 374,
+      "name": "loginwindow",
+      "user": "root"
+    },
+    {
+      "pid": 375,
+      "name": "contextstored",
+      "user": "root"
+    },
+    {
+      "pid": 376,
+      "name": "coreservicesd",
+      "user": "root"
+    },
+    {
+      "pid": 386,
+      "name": "runningboardd",
+      "user": "root"
+    },
+    {
+      "pid": 408,
+      "name": "analyticsd",
+      "user": "_analyticsd"
+    },
+    {
+      "pid": 409,
+      "name": "coreaudiod",
+      "user": "_coreaudiod"
+    },
+    {
+      "pid": 412,
+      "name": "trustd",
+      "user": "_trustd"
+    },
+    {
+      "pid": 417,
+      "name": "apfsd",
+      "user": "root"
+    },
+    {
+      "pid": 418,
+      "name": "nsurlsessiond",
+      "user": "_nsurlsessiond"
+    },
+    {
+      "pid": 419,
+      "name": "airportd",
+      "user": "root"
+    },
+    {
+      "pid": 429,
+      "name": "distnoted",
+      "user": "root"
+    },
+    {
+      "pid": 434,
+      "name": "authd",
+      "user": "root"
+    }
+  ],
+  "active_apps": [
+    {
+      "name": "Cursor Helper (Plugin): extension-host [21-8]",
+      "type": "application"
+    },
+    {
+      "name": "AirPlayXPCHelper",
+      "type": "application"
+    },
+    {
+      "name": "Google Chrome Helper",
+      "type": "browser"
+    },
+    {
+      "name": "adid",
+      "type": "application"
+    },
+    {
+      "name": "WiFiAgent",
+      "type": "application"
+    },
+    {
+      "name": "universalaccessd",
+      "type": "application"
+    },
+    {
+      "name": "coreaudiod",
+      "type": "application"
+    },
+    {
+      "name": "launchservicesd",
+      "type": "application"
+    },
+    {
+      "name": "loginwindow",
+      "type": "application"
+    },
+    {
+      "name": "cloudphotod",
+      "type": "application"
+    },
+    {
+      "name": "ctkd",
+      "type": "application"
+    },
+    {
+      "name": "PowerChime",
+      "type": "application"
+    },
+    {
+      "name": "Google Chrome",
+      "type": "browser"
+    },
+    {
+      "name": "Spotlight",
+      "type": "application"
+    },
+    {
+      "name": "SystemUIServer",
+      "type": "application"
+    },
+    {
+      "name": "wifivelocityd",
+      "type": "application"
+    },
+    {
+      "name": "recentsd",
+      "type": "application"
+    },
+    {
+      "name": "neagent",
+      "type": "application"
+    },
+    {
+      "name": "triald",
+      "type": "application"
+    },
+    {
+      "name": "com.apple.geod",
+      "type": "application"
+    },
+    {
+      "name": "SiriNCService",
+      "type": "application"
+    },
+    {
+      "name": "dasd",
+      "type": "application"
+    },
+    {
+      "name": "mdbulkimport",
+      "type": "application"
+    },
+    {
+      "name": "cloudd",
+      "type": "application"
+    },
+    {
+      "name": "coreduetd",
+      "type": "application"
+    },
+    {
+      "name": "Siri",
+      "type": "application"
+    },
+    {
+      "name": "reversetemplated",
+      "type": "application"
+    },
+    {
+      "name": "UserNotificationCenter",
+      "type": "application"
+    },
+    {
+      "name": "avconferenced",
+      "type": "application"
+    },
+    {
+      "name": "systemstats",
+      "type": "application"
+    },
+    {
+      "name": "calaccessd",
+      "type": "application"
+    },
+    {
+      "name": "ShipIt",
+      "type": "application"
+    },
+    {
+      "name": "tccd",
+      "type": "application"
+    },
+    {
+      "name": "SimulatorTrampoline",
+      "type": "application"
+    },
+    {
+      "name": "gamepolicyd",
+      "type": "application"
+    },
+    {
+      "name": "homed",
+      "type": "application"
+    },
+    {
+      "name": "audioclocksyncd",
+      "type": "application"
+    },
+    {
+      "name": "Cursor Helper (Renderer)",
+      "type": "application"
+    },
+    {
+      "name": "UVCAssistant",
+      "type": "application"
+    },
+    {
+      "name": "PAH_Extension",
+      "type": "application"
+    },
+    {
+      "name": "osanalyticshelpe",
+      "type": "application"
+    },
+    {
+      "name": "System Events",
+      "type": "application"
+    },
+    {
+      "name": "sleep",
+      "type": "application"
+    },
+    {
+      "name": "containermanager",
+      "type": "application"
+    },
+    {
+      "name": "logd_reporter",
+      "type": "application"
+    },
+    {
+      "name": "simdiskimaged",
+      "type": "application"
+    },
+    {
+      "name": "com.apple.CodeSi",
+      "type": "development"
+    },
+    {
+      "name": "usernotificationsd",
+      "type": "application"
+    },
+    {
+      "name": "photolibraryd",
+      "type": "application"
+    },
+    {
+      "name": "Microsoft Bing for Safari Extension",
+      "type": "browser"
+    },
+    {
+      "name": "mDNSResponderHel",
+      "type": "application"
+    },
+    {
+      "name": "securityd",
+      "type": "application"
+    },
+    {
+      "name": "analyticsd",
+      "type": "application"
+    },
+    {
+      "name": "replayd",
+      "type": "application"
+    },
+    {
+      "name": "apfsd",
+      "type": "application"
+    },
+    {
+      "name": "automountd",
+      "type": "application"
+    },
+    {
+      "name": "authd",
+      "type": "application"
+    },
+    {
+      "name": "IMDPersistenceAgent",
+      "type": "application"
+    },
+    {
+      "name": "timed",
+      "type": "application"
+    },
+    {
+      "name": "logind",
+      "type": "application"
+    },
+    {
+      "name": "IntelligencePlatformComputeService",
+      "type": "application"
+    },
+    {
+      "name": "com.apple.Safari.History",
+      "type": "browser"
+    },
+    {
+      "name": "mDNSResponder",
+      "type": "application"
+    },
+    {
+      "name": "donotdisturbd",
+      "type": "application"
+    },
+    {
+      "name": "mediaremoted",
+      "type": "application"
+    },
+    {
+      "name": "AXVisualSupportAgent",
+      "type": "application"
+    },
+    {
+      "name": "SafariBookmarksSyncAgent",
+      "type": "browser"
+    },
+    {
+      "name": "ai-assistant-overlay",
+      "type": "application"
+    },
+    {
+      "name": "useractivityd",
+      "type": "application"
+    },
+    {
+      "name": "netbiosd",
+      "type": "application"
+    },
+    {
+      "name": "IMAutomaticHistoryDeletionAgent",
+      "type": "application"
+    },
+    {
+      "name": "mobileassetd",
+      "type": "application"
+    },
+    {
+      "name": "wifianalyticsd",
+      "type": "application"
+    },
+    {
+      "name": "sharedfilelistd",
+      "type": "application"
+    },
+    {
+      "name": "remoted",
+      "type": "application"
+    },
+    {
+      "name": "Keychain Circle Notification",
+      "type": "application"
+    },
+    {
+      "name": "uninstalld",
+      "type": "application"
+    },
+    {
+      "name": "cfprefsd",
+      "type": "application"
+    },
+    {
+      "name": "UserEventAgent",
+      "type": "application"
+    },
+    {
+      "name": "airportd",
+      "type": "application"
+    },
+    {
+      "name": "ollama",
+      "type": "application"
+    },
+    {
+      "name": "WindowManager",
+      "type": "application"
+    },
+    {
+      "name": "CrashReporterSup",
+      "type": "application"
+    },
+    {
+      "name": "KernelEventAgent",
+      "type": "application"
+    },
+    {
+      "name": "passd",
+      "type": "application"
+    },
+    {
+      "name": "assistantd",
+      "type": "application"
+    },
+    {
+      "name": "familycircled",
+      "type": "application"
+    },
+    {
+      "name": "systemstatusd",
+      "type": "application"
+    },
+    {
+      "name": "icdd",
+      "type": "application"
+    },
+    {
+      "name": "com.apple.WebKit.GPU",
+      "type": "application"
+    },
+    {
+      "name": "apsd",
+      "type": "application"
+    },
+    {
+      "name": "com.apple.cmio.r",
+      "type": "application"
+    },
+    {
+      "name": "syspolicyd",
+      "type": "application"
+    },
+    {
+      "name": "com.apple.CoreSimulator.CoreSimulatorService",
+      "type": "application"
+    },
+    {
+      "name": "secinitd",
+      "type": "application"
+    },
+    {
+      "name": "com.apple.AppleU",
+      "type": "application"
+    },
+    {
+      "name": "Cursor",
+      "type": "application"
+    },
+    {
+      "name": "mediaremoteagent",
+      "type": "application"
+    },
+    {
+      "name": "watchdogd",
+      "type": "application"
+    },
+    {
+      "name": "contextstored",
+      "type": "application"
+    },
+    {
+      "name": "secd",
+      "type": "application"
+    },
+    {
+      "name": "bird",
+      "type": "application"
+    },
+    {
+      "name": "WindowServer",
+      "type": "application"
+    },
+    {
+      "name": "rapportd",
+      "type": "application"
+    },
+    {
+      "name": "esbuild",
+      "type": "application"
+    },
+    {
+      "name": "biomed",
+      "type": "application"
+    },
+    {
+      "name": "SubmitDiagInfo",
+      "type": "application"
+    },
+    {
+      "name": "Microsoft SharePoint",
+      "type": "application"
+    },
+    {
+      "name": "appleeventsd",
+      "type": "application"
+    },
+    {
+      "name": "imagent",
+      "type": "application"
+    },
+    {
+      "name": "fileproviderd",
+      "type": "application"
+    },
+    {
+      "name": "online-auth-agen",
+      "type": "application"
+    },
+    {
+      "name": "SpeechSynthesisServerXPC",
+      "type": "application"
+    },
+    {
+      "name": "com.apple.hiservices-xpcservice",
+      "type": "application"
+    },
+    {
+      "name": "ContextStoreAgent",
+      "type": "application"
+    },
+    {
+      "name": "sociallayerd",
+      "type": "application"
+    },
+    {
+      "name": "intelligentroutingd",
+      "type": "application"
+    },
+    {
+      "name": "Cursor Helper",
+      "type": "application"
+    },
+    {
+      "name": "coreservicesd",
+      "type": "application"
+    },
+    {
+      "name": "Safari",
+      "type": "browser"
+    },
+    {
+      "name": "nearbyd",
+      "type": "application"
+    },
+    {
+      "name": "Cursor Helper (P",
+      "type": "application"
+    },
+    {
+      "name": "CursorUIViewService",
+      "type": "application"
+    },
+    {
+      "name": "MessagesBlastDoorService",
+      "type": "application"
+    },
+    {
+      "name": "distnoted",
+      "type": "application"
+    },
+    {
+      "name": "sharingd",
+      "type": "application"
+    },
+    {
+      "name": "audioanalyticsd",
+      "type": "application"
+    },
+    {
+      "name": "diskimagesiod",
+      "type": "application"
+    },
+    {
+      "name": "filecoordination",
+      "type": "application"
+    },
+    {
+      "name": "storedownloadd",
+      "type": "application"
+    },
+    {
+      "name": "ScopedBookmarkAgent",
+      "type": "application"
+    },
+    {
+      "name": "mdwrite",
+      "type": "application"
+    },
+    {
+      "name": "fairplayd",
+      "type": "application"
+    },
+    {
+      "name": "WallpaperVideoExtension",
+      "type": "application"
+    },
+    {
+      "name": "ctkahp",
+      "type": "application"
+    },
+    {
+      "name": "nsurlsessiond",
+      "type": "application"
+    },
+    {
+      "name": "Cursor Helper (GPU)",
+      "type": "application"
+    },
+    {
+      "name": "contactsd",
+      "type": "application"
+    },
+    {
+      "name": "corespotlightd",
+      "type": "application"
+    },
+    {
+      "name": "knowledge-agent",
+      "type": "browser"
+    },
+    {
+      "name": "fseventsd",
+      "type": "application"
+    },
+    {
+      "name": "pboard",
+      "type": "application"
+    },
+    {
+      "name": "ViewBridgeAuxiliary",
+      "type": "application"
+    },
+    {
+      "name": "photoanalysisd",
+      "type": "application"
+    },
+    {
+      "name": "iconservicesd",
+      "type": "application"
+    },
+    {
+      "name": "revisiond",
+      "type": "application"
+    },
+    {
+      "name": "AMPDeviceDiscoveryAgent",
+      "type": "application"
+    },
+    {
+      "name": "suggestd",
+      "type": "application"
+    },
+    {
+      "name": "com.apple.Driver",
+      "type": "application"
+    },
+    {
+      "name": "UIKitSystem",
+      "type": "application"
+    },
+    {
+      "name": "appleh13camerad",
+      "type": "application"
+    },
+    {
+      "name": "mdworker_shared",
+      "type": "application"
+    },
+    {
+      "name": "trustd",
+      "type": "application"
+    },
+    {
+      "name": "com.apple.WebKit.Networking",
+      "type": "application"
+    },
+    {
+      "name": "routined",
+      "type": "application"
+    },
+    {
+      "name": "bash",
+      "type": "application"
+    },
+    {
+      "name": "logd",
+      "type": "application"
+    },
+    {
+      "name": "mds_stores",
+      "type": "application"
+    },
+    {
+      "name": "symptomsd",
+      "type": "application"
+    },
+    {
+      "name": "StatusKitAgent",
+      "type": "application"
+    },
+    {
+      "name": "PlugInLibrarySer",
+      "type": "application"
+    },
+    {
+      "name": "networkserviceproxy",
+      "type": "application"
+    },
+    {
+      "name": "runningboardd",
+      "type": "application"
+    },
+    {
+      "name": "WallpaperAgent",
+      "type": "application"
+    },
+    {
+      "name": "IOUserBluetoothS",
+      "type": "application"
+    },
+    {
+      "name": "syncdefaultsd",
+      "type": "application"
+    },
+    {
+      "name": "PerfPowerService",
+      "type": "application"
+    },
+    {
+      "name": "contentlinkingd",
+      "type": "application"
+    },
+    {
+      "name": "cdpd",
+      "type": "application"
+    },
+    {
+      "name": "CategoriesService",
+      "type": "application"
+    },
+    {
+      "name": "com.apple.dock.extra",
+      "type": "application"
+    },
+    {
+      "name": "idleassetsd",
+      "type": "application"
+    },
+    {
+      "name": "aned",
+      "type": "application"
+    },
+    {
+      "name": "ManagedSettingsAgent",
+      "type": "application"
+    },
+    {
+      "name": "locationd",
+      "type": "application"
+    },
+    {
+      "name": "TextInputMenuAgent",
+      "type": "application"
+    },
+    {
+      "name": "rtcreportingd",
+      "type": "application"
+    },
+    {
+      "name": "AccessibilityVisualsAgent",
+      "type": "application"
+    },
+    {
+      "name": "SidecarRelay",
+      "type": "application"
+    },
+    {
+      "name": "proactived",
+      "type": "application"
+    },
+    {
+      "name": "node",
+      "type": "application"
+    },
+    {
+      "name": "progressd",
+      "type": "application"
+    },
+    {
+      "name": "nehelper",
+      "type": "application"
+    },
+    {
+      "name": "diskarbitrationd",
+      "type": "application"
+    },
+    {
+      "name": "UniversalControl",
+      "type": "application"
+    },
+    {
+      "name": "corespeechd",
+      "type": "application"
+    },
+    {
+      "name": "FolderActionsDispatcher",
+      "type": "application"
+    },
+    {
+      "name": "commerce",
+      "type": "application"
+    },
+    {
+      "name": "exchangesyncd",
+      "type": "application"
+    },
+    {
+      "name": "autofsd",
+      "type": "application"
+    },
+    {
+      "name": "securityd_servic",
+      "type": "application"
+    },
+    {
+      "name": "NotificationCenter",
+      "type": "application"
+    },
+    {
+      "name": "com.apple.WebKit.WebContent",
+      "type": "application"
+    },
+    {
+      "name": "ContinuityCaptureAgent",
+      "type": "application"
+    },
+    {
+      "name": "storagekitd",
+      "type": "application"
+    },
+    {
+      "name": "syslogd",
+      "type": "application"
+    },
+    {
+      "name": "chronod",
+      "type": "application"
+    },
+    {
+      "name": "accountsd",
+      "type": "application"
+    },
+    {
+      "name": "kernelmanagerd",
+      "type": "application"
+    },
+    {
+      "name": "CoreServicesUIAgent",
+      "type": "application"
+    },
+    {
+      "name": "diagnostics_agent",
+      "type": "application"
+    },
+    {
+      "name": "BTLEServer",
+      "type": "application"
+    },
+    {
+      "name": "configd",
+      "type": "application"
+    },
+    {
+      "name": "Cursor Helper (Plugin)",
+      "type": "application"
+    },
+    {
+      "name": "IOMFB_bics_daemo",
+      "type": "application"
+    },
+    {
+      "name": "usernoted",
+      "type": "application"
+    },
+    {
+      "name": "ContextService",
+      "type": "application"
+    },
+    {
+      "name": "sandboxd",
+      "type": "application"
+    },
+    {
+      "name": "sysmond",
+      "type": "application"
+    },
+    {
+      "name": "AirPlayUIAgent",
+      "type": "application"
+    },
+    {
+      "name": "notifyd",
+      "type": "application"
+    },
+    {
+      "name": "awdd",
+      "type": "application"
+    },
+    {
+      "name": "identityservicesd",
+      "type": "application"
+    },
+    {
+      "name": "UsageTrackingAgent",
+      "type": "application"
+    },
+    {
+      "name": "fontd",
+      "type": "application"
+    },
+    {
+      "name": "keyboardservicesd",
+      "type": "application"
+    },
+    {
+      "name": "Dock",
+      "type": "application"
+    },
+    {
+      "name": "transparencyd",
+      "type": "application"
+    },
+    {
+      "name": "Finder",
+      "type": "application"
+    },
+    {
+      "name": "mediaanalysisd",
+      "type": "application"
+    },
+    {
+      "name": "wifip2pd",
+      "type": "application"
+    },
+    {
+      "name": "BiomeAgent",
+      "type": "application"
+    },
+    {
+      "name": "powerd",
+      "type": "application"
+    },
+    {
+      "name": "suhelperd",
+      "type": "application"
+    },
+    {
+      "name": "searchpartyd",
+      "type": "application"
+    },
+    {
+      "name": "installcoordinat",
+      "type": "application"
+    },
+    {
+      "name": "searchpartyuseragent",
+      "type": "application"
+    },
+    {
+      "name": "BTLEServerAgent",
+      "type": "application"
+    },
+    {
+      "name": "amfid",
+      "type": "application"
+    },
+    {
+      "name": "WirelessRadioMan",
+      "type": "application"
+    },
+    {
+      "name": "lockoutagent",
+      "type": "application"
+    },
+    {
+      "name": "coreauthd",
+      "type": "application"
+    },
+    {
+      "name": "imklaunchagent",
+      "type": "application"
+    },
+    {
+      "name": "ospredictiond",
+      "type": "application"
+    },
+    {
+      "name": "SimLaunchHost.arm64",
+      "type": "application"
+    },
+    {
+      "name": "fbahelperd",
+      "type": "application"
+    },
+    {
+      "name": "Google Chrome Helper (Plugin)",
+      "type": "browser"
+    },
+    {
+      "name": "Firewall",
+      "type": "application"
+    },
+    {
+      "name": "webinspectord",
+      "type": "application"
+    },
+    {
+      "name": "chrome_crashpad_handler",
+      "type": "browser"
+    },
+    {
+      "name": "seserviced",
+      "type": "application"
+    },
+    {
+      "name": "CommCenter",
+      "type": "application"
+    },
+    {
+      "name": "extensionkitservice",
+      "type": "application"
+    },
+    {
+      "name": "launchd",
+      "type": "application"
+    },
+    {
+      "name": "TrustedPeersHelper",
+      "type": "application"
+    },
+    {
+      "name": "nfcd",
+      "type": "application"
+    },
+    {
+      "name": "corebrightnessd",
+      "type": "application"
+    },
+    {
+      "name": "ControlCenter",
+      "type": "application"
+    },
+    {
+      "name": "OneDrive",
+      "type": "application"
+    },
+    {
+      "name": "audiomxd",
+      "type": "application"
+    },
+    {
+      "name": "Google Chrome Helper (Renderer)",
+      "type": "browser"
+    },
+    {
+      "name": "iconservicesagent",
+      "type": "application"
+    },
+    {
+      "name": "remotepairingd",
+      "type": "application"
+    },
+    {
+      "name": "fontworker",
+      "type": "application"
+    },
+    {
+      "name": "bluetoothd",
+      "type": "application"
+    },
+    {
+      "name": "securityd_system",
+      "type": "application"
+    },
+    {
+      "name": "trustdFileHelper",
+      "type": "application"
+    },
+    {
+      "name": "opendirectoryd",
+      "type": "application"
+    },
+    {
+      "name": "containermanagerd",
+      "type": "application"
+    },
+    {
+      "name": "usbmuxd",
+      "type": "application"
+    },
+    {
+      "name": "Google Chrome Helper (GPU)",
+      "type": "browser"
+    },
+    {
+      "name": "Python",
+      "type": "application"
+    },
+    {
+      "name": "audioaccessoryd",
+      "type": "application"
+    },
+    {
+      "name": "oahd",
+      "type": "application"
+    },
+    {
+      "name": "ScreenTimeAgent",
+      "type": "application"
+    },
+    {
+      "name": "socketfilterfw",
+      "type": "application"
+    },
+    {
+      "name": "CVMServer",
+      "type": "application"
+    },
+    {
+      "name": "ScreenTimeWidgetExtension",
+      "type": "application"
+    },
+    {
+      "name": "StandaloneUpdate",
+      "type": "application"
+    },
+    {
+      "name": "thermalmonitord",
+      "type": "application"
+    },
+    {
+      "name": "softwareupdated",
+      "type": "application"
+    },
+    {
+      "name": "com.apple.SiriTTSService.TrialProxy",
+      "type": "application"
+    }
+  ],
+  "active_window": "Unknown Window",
+  "active_app": "Unknown Application",
+  "is_significant": true
+}

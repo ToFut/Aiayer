@@ -1,0 +1,82 @@
+{
+  "timestamp": "2025-05-21T22:15:01.740348",
+  "components": {
+    "websocket_server": {
+      "port": 8765,
+      "status": "healthy",
+      "last_check": 1747890900.603193,
+      "last_result": {
+        "status": "healthy",
+        "response": true
+      }
+    },
+    "backend_server": {
+      "port": 8767,
+      "status": "down",
+      "last_check": 1747890900.603193,
+      "last_result": {
+        "status": "down",
+        "error": "Port not in use"
+      }
+    },
+    "llm_service": {
+      "port": 8766,
+      "status": "down",
+      "last_check": 1747890900.603193,
+      "last_result": {
+        "status": "down",
+        "error": "Port not in use"
+      }
+    },
+    "overlay_server": {
+      "port": 8080,
+      "status": "healthy",
+      "last_check": 1747890900.603193,
+      "last_result": {
+        "status": "healthy",
+        "response": true
+      }
+    }
+  },
+  "sensors": {
+    "process_sensor": {
+      "status": "running",
+      "last_data": null,
+      "last_result": {
+        "status": "running",
+        "pids": [
+          "25626"
+        ],
+        "count": 1
+      }
+    },
+    "screen_sensor": {
+      "status": "stopped",
+      "last_data": null,
+      "last_result": {
+        "status": "stopped",
+        "pids": [],
+        "count": 0
+      }
+    },
+    "memory_system": {
+      "status": "stopped",
+      "last_data": null,
+      "last_result": {
+        "status": "stopped",
+        "pids": [],
+        "count": 0
+      }
+    }
+  },
+  "system_metrics": {
+    "cpu_percent": 30.2,
+    "memory_percent": 77.6,
+    "disk_usage": 2.93,
+    "uptime_hours": 48.17,
+    "component_count": 4,
+    "healthy_components": 2,
+    "health_ratio": 50.0
+  },
+  "overall_health": "poor"
+}

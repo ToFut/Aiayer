@@ -63,7 +63,7 @@ async function runTests() {
   console.log("Testing WebSocket connections...");
   
   const urls = [
-    "ws://localhost:8768",
+    "ws://localhost:8765",
     "ws://localhost:8770"
   ];
   

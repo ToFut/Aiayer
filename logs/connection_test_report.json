@@ -1,0 +1,48 @@
+{
+  "timestamp": "2025-05-21T21:03:24.371583",
+  "test_results": {
+    "port_availability": {
+      "websocket": true,
+      "bridge": true,
+      "backend": true,
+      "tauri_dev": false,
+      "vite_dev": false
+    },
+    "websocket_connections": {
+      "websocket_server": true,
+      "backend": false
+    },
+    "http_endpoints": {
+      "http://localhost:8767/health": false,
+      "http://localhost:8767/status": false,
+      "http://localhost:8766/health": false,
+      "http://localhost:8765/health": false
+    },
+    "file_permissions": {
+      "fixed_ws_8765.py": true,
+      "fixed_bridge_server_enhanced.py": true,
+      "simple_ws_server_8767.py": true,
+      "sensors/enhanced_fixed_process_sensor.py": true,
+      "sensors/enhanced_fixed_screen_sensor.py": true,
+      "direct_sensor_to_memory.py": true,
+      "llm_context_connector.py": true,
+      "memory/memory_state.json": true,
+      "memory/last_context.json": true
+    },
+    "process_status": {
+      "fixed_ws_8765.py": true,
+      "fixed_bridge_server_enhanced.py": true,
+      "simple_ws_server_8767.py": false,
+      "enhanced_fixed_process_sensor.py": true,
+      "enhanced_fixed_screen_sensor.py": true,
+      "direct_sensor_to_memory.py": true,
+      "llm_context_connector.py": true
+    },
+    "configuration_issues": [],
+    "memory_issues": [],
+    "llm_issues": []
+  },
+  "recommendations": [
+    "Start backend server process"
+  ]
+}

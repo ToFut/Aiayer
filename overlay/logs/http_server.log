@@ -1,0 +1,18 @@
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/Users/segevbin/.pyenv/versions/3.11.8/lib/python3.11/http/server.py", line 1313, in <module>
+    test(
+  File "/Users/segevbin/.pyenv/versions/3.11.8/lib/python3.11/http/server.py", line 1260, in test
+    with ServerClass(addr, HandlerClass) as httpd:
+         ^::1 - - [16/May/2025 15:15:15] code 404, message File not found
+::1 - - [16/May/2025 15:15:15] "GET /futuristic_overlay.html HTTP/1.1" 404 -
+::ffff:127.0.0.1 - - [18/May/2025 17:28:16] "GET / HTTP/1.1" 200 -
+::ffff:127.0.0.1 - - [18/May/2025 17:29:35] "GET / HTTP/1.1" 200 -
+::ffff:127.0.0.1 - - [18/May/2025 17:30:04] "GET / HTTP/1.1" 200 -
+::1 - - [18/May/2025 17:34:15] code 404, message File not found
+::1 - - [18/May/2025 17:34:15] "GET /eye_widget_overlay.html HTTP/1.1" 404 -
+::1 - - [18/May/2025 17:34:15] code 404, message File not found
+::1 - - [18/May/2025 17:34:15] "GET /apple-touch-icon-precomposed.png HTTP/1.1" 404 -
+::1 - - [18/May/2025 17:34:16] code 404, message File not found
+::1 - - [18/May/2025 17:34:16] "GET /apple-touch-icon.png HTTP/1.1" 404 -

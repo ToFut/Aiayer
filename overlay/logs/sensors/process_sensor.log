@@ -1,0 +1,24 @@
+2025-05-16 12:30:55,794 - process_sensor - INFO - Starting process sensor
+2025-05-16 12:30:55,796 - process_sensor - ERROR - Error running process sensor: 'list' object has no attribute 'get'
+2025-05-16 12:30:55,798 - process_sensor - ERROR - Traceback (most recent call last):
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/overlay/./fixed_process_sensor.py", line 212, in <module>
+    asyncio.run(run_sensor())
+  File "/Users/segevbin/.pyenv/versions/3.11.8/lib/python3.11/asyncio/runners.py", line 190, in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+  File "/Users/segevbin/.pyenv/versions/3.11.8/lib/python3.11/asyncio/runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/segevbin/.pyenv/versions/3.11.8/lib/python3.11/asyncio/base_events.py", line 654, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/overlay/./fixed_process_sensor.py", line 206, in run_sensor
+    await sensor.run()
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/overlay/./fixed_process_sensor.py", line 198, in run
+    self.last_processes = self.load_from_cache()
+                          ^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/overlay/./fixed_process_sensor.py", line 184, in load_from_cache
+    return cache_data.get("processes", [])
+           ^^^^^^^^^^^^^^
+AttributeError: 'list' object has no attribute 'get'
+

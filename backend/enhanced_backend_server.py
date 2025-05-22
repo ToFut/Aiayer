@@ -48,7 +48,7 @@ class EnhancedBackendServer:
             # Initialize memory system
             self.memory_system = MemorySystem()
             await self.memory_system.initialize()
-            logger.info("Memory system initialized")
+            logger.info("Memory system initialized and started")
             
             # Initialize LLM service
             self.llm_service = LLMService()

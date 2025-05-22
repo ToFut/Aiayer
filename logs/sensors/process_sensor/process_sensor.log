@@ -1,0 +1,1227 @@
+/Users/segevbin/Desktop/SensAI/Aiayer/sensors/enhanced_fixed_process_sensor.py:16: DeprecationWarning: websockets.client.WebSocketClientProtocol is deprecated
+  from websockets.client import WebSocketClientProtocol
+2025-05-21 23:17:16,458 - __main__ - INFO - Connected to bridge server
+2025-05-21 23:17:16,458 - __main__ - INFO - Received welcome: welcome
+2025-05-21 23:17:16,458 - __main__ - INFO - Sent registration message
+2025-05-21 23:17:16,459 - __main__ - INFO - Registration confirmed as process_sensor
+2025-05-21 23:17:16,729 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:17:21,935 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:17:25,491 - __main__ - WARNING - Received unexpected message type: llm_service_status
+2025-05-21 23:17:27,148 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:17:30,491 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:17:32,347 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:17:37,552 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:17:42,752 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:17:47,957 - __main__ - ERROR - Error sending process data: received 1000 (OK); then sent 1000 (OK)
+2025-05-21 23:17:47,957 - __main__ - INFO - Connection closed during main loop
+2025-05-21 23:17:47,957 - __main__ - INFO - Disconnected from bridge server
+2025-05-21 23:17:52,962 - __main__ - INFO - Connected to bridge server
+2025-05-21 23:17:52,962 - __main__ - INFO - Received welcome: welcome
+2025-05-21 23:17:52,963 - __main__ - INFO - Sent registration message
+2025-05-21 23:17:52,963 - __main__ - INFO - Registration confirmed as process_sensor
+2025-05-21 23:17:53,158 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:17:55,497 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:17:58,372 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:18:00,499 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:18:03,595 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:18:05,499 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:18:08,820 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:18:10,501 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:18:14,028 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:18:15,501 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:18:19,252 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:18:20,506 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:18:24,467 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:18:25,509 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:18:29,684 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:18:30,511 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:18:34,884 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:18:35,512 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:18:40,082 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:18:40,514 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:18:45,293 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:18:45,515 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:18:50,506 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:18:50,515 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:18:55,724 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:18:55,724 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:19:00,520 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:19:00,942 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:19:05,523 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:19:06,156 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:19:10,525 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:19:11,395 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:19:15,525 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:19:16,617 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:19:20,526 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:19:21,831 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:19:25,528 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:19:27,047 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:19:30,531 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:19:32,262 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:19:35,532 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:19:37,479 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:19:40,535 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:19:42,694 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:19:45,537 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:19:47,909 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:19:50,539 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:19:53,157 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:19:55,540 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:19:58,376 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:20:00,543 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:20:03,598 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:20:05,544 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:20:08,813 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:20:10,546 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:20:14,037 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:20:15,548 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:20:19,268 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:20:20,551 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:20:24,491 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:20:25,552 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:20:29,706 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:20:30,554 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:20:34,916 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:20:35,556 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:20:40,141 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:20:40,558 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:20:45,356 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:20:45,561 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:20:50,564 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:20:50,564 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:20:55,564 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:20:55,778 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:21:00,566 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:21:00,991 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:21:05,569 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:21:06,206 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:21:10,572 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:21:11,415 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:21:15,575 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:21:16,633 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:21:20,578 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:21:21,847 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:21:25,581 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:21:27,059 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:21:30,584 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:21:32,284 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:21:35,587 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:21:37,501 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:21:40,590 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:21:42,725 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:21:45,591 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:21:47,939 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:21:50,594 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:21:53,152 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:21:55,597 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:21:58,369 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:22:00,599 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:22:03,580 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:22:05,602 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:22:08,793 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:22:10,604 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:22:13,991 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:22:15,608 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:22:19,216 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:22:20,610 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:22:24,429 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:22:25,612 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:22:29,651 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:22:30,614 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:22:34,865 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:22:35,615 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:22:40,045 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:22:40,618 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:22:45,245 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:22:45,620 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:22:50,458 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:22:50,622 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:22:55,669 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:22:55,670 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:23:00,626 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:23:00,883 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:23:05,631 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:23:06,111 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:23:10,634 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:23:11,334 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:23:15,636 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:23:16,548 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:23:20,638 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:23:21,766 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:23:25,642 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:23:26,979 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:23:30,645 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:23:32,192 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:23:35,648 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:23:37,403 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:23:40,650 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:23:42,605 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:23:45,650 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:23:47,819 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:23:50,653 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:23:53,040 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:23:55,656 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:23:58,254 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:24:00,658 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:24:03,468 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:24:05,658 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:24:08,686 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:24:10,662 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:24:13,941 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:24:15,667 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:24:19,176 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:24:20,668 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:24:24,394 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:24:25,671 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:24:29,611 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:24:30,672 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:24:34,825 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:24:35,675 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:24:40,045 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:24:40,676 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:24:45,259 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:24:45,680 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:24:50,472 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:24:50,683 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:24:55,672 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:24:55,684 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:25:00,891 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:25:00,892 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:25:05,692 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:25:06,108 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:25:10,695 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:25:11,326 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:25:15,699 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:25:16,546 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:25:20,703 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:25:21,757 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:25:25,706 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:25:26,978 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:25:30,710 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:25:32,201 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:25:35,712 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:25:37,413 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:25:40,716 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:25:42,625 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:25:45,720 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:25:47,838 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:25:50,723 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:25:53,056 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:25:55,727 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:25:58,253 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:26:00,730 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:26:03,471 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:26:05,734 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:26:08,689 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:26:10,735 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:26:13,940 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:26:15,737 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:26:19,144 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:26:20,739 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:26:24,344 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:26:25,741 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:26:29,528 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:26:30,743 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:26:34,742 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:26:35,744 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:26:39,958 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:26:40,745 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:26:45,174 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:26:45,750 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:26:50,412 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:26:50,754 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:26:55,628 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:26:55,758 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:27:00,849 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:27:00,849 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:27:05,764 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:27:06,059 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:27:10,766 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:27:11,275 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:27:15,769 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:27:16,487 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:27:20,909 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:27:21,726 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:27:25,863 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:27:26,949 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:27:30,867 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:27:32,187 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:27:35,871 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:27:37,396 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:27:40,875 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:27:42,620 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:27:45,878 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:27:47,841 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:27:50,880 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:27:53,059 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:27:55,884 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:27:58,276 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:28:00,888 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:28:03,499 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:28:05,890 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:28:08,719 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:28:10,894 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:28:13,932 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:28:15,896 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:28:19,174 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:28:20,899 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:28:24,393 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:28:25,902 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:28:29,607 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:28:30,904 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:28:34,830 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:28:35,902 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:28:40,032 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:28:40,895 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:28:45,239 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:28:45,892 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:28:50,446 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:28:50,889 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:28:55,832 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:28:55,889 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:29:01,049 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:29:01,049 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:29:05,891 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:29:06,263 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:29:10,893 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:29:11,492 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:29:15,895 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:29:16,717 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:29:20,896 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:29:21,941 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:29:25,899 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:29:27,146 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:29:30,900 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:29:32,361 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:29:35,903 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:29:37,561 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:29:40,907 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:29:42,766 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:29:45,909 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:29:47,982 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:29:50,913 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:29:53,193 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:29:55,913 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:29:58,405 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:30:00,918 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:30:03,617 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:30:05,921 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:30:08,836 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:30:10,924 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:30:14,051 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:30:15,928 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:30:19,277 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:30:20,932 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:30:24,497 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:30:25,936 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:30:29,721 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:30:30,937 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:30:34,925 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:30:35,941 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:30:40,135 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:30:40,942 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:30:45,346 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:30:45,943 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:30:50,564 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:30:50,946 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:30:55,775 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:30:55,950 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:31:00,995 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:31:00,995 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:31:05,954 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:31:06,212 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:31:10,958 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:31:11,428 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:31:15,961 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:31:16,642 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:31:20,965 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:31:21,870 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:31:25,969 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:31:27,086 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:31:30,971 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:31:32,290 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:31:35,974 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:31:37,508 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:31:40,975 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:31:42,722 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:31:45,978 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:31:47,937 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:31:50,980 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:31:53,151 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:31:55,983 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:31:58,366 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:32:00,989 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:32:03,585 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:32:05,989 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:32:08,803 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:32:10,992 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:32:14,012 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:32:15,995 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:32:19,222 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:32:21,000 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:32:24,446 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:32:26,003 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:32:29,656 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:32:31,004 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:32:34,869 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:32:36,006 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:32:40,083 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:32:41,008 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:32:45,297 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:32:46,009 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:32:50,513 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:32:51,013 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:32:55,733 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:32:56,014 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:33:00,951 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:33:01,015 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:33:06,164 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:33:06,164 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:33:11,020 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:33:11,384 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:33:16,025 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:33:16,607 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:33:21,028 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:33:21,825 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:33:26,032 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:33:27,029 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:33:31,037 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:33:32,235 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:33:36,040 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:33:37,435 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:33:41,043 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:33:42,644 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:33:46,046 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:33:47,856 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:33:51,052 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:33:53,067 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:33:56,055 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:33:58,315 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:34:01,058 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:34:04,256 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:34:06,055 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:34:09,459 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:34:11,056 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:34:14,689 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:34:16,057 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:34:19,940 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:34:25,146 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:34:30,345 - __main__ - ERROR - Error sending process data: received 1000 (OK); then sent 1000 (OK)
+2025-05-21 23:34:30,345 - __main__ - INFO - Connection closed during main loop
+2025-05-21 23:34:30,345 - __main__ - INFO - Disconnected from bridge server
+2025-05-21 23:34:35,351 - __main__ - INFO - Connected to bridge server
+2025-05-21 23:34:35,351 - __main__ - INFO - Received welcome: welcome
+2025-05-21 23:34:35,351 - __main__ - INFO - Sent registration message
+2025-05-21 23:34:35,352 - __main__ - INFO - Registration confirmed as process_sensor
+2025-05-21 23:34:35,563 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:34:36,063 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:34:40,781 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:34:41,065 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:34:45,986 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:34:46,066 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:34:51,184 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:34:51,185 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:34:56,071 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:34:56,399 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:35:01,072 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:35:01,603 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:35:06,074 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:35:06,835 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:35:11,078 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:35:12,058 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:35:16,090 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:35:17,501 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:35:21,089 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:35:22,726 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:35:26,090 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:35:27,951 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:35:31,091 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:35:33,208 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:35:36,091 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:35:38,435 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:35:41,093 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:35:44,067 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:35:46,095 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:35:49,321 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:35:51,097 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:35:54,546 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:35:56,102 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:35:59,811 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:36:01,101 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:36:05,020 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:36:06,109 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:36:10,281 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:36:11,108 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:36:15,507 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:36:16,110 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:36:20,759 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:36:21,114 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:36:26,198 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:36:26,199 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:36:31,119 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:36:31,403 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:36:36,119 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:36:36,603 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:36:41,121 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:36:41,802 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:36:46,123 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:36:47,008 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:36:52,222 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:36:54,766 - __main__ - WARNING - Received unexpected message type: llm_service_status
+2025-05-21 23:36:57,420 - __main__ - ERROR - Error sending process data: received 1000 (OK); then sent 1000 (OK)
+2025-05-21 23:36:57,420 - __main__ - INFO - Connection closed during main loop
+2025-05-21 23:36:57,420 - __main__ - INFO - Disconnected from bridge server
+2025-05-21 23:37:02,426 - __main__ - INFO - Connected to bridge server
+2025-05-21 23:37:02,426 - __main__ - INFO - Received welcome: welcome
+2025-05-21 23:37:02,426 - __main__ - INFO - Sent registration message
+2025-05-21 23:37:02,427 - __main__ - INFO - Registration confirmed as process_sensor
+2025-05-21 23:37:02,639 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:37:06,129 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:37:07,833 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:37:11,129 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:37:13,033 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:37:16,131 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:37:18,236 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:37:21,132 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:37:23,450 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:37:26,134 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:37:28,671 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:37:31,146 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:37:34,031 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:37:36,148 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:37:39,415 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:37:41,149 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:37:44,760 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:37:46,152 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:37:50,000 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:37:51,153 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:37:55,288 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:37:56,158 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:38:00,566 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:38:01,159 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:38:06,409 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:38:06,412 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:38:11,206 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:38:12,109 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:38:16,206 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:38:17,698 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:38:21,245 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:38:23,173 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:38:26,268 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:38:28,545 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:38:31,231 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:38:34,180 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:38:36,304 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:38:39,912 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:38:41,269 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:38:45,721 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:38:46,267 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:38:51,048 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:38:51,260 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:38:56,379 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:38:56,381 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:39:01,411 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:39:02,020 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:39:06,300 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:39:07,267 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:39:11,362 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:39:13,045 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:39:16,328 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:39:18,451 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:39:21,336 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:39:24,100 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:39:26,338 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:39:29,511 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:39:31,349 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:39:36,402 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:39:36,429 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:39:46,434 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:39:46,447 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:39:46,706 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:39:56,616 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:39:56,623 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:40:06,923 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:40:16,371 - __main__ - ERROR - Error sending process data: received 1000 (OK); then sent 1000 (OK)
+2025-05-21 23:40:16,376 - __main__ - INFO - Connection closed during main loop
+2025-05-21 23:40:16,376 - __main__ - INFO - Disconnected from bridge server
+2025-05-21 23:40:22,208 - __main__ - INFO - Connected to bridge server
+2025-05-21 23:40:22,228 - __main__ - INFO - Received welcome: welcome
+2025-05-21 23:40:22,229 - __main__ - INFO - Sent registration message
+2025-05-21 23:40:22,294 - __main__ - INFO - Registration confirmed as process_sensor
+2025-05-21 23:40:24,265 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:40:26,729 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:40:29,952 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:40:31,720 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:40:35,518 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:40:36,750 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:40:41,558 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:40:41,733 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:40:46,890 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:40:46,891 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:40:53,531 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:40:53,569 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:40:57,229 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:40:59,745 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:41:02,226 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:41:05,435 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:41:11,159 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:41:16,856 - __main__ - ERROR - Error sending process data: received 1000 (OK); then sent 1000 (OK)
+2025-05-21 23:41:16,858 - __main__ - INFO - Connection closed during main loop
+2025-05-21 23:41:16,858 - __main__ - INFO - Disconnected from bridge server
+2025-05-21 23:41:21,875 - __main__ - INFO - Connected to bridge server
+2025-05-21 23:41:21,875 - __main__ - INFO - Received welcome: welcome
+2025-05-21 23:41:21,875 - __main__ - INFO - Sent registration message
+2025-05-21 23:41:21,876 - __main__ - INFO - Registration confirmed as process_sensor
+2025-05-21 23:41:22,186 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:41:22,324 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:41:27,424 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:41:27,424 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:41:32,327 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:41:33,489 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:41:37,331 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:41:38,763 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:41:42,332 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:41:43,965 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:41:47,333 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:41:49,173 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:41:52,334 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:41:54,373 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:41:57,336 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:41:59,576 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:42:02,338 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:42:04,788 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:42:07,340 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:42:10,017 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:42:12,341 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:42:15,602 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:42:17,342 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:42:23,439 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:42:23,811 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:42:27,635 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:42:29,021 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:42:32,634 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:42:34,514 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:42:37,635 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:42:39,922 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:42:42,639 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:42:45,143 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:42:47,640 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:42:50,368 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:42:52,641 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:42:55,576 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:42:57,798 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:43:00,840 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:43:02,726 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:43:06,051 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:43:07,729 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:43:11,251 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:43:12,730 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:43:16,452 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:43:17,733 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:43:21,762 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:43:22,734 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:43:26,995 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:43:27,735 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:43:32,320 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:43:32,737 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:43:38,637 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:43:38,638 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:43:42,747 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:43:43,862 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:43:47,748 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:43:49,116 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:43:52,751 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:43:54,403 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:43:57,753 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:43:59,687 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:44:02,753 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:44:04,900 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:44:07,755 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:44:10,123 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:44:12,757 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:44:15,440 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:44:17,760 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:44:20,653 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:44:22,768 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:44:25,899 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:44:27,766 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:44:31,106 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:44:32,767 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:44:36,354 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:44:37,773 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:44:41,663 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:44:42,771 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:44:46,905 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:44:47,773 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:44:52,147 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:44:57,348 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:45:02,549 - __main__ - ERROR - Error sending process data: received 1000 (OK); then sent 1000 (OK)
+2025-05-21 23:45:02,549 - __main__ - INFO - Connection closed during main loop
+2025-05-21 23:45:02,550 - __main__ - INFO - Disconnected from bridge server
+2025-05-21 23:45:07,555 - __main__ - INFO - Connected to bridge server
+2025-05-21 23:45:07,555 - __main__ - INFO - Received welcome: welcome
+2025-05-21 23:45:07,555 - __main__ - INFO - Sent registration message
+2025-05-21 23:45:07,556 - __main__ - INFO - Registration confirmed as process_sensor
+2025-05-21 23:45:07,752 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:45:07,777 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:45:12,952 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:45:12,953 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:45:17,780 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:45:18,147 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:45:22,781 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:45:23,341 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:45:27,784 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:45:28,565 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:45:32,785 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:45:33,765 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:45:37,789 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:45:39,045 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:45:42,793 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:45:44,470 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:45:47,808 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:45:50,413 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:45:53,227 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:45:55,853 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:45:57,930 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:46:01,102 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:46:02,937 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:46:06,358 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:46:07,940 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:46:11,765 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:46:13,613 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:46:17,103 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:46:18,010 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:46:23,128 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:46:23,129 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:46:28,035 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:46:28,452 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:46:33,040 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:46:34,129 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:46:38,042 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:46:39,579 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:46:43,045 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:46:45,069 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:46:48,077 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:46:50,928 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:46:53,091 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:46:57,163 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:46:58,070 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:47:02,401 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:47:03,072 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:47:08,225 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:47:08,232 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:47:13,092 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:47:13,878 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:47:18,103 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:47:19,849 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:47:24,822 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:47:25,762 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:47:29,243 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:47:31,036 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:47:34,207 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:47:36,410 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:47:39,213 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:47:41,864 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:47:44,233 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:47:47,521 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:47:49,251 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:47:52,965 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:47:54,244 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:47:58,291 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:47:59,243 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:48:03,624 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:48:04,405 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:48:08,865 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:48:09,303 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:48:16,279 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:48:16,292 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:48:19,397 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:48:22,232 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:48:24,422 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:48:28,676 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:48:29,432 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:48:36,323 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:48:36,331 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:48:42,059 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:48:46,402 - __main__ - WARNING - Received unexpected message type: llm_service_status
+2025-05-21 23:48:47,665 - __main__ - ERROR - Error sending process data: received 1000 (OK); then sent 1000 (OK)
+2025-05-21 23:48:47,665 - __main__ - INFO - Connection closed during main loop
+2025-05-21 23:48:47,665 - __main__ - INFO - Disconnected from bridge server
+2025-05-21 23:48:52,718 - __main__ - INFO - Connected to bridge server
+2025-05-21 23:48:52,719 - __main__ - INFO - Received welcome: welcome
+2025-05-21 23:48:52,720 - __main__ - INFO - Sent registration message
+2025-05-21 23:48:52,721 - __main__ - INFO - Registration confirmed as process_sensor
+2025-05-21 23:48:53,320 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:48:54,787 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:48:58,946 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:48:59,790 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:49:05,249 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:49:05,295 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:49:15,541 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:49:15,564 - __main__ - WARNING - Received unexpected message type: llm_service_status
+2025-05-21 23:49:26,913 - __main__ - ERROR - Error sending process data: received 1000 (OK); then sent 1000 (OK)
+2025-05-21 23:49:26,995 - __main__ - INFO - Connection closed during main loop
+2025-05-21 23:49:27,045 - __main__ - INFO - Disconnected from bridge server
+2025-05-21 23:49:32,166 - __main__ - INFO - Connected to bridge server
+2025-05-21 23:49:32,166 - __main__ - INFO - Received welcome: welcome
+2025-05-21 23:49:32,167 - __main__ - INFO - Sent registration message
+2025-05-21 23:49:32,168 - __main__ - INFO - Registration confirmed as process_sensor
+2025-05-21 23:49:32,942 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:49:36,831 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:49:40,507 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:49:42,008 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:49:51,058 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:49:51,115 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:49:52,302 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:50:02,599 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:50:02,615 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:50:02,618 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:50:12,947 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:50:12,972 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:50:12,976 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:50:28,190 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:50:28,242 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:50:28,253 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:50:28,292 - __main__ - INFO - Connection closed
+Python(8364) MallocStackLogging: can't turn off malloc stack logging because it was not enabled.
+2025-05-21 23:50:38,938 - __main__ - ERROR - Error sending process data: received 1011 (internal error) keepalive ping timeout; then sent 1011 (internal error) keepalive ping timeout
+2025-05-21 23:50:38,942 - __main__ - INFO - Connection closed during main loop
+2025-05-21 23:50:38,942 - __main__ - ERROR - Error in main: received 1011 (internal error) keepalive ping timeout; then sent 1011 (internal error) keepalive ping timeout
+2025-05-21 23:50:44,304 - __main__ - INFO - Connected to bridge server
+2025-05-21 23:50:44,330 - __main__ - INFO - Received welcome: welcome
+2025-05-21 23:50:44,336 - __main__ - INFO - Sent registration message
+2025-05-21 23:50:44,343 - __main__ - INFO - Registration confirmed as process_sensor
+Python(8382) MallocStackLogging: can't turn off malloc stack logging because it was not enabled.
+2025-05-21 23:50:49,644 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:50:53,421 - __main__ - WARNING - Received unexpected message type: context_update
+Python(8399) MallocStackLogging: can't turn off malloc stack logging because it was not enabled.
+2025-05-21 23:51:05,009 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:51:05,074 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:51:05,074 - __main__ - WARNING - Received unexpected message type: llm_service_status
+2025-05-21 23:51:05,079 - __main__ - WARNING - Received unexpected message type: llm_service_status
+Python(8491) MallocStackLogging: can't turn off malloc stack logging because it was not enabled.
+2025-05-21 23:51:11,712 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:51:11,727 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:51:16,298 - __main__ - WARNING - Received unexpected message type: context_update
+Python(8565) MallocStackLogging: can't turn off malloc stack logging because it was not enabled.
+2025-05-21 23:51:17,525 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:51:20,767 - __main__ - WARNING - Received unexpected message type: context_update
+Python(8644) MallocStackLogging: can't turn off malloc stack logging because it was not enabled.
+2025-05-21 23:51:23,231 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:51:25,654 - __main__ - WARNING - Received unexpected message type: context_update
+Python(8718) MallocStackLogging: can't turn off malloc stack logging because it was not enabled.
+2025-05-21 23:51:28,902 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:51:30,712 - __main__ - WARNING - Received unexpected message type: context_update
+Python(8795) MallocStackLogging: can't turn off malloc stack logging because it was not enabled.
+2025-05-21 23:51:35,821 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:51:35,841 - __main__ - WARNING - Received unexpected message type: context_update
+Python(8873) MallocStackLogging: can't turn off malloc stack logging because it was not enabled.
+2025-05-21 23:51:42,083 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:51:42,086 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:51:45,848 - __main__ - WARNING - Received unexpected message type: context_update
+Python(8949) MallocStackLogging: can't turn off malloc stack logging because it was not enabled.
+2025-05-21 23:51:47,330 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:51:51,235 - __main__ - WARNING - Received unexpected message type: context_update
+Python(9027) MallocStackLogging: can't turn off malloc stack logging because it was not enabled.
+2025-05-21 23:51:52,586 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:51:56,201 - __main__ - WARNING - Received unexpected message type: context_update
+Python(9120) MallocStackLogging: can't turn off malloc stack logging because it was not enabled.
+2025-05-21 23:51:57,787 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:52:01,202 - __main__ - WARNING - Received unexpected message type: context_update
+Python(9216) MallocStackLogging: can't turn off malloc stack logging because it was not enabled.
+2025-05-21 23:52:02,997 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:52:06,205 - __main__ - WARNING - Received unexpected message type: context_update
+Python(9285) MallocStackLogging: can't turn off malloc stack logging because it was not enabled.
+2025-05-21 23:52:08,184 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:52:11,209 - __main__ - WARNING - Received unexpected message type: context_update
+Python(9357) MallocStackLogging: can't turn off malloc stack logging because it was not enabled.
+2025-05-21 23:52:13,403 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:52:16,213 - __main__ - WARNING - Received unexpected message type: context_update
+Python(9429) MallocStackLogging: can't turn off malloc stack logging because it was not enabled.
+2025-05-21 23:52:18,629 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:52:21,214 - __main__ - WARNING - Received unexpected message type: context_update
+Python(9503) MallocStackLogging: can't turn off malloc stack logging because it was not enabled.
+2025-05-21 23:52:23,845 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:52:26,221 - __main__ - WARNING - Received unexpected message type: context_update
+Python(9575) MallocStackLogging: can't turn off malloc stack logging because it was not enabled.
+2025-05-21 23:52:29,070 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:52:31,220 - __main__ - WARNING - Received unexpected message type: context_update
+Python(9646) MallocStackLogging: can't turn off malloc stack logging because it was not enabled.
+2025-05-21 23:52:34,371 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:52:36,222 - __main__ - WARNING - Received unexpected message type: context_update
+Python(9724) MallocStackLogging: can't turn off malloc stack logging because it was not enabled.
+2025-05-21 23:52:41,055 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:52:41,321 - __main__ - WARNING - Received unexpected message type: context_update
+Python(9797) MallocStackLogging: can't turn off malloc stack logging because it was not enabled.
+2025-05-21 23:52:46,307 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:52:46,307 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:52:51,232 - __main__ - WARNING - Received unexpected message type: context_update
+Python(9871) MallocStackLogging: can't turn off malloc stack logging because it was not enabled.
+2025-05-21 23:52:51,570 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:52:56,237 - __main__ - WARNING - Received unexpected message type: context_update
+Python(9944) MallocStackLogging: can't turn off malloc stack logging because it was not enabled.
+2025-05-21 23:52:56,838 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:53:01,351 - __main__ - WARNING - Received unexpected message type: context_update
+Python(10028) MallocStackLogging: can't turn off malloc stack logging because it was not enabled.
+2025-05-21 23:53:02,091 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:53:06,331 - __main__ - WARNING - Received unexpected message type: context_update
+Python(10096) MallocStackLogging: can't turn off malloc stack logging because it was not enabled.
+2025-05-21 23:53:07,313 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:53:11,335 - __main__ - WARNING - Received unexpected message type: context_update
+Python(10178) MallocStackLogging: can't turn off malloc stack logging because it was not enabled.
+2025-05-21 23:53:12,536 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:53:16,336 - __main__ - WARNING - Received unexpected message type: context_update
+Python(10245) MallocStackLogging: can't turn off malloc stack logging because it was not enabled.
+2025-05-21 23:53:17,742 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:53:21,339 - __main__ - WARNING - Received unexpected message type: context_update
+Python(10318) MallocStackLogging: can't turn off malloc stack logging because it was not enabled.
+2025-05-21 23:53:22,954 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:53:26,345 - __main__ - WARNING - Received unexpected message type: context_update
+Python(10386) MallocStackLogging: can't turn off malloc stack logging because it was not enabled.
+2025-05-21 23:53:28,964 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:53:31,344 - __main__ - WARNING - Received unexpected message type: context_update
+Python(10497) MallocStackLogging: can't turn off malloc stack logging because it was not enabled.
+2025-05-21 23:53:34,184 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:53:36,349 - __main__ - WARNING - Received unexpected message type: context_update
+Python(10570) MallocStackLogging: can't turn off malloc stack logging because it was not enabled.
+2025-05-21 23:53:39,404 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:53:41,353 - __main__ - WARNING - Received unexpected message type: context_update
+Python(10643) MallocStackLogging: can't turn off malloc stack logging because it was not enabled.
+2025-05-21 23:53:44,614 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:53:46,355 - __main__ - WARNING - Received unexpected message type: context_update
+Python(10712) MallocStackLogging: can't turn off malloc stack logging because it was not enabled.
+2025-05-21 23:53:49,833 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:53:51,356 - __main__ - WARNING - Received unexpected message type: context_update
+Python(10783) MallocStackLogging: can't turn off malloc stack logging because it was not enabled.
+2025-05-21 23:53:55,062 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:53:56,358 - __main__ - WARNING - Received unexpected message type: context_update
+Python(10852) MallocStackLogging: can't turn off malloc stack logging because it was not enabled.
+2025-05-21 23:54:00,269 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:54:01,364 - __main__ - WARNING - Received unexpected message type: context_update
+Python(10921) MallocStackLogging: can't turn off malloc stack logging because it was not enabled.
+2025-05-21 23:54:05,491 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:54:06,368 - __main__ - WARNING - Received unexpected message type: context_update
+Python(10991) MallocStackLogging: can't turn off malloc stack logging because it was not enabled.
+2025-05-21 23:54:10,711 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:54:11,373 - __main__ - WARNING - Received unexpected message type: context_update
+Python(11086) MallocStackLogging: can't turn off malloc stack logging because it was not enabled.
+2025-05-21 23:54:15,928 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:54:16,960 - __main__ - WARNING - Received unexpected message type: context_update
+Python(11173) MallocStackLogging: can't turn off malloc stack logging because it was not enabled.
+2025-05-21 23:54:21,178 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:54:21,662 - __main__ - WARNING - Received unexpected message type: context_update
+Python(11245) MallocStackLogging: can't turn off malloc stack logging because it was not enabled.
+2025-05-21 23:54:26,411 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:54:26,666 - __main__ - WARNING - Received unexpected message type: context_update
+Python(11615) MallocStackLogging: can't turn off malloc stack logging because it was not enabled.
+2025-05-21 23:54:31,642 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:54:31,667 - __main__ - WARNING - Received unexpected message type: context_update
+Python(11688) MallocStackLogging: can't turn off malloc stack logging because it was not enabled.
+2025-05-21 23:54:36,914 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:54:36,915 - __main__ - WARNING - Received unexpected message type: context_update
+Python(11757) MallocStackLogging: can't turn off malloc stack logging because it was not enabled.
+2025-05-21 23:54:42,821 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:54:42,823 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:54:47,016 - __main__ - WARNING - Received unexpected message type: context_update
+Python(11823) MallocStackLogging: can't turn off malloc stack logging because it was not enabled.
+2025-05-21 23:54:48,085 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:54:52,023 - __main__ - WARNING - Received unexpected message type: context_update
+Python(11896) MallocStackLogging: can't turn off malloc stack logging because it was not enabled.
+2025-05-21 23:54:53,565 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:54:57,023 - __main__ - WARNING - Received unexpected message type: context_update
+Python(11962) MallocStackLogging: can't turn off malloc stack logging because it was not enabled.
+2025-05-21 23:54:58,938 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:55:02,064 - __main__ - WARNING - Received unexpected message type: context_update
+Python(12030) MallocStackLogging: can't turn off malloc stack logging because it was not enabled.
+2025-05-21 23:55:06,243 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:55:07,345 - __main__ - WARNING - Received unexpected message type: context_update
+Python(12097) MallocStackLogging: can't turn off malloc stack logging because it was not enabled.
+2025-05-21 23:55:12,053 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:55:12,173 - __main__ - WARNING - Received unexpected message type: context_update
+Python(12170) MallocStackLogging: can't turn off malloc stack logging because it was not enabled.
+2025-05-21 23:55:18,279 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:55:18,292 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:55:22,493 - __main__ - WARNING - Received unexpected message type: context_update
+Python(12264) MallocStackLogging: can't turn off malloc stack logging because it was not enabled.
+2025-05-21 23:55:24,044 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:55:27,427 - __main__ - WARNING - Received unexpected message type: context_update
+Python(12359) MallocStackLogging: can't turn off malloc stack logging because it was not enabled.
+2025-05-21 23:55:29,316 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:55:32,431 - __main__ - WARNING - Received unexpected message type: context_update
+Python(12426) MallocStackLogging: can't turn off malloc stack logging because it was not enabled.
+2025-05-21 23:55:34,621 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:55:37,436 - __main__ - WARNING - Received unexpected message type: context_update
+Python(12489) MallocStackLogging: can't turn off malloc stack logging because it was not enabled.
+2025-05-21 23:55:40,622 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:55:42,434 - __main__ - WARNING - Received unexpected message type: context_update
+Python(12559) MallocStackLogging: can't turn off malloc stack logging because it was not enabled.
+2025-05-21 23:55:45,975 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:55:47,449 - __main__ - WARNING - Received unexpected message type: context_update
+Python(12626) MallocStackLogging: can't turn off malloc stack logging because it was not enabled.
+2025-05-21 23:55:51,967 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:55:52,444 - __main__ - WARNING - Received unexpected message type: context_update
+Python(12697) MallocStackLogging: can't turn off malloc stack logging because it was not enabled.
+2025-05-21 23:55:58,198 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:55:58,203 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:56:02,498 - __main__ - WARNING - Received unexpected message type: context_update
+Python(12773) MallocStackLogging: can't turn off malloc stack logging because it was not enabled.
+2025-05-21 23:56:05,270 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:56:07,514 - __main__ - WARNING - Received unexpected message type: context_update
+Python(12859) MallocStackLogging: can't turn off malloc stack logging because it was not enabled.
+2025-05-21 23:56:11,503 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:56:12,524 - __main__ - WARNING - Received unexpected message type: context_update
+Python(12987) MallocStackLogging: can't turn off malloc stack logging because it was not enabled.
+2025-05-21 23:56:17,307 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:56:17,552 - __main__ - WARNING - Received unexpected message type: context_update
+Python(13055) MallocStackLogging: can't turn off malloc stack logging because it was not enabled.
+2025-05-21 23:56:24,157 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:56:24,170 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:56:27,626 - __main__ - WARNING - Received unexpected message type: context_update
+Python(13126) MallocStackLogging: can't turn off malloc stack logging because it was not enabled.
+2025-05-21 23:56:30,025 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:56:32,642 - __main__ - WARNING - Received unexpected message type: context_update
+Python(13194) MallocStackLogging: can't turn off malloc stack logging because it was not enabled.
+2025-05-21 23:56:36,296 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:56:37,714 - __main__ - WARNING - Received unexpected message type: context_update
+Python(13260) MallocStackLogging: can't turn off malloc stack logging because it was not enabled.
+2025-05-21 23:56:42,205 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:56:42,668 - __main__ - WARNING - Received unexpected message type: context_update
+Python(13334) MallocStackLogging: can't turn off malloc stack logging because it was not enabled.
+2025-05-21 23:56:51,842 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:56:51,849 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:56:52,847 - __main__ - WARNING - Received unexpected message type: context_update
+Python(13552) MallocStackLogging: can't turn off malloc stack logging because it was not enabled.
+2025-05-21 23:56:59,178 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:56:59,183 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:57:03,046 - __main__ - WARNING - Received unexpected message type: context_update
+Python(13808) MallocStackLogging: can't turn off malloc stack logging because it was not enabled.
+2025-05-21 23:57:07,471 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:57:07,980 - __main__ - WARNING - Received unexpected message type: context_update
+Python(13943) MallocStackLogging: can't turn off malloc stack logging because it was not enabled.
+2025-05-21 23:57:12,768 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:57:12,983 - __main__ - WARNING - Received unexpected message type: context_update
+Python(14032) MallocStackLogging: can't turn off malloc stack logging because it was not enabled.
+2025-05-21 23:57:18,080 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:57:18,081 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:57:22,996 - __main__ - WARNING - Received unexpected message type: context_update
+Python(14097) MallocStackLogging: can't turn off malloc stack logging because it was not enabled.
+2025-05-21 23:57:23,817 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:57:27,995 - __main__ - WARNING - Received unexpected message type: context_update
+Python(14166) MallocStackLogging: can't turn off malloc stack logging because it was not enabled.
+2025-05-21 23:57:29,859 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:57:33,132 - __main__ - WARNING - Received unexpected message type: context_update
+Python(14236) MallocStackLogging: can't turn off malloc stack logging because it was not enabled.
+2025-05-21 23:57:36,720 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:57:38,196 - __main__ - WARNING - Received unexpected message type: context_update
+Python(14381) MallocStackLogging: can't turn off malloc stack logging because it was not enabled.
+2025-05-21 23:57:42,789 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:57:43,154 - __main__ - WARNING - Received unexpected message type: context_update
+Python(14401) MallocStackLogging: can't turn off malloc stack logging because it was not enabled.
+2025-05-21 23:57:53,061 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:57:53,068 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:57:53,924 - __main__ - WARNING - Received unexpected message type: context_update
+Python(14532) MallocStackLogging: can't turn off malloc stack logging because it was not enabled.
+2025-05-21 23:58:02,554 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:58:02,556 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:58:04,178 - __main__ - WARNING - Received unexpected message type: context_update
+Python(14611) MallocStackLogging: can't turn off malloc stack logging because it was not enabled.
+2025-05-21 23:58:08,359 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:58:09,158 - __main__ - WARNING - Received unexpected message type: context_update
+Python(14679) MallocStackLogging: can't turn off malloc stack logging because it was not enabled.
+2025-05-21 23:58:14,386 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:58:14,400 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:58:19,215 - __main__ - WARNING - Received unexpected message type: context_update
+Python(14754) MallocStackLogging: can't turn off malloc stack logging because it was not enabled.
+2025-05-21 23:58:20,854 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:58:24,338 - __main__ - WARNING - Received unexpected message type: context_update
+Python(14847) MallocStackLogging: can't turn off malloc stack logging because it was not enabled.
+2025-05-21 23:58:31,375 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:58:31,475 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:58:34,509 - __main__ - WARNING - Received unexpected message type: context_update
+Python(14967) MallocStackLogging: can't turn off malloc stack logging because it was not enabled.
+2025-05-21 23:58:41,764 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:58:41,783 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:58:41,794 - __main__ - INFO - Connection closed
+Python(15065) MallocStackLogging: can't turn off malloc stack logging because it was not enabled.
+2025-05-21 23:58:48,562 - __main__ - ERROR - Error sending process data: received 1011 (internal error) keepalive ping timeout; then sent 1011 (internal error) keepalive ping timeout
+2025-05-21 23:58:48,563 - __main__ - INFO - Connection closed during main loop
+2025-05-21 23:58:48,563 - __main__ - ERROR - Error in main: received 1011 (internal error) keepalive ping timeout; then sent 1011 (internal error) keepalive ping timeout
+2025-05-21 23:58:54,164 - __main__ - INFO - Connected to bridge server
+2025-05-21 23:58:54,168 - __main__ - INFO - Received welcome: welcome
+2025-05-21 23:58:54,168 - __main__ - INFO - Sent registration message
+2025-05-21 23:58:54,178 - __main__ - INFO - Registration confirmed as process_sensor
+Python(15130) MallocStackLogging: can't turn off malloc stack logging because it was not enabled.
+2025-05-21 23:58:56,043 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:58:56,050 - __main__ - WARNING - Received unexpected message type: context_update
+Python(15217) MallocStackLogging: can't turn off malloc stack logging because it was not enabled.
+2025-05-21 23:59:03,971 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:59:03,976 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:59:06,337 - __main__ - WARNING - Received unexpected message type: context_update
+Python(15303) MallocStackLogging: can't turn off malloc stack logging because it was not enabled.
+2025-05-21 23:59:10,357 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:59:11,472 - __main__ - WARNING - Received unexpected message type: context_update
+Python(15400) MallocStackLogging: can't turn off malloc stack logging because it was not enabled.
+2025-05-21 23:59:16,448 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:59:16,475 - __main__ - WARNING - Received unexpected message type: context_update
+Python(15486) MallocStackLogging: can't turn off malloc stack logging because it was not enabled.
+2025-05-21 23:59:23,196 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:59:23,202 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-21 23:59:27,202 - __main__ - WARNING - Received unexpected message type: context_update
+Python(15560) MallocStackLogging: can't turn off malloc stack logging because it was not enabled.
+2025-05-21 23:59:28,965 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:59:32,203 - __main__ - WARNING - Received unexpected message type: context_update
+Python(15633) MallocStackLogging: can't turn off malloc stack logging because it was not enabled.
+2025-05-21 23:59:34,467 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:59:37,204 - __main__ - WARNING - Received unexpected message type: context_update
+Python(15726) MallocStackLogging: can't turn off malloc stack logging because it was not enabled.
+2025-05-21 23:59:40,433 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:59:42,279 - __main__ - WARNING - Received unexpected message type: context_update
+Python(15808) MallocStackLogging: can't turn off malloc stack logging because it was not enabled.
+2025-05-21 23:59:46,541 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:59:47,226 - __main__ - WARNING - Received unexpected message type: context_update
+Python(15893) MallocStackLogging: can't turn off malloc stack logging because it was not enabled.
+2025-05-21 23:59:52,232 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:59:52,237 - __main__ - WARNING - Received unexpected message type: context_update
+Python(15983) MallocStackLogging: can't turn off malloc stack logging because it was not enabled.
+2025-05-21 23:59:57,465 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-21 23:59:57,466 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-22 00:00:02,269 - __main__ - WARNING - Received unexpected message type: context_update
+Python(16060) MallocStackLogging: can't turn off malloc stack logging because it was not enabled.
+2025-05-22 00:00:02,920 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-22 00:00:07,267 - __main__ - WARNING - Received unexpected message type: context_update
+Python(16161) MallocStackLogging: can't turn off malloc stack logging because it was not enabled.
+2025-05-22 00:00:08,151 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-22 00:00:12,268 - __main__ - WARNING - Received unexpected message type: context_update
+Python(16226) MallocStackLogging: can't turn off malloc stack logging because it was not enabled.
+2025-05-22 00:00:13,367 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-22 00:00:17,273 - __main__ - WARNING - Received unexpected message type: context_update
+Python(16296) MallocStackLogging: can't turn off malloc stack logging because it was not enabled.
+2025-05-22 00:00:18,593 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-22 00:00:22,275 - __main__ - WARNING - Received unexpected message type: context_update
+Python(16366) MallocStackLogging: can't turn off malloc stack logging because it was not enabled.
+2025-05-22 00:00:23,806 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-22 00:00:27,277 - __main__ - WARNING - Received unexpected message type: context_update
+Python(16442) MallocStackLogging: can't turn off malloc stack logging because it was not enabled.
+2025-05-22 00:00:29,033 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-22 00:00:32,281 - __main__ - WARNING - Received unexpected message type: context_update
+Python(16516) MallocStackLogging: can't turn off malloc stack logging because it was not enabled.
+2025-05-22 00:00:34,261 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-22 00:00:37,281 - __main__ - WARNING - Received unexpected message type: context_update
+Python(16583) MallocStackLogging: can't turn off malloc stack logging because it was not enabled.
+2025-05-22 00:00:39,495 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-22 00:00:42,290 - __main__ - WARNING - Received unexpected message type: context_update
+Python(16660) MallocStackLogging: can't turn off malloc stack logging because it was not enabled.
+2025-05-22 00:00:44,752 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-22 00:00:47,285 - __main__ - WARNING - Received unexpected message type: context_update
+Python(16755) MallocStackLogging: can't turn off malloc stack logging because it was not enabled.
+2025-05-22 00:00:49,987 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-22 00:00:52,287 - __main__ - WARNING - Received unexpected message type: context_update
+Python(16828) MallocStackLogging: can't turn off malloc stack logging because it was not enabled.
+2025-05-22 00:00:55,191 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-22 00:00:57,289 - __main__ - WARNING - Received unexpected message type: context_update
+Python(16899) MallocStackLogging: can't turn off malloc stack logging because it was not enabled.
+2025-05-22 00:01:00,397 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-22 00:01:02,290 - __main__ - WARNING - Received unexpected message type: context_update
+Python(16981) MallocStackLogging: can't turn off malloc stack logging because it was not enabled.
+2025-05-22 00:01:05,625 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-22 00:01:07,292 - __main__ - WARNING - Received unexpected message type: context_update
+Python(17048) MallocStackLogging: can't turn off malloc stack logging because it was not enabled.
+2025-05-22 00:01:10,832 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-22 00:01:12,294 - __main__ - WARNING - Received unexpected message type: context_update
+Python(17121) MallocStackLogging: can't turn off malloc stack logging because it was not enabled.
+2025-05-22 00:01:16,034 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-22 00:01:17,296 - __main__ - WARNING - Received unexpected message type: context_update
+Python(17197) MallocStackLogging: can't turn off malloc stack logging because it was not enabled.
+2025-05-22 00:01:21,278 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-22 00:01:22,298 - __main__ - WARNING - Received unexpected message type: context_update
+Python(17279) MallocStackLogging: can't turn off malloc stack logging because it was not enabled.
+2025-05-22 00:01:26,524 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-22 00:01:27,300 - __main__ - WARNING - Received unexpected message type: context_update
+Python(17344) MallocStackLogging: can't turn off malloc stack logging because it was not enabled.
+2025-05-22 00:01:31,750 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-22 00:01:32,300 - __main__ - WARNING - Received unexpected message type: context_update
+Python(17413) MallocStackLogging: can't turn off malloc stack logging because it was not enabled.
+2025-05-22 00:01:37,013 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-22 00:01:37,302 - __main__ - WARNING - Received unexpected message type: context_update
+Python(17490) MallocStackLogging: can't turn off malloc stack logging because it was not enabled.
+2025-05-22 00:01:42,230 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-22 00:01:42,303 - __main__ - WARNING - Received unexpected message type: context_update
+Python(17559) MallocStackLogging: can't turn off malloc stack logging because it was not enabled.
+2025-05-22 00:01:47,464 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-22 00:01:47,465 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-22 00:01:52,316 - __main__ - WARNING - Received unexpected message type: context_update
+Python(17624) MallocStackLogging: can't turn off malloc stack logging because it was not enabled.
+2025-05-22 00:01:52,722 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-22 00:01:57,308 - __main__ - WARNING - Received unexpected message type: context_update
+Python(17695) MallocStackLogging: can't turn off malloc stack logging because it was not enabled.
+2025-05-22 00:01:57,988 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-22 00:02:02,641 - __main__ - WARNING - Received unexpected message type: context_update
+Python(17761) MallocStackLogging: can't turn off malloc stack logging because it was not enabled.
+2025-05-22 00:02:03,918 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-22 00:02:07,432 - __main__ - WARNING - Received unexpected message type: context_update
+Python(17834) MallocStackLogging: can't turn off malloc stack logging because it was not enabled.
+2025-05-22 00:02:09,133 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-22 00:02:12,435 - __main__ - WARNING - Received unexpected message type: context_update
+Python(17897) MallocStackLogging: can't turn off malloc stack logging because it was not enabled.
+2025-05-22 00:02:14,343 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-22 00:02:17,436 - __main__ - WARNING - Received unexpected message type: context_update
+Python(17966) MallocStackLogging: can't turn off malloc stack logging because it was not enabled.
+2025-05-22 00:02:19,574 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-22 00:02:22,439 - __main__ - WARNING - Received unexpected message type: context_update
+Python(18031) MallocStackLogging: can't turn off malloc stack logging because it was not enabled.
+2025-05-22 00:02:24,793 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-22 00:02:27,441 - __main__ - WARNING - Received unexpected message type: context_update
+Python(18098) MallocStackLogging: can't turn off malloc stack logging because it was not enabled.
+2025-05-22 00:02:30,016 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-22 00:02:32,444 - __main__ - WARNING - Received unexpected message type: context_update
+Python(18180) MallocStackLogging: can't turn off malloc stack logging because it was not enabled.
+2025-05-22 00:02:35,231 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-22 00:02:37,446 - __main__ - WARNING - Received unexpected message type: context_update
+Python(18247) MallocStackLogging: can't turn off malloc stack logging because it was not enabled.
+2025-05-22 00:02:40,509 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-22 00:02:42,449 - __main__ - WARNING - Received unexpected message type: context_update
+Python(18330) MallocStackLogging: can't turn off malloc stack logging because it was not enabled.
+2025-05-22 00:02:45,720 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-22 00:02:47,455 - __main__ - WARNING - Received unexpected message type: context_update
+Python(18398) MallocStackLogging: can't turn off malloc stack logging because it was not enabled.
+2025-05-22 00:02:50,973 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-22 00:02:52,454 - __main__ - WARNING - Received unexpected message type: context_update
+Python(18484) MallocStackLogging: can't turn off malloc stack logging because it was not enabled.
+2025-05-22 00:02:56,420 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-22 00:02:57,455 - __main__ - WARNING - Received unexpected message type: context_update
+Python(18580) MallocStackLogging: can't turn off malloc stack logging because it was not enabled.
+2025-05-22 00:03:01,628 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-22 00:03:02,456 - __main__ - WARNING - Received unexpected message type: context_update
+Python(18654) MallocStackLogging: can't turn off malloc stack logging because it was not enabled.
+2025-05-22 00:03:06,852 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-22 00:03:07,456 - __main__ - WARNING - Received unexpected message type: context_update
+Python(18723) MallocStackLogging: can't turn off malloc stack logging because it was not enabled.
+2025-05-22 00:03:12,070 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-22 00:03:12,458 - __main__ - WARNING - Received unexpected message type: context_update
+Python(18794) MallocStackLogging: can't turn off malloc stack logging because it was not enabled.
+2025-05-22 00:03:17,282 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-22 00:03:17,460 - __main__ - WARNING - Received unexpected message type: context_update
+Python(18861) MallocStackLogging: can't turn off malloc stack logging because it was not enabled.
+2025-05-22 00:03:22,548 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-22 00:03:22,549 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-22 00:03:27,478 - __main__ - WARNING - Received unexpected message type: context_update
+Python(18932) MallocStackLogging: can't turn off malloc stack logging because it was not enabled.
+2025-05-22 00:03:27,861 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-22 00:03:32,480 - __main__ - WARNING - Received unexpected message type: context_update
+Python(19014) MallocStackLogging: can't turn off malloc stack logging because it was not enabled.
+2025-05-22 00:03:33,111 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-22 00:03:37,482 - __main__ - WARNING - Received unexpected message type: context_update
+Python(19096) MallocStackLogging: can't turn off malloc stack logging because it was not enabled.
+2025-05-22 00:03:38,403 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-22 00:03:42,484 - __main__ - WARNING - Received unexpected message type: context_update
+Python(19183) MallocStackLogging: can't turn off malloc stack logging because it was not enabled.
+2025-05-22 00:03:43,647 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-22 00:03:47,483 - __main__ - WARNING - Received unexpected message type: context_update
+Python(19251) MallocStackLogging: can't turn off malloc stack logging because it was not enabled.
+2025-05-22 00:03:48,865 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-22 00:03:52,486 - __main__ - WARNING - Received unexpected message type: context_update
+Python(19336) MallocStackLogging: can't turn off malloc stack logging because it was not enabled.
+2025-05-22 00:03:54,064 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-22 00:03:57,485 - __main__ - WARNING - Received unexpected message type: context_update
+2025-05-22 00:03:58,079 - __main__ - WARNING - Received unexpected message type: llm_service_status

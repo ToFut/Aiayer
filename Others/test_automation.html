@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agent Automation Test Page</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        
+        .container {
+            background: white;
+            border-radius: 16px;
+            padding: 30px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+        }
+        
+        h1 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .test-section {
+            margin-bottom: 40px;
+            padding: 20px;
+            border: 2px solid #f0f0f0;
+            border-radius: 12px;
+            background: #fafafa;
+        }
+        
+        .test-section h2 {
+            color: #667eea;
+            margin-top: 0;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 600;
+            color: #555;
+        }
+        
+        input[type="text"], input[type="email"], textarea, select {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 14px;
+            transition: border-color 0.3s ease;
+        }
+        
+        input:focus, textarea:focus, select:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+        
+        button {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            margin-right: 10px;
+            margin-bottom: 10px;
+            transition: transform 0.2s ease;
+        }
+        
+        button:hover {
+            transform: translateY(-2px);
+        }
+        
+        .secondary-btn {
+            background: #f8f9fa;
+            color: #667eea;
+            border: 2px solid #667eea;
+        }
+        
+        .result-area {
+            margin-top: 20px;
+            padding: 15px;
+            background: #e8f4f8;
+            border-radius: 8px;
+            border-left: 4px solid #17a2b8;
+            display: none;
+        }
+        
+        .result-area.show {
+            display: block;
+        }
+        
+        #coordinates {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            background: rgba(0,0,0,0.8);
+            color: white;
+            padding: 10px;
+            border-radius: 8px;
+            font-family: monospace;
+            font-size: 12px;
+            z-index: 9999;
+        }
+        
+        .instructions {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .automation-target {
+            background: #d4edda;
+            border: 2px dashed #28a745;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 10px 0;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        
+        .automation-target:hover {
+            background: #c3e6cb;
+            border-color: #1e7e34;
+        }
+        
+        .click-counter {
+            display: inline-block;
+            background: #17a2b8;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 15px;
+            font-size: 12px;
+            margin-left: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div id="coordinates">Mouse: (0, 0)</div>
+    
+    <div class="container">
+        <h1>🤖 Agent Automation Test Page</h1>
+        
+        <div class="instructions">
+            <strong>Test Instructions:</strong><br>
+            1. Run the Python test script to see automated interactions<br>
+            2. Watch the agent fill forms, click buttons, and navigate<br>
+            3. Mouse coordinates are shown in top-right corner<br>
+            4. Elements will highlight when targeted by automation
+        </div>
+        
+        <!-- Test Section 1: Basic Form Filling -->
+        <div class="test-section">
+            <h2>🏁 Test 1: Form Filling Automation</h2>
+            <p>The agent should be able to:</p>
+            <ul>
+                <li>Click on input fields</li>
+                <li>Type text into fields</li>
+                <li>Navigate between fields using Tab</li>
+                <li>Submit the form</li>
+            </ul>
+            
+            <form id="test-form-1">
+                <div class="form-group">
+                    <label for="name">Full Name:</label>
+                    <input type="text" id="name" name="name" placeholder="Agent should type 'John Doe' here">
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">Email Address:</label>
+                    <input type="email" id="email" name="email" placeholder="Agent should type 'john@example.com' here">
+                </div>
+                
+                <div class="form-group">
+                    <label for="phone">Phone Number:</label>
+                    <input type="text" id="phone" name="phone" placeholder="Agent should type '+1-555-0123' here">
+                </div>
+                
+                <div class="form-group">
+                    <label for="country">Country:</label>
+                    <select id="country" name="country">
+                        <option value="">Select Country</option>
+                        <option value="us">United States</option>
+                        <option value="ca">Canada</option>
+                        <option value="uk">United Kingdom</option>
+                        <option value="au">Australia</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="message">Message:</label>
+                    <textarea id="message" name="message" rows="4" placeholder="Agent should type a test message here"></textarea>
+                </div>
+                
+                <button type="submit">Submit Form</button>
+                <button type="reset" class="secondary-btn">Reset</button>
+            </form>
+            
+            <div id="form-result-1" class="result-area">
+                <strong>Form submitted successfully!</strong>
+                <div id="form-data-1"></div>
+            </div>
+        </div>
+        
+        <!-- Test Section 2: Click Testing -->
+        <div class="test-section">
+            <h2>🖱️ Test 2: Click Automation</h2>
+            <p>The agent should be able to click on various elements:</p>
+            
+            <div class="automation-target" onclick="incrementCounter('button1')">
+                🎯 Click Target 1 <span id="counter1" class="click-counter">0 clicks</span>
+            </div>
+            
+            <div class="automation-target" onclick="incrementCounter('button2')">
+                🎯 Click Target 2 <span id="counter2" class="click-counter">0 clicks</span>
+            </div>
+            
+            <div class="automation-target" onclick="incrementCounter('button3')">
+                🎯 Click Target 3 <span id="counter3" class="click-counter">0 clicks</span>
+            </div>
+            
+            <button onclick="resetCounters()">Reset All Counters</button>
+        </div>
+        
+        <!-- Test Section 3: Keyboard Shortcuts -->
+        <div class="test-section">
+            <h2>⌨️ Test 3: Keyboard Shortcuts</h2>
+            <p>Test various keyboard combinations:</p>
+            
+            <textarea id="shortcut-test" rows="6" placeholder="Agent can test keyboard shortcuts here:
+- Ctrl+A (Select All)
+- Ctrl+C (Copy)
+- Ctrl+V (Paste)
+- Ctrl+Z (Undo)
+- Tab (Navigate)
+- Enter (New line)"></textarea>
+            
+            <br><br>
+            <button onclick="testSelectAll()">Test Select All (Ctrl+A)</button>
+            <button onclick="testCopy()" class="secondary-btn">Test Copy (Ctrl+C)</button>
+            <button onclick="testPaste()" class="secondary-btn">Test Paste (Ctrl+V)</button>
+        </div>
+        
+        <!-- Test Section 4: Mouse Movement -->
+        <div class="test-section">
+            <h2>🖱️ Test 4: Mouse Movement Tracking</h2>
+            <p>Watch mouse coordinates in top-right corner. Agent should move smoothly between targets.</p>
+            
+            <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; margin: 20px 0;">
+                <div class="automation-target" style="height: 80px; line-height: 80px;">
+                    Target A<br><small>Top Left</small>
+                </div>
+                <div class="automation-target" style="height: 80px; line-height: 80px;">
+                    Target B<br><small>Top Center</small>
+                </div>
+                <div class="automation-target" style="height: 80px; line-height: 80px;">
+                    Target C<br><small>Top Right</small>
+                </div>
+            </div>
+            
+            <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px;">
+                <div class="automation-target" style="height: 80px; line-height: 80px;">
+                    Target D<br><small>Bottom Left</small>
+                </div>
+                <div class="automation-target" style="height: 80px; line-height: 80px;">
+                    Target E<br><small>Bottom Center</small>
+                </div>
+                <div class="automation-target" style="height: 80px; line-height: 80px;">
+                    Target F<br><small>Bottom Right</small>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Test Results -->
+        <div class="test-section">
+            <h2>📊 Test Results</h2>
+            <div id="test-results">
+                <p>Test results will appear here as the agent performs actions...</p>
+            </div>
+            
+            <button onclick="clearResults()">Clear Results</button>
+        </div>
+    </div>
+    
+    <script>
+        let clickCounters = { button1: 0, button2: 0, button3: 0 };
+        
+        // Track mouse coordinates
+        document.addEventListener('mousemove', function(e) {
+            document.getElementById('coordinates').textContent = `Mouse: (${e.clientX}, ${e.clientY})`;
+        });
+        
+        // Handle form submission
+        document.getElementById('test-form-1').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(this);
+            const data = {};
+            for (let [key, value] of formData.entries()) {
+                data[key] = value;
+            }
+            
+            document.getElementById('form-result-1').classList.add('show');
+            document.getElementById('form-data-1').innerHTML = 
+                '<pre>' + JSON.stringify(data, null, 2) + '</pre>';
+            
+            logResult('Form submitted successfully with data: ' + JSON.stringify(data));
+        });
+        
+        // Click counter functions
+        function incrementCounter(buttonId) {
+            clickCounters[buttonId]++;
+            document.getElementById('counter' + buttonId.slice(-1)).textContent = 
+                clickCounters[buttonId] + ' clicks';
+            
+            logResult(`Clicked ${buttonId}: ${clickCounters[buttonId]} times`);
+        }
+        
+        function resetCounters() {
+            clickCounters = { button1: 0, button2: 0, button3: 0 };
+            document.getElementById('counter1').textContent = '0 clicks';
+            document.getElementById('counter2').textContent = '0 clicks';
+            document.getElementById('counter3').textContent = '0 clicks';
+            logResult('All counters reset');
+        }
+        
+        // Keyboard shortcut tests
+        function testSelectAll() {
+            const textarea = document.getElementById('shortcut-test');
+            textarea.select();
+            logResult('Select All test triggered');
+        }
+        
+        function testCopy() {
+            const textarea = document.getElementById('shortcut-test');
+            textarea.select();
+            document.execCommand('copy');
+            logResult('Copy test triggered');
+        }
+        
+        function testPaste() {
+            navigator.clipboard.readText().then(text => {
+                document.getElementById('shortcut-test').value += '\nPasted: ' + text;
+                logResult('Paste test triggered');
+            });
+        }
+        
+        // Log test results
+        function logResult(message) {
+            const results = document.getElementById('test-results');
+            const timestamp = new Date().toLocaleTimeString();
+            results.innerHTML += `<p><strong>[${timestamp}]</strong> ${message}</p>`;
+            results.scrollTop = results.scrollHeight;
+        }
+        
+        function clearResults() {
+            document.getElementById('test-results').innerHTML = 
+                '<p>Test results will appear here as the agent performs actions...</p>';
+        }
+        
+        // Highlight elements when focused
+        document.addEventListener('focusin', function(e) {
+            if (e.target.matches('input, textarea, select')) {
+                e.target.style.borderColor = '#28a745';
+                e.target.style.boxShadow = '0 0 0 3px rgba(40, 167, 69, 0.1)';
+                logResult(`Focused on: ${e.target.id || e.target.name || e.target.tagName}`);
+            }
+        });
+        
+        document.addEventListener('focusout', function(e) {
+            if (e.target.matches('input, textarea, select')) {
+                e.target.style.borderColor = '#ddd';
+                e.target.style.boxShadow = 'none';
+            }
+        });
+        
+        // Log page ready
+        document.addEventListener('DOMContentLoaded', function() {
+            logResult('Test page loaded and ready for automation testing');
+        });
+
+        // WebSocket connection to bridge server
+        const ws = new WebSocket('ws://localhost:8765/');
+
+        ws.onopen = () => {
+            console.log('WebSocket connected.');
+            // Simulate agent sending a mouse move command by itself
+            const mouseMoveCmd = {
+                type: "user_interaction",
+                payload: {
+                    action: "move_mouse",
+                    x: 100,
+                    y: 100
+                }
+            };
+            ws.send(JSON.stringify(mouseMoveCmd));
+            console.log('Sent: ' + JSON.stringify(mouseMoveCmd));
+
+            // Simulate agent sending a keyboard type command by itself
+            const typeCmd = {
+                type: "user_interaction",
+                payload: {
+                    action: "type_text",
+                    text: "Hello from agent!"
+                }
+            };
+            ws.send(JSON.stringify(typeCmd));
+            console.log('Sent: ' + JSON.stringify(typeCmd));
+        };
+
+        ws.onmessage = event => {
+            console.log('Received: ' + event.data);
+        };
+
+        ws.onerror = err => {
+            console.error('WebSocket error: ' + err);
+        };
+
+        ws.onclose = () => {
+            console.log('WebSocket closed.');
+        };
+    </script>
+</body>
+</html>

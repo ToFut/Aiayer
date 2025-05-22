@@ -204,7 +204,7 @@ export class EnhancedBridge {
             }
             
             // Store context data
-            if (data.type === 'context_update' || data.type === 'sensor_data') {
+            if (data.type === 'sensor_data') {
                 this.systemContextData = data;
                 window.dispatchEvent(new CustomEvent('system-context-updated', { 
                     detail: data 
