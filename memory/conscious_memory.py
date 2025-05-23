@@ -901,4 +901,62 @@ class ConsciousMemory:
             self.last_processing_time = time.time()
             self.logger.info("[ConsciousMemory] Cleared all data")
         except Exception as e:
-            self.logger.error("[ConsciousMemory] Error clearing data: %s", str(e), exc_info=True) 
+            self.logger.error("[ConsciousMemory] Error clearing data: %s", str(e), exc_info=True)
+    
+    def get_current_state(self) -> Dict[str, Any]:
+        """Get current state of conscious memory for testing and monitoring."""
+        try:
+            return {
+                'sensor_buffer_size': len(self.sensor_buffer),
+                'last_processing_time': self.last_processing_time,
+                'running': self.running,
+                'processed_items': getattr(self, '_processed_count', 0),
+                'memory_system_connected': self.memory_system is not None,
+                'llm_provider_connected': self.llm_provider is not None
+            }
+        except Exception as e:
+            self.logger.error("Error getting current state: %s", str(e))
+            return {}
+    
+    def get_context_awareness(self) -> Dict[str, Any]:
+        """Get context awareness information from conscious memory."""
+        try:
+            # Get recent processing patterns
+            context_awareness = {
+                'active_contexts': [],
+                'processing_patterns': {},
+                'memory_connections': {},
+                'awareness_level': 'active' if self.running else 'inactive'
+            }
+            
+            # Analyze recent sensor buffer for active contexts
+            if self.sensor_buffer:
+                recent_data = list(self.sensor_buffer)[-5:]  # Last 5 items
+                
+                # Extract context types
+                for data in recent_data:
+                    if isinstance(data, dict):
+                        for sensor_type in ['screen', 'process', 'file']:
+                            if sensor_type in data:
+                                context_awareness['active_contexts'].append(sensor_type)
+                
+                # Remove duplicates
+                context_awareness['active_contexts'] = list(set(context_awareness['active_contexts']))
+            
+            # Check memory system integration
+            if self.memory_system:
+                try:
+                    context_awareness['memory_connections'] = {
+                        'short_term_available': hasattr(self.memory_system, 'short_term_memory'),
+                        'long_term_available': hasattr(self.memory_system, 'long_term_memory'),
+                        'context_available': hasattr(self.memory_system, 'context_memory'),
+                        'enhanced_understanding': hasattr(self.memory_system, '_analyze_user_intent')
+                    }
+                except Exception as e:
+                    self.logger.warning("Error checking memory connections: %s", str(e))
+                    context_awareness['memory_connections'] = {'error': str(e)}
+            
+            return context_awareness
+        except Exception as e:
+            self.logger.error("Error getting context awareness: %s", str(e))
+            return {'error': str(e), 'awareness_level': 'error'} 

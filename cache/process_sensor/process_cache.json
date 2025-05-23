@@ -1,195 +1,195 @@
 {
-  "timestamp": "2025-05-22T00:03:54.062750",
+  "timestamp": "2025-05-23T00:00:18.394973",
   "active_app": "Unknown",
   "active_window": "Unknown Window",
   "active_processes": [
     {
-      "name": "Cursor",
-      "pid": 76164,
+      "name": "node",
+      "pid": 5813,
       "type": "other",
-      "memory_mb": 177.4,
-      "cpu_percent": 4.1,
-      "create_time": 1747887224.572071
+      "memory_mb": 87.8,
+      "cpu_percent": 6.9,
+      "create_time": 1747982402.690325
+    },
+    {
+      "name": "Cursor",
+      "pid": 635,
+      "type": "other",
+      "memory_mb": 44.8,
+      "cpu_percent": 1.5,
+      "create_time": 1747982318.047351
     },
     {
       "name": "Cursor Helper (Renderer)",
-      "pid": 76214,
+      "pid": 771,
       "type": "other",
-      "memory_mb": 140.4,
-      "cpu_percent": 0.8,
-      "create_time": 1747887228.636025
+      "memory_mb": 41.2,
+      "cpu_percent": 2.8,
+      "create_time": 1747982321.361167
     },
     {
       "name": "Cursor Helper (Plugin): extension-host [2-2]",
-      "pid": 76523,
+      "pid": 1333,
       "type": "other",
-      "memory_mb": 103.6,
-      "cpu_percent": 1.7,
-      "create_time": 1747887233.170929
+      "memory_mb": 25.6,
+      "cpu_percent": 3.3,
+      "create_time": 1747982328.452949
     },
     {
-      "name": "Google Chrome",
-      "pid": 74515,
-      "type": "browser",
-      "memory_mb": 86.4,
-      "cpu_percent": 0.2,
-      "create_time": 1747760899.033245
-    },
-    {
-      "name": "Cursor Helper (Plugin): extension-host [1-1]",
-      "pid": 76524,
+      "name": "chronod",
+      "pid": 13037,
       "type": "other",
-      "memory_mb": 84.9,
-      "cpu_percent": 1.5,
-      "create_time": 1747887233.1718
-    },
-    {
-      "name": "Safari",
-      "pid": 21272,
-      "type": "browser",
-      "memory_mb": 76.5,
-      "cpu_percent": 0.9,
-      "create_time": 1747889836.282583
-    },
-    {
-      "name": "Google Chrome Helper (Renderer)",
-      "pid": 66622,
-      "type": "browser",
-      "memory_mb": 66.4,
-      "cpu_percent": 0,
-      "create_time": 1747893556.637374
+      "memory_mb": 19.4,
+      "cpu_percent": 0.6,
+      "create_time": 1747983597.136894
     },
     {
       "name": "Cursor Helper (GPU)",
-      "pid": 76206,
+      "pid": 744,
       "type": "other",
-      "memory_mb": 53.1,
-      "cpu_percent": 1.8,
-      "create_time": 1747887228.002223
+      "memory_mb": 19.2,
+      "cpu_percent": 1.0,
+      "create_time": 1747982320.48836
     },
     {
-      "name": "Google Chrome Helper (GPU)",
-      "pid": 74538,
+      "name": "intelligentroutingd",
+      "pid": 13124,
+      "type": "other",
+      "memory_mb": 18.9,
+      "cpu_percent": 0,
+      "create_time": 1747983617.219161
+    },
+    {
+      "name": "siriknowledged",
+      "pid": 12915,
       "type": "browser",
-      "memory_mb": 44.4,
-      "cpu_percent": 0.1,
-      "create_time": 1747760905.887284
-    },
-    {
-      "name": "NotificationCenter",
-      "pid": 690,
-      "type": "other",
-      "memory_mb": 37.6,
-      "cpu_percent": 1.4,
-      "create_time": 1747717524.647023
-    },
-    {
-      "name": "Finder",
-      "pid": 631,
-      "type": "other",
-      "memory_mb": 34.9,
-      "cpu_percent": 0.1,
-      "create_time": 1747717523.51355
-    },
-    {
-      "name": "ContextStoreAgent",
-      "pid": 16331,
-      "type": "other",
-      "memory_mb": 26.9,
-      "cpu_percent": 0,
-      "create_time": 1747897222.405885
-    },
-    {
-      "name": "DockHelper",
-      "pid": 19100,
-      "type": "other",
-      "memory_mb": 26.7,
-      "cpu_percent": 0,
-      "create_time": 1747897420.217839
-    },
-    {
-      "name": "Google Chrome Helper",
-      "pid": 74539,
-      "type": "browser",
-      "memory_mb": 25.2,
-      "cpu_percent": 0.1,
-      "create_time": 1747760905.904381
-    },
-    {
-      "name": "Notes",
-      "pid": 23596,
-      "type": "other",
-      "memory_mb": 24.7,
-      "cpu_percent": 0,
-      "create_time": 1747890426.62532
+      "memory_mb": 17.4,
+      "cpu_percent": 5.0,
+      "create_time": 1747983578.371424
     },
     {
       "name": "ControlCenter",
-      "pid": 627,
+      "pid": 662,
       "type": "other",
-      "memory_mb": 23.7,
-      "cpu_percent": 0.1,
-      "create_time": 1747717523.492957
+      "memory_mb": 17.0,
+      "cpu_percent": 0.2,
+      "create_time": 1747982318.542107
     },
     {
-      "name": "WindowManager",
-      "pid": 600,
+      "name": "replayd",
+      "pid": 13084,
       "type": "other",
-      "memory_mb": 23.6,
-      "cpu_percent": 0.2,
-      "create_time": 1747717523.242412
+      "memory_mb": 15.4,
+      "cpu_percent": 17.4,
+      "create_time": 1747983604.152345
     },
     {
-      "name": "com.apple.WebKit.GPU",
-      "pid": 21304,
+      "name": "Cursor Helper (Plugin): extension-host [1-1]",
+      "pid": 1332,
       "type": "other",
-      "memory_mb": 22.2,
-      "cpu_percent": 0.2,
-      "create_time": 1747889839.776277
+      "memory_mb": 15.2,
+      "cpu_percent": 0.3,
+      "create_time": 1747982328.447517
+    },
+    {
+      "name": "mongod",
+      "pid": 5629,
+      "type": "other",
+      "memory_mb": 15.0,
+      "cpu_percent": 0.5,
+      "create_time": 1747982342.419521
     },
     {
       "name": "cloudd",
-      "pid": 17204,
+      "pid": 9435,
       "type": "other",
-      "memory_mb": 21.1,
-      "cpu_percent": 0,
-      "create_time": 1747897281.966107
+      "memory_mb": 13.9,
+      "cpu_percent": 2.6,
+      "create_time": 1747982850.46123
     },
     {
-      "name": "Siri",
-      "pid": 16295,
+      "name": "sharingd",
+      "pid": 699,
       "type": "other",
-      "memory_mb": 20.9,
+      "memory_mb": 13.7,
+      "cpu_percent": 1.0,
+      "create_time": 1747982319.132109
+    },
+    {
+      "name": "fileproviderd",
+      "pid": 12984,
+      "type": "other",
+      "memory_mb": 13.6,
       "cpu_percent": 0.1,
-      "create_time": 1747897218.390613
+      "create_time": 1747983589.086293
+    },
+    {
+      "name": "NotificationCenter",
+      "pid": 678,
+      "type": "other",
+      "memory_mb": 13.3,
+      "cpu_percent": 0.8,
+      "create_time": 1747982318.735254
+    },
+    {
+      "name": "corespotlightd",
+      "pid": 691,
+      "type": "other",
+      "memory_mb": 12.8,
+      "cpu_percent": 1.0,
+      "create_time": 1747982318.85058
+    },
+    {
+      "name": "proactived",
+      "pid": 13041,
+      "type": "other",
+      "memory_mb": 12.8,
+      "cpu_percent": 4.6,
+      "create_time": 1747983598.267988
+    },
+    {
+      "name": "Google Chrome",
+      "pid": 640,
+      "type": "browser",
+      "memory_mb": 12.4,
+      "cpu_percent": 0.4,
+      "create_time": 1747982318.105106
+    },
+    {
+      "name": "accountsd",
+      "pid": 629,
+      "type": "other",
+      "memory_mb": 12.1,
+      "cpu_percent": 0.3,
+      "create_time": 1747982318.005115
     }
   ],
   "active_apps": [
+    "node",
     "Cursor",
     "Cursor Helper (Renderer)",
     "Cursor Helper (Plugin): extension-host [2-2]",
-    "Google Chrome",
-    "Cursor Helper (Plugin): extension-host [1-1]",
-    "Safari",
-    "Google Chrome Helper (Renderer)",
+    "chronod",
     "Cursor Helper (GPU)",
-    "Google Chrome Helper (GPU)",
-    "NotificationCenter",
-    "Finder",
-    "ContextStoreAgent",
-    "DockHelper",
-    "Google Chrome Helper",
-    "Notes",
+    "intelligentroutingd",
+    "siriknowledged",
     "ControlCenter",
-    "WindowManager",
-    "com.apple.WebKit.GPU",
+    "replayd",
+    "Cursor Helper (Plugin): extension-host [1-1]",
+    "mongod",
     "cloudd",
-    "Siri"
+    "sharingd",
+    "fileproviderd",
+    "NotificationCenter",
+    "corespotlightd",
+    "proactived",
+    "Google Chrome",
+    "accountsd"
   ],
   "system_info": {
     "cpu_count": 8,
     "memory_total_gb": 8.0,
-    "memory_used_percent": 76.5
+    "memory_used_percent": 92.7
   },
   "is_significant_action": true
 }

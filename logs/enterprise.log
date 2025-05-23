@@ -1,0 +1,727 @@
+2025-05-22 14:11:31,659 - __main__ - INFO - Initializing Enhanced Enterprise Backend with Agent Collaboration...
+2025-05-22 14:11:31,659 - enterprise_agent_reflection - INFO - Registered agent ui_analysis_agent with specialization: UI Analysis and Element Detection
+2025-05-22 14:11:31,660 - enterprise_agent_reflection - INFO - Registered agent file_operations_agent with specialization: File System Operations and Validation
+2025-05-22 14:11:31,660 - enterprise_agent_reflection - INFO - Registered agent system_monitoring_agent with specialization: System Resource and Process Monitoring
+2025-05-22 14:11:31,660 - enterprise_agent_reflection - INFO - Professional validation system initialized with specialized agents
+2025-05-22 14:11:31,660 - enterprise_agent_reflection - INFO - Registered agent ui_analysis_agent with specialization: UI Analysis and Element Detection
+2025-05-22 14:11:31,660 - enterprise_agent_reflection - INFO - Registered agent file_operations_agent with specialization: File System Operations and Validation
+2025-05-22 14:11:31,660 - enterprise_agent_reflection - INFO - Registered agent system_monitoring_agent with specialization: System Resource and Process Monitoring
+2025-05-22 14:11:31,660 - specialized_agents - INFO - All specialized agents initialized for professional collaboration
+2025-05-22 14:11:31,660 - __main__ - INFO - Enterprise system initialization complete
+2025-05-22 14:11:31,660 - __main__ - INFO - Starting Enhanced Enterprise Backend on localhost:8765
+2025-05-22 14:11:31,686 - websockets.server - INFO - server listening on 127.0.0.1:8765
+2025-05-22 14:11:31,686 - websockets.server - INFO - server listening on [::1]:8765
+2025-05-22 14:11:31,686 - __main__ - INFO - Enhanced Enterprise Backend started on ws://localhost:8765
+2025-05-22 14:11:32,538 - websockets.server - INFO - connection open
+2025-05-22 14:11:32,538 - __main__ - INFO - Client connected: conn_1747948292538
+2025-05-22 14:11:32,539 - __main__ - INFO - Processing register from conn_1747948292538
+2025-05-22 14:11:36,428 - websockets.server - INFO - connection open
+2025-05-22 14:11:36,428 - __main__ - INFO - Client connected: conn_1747948296428
+2025-05-22 14:11:36,431 - __main__ - INFO - Processing register from conn_1747948296428
+2025-05-22 14:11:37,543 - websockets.server - INFO - connection open
+2025-05-22 14:11:37,543 - __main__ - INFO - Client connected: conn_1747948297543
+2025-05-22 14:11:37,544 - __main__ - INFO - Processing register from conn_1747948297543
+2025-05-22 14:11:42,547 - websockets.server - INFO - connection open
+2025-05-22 14:11:42,547 - __main__ - INFO - Client connected: conn_1747948302547
+2025-05-22 14:11:42,548 - __main__ - INFO - Processing register from conn_1747948302547
+2025-05-22 14:11:47,552 - websockets.server - INFO - connection open
+2025-05-22 14:11:47,552 - __main__ - INFO - Client connected: conn_1747948307552
+2025-05-22 14:11:47,552 - __main__ - INFO - Processing register from conn_1747948307552
+2025-05-22 14:11:52,556 - websockets.server - INFO - connection open
+2025-05-22 14:11:52,556 - __main__ - INFO - Client connected: conn_1747948312556
+2025-05-22 14:11:52,557 - __main__ - INFO - Processing register from conn_1747948312556
+2025-05-22 14:11:57,707 - websockets.server - INFO - connection open
+2025-05-22 14:11:57,712 - __main__ - INFO - Client connected: conn_1747948317712
+2025-05-22 14:11:57,715 - __main__ - INFO - Processing register from conn_1747948317712
+2025-05-22 14:12:02,747 - websockets.server - INFO - connection open
+2025-05-22 14:12:02,747 - __main__ - INFO - Client connected: conn_1747948322747
+2025-05-22 14:12:02,749 - __main__ - INFO - Processing register from conn_1747948322747
+2025-05-22 14:12:07,759 - websockets.server - INFO - connection open
+2025-05-22 14:12:07,759 - __main__ - INFO - Client connected: conn_1747948327759
+2025-05-22 14:12:07,760 - __main__ - INFO - Processing register from conn_1747948327759
+2025-05-22 14:12:13,440 - websockets.server - INFO - connection open
+2025-05-22 14:12:13,440 - __main__ - INFO - Client connected: conn_1747948333440
+2025-05-22 14:12:13,444 - __main__ - INFO - Processing register from conn_1747948333440
+2025-05-22 14:12:15,467 - websockets.server - INFO - connection open
+2025-05-22 14:12:15,474 - __main__ - INFO - Client connected: conn_1747948335474
+2025-05-22 14:12:15,476 - __main__ - INFO - Processing agent_request from conn_1747948335474
+2025-05-22 14:12:15,489 - enterprise_agent_reflection - INFO - Started reflection session reflection_1747948335488 for goal: Execute click operation on folder
+2025-05-22 14:12:17,119 - __main__ - ERROR - Error sending message to conn_1747948335474: Object of type datetime is not JSON serializable
+2025-05-22 14:12:17,151 - __main__ - INFO - Agent request with reflection - Session: reflection_1747948335488, Goal: Execute click operation on folder
+2025-05-22 14:12:18,596 - websockets.server - INFO - connection open
+2025-05-22 14:12:18,598 - __main__ - INFO - Client connected: conn_1747948338598
+2025-05-22 14:12:18,607 - __main__ - INFO - Processing register from conn_1747948338598
+2025-05-22 14:12:23,618 - websockets.server - INFO - connection open
+2025-05-22 14:12:23,619 - __main__ - INFO - Client connected: conn_1747948343619
+2025-05-22 14:12:23,621 - __main__ - INFO - Processing register from conn_1747948343619
+2025-05-22 14:12:25,570 - __main__ - INFO - Client disconnected: conn_1747948296428
+2025-05-22 14:12:28,637 - websockets.server - INFO - connection open
+2025-05-22 14:12:28,638 - __main__ - INFO - Client connected: conn_1747948348638
+2025-05-22 14:12:28,642 - __main__ - INFO - Processing register from conn_1747948348638
+2025-05-22 14:12:33,692 - websockets.server - INFO - connection open
+2025-05-22 14:12:33,692 - __main__ - INFO - Client connected: conn_1747948353692
+2025-05-22 14:12:33,695 - __main__ - INFO - Processing register from conn_1747948353692
+2025-05-22 14:12:38,717 - websockets.server - INFO - connection open
+2025-05-22 14:12:38,718 - __main__ - INFO - Client connected: conn_1747948358718
+2025-05-22 14:12:38,721 - __main__ - INFO - Processing register from conn_1747948358718
+2025-05-22 14:12:43,732 - websockets.server - INFO - connection open
+2025-05-22 14:12:43,733 - __main__ - INFO - Client connected: conn_1747948363733
+2025-05-22 14:12:43,734 - __main__ - INFO - Processing register from conn_1747948363733
+2025-05-22 14:12:49,011 - websockets.server - INFO - connection open
+2025-05-22 14:12:49,011 - __main__ - INFO - Client connected: conn_1747948369011
+2025-05-22 14:12:49,017 - __main__ - INFO - Processing register from conn_1747948369011
+2025-05-22 14:12:54,085 - websockets.server - INFO - connection open
+2025-05-22 14:12:54,087 - __main__ - INFO - Client connected: conn_1747948374087
+2025-05-22 14:12:54,097 - __main__ - INFO - Processing register from conn_1747948374087
+2025-05-22 14:12:59,109 - websockets.server - INFO - connection open
+2025-05-22 14:12:59,110 - __main__ - INFO - Client connected: conn_1747948379109
+2025-05-22 14:12:59,112 - __main__ - INFO - Processing register from conn_1747948379109
+2025-05-22 14:13:04,122 - websockets.server - INFO - connection open
+2025-05-22 14:13:04,122 - __main__ - INFO - Client connected: conn_1747948384122
+2025-05-22 14:13:04,125 - __main__ - INFO - Processing register from conn_1747948384122
+2025-05-22 14:13:09,146 - websockets.server - INFO - connection open
+2025-05-22 14:13:09,147 - __main__ - INFO - Client connected: conn_1747948389147
+2025-05-22 14:13:09,153 - __main__ - INFO - Processing register from conn_1747948389147
+2025-05-22 14:13:14,164 - websockets.server - INFO - connection open
+2025-05-22 14:13:14,165 - __main__ - INFO - Client connected: conn_1747948394165
+2025-05-22 14:13:14,167 - __main__ - INFO - Processing register from conn_1747948394165
+2025-05-22 14:13:19,183 - websockets.server - INFO - connection open
+2025-05-22 14:13:19,183 - __main__ - INFO - Client connected: conn_1747948399183
+2025-05-22 14:13:19,188 - __main__ - INFO - Processing register from conn_1747948399183
+2025-05-22 14:13:24,256 - websockets.server - INFO - connection open
+2025-05-22 14:13:24,259 - __main__ - INFO - Client connected: conn_1747948404259
+2025-05-22 14:13:24,263 - __main__ - INFO - Processing register from conn_1747948404259
+2025-05-22 14:13:29,329 - websockets.server - INFO - connection open
+2025-05-22 14:13:29,331 - __main__ - INFO - Client connected: conn_1747948409331
+2025-05-22 14:13:29,333 - __main__ - INFO - Processing register from conn_1747948409331
+2025-05-22 14:13:34,370 - websockets.server - INFO - connection open
+2025-05-22 14:13:34,371 - __main__ - INFO - Client connected: conn_1747948414371
+2025-05-22 14:13:34,375 - __main__ - INFO - Processing register from conn_1747948414371
+2025-05-22 14:13:39,397 - websockets.server - INFO - connection open
+2025-05-22 14:13:39,397 - __main__ - INFO - Client connected: conn_1747948419397
+2025-05-22 14:13:39,400 - __main__ - INFO - Processing register from conn_1747948419397
+2025-05-22 14:13:44,468 - websockets.server - INFO - connection open
+2025-05-22 14:13:44,479 - __main__ - INFO - Client connected: conn_1747948424479
+2025-05-22 14:13:44,484 - __main__ - INFO - Processing register from conn_1747948424479
+2025-05-22 14:13:49,500 - websockets.server - INFO - connection open
+2025-05-22 14:13:49,500 - __main__ - INFO - Client connected: conn_1747948429500
+2025-05-22 14:13:49,503 - __main__ - INFO - Processing register from conn_1747948429500
+2025-05-22 14:13:54,513 - websockets.server - INFO - connection open
+2025-05-22 14:13:54,513 - __main__ - INFO - Client connected: conn_1747948434513
+2025-05-22 14:13:54,515 - __main__ - INFO - Processing register from conn_1747948434513
+2025-05-22 14:13:59,156 - websockets.server - INFO - connection open
+2025-05-22 14:13:59,157 - __main__ - INFO - Client connected: conn_1747948439157
+2025-05-22 14:13:59,159 - __main__ - INFO - Processing register from conn_1747948439157
+2025-05-22 14:13:59,526 - websockets.server - INFO - connection open
+2025-05-22 14:13:59,526 - __main__ - INFO - Client connected: conn_1747948439526
+2025-05-22 14:13:59,530 - __main__ - INFO - Processing register from conn_1747948439526
+2025-05-22 14:14:04,538 - websockets.server - INFO - connection open
+2025-05-22 14:14:04,539 - __main__ - INFO - Client connected: conn_1747948444539
+2025-05-22 14:14:04,540 - __main__ - INFO - Processing register from conn_1747948444539
+2025-05-22 14:14:09,545 - websockets.server - INFO - connection open
+2025-05-22 14:14:09,546 - __main__ - INFO - Client connected: conn_1747948449546
+2025-05-22 14:14:09,546 - __main__ - INFO - Processing register from conn_1747948449546
+2025-05-22 14:14:14,560 - websockets.server - INFO - connection open
+2025-05-22 14:14:14,560 - __main__ - INFO - Client connected: conn_1747948454560
+2025-05-22 14:14:14,561 - __main__ - INFO - Processing register from conn_1747948454560
+2025-05-22 14:14:19,565 - websockets.server - INFO - connection open
+2025-05-22 14:14:19,565 - __main__ - INFO - Client connected: conn_1747948459565
+2025-05-22 14:14:19,566 - __main__ - INFO - Processing register from conn_1747948459565
+2025-05-22 14:14:24,574 - websockets.server - INFO - connection open
+2025-05-22 14:14:24,575 - __main__ - INFO - Client connected: conn_1747948464575
+2025-05-22 14:14:24,578 - __main__ - INFO - Processing register from conn_1747948464575
+2025-05-22 14:14:29,595 - websockets.server - INFO - connection open
+2025-05-22 14:14:29,598 - __main__ - INFO - Client connected: conn_1747948469597
+2025-05-22 14:14:29,600 - __main__ - INFO - Processing register from conn_1747948469597
+2025-05-22 14:14:34,612 - websockets.server - INFO - connection open
+2025-05-22 14:14:34,613 - __main__ - INFO - Client connected: conn_1747948474613
+2025-05-22 14:14:34,615 - __main__ - INFO - Processing register from conn_1747948474613
+2025-05-22 14:14:39,626 - websockets.server - INFO - connection open
+2025-05-22 14:14:39,627 - __main__ - INFO - Client connected: conn_1747948479627
+2025-05-22 14:14:39,628 - __main__ - INFO - Processing register from conn_1747948479627
+2025-05-22 14:14:44,641 - websockets.server - INFO - connection open
+2025-05-22 14:14:44,641 - __main__ - INFO - Client connected: conn_1747948484641
+2025-05-22 14:14:44,644 - __main__ - INFO - Processing register from conn_1747948484641
+2025-05-22 14:14:49,658 - websockets.server - INFO - connection open
+2025-05-22 14:14:49,658 - __main__ - INFO - Client connected: conn_1747948489658
+2025-05-22 14:14:49,660 - __main__ - INFO - Processing register from conn_1747948489658
+2025-05-22 14:14:54,677 - websockets.server - INFO - connection open
+2025-05-22 14:14:54,678 - __main__ - INFO - Client connected: conn_1747948494678
+2025-05-22 14:14:54,681 - __main__ - INFO - Processing register from conn_1747948494678
+2025-05-22 14:14:59,695 - websockets.server - INFO - connection open
+2025-05-22 14:14:59,696 - __main__ - INFO - Client connected: conn_1747948499696
+2025-05-22 14:14:59,698 - __main__ - INFO - Processing register from conn_1747948499696
+2025-05-22 14:15:04,733 - websockets.server - INFO - connection open
+2025-05-22 14:15:04,736 - __main__ - INFO - Client connected: conn_1747948504736
+2025-05-22 14:15:04,751 - __main__ - INFO - Processing register from conn_1747948504736
+2025-05-22 14:15:09,767 - websockets.server - INFO - connection open
+2025-05-22 14:15:09,768 - __main__ - INFO - Client connected: conn_1747948509768
+2025-05-22 14:15:09,770 - __main__ - INFO - Processing register from conn_1747948509768
+2025-05-22 14:15:14,780 - websockets.server - INFO - connection open
+2025-05-22 14:15:14,781 - __main__ - INFO - Client connected: conn_1747948514781
+2025-05-22 14:15:14,783 - __main__ - INFO - Processing register from conn_1747948514781
+2025-05-22 14:15:19,794 - websockets.server - INFO - connection open
+2025-05-22 14:15:19,795 - __main__ - INFO - Client connected: conn_1747948519795
+2025-05-22 14:15:19,796 - __main__ - INFO - Processing register from conn_1747948519795
+2025-05-22 14:15:24,817 - websockets.server - INFO - connection open
+2025-05-22 14:15:24,818 - __main__ - INFO - Client connected: conn_1747948524818
+2025-05-22 14:15:24,829 - __main__ - INFO - Processing register from conn_1747948524818
+2025-05-22 14:15:29,848 - websockets.server - INFO - connection open
+2025-05-22 14:15:29,848 - __main__ - INFO - Client connected: conn_1747948529848
+2025-05-22 14:15:29,853 - __main__ - INFO - Processing register from conn_1747948529848
+2025-05-22 14:15:34,926 - websockets.server - INFO - connection open
+2025-05-22 14:15:34,932 - __main__ - INFO - Client connected: conn_1747948534932
+2025-05-22 14:15:34,936 - __main__ - INFO - Processing register from conn_1747948534932
+2025-05-22 14:15:39,948 - websockets.server - INFO - connection open
+2025-05-22 14:15:39,948 - __main__ - INFO - Client connected: conn_1747948539948
+2025-05-22 14:15:39,952 - __main__ - INFO - Processing register from conn_1747948539948
+2025-05-22 14:15:44,976 - websockets.server - INFO - connection open
+2025-05-22 14:15:44,978 - __main__ - INFO - Client connected: conn_1747948544978
+2025-05-22 14:15:44,982 - __main__ - INFO - Processing register from conn_1747948544978
+2025-05-22 14:15:50,003 - websockets.server - INFO - connection open
+2025-05-22 14:15:50,004 - __main__ - INFO - Client connected: conn_1747948550004
+2025-05-22 14:15:50,006 - __main__ - INFO - Processing register from conn_1747948550004
+2025-05-22 14:15:55,019 - websockets.server - INFO - connection open
+2025-05-22 14:15:55,020 - __main__ - INFO - Client connected: conn_1747948555019
+2025-05-22 14:15:55,022 - __main__ - INFO - Processing register from conn_1747948555019
+2025-05-22 14:15:57,173 - __main__ - INFO - Processing sensor_data from conn_1747948439157
+2025-05-22 14:16:00,039 - websockets.server - INFO - connection open
+2025-05-22 14:16:00,040 - __main__ - INFO - Client connected: conn_1747948560040
+2025-05-22 14:16:00,043 - __main__ - INFO - Processing register from conn_1747948560040
+2025-05-22 14:16:05,049 - websockets.server - INFO - connection open
+2025-05-22 14:16:05,049 - __main__ - INFO - Client connected: conn_1747948565049
+2025-05-22 14:16:05,051 - __main__ - INFO - Processing register from conn_1747948565049
+2025-05-22 14:16:10,055 - websockets.server - INFO - connection open
+2025-05-22 14:16:10,055 - __main__ - INFO - Client connected: conn_1747948570055
+2025-05-22 14:16:10,057 - __main__ - INFO - Processing register from conn_1747948570055
+2025-05-22 14:16:15,065 - websockets.server - INFO - connection open
+2025-05-22 14:16:15,066 - __main__ - INFO - Client connected: conn_1747948575066
+2025-05-22 14:16:15,068 - __main__ - INFO - Processing register from conn_1747948575066
+2025-05-22 14:16:20,084 - websockets.server - INFO - connection open
+2025-05-22 14:16:20,086 - __main__ - INFO - Client connected: conn_1747948580086
+2025-05-22 14:16:20,091 - __main__ - INFO - Processing register from conn_1747948580086
+2025-05-22 14:16:25,929 - websockets.server - INFO - connection open
+2025-05-22 14:16:25,931 - __main__ - INFO - Client connected: conn_1747948585931
+2025-05-22 14:16:25,941 - __main__ - INFO - Processing register from conn_1747948585931
+2025-05-22 14:16:31,363 - websockets.server - INFO - connection open
+2025-05-22 14:16:31,368 - __main__ - INFO - Client connected: conn_1747948591367
+2025-05-22 14:16:31,377 - __main__ - INFO - Processing register from conn_1747948591367
+2025-05-22 14:16:36,390 - websockets.server - INFO - connection open
+2025-05-22 14:16:36,390 - __main__ - INFO - Client connected: conn_1747948596390
+2025-05-22 14:16:36,392 - __main__ - INFO - Processing register from conn_1747948596390
+2025-05-22 14:16:41,637 - websockets.server - INFO - connection open
+2025-05-22 14:16:41,637 - __main__ - INFO - Client connected: conn_1747948601637
+2025-05-22 14:16:41,640 - __main__ - INFO - Processing register from conn_1747948601637
+2025-05-22 14:16:46,820 - websockets.server - INFO - connection open
+2025-05-22 14:16:46,822 - __main__ - INFO - Client connected: conn_1747948606822
+2025-05-22 14:16:46,828 - __main__ - INFO - Processing register from conn_1747948606822
+2025-05-22 14:16:49,244 - __main__ - INFO - Client disconnected: conn_1747948439157
+2025-05-22 14:16:52,708 - websockets.server - INFO - connection open
+2025-05-22 14:16:52,709 - __main__ - INFO - Client connected: conn_1747948612709
+2025-05-22 14:16:52,793 - __main__ - INFO - Processing register from conn_1747948612709
+2025-05-22 14:16:59,704 - websockets.server - INFO - connection open
+2025-05-22 14:16:59,714 - __main__ - INFO - Client connected: conn_1747948619714
+2025-05-22 14:16:59,774 - __main__ - INFO - Processing register from conn_1747948619714
+2025-05-22 14:17:06,755 - websockets.server - INFO - connection open
+2025-05-22 14:17:06,885 - __main__ - INFO - Client connected: conn_1747948626885
+2025-05-22 14:17:07,539 - __main__ - INFO - Processing register from conn_1747948626885
+2025-05-22 14:17:15,236 - websockets.server - INFO - connection open
+2025-05-22 14:17:15,237 - __main__ - INFO - Client connected: conn_1747948635237
+2025-05-22 14:17:15,287 - __main__ - INFO - Processing register from conn_1747948635237
+2025-05-22 14:17:20,345 - websockets.server - INFO - connection open
+2025-05-22 14:17:20,347 - __main__ - INFO - Client connected: conn_1747948640347
+2025-05-22 14:17:20,360 - __main__ - INFO - Processing register from conn_1747948640347
+2025-05-22 14:17:26,187 - websockets.server - INFO - connection open
+2025-05-22 14:17:26,192 - __main__ - INFO - Client connected: conn_1747948646192
+2025-05-22 14:17:27,071 - __main__ - INFO - Processing register from conn_1747948646192
+2025-05-22 14:17:32,206 - websockets.server - INFO - connection open
+2025-05-22 14:17:32,211 - __main__ - INFO - Client connected: conn_1747948652211
+2025-05-22 14:17:32,231 - __main__ - INFO - Processing register from conn_1747948652211
+2025-05-22 14:17:37,262 - websockets.server - INFO - connection open
+2025-05-22 14:17:37,263 - __main__ - INFO - Client connected: conn_1747948657263
+2025-05-22 14:17:37,266 - __main__ - INFO - Processing register from conn_1747948657263
+2025-05-22 14:17:42,280 - websockets.server - INFO - connection open
+2025-05-22 14:17:42,285 - __main__ - INFO - Client connected: conn_1747948662285
+2025-05-22 14:17:42,289 - __main__ - INFO - Processing register from conn_1747948662285
+2025-05-22 14:17:47,314 - websockets.server - INFO - connection open
+2025-05-22 14:17:47,317 - __main__ - INFO - Client connected: conn_1747948667317
+2025-05-22 14:17:47,322 - __main__ - INFO - Processing register from conn_1747948667317
+2025-05-22 14:17:52,634 - websockets.server - INFO - connection open
+2025-05-22 14:17:52,639 - __main__ - INFO - Client connected: conn_1747948672639
+2025-05-22 14:17:52,648 - __main__ - INFO - Processing register from conn_1747948672639
+2025-05-22 14:17:57,668 - websockets.server - INFO - connection open
+2025-05-22 14:17:57,669 - __main__ - INFO - Client connected: conn_1747948677669
+2025-05-22 14:17:57,671 - __main__ - INFO - Processing register from conn_1747948677669
+2025-05-22 14:18:02,745 - websockets.server - INFO - connection open
+2025-05-22 14:18:02,747 - __main__ - INFO - Client connected: conn_1747948682747
+2025-05-22 14:18:02,759 - __main__ - INFO - Processing register from conn_1747948682747
+2025-05-22 14:18:07,782 - websockets.server - INFO - connection open
+2025-05-22 14:18:07,783 - __main__ - INFO - Client connected: conn_1747948687783
+2025-05-22 14:18:07,787 - __main__ - INFO - Processing register from conn_1747948687783
+2025-05-22 14:18:12,830 - websockets.server - INFO - connection open
+2025-05-22 14:18:12,832 - __main__ - INFO - Client connected: conn_1747948692832
+2025-05-22 14:18:12,838 - __main__ - INFO - Processing register from conn_1747948692832
+2025-05-22 14:18:17,865 - websockets.server - INFO - connection open
+2025-05-22 14:18:17,866 - __main__ - INFO - Client connected: conn_1747948697866
+2025-05-22 14:18:17,913 - __main__ - INFO - Processing register from conn_1747948697866
+2025-05-22 14:18:22,957 - websockets.server - INFO - connection open
+2025-05-22 14:18:22,959 - __main__ - INFO - Client connected: conn_1747948702959
+2025-05-22 14:18:22,964 - __main__ - INFO - Processing register from conn_1747948702959
+2025-05-22 14:18:27,178 - websockets.server - INFO - connection open
+2025-05-22 14:18:27,179 - __main__ - INFO - Client connected: conn_1747948707179
+2025-05-22 14:18:27,185 - __main__ - INFO - Processing register from conn_1747948707179
+2025-05-22 14:18:27,998 - websockets.server - INFO - connection open
+2025-05-22 14:18:27,998 - __main__ - INFO - Client connected: conn_1747948707998
+2025-05-22 14:18:28,002 - __main__ - INFO - Processing register from conn_1747948707998
+2025-05-22 14:18:33,008 - websockets.server - INFO - connection open
+2025-05-22 14:18:33,008 - __main__ - INFO - Client connected: conn_1747948713008
+2025-05-22 14:18:33,009 - __main__ - INFO - Processing register from conn_1747948713008
+2025-05-22 14:18:38,014 - websockets.server - INFO - connection open
+2025-05-22 14:18:38,014 - __main__ - INFO - Client connected: conn_1747948718014
+2025-05-22 14:18:38,015 - __main__ - INFO - Processing register from conn_1747948718014
+2025-05-22 14:18:43,018 - websockets.server - INFO - connection open
+2025-05-22 14:18:43,018 - __main__ - INFO - Client connected: conn_1747948723018
+2025-05-22 14:18:43,019 - __main__ - INFO - Processing register from conn_1747948723018
+2025-05-22 14:18:48,023 - websockets.server - INFO - connection open
+2025-05-22 14:18:48,023 - __main__ - INFO - Client connected: conn_1747948728023
+2025-05-22 14:18:48,025 - __main__ - INFO - Processing register from conn_1747948728023
+2025-05-22 14:18:53,030 - websockets.server - INFO - connection open
+2025-05-22 14:18:53,030 - __main__ - INFO - Client connected: conn_1747948733030
+2025-05-22 14:18:53,031 - __main__ - INFO - Processing register from conn_1747948733030
+2025-05-22 14:18:58,036 - websockets.server - INFO - connection open
+2025-05-22 14:18:58,036 - __main__ - INFO - Client connected: conn_1747948738036
+2025-05-22 14:18:58,038 - __main__ - INFO - Processing register from conn_1747948738036
+2025-05-22 14:19:03,042 - websockets.server - INFO - connection open
+2025-05-22 14:19:03,042 - __main__ - INFO - Client connected: conn_1747948743042
+2025-05-22 14:19:03,043 - __main__ - INFO - Processing register from conn_1747948743042
+2025-05-22 14:19:08,047 - websockets.server - INFO - connection open
+2025-05-22 14:19:08,047 - __main__ - INFO - Client connected: conn_1747948748047
+2025-05-22 14:19:08,050 - __main__ - INFO - Processing register from conn_1747948748047
+2025-05-22 14:19:13,056 - websockets.server - INFO - connection open
+2025-05-22 14:19:13,056 - __main__ - INFO - Client connected: conn_1747948753056
+2025-05-22 14:19:13,057 - __main__ - INFO - Processing register from conn_1747948753056
+2025-05-22 14:19:17,187 - __main__ - INFO - Client disconnected: conn_1747948707179
+2025-05-22 14:19:18,061 - websockets.server - INFO - connection open
+2025-05-22 14:19:18,061 - __main__ - INFO - Client connected: conn_1747948758061
+2025-05-22 14:19:18,063 - __main__ - INFO - Processing register from conn_1747948758061
+2025-05-22 14:19:23,067 - websockets.server - INFO - connection open
+2025-05-22 14:19:23,068 - __main__ - INFO - Client connected: conn_1747948763068
+2025-05-22 14:19:23,070 - __main__ - INFO - Processing register from conn_1747948763068
+2025-05-22 14:19:28,073 - websockets.server - INFO - connection open
+2025-05-22 14:19:28,073 - __main__ - INFO - Client connected: conn_1747948768073
+2025-05-22 14:19:28,074 - __main__ - INFO - Processing register from conn_1747948768073
+2025-05-22 14:19:33,100 - websockets.server - INFO - connection open
+2025-05-22 14:19:33,100 - __main__ - INFO - Client connected: conn_1747948773100
+2025-05-22 14:19:33,102 - __main__ - INFO - Processing register from conn_1747948773100
+2025-05-22 14:19:38,129 - websockets.server - INFO - connection open
+2025-05-22 14:19:38,130 - __main__ - INFO - Client connected: conn_1747948778130
+2025-05-22 14:19:38,136 - __main__ - INFO - Processing register from conn_1747948778130
+2025-05-22 14:19:43,146 - websockets.server - INFO - connection open
+2025-05-22 14:19:43,146 - __main__ - INFO - Client connected: conn_1747948783146
+2025-05-22 14:19:43,148 - __main__ - INFO - Processing register from conn_1747948783146
+2025-05-22 14:19:48,155 - websockets.server - INFO - connection open
+2025-05-22 14:19:48,156 - __main__ - INFO - Client connected: conn_1747948788156
+2025-05-22 14:19:48,157 - __main__ - INFO - Processing register from conn_1747948788156
+2025-05-22 14:19:53,213 - websockets.server - INFO - connection open
+2025-05-22 14:19:53,214 - __main__ - INFO - Client connected: conn_1747948793214
+2025-05-22 14:19:53,217 - __main__ - INFO - Processing register from conn_1747948793214
+2025-05-22 14:19:58,307 - websockets.server - INFO - connection open
+2025-05-22 14:19:58,310 - __main__ - INFO - Client connected: conn_1747948798310
+2025-05-22 14:19:58,317 - __main__ - INFO - Processing register from conn_1747948798310
+2025-05-22 14:20:04,821 - websockets.server - INFO - connection open
+2025-05-22 14:20:04,826 - __main__ - INFO - Client connected: conn_1747948804825
+2025-05-22 14:20:04,878 - __main__ - INFO - Processing register from conn_1747948804825
+2025-05-22 14:20:10,014 - websockets.server - INFO - connection open
+2025-05-22 14:20:10,019 - __main__ - INFO - Client connected: conn_1747948810019
+2025-05-22 14:20:10,046 - __main__ - INFO - Processing register from conn_1747948810019
+2025-05-22 14:20:15,120 - websockets.server - INFO - connection open
+2025-05-22 14:20:15,121 - __main__ - INFO - Client connected: conn_1747948815121
+2025-05-22 14:20:15,127 - __main__ - INFO - Processing register from conn_1747948815121
+2025-05-22 14:20:21,060 - websockets.server - INFO - connection open
+2025-05-22 14:20:21,100 - __main__ - INFO - Client connected: conn_1747948821099
+2025-05-22 14:20:21,149 - __main__ - INFO - Processing register from conn_1747948821099
+2025-05-22 14:20:26,309 - websockets.server - INFO - connection open
+2025-05-22 14:20:26,312 - __main__ - INFO - Client connected: conn_1747948826311
+2025-05-22 14:20:26,326 - __main__ - INFO - Processing register from conn_1747948826311
+2025-05-22 14:20:31,385 - websockets.server - INFO - connection open
+2025-05-22 14:20:31,389 - __main__ - INFO - Client connected: conn_1747948831389
+2025-05-22 14:20:31,394 - __main__ - INFO - Processing register from conn_1747948831389
+2025-05-22 14:20:36,452 - websockets.server - INFO - connection open
+2025-05-22 14:20:36,462 - __main__ - INFO - Client connected: conn_1747948836462
+2025-05-22 14:20:36,478 - __main__ - INFO - Processing register from conn_1747948836462
+2025-05-22 14:20:41,729 - websockets.server - INFO - connection open
+2025-05-22 14:20:41,759 - __main__ - INFO - Client connected: conn_1747948841758
+2025-05-22 14:20:41,798 - __main__ - INFO - Processing register from conn_1747948841758
+2025-05-22 14:20:46,918 - websockets.server - INFO - connection open
+2025-05-22 14:20:46,920 - __main__ - INFO - Client connected: conn_1747948846920
+2025-05-22 14:20:46,924 - __main__ - INFO - Processing register from conn_1747948846920
+2025-05-22 14:20:52,083 - websockets.server - INFO - connection open
+2025-05-22 14:20:52,085 - __main__ - INFO - Client connected: conn_1747948852085
+2025-05-22 14:20:52,106 - __main__ - INFO - Processing register from conn_1747948852085
+2025-05-22 14:20:57,574 - websockets.server - INFO - connection open
+2025-05-22 14:20:57,608 - __main__ - INFO - Client connected: conn_1747948857608
+2025-05-22 14:20:57,674 - __main__ - INFO - Processing register from conn_1747948857608
+2025-05-22 14:21:02,746 - websockets.server - INFO - connection open
+2025-05-22 14:21:02,746 - __main__ - INFO - Client connected: conn_1747948862746
+2025-05-22 14:21:02,749 - __main__ - INFO - Processing register from conn_1747948862746
+2025-05-22 14:21:03,599 - websockets.server - INFO - connection open
+2025-05-22 14:21:03,600 - __main__ - INFO - Client connected: conn_1747948863600
+2025-05-22 14:21:03,606 - __main__ - INFO - Processing register from conn_1747948863600
+2025-05-22 14:21:08,151 - websockets.server - INFO - connection open
+2025-05-22 14:21:08,168 - __main__ - INFO - Client connected: conn_1747948868168
+2025-05-22 14:21:08,189 - __main__ - INFO - Processing register from conn_1747948868168
+2025-05-22 14:21:13,225 - websockets.server - INFO - connection open
+2025-05-22 14:21:13,226 - __main__ - INFO - Client connected: conn_1747948873226
+2025-05-22 14:21:13,237 - __main__ - INFO - Processing register from conn_1747948873226
+2025-05-22 14:21:18,774 - websockets.server - INFO - connection open
+2025-05-22 14:21:18,791 - __main__ - INFO - Client connected: conn_1747948878789
+2025-05-22 14:21:18,839 - __main__ - INFO - Processing register from conn_1747948878789
+2025-05-22 14:21:24,057 - websockets.server - INFO - connection open
+2025-05-22 14:21:24,103 - __main__ - INFO - Client connected: conn_1747948884089
+2025-05-22 14:21:24,121 - __main__ - INFO - Processing register from conn_1747948884089
+2025-05-22 14:21:29,692 - websockets.server - INFO - connection open
+2025-05-22 14:21:29,698 - __main__ - INFO - Client connected: conn_1747948889698
+2025-05-22 14:21:29,742 - __main__ - INFO - Processing register from conn_1747948889698
+2025-05-22 14:21:34,792 - websockets.server - INFO - connection open
+2025-05-22 14:21:34,793 - __main__ - INFO - Client connected: conn_1747948894793
+2025-05-22 14:21:34,795 - __main__ - INFO - Processing register from conn_1747948894793
+2025-05-22 14:21:39,855 - websockets.server - INFO - connection open
+2025-05-22 14:21:39,856 - __main__ - INFO - Client connected: conn_1747948899856
+2025-05-22 14:21:39,860 - __main__ - INFO - Processing register from conn_1747948899856
+2025-05-22 14:21:44,891 - websockets.server - INFO - connection open
+2025-05-22 14:21:44,893 - __main__ - INFO - Client connected: conn_1747948904893
+2025-05-22 14:21:44,898 - __main__ - INFO - Processing register from conn_1747948904893
+2025-05-22 14:21:49,950 - websockets.server - INFO - connection open
+2025-05-22 14:21:49,951 - __main__ - INFO - Client connected: conn_1747948909951
+2025-05-22 14:21:49,958 - __main__ - INFO - Processing register from conn_1747948909951
+2025-05-22 14:21:53,665 - __main__ - INFO - Client disconnected: conn_1747948863600
+2025-05-22 14:21:55,078 - websockets.server - INFO - connection open
+2025-05-22 14:21:55,079 - __main__ - INFO - Client connected: conn_1747948915079
+2025-05-22 14:21:55,098 - __main__ - INFO - Processing register from conn_1747948915079
+2025-05-22 14:22:00,124 - websockets.server - INFO - connection open
+2025-05-22 14:22:00,127 - __main__ - INFO - Client connected: conn_1747948920127
+2025-05-22 14:22:00,131 - __main__ - INFO - Processing register from conn_1747948920127
+2025-05-22 14:22:05,279 - websockets.server - INFO - connection open
+2025-05-22 14:22:05,281 - __main__ - INFO - Client connected: conn_1747948925281
+2025-05-22 14:22:05,304 - __main__ - INFO - Processing register from conn_1747948925281
+2025-05-22 14:22:10,496 - websockets.server - INFO - connection open
+2025-05-22 14:22:10,497 - __main__ - INFO - Client connected: conn_1747948930497
+2025-05-22 14:22:10,503 - __main__ - INFO - Processing register from conn_1747948930497
+2025-05-22 14:22:15,634 - websockets.server - INFO - connection open
+2025-05-22 14:22:15,644 - __main__ - INFO - Client connected: conn_1747948935644
+2025-05-22 14:22:15,695 - __main__ - INFO - Processing register from conn_1747948935644
+2025-05-22 14:22:20,878 - websockets.server - INFO - connection open
+2025-05-22 14:22:20,884 - __main__ - INFO - Client connected: conn_1747948940884
+2025-05-22 14:22:20,903 - __main__ - INFO - Processing register from conn_1747948940884
+2025-05-22 14:22:25,966 - websockets.server - INFO - connection open
+2025-05-22 14:22:25,969 - __main__ - INFO - Client connected: conn_1747948945969
+2025-05-22 14:22:25,977 - __main__ - INFO - Processing register from conn_1747948945969
+2025-05-22 14:22:31,146 - websockets.server - INFO - connection open
+2025-05-22 14:22:31,149 - __main__ - INFO - Client connected: conn_1747948951149
+2025-05-22 14:22:31,169 - __main__ - INFO - Processing register from conn_1747948951149
+2025-05-22 14:22:36,300 - websockets.server - INFO - connection open
+2025-05-22 14:22:36,302 - __main__ - INFO - Client connected: conn_1747948956302
+2025-05-22 14:22:36,338 - __main__ - INFO - Processing register from conn_1747948956302
+2025-05-22 14:22:41,518 - websockets.server - INFO - connection open
+2025-05-22 14:22:41,520 - __main__ - INFO - Client connected: conn_1747948961520
+2025-05-22 14:22:41,526 - __main__ - INFO - Processing register from conn_1747948961520
+2025-05-22 14:22:46,553 - websockets.server - INFO - connection open
+2025-05-22 14:22:46,554 - __main__ - INFO - Client connected: conn_1747948966554
+2025-05-22 14:22:46,564 - __main__ - INFO - Processing register from conn_1747948966554
+2025-05-22 14:22:51,644 - websockets.server - INFO - connection open
+2025-05-22 14:22:51,646 - __main__ - INFO - Client connected: conn_1747948971646
+2025-05-22 14:22:51,690 - __main__ - INFO - Processing register from conn_1747948971646
+2025-05-22 14:22:56,897 - websockets.server - INFO - connection open
+2025-05-22 14:22:56,901 - __main__ - INFO - Client connected: conn_1747948976901
+2025-05-22 14:22:56,979 - __main__ - INFO - Processing register from conn_1747948976901
+2025-05-22 14:23:02,196 - websockets.server - INFO - connection open
+2025-05-22 14:23:02,200 - __main__ - INFO - Client connected: conn_1747948982200
+2025-05-22 14:23:02,235 - __main__ - INFO - Processing register from conn_1747948982200
+2025-05-22 14:23:08,133 - websockets.server - INFO - connection open
+2025-05-22 14:23:08,141 - __main__ - INFO - Client connected: conn_1747948988141
+2025-05-22 14:23:08,224 - __main__ - INFO - Processing register from conn_1747948988141
+2025-05-22 14:23:14,337 - websockets.server - INFO - connection open
+2025-05-22 14:23:14,430 - __main__ - INFO - Client connected: conn_1747948994422
+2025-05-22 14:23:14,892 - __main__ - INFO - Processing register from conn_1747948994422
+2025-05-22 14:23:21,101 - websockets.server - INFO - connection open
+2025-05-22 14:23:21,155 - __main__ - INFO - Client connected: conn_1747949001155
+2025-05-22 14:23:22,027 - __main__ - INFO - Processing register from conn_1747949001155
+2025-05-22 14:23:27,076 - websockets.server - INFO - connection open
+2025-05-22 14:23:27,077 - __main__ - INFO - Client connected: conn_1747949007077
+2025-05-22 14:23:27,087 - __main__ - INFO - Processing register from conn_1747949007077
+2025-05-22 14:23:32,111 - websockets.server - INFO - connection open
+2025-05-22 14:23:32,112 - __main__ - INFO - Client connected: conn_1747949012112
+2025-05-22 14:23:32,115 - __main__ - INFO - Processing register from conn_1747949012112
+2025-05-22 14:23:37,179 - websockets.server - INFO - connection open
+2025-05-22 14:23:37,187 - __main__ - INFO - Client connected: conn_1747949017187
+2025-05-22 14:23:37,203 - __main__ - INFO - Processing register from conn_1747949017187
+2025-05-22 14:23:39,523 - websockets.server - INFO - connection open
+2025-05-22 14:23:39,528 - __main__ - INFO - Client connected: conn_1747949019528
+2025-05-22 14:23:39,532 - __main__ - INFO - Processing register from conn_1747949019528
+2025-05-22 14:23:40,747 - websockets.server - INFO - connection open
+2025-05-22 14:23:40,749 - __main__ - INFO - Client connected: conn_1747949020749
+2025-05-22 14:23:40,753 - __main__ - INFO - Processing register from conn_1747949020749
+2025-05-22 14:23:42,511 - websockets.server - INFO - connection open
+2025-05-22 14:23:42,512 - __main__ - INFO - Client connected: conn_1747949022512
+2025-05-22 14:23:42,556 - __main__ - INFO - Processing register from conn_1747949022512
+2025-05-22 14:23:47,632 - websockets.server - INFO - connection open
+2025-05-22 14:23:47,633 - __main__ - INFO - Client connected: conn_1747949027633
+2025-05-22 14:23:47,639 - __main__ - INFO - Processing register from conn_1747949027633
+2025-05-22 14:23:52,671 - websockets.server - INFO - connection open
+2025-05-22 14:23:52,673 - __main__ - INFO - Client connected: conn_1747949032673
+2025-05-22 14:23:52,697 - __main__ - INFO - Processing register from conn_1747949032673
+2025-05-22 14:23:57,963 - websockets.server - INFO - connection open
+2025-05-22 14:23:57,976 - __main__ - INFO - Client connected: conn_1747949037976
+2025-05-22 14:23:57,978 - __main__ - INFO - Processing register from conn_1747949037976
+2025-05-22 14:24:03,114 - websockets.server - INFO - connection open
+2025-05-22 14:24:03,122 - __main__ - INFO - Client connected: conn_1747949043122
+2025-05-22 14:24:03,133 - __main__ - INFO - Processing register from conn_1747949043122
+2025-05-22 14:24:08,634 - websockets.server - INFO - connection open
+2025-05-22 14:24:08,678 - __main__ - INFO - Client connected: conn_1747949048678
+2025-05-22 14:24:08,738 - __main__ - INFO - Processing register from conn_1747949048678
+2025-05-22 14:24:13,854 - websockets.server - INFO - connection open
+2025-05-22 14:24:13,860 - __main__ - INFO - Client connected: conn_1747949053860
+2025-05-22 14:24:13,875 - __main__ - INFO - Processing register from conn_1747949053860
+2025-05-22 14:24:18,908 - websockets.server - INFO - connection open
+2025-05-22 14:24:18,909 - __main__ - INFO - Client connected: conn_1747949058909
+2025-05-22 14:24:18,913 - __main__ - INFO - Processing register from conn_1747949058909
+2025-05-22 14:24:23,999 - websockets.server - INFO - connection open
+2025-05-22 14:24:24,008 - __main__ - INFO - Client connected: conn_1747949064008
+2025-05-22 14:24:24,017 - __main__ - INFO - Processing register from conn_1747949064008
+2025-05-22 14:24:29,072 - websockets.server - INFO - connection open
+2025-05-22 14:24:29,073 - __main__ - INFO - Client connected: conn_1747949069073
+2025-05-22 14:24:29,076 - __main__ - INFO - Processing register from conn_1747949069073
+2025-05-22 14:24:29,550 - __main__ - INFO - Client disconnected: conn_1747949019528
+2025-05-22 14:24:30,883 - __main__ - INFO - Client disconnected: conn_1747949020749
+2025-05-22 14:24:34,415 - websockets.server - INFO - connection open
+2025-05-22 14:24:34,421 - __main__ - INFO - Client connected: conn_1747949074421
+2025-05-22 14:24:34,477 - __main__ - INFO - Processing register from conn_1747949074421
+2025-05-22 14:24:39,613 - websockets.server - INFO - connection open
+2025-05-22 14:24:39,639 - __main__ - INFO - Client connected: conn_1747949079639
+2025-05-22 14:24:39,647 - __main__ - INFO - Processing register from conn_1747949079639
+2025-05-22 14:24:44,664 - websockets.server - INFO - connection open
+2025-05-22 14:24:44,665 - __main__ - INFO - Client connected: conn_1747949084665
+2025-05-22 14:24:44,668 - __main__ - INFO - Processing register from conn_1747949084665
+2025-05-22 14:24:49,777 - websockets.server - INFO - connection open
+2025-05-22 14:24:49,780 - __main__ - INFO - Client connected: conn_1747949089779
+2025-05-22 14:24:49,785 - __main__ - INFO - Processing register from conn_1747949089779
+2025-05-22 14:24:54,801 - websockets.server - INFO - connection open
+2025-05-22 14:24:54,802 - __main__ - INFO - Client connected: conn_1747949094802
+2025-05-22 14:24:54,805 - __main__ - INFO - Processing register from conn_1747949094802
+2025-05-22 14:24:59,833 - websockets.server - INFO - connection open
+2025-05-22 14:24:59,834 - __main__ - INFO - Client connected: conn_1747949099833
+2025-05-22 14:24:59,836 - __main__ - INFO - Processing register from conn_1747949099833
+2025-05-22 14:25:04,880 - websockets.server - INFO - connection open
+2025-05-22 14:25:04,882 - __main__ - INFO - Client connected: conn_1747949104882
+2025-05-22 14:25:04,885 - __main__ - INFO - Processing register from conn_1747949104882
+2025-05-22 14:25:09,912 - websockets.server - INFO - connection open
+2025-05-22 14:25:09,913 - __main__ - INFO - Client connected: conn_1747949109913
+2025-05-22 14:25:09,917 - __main__ - INFO - Processing register from conn_1747949109913
+2025-05-22 14:25:14,935 - websockets.server - INFO - connection open
+2025-05-22 14:25:14,936 - __main__ - INFO - Client connected: conn_1747949114936
+2025-05-22 14:25:14,950 - __main__ - INFO - Processing register from conn_1747949114936
+2025-05-22 14:25:19,966 - websockets.server - INFO - connection open
+2025-05-22 14:25:19,967 - __main__ - INFO - Client connected: conn_1747949119967
+2025-05-22 14:25:19,976 - __main__ - INFO - Processing register from conn_1747949119967
+2025-05-22 14:25:25,018 - websockets.server - INFO - connection open
+2025-05-22 14:25:25,020 - __main__ - INFO - Client connected: conn_1747949125020
+2025-05-22 14:25:25,024 - __main__ - INFO - Processing register from conn_1747949125020
+2025-05-22 14:25:30,045 - websockets.server - INFO - connection open
+2025-05-22 14:25:30,046 - __main__ - INFO - Client connected: conn_1747949130046
+2025-05-22 14:25:30,051 - __main__ - INFO - Processing register from conn_1747949130046
+2025-05-22 14:25:35,064 - websockets.server - INFO - connection open
+2025-05-22 14:25:35,065 - __main__ - INFO - Client connected: conn_1747949135065
+2025-05-22 14:25:35,070 - __main__ - INFO - Processing register from conn_1747949135065
+2025-05-22 14:25:40,120 - websockets.server - INFO - connection open
+2025-05-22 14:25:40,122 - __main__ - INFO - Client connected: conn_1747949140122
+2025-05-22 14:25:40,127 - __main__ - INFO - Processing register from conn_1747949140122
+2025-05-22 14:25:45,164 - websockets.server - INFO - connection open
+2025-05-22 14:25:45,165 - __main__ - INFO - Client connected: conn_1747949145165
+2025-05-22 14:25:45,168 - __main__ - INFO - Processing register from conn_1747949145165
+2025-05-22 14:25:50,174 - websockets.server - INFO - connection open
+2025-05-22 14:25:50,174 - __main__ - INFO - Client connected: conn_1747949150174
+2025-05-22 14:25:50,177 - __main__ - INFO - Processing register from conn_1747949150174
+2025-05-22 14:25:55,199 - websockets.server - INFO - connection open
+2025-05-22 14:25:55,199 - __main__ - INFO - Client connected: conn_1747949155199
+2025-05-22 14:25:55,201 - __main__ - INFO - Processing register from conn_1747949155199
+2025-05-22 14:26:00,332 - websockets.server - INFO - connection open
+2025-05-22 14:26:00,335 - __main__ - INFO - Client connected: conn_1747949160334
+2025-05-22 14:26:00,353 - __main__ - INFO - Processing register from conn_1747949160334
+2025-05-22 14:26:05,442 - websockets.server - INFO - connection open
+2025-05-22 14:26:05,443 - __main__ - INFO - Client connected: conn_1747949165443
+2025-05-22 14:26:05,447 - __main__ - INFO - Processing register from conn_1747949165443
+2025-05-22 14:26:10,458 - websockets.server - INFO - connection open
+2025-05-22 14:26:10,458 - __main__ - INFO - Client connected: conn_1747949170458
+2025-05-22 14:26:10,460 - __main__ - INFO - Processing register from conn_1747949170458
+2025-05-22 14:26:15,615 - websockets.server - INFO - connection open
+2025-05-22 14:26:15,634 - __main__ - INFO - Client connected: conn_1747949175634
+2025-05-22 14:26:15,711 - __main__ - INFO - Processing register from conn_1747949175634
+2025-05-22 14:26:15,790 - websockets.server - INFO - connection open
+2025-05-22 14:26:15,790 - __main__ - INFO - Client connected: conn_1747949175790
+2025-05-22 14:26:15,793 - __main__ - INFO - Processing register from conn_1747949175790
+2025-05-22 14:26:15,800 - websockets.server - INFO - connection open
+2025-05-22 14:26:15,801 - __main__ - INFO - Client connected: conn_1747949175801
+2025-05-22 14:26:15,803 - __main__ - INFO - Processing register from conn_1747949175801
+2025-05-22 14:26:20,808 - websockets.server - INFO - connection open
+2025-05-22 14:26:20,811 - __main__ - INFO - Client connected: conn_1747949180811
+2025-05-22 14:26:20,823 - __main__ - INFO - Processing register from conn_1747949180811
+2025-05-22 14:26:23,604 - __main__ - INFO - Client disconnected: conn_1747949175790
+2025-05-22 14:26:25,835 - websockets.server - INFO - connection open
+2025-05-22 14:26:25,835 - __main__ - INFO - Client connected: conn_1747949185835
+2025-05-22 14:26:25,837 - __main__ - INFO - Processing register from conn_1747949185835
+2025-05-22 14:26:30,846 - websockets.server - INFO - connection open
+2025-05-22 14:26:30,847 - __main__ - INFO - Client connected: conn_1747949190847
+2025-05-22 14:26:30,850 - __main__ - INFO - Processing register from conn_1747949190847
+2025-05-22 14:26:35,859 - websockets.server - INFO - connection open
+2025-05-22 14:26:35,859 - __main__ - INFO - Client connected: conn_1747949195859
+2025-05-22 14:26:35,862 - __main__ - INFO - Processing register from conn_1747949195859
+2025-05-22 14:26:40,871 - websockets.server - INFO - connection open
+2025-05-22 14:26:40,872 - __main__ - INFO - Client connected: conn_1747949200872
+2025-05-22 14:26:40,874 - __main__ - INFO - Processing register from conn_1747949200872
+2025-05-22 14:26:45,889 - websockets.server - INFO - connection open
+2025-05-22 14:26:45,889 - __main__ - INFO - Client connected: conn_1747949205889
+2025-05-22 14:26:45,890 - __main__ - INFO - Processing register from conn_1747949205889
+2025-05-22 14:26:50,932 - websockets.server - INFO - connection open
+2025-05-22 14:26:50,934 - __main__ - INFO - Client connected: conn_1747949210934
+2025-05-22 14:26:50,943 - __main__ - INFO - Processing register from conn_1747949210934
+2025-05-22 14:26:55,999 - websockets.server - INFO - connection open
+2025-05-22 14:26:56,000 - __main__ - INFO - Client connected: conn_1747949216000
+2025-05-22 14:26:56,004 - __main__ - INFO - Processing register from conn_1747949216000
+2025-05-22 14:27:01,020 - websockets.server - INFO - connection open
+2025-05-22 14:27:01,022 - __main__ - INFO - Client connected: conn_1747949221022
+2025-05-22 14:27:01,025 - __main__ - INFO - Processing register from conn_1747949221022
+2025-05-22 14:27:06,037 - websockets.server - INFO - connection open
+2025-05-22 14:27:06,037 - __main__ - INFO - Client connected: conn_1747949226037
+2025-05-22 14:27:06,039 - __main__ - INFO - Processing register from conn_1747949226037
+2025-05-22 14:27:11,078 - websockets.server - INFO - connection open
+2025-05-22 14:27:11,079 - __main__ - INFO - Client connected: conn_1747949231079
+2025-05-22 14:27:11,083 - __main__ - INFO - Processing register from conn_1747949231079
+2025-05-22 14:27:16,100 - websockets.server - INFO - connection open
+2025-05-22 14:27:16,101 - __main__ - INFO - Client connected: conn_1747949236101
+2025-05-22 14:27:16,102 - __main__ - INFO - Processing register from conn_1747949236101
+2025-05-22 14:27:21,114 - websockets.server - INFO - connection open
+2025-05-22 14:27:21,114 - __main__ - INFO - Client connected: conn_1747949241114
+2025-05-22 14:27:21,116 - __main__ - INFO - Processing register from conn_1747949241114
+2025-05-22 14:27:26,153 - websockets.server - INFO - connection open
+2025-05-22 14:27:26,154 - __main__ - INFO - Client connected: conn_1747949246154
+2025-05-22 14:27:26,157 - __main__ - INFO - Processing register from conn_1747949246154
+2025-05-22 14:27:31,163 - websockets.server - INFO - connection open
+2025-05-22 14:27:31,164 - __main__ - INFO - Client connected: conn_1747949251164
+2025-05-22 14:27:31,165 - __main__ - INFO - Processing register from conn_1747949251164
+2025-05-22 14:27:36,182 - websockets.server - INFO - connection open
+2025-05-22 14:27:36,183 - __main__ - INFO - Client connected: conn_1747949256183
+2025-05-22 14:27:36,186 - __main__ - INFO - Processing register from conn_1747949256183
+2025-05-22 14:27:41,198 - websockets.server - INFO - connection open
+2025-05-22 14:27:41,199 - __main__ - INFO - Client connected: conn_1747949261199
+2025-05-22 14:27:41,202 - __main__ - INFO - Processing register from conn_1747949261199
+2025-05-22 14:27:46,230 - websockets.server - INFO - connection open
+2025-05-22 14:27:46,231 - __main__ - INFO - Client connected: conn_1747949266231
+2025-05-22 14:27:46,235 - __main__ - INFO - Processing register from conn_1747949266231
+2025-05-22 14:27:51,257 - websockets.server - INFO - connection open
+2025-05-22 14:27:51,258 - __main__ - INFO - Client connected: conn_1747949271258
+2025-05-22 14:27:51,261 - __main__ - INFO - Processing register from conn_1747949271258
+2025-05-22 14:27:56,287 - websockets.server - INFO - connection open
+2025-05-22 14:27:56,288 - __main__ - INFO - Client connected: conn_1747949276288
+2025-05-22 14:27:56,291 - __main__ - INFO - Processing register from conn_1747949276288
+2025-05-22 14:28:01,306 - websockets.server - INFO - connection open
+2025-05-22 14:28:01,307 - __main__ - INFO - Client connected: conn_1747949281307
+2025-05-22 14:28:01,310 - __main__ - INFO - Processing register from conn_1747949281307
+2025-05-22 14:28:06,327 - websockets.server - INFO - connection open
+2025-05-22 14:28:06,330 - __main__ - INFO - Client connected: conn_1747949286330
+2025-05-22 14:28:06,342 - __main__ - INFO - Processing register from conn_1747949286330
+2025-05-22 14:28:11,357 - websockets.server - INFO - connection open
+2025-05-22 14:28:11,357 - __main__ - INFO - Client connected: conn_1747949291357
+2025-05-22 14:28:11,360 - __main__ - INFO - Processing register from conn_1747949291357
+2025-05-22 14:28:16,369 - websockets.server - INFO - connection open
+2025-05-22 14:28:16,369 - __main__ - INFO - Client connected: conn_1747949296369
+2025-05-22 14:28:16,376 - __main__ - INFO - Processing register from conn_1747949296369
+2025-05-22 14:28:21,429 - websockets.server - INFO - connection open
+2025-05-22 14:28:21,430 - __main__ - INFO - Client connected: conn_1747949301430
+2025-05-22 14:28:21,433 - __main__ - INFO - Processing register from conn_1747949301430
+2025-05-22 14:28:23,943 - __main__ - INFO - Processing sensor_data from conn_1747949175801
+2025-05-22 14:28:26,483 - websockets.server - INFO - connection open
+2025-05-22 14:28:26,483 - __main__ - INFO - Client connected: conn_1747949306483
+2025-05-22 14:28:26,487 - __main__ - INFO - Processing register from conn_1747949306483
+2025-05-22 14:28:31,496 - websockets.server - INFO - connection open
+2025-05-22 14:28:31,497 - __main__ - INFO - Client connected: conn_1747949311497
+2025-05-22 14:28:31,499 - __main__ - INFO - Processing register from conn_1747949311497
+2025-05-22 14:28:36,528 - websockets.server - INFO - connection open
+2025-05-22 14:28:36,528 - __main__ - INFO - Client connected: conn_1747949316528
+2025-05-22 14:28:36,531 - __main__ - INFO - Processing register from conn_1747949316528
+2025-05-22 14:28:41,629 - websockets.server - INFO - connection open
+2025-05-22 14:28:41,630 - __main__ - INFO - Client connected: conn_1747949321630
+2025-05-22 14:28:41,639 - __main__ - INFO - Processing register from conn_1747949321630
+2025-05-22 14:28:46,705 - websockets.server - INFO - connection open
+2025-05-22 14:28:46,710 - __main__ - INFO - Client connected: conn_1747949326710
+2025-05-22 14:28:46,721 - __main__ - INFO - Processing register from conn_1747949326710
+2025-05-22 14:28:51,766 - websockets.server - INFO - connection open
+2025-05-22 14:28:51,767 - __main__ - INFO - Client connected: conn_1747949331767
+2025-05-22 14:28:51,772 - __main__ - INFO - Processing register from conn_1747949331767
+2025-05-22 14:28:56,790 - websockets.server - INFO - connection open
+2025-05-22 14:28:56,790 - __main__ - INFO - Client connected: conn_1747949336790
+2025-05-22 14:28:56,797 - __main__ - INFO - Processing register from conn_1747949336790
+2025-05-22 14:29:01,839 - websockets.server - INFO - connection open
+2025-05-22 14:29:01,840 - __main__ - INFO - Client connected: conn_1747949341840
+2025-05-22 14:29:01,843 - __main__ - INFO - Processing register from conn_1747949341840
+2025-05-22 14:29:07,121 - websockets.server - INFO - connection open
+2025-05-22 14:29:07,122 - __main__ - INFO - Client connected: conn_1747949347122
+2025-05-22 14:29:07,128 - __main__ - INFO - Processing register from conn_1747949347122
+2025-05-22 14:29:12,176 - websockets.server - INFO - connection open
+2025-05-22 14:29:12,177 - __main__ - INFO - Client connected: conn_1747949352177
+2025-05-22 14:29:12,179 - __main__ - INFO - Processing register from conn_1747949352177
+2025-05-22 14:29:17,205 - websockets.server - INFO - connection open
+2025-05-22 14:29:17,206 - __main__ - INFO - Client connected: conn_1747949357206
+2025-05-22 14:29:17,210 - __main__ - INFO - Processing register from conn_1747949357206
+2025-05-22 14:29:22,235 - websockets.server - INFO - connection open
+2025-05-22 14:29:22,237 - __main__ - INFO - Client connected: conn_1747949362237
+2025-05-22 14:29:22,245 - __main__ - INFO - Processing register from conn_1747949362237
+2025-05-22 14:29:28,020 - websockets.server - INFO - connection open
+2025-05-22 14:29:28,024 - __main__ - INFO - Client connected: conn_1747949368024
+2025-05-22 14:29:28,035 - __main__ - INFO - Processing register from conn_1747949368024
+2025-05-22 14:29:33,059 - websockets.server - INFO - connection open
+2025-05-22 14:29:33,059 - __main__ - INFO - Client connected: conn_1747949373059
+2025-05-22 14:29:33,065 - __main__ - INFO - Processing register from conn_1747949373059
+2025-05-22 14:29:38,077 - websockets.server - INFO - connection open
+2025-05-22 14:29:38,078 - __main__ - INFO - Client connected: conn_1747949378077
+2025-05-22 14:29:38,080 - __main__ - INFO - Processing register from conn_1747949378077
+2025-05-22 14:29:43,114 - websockets.server - INFO - connection open
+2025-05-22 14:29:43,116 - __main__ - INFO - Client connected: conn_1747949383116
+2025-05-22 14:29:43,121 - __main__ - INFO - Processing register from conn_1747949383116
+2025-05-22 14:29:48,172 - websockets.server - INFO - connection open
+2025-05-22 14:29:48,174 - __main__ - INFO - Client connected: conn_1747949388174
+2025-05-22 14:29:48,178 - __main__ - INFO - Processing register from conn_1747949388174
+2025-05-22 14:29:53,192 - websockets.server - INFO - connection open
+2025-05-22 14:29:53,193 - __main__ - INFO - Client connected: conn_1747949393193
+2025-05-22 14:29:53,195 - __main__ - INFO - Processing register from conn_1747949393193
+2025-05-22 14:29:58,211 - websockets.server - INFO - connection open
+2025-05-22 14:29:58,212 - __main__ - INFO - Client connected: conn_1747949398212
+2025-05-22 14:29:58,214 - __main__ - INFO - Processing register from conn_1747949398212
+2025-05-22 14:30:03,261 - websockets.server - INFO - connection open
+2025-05-22 14:30:03,263 - __main__ - INFO - Client connected: conn_1747949403263
+2025-05-22 14:30:03,266 - __main__ - INFO - Processing register from conn_1747949403263
+2025-05-22 14:30:08,624 - websockets.server - INFO - connection open
+2025-05-22 14:30:08,629 - __main__ - INFO - Client connected: conn_1747949408629
+2025-05-22 14:30:08,638 - __main__ - INFO - Processing register from conn_1747949408629
+2025-05-22 14:30:09,476 - __main__ - INFO - Processing sensor_data from conn_1747949175801
+2025-05-22 14:30:13,662 - websockets.server - INFO - connection open
+2025-05-22 14:30:13,664 - __main__ - INFO - Client connected: conn_1747949413664
+2025-05-22 14:30:13,668 - __main__ - INFO - Processing register from conn_1747949413664
+2025-05-22 14:30:18,784 - websockets.server - INFO - connection open
+2025-05-22 14:30:18,786 - __main__ - INFO - Client connected: conn_1747949418786
+2025-05-22 14:30:18,790 - __main__ - INFO - Processing register from conn_1747949418786
+2025-05-22 14:30:23,902 - websockets.server - INFO - connection open
+2025-05-22 14:30:23,908 - __main__ - INFO - Client connected: conn_1747949423908
+2025-05-22 14:30:23,923 - __main__ - INFO - Processing register from conn_1747949423908
+2025-05-22 14:30:29,407 - websockets.server - INFO - connection open
+2025-05-22 14:30:29,425 - __main__ - INFO - Client connected: conn_1747949429424
+2025-05-22 14:30:29,497 - __main__ - INFO - Processing register from conn_1747949429424
+2025-05-22 14:30:34,540 - websockets.server - INFO - connection open
+2025-05-22 14:30:34,541 - __main__ - INFO - Client connected: conn_1747949434541
+2025-05-22 14:30:34,554 - __main__ - INFO - Processing register from conn_1747949434541
+2025-05-22 14:30:39,663 - websockets.server - INFO - connection open
+2025-05-22 14:30:39,666 - __main__ - INFO - Client connected: conn_1747949439666
+2025-05-22 14:30:39,685 - __main__ - INFO - Processing register from conn_1747949439666
+2025-05-22 14:30:43,086 - __main__ - INFO - Client disconnected: conn_1747949175801
+2025-05-22 14:30:44,772 - websockets.server - INFO - connection open
+2025-05-22 14:30:44,772 - __main__ - INFO - Client connected: conn_1747949444772
+2025-05-22 14:30:44,778 - __main__ - INFO - Processing register from conn_1747949444772

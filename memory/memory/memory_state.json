@@ -1,5 +1,1056 @@
 {
-  "short_term": [],
+  "short_term": [
+    {
+      "timestamp": 1747984936.4901571,
+      "user_behavior": {
+        "inferred_intent": "coding",
+        "confidence": 0.9,
+        "workflow_stage": "implementation",
+        "activity_type": "development",
+        "significance_score": 1.0,
+        "focus_level": {
+          "focus_score": 1.0,
+          "attention_type": "deep_work",
+          "distraction_indicators": [],
+          "flow_state_indicators": [
+            "minimal_app_switching",
+            "code_editor_focus"
+          ]
+        },
+        "productivity_indicator": {
+          "productivity_score": 0.6000000000000001,
+          "indicators": [
+            "active_development",
+            "focused_workflow"
+          ],
+          "blockers": [],
+          "suggestions": []
+        }
+      },
+      "active_applications": {
+        "foreground": [
+          {
+            "name": "Visual Studio Code",
+            "type": "development",
+            "category": "ide",
+            "state": {
+              "active": true,
+              "focused": true
+            },
+            "usage_pattern": {
+              "frequency": "unknown",
+              "typical_duration": 0,
+              "context_association": []
+            },
+            "context_relevance": 0.9
+          }
+        ],
+        "background": [
+          {
+            "name": "Python",
+            "type": "interpreter",
+            "category": "development",
+            "relevance": 0.3
+          }
+        ]
+      },
+      "visual_context": {
+        "active_window": {
+          "title": "main.py - Visual Studio Code",
+          "application": "Visual Studio Code"
+        },
+        "main_content": "",
+        "content_analysis": {
+          "content_type": "structured_document",
+          "complexity": "medium",
+          "engagement_level": 0.069,
+          "key_elements": [
+            "interactive_controls",
+            "input_fields"
+          ]
+        },
+        "ui_elements": {
+          "controls": 2,
+          "text_fields": 1,
+          "navigation": 0,
+          "interaction_opportunities": [
+            "clickable_controls",
+            "text_input"
+          ]
+        },
+        "text_content": {
+          "headers": [
+            "main.py"
+          ],
+          "main_text": [
+            "def main():",
+            "print('Hello World')",
+            "if __name__ == '__main__':"
+          ],
+          "semantic_topics": [],
+          "content_type": "source_code"
+        }
+      },
+      "system_state": {
+        "resources": {},
+        "network": {},
+        "session_duration": 0
+      }
+    },
+    {
+      "timestamp": 1747984936.492336,
+      "user_behavior": {
+        "inferred_intent": "unknown",
+        "confidence": 0.7,
+        "workflow_stage": "unknown",
+        "activity_type": "general",
+        "significance_score": 0.5,
+        "focus_level": {
+          "focus_score": 0.7,
+          "attention_type": "deep_reading",
+          "distraction_indicators": [],
+          "flow_state_indicators": [
+            "minimal_app_switching"
+          ]
+        },
+        "productivity_indicator": {
+          "productivity_score": 0.5,
+          "indicators": [
+            "learning_activity",
+            "focused_workflow"
+          ],
+          "blockers": [],
+          "suggestions": []
+        }
+      },
+      "active_applications": {
+        "foreground": [
+          {
+            "name": "Google Chrome",
+            "type": "browser",
+            "category": "research",
+            "state": {},
+            "usage_pattern": {
+              "frequency": "unknown",
+              "typical_duration": 0,
+              "context_association": []
+            },
+            "context_relevance": 0.5
+          }
+        ],
+        "background": []
+      },
+      "visual_context": {
+        "active_window": {
+          "title": "How to implement async functions - Stack Overflow",
+          "application": "Google Chrome"
+        },
+        "main_content": "",
+        "content_analysis": {
+          "content_type": "structured_document",
+          "complexity": "medium",
+          "engagement_level": 0.082,
+          "key_elements": [
+            "interactive_controls"
+          ]
+        },
+        "ui_elements": {
+          "controls": 2,
+          "text_fields": 0,
+          "navigation": 1,
+          "interaction_opportunities": [
+            "clickable_controls",
+            "navigation_options"
+          ]
+        },
+        "text_content": {
+          "headers": [
+            "How to implement async functions in Python"
+          ],
+          "main_text": [
+            "async def example():",
+            "await asyncio.sleep(1)",
+            "documentation tutorial guide"
+          ],
+          "semantic_topics": [
+            "programming",
+            "documentation"
+          ],
+          "content_type": "source_code"
+        }
+      },
+      "system_state": {
+        "resources": {},
+        "network": {},
+        "session_duration": 0
+      }
+    },
+    {
+      "timestamp": 1747984936.493014,
+      "user_behavior": {
+        "inferred_intent": "communicating",
+        "confidence": 0.8,
+        "workflow_stage": "unknown",
+        "activity_type": "general",
+        "significance_score": 0.6000000000000001,
+        "focus_level": {
+          "focus_score": 0.7,
+          "attention_type": "deep_reading",
+          "distraction_indicators": [],
+          "flow_state_indicators": [
+            "minimal_app_switching"
+          ]
+        },
+        "productivity_indicator": {
+          "productivity_score": 0.2,
+          "indicators": [
+            "focused_workflow"
+          ],
+          "blockers": [],
+          "suggestions": []
+        }
+      },
+      "active_applications": {
+        "foreground": [
+          {
+            "name": "Slack",
+            "type": "communication",
+            "category": "messaging",
+            "state": {},
+            "usage_pattern": {
+              "frequency": "unknown",
+              "typical_duration": 0,
+              "context_association": []
+            },
+            "context_relevance": 0.9
+          }
+        ],
+        "background": []
+      },
+      "visual_context": {
+        "active_window": {
+          "title": "Slack - #development",
+          "application": "Slack"
+        },
+        "main_content": "",
+        "content_analysis": {
+          "content_type": "structured_document",
+          "complexity": "medium",
+          "engagement_level": 0.068,
+          "key_elements": [
+            "interactive_controls",
+            "input_fields"
+          ]
+        },
+        "ui_elements": {
+          "controls": 1,
+          "text_fields": 1,
+          "navigation": 0,
+          "interaction_opportunities": [
+            "clickable_controls",
+            "text_input"
+          ]
+        },
+        "text_content": {
+          "headers": [
+            "#development"
+          ],
+          "main_text": [
+            "Hey team, I need help with the API",
+            "message chat communication"
+          ],
+          "semantic_topics": [
+            "programming",
+            "communication"
+          ],
+          "content_type": "communication"
+        }
+      },
+      "system_state": {
+        "resources": {},
+        "network": {},
+        "session_duration": 0
+      }
+    },
+    {
+      "timestamp": 1747984936.49376,
+      "user_behavior": {
+        "inferred_intent": "unknown",
+        "confidence": 0.6,
+        "workflow_stage": "unknown",
+        "activity_type": "general",
+        "significance_score": 0.2,
+        "focus_level": {
+          "focus_score": 0.19999999999999998,
+          "attention_type": "deep_reading",
+          "distraction_indicators": [
+            "notifications_present"
+          ],
+          "flow_state_indicators": []
+        },
+        "productivity_indicator": {
+          "productivity_score": 0.0,
+          "indicators": [],
+          "blockers": [
+            "distracting_applications"
+          ],
+          "suggestions": []
+        }
+      },
+      "active_applications": {
+        "foreground": [
+          {
+            "name": "YouTube",
+            "type": "entertainment",
+            "category": "social",
+            "state": {},
+            "usage_pattern": {
+              "frequency": "unknown",
+              "typical_duration": 0,
+              "context_association": []
+            },
+            "context_relevance": 0.5
+          },
+          {
+            "name": "Twitter",
+            "type": "social",
+            "category": "social",
+            "state": {},
+            "usage_pattern": {
+              "frequency": "unknown",
+              "typical_duration": 0,
+              "context_association": []
+            },
+            "context_relevance": 0.5
+          },
+          {
+            "name": "Instagram",
+            "type": "social",
+            "category": "entertainment",
+            "state": {},
+            "usage_pattern": {
+              "frequency": "unknown",
+              "typical_duration": 0,
+              "context_association": []
+            },
+            "context_relevance": 0.5
+          },
+          {
+            "name": "TikTok",
+            "type": "entertainment",
+            "category": "social",
+            "state": {},
+            "usage_pattern": {
+              "frequency": "unknown",
+              "typical_duration": 0,
+              "context_association": []
+            },
+            "context_relevance": 0.5
+          }
+        ],
+        "background": []
+      },
+      "visual_context": {
+        "active_window": {
+          "title": "YouTube - Funny Cat Videos",
+          "application": "Google Chrome"
+        },
+        "main_content": "",
+        "content_analysis": {
+          "content_type": "structured_document",
+          "complexity": "medium",
+          "engagement_level": 0.048,
+          "key_elements": [
+            "interactive_controls"
+          ]
+        },
+        "ui_elements": {
+          "controls": 2,
+          "text_fields": 0,
+          "navigation": 0,
+          "interaction_opportunities": [
+            "clickable_controls"
+          ]
+        },
+        "text_content": {
+          "headers": [
+            "Funny Cat Videos"
+          ],
+          "main_text": [
+            "entertainment",
+            "social media",
+            "distraction"
+          ],
+          "semantic_topics": [],
+          "content_type": "general_content"
+        }
+      },
+      "system_state": {
+        "resources": {},
+        "network": {},
+        "session_duration": 0
+      }
+    },
+    {
+      "timestamp": 1747984965.796505,
+      "user_behavior": {
+        "inferred_intent": "coding",
+        "confidence": 0.9,
+        "workflow_stage": "implementation",
+        "activity_type": "development",
+        "significance_score": 1.0,
+        "focus_level": {
+          "focus_score": 1.0,
+          "attention_type": "deep_work",
+          "distraction_indicators": [],
+          "flow_state_indicators": [
+            "minimal_app_switching",
+            "code_editor_focus"
+          ]
+        },
+        "productivity_indicator": {
+          "productivity_score": 0.6000000000000001,
+          "indicators": [
+            "active_development",
+            "focused_workflow"
+          ],
+          "blockers": [],
+          "suggestions": []
+        }
+      },
+      "active_applications": {
+        "foreground": [
+          {
+            "name": "Visual Studio Code",
+            "type": "development",
+            "category": "ide",
+            "state": {
+              "active": true,
+              "focused": true
+            },
+            "usage_pattern": {
+              "frequency": "unknown",
+              "typical_duration": 0,
+              "context_association": []
+            },
+            "context_relevance": 0.9
+          }
+        ],
+        "background": [
+          {
+            "name": "Python",
+            "type": "interpreter",
+            "category": "development",
+            "relevance": 0.3
+          }
+        ]
+      },
+      "visual_context": {
+        "active_window": {
+          "title": "main.py - Visual Studio Code",
+          "application": "Visual Studio Code"
+        },
+        "main_content": "",
+        "content_analysis": {
+          "content_type": "structured_document",
+          "complexity": "medium",
+          "engagement_level": 0.069,
+          "key_elements": [
+            "interactive_controls",
+            "input_fields"
+          ]
+        },
+        "ui_elements": {
+          "controls": 2,
+          "text_fields": 1,
+          "navigation": 0,
+          "interaction_opportunities": [
+            "clickable_controls",
+            "text_input"
+          ]
+        },
+        "text_content": {
+          "headers": [
+            "main.py"
+          ],
+          "main_text": [
+            "def main():",
+            "print('Hello World')",
+            "if __name__ == '__main__':"
+          ],
+          "semantic_topics": [],
+          "content_type": "source_code"
+        }
+      },
+      "system_state": {
+        "resources": {},
+        "network": {},
+        "session_duration": 0
+      }
+    },
+    {
+      "timestamp": 1747984965.797941,
+      "user_behavior": {
+        "inferred_intent": "unknown",
+        "confidence": 0.7,
+        "workflow_stage": "unknown",
+        "activity_type": "general",
+        "significance_score": 0.5,
+        "focus_level": {
+          "focus_score": 0.7,
+          "attention_type": "deep_reading",
+          "distraction_indicators": [],
+          "flow_state_indicators": [
+            "minimal_app_switching"
+          ]
+        },
+        "productivity_indicator": {
+          "productivity_score": 0.5,
+          "indicators": [
+            "learning_activity",
+            "focused_workflow"
+          ],
+          "blockers": [],
+          "suggestions": []
+        }
+      },
+      "active_applications": {
+        "foreground": [
+          {
+            "name": "Google Chrome",
+            "type": "browser",
+            "category": "research",
+            "state": {},
+            "usage_pattern": {
+              "frequency": "unknown",
+              "typical_duration": 0,
+              "context_association": []
+            },
+            "context_relevance": 0.5
+          }
+        ],
+        "background": []
+      },
+      "visual_context": {
+        "active_window": {
+          "title": "How to implement async functions - Stack Overflow",
+          "application": "Google Chrome"
+        },
+        "main_content": "",
+        "content_analysis": {
+          "content_type": "structured_document",
+          "complexity": "medium",
+          "engagement_level": 0.082,
+          "key_elements": [
+            "interactive_controls"
+          ]
+        },
+        "ui_elements": {
+          "controls": 2,
+          "text_fields": 0,
+          "navigation": 1,
+          "interaction_opportunities": [
+            "clickable_controls",
+            "navigation_options"
+          ]
+        },
+        "text_content": {
+          "headers": [
+            "How to implement async functions in Python"
+          ],
+          "main_text": [
+            "async def example():",
+            "await asyncio.sleep(1)",
+            "documentation tutorial guide"
+          ],
+          "semantic_topics": [
+            "programming",
+            "documentation"
+          ],
+          "content_type": "source_code"
+        }
+      },
+      "system_state": {
+        "resources": {},
+        "network": {},
+        "session_duration": 0
+      }
+    },
+    {
+      "timestamp": 1747984965.799053,
+      "user_behavior": {
+        "inferred_intent": "communicating",
+        "confidence": 0.8,
+        "workflow_stage": "unknown",
+        "activity_type": "general",
+        "significance_score": 0.6000000000000001,
+        "focus_level": {
+          "focus_score": 0.7,
+          "attention_type": "deep_reading",
+          "distraction_indicators": [],
+          "flow_state_indicators": [
+            "minimal_app_switching"
+          ]
+        },
+        "productivity_indicator": {
+          "productivity_score": 0.2,
+          "indicators": [
+            "focused_workflow"
+          ],
+          "blockers": [],
+          "suggestions": []
+        }
+      },
+      "active_applications": {
+        "foreground": [
+          {
+            "name": "Slack",
+            "type": "communication",
+            "category": "messaging",
+            "state": {},
+            "usage_pattern": {
+              "frequency": "unknown",
+              "typical_duration": 0,
+              "context_association": []
+            },
+            "context_relevance": 0.9
+          }
+        ],
+        "background": []
+      },
+      "visual_context": {
+        "active_window": {
+          "title": "Slack - #development",
+          "application": "Slack"
+        },
+        "main_content": "",
+        "content_analysis": {
+          "content_type": "structured_document",
+          "complexity": "medium",
+          "engagement_level": 0.068,
+          "key_elements": [
+            "interactive_controls",
+            "input_fields"
+          ]
+        },
+        "ui_elements": {
+          "controls": 1,
+          "text_fields": 1,
+          "navigation": 0,
+          "interaction_opportunities": [
+            "clickable_controls",
+            "text_input"
+          ]
+        },
+        "text_content": {
+          "headers": [
+            "#development"
+          ],
+          "main_text": [
+            "Hey team, I need help with the API",
+            "message chat communication"
+          ],
+          "semantic_topics": [
+            "programming",
+            "communication"
+          ],
+          "content_type": "communication"
+        }
+      },
+      "system_state": {
+        "resources": {},
+        "network": {},
+        "session_duration": 0
+      }
+    },
+    {
+      "timestamp": 1747984965.800101,
+      "user_behavior": {
+        "inferred_intent": "unknown",
+        "confidence": 0.6,
+        "workflow_stage": "unknown",
+        "activity_type": "general",
+        "significance_score": 0.2,
+        "focus_level": {
+          "focus_score": 0.19999999999999998,
+          "attention_type": "deep_reading",
+          "distraction_indicators": [
+            "notifications_present"
+          ],
+          "flow_state_indicators": []
+        },
+        "productivity_indicator": {
+          "productivity_score": 0.0,
+          "indicators": [],
+          "blockers": [
+            "distracting_applications"
+          ],
+          "suggestions": []
+        }
+      },
+      "active_applications": {
+        "foreground": [
+          {
+            "name": "YouTube",
+            "type": "entertainment",
+            "category": "social",
+            "state": {},
+            "usage_pattern": {
+              "frequency": "unknown",
+              "typical_duration": 0,
+              "context_association": []
+            },
+            "context_relevance": 0.5
+          },
+          {
+            "name": "Twitter",
+            "type": "social",
+            "category": "social",
+            "state": {},
+            "usage_pattern": {
+              "frequency": "unknown",
+              "typical_duration": 0,
+              "context_association": []
+            },
+            "context_relevance": 0.5
+          },
+          {
+            "name": "Instagram",
+            "type": "social",
+            "category": "entertainment",
+            "state": {},
+            "usage_pattern": {
+              "frequency": "unknown",
+              "typical_duration": 0,
+              "context_association": []
+            },
+            "context_relevance": 0.5
+          },
+          {
+            "name": "TikTok",
+            "type": "entertainment",
+            "category": "social",
+            "state": {},
+            "usage_pattern": {
+              "frequency": "unknown",
+              "typical_duration": 0,
+              "context_association": []
+            },
+            "context_relevance": 0.5
+          }
+        ],
+        "background": []
+      },
+      "visual_context": {
+        "active_window": {
+          "title": "YouTube - Funny Cat Videos",
+          "application": "Google Chrome"
+        },
+        "main_content": "",
+        "content_analysis": {
+          "content_type": "structured_document",
+          "complexity": "medium",
+          "engagement_level": 0.048,
+          "key_elements": [
+            "interactive_controls"
+          ]
+        },
+        "ui_elements": {
+          "controls": 2,
+          "text_fields": 0,
+          "navigation": 0,
+          "interaction_opportunities": [
+            "clickable_controls"
+          ]
+        },
+        "text_content": {
+          "headers": [
+            "Funny Cat Videos"
+          ],
+          "main_text": [
+            "entertainment",
+            "social media",
+            "distraction"
+          ],
+          "semantic_topics": [],
+          "content_type": "general_content"
+        }
+      },
+      "system_state": {
+        "resources": {},
+        "network": {},
+        "session_duration": 0
+      }
+    },
+    {
+      "timestamp": 1747985143.781725,
+      "user_behavior": {
+        "inferred_intent": "coding",
+        "confidence": 0.9,
+        "workflow_stage": "testing",
+        "activity_type": "development",
+        "significance_score": 1.0,
+        "focus_level": {
+          "focus_score": 1.0,
+          "attention_type": "deep_work",
+          "distraction_indicators": [],
+          "flow_state_indicators": [
+            "minimal_app_switching",
+            "code_editor_focus"
+          ]
+        },
+        "productivity_indicator": {
+          "productivity_score": 0.6000000000000001,
+          "indicators": [
+            "active_development",
+            "focused_workflow"
+          ],
+          "blockers": [],
+          "suggestions": []
+        }
+      },
+      "active_applications": {
+        "foreground": [
+          {
+            "name": "Visual Studio Code",
+            "type": "development",
+            "category": "ide",
+            "state": {
+              "active": true,
+              "focused": true
+            },
+            "usage_pattern": {
+              "frequency": "unknown",
+              "typical_duration": 0,
+              "context_association": []
+            },
+            "context_relevance": 0.9
+          }
+        ],
+        "background": [
+          {
+            "name": "Python",
+            "type": "interpreter",
+            "category": "development",
+            "relevance": 0.3
+          },
+          {
+            "name": "Terminal",
+            "type": "system",
+            "category": "utility",
+            "relevance": 0.3
+          }
+        ]
+      },
+      "visual_context": {
+        "active_window": {
+          "title": "test_memory_flow.py - Visual Studio Code",
+          "application": "Visual Studio Code",
+          "path": "/Users/test/project"
+        },
+        "main_content": "",
+        "content_analysis": {
+          "content_type": "structured_document",
+          "complexity": "medium",
+          "engagement_level": 0.063,
+          "key_elements": [
+            "interactive_controls",
+            "input_fields"
+          ]
+        },
+        "ui_elements": {
+          "controls": 2,
+          "text_fields": 1,
+          "navigation": 1,
+          "interaction_opportunities": [
+            "clickable_controls",
+            "text_input",
+            "navigation_options"
+          ]
+        },
+        "text_content": {
+          "headers": [
+            "test_memory_flow.py"
+          ],
+          "main_text": [
+            "def test_memory():",
+            "    # Testing memory flow",
+            "    pass"
+          ],
+          "semantic_topics": [],
+          "content_type": "source_code"
+        }
+      },
+      "system_state": {
+        "resources": {
+          "memory_total": 16384,
+          "memory_used": 8192,
+          "cpu_usage": 25.5
+        },
+        "network": {
+          "connections": 15,
+          "data_sent": 1024,
+          "data_received": 2048
+        },
+        "session_duration": 0
+      }
+    },
+    {
+      "timestamp": 1747985302.5982451,
+      "user_behavior": {
+        "inferred_intent": "coding",
+        "confidence": 0.9,
+        "workflow_stage": "testing",
+        "activity_type": "development",
+        "significance_score": 1.0,
+        "focus_level": {
+          "focus_score": 1.0,
+          "attention_type": "deep_work",
+          "distraction_indicators": [],
+          "flow_state_indicators": [
+            "minimal_app_switching",
+            "code_editor_focus"
+          ]
+        },
+        "productivity_indicator": {
+          "productivity_score": 0.6000000000000001,
+          "indicators": [
+            "active_development",
+            "focused_workflow"
+          ],
+          "blockers": [],
+          "suggestions": []
+        }
+      },
+      "active_applications": {
+        "foreground": [
+          {
+            "name": "Visual Studio Code",
+            "type": "development",
+            "category": "ide",
+            "state": {
+              "active": true,
+              "focused": true
+            },
+            "usage_pattern": {
+              "frequency": "unknown",
+              "typical_duration": 0,
+              "context_association": []
+            },
+            "context_relevance": 0.9
+          }
+        ],
+        "background": [
+          {
+            "name": "Python",
+            "type": "interpreter",
+            "category": "development",
+            "relevance": 0.3
+          },
+          {
+            "name": "Terminal",
+            "type": "system",
+            "category": "utility",
+            "relevance": 0.3
+          }
+        ]
+      },
+      "visual_context": {
+        "active_window": {
+          "title": "test_memory_flow.py - Visual Studio Code",
+          "application": "Visual Studio Code",
+          "path": "/Users/test/project"
+        },
+        "main_content": "",
+        "content_analysis": {
+          "content_type": "structured_document",
+          "complexity": "medium",
+          "engagement_level": 0.063,
+          "key_elements": [
+            "interactive_controls",
+            "input_fields"
+          ]
+        },
+        "ui_elements": {
+          "controls": 2,
+          "text_fields": 1,
+          "navigation": 1,
+          "interaction_opportunities": [
+            "clickable_controls",
+            "text_input",
+            "navigation_options"
+          ]
+        },
+        "text_content": {
+          "headers": [
+            "test_memory_flow.py"
+          ],
+          "main_text": [
+            "def test_memory():",
+            "    # Testing memory flow",
+            "    pass"
+          ],
+          "semantic_topics": [],
+          "content_type": "source_code"
+        }
+      },
+      "file_context": {
+        "current_file": {
+          "path": "/Users/test/project/test_memory_flow.py",
+          "size": 1024,
+          "modified": "2025-05-23T00:28:22.598158",
+          "type": "python"
+        },
+        "recent_files": [
+          {
+            "path": "/Users/test/project/memory_system.py",
+            "accessed": "2025-05-23T00:28:22.598159",
+            "type": "python"
+          },
+          {
+            "path": "/Users/test/project/README.md",
+            "accessed": "2025-05-23T00:28:22.598160",
+            "type": "markdown"
+          }
+        ],
+        "file_operations": [
+          {
+            "action": "save",
+            "file": "test_memory_flow.py",
+            "timestamp": "2025-05-23T00:28:22.598161"
+          },
+          {
+            "action": "open",
+            "file": "memory_system.py",
+            "timestamp": "2025-05-23T00:28:22.598162"
+          }
+        ],
+        "file_patterns": {
+          "project_type": "python_project",
+          "file_types": [
+            "python"
+          ],
+          "development_stage": "testing",
+          "collaboration_indicators": [
+            "documentation"
+          ]
+        }
+      },
+      "system_state": {
+        "resources": {
+          "memory_total": 16384,
+          "memory_used": 8192,
+          "cpu_usage": 25.5
+        },
+        "network": {
+          "connections": 15,
+          "data_sent": 1024,
+          "data_received": 2048
+        },
+        "session_duration": 0
+      }
+    }
+  ],
   "long_term": [],
   "context": {
     "sensor_data": {
@@ -7,8 +1058,198 @@
       "process": {},
       "file": {}
     },
-    "current_context": {},
-    "application_context": {},
+    "current_context": {
+      "timestamp": 1747985302.5982451,
+      "user_behavior": {
+        "inferred_intent": "coding",
+        "confidence": 0.9,
+        "workflow_stage": "testing",
+        "activity_type": "development",
+        "significance_score": 1.0,
+        "focus_level": {
+          "focus_score": 1.0,
+          "attention_type": "deep_work",
+          "distraction_indicators": [],
+          "flow_state_indicators": [
+            "minimal_app_switching",
+            "code_editor_focus"
+          ]
+        },
+        "productivity_indicator": {
+          "productivity_score": 0.6000000000000001,
+          "indicators": [
+            "active_development",
+            "focused_workflow"
+          ],
+          "blockers": [],
+          "suggestions": []
+        }
+      },
+      "active_applications": {
+        "foreground": [
+          {
+            "name": "Visual Studio Code",
+            "type": "development",
+            "category": "ide",
+            "state": {
+              "active": true,
+              "focused": true
+            },
+            "usage_pattern": {
+              "frequency": "unknown",
+              "typical_duration": 0,
+              "context_association": []
+            },
+            "context_relevance": 0.9
+          }
+        ],
+        "background": [
+          {
+            "name": "Python",
+            "type": "interpreter",
+            "category": "development",
+            "relevance": 0.3
+          },
+          {
+            "name": "Terminal",
+            "type": "system",
+            "category": "utility",
+            "relevance": 0.3
+          }
+        ]
+      },
+      "visual_context": {
+        "active_window": {
+          "title": "test_memory_flow.py - Visual Studio Code",
+          "application": "Visual Studio Code",
+          "path": "/Users/test/project"
+        },
+        "main_content": "",
+        "content_analysis": {
+          "content_type": "structured_document",
+          "complexity": "medium",
+          "engagement_level": 0.063,
+          "key_elements": [
+            "interactive_controls",
+            "input_fields"
+          ]
+        },
+        "ui_elements": {
+          "controls": 2,
+          "text_fields": 1,
+          "navigation": 1,
+          "interaction_opportunities": [
+            "clickable_controls",
+            "text_input",
+            "navigation_options"
+          ]
+        },
+        "text_content": {
+          "headers": [
+            "test_memory_flow.py"
+          ],
+          "main_text": [
+            "def test_memory():",
+            "    # Testing memory flow",
+            "    pass"
+          ],
+          "semantic_topics": [],
+          "content_type": "source_code"
+        }
+      },
+      "file_context": {
+        "current_file": {
+          "path": "/Users/test/project/test_memory_flow.py",
+          "size": 1024,
+          "modified": "2025-05-23T00:28:22.598158",
+          "type": "python"
+        },
+        "recent_files": [
+          {
+            "path": "/Users/test/project/memory_system.py",
+            "accessed": "2025-05-23T00:28:22.598159",
+            "type": "python"
+          },
+          {
+            "path": "/Users/test/project/README.md",
+            "accessed": "2025-05-23T00:28:22.598160",
+            "type": "markdown"
+          }
+        ],
+        "file_operations": [
+          {
+            "action": "save",
+            "file": "test_memory_flow.py",
+            "timestamp": "2025-05-23T00:28:22.598161"
+          },
+          {
+            "action": "open",
+            "file": "memory_system.py",
+            "timestamp": "2025-05-23T00:28:22.598162"
+          }
+        ],
+        "file_patterns": {
+          "project_type": "python_project",
+          "file_types": [
+            "python"
+          ],
+          "development_stage": "testing",
+          "collaboration_indicators": [
+            "documentation"
+          ]
+        }
+      },
+      "system_state": {
+        "resources": {
+          "memory_total": 16384,
+          "memory_used": 8192,
+          "cpu_usage": 25.5
+        },
+        "network": {
+          "connections": 15,
+          "data_sent": 1024,
+          "data_received": 2048
+        },
+        "session_duration": 0
+      }
+    },
+    "application_context": {
+      "active_apps": {
+        "foreground": [
+          {
+            "name": "Visual Studio Code",
+            "type": "development",
+            "category": "ide",
+            "state": {
+              "active": true,
+              "focused": true
+            },
+            "usage_pattern": {
+              "frequency": "unknown",
+              "typical_duration": 0,
+              "context_association": []
+            },
+            "context_relevance": 0.9
+          }
+        ],
+        "background": [
+          {
+            "name": "Python",
+            "type": "interpreter",
+            "category": "development",
+            "relevance": 0.3
+          },
+          {
+            "name": "Terminal",
+            "type": "system",
+            "category": "utility",
+            "relevance": 0.3
+          }
+        ]
+      },
+      "app_states": {},
+      "app_workflows": {}
+    },
     "activities": [],
     "relationships": {},
     "by_timestamp": {
@@ -138,6 +1379,100 @@
         "memory_id": "ctx_1747793485797",
         "memory_type": "context"
       }
+    },
+    "visual_context": {
+      "active_window": {
+        "title": "test_memory_flow.py - Visual Studio Code",
+        "application": "Visual Studio Code",
+        "path": "/Users/test/project"
+      },
+      "main_content": "",
+      "content_analysis": {
+        "content_type": "structured_document",
+        "complexity": "medium",
+        "engagement_level": 0.063,
+        "key_elements": [
+          "interactive_controls",
+          "input_fields"
+        ]
+      },
+      "ui_elements": {
+        "controls": 2,
+        "text_fields": 1,
+        "navigation": 1,
+        "interaction_opportunities": [
+          "clickable_controls",
+          "text_input",
+          "navigation_options"
+        ]
+      },
+      "text_content": {
+        "headers": [
+          "test_memory_flow.py"
+        ],
+        "main_text": [
+          "def test_memory():",
+          "    # Testing memory flow",
+          "    pass"
+        ],
+        "semantic_topics": [],
+        "content_type": "source_code"
+      }
+    },
+    "system_state": {
+      "resources": {
+        "memory_total": 16384,
+        "memory_used": 8192,
+        "cpu_usage": 25.5
+      },
+      "network": {
+        "connections": 15,
+        "data_sent": 1024,
+        "data_received": 2048
+      },
+      "session_duration": 0
+    },
+    "file_context": {
+      "current_file": {
+        "path": "/Users/test/project/test_memory_flow.py",
+        "size": 1024,
+        "modified": "2025-05-23T00:28:22.598158",
+        "type": "python"
+      },
+      "recent_files": [
+        {
+          "path": "/Users/test/project/memory_system.py",
+          "accessed": "2025-05-23T00:28:22.598159",
+          "type": "python"
+        },
+        {
+          "path": "/Users/test/project/README.md",
+          "accessed": "2025-05-23T00:28:22.598160",
+          "type": "markdown"
+        }
+      ],
+      "file_operations": [
+        {
+          "action": "save",
+          "file": "test_memory_flow.py",
+          "timestamp": "2025-05-23T00:28:22.598161"
+        },
+        {
+          "action": "open",
+          "file": "memory_system.py",
+          "timestamp": "2025-05-23T00:28:22.598162"
+        }
+      ],
+      "file_patterns": {
+        "project_type": "python_project",
+        "file_types": [
+          "python"
+        ],
+        "development_stage": "testing",
+        "collaboration_indicators": [
+          "documentation"
+        ]
+      }
     }
   },
   "conscious": {
@@ -146,8 +1481,8 @@
       "process": [],
       "file": []
     },
-    "last_processing_time": 1747792260.981181,
+    "last_processing_time": 1747985301.46501,
     "running": false
   },
-  "last_update": "2025-05-20T19:12:14.500707"
+  "last_update": "2025-05-23T00:28:22.601514"
 }

@@ -69,7 +69,10 @@ async def register_with_bridge(websocket: WebSocketClientProtocol) -> bool:
         response = await asyncio.wait_for(websocket.recv(), timeout=10.0)
         data = json.loads(response)
         
-        if data.get("type") == "registration_confirmed":
+        if data.get("type") == "registration_success":
+            logger.info(f"Registration successful: {data.get('message')}")
+            return True
+        elif data.get("type") == "registration_confirmed":
             logger.info(f"Registration confirmed as {data.get('payload', {}).get('client_type')}")
             return True
         else:
@@ -177,9 +180,8 @@ async def send_process_data(websocket: WebSocketClientProtocol):
         # Create enhanced process data
         process_data = {
             "type": "sensor_data",
-            "payload": {
-                "sensor_type": "process",
-                "data": {
+            "sensor_type": "process",
+            "data": {
                     "timestamp": datetime.now().isoformat(),
                     "active_app": window_info['active_app'],
                     "active_window": window_info['active_window'],
@@ -192,7 +194,6 @@ async def send_process_data(websocket: WebSocketClientProtocol):
                     },
                     "is_significant_action": len(active_apps) > 0 or window_info['active_app'] != 'Unknown'
                 }
-            }
         }
         
         # Also save to cache for direct integration
@@ -201,7 +202,7 @@ async def send_process_data(websocket: WebSocketClientProtocol):
         cache_file = os.path.join(cache_dir, "process_cache.json")
         
         with open(cache_file, 'w') as f:
-            json.dump(process_data["payload"]["data"], f, indent=2)
+            json.dump(process_data["data"], f, indent=2)
         
         await websocket.send(json.dumps(process_data))
         logger.info(f"Sent enhanced process data: {len(active_apps)} apps, active: {window_info['active_app']}")

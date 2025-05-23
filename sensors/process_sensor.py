@@ -138,19 +138,91 @@ class ProcessSensor:
             return []
     
     def _get_active_window(self) -> Optional[str]:
-        """Get active window title with detailed logging."""
+        """Get active window title with enhanced detection and detailed logging."""
         try:
             self.logger.info("Getting active window...")
             start_time = time.time()
             
-            # Get active window using AppleScript
-            script = 'tell application "System Events" to get name of first window of first process whose frontmost is true'
-            result = os.popen(f'osascript -e \'{script}\'').read().strip()
+            # Enhanced AppleScript with multiple fallback methods
+            try:
+                # Method 1: Try to get window title
+                script = '''
+                tell application "System Events"
+                    try
+                        set frontWindow to title of front window of first application process whose frontmost is true
+                        return frontWindow
+                    on error
+                        try
+                            set frontWindow to name of front window of first application process whose frontmost is true
+                            return frontWindow
+                        on error
+                            set frontApp to name of first application process whose frontmost is true
+                            return frontApp & " - Main Window"
+                        end try
+                    end try
+                end tell
+                '''
+                
+                import subprocess
+                result = subprocess.run(['osascript', '-e', script], 
+                                      capture_output=True, text=True, timeout=3)
+                
+                if result.returncode == 0 and result.stdout.strip():
+                    window_title = result.stdout.strip()
+                    self.logger.info(f"Active window retrieved in {time.time() - start_time:.2f} seconds")
+                    self.logger.debug(f"Active window: {window_title}")
+                    return window_title
+                    
+            except subprocess.TimeoutExpired:
+                self.logger.warning("AppleScript timeout - using fallback")
+            except Exception as e:
+                self.logger.debug(f"AppleScript method failed: {e}")
             
-            self.logger.info(f"Active window retrieved in {time.time() - start_time:.2f} seconds")
-            self.logger.debug(f"Active window: {result}")
+            # Method 2: Fallback to just application name
+            try:
+                simple_script = 'tell application "System Events" to get name of first process whose frontmost is true'
+                result = subprocess.run(['osascript', '-e', simple_script], 
+                                      capture_output=True, text=True, timeout=2)
+                
+                if result.returncode == 0 and result.stdout.strip():
+                    app_name = result.stdout.strip()
+                    # Clean up helper process names
+                    if " (" in app_name:
+                        app_name = app_name.split(" (")[0]
+                    window_title = f"{app_name} - Active Window"
+                    self.logger.info(f"Fallback window retrieved in {time.time() - start_time:.2f} seconds")
+                    self.logger.debug(f"Fallback window: {window_title}")
+                    return window_title
+                    
+            except Exception as e:
+                self.logger.debug(f"Fallback method failed: {e}")
             
-            return result
+            # Method 3: Use psutil as last resort
+            try:
+                import psutil
+                processes = []
+                for proc in psutil.process_iter(['name', 'cpu_percent']):
+                    try:
+                        if proc.info['name'] not in ['kernel_task', 'WindowServer', 'loginwindow']:
+                            processes.append((proc.info['name'], proc.info['cpu_percent'] or 0))
+                    except (psutil.NoSuchProcess, psutil.AccessDenied):
+                        continue
+                
+                if processes:
+                    # Sort by CPU and take the most active
+                    processes.sort(key=lambda x: x[1], reverse=True)
+                    app_name = processes[0][0]
+                    window_title = f"{app_name} - Process Window"
+                    self.logger.info(f"Process-based window retrieved in {time.time() - start_time:.2f} seconds")
+                    self.logger.debug(f"Process window: {window_title}")
+                    return window_title
+                    
+            except Exception as e:
+                self.logger.debug(f"Process method failed: {e}")
+            
+            # Final fallback
+            self.logger.warning("All window detection methods failed")
+            return "Unknown - Active Window"
             
         except Exception as e:
             self.logger.error(f"Error getting active window: {e}")

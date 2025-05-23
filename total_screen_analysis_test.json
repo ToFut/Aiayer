@@ -1,0 +1,38 @@
+{
+  "timestamp": "2025-05-22T13:38:43.639895",
+  "image_hash": "7edf50b803d5d5e7bf05690918dea26e",
+  "overall_context": "terminals_general_computing",
+  "semantic_summary": "Using Cursor for general_computing in creation stage",
+  "activity_classification": "general_usage",
+  "memory_priority": "normal",
+  "application": {
+    "name": "Cursor",
+    "detected_type": "terminals",
+    "confidence": 0.4444444444444444
+  },
+  "content": {
+    "type": "code",
+    "word_count": 362,
+    "has_meaningful_text": true,
+    "primary_purpose": "development",
+    "interaction_level": "active"
+  },
+  "user_activity": {
+    "current_activity": "general_computing",
+    "workflow_stage": "creation",
+    "user_intent": "creating",
+    "productivity_context": "general_usage"
+  },
+  "key_insights": [
+    "Content-rich screen with 362 words",
+    "User engaged in general_usage",
+    "Active user interaction detected"
+  ],
+  "analysis_confidence": 0.4444444444444444,
+  "text_sample": "node \u2014 Aiayer\n\nnode\n\nnode\n\nnode\n\nnode\n\nx\n\n+\n\nray\n\nCreating directories...\n\nCleaning up existing processes...\n\nStopping previous total_screen_analyzer (PID: 56318)\n\nCleaning up ports...\n\nKilling process 56410\n\n57185 using port 8767\n\nFixing port configuration in bridge server...\n\n+34 lines (ctrl+r to see all)\n\nL Read memory/memory_state.json (19 lines)\n\nL Read sensors/total_screen_analyzer.py (1521 lines)\n\nL Read cache/screen_sensor/last_screen.json (7 lines)\n\n@ Great! The TotalScreenAnalyzer is r",
+  "llava_insights": {
+    "visual_context": "",
+    "application_detected": "",
+    "workflow_stage": ""
+  }
+}

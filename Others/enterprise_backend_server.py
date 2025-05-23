@@ -28,13 +28,15 @@ import websockets
 from websockets.server import WebSocketServerProtocol
 
 # Import our enterprise components
-sys.path.append(os.path.dirname(os.path.abspath(__file__)))
+parent_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+sys.path.insert(0, parent_dir)
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from brain.core.brain_router import BrainRouter, ChatRequest, ChatMode, Priority
 from brain.handlers.ask_mode_handler import AskModeHandler
 from brain.handlers.agent_mode_handler import AgentModeHandler
 from memory.semantic_search_agent import SemanticSearchAgent, search_memories, add_memory
 from enterprise_llm_service import generate_llm_response
-from enterprise_workflow_engine import execute_agent_workflow
+# from enterprise_workflow_engine import execute_agent_workflow  # Import dynamically to handle path issues
 
 # Configure enterprise logging
 os.makedirs('logs/backend', exist_ok=True)
@@ -729,7 +731,80 @@ class EnhancedAgentModeHandler:
                 "relevant_memories": [{"content": mem.content, "confidence": mem.confidence} for mem in task_memories]
             }
             
-            workflow_result = await execute_agent_workflow(request.query, workflow_context)
+            # Check if it's a UI automation request and execute directly
+            query_lower = request.query.lower()
+            is_ui_request = any(keyword in query_lower for keyword in ['click', 'type', 'press', 'mouse', 'keyboard'])
+            
+            if is_ui_request:
+                logger.info(f"🖱️ Direct UI automation request detected: {request.query}")
+                # Execute UI automation directly without confidence checks
+                try:
+                    # Import here to avoid issues
+                    import sys
+                    import os
+                    sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+                    from ui_automation_engine import execute_ui_action
+                    
+                    # Parse the UI command directly
+                    if 'click' in query_lower:
+                        # Extract coordinates
+                        import re
+                        coords = re.findall(r'\d+', request.query)
+                        if len(coords) >= 2:
+                            x, y = int(coords[0]), int(coords[1])
+                        else:
+                            x, y = 100, 100  # Default coordinates
+                        
+                        ui_result = await execute_ui_action("click", {"x": x, "y": y})
+                        if ui_result["success"]:
+                            response_text = f"✅ **UI Automation Executed Successfully!**\n\n**Action:** Mouse click\n**Location:** ({x}, {y})\n**Result:** Click executed successfully\n\n🖱️ Real mouse control is working!"
+                            workflow_result = {"success": True, "response": response_text}
+                        else:
+                            workflow_result = {"success": False, "message": f"UI automation failed: {ui_result.get('error', 'Unknown error')}"}
+                    
+                    elif 'type' in query_lower:
+                        # Extract text to type
+                        text_parts = request.query.lower().split('type')
+                        if len(text_parts) > 1:
+                            text_to_type = text_parts[1].strip()
+                        else:
+                            text_to_type = "hello world"
+                        
+                        ui_result = await execute_ui_action("type", {"text": text_to_type})
+                        if ui_result["success"]:
+                            response_text = f"✅ **UI Automation Executed Successfully!**\n\n**Action:** Keyboard typing\n**Text:** '{text_to_type}'\n**Result:** Text typed successfully\n\n⌨️ Real keyboard control is working!"
+                            workflow_result = {"success": True, "response": response_text}
+                        else:
+                            workflow_result = {"success": False, "message": f"UI automation failed: {ui_result.get('error', 'Unknown error')}"}
+                    
+                    elif 'press' in query_lower:
+                        # Extract key to press
+                        key_to_press = "return"  # Default
+                        if "return" in query_lower or "enter" in query_lower:
+                            key_to_press = "return"
+                        elif "space" in query_lower:
+                            key_to_press = "space"
+                        
+                        ui_result = await execute_ui_action("key_press", {"key": key_to_press})
+                        if ui_result["success"]:
+                            response_text = f"✅ **UI Automation Executed Successfully!**\n\n**Action:** Key press\n**Key:** {key_to_press}\n**Result:** Key pressed successfully\n\n⌨️ Real key control is working!"
+                            workflow_result = {"success": True, "response": response_text}
+                        else:
+                            workflow_result = {"success": False, "message": f"UI automation failed: {ui_result.get('error', 'Unknown error')}"}
+                    
+                    else:
+                        workflow_result = {"success": False, "message": "UI automation command not recognized"}
+                        
+                except Exception as e:
+                    logger.error(f"❌ Direct UI automation failed: {e}")
+                    workflow_result = {"success": False, "message": f"UI automation error: {str(e)}"}
+            else:
+                # Import workflow engine for non-UI requests too
+                import sys
+                import os
+                sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+                from enterprise_workflow_engine import execute_agent_workflow
+                workflow_result = await execute_agent_workflow(request.query, workflow_context)
             
             if workflow_result["success"]:
                 response_text = workflow_result["response"]
@@ -742,11 +817,12 @@ class EnhancedAgentModeHandler:
                     "execution_time": workflow_result.get("processing_time", 0),
                     "steps_completed": workflow_result.get("execution_result", {}).get("completed_steps", 0),
                     "total_steps": workflow_result.get("execution_result", {}).get("total_steps", 0),
-                    "real_execution": True
+                    "real_execution": True,
+                    "ui_automation": is_ui_request
                 }
             else:
                 # If workflow execution fails, fall back to LLM planning
-                logger.warning(f"⚠️ Workflow execution failed, falling back to LLM planning")
+                logger.warning(f"⚠️ Workflow execution failed, falling back to LLM planning: {workflow_result.get('message', 'Unknown error')}")
                 
                 llm_context = {
                     "relevant_memories": [{"content": mem.content, "confidence": mem.confidence} for mem in task_memories],

@@ -1,0 +1,1056 @@
+#!/usr/bin/env python3
+"""
+Enhanced Brain Router with Full Automation
+Integrates contextual memory with REAL UI automation execution.
+
+This version actually executes clicks, typing, and other UI automation
+when Agent mode is triggered, not just planning responses.
+"""
+
+import asyncio
+import json
+import logging
+import os
+import sys
+import time
+import websockets
+from datetime import datetime
+from enum import Enum
+from typing import Dict, Any, Optional, List, Tuple
+
+# Add paths for imports
+sys.path.append(os.path.dirname(os.path.abspath(__file__)))
+
+# Core imports
+from memory.semantic_search_agent import SemanticSearchAgent, get_context_for_query, add_memory
+from agent_workflow.input_controller import InputController
+from sensors.total_screen_analyzer import TotalScreenAnalyzer
+from intelligent_workflow_planner import IntelligentWorkflowPlanner, WorkflowPlan, WorkflowStep, ActionType
+
+# Configure logging
+os.makedirs("logs", exist_ok=True)
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
+    handlers=[
+        logging.FileHandler('logs/enhanced_brain_router_automation.log'),
+        logging.StreamHandler()
+    ]
+)
+logger = logging.getLogger(__name__)
+
+class ChatMode(Enum):
+    AGENT = "Agent"
+    ASK = "Ask"
+    SUGGEST = "Suggest"
+    GENERAL = "General"
+
+class AutomationResult:
+    """Result of an automation operation"""
+    def __init__(self, success: bool, action: str, details: str, coordinates: Optional[Tuple[int, int]] = None):
+        self.success = success
+        self.action = action
+        self.details = details
+        self.coordinates = coordinates
+        self.timestamp = datetime.now().isoformat()
+
+class AgentAutomationEngine:
+    """Core automation engine that actually executes UI actions"""
+    
+    def __init__(self, safety_level: str = "medium"):
+        self.input_controller = InputController(safety_level=safety_level)
+        self.screen_analyzer = TotalScreenAnalyzer(fast_mode=True)  # Use fast mode to avoid LLaVA timeouts
+        self.workflow_planner = IntelligentWorkflowPlanner()
+        self.safety_level = safety_level
+        self.automation_active = True
+        logger.info(f"🤖 AgentAutomationEngine initialized with {safety_level} safety and intelligent workflow planning (FAST MODE)")
+        
+    async def execute_click_action(self, message: str, context: Dict[str, Any]) -> AutomationResult:
+        """Execute actual click automation based on user request"""
+        try:
+            logger.info(f"🎯 Executing click action: {message}")
+            
+            # Parse click target from message
+            target = await self._parse_click_target(message)
+            
+            # Take screenshot and analyze using proper method
+            screenshot_data = await self.screen_analyzer.analyze_full_screen()
+            
+            # Find click coordinates
+            coordinates = await self._find_click_coordinates(target, screenshot_data)
+            
+            if coordinates:
+                x, y = coordinates
+                logger.info(f"🎯 Clicking at coordinates ({x}, {y})")
+                
+                # Execute the actual click
+                success = self.input_controller.click(x, y)
+                
+                if success:
+                    # Store automation result in memory
+                    await add_memory(
+                        f"Successfully clicked on '{target}' at coordinates ({x}, {y})",
+                        source="automation",
+                        tags={"ui_automation", "click", "success", target}
+                    )
+                    
+                    return AutomationResult(
+                        success=True,
+                        action="click",
+                        details=f"Successfully clicked on '{target}' at ({x}, {y})",
+                        coordinates=(x, y)
+                    )
+                else:
+                    return AutomationResult(
+                        success=False,
+                        action="click",
+                        details=f"Failed to execute click at ({x}, {y})"
+                    )
+            else:
+                # Fallback: try to click based on common UI patterns
+                fallback_coords = await self._get_fallback_click_location(target, screenshot_data)
+                
+                if fallback_coords:
+                    x, y = fallback_coords
+                    success = self.input_controller.click(x, y)
+                    
+                    result_msg = f"Clicked at estimated location ({x}, {y}) for '{target}'"
+                    if success:
+                        await add_memory(result_msg, source="automation", tags={"ui_automation", "click", "fallback"})
+                    
+                    return AutomationResult(
+                        success=success,
+                        action="click",
+                        details=result_msg,
+                        coordinates=(x, y)
+                    )
+                else:
+                    return AutomationResult(
+                        success=False,
+                        action="click",
+                        details=f"Could not locate '{target}' on screen"
+                    )
+                    
+        except Exception as e:
+            logger.error(f"❌ Error executing click action: {e}")
+            return AutomationResult(
+                success=False,
+                action="click",
+                details=f"Error: {str(e)}"
+            )
+    
+    async def execute_type_action(self, message: str, context: Dict[str, Any]) -> AutomationResult:
+        """Execute actual typing automation"""
+        try:
+            logger.info(f"⌨️  Executing type action: {message}")
+            
+            # Parse text to type from message
+            text_to_type = await self._parse_text_to_type(message)
+            
+            if text_to_type:
+                # Execute the typing
+                success = self.input_controller.type_text(text_to_type)
+                
+                if success:
+                    await add_memory(
+                        f"Successfully typed text: '{text_to_type}'",
+                        source="automation",
+                        tags={"ui_automation", "typing", "success"}
+                    )
+                    
+                    return AutomationResult(
+                        success=True,
+                        action="type",
+                        details=f"Successfully typed: '{text_to_type}'"
+                    )
+                else:
+                    return AutomationResult(
+                        success=False,
+                        action="type",
+                        details=f"Failed to type text: '{text_to_type}'"
+                    )
+            else:
+                return AutomationResult(
+                    success=False,
+                    action="type",
+                    details="Could not extract text to type from message"
+                )
+                
+        except Exception as e:
+            logger.error(f"❌ Error executing type action: {e}")
+            return AutomationResult(
+                success=False,
+                action="type",
+                details=f"Error: {str(e)}"
+            )
+    
+    async def execute_open_action(self, message: str, context: Dict[str, Any]) -> AutomationResult:
+        """Execute application opening automation"""
+        try:
+            logger.info(f"📂 Executing open action: {message}")
+            
+            # Parse application name from message
+            app_name = await self._parse_app_name(message)
+            
+            if app_name:
+                # Use Spotlight search to open app (macOS)
+                # Press Cmd+Space for Spotlight
+                success = self.input_controller.hotkey("command", "space")
+                
+                if success:
+                    # Wait for Spotlight to open
+                    await asyncio.sleep(0.5)
+                    
+                    # Type app name
+                    type_success = self.input_controller.type_text(app_name)
+                    
+                    if type_success:
+                        # Wait for search results
+                        await asyncio.sleep(0.5)
+                        
+                        # Press Enter to open
+                        enter_success = self.input_controller.press_key("enter")
+                        
+                        if enter_success:
+                            await add_memory(
+                                f"Successfully opened application: '{app_name}' using Spotlight",
+                                source="automation",
+                                tags={"ui_automation", "open_app", "success", app_name.lower()}
+                            )
+                            
+                            return AutomationResult(
+                                success=True,
+                                action="open",
+                                details=f"Successfully opened '{app_name}' using Spotlight search"
+                            )
+                
+                return AutomationResult(
+                    success=False,
+                    action="open",
+                    details=f"Failed to open '{app_name}' via Spotlight"
+                )
+            else:
+                return AutomationResult(
+                    success=False,
+                    action="open",
+                    details="Could not extract application name from message"
+                )
+                
+        except Exception as e:
+            logger.error(f"❌ Error executing open action: {e}")
+            return AutomationResult(
+                success=False,
+                action="open",
+                details=f"Error: {str(e)}"
+            )
+    
+    async def _parse_click_target(self, message: str) -> str:
+        """Parse what the user wants to click on"""
+        message_lower = message.lower()
+        
+        # Common click targets
+        if "document" in message_lower or "folder" in message_lower:
+            if "document" in message_lower:
+                return "Documents"
+            else:
+                return "folder"
+        elif "button" in message_lower:
+            # Extract button name
+            words = message.split()
+            for i, word in enumerate(words):
+                if word.lower() == "button" and i > 0:
+                    return words[i-1]
+            return "button"
+        elif "close" in message_lower:
+            return "close button"
+        elif "menu" in message_lower:
+            return "menu"
+        else:
+            # Try to extract noun from message
+            words = message.split()
+            for word in words:
+                if word.lower() not in ["click", "on", "the", "a", "an"]:
+                    return word
+            return "target"
+    
+    async def _parse_text_to_type(self, message: str) -> str:
+        """Parse text to type from message"""
+        message_lower = message.lower()
+        
+        # Look for quoted text
+        import re
+        quotes_match = re.search(r'["\']([^"\']+)["\']', message)
+        if quotes_match:
+            return quotes_match.group(1)
+        
+        # Look for "type" keyword patterns
+        if "type" in message_lower:
+            parts = message.split("type", 1)
+            if len(parts) > 1:
+                text_part = parts[1].strip()
+                # Remove common words
+                text_part = text_part.replace("the text", "").replace("text", "").strip()
+                return text_part
+        
+        return ""
+    
+    async def _parse_app_name(self, message: str) -> str:
+        """Parse application name from message"""
+        message_lower = message.lower()
+        
+        # Common applications
+        app_mapping = {
+            "terminal": "Terminal",
+            "safari": "Safari", 
+            "chrome": "Google Chrome",
+            "firefox": "Firefox",
+            "finder": "Finder",
+            "calculator": "Calculator",
+            "notes": "Notes",
+            "calendar": "Calendar",
+            "mail": "Mail",
+            "messages": "Messages",
+            "facetime": "FaceTime",
+            "music": "Music",
+            "photos": "Photos",
+            "maps": "Maps",
+            "weather": "Weather",
+            "news": "News",
+            "stocks": "Stocks",
+            "voice memos": "Voice Memos",
+            "home": "Home",
+            "shortcuts": "Shortcuts",
+            "textview": "TextEdit",
+            "text editor": "TextEdit",
+            "preview": "Preview"
+        }
+        
+        for keyword, app_name in app_mapping.items():
+            if keyword in message_lower:
+                return app_name
+        
+        # Try to extract app name after "open"
+        if "open" in message_lower:
+            parts = message_lower.split("open", 1)
+            if len(parts) > 1:
+                app_part = parts[1].strip()
+                app_part = app_part.replace("application", "").replace("app", "").strip()
+                return app_part.title()
+        
+        return ""
+    
+    async def _find_click_coordinates(self, target: str, screenshot_data: Dict) -> Optional[Tuple[int, int]]:
+        """Find coordinates for click target using screen analysis"""
+        try:
+            if not screenshot_data:
+                logger.warning("No screenshot data available")
+                return None
+                
+            # Extract UI elements from proper TotalScreenAnalyzer format
+            ui_layer = screenshot_data.get('layers', {}).get('ui_analysis', {})
+            ui_elements = ui_layer.get('elements', [])
+            
+            # Also check text regions for clickable text
+            text_layer = screenshot_data.get('layers', {}).get('text_analysis', {})
+            text_regions = text_layer.get('text_regions', [])
+            
+            target_lower = target.lower()
+            logger.info(f"Looking for target '{target}' among {len(ui_elements)} UI elements and {len(text_regions)} text regions")
+            
+            # First, look for UI elements that match the target
+            for element in ui_elements:
+                element_type = element.get('type', '').lower()
+                position = element.get('position', {})
+                
+                # Check for type match (button, text_field, etc.)
+                if any(keyword in element_type for keyword in target_lower.split()):
+                    if position:
+                        x = position.get('x', 0) + position.get('width', 0) // 2
+                        y = position.get('y', 0) + position.get('height', 0) // 2
+                        logger.info(f"Found UI element match: {element_type} at ({x}, {y})")
+                        return (int(x), int(y))
+            
+            # Second, look for text regions that match the target
+            for region in text_regions:
+                region_text = region.get('text', '').lower()
+                position = region.get('bounding_box', {})
+                
+                # Check for text match
+                if target_lower in region_text or any(keyword in region_text for keyword in target_lower.split()):
+                    if position:
+                        x = position.get('x', 0) + position.get('width', 0) // 2
+                        y = position.get('y', 0) + position.get('height', 0) // 2
+                        logger.info(f"Found text region match: '{region_text}' at ({x}, {y})")
+                        return (int(x), int(y))
+            
+            # Third, look for individual text elements
+            text_elements = text_layer.get('text_elements', [])
+            for element in text_elements:
+                element_text = element.get('text', '').lower()
+                position = element.get('position', {})
+                
+                if target_lower in element_text:
+                    if position:
+                        x = position.get('x', 0) + position.get('width', 0) // 2
+                        y = position.get('y', 0) + position.get('height', 0) // 2
+                        logger.info(f"Found text element match: '{element_text}' at ({x}, {y})")
+                        return (int(x), int(y))
+            
+            logger.warning(f"Could not find target '{target}' in screen analysis")
+            return None
+            
+        except Exception as e:
+            logger.error(f"Error finding click coordinates: {e}")
+            return None
+    
+    async def _get_fallback_click_location(self, target: str, screenshot_data: Dict) -> Optional[Tuple[int, int]]:
+        """Get fallback click location based on common UI patterns"""
+        screen_width = screenshot_data.get('screen_info', {}).get('width', 1470)
+        screen_height = screenshot_data.get('screen_info', {}).get('height', 956)
+        
+        target_lower = target.lower()
+        
+        # Common fallback locations
+        if "close" in target_lower:
+            # Top left corner for close button
+            return (20, 20)
+        elif "document" in target_lower:
+            # Typical Documents folder location in Finder sidebar
+            return (120, 200)
+        elif "menu" in target_lower:
+            # Menu bar area
+            return (screen_width // 2, 25)
+        elif "button" in target_lower:
+            # Center of screen for generic button
+            return (screen_width // 2, screen_height // 2)
+        
+        return None
+    
+    async def execute_intelligent_workflow(self, message: str, context: Dict[str, Any]) -> Dict[str, Any]:
+        """
+        Execute intelligent multi-step workflow for complex tasks
+        
+        This handles the critical case study: "Search in google 'SEGEV HALFON'"
+        Creates step-by-step plan and executes each step
+        """
+        try:
+            logger.info(f"🧠 Starting intelligent workflow for: '{message}'")
+            
+            # Get current screen context
+            current_context = await self.screen_analyzer.analyze_full_screen()
+            
+            # Create workflow plan
+            workflow_plan = await self.workflow_planner.create_workflow_plan(message, current_context)
+            
+            logger.info(f"📋 Created workflow plan with {len(workflow_plan.steps)} steps, confidence: {workflow_plan.confidence:.2f}")
+            
+            # Store workflow plan in memory
+            await add_memory(
+                f"Created workflow plan for '{workflow_plan.goal}' with {len(workflow_plan.steps)} steps",
+                source="workflow_planning",
+                tags={"workflow", "automation", "planning", "intelligent"}
+            )
+            
+            # Execute workflow steps
+            results = []
+            successful_steps = 0
+            
+            for step in workflow_plan.steps:
+                logger.info(f"📝 Executing step {step.step_number}: {step.description}")
+                
+                step_result = await self._execute_workflow_step(step, current_context)
+                results.append(step_result)
+                
+                if step_result.get('success', False):
+                    successful_steps += 1
+                    logger.info(f"✅ Step {step.step_number} completed successfully")
+                    
+                    # Update context after successful step
+                    if step.action_type in [ActionType.CLICK, ActionType.TYPE]:
+                        await asyncio.sleep(1)  # Allow UI to update
+                        current_context = await self.screen_analyzer.analyze_full_screen()
+                else:
+                    logger.warning(f"❌ Step {step.step_number} failed: {step_result.get('error', 'Unknown error')}")
+                    
+                    # Try fallback strategies if available
+                    if step.fallback_strategies:
+                        logger.info(f"🔄 Trying fallback strategies for step {step.step_number}")
+                        fallback_success = await self._try_fallback_strategies(step, current_context)
+                        if fallback_success:
+                            successful_steps += 1
+                            logger.info(f"✅ Step {step.step_number} completed via fallback")
+                        else:
+                            logger.error(f"❌ Step {step.step_number} failed even with fallbacks")
+                            break  # Stop workflow on critical failure
+            
+            # Calculate workflow success
+            success_rate = successful_steps / len(workflow_plan.steps) if workflow_plan.steps else 0
+            overall_success = success_rate >= 0.8  # 80% success rate required
+            
+            # Store final results in memory
+            result_summary = f"Workflow '{workflow_plan.goal}' completed with {successful_steps}/{len(workflow_plan.steps)} successful steps"
+            await add_memory(
+                result_summary,
+                source="workflow_execution",
+                tags={"workflow", "automation", "execution", "completed"}
+            )
+            
+            logger.info(f"🎯 Workflow completed: {successful_steps}/{len(workflow_plan.steps)} steps successful")
+            
+            return {
+                "success": overall_success,
+                "workflow_plan": {
+                    "goal": workflow_plan.goal,
+                    "total_steps": len(workflow_plan.steps),
+                    "successful_steps": successful_steps,
+                    "success_rate": success_rate,
+                    "confidence": workflow_plan.confidence,
+                    "estimated_duration": workflow_plan.estimated_duration
+                },
+                "step_results": results,
+                "summary": result_summary,
+                "action": "intelligent_workflow"
+            }
+            
+        except Exception as e:
+            logger.error(f"Error executing intelligent workflow: {e}")
+            return {
+                "success": False,
+                "error": str(e),
+                "action": "intelligent_workflow"
+            }
+    
+    async def _execute_workflow_step(self, step: WorkflowStep, context: Dict[str, Any]) -> Dict[str, Any]:
+        """Execute a single workflow step"""
+        try:
+            if step.action_type == ActionType.CLICK:
+                # Execute click action
+                if step.target:
+                    result = await self.execute_click_action(f"click {step.target}", context)
+                    return {
+                        "success": result.success,
+                        "action": "click",
+                        "target": step.target,
+                        "details": result.details,
+                        "coordinates": result.coordinates
+                    }
+            
+            elif step.action_type == ActionType.TYPE:
+                # Execute typing action
+                if step.value:
+                    result = await self.execute_type_action(f"type {step.value}", context)
+                    return {
+                        "success": result.success,
+                        "action": "type",
+                        "value": step.value,
+                        "details": result.details
+                    }
+            
+            elif step.action_type == ActionType.HOTKEY:
+                # Execute hotkey action
+                if step.target:
+                    keys = step.target.split('+')
+                    if len(keys) > 1:
+                        success = self.input_controller.hotkey(*keys)
+                    else:
+                        success = self.input_controller.press_key(keys[0])
+                    
+                    return {
+                        "success": success,
+                        "action": "hotkey",
+                        "keys": step.target,
+                        "details": f"Executed hotkey: {step.target}"
+                    }
+            
+            elif step.action_type == ActionType.WAIT:
+                # Execute wait action
+                wait_time = float(step.value) if step.value else 1.0
+                await asyncio.sleep(wait_time)
+                return {
+                    "success": True,
+                    "action": "wait",
+                    "duration": wait_time,
+                    "details": f"Waited {wait_time} seconds"
+                }
+            
+            elif step.action_type == ActionType.ANALYZE:
+                # Execute analysis action
+                analysis = await self.screen_analyzer.analyze_full_screen()
+                return {
+                    "success": analysis is not None,
+                    "action": "analyze",
+                    "details": "Screen analysis completed",
+                    "analysis_available": analysis is not None
+                }
+            
+            else:
+                return {
+                    "success": False,
+                    "error": f"Unsupported action type: {step.action_type}",
+                    "action": str(step.action_type)
+                }
+                
+        except Exception as e:
+            return {
+                "success": False,
+                "error": str(e),
+                "action": str(step.action_type)
+            }
+    
+    async def _try_fallback_strategies(self, step: WorkflowStep, context: Dict[str, Any]) -> bool:
+        """Try fallback strategies for a failed step"""
+        if not step.fallback_strategies:
+            return False
+        
+        for strategy in step.fallback_strategies:
+            try:
+                logger.info(f"🔄 Trying fallback strategy: {strategy}")
+                
+                # Simple fallback implementation
+                if "click center" in strategy.lower():
+                    # Click center of screen area
+                    success = self.input_controller.click(800, 400)
+                    if success:
+                        return True
+                
+                elif "tab key" in strategy.lower():
+                    # Use Tab to focus elements
+                    success = self.input_controller.press_key("tab")
+                    if success:
+                        await asyncio.sleep(0.5)
+                        return True
+                
+                elif "enter" in strategy.lower():
+                    # Press Enter
+                    success = self.input_controller.press_key("enter")
+                    if success:
+                        return True
+                
+            except Exception as e:
+                logger.warning(f"Fallback strategy failed: {e}")
+                continue
+        
+        return False
+
+class FullAutomationBrainRouter:
+    """Enhanced Brain Router with full automation capabilities"""
+    
+    def __init__(self):
+        self.semantic_agent = SemanticSearchAgent()
+        self.automation_engine = AgentAutomationEngine()
+        self.connected_clients = set()
+        self.start_time = datetime.now()
+        logger.info("🧠 Full Automation Brain Router initialized")
+    
+    async def process_request_with_automation(self, mode: ChatMode, message: str, session_id: str) -> Dict[str, Any]:
+        """Process request with full automation capabilities"""
+        try:
+            start_time = time.time()
+            
+            # Store user message in memory
+            await add_memory(
+                f"User query: {message}",
+                source="user",
+                tags={"conversation", mode.value.lower(), session_id}
+            )
+            
+            # Get contextual information
+            context = await get_context_for_query(message, max_context_length=1500)
+            
+            # Route to appropriate handler
+            if mode == ChatMode.AGENT:
+                response = await self._handle_agent_mode_with_automation(message, context)
+            elif mode == ChatMode.ASK:
+                response = await self._handle_ask_mode_contextual(message, context)
+            elif mode == ChatMode.SUGGEST:
+                response = await self._handle_suggest_mode_contextual(message, context)
+            else:
+                response = await self._handle_general_mode_contextual(message, context)
+            
+            # Store response in memory
+            await add_memory(
+                f"System responded in {mode.value} mode: {response}",
+                source="system",
+                tags={"conversation", mode.value.lower(), "system_response"}
+            )
+            
+            processing_time = time.time() - start_time
+            
+            return {
+                "success": True,
+                "response": response,
+                "mode": mode.value,
+                "processing_time": round(processing_time, 2),
+                "session_id": session_id,
+                "timestamp": datetime.now().isoformat(),
+                "context_used": {
+                    "relevant_memories": len(context.get('relevant_memories', [])),
+                    "confidence_score": context.get('confidence_score', 0.0),
+                    "key_topics": context.get('key_topics', [])[:5],
+                    "sources": context.get('sources', [])
+                }
+            }
+            
+        except Exception as e:
+            logger.error(f"Error processing request with automation: {e}")
+            return {
+                "success": False,
+                "error": str(e),
+                "mode": mode.value,
+                "session_id": session_id,
+                "timestamp": datetime.now().isoformat()
+            }
+    
+    async def _handle_agent_mode_with_automation(self, message: str, context: Dict[str, Any]) -> str:
+        """Handle Agent mode with REAL automation execution and intelligent workflows"""
+        logger.info(f"🤖 Agent mode with REAL automation: {message}")
+        
+        # Extract relevant context
+        relevant_memories = context.get('relevant_memories', [])
+        confidence = context.get('confidence_score', 0.0)
+        
+        # Analyze message for automation actions
+        message_lower = message.lower()
+        automation_result = None
+        
+        # Detect if this is a complex multi-step task that needs intelligent workflow
+        is_complex_task = self._is_complex_task(message)
+        
+        if is_complex_task:
+            # Use intelligent workflow for complex tasks
+            logger.info(f"🧠 Detected complex task, using intelligent workflow")
+            automation_result = await self.automation_engine.execute_intelligent_workflow(message, context)
+        else:
+            # Execute simple automation based on message content
+            if "click" in message_lower:
+                automation_result = await self.automation_engine.execute_click_action(message, context)
+            elif "type" in message_lower or "enter" in message_lower:
+                automation_result = await self.automation_engine.execute_type_action(message, context)
+            elif "open" in message_lower:
+                automation_result = await self.automation_engine.execute_open_action(message, context)
+        
+        # Build response based on automation result
+        if automation_result:
+            if isinstance(automation_result, dict) and automation_result.get('action') == 'intelligent_workflow':
+                # Handle intelligent workflow results
+                if automation_result.get('success'):
+                    workflow_plan = automation_result.get('workflow_plan', {})
+                    base_response = f"🧠 Intelligent workflow completed successfully!\n"
+                    base_response += f"📋 Goal: {workflow_plan.get('goal', 'Unknown')}\n"
+                    base_response += f"✅ Completed {workflow_plan.get('successful_steps', 0)}/{workflow_plan.get('total_steps', 0)} steps\n"
+                    base_response += f"📊 Success rate: {workflow_plan.get('success_rate', 0):.1%}\n"
+                    base_response += f"⏱️ Duration: ~{workflow_plan.get('estimated_duration', 0)}s\n"
+                    base_response += f"📝 Summary: {automation_result.get('summary', '')}"
+                else:
+                    base_response = f"❌ Intelligent workflow failed: {automation_result.get('error', 'Unknown error')}"
+            else:
+                # Handle simple automation results
+                if hasattr(automation_result, 'success') and automation_result.success:
+                    base_response = f"✅ Successfully executed: {automation_result.details}"
+                    
+                    # Add coordinates if available
+                    if hasattr(automation_result, 'coordinates') and automation_result.coordinates:
+                        x, y = automation_result.coordinates
+                        base_response += f"\n📍 Action performed at coordinates ({x}, {y})"
+                    
+                else:
+                    details = automation_result.details if hasattr(automation_result, 'details') else str(automation_result)
+                    base_response = f"❌ Failed to execute: {details}"
+        else:
+            # Fallback for non-automation requests
+            base_response = f"🤖 Processing agent request: '{message}'"
+        
+        # Add contextual information if available
+        contextual_info = ""
+        if relevant_memories and confidence > 0.3:
+            relevant_actions = []
+            for memory in relevant_memories[:2]:
+                if any(action in memory['content'].lower() for action in ['click', 'open', 'type']):
+                    relevant_actions.append(memory['content'])
+            
+            if relevant_actions:
+                contextual_info = f"\n\n💭 Context: {relevant_actions[0][:80]}..."
+        
+        # Add confidence indicator
+        confidence_note = ""
+        if confidence > 0.7:
+            confidence_note = f" (Confidence: {confidence:.1%})"
+        elif confidence > 0.4:
+            confidence_note = f" (Medium confidence: {confidence:.1%})"
+        
+        return base_response + contextual_info + confidence_note
+    
+    def _is_complex_task(self, message: str) -> bool:
+        """
+        Detect if a message represents a complex multi-step task that needs intelligent workflow
+        
+        This is critical for handling the case study: "Search in google 'SEGEV HALFON'"
+        """
+        message_lower = message.lower()
+        
+        # Search-related complex tasks
+        search_indicators = [
+            "search in google", "google search", "search for", "find on google",
+            "look up", "search", "google"
+        ]
+        
+        # Navigation-related complex tasks
+        navigation_indicators = [
+            "go to website", "navigate to", "visit", "browse to", "open website"
+        ]
+        
+        # Application workflow tasks
+        app_workflow_indicators = [
+            "open app and", "launch and", "start and", "create document",
+            "save file", "send email", "compose message"
+        ]
+        
+        # Multi-step indicators (multiple actions in one request)
+        multi_step_indicators = [
+            " and ", " then ", " after ", " next ", "step by step",
+            "first", "second", "finally"
+        ]
+        
+        # Complex task patterns
+        complex_patterns = [
+            # Search patterns
+            any(indicator in message_lower for indicator in search_indicators),
+            
+            # Navigation patterns
+            any(indicator in message_lower for indicator in navigation_indicators),
+            
+            # App workflow patterns
+            any(indicator in message_lower for indicator in app_workflow_indicators),
+            
+            # Multi-step patterns
+            any(indicator in message_lower for indicator in multi_step_indicators),
+            
+            # Quoted search terms (indicates specific search query)
+            "'" in message or '"' in message,
+            
+            # Complex task keywords
+            any(keyword in message_lower for keyword in [
+                "workflow", "process", "complete", "finish", "achieve",
+                "accomplish", "execute", "perform task"
+            ])
+        ]
+        
+        # Special case: Detect the exact case study pattern
+        if any(pattern in message_lower for pattern in [
+            "search in google", "google search", "search for"
+        ]) and ("'" in message or '"' in message):
+            logger.info(f"🎯 Detected Google search case study pattern: {message}")
+            return True
+        
+        # Return True if any complex pattern is detected
+        is_complex = any(complex_patterns)
+        
+        if is_complex:
+            logger.info(f"🧠 Complex task detected: {message}")
+        else:
+            logger.info(f"🔧 Simple task detected: {message}")
+        
+        return is_complex
+    
+    async def _handle_ask_mode_contextual(self, message: str, context: Dict[str, Any]) -> str:
+        """Handle Ask mode with contextual memory (from original)"""
+        relevant_memories = context.get('relevant_memories', [])
+        confidence = context.get('confidence_score', 0.0)
+        key_topics = context.get('key_topics', [])
+        
+        if relevant_memories and confidence > 0.5:
+            primary_memory = relevant_memories[0]
+            response = f"💭 Based on our conversation history: {primary_memory['content']}"
+            
+            if len(relevant_memories) > 1:
+                supporting_info = []
+                for memory in relevant_memories[1:3]:
+                    supporting_info.append(memory['content'][:80] + "...")
+                response += f"\n\nAdditional context: {', '.join(supporting_info)}"
+            
+            if key_topics:
+                response += f"\n\nRelated topics: {', '.join(key_topics[:5])}"
+        else:
+            response = f"💭 Processing your question: '{message}'. Searching through available knowledge and context..."
+        
+        if confidence > 0.7:
+            response += f"\n\n(High confidence: {confidence:.1%})"
+        
+        return response
+    
+    async def _handle_suggest_mode_contextual(self, message: str, context: Dict[str, Any]) -> str:
+        """Handle Suggest mode with contextual memory (from original)"""
+        relevant_memories = context.get('relevant_memories', [])
+        confidence = context.get('confidence_score', 0.0)
+        
+        if relevant_memories and confidence > 0.4:
+            patterns = []
+            for memory in relevant_memories[:3]:
+                if any(keyword in memory['content'].lower() for keyword in ['workflow', 'process', 'automation', 'task']):
+                    patterns.append(memory['content'][:60])
+            
+            if patterns:
+                response = f"💡 Based on your usage patterns: {patterns[0]}...\n\nSuggested optimizations:\n"
+                response += "• Automate repetitive tasks\n"
+                response += "• Create workflow shortcuts\n"
+                response += "• Set up quick access for frequent actions"
+            else:
+                response = f"💡 Analyzing '{message}' for optimization opportunities..."
+        else:
+            response = f"💡 Suggestion mode: '{message}'. Analyzing for potential improvements and recommendations..."
+        
+        return response
+    
+    async def _handle_general_mode_contextual(self, message: str, context: Dict[str, Any]) -> str:
+        """Handle General mode with contextual memory (from original)"""
+        relevant_memories = context.get('relevant_memories', [])
+        confidence = context.get('confidence_score', 0.0)
+        
+        if relevant_memories and confidence > 0.3:
+            primary_context = relevant_memories[0]['content'][:100]
+            response = f"🤖 Regarding '{message}' - I recall {primary_context}... How can I help you further?"
+        else:
+            response = f"🤖 I understand you're mentioning '{message}'. As an enterprise AI assistant with automation capabilities, I can help with UI automation, information retrieval, and suggestions."
+        
+        if confidence > 0.6 and relevant_memories:
+            response += f"\n\n(Drawing from {len(relevant_memories)} relevant past interactions)"
+        
+        return response
+    
+    async def handle_websocket(self, websocket):
+        """Handle WebSocket connections"""
+        client_id = f"client_{int(time.time() * 1000)}"
+        self.connected_clients.add(client_id)
+        logger.info(f"Client connected: {client_id}")
+        
+        try:
+            await websocket.send(json.dumps({
+                "type": "connection_established",
+                "client_id": client_id,
+                "message": "Connected to Enhanced Brain Router with FULL AUTOMATION",
+                "available_modes": ["Agent", "Ask", "Suggest", "General"],
+                "features": [
+                    "real_ui_automation",
+                    "actual_clicking",
+                    "actual_typing", 
+                    "contextual_memory",
+                    "semantic_search",
+                    "screen_analysis"
+                ]
+            }))
+            
+            async for message in websocket:
+                try:
+                    data = json.loads(message)
+                    
+                    if data.get("type") == "chat_request":
+                        mode = ChatMode(data.get("mode", "General"))
+                        user_message = data.get("message", "")
+                        session_id = data.get("session_id", client_id)
+                        
+                        result = await self.process_request_with_automation(mode, user_message, session_id)
+                        await websocket.send(json.dumps(result))
+                        
+                    elif data.get("type") == "system_status":
+                        status = await self.get_system_status()
+                        await websocket.send(json.dumps(status))
+                        
+                    else:
+                        await websocket.send(json.dumps({
+                            "error": "Unknown message type",
+                            "supported_types": ["chat_request", "system_status"]
+                        }))
+                        
+                except json.JSONDecodeError:
+                    await websocket.send(json.dumps({
+                        "error": "Invalid JSON format"
+                    }))
+                except Exception as e:
+                    logger.error(f"Error processing message: {e}")
+                    await websocket.send(json.dumps({
+                        "error": f"Processing error: {str(e)}"
+                    }))
+                    
+        except websockets.exceptions.ConnectionClosed:
+            logger.info(f"Client disconnected: {client_id}")
+        except Exception as e:
+            logger.error(f"WebSocket error: {e}")
+        finally:
+            self.connected_clients.discard(client_id)
+    
+    async def get_system_status(self) -> Dict[str, Any]:
+        """Get enhanced system status"""
+        uptime = datetime.now() - self.start_time
+        search_metrics = self.semantic_agent.get_performance_metrics()
+        
+        return {
+            "status": "online",
+            "uptime_seconds": int(uptime.total_seconds()),
+            "connected_clients": len(self.connected_clients),
+            "available_modes": [mode.value for mode in ChatMode],
+            "server_time": datetime.now().isoformat(),
+            "version": "Enhanced Brain Router with FULL AUTOMATION v3.0",
+            "automation_system": {
+                "ui_automation_active": self.automation_engine.automation_active,
+                "safety_level": self.automation_engine.safety_level,
+                "input_controller_ready": True,
+                "screen_analyzer_ready": True
+            },
+            "memory_system": {
+                "semantic_search_active": True,
+                "total_memories": search_metrics['vector_store']['total_documents'],
+                "search_performance": search_metrics['semantic_search']['average_response_time'],
+                "cache_hit_rate": search_metrics['semantic_search']['cache_hit_rate']
+            },
+            "features": [
+                "real_ui_automation", 
+                "actual_clicking",
+                "actual_typing",
+                "app_launching",
+                "contextual_responses",
+                "semantic_memory",
+                "screen_analysis",
+                "persistent_learning"
+            ]
+        }
+
+async def main():
+    """Start the Enhanced Brain Router with FULL automation"""
+    brain_router = FullAutomationBrainRouter()
+    
+    # Create logs directory
+    os.makedirs("logs", exist_ok=True)
+    
+    logger.info("🧠 Starting Enhanced Brain Router with FULL AUTOMATION...")
+    logger.info("📡 Port: 8765")
+    logger.info("🎯 Modes: Agent (with REAL automation), Ask, Suggest, General")
+    logger.info("🤖 Features: Actual clicking, typing, app opening")
+    logger.info("🔍 Memory: Semantic search integration active")
+    
+    try:
+        start_server = websockets.serve(
+            brain_router.handle_websocket,
+            "localhost",
+            8765,
+            ping_interval=30,
+            ping_timeout=10
+        )
+        
+        logger.info("✅ Enhanced Brain Router with FULL AUTOMATION started on ws://localhost:8765")
+        logger.info("🤖 Real UI automation system ready!")
+        logger.info("🎯 Agent mode will now ACTUALLY click and type!")
+        
+        await start_server
+        await asyncio.Future()  # Run forever
+        
+    except Exception as e:
+        logger.error(f"❌ Failed to start server: {e}")
+        raise
+
+if __name__ == "__main__":
+    try:
+        asyncio.run(main())
+    except KeyboardInterrupt:
+        logger.info("🛑 Enhanced Brain Router with FULL AUTOMATION stopped by user")
+    except Exception as e:
+        logger.error(f"❌ Enhanced Brain Router error: {e}")

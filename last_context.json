@@ -1,0 +1,149 @@
+{
+  "timestamp": 1747985302.600986,
+  "visual_context": {
+    "active_window": {
+      "title": "test_memory_flow.py - Visual Studio Code",
+      "application": "Visual Studio Code",
+      "path": "/Users/test/project"
+    },
+    "screen_elements": {
+      "controls": [
+        {
+          "type": "button",
+          "focused": true,
+          "text": "Run"
+        },
+        {
+          "type": "menu",
+          "text": "File"
+        }
+      ],
+      "text_fields": [
+        {
+          "type": "editor",
+          "content": "def test_memory(): pass"
+        }
+      ],
+      "navigation": [
+        {
+          "type": "breadcrumb",
+          "text": "project > test"
+        }
+      ]
+    },
+    "text_content": {
+      "headers": [
+        "test_memory_flow.py"
+      ],
+      "main_text": [
+        "def test_memory():",
+        "    # Testing memory flow",
+        "    pass"
+      ],
+      "raw_text": "def test_memory():\n    # Testing memory flow\n    pass"
+    },
+    "visual_hierarchy": {
+      "main_content": "code_editor"
+    },
+    "ui_state": {
+      "focused": true,
+      "active": true
+    }
+  },
+  "application_context": {
+    "active_app": {
+      "name": "Visual Studio Code",
+      "type": "development",
+      "category": "ide",
+      "state": {
+        "active": true,
+        "focused": true
+      }
+    },
+    "foreground_apps": [
+      {
+        "name": "Visual Studio Code",
+        "type": "development",
+        "category": "ide",
+        "state": {
+          "active": true,
+          "focused": true
+        }
+      }
+    ],
+    "background_apps": [
+      {
+        "name": "Python",
+        "type": "interpreter",
+        "category": "development"
+      },
+      {
+        "name": "Terminal",
+        "type": "system",
+        "category": "utility"
+      }
+    ],
+    "app_states": {},
+    "app_workflows": {}
+  },
+  "user_activity": {
+    "current_activity": {},
+    "recent_actions": [],
+    "interaction_state": {
+      "focused": true,
+      "active": true
+    },
+    "workflow_stage": ""
+  },
+  "system_state": {
+    "active_processes": [
+      {
+        "name": "Visual Studio Code",
+        "type": "development",
+        "category": "ide",
+        "state": {
+          "active": true,
+          "focused": true
+        },
+        "memory_usage": 150.5,
+        "cpu_usage": 12.3
+      },
+      {
+        "name": "Python",
+        "type": "interpreter",
+        "category": "development",
+        "memory_usage": 25.1,
+        "cpu_usage": 0.5
+      },
+      {
+        "name": "Terminal",
+        "type": "system",
+        "category": "utility",
+        "memory_usage": 10.2,
+        "cpu_usage": 0.1
+      }
+    ],
+    "system_resources": {
+      "cpu_usage": 25.5,
+      "memory_usage": 0,
+      "disk_usage": 0
+    },
+    "network_state": {
+      "connections": 15,
+      "data_sent": 1024,
+      "data_received": 2048
+    },
+    "session_duration": 0
+  },
+  "temporal_context": {
+    "time_of_day": "00:28:22",
+    "session_duration": 0,
+    "last_update": 1747985302.601005
+  },
+  "semantic_context": {
+    "current_task": "",
+    "related_insights": [],
+    "workflow_context": {},
+    "user_intent": ""
+  }
+}

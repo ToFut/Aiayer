@@ -1,0 +1,202 @@
+2025-05-22 19:08:24,600 - asyncio - DEBUG - Using selector: KqueueSelector
+2025-05-22 19:08:24,600 - __main__ - INFO - Initializing Enhanced Enterprise Backend with Agent Collaboration...
+2025-05-22 19:08:24,600 - enterprise_agent_reflection - INFO - Registered agent ui_analysis_agent with specialization: UI Analysis and Element Detection
+2025-05-22 19:08:24,600 - enterprise_agent_reflection - INFO - Registered agent file_operations_agent with specialization: File System Operations and Validation
+2025-05-22 19:08:24,600 - enterprise_agent_reflection - INFO - Registered agent system_monitoring_agent with specialization: System Resource and Process Monitoring
+2025-05-22 19:08:24,600 - enterprise_agent_reflection - INFO - Professional validation system initialized with specialized agents
+2025-05-22 19:08:24,600 - enterprise_agent_reflection - INFO - Registered agent ui_analysis_agent with specialization: UI Analysis and Element Detection
+2025-05-22 19:08:24,600 - enterprise_agent_reflection - INFO - Registered agent file_operations_agent with specialization: File System Operations and Validation
+2025-05-22 19:08:24,600 - enterprise_agent_reflection - INFO - Registered agent system_monitoring_agent with specialization: System Resource and Process Monitoring
+2025-05-22 19:08:24,600 - specialized_agents - INFO - All specialized agents initialized for professional collaboration
+2025-05-22 19:08:24,600 - __main__ - INFO - Enterprise system initialization complete
+2025-05-22 19:08:24,600 - __main__ - INFO - Starting Enhanced Enterprise Backend on localhost:8765
+2025-05-22 19:08:24,626 - websockets.server - INFO - server listening on 127.0.0.1:8765
+2025-05-22 19:08:24,626 - websockets.server - INFO - server listening on [::1]:8765
+2025-05-22 19:08:24,626 - __main__ - INFO - Enhanced Enterprise Backend started on ws://localhost:8765
+2025-05-22 19:08:32,381 - websockets.server - DEBUG - = connection is CONNECTING
+2025-05-22 19:08:32,382 - websockets.server - DEBUG - < GET / HTTP/1.1
+2025-05-22 19:08:32,382 - websockets.server - DEBUG - < Host: localhost:8765
+2025-05-22 19:08:32,382 - websockets.server - DEBUG - < Upgrade: websocket
+2025-05-22 19:08:32,382 - websockets.server - DEBUG - < Connection: Upgrade
+2025-05-22 19:08:32,382 - websockets.server - DEBUG - < Sec-WebSocket-Key: E7nnimMmFc6NBE18R7W24g==
+2025-05-22 19:08:32,382 - websockets.server - DEBUG - < Sec-WebSocket-Version: 13
+2025-05-22 19:08:32,382 - websockets.server - DEBUG - < Sec-WebSocket-Extensions: permessage-deflate; client_max_window_bits
+2025-05-22 19:08:32,382 - websockets.server - DEBUG - < User-Agent: Python/3.13 websockets/15.0.1
+2025-05-22 19:08:32,382 - websockets.server - DEBUG - > HTTP/1.1 101 Switching Protocols
+2025-05-22 19:08:32,382 - websockets.server - DEBUG - > Date: Fri, 23 May 2025 02:08:32 GMT
+2025-05-22 19:08:32,382 - websockets.server - DEBUG - > Upgrade: websocket
+2025-05-22 19:08:32,382 - websockets.server - DEBUG - > Connection: Upgrade
+2025-05-22 19:08:32,382 - websockets.server - DEBUG - > Sec-WebSocket-Accept: 4299S8nzE19cQrqJpMCHASTyn9w=
+2025-05-22 19:08:32,382 - websockets.server - DEBUG - > Sec-WebSocket-Extensions: permessage-deflate; server_max_window_bits=12; client_max_window_bits=12
+2025-05-22 19:08:32,382 - websockets.server - DEBUG - > Server: Python/3.13 websockets/15.0.1
+2025-05-22 19:08:32,382 - websockets.server - DEBUG - = connection is OPEN
+2025-05-22 19:08:32,382 - websockets.server - INFO - connection open
+2025-05-22 19:08:32,383 - __main__ - INFO - Client connected: conn_1747966112383
+2025-05-22 19:08:32,383 - websockets.server - DEBUG - > TEXT '{"type": "connection_established", "connection_...e_style_verification"]}' [308 bytes]
+2025-05-22 19:08:32,383 - websockets.server - DEBUG - < TEXT '{"type": "system_status"}' [25 bytes]
+2025-05-22 19:08:32,383 - __main__ - INFO - Processing system_status from conn_1747966112383
+2025-05-22 19:08:32,383 - __main__ - DEBUG - Attempting to serialize message type: error
+2025-05-22 19:08:32,383 - __main__ - DEBUG - JSON serialization successful, message size: 108 chars
+2025-05-22 19:08:32,383 - websockets.server - DEBUG - > TEXT '{"type": "error", "error": "Unknown message typ...05-22T19:08:32.383625"}' [108 bytes]
+2025-05-22 19:08:32,383 - __main__ - DEBUG - Message sent successfully to conn_1747966112383
+2025-05-22 19:08:32,383 - websockets.server - DEBUG - < CLOSE 1000 (OK) [2 bytes]
+2025-05-22 19:08:32,383 - websockets.server - DEBUG - > CLOSE 1000 (OK) [2 bytes]
+2025-05-22 19:08:32,384 - websockets.server - DEBUG - = connection is CLOSING
+2025-05-22 19:08:32,384 - websockets.server - DEBUG - > EOF
+2025-05-22 19:08:32,384 - websockets.server - DEBUG - x half-closing TCP connection
+2025-05-22 19:08:32,384 - websockets.server - DEBUG - < EOF
+2025-05-22 19:08:32,384 - websockets.server - DEBUG - = connection is CLOSED
+2025-05-22 19:08:32,549 - websockets.server - DEBUG - = connection is CONNECTING
+2025-05-22 19:08:32,549 - websockets.server - DEBUG - < GET / HTTP/1.1
+2025-05-22 19:08:32,549 - websockets.server - DEBUG - < Host: localhost:8765
+2025-05-22 19:08:32,549 - websockets.server - DEBUG - < Upgrade: websocket
+2025-05-22 19:08:32,549 - websockets.server - DEBUG - < Connection: Upgrade
+2025-05-22 19:08:32,549 - websockets.server - DEBUG - < Sec-WebSocket-Key: 2oLx/kGF7jD38Xyw02MKTw==
+2025-05-22 19:08:32,549 - websockets.server - DEBUG - < Sec-WebSocket-Version: 13
+2025-05-22 19:08:32,549 - websockets.server - DEBUG - < Sec-WebSocket-Extensions: permessage-deflate; client_max_window_bits
+2025-05-22 19:08:32,549 - websockets.server - DEBUG - < User-Agent: Python/3.13 websockets/15.0.1
+2025-05-22 19:08:32,550 - websockets.server - DEBUG - > HTTP/1.1 101 Switching Protocols
+2025-05-22 19:08:32,550 - websockets.server - DEBUG - > Date: Fri, 23 May 2025 02:08:32 GMT
+2025-05-22 19:08:32,550 - websockets.server - DEBUG - > Upgrade: websocket
+2025-05-22 19:08:32,550 - websockets.server - DEBUG - > Connection: Upgrade
+2025-05-22 19:08:32,550 - websockets.server - DEBUG - > Sec-WebSocket-Accept: a5/Q7+1DOTxrm41zfGgNB8AIo+g=
+2025-05-22 19:08:32,550 - websockets.server - DEBUG - > Sec-WebSocket-Extensions: permessage-deflate; server_max_window_bits=12; client_max_window_bits=12
+2025-05-22 19:08:32,550 - websockets.server - DEBUG - > Server: Python/3.13 websockets/15.0.1
+2025-05-22 19:08:32,550 - websockets.server - DEBUG - = connection is OPEN
+2025-05-22 19:08:32,550 - websockets.server - INFO - connection open
+2025-05-22 19:08:32,550 - __main__ - INFO - Client connected: conn_1747966112550
+2025-05-22 19:08:32,550 - websockets.server - DEBUG - > TEXT '{"type": "connection_established", "connection_...e_style_verification"]}' [308 bytes]
+2025-05-22 19:08:32,550 - websockets.server - DEBUG - < TEXT '{"type": "system_status"}' [25 bytes]
+2025-05-22 19:08:32,550 - __main__ - INFO - Processing system_status from conn_1747966112550
+2025-05-22 19:08:32,550 - __main__ - DEBUG - Attempting to serialize message type: error
+2025-05-22 19:08:32,550 - __main__ - DEBUG - JSON serialization successful, message size: 108 chars
+2025-05-22 19:08:32,550 - websockets.server - DEBUG - > TEXT '{"type": "error", "error": "Unknown message typ...05-22T19:08:32.550812"}' [108 bytes]
+2025-05-22 19:08:32,550 - __main__ - DEBUG - Message sent successfully to conn_1747966112550
+2025-05-22 19:08:32,551 - websockets.server - DEBUG - < TEXT '{"type": "chat_request", "mode": "Agent", "mess...05-22T19:08:32.550619"}' [124 bytes]
+2025-05-22 19:08:32,551 - __main__ - INFO - Processing chat_request from conn_1747966112550
+2025-05-22 19:08:32,551 - __main__ - DEBUG - Attempting to serialize message type: error
+2025-05-22 19:08:32,551 - __main__ - DEBUG - JSON serialization successful, message size: 107 chars
+2025-05-22 19:08:32,551 - websockets.server - DEBUG - > TEXT '{"type": "error", "error": "Unknown message typ...05-22T19:08:32.551146"}' [107 bytes]
+2025-05-22 19:08:32,551 - __main__ - DEBUG - Message sent successfully to conn_1747966112550
+2025-05-22 19:08:32,551 - websockets.server - DEBUG - < TEXT '{"type": "chat_request", "mode": "Ask", "messag...05-22T19:08:32.551106"}' [131 bytes]
+2025-05-22 19:08:32,551 - __main__ - INFO - Processing chat_request from conn_1747966112550
+2025-05-22 19:08:32,551 - __main__ - DEBUG - Attempting to serialize message type: error
+2025-05-22 19:08:32,551 - __main__ - DEBUG - JSON serialization successful, message size: 107 chars
+2025-05-22 19:08:32,551 - websockets.server - DEBUG - > TEXT '{"type": "error", "error": "Unknown message typ...05-22T19:08:32.551407"}' [107 bytes]
+2025-05-22 19:08:32,551 - __main__ - DEBUG - Message sent successfully to conn_1747966112550
+2025-05-22 19:08:32,551 - websockets.server - DEBUG - < TEXT '{"type": "chat_request", "mode": "Suggest", "me...05-22T19:08:32.551353"}' [126 bytes]
+2025-05-22 19:08:32,551 - __main__ - INFO - Processing chat_request from conn_1747966112550
+2025-05-22 19:08:32,551 - __main__ - DEBUG - Attempting to serialize message type: error
+2025-05-22 19:08:32,551 - __main__ - DEBUG - JSON serialization successful, message size: 107 chars
+2025-05-22 19:08:32,551 - websockets.server - DEBUG - > TEXT '{"type": "error", "error": "Unknown message typ...05-22T19:08:32.551628"}' [107 bytes]
+2025-05-22 19:08:32,551 - __main__ - DEBUG - Message sent successfully to conn_1747966112550
+2025-05-22 19:08:32,551 - websockets.server - DEBUG - < TEXT '{"type": "chat_request", "mode": "General", "me...05-22T19:08:32.551587"}' [124 bytes]
+2025-05-22 19:08:32,551 - __main__ - INFO - Processing chat_request from conn_1747966112550
+2025-05-22 19:08:32,551 - __main__ - DEBUG - Attempting to serialize message type: error
+2025-05-22 19:08:32,551 - __main__ - DEBUG - JSON serialization successful, message size: 107 chars
+2025-05-22 19:08:32,551 - websockets.server - DEBUG - > TEXT '{"type": "error", "error": "Unknown message typ...05-22T19:08:32.551844"}' [107 bytes]
+2025-05-22 19:08:32,551 - __main__ - DEBUG - Message sent successfully to conn_1747966112550
+2025-05-22 19:08:32,551 - websockets.server - DEBUG - < CLOSE 1000 (OK) [2 bytes]
+2025-05-22 19:08:32,552 - websockets.server - DEBUG - > CLOSE 1000 (OK) [2 bytes]
+2025-05-22 19:08:32,552 - websockets.server - DEBUG - = connection is CLOSING
+2025-05-22 19:08:32,552 - websockets.server - DEBUG - > EOF
+2025-05-22 19:08:32,552 - websockets.server - DEBUG - x half-closing TCP connection
+2025-05-22 19:08:32,552 - websockets.server - DEBUG - < EOF
+2025-05-22 19:08:32,552 - websockets.server - DEBUG - = connection is CLOSED
+2025-05-22 19:08:40,350 - websockets.server - DEBUG - = connection is CONNECTING
+2025-05-22 19:08:40,350 - websockets.server - DEBUG - < GET / HTTP/1.1
+2025-05-22 19:08:40,351 - websockets.server - DEBUG - < Host: localhost:8765
+2025-05-22 19:08:40,351 - websockets.server - DEBUG - < Upgrade: websocket
+2025-05-22 19:08:40,351 - websockets.server - DEBUG - < Connection: Upgrade
+2025-05-22 19:08:40,351 - websockets.server - DEBUG - < Sec-WebSocket-Key: r5Gyy0mUoMVV3GO5g85CLg==
+2025-05-22 19:08:40,351 - websockets.server - DEBUG - < Sec-WebSocket-Version: 13
+2025-05-22 19:08:40,351 - websockets.server - DEBUG - < Sec-WebSocket-Extensions: permessage-deflate; client_max_window_bits
+2025-05-22 19:08:40,351 - websockets.server - DEBUG - < User-Agent: Python/3.13 websockets/15.0.1
+2025-05-22 19:08:40,351 - websockets.server - DEBUG - > HTTP/1.1 101 Switching Protocols
+2025-05-22 19:08:40,351 - websockets.server - DEBUG - > Date: Fri, 23 May 2025 02:08:40 GMT
+2025-05-22 19:08:40,351 - websockets.server - DEBUG - > Upgrade: websocket
+2025-05-22 19:08:40,351 - websockets.server - DEBUG - > Connection: Upgrade
+2025-05-22 19:08:40,351 - websockets.server - DEBUG - > Sec-WebSocket-Accept: 0J6sw++v+SGyJW6qvQpH67raRJQ=
+2025-05-22 19:08:40,351 - websockets.server - DEBUG - > Sec-WebSocket-Extensions: permessage-deflate; server_max_window_bits=12; client_max_window_bits=12
+2025-05-22 19:08:40,351 - websockets.server - DEBUG - > Server: Python/3.13 websockets/15.0.1
+2025-05-22 19:08:40,351 - websockets.server - DEBUG - = connection is OPEN
+2025-05-22 19:08:40,351 - websockets.server - INFO - connection open
+2025-05-22 19:08:40,351 - __main__ - INFO - Client connected: conn_1747966120351
+2025-05-22 19:08:40,351 - websockets.server - DEBUG - > TEXT '{"type": "connection_established", "connection_...e_style_verification"]}' [308 bytes]
+2025-05-22 19:08:40,352 - websockets.server - DEBUG - < TEXT '{"type": "system_status"}' [25 bytes]
+2025-05-22 19:08:40,352 - __main__ - INFO - Processing system_status from conn_1747966120351
+2025-05-22 19:08:40,352 - __main__ - DEBUG - Attempting to serialize message type: error
+2025-05-22 19:08:40,352 - __main__ - DEBUG - JSON serialization successful, message size: 108 chars
+2025-05-22 19:08:40,352 - websockets.server - DEBUG - > TEXT '{"type": "error", "error": "Unknown message typ...05-22T19:08:40.352364"}' [108 bytes]
+2025-05-22 19:08:40,352 - __main__ - DEBUG - Message sent successfully to conn_1747966120351
+2025-05-22 19:08:40,352 - websockets.server - DEBUG - < TEXT '{"type": "chat_request", "mode": "Agent", "mess...05-22T19:08:40.352224"}' [124 bytes]
+2025-05-22 19:08:40,352 - __main__ - INFO - Processing chat_request from conn_1747966120351
+2025-05-22 19:08:40,352 - __main__ - DEBUG - Attempting to serialize message type: error
+2025-05-22 19:08:40,352 - __main__ - DEBUG - JSON serialization successful, message size: 107 chars
+2025-05-22 19:08:40,352 - websockets.server - DEBUG - > TEXT '{"type": "error", "error": "Unknown message typ...05-22T19:08:40.352625"}' [107 bytes]
+2025-05-22 19:08:40,352 - __main__ - DEBUG - Message sent successfully to conn_1747966120351
+2025-05-22 19:08:40,352 - websockets.server - DEBUG - < TEXT '{"type": "chat_request", "mode": "Ask", "messag...05-22T19:08:40.352588"}' [131 bytes]
+2025-05-22 19:08:40,352 - __main__ - INFO - Processing chat_request from conn_1747966120351
+2025-05-22 19:08:40,352 - __main__ - DEBUG - Attempting to serialize message type: error
+2025-05-22 19:08:40,352 - __main__ - DEBUG - JSON serialization successful, message size: 107 chars
+2025-05-22 19:08:40,352 - websockets.server - DEBUG - > TEXT '{"type": "error", "error": "Unknown message typ...05-22T19:08:40.352904"}' [107 bytes]
+2025-05-22 19:08:40,353 - __main__ - DEBUG - Message sent successfully to conn_1747966120351
+2025-05-22 19:08:40,353 - websockets.server - DEBUG - < TEXT '{"type": "chat_request", "mode": "Suggest", "me...05-22T19:08:40.352809"}' [126 bytes]
+2025-05-22 19:08:40,353 - __main__ - INFO - Processing chat_request from conn_1747966120351
+2025-05-22 19:08:40,353 - __main__ - DEBUG - Attempting to serialize message type: error
+2025-05-22 19:08:40,353 - __main__ - DEBUG - JSON serialization successful, message size: 107 chars
+2025-05-22 19:08:40,353 - websockets.server - DEBUG - > TEXT '{"type": "error", "error": "Unknown message typ...05-22T19:08:40.353224"}' [107 bytes]
+2025-05-22 19:08:40,353 - __main__ - DEBUG - Message sent successfully to conn_1747966120351
+2025-05-22 19:08:40,353 - websockets.server - DEBUG - < TEXT '{"type": "chat_request", "mode": "General", "me...05-22T19:08:40.353178"}' [124 bytes]
+2025-05-22 19:08:40,353 - __main__ - INFO - Processing chat_request from conn_1747966120351
+2025-05-22 19:08:40,353 - __main__ - DEBUG - Attempting to serialize message type: error
+2025-05-22 19:08:40,353 - __main__ - DEBUG - JSON serialization successful, message size: 107 chars
+2025-05-22 19:08:40,353 - websockets.server - DEBUG - > TEXT '{"type": "error", "error": "Unknown message typ...05-22T19:08:40.353589"}' [107 bytes]
+2025-05-22 19:08:40,353 - __main__ - DEBUG - Message sent successfully to conn_1747966120351
+2025-05-22 19:08:40,353 - websockets.server - DEBUG - < CLOSE 1000 (OK) [2 bytes]
+2025-05-22 19:08:40,353 - websockets.server - DEBUG - > CLOSE 1000 (OK) [2 bytes]
+2025-05-22 19:08:40,353 - websockets.server - DEBUG - = connection is CLOSING
+2025-05-22 19:08:40,353 - websockets.server - DEBUG - > EOF
+2025-05-22 19:08:40,353 - websockets.server - DEBUG - x half-closing TCP connection
+2025-05-22 19:08:40,353 - websockets.server - DEBUG - < EOF
+2025-05-22 19:08:40,353 - websockets.server - DEBUG - = connection is CLOSED
+2025-05-22 19:10:07,667 - websockets.server - DEBUG - = connection is CONNECTING
+2025-05-22 19:10:07,669 - websockets.server - DEBUG - < GET / HTTP/1.1
+2025-05-22 19:10:07,669 - websockets.server - DEBUG - < Host: localhost:8765
+2025-05-22 19:10:07,669 - websockets.server - DEBUG - < Pragma: no-cache
+2025-05-22 19:10:07,669 - websockets.server - DEBUG - < Accept: */*
+2025-05-22 19:10:07,669 - websockets.server - DEBUG - < Sec-WebSocket-Key: jzLGWrIcVzChB6hrNOs+Uw==
+2025-05-22 19:10:07,669 - websockets.server - DEBUG - < Sec-Fetch-Site: same-site
+2025-05-22 19:10:07,669 - websockets.server - DEBUG - < Sec-WebSocket-Version: 13
+2025-05-22 19:10:07,669 - websockets.server - DEBUG - < Sec-WebSocket-Extensions: permessage-deflate
+2025-05-22 19:10:07,669 - websockets.server - DEBUG - < Cache-Control: no-cache
+2025-05-22 19:10:07,670 - websockets.server - DEBUG - < Sec-Fetch-Mode: websocket
+2025-05-22 19:10:07,670 - websockets.server - DEBUG - < Accept-Language: en-GB,en-US;q=0.9,en;q=0.8
+2025-05-22 19:10:07,670 - websockets.server - DEBUG - < Origin: http://localhost:1421
+2025-05-22 19:10:07,670 - websockets.server - DEBUG - < User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko)
+2025-05-22 19:10:07,670 - websockets.server - DEBUG - < Connection: Upgrade
+2025-05-22 19:10:07,670 - websockets.server - DEBUG - < Accept-Encoding: gzip, deflate
+2025-05-22 19:10:07,670 - websockets.server - DEBUG - < Upgrade: websocket
+2025-05-22 19:10:07,670 - websockets.server - DEBUG - < Sec-Fetch-Dest: websocket
+2025-05-22 19:10:07,670 - websockets.server - DEBUG - > HTTP/1.1 101 Switching Protocols
+2025-05-22 19:10:07,670 - websockets.server - DEBUG - > Date: Fri, 23 May 2025 02:10:07 GMT
+2025-05-22 19:10:07,670 - websockets.server - DEBUG - > Upgrade: websocket
+2025-05-22 19:10:07,670 - websockets.server - DEBUG - > Connection: Upgrade
+2025-05-22 19:10:07,670 - websockets.server - DEBUG - > Sec-WebSocket-Accept: Zy7lV6EcbSXJcoQ8AnwnWhvRPrk=
+2025-05-22 19:10:07,670 - websockets.server - DEBUG - > Sec-WebSocket-Extensions: permessage-deflate; server_max_window_bits=12
+2025-05-22 19:10:07,670 - websockets.server - DEBUG - > Server: Python/3.13 websockets/15.0.1
+2025-05-22 19:10:07,670 - websockets.server - DEBUG - = connection is OPEN
+2025-05-22 19:10:07,670 - websockets.server - INFO - connection open
+2025-05-22 19:10:07,670 - __main__ - INFO - Client connected: conn_1747966207670
+2025-05-22 19:10:07,671 - websockets.server - DEBUG - > TEXT '{"type": "connection_established", "connection_...e_style_verification"]}' [308 bytes]
+2025-05-22 19:10:07,678 - websockets.server - DEBUG - < TEXT '{"type":"register","payload":{"client_type":"ui...estamp":1747966207678}}' [167 bytes]
+2025-05-22 19:10:07,678 - __main__ - INFO - Processing register from conn_1747966207670
+2025-05-22 19:10:07,678 - __main__ - DEBUG - Attempting to serialize message type: registration_success
+2025-05-22 19:10:07,678 - __main__ - DEBUG - JSON serialization successful, message size: 382 chars
+2025-05-22 19:10:07,679 - websockets.server - DEBUG - > TEXT '{"type": "registration_success", "connection_id...e_style_verification"]}' [382 bytes]
+2025-05-22 19:10:07,679 - __main__ - DEBUG - Message sent successfully to conn_1747966207670
+2025-05-22 19:10:07,679 - __main__ - INFO - Client conn_1747966207670 registered as unknown
+2025-05-22 19:10:27,673 - websockets.server - DEBUG - > PING '9\x13jW' [text, 4 bytes]
+2025-05-22 19:10:27,675 - websockets.server - DEBUG - % sent keepalive ping
+2025-05-22 19:10:27,675 - websockets.server - DEBUG - < PONG '9\x13jW' [text, 4 bytes]
+2025-05-22 19:10:27,675 - websockets.server - DEBUG - % received keepalive pong

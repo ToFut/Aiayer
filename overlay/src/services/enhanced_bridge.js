@@ -9,14 +9,14 @@ export class EnhancedBridge {
     /**
      * Create a new enhanced bridge
      * @param {Object} options - Configuration options
-     * @param {string} options.url - WebSocket URL (default: ws://localhost:8767)
+     * @param {string} options.url - WebSocket URL (default: ws://localhost:8765)
      * @param {number} options.reconnectAttempts - Max reconnect attempts (default: 10)
      * @param {number} options.reconnectDelay - Initial delay between reconnects in ms (default: 1000)
      * @param {boolean} options.debug - Enable debug logging (default: false)
      */
     constructor(options = {}) {
         // Configuration
-        this.url = options.url || 'ws://localhost:8767';  // Backend server port
+        this.url = options.url || 'ws://localhost:8765';  // Enhanced backend server port
         this.maxReconnectAttempts = options.reconnectAttempts || 10;
         this.reconnectDelay = options.reconnectDelay || 1000;
         this.debug = options.debug || false;

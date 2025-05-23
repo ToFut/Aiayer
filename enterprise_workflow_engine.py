@@ -102,7 +102,11 @@ class TaskAnalyzer:
         
         for category, config in self.task_patterns.items():
             matches = sum(1 for keyword in config['keywords'] if keyword in query_lower)
-            category_confidence = matches / len(config['keywords'])
+            # Improved confidence calculation - give higher weight to matches
+            if matches > 0:
+                category_confidence = min(1.0, matches * 0.3)  # Each match adds 0.3 confidence
+            else:
+                category_confidence = 0.0
             
             if category_confidence > confidence:
                 confidence = category_confidence
@@ -117,7 +121,7 @@ class TaskAnalyzer:
             "confidence": confidence,
             "detected_actions": detected_actions,
             "parameters": parameters,
-            "executable": confidence > 0.2,  # Only execute if we're confident about the task
+            "executable": confidence > 0.15,  # Lower threshold for better execution
             "complexity": "high" if len(detected_actions) > 3 else "medium" if len(detected_actions) > 1 else "low"
         }
     

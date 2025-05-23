@@ -1,9 +1,9 @@
 {
-  "timestamp": "2025-05-21T23:44:34.415566",
-  "image_hash": "de0222154027852ff1e0ea8b33de6deb",
+  "timestamp": "2025-05-23T02:09:38.197183",
+  "image_hash": "e377a80abf62efd0775dbe524d6e167f",
   "memory_summary": {
-    "timestamp": "2025-05-21T23:44:34.415566",
-    "image_hash": "de0222154027852ff1e0ea8b33de6deb",
+    "timestamp": "2025-05-23T02:09:38.197183",
+    "image_hash": "e377a80abf62efd0775dbe524d6e167f",
     "overall_context": "terminals_general_computing",
     "semantic_summary": "Using Cursor for general_computing in creation stage",
     "activity_classification": "general_usage",
@@ -11,11 +11,11 @@
     "application": {
       "name": "Cursor",
       "detected_type": "terminals",
-      "confidence": 0.6111111111111112
+      "confidence": 0.4444444444444444
     },
     "content": {
       "type": "code",
-      "word_count": 659,
+      "word_count": 323,
       "has_meaningful_text": true,
       "primary_purpose": "development",
       "interaction_level": "active"
@@ -24,30 +24,32 @@
       "current_activity": "general_computing",
       "workflow_stage": "creation",
       "user_intent": "creating",
-      "productivity_context": "unknown"
+      "productivity_context": "general_usage"
     },
     "key_insights": [
-      "Content-rich screen with 659 words",
+      "Content-rich screen with 323 words",
+      "User engaged in general_usage",
       "Active user interaction detected"
     ],
-    "analysis_confidence": 0.6111111111111112,
-    "text_sample": "o\n\nAIAYER\n\nPe a v\n\n\u2018Yv memory\n\ncu)\n\nmemory_system.py\n\ncu)\n\nmemory_types.py\n\ncu)\n\nmemory.py\n\ncu)\n\nminimal_memory_logger.py\n\u00ae optimized_memory_logger.py\n\nNOTEPADS\nOUTLINE\nTIMELINE\n\n% Master \u00ae@ @o0A0 WO\n\nnd_server.py\n\nmemory_state.json.bak_1747861...\nmemory_state.json.bak_1747861...\nmemory_state.json.bak_1747861...\nmemory_state.json.bak_1747861...\nmemory_state.json.bak_1747861...\nmemory_state.json.bak_1747861...\nmemory_state.json.bak_1747861...\nmemory_state.json.bak_1747861...\nmemory_state.json.bak",
+    "analysis_confidence": 0.4444444444444444,
+    "text_sample": "node \u2014 Aiayer\nSoftware Update\n+ OB: \u00ae macOS Sonoma 14.7.6 is available and will\n\u201cwas\u201d be installed later tonight. nc\nity: Use time-blocking techniques, minimize context switching between applications, leverage AI automation for routine tasks, and maintain a clea \u00a9 Write(file_path: advanced_ui_element_detect:\nLWrote 725 lines to advanced_ui_element_det\n#!/usr/bin/env python3\nns: Enable two-factor authentication, regular password updates, keep software updated, use encrypted storage for sensitive ",
     "llava_insights": {
-      "visual_context": "Analysis failed",
-      "application_detected": "unknown",
-      "workflow_stage": ""
+      "visual_context": "Lightweight visual analysis",
+      "application_detected": "detected_via_cv",
+      "workflow_stage": "ready"
     }
   },
   "synthesized_context": {
     "overall_context": "terminals_general_computing",
-    "confidence": 0.6111111111111112,
+    "confidence": 0.4444444444444444,
     "key_insights": [
-      "Content-rich screen with 659 words",
+      "Content-rich screen with 323 words",
+      "User engaged in general_usage",
       "Active user interaction detected"
     ],
     "semantic_summary": "Using Cursor for general_computing in creation stage",
     "activity_classification": "general_usage",
     "memory_priority": "normal"
   },
-  "analysis_duration": 190.9629771709442
+  "analysis_duration": 28.75712275505066
 }

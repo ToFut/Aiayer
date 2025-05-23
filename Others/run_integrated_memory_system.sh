@@ -76,7 +76,7 @@ done
 # Kill processes by name
 kill_process "python3 direct_sensor_to_memory.py"
 kill_process "python3 sensors/enhanced_fixed_process_sensor.py"
-kill_process "python3 sensors/enhanced_fixed_screen_sensor.py"
+kill_process "python3 sensors/total_screen_analyzer.py"
 kill_process "python3 fixed_bridge_server_enhanced.py"
 kill_process "python3 fixed_ws_8765.py"
 kill_process "python3 simple_ws_server_8767.py"
@@ -100,7 +100,7 @@ sed -i.bak 's/MEMORY_SERVER_PORT = 8769/MEMORY_SERVER_PORT = 8767/' fixed_bridge
 # Fix port in sensors
 print_colored "blue" "Fixing port configuration in sensors..."
 sed -i.bak 's/bridge_uri="ws:\/\/localhost:8765"/bridge_uri="ws:\/\/localhost:8766"/' sensors/enhanced_fixed_process_sensor.py
-sed -i.bak 's/bridge_uri="ws:\/\/localhost:8765"/bridge_uri="ws:\/\/localhost:8766"/' sensors/enhanced_fixed_screen_sensor.py
+sed -i.bak 's/bridge_uri="ws:\/\/localhost:8765"/bridge_uri="ws:\/\/localhost:8766"/' sensors/total_screen_analyzer.py
 
 # Initialize files
 print_colored "blue" "Initializing essential files..."
@@ -205,7 +205,7 @@ sleep 3
 start_service "Process Sensor" "python3 sensors/enhanced_fixed_process_sensor.py" "logs/sensors/process_sensor.log" "pids/process_sensor.pid"
 PROCESS_RESULT=$?
 
-start_service "Screen Sensor" "python3 sensors/enhanced_fixed_screen_sensor.py" "logs/sensors/screen_sensor.log" "pids/screen_sensor.pid"
+start_service "Total Screen Analyzer" "python3 sensors/total_screen_analyzer.py" "logs/sensors/total_screen_analyzer.log" "pids/total_screen_analyzer.pid"
 SCREEN_RESULT=$?
 
 # Wait for sensors to initialize

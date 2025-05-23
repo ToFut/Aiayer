@@ -1,0 +1,6 @@
+/Users/segevbin/Desktop/SensAI/Aiayer/Others/fixed_bridge_server_enhanced.py:16: DeprecationWarning: websockets.server.WebSocketServerProtocol is deprecated
+  from websockets.server import WebSocketServerProtocol
+Traceback (most recent call last):
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/Others/fixed_bridge_server_enhanced.py", line 20, in <module>
+    from memory.enhanced_screen_memory_processor import EnhancedScreenMemoryProcessor
+ModuleNotFoundError: No module named 'memory.enhanced_screen_memory_processor'

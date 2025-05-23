@@ -1,4 +1,7 @@
-/* Global styles for transparency */
+/* Import Apple Theme System */
+@import './styles/apple-theme-system.css';
+
+/* Global styles for transparency and next-gen experience */
 html, body {
   margin: 0;
   padding: 0;
@@ -7,6 +10,15 @@ html, body {
   overflow: visible;
   background: transparent !important;
   background-color: rgba(0, 0, 0, 0) !important;
+  font-family: var(--font-system);
+  font-feature-settings: 'kern' 1, 'liga' 1, 'calt' 1;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
+  -webkit-tap-highlight-color: transparent;
 }
 
 #app {
@@ -19,10 +31,162 @@ html, body {
   background-color: rgba(0, 0, 0, 0) !important;
 }
 
+/* Enhanced overlay styles */
+.next-gen-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity var(--transition-normal);
+  z-index: 9999;
+}
+
+.next-gen-overlay.initialized {
+  opacity: 1;
+}
+
+/* Chat open state styling */
+body.chat-open {
+  backdrop-filter: blur(1px);
+  transition: backdrop-filter var(--transition-normal);
+}
+
+/* Shortcut hint styling */
+.shortcut-hint {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: var(--spacing-sm) var(--spacing-lg);
+  border-radius: var(--radius-2xl);
+  font-size: var(--text-caption-1);
+  font-weight: var(--weight-medium);
+  pointer-events: none;
+  backdrop-filter: var(--blur-medium);
+  -webkit-backdrop-filter: var(--blur-medium);
+  opacity: 0;
+  transform: translateY(10px);
+  transition: all var(--transition-normal);
+  z-index: var(--z-tooltip);
+}
+
+.shortcut-hint.visible {
+  opacity: 0.7;
+  transform: translateY(0);
+  animation: hintPulse 3s ease-in-out 2s;
+}
+
+@keyframes hintPulse {
+  0%, 100% { opacity: 0.7; }
+  50% { opacity: 1; }
+}
+
 /* For tauri window */
 .tauri-window-transparent {
   background: transparent !important;
   background-color: rgba(0, 0, 0, 0) !important;
+}
+
+/* Child components will set pointer-events: auto for interactivity */
+.next-gen-overlay :global(*) {
+  box-sizing: border-box;
+}
+
+/* Accessibility improvements */
+:global(:focus-visible) {
+  outline: var(--focus-ring-width) solid var(--focus-ring-color);
+  outline-offset: var(--focus-ring-offset);
+  border-radius: var(--radius-sm);
+}
+
+/* Custom scrollbar styling for webkit browsers */
+:global(::-webkit-scrollbar) {
+  width: 8px;
+  height: 8px;
+}
+
+:global(::-webkit-scrollbar-track) {
+  background: transparent;
+}
+
+:global(::-webkit-scrollbar-thumb) {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+}
+
+:global(::-webkit-scrollbar-thumb:hover) {
+  background: rgba(0, 0, 0, 0.3);
+}
+
+@media (prefers-color-scheme: dark) {
+  .shortcut-hint {
+    background: rgba(255, 255, 255, 0.1);
+    color: rgba(255, 255, 255, 0.9);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+  }
+  
+  :global(::-webkit-scrollbar-thumb) {
+    background: rgba(255, 255, 255, 0.2);
+  }
+  
+  :global(::-webkit-scrollbar-thumb:hover) {
+    background: rgba(255, 255, 255, 0.3);
+  }
+}
+
+/* Performance optimizations */
+.next-gen-overlay {
+  will-change: opacity;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .shortcut-hint {
+    background: #000;
+    border: 1px solid #fff;
+  }
+  
+  @media (prefers-color-scheme: dark) {
+    .shortcut-hint {
+      background: #fff;
+      color: #000;
+      border: 1px solid #000;
+    }
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .next-gen-overlay,
+  .shortcut-hint {
+    transition: none;
+    animation: none;
+  }
+  
+  body.chat-open {
+    transition: none;
+  }
+}
+
+/* Mobile viewport handling */
+@media screen and (max-width: 768px) {
+  .shortcut-hint {
+    display: none; /* Hide on mobile as touch interaction is primary */
+  }
+}
+
+/* Print styles */
+@media print {
+  .next-gen-overlay {
+    display: none;
+  }
 }
 
 /* For debugging - add this class to see elements */

@@ -1,0 +1,113 @@
+INFO:__main__:BrainRouter initialized - The Central Intelligence Hub is online
+INFO:__main__:Processing Agent request: Test query for Agent mode...
+INFO:__main__:Resources allocated for request test_session_1747950093.042479: ['memory', 'llm', 'execution']
+INFO:__main__:Request processed successfully in 0.50s
+INFO:__main__:Processing Ask request: Test query for Ask mode...
+INFO:__main__:Resources allocated for request test_session_1747950093.043155: ['memory', 'llm']
+INFO:__main__:Request processed successfully in 0.30s
+INFO:__main__:Processing Suggest request: Test query for Suggest mode...
+INFO:__main__:Resources allocated for request test_session_1747950093.044254: ['sensors', 'memory', 'llm']
+INFO:__main__:Request processed successfully in 0.40s
+INFO:__main__:Processing General request: Test query for General mode...
+INFO:__main__:Resources allocated for request test_session_1747950093.045297: ['llm']
+INFO:__main__:Request processed successfully in 0.20s
+Testing Brain Router...
+
+Agent Mode Result:
+{
+  "success": true,
+  "response": "Agent mode processing: Test query for Agent mode. This will be replaced by specialized handler.",
+  "mode": "Agent",
+  "processing_time": 0.5,
+  "confidence": 0.5,
+  "verification_status": "low_confidence",
+  "resources_used": [
+    "memory",
+    "llm",
+    "execution"
+  ],
+  "metadata": {
+    "has_steps": false,
+    "has_plan": true
+  }
+}
+
+Ask Mode Result:
+{
+  "success": true,
+  "response": "Ask mode processing: Test query for Ask mode. This will be replaced by specialized handler.",
+  "mode": "Ask",
+  "processing_time": 0.3,
+  "confidence": 0.6,
+  "verification_status": "needs_improvement",
+  "resources_used": [
+    "memory",
+    "llm"
+  ],
+  "metadata": {
+    "is_substantive": true,
+    "is_contextual": false
+  }
+}
+
+Suggest Mode Result:
+{
+  "success": true,
+  "response": "Suggest mode processing: Test query for Suggest mode. This will be replaced by specialized handler.",
+  "mode": "Suggest",
+  "processing_time": 0.4,
+  "confidence": 0.55,
+  "verification_status": "insufficient_proactivity",
+  "resources_used": [
+    "sensors",
+    "memory",
+    "llm"
+  ],
+  "metadata": {
+    "has_suggestions": true,
+    "is_proactive": false
+  }
+}
+
+General Mode Result:
+{
+  "success": true,
+  "response": "General mode processing: Test query for General mode. This will be replaced by specialized handler.",
+  "mode": "General",
+  "processing_time": 0.2,
+  "confidence": 0.7,
+  "verification_status": "verified",
+  "resources_used": [
+    "llm"
+  ],
+  "metadata": {
+    "is_coherent": true,
+    "length": 99
+  }
+}
+
+System Status:
+Traceback (most recent call last):
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/brain/core/brain_router.py", line 559, in <module>
+    asyncio.run(test_brain_router())
+    ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.13/3.13.3/Frameworks/Python.framework/Versions/3.13/lib/python3.13/asyncio/runners.py", line 195, in run
+    return runner.run(main)
+           ~~~~~~~~~~^^^^^^
+  File "/opt/homebrew/Cellar/python@3.13/3.13.3/Frameworks/Python.framework/Versions/3.13/lib/python3.13/asyncio/runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "/opt/homebrew/Cellar/python@3.13/3.13.3/Frameworks/Python.framework/Versions/3.13/lib/python3.13/asyncio/base_events.py", line 719, in run_until_complete
+    return future.result()
+           ~~~~~~~~~~~~~^^
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/brain/core/brain_router.py", line 557, in test_brain_router
+    print(json.dumps(brain_router.get_system_status(), indent=2))
+          ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.13/3.13.3/Frameworks/Python.framework/Versions/3.13/lib/python3.13/json/__init__.py", line 238, in dumps
+    **kw).encode(obj)
+          ~~~~~~^^^^^
+  File "/opt/homebrew/Cellar/python@3.13/3.13.3/Frameworks/Python.framework/Versions/3.13/lib/python3.13/json/encoder.py", line 200, in encode
+    chunks = self.iterencode(o, _one_shot=True)
+  File "/opt/homebrew/Cellar/python@3.13/3.13.3/Frameworks/Python.framework/Versions/3.13/lib/python3.13/json/encoder.py", line 261, in iterencode
+    return _iterencode(o, 0)
+TypeError: keys must be str, int, float, bool or None, not ChatMode

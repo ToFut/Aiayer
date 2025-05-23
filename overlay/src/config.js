@@ -26,7 +26,7 @@ export const CONFIG = {
         
         // Backend server for additional services
         backend: {
-            url: 'ws://localhost:8767',
+            url: 'ws://localhost:8765',
             reconnectAttempts: 10,
             reconnectDelay: 1000,
             debug: false

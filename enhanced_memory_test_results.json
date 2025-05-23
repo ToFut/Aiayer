@@ -1,0 +1,177 @@
+{
+  "scenarios_tested": 4,
+  "successful_analyses": 4,
+  "intelligence_score": 0.75,
+  "results": {
+    "coding_session": {
+      "user_behavior": {
+        "inferred_intent": "coding",
+        "confidence": 0.9,
+        "workflow_stage": "implementation",
+        "activity_type": "development",
+        "significance_score": 1.0,
+        "focus_level": {
+          "focus_score": 1.0,
+          "attention_type": "deep_work",
+          "distraction_indicators": [],
+          "flow_state_indicators": [
+            "minimal_app_switching",
+            "code_editor_focus"
+          ]
+        },
+        "productivity_indicator": {
+          "productivity_score": 0.6000000000000001,
+          "indicators": [
+            "active_development",
+            "focused_workflow"
+          ],
+          "blockers": [],
+          "suggestions": []
+        }
+      },
+      "focus_level": {
+        "focus_score": 1.0,
+        "attention_type": "deep_work",
+        "distraction_indicators": [],
+        "flow_state_indicators": [
+          "minimal_app_switching",
+          "code_editor_focus"
+        ]
+      },
+      "productivity": {
+        "productivity_score": 0.6000000000000001,
+        "indicators": [
+          "active_development",
+          "focused_workflow"
+        ],
+        "blockers": [],
+        "suggestions": []
+      }
+    },
+    "research_session": {
+      "user_behavior": {
+        "inferred_intent": "unknown",
+        "confidence": 0.7,
+        "workflow_stage": "unknown",
+        "activity_type": "general",
+        "significance_score": 0.5,
+        "focus_level": {
+          "focus_score": 0.7,
+          "attention_type": "deep_reading",
+          "distraction_indicators": [],
+          "flow_state_indicators": [
+            "minimal_app_switching"
+          ]
+        },
+        "productivity_indicator": {
+          "productivity_score": 0.5,
+          "indicators": [
+            "learning_activity",
+            "focused_workflow"
+          ],
+          "blockers": [],
+          "suggestions": []
+        }
+      },
+      "focus_level": {
+        "focus_score": 0.7,
+        "attention_type": "deep_reading",
+        "distraction_indicators": [],
+        "flow_state_indicators": [
+          "minimal_app_switching"
+        ]
+      },
+      "productivity": {
+        "productivity_score": 0.5,
+        "indicators": [
+          "learning_activity",
+          "focused_workflow"
+        ],
+        "blockers": [],
+        "suggestions": []
+      }
+    },
+    "communication_session": {
+      "user_behavior": {
+        "inferred_intent": "communicating",
+        "confidence": 0.8,
+        "workflow_stage": "unknown",
+        "activity_type": "general",
+        "significance_score": 0.6000000000000001,
+        "focus_level": {
+          "focus_score": 0.7,
+          "attention_type": "deep_reading",
+          "distraction_indicators": [],
+          "flow_state_indicators": [
+            "minimal_app_switching"
+          ]
+        },
+        "productivity_indicator": {
+          "productivity_score": 0.2,
+          "indicators": [
+            "focused_workflow"
+          ],
+          "blockers": [],
+          "suggestions": []
+        }
+      },
+      "focus_level": {
+        "focus_score": 0.7,
+        "attention_type": "deep_reading",
+        "distraction_indicators": [],
+        "flow_state_indicators": [
+          "minimal_app_switching"
+        ]
+      },
+      "productivity": {
+        "productivity_score": 0.2,
+        "indicators": [
+          "focused_workflow"
+        ],
+        "blockers": [],
+        "suggestions": []
+      }
+    },
+    "distracted_session": {
+      "user_behavior": {
+        "inferred_intent": "unknown",
+        "confidence": 0.6,
+        "workflow_stage": "unknown",
+        "activity_type": "general",
+        "significance_score": 0.2,
+        "focus_level": {
+          "focus_score": 0.19999999999999998,
+          "attention_type": "deep_reading",
+          "distraction_indicators": [
+            "notifications_present"
+          ],
+          "flow_state_indicators": []
+        },
+        "productivity_indicator": {
+          "productivity_score": 0.0,
+          "indicators": [],
+          "blockers": [
+            "distracting_applications"
+          ],
+          "suggestions": []
+        }
+      },
+      "focus_level": {
+        "focus_score": 0.19999999999999998,
+        "attention_type": "deep_reading",
+        "distraction_indicators": [
+          "notifications_present"
+        ],
+        "flow_state_indicators": []
+      },
+      "productivity": {
+        "productivity_score": 0.0,
+        "indicators": [],
+        "blockers": [
+          "distracting_applications"
+        ],
+        "suggestions": []
+      }
+    }
+  }
+}

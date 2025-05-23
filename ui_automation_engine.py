@@ -604,21 +604,28 @@ async def execute_ui_action(action_type: str, parameters: Dict[str, Any]) -> Dic
         if action_type == "open_app":
             return await automation.open_application(parameters.get("app_name", ""))
         elif action_type == "click":
-            coords = parameters.get("coordinates", (0, 0))
+            # Handle both coordinate formats
+            if "coordinates" in parameters:
+                coords = parameters["coordinates"]
+                x, y = coords[0], coords[1]
+            else:
+                x = parameters.get("x", 0)
+                y = parameters.get("y", 0)
+            
             controller = automation.ui_controller
-            success = await controller.click(coords[0], coords[1])
-            return {"success": success, "action": "click", "coordinates": coords}
+            success = await controller.click(x, y)
+            return {"success": success, "action": "click", "coordinates": {"x": x, "y": y}}
         elif action_type == "type":
             text = parameters.get("text", "")
             controller = automation.ui_controller
             success = await controller.type_text(text)
             return {"success": success, "action": "type", "text": text}
-        elif action_type == "key":
+        elif action_type == "key" or action_type == "key_press":
             key = parameters.get("key", "")
             modifiers = parameters.get("modifiers", [])
             controller = automation.ui_controller
             success = await controller.press_key(key, modifiers)
-            return {"success": success, "action": "key", "key": key, "modifiers": modifiers}
+            return {"success": success, "action": "key_press", "key": key, "modifiers": modifiers}
         elif action_type == "window_action":
             return await automation.window_management(parameters.get("action", ""))
         elif action_type == "copy_paste":

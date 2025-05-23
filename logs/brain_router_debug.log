@@ -1,0 +1,285 @@
+2025-05-23 00:07:05,250 - memory.enhanced_semantic_search - INFO - Enhanced semantic search initialized with embedding dim: 384
+2025-05-23 00:07:05,251 - memory.enhanced_semantic_search - INFO - Hybrid retrieval enabled: True
+2025-05-23 00:07:05,408 - memory.semantic_search_agent - INFO - Loading 330 existing documents from storage
+2025-05-23 00:07:05,437 - memory.semantic_search_agent - INFO - EnterpriseVectorStore initialized with enterprise-grade features
+2025-05-23 00:07:05,437 - memory.semantic_search_agent - INFO - SemanticSearchAgent initialized with enterprise-grade capabilities
+2025-05-23 00:07:05,438 - memory.semantic_search_agent - INFO - Loading 330 existing documents from storage
+2025-05-23 00:07:05,453 - memory.semantic_search_agent - INFO - EnterpriseVectorStore initialized with enterprise-grade features
+2025-05-23 00:07:05,453 - memory.semantic_search_agent - INFO - SemanticSearchAgent initialized with enterprise-grade capabilities
+2025-05-23 00:07:05,453 - __main__ - INFO - Enhanced Brain Router with contextual memory initialized
+2025-05-23 00:07:05,453 - __main__ - INFO - 🧠 Starting Enhanced Brain Router with Contextual Memory...
+2025-05-23 00:07:05,453 - __main__ - INFO - 📡 Port: 8765
+2025-05-23 00:07:05,453 - __main__ - INFO - 🎯 Modes: Agent, Ask, Suggest, General (all with context)
+2025-05-23 00:07:05,453 - __main__ - INFO - 🔍 Memory: Semantic search integration active
+2025-05-23 00:07:05,463 - __main__ - INFO - ✅ Enhanced Brain Router started on ws://localhost:8765
+2025-05-23 00:07:05,463 - __main__ - INFO - 🧠 Contextual memory system initialized
+2025-05-23 00:07:05,463 - __main__ - INFO - 🔍 Semantic search agent ready
+2025-05-23 00:07:05,465 - websockets.server - INFO - server listening on 127.0.0.1:8765
+2025-05-23 00:07:05,465 - websockets.server - INFO - server listening on [::1]:8765
+2025-05-23 00:07:12,058 - websockets.server - INFO - connection open
+2025-05-23 00:07:12,058 - __main__ - INFO - Client connected: client_1747984032058
+/Users/segevbin/Desktop/SensAI/Aiayer/memory/semantic_search_agent.py:336: RuntimeWarning: divide by zero encountered in log
+  idf = np.log(self.total_documents / (self.document_frequencies[token] + 1))
+2025-05-23 00:07:12,062 - memory.semantic_search_agent - INFO - Document 41c4e97fac69dfd0cc82a988f1558daacd064073927a1ade89eddda9da64e6b1 added to enterprise vector store
+2025-05-23 00:07:12,062 - memory.semantic_search_agent - INFO - Memory added successfully: 41c4e97fac69dfd0cc82a988f1558daacd064073927a1ade89eddda9da64e6b1
+2025-05-23 00:07:12,063 - memory.semantic_search_agent - INFO - Document 5dbb688b3b95f0f4b2d597a4c073d077a9d89d9065b99ef1b1fc22671b1d8728 added to enterprise vector store
+2025-05-23 00:07:12,063 - memory.semantic_search_agent - INFO - Memory added successfully: 5dbb688b3b95f0f4b2d597a4c073d077a9d89d9065b99ef1b1fc22671b1d8728
+2025-05-23 00:07:12,064 - memory.semantic_search_agent - INFO - Document e5a95a2558912490ddfeeca9a513a67f54aeaadfe2d2f350a55bdaf979574e82 added to enterprise vector store
+2025-05-23 00:07:12,064 - memory.semantic_search_agent - INFO - Memory added successfully: e5a95a2558912490ddfeeca9a513a67f54aeaadfe2d2f350a55bdaf979574e82
+2025-05-23 00:07:12,064 - memory.semantic_search_agent - INFO - Document d4973fddc80e5cb226ea0264f65d83f61e0d586de9132d254e3d4f350df1fc00 added to enterprise vector store
+2025-05-23 00:07:12,064 - memory.semantic_search_agent - INFO - Memory added successfully: d4973fddc80e5cb226ea0264f65d83f61e0d586de9132d254e3d4f350df1fc00
+2025-05-23 00:07:12,065 - memory.semantic_search_agent - INFO - Document 96e399d2c53f56e27bc15f25b0f8988eb561f0c47bae272638b410e1ef93094d added to enterprise vector store
+2025-05-23 00:07:12,065 - memory.semantic_search_agent - INFO - Memory added successfully: 96e399d2c53f56e27bc15f25b0f8988eb561f0c47bae272638b410e1ef93094d
+2025-05-23 00:07:12,066 - memory.semantic_search_agent - INFO - Document e568dd1c7fbe960eb8e22191feb7e8be4e4cf91ed848d1c25c89ed0ecf70a22d added to enterprise vector store
+2025-05-23 00:07:12,066 - memory.semantic_search_agent - INFO - Memory added successfully: e568dd1c7fbe960eb8e22191feb7e8be4e4cf91ed848d1c25c89ed0ecf70a22d
+2025-05-23 00:07:12,067 - memory.semantic_search_agent - INFO - Document 98d2644181a04ea72d1e49b515be5bbc3f855f982046548253b8b33c6fb470a3 added to enterprise vector store
+2025-05-23 00:07:12,067 - memory.semantic_search_agent - INFO - Memory added successfully: 98d2644181a04ea72d1e49b515be5bbc3f855f982046548253b8b33c6fb470a3
+2025-05-23 00:07:12,068 - memory.semantic_search_agent - INFO - Document 4f2b9718d05843e0519c77a2a9fb7aedda3c5d7695ad6812a883d95735a82320 added to enterprise vector store
+2025-05-23 00:07:12,068 - memory.semantic_search_agent - INFO - Memory added successfully: 4f2b9718d05843e0519c77a2a9fb7aedda3c5d7695ad6812a883d95735a82320
+2025-05-23 00:07:12,068 - memory.semantic_search_agent - INFO - Document af1638fe06d8b68df2f2fe7c91b35af6a60a5399fff30d454d2ffb6c7c4aada2 added to enterprise vector store
+2025-05-23 00:07:12,068 - memory.semantic_search_agent - INFO - Memory added successfully: af1638fe06d8b68df2f2fe7c91b35af6a60a5399fff30d454d2ffb6c7c4aada2
+2025-05-23 00:07:12,069 - memory.semantic_search_agent - INFO - Document a94b619b129480354db6550e80ae6f2c941fe647b0210ba79433462cc83fc0f6 added to enterprise vector store
+2025-05-23 00:07:12,069 - memory.semantic_search_agent - INFO - Memory added successfully: a94b619b129480354db6550e80ae6f2c941fe647b0210ba79433462cc83fc0f6
+2025-05-23 00:07:12,069 - __main__ - INFO - Base knowledge initialized in semantic memory
+2025-05-23 00:07:12,070 - memory.semantic_search_agent - INFO - Document 1d002b2685bebf7c24e273b434cab9ff2f0ba78c48791dc79a9a9a34425c1b87 added to enterprise vector store
+2025-05-23 00:07:12,070 - memory.semantic_search_agent - INFO - Memory added successfully: 1d002b2685bebf7c24e273b434cab9ff2f0ba78c48791dc79a9a9a34425c1b87
+2025-05-23 00:07:12,071 - memory.semantic_search_agent - INFO - Similarity search completed in 0.0013s, found 5 results
+2025-05-23 00:07:12,073 - memory.semantic_search_agent - INFO - Search completed successfully in 0.0035s, found 5 results
+2025-05-23 00:07:12,073 - __main__ - INFO - Agent mode with context: test message
+2025-05-23 00:07:12,074 - memory.semantic_search_agent - INFO - Document 097b3b717983baa9b9550d4bb343c85a0db112d0e2047133378275a43eb688f8 added to enterprise vector store
+2025-05-23 00:07:12,074 - memory.semantic_search_agent - INFO - Memory added successfully: 097b3b717983baa9b9550d4bb343c85a0db112d0e2047133378275a43eb688f8
+2025-05-23 00:07:30,206 - websockets.server - INFO - connection open
+2025-05-23 00:07:30,206 - __main__ - INFO - Client connected: client_1747984050206
+2025-05-23 00:07:30,208 - memory.semantic_search_agent - INFO - Document d5d2d8eb3a0acde3c1d99d83e94fd74f193291c3b043e7786f80a06477700bad added to enterprise vector store
+2025-05-23 00:07:30,208 - memory.semantic_search_agent - INFO - Memory added successfully: d5d2d8eb3a0acde3c1d99d83e94fd74f193291c3b043e7786f80a06477700bad
+2025-05-23 00:07:30,209 - memory.semantic_search_agent - INFO - Similarity search completed in 0.0010s, found 5 results
+2025-05-23 00:07:30,211 - memory.semantic_search_agent - INFO - Search completed successfully in 0.0033s, found 5 results
+2025-05-23 00:07:30,211 - __main__ - INFO - Agent mode with context: click on the Documents folder
+2025-05-23 00:07:30,212 - memory.semantic_search_agent - INFO - Document 18a26e0fc215c40584d7b457602145d60b4cae123b4a9305b2a8636431393bf7 added to enterprise vector store
+2025-05-23 00:07:30,212 - memory.semantic_search_agent - INFO - Memory added successfully: 18a26e0fc215c40584d7b457602145d60b4cae123b4a9305b2a8636431393bf7
+2025-05-23 00:07:33,221 - memory.semantic_search_agent - INFO - Document c546d7a25826ea8fa267ae4b631618218c5219ede4c17595a301d69471ff85c2 added to enterprise vector store
+2025-05-23 00:07:33,222 - memory.semantic_search_agent - INFO - Memory added successfully: c546d7a25826ea8fa267ae4b631618218c5219ede4c17595a301d69471ff85c2
+2025-05-23 00:07:33,226 - memory.semantic_search_agent - INFO - Similarity search completed in 0.0038s, found 5 results
+2025-05-23 00:07:33,232 - memory.semantic_search_agent - INFO - Search completed successfully in 0.0104s, found 5 results
+2025-05-23 00:07:33,232 - __main__ - INFO - Agent mode with context: help me organize my files
+2025-05-23 00:07:33,233 - memory.semantic_search_agent - INFO - Document 8b468856cac32f4c983241bc7b77a5ad8502580030b9784a34ca95d1c27dfc48 added to enterprise vector store
+2025-05-23 00:07:33,234 - memory.semantic_search_agent - INFO - Memory added successfully: 8b468856cac32f4c983241bc7b77a5ad8502580030b9784a34ca95d1c27dfc48
+2025-05-23 00:07:36,237 - memory.semantic_search_agent - INFO - Document acd929d79d2b30d65cd15a966bb98e4f81cc754832a5e71fb82d16c029a7a900 added to enterprise vector store
+2025-05-23 00:07:36,237 - memory.semantic_search_agent - INFO - Memory added successfully: acd929d79d2b30d65cd15a966bb98e4f81cc754832a5e71fb82d16c029a7a900
+2025-05-23 00:07:36,239 - memory.semantic_search_agent - INFO - Similarity search completed in 0.0015s, found 5 results
+2025-05-23 00:07:36,242 - memory.semantic_search_agent - INFO - Search completed successfully in 0.0051s, found 5 results
+2025-05-23 00:07:36,242 - __main__ - INFO - Agent mode with context: click on the same Documents folder again
+2025-05-23 00:07:36,243 - memory.semantic_search_agent - INFO - Document f78a04614c509e4d7cbea774c02b0ace047adaf869050dd1a73acd79ba841f8c added to enterprise vector store
+2025-05-23 00:07:36,243 - memory.semantic_search_agent - INFO - Memory added successfully: f78a04614c509e4d7cbea774c02b0ace047adaf869050dd1a73acd79ba841f8c
+2025-05-23 00:07:39,247 - memory.semantic_search_agent - INFO - Document 6e872159b8d986c08e1993eb41f847552758eb2a4b8750a75395636ea72f1e48 added to enterprise vector store
+2025-05-23 00:07:39,247 - memory.semantic_search_agent - INFO - Memory added successfully: 6e872159b8d986c08e1993eb41f847552758eb2a4b8750a75395636ea72f1e48
+2025-05-23 00:07:39,249 - memory.semantic_search_agent - INFO - Similarity search completed in 0.0017s, found 5 results
+2025-05-23 00:07:39,252 - memory.semantic_search_agent - INFO - Search completed successfully in 0.0050s, found 5 results
+2025-05-23 00:07:39,252 - __main__ - INFO - Agent mode with context: open the Chrome browser
+2025-05-23 00:07:39,254 - memory.semantic_search_agent - INFO - Document 0936af625f6054b48146dd0d4c6ca43590f18b34adfc471522473a23b0d399e7 added to enterprise vector store
+2025-05-23 00:07:39,254 - memory.semantic_search_agent - INFO - Memory added successfully: 0936af625f6054b48146dd0d4c6ca43590f18b34adfc471522473a23b0d399e7
+2025-05-23 00:07:42,258 - memory.semantic_search_agent - INFO - Document eaae0a432971747c3eb20bfd76fc743f27422a3645a488be942bcc6cd2c9cebd added to enterprise vector store
+2025-05-23 00:07:42,258 - memory.semantic_search_agent - INFO - Memory added successfully: eaae0a432971747c3eb20bfd76fc743f27422a3645a488be942bcc6cd2c9cebd
+2025-05-23 00:07:42,260 - memory.semantic_search_agent - INFO - Similarity search completed in 0.0016s, found 5 results
+2025-05-23 00:07:42,263 - memory.semantic_search_agent - INFO - Search completed successfully in 0.0052s, found 5 results
+2025-05-23 00:07:42,263 - __main__ - INFO - Agent mode with context: type 'hello world' in the search box
+2025-05-23 00:07:42,265 - memory.semantic_search_agent - INFO - Document 5d77b18d3e28617b61fd32936fbf19a950f7218b2eb05bc235d3c6a99e2a270e added to enterprise vector store
+2025-05-23 00:07:42,265 - memory.semantic_search_agent - INFO - Memory added successfully: 5d77b18d3e28617b61fd32936fbf19a950f7218b2eb05bc235d3c6a99e2a270e
+2025-05-23 00:07:44,879 - websockets.server - INFO - connection open
+2025-05-23 00:07:44,879 - __main__ - INFO - Client connected: client_1747984064879
+2025-05-23 00:07:45,268 - memory.semantic_search_agent - INFO - Document 954cb59c9a03d93f87b40e97797bed00d27699b7411ab73e112350072a60e064 added to enterprise vector store
+2025-05-23 00:07:45,268 - memory.semantic_search_agent - INFO - Memory added successfully: 954cb59c9a03d93f87b40e97797bed00d27699b7411ab73e112350072a60e064
+2025-05-23 00:07:45,269 - memory.semantic_search_agent - INFO - Similarity search completed in 0.0011s, found 5 results
+2025-05-23 00:07:45,272 - memory.semantic_search_agent - INFO - Search completed successfully in 0.0038s, found 5 results
+2025-05-23 00:07:45,272 - __main__ - INFO - Agent mode with context: help me automate my daily workflow
+2025-05-23 00:07:45,273 - memory.semantic_search_agent - INFO - Document d277be1ca9580166ca564e42c0bed6721dc3012fab5190ea2e8e89aa8862d663 added to enterprise vector store
+2025-05-23 00:07:45,273 - memory.semantic_search_agent - INFO - Memory added successfully: d277be1ca9580166ca564e42c0bed6721dc3012fab5190ea2e8e89aa8862d663
+2025-05-23 00:07:48,276 - memory.semantic_search_agent - INFO - Document c2485b5ab8123b18ab4bd7c96a40e132d533bd6483c32b1454e68fee733aba43 added to enterprise vector store
+2025-05-23 00:07:48,276 - memory.semantic_search_agent - INFO - Memory added successfully: c2485b5ab8123b18ab4bd7c96a40e132d533bd6483c32b1454e68fee733aba43
+2025-05-23 00:07:48,278 - memory.semantic_search_agent - INFO - Similarity search completed in 0.0016s, found 5 results
+2025-05-23 00:07:48,281 - memory.semantic_search_agent - INFO - Search completed successfully in 0.0047s, found 5 results
+2025-05-23 00:07:48,281 - __main__ - INFO - Ask mode with context: what is the system status?
+2025-05-23 00:07:48,282 - memory.semantic_search_agent - INFO - Document 033b22c071880bfae460dc823a92428fb2e0c09b72ceb588c7f76cc51e263132 added to enterprise vector store
+2025-05-23 00:07:48,282 - memory.semantic_search_agent - INFO - Memory added successfully: 033b22c071880bfae460dc823a92428fb2e0c09b72ceb588c7f76cc51e263132
+2025-05-23 00:07:51,285 - memory.semantic_search_agent - INFO - Document 2a6a41501713abddd7a76ba54acf1e554e6b5053c1cbc998babb53f37809f141 added to enterprise vector store
+2025-05-23 00:07:51,286 - memory.semantic_search_agent - INFO - Memory added successfully: 2a6a41501713abddd7a76ba54acf1e554e6b5053c1cbc998babb53f37809f141
+2025-05-23 00:07:51,288 - memory.semantic_search_agent - INFO - Similarity search completed in 0.0026s, found 5 results
+2025-05-23 00:07:51,293 - memory.semantic_search_agent - INFO - Search completed successfully in 0.0075s, found 5 results
+2025-05-23 00:07:51,293 - __main__ - INFO - Ask mode with context: what files have I been working with?
+2025-05-23 00:07:51,294 - memory.semantic_search_agent - INFO - Document 0f3976233c3fa9043a14e0da1050bb18b11b6a50cdace553a62a188108801ec0 added to enterprise vector store
+2025-05-23 00:07:51,294 - memory.semantic_search_agent - INFO - Memory added successfully: 0f3976233c3fa9043a14e0da1050bb18b11b6a50cdace553a62a188108801ec0
+2025-05-23 00:07:54,302 - memory.semantic_search_agent - INFO - Document 46b37f1832555b1f20227ad53144da18152c609f353efdc3ffae6f1ba65bbfbb added to enterprise vector store
+2025-05-23 00:07:54,303 - memory.semantic_search_agent - INFO - Memory added successfully: 46b37f1832555b1f20227ad53144da18152c609f353efdc3ffae6f1ba65bbfbb
+2025-05-23 00:07:54,306 - memory.semantic_search_agent - INFO - Similarity search completed in 0.0037s, found 5 results
+2025-05-23 00:07:54,313 - memory.semantic_search_agent - INFO - Search completed successfully in 0.0106s, found 5 results
+2025-05-23 00:07:54,314 - __main__ - INFO - Ask mode with context: what did we talk about before?
+2025-05-23 00:07:54,315 - memory.semantic_search_agent - INFO - Document eed88eeae2d466660328070188fb2dad2e228cdad367ab426e62165e0092048e added to enterprise vector store
+2025-05-23 00:07:54,315 - memory.semantic_search_agent - INFO - Memory added successfully: eed88eeae2d466660328070188fb2dad2e228cdad367ab426e62165e0092048e
+2025-05-23 00:07:54,984 - websockets.server - INFO - connection open
+2025-05-23 00:07:54,984 - __main__ - INFO - Client connected: client_1747984074984
+2025-05-23 00:07:56,082 - websockets.server - INFO - connection open
+2025-05-23 00:07:56,083 - __main__ - INFO - Client connected: client_1747984076083
+2025-05-23 00:07:57,319 - memory.semantic_search_agent - INFO - Document 99332eacfd7fa4b204be209da4d938e4a0c29008fd4ec642c53dfcc5890237c2 added to enterprise vector store
+2025-05-23 00:07:57,319 - memory.semantic_search_agent - INFO - Memory added successfully: 99332eacfd7fa4b204be209da4d938e4a0c29008fd4ec642c53dfcc5890237c2
+2025-05-23 00:07:57,320 - memory.semantic_search_agent - INFO - Similarity search completed in 0.0011s, found 5 results
+2025-05-23 00:07:57,323 - memory.semantic_search_agent - INFO - Search completed successfully in 0.0043s, found 5 results
+2025-05-23 00:07:57,323 - __main__ - INFO - Ask mode with context: how many chat modes are available?
+2025-05-23 00:07:57,324 - memory.semantic_search_agent - INFO - Document da897a2dfe7a3af0ce9f42b68b99ac904d4fcb5db1a4f4a1177910f61efb05fb added to enterprise vector store
+2025-05-23 00:07:57,324 - memory.semantic_search_agent - INFO - Memory added successfully: da897a2dfe7a3af0ce9f42b68b99ac904d4fcb5db1a4f4a1177910f61efb05fb
+2025-05-23 00:08:00,328 - memory.semantic_search_agent - INFO - Document d1ef437610ac461f54be7b7aee222914ec242770d49ea02d930208591dfb6ee2 added to enterprise vector store
+2025-05-23 00:08:00,328 - memory.semantic_search_agent - INFO - Memory added successfully: d1ef437610ac461f54be7b7aee222914ec242770d49ea02d930208591dfb6ee2
+2025-05-23 00:08:00,330 - memory.semantic_search_agent - INFO - Similarity search completed in 0.0020s, found 5 results
+2025-05-23 00:08:00,334 - memory.semantic_search_agent - INFO - Search completed successfully in 0.0056s, found 5 results
+2025-05-23 00:08:00,334 - __main__ - INFO - Ask mode with context: what automation tasks did I request?
+2025-05-23 00:08:00,335 - memory.semantic_search_agent - INFO - Document 72c7f7c7dd0b3ce89b3cdbfe891addcb90c6f16be115430202176ddd8a6e217b added to enterprise vector store
+2025-05-23 00:08:00,335 - memory.semantic_search_agent - INFO - Memory added successfully: 72c7f7c7dd0b3ce89b3cdbfe891addcb90c6f16be115430202176ddd8a6e217b
+2025-05-23 00:08:03,338 - memory.semantic_search_agent - INFO - Document 00e5ded551686da3d97fff5e68bb5ba6ec683557805b11a75b4f4418917c1bf9 added to enterprise vector store
+2025-05-23 00:08:03,338 - memory.semantic_search_agent - INFO - Memory added successfully: 00e5ded551686da3d97fff5e68bb5ba6ec683557805b11a75b4f4418917c1bf9
+2025-05-23 00:08:03,340 - memory.semantic_search_agent - INFO - Similarity search completed in 0.0012s, found 5 results
+2025-05-23 00:08:03,342 - memory.semantic_search_agent - INFO - Search completed successfully in 0.0036s, found 5 results
+2025-05-23 00:08:03,342 - __main__ - INFO - Ask mode with context: tell me about my usage patterns
+2025-05-23 00:08:03,343 - memory.semantic_search_agent - INFO - Document 4699f87b096b1b12ef46b8d518d4abe4c1a8507e40313a91a1bc5320cf5a0a65 added to enterprise vector store
+2025-05-23 00:08:03,343 - memory.semantic_search_agent - INFO - Memory added successfully: 4699f87b096b1b12ef46b8d518d4abe4c1a8507e40313a91a1bc5320cf5a0a65
+2025-05-23 00:08:06,350 - memory.semantic_search_agent - INFO - Document 8e4c8fe7e4a791ead3594e968350e32fba262d768b57837767032f1dda7be0db added to enterprise vector store
+2025-05-23 00:08:06,350 - memory.semantic_search_agent - INFO - Memory added successfully: 8e4c8fe7e4a791ead3594e968350e32fba262d768b57837767032f1dda7be0db
+2025-05-23 00:08:06,353 - memory.semantic_search_agent - INFO - Similarity search completed in 0.0024s, found 5 results
+2025-05-23 00:08:06,359 - memory.semantic_search_agent - INFO - Search completed successfully in 0.0087s, found 5 results
+2025-05-23 00:08:06,359 - __main__ - INFO - Suggest mode with context: how can I improve my workflow?
+2025-05-23 00:08:06,361 - memory.semantic_search_agent - INFO - Document af191458105c2d7701c4744b530eb2510cdd1e0a71416350105affdd458449d0 added to enterprise vector store
+2025-05-23 00:08:06,361 - memory.semantic_search_agent - INFO - Memory added successfully: af191458105c2d7701c4744b530eb2510cdd1e0a71416350105affdd458449d0
+2025-05-23 00:08:09,364 - memory.semantic_search_agent - INFO - Document 3c67ee6b3dcb8e4ae242a23687f5a3b8f42005701bc4469789978a4bb70530bb added to enterprise vector store
+2025-05-23 00:08:09,364 - memory.semantic_search_agent - INFO - Memory added successfully: 3c67ee6b3dcb8e4ae242a23687f5a3b8f42005701bc4469789978a4bb70530bb
+2025-05-23 00:08:09,366 - memory.semantic_search_agent - INFO - Similarity search completed in 0.0012s, found 5 results
+2025-05-23 00:08:09,368 - memory.semantic_search_agent - INFO - Search completed successfully in 0.0035s, found 5 results
+2025-05-23 00:08:09,368 - __main__ - INFO - Suggest mode with context: suggest better file organization
+2025-05-23 00:08:09,369 - memory.semantic_search_agent - INFO - Document 4f82f21fdb0ec97280ec27ffd249a2a7354e3e06df57953eddce26a52d57fe81 added to enterprise vector store
+2025-05-23 00:08:09,369 - memory.semantic_search_agent - INFO - Memory added successfully: 4f82f21fdb0ec97280ec27ffd249a2a7354e3e06df57953eddce26a52d57fe81
+2025-05-23 00:08:12,375 - memory.semantic_search_agent - INFO - Document fb768ca83171641776094062b8bc23768e3f14a407533810f3ef2ccb155dde0e added to enterprise vector store
+2025-05-23 00:08:12,376 - memory.semantic_search_agent - INFO - Memory added successfully: fb768ca83171641776094062b8bc23768e3f14a407533810f3ef2ccb155dde0e
+2025-05-23 00:08:12,379 - memory.semantic_search_agent - INFO - Similarity search completed in 0.0027s, found 5 results
+2025-05-23 00:08:12,383 - memory.semantic_search_agent - INFO - Search completed successfully in 0.0075s, found 5 results
+2025-05-23 00:08:12,384 - __main__ - INFO - Suggest mode with context: what automation should I set up?
+2025-05-23 00:08:12,385 - memory.semantic_search_agent - INFO - Document 4d57f3cb7ad805d61328cb0a93ef2de984ef1747607edd19f3b8fb2913cd253b added to enterprise vector store
+2025-05-23 00:08:12,385 - memory.semantic_search_agent - INFO - Memory added successfully: 4d57f3cb7ad805d61328cb0a93ef2de984ef1747607edd19f3b8fb2913cd253b
+2025-05-23 00:08:15,388 - memory.semantic_search_agent - INFO - Document 2a4bfe170d4b90228f6175b3d463b9341a8dc639f11183eb28dcee8bcd3a45b4 added to enterprise vector store
+2025-05-23 00:08:15,388 - memory.semantic_search_agent - INFO - Memory added successfully: 2a4bfe170d4b90228f6175b3d463b9341a8dc639f11183eb28dcee8bcd3a45b4
+2025-05-23 00:08:15,389 - memory.semantic_search_agent - INFO - Similarity search completed in 0.0012s, found 5 results
+2025-05-23 00:08:15,392 - memory.semantic_search_agent - INFO - Search completed successfully in 0.0038s, found 5 results
+2025-05-23 00:08:15,392 - __main__ - INFO - Suggest mode with context: help me be more productive
+2025-05-23 00:08:15,393 - memory.semantic_search_agent - INFO - Document 44eae57ab02fbf7ef7e70eb918e60f9a978fd293e610f92d0e1b1bf706d84653 added to enterprise vector store
+2025-05-23 00:08:15,393 - memory.semantic_search_agent - INFO - Memory added successfully: 44eae57ab02fbf7ef7e70eb918e60f9a978fd293e610f92d0e1b1bf706d84653
+2025-05-23 00:08:18,399 - memory.semantic_search_agent - INFO - Document 89f06f5ad686b97222342b4ef5c8d99120c2cb82dd0ea44fafbd9cdd72793275 added to enterprise vector store
+2025-05-23 00:08:18,399 - memory.semantic_search_agent - INFO - Memory added successfully: 89f06f5ad686b97222342b4ef5c8d99120c2cb82dd0ea44fafbd9cdd72793275
+2025-05-23 00:08:18,404 - memory.semantic_search_agent - INFO - Similarity search completed in 0.0040s, found 5 results
+2025-05-23 00:08:18,410 - memory.semantic_search_agent - INFO - Search completed successfully in 0.0102s, found 5 results
+2025-05-23 00:08:18,410 - __main__ - INFO - Suggest mode with context: based on my questions, what should I learn?
+2025-05-23 00:08:18,412 - memory.semantic_search_agent - INFO - Document 0d67106a258ea71b5cba608c156dc731cb59b9747f633b4107fdffa9d8305697 added to enterprise vector store
+2025-05-23 00:08:18,412 - memory.semantic_search_agent - INFO - Memory added successfully: 0d67106a258ea71b5cba608c156dc731cb59b9747f633b4107fdffa9d8305697
+2025-05-23 00:08:21,415 - memory.semantic_search_agent - INFO - Document d7394455a4e4d38ea87594d9365224e6d30fc0691221e638892d5d29497d4e38 added to enterprise vector store
+2025-05-23 00:08:21,415 - memory.semantic_search_agent - INFO - Memory added successfully: d7394455a4e4d38ea87594d9365224e6d30fc0691221e638892d5d29497d4e38
+2025-05-23 00:08:21,417 - memory.semantic_search_agent - INFO - Similarity search completed in 0.0014s, found 5 results
+2025-05-23 00:08:21,420 - memory.semantic_search_agent - INFO - Search completed successfully in 0.0041s, found 5 results
+2025-05-23 00:08:21,420 - __main__ - INFO - Suggest mode with context: optimize my daily routine
+2025-05-23 00:08:21,420 - memory.semantic_search_agent - INFO - Document 91f6fc65d2ee07def699977ee569dc70f12ef74cac5ab515f0ffe83bb703da88 added to enterprise vector store
+2025-05-23 00:08:21,420 - memory.semantic_search_agent - INFO - Memory added successfully: 91f6fc65d2ee07def699977ee569dc70f12ef74cac5ab515f0ffe83bb703da88
+2025-05-23 00:08:24,423 - memory.semantic_search_agent - INFO - Document 6a3a061454d9e623f5474bc0879c743c109f10f794e9c7645e72cc080a016957 added to enterprise vector store
+2025-05-23 00:08:24,424 - memory.semantic_search_agent - INFO - Memory added successfully: 6a3a061454d9e623f5474bc0879c743c109f10f794e9c7645e72cc080a016957
+2025-05-23 00:08:24,425 - memory.semantic_search_agent - INFO - Similarity search completed in 0.0013s, found 5 results
+2025-05-23 00:08:24,428 - memory.semantic_search_agent - INFO - Search completed successfully in 0.0043s, found 5 results
+2025-05-23 00:08:24,428 - __main__ - INFO - General mode with context: hello, how are you today?
+2025-05-23 00:08:24,429 - memory.semantic_search_agent - INFO - Document 924da97d47947b408eaaaacb047409252b754d69328180ef76b2736d8023422e added to enterprise vector store
+2025-05-23 00:08:24,429 - memory.semantic_search_agent - INFO - Memory added successfully: 924da97d47947b408eaaaacb047409252b754d69328180ef76b2736d8023422e
+2025-05-23 00:08:27,434 - memory.semantic_search_agent - INFO - Document afa4707a1d2f9003a5a407ffc01777b0315fa98a1885f4bd31cd41c5351fd396 added to enterprise vector store
+2025-05-23 00:08:27,434 - memory.semantic_search_agent - INFO - Memory added successfully: afa4707a1d2f9003a5a407ffc01777b0315fa98a1885f4bd31cd41c5351fd396
+2025-05-23 00:08:27,436 - memory.semantic_search_agent - INFO - Similarity search completed in 0.0018s, found 5 results
+2025-05-23 00:08:27,439 - memory.semantic_search_agent - INFO - Search completed successfully in 0.0053s, found 5 results
+2025-05-23 00:08:27,439 - __main__ - INFO - General mode with context: what can you help me with?
+2025-05-23 00:08:27,440 - memory.semantic_search_agent - INFO - Document b3d5b982e6a7cad66f3721dee48b915b0fb8d412588f6b00855cda8f66d5676a added to enterprise vector store
+2025-05-23 00:08:27,440 - memory.semantic_search_agent - INFO - Memory added successfully: b3d5b982e6a7cad66f3721dee48b915b0fb8d412588f6b00855cda8f66d5676a
+2025-05-23 00:08:30,447 - memory.semantic_search_agent - INFO - Document 2234c3daf40d7503779fe7176991d7f09597e457d22f9db1fb41026114d5a3be added to enterprise vector store
+2025-05-23 00:08:30,448 - memory.semantic_search_agent - INFO - Memory added successfully: 2234c3daf40d7503779fe7176991d7f09597e457d22f9db1fb41026114d5a3be
+2025-05-23 00:08:30,452 - memory.semantic_search_agent - INFO - Similarity search completed in 0.0042s, found 5 results
+2025-05-23 00:08:30,459 - memory.semantic_search_agent - INFO - Search completed successfully in 0.0112s, found 5 results
+2025-05-23 00:08:30,459 - __main__ - INFO - General mode with context: I've been using you for automation tasks
+2025-05-23 00:08:30,460 - memory.semantic_search_agent - INFO - Document 4aba1f06f4bc7df9178eb23c27beabdb45a8104bb5eea51c2111df8d322536fb added to enterprise vector store
+2025-05-23 00:08:30,460 - memory.semantic_search_agent - INFO - Memory added successfully: 4aba1f06f4bc7df9178eb23c27beabdb45a8104bb5eea51c2111df8d322536fb
+2025-05-23 00:08:33,468 - memory.semantic_search_agent - INFO - Document b49ee00cd7b24027a902ee24c2ee067d5e8c343423af5fe5089fa1ae99895f3f added to enterprise vector store
+2025-05-23 00:08:33,468 - memory.semantic_search_agent - INFO - Memory added successfully: b49ee00cd7b24027a902ee24c2ee067d5e8c343423af5fe5089fa1ae99895f3f
+2025-05-23 00:08:33,473 - memory.semantic_search_agent - INFO - Similarity search completed in 0.0047s, found 5 results
+2025-05-23 00:08:33,480 - memory.semantic_search_agent - INFO - Search completed successfully in 0.0122s, found 5 results
+2025-05-23 00:08:33,481 - __main__ - INFO - General mode with context: thank you for all your help
+2025-05-23 00:08:33,482 - memory.semantic_search_agent - INFO - Document 237d10a71767a3dd447cbcebf55433e446544232825de47065503a2983a8ebec added to enterprise vector store
+2025-05-23 00:08:33,482 - memory.semantic_search_agent - INFO - Memory added successfully: 237d10a71767a3dd447cbcebf55433e446544232825de47065503a2983a8ebec
+2025-05-23 00:08:36,491 - memory.semantic_search_agent - INFO - Document 66b3020ab235b367341f95c4ad5f13834bcc915e37e5530416ff0702db4f0aea added to enterprise vector store
+2025-05-23 00:08:36,492 - memory.semantic_search_agent - INFO - Memory added successfully: 66b3020ab235b367341f95c4ad5f13834bcc915e37e5530416ff0702db4f0aea
+2025-05-23 00:08:36,496 - memory.semantic_search_agent - INFO - Similarity search completed in 0.0042s, found 5 results
+2025-05-23 00:08:36,501 - memory.semantic_search_agent - INFO - Search completed successfully in 0.0095s, found 5 results
+2025-05-23 00:08:36,501 - __main__ - INFO - General mode with context: tell me something interesting
+2025-05-23 00:08:36,503 - memory.semantic_search_agent - INFO - Document 1298c6452891230c1b3e25ae755a2b0f38ea6bf0be82c07840e0f7f6e4e08a13 added to enterprise vector store
+2025-05-23 00:08:36,503 - memory.semantic_search_agent - INFO - Memory added successfully: 1298c6452891230c1b3e25ae755a2b0f38ea6bf0be82c07840e0f7f6e4e08a13
+2025-05-23 00:08:39,509 - memory.semantic_search_agent - INFO - Document f31b689e46bf3882999f4ab1838302f5923050bca625c577a8db100dda9e8965 added to enterprise vector store
+2025-05-23 00:08:39,509 - memory.semantic_search_agent - INFO - Memory added successfully: f31b689e46bf3882999f4ab1838302f5923050bca625c577a8db100dda9e8965
+2025-05-23 00:08:39,512 - memory.semantic_search_agent - INFO - Similarity search completed in 0.0027s, found 5 results
+2025-05-23 00:08:39,517 - memory.semantic_search_agent - INFO - Search completed successfully in 0.0076s, found 5 results
+2025-05-23 00:08:39,517 - __main__ - INFO - General mode with context: goodbye for now
+2025-05-23 00:08:39,518 - memory.semantic_search_agent - INFO - Document d0156b38f3d347c3bea27fd9c431cb29b5447a430f3a324c0da86d7975344c7a added to enterprise vector store
+2025-05-23 00:08:39,518 - memory.semantic_search_agent - INFO - Memory added successfully: d0156b38f3d347c3bea27fd9c431cb29b5447a430f3a324c0da86d7975344c7a
+2025-05-23 00:08:59,746 - websockets.server - INFO - connection open
+2025-05-23 00:08:59,746 - __main__ - INFO - Client connected: client_1747984139746
+2025-05-23 00:09:00,850 - websockets.server - INFO - connection open
+2025-05-23 00:09:00,850 - __main__ - INFO - Client connected: client_1747984140850
+2025-05-23 00:10:13,790 - websockets.server - INFO - connection open
+2025-05-23 00:10:13,790 - __main__ - INFO - Client connected: client_1747984213790
+2025-05-23 00:10:41,246 - websockets.server - INFO - connection open
+2025-05-23 00:10:41,247 - __main__ - INFO - Client connected: client_1747984241247
+2025-05-23 00:10:42,347 - websockets.server - INFO - connection open
+2025-05-23 00:10:42,347 - __main__ - INFO - Client connected: client_1747984242347
+2025-05-23 00:11:10,591 - websockets.server - INFO - connection open
+2025-05-23 00:11:10,591 - __main__ - INFO - Client connected: client_1747984270591
+2025-05-23 00:11:11,689 - websockets.server - INFO - connection open
+2025-05-23 00:11:11,689 - __main__ - INFO - Client connected: client_1747984271689
+2025-05-23 00:13:18,580 - websockets.server - INFO - connection open
+2025-05-23 00:13:18,580 - __main__ - INFO - Client connected: client_1747984398580
+2025-05-23 00:13:47,410 - websockets.server - INFO - connection open
+2025-05-23 00:13:47,410 - __main__ - INFO - Client connected: client_1747984427410
+2025-05-23 00:13:48,505 - websockets.server - INFO - connection open
+2025-05-23 00:13:48,505 - __main__ - INFO - Client connected: client_1747984428505
+2025-05-23 00:14:14,469 - websockets.server - INFO - connection open
+2025-05-23 00:14:14,470 - __main__ - INFO - Client connected: client_1747984454470
+2025-05-23 00:14:15,571 - websockets.server - INFO - connection open
+2025-05-23 00:14:15,571 - __main__ - INFO - Client connected: client_1747984455571
+2025-05-23 00:14:33,292 - websockets.server - INFO - connection open
+2025-05-23 00:14:33,292 - __main__ - INFO - Client connected: client_1747984473292
+2025-05-23 00:14:33,300 - memory.semantic_search_agent - INFO - Document d289237fd85bb13c45470447b015c8b25f56c93ae0014744ed59c72b20e536c1 added to enterprise vector store
+2025-05-23 00:14:33,300 - memory.semantic_search_agent - INFO - Memory added successfully: d289237fd85bb13c45470447b015c8b25f56c93ae0014744ed59c72b20e536c1
+2025-05-23 00:14:33,302 - memory.semantic_search_agent - INFO - Similarity search completed in 0.0019s, found 5 results
+2025-05-23 00:14:33,305 - memory.semantic_search_agent - INFO - Search completed successfully in 0.0049s, found 5 results
+2025-05-23 00:14:33,305 - __main__ - INFO - Agent mode with context: click on the Documents folder
+2025-05-23 00:14:33,306 - memory.semantic_search_agent - INFO - Document 8cafbd2218ed6fb9ef4ee89655164c1bf7a2630ba9989db4cf12b9d7e27eeb19 added to enterprise vector store
+2025-05-23 00:14:33,306 - memory.semantic_search_agent - INFO - Memory added successfully: 8cafbd2218ed6fb9ef4ee89655164c1bf7a2630ba9989db4cf12b9d7e27eeb19
+2025-05-23 00:14:33,308 - memory.semantic_search_agent - INFO - Document 7c9bdce9ba18074940c0f76a0d70d0047a3dcc47d129c93abc0412187693a574 added to enterprise vector store
+2025-05-23 00:14:33,308 - memory.semantic_search_agent - INFO - Memory added successfully: 7c9bdce9ba18074940c0f76a0d70d0047a3dcc47d129c93abc0412187693a574
+2025-05-23 00:14:33,309 - memory.semantic_search_agent - INFO - Similarity search completed in 0.0012s, found 5 results
+2025-05-23 00:14:33,312 - memory.semantic_search_agent - INFO - Search completed successfully in 0.0039s, found 5 results
+2025-05-23 00:14:33,312 - __main__ - INFO - Agent mode with context: open the terminal application
+2025-05-23 00:14:33,312 - memory.semantic_search_agent - INFO - Document 2a37b28f44f8411decf4b8a1532276f5ac316358d3e1d737aed4bffe1c498fde added to enterprise vector store
+2025-05-23 00:14:33,313 - memory.semantic_search_agent - INFO - Memory added successfully: 2a37b28f44f8411decf4b8a1532276f5ac316358d3e1d737aed4bffe1c498fde
+2025-05-23 00:14:33,313 - memory.semantic_search_agent - INFO - Document ec0ce6e3f0336dc4b083b5937fe37d900a68366dc0f694760839427c2fa3335f added to enterprise vector store
+2025-05-23 00:14:33,314 - memory.semantic_search_agent - INFO - Memory added successfully: ec0ce6e3f0336dc4b083b5937fe37d900a68366dc0f694760839427c2fa3335f
+2025-05-23 00:14:33,315 - memory.semantic_search_agent - INFO - Similarity search completed in 0.0013s, found 5 results
+2025-05-23 00:14:33,317 - memory.semantic_search_agent - INFO - Search completed successfully in 0.0036s, found 5 results
+2025-05-23 00:14:33,317 - __main__ - INFO - Agent mode with context: type 'hello world' in the text field
+2025-05-23 00:14:33,318 - memory.semantic_search_agent - INFO - Document e26b060433432c08d96e25d7e7fd5402a11ce5a9094b76c6a0ccd5dfcc80ad28 added to enterprise vector store
+2025-05-23 00:14:33,318 - memory.semantic_search_agent - INFO - Memory added successfully: e26b060433432c08d96e25d7e7fd5402a11ce5a9094b76c6a0ccd5dfcc80ad28
+2025-05-23 00:19:07,549 - websockets.server - INFO - connection open
+2025-05-23 00:19:07,549 - __main__ - INFO - Client connected: client_1747984747549
+2025-05-23 00:19:08,648 - websockets.server - INFO - connection open
+2025-05-23 00:19:08,648 - __main__ - INFO - Client connected: client_1747984748648
+2025-05-23 00:19:55,247 - websockets.server - INFO - connection open
+2025-05-23 00:19:55,247 - __main__ - INFO - Client connected: client_1747984795247
+2025-05-23 00:19:56,351 - websockets.server - INFO - connection open
+2025-05-23 00:19:56,351 - __main__ - INFO - Client connected: client_1747984796351
+2025-05-23 00:20:32,534 - websockets.server - INFO - connection open
+2025-05-23 00:20:32,535 - __main__ - INFO - Client connected: client_1747984832535
+2025-05-23 00:20:33,630 - websockets.server - INFO - connection open
+2025-05-23 00:20:33,630 - __main__ - INFO - Client connected: client_1747984833630
