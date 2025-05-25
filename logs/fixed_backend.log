@@ -1,0 +1,107 @@
+2025-05-23 18:47:27,433 - __main__ - INFO - Enterprise Backend 8767 with Fixed Visual Memory initialized
+2025-05-23 18:47:27,434 - __main__ - INFO - Starting Enterprise Backend with Fixed Visual Memory on localhost:8767
+2025-05-23 18:47:27,481 - websockets.server - INFO - server listening on [::1]:8767
+2025-05-23 18:47:27,481 - websockets.server - INFO - server listening on 127.0.0.1:8767
+2025-05-23 18:47:27,481 - __main__ - INFO - Enterprise Backend with Fixed Visual Memory listening on ws://localhost:8767
+2025-05-23 18:48:08,885 - websockets.server - INFO - connection open
+2025-05-23 18:48:08,887 - __main__ - INFO - Client connected: client_1748051288887 from ::1
+2025-05-23 18:48:08,889 - __main__ - INFO - Processing chat_request from client_1748051288887
+2025-05-23 18:48:08,889 - __main__ - INFO - Ask mode processing: what am I seeing?
+2025-05-23 18:48:08,890 - __main__ - INFO - Visual memory context: confidence=0.85, matches=3
+2025-05-23 18:48:09,391 - __main__ - INFO - Processing chat_request from client_1748051288887
+2025-05-23 18:48:09,392 - __main__ - INFO - Ask mode processing: what application am I using?
+2025-05-23 18:48:09,392 - __main__ - INFO - Visual memory context: confidence=0.8, matches=3
+2025-05-23 18:48:09,894 - __main__ - INFO - Processing chat_request from client_1748051288887
+2025-05-23 18:48:09,894 - __main__ - INFO - Ask mode processing: current screen content
+2025-05-23 18:48:09,896 - __main__ - INFO - Visual memory context: confidence=0.85, matches=3
+2025-05-23 18:48:10,399 - __main__ - INFO - Processing chat_request from client_1748051288887
+2025-05-23 18:48:10,399 - __main__ - INFO - Ask mode processing: what's on my screen?
+2025-05-23 18:48:10,402 - __main__ - INFO - Visual memory context: confidence=0.85, matches=3
+2025-05-23 18:48:10,905 - __main__ - INFO - Processing chat_request from client_1748051288887
+2025-05-23 18:48:10,907 - __main__ - INFO - Suggest mode processing: what should I do next?
+2025-05-23 18:48:11,411 - __main__ - INFO - Processing chat_request from client_1748051288887
+2025-05-23 18:48:11,411 - __main__ - INFO - Suggest mode processing: improve my workflow
+2025-05-23 18:48:11,914 - __main__ - INFO - Processing chat_request from client_1748051288887
+2025-05-23 18:48:11,914 - __main__ - INFO - Suggest mode processing: optimize my code editor
+2025-05-23 18:48:42,195 - websockets.server - INFO - connection open
+2025-05-23 18:48:42,196 - __main__ - INFO - Client connected: client_1748051322196 from ::1
+2025-05-23 18:48:42,196 - websockets.server - INFO - connection open
+2025-05-23 18:48:42,196 - __main__ - INFO - Client connected: client_1748051322196 from ::1
+2025-05-23 18:48:42,200 - __main__ - INFO - Processing register from client_1748051322196
+2025-05-23 18:48:52,673 - __main__ - INFO - Processing chat_request from client_1748051322196
+2025-05-23 18:48:52,673 - __main__ - INFO - Suggest mode processing: what am i seeing now
+2025-05-23 18:49:07,775 - __main__ - INFO - Processing chat_request from client_1748051322196
+2025-05-23 18:49:07,777 - __main__ - INFO - Suggest mode processing: what running in my background?
+2025-05-23 18:49:49,887 - __main__ - INFO - Processing chat_request from client_1748051322196
+2025-05-23 18:49:49,890 - __main__ - INFO - Ask mode processing: what am i seeing?
+2025-05-23 18:49:49,896 - __main__ - INFO - Visual memory context: confidence=0.85, matches=3
+2025-05-23 18:49:54,487 - __main__ - INFO - Processing chat_request from client_1748051322196
+2025-05-23 18:49:54,487 - __main__ - INFO - Ask mode processing: what is nyc
+2025-05-23 18:49:54,489 - __main__ - INFO - Visual memory context: confidence=0.6, matches=5
+2025-05-23 18:50:02,629 - __main__ - INFO - Processing chat_request from client_1748051322196
+2025-05-23 18:50:02,630 - __main__ - INFO - Ask mode processing: so what is this?
+2025-05-23 18:50:02,631 - __main__ - INFO - Visual memory context: confidence=0.6, matches=5
+2025-05-23 18:52:07,534 - websockets.server - INFO - connection open
+2025-05-23 18:52:07,536 - __main__ - INFO - Client connected: client_1748051527535 from ::1
+2025-05-23 18:52:07,537 - __main__ - INFO - Processing chat_request from client_1748051527535
+2025-05-23 18:52:07,537 - __main__ - INFO - Ask mode processing: what is nyc?
+2025-05-23 18:52:07,538 - __main__ - INFO - Visual memory context: confidence=0.6, matches=5
+2025-05-23 18:52:08,040 - __main__ - INFO - Processing chat_request from client_1748051527535
+2025-05-23 18:52:08,041 - __main__ - INFO - Ask mode processing: what running in my background?
+2025-05-23 18:52:08,042 - __main__ - INFO - Visual memory context: confidence=0.6, matches=5
+2025-05-23 18:52:08,545 - __main__ - INFO - Processing chat_request from client_1748051527535
+2025-05-23 18:52:08,545 - __main__ - INFO - Suggest mode processing: what running in my background?
+2025-05-23 18:52:09,049 - __main__ - INFO - Processing chat_request from client_1748051527535
+2025-05-23 18:52:09,050 - __main__ - INFO - Ask mode processing: what am I seeing?
+2025-05-23 18:52:09,053 - __main__ - INFO - Visual memory context: confidence=0.85, matches=3
+2025-05-23 19:17:29,478 - websockets.server - INFO - connection open
+2025-05-23 19:17:29,480 - __main__ - INFO - Client connected: client_1748053049479 from ::1
+2025-05-23 19:17:29,480 - websockets.server - INFO - connection open
+2025-05-23 19:17:29,480 - __main__ - INFO - Client connected: client_1748053049480 from ::1
+2025-05-23 19:17:29,481 - __main__ - INFO - Processing register from client_1748053049479
+2025-05-23 19:17:36,049 - __main__ - INFO - Processing chat_request from client_1748053049480
+2025-05-23 19:17:36,049 - __main__ - INFO - Ask mode processing: what am i seeing here
+2025-05-23 19:17:36,057 - __main__ - INFO - Visual memory context: confidence=0.85, matches=3
+2025-05-23 19:17:41,535 - __main__ - INFO - Processing chat_request from client_1748053049480
+2025-05-23 19:17:41,536 - __main__ - INFO - Ask mode processing: what is nyc?
+2025-05-23 19:17:41,539 - __main__ - INFO - Visual memory context: confidence=0.6, matches=5
+2025-05-23 19:19:40,901 - websockets.server - INFO - connection open
+2025-05-23 19:19:40,902 - __main__ - INFO - Client connected: client_1748053180902 from ::1
+2025-05-23 19:19:40,903 - __main__ - INFO - Processing chat_request from client_1748053180902
+2025-05-23 19:19:40,903 - __main__ - INFO - Ask mode processing: what is nyc?
+2025-05-23 19:19:40,904 - __main__ - INFO - Visual memory context: confidence=0.6, matches=5
+2025-05-23 19:19:41,207 - __main__ - INFO - Processing chat_request from client_1748053180902
+2025-05-23 19:19:41,207 - __main__ - INFO - Ask mode processing: what running in my background?
+2025-05-23 19:19:41,209 - __main__ - INFO - Visual memory context: confidence=0.6, matches=5
+2025-05-23 19:19:41,513 - __main__ - INFO - Processing chat_request from client_1748053180902
+2025-05-23 19:19:41,513 - __main__ - INFO - Ask mode processing: what am I seeing?
+2025-05-23 19:19:41,517 - __main__ - INFO - Visual memory context: confidence=0.85, matches=3
+2025-05-23 19:19:41,821 - __main__ - INFO - Processing chat_request from client_1748053180902
+2025-05-23 19:19:41,821 - __main__ - INFO - Suggest mode processing: improve my workflow
+2025-05-23 19:20:23,290 - websockets.server - INFO - connection open
+2025-05-23 19:20:23,291 - __main__ - INFO - Client connected: client_1748053223291 from ::1
+2025-05-23 19:20:23,291 - websockets.server - INFO - connection open
+2025-05-23 19:20:23,291 - __main__ - INFO - Client connected: client_1748053223291 from ::1
+2025-05-23 19:20:23,291 - __main__ - INFO - Processing register from client_1748053223291
+2025-05-23 19:20:27,466 - __main__ - INFO - Processing chat_request from client_1748053223291
+2025-05-23 19:20:27,466 - __main__ - INFO - Ask mode processing: Explain how machine learning algorithms work
+2025-05-23 19:20:27,468 - __main__ - INFO - Visual memory context: confidence=0.6, matches=5
+2025-05-23 19:20:52,383 - __main__ - INFO - Processing chat_request from client_1748053223291
+2025-05-23 19:20:52,385 - __main__ - INFO - Suggest mode processing: what is sf?
+2025-05-23 19:22:57,782 - websockets.server - INFO - connection rejected (426 Upgrade Required)
+2025-05-23 19:22:57,784 - websockets.server - ERROR - opening handshake failed
+Traceback (most recent call last):
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/asyncio/server.py", line 356, in conn_handler
+    await connection.handshake(
+    ...<3 lines>...
+    )
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/asyncio/server.py", line 207, in handshake
+    raise self.protocol.handshake_exc
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/server.py", line 138, in accept
+    ) = self.process_request(request)
+        ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/server.py", line 233, in process_request
+    raise InvalidUpgrade(
+        "Connection", ", ".join(connection) if connection else None
+    )
+websockets.exceptions.InvalidUpgrade: missing Connection header

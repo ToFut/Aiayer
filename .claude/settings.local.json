@@ -31,7 +31,9 @@
       "Bash(npm run build:*)",
       "Bash(/Users/segevbin/Desktop/SensAI/Aiayer/start_compatibility_chat.sh)",
       "Bash(curl:*)",
-      "Bash(./start_enhanced_backend.sh:*)"
+      "Bash(./start_enhanced_backend.sh:*)",
+      "Bash(timeout 60 python:*)",
+      "Bash(./start_fixed_backend_test.sh:*)"
     ],
     "deny": []
   }

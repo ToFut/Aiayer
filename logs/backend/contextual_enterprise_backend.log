@@ -1,21 +1,28 @@
-2025-05-23 00:54:55,734 - memory.enhanced_semantic_search - INFO - Enhanced semantic search initialized with embedding dim: 384
-2025-05-23 00:54:55,734 - memory.enhanced_semantic_search - INFO - Hybrid retrieval enabled: True
-2025-05-23 00:54:55,828 - memory.semantic_search_agent - INFO - Loading 414 existing documents from storage
-2025-05-23 00:54:55,872 - memory.semantic_search_agent - INFO - EnterpriseVectorStore initialized with enterprise-grade features
-2025-05-23 00:54:55,873 - memory.semantic_search_agent - INFO - SemanticSearchAgent initialized with enterprise-grade capabilities
-2025-05-23 00:54:55,885 - memory.semantic_search_agent - INFO - Loading 414 existing documents from storage
-2025-05-23 00:54:55,917 - memory.semantic_search_agent - INFO - EnterpriseVectorStore initialized with enterprise-grade features
-2025-05-23 00:54:55,917 - memory.semantic_search_agent - INFO - SemanticSearchAgent initialized with enterprise-grade capabilities
-2025-05-23 00:54:55,917 - __main__ - INFO - Contextual AI Backend initialized - Ollama: True, Memory: Active
-2025-05-23 00:54:55,917 - __main__ - INFO - 🚀 Starting Enhanced Enterprise Backend 8767 with Contextual Memory...
-2025-05-23 00:54:55,917 - __main__ - INFO - 🧠 Contextual AI responses enabled
-2025-05-23 00:54:55,918 - __main__ - INFO - 🔍 Semantic memory integration active
-2025-05-23 00:54:55,918 - __main__ - INFO - 🎯 Modes: Agent, Ask, Suggest, General (all contextual)
-2025-05-23 00:54:55,930 - __main__ - INFO - ✅ Enhanced Enterprise Backend 8767 started successfully
-2025-05-23 00:54:55,930 - __main__ - INFO - 🌐 WebSocket server listening on ws://localhost:8767
-2025-05-23 00:54:55,930 - __main__ - INFO - 🤖 Ollama integration: ✅ Active
-2025-05-23 00:54:55,930 - __main__ - INFO - 🧠 Contextual memory system ready
-2025-05-23 00:54:55,931 - websockets.server - INFO - server listening on 127.0.0.1:8767
-2025-05-23 00:54:55,931 - websockets.server - INFO - server listening on [::1]:8767
-2025-05-23 00:55:05,915 - websockets.server - INFO - connection open
-2025-05-23 00:55:05,916 - __main__ - INFO - Client connected: client_1747986905916 from ::1
+2025-05-23 16:26:35,439 - memory.enhanced_semantic_search - INFO - Enhanced semantic search initialized with embedding dim: 384
+2025-05-23 16:26:35,439 - memory.enhanced_semantic_search - INFO - Hybrid retrieval enabled: True
+2025-05-23 16:26:35,505 - memory.semantic_search_agent - INFO - Loading 97 existing documents from storage
+2025-05-23 16:26:35,513 - memory.semantic_search_agent - INFO - EnterpriseVectorStore initialized with enterprise-grade features
+2025-05-23 16:26:35,513 - memory.semantic_search_agent - INFO - SemanticSearchAgent initialized with enterprise-grade capabilities
+2025-05-23 16:26:35,667 - agent_workflow.input_controller - INFO - Detected screen size: 1470x956
+2025-05-23 16:26:35,685 - memory.semantic_search_agent - INFO - Loading 97 existing documents from storage
+2025-05-23 16:26:35,689 - memory.semantic_search_agent - INFO - EnterpriseVectorStore initialized with enterprise-grade features
+2025-05-23 16:26:35,690 - memory.semantic_search_agent - INFO - SemanticSearchAgent initialized with enterprise-grade capabilities
+2025-05-23 16:26:35,690 - __main__ - INFO - Contextual AI Backend initialized - Ollama: True, Memory: Active
+2025-05-23 16:26:35,690 - __main__ - INFO - 🚀 Starting Enhanced Enterprise Backend 8767 with Contextual Memory...
+2025-05-23 16:26:35,690 - __main__ - INFO - 🧠 Contextual AI responses enabled
+2025-05-23 16:26:35,690 - __main__ - INFO - 🔍 Semantic memory integration active
+2025-05-23 16:26:35,690 - __main__ - INFO - 🎯 Modes: Agent, Ask, Suggest, General (all contextual)
+2025-05-23 16:26:35,691 - __main__ - INFO - ✅ Enhanced Enterprise Backend 8767 started successfully
+2025-05-23 16:26:35,691 - __main__ - INFO - 🌐 WebSocket server listening on ws://localhost:8767
+2025-05-23 16:26:35,691 - __main__ - INFO - 🤖 Ollama integration: ✅ Active
+2025-05-23 16:26:35,691 - __main__ - INFO - 🧠 Contextual memory system ready
+2025-05-23 16:26:35,691 - websockets.server - INFO - server listening on 127.0.0.1:8767
+2025-05-23 16:26:35,691 - websockets.server - INFO - server listening on [::1]:8767
+2025-05-23 16:26:40,881 - websockets.server - INFO - connection open
+2025-05-23 16:26:40,881 - __main__ - INFO - Client connected: client_1748042800881 from ::1
+2025-05-23 16:26:40,882 - websockets.server - INFO - connection open
+2025-05-23 16:26:40,882 - __main__ - INFO - Client connected: client_1748042800882 from ::1
+2025-05-23 16:26:40,886 - __main__ - INFO - Processing contextual register from client_1748042800881
+2025-05-23 16:26:40,886 - __main__ - INFO - Client registration: client_1748042800881 (ui v1.0.0)
+2025-05-23 16:26:45,440 - websockets.server - INFO - connection open
+2025-05-23 16:26:45,440 - __main__ - INFO - Client connected: client_1748042805440 from ::1

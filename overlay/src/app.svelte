@@ -122,7 +122,7 @@
     <NextGenAppleChatWidget 
         show={showChat} 
         initialPosition={getInitialPosition()}
-        wsEndpoint="ws://localhost:8765"
+        wsEndpoint="ws://localhost:8767"
         on:positionchange={handlePositionChange}
         on:close={() => showChat = false}
     />

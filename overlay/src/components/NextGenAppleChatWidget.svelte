@@ -38,6 +38,11 @@
   let soundEnabled = true;
   let modeDropdownOpen = false;
   
+  // Agent mode confirmation state
+  let pendingConfirmation = null;
+  let currentProgress = { progress: 0, currentStep: '', stepNumber: 0, totalSteps: 0 };
+  let progressVisible = false;
+  
   // Apple-inspired mode configurations with enhanced metadata
   const modes = {
     'Ask': {
@@ -341,6 +346,39 @@ I'm your intelligent assistant with four specialized, fully-enhanced modes:
       hideTypingIndicator();
       playSound('message-received');
       
+      // Check if this is an Agent mode response requiring confirmation
+      if (data.requiresConfirmation && data.agentSessionId && currentMode === 'Agent') {
+        console.log('🤖 Agent response with confirmation buttons:', data);
+        
+        pendingConfirmation = {
+          sessionId: data.agentSessionId,
+          response: data.response,
+          confidence: data.confidence || 0.0,
+          riskLevel: data.riskLevel || 'medium',
+          estimatedDuration: data.estimatedDuration || '30 seconds',
+          executionPlan: data.executionPlan || {}
+        };
+        
+        // Add message with confirmation buttons
+        const assistantMessage = {
+          id: Date.now(),
+          type: 'assistant',
+          content: data.response,
+          timestamp: new Date(),
+          confidence: data.confidence || 1.0,
+          mode: data.mode || currentMode,
+          requiresConfirmation: true,
+          agentSessionId: data.agentSessionId,
+          riskLevel: data.riskLevel,
+          estimatedDuration: data.estimatedDuration,
+          executionPlan: data.executionPlan
+        };
+        
+        messages = [...messages, assistantMessage];
+        scrollToBottom();
+        return;
+      }
+      
       // Enhanced message processing with mode-specific formatting
       const processedContent = processResponseByMode(data.response || 'No response received', data.mode || currentMode);
       
@@ -370,6 +408,40 @@ I'm your intelligent assistant with four specialized, fully-enhanced modes:
       hideTypingIndicator();
       showError(data.error || data.message || 'An error occurred');
       playSound('error');
+    }
+    
+    // Handle Agent mode execution progress
+    if (data.type === 'execution_progress' && progressVisible) {
+      console.log('🚀 Execution progress update:', data);
+      currentProgress = {
+        progress: data.progress || 0,
+        currentStep: data.currentStep || '',
+        stepNumber: data.stepNumber || 0,
+        totalSteps: data.totalSteps || 0
+      };
+      playSound('progress-update');
+    }
+    
+    // Handle Agent mode execution completion
+    if (data.type === 'execution_complete') {
+      console.log('✅ Execution completed:', data);
+      progressVisible = false;
+      pendingConfirmation = null;
+      
+      // Add completion message
+      const completionMessage = {
+        id: Date.now(),
+        type: 'assistant',
+        content: `✅ **Task Completed Successfully**\n\n${data.result || 'The automation task has been executed.'}`,
+        timestamp: new Date(),
+        confidence: 1.0,
+        mode: 'Agent',
+        isCompletion: true
+      };
+      
+      messages = [...messages, completionMessage];
+      scrollToBottom();
+      playSound('task-complete');
     }
   }
 
@@ -868,6 +940,100 @@ Please engage in creative brainstorming and ideation:
   function handleInputBlur() {
     inputFocused = false;
   }
+
+  // Agent mode confirmation functions
+  function confirmExecution() {
+    if (!pendingConfirmation) return;
+    
+    console.log('✅ User confirmed execution');
+    playSound('interface-confirm');
+    
+    // Show progress bar
+    progressVisible = true;
+    currentProgress = { progress: 0, currentStep: 'Starting automation...', stepNumber: 0, totalSteps: pendingConfirmation.executionPlan.total_steps || 3 };
+    
+    // Send execution confirmation to backend
+    const payload = {
+      type: "agent_confirmation",
+      action: "execute",
+      sessionId: pendingConfirmation.sessionId,
+      timestamp: new Date().toISOString()
+    };
+    
+    console.log('🚀 Sending execution confirmation:', payload);
+    ws.send(JSON.stringify(payload));
+    
+    // Remove confirmation buttons from the message
+    messages = messages.map(msg => {
+      if (msg.agentSessionId === pendingConfirmation.sessionId) {
+        return { ...msg, requiresConfirmation: false, confirmed: true };
+      }
+      return msg;
+    });
+  }
+
+  function dismissExecution() {
+    if (!pendingConfirmation) return;
+    
+    console.log('❌ User dismissed execution');
+    playSound('interface-cancel');
+    
+    // Send dismissal to backend
+    const payload = {
+      type: "agent_confirmation", 
+      action: "dismiss",
+      sessionId: pendingConfirmation.sessionId,
+      timestamp: new Date().toISOString()
+    };
+    
+    console.log('🛑 Sending execution dismissal:', payload);
+    ws.send(JSON.stringify(payload));
+    
+    // Add dismissal message
+    const dismissalMessage = {
+      id: Date.now(),
+      type: 'assistant',
+      content: '❌ **Task Dismissed**\n\nThe automation task has been cancelled at your request.',
+      timestamp: new Date(),
+      confidence: 1.0,
+      mode: 'Agent',
+      isDismissed: true
+    };
+    
+    messages = [...messages, dismissalMessage];
+    
+    // Clear confirmation state
+    pendingConfirmation = null;
+    progressVisible = false;
+    
+    scrollToBottom();
+  }
+
+  function adjustExecution() {
+    if (!pendingConfirmation) return;
+    
+    console.log('🔧 User requested adjustment');
+    playSound('interface-adjust');
+    
+    // For now, treat adjust as dismiss and ask for clarification
+    const adjustMessage = {
+      id: Date.now(),
+      type: 'assistant',
+      content: '🔧 **Task Adjustment Requested**\n\nPlease provide more specific instructions for how you\'d like me to modify this automation task.',
+      timestamp: new Date(),
+      confidence: 1.0,
+      mode: 'Agent',
+      isAdjustment: true
+    };
+    
+    messages = [...messages, adjustMessage];
+    
+    // Clear confirmation state
+    pendingConfirmation = null;
+    progressVisible = false;
+    
+    scrollToBottom();
+  }
 </script>
 
 {#if show}
@@ -952,6 +1118,34 @@ Please engage in creative brainstorming and ideation:
               {@html message.content.replace(/\n/g, '<br>').replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')}
             </div>
             
+            <!-- Agent Mode Confirmation Buttons -->
+            {#if message.requiresConfirmation && message.type === 'assistant'}
+              <div class="confirmation-buttons" transition:fly={{ y: 10, duration: 300 }}>
+                <div class="confirmation-header">
+                  <div class="risk-indicator" class:low={message.riskLevel === 'low'} class:medium={message.riskLevel === 'medium'} class:high={message.riskLevel === 'high'}>
+                    {message.riskLevel || 'medium'} risk
+                  </div>
+                  <div class="duration-estimate">
+                    ⏱️ ~{message.estimatedDuration || '30 seconds'}
+                  </div>
+                </div>
+                <div class="button-group">
+                  <button class="action-btn execute-btn" on:click={confirmExecution}>
+                    <span class="btn-icon">✅</span>
+                    <span class="btn-text">DO</span>
+                  </button>
+                  <button class="action-btn dismiss-btn" on:click={dismissExecution}>
+                    <span class="btn-icon">❌</span>
+                    <span class="btn-text">Dismiss</span>
+                  </button>
+                  <button class="action-btn adjust-btn" on:click={adjustExecution}>
+                    <span class="btn-icon">🔧</span>
+                    <span class="btn-text">Adjust</span>
+                  </button>
+                </div>
+              </div>
+            {/if}
+            
             <div class="message-meta">
               <span class="timestamp">{formatTime(message.timestamp)}</span>
               {#if message.confidence !== undefined && message.type === 'assistant'}
@@ -984,6 +1178,23 @@ Please engage in creative brainstorming and ideation:
               <div class="dot"></div>
             </div>
             <span class="typing-text progressive">{typingMessage}</span>
+          </div>
+        </div>
+      {/if}
+
+      <!-- Agent Mode Progress Bar -->
+      {#if progressVisible && currentProgress.progress > 0}
+        <div class="progress-container" transition:fade={{ duration: 300 }}>
+          <div class="progress-header">
+            <span class="progress-title">🚀 Executing Automation</span>
+            <span class="progress-percentage">{currentProgress.progress}%</span>
+          </div>
+          <div class="progress-bar">
+            <div class="progress-fill" style="width: {currentProgress.progress}%"></div>
+          </div>
+          <div class="progress-details">
+            <span class="current-step">{currentProgress.currentStep}</span>
+            <span class="step-counter">Step {currentProgress.stepNumber} of {currentProgress.totalSteps}</span>
           </div>
         </div>
       {/if}
@@ -2327,5 +2538,177 @@ Please engage in creative brainstorming and ideation:
     .control-btn {
       border: 1px solid;
     }
+  }
+
+  /* Agent Mode Confirmation Buttons */
+  .confirmation-buttons {
+    margin-top: 12px;
+    padding: 16px;
+    background: rgba(255, 255, 255, 0.9);
+    border: 1px solid rgba(0, 122, 255, 0.2);
+    border-radius: 12px;
+    backdrop-filter: blur(10px);
+  }
+
+  .confirmation-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+    font-size: 12px;
+  }
+
+  .risk-indicator {
+    padding: 4px 8px;
+    border-radius: 8px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .risk-indicator.low {
+    background: rgba(48, 209, 88, 0.15);
+    color: #30D158;
+  }
+
+  .risk-indicator.medium {
+    background: rgba(255, 149, 0, 0.15);
+    color: #FF9500;
+  }
+
+  .risk-indicator.high {
+    background: rgba(255, 59, 48, 0.15);
+    color: #FF3B30;
+  }
+
+  .duration-estimate {
+    color: rgba(0, 0, 0, 0.6);
+    font-weight: 500;
+  }
+
+  .button-group {
+    display: flex;
+    gap: 8px;
+  }
+
+  .action-btn {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 12px 16px;
+    border: none;
+    border-radius: 10px;
+    font-weight: 600;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    backdrop-filter: blur(5px);
+  }
+
+  .execute-btn {
+    background: linear-gradient(135deg, #30D158, #32D74B);
+    color: white;
+    box-shadow: 0 2px 8px rgba(48, 209, 88, 0.3);
+  }
+
+  .execute-btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(48, 209, 88, 0.4);
+  }
+
+  .dismiss-btn {
+    background: linear-gradient(135deg, #FF3B30, #FF6B60);
+    color: white;
+    box-shadow: 0 2px 8px rgba(255, 59, 48, 0.3);
+  }
+
+  .dismiss-btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(255, 59, 48, 0.4);
+  }
+
+  .adjust-btn {
+    background: linear-gradient(135deg, #FF9500, #FFCC00);
+    color: white;
+    box-shadow: 0 2px 8px rgba(255, 149, 0, 0.3);
+  }
+
+  .adjust-btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(255, 149, 0, 0.4);
+  }
+
+  .action-btn:active {
+    transform: scale(0.95);
+  }
+
+  .btn-icon {
+    font-size: 16px;
+  }
+
+  .btn-text {
+    font-size: 14px;
+    font-weight: 600;
+  }
+
+  /* Progress Bar */
+  .progress-container {
+    margin: 20px;
+    padding: 16px;
+    background: rgba(255, 255, 255, 0.9);
+    border: 1px solid rgba(0, 122, 255, 0.2);
+    border-radius: 12px;
+    backdrop-filter: blur(10px);
+  }
+
+  .progress-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+  }
+
+  .progress-title {
+    font-weight: 600;
+    color: rgba(0, 0, 0, 0.9);
+  }
+
+  .progress-percentage {
+    font-weight: 700;
+    color: #007AFF;
+  }
+
+  .progress-bar {
+    height: 8px;
+    background: rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
+    overflow: hidden;
+    margin-bottom: 8px;
+  }
+
+  .progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #007AFF, #5AC8FA);
+    border-radius: 4px;
+    transition: width 0.3s ease;
+  }
+
+  .progress-details {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 12px;
+  }
+
+  .current-step {
+    color: rgba(0, 0, 0, 0.7);
+    font-weight: 500;
+  }
+
+  .step-counter {
+    color: rgba(0, 0, 0, 0.5);
+    font-weight: 500;
   }
 </style>

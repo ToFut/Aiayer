@@ -8,7 +8,7 @@ export class Bridge {
         this.maxReconnectAttempts = options.maxReconnectAttempts || 5;
         this.reconnectDelay = options.reconnectDelay || 1000;
         this.systemContextData = null;
-        this.wsUrl = options.url || 'ws://localhost:8765';  // Default to WebSocket server port
+        this.wsUrl = options.url || 'ws://localhost:8767';  // Connect to enhanced backend with real responses
     }
 
     async connect() {

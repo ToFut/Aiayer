@@ -1,9 +1,9 @@
 {
-  "timestamp": "2025-05-23T02:09:38.197183",
-  "image_hash": "e377a80abf62efd0775dbe524d6e167f",
+  "timestamp": "2025-05-23T18:38:21.634369",
+  "image_hash": "eab0b08480de2f6b11d9514944e87acd",
   "memory_summary": {
-    "timestamp": "2025-05-23T02:09:38.197183",
-    "image_hash": "e377a80abf62efd0775dbe524d6e167f",
+    "timestamp": "2025-05-23T18:38:21.634369",
+    "image_hash": "eab0b08480de2f6b11d9514944e87acd",
     "overall_context": "terminals_general_computing",
     "semantic_summary": "Using Cursor for general_computing in creation stage",
     "activity_classification": "general_usage",
@@ -11,11 +11,11 @@
     "application": {
       "name": "Cursor",
       "detected_type": "terminals",
-      "confidence": 0.4444444444444444
+      "confidence": 0.3333333333333333
     },
     "content": {
       "type": "code",
-      "word_count": 323,
+      "word_count": 262,
       "has_meaningful_text": true,
       "primary_purpose": "development",
       "interaction_level": "active"
@@ -27,12 +27,12 @@
       "productivity_context": "general_usage"
     },
     "key_insights": [
-      "Content-rich screen with 323 words",
+      "Content-rich screen with 262 words",
       "User engaged in general_usage",
       "Active user interaction detected"
     ],
-    "analysis_confidence": 0.4444444444444444,
-    "text_sample": "node \u2014 Aiayer\nSoftware Update\n+ OB: \u00ae macOS Sonoma 14.7.6 is available and will\n\u201cwas\u201d be installed later tonight. nc\nity: Use time-blocking techniques, minimize context switching between applications, leverage AI automation for routine tasks, and maintain a clea \u00a9 Write(file_path: advanced_ui_element_detect:\nLWrote 725 lines to advanced_ui_element_det\n#!/usr/bin/env python3\nns: Enable two-factor authentication, regular password updates, keep software updated, use encrypted storage for sensitive ",
+    "analysis_confidence": 0.3333333333333333,
+    "text_sample": "node \u2014 Aiayer\n\nnode\n\nnode\n\nx\n\n+\n\nray\n\n@ Read(enhanced_agent_automation. py)...\n\nL Read 3@ lines (ctrl+r to expand)\n\nLet me find the exact _create_execution_plan method:\n\nBash(cd /Users/segevbin/Desktop/SensAI/Aiayer && grep -n \"def _create_execution_plan\" enhanced_agent_automation. py)...\n\nL 775:\n\nasync def _create_execution_plan(self, parsed_command: Dict[str, Any], element_matches: List[Dict[str, Any]]) -> Dict[str, Any]:\n\nRead (enhanced_agent_automation. py)...\n\nL Read 4@ lines (ctri+r to exp",
     "llava_insights": {
       "visual_context": "Lightweight visual analysis",
       "application_detected": "detected_via_cv",
@@ -41,9 +41,9 @@
   },
   "synthesized_context": {
     "overall_context": "terminals_general_computing",
-    "confidence": 0.4444444444444444,
+    "confidence": 0.3333333333333333,
     "key_insights": [
-      "Content-rich screen with 323 words",
+      "Content-rich screen with 262 words",
       "User engaged in general_usage",
       "Active user interaction detected"
     ],
@@ -51,5 +51,5 @@
     "activity_classification": "general_usage",
     "memory_priority": "normal"
   },
-  "analysis_duration": 28.75712275505066
+  "analysis_duration": 23.655790090560913
 }

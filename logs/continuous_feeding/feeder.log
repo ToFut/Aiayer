@@ -1,0 +1,87 @@
+2025-05-23 15:08:52,314 - memory.enhanced_semantic_search - INFO - Enhanced semantic search initialized with embedding dim: 384
+2025-05-23 15:08:52,315 - memory.enhanced_semantic_search - INFO - Hybrid retrieval enabled: True
+2025-05-23 15:08:53,023 - sensors.process_sensor - INFO - Process sensor initialized with config: {'interval_sec': 5, 'max_memory_mb': 50, 'cleanup_threshold_mb': 25, 'max_errors': 3, 'exclude_patterns': ['system', 'kernel'], 'max_processes': 100}
+2025-05-23 15:08:53,024 - memory.memory_system - INFO - Memory logger initialized
+2025-05-23 15:08:53,024 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-05-23 15:08:53,024 - memory_diagnostics - INFO - MEMORY EVENT: logger_initialized - {"timestamp": "2025-05-23T15:08:53.024726"}
+2025-05-23 15:08:53,024 - memory.memory_system - INFO - Diagnostic logger initialized
+2025-05-23 15:08:53,024 - INFO - [ConsciousMemory] Initialized as middle layer for memory system
+2025-05-23 15:08:53,024 - memory.conscious_memory - INFO - [ConsciousMemory] Initialized as middle layer for memory system
+2025-05-23 15:08:53,025 - memory.memory_system - INFO - Conscious memory initialized
+2025-05-23 15:08:53,025 - memory.enhanced_semantic_search - INFO - Enhanced semantic search initialized with embedding dim: 384
+2025-05-23 15:08:53,025 - memory.enhanced_semantic_search - INFO - Hybrid retrieval enabled: True
+2025-05-23 15:08:53,025 - memory.memory_system - INFO - Enhanced semantic search initialized
+2025-05-23 15:08:53,025 - memory.memory_system - INFO - 🔄 Loading memory state from /Users/segevbin/Desktop/SensAI/Aiayer/memory/memory/memory_state.json
+2025-05-23 15:08:53,026 - memory.memory_system - INFO -   - Found 6 short-term memory items
+2025-05-23 15:08:53,026 - memory.memory_system - INFO -   - No long-term memory found, initializing empty
+2025-05-23 15:08:53,026 - memory.memory_system - INFO -   - Found context memory with 6 items
+2025-05-23 15:08:53,026 - memory.memory_system - INFO - ✅ Successfully loaded memory state
+2025-05-23 15:08:53,026 - memory_diagnostics - INFO - MEMORY EVENT: memory_state_loaded - {"short_term_count": 6, "long_term_count": 0, "context_count": 6, "timestamp": "2025-05-23T15:08:53.026416"}
+2025-05-23 15:08:53,026 - memory.memory_system - INFO - Memory system initialized
+2025-05-23 15:08:53,429 - memory.enhanced_semantic_search - WARNING - Empty text content in item, skipping indexing: unknown
+2025-05-23 15:08:53,429 - memory.memory_system - INFO - Added data to short-term memory: 7 entries, id=stm_1748038133429
+2025-05-23 15:09:03,967 - memory.enhanced_semantic_search - WARNING - Empty text content in item, skipping indexing: unknown
+2025-05-23 15:09:03,967 - memory.memory_system - INFO - Added data to short-term memory: 8 entries, id=stm_1748038143967
+2025-05-23 15:09:15,079 - memory.enhanced_semantic_search - WARNING - Empty text content in item, skipping indexing: unknown
+2025-05-23 15:09:15,081 - memory.memory_system - INFO - Added data to short-term memory: 9 entries, id=stm_1748038155079
+2025-05-23 15:09:25,835 - memory.enhanced_semantic_search - WARNING - Empty text content in item, skipping indexing: unknown
+2025-05-23 15:09:25,838 - memory.memory_system - INFO - Added data to short-term memory: 10 entries, id=stm_1748038165832
+2025-05-23 15:09:36,146 - memory.enhanced_semantic_search - WARNING - Empty text content in item, skipping indexing: unknown
+2025-05-23 15:09:36,147 - memory.memory_system - INFO - Added data to short-term memory: 11 entries, id=stm_1748038176146
+2025-05-23 15:09:46,617 - memory.enhanced_semantic_search - WARNING - Empty text content in item, skipping indexing: unknown
+2025-05-23 15:09:46,619 - memory.memory_system - INFO - Added data to short-term memory: 12 entries, id=stm_1748038186616
+🚀 SIMPLE CONTINUOUS MEMORY FEEDER
+==================================================
+Feeding real meaningful data directly to memory system
+
+🧠 Initializing memory system...
+✅ Memory system ready
+🚀 STARTING CONTINUOUS MEMORY FEEDING
+Duration: 60 seconds
+📊 Feeding real meaningful data every 10 seconds
+
+Process detection error: '>' not supported between instances of 'NoneType' and 'int'
+✅ Memory entry #1 stored (ID: stm_17480381...) | 59s remaining
+   Activity: general
+   App: Cursor
+   Context: general_computing
+
+Process detection error: '>' not supported between instances of 'NoneType' and 'int'
+✅ Memory entry #2 stored (ID: stm_17480381...) | 49s remaining
+   Activity: general
+   App: Cursor
+   Context: general_computing
+
+Process detection error: '>' not supported between instances of 'NoneType' and 'int'
+✅ Memory entry #3 stored (ID: stm_17480381...) | 37s remaining
+   Activity: general
+   App: Cursor
+   Context: general_computing
+
+Process detection error: '>' not supported between instances of 'NoneType' and 'int'
+✅ Memory entry #4 stored (ID: stm_17480381...) | 27s remaining
+   Activity: general
+   App: Cursor
+   Context: general_computing
+
+Process detection error: '>' not supported between instances of 'NoneType' and 'int'
+✅ Memory entry #5 stored (ID: stm_17480381...) | 16s remaining
+   Activity: general
+   App: Cursor
+   Context: general_computing
+
+Process detection error: '>' not supported between instances of 'NoneType' and 'int'
+✅ Memory entry #6 stored (ID: stm_17480381...) | 6s remaining
+   Activity: general
+   App: Cursor
+   Context: general_computing
+
+💾 Memory state saved manually
+🎯 FEEDING COMPLETE
+   Total entries: 6
+   Memory stored in: memory/memory/memory_state.json
+
+🎯 MEMORY FEEDING SUMMARY:
+   ✅ Entries created: 6
+   📁 Storage: memory/memory/memory_state.json
+   🔍 View: python -c "import json; print(json.dumps(json.load(open('memory/memory/memory_state.json')), indent=2)[:1000])"

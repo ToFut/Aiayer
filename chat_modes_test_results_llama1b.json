@@ -1,0 +1,110 @@
+{
+  "timestamp": "2025-05-23T14:43:48.483034",
+  "model": "llama3.2:1b",
+  "test_results": {
+    "ask": {
+      "mode": "ask",
+      "tests": [
+        {
+          "query": "What is machine learning?",
+          "error": "Unexpected response type: connection_established",
+          "response_time": 0.5860989093780518,
+          "success": false
+        },
+        {
+          "query": "How do I center a div in CSS?",
+          "error": "timed out during opening handshake",
+          "response_time": 10.009958028793335,
+          "success": false
+        },
+        {
+          "query": "What's the difference between Python and JavaScript?",
+          "error": "timed out during opening handshake",
+          "response_time": 10.013937950134277,
+          "success": false
+        }
+      ],
+      "success_rate": 0,
+      "avg_response_time": 0,
+      "avg_quality_score": 0
+    },
+    "agent": {
+      "mode": "agent",
+      "tests": [
+        {
+          "query": "Help me plan a website redesign project",
+          "error": "timed out during opening handshake",
+          "response_time": 10.01827883720398,
+          "success": false
+        },
+        {
+          "query": "I need to optimize my web app performance",
+          "error": "Unexpected response type: connection_established",
+          "response_time": 7.653981924057007,
+          "success": false
+        },
+        {
+          "query": "Create a marketing strategy for a new app",
+          "error": "timed out during opening handshake",
+          "response_time": 10.000545024871826,
+          "success": false
+        }
+      ],
+      "success_rate": 0,
+      "avg_response_time": 0,
+      "avg_quality_score": 0
+    },
+    "suggest": {
+      "mode": "suggest",
+      "tests": [
+        {
+          "query": "I'm stuck on this coding problem",
+          "error": "timed out during opening handshake",
+          "response_time": 10.080635786056519,
+          "success": false
+        },
+        {
+          "query": "What should I learn next in web development?",
+          "error": "Unexpected response type: connection_established",
+          "response_time": 3.466675043106079,
+          "success": false
+        },
+        {
+          "query": "How can I improve my team's productivity?",
+          "error": "timed out during opening handshake",
+          "response_time": 10.004725694656372,
+          "success": false
+        }
+      ],
+      "success_rate": 0,
+      "avg_response_time": 0,
+      "avg_quality_score": 0
+    },
+    "general": {
+      "mode": "general",
+      "tests": [
+        {
+          "query": "Tell me about the latest trends in AI",
+          "error": "timed out during opening handshake",
+          "response_time": 10.001802921295166,
+          "success": false
+        },
+        {
+          "query": "What are some good practices for remote work?",
+          "error": "timed out during opening handshake",
+          "response_time": 10.003456115722656,
+          "success": false
+        },
+        {
+          "query": "Explain the concept of microservices",
+          "error": "Unexpected response type: connection_established",
+          "response_time": 4.404863119125366,
+          "success": false
+        }
+      ],
+      "success_rate": 0,
+      "avg_response_time": 0,
+      "avg_quality_score": 0
+    }
+  }
+}

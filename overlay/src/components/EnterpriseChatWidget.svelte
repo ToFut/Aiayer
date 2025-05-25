@@ -212,6 +212,18 @@ Choose a mode and start chatting!`,
       return;
     }
     
+    // Handle agent progress updates
+    if (data.type === 'agent_progress') {
+      handleProgressUpdate(data);
+      return;
+    }
+    
+    // Handle agent execution completion
+    if (data.type === 'agent_execution_success') {
+      handleExecutionCompletion(data);
+      return;
+    }
+    
     // Handle brain router response format: {success: true, response: "...", mode: "Ask", ...}
     if (data.success !== undefined && data.response) {
       hideTypingIndicator();
@@ -364,6 +376,48 @@ Choose a mode and start chatting!`,
     } else if (action === 'ADJUST') {
       showTypingIndicator('🔧 Adjusting plan...');
     }
+  }
+
+  // PROGRESS TRACKING FUNCTIONS
+  let currentProgress = { session_id: null, step: 0, progress: 0, message: '' };
+  let progressVisible = false;
+
+  function handleProgressUpdate(data) {
+    console.log('📊 Progress update received:', data);
+    
+    currentProgress = {
+      session_id: data.session_id,
+      step: data.step,
+      progress: data.progress,
+      message: data.message
+    };
+    
+    progressVisible = true;
+    
+    // Update the typing indicator with progress
+    showTypingIndicator(data.message);
+  }
+
+  function handleExecutionCompletion(data) {
+    console.log('✅ Execution completed:', data);
+    
+    // Hide progress
+    progressVisible = false;
+    hideTypingIndicator();
+    
+    // Add completion message
+    const completionMessage = {
+      id: Date.now(),
+      type: 'assistant',
+      content: `✅ **Task Completed Successfully!**\n\n${data.summary}`,
+      timestamp: new Date(),
+      confidence: 1.0,
+      mode: 'Agent',
+      executionCompleted: true
+    };
+    
+    messages = [...messages, completionMessage];
+    scrollToBottom();
   }
 
   function showTypingIndicator(customMessage = null) {
@@ -777,7 +831,26 @@ Choose a mode and start chatting!`,
             <div class="dot"></div>
             <div class="dot"></div>
           </div>
-          <span>AI is thinking...</span>
+          <span>{progressVisible ? currentProgress.message : 'AI is thinking...'}</span>
+        </div>
+      {/if}
+
+      {#if progressVisible && currentProgress.progress > 0}
+        <div class="progress-container" transition:fade={{ duration: 300 }}>
+          <div class="progress-header">
+            <span class="progress-title">🚀 Executing Automation</span>
+            <span class="progress-percentage">{currentProgress.progress}%</span>
+          </div>
+          <div class="progress-bar">
+            <div 
+              class="progress-fill" 
+              style="width: {currentProgress.progress}%"
+              transition:scale={{ duration: 500, easing: cubicOut }}
+            ></div>
+          </div>
+          <div class="progress-step">
+            Step {currentProgress.step}/4: {currentProgress.message}
+          </div>
         </div>
       {/if}
     </div>
@@ -2105,6 +2178,90 @@ Choose a mode and start chatting!`,
 
     .message {
       break-inside: avoid;
+    }
+  }
+
+  /* PROGRESS COMPONENT STYLES */
+  .progress-container {
+    background: linear-gradient(135deg, 
+      rgba(255, 59, 48, 0.1) 0%, 
+      rgba(255, 149, 0, 0.1) 100%);
+    border: 1px solid rgba(255, 59, 48, 0.3);
+    border-radius: 12px;
+    padding: 16px;
+    margin: 12px 0;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  }
+
+  .progress-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+  }
+
+  .progress-title {
+    font-weight: 600;
+    color: #fff;
+    font-size: 14px;
+  }
+
+  .progress-percentage {
+    font-weight: 700;
+    color: #FF9500;
+    font-size: 16px;
+  }
+
+  .progress-bar {
+    width: 100%;
+    height: 6px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 3px;
+    overflow: hidden;
+    margin-bottom: 8px;
+  }
+
+  .progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #FF3B30 0%, #FF9500 100%);
+    border-radius: 3px;
+    transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+  }
+
+  .progress-fill::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(90deg, 
+      transparent 0%, 
+      rgba(255, 255, 255, 0.3) 50%, 
+      transparent 100%);
+    animation: shimmer 2s infinite;
+  }
+
+  @keyframes shimmer {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+  }
+
+  .progress-step {
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.8);
+    text-align: center;
+  }
+
+  /* Dark mode progress styles */
+  @media (prefers-color-scheme: dark) {
+    .progress-container {
+      background: linear-gradient(135deg, 
+        rgba(255, 59, 48, 0.15) 0%, 
+        rgba(255, 149, 0, 0.15) 100%);
+      border-color: rgba(255, 59, 48, 0.4);
     }
   }
 </style>

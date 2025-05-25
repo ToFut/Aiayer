@@ -1,0 +1,239 @@
+2025-05-23 17:58:24,755 - memory.enhanced_semantic_search - INFO - Enhanced semantic search initialized with embedding dim: 384
+2025-05-23 17:58:24,755 - memory.enhanced_semantic_search - INFO - Hybrid retrieval enabled: True
+2025-05-23 17:58:24,901 - memory.semantic_search_agent - INFO - Loading 4 existing documents from storage
+2025-05-23 17:58:24,903 - memory.semantic_search_agent - INFO - EnterpriseVectorStore initialized with enterprise-grade features
+2025-05-23 17:58:24,903 - memory.semantic_search_agent - INFO - SemanticSearchAgent initialized with enterprise-grade capabilities
+2025-05-23 17:58:25,249 - agent_workflow.input_controller - INFO - Detected screen size: 1470x956
+2025-05-23 17:58:25,306 - memory.semantic_search_agent - INFO - Loading 4 existing documents from storage
+2025-05-23 17:58:25,306 - memory.semantic_search_agent - INFO - EnterpriseVectorStore initialized with enterprise-grade features
+2025-05-23 17:58:25,306 - memory.semantic_search_agent - INFO - SemanticSearchAgent initialized with enterprise-grade capabilities
+2025-05-23 17:58:25,307 - agent_workflow.input_controller - INFO - Input listeners started successfully
+2025-05-23 17:58:25,307 - agent_workflow.input_controller - INFO - 🚨 Emergency shutdown: Press Ctrl+1 to immediately stop agent
+2025-05-23 17:58:25,329 - llava_processor - INFO - Connected to Ollama API v0.6.8
+2025-05-23 17:58:25,330 - total_screen_analyzer - INFO - LLaVA visual processor initialized for total screen analysis
+2025-05-23 17:58:25,330 - total_screen_analyzer - INFO - Total Screen Analyzer initialized with 1s interval
+2025-05-23 17:58:25,330 - enhanced_agent_automation - INFO - Enhanced Agent Automation initialized with Total Screen Analyzer
+2025-05-23 17:58:25,330 - enhanced_automation_handler - INFO - Enhanced Automation Handler initialized
+2025-05-23 17:58:25,330 - __main__ - INFO - Automation handler initialized for Agent mode
+2025-05-23 17:58:25,330 - __main__ - INFO - Contextual AI Backend initialized - Ollama: True, Memory: Active
+2025-05-23 17:58:25,330 - __main__ - INFO - 🚀 Starting Enhanced Enterprise Backend 8767 with Contextual Memory...
+2025-05-23 17:58:25,330 - __main__ - INFO - 🧠 Contextual AI responses enabled
+2025-05-23 17:58:25,330 - __main__ - INFO - 🔍 Semantic memory integration active
+2025-05-23 17:58:25,330 - __main__ - INFO - 🎯 Modes: Agent, Ask, Suggest, General (all contextual)
+2025-05-23 17:58:25,332 - __main__ - INFO - ✅ Enhanced Enterprise Backend 8767 started successfully
+2025-05-23 17:58:25,332 - __main__ - INFO - 🌐 WebSocket server listening on ws://localhost:8767
+2025-05-23 17:58:25,332 - __main__ - INFO - 🤖 Ollama integration: ✅ Active
+2025-05-23 17:58:25,332 - __main__ - INFO - 🧠 Contextual memory system ready
+2025-05-23 17:58:25,332 - websockets.server - INFO - server listening on 127.0.0.1:8767
+2025-05-23 17:58:25,332 - websockets.server - INFO - server listening on [::1]:8767
+2025-05-23 17:58:28,038 - websockets.server - INFO - connection open
+2025-05-23 17:58:28,038 - __main__ - INFO - Client connected: client_1748048308038 from ::1
+2025-05-23 17:58:28,038 - websockets.server - INFO - connection open
+2025-05-23 17:58:28,038 - __main__ - INFO - Client connected: client_1748048308038 from ::1
+2025-05-23 17:58:28,041 - __main__ - INFO - Processing contextual register from client_1748048308038
+2025-05-23 17:58:28,041 - __main__ - INFO - Client registration: client_1748048308038 (ui v1.0.0)
+2025-05-23 17:58:38,767 - websockets.server - INFO - connection open
+2025-05-23 17:58:38,768 - __main__ - INFO - Client connected: client_1748048318768 from ::1
+2025-05-23 17:58:38,768 - __main__ - INFO - Processing contextual register from client_1748048318768
+2025-05-23 17:58:38,768 - __main__ - INFO - Client registration: client_1748048318768 (unknown v1.0.0)
+/Users/segevbin/Desktop/SensAI/Aiayer/memory/semantic_search_agent.py:336: RuntimeWarning: divide by zero encountered in log
+  idf = np.log(self.total_documents / (self.document_frequencies[token] + 1))
+2025-05-23 17:58:38,772 - memory.semantic_search_agent - INFO - Document eae39eaaad6955e1e975dfeaffa4abbeaf9515adeae6edcf643bc4c286c7fecf added to enterprise vector store
+2025-05-23 17:58:38,772 - memory.semantic_search_agent - INFO - Memory added successfully: eae39eaaad6955e1e975dfeaffa4abbeaf9515adeae6edcf643bc4c286c7fecf
+2025-05-23 17:58:38,773 - memory.semantic_search_agent - INFO - Document 87b3110af9fca08bf6d5e0bdcdf18cd230c17ce4d8c34a17b2759f1a34972f1e added to enterprise vector store
+2025-05-23 17:58:38,774 - memory.semantic_search_agent - INFO - Memory added successfully: 87b3110af9fca08bf6d5e0bdcdf18cd230c17ce4d8c34a17b2759f1a34972f1e
+2025-05-23 17:58:38,775 - memory.semantic_search_agent - INFO - Document 590c37b3a3f51ec57cce9957b22c07a15cc7197096dace43cc2cb84714ea7631 added to enterprise vector store
+2025-05-23 17:58:38,775 - memory.semantic_search_agent - INFO - Memory added successfully: 590c37b3a3f51ec57cce9957b22c07a15cc7197096dace43cc2cb84714ea7631
+2025-05-23 17:58:38,775 - memory.semantic_search_agent - INFO - Document ed2092047a4e4110a98bd71155b6833e6602ec9a4f6e3fb27d8a10e39ff568c7 added to enterprise vector store
+2025-05-23 17:58:38,776 - memory.semantic_search_agent - INFO - Memory added successfully: ed2092047a4e4110a98bd71155b6833e6602ec9a4f6e3fb27d8a10e39ff568c7
+2025-05-23 17:58:38,777 - memory.semantic_search_agent - INFO - Document c4b0cbbab33ca2414af99c41b7c2629ef6d8f5d5b901b656409dc1033cd3d210 added to enterprise vector store
+2025-05-23 17:58:38,777 - memory.semantic_search_agent - INFO - Memory added successfully: c4b0cbbab33ca2414af99c41b7c2629ef6d8f5d5b901b656409dc1033cd3d210
+2025-05-23 17:58:38,777 - memory.semantic_search_agent - INFO - Document dea110e1670683fb7028ff82275f663af52bc868d0226b8aaba2a617a352d800 added to enterprise vector store
+2025-05-23 17:58:38,777 - memory.semantic_search_agent - INFO - Memory added successfully: dea110e1670683fb7028ff82275f663af52bc868d0226b8aaba2a617a352d800
+2025-05-23 17:58:38,778 - memory.semantic_search_agent - INFO - Document 0628c95c7e825211ffa26ec05f49090a6dd5492d9a8f1ad4229829856f65d050 added to enterprise vector store
+2025-05-23 17:58:38,778 - memory.semantic_search_agent - INFO - Memory added successfully: 0628c95c7e825211ffa26ec05f49090a6dd5492d9a8f1ad4229829856f65d050
+2025-05-23 17:58:38,779 - memory.semantic_search_agent - INFO - Document 8625a926c2e325c304e97e02d04984bb2afca8ccbf97127449e052a364b66d3f added to enterprise vector store
+2025-05-23 17:58:38,779 - memory.semantic_search_agent - INFO - Memory added successfully: 8625a926c2e325c304e97e02d04984bb2afca8ccbf97127449e052a364b66d3f
+2025-05-23 17:58:38,780 - memory.semantic_search_agent - INFO - Document c0416b5341e8eaa18ef7b730a2aee38aa3861a3fcb558b9e0b66c416f511bf92 added to enterprise vector store
+2025-05-23 17:58:38,780 - memory.semantic_search_agent - INFO - Memory added successfully: c0416b5341e8eaa18ef7b730a2aee38aa3861a3fcb558b9e0b66c416f511bf92
+2025-05-23 17:58:38,781 - memory.semantic_search_agent - INFO - Document 2f0b6b4b25421353818f1af5476cba77c3a45c5b0043d0b88de180403ff5122b added to enterprise vector store
+2025-05-23 17:58:38,781 - memory.semantic_search_agent - INFO - Memory added successfully: 2f0b6b4b25421353818f1af5476cba77c3a45c5b0043d0b88de180403ff5122b
+2025-05-23 17:58:38,781 - __main__ - INFO - Enterprise contextual knowledge initialized
+2025-05-23 17:58:38,782 - memory.semantic_search_agent - INFO - Document 3c1fa3e63125d3d55faa9138231d56f528205d39de60b07b752710331df7e8c2 added to enterprise vector store
+2025-05-23 17:58:38,782 - memory.semantic_search_agent - INFO - Memory added successfully: 3c1fa3e63125d3d55faa9138231d56f528205d39de60b07b752710331df7e8c2
+2025-05-23 17:58:38,782 - memory.semantic_search_agent - INFO - Similarity search completed in 0.0001s, found 5 results
+2025-05-23 17:58:38,784 - memory.semantic_search_agent - INFO - Search completed successfully in 0.0025s, found 5 results
+2025-05-23 17:58:38,785 - __main__ - INFO - 🎯 [STREAMING] Creating Agent automation plan for: write in notepad SEGEV
+2025-05-23 17:58:38,785 - __main__ - INFO - 🔧 Automation handler available: True
+2025-05-23 17:58:38,785 - enhanced_automation_handler - INFO - Creating execution plan for: 'write in notepad SEGEV'
+2025-05-23 17:58:38,785 - enhanced_agent_automation - INFO - 🧠 Using LLM to parse command: 'write in notepad SEGEV'
+2025-05-23 17:58:42,345 - enhanced_agent_automation - INFO - ✅ LLM successfully parsed command: {'success': True, 'action': 'type', 'target_description': 'notepad', 'text_to_type': 'SEGEV', 'confidence': 0.9, 'original_command': 'write in notepad SEGEV', 'parsing_method': 'llm'}
+2025-05-23 17:58:42,668 - enhanced_agent_automation - INFO - Analyzing current screen with multiple methods...
+2025-05-23 17:58:43,442 - enhanced_agent_automation - INFO - Running ultra-fast UI analysis for automation...
+2025-05-23 17:58:43,444 - enhanced_agent_automation - INFO - Starting fast analysis of 2940x1912 screen
+2025-05-23 17:58:47,361 - enhanced_agent_automation - INFO - Fast analysis completed in 3.92s: 56 UI elements, 192 text elements
+2025-05-23 17:58:47,361 - enhanced_agent_automation - INFO - Sample UI elements detected:
+2025-05-23 17:58:47,361 - enhanced_agent_automation - INFO -   1. widget at (1551, 1842) size: 16x11
+2025-05-23 17:58:47,361 - enhanced_agent_automation - INFO -   2. widget at (1533, 1842) size: 16x11
+2025-05-23 17:58:47,361 - enhanced_agent_automation - INFO -   3. button at (1338, 1838) size: 16x16
+2025-05-23 17:58:47,362 - enhanced_agent_automation - INFO - Skipping slow UI detector for maximum automation speed
+2025-05-23 17:58:47,362 - enhanced_agent_automation - INFO - Adding 56 UI elements from fast analysis
+2025-05-23 17:58:47,366 - enhanced_agent_automation - INFO - Before dedup: 56 UI elements, 187 text elements
+2025-05-23 17:58:47,366 - enhanced_agent_automation - INFO - After dedup: 49 UI elements, 142 text elements
+2025-05-23 17:58:47,366 - enhanced_agent_automation - INFO - Combined elements: 243 total, 191 unique
+2025-05-23 17:58:47,366 - enhanced_agent_automation - INFO - Screen analysis complete: 191 elements detected
+2025-05-23 17:58:47,368 - enhanced_agent_automation - INFO - Found 13 potential matches for 'notepad':
+2025-05-23 17:58:47,368 - enhanced_agent_automation - INFO -   1. patterns", (text_field) - confidence: 0.80
+2025-05-23 17:58:47,368 - enhanced_agent_automation - INFO -   2. command (text_field) - confidence: 0.80
+2025-05-23 17:58:47,368 - enhanced_agent_automation - INFO -   3. with (text_field) - confidence: 0.80
+2025-05-23 17:58:47,368 - __main__ - INFO - 🔧 Plan result: True - No error
+2025-05-23 17:58:47,370 - memory.semantic_search_agent - INFO - Document b24e55e1fd9ee186698b1643b4c0caa225372278e048e5279a7e7b4906fc5c8a added to enterprise vector store
+2025-05-23 17:58:47,370 - memory.semantic_search_agent - INFO - Memory added successfully: b24e55e1fd9ee186698b1643b4c0caa225372278e048e5279a7e7b4906fc5c8a
+2025-05-23 17:58:47,370 - __main__ - INFO - ✅ [STREAMING] Agent automation successful: Automation plan created
+2025-05-23 17:58:58,182 - memory.semantic_search_agent - INFO - Document 39b57e55207bb4c6f138449bafdc1634ae81655da8cd41891a9eb248bdeae3ee added to enterprise vector store
+2025-05-23 17:58:58,183 - memory.semantic_search_agent - INFO - Memory added successfully: 39b57e55207bb4c6f138449bafdc1634ae81655da8cd41891a9eb248bdeae3ee
+2025-05-23 17:58:58,183 - memory.semantic_search_agent - INFO - Similarity search completed in 0.0002s, found 5 results
+2025-05-23 17:58:58,186 - memory.semantic_search_agent - INFO - Search completed successfully in 0.0030s, found 5 results
+2025-05-23 17:59:06,821 - memory.semantic_search_agent - INFO - Document cc96706c672e9cd2bd298c7b23c893643aebd51657718f2ff23ae8a1d6d0030e added to enterprise vector store
+2025-05-23 17:59:06,822 - memory.semantic_search_agent - INFO - Memory added successfully: cc96706c672e9cd2bd298c7b23c893643aebd51657718f2ff23ae8a1d6d0030e
+2025-05-23 17:59:25,308 - websockets.server - INFO - connection open
+2025-05-23 17:59:25,309 - __main__ - INFO - Client connected: client_1748048365309 from ::1
+2025-05-23 17:59:25,309 - __main__ - INFO - Processing contextual register from client_1748048365309
+2025-05-23 17:59:25,309 - __main__ - INFO - Client registration: client_1748048365309 (unknown v1.0.0)
+2025-05-23 17:59:25,311 - memory.semantic_search_agent - INFO - Document dfea53e195d60037f38312ed23f907c5d590fa96315cae95ec6a2da074fafbd9 added to enterprise vector store
+2025-05-23 17:59:25,311 - memory.semantic_search_agent - INFO - Memory added successfully: dfea53e195d60037f38312ed23f907c5d590fa96315cae95ec6a2da074fafbd9
+2025-05-23 17:59:25,311 - memory.semantic_search_agent - INFO - Cache hit for search query
+2025-05-23 17:59:25,311 - __main__ - INFO - 🎯 [STREAMING] Creating Agent automation plan for: write in notepad SEGEV
+2025-05-23 17:59:25,311 - __main__ - INFO - 🔧 Automation handler available: True
+2025-05-23 17:59:25,311 - enhanced_automation_handler - INFO - Creating execution plan for: 'write in notepad SEGEV'
+2025-05-23 17:59:25,311 - enhanced_agent_automation - INFO - 🧠 Using LLM to parse command: 'write in notepad SEGEV'
+2025-05-23 17:59:29,179 - enhanced_agent_automation - INFO - ✅ LLM successfully parsed command: {'success': True, 'action': 'type', 'target_description': 'notepad', 'text_to_type': 'SEGEV', 'confidence': 0.9, 'original_command': 'write in notepad SEGEV', 'parsing_method': 'llm'}
+2025-05-23 17:59:29,481 - enhanced_agent_automation - INFO - Analyzing current screen with multiple methods...
+2025-05-23 17:59:29,850 - enhanced_agent_automation - INFO - Running ultra-fast UI analysis for automation...
+2025-05-23 17:59:29,850 - enhanced_agent_automation - INFO - Starting fast analysis of 2940x1912 screen
+2025-05-23 17:59:33,395 - enhanced_agent_automation - INFO - Fast analysis completed in 3.55s: 52 UI elements, 211 text elements
+2025-05-23 17:59:33,395 - enhanced_agent_automation - INFO - Sample UI elements detected:
+2025-05-23 17:59:33,395 - enhanced_agent_automation - INFO -   1. widget at (1551, 1842) size: 16x11
+2025-05-23 17:59:33,395 - enhanced_agent_automation - INFO -   2. widget at (1533, 1842) size: 16x11
+2025-05-23 17:59:33,395 - enhanced_agent_automation - INFO -   3. button at (1338, 1838) size: 16x16
+2025-05-23 17:59:33,396 - enhanced_agent_automation - INFO - Skipping slow UI detector for maximum automation speed
+2025-05-23 17:59:33,396 - enhanced_agent_automation - INFO - Adding 52 UI elements from fast analysis
+2025-05-23 17:59:33,401 - enhanced_agent_automation - INFO - Before dedup: 52 UI elements, 207 text elements
+2025-05-23 17:59:33,401 - enhanced_agent_automation - INFO - After dedup: 50 UI elements, 145 text elements
+2025-05-23 17:59:33,401 - enhanced_agent_automation - INFO - Combined elements: 259 total, 195 unique
+2025-05-23 17:59:33,401 - enhanced_agent_automation - INFO - Screen analysis complete: 195 elements detected
+2025-05-23 17:59:33,402 - enhanced_agent_automation - INFO - Found 17 potential matches for 'notepad':
+2025-05-23 17:59:33,402 - enhanced_agent_automation - INFO -   1. Timeout (text_field) - confidence: 0.80
+2025-05-23 17:59:33,402 - enhanced_agent_automation - INFO -   2. 1}: (text_field) - confidence: 0.80
+2025-05-23 17:59:33,402 - enhanced_agent_automation - INFO -   3. info(f"@ (text_field) - confidence: 0.80
+2025-05-23 17:59:33,402 - __main__ - INFO - 🔧 Plan result: True - No error
+2025-05-23 17:59:33,405 - memory.semantic_search_agent - INFO - Document c08850ff0384e8dd016b97e23b390c5927979ab2aa2353c9898ec6638d0cd7a4 added to enterprise vector store
+2025-05-23 17:59:33,405 - memory.semantic_search_agent - INFO - Memory added successfully: c08850ff0384e8dd016b97e23b390c5927979ab2aa2353c9898ec6638d0cd7a4
+2025-05-23 17:59:33,405 - __main__ - INFO - ✅ [STREAMING] Agent automation successful: Automation plan created
+2025-05-23 17:59:33,405 - __main__ - INFO - Processing contextual agent_confirmation from client_1748048365309
+2025-05-23 17:59:33,405 - __main__ - INFO - 🎯 Agent confirmation received: sessionId=plan_1748048373, action=EXECUTE
+2025-05-23 17:59:33,405 - __main__ - INFO - 🔍 Available plans: ['plan_1748048327', 'plan_1748048373']
+2025-05-23 17:59:33,405 - __main__ - INFO - 🔄 Mapped action from EXECUTE to DO
+2025-05-23 17:59:33,405 - __main__ - INFO - 🚀 Executing automation plan plan_1748048373
+2025-05-23 17:59:34,908 - enhanced_automation_handler - INFO - Handling user instruction: 'write in notepad SEGEV'
+2025-05-23 17:59:34,908 - enhanced_automation_handler - INFO - Executing automation command: write in notepad SEGEV
+2025-05-23 17:59:34,909 - enhanced_agent_automation - INFO - Executing command: 'write in notepad SEGEV'
+2025-05-23 17:59:34,910 - enhanced_agent_automation - INFO - 🧠 Using LLM to parse command: 'write in notepad SEGEV'
+2025-05-23 17:59:37,112 - enhanced_agent_automation - INFO - ✅ LLM successfully parsed command: {'success': True, 'action': 'type', 'target_description': 'notepad', 'text_to_type': 'SEGEV', 'confidence': 0.9, 'original_command': 'write in notepad SEGEV', 'parsing_method': 'llm'}
+2025-05-23 17:59:37,365 - enhanced_agent_automation - INFO - Analyzing current screen with multiple methods...
+2025-05-23 17:59:37,693 - enhanced_agent_automation - INFO - Running ultra-fast UI analysis for automation...
+2025-05-23 17:59:37,693 - enhanced_agent_automation - INFO - Starting fast analysis of 2940x1912 screen
+2025-05-23 17:59:43,500 - enhanced_agent_automation - INFO - Fast analysis completed in 5.81s: 41 UI elements, 299 text elements
+2025-05-23 17:59:43,501 - enhanced_agent_automation - INFO - Sample UI elements detected:
+2025-05-23 17:59:43,501 - enhanced_agent_automation - INFO -   1. widget at (1551, 1842) size: 16x11
+2025-05-23 17:59:43,501 - enhanced_agent_automation - INFO -   2. widget at (1533, 1842) size: 16x11
+2025-05-23 17:59:43,501 - enhanced_agent_automation - INFO -   3. button at (1338, 1838) size: 16x16
+2025-05-23 17:59:43,502 - enhanced_agent_automation - INFO - Skipping slow UI detector for maximum automation speed
+2025-05-23 17:59:43,502 - enhanced_agent_automation - INFO - Adding 41 UI elements from fast analysis
+2025-05-23 17:59:43,517 - enhanced_agent_automation - INFO - Before dedup: 41 UI elements, 297 text elements
+2025-05-23 17:59:43,517 - enhanced_agent_automation - INFO - After dedup: 37 UI elements, 193 text elements
+2025-05-23 17:59:43,517 - enhanced_agent_automation - INFO - Combined elements: 338 total, 230 unique
+2025-05-23 17:59:43,517 - enhanced_agent_automation - INFO - Screen analysis complete: 230 elements detected
+2025-05-23 17:59:43,519 - enhanced_agent_automation - INFO - Found 4 potential matches for 'notepad':
+2025-05-23 17:59:43,519 - enhanced_agent_automation - INFO -   1. /Users/segevbin/Desktop/SensAI/Aiayer (text_element) - confidence: 0.40
+2025-05-23 17:59:43,519 - enhanced_agent_automation - INFO -   2. memory.enhanced_semantic_search (text_element) - confidence: 0.40
+2025-05-23 17:59:43,519 - enhanced_agent_automation - INFO -   3. final_visual_context_fix. (text_element) - confidence: 0.40
+2025-05-23 17:59:43,519 - enhanced_agent_automation - INFO - === AUTOMATION EXECUTION PLAN ===
+2025-05-23 17:59:43,519 - enhanced_agent_automation - INFO - 🎯 AUTOMATION PLAN:
+Command: write in notepad SEGEV
+Action: TYPE
+
+📍 TARGET ELEMENT:
+• Text: "/Users/segevbin/Desktop/SensAI/Aiayer"
+• Type: text_element
+• Confidence: 0.40
+• Coordinates: (439, 773)
+• Source: total_screen_text
+
+⚡ EXECUTION DETAILS:
+• Will click at: (439, 773)
+• Risk level: medium
+• Reversible: False
+
+🔄 ALTERNATIVES FOUND:
+  1. text_element - "memory.enhanced_semantic_search" (confidence: 0.40)
+  2. text_element - "final_visual_context_fix." (confidence: 0.40)
+2025-05-23 17:59:43,519 - enhanced_agent_automation - INFO - ==================================
+2025-05-23 17:59:43,519 - enhanced_agent_automation - INFO - 💬 USER APPROVAL REQUIRED:
+2025-05-23 17:59:43,519 - enhanced_agent_automation - INFO - Please respond with: DO, Dismiss, or Adjust
+2025-05-23 17:59:43,519 - enhanced_agent_automation - INFO - Waiting for user input...
+2025-05-23 17:59:45,520 - enhanced_agent_automation - INFO - ⚠️ No user input received, defaulting to 'DO' for this test
+2025-05-23 17:59:45,521 - enhanced_agent_automation - INFO - 🚀 Executing approved plan: type
+2025-05-23 17:59:47,002 - agent_workflow.input_controller - INFO - Moved cursor to (439, 773)
+2025-05-23 17:59:47,261 - agent_workflow.input_controller - INFO - Clicked at (439, 773) with left button, 1 times
+2025-05-23 17:59:47,261 - agent_workflow.input_controller - INFO - Typed text: ''
+2025-05-23 17:59:47,762 - enhanced_agent_automation - ERROR - Error verifying typing result: 'EnhancedAgentAutomation' object has no attribute '_analyze_screen'
+2025-05-23 17:59:47,762 - enhanced_agent_automation - INFO - ✅ Successfully typed '' in /Users/segevbin/Desktop/SensAI/Aiayer
+2025-05-23 17:59:47,762 - enhanced_agent_automation - WARNING - ⚠️ Verification inconclusive: Could not confirm text '' on screen
+2025-05-23 17:59:47,762 - enhanced_automation_handler - INFO - Automation command succeeded: write in notepad SEGEV
+2025-05-23 17:59:47,763 - __main__ - ERROR - Error processing message from client_1748048365309: received 1000 (OK); then sent 1000 (OK)
+2025-05-23 17:59:47,763 - __main__ - INFO - Client disconnected: client_1748048365309
+2025-05-23 18:00:35,200 - websockets.server - INFO - connection open
+2025-05-23 18:00:35,201 - __main__ - INFO - Client connected: client_1748048435201 from ::1
+2025-05-23 18:00:35,202 - websockets.server - INFO - connection open
+2025-05-23 18:00:35,202 - __main__ - INFO - Client connected: client_1748048435202 from ::1
+2025-05-23 18:00:35,213 - __main__ - INFO - Processing contextual register from client_1748048435201
+2025-05-23 18:00:35,213 - __main__ - INFO - Client registration: client_1748048435201 (ui v1.0.0)
+2025-05-23 18:00:46,760 - memory.semantic_search_agent - INFO - Document afd233ead6a7944a3ce838757a472b856a05bb88ab772cd53b2b661de558b0e3 added to enterprise vector store
+2025-05-23 18:00:46,760 - memory.semantic_search_agent - INFO - Memory added successfully: afd233ead6a7944a3ce838757a472b856a05bb88ab772cd53b2b661de558b0e3
+2025-05-23 18:00:46,761 - memory.semantic_search_agent - INFO - Similarity search completed in 0.0004s, found 5 results
+2025-05-23 18:00:46,763 - memory.semantic_search_agent - INFO - Search completed successfully in 0.0030s, found 5 results
+2025-05-23 18:00:46,764 - __main__ - INFO - 🎯 [STREAMING] Creating Agent automation plan for: write “SEGEV” in notepad
+2025-05-23 18:00:46,764 - __main__ - INFO - 🔧 Automation handler available: True
+2025-05-23 18:00:46,764 - enhanced_automation_handler - INFO - Creating execution plan for: 'write “SEGEV” in notepad'
+2025-05-23 18:00:46,764 - enhanced_agent_automation - INFO - 🧠 Using LLM to parse command: 'write “SEGEV” in notepad'
+2025-05-23 18:00:50,787 - enhanced_agent_automation - INFO - ✅ LLM successfully parsed command: {'success': True, 'action': 'write', 'target_description': 'notepad', 'text_to_type': 'SEGEV', 'confidence': 0.9, 'original_command': 'write “SEGEV” in notepad', 'parsing_method': 'llm'}
+2025-05-23 18:00:51,161 - enhanced_agent_automation - INFO - Analyzing current screen with multiple methods...
+2025-05-23 18:00:51,535 - enhanced_agent_automation - INFO - Running ultra-fast UI analysis for automation...
+2025-05-23 18:00:51,535 - enhanced_agent_automation - INFO - Starting fast analysis of 2940x1912 screen
+2025-05-23 18:00:53,116 - enhanced_agent_automation - INFO - Fast analysis completed in 1.58s: 593 UI elements, 120 text elements
+2025-05-23 18:00:53,116 - enhanced_agent_automation - INFO - Sample UI elements detected:
+2025-05-23 18:00:53,116 - enhanced_agent_automation - INFO -   1. widget at (51, 1901) size: 24x11
+2025-05-23 18:00:53,116 - enhanced_agent_automation - INFO -   2. widget at (61, 1889) size: 37x13
+2025-05-23 18:00:53,116 - enhanced_agent_automation - INFO -   3. horizontal_panel at (0, 1844) size: 62x17
+2025-05-23 18:00:53,118 - enhanced_agent_automation - INFO - Skipping slow UI detector for maximum automation speed
+2025-05-23 18:00:53,118 - enhanced_agent_automation - INFO - Adding 593 UI elements from fast analysis
+2025-05-23 18:00:53,141 - enhanced_agent_automation - INFO - Before dedup: 593 UI elements, 107 text elements
+2025-05-23 18:00:53,141 - enhanced_agent_automation - INFO - After dedup: 569 UI elements, 90 text elements
+2025-05-23 18:00:53,141 - enhanced_agent_automation - INFO - Combined elements: 700 total, 659 unique
+2025-05-23 18:00:53,141 - enhanced_agent_automation - INFO - Screen analysis complete: 659 elements detected
+2025-05-23 18:00:53,146 - __main__ - INFO - 🔧 Plan result: False - Could not find target element on screen
+2025-05-23 18:00:53,146 - __main__ - WARNING - ⚠️ [STREAMING] Agent automation failed: Could not find target element on screen
+2025-05-23 18:00:56,138 - memory.semantic_search_agent - INFO - Document 25b14ad7ed93caa527d45b3fe8f3589a6dd154de09a79dddd33dae8a698ff0d3 added to enterprise vector store
+2025-05-23 18:00:56,138 - memory.semantic_search_agent - INFO - Memory added successfully: 25b14ad7ed93caa527d45b3fe8f3589a6dd154de09a79dddd33dae8a698ff0d3
+2025-05-23 18:01:17,781 - memory.semantic_search_agent - ERROR - Error adding document 8258207cc3f4bb8fe999393f2b74dde122fe3272dd2d0ac3ae7d96911203c5de: no such table: documents
+2025-05-23 18:01:17,782 - memory.semantic_search_agent - ERROR - Failed to add memory: 8258207cc3f4bb8fe999393f2b74dde122fe3272dd2d0ac3ae7d96911203c5de
+2025-05-23 18:01:17,783 - memory.semantic_search_agent - INFO - Similarity search completed in 0.0003s, found 5 results
+2025-05-23 18:01:17,783 - memory.semantic_search_agent - ERROR - Error getting document b24e55e1fd9ee186698b1643b4c0caa225372278e048e5279a7e7b4906fc5c8a: no such table: documents
+2025-05-23 18:01:17,783 - memory.semantic_search_agent - ERROR - Error getting document 0628c95c7e825211ffa26ec05f49090a6dd5492d9a8f1ad4229829856f65d050: no such table: documents
+2025-05-23 18:01:17,783 - memory.semantic_search_agent - ERROR - Error getting document c08850ff0384e8dd016b97e23b390c5927979ab2aa2353c9898ec6638d0cd7a4: no such table: documents
+2025-05-23 18:01:17,784 - memory.semantic_search_agent - ERROR - Error getting document 2f0b6b4b25421353818f1af5476cba77c3a45c5b0043d0b88de180403ff5122b: no such table: documents
+2025-05-23 18:01:17,784 - memory.semantic_search_agent - ERROR - Error getting document dea110e1670683fb7028ff82275f663af52bc868d0226b8aaba2a617a352d800: no such table: documents
+2025-05-23 18:01:17,784 - memory.semantic_search_agent - INFO - Search completed successfully in 0.0017s, found 0 results
+2025-05-23 18:01:23,036 - memory.semantic_search_agent - ERROR - Error adding document d5f0e11126972e68c0c141c1ddf7b8ad8ad53104e658d874b7f5d6e02c451b71: no such table: documents
+2025-05-23 18:01:23,037 - memory.semantic_search_agent - ERROR - Failed to add memory: d5f0e11126972e68c0c141c1ddf7b8ad8ad53104e658d874b7f5d6e02c451b71

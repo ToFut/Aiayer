@@ -1,0 +1,33 @@
+2025-05-23 19:32:08,756 - __main__ - INFO - Real LLM Backend 8767 initialized
+2025-05-23 19:32:08,756 - __main__ - INFO - Starting Real LLM Backend on port 8767...
+2025-05-23 19:32:08,772 - websockets.server - INFO - server listening on 127.0.0.1:8767
+2025-05-23 19:32:08,773 - websockets.server - INFO - server listening on [::1]:8767
+2025-05-23 19:32:08,773 - __main__ - INFO - ✅ Real LLM Backend is running on ws://localhost:8767
+2025-05-23 19:34:30,850 - websockets.server - INFO - connection open
+2025-05-23 19:34:30,851 - __main__ - INFO - Client connected: client_1748054070851 from ::1
+2025-05-23 19:34:30,853 - __main__ - INFO - Processing chat_request from client_1748054070851
+2025-05-23 19:34:50,868 - __main__ - ERROR - Ollama API error: HTTPConnectionPool(host='localhost', port=11434): Read timed out. (read timeout=20)
+2025-05-23 19:34:50,869 - __main__ - ERROR - Error in chat request: LLM service unavailable: HTTPConnectionPool(host='localhost', port=11434): Read timed out. (read timeout=20)
+2025-05-23 19:34:50,872 - __main__ - INFO - Client disconnected: client_1748054070851
+2025-05-23 19:35:26,102 - websockets.server - INFO - connection open
+2025-05-23 19:35:26,103 - __main__ - INFO - Client connected: client_1748054126103 from ::1
+2025-05-23 19:35:26,104 - __main__ - INFO - Processing chat_request from client_1748054126103
+2025-05-23 19:35:44,980 - __main__ - INFO - Client disconnected: client_1748054126103
+2025-05-23 19:36:15,530 - websockets.server - INFO - connection open
+2025-05-23 19:36:15,532 - __main__ - INFO - Client connected: client_1748054175532 from ::1
+2025-05-23 19:36:15,532 - websockets.server - INFO - connection open
+2025-05-23 19:36:15,532 - __main__ - INFO - Client connected: client_1748054175532 from ::1
+2025-05-23 19:36:15,533 - __main__ - INFO - Processing register from client_1748054175532
+2025-05-23 19:36:27,997 - __main__ - INFO - Processing chat_request from client_1748054175532
+2025-05-24 22:01:55,260 - __main__ - INFO - Processing chat_request from client_1748054175532
+2025-05-24 22:02:43,607 - __main__ - INFO - Processing chat_request from client_1748054175532
+2025-05-24 22:03:00,279 - __main__ - INFO - Processing chat_request from client_1748054175532
+2025-05-24 22:04:12,410 - __main__ - INFO - Processing chat_request from client_1748054175532
+2025-05-24 22:04:25,066 - __main__ - INFO - Client disconnected: client_1748054175532
+2025-05-24 22:04:25,067 - __main__ - INFO - Client disconnected: client_1748054175532
+2025-05-24 22:04:25,145 - websockets.server - INFO - connection open
+2025-05-24 22:04:25,146 - __main__ - INFO - Client connected: client_1748149465146 from ::1
+2025-05-24 22:04:25,147 - websockets.server - INFO - connection open
+2025-05-24 22:04:25,147 - __main__ - INFO - Client connected: client_1748149465147 from ::1
+2025-05-24 22:04:25,147 - __main__ - INFO - Processing register from client_1748149465146
+2025-05-24 22:04:35,910 - __main__ - INFO - Processing chat_request from client_1748149465147

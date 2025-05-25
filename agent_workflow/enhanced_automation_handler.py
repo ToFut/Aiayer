@@ -63,6 +63,103 @@ class EnhancedAutomationHandler:
         
         logger.info("Enhanced Automation Handler initialized")
     
+    async def create_execution_plan(self, instruction: str, context: Optional[Dict[str, Any]] = None) -> Dict[str, Any]:
+        """
+        Create an execution plan without executing it.
+        
+        Args:
+            instruction: Natural language instruction from user
+            context: Optional context about current state
+            
+        Returns:
+            Dict with execution plan details
+        """
+        try:
+            logger.info(f"Creating execution plan for: '{instruction}'")
+            
+            # Use the automation system to generate a plan
+            if self.automation:
+                # Create a plan using the automation system
+                parsed_command = await self.automation._parse_command(instruction)
+                if not parsed_command["success"]:
+                    return {
+                        "success": False,
+                        "error": "Could not understand command",
+                        "instruction": instruction
+                    }
+                
+                # Analyze screen to find target elements
+                analysis_result = await self.automation._analyze_current_screen()
+                if not analysis_result or "elements" not in analysis_result:
+                    return {
+                        "success": False,
+                        "error": "Could not analyze screen",
+                        "instruction": instruction
+                    }
+                
+                # Find target elements
+                element_matches = await self.automation._find_target_elements(
+                    parsed_command, 
+                    analysis_result["elements"]
+                )
+                
+                # Always create a plan, even with weak matches - let the user decide
+                if not element_matches:
+                    # Create a fallback plan with manual target selection
+                    logger.warning(f"No good target matches found for '{parsed_command.get('target_description', 'unknown')}', creating fallback plan")
+                    
+                    # Try to find ANY text fields or clickable elements as fallback
+                    fallback_elements = [
+                        elem for elem in analysis_result["elements"]
+                        if elem.get("element_type") in ["text_field", "input_field", "button", "text_element"]
+                    ][:5]  # Take top 5 as options
+                    
+                    if fallback_elements:
+                        # Use the first fallback element with low confidence
+                        element_matches = [{
+                            **fallback_elements[0],
+                            "confidence": 0.3,  # Low confidence to indicate uncertainty
+                            "match_reason": "fallback_best_guess",
+                            "alternatives": fallback_elements[1:4]  # Provide alternatives
+                        }]
+                        logger.info(f"Created fallback plan with {len(element_matches)} weak matches")
+                    else:
+                        # Last resort: create a generic screen center plan
+                        element_matches = [{
+                            "element_text": "Screen center (manual guidance needed)",
+                            "element_type": "fallback_target",
+                            "position": {"x": 640, "y": 360},  # Screen center approximation
+                            "confidence": 0.1,
+                            "match_reason": "no_targets_found",
+                            "alternatives": []
+                        }]
+                        logger.warning("Created minimal fallback plan - user guidance required")
+                
+                # Create execution plan
+                execution_plan = await self.automation._create_execution_plan(parsed_command, element_matches)
+                
+                return {
+                    "success": True,
+                    "execution_plan": execution_plan,
+                    "instruction": instruction,
+                    "confidence_score": element_matches[0]["confidence"] if element_matches else 0
+                }
+            else:
+                return {
+                    "success": False,
+                    "error": "Automation system not available",
+                    "instruction": instruction
+                }
+                
+        except Exception as e:
+            logger.error(f"Error creating execution plan: {e}")
+            logger.error(traceback.format_exc())
+            return {
+                "success": False,
+                "error": f"Plan creation failed: {str(e)}",
+                "instruction": instruction
+            }
+
     async def handle_user_instruction(self, instruction: str, context: Optional[Dict[str, Any]] = None) -> Dict[str, Any]:
         """
         Handle user instruction and route to appropriate handler.
@@ -158,8 +255,16 @@ class EnhancedAutomationHandler:
         try:
             logger.info(f"Executing automation command: {instruction}")
             
-            # Execute the command using enhanced automation
-            result = await self.automation.execute_command(instruction)
+            # Check if we have a stored plan with pre-parsed details
+            if context and "stored_plan" in context:
+                stored_plan = context["stored_plan"]
+                logger.info(f"Using stored plan details: {stored_plan.get('action', 'unknown')} action")
+                
+                # Execute with stored plan details to avoid re-parsing
+                result = await self.automation.execute_command(instruction, stored_plan)
+            else:
+                # Execute the command using enhanced automation (normal flow)
+                result = await self.automation.execute_command(instruction)
             
             # Add additional metadata
             result["handler"] = "automation"

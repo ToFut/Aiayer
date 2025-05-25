@@ -1,0 +1,33 @@
+{
+  "timestamp": "2025-05-23T15:55:13.834298",
+  "model": "llama3.2:1b",
+  "summary": {
+    "total_modes": 4,
+    "successful_modes": 0,
+    "real_ai_responses": 0,
+    "success_rate": 0.0,
+    "real_ai_rate": 0.0
+  },
+  "results": [
+    {
+      "success": false,
+      "mode": "ask",
+      "error": "Multiple exceptions: [Errno 61] Connect call failed ('::1', 8767, 0, 0), [Errno 61] Connect call failed ('127.0.0.1', 8767)"
+    },
+    {
+      "success": false,
+      "mode": "agent",
+      "error": "Multiple exceptions: [Errno 61] Connect call failed ('::1', 8767, 0, 0), [Errno 61] Connect call failed ('127.0.0.1', 8767)"
+    },
+    {
+      "success": false,
+      "mode": "suggest",
+      "error": "Multiple exceptions: [Errno 61] Connect call failed ('::1', 8767, 0, 0), [Errno 61] Connect call failed ('127.0.0.1', 8767)"
+    },
+    {
+      "success": false,
+      "mode": "general",
+      "error": "Multiple exceptions: [Errno 61] Connect call failed ('::1', 8767, 0, 0), [Errno 61] Connect call failed ('127.0.0.1', 8767)"
+    }
+  ]
+}

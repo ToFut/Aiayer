@@ -1,0 +1,53 @@
+2025-05-23 16:30:32,405 - memory.enhanced_semantic_search - INFO - Enhanced semantic search initialized with embedding dim: 384
+2025-05-23 16:30:32,405 - memory.enhanced_semantic_search - INFO - Hybrid retrieval enabled: True
+2025-05-23 16:30:32,554 - memory.semantic_search_agent - INFO - Loading 111 existing documents from storage
+2025-05-23 16:30:32,560 - memory.semantic_search_agent - INFO - EnterpriseVectorStore initialized with enterprise-grade features
+2025-05-23 16:30:32,560 - memory.semantic_search_agent - INFO - SemanticSearchAgent initialized with enterprise-grade capabilities
+2025-05-23 16:30:32,864 - agent_workflow.input_controller - INFO - Detected screen size: 1470x956
+2025-05-23 16:30:32,960 - memory.semantic_search_agent - INFO - Loading 111 existing documents from storage
+2025-05-23 16:30:32,966 - memory.semantic_search_agent - INFO - EnterpriseVectorStore initialized with enterprise-grade features
+2025-05-23 16:30:32,966 - memory.semantic_search_agent - INFO - SemanticSearchAgent initialized with enterprise-grade capabilities
+2025-05-23 16:30:32,966 - __main__ - INFO - Contextual AI Backend initialized - Ollama: True, Memory: Active
+2025-05-23 16:30:32,966 - __main__ - INFO - 🚀 Starting Enhanced Enterprise Backend 8767 with Contextual Memory...
+2025-05-23 16:30:32,966 - __main__ - INFO - 🧠 Contextual AI responses enabled
+2025-05-23 16:30:32,966 - __main__ - INFO - 🔍 Semantic memory integration active
+2025-05-23 16:30:32,966 - __main__ - INFO - 🎯 Modes: Agent, Ask, Suggest, General (all contextual)
+2025-05-23 16:30:32,968 - __main__ - INFO - ✅ Enhanced Enterprise Backend 8767 started successfully
+2025-05-23 16:30:32,968 - __main__ - INFO - 🌐 WebSocket server listening on ws://localhost:8767
+2025-05-23 16:30:32,968 - __main__ - INFO - 🤖 Ollama integration: ✅ Active
+2025-05-23 16:30:32,968 - __main__ - INFO - 🧠 Contextual memory system ready
+2025-05-23 16:30:32,969 - websockets.server - INFO - server listening on 127.0.0.1:8767
+2025-05-23 16:30:32,969 - websockets.server - INFO - server listening on [::1]:8767
+2025-05-23 16:30:41,663 - websockets.server - INFO - connection open
+2025-05-23 16:30:41,663 - __main__ - INFO - Client connected: client_1748043041663 from ::1
+2025-05-23 16:30:41,664 - __main__ - INFO - Processing contextual register from client_1748043041663
+2025-05-23 16:30:41,664 - __main__ - INFO - Client registration: client_1748043041663 (automation_debug_client v1.0.0)
+/Users/segevbin/Desktop/SensAI/Aiayer/memory/semantic_search_agent.py:336: RuntimeWarning: divide by zero encountered in log
+  idf = np.log(self.total_documents / (self.document_frequencies[token] + 1))
+2025-05-23 16:30:41,665 - memory.semantic_search_agent - INFO - Document ab9abac67a0ec5e34d5cdc83c46648f9f84129a24095c06c81d93643cb3088bd added to enterprise vector store
+2025-05-23 16:30:41,665 - memory.semantic_search_agent - INFO - Memory added successfully: ab9abac67a0ec5e34d5cdc83c46648f9f84129a24095c06c81d93643cb3088bd
+2025-05-23 16:30:41,666 - memory.semantic_search_agent - INFO - Document d88214ee0d9d20f1dd5ea79b0eede4765cc38b3ff04704c0c1fa800c7ee05552 added to enterprise vector store
+2025-05-23 16:30:41,666 - memory.semantic_search_agent - INFO - Memory added successfully: d88214ee0d9d20f1dd5ea79b0eede4765cc38b3ff04704c0c1fa800c7ee05552
+2025-05-23 16:30:41,667 - memory.semantic_search_agent - INFO - Document fbe2a84af077ec72c1596259fcd77bc293335809ba3398b7208313e760a42b8c added to enterprise vector store
+2025-05-23 16:30:41,667 - memory.semantic_search_agent - INFO - Memory added successfully: fbe2a84af077ec72c1596259fcd77bc293335809ba3398b7208313e760a42b8c
+2025-05-23 16:30:41,668 - memory.semantic_search_agent - INFO - Document d58bbb68d5297c14ac81b089c7114749f9a14c321421cfdef9122a190fd4bbc8 added to enterprise vector store
+2025-05-23 16:30:41,668 - memory.semantic_search_agent - INFO - Memory added successfully: d58bbb68d5297c14ac81b089c7114749f9a14c321421cfdef9122a190fd4bbc8
+2025-05-23 16:30:41,668 - memory.semantic_search_agent - INFO - Document 1af6ee89c352643a4098673290150ee57a16e9d606646b7eaf109c28f9117dad added to enterprise vector store
+2025-05-23 16:30:41,668 - memory.semantic_search_agent - INFO - Memory added successfully: 1af6ee89c352643a4098673290150ee57a16e9d606646b7eaf109c28f9117dad
+2025-05-23 16:30:41,669 - memory.semantic_search_agent - INFO - Document 7fdf08eb229eafcd3429e434002071364010f7242f6328ad50c1d87dadfc058e added to enterprise vector store
+2025-05-23 16:30:41,669 - memory.semantic_search_agent - INFO - Memory added successfully: 7fdf08eb229eafcd3429e434002071364010f7242f6328ad50c1d87dadfc058e
+2025-05-23 16:30:41,670 - memory.semantic_search_agent - INFO - Document db15148f56d17fa3a23b2b61c2f96eb01a997d77ce060b13230deae6a80b58d3 added to enterprise vector store
+2025-05-23 16:30:41,670 - memory.semantic_search_agent - INFO - Memory added successfully: db15148f56d17fa3a23b2b61c2f96eb01a997d77ce060b13230deae6a80b58d3
+2025-05-23 16:30:41,670 - memory.semantic_search_agent - INFO - Document c996928775d3342609bb8b45517daff83b5415e3ade7fd8de234a3d26e274709 added to enterprise vector store
+2025-05-23 16:30:41,670 - memory.semantic_search_agent - INFO - Memory added successfully: c996928775d3342609bb8b45517daff83b5415e3ade7fd8de234a3d26e274709
+2025-05-23 16:30:41,671 - memory.semantic_search_agent - INFO - Document 4f04a7c6d6c8d110879f0d7cd060aa755491e269029764fb7097de731add4cf6 added to enterprise vector store
+2025-05-23 16:30:41,671 - memory.semantic_search_agent - INFO - Memory added successfully: 4f04a7c6d6c8d110879f0d7cd060aa755491e269029764fb7097de731add4cf6
+2025-05-23 16:30:41,672 - memory.semantic_search_agent - INFO - Document 44adbd29cf9be08184f362abefcd4452214e40b7a7943519836df29ec43797b5 added to enterprise vector store
+2025-05-23 16:30:41,672 - memory.semantic_search_agent - INFO - Memory added successfully: 44adbd29cf9be08184f362abefcd4452214e40b7a7943519836df29ec43797b5
+2025-05-23 16:30:41,672 - __main__ - INFO - Enterprise contextual knowledge initialized
+2025-05-23 16:30:41,672 - memory.semantic_search_agent - INFO - Document b989b581f980b963a67d1aa05c6a8c4641bb6b13cf1a646cdbda3cc5dcd90571 added to enterprise vector store
+2025-05-23 16:30:41,672 - memory.semantic_search_agent - INFO - Memory added successfully: b989b581f980b963a67d1aa05c6a8c4641bb6b13cf1a646cdbda3cc5dcd90571
+2025-05-23 16:30:41,673 - memory.semantic_search_agent - INFO - Similarity search completed in 0.0005s, found 5 results
+2025-05-23 16:30:41,675 - memory.semantic_search_agent - INFO - Search completed successfully in 0.0027s, found 5 results
+2025-05-23 16:30:44,811 - memory.semantic_search_agent - INFO - Document dece9034527d5aaf6e08426a6f81015123b25ea69dc30f43cc05c0a9503d0635 added to enterprise vector store
+2025-05-23 16:30:44,812 - memory.semantic_search_agent - INFO - Memory added successfully: dece9034527d5aaf6e08426a6f81015123b25ea69dc30f43cc05c0a9503d0635

@@ -1,50 +1,270 @@
 {
   "version": "1.0",
-  "last_update": "2025-05-22T23:14:37.261427",
-  "context": {
-    "active_window": "",
-    "active_app": "Cursor",
-    "active_apps": [
-      "node",
-      "Cursor",
-      "Cursor Helper (Plugin): extension-host [2-2]",
-      "Cursor Helper (Renderer)",
-      "AppleSpell",
-      "Finder",
-      "Cursor Helper (GPU)",
-      "fileproviderd",
-      "PhotosFileProvider",
-      "photolibraryd"
-    ],
-    "window_history": [],
-    "screen_text": "node \u2014 Aiayer\n\nnode x 4+ Fay\n\ne @ Cursor-Inspired Mode Selector Complete!\nI've successfully transformed the mode selector to match Cursor's elegant model selection interface. Here's what you now have:\n\ne Perfect Cursor-Style Positioning\n\nLocated in Input Area: Just like Cursor, the mode selector is now positioned right above the input field where users naturally expect it\nCompact Design: Small, elegant button that shows current mode (Ask, Agent, etc.) with an icon and dropdown arrow\nNon-Intrusiv",
-    "workflow_stage": "refinement",
-    "user_intent": "editing",
-    "semantic_summary": "Using Cursor for general_computing in refinement stage",
-    "system_memory_percent": 90.1
-  },
-  "short_term": [],
-  "long_term": [],
-  "sensor_data": {
-    "screen": {
-      "timestamp": "2025-05-22T23:11:45.945425",
-      "application": "Cursor",
-      "word_count": 333,
-      "activity": "general_computing",
-      "confidence": 0.3888888888888889
-    },
-    "process": {
-      "timestamp": "2025-05-22T23:14:34.758035",
-      "active_processes_count": 20,
-      "top_apps": [
-        "node",
-        "Cursor",
-        "Cursor Helper (Plugin): extension-host [2-2]",
-        "Cursor Helper (Renderer)",
-        "AppleSpell"
+  "last_update": "2025-05-23T15:58:12.756093",
+  "short_term": [
+    {
+      "timestamp": "2025-05-23T15:51:12.856259",
+      "memory_type": "activity_analysis",
+      "user_activity": {
+        "primary_activity": "general",
+        "application_used": "loginwindow",
+        "professional_context": "general_computing",
+        "activity_specifics": [
+          "unknown_activity"
+        ],
+        "productivity_score": 0.24,
+        "confidence_level": 0.3,
+        "engagement_indicators": {
+          "cpu_usage_percent": 0,
+          "memory_usage_percent": 0.1522064208984375,
+          "active_process_count": 5
+        }
+      },
+      "context_analysis": {
+        "workflow_stage": "general_computing",
+        "user_intent": "general_computer_use",
+        "productivity_context": "minimal_activity",
+        "meaningful_interaction": false
+      },
+      "concurrent_activities": [
+        {
+          "app": "loginwindow",
+          "category": "general",
+          "context": "general_computing"
+        },
+        {
+          "app": "WindowManager",
+          "category": "general",
+          "context": "general_computing"
+        },
+        {
+          "app": "nsurlsessiond",
+          "category": "general",
+          "context": "general_computing"
+        }
       ],
-      "memory_usage": 90.1
+      "memory_id": "meaningful_1748040672856"
     },
-    "file": {}
-  }
+    {
+      "timestamp": "2025-05-23T15:51:12.874112",
+      "memory_type": "activity_analysis",
+      "user_activity": {
+        "primary_activity": "development",
+        "application_used": "Cursor Helper (GPU)",
+        "professional_context": "software_engineering",
+        "activity_specifics": [
+          "coding",
+          "debugging",
+          "development_workflow",
+          "programming"
+        ],
+        "productivity_score": 0.77,
+        "confidence_level": 0.95,
+        "engagement_indicators": {
+          "cpu_usage_percent": 4.9,
+          "memory_usage_percent": 0.574493408203125,
+          "active_process_count": 5
+        }
+      },
+      "context_analysis": {
+        "workflow_stage": "active_coding",
+        "user_intent": "ai_assisted_development",
+        "productivity_context": "moderately_productive",
+        "meaningful_interaction": true
+      },
+      "concurrent_activities": [
+        {
+          "app": "node",
+          "category": "general",
+          "context": "general_computing"
+        },
+        {
+          "app": "Python",
+          "category": "general",
+          "context": "general_computing"
+        },
+        {
+          "app": "node",
+          "category": "general",
+          "context": "general_computing"
+        }
+      ],
+      "memory_id": "meaningful_1748040672874"
+    },
+    {
+      "timestamp": "2025-05-23T15:51:17.892853",
+      "memory_type": "activity_analysis",
+      "user_activity": {
+        "primary_activity": "development",
+        "application_used": "Cursor Helper (Renderer)",
+        "professional_context": "software_engineering",
+        "activity_specifics": [
+          "coding",
+          "debugging",
+          "development_workflow",
+          "programming"
+        ],
+        "productivity_score": 0.864,
+        "confidence_level": 0.95,
+        "engagement_indicators": {
+          "cpu_usage_percent": 51.8,
+          "memory_usage_percent": 12.877082824707031,
+          "active_process_count": 5
+        }
+      },
+      "context_analysis": {
+        "workflow_stage": "active_coding",
+        "user_intent": "ai_assisted_development",
+        "productivity_context": "highly_productive",
+        "meaningful_interaction": true
+      },
+      "concurrent_activities": [
+        {
+          "app": "Cursor Helper (Renderer)",
+          "category": "development",
+          "context": "software_engineering"
+        },
+        {
+          "app": "contactsd",
+          "category": "general",
+          "context": "general_computing"
+        },
+        {
+          "app": "node",
+          "category": "general",
+          "context": "general_computing"
+        }
+      ],
+      "memory_id": "meaningful_1748040677892"
+    },
+    {
+      "timestamp": "2025-05-23T15:57:54.732762",
+      "memory_type": "comprehensive_visual_analysis",
+      "analysis_components": [
+        "total_screen_analyzer",
+        "enhanced_memory_deep_ui",
+        "complete_ui_understanding"
+      ],
+      "application_context": {
+        "primary_application": "Cursor",
+        "application_type": "terminals",
+        "confidence": 0.3333333333333333,
+        "detected_by": [
+          "total_screen_analyzer"
+        ]
+      },
+      "visual_understanding": {
+        "ui_elements_detected": [],
+        "visual_design_patterns": [],
+        "layout_structure": {},
+        "interactive_components": [],
+        "color_scheme": "unknown",
+        "visual_hierarchy": []
+      },
+      "content_analysis": {
+        "text_content": "node \u2014 Aiayer\n\nb) node node x ab Fay\n\n@ Working modes: Ask (1/2), Agent (2/2), General (1/2) Failing: Suggest mode completely* Performance: 12.9s first chunk, 26.7s totale\u2019 Quality: 7.2/10 average\n\nUpdate Todos\n\nSummary: llama3.2:1b Implementation with Streaming Complete! @\n\nSuccessfully implemented:\n\n- @ Updated backend to use 1llama3.2:1b model (fast 1B parameter model)\n- @ Added streaming responses for all chat modes\n\n- @ Tested all modes: Ask, Agent, Suggest, General\n\nTest Results:\n\n- Succes",
+        "content_type": "communication",
+        "word_count": 328,
+        "key_topics": [],
+        "semantic_meaning": "",
+        "content_complexity": "unknown"
+      },
+      "user_behavior": {
+        "current_activity": "general_computing",
+        "workflow_stage": "refinement",
+        "user_intent": "editing",
+        "productivity_level": "general_usage",
+        "engagement_indicators": {},
+        "behavioral_patterns": []
+      },
+      "ui_components": {
+        "buttons": [],
+        "forms": [],
+        "navigation": [],
+        "data_displays": [],
+        "interactive_elements": [],
+        "saas_interface_elements": []
+      },
+      "professional_context": {
+        "domain": "unknown",
+        "work_type": "unknown",
+        "tools_in_use": [],
+        "professional_level": "unknown",
+        "collaboration_indicators": []
+      },
+      "memory_priority": "high",
+      "analysis_quality": {
+        "components_successful": 3,
+        "total_components": 4,
+        "completeness_score": 0.75,
+        "confidence_level": 0.5
+      }
+    },
+    {
+      "timestamp": "2025-05-23T15:58:04.148436",
+      "memory_type": "comprehensive_visual_analysis",
+      "analysis_components": [
+        "total_screen_analyzer",
+        "enhanced_memory_deep_ui",
+        "complete_ui_understanding"
+      ],
+      "application_context": {
+        "primary_application": "Cursor",
+        "application_type": "terminals",
+        "confidence": 0.3333333333333333,
+        "detected_by": [
+          "total_screen_analyzer"
+        ]
+      },
+      "visual_understanding": {
+        "ui_elements_detected": [],
+        "visual_design_patterns": [],
+        "layout_structure": {},
+        "interactive_components": [],
+        "color_scheme": "unknown",
+        "visual_hierarchy": []
+      },
+      "content_analysis": {
+        "text_content": "node \u2014 Aiayer\n\nb) node node x ab Fay\n\n@ Working modes: Ask (1/2), Agent (2/2), General (1/2) Failing: Suggest mode completely* Performance: 12.9s first chunk, 26.7s totale\u2019 Quality: 7.2/10 average\n\nUpdate Todos\n\nSummary: llama3.2:1b Implementation with Streaming Complete! @\n\nSuccessfully implemented:\n\n- @ Updated backend to use 1llama3.2:1b model (fast 1B parameter model)\n- @ Added streaming responses for all chat modes\n\n- @ Tested all modes: Ask, Agent, Suggest, General\n\nTest Results:\n\n- Succes",
+        "content_type": "communication",
+        "word_count": 328,
+        "key_topics": [],
+        "semantic_meaning": "",
+        "content_complexity": "unknown"
+      },
+      "user_behavior": {
+        "current_activity": "general_computing",
+        "workflow_stage": "refinement",
+        "user_intent": "editing",
+        "productivity_level": "general_usage",
+        "engagement_indicators": {},
+        "behavioral_patterns": []
+      },
+      "ui_components": {
+        "buttons": [],
+        "forms": [],
+        "navigation": [],
+        "data_displays": [],
+        "interactive_elements": [],
+        "saas_interface_elements": []
+      },
+      "professional_context": {
+        "domain": "unknown",
+        "work_type": "unknown",
+        "tools_in_use": [],
+        "professional_level": "unknown",
+        "collaboration_indicators": []
+      },
+      "memory_priority": "high",
+      "analysis_quality": {
+        "components_successful": 3,
+        "total_components": 4,
+        "completeness_score": 0.75,
+        "confidence_level": 0.5
+      }
+    }
+  ],
+  "long_term": [],
+  "context": {},
+  "sensor_data": {}
 }

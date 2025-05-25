@@ -1,0 +1,2865 @@
+{
+  "basic_analysis": {
+    "screen_info": {
+      "dimensions": "2940x1912",
+      "capture_time": "2025-05-23T15:53:52.184812"
+    },
+    "text_content": {
+      "raw_text": "node \u2014 Aiayer\n\n>] node x 4 Fay\n\nDetailed Activity Specifics: Instead of \"unknown_activity\", now captures specific programming activities\nProductivity Metrics: Real engagement scores based on CPU/memory usage\n\nWorkflow Intelligence: Understands user is in \"\u201cactive_coding\" stage\n\nAI Context Awareness: Detects \"ai_assisted_development\" with Cursor\n\n= | aunw\n\nMemory Quality Metrics:\n\nConfidence Level: 95% (vs 30% for generic)\n\nCPU Usage: 51.8% (high engagement)\n\nMemory Usage: 12.9% (active processing)\n\nContext: Software engineering workflow detected\nMeaningful Interaction: TRUE (vs false for generic)\n\nThe memory system now provides deep professional insights about your development workflow instead of surface-level generic data. It understands you're actively coding with AI assistance in Cursor,\nwith high productivity and engagement levels.\n\nWhat descibred in UI elements? how much he \"SEE\" the screen?\nGreat question! Let me check what UI elements and screen content the current system can actually \"see\" and analyze.\n\nCall(Check current UI detection capabilities)...\n\nL Read(complete_ui_understanding_system. py)...\n\n| Bash(cd /Users/segevbin/Desktop/SensAI/Aiayer && python -c \"import psutil; import time; from datetime import datetime; print('Current screen capture test...'); import subprocess; result =...\nL Done (2 tool uses + 2.8s)\n\nNow let me check what the current memory system can actually \"see\" from the screen and create a comprehensive test:\n\nWrite(file_path: screen_vision_test. py)...\nLWrote 281 lines to screen_vision_test.py\n#!/usr/bin/env python3\n\nScreen Vision Test - Check what the system can actually \"see\" and understand from UI\nimport subprocess\n\nimport json\n\nimport time\n\nfrom datetime import datetime\n\nfrom pathlib import Path\n\n. +271 lines (ctrl+r to expand)\n\nBashicd /Users/segevbin/Desktop/SensAI/Aiayer && python screen_vision_test. py)...\nRunning...\n\nRendering... (@s - # 185 tokens - esc to interrupt)\n\n>t\n\n>> auto-accept edits on x Auto-update failed - Try claude doctor or npm i -g @anthropic-ai/claude-code\n\n3K to generate a command\n",
+      "text_blocks": [
+        {
+          "text": "node",
+          "position": {
+            "x": 1391,
+            "y": 90,
+            "width": 54,
+            "height": 18
+          },
+          "confidence": 93
+        },
+        {
+          "text": "\u2014",
+          "position": {
+            "x": 1454,
+            "y": 100,
+            "width": 19,
+            "height": 2
+          },
+          "confidence": 92
+        },
+        {
+          "text": "Aiayer",
+          "position": {
+            "x": 1481,
+            "y": 90,
+            "width": 69,
+            "height": 22
+          },
+          "confidence": 91
+        },
+        {
+          "text": ">]",
+          "position": {
+            "x": 753,
+            "y": 158,
+            "width": 13,
+            "height": 12
+          },
+          "confidence": 68
+        },
+        {
+          "text": "node",
+          "position": {
+            "x": 786,
+            "y": 153,
+            "width": 58,
+            "height": 21
+          },
+          "confidence": 96
+        },
+        {
+          "text": "x",
+          "position": {
+            "x": 921,
+            "y": 154,
+            "width": 18,
+            "height": 18
+          },
+          "confidence": 90
+        },
+        {
+          "text": "4",
+          "position": {
+            "x": 2724,
+            "y": 149,
+            "width": 26,
+            "height": 26
+          },
+          "confidence": 52
+        },
+        {
+          "text": "Fay",
+          "position": {
+            "x": 2830,
+            "y": 149,
+            "width": 24,
+            "height": 26
+          },
+          "confidence": 41
+        },
+        {
+          "text": "Detailed",
+          "position": {
+            "x": 111,
+            "y": 200,
+            "width": 110,
+            "height": 21
+          },
+          "confidence": 96
+        },
+        {
+          "text": "Activity",
+          "position": {
+            "x": 236,
+            "y": 200,
+            "width": 112,
+            "height": 25
+          },
+          "confidence": 96
+        },
+        {
+          "text": "Specifics:",
+          "position": {
+            "x": 363,
+            "y": 200,
+            "width": 134,
+            "height": 25
+          },
+          "confidence": 96
+        },
+        {
+          "text": "Instead",
+          "position": {
+            "x": 518,
+            "y": 201,
+            "width": 95,
+            "height": 20
+          },
+          "confidence": 96
+        },
+        {
+          "text": "of",
+          "position": {
+            "x": 629,
+            "y": 201,
+            "width": 26,
+            "height": 20
+          },
+          "confidence": 93
+        },
+        {
+          "text": "\"unknown_activity\",",
+          "position": {
+            "x": 672,
+            "y": 201,
+            "width": 259,
+            "height": 24
+          },
+          "confidence": 47
+        },
+        {
+          "text": "now",
+          "position": {
+            "x": 952,
+            "y": 206,
+            "width": 41,
+            "height": 15
+          },
+          "confidence": 96
+        },
+        {
+          "text": "captures",
+          "position": {
+            "x": 1008,
+            "y": 203,
+            "width": 108,
+            "height": 22
+          },
+          "confidence": 96
+        },
+        {
+          "text": "specific",
+          "position": {
+            "x": 1134,
+            "y": 201,
+            "width": 109,
+            "height": 24
+          },
+          "confidence": 96
+        },
+        {
+          "text": "programming",
+          "position": {
+            "x": 1260,
+            "y": 201,
+            "width": 151,
+            "height": 24
+          },
+          "confidence": 96
+        },
+        {
+          "text": "activities",
+          "position": {
+            "x": 1427,
+            "y": 201,
+            "width": 137,
+            "height": 20
+          },
+          "confidence": 96
+        },
+        {
+          "text": "Productivity",
+          "position": {
+            "x": 112,
+            "y": 228,
+            "width": 166,
+            "height": 25
+          },
+          "confidence": 96
+        },
+        {
+          "text": "Metrics:",
+          "position": {
+            "x": 293,
+            "y": 228,
+            "width": 106,
+            "height": 21
+          },
+          "confidence": 96
+        },
+        {
+          "text": "Real",
+          "position": {
+            "x": 419,
+            "y": 229,
+            "width": 54,
+            "height": 20
+          },
+          "confidence": 96
+        },
+        {
+          "text": "engagement",
+          "position": {
+            "x": 489,
+            "y": 231,
+            "width": 137,
+            "height": 22
+          },
+          "confidence": 96
+        },
+        {
+          "text": "scores",
+          "position": {
+            "x": 644,
+            "y": 234,
+            "width": 80,
+            "height": 15
+          },
+          "confidence": 96
+        },
+        {
+          "text": "based",
+          "position": {
+            "x": 742,
+            "y": 229,
+            "width": 67,
+            "height": 20
+          },
+          "confidence": 96
+        },
+        {
+          "text": "on",
+          "position": {
+            "x": 825,
+            "y": 234,
+            "width": 26,
+            "height": 15
+          },
+          "confidence": 93
+        },
+        {
+          "text": "CPU/memory",
+          "position": {
+            "x": 867,
+            "y": 230,
+            "width": 139,
+            "height": 23
+          },
+          "confidence": 91
+        },
+        {
+          "text": "usage",
+          "position": {
+            "x": 1022,
+            "y": 234,
+            "width": 67,
+            "height": 19
+          },
+          "confidence": 95
+        },
+        {
+          "text": "Workflow",
+          "position": {
+            "x": 110,
+            "y": 257,
+            "width": 113,
+            "height": 20
+          },
+          "confidence": 96
+        },
+        {
+          "text": "Intelligence:",
+          "position": {
+            "x": 238,
+            "y": 256,
+            "width": 175,
+            "height": 25
+          },
+          "confidence": 96
+        },
+        {
+          "text": "Understands",
+          "position": {
+            "x": 433,
+            "y": 257,
+            "width": 151,
+            "height": 20
+          },
+          "confidence": 96
+        },
+        {
+          "text": "user",
+          "position": {
+            "x": 602,
+            "y": 262,
+            "width": 54,
+            "height": 15
+          },
+          "confidence": 96
+        },
+        {
+          "text": "is",
+          "position": {
+            "x": 672,
+            "y": 257,
+            "width": 24,
+            "height": 20
+          },
+          "confidence": 96
+        },
+        {
+          "text": "in",
+          "position": {
+            "x": 714,
+            "y": 257,
+            "width": 25,
+            "height": 19
+          },
+          "confidence": 93
+        },
+        {
+          "text": "\"\u201cactive_coding\"",
+          "position": {
+            "x": 756,
+            "y": 257,
+            "width": 205,
+            "height": 24
+          },
+          "confidence": 41
+        },
+        {
+          "text": "stage",
+          "position": {
+            "x": 980,
+            "y": 259,
+            "width": 67,
+            "height": 22
+          },
+          "confidence": 96
+        },
+        {
+          "text": "AI",
+          "position": {
+            "x": 110,
+            "y": 286,
+            "width": 27,
+            "height": 18
+          },
+          "confidence": 96
+        },
+        {
+          "text": "Context",
+          "position": {
+            "x": 153,
+            "y": 286,
+            "width": 96,
+            "height": 19
+          },
+          "confidence": 96
+        },
+        {
+          "text": "Awareness:",
+          "position": {
+            "x": 264,
+            "y": 286,
+            "width": 135,
+            "height": 19
+          },
+          "confidence": 96
+        },
+        {
+          "text": "Detects",
+          "position": {
+            "x": 419,
+            "y": 286,
+            "width": 95,
+            "height": 19
+          },
+          "confidence": 93
+        },
+        {
+          "text": "\"ai_assisted_development\"",
+          "position": {
+            "x": 532,
+            "y": 285,
+            "width": 345,
+            "height": 24
+          },
+          "confidence": 79
+        },
+        {
+          "text": "with",
+          "position": {
+            "x": 894,
+            "y": 285,
+            "width": 55,
+            "height": 19
+          },
+          "confidence": 96
+        },
+        {
+          "text": "Cursor",
+          "position": {
+            "x": 965,
+            "y": 286,
+            "width": 83,
+            "height": 19
+          },
+          "confidence": 96
+        },
+        {
+          "text": "=",
+          "position": {
+            "x": 65,
+            "y": 354,
+            "width": 29,
+            "height": 13
+          },
+          "confidence": 36
+        },
+        {
+          "text": "|",
+          "position": {
+            "x": 70,
+            "y": 339,
+            "width": 20,
+            "height": 7
+          },
+          "confidence": 71
+        },
+        {
+          "text": "Memory",
+          "position": {
+            "x": 111,
+            "y": 342,
+            "width": 83,
+            "height": 23
+          },
+          "confidence": 96
+        },
+        {
+          "text": "Quality",
+          "position": {
+            "x": 209,
+            "y": 340,
+            "width": 97,
+            "height": 25
+          },
+          "confidence": 96
+        },
+        {
+          "text": "Metrics:",
+          "position": {
+            "x": 321,
+            "y": 340,
+            "width": 107,
+            "height": 21
+          },
+          "confidence": 96
+        },
+        {
+          "text": "Confidence",
+          "position": {
+            "x": 97,
+            "y": 396,
+            "width": 139,
+            "height": 21
+          },
+          "confidence": 96
+        },
+        {
+          "text": "Level:",
+          "position": {
+            "x": 252,
+            "y": 397,
+            "width": 77,
+            "height": 20
+          },
+          "confidence": 96
+        },
+        {
+          "text": "95%",
+          "position": {
+            "x": 349,
+            "y": 398,
+            "width": 41,
+            "height": 19
+          },
+          "confidence": 95
+        },
+        {
+          "text": "(vs",
+          "position": {
+            "x": 408,
+            "y": 396,
+            "width": 36,
+            "height": 22
+          },
+          "confidence": 95
+        },
+        {
+          "text": "30%",
+          "position": {
+            "x": 461,
+            "y": 398,
+            "width": 41,
+            "height": 19
+          },
+          "confidence": 96
+        },
+        {
+          "text": "for",
+          "position": {
+            "x": 518,
+            "y": 397,
+            "width": 40,
+            "height": 20
+          },
+          "confidence": 96
+        },
+        {
+          "text": "generic)",
+          "position": {
+            "x": 573,
+            "y": 396,
+            "width": 107,
+            "height": 25
+          },
+          "confidence": 96
+        },
+        {
+          "text": "CPU",
+          "position": {
+            "x": 97,
+            "y": 426,
+            "width": 41,
+            "height": 19
+          },
+          "confidence": 95
+        },
+        {
+          "text": "Usage:",
+          "position": {
+            "x": 153,
+            "y": 426,
+            "width": 78,
+            "height": 23
+          },
+          "confidence": 96
+        },
+        {
+          "text": "51.8%",
+          "position": {
+            "x": 251,
+            "y": 426,
+            "width": 69,
+            "height": 19
+          },
+          "confidence": 96
+        },
+        {
+          "text": "(high",
+          "position": {
+            "x": 338,
+            "y": 424,
+            "width": 65,
+            "height": 25
+          },
+          "confidence": 96
+        },
+        {
+          "text": "engagement)",
+          "position": {
+            "x": 419,
+            "y": 424,
+            "width": 149,
+            "height": 25
+          },
+          "confidence": 96
+        },
+        {
+          "text": "Memory",
+          "position": {
+            "x": 97,
+            "y": 454,
+            "width": 83,
+            "height": 23
+          },
+          "confidence": 96
+        },
+        {
+          "text": "Usage:",
+          "position": {
+            "x": 195,
+            "y": 454,
+            "width": 78,
+            "height": 23
+          },
+          "confidence": 96
+        },
+        {
+          "text": "12.9%",
+          "position": {
+            "x": 294,
+            "y": 454,
+            "width": 68,
+            "height": 19
+          },
+          "confidence": 96
+        },
+        {
+          "text": "(active",
+          "position": {
+            "x": 380,
+            "y": 452,
+            "width": 93,
+            "height": 22
+          },
+          "confidence": 96
+        },
+        {
+          "text": "processing)",
+          "position": {
+            "x": 490,
+            "y": 452,
+            "width": 148,
+            "height": 25
+          },
+          "confidence": 96
+        },
+        {
+          "text": "Context:",
+          "position": {
+            "x": 97,
+            "y": 482,
+            "width": 106,
+            "height": 19
+          },
+          "confidence": 96
+        },
+        {
+          "text": "Software",
+          "position": {
+            "x": 223,
+            "y": 481,
+            "width": 110,
+            "height": 20
+          },
+          "confidence": 96
+        },
+        {
+          "text": "engineering",
+          "position": {
+            "x": 349,
+            "y": 481,
+            "width": 152,
+            "height": 24
+          },
+          "confidence": 96
+        },
+        {
+          "text": "workflow",
+          "position": {
+            "x": 516,
+            "y": 481,
+            "width": 113,
+            "height": 20
+          },
+          "confidence": 96
+        },
+        {
+          "text": "detected",
+          "position": {
+            "x": 643,
+            "y": 481,
+            "width": 110,
+            "height": 20
+          },
+          "confidence": 96
+        },
+        {
+          "text": "Meaningful",
+          "position": {
+            "x": 97,
+            "y": 508,
+            "width": 138,
+            "height": 25
+          },
+          "confidence": 95
+        },
+        {
+          "text": "Interaction:",
+          "position": {
+            "x": 252,
+            "y": 508,
+            "width": 161,
+            "height": 21
+          },
+          "confidence": 96
+        },
+        {
+          "text": "TRUE",
+          "position": {
+            "x": 432,
+            "y": 510,
+            "width": 55,
+            "height": 19
+          },
+          "confidence": 95
+        },
+        {
+          "text": "(vs",
+          "position": {
+            "x": 506,
+            "y": 508,
+            "width": 36,
+            "height": 22
+          },
+          "confidence": 95
+        },
+        {
+          "text": "false",
+          "position": {
+            "x": 560,
+            "y": 509,
+            "width": 67,
+            "height": 20
+          },
+          "confidence": 96
+        },
+        {
+          "text": "for",
+          "position": {
+            "x": 644,
+            "y": 509,
+            "width": 40,
+            "height": 20
+          },
+          "confidence": 95
+        },
+        {
+          "text": "generic)",
+          "position": {
+            "x": 699,
+            "y": 508,
+            "width": 107,
+            "height": 25
+          },
+          "confidence": 95
+        },
+        {
+          "text": "The",
+          "position": {
+            "x": 68,
+            "y": 565,
+            "width": 41,
+            "height": 20
+          },
+          "confidence": 96
+        },
+        {
+          "text": "memory",
+          "position": {
+            "x": 125,
+            "y": 570,
+            "width": 83,
+            "height": 19
+          },
+          "confidence": 96
+        },
+        {
+          "text": "system",
+          "position": {
+            "x": 224,
+            "y": 567,
+            "width": 82,
+            "height": 22
+          },
+          "confidence": 96
+        },
+        {
+          "text": "now",
+          "position": {
+            "x": 322,
+            "y": 570,
+            "width": 41,
+            "height": 15
+          },
+          "confidence": 96
+        },
+        {
+          "text": "provides",
+          "position": {
+            "x": 378,
+            "y": 565,
+            "width": 108,
+            "height": 24
+          },
+          "confidence": 96
+        },
+        {
+          "text": "deep",
+          "position": {
+            "x": 503,
+            "y": 565,
+            "width": 55,
+            "height": 24
+          },
+          "confidence": 96
+        },
+        {
+          "text": "professional",
+          "position": {
+            "x": 573,
+            "y": 564,
+            "width": 166,
+            "height": 25
+          },
+          "confidence": 96
+        },
+        {
+          "text": "insights",
+          "position": {
+            "x": 755,
+            "y": 564,
+            "width": 110,
+            "height": 25
+          },
+          "confidence": 96
+        },
+        {
+          "text": "about",
+          "position": {
+            "x": 881,
+            "y": 565,
+            "width": 67,
+            "height": 20
+          },
+          "confidence": 96
+        },
+        {
+          "text": "your",
+          "position": {
+            "x": 965,
+            "y": 570,
+            "width": 55,
+            "height": 19
+          },
+          "confidence": 96
+        },
+        {
+          "text": "development",
+          "position": {
+            "x": 1035,
+            "y": 565,
+            "width": 151,
+            "height": 24
+          },
+          "confidence": 96
+        },
+        {
+          "text": "workflow",
+          "position": {
+            "x": 1202,
+            "y": 565,
+            "width": 113,
+            "height": 20
+          },
+          "confidence": 96
+        },
+        {
+          "text": "instead",
+          "position": {
+            "x": 1330,
+            "y": 565,
+            "width": 95,
+            "height": 20
+          },
+          "confidence": 96
+        },
+        {
+          "text": "of",
+          "position": {
+            "x": 1441,
+            "y": 565,
+            "width": 26,
+            "height": 20
+          },
+          "confidence": 93
+        },
+        {
+          "text": "surface-level",
+          "position": {
+            "x": 1484,
+            "y": 565,
+            "width": 179,
+            "height": 20
+          },
+          "confidence": 69
+        },
+        {
+          "text": "generic",
+          "position": {
+            "x": 1679,
+            "y": 565,
+            "width": 96,
+            "height": 24
+          },
+          "confidence": 96
+        },
+        {
+          "text": "data.",
+          "position": {
+            "x": 1791,
+            "y": 565,
+            "width": 64,
+            "height": 20
+          },
+          "confidence": 96
+        },
+        {
+          "text": "It",
+          "position": {
+            "x": 1876,
+            "y": 566,
+            "width": 24,
+            "height": 18
+          },
+          "confidence": 95
+        },
+        {
+          "text": "understands",
+          "position": {
+            "x": 1918,
+            "y": 565,
+            "width": 150,
+            "height": 20
+          },
+          "confidence": 96
+        },
+        {
+          "text": "you're",
+          "position": {
+            "x": 2085,
+            "y": 565,
+            "width": 82,
+            "height": 24
+          },
+          "confidence": 96
+        },
+        {
+          "text": "actively",
+          "position": {
+            "x": 2183,
+            "y": 565,
+            "width": 111,
+            "height": 24
+          },
+          "confidence": 96
+        },
+        {
+          "text": "coding",
+          "position": {
+            "x": 2310,
+            "y": 565,
+            "width": 81,
+            "height": 24
+          },
+          "confidence": 96
+        },
+        {
+          "text": "with",
+          "position": {
+            "x": 2406,
+            "y": 565,
+            "width": 55,
+            "height": 19
+          },
+          "confidence": 96
+        },
+        {
+          "text": "AI",
+          "position": {
+            "x": 2476,
+            "y": 566,
+            "width": 26,
+            "height": 18
+          },
+          "confidence": 96
+        },
+        {
+          "text": "assistance",
+          "position": {
+            "x": 2519,
+            "y": 565,
+            "width": 138,
+            "height": 20
+          },
+          "confidence": 96
+        },
+        {
+          "text": "in",
+          "position": {
+            "x": 2674,
+            "y": 565,
+            "width": 25,
+            "height": 19
+          },
+          "confidence": 96
+        },
+        {
+          "text": "Cursor,",
+          "position": {
+            "x": 2715,
+            "y": 566,
+            "width": 92,
+            "height": 22
+          },
+          "confidence": 96
+        },
+        {
+          "text": "with",
+          "position": {
+            "x": 68,
+            "y": 593,
+            "width": 55,
+            "height": 19
+          },
+          "confidence": 96
+        },
+        {
+          "text": "high",
+          "position": {
+            "x": 140,
+            "y": 593,
+            "width": 53,
+            "height": 24
+          },
+          "confidence": 96
+        },
+        {
+          "text": "productivity",
+          "position": {
+            "x": 210,
+            "y": 593,
+            "width": 166,
+            "height": 24
+          },
+          "confidence": 96
+        },
+        {
+          "text": "and",
+          "position": {
+            "x": 391,
+            "y": 593,
+            "width": 40,
+            "height": 20
+          },
+          "confidence": 96
+        },
+        {
+          "text": "engagement",
+          "position": {
+            "x": 447,
+            "y": 595,
+            "width": 137,
+            "height": 22
+          },
+          "confidence": 96
+        },
+        {
+          "text": "levels.",
+          "position": {
+            "x": 602,
+            "y": 593,
+            "width": 91,
+            "height": 20
+          },
+          "confidence": 95
+        },
+        {
+          "text": "What",
+          "position": {
+            "x": 68,
+            "y": 649,
+            "width": 54,
+            "height": 19
+          },
+          "confidence": 93
+        },
+        {
+          "text": "descibred",
+          "position": {
+            "x": 139,
+            "y": 649,
+            "width": 123,
+            "height": 19
+          },
+          "confidence": 92
+        },
+        {
+          "text": "in",
+          "position": {
+            "x": 281,
+            "y": 650,
+            "width": 23,
+            "height": 18
+          },
+          "confidence": 96
+        },
+        {
+          "text": "UI",
+          "position": {
+            "x": 322,
+            "y": 650,
+            "width": 24,
+            "height": 18
+          },
+          "confidence": 96
+        },
+        {
+          "text": "elements?",
+          "position": {
+            "x": 363,
+            "y": 649,
+            "width": 123,
+            "height": 19
+          },
+          "confidence": 96
+        },
+        {
+          "text": "how",
+          "position": {
+            "x": 504,
+            "y": 649,
+            "width": 40,
+            "height": 19
+          },
+          "confidence": 96
+        },
+        {
+          "text": "much",
+          "position": {
+            "x": 559,
+            "y": 649,
+            "width": 53,
+            "height": 19
+          },
+          "confidence": 95
+        },
+        {
+          "text": "he",
+          "position": {
+            "x": 630,
+            "y": 649,
+            "width": 25,
+            "height": 19
+          },
+          "confidence": 95
+        },
+        {
+          "text": "\"SEE\"",
+          "position": {
+            "x": 672,
+            "y": 650,
+            "width": 65,
+            "height": 18
+          },
+          "confidence": 95
+        },
+        {
+          "text": "the",
+          "position": {
+            "x": 755,
+            "y": 649,
+            "width": 40,
+            "height": 19
+          },
+          "confidence": 96
+        },
+        {
+          "text": "screen?",
+          "position": {
+            "x": 812,
+            "y": 650,
+            "width": 94,
+            "height": 18
+          },
+          "confidence": 96
+        },
+        {
+          "text": "Great",
+          "position": {
+            "x": 69,
+            "y": 706,
+            "width": 67,
+            "height": 19
+          },
+          "confidence": 96
+        },
+        {
+          "text": "question!",
+          "position": {
+            "x": 153,
+            "y": 705,
+            "width": 120,
+            "height": 24
+          },
+          "confidence": 96
+        },
+        {
+          "text": "Let",
+          "position": {
+            "x": 294,
+            "y": 706,
+            "width": 38,
+            "height": 19
+          },
+          "confidence": 96
+        },
+        {
+          "text": "me",
+          "position": {
+            "x": 349,
+            "y": 710,
+            "width": 26,
+            "height": 15
+          },
+          "confidence": 96
+        },
+        {
+          "text": "check",
+          "position": {
+            "x": 392,
+            "y": 705,
+            "width": 68,
+            "height": 20
+          },
+          "confidence": 96
+        },
+        {
+          "text": "what",
+          "position": {
+            "x": 474,
+            "y": 705,
+            "width": 54,
+            "height": 20
+          },
+          "confidence": 95
+        },
+        {
+          "text": "UI",
+          "position": {
+            "x": 545,
+            "y": 706,
+            "width": 25,
+            "height": 19
+          },
+          "confidence": 95
+        },
+        {
+          "text": "elements",
+          "position": {
+            "x": 587,
+            "y": 705,
+            "width": 109,
+            "height": 20
+          },
+          "confidence": 96
+        },
+        {
+          "text": "and",
+          "position": {
+            "x": 713,
+            "y": 705,
+            "width": 40,
+            "height": 20
+          },
+          "confidence": 96
+        },
+        {
+          "text": "screen",
+          "position": {
+            "x": 770,
+            "y": 710,
+            "width": 81,
+            "height": 15
+          },
+          "confidence": 96
+        },
+        {
+          "text": "content",
+          "position": {
+            "x": 868,
+            "y": 707,
+            "width": 94,
+            "height": 18
+          },
+          "confidence": 96
+        },
+        {
+          "text": "the",
+          "position": {
+            "x": 979,
+            "y": 705,
+            "width": 40,
+            "height": 20
+          },
+          "confidence": 96
+        },
+        {
+          "text": "current",
+          "position": {
+            "x": 1036,
+            "y": 707,
+            "width": 94,
+            "height": 18
+          },
+          "confidence": 96
+        },
+        {
+          "text": "system",
+          "position": {
+            "x": 1148,
+            "y": 707,
+            "width": 82,
+            "height": 22
+          },
+          "confidence": 95
+        },
+        {
+          "text": "can",
+          "position": {
+            "x": 1246,
+            "y": 710,
+            "width": 39,
+            "height": 15
+          },
+          "confidence": 95
+        },
+        {
+          "text": "actually",
+          "position": {
+            "x": 1301,
+            "y": 705,
+            "width": 111,
+            "height": 24
+          },
+          "confidence": 96
+        },
+        {
+          "text": "\"see\"",
+          "position": {
+            "x": 1428,
+            "y": 705,
+            "width": 65,
+            "height": 20
+          },
+          "confidence": 94
+        },
+        {
+          "text": "and",
+          "position": {
+            "x": 1511,
+            "y": 705,
+            "width": 40,
+            "height": 20
+          },
+          "confidence": 95
+        },
+        {
+          "text": "analyze.",
+          "position": {
+            "x": 1567,
+            "y": 705,
+            "width": 106,
+            "height": 24
+          },
+          "confidence": 95
+        },
+        {
+          "text": "Call(Check",
+          "position": {
+            "x": 69,
+            "y": 760,
+            "width": 139,
+            "height": 22
+          },
+          "confidence": 90
+        },
+        {
+          "text": "current",
+          "position": {
+            "x": 224,
+            "y": 763,
+            "width": 94,
+            "height": 18
+          },
+          "confidence": 96
+        },
+        {
+          "text": "UI",
+          "position": {
+            "x": 335,
+            "y": 762,
+            "width": 25,
+            "height": 19
+          },
+          "confidence": 96
+        },
+        {
+          "text": "detection",
+          "position": {
+            "x": 377,
+            "y": 761,
+            "width": 124,
+            "height": 20
+          },
+          "confidence": 96
+        },
+        {
+          "text": "capabilities)...",
+          "position": {
+            "x": 518,
+            "y": 760,
+            "width": 194,
+            "height": 25
+          },
+          "confidence": 95
+        },
+        {
+          "text": "L",
+          "position": {
+            "x": 79,
+            "y": 787,
+            "width": 13,
+            "height": 24
+          },
+          "confidence": 41
+        },
+        {
+          "text": "Read(complete_ui_understanding_system.",
+          "position": {
+            "x": 111,
+            "y": 788,
+            "width": 587,
+            "height": 25
+          },
+          "confidence": 79
+        },
+        {
+          "text": "py)...",
+          "position": {
+            "x": 640,
+            "y": 783,
+            "width": 63,
+            "height": 35
+          },
+          "confidence": 92
+        },
+        {
+          "text": "|",
+          "position": {
+            "x": 79,
+            "y": 815,
+            "width": 13,
+            "height": 24
+          },
+          "confidence": 37
+        },
+        {
+          "text": "Bash(cd",
+          "position": {
+            "x": 111,
+            "y": 816,
+            "width": 96,
+            "height": 22
+          },
+          "confidence": 89
+        },
+        {
+          "text": "/Users/segevbin/Desktop/SensAI/Aiayer",
+          "position": {
+            "x": 223,
+            "y": 817,
+            "width": 517,
+            "height": 24
+          },
+          "confidence": 89
+        },
+        {
+          "text": "&&",
+          "position": {
+            "x": 754,
+            "y": 818,
+            "width": 28,
+            "height": 19
+          },
+          "confidence": 93
+        },
+        {
+          "text": "python",
+          "position": {
+            "x": 798,
+            "y": 817,
+            "width": 81,
+            "height": 24
+          },
+          "confidence": 93
+        },
+        {
+          "text": "-c",
+          "position": {
+            "x": 895,
+            "y": 822,
+            "width": 26,
+            "height": 15
+          },
+          "confidence": 89
+        },
+        {
+          "text": "\"import",
+          "position": {
+            "x": 938,
+            "y": 817,
+            "width": 94,
+            "height": 24
+          },
+          "confidence": 93
+        },
+        {
+          "text": "psutil;",
+          "position": {
+            "x": 1050,
+            "y": 817,
+            "width": 91,
+            "height": 24
+          },
+          "confidence": 92
+        },
+        {
+          "text": "import",
+          "position": {
+            "x": 1162,
+            "y": 817,
+            "width": 80,
+            "height": 24
+          },
+          "confidence": 96
+        },
+        {
+          "text": "time;",
+          "position": {
+            "x": 1259,
+            "y": 817,
+            "width": 64,
+            "height": 23
+          },
+          "confidence": 96
+        },
+        {
+          "text": "from",
+          "position": {
+            "x": 1344,
+            "y": 817,
+            "width": 54,
+            "height": 20
+          },
+          "confidence": 96
+        },
+        {
+          "text": "datetime",
+          "position": {
+            "x": 1413,
+            "y": 817,
+            "width": 110,
+            "height": 20
+          },
+          "confidence": 96
+        },
+        {
+          "text": "import",
+          "position": {
+            "x": 1540,
+            "y": 817,
+            "width": 80,
+            "height": 24
+          },
+          "confidence": 95
+        },
+        {
+          "text": "datetime;",
+          "position": {
+            "x": 1637,
+            "y": 817,
+            "width": 120,
+            "height": 23
+          },
+          "confidence": 93
+        },
+        {
+          "text": "print('Current",
+          "position": {
+            "x": 1778,
+            "y": 816,
+            "width": 192,
+            "height": 25
+          },
+          "confidence": 67
+        },
+        {
+          "text": "screen",
+          "position": {
+            "x": 1988,
+            "y": 822,
+            "width": 81,
+            "height": 15
+          },
+          "confidence": 95
+        },
+        {
+          "text": "capture",
+          "position": {
+            "x": 2086,
+            "y": 819,
+            "width": 95,
+            "height": 22
+          },
+          "confidence": 93
+        },
+        {
+          "text": "test...');",
+          "position": {
+            "x": 2197,
+            "y": 816,
+            "width": 134,
+            "height": 24
+          },
+          "confidence": 90
+        },
+        {
+          "text": "import",
+          "position": {
+            "x": 2352,
+            "y": 817,
+            "width": 80,
+            "height": 24
+          },
+          "confidence": 96
+        },
+        {
+          "text": "subprocess;",
+          "position": {
+            "x": 2450,
+            "y": 817,
+            "width": 147,
+            "height": 24
+          },
+          "confidence": 96
+        },
+        {
+          "text": "result",
+          "position": {
+            "x": 2620,
+            "y": 817,
+            "width": 78,
+            "height": 20
+          },
+          "confidence": 95
+        },
+        {
+          "text": "L",
+          "position": {
+            "x": 79,
+            "y": 843,
+            "width": 13,
+            "height": 24
+          },
+          "confidence": 92
+        },
+        {
+          "text": "Done",
+          "position": {
+            "x": 111,
+            "y": 846,
+            "width": 54,
+            "height": 19
+          },
+          "confidence": 96
+        },
+        {
+          "text": "(2",
+          "position": {
+            "x": 184,
+            "y": 844,
+            "width": 23,
+            "height": 22
+          },
+          "confidence": 96
+        },
+        {
+          "text": "tool",
+          "position": {
+            "x": 223,
+            "y": 845,
+            "width": 54,
+            "height": 20
+          },
+          "confidence": 96
+        },
+        {
+          "text": "uses",
+          "position": {
+            "x": 294,
+            "y": 850,
+            "width": 52,
+            "height": 15
+          },
+          "confidence": 96
+        },
+        {
+          "text": "+",
+          "position": {
+            "x": 367,
+            "y": 853,
+            "width": 4,
+            "height": 5
+          },
+          "confidence": 33
+        },
+        {
+          "text": "2.8s)",
+          "position": {
+            "x": 391,
+            "y": 844,
+            "width": 65,
+            "height": 22
+          },
+          "confidence": 89
+        },
+        {
+          "text": "Now",
+          "position": {
+            "x": 68,
+            "y": 902,
+            "width": 43,
+            "height": 19
+          },
+          "confidence": 96
+        },
+        {
+          "text": "let",
+          "position": {
+            "x": 126,
+            "y": 901,
+            "width": 38,
+            "height": 20
+          },
+          "confidence": 94
+        },
+        {
+          "text": "me",
+          "position": {
+            "x": 181,
+            "y": 906,
+            "width": 26,
+            "height": 15
+          },
+          "confidence": 96
+        },
+        {
+          "text": "check",
+          "position": {
+            "x": 224,
+            "y": 901,
+            "width": 68,
+            "height": 20
+          },
+          "confidence": 96
+        },
+        {
+          "text": "what",
+          "position": {
+            "x": 306,
+            "y": 901,
+            "width": 54,
+            "height": 20
+          },
+          "confidence": 96
+        },
+        {
+          "text": "the",
+          "position": {
+            "x": 377,
+            "y": 901,
+            "width": 40,
+            "height": 20
+          },
+          "confidence": 96
+        },
+        {
+          "text": "current",
+          "position": {
+            "x": 434,
+            "y": 903,
+            "width": 94,
+            "height": 18
+          },
+          "confidence": 96
+        },
+        {
+          "text": "memory",
+          "position": {
+            "x": 545,
+            "y": 906,
+            "width": 83,
+            "height": 19
+          },
+          "confidence": 96
+        },
+        {
+          "text": "system",
+          "position": {
+            "x": 644,
+            "y": 903,
+            "width": 82,
+            "height": 22
+          },
+          "confidence": 96
+        },
+        {
+          "text": "can",
+          "position": {
+            "x": 742,
+            "y": 906,
+            "width": 39,
+            "height": 15
+          },
+          "confidence": 96
+        },
+        {
+          "text": "actually",
+          "position": {
+            "x": 797,
+            "y": 901,
+            "width": 111,
+            "height": 24
+          },
+          "confidence": 96
+        },
+        {
+          "text": "\"see\"",
+          "position": {
+            "x": 924,
+            "y": 901,
+            "width": 65,
+            "height": 20
+          },
+          "confidence": 95
+        },
+        {
+          "text": "from",
+          "position": {
+            "x": 1008,
+            "y": 901,
+            "width": 54,
+            "height": 20
+          },
+          "confidence": 96
+        },
+        {
+          "text": "the",
+          "position": {
+            "x": 1077,
+            "y": 901,
+            "width": 40,
+            "height": 20
+          },
+          "confidence": 96
+        },
+        {
+          "text": "screen",
+          "position": {
+            "x": 1134,
+            "y": 906,
+            "width": 81,
+            "height": 15
+          },
+          "confidence": 96
+        },
+        {
+          "text": "and",
+          "position": {
+            "x": 1231,
+            "y": 901,
+            "width": 40,
+            "height": 20
+          },
+          "confidence": 96
+        },
+        {
+          "text": "create",
+          "position": {
+            "x": 1288,
+            "y": 903,
+            "width": 81,
+            "height": 18
+          },
+          "confidence": 96
+        },
+        {
+          "text": "a",
+          "position": {
+            "x": 1385,
+            "y": 906,
+            "width": 12,
+            "height": 15
+          },
+          "confidence": 96
+        },
+        {
+          "text": "comprehensive",
+          "position": {
+            "x": 1414,
+            "y": 901,
+            "width": 179,
+            "height": 24
+          },
+          "confidence": 96
+        },
+        {
+          "text": "test:",
+          "position": {
+            "x": 1609,
+            "y": 903,
+            "width": 64,
+            "height": 18
+          },
+          "confidence": 96
+        },
+        {
+          "text": "Write(file_path:",
+          "position": {
+            "x": 68,
+            "y": 956,
+            "width": 219,
+            "height": 25
+          },
+          "confidence": 91
+        },
+        {
+          "text": "screen_vision_test.",
+          "position": {
+            "x": 308,
+            "y": 956,
+            "width": 320,
+            "height": 25
+          },
+          "confidence": 91
+        },
+        {
+          "text": "LWrote",
+          "position": {
+            "x": 79,
+            "y": 983,
+            "width": 86,
+            "height": 24
+          },
+          "confidence": 87
+        },
+        {
+          "text": "281",
+          "position": {
+            "x": 181,
+            "y": 986,
+            "width": 41,
+            "height": 19
+          },
+          "confidence": 96
+        },
+        {
+          "text": "lines",
+          "position": {
+            "x": 238,
+            "y": 985,
+            "width": 66,
+            "height": 20
+          },
+          "confidence": 96
+        },
+        {
+          "text": "to",
+          "position": {
+            "x": 321,
+            "y": 987,
+            "width": 26,
+            "height": 18
+          },
+          "confidence": 93
+        },
+        {
+          "text": "screen_vision_test.py",
+          "position": {
+            "x": 364,
+            "y": 984,
+            "width": 292,
+            "height": 25
+          },
+          "confidence": 90
+        },
+        {
+          "text": "#!/usr/bin/env",
+          "position": {
+            "x": 110,
+            "y": 1013,
+            "width": 195,
+            "height": 21
+          },
+          "confidence": 92
+        },
+        {
+          "text": "python3",
+          "position": {
+            "x": 322,
+            "y": 1013,
+            "width": 95,
+            "height": 24
+          },
+          "confidence": 92
+        },
+        {
+          "text": "Screen",
+          "position": {
+            "x": 112,
+            "y": 1070,
+            "width": 80,
+            "height": 18
+          },
+          "confidence": 96
+        },
+        {
+          "text": "Vision",
+          "position": {
+            "x": 209,
+            "y": 1070,
+            "width": 81,
+            "height": 18
+          },
+          "confidence": 96
+        },
+        {
+          "text": "Test",
+          "position": {
+            "x": 306,
+            "y": 1070,
+            "width": 54,
+            "height": 18
+          },
+          "confidence": 93
+        },
+        {
+          "text": "-",
+          "position": {
+            "x": 377,
+            "y": 1079,
+            "width": 13,
+            "height": 3
+          },
+          "confidence": 63
+        },
+        {
+          "text": "Check",
+          "position": {
+            "x": 406,
+            "y": 1069,
+            "width": 68,
+            "height": 19
+          },
+          "confidence": 96
+        },
+        {
+          "text": "what",
+          "position": {
+            "x": 488,
+            "y": 1069,
+            "width": 54,
+            "height": 19
+          },
+          "confidence": 96
+        },
+        {
+          "text": "the",
+          "position": {
+            "x": 559,
+            "y": 1069,
+            "width": 40,
+            "height": 19
+          },
+          "confidence": 96
+        },
+        {
+          "text": "system",
+          "position": {
+            "x": 616,
+            "y": 1071,
+            "width": 81,
+            "height": 22
+          },
+          "confidence": 96
+        },
+        {
+          "text": "can",
+          "position": {
+            "x": 714,
+            "y": 1074,
+            "width": 38,
+            "height": 14
+          },
+          "confidence": 96
+        },
+        {
+          "text": "actually",
+          "position": {
+            "x": 769,
+            "y": 1069,
+            "width": 110,
+            "height": 24
+          },
+          "confidence": 96
+        },
+        {
+          "text": "\"see\"",
+          "position": {
+            "x": 896,
+            "y": 1070,
+            "width": 65,
+            "height": 18
+          },
+          "confidence": 95
+        },
+        {
+          "text": "and",
+          "position": {
+            "x": 979,
+            "y": 1069,
+            "width": 39,
+            "height": 19
+          },
+          "confidence": 96
+        },
+        {
+          "text": "understand",
+          "position": {
+            "x": 1036,
+            "y": 1069,
+            "width": 136,
+            "height": 19
+          },
+          "confidence": 96
+        },
+        {
+          "text": "from",
+          "position": {
+            "x": 1190,
+            "y": 1069,
+            "width": 53,
+            "height": 19
+          },
+          "confidence": 96
+        },
+        {
+          "text": "UI",
+          "position": {
+            "x": 1260,
+            "y": 1070,
+            "width": 24,
+            "height": 18
+          },
+          "confidence": 96
+        },
+        {
+          "text": "import",
+          "position": {
+            "x": 113,
+            "y": 1125,
+            "width": 79,
+            "height": 24
+          },
+          "confidence": 96
+        },
+        {
+          "text": "subprocess",
+          "position": {
+            "x": 210,
+            "y": 1125,
+            "width": 136,
+            "height": 24
+          },
+          "confidence": 96
+        },
+        {
+          "text": "import",
+          "position": {
+            "x": 113,
+            "y": 1153,
+            "width": 79,
+            "height": 24
+          },
+          "confidence": 96
+        },
+        {
+          "text": "json",
+          "position": {
+            "x": 210,
+            "y": 1153,
+            "width": 53,
+            "height": 24
+          },
+          "confidence": 96
+        },
+        {
+          "text": "import",
+          "position": {
+            "x": 113,
+            "y": 1181,
+            "width": 79,
+            "height": 24
+          },
+          "confidence": 96
+        },
+        {
+          "text": "time",
+          "position": {
+            "x": 209,
+            "y": 1181,
+            "width": 54,
+            "height": 20
+          },
+          "confidence": 96
+        },
+        {
+          "text": "from",
+          "position": {
+            "x": 112,
+            "y": 1209,
+            "width": 54,
+            "height": 19
+          },
+          "confidence": 96
+        },
+        {
+          "text": "datetime",
+          "position": {
+            "x": 181,
+            "y": 1209,
+            "width": 110,
+            "height": 20
+          },
+          "confidence": 95
+        },
+        {
+          "text": "import",
+          "position": {
+            "x": 309,
+            "y": 1209,
+            "width": 79,
+            "height": 24
+          },
+          "confidence": 96
+        },
+        {
+          "text": "datetime",
+          "position": {
+            "x": 405,
+            "y": 1209,
+            "width": 110,
+            "height": 20
+          },
+          "confidence": 96
+        },
+        {
+          "text": "from",
+          "position": {
+            "x": 112,
+            "y": 1237,
+            "width": 54,
+            "height": 19
+          },
+          "confidence": 93
+        },
+        {
+          "text": "pathlib",
+          "position": {
+            "x": 182,
+            "y": 1237,
+            "width": 95,
+            "height": 24
+          },
+          "confidence": 91
+        },
+        {
+          "text": "import",
+          "position": {
+            "x": 295,
+            "y": 1237,
+            "width": 79,
+            "height": 24
+          },
+          "confidence": 96
+        },
+        {
+          "text": "Path",
+          "position": {
+            "x": 392,
+            "y": 1237,
+            "width": 53,
+            "height": 20
+          },
+          "confidence": 96
+        },
+        {
+          "text": ".",
+          "position": {
+            "x": 116,
+            "y": 1280,
+            "width": 8,
+            "height": 4
+          },
+          "confidence": 80
+        },
+        {
+          "text": "+271",
+          "position": {
+            "x": 139,
+            "y": 1266,
+            "width": 54,
+            "height": 18
+          },
+          "confidence": 93
+        },
+        {
+          "text": "lines",
+          "position": {
+            "x": 211,
+            "y": 1265,
+            "width": 65,
+            "height": 19
+          },
+          "confidence": 88
+        },
+        {
+          "text": "(ctrl+r",
+          "position": {
+            "x": 297,
+            "y": 1264,
+            "width": 93,
+            "height": 22
+          },
+          "confidence": 88
+        },
+        {
+          "text": "to",
+          "position": {
+            "x": 405,
+            "y": 1267,
+            "width": 26,
+            "height": 17
+          },
+          "confidence": 96
+        },
+        {
+          "text": "expand)",
+          "position": {
+            "x": 447,
+            "y": 1264,
+            "width": 93,
+            "height": 25
+          },
+          "confidence": 96
+        },
+        {
+          "text": "/Users/segevbin/Desktop/SensAI/Aiayer",
+          "position": {
+            "x": 181,
+            "y": 1321,
+            "width": 517,
+            "height": 24
+          },
+          "confidence": 90
+        },
+        {
+          "text": "&&",
+          "position": {
+            "x": 712,
+            "y": 1322,
+            "width": 28,
+            "height": 19
+          },
+          "confidence": 92
+        },
+        {
+          "text": "python",
+          "position": {
+            "x": 756,
+            "y": 1321,
+            "width": 81,
+            "height": 24
+          },
+          "confidence": 93
+        },
+        {
+          "text": "screen_vision_test.",
+          "position": {
+            "x": 854,
+            "y": 1320,
+            "width": 320,
+            "height": 25
+          },
+          "confidence": 31
+        },
+        {
+          "text": "py)...",
+          "position": {
+            "x": 1114,
+            "y": 1316,
+            "width": 64,
+            "height": 33
+          },
+          "confidence": 31
+        },
+        {
+          "text": "Running...",
+          "position": {
+            "x": 112,
+            "y": 1350,
+            "width": 110,
+            "height": 23
+          },
+          "confidence": 93
+        },
+        {
+          "text": "Rendering...",
+          "position": {
+            "x": 69,
+            "y": 1405,
+            "width": 139,
+            "height": 24
+          },
+          "confidence": 77
+        },
+        {
+          "text": "(@s",
+          "position": {
+            "x": 227,
+            "y": 1404,
+            "width": 35,
+            "height": 22
+          },
+          "confidence": 87
+        },
+        {
+          "text": "-",
+          "position": {
+            "x": 284,
+            "y": 1414,
+            "width": 3,
+            "height": 3
+          },
+          "confidence": 51
+        },
+        {
+          "text": "#",
+          "position": {
+            "x": 306,
+            "y": 1411,
+            "width": 14,
+            "height": 13
+          },
+          "confidence": 33
+        },
+        {
+          "text": "185",
+          "position": {
+            "x": 336,
+            "y": 1406,
+            "width": 39,
+            "height": 18
+          },
+          "confidence": 96
+        },
+        {
+          "text": "tokens",
+          "position": {
+            "x": 391,
+            "y": 1405,
+            "width": 81,
+            "height": 19
+          },
+          "confidence": 92
+        },
+        {
+          "text": "-",
+          "position": {
+            "x": 494,
+            "y": 1414,
+            "width": 3,
+            "height": 3
+          },
+          "confidence": 66
+        },
+        {
+          "text": "esc",
+          "position": {
+            "x": 517,
+            "y": 1410,
+            "width": 40,
+            "height": 14
+          },
+          "confidence": 84
+        },
+        {
+          "text": "to",
+          "position": {
+            "x": 573,
+            "y": 1407,
+            "width": 26,
+            "height": 17
+          },
+          "confidence": 96
+        },
+        {
+          "text": "interrupt)",
+          "position": {
+            "x": 617,
+            "y": 1404,
+            "width": 133,
+            "height": 25
+          },
+          "confidence": 96
+        },
+        {
+          "text": ">t",
+          "position": {
+            "x": 69,
+            "y": 1486,
+            "width": 41,
+            "height": 28
+          },
+          "confidence": 42
+        },
+        {
+          "text": ">>",
+          "position": {
+            "x": 70,
+            "y": 1550,
+            "width": 24,
+            "height": 12
+          },
+          "confidence": 87
+        },
+        {
+          "text": "auto-accept",
+          "position": {
+            "x": 111,
+            "y": 1547,
+            "width": 151,
+            "height": 22
+          },
+          "confidence": 85
+        },
+        {
+          "text": "edits",
+          "position": {
+            "x": 279,
+            "y": 1545,
+            "width": 67,
+            "height": 20
+          },
+          "confidence": 96
+        },
+        {
+          "text": "on",
+          "position": {
+            "x": 363,
+            "y": 1550,
+            "width": 26,
+            "height": 15
+          },
+          "confidence": 96
+        },
+        {
+          "text": "x",
+          "position": {
+            "x": 1791,
+            "y": 1549,
+            "width": 12,
+            "height": 15
+          },
+          "confidence": 93
+        },
+        {
+          "text": "Auto-update",
+          "position": {
+            "x": 1818,
+            "y": 1545,
+            "width": 153,
+            "height": 24
+          },
+          "confidence": 89
+        },
+        {
+          "text": "failed",
+          "position": {
+            "x": 1988,
+            "y": 1545,
+            "width": 80,
+            "height": 19
+          },
+          "confidence": 93
+        },
+        {
+          "text": "-",
+          "position": {
+            "x": 2089,
+            "y": 1553,
+            "width": 4,
+            "height": 5
+          },
+          "confidence": 61
+        },
+        {
+          "text": "Try",
+          "position": {
+            "x": 2112,
+            "y": 1546,
+            "width": 42,
+            "height": 23
+          },
+          "confidence": 96
+        },
+        {
+          "text": "claude",
+          "position": {
+            "x": 2170,
+            "y": 1545,
+            "width": 82,
+            "height": 19
+          },
+          "confidence": 96
+        },
+        {
+          "text": "doctor",
+          "position": {
+            "x": 2267,
+            "y": 1545,
+            "width": 83,
+            "height": 19
+          },
+          "confidence": 96
+        },
+        {
+          "text": "or",
+          "position": {
+            "x": 2365,
+            "y": 1550,
+            "width": 27,
+            "height": 14
+          },
+          "confidence": 93
+        },
+        {
+          "text": "npm",
+          "position": {
+            "x": 2408,
+            "y": 1550,
+            "width": 40,
+            "height": 19
+          },
+          "confidence": 93
+        },
+        {
+          "text": "i",
+          "position": {
+            "x": 2463,
+            "y": 1544,
+            "width": 13,
+            "height": 20
+          },
+          "confidence": 93
+        },
+        {
+          "text": "-g",
+          "position": {
+            "x": 2491,
+            "y": 1550,
+            "width": 26,
+            "height": 19
+          },
+          "confidence": 88
+        },
+        {
+          "text": "@anthropic-ai/claude-code",
+          "position": {
+            "x": 2532,
+            "y": 1544,
+            "width": 350,
+            "height": 25
+          },
+          "confidence": 70
+        },
+        {
+          "text": "3K",
+          "position": {
+            "x": 1339,
+            "y": 1838,
+            "width": 29,
+            "height": 15
+          },
+          "confidence": 80
+        },
+        {
+          "text": "to",
+          "position": {
+            "x": 1375,
+            "y": 1839,
+            "width": 18,
+            "height": 14
+          },
+          "confidence": 96
+        },
+        {
+          "text": "generate",
+          "position": {
+            "x": 1401,
+            "y": 1839,
+            "width": 84,
+            "height": 18
+          },
+          "confidence": 96
+        },
+        {
+          "text": "a",
+          "position": {
+            "x": 1493,
+            "y": 1842,
+            "width": 9,
+            "height": 11
+          },
+          "confidence": 96
+        },
+        {
+          "text": "command",
+          "position": {
+            "x": 1510,
+            "y": 1838,
+            "width": 92,
+            "height": 15
+          },
+          "confidence": 96
+        }
+      ],
+      "word_count": 282
+    },
+    "ui_elements_detected": {
+      "buttons": [
+        "ok",
+        "no"
+      ],
+      "inputs": [],
+      "menus": [
+        "file",
+        "edit"
+      ],
+      "links": [],
+      "forms": []
+    },
+    "application_context": {
+      "detected_app": "cursor",
+      "ui_type": "unknown",
+      "confidence": 0.8
+    }
+  },
+  "detailed_analysis": {
+    "mouse_position": {
+      "x": 600,
+      "y": 126
+    },
+    "screen_dimensions": {
+      "width": 1470,
+      "height": 956
+    },
+    "regions_analysis": {
+      "top_bar": {
+        "bounds": {
+          "x": 0,
+          "y": 0,
+          "width": 1470,
+          "height": 100
+        },
+        "text_content": "",
+        "has_content": false
+      },
+      "sidebar": {
+        "bounds": {
+          "x": 0,
+          "y": 100,
+          "width": 300,
+          "height": 856
+        },
+        "text_content": "3. Detalted Activity Specifics: instea\n4. Productivity Metrics: Real engagene\n5. Workflow Intelligence: Understands\n6. AI Context Awareness: Detects \"ai_a\n\nIM Memory Quality Metrics:\n\n= Confidence Lev",
+        "has_content": true
+      },
+      "main_content": {
+        "bounds": {
+          "x": 300,
+          "y": 100,
+          "width": 1170,
+          "height": 756
+        },
+        "text_content": "jory > memory > {} memory_state.json >\n\nttern\": [\n\napplication_contex\n\u201cusage_indicators\"\n\u201cactive_usage\"\n1\nsystem_context\": {\n\u201cactive_process_count\"\n\u201ctop_processes\": [],\n\u201csystem_load\": \"idle\"\ninsights\"",
+        "has_content": true
+      },
+      "bottom_bar": {
+        "bounds": {
+          "x": 0,
+          "y": 856,
+          "width": 1470,
+          "height": 100
+        },
+        "text_content": "38K to generate @ command",
+        "has_content": true
+      }
+    }
+  },
+  "test_timestamp": "2025-05-23T15:53:54.684731"
+}

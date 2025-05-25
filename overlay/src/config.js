@@ -10,7 +10,7 @@ export const CONFIG = {
     websockets: {
         // LLM service with context awareness (main chat interface)
         llm: {
-            url: 'ws://localhost:8765', // Updated to use WebSocket server port 8765 where LLM service registers
+            url: 'ws://localhost:8767', // Updated to use enhanced backend with real responses
             reconnectAttempts: 10,
             reconnectDelay: 1000,
             debug: false
@@ -18,7 +18,7 @@ export const CONFIG = {
         
         // Bridge server for sensor data and context integration
         bridge: {
-            url: 'ws://localhost:8765', // Updated to use the same WebSocket server as LLM service
+            url: 'ws://localhost:8767', // Updated to use the same enhanced backend as LLM service
             reconnectAttempts: 10,
             reconnectDelay: 1000,
             debug: false
@@ -26,7 +26,7 @@ export const CONFIG = {
         
         // Backend server for additional services
         backend: {
-            url: 'ws://localhost:8765',
+            url: 'ws://localhost:8767',
             reconnectAttempts: 10,
             reconnectDelay: 1000,
             debug: false

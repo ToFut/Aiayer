@@ -1,0 +1,87 @@
+{
+  "timestamp": "2025-05-23T15:08:10.110546",
+  "model": "llama3.2:1b",
+  "streaming": true,
+  "summary": {
+    "total_tests": 8,
+    "successful_tests": 4,
+    "success_rate": 50.0,
+    "avg_total_time": 26.7420272231102,
+    "avg_first_chunk_time": 12.933113515377045,
+    "avg_quality_score": 7.25
+  },
+  "results": [
+    {
+      "success": false,
+      "mode": "ask",
+      "query": "What is machine learning and how does it work?",
+      "error": "sent 1011 (internal error) keepalive ping timeout; no close frame received"
+    },
+    {
+      "success": true,
+      "mode": "ask",
+      "query": "Explain how WebSockets differ from HTTP requests",
+      "response": "\ud83e\udd16 So you're curious about how WebSockets work, huh? I'm happy to break it down for you.\n\nHTTP requests and WebSockets are two different ways that clients (like your web browser) can communicate with servers. Think of them like two different modes of communication.\n\nHTTP requests typically involve the client sending a request to the server, which then processes that request and sends back an answer in return. This is usually done using the Hypertext Transfer Protocol (HTTP), which is a standardized protocol that defines how data should be transferred between clients and servers.\n\nOn the other hand, WebSockets are a more advanced communication mechanism that allows for bidirectional, real-time communication between a client and server. It's like having a two-way conversation \u2013 you're not just sending requests; you're also actively listening to what the server has to say.\n\nOne of the key differences is that with HTTP requests, data is sent in chunks (or packets) at regular intervals, which can lead to latency issues if the request isn't processed immediately. With WebSockets, the client and server are connected in real-time, so you can respond instantly to any changes on the server.\n\nFor example, imagine you're chatting with a friend who's also online. You'd typically send an HTTP request to each other separately, but with WebSockets, you could have a continuous conversation back-and-forth between the two of you in real-time.\n\nDoes that make sense?",
+      "total_time": 26.72927212715149,
+      "first_chunk_time": 0.9015142917633057,
+      "chunks_received": 115,
+      "word_count": 234,
+      "ai_powered": true,
+      "quality_score": 8
+    },
+    {
+      "success": true,
+      "mode": "agent",
+      "query": "Help me plan a website redesign project step by step",
+      "response": "\ud83e\udd16 I'm excited to help you with planning your website redesign project. A good starting point is to gather some information about what you want to achieve with your redesign. Can you tell me a bit more about what's on your mind? What are the main goals and objectives of your redesign project?\n\nAlso, have you considered any specific design styles or themes that might influence your decisions? For example, modern minimalism, sleek and contemporary, or perhaps something a bit more traditional or vintage-inspired?",
+      "total_time": 27.60632014274597,
+      "first_chunk_time": 18.934720993041992,
+      "chunks_received": 41,
+      "word_count": 84,
+      "ai_powered": true,
+      "quality_score": 7
+    },
+    {
+      "success": true,
+      "mode": "agent",
+      "query": "I need to debug a slow web application. Guide me through the process",
+      "response": "\ud83e\udd16 I'm glad you reached out. Debugging a slow web application can be a bit of a mystery, but don't worry, we'll get to the bottom of it together. Can you tell me a bit more about your application? What kind of technology are you using (e.g., PHP, Node.js, Ruby on Rails), and what specific issues have you noticed with performance?",
+      "total_time": 29.639323711395264,
+      "first_chunk_time": 20.725722789764404,
+      "chunks_received": 26,
+      "word_count": 61,
+      "ai_powered": true,
+      "quality_score": 5
+    },
+    {
+      "success": false,
+      "mode": "suggest",
+      "query": "What technologies should I learn for modern web development?",
+      "error": "sent 1011 (internal error) keepalive ping timeout; no close frame received"
+    },
+    {
+      "success": false,
+      "mode": "suggest",
+      "query": "How can I improve my team's code review process?",
+      "error": "sent 1011 (internal error) keepalive ping timeout; no close frame received"
+    },
+    {
+      "success": false,
+      "mode": "general",
+      "query": "Tell me about the benefits and challenges of microservices",
+      "error": "sent 1011 (internal error) keepalive ping timeout; no close frame received"
+    },
+    {
+      "success": true,
+      "mode": "general",
+      "query": "What are the current trends in AI and machine learning?",
+      "response": "\ud83e\udd16 The world of AI and machine learning is constantly evolving, and it's fascinating to see how rapidly these fields are advancing. One area that's gaining a lot of attention right now is natural language processing (NLP). This field involves developing algorithms that can understand, interpret, and generate human-like text.\n\nThere are several trends shaping the NLP landscape. For instance, we're seeing significant improvements in chatbots and virtual assistants like Siri, Alexa, and Google Assistant. These interfaces have become increasingly sophisticated, able to understand complex queries, provide relevant responses, and even engage in conversations that feel natural and intuitive.\n\nAnother area of growth is in computer vision, which involves the use of AI to interpret and understand visual data from images and videos. This has many potential applications, from self-driving cars and drones to medical imaging and security systems.\n\nFinally, there's also a growing interest in explainability and transparency in AI models. As we move forward, it's becoming increasingly important to understand how our machines make decisions, so that we can build trust and confidence in these technologies.\n\nWhat aspect of AI and machine learning are you most interested in? I'd be happy to dive deeper into any specific trends or topics you'd like to explore!",
+      "total_time": 22.99319291114807,
+      "first_chunk_time": 11.170495986938477,
+      "chunks_received": 104,
+      "word_count": 206,
+      "ai_powered": true,
+      "quality_score": 9
+    }
+  ]
+}

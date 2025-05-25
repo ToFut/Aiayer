@@ -1,0 +1,56 @@
+{
+  "timestamp": "2025-05-23T14:49:11.330371",
+  "model": "llama3.2:1b",
+  "success_rate": 0.0,
+  "avg_response_time": 0,
+  "results": [
+    {
+      "mode": "ask",
+      "message": "What is artificial intelligence?",
+      "success": false,
+      "error": "Unexpected response type"
+    },
+    {
+      "mode": "ask",
+      "message": "How do WebSockets work?",
+      "success": false,
+      "error": "timed out during opening handshake"
+    },
+    {
+      "mode": "agent",
+      "message": "Help me plan a web development project",
+      "success": false,
+      "error": "timed out during opening handshake"
+    },
+    {
+      "mode": "agent",
+      "message": "I need to improve my app's performance",
+      "success": false,
+      "error": "timed out during opening handshake"
+    },
+    {
+      "mode": "suggest",
+      "message": "What should I learn next in programming?",
+      "success": false,
+      "error": "Unexpected response type"
+    },
+    {
+      "mode": "suggest",
+      "message": "How can I make my code more efficient?",
+      "success": false,
+      "error": "Unexpected response type"
+    },
+    {
+      "mode": "general",
+      "message": "Explain the benefits of microservices",
+      "success": false,
+      "error": "timed out during opening handshake"
+    },
+    {
+      "mode": "general",
+      "message": "What are the latest trends in web development?",
+      "success": false,
+      "error": "timed out during opening handshake"
+    }
+  ]
+}

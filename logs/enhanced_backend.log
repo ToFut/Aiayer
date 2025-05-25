@@ -4615,3 +4615,15 @@ NameError: name 'os' is not defined. Did you forget to import 'os'?
 2025-05-23 00:00:21,885 - websockets.server - DEBUG - % received keepalive pong
 2025-05-23 00:00:21,885 - websockets.server - DEBUG - < PONG '\x1d\x06\rZ' [text, 4 bytes]
 2025-05-23 00:00:21,885 - websockets.server - DEBUG - % received keepalive pong
+2025-05-23 19:18:59,431 - __main__ - INFO - Enhanced Enterprise Backend initialized with improved query handling
+2025-05-23 19:18:59,431 - __main__ - INFO - Enhanced handlers initialized
+2025-05-23 19:18:59,431 - __main__ - INFO - Starting Enhanced Enterprise Backend on localhost:8768
+2025-05-23 19:18:59,476 - websockets.server - INFO - server listening on 127.0.0.1:8768
+2025-05-23 19:18:59,477 - websockets.server - INFO - server listening on [::1]:8768
+2025-05-23 19:18:59,477 - __main__ - INFO - Enhanced Enterprise Backend listening on ws://localhost:8768
+2025-05-23 19:19:42,133 - websockets.server - INFO - connection open
+2025-05-23 19:19:42,135 - __main__ - INFO - Client connected: client_1748053182135 from ::1
+2025-05-23 19:19:42,136 - __main__ - INFO - Processing chat_request from client_1748053182135
+2025-05-23 19:19:42,439 - __main__ - INFO - Processing chat_request from client_1748053182135
+2025-05-23 19:19:42,742 - __main__ - INFO - Processing chat_request from client_1748053182135
+2025-05-23 19:19:43,054 - __main__ - INFO - Processing chat_request from client_1748053182135
