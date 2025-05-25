@@ -1,4 +1,23 @@
+#!/usr/bin/env python3
 """
+Fix ASK Mode to Use Real Memory System Instead of Mock Data
+
+This script connects the ASK mode handler to the actual memory system
+to provide truly contextual responses based on real user activity.
+"""
+
+import asyncio
+import json
+import os
+import sys
+
+# Add project root to path
+sys.path.append(os.path.dirname(os.path.abspath(__file__)))
+
+async def create_real_memory_integration():
+    """Create enhanced ASK mode handler that uses real memory system"""
+    
+    real_ask_handler_code = '''"""
 Ask Mode Handler - Real Memory Integration
 Connects to actual memory system for contextual responses.
 """
@@ -709,24 +728,24 @@ class RealResponseGenerator:
         
         # Add confidence indicator
         if context.confidence_score > 0.8:
-            response += "\n\n(High confidence based on recent activity data)"
+            response += "\\n\\n(High confidence based on recent activity data)"
         elif context.confidence_score > 0.6:
-            response += "\n\n(Medium confidence based on available memory)"
+            response += "\\n\\n(Medium confidence based on available memory)"
         elif context.confidence_score > 0.3:
-            response += "\n\n(Moderate confidence - some memory data available)"
+            response += "\\n\\n(Moderate confidence - some memory data available)"
         
         # Add system status if relevant
         system_state = context.system_state
         if "system" in analysis.entities and system_state:
             if "current_application" in system_state:
-                response += f"\n\nCurrent Application: {system_state['current_application']}"
+                response += f"\\n\\nCurrent Application: {system_state['current_application']}"
             if "latest_activity" in system_state:
-                response += f"\nLast Activity: {system_state['latest_activity']}"
+                response += f"\\nLast Activity: {system_state['latest_activity']}"
         
         # Add memory freshness info
         if system_state.get("total_short_term_memories", 0) > 0:
             memory_count = system_state["total_short_term_memories"]
-            response += f"\n\nMemory: {memory_count} recent activities analyzed"
+            response += f"\\n\\nMemory: {memory_count} recent activities analyzed"
         
         return response
 
@@ -806,3 +825,76 @@ real_ask_mode_handler = RealAskModeHandler()
 async def handle_ask_mode(request: ChatRequest) -> BrainResponse:
     """Entry point for Real Ask mode handling"""
     return await real_ask_mode_handler.handle_request(request)
+'''
+    
+    # Write the enhanced ask mode handler
+    output_file = "brain/handlers/ask_mode_handler_real.py"
+    
+    # Create directory if it doesn't exist
+    os.makedirs(os.path.dirname(output_file), exist_ok=True)
+    
+    with open(output_file, 'w') as f:
+        f.write(real_ask_handler_code)
+    
+    print(f"✅ Created real memory integrated ASK mode handler: {output_file}")
+    
+    # Now create a backup of the original and replace it
+    original_file = "brain/handlers/ask_mode_handler.py"
+    backup_file = "brain/handlers/ask_mode_handler_mock.py.backup"
+    
+    # Backup original
+    if os.path.exists(original_file):
+        with open(original_file, 'r') as f:
+            original_content = f.read()
+        with open(backup_file, 'w') as f:
+            f.write(original_content)
+        print(f"✅ Backed up original ASK mode handler to: {backup_file}")
+    
+    # Replace with real memory version
+    with open(original_file, 'w') as f:
+        f.write(real_ask_handler_code)
+    
+    print(f"✅ Replaced ASK mode handler with real memory integration")
+    
+    return {
+        "status": "success",
+        "real_handler_file": output_file,
+        "original_backup": backup_file,
+        "changes": [
+            "Connected ASK mode to real memory system instead of mock data",
+            "Added real conversation history retrieval",
+            "Enhanced memory relevance calculation",
+            "Added real user pattern analysis",
+            "Improved contextual response generation",
+            "Added system state from actual memory",
+            "Enhanced confidence calculation based on real data"
+        ]
+    }
+
+async def main():
+    """Main execution"""
+    print("🔧 Fixing ASK Mode Real Memory Integration")
+    print("=" * 60)
+    
+    result = await create_real_memory_integration()
+    
+    print("\n📊 Integration Summary:")
+    print(f"Status: {result['status']}")
+    print("\nChanges made:")
+    for change in result['changes']:
+        print(f"  • {change}")
+    
+    print(f"\n📁 Files:")
+    print(f"  • Real handler: {result['real_handler_file']}")
+    print(f"  • Original backup: {result['original_backup']}")
+    
+    print("\n🎯 Next Steps:")
+    print("1. Restart the backend server")
+    print("2. Test ASK mode with queries like:")
+    print("   - 'What development activities have I been doing recently?'")
+    print("   - 'What applications am I using for coding?'")
+    print("   - 'Tell me about my productivity patterns'")
+    print("3. ASK mode should now provide real contextual answers!")
+
+if __name__ == "__main__":
+    asyncio.run(main())

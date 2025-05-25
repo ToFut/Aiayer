@@ -435,18 +435,9 @@ class AgentAutomationEngine:
         """
         try:
             logger.info(f"🧠 Starting intelligent workflow for: '{message}'")
-                
-                # Send initial progress
-                try:
-                    await websocket.send(json.dumps({
-                        "type": "progress", 
-                        "step": 0,
-                        "total_steps": "unknown",
-                        "description": "Analyzing screen context...",
-                        "status": "analyzing"
-                    }))
-                except Exception:
-                    pass
+            
+            # Skip websocket progress updates when called from backend
+            # (Progress updates only needed in direct websocket connections)
             
             # Get current screen context
             current_context = await self.screen_analyzer.analyze_full_screen()

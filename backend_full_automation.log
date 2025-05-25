@@ -1,0 +1,50 @@
+INFO:brain.core.brain_router:BrainRouter initialized - The Central Intelligence Hub is online
+INFO:brain.handlers.agent_mode_handler:AgentModeHandler initialized
+INFO:memory.enhanced_semantic_search:Enhanced semantic search initialized with embedding dim: 384
+INFO:memory.enhanced_semantic_search:Hybrid retrieval enabled: True
+INFO:memory.semantic_search_agent:Loading 132 existing documents from storage
+INFO:memory.semantic_search_agent:EnterpriseVectorStore initialized with enterprise-grade features
+INFO:memory.semantic_search_agent:SemanticSearchAgent initialized with enterprise-grade capabilities
+INFO:agent_workflow.input_controller:Detected screen size: 1470x956
+INFO:memory.semantic_search_agent:Loading 132 existing documents from storage
+INFO:memory.semantic_search_agent:EnterpriseVectorStore initialized with enterprise-grade features
+INFO:memory.semantic_search_agent:SemanticSearchAgent initialized with enterprise-grade capabilities
+INFO:agent_workflow.input_controller:Input listeners started successfully
+INFO:agent_workflow.input_controller:🚨 Emergency shutdown: Press Ctrl+1 to immediately stop agent
+INFO:llava_processor:Connected to Ollama API v0.6.8
+INFO:total_screen_analyzer:LLaVA visual processor initialized for total screen analysis
+INFO:total_screen_analyzer:Total Screen Analyzer initialized with 8s interval
+INFO:enhanced_brain_router_with_full_automation:🤖 AgentAutomationEngine initialized with medium safety and intelligent workflow planning (FAST MODE)
+INFO:enhanced_brain_router_with_full_automation:🧠 Full Automation Brain Router initialized
+INFO:__main__:🤖 Full Automation Router initialized for AGENT mode
+INFO:brain.handlers.ask_mode_handler:AskModeHandler initialized
+INFO:__main__:🧠 Ask Mode Handler initialized
+INFO:__main__:Real LLM Backend 8767 initialized with Brain Router integration
+INFO:__main__:Starting Real LLM Backend on port 8767...
+✅ Brain Router system loaded successfully
+✅ Full Automation system loaded successfully
+Traceback (most recent call last):
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/real_llm_backend_8767.py", line 321, in <module>
+    asyncio.run(main())
+    ~~~~~~~~~~~^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.13/3.13.3/Frameworks/Python.framework/Versions/3.13/lib/python3.13/asyncio/runners.py", line 195, in run
+    return runner.run(main)
+           ~~~~~~~~~~^^^^^^
+  File "/opt/homebrew/Cellar/python@3.13/3.13.3/Frameworks/Python.framework/Versions/3.13/lib/python3.13/asyncio/runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "/opt/homebrew/Cellar/python@3.13/3.13.3/Frameworks/Python.framework/Versions/3.13/lib/python3.13/asyncio/base_events.py", line 719, in run_until_complete
+    return future.result()
+           ~~~~~~~~~~~~~^^
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/real_llm_backend_8767.py", line 316, in main
+    async with websockets.serve(backend.handle_websocket, "localhost", 8767):
+               ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/asyncio/server.py", line 813, in __aenter__
+    return await self
+           ^^^^^^^^^^
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/asyncio/server.py", line 831, in __await_impl__
+    server = await self.create_server
+             ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.13/3.13.3/Frameworks/Python.framework/Versions/3.13/lib/python3.13/asyncio/base_events.py", line 1616, in create_server
+    raise OSError(err.errno, msg) from None
+OSError: [Errno 48] error while attempting to bind on address ('::1', 8767, 0, 0): [errno 48] address already in use

@@ -15195,3 +15195,160 @@ Action: TYPE
 2025-05-23 18:47:17,983 - __main__ - ERROR - Error in streaming chat request: received 1000 (OK); then sent 1000 (OK)
 2025-05-23 18:47:17,984 - __main__ - ERROR - Error processing message from client_1748051210676: received 1000 (OK); then sent 1000 (OK)
 2025-05-23 18:47:17,984 - __main__ - INFO - Client disconnected: client_1748051210676
+2025-05-24 22:49:18,431 - memory.enhanced_semantic_search - INFO - Enhanced semantic search initialized with embedding dim: 384
+2025-05-24 22:49:18,431 - memory.enhanced_semantic_search - INFO - Hybrid retrieval enabled: True
+2025-05-24 22:49:18,643 - __main__ - INFO - 🧪 Testing Memory System Meaningfulness...
+2025-05-24 22:49:18,644 - sensors.process_sensor - INFO - Process sensor initialized with config: {'interval_sec': 5, 'max_memory_mb': 50, 'cleanup_threshold_mb': 25, 'max_errors': 3, 'exclude_patterns': ['system', 'kernel'], 'max_processes': 100}
+2025-05-24 22:49:18,644 - memory.memory_system - INFO - Memory logger initialized
+2025-05-24 22:49:18,644 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-05-24 22:49:18,644 - memory_diagnostics - INFO - MEMORY EVENT: logger_initialized - {"timestamp": "2025-05-24T22:49:18.644919"}
+2025-05-24 22:49:18,645 - memory.memory_system - INFO - Diagnostic logger initialized
+2025-05-24 22:49:18,645 - memory.conscious_memory - INFO - [ConsciousMemory] Initialized as middle layer for memory system
+2025-05-24 22:49:18,645 - memory.memory_system - INFO - Conscious memory initialized
+2025-05-24 22:49:18,645 - memory.enhanced_semantic_search - INFO - Enhanced semantic search initialized with embedding dim: 384
+2025-05-24 22:49:18,645 - memory.enhanced_semantic_search - INFO - Hybrid retrieval enabled: True
+2025-05-24 22:49:18,645 - memory.memory_system - INFO - Enhanced semantic search initialized
+2025-05-24 22:49:18,645 - memory.memory_system - INFO - 🔄 Loading memory state from /Users/segevbin/Desktop/SensAI/Aiayer/memory/memory/memory_state.json
+2025-05-24 22:49:18,646 - memory.memory_system - INFO -   - Found 12 short-term memory items
+2025-05-24 22:49:18,646 - memory.memory_system - INFO -   - No long-term memory found, initializing empty
+2025-05-24 22:49:18,646 - memory.memory_system - INFO -   - Found context memory with 6 items
+2025-05-24 22:49:18,646 - memory.memory_system - INFO - ✅ Successfully loaded memory state
+2025-05-24 22:49:18,646 - memory_diagnostics - INFO - MEMORY EVENT: memory_state_loaded - {"short_term_count": 12, "long_term_count": 0, "context_count": 6, "timestamp": "2025-05-24T22:49:18.646291"}
+2025-05-24 22:49:18,646 - memory.memory_system - INFO - Memory system initialized
+2025-05-24 22:49:18,646 - __main__ - INFO - 
+📊 Test 1: Analyzing current memory quality
+2025-05-24 22:49:18,646 - __main__ - INFO - Found 12 memories to analyze
+2025-05-24 22:49:18,646 - __main__ - INFO -   💡 Memory insights: {'content_analysis': 'User engaged in general using Cursor', 'professional_assessment': 'general_computing workflow in general_usage stage', 'productivity_indicator': 'Productivity score: 80.0%', 'data_quality': 'high'}
+2025-05-24 22:49:18,646 - __main__ - INFO -   💡 Memory insights: {'content_analysis': 'User engaged in general using Cursor', 'professional_assessment': 'general_computing workflow in general_usage stage', 'productivity_indicator': 'Productivity score: 80.0%', 'data_quality': 'high'}
+2025-05-24 22:49:18,646 - __main__ - INFO -   💡 Memory insights: {'content_analysis': 'User engaged in general using Cursor', 'professional_assessment': 'general_computing workflow in general_usage stage', 'productivity_indicator': 'Productivity score: 80.0%', 'data_quality': 'high'}
+2025-05-24 22:49:18,646 - __main__ - INFO -   💡 Memory insights: {'content_analysis': 'User engaged in general using Cursor', 'professional_assessment': 'general_computing workflow in general_usage stage', 'productivity_indicator': 'Productivity score: 80.0%', 'data_quality': 'high'}
+2025-05-24 22:49:18,646 - __main__ - INFO -   💡 Memory insights: {'content_analysis': 'User engaged in general using Cursor', 'professional_assessment': 'general_computing workflow in general_usage stage', 'productivity_indicator': 'Productivity score: 80.0%', 'data_quality': 'high'}
+2025-05-24 22:49:18,646 - __main__ - INFO -   💡 Memory insights: {'content_analysis': 'User engaged in general using Cursor', 'professional_assessment': 'general_computing workflow in general_usage stage', 'productivity_indicator': 'Productivity score: 80.0%', 'data_quality': 'high'}
+2025-05-24 22:49:18,646 - __main__ - INFO -   💡 Memory insights: {'content_analysis': 'User engaged in general using Cursor', 'professional_assessment': 'general_computing workflow in general_usage stage', 'productivity_indicator': 'Productivity score: 80.0%', 'data_quality': 'high'}
+2025-05-24 22:49:18,646 - __main__ - INFO -   💡 Memory insights: {'content_analysis': 'User engaged in general using Cursor', 'professional_assessment': 'general_computing workflow in general_usage stage', 'productivity_indicator': 'Productivity score: 80.0%', 'data_quality': 'high'}
+2025-05-24 22:49:18,646 - __main__ - INFO -   💡 Memory insights: {'content_analysis': 'User engaged in general using Cursor', 'professional_assessment': 'general_computing workflow in general_usage stage', 'productivity_indicator': 'Productivity score: 80.0%', 'data_quality': 'high'}
+2025-05-24 22:49:18,646 - __main__ - INFO -   💡 Memory insights: {'content_analysis': 'User engaged in general using Cursor', 'professional_assessment': 'general_computing workflow in general_usage stage', 'productivity_indicator': 'Productivity score: 80.0%', 'data_quality': 'high'}
+2025-05-24 22:49:18,646 - __main__ - INFO -   💡 Memory insights: {'content_analysis': 'User engaged in general using Cursor', 'professional_assessment': 'general_computing workflow in general_usage stage', 'productivity_indicator': 'Productivity score: 80.0%', 'data_quality': 'high'}
+2025-05-24 22:49:18,646 - __main__ - INFO -   💡 Memory insights: {'content_analysis': 'User engaged in general using Cursor', 'professional_assessment': 'general_computing workflow in general_usage stage', 'productivity_indicator': 'Productivity score: 80.0%', 'data_quality': 'high'}
+2025-05-24 22:49:18,646 - __main__ - INFO - 
+📈 Quality Metrics:
+2025-05-24 22:49:18,646 - __main__ - INFO -   Meaningful interactions: 0/12 (0.0%)
+2025-05-24 22:49:18,646 - __main__ - INFO -   Memories with insights: 12/12 (100.0%)
+2025-05-24 22:49:18,646 - __main__ - INFO -   Memories with topics: 0/12 (0.0%)
+2025-05-24 22:49:18,646 - __main__ - INFO -   High productivity memories: 0/12 (0.0%)
+2025-05-24 22:49:18,646 - __main__ - INFO -   Professional context detected: 0/12 (0.0%)
+2025-05-24 22:49:18,647 - __main__ - INFO -   Overall Quality Score: 25.0%
+2025-05-24 22:49:18,647 - __main__ - INFO -   ❌ Memory quality is POOR
+2025-05-24 22:49:18,647 - __main__ - INFO - 
+🔍 Test 2: Testing semantic search functionality
+2025-05-24 22:49:18,647 - __main__ - INFO - 
+🔎 Searching for: 'development work coding'
+2025-05-24 22:49:18,647 - memory.memory_system - INFO - 🔍 SEARCHING MEMORY WITH ENHANCED CONTEXT-AWARE SEMANTIC SEARCH
+2025-05-24 22:49:18,647 - memory.memory_system - INFO -   - Query: development work coding
+2025-05-24 22:49:18,647 - memory.memory_system - INFO -   - Limit: 3
+2025-05-24 22:49:18,647 - memory.memory_system - INFO -   - Context-aware: True
+2025-05-24 22:49:18,647 - memory_diagnostics - INFO - MEMORY EVENT: memory_search_started - {"query": "development work coding", "limit": 3, "memory_types": null, "context_aware": true, "time_window": null, "timestamp": "2025-05-24T22:49:18.647238", "search_type": "context_aware_vector"}
+2025-05-24 22:49:18,904 - memory.enhanced_semantic_search - INFO - Search for 'development work coding...' found 0 results.
+2025-05-24 22:49:18,904 - memory.memory_system - INFO - ✅ Context-aware semantic search completed in 0.257s
+2025-05-24 22:49:18,904 - memory.memory_system - INFO -   - Found 0 results (from 0 total matches)
+2025-05-24 22:49:18,904 - memory_diagnostics - INFO - MEMORY EVENT: memory_search_completed - {"query": "development work coding", "enhanced_query": false, "results_count": 0, "total_matches": 0, "top_score": 0, "search_time_ms": 257, "timestamp": "2025-05-24T22:49:18.904446", "search_type": "context_aware_vector", "context_enhanced": false}
+2025-05-24 22:49:18,904 - __main__ - WARNING -   No results found for 'development work coding'
+2025-05-24 22:49:18,904 - __main__ - INFO - 
+🔎 Searching for: 'AI assisted programming'
+2025-05-24 22:49:18,904 - memory.memory_system - INFO - 🔍 SEARCHING MEMORY WITH ENHANCED CONTEXT-AWARE SEMANTIC SEARCH
+2025-05-24 22:49:18,904 - memory.memory_system - INFO -   - Query: AI assisted programming
+2025-05-24 22:49:18,904 - memory.memory_system - INFO -   - Limit: 3
+2025-05-24 22:49:18,905 - memory.memory_system - INFO -   - Context-aware: True
+2025-05-24 22:49:18,905 - memory_diagnostics - INFO - MEMORY EVENT: memory_search_started - {"query": "AI assisted programming", "limit": 3, "memory_types": null, "context_aware": true, "time_window": null, "timestamp": "2025-05-24T22:49:18.905080", "search_type": "context_aware_vector"}
+2025-05-24 22:49:18,905 - memory.enhanced_semantic_search - INFO - Search for 'AI assisted programming...' found 0 results.
+2025-05-24 22:49:18,905 - memory.memory_system - INFO - ✅ Context-aware semantic search completed in 0.000s
+2025-05-24 22:49:18,905 - memory.memory_system - INFO -   - Found 0 results (from 0 total matches)
+2025-05-24 22:49:18,905 - memory_diagnostics - INFO - MEMORY EVENT: memory_search_completed - {"query": "AI assisted programming", "enhanced_query": false, "results_count": 0, "total_matches": 0, "top_score": 0, "search_time_ms": 0, "timestamp": "2025-05-24T22:49:18.905591", "search_type": "context_aware_vector", "context_enhanced": false}
+2025-05-24 22:49:18,905 - __main__ - WARNING -   No results found for 'AI assisted programming'
+2025-05-24 22:49:18,905 - __main__ - INFO - 
+🔎 Searching for: 'productivity and workflow'
+2025-05-24 22:49:18,905 - memory.memory_system - INFO - 🔍 SEARCHING MEMORY WITH ENHANCED CONTEXT-AWARE SEMANTIC SEARCH
+2025-05-24 22:49:18,905 - memory.memory_system - INFO -   - Query: productivity and workflow
+2025-05-24 22:49:18,905 - memory.memory_system - INFO -   - Limit: 3
+2025-05-24 22:49:18,905 - memory.memory_system - INFO -   - Context-aware: True
+2025-05-24 22:49:18,905 - memory_diagnostics - INFO - MEMORY EVENT: memory_search_started - {"query": "productivity and workflow", "limit": 3, "memory_types": null, "context_aware": true, "time_window": null, "timestamp": "2025-05-24T22:49:18.905858", "search_type": "context_aware_vector"}
+2025-05-24 22:49:18,906 - memory.enhanced_semantic_search - INFO - Search for 'productivity and workflow...' found 0 results.
+2025-05-24 22:49:18,906 - memory.memory_system - INFO - ✅ Context-aware semantic search completed in 0.000s
+2025-05-24 22:49:18,906 - memory.memory_system - INFO -   - Found 0 results (from 0 total matches)
+2025-05-24 22:49:18,906 - memory_diagnostics - INFO - MEMORY EVENT: memory_search_completed - {"query": "productivity and workflow", "enhanced_query": false, "results_count": 0, "total_matches": 0, "top_score": 0, "search_time_ms": 0, "timestamp": "2025-05-24T22:49:18.906238", "search_type": "context_aware_vector", "context_enhanced": false}
+2025-05-24 22:49:18,906 - __main__ - WARNING -   No results found for 'productivity and workflow'
+2025-05-24 22:49:18,906 - __main__ - INFO - 
+🔎 Searching for: 'software engineering tasks'
+2025-05-24 22:49:18,906 - memory.memory_system - INFO - 🔍 SEARCHING MEMORY WITH ENHANCED CONTEXT-AWARE SEMANTIC SEARCH
+2025-05-24 22:49:18,906 - memory.memory_system - INFO -   - Query: software engineering tasks
+2025-05-24 22:49:18,906 - memory.memory_system - INFO -   - Limit: 3
+2025-05-24 22:49:18,906 - memory.memory_system - INFO -   - Context-aware: True
+2025-05-24 22:49:18,906 - memory_diagnostics - INFO - MEMORY EVENT: memory_search_started - {"query": "software engineering tasks", "limit": 3, "memory_types": null, "context_aware": true, "time_window": null, "timestamp": "2025-05-24T22:49:18.906458", "search_type": "context_aware_vector"}
+2025-05-24 22:49:18,906 - memory.enhanced_semantic_search - INFO - Search for 'software engineering tasks...' found 0 results.
+2025-05-24 22:49:18,906 - memory.memory_system - INFO - ✅ Context-aware semantic search completed in 0.000s
+2025-05-24 22:49:18,906 - memory.memory_system - INFO -   - Found 0 results (from 0 total matches)
+2025-05-24 22:49:18,906 - memory_diagnostics - INFO - MEMORY EVENT: memory_search_completed - {"query": "software engineering tasks", "enhanced_query": false, "results_count": 0, "total_matches": 0, "top_score": 0, "search_time_ms": 0, "timestamp": "2025-05-24T22:49:18.906842", "search_type": "context_aware_vector", "context_enhanced": false}
+2025-05-24 22:49:18,906 - __main__ - WARNING -   No results found for 'software engineering tasks'
+2025-05-24 22:49:18,906 - __main__ - INFO - 
+🔎 Searching for: 'cursor editor development'
+2025-05-24 22:49:18,906 - memory.memory_system - INFO - 🔍 SEARCHING MEMORY WITH ENHANCED CONTEXT-AWARE SEMANTIC SEARCH
+2025-05-24 22:49:18,906 - memory.memory_system - INFO -   - Query: cursor editor development
+2025-05-24 22:49:18,907 - memory.memory_system - INFO -   - Limit: 3
+2025-05-24 22:49:18,907 - memory.memory_system - INFO -   - Context-aware: True
+2025-05-24 22:49:18,907 - memory_diagnostics - INFO - MEMORY EVENT: memory_search_started - {"query": "cursor editor development", "limit": 3, "memory_types": null, "context_aware": true, "time_window": null, "timestamp": "2025-05-24T22:49:18.907056", "search_type": "context_aware_vector"}
+2025-05-24 22:49:18,907 - memory.enhanced_semantic_search - INFO - Search for 'cursor editor development...' found 0 results.
+2025-05-24 22:49:18,907 - memory.memory_system - INFO - ✅ Context-aware semantic search completed in 0.000s
+2025-05-24 22:49:18,907 - memory.memory_system - INFO -   - Found 0 results (from 0 total matches)
+2025-05-24 22:49:18,907 - memory_diagnostics - INFO - MEMORY EVENT: memory_search_completed - {"query": "cursor editor development", "enhanced_query": false, "results_count": 0, "total_matches": 0, "top_score": 0, "search_time_ms": 0, "timestamp": "2025-05-24T22:49:18.907387", "search_type": "context_aware_vector", "context_enhanced": false}
+2025-05-24 22:49:18,907 - __main__ - WARNING -   No results found for 'cursor editor development'
+2025-05-24 22:49:18,907 - __main__ - INFO - 
+🧠 Test 3: Testing context-aware retrieval
+2025-05-24 22:49:18,907 - __main__ - INFO - Testing context-aware retrieval...
+2025-05-24 22:49:18,907 - __main__ - INFO - Getting context for memory: stm_1748038186616
+2025-05-24 22:49:18,907 - memory.memory_system - INFO - Finding related memories for memory_id: stm_1748038186616
+2025-05-24 22:49:18,907 - memory.memory_system - INFO - Not enough relation-based memories, adding semantic similarity matches
+2025-05-24 22:49:18,907 - memory.memory_system - INFO - Found 0 related memories for stm_1748038186616
+2025-05-24 22:49:18,907 - __main__ - WARNING -   No related memories found
+2025-05-24 22:49:18,907 - __main__ - INFO - 
+💼 Test 4: Testing professional context understanding
+2025-05-24 22:49:18,907 - __main__ - INFO - Testing professional context understanding...
+2025-05-24 22:49:18,907 - __main__ - WARNING - No development-related memories found
+2025-05-24 22:49:18,907 - __main__ - INFO - 
+✅ Memory meaningfulness testing completed!
+2025-05-24 22:53:57,562 - memory.enhanced_semantic_search - INFO - Enhanced semantic search initialized with embedding dim: 384
+2025-05-24 22:53:57,563 - memory.enhanced_semantic_search - INFO - Hybrid retrieval enabled: True
+2025-05-24 22:53:57,686 - sensors.process_sensor - INFO - Process sensor initialized with config: {'interval_sec': 5, 'max_memory_mb': 50, 'cleanup_threshold_mb': 25, 'max_errors': 3, 'exclude_patterns': ['system', 'kernel'], 'max_processes': 100}
+2025-05-24 22:53:57,686 - memory.memory_system - INFO - Memory logger initialized
+2025-05-24 22:53:57,686 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-05-24 22:53:57,687 - memory_diagnostics - INFO - MEMORY EVENT: logger_initialized - {"timestamp": "2025-05-24T22:53:57.687049"}
+2025-05-24 22:53:57,687 - memory.memory_system - INFO - Diagnostic logger initialized
+2025-05-24 22:53:57,687 - memory.conscious_memory - INFO - [ConsciousMemory] Initialized as middle layer for memory system
+2025-05-24 22:53:57,687 - memory.memory_system - INFO - Conscious memory initialized
+2025-05-24 22:53:57,687 - memory.enhanced_semantic_search - INFO - Enhanced semantic search initialized with embedding dim: 384
+2025-05-24 22:53:57,687 - memory.enhanced_semantic_search - INFO - Hybrid retrieval enabled: True
+2025-05-24 22:53:57,687 - memory.memory_system - INFO - Enhanced semantic search initialized
+2025-05-24 22:53:57,687 - memory.memory_system - INFO - 🔄 Loading memory state from /Users/segevbin/Desktop/SensAI/Aiayer/memory/memory/memory_state.json
+2025-05-24 22:53:57,688 - memory.memory_system - INFO -   - Found 12 short-term memory items
+2025-05-24 22:53:57,688 - memory.memory_system - INFO -   - No long-term memory found, initializing empty
+2025-05-24 22:53:57,688 - memory.memory_system - INFO -   - Found context memory with 6 items
+2025-05-24 22:53:57,688 - memory.memory_system - INFO - ✅ Successfully loaded memory state
+2025-05-24 22:53:57,688 - memory_diagnostics - INFO - MEMORY EVENT: memory_state_loaded - {"short_term_count": 12, "long_term_count": 0, "context_count": 6, "timestamp": "2025-05-24T22:53:57.688206"}
+2025-05-24 22:53:57,688 - memory.memory_system - INFO - Memory system initialized
+2025-05-24 22:53:57,688 - memory.memory_system - INFO - 🔍 SEARCHING MEMORY WITH ENHANCED CONTEXT-AWARE SEMANTIC SEARCH
+2025-05-24 22:53:57,688 - memory.memory_system - INFO -   - Query: development coding cursor
+2025-05-24 22:53:57,688 - memory.memory_system - INFO -   - Limit: 3
+2025-05-24 22:53:57,688 - memory.memory_system - INFO -   - Context-aware: True
+2025-05-24 22:53:57,688 - memory_diagnostics - INFO - MEMORY EVENT: memory_search_started - {"query": "development coding cursor", "limit": 3, "memory_types": null, "context_aware": true, "time_window": null, "timestamp": "2025-05-24T22:53:57.688421", "search_type": "context_aware_vector"}
+2025-05-24 22:53:57,712 - memory.enhanced_semantic_search - INFO - Search for 'development coding cursor...' found 0 results.
+2025-05-24 22:53:57,712 - memory.memory_system - INFO - ✅ Context-aware semantic search completed in 0.024s
+2025-05-24 22:53:57,712 - memory.memory_system - INFO -   - Found 0 results (from 0 total matches)
+2025-05-24 22:53:57,712 - memory_diagnostics - INFO - MEMORY EVENT: memory_search_completed - {"query": "development coding cursor", "enhanced_query": false, "results_count": 0, "total_matches": 0, "top_score": 0, "search_time_ms": 23, "timestamp": "2025-05-24T22:53:57.712524", "search_type": "context_aware_vector", "context_enhanced": false}
+2025-05-24 22:53:57,712 - memory.memory_system - INFO - 🔍 SEARCHING MEMORY WITH ENHANCED CONTEXT-AWARE SEMANTIC SEARCH
+2025-05-24 22:53:57,712 - memory.memory_system - INFO -   - Query: productivity workflow
+2025-05-24 22:53:57,712 - memory.memory_system - INFO -   - Limit: 3
+2025-05-24 22:53:57,712 - memory.memory_system - INFO -   - Context-aware: True
+2025-05-24 22:53:57,712 - memory_diagnostics - INFO - MEMORY EVENT: memory_search_started - {"query": "productivity workflow", "limit": 3, "memory_types": null, "context_aware": true, "time_window": null, "timestamp": "2025-05-24T22:53:57.712893", "search_type": "context_aware_vector"}
+2025-05-24 22:53:57,713 - memory.enhanced_semantic_search - INFO - Search for 'productivity workflow...' found 0 results.
+2025-05-24 22:53:57,713 - memory.memory_system - INFO - ✅ Context-aware semantic search completed in 0.000s
+2025-05-24 22:53:57,713 - memory.memory_system - INFO -   - Found 0 results (from 0 total matches)
+2025-05-24 22:53:57,713 - memory_diagnostics - INFO - MEMORY EVENT: memory_search_completed - {"query": "productivity workflow", "enhanced_query": false, "results_count": 0, "total_matches": 0, "top_score": 0, "search_time_ms": 0, "timestamp": "2025-05-24T22:53:57.713388", "search_type": "context_aware_vector", "context_enhanced": false}

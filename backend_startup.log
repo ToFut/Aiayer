@@ -1,0 +1,39 @@
+INFO:brain.core.brain_router:BrainRouter initialized - The Central Intelligence Hub is online
+INFO:brain.handlers.agent_mode_handler:AgentModeHandler initialized
+INFO:brain.handlers.agent_mode_handler:AgentModeHandler initialized
+INFO:__main__:🧠 Direct Agent Mode Handler initialized
+INFO:__main__:Real LLM Backend 8767 initialized with Brain Router integration
+INFO:__main__:Starting Real LLM Backend on port 8767...
+INFO:websockets.server:server listening on 127.0.0.1:8767
+INFO:websockets.server:server listening on [::1]:8767
+INFO:__main__:✅ Real LLM Backend is running on ws://localhost:8767
+INFO:websockets.server:connection open
+INFO:__main__:Client connected: client_1748151018113 from ::1
+INFO:websockets.server:connection open
+INFO:__main__:Client connected: client_1748151018114 from ::1
+INFO:__main__:Processing register from client_1748151018114
+INFO:websockets.server:connection open
+INFO:__main__:Client connected: client_1748151027435 from ::1
+INFO:__main__:Processing register from client_1748151027435
+INFO:__main__:Processing chat_request from client_1748151027435
+INFO:__main__:🧠 Routing AGENT mode request to Agent Handler: write SEGEV in notepad
+INFO:brain.handlers.agent_mode_handler:Agent mode handling request: write SEGEV in notepad...
+INFO:brain.handlers.agent_mode_handler:Created execution plan: Write Segev In Notepad with 4 steps
+INFO:brain.handlers.agent_mode_handler:Step step_1 completed: Analyze and understand the request: 'write SEGEV in notepad...'
+INFO:brain.handlers.agent_mode_handler:Step step_2 completed: Develop approach and strategy for execution
+INFO:brain.handlers.agent_mode_handler:Step step_3 completed: Execute the planned approach
+INFO:brain.handlers.agent_mode_handler:Step step_4 completed: Verify task completion and quality
+INFO:__main__:Client disconnected: client_1748151027435
+INFO:__main__:Processing chat_request from client_1748151018113
+INFO:__main__:🧠 Routing AGENT mode request to Agent Handler: open notepad and write SEGEV
+INFO:brain.handlers.agent_mode_handler:Agent mode handling request: open notepad and write SEGEV...
+INFO:brain.handlers.agent_mode_handler:Created execution plan: Open Notepad And Write Segev with 4 steps
+INFO:brain.handlers.agent_mode_handler:Step step_1 completed: Analyze and understand the request: 'open notepad and write SEGEV...'
+INFO:brain.handlers.agent_mode_handler:Step step_2 completed: Develop approach and strategy for execution
+INFO:brain.handlers.agent_mode_handler:Step step_3 completed: Execute the planned approach
+INFO:brain.handlers.agent_mode_handler:Step step_4 completed: Verify task completion and quality
+INFO:__main__:Processing chat_request from client_1748151018113
+ERROR:__main__:Ollama API error: HTTPConnectionPool(host='localhost', port=11434): Read timed out. (read timeout=20)
+ERROR:__main__:Error in chat request: LLM service unavailable: HTTPConnectionPool(host='localhost', port=11434): Read timed out. (read timeout=20)
+INFO:__main__:Processing chat_request from client_1748151018113
+INFO:__main__:Processing chat_request from client_1748151018113

@@ -248,7 +248,13 @@ Choose a mode and start chatting!`,
         screenAnalysis: data.screen_analysis,
         estimatedDuration: data.estimatedDuration,
         confidence: data.confidence,
-        riskLevel: data.riskLevel
+        riskLevel: data.riskLevel,
+        
+        // INTERACTIVE AUTOMATION BUTTONS
+        buttons: data.buttons || [],
+        interactive: data.interactive || false,
+        planId: data.plan_id,
+        realAutomationUsed: data.real_automation_used || false
       };
       
       messages = [...messages, assistantMessage];
@@ -488,6 +494,31 @@ Choose a mode and start chatting!`,
 
   function closeChat() {
     show = false;
+  }
+
+  // Handle interactive automation buttons
+  function handleAutomationButton(action, planId, buttonData) {
+    if (!ws || ws.readyState !== WebSocket.OPEN) {
+      console.error('WebSocket not connected');
+      return;
+    }
+
+    playSound('interface-click');
+    
+    // Send button action to backend
+    const buttonAction = {
+      type: 'button_action',
+      action: action,
+      plan_id: planId,
+      client_id: sessionId,
+      timestamp: Date.now()
+    };
+    
+    console.log('🟢 Sending button action:', buttonAction);
+    ws.send(JSON.stringify(buttonAction));
+    
+    // Show loading state
+    showTypingIndicator();
   }
 
   // Apple-inspired sound effects (if enabled)
@@ -802,6 +833,36 @@ Choose a mode and start chatting!`,
                       <span class="warning-indicator">⚠️ {message.executionPlan.warnings.length} warnings</span>
                     {/if}
                   </div>
+                </div>
+              {/if}
+            </div>
+          {/if}
+          
+          <!-- INTERACTIVE AUTOMATION BUTTONS -->
+          {#if message.interactive && message.buttons && message.buttons.length > 0}
+            <div class="automation-buttons-panel">
+              <div class="automation-header">
+                <span class="automation-title">🤖 Automation Plan Ready</span>
+                {#if message.planId}
+                  <span class="plan-id">ID: {message.planId.split('_').pop()}</span>
+                {/if}
+              </div>
+              
+              <div class="automation-buttons">
+                {#each message.buttons as button}
+                  <button 
+                    class="automation-btn {button.style}-btn"
+                    on:click={() => handleAutomationButton(button.action, button.plan_id, button)}
+                  >
+                    {button.text}
+                    <span class="btn-description">{button.description}</span>
+                  </button>
+                {/each}
+              </div>
+              
+              {#if message.realAutomationUsed}
+                <div class="automation-status">
+                  ✅ Real automation system ready • {message.processingTime}s
                 </div>
               {/if}
             </div>
@@ -1765,6 +1826,121 @@ Choose a mode and start chatting!`,
     padding: 4px 8px;
     border-radius: 4px;
     font-size: 11px;
+  }
+
+  /* Interactive Automation Buttons */
+  .automation-buttons-panel {
+    background: linear-gradient(135deg, rgba(0, 122, 255, 0.1), rgba(88, 86, 214, 0.1));
+    border: 1px solid rgba(0, 122, 255, 0.2);
+    border-radius: 12px;
+    padding: 16px;
+    margin-top: 12px;
+    backdrop-filter: blur(10px);
+  }
+
+  .automation-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+  }
+
+  .automation-title {
+    font-weight: 600;
+    color: #007AFF;
+    font-size: 14px;
+  }
+
+  .plan-id {
+    font-size: 11px;
+    color: rgba(255, 255, 255, 0.6);
+    background: rgba(0, 0, 0, 0.2);
+    padding: 2px 6px;
+    border-radius: 6px;
+  }
+
+  .automation-buttons {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+
+  .automation-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 16px;
+    border: none;
+    border-radius: 10px;
+    font-weight: 600;
+    font-size: 13px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    backdrop-filter: blur(10px);
+    min-width: 80px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .automation-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+  }
+
+  .automation-btn:active {
+    transform: translateY(0);
+  }
+
+  .btn-description {
+    font-size: 10px;
+    font-weight: 400;
+    opacity: 0.8;
+    margin-top: 2px;
+  }
+
+  /* Button Styles */
+  .success-btn {
+    background: linear-gradient(135deg, #34C759, #30D158);
+    color: white;
+    border: 1px solid rgba(52, 199, 89, 0.3);
+  }
+
+  .success-btn:hover {
+    background: linear-gradient(135deg, #30D158, #34C759);
+    box-shadow: 0 4px 16px rgba(52, 199, 89, 0.4);
+  }
+
+  .danger-btn {
+    background: linear-gradient(135deg, #FF3B30, #FF453A);
+    color: white;
+    border: 1px solid rgba(255, 59, 48, 0.3);
+  }
+
+  .danger-btn:hover {
+    background: linear-gradient(135deg, #FF453A, #FF3B30);
+    box-shadow: 0 4px 16px rgba(255, 59, 48, 0.4);
+  }
+
+  .warning-btn {
+    background: linear-gradient(135deg, #FF9500, #FFAD33);
+    color: white;
+    border: 1px solid rgba(255, 149, 0, 0.3);
+  }
+
+  .warning-btn:hover {
+    background: linear-gradient(135deg, #FFAD33, #FF9500);
+    box-shadow: 0 4px 16px rgba(255, 149, 0, 0.4);
+  }
+
+  .automation-status {
+    margin-top: 8px;
+    font-size: 11px;
+    color: rgba(255, 255, 255, 0.7);
+    text-align: center;
+    padding: 4px 8px;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 6px;
   }
 
   /* Dark mode support */

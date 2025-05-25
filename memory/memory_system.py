@@ -2316,11 +2316,21 @@ class MemorySystem:
             self.logger.error(traceback.format_exc())
             return None
     
+    def get_latest_context_summary(self):
+        """Get the latest context summary from memory"""
+        try:
+            if self.context_memory and 'current_context' in self.context_memory:
+                return self.context_memory['current_context']
+            return {}
+        except Exception as e:
+            self.logger.error(f"Error getting latest context summary: {e}")
+            return {}
+    
     def _update_last_context(self, sensor_data):
         """Update last_context.json with comprehensive context data"""
         try:
             # Get the most recent context summary
-            context_summary = self.context_memory.get('current_context', {})
+            context_summary = self.get_latest_context_summary()
             
             # Get the most recent screen and process data
             screen_data = sensor_data.get('screen', {})

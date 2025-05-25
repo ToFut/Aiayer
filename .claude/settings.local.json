@@ -33,7 +33,9 @@
       "Bash(curl:*)",
       "Bash(./start_enhanced_backend.sh:*)",
       "Bash(timeout 60 python:*)",
-      "Bash(./start_fixed_backend_test.sh:*)"
+      "Bash(./start_fixed_backend_test.sh:*)",
+      "Bash(kill:*)",
+      "Bash(python test_fixed_agent_mode.py:*)"
     ],
     "deny": []
   }

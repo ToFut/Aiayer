@@ -1,0 +1,47 @@
+INFO:brain.core.brain_router:BrainRouter initialized - The Central Intelligence Hub is online
+INFO:brain.handlers.agent_mode_handler:AgentModeHandler initialized
+INFO:agent_workflow.input_controller:Detected screen size: 1470x956
+INFO:agent_workflow.input_controller:Input listeners started successfully
+INFO:agent_workflow.input_controller:🚨 Emergency shutdown: Press Ctrl+1 to immediately stop agent
+INFO:llava_processor:Connected to Ollama API v0.6.8
+INFO:total_screen_analyzer:LLaVA visual processor initialized for total screen analysis
+INFO:total_screen_analyzer:Total Screen Analyzer initialized with 8s interval
+INFO:real_agent_automation_handler:🤖 Real automation components loaded successfully
+INFO:brain.handlers.ask_mode_handler:AskModeHandler initialized
+INFO:__main__:🧠 Ask Mode Handler initialized
+INFO:__main__:🤖 Real Automation Handler ready for AGENT mode
+INFO:__main__:Real LLM Backend 8767 initialized with Brain Router integration
+INFO:__main__:Starting Real LLM Backend on port 8767...
+INFO:websockets.server:server listening on [::1]:8767
+INFO:websockets.server:server listening on 127.0.0.1:8767
+INFO:__main__:✅ Real LLM Backend is running on ws://localhost:8767
+INFO:websockets.server:connection open
+INFO:__main__:Client connected: client_1748152421780 from ::1
+INFO:__main__:Processing register from client_1748152421780
+INFO:__main__:Processing chat_request from client_1748152421780
+INFO:__main__:🤖 Routing AGENT mode to Real Automation Handler: Create a daily productivity workflow for me
+INFO:real_agent_automation_handler:Created automation plan 'Create A Daily Productivity Workflow For...' with 5 steps
+INFO:__main__:Client disconnected: client_1748152421780
+INFO:websockets.server:connection open
+INFO:__main__:Client connected: client_1748152444968 from ::1
+INFO:websockets.server:connection open
+INFO:__main__:Client connected: client_1748152444968 from ::1
+INFO:__main__:Processing register from client_1748152444968
+INFO:__main__:Processing chat_request from client_1748152444968
+INFO:__main__:🤖 Routing AGENT mode to Real Automation Handler: open Notepad
+INFO:real_agent_automation_handler:Created automation plan 'Open Notepad' with 2 steps
+INFO:__main__:Processing chat_request from client_1748152444968
+INFO:__main__:🤖 Routing AGENT mode to Real Automation Handler: DO
+INFO:real_agent_automation_handler:Created automation plan 'Do' with 2 steps
+INFO:__main__:Processing chat_request from client_1748152444968
+INFO:__main__:Processing chat_request from client_1748152444968
+INFO:__main__:🧠 Routing Ask mode request to Brain Router: where is CAnada
+INFO:brain.handlers.ask_mode_handler:Ask mode handling request: where is CAnada...
+INFO:__main__:Processing chat_request from client_1748152444968
+INFO:__main__:🧠 Routing Ask mode request to Brain Router: where is canada
+INFO:brain.handlers.ask_mode_handler:Ask mode handling request: where is canada...
+INFO:__main__:Processing chat_request from client_1748152444968
+INFO:__main__:Processing chat_request from client_1748152444968
+INFO:__main__:Processing chat_request from client_1748152444968
+INFO:__main__:🤖 Routing AGENT mode to Real Automation Handler: open Notepad and write “SEGEV"
+INFO:real_agent_automation_handler:Created automation plan 'Open Notepad And Write “Segev"' with 3 steps

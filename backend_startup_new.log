@@ -1,0 +1,50 @@
+INFO:brain.core.brain_router:BrainRouter initialized - The Central Intelligence Hub is online
+INFO:brain.handlers.agent_mode_handler:AgentModeHandler initialized
+INFO:brain.handlers.ask_mode_handler:AskModeHandler initialized
+INFO:brain.handlers.agent_mode_handler:AgentModeHandler initialized
+INFO:__main__:🧠 Direct Agent and Ask Mode Handlers initialized
+INFO:__main__:Real LLM Backend 8767 initialized with Brain Router integration
+INFO:__main__:Starting Real LLM Backend on port 8767...
+INFO:websockets.server:server listening on 127.0.0.1:8767
+INFO:websockets.server:server listening on [::1]:8767
+INFO:__main__:✅ Real LLM Backend is running on ws://localhost:8767
+INFO:websockets.server:connection open
+INFO:__main__:Client connected: client_1748151315150 from ::1
+INFO:websockets.server:connection open
+INFO:__main__:Client connected: client_1748151315198 from ::1
+INFO:__main__:Processing register from client_1748151315198
+INFO:__main__:Client disconnected: client_1748151315198
+INFO:__main__:Client disconnected: client_1748151315150
+INFO:websockets.server:connection open
+INFO:__main__:Client connected: client_1748151320941 from ::1
+INFO:websockets.server:connection open
+INFO:__main__:Client connected: client_1748151320941 from ::1
+INFO:__main__:Processing register from client_1748151320941
+INFO:__main__:Processing chat_request from client_1748151320941
+INFO:__main__:🧠 Routing Agent mode request to Brain Router: write SEGEV
+INFO:brain.handlers.agent_mode_handler:Agent mode handling request: write SEGEV...
+INFO:brain.handlers.agent_mode_handler:Created execution plan: Write Segev with 4 steps
+INFO:brain.handlers.agent_mode_handler:Step step_1 completed: Analyze and understand the request: 'write SEGEV...'
+INFO:brain.handlers.agent_mode_handler:Step step_2 completed: Develop approach and strategy for execution
+INFO:brain.handlers.agent_mode_handler:Step step_3 completed: Execute the planned approach
+INFO:brain.handlers.agent_mode_handler:Step step_4 completed: Verify task completion and quality
+INFO:__main__:Processing chat_request from client_1748151320941
+INFO:websockets.server:connection open
+INFO:__main__:Client connected: client_1748151343316 from ::1
+INFO:__main__:Processing register from client_1748151343316
+INFO:__main__:Processing chat_request from client_1748151343316
+INFO:__main__:🧠 Routing Ask mode request to Brain Router: what am i seeing in my PC?
+INFO:brain.handlers.ask_mode_handler:Ask mode handling request: what am i seeing in my PC?...
+INFO:__main__:Client disconnected: client_1748151343316
+INFO:__main__:Processing chat_request from client_1748151320941
+INFO:__main__:🧠 Routing Ask mode request to Brain Router: is it working?
+INFO:brain.handlers.ask_mode_handler:Ask mode handling request: is it working?...
+INFO:__main__:Processing chat_request from client_1748151320941
+INFO:__main__:Processing chat_request from client_1748151320941
+INFO:__main__:🧠 Routing Agent mode request to Brain Router: Create a daily productivity workflow for me
+INFO:brain.handlers.agent_mode_handler:Agent mode handling request: Create a daily productivity workflow for me...
+INFO:brain.handlers.agent_mode_handler:Created execution plan: Create A Daily Productivity Workflow For... with 4 steps
+INFO:brain.handlers.agent_mode_handler:Step step_1 completed: Analyze and understand the request: 'Create a daily productivity workflow for me...'
+INFO:brain.handlers.agent_mode_handler:Step step_2 completed: Develop approach and strategy for execution
+INFO:brain.handlers.agent_mode_handler:Step step_3 completed: Execute the planned approach
+INFO:brain.handlers.agent_mode_handler:Step step_4 completed: Verify task completion and quality

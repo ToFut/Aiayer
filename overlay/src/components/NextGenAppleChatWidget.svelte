@@ -346,7 +346,30 @@ I'm your intelligent assistant with four specialized, fully-enhanced modes:
       hideTypingIndicator();
       playSound('message-received');
       
-      // Check if this is an Agent mode response requiring confirmation
+      // Check if this is an Agent mode response with interactive buttons (NEW FORMAT)
+      if (data.interactive && data.buttons && data.buttons.length > 0 && currentMode === 'Agent') {
+        console.log('🤖 Agent response with interactive buttons:', data);
+        
+        // Add message with interactive buttons
+        const assistantMessage = {
+          id: Date.now(),
+          type: 'assistant',
+          content: data.response,
+          timestamp: new Date(),
+          confidence: data.confidence || 1.0,
+          mode: data.mode || currentMode,
+          interactive: true,
+          buttons: data.buttons,
+          plan_id: data.plan_id,
+          requires_approval: data.requires_approval
+        };
+        
+        messages = [...messages, assistantMessage];
+        scrollToBottom();
+        return;
+      }
+      
+      // Check if this is an Agent mode response requiring confirmation (OLD FORMAT)
       if (data.requiresConfirmation && data.agentSessionId && currentMode === 'Agent') {
         console.log('🤖 Agent response with confirmation buttons:', data);
         
@@ -1034,6 +1057,43 @@ Please engage in creative brainstorming and ideation:
     
     scrollToBottom();
   }
+
+  // Handle interactive automation button clicks (NEW FORMAT)
+  function handleAutomationButton(action, planId, buttonData) {
+    console.log('🎯 Automation button clicked:', { action, planId, buttonData });
+    playSound('interface-click');
+    
+    // Send button action to backend
+    const payload = {
+      type: "button_action",
+      action: action,
+      plan_id: planId,
+      button_data: buttonData,
+      timestamp: Date.now()
+    };
+    
+    console.log('📤 Sending button action:', payload);
+    ws.send(JSON.stringify(payload));
+    
+    // Update button state or show loading indicator
+    if (action === 'execute_plan') {
+      progressVisible = true;
+      currentProgress = { 
+        progress: 0, 
+        currentStep: 'Starting automation...', 
+        stepNumber: 0, 
+        totalSteps: 3 
+      };
+    }
+    
+    // Remove buttons from the message to prevent multiple clicks
+    messages = messages.map(msg => {
+      if (msg.plan_id === planId) {
+        return { ...msg, interactive: false, buttons: [] };
+      }
+      return msg;
+    });
+  }
 </script>
 
 {#if show}
@@ -1142,6 +1202,23 @@ Please engage in creative brainstorming and ideation:
                     <span class="btn-icon">🔧</span>
                     <span class="btn-text">Adjust</span>
                   </button>
+                </div>
+              </div>
+            {/if}
+            
+            <!-- Interactive Automation Buttons (NEW FORMAT) -->
+            {#if message.interactive && message.buttons && message.buttons.length > 0 && message.type === 'assistant'}
+              <div class="interactive-buttons" transition:fly={{ y: 10, duration: 300 }}>
+                <div class="button-group">
+                  {#each message.buttons as button}
+                    <button 
+                      class="automation-btn {button.style}" 
+                      on:click={() => handleAutomationButton(button.action, message.plan_id, button)}
+                      title={button.description}
+                    >
+                      <span class="btn-text">{button.text}</span>
+                    </button>
+                  {/each}
                 </div>
               </div>
             {/if}
@@ -2636,6 +2713,65 @@ Please engage in creative brainstorming and ideation:
   }
 
   .adjust-btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(255, 149, 0, 0.4);
+  }
+
+  /* Interactive Automation Buttons (NEW FORMAT) */
+  .interactive-buttons {
+    margin-top: 12px;
+    padding: 16px;
+    background: rgba(255, 255, 255, 0.9);
+    border: 1px solid rgba(0, 122, 255, 0.2);
+    border-radius: 12px;
+    backdrop-filter: blur(10px);
+  }
+
+  .automation-btn {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 12px 16px;
+    border: none;
+    border-radius: 10px;
+    font-weight: 600;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    backdrop-filter: blur(5px);
+  }
+
+  .automation-btn.success {
+    background: linear-gradient(135deg, #30D158, #32D74B);
+    color: white;
+    box-shadow: 0 2px 8px rgba(48, 209, 88, 0.3);
+  }
+
+  .automation-btn.success:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(48, 209, 88, 0.4);
+  }
+
+  .automation-btn.danger {
+    background: linear-gradient(135deg, #FF3B30, #FF6B60);
+    color: white;
+    box-shadow: 0 2px 8px rgba(255, 59, 48, 0.3);
+  }
+
+  .automation-btn.danger:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(255, 59, 48, 0.4);
+  }
+
+  .automation-btn.warning {
+    background: linear-gradient(135deg, #FF9500, #FFCC00);
+    color: white;
+    box-shadow: 0 2px 8px rgba(255, 149, 0, 0.3);
+  }
+
+  .automation-btn.warning:hover {
     transform: translateY(-1px);
     box-shadow: 0 4px 12px rgba(255, 149, 0, 0.4);
   }

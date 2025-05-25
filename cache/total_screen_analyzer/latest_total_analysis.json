@@ -1,9 +1,9 @@
 {
-  "timestamp": "2025-05-23T18:38:21.634369",
-  "image_hash": "eab0b08480de2f6b11d9514944e87acd",
+  "timestamp": "2025-05-24T22:59:48.186985",
+  "image_hash": "37b019be9e8b63825722548020dbd80c",
   "memory_summary": {
-    "timestamp": "2025-05-23T18:38:21.634369",
-    "image_hash": "eab0b08480de2f6b11d9514944e87acd",
+    "timestamp": "2025-05-24T22:59:48.186985",
+    "image_hash": "37b019be9e8b63825722548020dbd80c",
     "overall_context": "terminals_general_computing",
     "semantic_summary": "Using Cursor for general_computing in creation stage",
     "activity_classification": "general_usage",
@@ -11,11 +11,11 @@
     "application": {
       "name": "Cursor",
       "detected_type": "terminals",
-      "confidence": 0.3333333333333333
+      "confidence": 0.4444444444444444
     },
     "content": {
       "type": "code",
-      "word_count": 262,
+      "word_count": 357,
       "has_meaningful_text": true,
       "primary_purpose": "development",
       "interaction_level": "active"
@@ -27,12 +27,12 @@
       "productivity_context": "general_usage"
     },
     "key_insights": [
-      "Content-rich screen with 262 words",
+      "Content-rich screen with 357 words",
       "User engaged in general_usage",
       "Active user interaction detected"
     ],
-    "analysis_confidence": 0.3333333333333333,
-    "text_sample": "node \u2014 Aiayer\n\nnode\n\nnode\n\nx\n\n+\n\nray\n\n@ Read(enhanced_agent_automation. py)...\n\nL Read 3@ lines (ctrl+r to expand)\n\nLet me find the exact _create_execution_plan method:\n\nBash(cd /Users/segevbin/Desktop/SensAI/Aiayer && grep -n \"def _create_execution_plan\" enhanced_agent_automation. py)...\n\nL 775:\n\nasync def _create_execution_plan(self, parsed_command: Dict[str, Any], element_matches: List[Dict[str, Any]]) -> Dict[str, Any]:\n\nRead (enhanced_agent_automation. py)...\n\nL Read 4@ lines (ctri+r to exp",
+    "analysis_confidence": 0.4444444444444444,
+    "text_sample": "node \u2014 Aiayer\n\nzsh zsh zsh node node x + fa]\n\n\u2014\u2014launch-time-ticks=19044456629 --shared-files \u2014-metrics\u2014shmem-handle=1752395122, r,7315881674744015092, 7122578134453251194, 2097152\n\u2014-field-trial\u2014handle=1718379636, r, 10172136058587840916 , 17315802712689406509, 262144 \u2014-variations-seed-version=20250522-050036.489000 \u2014-seatbelt-client=143\n\nsegevbin 49866 0.0 @.6 1863486032 51520 7? S Fri12PM 1:16.15 /Applications/Google Chrome.app/Contents/Frameworks/Google Chrome\n\nFramework. f ramework/Versions/1",
     "llava_insights": {
       "visual_context": "Lightweight visual analysis",
       "application_detected": "detected_via_cv",
@@ -41,9 +41,9 @@
   },
   "synthesized_context": {
     "overall_context": "terminals_general_computing",
-    "confidence": 0.3333333333333333,
+    "confidence": 0.4444444444444444,
     "key_insights": [
-      "Content-rich screen with 262 words",
+      "Content-rich screen with 357 words",
       "User engaged in general_usage",
       "Active user interaction detected"
     ],
@@ -51,5 +51,5 @@
     "activity_classification": "general_usage",
     "memory_priority": "normal"
   },
-  "analysis_duration": 23.655790090560913
+  "analysis_duration": 48.17548704147339
 }
