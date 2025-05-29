@@ -94,6 +94,60 @@ class MemorySystem:
             logger.error(f"Error adding to context memory: {e}")
             raise
             
+    def get_latest_context_summary(self) -> Dict[str, Any]:
+        """Get the latest context summary from memory"""
+        try:
+            if not self.initialized:
+                logger.warning("Memory system not initialized when getting latest context summary")
+                return {}
+                
+            # If no memory items, return empty context
+            if not self.memory:
+                return {}
+                
+            # Get the most recent memory items
+            recent_items = self.memory[-3:]  # Last 3 items
+            
+            # Extract key information for context summary
+            current_activity = {}
+            recent_actions = []
+            user_intent = ""
+            current_task = ""
+            related_insights = []
+            
+            # Process recent items to extract relevant context
+            for item in recent_items:
+                if isinstance(item, dict):
+                    # Add to recent actions
+                    if 'content' in item and 'role' in item:
+                        recent_actions.append({
+                            'role': item.get('role', 'user'),
+                            'content': item.get('content', '')[:100],  # Truncate long content
+                            'timestamp': item.get('timestamp', datetime.now().isoformat())
+                        })
+                    
+                    # If it's a user message, use it to infer user intent and current task
+                    if item.get('role') == 'user' and not user_intent and 'content' in item:
+                        user_intent = item.get('content', '')[:200]  # Use truncated content as intent
+                        current_task = f"Responding to: {user_intent[:50]}..."  # Simplified task description
+            
+            # Build the context summary
+            context_summary = {
+                'current_activity': current_activity,
+                'recent_actions': recent_actions,
+                'user_intent': user_intent,
+                'current_task': current_task,
+                'related_insights': related_insights,
+                'last_updated': datetime.now().isoformat()
+            }
+            
+            logger.info(f"Generated context summary with {len(recent_actions)} recent actions")
+            return context_summary
+            
+        except Exception as e:
+            logger.error(f"Error getting latest context summary: {e}")
+            return {}
+    
     async def cleanup(self):
         """Cleanup resources used by the memory system."""
         try:

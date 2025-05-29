@@ -1,28 +1,127 @@
-2025-05-23 16:26:35,439 - memory.enhanced_semantic_search - INFO - Enhanced semantic search initialized with embedding dim: 384
-2025-05-23 16:26:35,439 - memory.enhanced_semantic_search - INFO - Hybrid retrieval enabled: True
-2025-05-23 16:26:35,505 - memory.semantic_search_agent - INFO - Loading 97 existing documents from storage
-2025-05-23 16:26:35,513 - memory.semantic_search_agent - INFO - EnterpriseVectorStore initialized with enterprise-grade features
-2025-05-23 16:26:35,513 - memory.semantic_search_agent - INFO - SemanticSearchAgent initialized with enterprise-grade capabilities
-2025-05-23 16:26:35,667 - agent_workflow.input_controller - INFO - Detected screen size: 1470x956
-2025-05-23 16:26:35,685 - memory.semantic_search_agent - INFO - Loading 97 existing documents from storage
-2025-05-23 16:26:35,689 - memory.semantic_search_agent - INFO - EnterpriseVectorStore initialized with enterprise-grade features
-2025-05-23 16:26:35,690 - memory.semantic_search_agent - INFO - SemanticSearchAgent initialized with enterprise-grade capabilities
-2025-05-23 16:26:35,690 - __main__ - INFO - Contextual AI Backend initialized - Ollama: True, Memory: Active
-2025-05-23 16:26:35,690 - __main__ - INFO - 🚀 Starting Enhanced Enterprise Backend 8767 with Contextual Memory...
-2025-05-23 16:26:35,690 - __main__ - INFO - 🧠 Contextual AI responses enabled
-2025-05-23 16:26:35,690 - __main__ - INFO - 🔍 Semantic memory integration active
-2025-05-23 16:26:35,690 - __main__ - INFO - 🎯 Modes: Agent, Ask, Suggest, General (all contextual)
-2025-05-23 16:26:35,691 - __main__ - INFO - ✅ Enhanced Enterprise Backend 8767 started successfully
-2025-05-23 16:26:35,691 - __main__ - INFO - 🌐 WebSocket server listening on ws://localhost:8767
-2025-05-23 16:26:35,691 - __main__ - INFO - 🤖 Ollama integration: ✅ Active
-2025-05-23 16:26:35,691 - __main__ - INFO - 🧠 Contextual memory system ready
-2025-05-23 16:26:35,691 - websockets.server - INFO - server listening on 127.0.0.1:8767
-2025-05-23 16:26:35,691 - websockets.server - INFO - server listening on [::1]:8767
-2025-05-23 16:26:40,881 - websockets.server - INFO - connection open
-2025-05-23 16:26:40,881 - __main__ - INFO - Client connected: client_1748042800881 from ::1
-2025-05-23 16:26:40,882 - websockets.server - INFO - connection open
-2025-05-23 16:26:40,882 - __main__ - INFO - Client connected: client_1748042800882 from ::1
-2025-05-23 16:26:40,886 - __main__ - INFO - Processing contextual register from client_1748042800881
-2025-05-23 16:26:40,886 - __main__ - INFO - Client registration: client_1748042800881 (ui v1.0.0)
-2025-05-23 16:26:45,440 - websockets.server - INFO - connection open
-2025-05-23 16:26:45,440 - __main__ - INFO - Client connected: client_1748042805440 from ::1
+INFO:memory.enhanced_semantic_search:Enhanced semantic search initialized with embedding dim: 384
+INFO:memory.enhanced_semantic_search:Hybrid retrieval enabled: True
+INFO:memory.semantic_search_agent:Loading 454 existing documents from storage
+INFO:memory.semantic_search_agent:EnterpriseVectorStore initialized with enterprise-grade features
+INFO:memory.semantic_search_agent:SemanticSearchAgent initialized with enterprise-grade capabilities
+INFO:agent_workflow.input_controller:Detected screen size: 1470x956
+INFO:agent_workflow.input_controller:Input listeners started successfully
+INFO:agent_workflow.input_controller:🚨 Emergency shutdown: Press Ctrl+1 to immediately stop agent
+INFO:application_integration_framework:📱 Registered 2 application integrators
+INFO:application_integration_framework:📱 Registered 2 application integrators
+INFO:sensors.process_sensor:Process sensor initialized with config: {'interval_sec': 5, 'max_memory_mb': 50, 'cleanup_threshold_mb': 25, 'max_errors': 3, 'exclude_patterns': ['system', 'kernel'], 'max_processes': 100}
+INFO:memory.memory_system:Memory logger initialized
+INFO:memory_diagnostics:Memory diagnostic logger initialized
+INFO:memory_diagnostics:MEMORY EVENT: logger_initialized - {"timestamp": "2025-05-26T20:46:04.422379"}
+INFO:memory.memory_system:Diagnostic logger initialized
+2025-05-26 20:46:04,422 - INFO - [ConsciousMemory] Initialized as middle layer for memory system
+INFO:memory.conscious_memory:[ConsciousMemory] Initialized as middle layer for memory system
+INFO:memory.memory_system:Conscious memory initialized
+INFO:memory.enhanced_semantic_search:Enhanced semantic search initialized with embedding dim: 384
+INFO:memory.enhanced_semantic_search:Hybrid retrieval enabled: True
+INFO:memory.memory_system:Enhanced semantic search initialized
+INFO:memory.memory_system:🔄 Loading memory state from /Users/segevbin/Desktop/SensAI/Aiayer/memory/memory/memory_state.json
+INFO:memory.memory_system:  - Found 12 short-term memory items
+INFO:memory.memory_system:  - No long-term memory found, initializing empty
+INFO:memory.memory_system:  - Found context memory with 6 items
+INFO:memory.memory_system:✅ Successfully loaded memory state
+INFO:memory_diagnostics:MEMORY EVENT: memory_state_loaded - {"short_term_count": 12, "long_term_count": 0, "context_count": 6, "timestamp": "2025-05-26T20:46:04.423550"}
+INFO:memory.memory_system:Memory system initialized
+INFO:enhanced_realtime_system_bridge:EnhancedRealtimeSystemBridge initialized - living in the system, not capturing it
+INFO:fast_universal_automation_handler:🚀 Fast automation with efficient system integration loaded
+INFO:fast_universal_automation_handler:⚡ No more screen capture overhead - using OS integration!
+INFO:fast_universal_automation_handler:🔥 Fast automation will use warmup manager for instant responses
+INFO:fast_universal_automation_handler:🔄 Fallback handler initialized
+INFO:memory.semantic_search_agent:Loading 454 existing documents from storage
+INFO:memory.semantic_search_agent:EnterpriseVectorStore initialized with enterprise-grade features
+INFO:memory.semantic_search_agent:SemanticSearchAgent initialized with enterprise-grade capabilities
+INFO:application_integration_framework:📱 Registered 2 application integrators
+INFO:application_integration_framework:📱 Registered 2 application integrators
+INFO:sensors.process_sensor:Process sensor initialized with config: {'interval_sec': 5, 'max_memory_mb': 50, 'cleanup_threshold_mb': 25, 'max_errors': 3, 'exclude_patterns': ['system', 'kernel'], 'max_processes': 100}
+INFO:memory.memory_system:Memory logger initialized
+INFO:memory_diagnostics:Memory diagnostic logger initialized
+INFO:memory_diagnostics:MEMORY EVENT: logger_initialized - {"timestamp": "2025-05-26T20:46:04.484076"}
+INFO:memory.memory_system:Diagnostic logger initialized
+2025-05-26 20:46:04,484 - INFO - [ConsciousMemory] Initialized as middle layer for memory system
+INFO:memory.conscious_memory:[ConsciousMemory] Initialized as middle layer for memory system
+INFO:memory.memory_system:Conscious memory initialized
+INFO:memory.enhanced_semantic_search:Enhanced semantic search initialized with embedding dim: 384
+INFO:memory.enhanced_semantic_search:Hybrid retrieval enabled: True
+INFO:memory.memory_system:Enhanced semantic search initialized
+INFO:memory.memory_system:🔄 Loading memory state from /Users/segevbin/Desktop/SensAI/Aiayer/memory/memory/memory_state.json
+INFO:memory.memory_system:  - Found 12 short-term memory items
+INFO:memory.memory_system:  - No long-term memory found, initializing empty
+INFO:memory.memory_system:  - Found context memory with 6 items
+INFO:memory.memory_system:✅ Successfully loaded memory state
+INFO:memory_diagnostics:MEMORY EVENT: memory_state_loaded - {"short_term_count": 12, "long_term_count": 0, "context_count": 6, "timestamp": "2025-05-26T20:46:04.485764"}
+INFO:memory.memory_system:Memory system initialized
+INFO:enhanced_realtime_system_bridge:EnhancedRealtimeSystemBridge initialized - living in the system, not capturing it
+INFO:__main__:🚀 Efficient system bridge initialized - living in the system!
+INFO:__main__:✅ Using efficient OS integration - no screen capture overhead
+INFO:agent_workflow.input_controller:Input listeners started successfully
+INFO:agent_workflow.input_controller:🚨 Emergency shutdown: Press Ctrl+1 to immediately stop agent
+INFO:application_integration_framework:📱 Registered 2 application integrators
+INFO:application_integration_framework:📱 Registered 2 application integrators
+INFO:sensors.process_sensor:Process sensor initialized with config: {'interval_sec': 5, 'max_memory_mb': 50, 'cleanup_threshold_mb': 25, 'max_errors': 3, 'exclude_patterns': ['system', 'kernel'], 'max_processes': 100}
+INFO:memory.memory_system:Memory logger initialized
+INFO:memory_diagnostics:Memory diagnostic logger initialized
+INFO:memory_diagnostics:MEMORY EVENT: logger_initialized - {"timestamp": "2025-05-26T20:46:04.488346"}
+INFO:memory.memory_system:Diagnostic logger initialized
+2025-05-26 20:46:04,488 - INFO - [ConsciousMemory] Initialized as middle layer for memory system
+INFO:memory.conscious_memory:[ConsciousMemory] Initialized as middle layer for memory system
+INFO:memory.memory_system:Conscious memory initialized
+INFO:memory.enhanced_semantic_search:Enhanced semantic search initialized with embedding dim: 384
+INFO:memory.enhanced_semantic_search:Hybrid retrieval enabled: True
+INFO:memory.memory_system:Enhanced semantic search initialized
+INFO:memory.memory_system:🔄 Loading memory state from /Users/segevbin/Desktop/SensAI/Aiayer/memory/memory/memory_state.json
+INFO:memory.memory_system:  - Found 12 short-term memory items
+INFO:memory.memory_system:  - No long-term memory found, initializing empty
+INFO:memory.memory_system:  - Found context memory with 6 items
+INFO:memory.memory_system:✅ Successfully loaded memory state
+INFO:memory_diagnostics:MEMORY EVENT: memory_state_loaded - {"short_term_count": 12, "long_term_count": 0, "context_count": 6, "timestamp": "2025-05-26T20:46:04.489073"}
+INFO:memory.memory_system:Memory system initialized
+INFO:enhanced_realtime_system_bridge:EnhancedRealtimeSystemBridge initialized - living in the system, not capturing it
+INFO:fast_universal_automation_handler:🚀 Fast automation with efficient system integration loaded
+INFO:fast_universal_automation_handler:⚡ No more screen capture overhead - using OS integration!
+INFO:fast_universal_automation_handler:🔥 Fast automation will use warmup manager for instant responses
+INFO:fast_universal_automation_handler:🔄 Fallback handler initialized
+INFO:__main__:✅ Fast Universal Automation handler initialized for Agent mode
+INFO:__main__:Contextual AI Backend initialized - Ollama: True, Memory: Active
+INFO:__main__:🚀 Starting Enhanced Enterprise Backend 8767 with Efficient System Integration...
+INFO:__main__:🧠 Contextual AI responses enabled
+INFO:__main__:🔍 Semantic memory integration active
+INFO:__main__:🎯 Modes: Agent, Ask, Suggest, General (all contextual)
+INFO:__main__:🚀 Starting efficient system bridge...
+INFO:__main__:✅ Efficient system bridge started successfully
+INFO:__main__:✅ Enhanced Enterprise Backend 8767 started successfully
+INFO:__main__:🌐 WebSocket server listening on ws://localhost:8767
+INFO:__main__:🤖 Ollama integration: ✅ Active
+INFO:__main__:🧠 Contextual memory system ready
+INFO:__main__:🚀 Efficient system integration active - no screen capture overhead!
+INFO:__main__:⚡ System Bridge WebSocket: ws://localhost:8768
+INFO:enhanced_realtime_system_bridge:Starting enhanced real-time system bridge...
+INFO:system_integrated_monitor:🚀 Starting system-integrated monitoring (no screen capture)
+INFO:system_integrated_monitor:Platform: Darwin 23.1.0
+INFO:system_integrated_monitor:🍎 Starting macOS system integration...
+ERROR:__main__:❌ Failed to start Enhanced Enterprise Backend 8767: [Errno 48] error while attempting to bind on address ('127.0.0.1', 8767): [errno 48] address already in use
+ERROR:__main__:❌ Enhanced Enterprise Backend 8767 error: [Errno 48] error while attempting to bind on address ('127.0.0.1', 8767): [errno 48] address already in use
+🚀 Efficient system bridge available - no more screen capture overhead!
+🔥 LLM Warmup Manager available for fast responses
+⚡ Fast Universal Automation handler loaded for 10-20s responses
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            INFO:websockets.server:connection open
+INFO:__main__:Client connected: client_1748317571194 from ::1
+WARNING:__main__:No system state available from bridge
+INFO:memory.semantic_search_agent:Document 4b3932af52126af82f988ca7252bdb64d6d900936e61e569ec33c311d2b0581c added to enterprise vector store
+INFO:memory.semantic_search_agent:Memory added successfully: 4b3932af52126af82f988ca7252bdb64d6d900936e61e569ec33c311d2b0581c
+INFO:memory.semantic_search_agent:Cache hit for search query
+INFO:__main__:🎯 [STREAMING] Creating Agent automation plan for: search best flights to Miami from New York
+INFO:__main__:🔧 Automation handler available: True
+INFO:__main__:⚡ Using Fast Universal Automation handler (10-20s target)
+INFO:fast_universal_automation_handler:🔄 Creating fast fallback plan...
+WARNING:fast_universal_automation_handler:Fallback planning failed: 'SmartFallbackAutomationHandler' object has no attribute 'create_smart_automation_plan'
+WARNING:fast_universal_automation_handler:All planning methods failed, using basic plan
+INFO:fast_universal_automation_handler:📝 Creating basic automation plan...
+INFO:fast_universal_automation_handler:⚡ Fast plan created in 0.00s
+INFO:__main__:⚡ Fast plan result: True - processing_time: 0.00s
+INFO:memory.semantic_search_agent:Document bacec562aa44aa9336dedc342418d9a92a77eedc4fe4a0dad65e27cb2b8be138 added to enterprise vector store
+INFO:memory.semantic_search_agent:Memory added successfully: bacec562aa44aa9336dedc342418d9a92a77eedc4fe4a0dad65e27cb2b8be138
+INFO:__main__:✅ [STREAMING] Agent automation successful: Automation plan created

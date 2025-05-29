@@ -1,0 +1,297 @@
+{
+  "summary": {
+    "total_tests": 14,
+    "passed": 4,
+    "failed": 10,
+    "success_rate": 28.57142857142857
+  },
+  "test_results": [
+    {
+      "test_name": "Basic Agent - Simple Click Action",
+      "success": false,
+      "timestamp": "2025-05-27T16:38:44.267461",
+      "details": {
+        "response_time": 0.00032210350036621094,
+        "response": {
+          "type": "connection_established",
+          "client_id": "client_1748378324266",
+          "message": "Connected to Enhanced Enterprise Backend 8767 with Contextual Memory",
+          "timestamp": "2025-05-27T16:38:44.266881",
+          "ai_features": {
+            "ollama_available": true,
+            "contextual_memory": true,
+            "semantic_search": true,
+            "intelligent_fallback": true,
+            "real_responses": true
+          },
+          "capabilities": [
+            "contextual_ai_responses",
+            "semantic_memory_integration",
+            "ollama_llm_support",
+            "intelligent_processing",
+            "agent_automation",
+            "knowledge_retrieval",
+            "proactive_suggestions",
+            "conversation_memory"
+          ]
+        }
+      },
+      "issues": [
+        "Response indicates failure",
+        "No automation plan created"
+      ]
+    },
+    {
+      "test_name": "Basic Agent - Simple Text Input",
+      "success": false,
+      "timestamp": "2025-05-27T16:38:45.270966",
+      "details": {
+        "response_time": 0.0009720325469970703,
+        "response": {
+          "type": "error",
+          "error": "Unknown message type: agent_request",
+          "client_id": "client_1748378324266",
+          "timestamp": "2025-05-27T16:38:44.267551"
+        }
+      },
+      "issues": [
+        "Error in response: Unknown message type: agent_request",
+        "Response indicates failure",
+        "No automation plan created"
+      ]
+    },
+    {
+      "test_name": "Basic Agent - Basic Navigation",
+      "success": false,
+      "timestamp": "2025-05-27T16:38:46.278667",
+      "details": {
+        "response_time": 0.001695871353149414,
+        "response": {
+          "type": "error",
+          "error": "Unknown message type: agent_request",
+          "client_id": "client_1748378324266",
+          "timestamp": "2025-05-27T16:38:45.271749"
+        }
+      },
+      "issues": [
+        "Error in response: Unknown message type: agent_request",
+        "Response indicates failure",
+        "No automation plan created"
+      ]
+    },
+    {
+      "test_name": "Complex Agent - Multi-step Web Search",
+      "success": false,
+      "timestamp": "2025-05-27T16:38:47.283412",
+      "details": {
+        "response_time": 0.0009317398071289062,
+        "steps_count": 0,
+        "response": {
+          "type": "error",
+          "error": "Unknown message type: agent_request",
+          "client_id": "client_1748378324266",
+          "timestamp": "2025-05-27T16:38:46.279450"
+        }
+      },
+      "issues": [
+        "Error in response: Unknown message type: agent_request",
+        "Expected at least 3 steps, got 0"
+      ]
+    },
+    {
+      "test_name": "Complex Agent - Form Filling",
+      "success": false,
+      "timestamp": "2025-05-27T16:38:49.287153",
+      "details": {
+        "response_time": 0.0009980201721191406,
+        "steps_count": 0,
+        "response": {
+          "type": "error",
+          "error": "Unknown message type: agent_request",
+          "client_id": "client_1748378324266",
+          "timestamp": "2025-05-27T16:38:47.284414"
+        }
+      },
+      "issues": [
+        "Error in response: Unknown message type: agent_request",
+        "Expected at least 4 steps, got 0"
+      ]
+    },
+    {
+      "test_name": "Complex Agent - File Operations",
+      "success": false,
+      "timestamp": "2025-05-27T16:38:51.289173",
+      "details": {
+        "response_time": 0.00038909912109375,
+        "steps_count": 0,
+        "response": {
+          "type": "error",
+          "error": "Unknown message type: agent_request",
+          "client_id": "client_1748378324266",
+          "timestamp": "2025-05-27T16:38:49.288184"
+        }
+      },
+      "issues": [
+        "Error in response: Unknown message type: agent_request",
+        "Expected at least 2 steps, got 0"
+      ]
+    },
+    {
+      "test_name": "UI Detection - Button Detection",
+      "success": false,
+      "timestamp": "2025-05-27T16:38:53.290969",
+      "details": {
+        "response_time": 0.00017905235290527344,
+        "has_coordinates": false,
+        "response": {
+          "type": "error",
+          "error": "Unknown message type: agent_request",
+          "client_id": "client_1748378324266",
+          "timestamp": "2025-05-27T16:38:51.289424"
+        }
+      },
+      "issues": [
+        "Error in response: Unknown message type: agent_request",
+        "No coordinate information found for click action"
+      ]
+    },
+    {
+      "test_name": "UI Detection - Input Field Detection",
+      "success": false,
+      "timestamp": "2025-05-27T16:38:54.299907",
+      "details": {
+        "response_time": 0.0028581619262695312,
+        "has_coordinates": false,
+        "response": {
+          "type": "error",
+          "error": "Unknown message type: agent_request",
+          "client_id": "client_1748378324266",
+          "timestamp": "2025-05-27T16:38:53.291127"
+        }
+      },
+      "issues": [
+        "Error in response: Unknown message type: agent_request"
+      ]
+    },
+    {
+      "test_name": "UI Detection - Link Detection",
+      "success": false,
+      "timestamp": "2025-05-27T16:38:55.303200",
+      "details": {
+        "response_time": 0.0004417896270751953,
+        "has_coordinates": false,
+        "response": {
+          "type": "error",
+          "error": "Unknown message type: agent_request",
+          "client_id": "client_1748378324266",
+          "timestamp": "2025-05-27T16:38:54.306498"
+        }
+      },
+      "issues": [
+        "Error in response: Unknown message type: agent_request",
+        "No coordinate information found for click action"
+      ]
+    },
+    {
+      "test_name": "Memory Integration - Context Awareness",
+      "success": false,
+      "timestamp": "2025-05-27T16:38:58.309584",
+      "details": {
+        "response_time": 0.0010449886322021484,
+        "context_aware": false,
+        "response": {
+          "type": "error",
+          "error": "Unknown message type: agent_request",
+          "client_id": "client_1748378324266",
+          "timestamp": "2025-05-27T16:38:56.305529"
+        }
+      },
+      "issues": [
+        "Error in response: Unknown message type: agent_request",
+        "Response doesn't show context awareness from previous message"
+      ]
+    },
+    {
+      "test_name": "Error Handling - Invalid Request Format",
+      "success": true,
+      "timestamp": "2025-05-27T16:38:58.312712",
+      "details": {
+        "response": {
+          "type": "error",
+          "error": "Unknown message type: agent_request",
+          "client_id": "client_1748378324266",
+          "timestamp": "2025-05-27T16:38:58.310942"
+        }
+      },
+      "issues": []
+    },
+    {
+      "test_name": "Error Handling - Empty Message",
+      "success": true,
+      "timestamp": "2025-05-27T16:38:59.314709",
+      "details": {
+        "response": {
+          "type": "error",
+          "error": "Unknown message type: unknown",
+          "client_id": "client_1748378324266",
+          "timestamp": "2025-05-27T16:38:58.312414"
+        }
+      },
+      "issues": []
+    },
+    {
+      "test_name": "Error Handling - Malformed JSON",
+      "success": true,
+      "timestamp": "2025-05-27T16:39:00.317221",
+      "details": {
+        "response": {
+          "type": "error",
+          "error": "Unknown message type: agent_request",
+          "client_id": "client_1748378324266",
+          "timestamp": "2025-05-27T16:38:59.314905"
+        }
+      },
+      "issues": []
+    },
+    {
+      "test_name": "Performance - Rapid Requests",
+      "success": true,
+      "timestamp": "2025-05-27T16:39:03.856953",
+      "details": {
+        "avg_response_time": 0.000788116455078125,
+        "max_response_time": 0.0017628669738769531,
+        "all_times": [
+          0.0008919239044189453,
+          0.0017628669738769531,
+          0.0009279251098632812,
+          0.00019478797912597656,
+          0.00016307830810546875
+        ]
+      },
+      "issues": []
+    }
+  ],
+  "all_issues": [
+    "Response indicates failure",
+    "No automation plan created",
+    "Error in response: Unknown message type: agent_request",
+    "Response indicates failure",
+    "No automation plan created",
+    "Error in response: Unknown message type: agent_request",
+    "Response indicates failure",
+    "No automation plan created",
+    "Error in response: Unknown message type: agent_request",
+    "Expected at least 3 steps, got 0",
+    "Error in response: Unknown message type: agent_request",
+    "Expected at least 4 steps, got 0",
+    "Error in response: Unknown message type: agent_request",
+    "Expected at least 2 steps, got 0",
+    "Error in response: Unknown message type: agent_request",
+    "No coordinate information found for click action",
+    "Error in response: Unknown message type: agent_request",
+    "Error in response: Unknown message type: agent_request",
+    "No coordinate information found for click action",
+    "Error in response: Unknown message type: agent_request",
+    "Response doesn't show context awareness from previous message"
+  ]
+}

@@ -1,0 +1,63 @@
+2025-05-25 21:11:31,692 - memory.enhanced_semantic_search - INFO - Enhanced semantic search initialized with embedding dim: 384
+2025-05-25 21:11:31,692 - memory.enhanced_semantic_search - INFO - Hybrid retrieval enabled: True
+2025-05-25 21:11:31,880 - memory.semantic_search_agent - INFO - Loading 132 existing documents from storage
+2025-05-25 21:11:31,895 - memory.semantic_search_agent - INFO - EnterpriseVectorStore initialized with enterprise-grade features
+2025-05-25 21:11:31,895 - memory.semantic_search_agent - INFO - SemanticSearchAgent initialized with enterprise-grade capabilities
+2025-05-25 21:11:32,233 - agent_workflow.input_controller - INFO - Detected screen size: 1470x956
+2025-05-25 21:11:36,439 - memory.semantic_search_agent - INFO - Loading 132 existing documents from storage
+2025-05-25 21:11:36,449 - memory.semantic_search_agent - INFO - EnterpriseVectorStore initialized with enterprise-grade features
+2025-05-25 21:11:36,449 - memory.semantic_search_agent - INFO - SemanticSearchAgent initialized with enterprise-grade capabilities
+2025-05-25 21:11:36,450 - agent_workflow.input_controller - INFO - Input listeners started successfully
+2025-05-25 21:11:36,450 - agent_workflow.input_controller - INFO - 🚨 Emergency shutdown: Press Ctrl+1 to immediately stop agent
+2025-05-25 21:11:36,460 - llava_processor - INFO - Connected to Ollama API v0.6.8
+2025-05-25 21:11:36,460 - total_screen_analyzer - INFO - LLaVA visual processor initialized for total screen analysis
+2025-05-25 21:11:36,460 - total_screen_analyzer - INFO - Total Screen Analyzer initialized with 1s interval
+2025-05-25 21:11:36,460 - enhanced_agent_automation - INFO - Enhanced Agent Automation initialized with Total Screen Analyzer
+2025-05-25 21:11:36,460 - enhanced_automation_handler - INFO - Enhanced Automation Handler initialized
+2025-05-25 21:11:36,460 - enhanced_enterprise_backend_with_context - INFO - Automation handler initialized for Agent mode
+2025-05-25 21:11:36,460 - enhanced_enterprise_backend_with_context - INFO - Contextual AI Backend initialized - Ollama: True, Memory: Active
+2025-05-25 21:11:36,460 - enhanced_complex_task_handler - INFO - ✅ Initialized with Improved Intelligent Task Planner
+2025-05-25 21:11:36,476 - enhanced_ui_detection - INFO - Loaded existing UI classifier model
+2025-05-25 21:11:40,459 - enhanced_ui_detection - INFO - EasyOCR initialized
+2025-05-25 21:11:40,904 - enhanced_ui_detection - INFO - SpaCy NLP model loaded
+2025-05-25 21:11:40,904 - enhanced_ui_detection - INFO - Enhanced UI Detection System initialized
+2025-05-25 21:11:40,905 - enhanced_ui_detection - INFO - Available detection methods: ['Accessibility APIs', 'Machine Learning', 'Browser APIs', 'OCR', 'NLP']
+2025-05-25 21:11:40,905 - ComplexTaskBackend - INFO - Enhanced UI Detection System initialized
+2025-05-25 21:11:40,905 - ComplexTaskBackend - INFO - Complex Task Enhanced Backend with UI Detection initialized
+2025-05-25 21:11:40,905 - ComplexTaskBackend - INFO - Starting Enhanced Enterprise Backend with Complex Task Handler...
+2025-05-25 21:11:40,905 - ComplexTaskBackend - INFO - Port: 8767
+2025-05-25 21:11:40,905 - ComplexTaskBackend - INFO - Features: Complex Task Orchestration, AI-Driven Planning, Adaptive Learning
+2025-05-25 21:11:40,914 - websockets.server - INFO - server listening on 127.0.0.1:8767
+2025-05-25 21:11:40,914 - websockets.server - INFO - server listening on [::1]:8767
+2025-05-25 21:11:40,914 - ComplexTaskBackend - INFO - ✅ Enhanced Backend with Complex Task Handler started on ws://localhost:8767
+2025-05-25 21:11:43,214 - websockets.server - INFO - connection open
+2025-05-25 21:11:43,214 - ComplexTaskBackend - INFO - Complex Task client connected: client_6303089056
+2025-05-25 21:11:43,215 - enhanced_complex_task_handler - INFO - 🤖 Using Improved Intelligent Task Planner for complex plan creation
+2025-05-25 21:11:43,215 - improved_intelligent_task_planner - INFO - Created intelligent plan: intelligent_plan_1748232703 with 7 steps
+2025-05-25 21:11:43,215 - improved_intelligent_task_planner - INFO - Complexity: SIMPLE, Duration: 62.0s
+2025-05-25 21:11:43,215 - improved_intelligent_task_planner - INFO - Domains: ['youtube'], Intent: web_search
+2025-05-25 21:11:43,216 - enhanced_complex_task_handler - INFO - ✅ Created intelligent plan with 7 steps, estimated duration: 62.0s
+2025-05-25 21:11:43,216 - enhanced_complex_task_handler - INFO - Executing step: step_7 - Navigate to youtube and login
+2025-05-25 21:11:44,218 - enhanced_complex_task_handler - INFO - Step completed successfully: step_7
+2025-05-25 21:11:44,218 - enhanced_complex_task_handler - INFO - Executing step: step_1 - Open web browser
+2025-05-25 21:11:45,220 - enhanced_complex_task_handler - INFO - Step completed successfully: step_1
+2025-05-25 21:11:45,220 - enhanced_complex_task_handler - INFO - Executing step: step_2 - Navigate to target website
+2025-05-25 21:11:46,222 - enhanced_complex_task_handler - INFO - Step completed successfully: step_2
+2025-05-25 21:11:46,223 - enhanced_complex_task_handler - INFO - Executing step: step_3 - Locate search functionality
+2025-05-25 21:11:47,224 - enhanced_complex_task_handler - INFO - Step completed successfully: step_3
+2025-05-25 21:11:47,224 - enhanced_complex_task_handler - INFO - Executing step: step_4 - Enter search terms
+2025-05-25 21:11:48,226 - enhanced_complex_task_handler - INFO - Step completed successfully: step_4
+2025-05-25 21:11:48,226 - enhanced_complex_task_handler - INFO - Executing step: step_5 - Execute search
+2025-05-25 21:11:49,228 - enhanced_complex_task_handler - INFO - Step completed successfully: step_5
+2025-05-25 21:11:49,228 - enhanced_complex_task_handler - INFO - Executing step: step_6 - Review results
+2025-05-25 21:11:50,229 - enhanced_complex_task_handler - INFO - Step completed successfully: step_6
+2025-05-25 21:11:50,230 - enhanced_complex_task_handler - INFO - Learning data recorded for plan intelligent_plan_1748232703 in domain general
+2025-05-25 21:13:00,125 - websockets.server - INFO - connection open
+2025-05-25 21:13:00,126 - ComplexTaskBackend - INFO - Complex Task client connected: client_6302992656
+2025-05-25 21:13:00,127 - websockets.server - INFO - connection open
+2025-05-25 21:13:00,127 - ComplexTaskBackend - INFO - Complex Task client connected: client_6302993936
+2025-05-25 21:13:03,784 - ComplexTaskBackend - ERROR - Error processing message: 'ComplexTaskEnhancedBackend' object has no attribute 'handle_general_mode'
+2025-05-25 21:13:09,632 - websockets.server - INFO - connection open
+2025-05-25 21:13:09,632 - ComplexTaskBackend - INFO - Complex Task client connected: client_6303027440
+2025-05-25 21:13:09,633 - websockets.server - INFO - connection open
+2025-05-25 21:13:09,633 - ComplexTaskBackend - INFO - Complex Task client connected: client_6303030176

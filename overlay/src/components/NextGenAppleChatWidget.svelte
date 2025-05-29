@@ -2,6 +2,7 @@
   import { onMount, tick } from 'svelte';
   import { fade, fly, scale, blur } from 'svelte/transition';
   import { cubicOut, elasticOut, expoOut } from 'svelte/easing';
+  import ScreenViewer from './ScreenViewer.svelte';
   
   export let show = false;
   export let initialPosition = { x: 20, y: 90 };
@@ -37,6 +38,7 @@
   let quickActionExpanded = false;
   let soundEnabled = true;
   let modeDropdownOpen = false;
+  let showScreenViewer = false;
   
   // Agent mode confirmation state
   let pendingConfirmation = null;
@@ -200,6 +202,9 @@
         connectionStatus = 'connected';
         reconnectAttempts = 0;
         playSound('connection-success');
+        
+        // Create bridge wrapper for screen sharing
+        bridgeWrapper = createBridgeWrapper();
         
         if (messages.length === 0) {
           addWelcomeMessage();
@@ -955,6 +960,44 @@ Please engage in creative brainstorming and ideation:
     playSound('interface-toggle');
   }
 
+  function toggleScreenViewer() {
+    showScreenViewer = !showScreenViewer;
+    playSound('interface-toggle');
+  }
+  
+  function handleScreenViewerClose() {
+    showScreenViewer = false;
+    playSound('interface-close');
+  }
+
+  // Create a bridge wrapper for screen viewer
+  let bridgeWrapper = null;
+  
+  function createBridgeWrapper() {
+    if (!ws) return null;
+    
+    return {
+      send: (type, data) => {
+        if (ws && ws.readyState === WebSocket.OPEN) {
+          ws.send(JSON.stringify({ type, ...data }));
+        }
+      },
+      on: (event, handler) => {
+        if (event === 'screen_frame') {
+          ws.screenFrameHandler = handler;
+        }
+      },
+      requestScreenSharing: () => {
+        if (ws && ws.readyState === WebSocket.OPEN) {
+          ws.send(JSON.stringify({ 
+            type: 'start_screen_sharing',
+            timestamp: Date.now()
+          }));
+        }
+      }
+    };
+  }
+
   function handleInputFocus() {
     inputFocused = true;
     lastUserInteraction = Date.now();
@@ -1121,6 +1164,9 @@ Please engage in creative brainstorming and ideation:
       </div>
       
       <div class="header-controls">
+        <button class="control-btn screen-share-btn" class:active={showScreenViewer} on:click={toggleScreenViewer} title="Toggle Screen Sharing">
+          {showScreenViewer ? '🖥️' : '📺'}
+        </button>
         <button class="control-btn sound-btn" class:active={soundEnabled} on:click={toggleSound}>
           {soundEnabled ? '🔊' : '🔇'}
         </button>
@@ -1347,6 +1393,19 @@ Please engage in creative brainstorming and ideation:
 
   {/if}
 </div>
+
+<!-- Screen Viewer Modal -->
+{#if showScreenViewer}
+  <div class="screen-viewer-modal" transition:fade={{ duration: 300 }}>
+    <div class="screen-viewer-container" transition:scale={{ duration: 400, easing: elasticOut }}>
+      <ScreenViewer 
+        on:close={handleScreenViewerClose}
+        bridge={bridgeWrapper}
+      />
+    </div>
+  </div>
+{/if}
+
 {/if}
 
 <style>
@@ -2846,5 +2905,39 @@ Please engage in creative brainstorming and ideation:
   .step-counter {
     color: rgba(0, 0, 0, 0.5);
     font-weight: 500;
+  }
+
+  /* Screen Viewer Modal Styles */
+  .screen-viewer-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: var(--primary-blur);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10000;
+  }
+
+  .screen-viewer-container {
+    position: relative;
+    max-width: 95vw;
+    max-height: 95vh;
+    border-radius: var(--border-radius-large);
+    overflow: hidden;
+    box-shadow: var(--shadow-large), 0 0 0 1px rgba(255, 255, 255, 0.1);
+  }
+
+  /* Screen share button styling */
+  .control-btn.screen-share-btn.active {
+    background: rgba(0, 122, 255, 0.2);
+    color: #007AFF;
+  }
+
+  .control-btn.screen-share-btn:hover {
+    background: rgba(0, 122, 255, 0.1);
   }
 </style>

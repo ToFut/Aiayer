@@ -2,6 +2,7 @@
   import { onMount, tick } from 'svelte';
   import { fade, fly, scale } from 'svelte/transition';
   import { elasticOut, cubicOut } from 'svelte/easing';
+  import ScreenViewer from './ScreenViewer.svelte';
   
   export let show = false;
   export let initialPosition = { x: 20, y: 90 };
@@ -37,6 +38,7 @@
   let soundEnabled = true;
   let dropdownOpen = false;
   let dropdownFocused = false;
+  let showScreenViewer = false;
   
   // Apple-inspired mode configurations with enhanced metadata
   const modes = {
@@ -133,6 +135,9 @@
         console.log('Connected to Enterprise SensAI backend');
         connectionStatus = 'connected';
         reconnectAttempts = 0;
+        
+        // Create bridge wrapper for screen sharing
+        bridgeWrapper = createBridgeWrapper();
         
         // Add welcome message
         if (messages.length === 0) {
@@ -678,6 +683,46 @@ Choose a mode and start chatting!`,
     }
   }
 
+  function toggleScreenViewer() {
+    showScreenViewer = !showScreenViewer;
+    playSound('interface-click');
+  }
+  
+  function handleScreenViewerClose() {
+    showScreenViewer = false;
+    playSound('interface-click');
+  }
+
+  // Create a bridge wrapper for screen viewer
+  let bridgeWrapper = null;
+  
+  function createBridgeWrapper() {
+    if (!ws) return null;
+    
+    return {
+      send: (type, data) => {
+        if (ws && ws.readyState === WebSocket.OPEN) {
+          ws.send(JSON.stringify({ type, ...data }));
+        }
+      },
+      on: (event, handler) => {
+        // Simple event handling - in a real implementation this would be more robust
+        if (event === 'screen_frame') {
+          // Store handler for screen frame events
+          ws.screenFrameHandler = handler;
+        }
+      },
+      requestScreenSharing: () => {
+        if (ws && ws.readyState === WebSocket.OPEN) {
+          ws.send(JSON.stringify({ 
+            type: 'start_screen_sharing',
+            timestamp: Date.now()
+          }));
+        }
+      }
+    };
+  }
+
   function handleInputFocus() {
     inputFocused = true;
     lastUserInteraction = Date.now();
@@ -767,6 +812,9 @@ Choose a mode and start chatting!`,
       <span class="title">Enterprise SensAI</span>
     </div>
     <div class="header-controls">
+      <button class="control-btn screen-share-btn" class:active={showScreenViewer} on:click={toggleScreenViewer} title="Toggle Screen Sharing">
+        {showScreenViewer ? '🖥️' : '📺'}
+      </button>
       <button class="control-btn sound-btn" class:active={soundEnabled} on:click={toggleSound} title="Toggle Sound">
         {soundEnabled ? '🔊' : '🔇'}
       </button>
@@ -1036,6 +1084,19 @@ Choose a mode and start chatting!`,
     {/if}
   {/if}
 </div>
+
+<!-- Screen Viewer Modal -->
+{#if showScreenViewer}
+  <div class="screen-viewer-modal" transition:fade={{ duration: 300 }}>
+    <div class="screen-viewer-container" transition:scale={{ duration: 400, easing: elasticOut }}>
+      <ScreenViewer 
+        on:close={handleScreenViewerClose}
+        bridge={bridgeWrapper}
+      />
+    </div>
+  </div>
+{/if}
+
 {/if}
 
 <style>
@@ -2439,5 +2500,39 @@ Choose a mode and start chatting!`,
         rgba(255, 149, 0, 0.15) 100%);
       border-color: rgba(255, 59, 48, 0.4);
     }
+  }
+
+  /* Screen Viewer Modal Styles */
+  .screen-viewer-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: var(--primary-blur);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10000;
+  }
+
+  .screen-viewer-container {
+    position: relative;
+    max-width: 95vw;
+    max-height: 95vh;
+    border-radius: var(--border-radius-large);
+    overflow: hidden;
+    box-shadow: var(--shadow-large), 0 0 0 1px rgba(255, 255, 255, 0.1);
+  }
+
+  /* Screen share button styling */
+  .control-btn.screen-share-btn.active {
+    background: rgba(0, 122, 255, 0.2);
+    color: #007AFF;
+  }
+
+  .control-btn.screen-share-btn:hover {
+    background: rgba(0, 122, 255, 0.1);
   }
 </style>

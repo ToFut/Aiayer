@@ -1,38 +1,38 @@
 {
-  "timestamp": "2025-05-24T22:59:48.186985",
-  "image_hash": "37b019be9e8b63825722548020dbd80c",
+  "timestamp": "2025-05-27T17:46:30.725126",
+  "image_hash": "f446b8f2b204a702cefaa49027e05994",
   "memory_summary": {
-    "timestamp": "2025-05-24T22:59:48.186985",
-    "image_hash": "37b019be9e8b63825722548020dbd80c",
-    "overall_context": "terminals_general_computing",
-    "semantic_summary": "Using Cursor for general_computing in creation stage",
-    "activity_classification": "general_usage",
-    "memory_priority": "normal",
+    "timestamp": "2025-05-27T17:46:30.725126",
+    "image_hash": "f446b8f2b204a702cefaa49027e05994",
+    "overall_context": "communication_communication",
+    "semantic_summary": "Using Safari for communication in creation stage",
+    "activity_classification": "interactive_work",
+    "memory_priority": "medium",
     "application": {
-      "name": "Cursor",
-      "detected_type": "terminals",
-      "confidence": 0.4444444444444444
+      "name": "Safari",
+      "detected_type": "communication",
+      "confidence": 0.1111111111111111
     },
     "content": {
-      "type": "code",
-      "word_count": 357,
+      "type": "communication",
+      "word_count": 148,
       "has_meaningful_text": true,
-      "primary_purpose": "development",
+      "primary_purpose": "messaging",
       "interaction_level": "active"
     },
     "user_activity": {
-      "current_activity": "general_computing",
+      "current_activity": "communication",
       "workflow_stage": "creation",
       "user_intent": "creating",
-      "productivity_context": "general_usage"
+      "productivity_context": "collaboration"
     },
     "key_insights": [
-      "Content-rich screen with 357 words",
-      "User engaged in general_usage",
+      "Content-rich screen with 148 words",
+      "User engaged in collaboration",
       "Active user interaction detected"
     ],
-    "analysis_confidence": 0.4444444444444444,
-    "text_sample": "node \u2014 Aiayer\n\nzsh zsh zsh node node x + fa]\n\n\u2014\u2014launch-time-ticks=19044456629 --shared-files \u2014-metrics\u2014shmem-handle=1752395122, r,7315881674744015092, 7122578134453251194, 2097152\n\u2014-field-trial\u2014handle=1718379636, r, 10172136058587840916 , 17315802712689406509, 262144 \u2014-variations-seed-version=20250522-050036.489000 \u2014-seatbelt-client=143\n\nsegevbin 49866 0.0 @.6 1863486032 51520 7? S Fri12PM 1:16.15 /Applications/Google Chrome.app/Contents/Frameworks/Google Chrome\n\nFramework. f ramework/Versions/1",
+    "analysis_confidence": 0.1111111111111111,
+    "text_sample": "a\n\nf(D \u00bb\n\n<\n\n>\n\nlocalhost\n\nom +\n\n\u00a9 Fun...\n\nA Gu...\n\nA Cre...\n\nA Gu...\n\nA Res...\n\nA Res...\n\n@ cn...\n\n(@} Ho...\n\n& Ho...\n\nfo \u201c4 Em...\n\n\u00a9 Go...\n\nsen...\n\n& Go...\n\n@ You...\n\nAgent...\n\n* AgentMode Coordination Test Dashboard\n\nReal-time validation of click and typing coordination with visual feedback\n\nVY Connected\n\n@ Automation Test Controls\n\n@ Ul Element Detection Test\n\nTest Message:\n\nTest Mode:\n\n122,342\n\n@ Test Button\n\nsearch Spotifyy and open it\n\nAgent Mode\n\nClick Target\n\ni Tent Input\n\n924,428\n\n122,",
     "llava_insights": {
       "visual_context": "Lightweight visual analysis",
       "application_detected": "detected_via_cv",
@@ -40,16 +40,16 @@
     }
   },
   "synthesized_context": {
-    "overall_context": "terminals_general_computing",
-    "confidence": 0.4444444444444444,
+    "overall_context": "communication_communication",
+    "confidence": 0.1111111111111111,
     "key_insights": [
-      "Content-rich screen with 357 words",
-      "User engaged in general_usage",
+      "Content-rich screen with 148 words",
+      "User engaged in collaboration",
       "Active user interaction detected"
     ],
-    "semantic_summary": "Using Cursor for general_computing in creation stage",
-    "activity_classification": "general_usage",
-    "memory_priority": "normal"
+    "semantic_summary": "Using Safari for communication in creation stage",
+    "activity_classification": "interactive_work",
+    "memory_priority": "medium"
   },
-  "analysis_duration": 48.17548704147339
+  "analysis_duration": 7.17500376701355
 }

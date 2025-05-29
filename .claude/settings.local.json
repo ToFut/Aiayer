@@ -35,7 +35,9 @@
       "Bash(timeout 60 python:*)",
       "Bash(./start_fixed_backend_test.sh:*)",
       "Bash(kill:*)",
-      "Bash(python test_fixed_agent_mode.py:*)"
+      "Bash(python test_fixed_agent_mode.py:*)",
+      "Bash(./START_ENHANCED_SYSTEM.sh)",
+      "Bash(python test:*)"
     ],
     "deny": []
   }

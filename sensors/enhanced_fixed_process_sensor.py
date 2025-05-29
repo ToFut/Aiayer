@@ -30,7 +30,7 @@ logging.basicConfig(
 logger = logging.getLogger(__name__)
 
 # Constants
-BRIDGE_SERVER_URI = "ws://localhost:8765"  # Connect directly to WebSocket server
+BRIDGE_SERVER_URI = "ws://localhost:8767"  # Connect to Real LLM Backend
 CLIENT_TYPE = "process_sensor"
 VERSION = "1.0.0"
 CAPABILITIES = ["process_monitoring", "resource_usage"]

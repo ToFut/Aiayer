@@ -1,0 +1,84 @@
+INFO:__main__:🚀 FINAL PERFORMANCE VALIDATION
+INFO:__main__:==================================================
+INFO:__main__:Validating all performance optimizations...
+INFO:__main__:
+INFO:__main__:🎯 LLM PERFORMANCE VALIDATION
+INFO:__main__:----------------------------------------
+INFO:llm_warmup_manager:🔥 LLM Warmup Manager initialized
+INFO:llm_warmup_manager:🔥 Warming up model...
+INFO:llm_warmup_manager:✅ Using fast model: llama3.2:1b
+INFO:llm_warmup_manager:✅ Model llama3.2:1b warmed up in 4.06s
+INFO:llm_warmup_manager:🔥 LLM Warmup Manager started successfully
+INFO:llm_warmup_manager:⚡ Fast response in 0.36s
+INFO:__main__:Quick Response: 0.36s ✅ PASS
+INFO:llm_warmup_manager:⚡ Fast response in 3.63s
+INFO:__main__:Complex Query: 3.63s ✅ PASS
+INFO:llm_warmup_manager:🛑 LLM Warmup Manager stopped
+INFO:__main__:
+🤖 AGENT PERFORMANCE VALIDATION
+INFO:__main__:----------------------------------------
+INFO:agent_workflow.input_controller:Detected screen size: 1470x956
+INFO:memory.enhanced_semantic_search:Enhanced semantic search initialized with embedding dim: 384
+INFO:memory.enhanced_semantic_search:Hybrid retrieval enabled: True
+INFO:agent_workflow.input_controller:Input listeners started successfully
+INFO:agent_workflow.input_controller:🚨 Emergency shutdown: Press Ctrl+1 to immediately stop agent
+INFO:application_integration_framework:📱 Registered 2 application integrators
+INFO:application_integration_framework:📱 Registered 2 application integrators
+INFO:sensors.process_sensor:Process sensor initialized with config: {'interval_sec': 5, 'max_memory_mb': 50, 'cleanup_threshold_mb': 25, 'max_errors': 3, 'exclude_patterns': ['system', 'kernel'], 'max_processes': 100}
+INFO:memory.memory_system:Memory logger initialized
+INFO:memory_diagnostics:Memory diagnostic logger initialized
+INFO:memory_diagnostics:MEMORY EVENT: logger_initialized - {"timestamp": "2025-05-27T11:22:39.977634"}
+INFO:memory.memory_system:Diagnostic logger initialized
+2025-05-27 11:22:39,977 - INFO - [ConsciousMemory] Initialized as middle layer for memory system
+INFO:memory.conscious_memory:[ConsciousMemory] Initialized as middle layer for memory system
+INFO:memory.memory_system:Conscious memory initialized
+INFO:memory.enhanced_semantic_search:Enhanced semantic search initialized with embedding dim: 384
+INFO:memory.enhanced_semantic_search:Hybrid retrieval enabled: True
+INFO:memory.memory_system:Enhanced semantic search initialized
+INFO:memory.memory_system:🔄 Loading memory state from /Users/segevbin/Desktop/SensAI/Aiayer/memory/memory/memory_state.json
+INFO:memory.memory_system:  - Found 12 short-term memory items
+INFO:memory.memory_system:  - No long-term memory found, initializing empty
+INFO:memory.memory_system:  - Found context memory with 6 items
+INFO:memory.memory_system:✅ Successfully loaded memory state
+INFO:memory_diagnostics:MEMORY EVENT: memory_state_loaded - {"short_term_count": 12, "long_term_count": 0, "context_count": 6, "timestamp": "2025-05-27T11:22:39.978337"}
+INFO:memory.memory_system:Memory system initialized
+INFO:enhanced_realtime_system_bridge:EnhancedRealtimeSystemBridge initialized - living in the system, not capturing it
+INFO:fast_universal_automation_handler:🚀 Fast automation with efficient system integration loaded
+INFO:fast_universal_automation_handler:⚡ No more screen capture overhead - using OS integration!
+INFO:fast_universal_automation_handler:🔥 Fast automation will use warmup manager for instant responses
+INFO:fast_universal_automation_handler:🔄 Fallback handler initialized
+INFO:agent_workflow.input_controller:Input listeners started successfully
+INFO:agent_workflow.input_controller:🚨 Emergency shutdown: Press Ctrl+1 to immediately stop agent
+INFO:application_integration_framework:📱 Registered 2 application integrators
+INFO:application_integration_framework:📱 Registered 2 application integrators
+INFO:sensors.process_sensor:Process sensor initialized with config: {'interval_sec': 5, 'max_memory_mb': 50, 'cleanup_threshold_mb': 25, 'max_errors': 3, 'exclude_patterns': ['system', 'kernel'], 'max_processes': 100}
+INFO:memory.memory_system:Memory logger initialized
+INFO:memory_diagnostics:Memory diagnostic logger initialized
+INFO:memory_diagnostics:MEMORY EVENT: logger_initialized - {"timestamp": "2025-05-27T11:22:39.979843"}
+INFO:memory.memory_system:Diagnostic logger initialized
+2025-05-27 11:22:39,979 - INFO - [ConsciousMemory] Initialized as middle layer for memory system
+INFO:memory.conscious_memory:[ConsciousMemory] Initialized as middle layer for memory system
+INFO:memory.memory_system:Conscious memory initialized
+INFO:memory.enhanced_semantic_search:Enhanced semantic search initialized with embedding dim: 384
+INFO:memory.enhanced_semantic_search:Hybrid retrieval enabled: True
+INFO:memory.memory_system:Enhanced semantic search initialized
+INFO:memory.memory_system:🔄 Loading memory state from /Users/segevbin/Desktop/SensAI/Aiayer/memory/memory/memory_state.json
+INFO:memory.memory_system:  - Found 12 short-term memory items
+INFO:memory.memory_system:  - No long-term memory found, initializing empty
+INFO:memory.memory_system:  - Found context memory with 6 items
+INFO:memory.memory_system:✅ Successfully loaded memory state
+INFO:memory_diagnostics:MEMORY EVENT: memory_state_loaded - {"short_term_count": 12, "long_term_count": 0, "context_count": 6, "timestamp": "2025-05-27T11:22:39.980169"}
+INFO:memory.memory_system:Memory system initialized
+INFO:enhanced_realtime_system_bridge:EnhancedRealtimeSystemBridge initialized - living in the system, not capturing it
+INFO:fast_universal_automation_handler:🚀 Fast automation with efficient system integration loaded
+INFO:fast_universal_automation_handler:⚡ No more screen capture overhead - using OS integration!
+INFO:fast_universal_automation_handler:🔥 Fast automation will use warmup manager for instant responses
+INFO:fast_universal_automation_handler:🔄 Fallback handler initialized
+INFO:fast_universal_automation_handler:🔄 Creating fast fallback plan...
+INFO:fast_universal_automation_handler:⚡ Fast plan created in 0.00s
+INFO:__main__:Agent Planning: 0.00s ✅ PASS
+INFO:__main__:✅ Agent uses warmup manager for fast responses
+INFO:__main__:
+⏱️ DELAY OPTIMIZATION VALIDATION
+INFO:__main__:----------------------------------------
+INFO:__main__:✅ Real agent delays optimized (2.0s → 0.3s)

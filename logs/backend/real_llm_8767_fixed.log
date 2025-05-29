@@ -1,0 +1,352 @@
+INFO:brain.core.brain_router:BrainRouter initialized - The Central Intelligence Hub is online
+INFO:brain.handlers.agent_mode_handler:AgentModeHandler initialized
+INFO:agent_workflow.input_controller:Detected screen size: 1470x956
+INFO:agent_workflow.input_controller:Input listeners started successfully
+INFO:agent_workflow.input_controller:🚨 Emergency shutdown: Press Ctrl+1 to immediately stop agent
+INFO:llava_processor:Connected to Ollama API v0.6.8
+INFO:total_screen_analyzer:LLaVA visual processor initialized for total screen analysis
+INFO:total_screen_analyzer:Total Screen Analyzer initialized with 8s interval
+INFO:real_agent_automation_handler:🤖 Real automation components loaded successfully
+INFO:memory.enhanced_semantic_search:Enhanced semantic search initialized with embedding dim: 384
+INFO:memory.enhanced_semantic_search:Hybrid retrieval enabled: True
+INFO:memory.enhanced_semantic_search:Enhanced semantic search initialized with embedding dim: 384
+INFO:memory.enhanced_semantic_search:Hybrid retrieval enabled: True
+INFO:brain.handlers.enhanced_ask_mode_handler:Semantic search initialized for enhanced memory retrieval
+INFO:brain.handlers.enhanced_ask_mode_handler:EnhancedMemoryRetriever initialized with memory file: /Users/segevbin/Desktop/SensAI/Aiayer/brain/handlers/../../memory/memory_state.json
+INFO:llm.llm_service:LLM client initialized with Ollama
+INFO:brain.handlers.enhanced_ask_mode_handler:LLM service initialized for enhanced ask mode
+INFO:brain.handlers.enhanced_ask_mode_handler:EnhancedAskModeHandler initialized with semantic search and LLM integration
+INFO:memory.enhanced_semantic_search:Enhanced semantic search initialized with embedding dim: 384
+INFO:memory.enhanced_semantic_search:Hybrid retrieval enabled: True
+INFO:brain.handlers.enhanced_ask_mode_handler:Semantic search initialized for enhanced memory retrieval
+INFO:brain.handlers.enhanced_ask_mode_handler:EnhancedMemoryRetriever initialized with memory file: /Users/segevbin/Desktop/SensAI/Aiayer/brain/handlers/../../memory/memory_state.json
+INFO:llm.llm_service:LLM client initialized with Ollama
+INFO:brain.handlers.enhanced_ask_mode_handler:LLM service initialized for enhanced ask mode
+INFO:brain.handlers.suggest_mode_handler:SuggestModeHandler initialized with memory integration and proactive analysis
+INFO:__main__:🧠 Enhanced Ask Mode Handler initialized
+INFO:__main__:🧠 Suggest Mode Handler initialized
+INFO:__main__:🤖 Real Automation Handler ready for AGENT mode
+INFO:__main__:Real LLM Backend 8767 initialized with Brain Router integration
+INFO:__main__:Starting Real LLM Backend on port 8767...
+INFO:websockets.server:server listening on 127.0.0.1:8767
+INFO:websockets.server:server listening on [::1]:8767
+INFO:__main__:✅ Real LLM Backend is running on ws://localhost:8767
+INFO:llm.model:Connected to Ollama version: 0.6.8
+INFO:llm.model:Connected to Ollama version: 0.6.8
+INFO:websockets.server:connection open
+INFO:__main__:Client connected: client_1748233405883 from ::1
+INFO:websockets.server:connection open
+INFO:__main__:Client connected: client_1748233405884 from ::1
+INFO:__main__:Processing register from client_1748233405884
+INFO:websockets.server:connection open
+INFO:__main__:Client connected: client_1748233444440 from ::1
+INFO:__main__:Processing register from client_1748233444440
+INFO:__main__:Processing chat_request from client_1748233444440
+INFO:__main__:Client disconnected: client_1748233444440
+INFO:websockets.server:connection open
+INFO:__main__:Client connected: client_1748233559475 from ::1
+INFO:__main__:Processing register from client_1748233559475
+INFO:__main__:Processing chat_request from client_1748233559475
+INFO:__main__:Client disconnected: client_1748233559475
+INFO:__main__:Processing chat_request from client_1748233405883
+INFO:__main__:🤖 Routing AGENT mode to Real Automation Handler: Serach SEGEV in YouTube
+INFO:agent_workflow.input_controller:Input listeners started successfully
+INFO:agent_workflow.input_controller:🚨 Emergency shutdown: Press Ctrl+1 to immediately stop agent
+INFO:llava_processor:Connected to Ollama API v0.6.8
+INFO:total_screen_analyzer:LLaVA visual processor initialized for total screen analysis
+INFO:total_screen_analyzer:Total Screen Analyzer initialized with 8s interval
+INFO:enhanced_llm_automation_planner:🤖 Automation components loaded successfully
+INFO:enhanced_llm_automation_planner:🧠 LLM service loaded for intelligent planning
+INFO:backend.llm.llm_service:LLM service initialized with Ollama model: llama3.2:1b
+INFO:backend.llm.llm_service:Generating response for query: You are an automation planning assistant. Analyze this user request and break it down into actionabl...
+INFO:__main__:Client disconnected: client_1748233405884
+INFO:websockets.server:connection open
+INFO:__main__:Client connected: client_1748233635285 from ::1
+INFO:websockets.server:connection open
+INFO:__main__:Client connected: client_1748233635286 from ::1
+INFO:__main__:Processing register from client_1748233635285
+INFO:httpx:HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
+INFO:backend.llm.llm_service:Generated response: I'll analyze the user request and break it down into actionable automation steps.
+
+**Intent Analysis...
+INFO:enhanced_llm_automation_planner:🧠 LLM analysis generated: 3298 characters
+INFO:enhanced_llm_automation_planner:✅ Successfully parsed LLM analysis
+INFO:enhanced_llm_automation_planner:🎯 Created LLM-powered plan 'What the user ultimately wants to achieve' with 5 steps in 38.807s
+INFO:real_agent_automation_handler:🧠 Using enhanced LLM-powered automation planning
+ERROR:__main__:Error processing message from client_1748233405883: received 1001 (going away); then sent 1001 (going away)
+INFO:__main__:Client disconnected: client_1748233405883
+INFO:__main__:Processing chat_request from client_1748233635286
+INFO:__main__:🤖 Routing AGENT mode to Real Automation Handler: search in YouTube SEGEV
+INFO:backend.llm.llm_service:LLM service initialized with Ollama model: llama3.2:1b
+INFO:backend.llm.llm_service:Generating response for query: You are an automation planning assistant. Analyze this user request and break it down into actionabl...
+INFO:httpx:HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
+INFO:backend.llm.llm_service:Generated response: I'll break down the user request into actionable automation steps for YouTube SEGEV.
+
+### Intent Ana...
+INFO:enhanced_llm_automation_planner:🧠 LLM analysis generated: 4786 characters
+INFO:enhanced_llm_automation_planner:✅ Successfully parsed LLM analysis
+INFO:enhanced_llm_automation_planner:🎯 Created LLM-powered plan 'What the user ultimately wants to achieve' with 4 steps in 50.274s
+INFO:real_agent_automation_handler:🧠 Using enhanced LLM-powered automation planning
+INFO:__main__:Processing button_action from client_1748233635286
+INFO:__main__:📊 Progress update for client_1748233635286: 0% - Starting automation...
+INFO:real_agent_automation_handler:🚀 Executing automation plan: What the user ultimately wants to achieve
+INFO:agent_workflow.input_controller:Input listeners started successfully
+INFO:agent_workflow.input_controller:🚨 Emergency shutdown: Press Ctrl+1 to immediately stop agent
+INFO:llava_processor:Connected to Ollama API v0.6.8
+INFO:total_screen_analyzer:LLaVA visual processor initialized for total screen analysis
+INFO:total_screen_analyzer:Total Screen Analyzer initialized with 8s interval
+INFO:adaptive_retry_automation_handler:🔄 Adaptive retry automation system loaded
+INFO:real_agent_automation_handler:🔄 Using adaptive retry automation handler
+INFO:real_agent_automation_handler:📊 Step 1/4: Open Google Chrome (or Mozilla Firefox) and navigate to YouTube.com (0%)
+INFO:visual_step_announcer:📢 ANNOUNCING: Step 1 of 4: Open Google Chrome (or Mozilla Firefox) and navigate to YouTube.com
+INFO:adaptive_retry_automation_handler:🎯 Executing step step_1: Open Google Chrome (or Mozilla Firefox) and navigate to YouTube.com
+INFO:agent_workflow.input_controller:Pressed hotkey: cmd+l
+INFO:agent_workflow.input_controller:Typed text: 'type or select the browser'
+INFO:agent_workflow.input_controller:Pressed key: Return
+INFO:adaptive_retry_automation_handler:✅ Step step_1 completed successfully in 10.82s
+INFO:real_agent_automation_handler:✅ Step completed: Open Google Chrome (or Mozilla Firefox) and navigate to YouTube.com
+INFO:real_agent_automation_handler:📊 Progress: 25% (1/4 steps)
+INFO:real_agent_automation_handler:📊 Step 2/4: Launch a search engine to find related information about SEGEV (25%)
+INFO:visual_step_announcer:📢 ANNOUNCING: Step 2 of 4: Launch a search engine to find related information about SEGEV
+INFO:adaptive_retry_automation_handler:🎯 Executing step step_2: Launch a search engine to find related information about SEGEV
+WARNING:adaptive_retry_automation_handler:Unknown action type: open_search_engine
+WARNING:adaptive_retry_automation_handler:❌ Step step_2 failed (attempt 1/4): unknown_failure
+INFO:adaptive_retry_automation_handler:🔧 Adjusting step step_2 for retry (reason: unknown_failure)
+WARNING:adaptive_retry_automation_handler:Unknown action type: open_search_engine
+WARNING:adaptive_retry_automation_handler:❌ Step step_2 failed (attempt 2/4): unknown_failure
+INFO:adaptive_retry_automation_handler:🔧 Adjusting step step_2 for retry (reason: unknown_failure)
+WARNING:adaptive_retry_automation_handler:Unknown action type: open_search_engine
+WARNING:adaptive_retry_automation_handler:❌ Step step_2 failed (attempt 3/4): unknown_failure
+INFO:adaptive_retry_automation_handler:🔧 Adjusting step step_2 for retry (reason: unknown_failure)
+WARNING:adaptive_retry_automation_handler:Unknown action type: open_search_engine
+WARNING:adaptive_retry_automation_handler:❌ Step step_2 failed (attempt 4/4): unknown_failure
+WARNING:real_agent_automation_handler:❌ Step failed after 3 retries: Launch a search engine to find related information about SEGEV - unknown_failure
+INFO:real_agent_automation_handler:📊 Progress: 50% (2/4 steps)
+INFO:real_agent_automation_handler:📊 Step 3/4: Type or interact with content on YouTube related to SEGEV (50%)
+INFO:visual_step_announcer:📢 ANNOUNCING: Step 3 of 4: Type or interact with content on YouTube related to SEGEV
+INFO:adaptive_retry_automation_handler:🎯 Executing step step_3: Type or interact with content on YouTube related to SEGEV
+WARNING:adaptive_retry_automation_handler:Unknown action type: type_text_or_interact
+WARNING:adaptive_retry_automation_handler:❌ Step step_3 failed (attempt 1/4): unknown_failure
+INFO:adaptive_retry_automation_handler:🔧 Adjusting step step_3 for retry (reason: unknown_failure)
+WARNING:adaptive_retry_automation_handler:Unknown action type: type_text_or_interact
+WARNING:adaptive_retry_automation_handler:❌ Step step_3 failed (attempt 2/4): unknown_failure
+INFO:adaptive_retry_automation_handler:🔧 Adjusting step step_3 for retry (reason: unknown_failure)
+WARNING:adaptive_retry_automation_handler:Unknown action type: type_text_or_interact
+WARNING:adaptive_retry_automation_handler:❌ Step step_3 failed (attempt 3/4): unknown_failure
+INFO:adaptive_retry_automation_handler:🔧 Adjusting step step_3 for retry (reason: unknown_failure)
+WARNING:adaptive_retry_automation_handler:Unknown action type: type_text_or_interact
+WARNING:adaptive_retry_automation_handler:❌ Step step_3 failed (attempt 4/4): unknown_failure
+WARNING:real_agent_automation_handler:❌ Step failed after 3 retries: Type or interact with content on YouTube related to SEGEV - unknown_failure
+INFO:real_agent_automation_handler:📊 Progress: 75% (3/4 steps)
+INFO:real_agent_automation_handler:📊 Step 4/4: Wait for the desired results to appear (75%)
+INFO:visual_step_announcer:📢 ANNOUNCING: Step 4 of 4: Wait for the desired results to appear
+INFO:adaptive_retry_automation_handler:🎯 Executing step step_4: Wait for the desired results to appear
+ERROR:adaptive_retry_automation_handler:Failed to wait: could not convert string to float: ' wait for a few seconds'
+WARNING:adaptive_retry_automation_handler:❌ Step step_4 failed (attempt 1/4): unknown_failure
+INFO:adaptive_retry_automation_handler:🔧 Adjusting step step_4 for retry (reason: unknown_failure)
+ERROR:adaptive_retry_automation_handler:Failed to wait: could not convert string to float: ' wait for a few seconds'
+WARNING:adaptive_retry_automation_handler:❌ Step step_4 failed (attempt 2/4): unknown_failure
+INFO:adaptive_retry_automation_handler:🔧 Adjusting step step_4 for retry (reason: unknown_failure)
+ERROR:adaptive_retry_automation_handler:Failed to wait: could not convert string to float: ' wait for a few seconds'
+WARNING:adaptive_retry_automation_handler:❌ Step step_4 failed (attempt 3/4): unknown_failure
+INFO:adaptive_retry_automation_handler:🔧 Adjusting step step_4 for retry (reason: unknown_failure)
+ERROR:adaptive_retry_automation_handler:Failed to wait: could not convert string to float: ' wait for a few seconds'
+WARNING:adaptive_retry_automation_handler:❌ Step step_4 failed (attempt 4/4): unknown_failure
+WARNING:real_agent_automation_handler:❌ Step failed after 3 retries: Wait for the desired results to appear - unknown_failure
+INFO:real_agent_automation_handler:📊 Progress: 100% (4/4 steps)
+INFO:visual_step_announcer:🎉 COMPLETION: ⚠️ Automation partially completed. 25% success rate.
+INFO:__main__:Client disconnected: client_1748233635285
+INFO:__main__:Client disconnected: client_1748233635286
+INFO:websockets.server:connection open
+INFO:__main__:Client connected: client_1748233844217 from ::1
+INFO:websockets.server:connection open
+INFO:__main__:Client connected: client_1748233844217 from ::1
+INFO:__main__:Processing register from client_1748233844217
+INFO:__main__:Processing chat_request from client_1748233844217
+INFO:__main__:🤖 Routing AGENT mode to Real Automation Handler: search SEGEV in youtube
+INFO:backend.llm.llm_service:LLM service initialized with Ollama model: llama3.2:1b
+INFO:backend.llm.llm_service:Generating response for query: You are an automation planning assistant. Analyze this user request and break it down into actionabl...
+INFO:httpx:HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
+INFO:backend.llm.llm_service:Generated response: I'll break down the user request into actionable automation steps for an AI-powered chatbot.
+
+**Inte...
+INFO:enhanced_llm_automation_planner:🧠 LLM analysis generated: 4396 characters
+INFO:enhanced_llm_automation_planner:✅ Successfully parsed LLM analysis
+INFO:enhanced_llm_automation_planner:🎯 Created LLM-powered plan 'What the user ultimately wants to achieve' with 3 steps in 54.019s
+INFO:real_agent_automation_handler:🧠 Using enhanced LLM-powered automation planning
+INFO:__main__:Processing button_action from client_1748233844217
+INFO:__main__:📊 Progress update for client_1748233844217: 0% - Starting automation...
+INFO:real_agent_automation_handler:🚀 Executing automation plan: What the user ultimately wants to achieve
+INFO:real_agent_automation_handler:🔄 Using adaptive retry automation handler
+INFO:real_agent_automation_handler:📊 Step 1/3: Open YouTube (0%)
+INFO:visual_step_announcer:📢 ANNOUNCING: Step 1 of 3: Open YouTube
+INFO:adaptive_retry_automation_handler:🎯 Executing step step_1: Open YouTube
+WARNING:adaptive_retry_automation_handler:Unknown action type: open_app|navigate_url|click_element|type_text|wait|hotkey
+WARNING:adaptive_retry_automation_handler:❌ Step step_1 failed (attempt 1/4): unknown_failure
+INFO:adaptive_retry_automation_handler:🔧 Adjusting step step_1 for retry (reason: unknown_failure)
+WARNING:adaptive_retry_automation_handler:Unknown action type: open_app|navigate_url|click_element|type_text|wait|hotkey
+WARNING:adaptive_retry_automation_handler:❌ Step step_1 failed (attempt 2/4): unknown_failure
+INFO:adaptive_retry_automation_handler:🔧 Adjusting step step_1 for retry (reason: unknown_failure)
+WARNING:adaptive_retry_automation_handler:Unknown action type: open_app|navigate_url|click_element|type_text|wait|hotkey
+WARNING:adaptive_retry_automation_handler:❌ Step step_1 failed (attempt 3/4): unknown_failure
+INFO:adaptive_retry_automation_handler:🔧 Adjusting step step_1 for retry (reason: unknown_failure)
+WARNING:adaptive_retry_automation_handler:Unknown action type: open_app|navigate_url|click_element|type_text|wait|hotkey
+WARNING:adaptive_retry_automation_handler:❌ Step step_1 failed (attempt 4/4): unknown_failure
+WARNING:real_agent_automation_handler:❌ Step failed after 3 retries: Open YouTube - unknown_failure
+INFO:real_agent_automation_handler:📊 Progress: 33% (1/3 steps)
+INFO:real_agent_automation_handler:📊 Step 2/3: Navigate to the Search Bar (33%)
+INFO:visual_step_announcer:📢 ANNOUNCING: Step 2 of 3: Navigate to the Search Bar
+INFO:adaptive_retry_automation_handler:🎯 Executing step step_2: Navigate to the Search Bar
+INFO:agent_workflow.input_controller:Pressed hotkey: cmd+l
+INFO:agent_workflow.input_controller:Typed text: 'search bar'
+INFO:agent_workflow.input_controller:Pressed key: Return
+INFO:adaptive_retry_automation_handler:✅ Step step_2 completed successfully in 7.21s
+INFO:real_agent_automation_handler:✅ Step completed: Navigate to the Search Bar
+INFO:real_agent_automation_handler:📊 Progress: 66% (2/3 steps)
+INFO:real_agent_automation_handler:📊 Step 3/3: Type the Search Term (66%)
+INFO:visual_step_announcer:📢 ANNOUNCING: Step 3 of 3: Type the Search Term
+INFO:adaptive_retry_automation_handler:🎯 Executing step step_3: Type the Search Term
+INFO:universal_screen_detector:Universal screen detector initialized for 1470x956
+INFO:universal_screen_detector:🔍 Universal detection for step: 'Type the Search Term'
+INFO:universal_screen_detector:🎯 Step requirements: {'action_type': 'type', 'target_element': 'text_input', 'element_characteristics': ['input_field', 'text_area', 'editable', 'light_background'], 'search_hints': ['type', 'search', 'term'], 'interaction_goal': 'Type the Search Term'}
+INFO:universal_screen_detector:🎯 Selected best element: Morphological input (453x40) at (702, 897) (confidence: 1.00)
+INFO:universal_screen_detector:📸 Universal detection verification: universal_detection_input_field_1748233933.png
+INFO:adaptive_retry_automation_handler:🔍 Using universal screen detection for 'Type the Search Term': (702, 897)
+INFO:agent_workflow.input_controller:Moved cursor to (702, 897)
+INFO:agent_workflow.input_controller:Clicked at (702, 897) with left button, 1 times
+INFO:agent_workflow.input_controller:Typed text: 'SEGEV'
+INFO:adaptive_retry_automation_handler:✅ Step step_3 completed successfully in 6.95s
+INFO:real_agent_automation_handler:✅ Step completed: Type the Search Term
+INFO:real_agent_automation_handler:📊 Progress: 100% (3/3 steps)
+INFO:visual_step_announcer:🎉 COMPLETION: ⚠️ Automation partially completed. 67% success rate.
+INFO:__main__:Processing chat_request from client_1748233844217
+INFO:__main__:🤖 Routing AGENT mode to Real Automation Handler: Create a daily productivity workflow for me
+INFO:backend.llm.llm_service:LLM service initialized with Ollama model: llama3.2:1b
+INFO:backend.llm.llm_service:Generating response for query: You are an automation planning assistant. Analyze this user request and break it down into actionabl...
+INFO:httpx:HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
+INFO:backend.llm.llm_service:Generated response: I'll break down the user request into actionable automation steps and provide a JSON response.
+
+**In...
+INFO:enhanced_llm_automation_planner:🧠 LLM analysis generated: 3944 characters
+WARNING:enhanced_llm_automation_planner:Failed to parse LLM JSON response: Extra data: line 45 column 1 (char 1644)
+INFO:enhanced_llm_automation_planner:Raw LLM response: I'll break down the user request into actionable automation steps and provide a JSON response.
+
+**Intent Analysis**
+
+* Primary goal: To create a daily productivity workflow for the user.
+* Applications needed:
+	+ Browser (e.g., Google Chrome, Mozilla Firefox)
+	+ Various websites (e.g., [list], list of websites to visit)
+	+ Search terms
+* Text to type
+* Sequential actions:
+	+ Step 1: Open specific target (app name, url, element)
+	+ Step 2: Wait for the page to load
+	+ Step 3: Type and click an el...
+INFO:enhanced_llm_automation_planner:🎯 Created LLM-powered plan 'Create a daily productivity workflow for me' with 0 steps in 48.956s
+INFO:real_agent_automation_handler:🧠 Using enhanced LLM-powered automation planning
+INFO:__main__:Processing chat_request from client_1748233844217
+INFO:__main__:🤖 Routing AGENT mode to Real Automation Handler: Create a daily productivity workflow for me
+INFO:backend.llm.llm_service:LLM service initialized with Ollama model: llama3.2:1b
+INFO:backend.llm.llm_service:Generating response for query: You are an automation planning assistant. Analyze this user request and break it down into actionabl...
+INFO:httpx:HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
+INFO:backend.llm.llm_service:Generated response: I'll break down the user request into actionable automation steps and provide a JSON response with t...
+INFO:enhanced_llm_automation_planner:🧠 LLM analysis generated: 3869 characters
+INFO:enhanced_llm_automation_planner:✅ Successfully parsed LLM analysis
+INFO:enhanced_llm_automation_planner:🎯 Created LLM-powered plan 'What the user ultimately wants to achieve' with 5 steps in 40.071s
+INFO:real_agent_automation_handler:🧠 Using enhanced LLM-powered automation planning
+INFO:__main__:Processing chat_request from client_1748233844217
+INFO:__main__:🤖 Routing AGENT mode to Real Automation Handler: Help me set up a project management system
+INFO:backend.llm.llm_service:LLM service initialized with Ollama model: llama3.2:1b
+INFO:backend.llm.llm_service:Generating response for query: You are an automation planning assistant. Analyze this user request and break it down into actionabl...
+ERROR:backend.llm.llm_service:Error generating response: 
+ERROR:enhanced_llm_automation_planner:Error in LLM intent analysis: 
+INFO:enhanced_llm_automation_planner:🎯 Created LLM-powered plan 'Help me set up a project management system' with 0 steps in 60.026s
+INFO:real_agent_automation_handler:🧠 Using enhanced LLM-powered automation planning
+INFO:__main__:Client disconnected: client_1748233844217
+INFO:__main__:Client disconnected: client_1748233844217
+INFO:websockets.server:connection open
+INFO:__main__:Client connected: client_1748237603062 from ::1
+INFO:websockets.server:connection open
+INFO:__main__:Client connected: client_1748237603063 from ::1
+INFO:__main__:Processing register from client_1748237603062
+INFO:__main__:Processing chat_request from client_1748237603063
+INFO:__main__:🧠 Routing Ask mode request to Enhanced Brain Router: search SEGEV in youtube
+INFO:brain.handlers.enhanced_ask_mode_handler:Enhanced Ask mode handling request: search SEGEV in youtube...
+INFO:brain.handlers.enhanced_ask_mode_handler:Loaded visual context: Using Cursor for general_computing in creation stage
+INFO:llm.llm_service:Generated system message with context: 76 chars
+INFO:__main__:Client disconnected: client_1748237603062
+INFO:websockets.server:connection open
+INFO:__main__:Client connected: client_1748237615796 from ::1
+INFO:websockets.server:connection open
+INFO:__main__:Client connected: client_1748237615797 from ::1
+INFO:__main__:Processing register from client_1748237615796
+INFO:__main__:Processing chat_request from client_1748237615797
+INFO:__main__:🤖 Routing AGENT mode to Real Automation Handler: search SEGEV in youtube
+INFO:backend.llm.llm_service:LLM service initialized with Ollama model: llama3.2:1b
+INFO:backend.llm.llm_service:Generating response for query: You are an automation planning assistant. Analyze this user request and break it down into actionabl...
+INFO:brain.handlers.enhanced_ask_mode_handler:Enhanced Ask mode response generated with confidence: 1.0
+ERROR:__main__:Error processing message from client_1748237603063: received 1001 (going away); then sent 1001 (going away)
+INFO:__main__:Client disconnected: client_1748237603063
+INFO:httpx:HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"
+INFO:backend.llm.llm_service:Generated response: Based on the provided user request, I've broken down the analysis into actionable automation steps.
+...
+INFO:enhanced_llm_automation_planner:🧠 LLM analysis generated: 3191 characters
+INFO:enhanced_llm_automation_planner:✅ Successfully parsed LLM analysis
+INFO:enhanced_llm_automation_planner:🎯 Created LLM-powered plan 'What the user ultimately wants to achieve' with 3 steps in 54.012s
+INFO:real_agent_automation_handler:🧠 Using enhanced LLM-powered automation planning
+INFO:__main__:Processing button_action from client_1748237615797
+INFO:__main__:📊 Progress update for client_1748237615797: 0% - Starting automation...
+INFO:real_agent_automation_handler:🚀 Executing automation plan: What the user ultimately wants to achieve
+INFO:real_agent_automation_handler:🔄 Using adaptive retry automation handler
+INFO:real_agent_automation_handler:📊 Step 1/3: Open YouTube App (0%)
+INFO:visual_step_announcer:📢 ANNOUNCING: Step 1 of 3: Open YouTube App
+INFO:adaptive_retry_automation_handler:🎯 Executing step step_1: Open YouTube App
+WARNING:adaptive_retry_automation_handler:Unknown action type: navigate_url|type_text|click_element|wait
+WARNING:adaptive_retry_automation_handler:❌ Step step_1 failed (attempt 1/4): unknown_failure
+INFO:adaptive_retry_automation_handler:🔧 Adjusting step step_1 for retry (reason: unknown_failure)
+WARNING:adaptive_retry_automation_handler:Unknown action type: navigate_url|type_text|click_element|wait
+WARNING:adaptive_retry_automation_handler:❌ Step step_1 failed (attempt 2/4): unknown_failure
+INFO:adaptive_retry_automation_handler:🔧 Adjusting step step_1 for retry (reason: unknown_failure)
+WARNING:adaptive_retry_automation_handler:Unknown action type: navigate_url|type_text|click_element|wait
+WARNING:adaptive_retry_automation_handler:❌ Step step_1 failed (attempt 3/4): unknown_failure
+INFO:adaptive_retry_automation_handler:🔧 Adjusting step step_1 for retry (reason: unknown_failure)
+WARNING:adaptive_retry_automation_handler:Unknown action type: navigate_url|type_text|click_element|wait
+WARNING:adaptive_retry_automation_handler:❌ Step step_1 failed (attempt 4/4): unknown_failure
+WARNING:real_agent_automation_handler:❌ Step failed after 3 retries: Open YouTube App - unknown_failure
+INFO:real_agent_automation_handler:📊 Progress: 33% (1/3 steps)
+INFO:real_agent_automation_handler:📊 Step 2/3: Open Search Bar (33%)
+INFO:visual_step_announcer:📢 ANNOUNCING: Step 2 of 3: Open Search Bar
+INFO:adaptive_retry_automation_handler:🎯 Executing step step_2: Open Search Bar
+INFO:universal_screen_detector:🔍 Universal detection for step: 'Open Search Bar'
+INFO:universal_screen_detector:🎯 Step requirements: {'action_type': 'search', 'target_element': 'search_input', 'element_characteristics': ['search_box', 'input_field', 'rectangular', 'light_background'], 'search_hints': ['open', 'search'], 'interaction_goal': 'Open Search Bar'}
+INFO:universal_screen_detector:🎯 Selected best element: Morphological input (201x30) at (509, 891) (confidence: 1.00)
+INFO:universal_screen_detector:📸 Universal detection verification: universal_detection_input_field_1748237691.png
+INFO:adaptive_retry_automation_handler:🔍 Using universal screen detection for 'Open Search Bar': (509, 891)
+INFO:agent_workflow.input_controller:Moved cursor to (509, 891)
+INFO:agent_workflow.input_controller:Clicked at (509, 891) with left button, 1 times
+INFO:agent_workflow.input_controller:Typed text: 'SEGEV'
+INFO:adaptive_retry_automation_handler:✅ Step step_2 completed successfully in 6.44s
+INFO:real_agent_automation_handler:✅ Step completed: Open Search Bar
+INFO:real_agent_automation_handler:📊 Progress: 66% (2/3 steps)
+INFO:real_agent_automation_handler:📊 Step 3/3: Enter Search Query (66%)
+INFO:visual_step_announcer:📢 ANNOUNCING: Step 3 of 3: Enter Search Query
+INFO:adaptive_retry_automation_handler:🎯 Executing step step_3: Enter Search Query
+INFO:llava_processor:Connected to Ollama API v0.6.8
+INFO:total_screen_analyzer:LLaVA visual processor initialized for total screen analysis
+INFO:total_screen_analyzer:Total Screen Analyzer initialized with 8s interval
+INFO:smart_element_detector:📱 Smart element detector initialized
+WARNING:adaptive_retry_automation_handler:Smart coordinates not available: cannot import name 'get_element_coordinates' from 'smart_element_detector' (/Users/segevbin/Desktop/SensAI/Aiayer/smart_element_detector.py)
+WARNING:adaptive_retry_automation_handler:❌ Step step_3 failed (attempt 1/4): missing_coordinates
+INFO:adaptive_retry_automation_handler:🔧 Adjusting step step_3 for retry (reason: missing_coordinates)
+WARNING:adaptive_retry_automation_handler:Smart coordinates not available: cannot import name 'get_element_coordinates' from 'smart_element_detector' (/Users/segevbin/Desktop/SensAI/Aiayer/smart_element_detector.py)
+WARNING:adaptive_retry_automation_handler:❌ Step step_3 failed (attempt 2/4): missing_coordinates
+INFO:adaptive_retry_automation_handler:🔧 Adjusting step step_3 for retry (reason: missing_coordinates)
+WARNING:adaptive_retry_automation_handler:Smart coordinates not available: cannot import name 'get_element_coordinates' from 'smart_element_detector' (/Users/segevbin/Desktop/SensAI/Aiayer/smart_element_detector.py)
+WARNING:adaptive_retry_automation_handler:❌ Step step_3 failed (attempt 3/4): missing_coordinates
+INFO:adaptive_retry_automation_handler:🔧 Adjusting step step_3 for retry (reason: missing_coordinates)
+WARNING:adaptive_retry_automation_handler:Smart coordinates not available: cannot import name 'get_element_coordinates' from 'smart_element_detector' (/Users/segevbin/Desktop/SensAI/Aiayer/smart_element_detector.py)
+WARNING:adaptive_retry_automation_handler:❌ Step step_3 failed (attempt 4/4): missing_coordinates
+WARNING:real_agent_automation_handler:❌ Step failed after 3 retries: Enter Search Query - missing_coordinates
+INFO:real_agent_automation_handler:📊 Progress: 100% (3/3 steps)
+INFO:visual_step_announcer:🎉 COMPLETION: ⚠️ Automation partially completed. 33% success rate.

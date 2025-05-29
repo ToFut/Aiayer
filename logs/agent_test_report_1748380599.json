@@ -1,0 +1,1157 @@
+{
+  "summary": {
+    "total_tests": 14,
+    "passed": 11,
+    "failed": 3,
+    "success_rate": 78.57142857142857
+  },
+  "test_results": [
+    {
+      "test_name": "Basic Agent - Simple Click Action",
+      "success": true,
+      "timestamp": "2025-05-27T17:16:12.421325",
+      "details": {
+        "response_time": 0.2561037540435791,
+        "response": {
+          "type": "final_response",
+          "mode": "agent",
+          "response": "Click on the search button",
+          "client_id": "client_1748380572164",
+          "timestamp": "2025-05-27T17:16:12.420789",
+          "ai_powered": false,
+          "success": true,
+          "requiresConfirmation": true,
+          "agentSessionId": "test_session_1748380572",
+          "confidence": 0.75,
+          "riskLevel": "medium",
+          "estimatedDuration": 15,
+          "buttons": [
+            {
+              "text": "\ud83d\ude80 Execute Plan",
+              "action": "execute_plan",
+              "style": "execute-btn",
+              "description": "Execute 3 automation steps"
+            },
+            {
+              "text": "\u274c Cancel",
+              "action": "cancel_plan",
+              "style": "cancel-btn",
+              "description": "Cancel the automation plan"
+            },
+            {
+              "text": "\ud83d\udd27 Modify Plan",
+              "action": "modify_plan",
+              "style": "adjust-btn",
+              "description": "Adjust the automation steps"
+            }
+          ],
+          "interactive": true,
+          "plan_id": "test_session_1748380572",
+          "plan": {
+            "task_id": "test_session_1748380572",
+            "title": "Click on the search button",
+            "description": "Enhanced automation plan with 3 steps",
+            "steps": [
+              {
+                "id": "analyze_screen",
+                "description": "Analyze current screen",
+                "action_type": "analyze",
+                "target": "screen",
+                "value": "",
+                "confidence": 0.85
+              },
+              {
+                "id": "detect_element",
+                "description": "Detect clickable element for: Click on the search button",
+                "action_type": "detect",
+                "target": "button|link|clickable",
+                "value": "",
+                "confidence": 0.85
+              },
+              {
+                "id": "click_element",
+                "description": "Click on detected element",
+                "action_type": "click",
+                "target": "detected_element",
+                "value": "",
+                "confidence": 0.85
+              }
+            ],
+            "estimated_duration": 15,
+            "coordinates": {
+              "x": 640,
+              "y": 360
+            },
+            "llm_generated": true
+          },
+          "executionPlan": {
+            "total_steps": 3,
+            "action": "unknown",
+            "target": "Unknown",
+            "coordinates": {
+              "x": 640,
+              "y": 360
+            },
+            "text_to_type": "",
+            "warnings": [],
+            "steps": [
+              {
+                "id": "analyze_screen",
+                "description": "Analyze current screen",
+                "action_type": "analyze",
+                "target": "screen",
+                "value": "",
+                "confidence": 0.85
+              },
+              {
+                "id": "detect_element",
+                "description": "Detect clickable element for: Click on the search button",
+                "action_type": "detect",
+                "target": "button|link|clickable",
+                "value": "",
+                "confidence": 0.85
+              },
+              {
+                "id": "click_element",
+                "description": "Click on detected element",
+                "action_type": "click",
+                "target": "detected_element",
+                "value": "",
+                "confidence": 0.85
+              }
+            ]
+          }
+        }
+      },
+      "issues": []
+    },
+    {
+      "test_name": "Basic Agent - Simple Text Input",
+      "success": true,
+      "timestamp": "2025-05-27T17:16:13.704231",
+      "details": {
+        "response_time": 0.2810521125793457,
+        "response": {
+          "type": "final_response",
+          "mode": "agent",
+          "response": "Type 'hello world' in the text field",
+          "client_id": "client_1748380572164",
+          "timestamp": "2025-05-27T17:16:13.703771",
+          "ai_powered": false,
+          "success": true,
+          "requiresConfirmation": true,
+          "agentSessionId": "test_session_1748380572",
+          "confidence": 0.75,
+          "riskLevel": "medium",
+          "estimatedDuration": 15,
+          "buttons": [
+            {
+              "text": "\ud83d\ude80 Execute Plan",
+              "action": "execute_plan",
+              "style": "execute-btn",
+              "description": "Execute 3 automation steps"
+            },
+            {
+              "text": "\u274c Cancel",
+              "action": "cancel_plan",
+              "style": "cancel-btn",
+              "description": "Cancel the automation plan"
+            },
+            {
+              "text": "\ud83d\udd27 Modify Plan",
+              "action": "modify_plan",
+              "style": "adjust-btn",
+              "description": "Adjust the automation steps"
+            }
+          ],
+          "interactive": true,
+          "plan_id": "test_session_1748380572",
+          "plan": {
+            "task_id": "test_session_1748380572",
+            "title": "Type 'hello world' in the text field",
+            "description": "Enhanced automation plan with 3 steps",
+            "steps": [
+              {
+                "id": "find_input",
+                "description": "Find text input field",
+                "action_type": "detect",
+                "target": "input|textarea",
+                "value": "",
+                "confidence": 0.85
+              },
+              {
+                "id": "click_input",
+                "description": "Click on input field",
+                "action_type": "click",
+                "target": "input_field",
+                "value": "",
+                "confidence": 0.85
+              },
+              {
+                "id": "type_text",
+                "description": "Type text: sample text",
+                "action_type": "type",
+                "target": "input_field",
+                "value": "sample text",
+                "confidence": 0.85
+              }
+            ],
+            "estimated_duration": 15,
+            "coordinates": {
+              "x": 640,
+              "y": 360
+            },
+            "llm_generated": true
+          },
+          "executionPlan": {
+            "total_steps": 3,
+            "action": "unknown",
+            "target": "Unknown",
+            "coordinates": {
+              "x": 640,
+              "y": 360
+            },
+            "text_to_type": "",
+            "warnings": [],
+            "steps": [
+              {
+                "id": "find_input",
+                "description": "Find text input field",
+                "action_type": "detect",
+                "target": "input|textarea",
+                "value": "",
+                "confidence": 0.85
+              },
+              {
+                "id": "click_input",
+                "description": "Click on input field",
+                "action_type": "click",
+                "target": "input_field",
+                "value": "",
+                "confidence": 0.85
+              },
+              {
+                "id": "type_text",
+                "description": "Type text: sample text",
+                "action_type": "type",
+                "target": "input_field",
+                "value": "sample text",
+                "confidence": 0.85
+              }
+            ]
+          }
+        }
+      },
+      "issues": []
+    },
+    {
+      "test_name": "Basic Agent - Basic Navigation",
+      "success": true,
+      "timestamp": "2025-05-27T17:16:14.960055",
+      "details": {
+        "response_time": 0.25449705123901367,
+        "response": {
+          "type": "final_response",
+          "mode": "agent",
+          "response": "Open Google in browser",
+          "client_id": "client_1748380572164",
+          "timestamp": "2025-05-27T17:16:14.959684",
+          "ai_powered": false,
+          "success": true,
+          "requiresConfirmation": true,
+          "agentSessionId": "test_session_1748380572",
+          "confidence": 0.75,
+          "riskLevel": "medium",
+          "estimatedDuration": 15,
+          "buttons": [
+            {
+              "text": "\ud83d\ude80 Execute Plan",
+              "action": "execute_plan",
+              "style": "execute-btn",
+              "description": "Execute 2 automation steps"
+            },
+            {
+              "text": "\u274c Cancel",
+              "action": "cancel_plan",
+              "style": "cancel-btn",
+              "description": "Cancel the automation plan"
+            },
+            {
+              "text": "\ud83d\udd27 Modify Plan",
+              "action": "modify_plan",
+              "style": "adjust-btn",
+              "description": "Adjust the automation steps"
+            }
+          ],
+          "interactive": true,
+          "plan_id": "test_session_1748380572",
+          "plan": {
+            "task_id": "test_session_1748380572",
+            "title": "Open Google in browser",
+            "description": "Enhanced automation plan with 2 steps",
+            "steps": [
+              {
+                "id": "step_1",
+                "description": "Prepare for: Open Google in browser",
+                "action_type": "prepare",
+                "target": "screen",
+                "value": "",
+                "confidence": 0.85
+              },
+              {
+                "id": "step_2",
+                "description": "Execute: Open Google in browser",
+                "action_type": "execute",
+                "target": "auto_detected",
+                "value": "",
+                "confidence": 0.85
+              }
+            ],
+            "estimated_duration": 15,
+            "coordinates": {
+              "x": 640,
+              "y": 360
+            },
+            "llm_generated": true
+          },
+          "executionPlan": {
+            "total_steps": 2,
+            "action": "unknown",
+            "target": "Unknown",
+            "coordinates": {
+              "x": 640,
+              "y": 360
+            },
+            "text_to_type": "",
+            "warnings": [],
+            "steps": [
+              {
+                "id": "step_1",
+                "description": "Prepare for: Open Google in browser",
+                "action_type": "prepare",
+                "target": "screen",
+                "value": "",
+                "confidence": 0.85
+              },
+              {
+                "id": "step_2",
+                "description": "Execute: Open Google in browser",
+                "action_type": "execute",
+                "target": "auto_detected",
+                "value": "",
+                "confidence": 0.85
+              }
+            ]
+          }
+        }
+      },
+      "issues": []
+    },
+    {
+      "test_name": "Complex Agent - Multi-step Web Search",
+      "success": true,
+      "timestamp": "2025-05-27T17:16:16.225274",
+      "details": {
+        "response_time": 0.2621119022369385,
+        "steps_count": 3,
+        "response": {
+          "type": "final_response",
+          "mode": "agent",
+          "response": "Search for 'AI automation tools' on Google and click on the first result",
+          "client_id": "client_1748380572164",
+          "timestamp": "2025-05-27T17:16:16.224907",
+          "ai_powered": false,
+          "success": true,
+          "requiresConfirmation": true,
+          "agentSessionId": "test_session_1748380572",
+          "confidence": 0.75,
+          "riskLevel": "medium",
+          "estimatedDuration": 15,
+          "buttons": [
+            {
+              "text": "\ud83d\ude80 Execute Plan",
+              "action": "execute_plan",
+              "style": "execute-btn",
+              "description": "Execute 3 automation steps"
+            },
+            {
+              "text": "\u274c Cancel",
+              "action": "cancel_plan",
+              "style": "cancel-btn",
+              "description": "Cancel the automation plan"
+            },
+            {
+              "text": "\ud83d\udd27 Modify Plan",
+              "action": "modify_plan",
+              "style": "adjust-btn",
+              "description": "Adjust the automation steps"
+            }
+          ],
+          "interactive": true,
+          "plan_id": "test_session_1748380572",
+          "plan": {
+            "task_id": "test_session_1748380572",
+            "title": "Search for 'AI automation tools' on Google and click on the first result",
+            "description": "Enhanced automation plan with 3 steps",
+            "steps": [
+              {
+                "id": "analyze_screen",
+                "description": "Analyze current screen",
+                "action_type": "analyze",
+                "target": "screen",
+                "value": "",
+                "confidence": 0.85
+              },
+              {
+                "id": "detect_element",
+                "description": "Detect clickable element for: Search for 'AI automation tools' on Google and click on the first result",
+                "action_type": "detect",
+                "target": "button|link|clickable",
+                "value": "",
+                "confidence": 0.85
+              },
+              {
+                "id": "click_element",
+                "description": "Click on detected element",
+                "action_type": "click",
+                "target": "detected_element",
+                "value": "",
+                "confidence": 0.85
+              }
+            ],
+            "estimated_duration": 15,
+            "coordinates": {
+              "x": 640,
+              "y": 360
+            },
+            "llm_generated": true
+          },
+          "executionPlan": {
+            "total_steps": 3,
+            "action": "unknown",
+            "target": "Unknown",
+            "coordinates": {
+              "x": 640,
+              "y": 360
+            },
+            "text_to_type": "",
+            "warnings": [],
+            "steps": [
+              {
+                "id": "analyze_screen",
+                "description": "Analyze current screen",
+                "action_type": "analyze",
+                "target": "screen",
+                "value": "",
+                "confidence": 0.85
+              },
+              {
+                "id": "detect_element",
+                "description": "Detect clickable element for: Search for 'AI automation tools' on Google and click on the first result",
+                "action_type": "detect",
+                "target": "button|link|clickable",
+                "value": "",
+                "confidence": 0.85
+              },
+              {
+                "id": "click_element",
+                "description": "Click on detected element",
+                "action_type": "click",
+                "target": "detected_element",
+                "value": "",
+                "confidence": 0.85
+              }
+            ]
+          }
+        }
+      },
+      "issues": []
+    },
+    {
+      "test_name": "Complex Agent - Form Filling",
+      "success": false,
+      "timestamp": "2025-05-27T17:16:18.489586",
+      "details": {
+        "response_time": 0.2624838352203369,
+        "steps_count": 0,
+        "response": {
+          "type": "final_response",
+          "mode": "agent",
+          "response": "Based on your current screen: Active display: 2940x1912 resolution. Mixed interface with normal brightness levels. Rich visual content visible (images, videos, or colorful interface). \n\nRegarding 'Fill out a contact form with name 'John Doe', email 'john@example.com', and message 'Hello'': I can see your current system state and will help based on what's visible.",
+          "client_id": "client_1748380572164",
+          "timestamp": "2025-05-27T17:16:18.489229",
+          "processing_method": "agnostic_deep_data",
+          "data_sources": [
+            "screen_analysis",
+            "memory_context"
+          ],
+          "success": true
+        }
+      },
+      "issues": [
+        "Expected at least 4 steps, got 0"
+      ]
+    },
+    {
+      "test_name": "Complex Agent - File Operations",
+      "success": true,
+      "timestamp": "2025-05-27T17:16:20.727503",
+      "details": {
+        "response_time": 0.23722290992736816,
+        "steps_count": 3,
+        "response": {
+          "type": "final_response",
+          "mode": "agent",
+          "response": "Create a new text file called 'test.txt' and write 'Hello World' in it",
+          "client_id": "client_1748380572164",
+          "timestamp": "2025-05-27T17:16:20.727144",
+          "ai_powered": false,
+          "success": true,
+          "requiresConfirmation": true,
+          "agentSessionId": "test_session_1748380572",
+          "confidence": 0.75,
+          "riskLevel": "medium",
+          "estimatedDuration": 15,
+          "buttons": [
+            {
+              "text": "\ud83d\ude80 Execute Plan",
+              "action": "execute_plan",
+              "style": "execute-btn",
+              "description": "Execute 3 automation steps"
+            },
+            {
+              "text": "\u274c Cancel",
+              "action": "cancel_plan",
+              "style": "cancel-btn",
+              "description": "Cancel the automation plan"
+            },
+            {
+              "text": "\ud83d\udd27 Modify Plan",
+              "action": "modify_plan",
+              "style": "adjust-btn",
+              "description": "Adjust the automation steps"
+            }
+          ],
+          "interactive": true,
+          "plan_id": "test_session_1748380572",
+          "plan": {
+            "task_id": "test_session_1748380572",
+            "title": "Create a new text file called 'test.txt' and write 'Hello World' in it",
+            "description": "Enhanced automation plan with 3 steps",
+            "steps": [
+              {
+                "id": "find_input",
+                "description": "Find text input field",
+                "action_type": "detect",
+                "target": "input|textarea",
+                "value": "",
+                "confidence": 0.85
+              },
+              {
+                "id": "click_input",
+                "description": "Click on input field",
+                "action_type": "click",
+                "target": "input_field",
+                "value": "",
+                "confidence": 0.85
+              },
+              {
+                "id": "type_text",
+                "description": "Type text: sample text",
+                "action_type": "type",
+                "target": "input_field",
+                "value": "sample text",
+                "confidence": 0.85
+              }
+            ],
+            "estimated_duration": 15,
+            "coordinates": {
+              "x": 640,
+              "y": 360
+            },
+            "llm_generated": true
+          },
+          "executionPlan": {
+            "total_steps": 3,
+            "action": "unknown",
+            "target": "Unknown",
+            "coordinates": {
+              "x": 640,
+              "y": 360
+            },
+            "text_to_type": "",
+            "warnings": [],
+            "steps": [
+              {
+                "id": "find_input",
+                "description": "Find text input field",
+                "action_type": "detect",
+                "target": "input|textarea",
+                "value": "",
+                "confidence": 0.85
+              },
+              {
+                "id": "click_input",
+                "description": "Click on input field",
+                "action_type": "click",
+                "target": "input_field",
+                "value": "",
+                "confidence": 0.85
+              },
+              {
+                "id": "type_text",
+                "description": "Type text: sample text",
+                "action_type": "type",
+                "target": "input_field",
+                "value": "sample text",
+                "confidence": 0.85
+              }
+            ]
+          }
+        }
+      },
+      "issues": []
+    },
+    {
+      "test_name": "UI Detection - Button Detection",
+      "success": true,
+      "timestamp": "2025-05-27T17:16:22.996442",
+      "details": {
+        "response_time": 0.26673221588134766,
+        "has_coordinates": false,
+        "response": {
+          "type": "final_response",
+          "mode": "agent",
+          "response": "Find and click the submit button on the current page",
+          "client_id": "client_1748380572164",
+          "timestamp": "2025-05-27T17:16:22.996080",
+          "ai_powered": false,
+          "success": true,
+          "requiresConfirmation": true,
+          "agentSessionId": "test_session_1748380572",
+          "confidence": 0.75,
+          "riskLevel": "medium",
+          "estimatedDuration": 15,
+          "buttons": [
+            {
+              "text": "\ud83d\ude80 Execute Plan",
+              "action": "execute_plan",
+              "style": "execute-btn",
+              "description": "Execute 3 automation steps"
+            },
+            {
+              "text": "\u274c Cancel",
+              "action": "cancel_plan",
+              "style": "cancel-btn",
+              "description": "Cancel the automation plan"
+            },
+            {
+              "text": "\ud83d\udd27 Modify Plan",
+              "action": "modify_plan",
+              "style": "adjust-btn",
+              "description": "Adjust the automation steps"
+            }
+          ],
+          "interactive": true,
+          "plan_id": "test_session_1748380572",
+          "plan": {
+            "task_id": "test_session_1748380572",
+            "title": "Find and click the submit button on the current page",
+            "description": "Enhanced automation plan with 3 steps",
+            "steps": [
+              {
+                "id": "analyze_screen",
+                "description": "Analyze current screen",
+                "action_type": "analyze",
+                "target": "screen",
+                "value": "",
+                "confidence": 0.85
+              },
+              {
+                "id": "detect_element",
+                "description": "Detect clickable element for: Find and click the submit button on the current page",
+                "action_type": "detect",
+                "target": "button|link|clickable",
+                "value": "",
+                "confidence": 0.85
+              },
+              {
+                "id": "click_element",
+                "description": "Click on detected element",
+                "action_type": "click",
+                "target": "detected_element",
+                "value": "",
+                "confidence": 0.85
+              }
+            ],
+            "estimated_duration": 15,
+            "coordinates": {
+              "x": 640,
+              "y": 360
+            },
+            "llm_generated": true
+          },
+          "executionPlan": {
+            "total_steps": 3,
+            "action": "unknown",
+            "target": "Unknown",
+            "coordinates": {
+              "x": 640,
+              "y": 360
+            },
+            "text_to_type": "",
+            "warnings": [],
+            "steps": [
+              {
+                "id": "analyze_screen",
+                "description": "Analyze current screen",
+                "action_type": "analyze",
+                "target": "screen",
+                "value": "",
+                "confidence": 0.85
+              },
+              {
+                "id": "detect_element",
+                "description": "Detect clickable element for: Find and click the submit button on the current page",
+                "action_type": "detect",
+                "target": "button|link|clickable",
+                "value": "",
+                "confidence": 0.85
+              },
+              {
+                "id": "click_element",
+                "description": "Click on detected element",
+                "action_type": "click",
+                "target": "detected_element",
+                "value": "",
+                "confidence": 0.85
+              }
+            ]
+          }
+        }
+      },
+      "issues": [
+        "No coordinate information found for click action"
+      ]
+    },
+    {
+      "test_name": "UI Detection - Input Field Detection",
+      "success": true,
+      "timestamp": "2025-05-27T17:16:24.250670",
+      "details": {
+        "response_time": 0.25240397453308105,
+        "has_coordinates": false,
+        "response": {
+          "type": "final_response",
+          "mode": "agent",
+          "response": "Find the search input field and type 'test query'",
+          "client_id": "client_1748380572164",
+          "timestamp": "2025-05-27T17:16:24.250307",
+          "ai_powered": false,
+          "success": true,
+          "requiresConfirmation": true,
+          "agentSessionId": "test_session_1748380572",
+          "confidence": 0.75,
+          "riskLevel": "medium",
+          "estimatedDuration": 15,
+          "buttons": [
+            {
+              "text": "\ud83d\ude80 Execute Plan",
+              "action": "execute_plan",
+              "style": "execute-btn",
+              "description": "Execute 3 automation steps"
+            },
+            {
+              "text": "\u274c Cancel",
+              "action": "cancel_plan",
+              "style": "cancel-btn",
+              "description": "Cancel the automation plan"
+            },
+            {
+              "text": "\ud83d\udd27 Modify Plan",
+              "action": "modify_plan",
+              "style": "adjust-btn",
+              "description": "Adjust the automation steps"
+            }
+          ],
+          "interactive": true,
+          "plan_id": "test_session_1748380572",
+          "plan": {
+            "task_id": "test_session_1748380572",
+            "title": "Find the search input field and type 'test query'",
+            "description": "Enhanced automation plan with 3 steps",
+            "steps": [
+              {
+                "id": "find_input",
+                "description": "Find text input field",
+                "action_type": "detect",
+                "target": "input|textarea",
+                "value": "",
+                "confidence": 0.85
+              },
+              {
+                "id": "click_input",
+                "description": "Click on input field",
+                "action_type": "click",
+                "target": "input_field",
+                "value": "",
+                "confidence": 0.85
+              },
+              {
+                "id": "type_text",
+                "description": "Type text: sample text",
+                "action_type": "type",
+                "target": "input_field",
+                "value": "sample text",
+                "confidence": 0.85
+              }
+            ],
+            "estimated_duration": 15,
+            "coordinates": {
+              "x": 640,
+              "y": 360
+            },
+            "llm_generated": true
+          },
+          "executionPlan": {
+            "total_steps": 3,
+            "action": "unknown",
+            "target": "Unknown",
+            "coordinates": {
+              "x": 640,
+              "y": 360
+            },
+            "text_to_type": "",
+            "warnings": [],
+            "steps": [
+              {
+                "id": "find_input",
+                "description": "Find text input field",
+                "action_type": "detect",
+                "target": "input|textarea",
+                "value": "",
+                "confidence": 0.85
+              },
+              {
+                "id": "click_input",
+                "description": "Click on input field",
+                "action_type": "click",
+                "target": "input_field",
+                "value": "",
+                "confidence": 0.85
+              },
+              {
+                "id": "type_text",
+                "description": "Type text: sample text",
+                "action_type": "type",
+                "target": "input_field",
+                "value": "sample text",
+                "confidence": 0.85
+              }
+            ]
+          }
+        }
+      },
+      "issues": []
+    },
+    {
+      "test_name": "UI Detection - Link Detection",
+      "success": true,
+      "timestamp": "2025-05-27T17:16:25.509428",
+      "details": {
+        "response_time": 0.25725531578063965,
+        "has_coordinates": false,
+        "response": {
+          "type": "final_response",
+          "mode": "agent",
+          "response": "Click on the 'About' link in the navigation menu",
+          "client_id": "client_1748380572164",
+          "timestamp": "2025-05-27T17:16:25.509070",
+          "ai_powered": false,
+          "success": true,
+          "requiresConfirmation": true,
+          "agentSessionId": "test_session_1748380572",
+          "confidence": 0.75,
+          "riskLevel": "medium",
+          "estimatedDuration": 15,
+          "buttons": [
+            {
+              "text": "\ud83d\ude80 Execute Plan",
+              "action": "execute_plan",
+              "style": "execute-btn",
+              "description": "Execute 3 automation steps"
+            },
+            {
+              "text": "\u274c Cancel",
+              "action": "cancel_plan",
+              "style": "cancel-btn",
+              "description": "Cancel the automation plan"
+            },
+            {
+              "text": "\ud83d\udd27 Modify Plan",
+              "action": "modify_plan",
+              "style": "adjust-btn",
+              "description": "Adjust the automation steps"
+            }
+          ],
+          "interactive": true,
+          "plan_id": "test_session_1748380572",
+          "plan": {
+            "task_id": "test_session_1748380572",
+            "title": "Click on the 'About' link in the navigation menu",
+            "description": "Enhanced automation plan with 3 steps",
+            "steps": [
+              {
+                "id": "analyze_screen",
+                "description": "Analyze current screen",
+                "action_type": "analyze",
+                "target": "screen",
+                "value": "",
+                "confidence": 0.85
+              },
+              {
+                "id": "detect_element",
+                "description": "Detect clickable element for: Click on the 'About' link in the navigation menu",
+                "action_type": "detect",
+                "target": "button|link|clickable",
+                "value": "",
+                "confidence": 0.85
+              },
+              {
+                "id": "click_element",
+                "description": "Click on detected element",
+                "action_type": "click",
+                "target": "detected_element",
+                "value": "",
+                "confidence": 0.85
+              }
+            ],
+            "estimated_duration": 15,
+            "coordinates": {
+              "x": 640,
+              "y": 360
+            },
+            "llm_generated": true
+          },
+          "executionPlan": {
+            "total_steps": 3,
+            "action": "unknown",
+            "target": "Unknown",
+            "coordinates": {
+              "x": 640,
+              "y": 360
+            },
+            "text_to_type": "",
+            "warnings": [],
+            "steps": [
+              {
+                "id": "analyze_screen",
+                "description": "Analyze current screen",
+                "action_type": "analyze",
+                "target": "screen",
+                "value": "",
+                "confidence": 0.85
+              },
+              {
+                "id": "detect_element",
+                "description": "Detect clickable element for: Click on the 'About' link in the navigation menu",
+                "action_type": "detect",
+                "target": "button|link|clickable",
+                "value": "",
+                "confidence": 0.85
+              },
+              {
+                "id": "click_element",
+                "description": "Click on detected element",
+                "action_type": "click",
+                "target": "detected_element",
+                "value": "",
+                "confidence": 0.85
+              }
+            ]
+          }
+        }
+      },
+      "issues": [
+        "No coordinate information found for click action"
+      ]
+    },
+    {
+      "test_name": "Memory Integration - Context Awareness",
+      "success": true,
+      "timestamp": "2025-05-27T17:16:28.998538",
+      "details": {
+        "response_time": 0.2677180767059326,
+        "context_aware": true,
+        "response": {
+          "type": "final_response",
+          "mode": "agent",
+          "response": "Help me set up the automation we just discussed",
+          "client_id": "client_1748380572164",
+          "timestamp": "2025-05-27T17:16:28.998176",
+          "ai_powered": false,
+          "success": true,
+          "requiresConfirmation": true,
+          "agentSessionId": "test_session_1748380572",
+          "confidence": 0.75,
+          "riskLevel": "medium",
+          "estimatedDuration": 15,
+          "buttons": [
+            {
+              "text": "\ud83d\ude80 Execute Plan",
+              "action": "execute_plan",
+              "style": "execute-btn",
+              "description": "Execute 2 automation steps"
+            },
+            {
+              "text": "\u274c Cancel",
+              "action": "cancel_plan",
+              "style": "cancel-btn",
+              "description": "Cancel the automation plan"
+            },
+            {
+              "text": "\ud83d\udd27 Modify Plan",
+              "action": "modify_plan",
+              "style": "adjust-btn",
+              "description": "Adjust the automation steps"
+            }
+          ],
+          "interactive": true,
+          "plan_id": "test_session_1748380572",
+          "plan": {
+            "task_id": "test_session_1748380572",
+            "title": "Help me set up the automation we just discussed",
+            "description": "Enhanced automation plan with 2 steps",
+            "steps": [
+              {
+                "id": "step_1",
+                "description": "Prepare for: Help me set up the automation we just discussed",
+                "action_type": "prepare",
+                "target": "screen",
+                "value": "",
+                "confidence": 0.85
+              },
+              {
+                "id": "step_2",
+                "description": "Execute: Help me set up the automation we just discussed",
+                "action_type": "execute",
+                "target": "auto_detected",
+                "value": "",
+                "confidence": 0.85
+              }
+            ],
+            "estimated_duration": 15,
+            "coordinates": {
+              "x": 640,
+              "y": 360
+            },
+            "llm_generated": true
+          },
+          "executionPlan": {
+            "total_steps": 2,
+            "action": "unknown",
+            "target": "Unknown",
+            "coordinates": {
+              "x": 640,
+              "y": 360
+            },
+            "text_to_type": "",
+            "warnings": [],
+            "steps": [
+              {
+                "id": "step_1",
+                "description": "Prepare for: Help me set up the automation we just discussed",
+                "action_type": "prepare",
+                "target": "screen",
+                "value": "",
+                "confidence": 0.85
+              },
+              {
+                "id": "step_2",
+                "description": "Execute: Help me set up the automation we just discussed",
+                "action_type": "execute",
+                "target": "auto_detected",
+                "value": "",
+                "confidence": 0.85
+              }
+            ]
+          }
+        }
+      },
+      "issues": []
+    },
+    {
+      "test_name": "Error Handling - Invalid Request Format",
+      "success": true,
+      "timestamp": "2025-05-27T17:16:28.999340",
+      "details": {
+        "response": {
+          "type": "error",
+          "error": "Unknown message type: unknown",
+          "client_id": "client_1748380572164",
+          "timestamp": "2025-05-27T17:16:28.999194"
+        }
+      },
+      "issues": []
+    },
+    {
+      "test_name": "Error Handling - Empty Message",
+      "success": false,
+      "timestamp": "2025-05-27T17:16:30.225148",
+      "details": {
+        "response": {
+          "type": "progress_update",
+          "stage": "\u26a1 Using fast AI model...",
+          "mode": "General",
+          "client_id": "client_1748380572164",
+          "timestamp": "2025-05-27T17:16:30.224871"
+        }
+      },
+      "issues": [
+        "Error scenario not handled properly"
+      ]
+    },
+    {
+      "test_name": "Error Handling - Malformed JSON",
+      "success": false,
+      "timestamp": "2025-05-27T17:16:35.882694",
+      "details": {
+        "response": {
+          "type": "stream_chunk",
+          "text": "It seems like we've just started our conversation. ",
+          "mode": "General",
+          "client_id": "client_1748380572164",
+          "chunk_id": 1,
+          "timestamp": "2025-05-27T17:16:35.880316"
+        }
+      },
+      "issues": [
+        "Error scenario not handled properly"
+      ]
+    },
+    {
+      "test_name": "Performance - Rapid Requests",
+      "success": true,
+      "timestamp": "2025-05-27T17:16:39.395937",
+      "details": {
+        "avg_response_time": 0.0006646156311035156,
+        "max_response_time": 0.0014052391052246094,
+        "all_times": [
+          0.0006000995635986328,
+          0.0014052391052246094,
+          0.0005741119384765625,
+          0.0003838539123535156,
+          0.0003597736358642578
+        ]
+      },
+      "issues": []
+    }
+  ],
+  "all_issues": [
+    "Expected at least 4 steps, got 0",
+    "No coordinate information found for click action",
+    "No coordinate information found for click action",
+    "Error scenario not handled properly",
+    "Error scenario not handled properly"
+  ]
+}

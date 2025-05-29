@@ -1,0 +1,215 @@
+{
+  "summary": {
+    "total_tests": 4,
+    "success_count": 3,
+    "partial_count": 0,
+    "failed_count": 0,
+    "real_agent_usage": 3,
+    "interactive_responses": 3,
+    "responses_with_buttons": 3
+  },
+  "responses": [
+    {
+      "request": {
+        "type": "chat_request",
+        "mode": "agent",
+        "message": "open Google and search Miami flights",
+        "session_id": "debug_1_1748492233",
+        "client_id": "debug_client_1",
+        "timestamp": "2025-05-29T00:17:13.292286"
+      },
+      "response": {
+        "type": "connection_established",
+        "client_id": "client_1748492233291",
+        "message": "Connected to Enhanced Enterprise Backend 8767 with Contextual Memory",
+        "timestamp": "2025-05-29T00:17:13.291986",
+        "ai_features": {
+          "ollama_available": true,
+          "contextual_memory": true,
+          "semantic_search": true,
+          "intelligent_fallback": true,
+          "real_responses": true
+        },
+        "capabilities": [
+          "contextual_ai_responses",
+          "semantic_memory_integration",
+          "ollama_llm_support",
+          "intelligent_processing",
+          "agent_automation",
+          "knowledge_retrieval",
+          "proactive_suggestions",
+          "conversation_memory"
+        ]
+      },
+      "status": "UNCLEAR",
+      "elapsed_time": 0.00013399124145507812,
+      "timestamp": "2025-05-29T00:17:13.292815"
+    },
+    {
+      "request": {
+        "type": "chat_request",
+        "mode": "agent",
+        "message": "search Omer Adam in Spotify",
+        "session_id": "debug_2_1748492235",
+        "client_id": "debug_client_2",
+        "timestamp": "2025-05-29T00:17:15.294058"
+      },
+      "response": {
+        "type": "agent_automation_plan",
+        "mode": "agent",
+        "response": "\ud83e\udd16 **Agent Mode: Automation Plan Ready**\n\n**Task:** Automated Request: Open Google and Search Miami Flights\n**Estimated Duration:** 30.0 seconds\n**Steps:** 3 actions\n\n**Automation Plan:**\n1. \u26a0\ufe0f Open Google Chrome browser\n2. \u26a0\ufe0f Enter 'Miami' in the search bar\n3. \u26a0\ufe0f Click the 'Search' button\n\n**Plan ID:** `task_1748492251_debug_1_1748492233`\n**Planning:** \ud83e\udde0 LLM-Generated (Enhanced AI)\n\n*Automation System: \u2705 Ready*",
+        "client_id": "client_1748492233291",
+        "timestamp": "2025-05-29T00:17:31.923545",
+        "ai_powered": true,
+        "success": true,
+        "requiresConfirmation": true,
+        "agentSessionId": "debug_1_1748492233",
+        "confidence": 0.8,
+        "buttons": [
+          {
+            "id": "do_task_1748492251_debug_1_1748492233",
+            "text": "\ud83d\udfe2 DO",
+            "action": "execute_plan",
+            "plan_id": "task_1748492251_debug_1_1748492233",
+            "style": "success",
+            "description": "Execute this automation plan"
+          },
+          {
+            "id": "dismiss_task_1748492251_debug_1_1748492233",
+            "text": "\ud83d\udd34 DISMISS",
+            "action": "cancel_plan",
+            "plan_id": "task_1748492251_debug_1_1748492233",
+            "style": "danger",
+            "description": "Cancel this automation"
+          },
+          {
+            "id": "adjust_task_1748492251_debug_1_1748492233",
+            "text": "\ud83d\udfe1 ADJUST",
+            "action": "modify_plan",
+            "plan_id": "task_1748492251_debug_1_1748492233",
+            "style": "warning",
+            "description": "Modify the plan before execution"
+          }
+        ],
+        "interactive": true,
+        "real_agent_automation": true,
+        "plan_id": "task_1748492251_debug_1_1748492233",
+        "processing_time": 18.631
+      },
+      "status": "SUCCESS",
+      "elapsed_time": 16.63267183303833,
+      "timestamp": "2025-05-29T00:17:31.928411"
+    },
+    {
+      "request": {
+        "type": "chat_request",
+        "mode": "agent",
+        "message": "open Safari and navigate to YouTube",
+        "session_id": "debug_4_1748492285",
+        "client_id": "debug_client_4",
+        "timestamp": "2025-05-29T00:18:05.936021"
+      },
+      "response": {
+        "type": "agent_automation_plan",
+        "mode": "agent",
+        "response": "\ud83e\udd16 **Agent Mode: Automation Plan Ready**\n\n**Task:** Search Omer Adam in Spotify\n**Estimated Duration:** 30.0 seconds\n**Steps:** 11 actions\n\n**Automation Plan:**\n1. \u2705 Open Spotify and navigate to the user profile page\n2. \u2705 Open the Spotify web player and enter Omer Adam's name in the search bar\n3. \u2705 Click on the search icon in the top right corner of the screen to open the search box\n4. \u2705 Type 'Omer Adam' in the search bar and press Enter to open results page\n5. \u2705 Click on the title of the first result to open its page\n6. \u2705 Click on the 'Music' tab to open the music library page\n7. \u2705 Click on the 'Play' button to open the play control page\n8. \u2705 Click on the 'Search' button to open the search results page\n9. \u2705 Click on the 'Search results' tab to open the search results page\n10. \u2705 Click on the 'More' button to open the more actions page\n11. \u2705 Click on the 'Search' button to search for Omer Adam in Spotify\n\n**Plan ID:** `task_1748492311_debug_2_1748492235`\n**Planning:** \ud83e\udde0 LLM-Generated (Enhanced AI)\n\n*Automation System: \u2705 Ready*",
+        "client_id": "client_1748492233291",
+        "timestamp": "2025-05-29T00:18:31.697765",
+        "ai_powered": true,
+        "success": true,
+        "requiresConfirmation": true,
+        "agentSessionId": "debug_2_1748492235",
+        "confidence": 0.8,
+        "buttons": [
+          {
+            "id": "do_task_1748492311_debug_2_1748492235",
+            "text": "\ud83d\udfe2 DO",
+            "action": "execute_plan",
+            "plan_id": "task_1748492311_debug_2_1748492235",
+            "style": "success",
+            "description": "Execute this automation plan"
+          },
+          {
+            "id": "dismiss_task_1748492311_debug_2_1748492235",
+            "text": "\ud83d\udd34 DISMISS",
+            "action": "cancel_plan",
+            "plan_id": "task_1748492311_debug_2_1748492235",
+            "style": "danger",
+            "description": "Cancel this automation"
+          },
+          {
+            "id": "adjust_task_1748492311_debug_2_1748492235",
+            "text": "\ud83d\udfe1 ADJUST",
+            "action": "modify_plan",
+            "plan_id": "task_1748492311_debug_2_1748492235",
+            "style": "warning",
+            "description": "Modify the plan before execution"
+          }
+        ],
+        "interactive": true,
+        "real_agent_automation": true,
+        "plan_id": "task_1748492311_debug_2_1748492235",
+        "processing_time": 59.757
+      },
+      "status": "SUCCESS",
+      "elapsed_time": 25.762701749801636,
+      "timestamp": "2025-05-29T00:18:31.701695"
+    },
+    {
+      "request": {
+        "type": "chat_request",
+        "mode": "agent",
+        "message": "find best restaurants in New York",
+        "session_id": "debug_5_1748492313",
+        "client_id": "debug_client_5",
+        "timestamp": "2025-05-29T00:18:33.702065"
+      },
+      "response": {
+        "type": "agent_automation_plan",
+        "mode": "agent",
+        "response": "\ud83e\udd16 **Agent Mode: Automation Plan Ready**\n\n**Task:** Click Calculator Button\n**Estimated Duration:** 12.0 seconds\n**Steps:** 4 actions\n\n**Automation Plan:**\n1. \u2705 Open Calculator application\n2. \u2705 Navigate to Calculator home screen\n3. \u2705 Click the calculator button\n4. \u2705 Wait for calculator to load\n\n**Plan ID:** `task_1748492332_debug_3_1748492253`\n**Planning:** \ud83e\udde0 LLM-Generated (Enhanced AI)\n\n*Automation System: \u2705 Ready*",
+        "client_id": "client_1748492233291",
+        "timestamp": "2025-05-29T00:18:52.481136",
+        "ai_powered": true,
+        "success": true,
+        "requiresConfirmation": true,
+        "agentSessionId": "debug_3_1748492253",
+        "confidence": 0.8,
+        "buttons": [
+          {
+            "id": "do_task_1748492332_debug_3_1748492253",
+            "text": "\ud83d\udfe2 DO",
+            "action": "execute_plan",
+            "plan_id": "task_1748492332_debug_3_1748492253",
+            "style": "success",
+            "description": "Execute this automation plan"
+          },
+          {
+            "id": "dismiss_task_1748492332_debug_3_1748492253",
+            "text": "\ud83d\udd34 DISMISS",
+            "action": "cancel_plan",
+            "plan_id": "task_1748492332_debug_3_1748492253",
+            "style": "danger",
+            "description": "Cancel this automation"
+          },
+          {
+            "id": "adjust_task_1748492332_debug_3_1748492253",
+            "text": "\ud83d\udfe1 ADJUST",
+            "action": "modify_plan",
+            "plan_id": "task_1748492332_debug_3_1748492253",
+            "style": "warning",
+            "description": "Modify the plan before execution"
+          }
+        ],
+        "interactive": true,
+        "real_agent_automation": true,
+        "plan_id": "task_1748492332_debug_3_1748492253",
+        "processing_time": 20.748
+      },
+      "status": "SUCCESS",
+      "elapsed_time": 18.782263040542603,
+      "timestamp": "2025-05-29T00:18:52.485752"
+    }
+  ],
+  "timestamp": "2025-05-29T00:18:54.776080"
+}

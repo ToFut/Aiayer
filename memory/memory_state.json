@@ -1,289 +1,1545 @@
 {
   "version": "1.0",
-  "last_update": "2025-05-23T15:58:12.756093",
+  "last_update": "2025-05-27T10:11:07.319435",
   "short_term": [
     {
-      "timestamp": "2025-05-23T15:51:12.856259",
-      "memory_type": "activity_analysis",
-      "user_activity": {
-        "primary_activity": "general",
-        "application_used": "loginwindow",
-        "professional_context": "general_computing",
-        "activity_specifics": [
-          "unknown_activity"
-        ],
-        "productivity_score": 0.24,
-        "confidence_level": 0.3,
-        "engagement_indicators": {
-          "cpu_usage_percent": 0,
-          "memory_usage_percent": 0.1522064208984375,
-          "active_process_count": 5
-        }
-      },
-      "context_analysis": {
-        "workflow_stage": "general_computing",
-        "user_intent": "general_computer_use",
-        "productivity_context": "minimal_activity",
-        "meaningful_interaction": false
-      },
-      "concurrent_activities": [
-        {
-          "app": "loginwindow",
-          "category": "general",
-          "context": "general_computing"
-        },
-        {
-          "app": "WindowManager",
-          "category": "general",
-          "context": "general_computing"
-        },
-        {
-          "app": "nsurlsessiond",
-          "category": "general",
-          "context": "general_computing"
-        }
-      ],
-      "memory_id": "meaningful_1748040672856",
-      "insights": [
-        "Low activity period - possibly idle or background tasks"
-      ],
-      "productivity_category": "low_productivity",
-      "workflow_insights": "In general_computing workflow stage"
-    },
-    {
-      "timestamp": "2025-05-23T15:51:12.874112",
-      "memory_type": "activity_analysis",
+      "timestamp": "2025-05-27T10:11:07.285492",
+      "memory_type": "intelligent_system_state",
       "user_activity": {
         "primary_activity": "development",
-        "application_used": "Cursor Helper (GPU)",
-        "professional_context": "software_engineering",
+        "application_used": "Cursor",
+        "professional_context": "development_computing",
         "activity_specifics": [
-          "coding",
-          "debugging",
-          "development_workflow",
-          "programming"
+          "active_coding",
+          "high_activity"
         ],
-        "productivity_score": 0.77,
-        "confidence_level": 0.95,
-        "engagement_indicators": {
-          "cpu_usage_percent": 4.9,
-          "memory_usage_percent": 0.574493408203125,
-          "active_process_count": 5
+        "productivity_score": 0.9,
+        "confidence_level": 0.9,
+        "current_applications": [
+          "Converter",
+          "Cursor",
+          "Feedback Assistant",
+          "Google Chrome",
+          "Mail",
+          "Microsoft Bing for Safari",
+          "Notes",
+          "OneDrive",
+          "Safari",
+          "Shazam",
+          "Spotify",
+          "Stocks",
+          "Utilities/Terminal",
+          "WhatsApp.localized/WhatsApp"
+        ],
+        "system_metrics": {
+          "cpu_percent": 59.1,
+          "memory_percent": 88.0,
+          "available_memory_gb": 0.956146240234375
         }
       },
       "context_analysis": {
         "workflow_stage": "active_coding",
-        "user_intent": "ai_assisted_development",
-        "productivity_context": "moderately_productive",
+        "user_intent": "development_work",
+        "productivity_context": "high_productivity",
         "meaningful_interaction": true
       },
       "concurrent_activities": [
         {
-          "app": "node",
-          "category": "general",
-          "context": "general_computing"
-        },
-        {
-          "app": "Python",
-          "category": "general",
-          "context": "general_computing"
-        },
-        {
-          "app": "node",
-          "category": "general",
-          "context": "general_computing"
-        }
-      ],
-      "memory_id": "meaningful_1748040672874",
-      "insights": [
-        "Using AI-assisted code editor - likely engaged in development work"
-      ],
-      "productivity_category": "highly_productive",
-      "workflow_insights": "Currently engaged in active development work"
-    },
-    {
-      "timestamp": "2025-05-23T15:51:17.892853",
-      "memory_type": "activity_analysis",
-      "user_activity": {
-        "primary_activity": "development",
-        "application_used": "Cursor Helper (Renderer)",
-        "professional_context": "software_engineering",
-        "activity_specifics": [
-          "coding",
-          "debugging",
-          "development_workflow",
-          "programming"
-        ],
-        "productivity_score": 0.864,
-        "confidence_level": 0.95,
-        "engagement_indicators": {
-          "cpu_usage_percent": 51.8,
-          "memory_usage_percent": 12.877082824707031,
-          "active_process_count": 5
-        }
-      },
-      "context_analysis": {
-        "workflow_stage": "active_coding",
-        "user_intent": "ai_assisted_development",
-        "productivity_context": "highly_productive",
-        "meaningful_interaction": true
-      },
-      "concurrent_activities": [
-        {
-          "app": "Cursor Helper (Renderer)",
+          "app": "Converter",
           "category": "development",
-          "context": "software_engineering"
+          "context": "development_computing"
         },
         {
-          "app": "contactsd",
-          "category": "general",
-          "context": "general_computing"
+          "app": "Cursor",
+          "category": "development",
+          "context": "development_computing"
         },
         {
-          "app": "node",
-          "category": "general",
-          "context": "general_computing"
+          "app": "Feedback Assistant",
+          "category": "development",
+          "context": "development_computing"
+        },
+        {
+          "app": "Google Chrome",
+          "category": "development",
+          "context": "development_computing"
+        },
+        {
+          "app": "Mail",
+          "category": "development",
+          "context": "development_computing"
         }
       ],
-      "memory_id": "meaningful_1748040677892",
+      "memory_id": "smart_state_1748355067",
       "insights": [
-        "Using AI-assisted code editor - likely engaged in development work",
-        "High productivity period with focused engagement"
+        "User actively using 14 applications",
+        "Primary focus on development work",
+        "Activity level: high"
       ],
-      "productivity_category": "highly_productive",
-      "workflow_insights": "Currently engaged in active development work"
+      "productivity_category": "high_productivity",
+      "intelligence_score": 0.9
     },
     {
-      "timestamp": "2025-05-23T15:57:54.732762",
-      "memory_type": "comprehensive_visual_analysis",
-      "analysis_components": [
-        "total_screen_analyzer",
-        "enhanced_memory_deep_ui",
-        "complete_ui_understanding"
-      ],
-      "application_context": {
-        "primary_application": "Cursor",
-        "application_type": "terminals",
-        "confidence": 0.3333333333333333,
-        "detected_by": [
-          "total_screen_analyzer"
-        ]
-      },
-      "visual_understanding": {
-        "ui_elements_detected": [],
-        "visual_design_patterns": [],
-        "layout_structure": {},
-        "interactive_components": [],
-        "color_scheme": "unknown",
-        "visual_hierarchy": []
-      },
-      "content_analysis": {
-        "text_content": "node \u2014 Aiayer\n\nb) node node x ab Fay\n\n@ Working modes: Ask (1/2), Agent (2/2), General (1/2) Failing: Suggest mode completely* Performance: 12.9s first chunk, 26.7s totale\u2019 Quality: 7.2/10 average\n\nUpdate Todos\n\nSummary: llama3.2:1b Implementation with Streaming Complete! @\n\nSuccessfully implemented:\n\n- @ Updated backend to use 1llama3.2:1b model (fast 1B parameter model)\n- @ Added streaming responses for all chat modes\n\n- @ Tested all modes: Ask, Agent, Suggest, General\n\nTest Results:\n\n- Succes",
-        "content_type": "communication",
-        "word_count": 328,
-        "key_topics": [
-          "communication",
-          "productivity"
+      "timestamp": "2025-05-27T10:10:21.036797",
+      "memory_type": "intelligent_system_state",
+      "user_activity": {
+        "primary_activity": "development",
+        "application_used": "Safari",
+        "professional_context": "development_computing",
+        "activity_specifics": [
+          "active_coding",
+          "medium_activity"
         ],
-        "semantic_meaning": "Communication activity involving messaging, meetings, or collaboration",
-        "content_complexity": "unknown"
+        "productivity_score": 0.9,
+        "confidence_level": 0.9,
+        "current_applications": [
+          "Converter",
+          "Cursor",
+          "Feedback Assistant",
+          "Google Chrome",
+          "Mail",
+          "Microsoft Bing for Safari",
+          "Notes",
+          "OneDrive",
+          "Safari",
+          "Shazam",
+          "Spotify",
+          "Stocks",
+          "Utilities/Terminal",
+          "WhatsApp.localized/WhatsApp"
+        ],
+        "system_metrics": {
+          "cpu_percent": 31.6,
+          "memory_percent": 84.6,
+          "available_memory_gb": 1.229217529296875
+        }
       },
-      "user_behavior": {
-        "current_activity": "general_computing",
-        "workflow_stage": "refinement",
-        "user_intent": "editing",
-        "productivity_level": "general_usage",
-        "engagement_indicators": {},
-        "behavioral_patterns": []
+      "context_analysis": {
+        "workflow_stage": "active_coding",
+        "user_intent": "development_work",
+        "productivity_context": "medium_productivity",
+        "meaningful_interaction": true
       },
-      "ui_components": {
-        "buttons": [],
-        "forms": [],
-        "navigation": [],
-        "data_displays": [],
-        "interactive_elements": [],
-        "saas_interface_elements": []
-      },
-      "professional_context": {
-        "domain": "unknown",
-        "work_type": "unknown",
-        "tools_in_use": [],
-        "professional_level": "unknown",
-        "collaboration_indicators": []
-      },
-      "memory_priority": "high",
-      "analysis_quality": {
-        "components_successful": 3,
-        "total_components": 4,
-        "completeness_score": 0.75,
-        "confidence_level": 0.5
-      }
+      "concurrent_activities": [
+        {
+          "app": "Converter",
+          "category": "development",
+          "context": "development_computing"
+        },
+        {
+          "app": "Cursor",
+          "category": "development",
+          "context": "development_computing"
+        },
+        {
+          "app": "Feedback Assistant",
+          "category": "development",
+          "context": "development_computing"
+        },
+        {
+          "app": "Google Chrome",
+          "category": "development",
+          "context": "development_computing"
+        },
+        {
+          "app": "Mail",
+          "category": "development",
+          "context": "development_computing"
+        }
+      ],
+      "memory_id": "smart_state_1748355021",
+      "insights": [
+        "User actively using 14 applications",
+        "Primary focus on development work",
+        "Activity level: medium"
+      ],
+      "productivity_category": "medium_productivity",
+      "intelligence_score": 0.9
     },
     {
-      "timestamp": "2025-05-23T15:58:04.148436",
-      "memory_type": "comprehensive_visual_analysis",
-      "analysis_components": [
-        "total_screen_analyzer",
-        "enhanced_memory_deep_ui",
-        "complete_ui_understanding"
-      ],
-      "application_context": {
-        "primary_application": "Cursor",
-        "application_type": "terminals",
-        "confidence": 0.3333333333333333,
-        "detected_by": [
-          "total_screen_analyzer"
-        ]
-      },
-      "visual_understanding": {
-        "ui_elements_detected": [],
-        "visual_design_patterns": [],
-        "layout_structure": {},
-        "interactive_components": [],
-        "color_scheme": "unknown",
-        "visual_hierarchy": []
-      },
-      "content_analysis": {
-        "text_content": "node \u2014 Aiayer\n\nb) node node x ab Fay\n\n@ Working modes: Ask (1/2), Agent (2/2), General (1/2) Failing: Suggest mode completely* Performance: 12.9s first chunk, 26.7s totale\u2019 Quality: 7.2/10 average\n\nUpdate Todos\n\nSummary: llama3.2:1b Implementation with Streaming Complete! @\n\nSuccessfully implemented:\n\n- @ Updated backend to use 1llama3.2:1b model (fast 1B parameter model)\n- @ Added streaming responses for all chat modes\n\n- @ Tested all modes: Ask, Agent, Suggest, General\n\nTest Results:\n\n- Succes",
-        "content_type": "communication",
-        "word_count": 328,
-        "key_topics": [
-          "communication",
-          "productivity"
+      "timestamp": "2025-05-27T10:10:09.661643",
+      "memory_type": "intelligent_system_state",
+      "user_activity": {
+        "primary_activity": "development",
+        "application_used": "Finder",
+        "professional_context": "development_computing",
+        "activity_specifics": [
+          "active_coding",
+          "medium_activity"
         ],
-        "semantic_meaning": "Communication activity involving messaging, meetings, or collaboration",
-        "content_complexity": "unknown"
+        "productivity_score": 0.9,
+        "confidence_level": 0.9,
+        "current_applications": [
+          "Converter",
+          "Cursor",
+          "Feedback Assistant",
+          "Google Chrome",
+          "Mail",
+          "Microsoft Bing for Safari",
+          "Notes",
+          "OneDrive",
+          "Safari",
+          "Shazam",
+          "Spotify",
+          "Stocks",
+          "Utilities/Terminal",
+          "WhatsApp.localized/WhatsApp"
+        ],
+        "system_metrics": {
+          "cpu_percent": 45.9,
+          "memory_percent": 85.1,
+          "available_memory_gb": 1.1927947998046875
+        }
       },
-      "user_behavior": {
-        "current_activity": "general_computing",
-        "workflow_stage": "refinement",
-        "user_intent": "editing",
-        "productivity_level": "general_usage",
-        "engagement_indicators": {},
-        "behavioral_patterns": []
+      "context_analysis": {
+        "workflow_stage": "active_coding",
+        "user_intent": "development_work",
+        "productivity_context": "medium_productivity",
+        "meaningful_interaction": true
       },
-      "ui_components": {
-        "buttons": [],
-        "forms": [],
-        "navigation": [],
-        "data_displays": [],
-        "interactive_elements": [],
-        "saas_interface_elements": []
+      "concurrent_activities": [
+        {
+          "app": "Converter",
+          "category": "development",
+          "context": "development_computing"
+        },
+        {
+          "app": "Cursor",
+          "category": "development",
+          "context": "development_computing"
+        },
+        {
+          "app": "Feedback Assistant",
+          "category": "development",
+          "context": "development_computing"
+        },
+        {
+          "app": "Google Chrome",
+          "category": "development",
+          "context": "development_computing"
+        },
+        {
+          "app": "Mail",
+          "category": "development",
+          "context": "development_computing"
+        }
+      ],
+      "memory_id": "smart_state_1748355009",
+      "insights": [
+        "User actively using 14 applications",
+        "Primary focus on development work",
+        "Activity level: medium"
+      ],
+      "productivity_category": "medium_productivity",
+      "intelligence_score": 0.9
+    },
+    {
+      "timestamp": "2025-05-27T10:09:07.491699",
+      "memory_type": "intelligent_system_state",
+      "user_activity": {
+        "primary_activity": "development",
+        "application_used": "Safari",
+        "professional_context": "development_computing",
+        "activity_specifics": [
+          "active_coding",
+          "medium_activity"
+        ],
+        "productivity_score": 0.9,
+        "confidence_level": 0.9,
+        "current_applications": [
+          "Converter",
+          "Cursor",
+          "Feedback Assistant",
+          "Google Chrome",
+          "Mail",
+          "Microsoft Bing for Safari",
+          "Notes",
+          "OneDrive",
+          "Safari",
+          "Shazam",
+          "Spotify",
+          "Stocks",
+          "Utilities/Terminal",
+          "WhatsApp.localized/WhatsApp"
+        ],
+        "system_metrics": {
+          "cpu_percent": 36.1,
+          "memory_percent": 86.2,
+          "available_memory_gb": 1.1017303466796875
+        }
       },
-      "professional_context": {
-        "domain": "unknown",
-        "work_type": "unknown",
-        "tools_in_use": [],
-        "professional_level": "unknown",
-        "collaboration_indicators": []
+      "context_analysis": {
+        "workflow_stage": "active_coding",
+        "user_intent": "development_work",
+        "productivity_context": "medium_productivity",
+        "meaningful_interaction": true
       },
-      "memory_priority": "high",
-      "analysis_quality": {
-        "components_successful": 3,
-        "total_components": 4,
-        "completeness_score": 0.75,
-        "confidence_level": 0.5
-      }
+      "concurrent_activities": [
+        {
+          "app": "Converter",
+          "category": "development",
+          "context": "development_computing"
+        },
+        {
+          "app": "Cursor",
+          "category": "development",
+          "context: "development_computing"
+        },
+        {
+          "app": "Feedback Assistant",
+          "category": "development",
+          "context": "development_computing"
+        },
+        {
+          "app": "Google Chrome",
+          "category": "development",
+          "context": "development_computing"
+        },
+        {
+          "app": "Mail",
+          "category": "development",
+          "context": "development_computing"
+        }
+      ],
+      "memory_id": "smart_state_1748354947",
+      "insights": [
+        "User actively using 14 applications",
+        "Primary focus on development work",
+        "Activity level: medium"
+      ],
+      "productivity_category": "medium_productivity",
+      "intelligence_score": 0.9
+    },
+    {
+      "timestamp": "2025-05-27T10:08:44.792524",
+      "memory_type": "intelligent_system_state",
+      "user_activity": {
+        "primary_activity": "development",
+        "application_used": "Cursor",
+        "professional_context": "development_computing",
+        "activity_specifics": [
+          "active_coding",
+          "medium_activity"
+        ],
+        "productivity_score": 0.9,
+        "confidence_level": 0.9,
+        "current_applications": [
+          "Converter",
+          "Cursor",
+          "Feedback Assistant",
+          "Google Chrome",
+          "Mail",
+          "Microsoft Bing for Safari",
+          "Notes",
+          "OneDrive",
+          "Safari",
+          "Shazam",
+          "Spotify",
+          "Stocks",
+          "Utilities/Terminal",
+          "WhatsApp.localized/WhatsApp"
+        ],
+        "system_metrics": {
+          "cpu_percent": 43.5,
+          "memory_percent": 87.6,
+          "available_memory_gb": 0.990875244140625
+        }
+      },
+      "context_analysis": {
+        "workflow_stage": "active_coding",
+        "user_intent": "development_work",
+        "productivity_context": "medium_productivity",
+        "meaningful_interaction": true
+      },
+      "concurrent_activities": [
+        {
+          "app": "Converter",
+          "category": "development",
+          "context": "development_computing"
+        },
+        {
+          "app": "Cursor",
+          "category": "development",
+          "context": "development_computing"
+        },
+        {
+          "app": "Feedback Assistant",
+          "category": "development",
+          "context": "development_computing"
+        },
+        {
+          "app": "Google Chrome",
+          "category": "development",
+          "context": "development_computing"
+        },
+        {
+          "app": "Mail",
+          "category": "development",
+          "context": "development_computing"
+        }
+      ],
+      "memory_id": "smart_state_1748354924",
+      "insights": [
+        "User actively using 14 applications",
+        "Primary focus on development work",
+        "Activity level: medium"
+      ],
+      "productivity_category": "medium_productivity",
+      "intelligence_score": 0.9
+    },
+    {
+      "timestamp": "2025-05-27T10:07:13.473963",
+      "memory_type": "intelligent_system_state",
+      "user_activity": {
+        "primary_activity": "development",
+        "application_used": "Safari",
+        "professional_context": "development_computing",
+        "activity_specifics": [
+          "active_coding",
+          "medium_activity"
+        ],
+        "productivity_score": 0.9,
+        "confidence_level": 0.9,
+        "current_applications": [
+          "Converter",
+          "Cursor",
+          "Feedback Assistant",
+          "Google Chrome",
+          "Mail",
+          "Microsoft Bing for Safari",
+          "Notes",
+          "OneDrive",
+          "Safari",
+          "Shazam",
+          "Spotify",
+          "Stocks",
+          "Utilities/Terminal",
+          "WhatsApp.localized/WhatsApp"
+        ],
+        "system_metrics": {
+          "cpu_percent": 36.9,
+          "memory_percent": 85.4,
+          "available_memory_gb": 1.16876220703125
+        }
+      },
+      "context_analysis": {
+        "workflow_stage": "active_coding",
+        "user_intent": "development_work",
+        "productivity_context": "medium_productivity",
+        "meaningful_interaction": true
+      },
+      "concurrent_activities": [
+        {
+          "app": "Converter",
+          "category": "development",
+          "context": "development_computing"
+        },
+        {
+          "app": "Cursor",
+          "category": "development",
+          "context": "development_computing"
+        },
+        {
+          "app": "Feedback Assistant",
+          "category": "development",
+          "context": "development_computing"
+        },
+        {
+          "app": "Google Chrome",
+          "category": "development",
+          "context": "development_computing"
+        },
+        {
+          "app": "Mail",
+          "category": "development",
+          "context": "development_computing"
+        }
+      ],
+      "memory_id": "smart_state_1748354833",
+      "insights": [
+        "User actively using 14 applications",
+        "Primary focus on development work",
+        "Activity level: medium"
+      ],
+      "productivity_category": "medium_productivity",
+      "intelligence_score": 0.9
+    },
+    {
+      "timestamp": "2025-05-27T10:07:01.945762",
+      "memory_type": "intelligent_system_state",
+      "user_activity": {
+        "primary_activity": "development",
+        "application_used": "Cursor",
+        "professional_context": "development_computing",
+        "activity_specifics": [
+          "active_coding",
+          "medium_activity"
+        ],
+        "productivity_score": 0.9,
+        "confidence_level": 0.9,
+        "current_applications": [
+          "Converter",
+          "Cursor",
+          "Feedback Assistant",
+          "Google Chrome",
+          "Mail",
+          "Microsoft Bing for Safari",
+          "Notes",
+          "OneDrive",
+          "Safari",
+          "Shazam",
+          "Spotify",
+          "Stocks",
+          "Utilities/Terminal",
+          "WhatsApp.localized/WhatsApp"
+        ],
+        "system_metrics": {
+          "cpu_percent": 35.4,
+          "memory_percent": 86.2,
+          "available_memory_gb": 1.1010589599609375
+        }
+      },
+      "context_analysis": {
+        "workflow_stage": "active_coding",
+        "user_intent": "development_work",
+        "productivity_context": "medium_productivity",
+        "meaningful_interaction": true
+      },
+      "concurrent_activities": [
+        {
+          "app": "Converter",
+          "category": "development",
+          "context": "development_computing"
+        },
+        {
+          "app": "Cursor",
+          "category": "development",
+          "context": "development_computing"
+        },
+        {
+          "app": "Feedback Assistant",
+          "category": "development",
+          "context": "development_computing"
+        },
+        {
+          "app": "Google Chrome",
+          "category": "development",
+          "context": "development_computing"
+        },
+        {
+          "app": "Mail",
+          "category": "development",
+          "context": "development_computing"
+        }
+      ],
+      "memory_id": "smart_state_1748354821",
+      "insights": [
+        "User actively using 14 applications",
+        "Primary focus on development work",
+        "Activity level: medium"
+      ],
+      "productivity_category": "medium_productivity",
+      "intelligence_score": 0.9
+    },
+    {
+      "timestamp": "2025-05-27T10:06:38.607768",
+      "memory_type": "intelligent_system_state",
+      "user_activity": {
+        "primary_activity": "development",
+        "application_used": "ai-assistant-overlay",
+        "professional_context": "development_computing",
+        "activity_specifics": [
+          "active_coding",
+          "medium_activity"
+        ],
+        "productivity_score": 0.9,
+        "confidence_level": 0.9,
+        "current_applications": [
+          "Converter",
+          "Cursor",
+          "Feedback Assistant",
+          "Google Chrome",
+          "Mail",
+          "Microsoft Bing for Safari",
+          "Notes",
+          "OneDrive",
+          "Safari",
+          "Shazam",
+          "Spotify",
+          "Stocks",
+          "Utilities/Terminal",
+          "WhatsApp.localized/WhatsApp"
+
+        ],
+        "system_metrics": {
+          "cpu_percent": 42.5,
+          "memory_percent": 90.4,
+          "available_memory_gb": 0.7647247314453125
+        }
+      },
+      "context_analysis": {
+        "workflow_stage": "active_coding",
+        "user_intent": "development_work",
+        "productivity_context": "medium_productivity",
+        "meaningful_interaction": true
+      },
+      "concurrent_activities": [
+        {
+          "app": "Converter",
+          "category": "development",
+          "context": "development_computing"
+        },
+        {
+          "app": "Cursor",
+          "category": "development",
+          "context": "development_computing"
+        },
+        {
+          "app": "Feedback Assistant",
+          "category": "development",
+          "context": "development_computing"
+        },
+        {
+          "app": "Google Chrome",
+          "category": "development",
+          "context": "development_computing"
+        },
+        {
+          "app": "Mail",
+          "category": "development",
+          "context": "development_computing"
+        }
+      ],
+      "memory_id": "smart_state_1748354798",
+      "insights": [
+        "User actively using 14 applications",
+        "Primary focus on development work",
+        "Activity level: medium"
+      ],
+      "productivity_category": "medium_productivity",
+      "intelligence_score": 0.9
+    },
+    {
+      "timestamp": "2025-05-27T10:06:38.576599",
+      "memory_type": "intelligent_system_state",
+      "user_activity": {
+        "primary_activity": "development",
+        "application_used": "ai-assistant-overlay",
+        "professional_context": "development_computing",
+        "activity_specifics": [
+          "active_coding",
+          "medium_activity"
+        ],
+        "productivity_score": 0.9,
+        "confidence_level": 0.9,
+        "current_applications": [
+          "Converter",
+          "Cursor",
+          "Feedback Assistant",
+          "Google Chrome",
+          "Mail",
+          "Microsoft Bing for Safari",
+          "Notes",
+          "OneDrive",
+          "Safari",
+          "Shazam",
+          "Spotify",
+          "Stocks",
+          "Utilities/Terminal",
+          "WhatsApp.localized/WhatsApp"
+        ],
+        "system_metrics": {
+          "cpu_percent": 42.7,
+          "memory_percent": 90.4,
+          "available_memory_gb": 0.7686920166015625
+        }
+      },
+      "context_analysis": {
+        "workflow_stage": "active_coding",
+        "user_intent": "development_work",
+        "productivity_context": "medium_productivity",
+        "meaningful_interaction": true
+      },
+      "concurrent_activities": [
+        {
+          "app": "Converter",
+          "category": "development",
+          "context": "development_computing"
+        },
+        {
+          "app": "Cursor",
+          "category": "development",
+          "context": "development_computing"
+        },
+        {
+          "app": "Feedback Assistant",
+          "category": "development",
+          "context": "development_computing"
+        },
+        {
+          "app": "Google Chrome",
+          "category": "development",
+          "context": "development_computing"
+        },
+        {
+          "app": "Mail",
+          "category": "development",
+          "context": "development_computing"
+        }
+      ],
+      "memory_id": "smart_state_1748354798",
+      "insights": [
+        "User actively using 14 applications",
+        "Primary focus on development work",
+        "Activity level: medium"
+      ],
+      "productivity_category": "medium_productivity",
+      "intelligence_score": 0.9
+    },
+    {
+      "timestamp": "2025-05-27T10:05:52.734444",
+      "memory_type": "intelligent_system_state",
+      "user_activity": {
+        "primary_activity": "development",
+        "application_used": "Safari",
+        "professional_context": "development_computing",
+        "activity_specifics": [
+          "code_review",
+          "medium_activity"
+        ],
+        "productivity_score": 0.9,
+        "confidence_level": 0.9,
+        "current_applications": [
+          "Converter",
+          "Cursor",
+          "Feedback Assistant",
+          "Google Chrome",
+          "Mail",
+          "Microsoft Bing for Safari",
+          "Notes",
+          "OneDrive",
+          "Safari",
+          "Shazam",
+          "Spotify",
+          "Stocks",
+          "Utilities/Terminal",
+          "WhatsApp.localized/WhatsApp"
+        ],
+        "system_metrics": {
+          "cpu_percent": 29.5,
+          "memory_percent": 86.0,
+          "available_memory_gb": 1.1237335205078125
+        }
+      },
+      "context_analysis": {
+        "workflow_stage": "code_review",
+        "user_intent": "development_work",
+        "productivity_context": "medium_productivity",
+        "meaningful_interaction": true
+      },
+      "concurrent_activities": [
+        {
+          "app": "Converter",
+          "category": "development",
+          "context": "development_computing"
+        },
+        {
+          "app": "Cursor",
+          "category": "development",
+          "context": "development_computing"
+        },
+        {
+          "app": "Feedback Assistant",
+          "category": "development",
+          "context": "development_computing"
+        },
+        {
+          "app": "Google Chrome",
+          "category": "development",
+          "context": "development_computing"
+        },
+        {
+          "app": "Mail",
+          "category": "development",
+          "context": "development_computing"
+        }
+      ],
+      "memory_id": "smart_state_1748354752",
+      "insights": [
+        "User actively using 14 applications",
+        "Primary focus on development work",
+        "Activity level: medium"
+      ],
+      "productivity_category": "medium_productivity",
+      "intelligence_score": 0.9
+    },
+    {
+      "timestamp": "2025-05-27T10:05:25.055332",
+      "memory_type": "intelligent_system_state",
+      "user_activity": {
+        "primary_activity": "development",
+        "application_used": "Cursor",
+        "professional_context": "development_computing",
+        "activity_specifics": [
+          "code_review",
+          "medium_activity"
+        ],
+        "productivity_score": 0.9,
+        "confidence_level": 0.9,
+        "current_applications": [
+          "Converter",
+          "Cursor",
+          "Feedback Assistant",
+          "Google Chrome",
+          "Mail",
+          "Microsoft Bing for Safari",
+          "Notes",
+          "OneDrive",
+          "Safari",
+          "Shazam",
+          "Spotify",
+          "Stocks",
+          "Utilities/Terminal",
+          "WhatsApp.localized/WhatsApp"
+        ],
+        "system_metrics": {
+          "cpu_percent": 24.6,
+          "memory_percent": 85.4,
+          "available_memory_gb": 1.17059326171875
+        }
+      },
+      "context_analysis": {
+        "workflow_stage": "code_review",
+        "user_intent": "development_work",
+        "productivity_context": "medium_productivity",
+        "meaningful_interaction": true
+      },
+      "concurrent_activities": [
+        {
+          "app": "Converter",
+          "category": "development",
+          "context": "development_computing"
+        },
+        {
+          "app": "Cursor",
+          "category": "development",
+          "context": "development_computing"
+        },
+        {
+          "app": "Feedback Assistant",
+          "category": "development",
+          "context": "development_computing"
+        },
+        {
+          "app": "Google Chrome",
+          "category": "development",
+          "context": "development_computing"
+        },
+        {
+          "app": "Mail",
+          "category": "development",
+          "context": "development_computing"
+        }
+      ],
+      "memory_id": "smart_state_1748354725",
+      "insights": [
+        "User actively using 14 applications",
+        "Primary focus on development work",
+        "Activity level: medium"
+      ],
+      "productivity_category": "medium_productivity",
+      "intelligence_score": 0.9
+    },
+    {
+      "timestamp": "2025-05-27T10:03:58.675537",
+      "memory_type": "intelligent_system_state",
+      "user_activity": {
+        "primary_activity:: "development",
+        "application_used": "Safari",
+        "professional_context": "development_computing",
+        "activity_specifics": [
+          "active_coding",
+          "medium_activity"
+        ],
+        "productivity_score": 0.9,
+        "confidence_level": 0.9,
+        "current_applications": [
+          "Converter",
+          "Cursor",
+          "Feedback Assistant",
+          "Google Chrome",
+          "Mail",
+          "Microsoft Bing for Safari",
+          "Notes",
+          "OneDrive",
+          "Safari",
+          "Shazam",
+          "Spotify",
+          "Stocks",
+          "Utilities/Terminal",
+          "WhatsApp.localized/WhatsApp"
+        ],
+        "system_metrics": {
+          "cpu_percent": 34.9,
+          "memory_percent": 86.8,
+          "available_memory_gb": 1.058135986328125
+        }
+      },
+      "context_analysis": {
+        "workflow_stage": "active_coding",
+        "user_intent": "development_work",
+        "productivity_context": "medium_productivity",
+        "meaningful_interaction": true
+      },
+      "concurrent_activities": [
+        {
+          "app": "Converter",
+          "category": "development",
+          "context": "development_computing"
+        },
+        {
+          "app": "Cursor",
+          "category": "development",
+          "context": "development_computing"
+        },
+        {
+          "app": "Feedback Assistant",
+          "category": "development",
+          "context": "development_computing"
+        },
+        {
+          "app": "Google Chrome",
+          "category": "development",
+          "context": "development_computing"
+        },
+        {
+          "app": "Mail",
+          "category": "development",
+          "context": "development_computing"
+        }
+      ],
+      "memory_id": "smart_state_1748354638",
+      "insights": [
+        "User actively using 14 applications",
+        "Primary focus on development work",
+        "Activity level: medium"
+      ],
+      "productivity_category": "medium_productivity",
+      "intelligence_score": 0.9
+    },
+    {
+      "timestamp": "2025-05-27T10:03:58.615173",
+      "memory_type": "intelligent_system_state",
+      "user_activity": {
+        "primary_activity": "development",
+        "application_used": "com.apple.WebKit.Networking",
+        "professional_context": "development_computing",
+        "activity_specifics": [
+          "active_coding",
+          "medium_activity"
+        ],
+        "productivity_score": 0.9,
+        "confidence_level": 0.9,
+        "current_applications": [
+          "Converter",
+          "Cursor",
+          "Feedback Assistant",
+          "Google Chrome",
+          "Mail",
+          "Microsoft Bing for Safari",
+          "Notes",
+          "OneDrive",
+          "Safari",
+          "Shazam",
+          "Spotify",
+          "Stocks",
+          "Utilities/Terminal",
+          "WhatsApp.localized/WhatsApp"
+        ],
+        "system_metrics": {
+          "cpu_percent": 34.9,
+          "memory_percent": 86.8,
+          "available_memory_gb": 1.0592193603515625
+        }
+      },
+      "context_analysis": {
+        "workflow_stage": "active_coding",
+        "user_intent": "development_work",
+        "productivity_context": "medium_productivity",
+        "meaningful_interaction": true
+      },
+      "concurrent_activities": [
+        {
+          "app": "Converter",
+          "category": "development",
+          "context": "development_computing"
+        },
+        {
+          "app": "Cursor",
+          "category": "development",
+          "context": "development_computing"
+        },
+        {
+          "app": "Feedback Assistant",
+          "category": "development",
+          "context": "development_computing"
+        },
+        {
+          "app": "Google Chrome",
+          "category": "development",
+          "context": "development_computing"
+        },
+        {
+          "app": "Mail",
+          "category": "development",
+          "context": "development_computing"
+        }
+      ],
+      "memory_id": "smart_state_1748354638",
+      "insights": [
+        "User actively using 14 applications",
+        "Primary focus on development work",
+        "Activity level: medium"
+      ],
+      "productivity_category": "medium_productivity",
+      "intelligence_score": 0.9
+    },
+    {
+      "timestamp": "2025-05-27T10:03:29.430708",
+      "memory_type": "intelligent_system_state",
+      "user_activity": {
+        "primary_activity": "development",
+        "application_used": "Safari",
+        "professional_context": "development_computing",
+        "activity_specifics": [
+          "active_coding",
+          "high_activity"
+        ],
+        "productivity_score": 0.9,
+        "confidence_level": 0.9,
+        "current_applications": [
+          "Converter",
+          "Cursor",
+          "Feedback Assistant",
+          "Google Chrome",
+          "Mail",
+          "Microsoft Bing for Safari",
+          "Notes",
+          "OneDrive",
+          "Safari",
+          "Shazam",
+          "Spotify",
+          "Stocks",
+          "Utilities/Terminal",
+          "WhatsApp.localized/WhatsApp"
+        ],
+        "system_metrics": {
+          "cpu_percent": 62.6,
+          "memory_percent": 87.2,
+          "available_memory_gb": 1.02362060546875
+        }
+      },
+      "context_analysis": {
+        "workflow_stage": "active_coding",
+        "user_intent": "development_work",
+        "productivity_context": "high_productivity",
+        "meaningful_interaction": true
+      },
+      "concurrent_activities": [
+        {
+          "app": "Converter",
+          "category": "development",
+          "context": "development_computing"
+        },
+        {
+          "app": "Cursor",
+          "category": "development",
+          "context": "development_computing"
+        },
+        {
+          "app": "Feedback Assistant",
+          "category": "development",
+          "context": "development_computing"
+        },
+        {
+          "app": "Google Chrome",
+          "category": "development",
+          "context": "development_computing"
+        },
+        {
+          "app": "Mail",
+          "category": "development",
+          "context": "development_computing"
+        }
+      ],
+      "memory_id": "smart_state_1748354609",
+      "insights": [
+        "User actively using 14 applications",
+        "Primary focus on development work",
+        "Activity level: high"
+      ],
+      "productivity_category": "high_productivity",
+      "intelligence_score": 0.9
+    },
+    {
+      "timestamp": "2025-05-27T10:03:22.849896",
+      "memory_type": "intelligent_system_state",
+      "user_activity": {
+        "primary_activity": "development",
+        "application_used": "Google Chrome",
+        "professional_context": "development_computing",
+        "activity_specifics": [
+          "active_coding",
+          "high_activity"
+        ],
+        "productivity_score": 0.9,
+        "confidence_level": 0.9,
+        "current_applications": [
+          "Converter",
+          "Cursor",
+          "Feedback Assistant",
+          "Google Chrome",
+          "Mail",
+          "Microsoft Bing for Safari",
+          "Notes",
+          "OneDrive",
+          "Safari",
+          "Shazam",
+          "Spotify",
+          "Stocks",
+          "Utilities/Terminal",
+          "WhatsApp.localized/WhatsApp"
+        ],
+        "system_metrics": {
+          "cpu_percent": 52.3,
+          "memory_percent": 86.2,
+          "available_memory_gb": 1.1059417724609375
+        }
+      },
+      "context_analysis": {
+        "workflow_stage": "active_coding",
+        "user_intent": "development_work",
+        "productivity_context": "high_productivity",
+        "meaningful_interaction": true
+      },
+      "concurrent_activities": [
+        {
+          "app": "Converter",
+          "category": "development",
+          "context": "development_computing"
+        },
+        {
+          "app": "Cursor",
+          "category": "development",
+          "context": "development_computing"
+        },
+        {
+          "app": "Feedback Assistant",
+          "category": "development",
+          "context": "development_computing"
+        },
+        {
+          "app": "Google Chrome",
+          "category": "development",
+          "context": "development_computing"
+        },
+        {
+          "app": "Mail",
+          "category": "development",
+          "context": "development_computing"
+        }
+      ],
+      "memory_id": "smart_state_1748354602",
+      "insights": [
+        "User actively using 14 applications",
+        "Primary focus on development work",
+        "Activity level: high"
+      ],
+      "productivity_category": "high_productivity",
+      "intelligence_score": 0.9
+    },
+    {
+      "timestamp": "2025-05-27T10:02:59.500437",
+      "memory_type": "intelligent_system_state",
+      "user_activity": {
+        "primary_activity": "development",
+        "application_used": "ai-assistant-overlay",
+        "professional_context": "development_computing",
+        "activity_specifics": [
+          "active_coding",
+          "medium_activity"
+        ],
+        "productivity_score": 0.9,
+        "confidence_level": 0.9,
+        "current_applications": [
+          "Converter",
+          "Cursor",
+          "Feedback Assistant",
+          "Google Chrome",
+          "Mail",
+          "Microsoft Bing for Safari",
+          "Notes",
+          "OneDrive",
+          "Safari",
+          "Shazam",
+          "Spotify",
+          "Stocks",
+          "Utilities/Terminal",
+          "WhatsApp.localized/WhatsApp"
+        ],
+        "system_metrics": {
+          "cpu_percent": 32.3,
+          "memory_percent": 86.8,
+          "available_memory_gb": 1.0526580810546875
+        }
+      },
+      "context_analysis": {
+        "workflow_stage": "active_coding",
+        "user_intent": "development_work",
+        "productivity_context": "medium_productivity",
+        "meaningful_interaction": true
+      },
+      "concurrent_activities": [
+        {
+          "app": "Converter",
+          "category": "development",
+          "context": "development_computing"
+        },
+        {
+          "app": "Cursor",
+          "category": "development",
+          "context": "development_computing"
+        },
+        {
+          "app": "Feedback Assistant",
+          "category": "development",
+          "context": "development_computing"
+        },
+        {
+          "app": "Google Chrome",
+          "category": "development",
+          "context": "development_computing"
+        },
+        {
+          "app": "Mail",
+          "category": "development",
+          "context": "development_computing"
+        }
+      ],
+      "memory_id": "smart_state_1748354579",
+      "insights": [
+        "User actively using 14 applications",
+        "Primary focus on development work",
+        "Activity level: medium"
+      ],
+      "productivity_category": "medium_productivity",
+      "intelligence_score": 0.9
+    },
+    {
+      "timestamp": "2025-05-27T10:01:17.891275",
+      "memory_type": "intelligent_system_state",
+      "user_activity": {
+        "primary_activity": "development",
+        "application_used": "Cursor",
+        "professional_context": "development_computing",
+        "activity_specifics": [
+          "code_review",
+          "medium_activity"
+        ],
+        "productivity_score": 0.9,
+        "confidence_level": 0.9,
+        "current_applications": [
+          "Converter",
+          "Cursor",
+          "Feedback Assistant",
+          "Google Chrome",
+          "Mail",
+          "Microsoft Bing for Safari",
+          "Notes",
+          "OneDrive",
+          "Safari",
+          "Shazam",
+          "Spotify",
+          "Stocks",
+          "Utilities/Terminal",
+          "WhatsApp.localized/WhatsApp"
+        ],
+        "system_metrics": {
+          "cpu_percent": 23.5,
+          "memory_percent": 82.6,
+          "available_memory_gb": 1.3906097412109375
+        }
+      },
+      "context_analysis": {
+        "workflow_stage": "code_review",
+        "user_intent": "development_work",
+        "productivity_context": "medium_productivity",
+        "meaningful_interaction": true
+      },
+      "concurrent_activities": [
+        {
+          "app": "Converter",
+          "category": "development",
+          "context": "development_computing"
+        },
+        {
+          "app": "Cursor",
+          "category": "development",
+          "context": "development_computing"
+        },
+        {
+          "app": "Feedback Assistant",
+          "category": "development",
+          "context": "development_computing"
+        },
+        {
+          "app": "Google Chrome",
+          "category": "development",
+          "context": "development_computing"
+        },
+        {
+          "app": "Mail",
+          "category": "development",
+          "context": "development_computing"
+        }
+      ],
+      "memory_id": "smart_state_1748354477",
+      "insights": [
+        "User actively using 14 applications",
+        "Primary focus on development work",
+        "Activity level: medium"
+      ],
+      "productivity_category": "medium_productivity",
+      "intelligence_score": 0.9
+    },
+    {
+      "timestamp": "2025-05-27T10:01:06.319128",
+      "memory_type": "intelligent_system_state",
+      "user_activity": {
+        "primary_activity": "development",
+        "application_used": "ai-assistant-overlay",
+        "professional_context": "development_computing",
+        "activity_specifics": [
+          "active_coding",
+          "medium_activity"
+        ],
+        "productivity_score": 0.9,
+        "confidence_level": 0.9,
+        "current_applications": [
+          "Converter",
+          "Cursor",
+          "Feedback Assistant",
+          "Google Chrome",
+          "Mail",
+          "Microsoft Bing for Safari",
+          "Notes",
+          "OneDrive",
+          "Safari",
+          "Shazam",
+          "Spotify",
+          "Stocks",
+          "Utilities/Terminal",
+          "WhatsApp.localized/WhatsApp"
+        ],
+        "system_metrics": {
+          "cpu_percent": 46.6,
+          "memory_percent": 85.8,
+          "available_memory_gb": 1.1333770751953125
+        }
+      },
+      "context_analysis": {
+        "workflow_stage": "active_coding",
+        "user_intent": "development_work",
+        "productivity_context": "medium_productivity",
+        "meaningful_interaction": true
+      },
+      "concurrent_activities": [
+        {
+          "app": "Converter",
+          "category": "development",
+          "context": "development_computing"
+        },
+        {
+          "app": "Cursor",
+          "category": "development",
+          "context": "development_computing"
+        },
+        {
+          "app": "Feedback Assistant",
+          "category": "development",
+          "context": "development_computing"
+        },
+        {
+          "app": "Google Chrome",
+          "category": "development",
+          "context": "development_computing"
+        },
+        {
+          "app": "Mail",
+          "category": "development",
+          "context": "development_computing"
+        }
+      ],
+      "memory_id": "smart_state_1748354466",
+      "insights": [
+        "User actively using 14 applications",
+        "Primary focus on development work",
+        "Activity level: medium"
+      ],
+      "productivity_category": "medium_productivity",
+      "intelligence_score": 0.9
+    },
+    {
+      "timestamp": "2025-05-27T10:00:09.859056",
+      "memory_type": "intelligent_system_state",
+      "user_activity": {
+        "primary_activity": "development",
+        "application_used": "Cursor",
+        "professional_context": "development_computing",
+        "activity_specifics": [
+          "active_coding",
+          "high_activity"
+        ],
+        "productivity_score": 0.9,
+        "confidence_level": 0.9,
+        "current_applications": [
+          "Cursor",
+          "Feedback Assistant",
+          "Google Chrome",
+          "Mail",
+          "Microsoft Bing for Safari",
+          "Notes",
+          "OneDrive",
+          "Safari",
+          "Shazam",
+          "Spotify",
+          "Stocks",
+          "Utilities/Terminal",
+          "WhatsApp.localized/WhatsApp"
+        ],
+        "system_metrics": {
+          "cpu_percent": 87.1,
+          "memory_percent": 86.4,
+          "available_memory_gb": 1.084320068359375
+        }
+      },
+      "context_analysis": {
+        "workflow_stage": "active_coding",
+        "user_intent": "development_work",
+        "productivity_context": "high_productivity",
+        "meaningful_interaction": true
+      },
+      "concurrent_activities": [
+        {
+          "app": "Cursor",
+          "category": "development",
+          "context": "development_computing"
+        },
+        {
+          "app": "Feedback Assistant",
+          "category": "development",
+          "context": "development_computing"
+        },
+        {
+          "app": "Google Chrome",
+          "category": "development",
+          "context": "development_computing"
+        },
+        {
+          "app": "Mail",
+          "category": "development",
+          "context": "development_computing"
+        },
+        {
+          "app": "Microsoft Bing for Safari",
+          "category": "development",
+          "context": "development_computing"
+        }
+      ],
+      "memory_id": "smart_state_1748354409",
+      "insights": [
+        "User actively using 13 applications",
+        "Primary focus on development work",
+        "Activity level: high"
+      ],
+      "productivity_category": "high_productivity",
+      "intelligence_score": 0.9
+    },
+    {
+      "timestamp": "2025-05-27T10:00:02.635574",
+      "memory_type": "intelligent_system_state",
+      "user_activity": {
+        "primary_activity": "development",
+        "application_used": "ai-assistant-overlay",
+        "professional_context": "development_computing",
+        "activity_specifics": [
+          "active_coding",
+          "high_activity"
+        ],
+        "productivity_score": 0.9,
+        "confidence_level": 0.9,
+        "current_applications": [
+          "Cursor",
+          "Feedback Assistant",
+          "Google Chrome",
+          "Mail",
+          "Microsoft Bing for Safari",
+          "Notes",
+          "OneDrive",
+          "Safari",
+          "Shazam",
+          "Spotify",
+          "Stocks",
+          "Utilities/Terminal",
+          "WhatsApp.localized/WhatsApp"
+        ],
+        "system_metrics": {
+          "cpu_percent": 66.6,
+          "memory_percent": 86.7,
+          "available_memory_gb": 1.0630950927734375
+        }
+      },
+      "context_analysis": {
+        "workflow_stage": "active_coding",
+        "user_intent": "development_work",
+        "productivity_context": "high_productivity",
+        "meaningful_interaction": true
+      },
+      "concurrent_activities": [
+        {
+          "app": "Cursor",
+          "category": "development",
+          "context": "development_computing"
+        },
+        {
+          "app": "Feedback Assistant",
+          "category": "development",
+          "context": "development_computing"
+        },
+        {
+          "app": "Google Chrome",
+          "category": "development",
+          "context": "development_computing"
+        },
+        {
+          "app": "Mail",
+          "category": "development",
+          "context": "development_computing"
+        },
+        {
+          "app": "Microsoft Bing for Safari",
+          "category": "development",
+          "context": "development_computing"
+        }
+      ],
+      "memory_id": "smart_state_1748354402",
+      "insights": [
+        "User actively using 13 applications",
+        "Primary focus on development work",
+        "Activity level: high"
+      ],
+      "productivity_category": "high_productivity",
+      "intelligence_score": 0.9
     }
   ],
   "long_term": [],

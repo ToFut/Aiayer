@@ -1,0 +1,143 @@
+INFO:memory.enhanced_semantic_search:Enhanced semantic search initialized with embedding dim: 384
+INFO:memory.enhanced_semantic_search:Hybrid retrieval enabled: True
+INFO:memory.semantic_search_agent:Loading 810 existing documents from storage
+INFO:memory.semantic_search_agent:EnterpriseVectorStore initialized with enterprise-grade features
+INFO:memory.semantic_search_agent:SemanticSearchAgent initialized with enterprise-grade capabilities
+INFO:agent_workflow.input_controller:Detected screen size: 1470x956
+INFO:agent_workflow.input_controller:Input listeners started successfully
+INFO:agent_workflow.input_controller:🚨 Emergency shutdown: Press Ctrl+1 to immediately stop agent
+INFO:llava_processor:Connected to Ollama API v0.6.8
+INFO:total_screen_analyzer:LLaVA visual processor initialized for total screen analysis
+INFO:total_screen_analyzer:Total Screen Analyzer initialized with 8s interval
+INFO:universal_intelligent_automation_handler:🤖 Universal automation components loaded successfully
+INFO:agent_workflow.input_controller:Input listeners started successfully
+INFO:agent_workflow.input_controller:🚨 Emergency shutdown: Press Ctrl+1 to immediately stop agent
+INFO:application_integration_framework:📱 Registered 2 application integrators
+INFO:application_integration_framework:📱 Registered 2 application integrators
+INFO:sensors.process_sensor:Process sensor initialized with config: {'interval_sec': 5, 'max_memory_mb': 50, 'cleanup_threshold_mb': 25, 'max_errors': 3, 'exclude_patterns': ['system', 'kernel'], 'max_processes': 100}
+INFO:memory.memory_system:Memory logger initialized
+INFO:memory_diagnostics:Memory diagnostic logger initialized
+INFO:memory_diagnostics:MEMORY EVENT: logger_initialized - {"timestamp": "2025-05-27T13:59:28.984949"}
+INFO:memory.memory_system:Diagnostic logger initialized
+2025-05-27 13:59:28,985 - INFO - [ConsciousMemory] Initialized as middle layer for memory system
+INFO:memory.conscious_memory:[ConsciousMemory] Initialized as middle layer for memory system
+INFO:memory.memory_system:Conscious memory initialized
+INFO:memory.enhanced_semantic_search:Enhanced semantic search initialized with embedding dim: 384
+INFO:memory.enhanced_semantic_search:Hybrid retrieval enabled: True
+INFO:memory.memory_system:Enhanced semantic search initialized
+INFO:memory.memory_system:🔄 Loading memory state from /Users/segevbin/Desktop/SensAI/Aiayer/memory/memory/memory_state.json
+INFO:memory.memory_system:  - Found 12 short-term memory items
+INFO:memory.memory_system:  - No long-term memory found, initializing empty
+INFO:memory.memory_system:  - Found context memory with 6 items
+INFO:memory.memory_system:✅ Successfully loaded memory state
+INFO:memory_diagnostics:MEMORY EVENT: memory_state_loaded - {"short_term_count": 12, "long_term_count": 0, "context_count": 6, "timestamp": "2025-05-27T13:59:28.985839"}
+INFO:memory.memory_system:Memory system initialized
+INFO:enhanced_realtime_system_bridge:EnhancedRealtimeSystemBridge initialized - living in the system, not capturing it
+INFO:fast_universal_automation_handler:🚀 Fast automation with efficient system integration loaded
+INFO:fast_universal_automation_handler:⚡ No more screen capture overhead - using OS integration!
+INFO:fast_universal_automation_handler:🔥 Fast automation will use warmup manager for instant responses
+INFO:llm.llm_service:🔥 LLM Warmup Manager available
+WARNING:fast_universal_automation_handler:Could not initialize LLM service with warmup manager: no running event loop
+INFO:fast_universal_automation_handler:🔄 Fallback handler initialized
+INFO:memory.semantic_search_agent:Loading 810 existing documents from storage
+INFO:memory.semantic_search_agent:EnterpriseVectorStore initialized with enterprise-grade features
+INFO:memory.semantic_search_agent:SemanticSearchAgent initialized with enterprise-grade capabilities
+INFO:application_integration_framework:📱 Registered 2 application integrators
+INFO:application_integration_framework:📱 Registered 2 application integrators
+INFO:sensors.process_sensor:Process sensor initialized with config: {'interval_sec': 5, 'max_memory_mb': 50, 'cleanup_threshold_mb': 25, 'max_errors': 3, 'exclude_patterns': ['system', 'kernel'], 'max_processes': 100}
+INFO:memory.memory_system:Memory logger initialized
+INFO:memory_diagnostics:Memory diagnostic logger initialized
+INFO:memory_diagnostics:MEMORY EVENT: logger_initialized - {"timestamp": "2025-05-27T13:59:29.035522"}
+INFO:memory.memory_system:Diagnostic logger initialized
+2025-05-27 13:59:29,035 - INFO - [ConsciousMemory] Initialized as middle layer for memory system
+INFO:memory.conscious_memory:[ConsciousMemory] Initialized as middle layer for memory system
+INFO:memory.memory_system:Conscious memory initialized
+INFO:memory.enhanced_semantic_search:Enhanced semantic search initialized with embedding dim: 384
+INFO:memory.enhanced_semantic_search:Hybrid retrieval enabled: True
+INFO:memory.memory_system:Enhanced semantic search initialized
+INFO:memory.memory_system:🔄 Loading memory state from /Users/segevbin/Desktop/SensAI/Aiayer/memory/memory/memory_state.json
+INFO:memory.memory_system:  - Found 12 short-term memory items
+INFO:memory.memory_system:  - No long-term memory found, initializing empty
+INFO:memory.memory_system:  - Found context memory with 6 items
+INFO:memory.memory_system:✅ Successfully loaded memory state
+INFO:memory_diagnostics:MEMORY EVENT: memory_state_loaded - {"short_term_count": 12, "long_term_count": 0, "context_count": 6, "timestamp": "2025-05-27T13:59:29.035828"}
+INFO:memory.memory_system:Memory system initialized
+INFO:enhanced_realtime_system_bridge:EnhancedRealtimeSystemBridge initialized - living in the system, not capturing it
+INFO:__main__:🚀 Efficient system bridge initialized - living in the system!
+INFO:__main__:✅ Using efficient OS integration - no screen capture overhead
+INFO:agent_workflow.input_controller:Input listeners started successfully
+INFO:agent_workflow.input_controller:🚨 Emergency shutdown: Press Ctrl+1 to immediately stop agent
+INFO:llava_processor:Connected to Ollama API v0.6.8
+INFO:total_screen_analyzer:LLaVA visual processor initialized for total screen analysis
+INFO:total_screen_analyzer:Total Screen Analyzer initialized with 8s interval
+INFO:universal_intelligent_automation_handler:🤖 Universal automation components loaded successfully
+INFO:__main__:✅ Universal Intelligent Automation handler with REAL LLM planning initialized
+INFO:__main__:Contextual AI Backend initialized - Ollama: True, Memory: Active
+INFO:__main__:🚀 Starting Enhanced Enterprise Backend 8767 with Efficient System Integration...
+INFO:__main__:🧠 Contextual AI responses enabled
+INFO:__main__:🔍 Semantic memory integration active
+INFO:__main__:🎯 Modes: Agent, Ask, Suggest, General (all contextual)
+INFO:__main__:🚀 Starting efficient system bridge...
+INFO:__main__:✅ Efficient system bridge started successfully
+INFO:__main__:✅ Enhanced Enterprise Backend 8767 started successfully
+INFO:__main__:🌐 WebSocket server listening on ws://localhost:8767
+INFO:__main__:🤖 Ollama integration: ✅ Active
+INFO:__main__:🧠 Contextual memory system ready
+INFO:__main__:🚀 Efficient system integration active - no screen capture overhead!
+INFO:__main__:⚡ System Bridge WebSocket: ws://localhost:8768
+INFO:enhanced_realtime_system_bridge:Starting enhanced real-time system bridge...
+INFO:system_integrated_monitor:🚀 Starting system-integrated monitoring (no screen capture)
+INFO:system_integrated_monitor:Platform: Darwin 23.1.0
+INFO:system_integrated_monitor:🍎 Starting macOS system integration...
+INFO:websockets.server:server listening on 127.0.0.1:8767
+INFO:websockets.server:server listening on [::1]:8767
+INFO:websockets.server:connection open
+INFO:__main__:Client connected: client_1748368771047 from ::1
+INFO:websockets.server:connection open
+INFO:__main__:Client connected: client_1748368771047 from ::1
+INFO:__main__:Processing contextual register from client_1748368771047
+INFO:__main__:Client registration: client_1748368771047 (ui v1.0.0)
+INFO:websockets.server:connection open
+INFO:__main__:Client connected: client_1748368814641 from ::1
+WARNING:__main__:No system state available from bridge
+/Users/segevbin/Desktop/SensAI/Aiayer/memory/semantic_search_agent.py:336: RuntimeWarning: divide by zero encountered in log
+  idf = np.log(self.total_documents / (self.document_frequencies[token] + 1))
+INFO:memory.semantic_search_agent:Document b6bc6a7e13a3e0b43bad1d500e2d5f925f88c184f7efdb2f178986e5b3bfbf9f added to enterprise vector store
+INFO:memory.semantic_search_agent:Memory added successfully: b6bc6a7e13a3e0b43bad1d500e2d5f925f88c184f7efdb2f178986e5b3bfbf9f
+INFO:memory.semantic_search_agent:Document 3aa374bb69bc1f504db337b49e407c421509e4f9db7204e86df561bebccc5fce added to enterprise vector store
+INFO:memory.semantic_search_agent:Memory added successfully: 3aa374bb69bc1f504db337b49e407c421509e4f9db7204e86df561bebccc5fce
+INFO:memory.semantic_search_agent:Document 33ca5af27d2f46bfc6f0419d43232982e579d8686255c8306774f54ad6efb44c added to enterprise vector store
+INFO:memory.semantic_search_agent:Memory added successfully: 33ca5af27d2f46bfc6f0419d43232982e579d8686255c8306774f54ad6efb44c
+INFO:memory.semantic_search_agent:Document 76da315ba10b705f37b66e108b5a258865041872d58b7596c38eaa3562a12266 added to enterprise vector store
+INFO:memory.semantic_search_agent:Memory added successfully: 76da315ba10b705f37b66e108b5a258865041872d58b7596c38eaa3562a12266
+INFO:memory.semantic_search_agent:Document 9c6e4468520856e8a26e3ae7661202cc82f9d71fa30b703e9f1ea9930ca59ee2 added to enterprise vector store
+INFO:memory.semantic_search_agent:Memory added successfully: 9c6e4468520856e8a26e3ae7661202cc82f9d71fa30b703e9f1ea9930ca59ee2
+INFO:memory.semantic_search_agent:Document e17ccd5397dcce190d6ad609183c6dab459c9b544a551104d0077de4ea7256d7 added to enterprise vector store
+INFO:memory.semantic_search_agent:Memory added successfully: e17ccd5397dcce190d6ad609183c6dab459c9b544a551104d0077de4ea7256d7
+INFO:memory.semantic_search_agent:Document 60868121881116cdb1b3116c24bb7b28f05045f2618f9877e4e65a3fd35cfb4f added to enterprise vector store
+INFO:memory.semantic_search_agent:Memory added successfully: 60868121881116cdb1b3116c24bb7b28f05045f2618f9877e4e65a3fd35cfb4f
+INFO:memory.semantic_search_agent:Document 0dedee843762e5ae99b7f3e3757cec23355f5ce62cbadc4156b1f85875598190 added to enterprise vector store
+INFO:memory.semantic_search_agent:Memory added successfully: 0dedee843762e5ae99b7f3e3757cec23355f5ce62cbadc4156b1f85875598190
+INFO:memory.semantic_search_agent:Document bdb13f53de8152e2631c4e96cd56134756c985c59c1d145af0af5a5a74632589 added to enterprise vector store
+INFO:memory.semantic_search_agent:Memory added successfully: bdb13f53de8152e2631c4e96cd56134756c985c59c1d145af0af5a5a74632589
+INFO:memory.semantic_search_agent:Document fd927f1ea247e8b103f41dbef85a9f79287adcd0436970615d3f4855b3432cb7 added to enterprise vector store
+INFO:memory.semantic_search_agent:Memory added successfully: fd927f1ea247e8b103f41dbef85a9f79287adcd0436970615d3f4855b3432cb7
+INFO:__main__:Enterprise contextual knowledge initialized
+INFO:memory.semantic_search_agent:Document 482297976f9ad1e8fad07d3960cf6cfa4fc38a2628a16bf8e30d7027ae3c258e added to enterprise vector store
+INFO:memory.semantic_search_agent:Memory added successfully: 482297976f9ad1e8fad07d3960cf6cfa4fc38a2628a16bf8e30d7027ae3c258e
+/Users/segevbin/Desktop/SensAI/Aiayer/memory/semantic_search_agent.py:223: RuntimeWarning: invalid value encountered in scalar divide
+  similarity = np.dot(query_embedding, doc_embedding) / (
+INFO:memory.semantic_search_agent:Similarity search completed in 0.0048s, found 5 results
+INFO:memory.semantic_search_agent:Search completed successfully in 0.0078s, found 5 results
+INFO:__main__:🎯 [STREAMING] Creating Agent automation plan for: open Safari and search for best flights from Miami to NYC
+INFO:__main__:🔧 Automation handler available: True
+INFO:__main__:⚡ Using Fast Universal Automation handler (prioritized for reliability)
+INFO:fast_universal_automation_handler:🔄 Creating fast fallback plan...
+INFO:fast_universal_automation_handler:⚡ Fast plan created in 0.00s
+INFO:__main__:⚡ Fast plan result: True - processing_time: 0.00s
+INFO:__main__:🔍 Fast automation buttons extracted: [{'id': 'do_fast_fallback_1748368815_enhanced_test_session_001', 'text': '🟢 EXECUTE', 'action': 'execute_plan', 'plan_id': 'fast_fallback_1748368815_enhanced_test_session_001', 'style': 'success'}, {'id': 'dismiss_fast_fallback_1748368815_enhanced_test_session_001', 'text': '🔴 CANCEL', 'action': 'cancel_plan', 'plan_id': 'fast_fallback_1748368815_enhanced_test_session_001', 'style': 'danger'}]
+INFO:__main__:🔍 Sending WebSocket response with buttons: [{'id': 'do_fast_fallback_1748368815_enhanced_test_session_001', 'text': '🟢 EXECUTE', 'action': 'execute_plan', 'plan_id': 'fast_fallback_1748368815_enhanced_test_session_001', 'style': 'success'}, {'id': 'dismiss_fast_fallback_1748368815_enhanced_test_session_001', 'text': '🔴 CANCEL', 'action': 'cancel_plan', 'plan_id': 'fast_fallback_1748368815_enhanced_test_session_001', 'style': 'danger'}]
+INFO:__main__:✅ Successfully sent final_response for agent mode
+INFO:memory.semantic_search_agent:Document 85453f25cf100efb7faca40a6ad94d0fae218451e603607c10ac3c6821a86db6 added to enterprise vector store
+INFO:memory.semantic_search_agent:Memory added successfully: 85453f25cf100efb7faca40a6ad94d0fae218451e603607c10ac3c6821a86db6
+INFO:__main__:✅ [STREAMING] Agent automation successful: Automation plan created

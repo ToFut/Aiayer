@@ -71,6 +71,7 @@ class BrainResponse:
     confidence: float
     metadata: Dict[str, Any] = field(default_factory=dict)
     verification_status: str = "pending"
+    execution_plan: Optional[Dict[str, Any]] = None  # ADD EXECUTION PLAN FIELD
 
 class ResourceManager:
     """Manages and allocates cognitive resources efficiently"""
@@ -437,38 +438,118 @@ class BrainRouter:
     
     # Default mode handlers (to be replaced by specialized implementations)
     async def _handle_agent_mode(self, request: ChatRequest) -> BrainResponse:
-        """Handle Agent mode - Task planning and execution"""
-        # This will be replaced by the specialized AgentModeHandler
-        return BrainResponse(
-            success=True,
-            response=f"Agent mode processing: {request.query}. This will be replaced by specialized handler.",
-            mode_used=request.mode,
-            processing_time=0.5,
-            resources_used=["memory", "llm", "execution"],
-            confidence=0.8
-        )
+        """Handle Agent mode - Universal Task Planning and Execution"""
+        try:
+            # Import the real agent automation handler (FIXED)
+            from real_agent_automation_handler import handle_real_agent_automation
+            
+            # Use the real automation system with execution plans
+            result = await handle_real_agent_automation(request.query, request.session_id)
+            
+            # Convert to BrainResponse format
+            response = BrainResponse(
+                success=result.get("success", True),
+                response=result.get("response", ""),
+                mode_used=request.mode,
+                processing_time=result.get("processing_time", 0.0),
+                resources_used=["automation", "llm", "memory"],
+                confidence=result.get("confidence", 0.8),
+                metadata=result.get("metadata", {}),
+                execution_plan=result.get("execution_plan", None)  # ADD EXECUTION PLAN
+            )
+            return response
+            
+        except ImportError as e:
+            logger.warning(f"Improved agent handler not available: {e}, using fallback")
+            # Fallback to basic agent mode
+            return BrainResponse(
+                success=True,
+                response=f"🤖 **Agent Mode - Basic Handler**\n\nI understand you want me to help with: \"{request.query}\"\n\nThe advanced universal automation system is currently not available. Please try again or contact support if this issue persists.",
+                mode_used=request.mode,
+                processing_time=0.5,
+                resources_used=["memory", "basic_planning"],
+                confidence=0.6,
+                metadata={"fallback_mode": True, "error": str(e)}
+            )
+        except Exception as e:
+            logger.error(f"Error in agent mode handler: {e}")
+            return BrainResponse(
+                success=False,
+                response=f"🚨 **Agent Mode Error**\n\nI encountered an error while processing your request: \"{request.query}\"\n\nError: {str(e)}\n\nPlease try rephrasing your request or contact support.",
+                mode_used=request.mode,
+                processing_time=0.1,
+                resources_used=[],
+                confidence=0.0,
+                metadata={"error": str(e)}
+            )
     
     async def _handle_ask_mode(self, request: ChatRequest) -> BrainResponse:
-        """Handle Ask mode - Contextual queries"""
-        return BrainResponse(
-            success=True,
-            response=f"Ask mode processing: {request.query}. This will be replaced by specialized handler.",
-            mode_used=request.mode,
-            processing_time=0.3,
-            resources_used=["memory", "llm"],
-            confidence=0.9
-        )
+        """Handle Ask mode - Enhanced Memory Integration with Semantic Search"""
+        try:
+            # Import the enhanced ask mode handler
+            from brain.handlers.enhanced_ask_mode_handler import handle_enhanced_ask_mode
+            
+            # Use the enhanced memory integration system with semantic search
+            response = await handle_enhanced_ask_mode(request)
+            return response
+            
+        except ImportError as e:
+            logger.warning(f"Enhanced ask handler not available: {e}, using fallback")
+            # Fallback to basic ask mode
+            return BrainResponse(
+                success=True,
+                response=f"🧠 **Ask Mode - Basic Handler**\n\nI understand you're asking: \"{request.query}\"\n\nThe enhanced memory integration system is currently not available. Please try again or contact support if this issue persists.",
+                mode_used=request.mode,
+                processing_time=0.3,
+                resources_used=["basic_memory"],
+                confidence=0.6,
+                metadata={"fallback_mode": True, "error": str(e)}
+            )
+        except Exception as e:
+            logger.error(f"Error in ask mode handler: {e}")
+            return BrainResponse(
+                success=False,
+                response=f"🚨 **Ask Mode Error**\n\nI encountered an error while processing your question: \"{request.query}\"\n\nError: {str(e)}\n\nPlease try rephrasing your question or contact support.",
+                mode_used=request.mode,
+                processing_time=0.1,
+                resources_used=[],
+                confidence=0.0,
+                metadata={"error": str(e)}
+            )
     
     async def _handle_suggest_mode(self, request: ChatRequest) -> BrainResponse:
-        """Handle Suggest mode - Proactive suggestions"""
-        return BrainResponse(
-            success=True,
-            response=f"Suggest mode processing: {request.query}. This will be replaced by specialized handler.",
-            mode_used=request.mode,
-            processing_time=0.4,
-            resources_used=["sensors", "memory", "llm"],
-            confidence=0.7
-        )
+        """Handle Suggest mode - Memory-Integrated Proactive Suggestions"""
+        try:
+            # Import the suggest mode handler
+            from brain.handlers.suggest_mode_handler import handle_suggest_mode
+            
+            # Use the enhanced suggestion system with memory integration
+            response = await handle_suggest_mode(request)
+            return response
+            
+        except ImportError as e:
+            logger.warning(f"Suggest handler not available: {e}, using fallback")
+            # Fallback to basic suggest mode
+            return BrainResponse(
+                success=True,
+                response=f"💡 **Suggest Mode - Basic Handler**\n\nRegarding: \"{request.query}\"\n\nI'd suggest taking a moment to review your current priorities and plan your next steps. The enhanced suggestion system is currently not available.",
+                mode_used=request.mode,
+                processing_time=0.4,
+                resources_used=["basic_analysis"],
+                confidence=0.5,
+                metadata={"fallback_mode": True, "error": str(e)}
+            )
+        except Exception as e:
+            logger.error(f"Error in suggest mode handler: {e}")
+            return BrainResponse(
+                success=False,
+                response=f"🚨 **Suggest Mode Error**\n\nI encountered an error while generating suggestions for: \"{request.query}\"\n\nError: {str(e)}\n\nPlease try rephrasing your request or contact support.",
+                mode_used=request.mode,
+                processing_time=0.1,
+                resources_used=[],
+                confidence=0.0,
+                metadata={"error": str(e)}
+            )
     
     async def _handle_general_mode(self, request: ChatRequest) -> BrainResponse:
         """Handle General mode - Simple responses"""
@@ -487,7 +568,7 @@ class BrainRouter:
             "resource_status": self.resource_manager.get_resource_status(),
             "performance_metrics": self.performance_metrics,
             "active_sessions": len(self.active_sessions),
-            "handlers_registered": list(self.mode_handlers.keys()),
+            "handlers_registered": [mode.value for mode in self.mode_handlers.keys()],
             "system_health": "optimal" if self.performance_metrics["successful_requests"] / max(self.performance_metrics["total_requests"], 1) > 0.9 else "degraded"
         }
 
@@ -498,7 +579,23 @@ async def process_chat_request(mode: str, query: str, user_id: str = "default",
                              session_id: str = "default", context: Dict[str, Any] = None) -> Dict[str, Any]:
     """Main API function for processing chat requests"""
     try:
-        chat_mode = ChatMode(mode)
+        # FIX: Handle case sensitivity in mode values (e.g., "agent" vs "Agent")
+        mode_upper = mode.upper() if mode else ""
+        
+        # Match the mode string with the appropriate ChatMode enum (case-insensitive)
+        if mode_upper == "AGENT":
+            chat_mode = ChatMode.AGENT
+        elif mode_upper == "ASK":
+            chat_mode = ChatMode.ASK
+        elif mode_upper == "SUGGEST":
+            chat_mode = ChatMode.SUGGEST
+        else:
+            # Default to General if no match
+            chat_mode = ChatMode.GENERAL
+            logger.warning(f"⚠️ Unknown mode '{mode}' converted to General mode")
+        
+        logger.info(f"🔍 Mode request: '{mode}' -> Using {chat_mode.value} mode")
+            
         request = ChatRequest(
             mode=chat_mode,
             query=query,

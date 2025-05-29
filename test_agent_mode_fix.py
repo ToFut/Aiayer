@@ -1,83 +1,170 @@
 #!/usr/bin/env python3
 """
-Test Agent mode to verify it's now working properly after the fix.
+Test Agent Mode Fix
+Verifies that Agent Mode now uses Real Agent Automation Handler
+and generates proper execution plans instead of conversational responses
 """
 
 import asyncio
 import json
-import websockets
+import time
 import logging
 
 logging.basicConfig(level=logging.INFO)
-logger = logging.getLogger('test_agent_mode')
+logger = logging.getLogger(__name__)
 
-async def test_agent_mode():
-    """Test Agent mode with a simple automation command"""
+async def test_import_status():
+    """Test if Real Agent Automation Handler is properly imported"""
+    
+    print("🔍 Testing Import Status...")
+    
     try:
-        # Connect to the backend
-        uri = "ws://localhost:8767"
-        logger.info(f"Connecting to {uri}")
+        from real_agent_automation_handler import RealAgentAutomationHandler
+        print("✅ Real Agent Automation Handler imported successfully")
         
-        async with websockets.connect(uri) as websocket:
-            # Wait for welcome message
-            welcome = await websocket.recv()
-            logger.info(f"Received: {welcome}")
-            
-            # Send Agent mode message
-            test_message = {
-                "type": "chat_request",
-                "message": "write my name in notepad",
-                "mode": "Agent",
-                "client_id": "test_client",
-                "timestamp": "2025-05-23T17:02:00.000Z"
-            }
-            
-            logger.info(f"Sending Agent mode test: {test_message['message']}")
-            await websocket.send(json.dumps(test_message))
-            
-            # Wait for response with timeout
-            try:
-                response = await asyncio.wait_for(websocket.recv(), timeout=30.0)
-                response_data = json.loads(response)
-                
-                logger.info(f"✅ Received response: {response_data.get('type', 'unknown')}")
-                
-                if response_data.get("automation_executed"):
-                    logger.info("🎯 AGENT MODE AUTOMATION EXECUTED!")
-                    logger.info(f"   Success: {response_data.get('success', False)}")
-                    logger.info(f"   Response: {response_data.get('response', 'N/A')[:100]}...")
-                elif "agent" in response_data.get("response", "").lower():
-                    logger.info("🤖 LLM response received (automation may have failed)")
-                    logger.info(f"   Response: {response_data.get('response', 'N/A')[:100]}...")
-                else:
-                    logger.info("📝 Generic response received")
-                    logger.info(f"   Response: {response_data.get('response', 'N/A')[:100]}...")
-                
-                return response_data
-                
-            except asyncio.TimeoutError:
-                logger.error("❌ No response received within 30 seconds")
-                return {"error": "timeout"}
-                
+        # Test instantiation
+        handler = RealAgentAutomationHandler()
+        print("✅ Real Agent Automation Handler instantiated")
+        
+        # Test method availability
+        if hasattr(handler, 'handle_agent_request'):
+            print("✅ handle_agent_request method available")
+        else:
+            print("❌ handle_agent_request method missing")
+        
+        return True
+        
+    except ImportError as e:
+        print(f"❌ Import failed: {e}")
+        return False
     except Exception as e:
-        logger.error(f"❌ Test failed: {e}")
-        return {"error": str(e)}
+        print(f"❌ Handler error: {e}")
+        return False
+
+async def test_backend_flags():
+    """Test backend automation flags"""
+    
+    print("\n🏁 Testing Backend Flags...")
+    
+    try:
+        from enhanced_enterprise_backend_with_context import (
+            REAL_AGENT_AUTOMATION_AVAILABLE,
+            ENHANCED_AUTOMATION_AVAILABLE,
+            UNIVERSAL_AVAILABLE,
+            FAST_AUTOMATION_AVAILABLE,
+            AUTOMATION_AVAILABLE
+        )
+        
+        print(f"🎯 REAL_AGENT_AUTOMATION_AVAILABLE: {REAL_AGENT_AUTOMATION_AVAILABLE}")
+        print(f"🔧 ENHANCED_AUTOMATION_AVAILABLE: {ENHANCED_AUTOMATION_AVAILABLE}")
+        print(f"🌍 UNIVERSAL_AVAILABLE: {UNIVERSAL_AVAILABLE}")
+        print(f"⚡ FAST_AUTOMATION_AVAILABLE: {FAST_AUTOMATION_AVAILABLE}")
+        print(f"✅ AUTOMATION_AVAILABLE: {AUTOMATION_AVAILABLE}")
+        
+        if REAL_AGENT_AUTOMATION_AVAILABLE:
+            print("✅ Real Agent Automation is properly enabled")
+            return True
+        else:
+            print("❌ Real Agent Automation is NOT enabled")
+            return False
+            
+    except ImportError as e:
+        print(f"❌ Backend import failed: {e}")
+        return False
+
+async def test_handler_directly():
+    """Test the Real Agent Automation Handler directly"""
+    
+    print("\n🧪 Testing Handler Directly...")
+    
+    try:
+        from real_agent_automation_handler import RealAgentAutomationHandler
+        
+        handler = RealAgentAutomationHandler()
+        test_message = "search Omer Adam in Spotify"
+        session_id = "test_session"
+        
+        print(f"📝 Testing with message: '{test_message}'")
+        
+        result = await handler.handle_agent_request(test_message, session_id)
+        
+        print(f"📊 Handler Result:")
+        print(f"   ✅ Success: {result.get('success', False)}")
+        print(f"   🎮 Interactive: {result.get('interactive', False)}")
+        print(f"   🔘 Has Buttons: {bool(result.get('buttons', []))}")
+        print(f"   🆔 Plan ID: {result.get('plan_id', 'None')}")
+        print(f"   🤖 AI Powered: {result.get('ai_powered', False)}")
+        
+        response_preview = result.get('response', '')[:100] + "..." if len(result.get('response', '')) > 100 else result.get('response', '')
+        print(f"   💬 Response: '{response_preview}'")
+        
+        # Check if it's a proper execution plan
+        is_execution_plan = result.get('success', False) and (
+            result.get('interactive', False) or 
+            bool(result.get('buttons', [])) or 
+            result.get('plan_id', '')
+        )
+        
+        if is_execution_plan:
+            print("✅ Handler generates proper execution plans!")
+            return True
+        else:
+            print("❌ Handler not generating proper execution plans")
+            return False
+        
+    except Exception as e:
+        print(f"❌ Handler test failed: {e}")
+        return False
 
 async def main():
-    logger.info("🧪 Testing Agent Mode Fix")
-    logger.info("=" * 40)
+    """Main test function"""
     
-    result = await test_agent_mode()
+    print("🚀 Agent Mode Fix Verification")
+    print("=" * 60)
     
-    logger.info("\n" + "=" * 40)
-    if result.get("automation_executed"):
-        logger.info("🎉 SUCCESS: Agent mode automation is working!")
-    elif result.get("error"):
-        logger.info(f"💥 FAILED: {result['error']}")
+    # Test import status
+    import_ok = await test_import_status()
+    
+    # Test backend flags
+    flags_ok = await test_backend_flags()
+    
+    # Test handler directly
+    handler_ok = await test_handler_directly()
+    
+    # Final summary
+    print("\n" + "=" * 60)
+    print("📋 FINAL RESULTS:")
+    print(f"   📦 Import Status: {'✅ OK' if import_ok else '❌ FAILED'}")
+    print(f"   🏁 Backend Flags: {'✅ OK' if flags_ok else '❌ FAILED'}")
+    print(f"   🎯 Handler Test: {'✅ OK' if handler_ok else '❌ FAILED'}")
+    
+    all_ok = import_ok and flags_ok and handler_ok
+    
+    if all_ok:
+        print("\n🎉 SUCCESS! Agent Mode fix is complete!")
+        print("🔄 The backend should now generate execution plans")
+        print("🎯 Test with: 'search Omer Adam in Spotify' in Agent Mode")
+        print("🔘 Should show DO/DISMISS/ADJUST buttons instead of conversational response")
     else:
-        logger.info("⚠️  PARTIAL: Got response but no automation execution")
+        print("\n🚨 FAILURE! Agent Mode still has issues!")
+        print("🔧 Check the import errors and backend configuration")
+        
+        if not import_ok:
+            print("💡 Fix: Check if real_agent_automation_handler.py exists and has correct syntax")
+        if not flags_ok:
+            print("💡 Fix: Check backend import configuration")
+        if not handler_ok:
+            print("💡 Fix: Check handler logic and LLM availability")
     
-    return result
+    return all_ok
 
 if __name__ == "__main__":
-    asyncio.run(main())
+    try:
+        result = asyncio.run(main())
+        exit(0 if result else 1)
+    except KeyboardInterrupt:
+        print("\n🛑 Test interrupted by user")
+        exit(1)
+    except Exception as e:
+        print(f"\n💥 Test failed: {e}")
+        exit(1)

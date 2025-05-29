@@ -255,3 +255,746 @@
 2025-05-24 22:53:57,712 - memory_diagnostics - INFO - MEMORY EVENT: memory_search_completed - {"query": "development coding cursor", "enhanced_query": false, "results_count": 0, "total_matches": 0, "top_score": 0, "search_time_ms": 23, "timestamp": "2025-05-24T22:53:57.712524", "search_type": "context_aware_vector", "context_enhanced": false}
 2025-05-24 22:53:57,712 - memory_diagnostics - INFO - MEMORY EVENT: memory_search_started - {"query": "productivity workflow", "limit": 3, "memory_types": null, "context_aware": true, "time_window": null, "timestamp": "2025-05-24T22:53:57.712893", "search_type": "context_aware_vector"}
 2025-05-24 22:53:57,713 - memory_diagnostics - INFO - MEMORY EVENT: memory_search_completed - {"query": "productivity workflow", "enhanced_query": false, "results_count": 0, "total_matches": 0, "top_score": 0, "search_time_ms": 0, "timestamp": "2025-05-24T22:53:57.713388", "search_type": "context_aware_vector", "context_enhanced": false}
+2025-05-26 18:13:44,638 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-05-26 18:13:44,638 - memory_diagnostics - INFO - MEMORY EVENT: logger_initialized - {"timestamp": "2025-05-26T18:13:44.638538"}
+2025-05-26 18:13:44,639 - memory_diagnostics - INFO - MEMORY EVENT: memory_state_loaded - {"short_term_count": 12, "long_term_count": 0, "context_count": 6, "timestamp": "2025-05-26T18:13:44.639303"}
+2025-05-26 18:13:45,232 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-05-26 18:13:45,232 - memory_diagnostics - INFO - MEMORY EVENT: logger_initialized - {"timestamp": "2025-05-26T18:13:45.232600"}
+2025-05-26 18:13:45,233 - memory_diagnostics - INFO - MEMORY EVENT: memory_state_loaded - {"short_term_count": 12, "long_term_count": 0, "context_count": 6, "timestamp": "2025-05-26T18:13:45.233287"}
+2025-05-26 18:14:49,905 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-05-26 18:14:49,905 - memory_diagnostics - INFO - MEMORY EVENT: logger_initialized - {"timestamp": "2025-05-26T18:14:49.905312"}
+2025-05-26 18:14:49,906 - memory_diagnostics - INFO - MEMORY EVENT: memory_state_loaded - {"short_term_count": 12, "long_term_count": 0, "context_count": 6, "timestamp": "2025-05-26T18:14:49.906013"}
+2025-05-26 18:14:50,462 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-05-26 18:14:50,462 - memory_diagnostics - INFO - MEMORY EVENT: logger_initialized - {"timestamp": "2025-05-26T18:14:50.462126"}
+2025-05-26 18:14:50,462 - memory_diagnostics - INFO - MEMORY EVENT: memory_state_loaded - {"short_term_count": 12, "long_term_count": 0, "context_count": 6, "timestamp": "2025-05-26T18:14:50.462477"}
+2025-05-26 18:38:31,699 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-05-26 18:38:31,699 - memory_diagnostics - INFO - MEMORY EVENT: logger_initialized - {"timestamp": "2025-05-26T18:38:31.699969"}
+2025-05-26 18:38:31,700 - memory_diagnostics - INFO - MEMORY EVENT: memory_state_loaded - {"short_term_count": 12, "long_term_count": 0, "context_count": 6, "timestamp": "2025-05-26T18:38:31.700735"}
+2025-05-26 18:38:32,238 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-05-26 18:38:32,238 - memory_diagnostics - INFO - MEMORY EVENT: logger_initialized - {"timestamp": "2025-05-26T18:38:32.238068"}
+2025-05-26 18:38:32,238 - memory_diagnostics - INFO - MEMORY EVENT: memory_state_loaded - {"short_term_count": 12, "long_term_count": 0, "context_count": 6, "timestamp": "2025-05-26T18:38:32.238404"}
+2025-05-26 18:40:19,947 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-05-26 18:40:19,948 - memory_diagnostics - INFO - MEMORY EVENT: logger_initialized - {"timestamp": "2025-05-26T18:40:19.948617"}
+2025-05-26 18:40:19,949 - memory_diagnostics - INFO - MEMORY EVENT: memory_state_loaded - {"short_term_count": 12, "long_term_count": 0, "context_count": 6, "timestamp": "2025-05-26T18:40:19.949101"}
+2025-05-26 18:43:15,545 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-05-26 18:43:15,545 - memory_diagnostics - INFO - MEMORY EVENT: logger_initialized - {"timestamp": "2025-05-26T18:43:15.545912"}
+2025-05-26 18:43:15,546 - memory_diagnostics - INFO - MEMORY EVENT: memory_state_loaded - {"short_term_count": 12, "long_term_count": 0, "context_count": 6, "timestamp": "2025-05-26T18:43:15.546564"}
+2025-05-26 20:38:01,525 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-05-26 20:38:01,525 - memory_diagnostics - INFO - MEMORY EVENT: logger_initialized - {"timestamp": "2025-05-26T20:38:01.525459"}
+2025-05-26 20:38:01,526 - memory_diagnostics - INFO - MEMORY EVENT: memory_state_loaded - {"short_term_count": 12, "long_term_count": 0, "context_count": 6, "timestamp": "2025-05-26T20:38:01.526397"}
+2025-05-26 20:40:11,131 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-05-26 20:40:11,131 - memory_diagnostics - INFO - MEMORY EVENT: logger_initialized - {"timestamp": "2025-05-26T20:40:11.131881"}
+2025-05-26 20:40:11,133 - memory_diagnostics - INFO - MEMORY EVENT: memory_state_loaded - {"short_term_count": 12, "long_term_count": 0, "context_count": 6, "timestamp": "2025-05-26T20:40:11.133057"}
+2025-05-26 20:41:14,548 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-05-26 20:41:14,549 - memory_diagnostics - INFO - MEMORY EVENT: logger_initialized - {"timestamp": "2025-05-26T20:41:14.549056"}
+2025-05-26 20:41:14,549 - memory_diagnostics - INFO - MEMORY EVENT: memory_state_loaded - {"short_term_count": 12, "long_term_count": 0, "context_count": 6, "timestamp": "2025-05-26T20:41:14.549896"}
+2025-05-26 20:44:03,625 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-05-26 20:44:03,625 - memory_diagnostics - INFO - MEMORY EVENT: logger_initialized - {"timestamp": "2025-05-26T20:44:03.625208"}
+2025-05-26 20:44:03,626 - memory_diagnostics - INFO - MEMORY EVENT: memory_state_loaded - {"short_term_count": 12, "long_term_count": 0, "context_count": 6, "timestamp": "2025-05-26T20:44:03.626177"}
+2025-05-26 20:46:04,422 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-05-26 20:46:04,422 - memory_diagnostics - INFO - MEMORY EVENT: logger_initialized - {"timestamp": "2025-05-26T20:46:04.422379"}
+2025-05-26 20:46:04,423 - memory_diagnostics - INFO - MEMORY EVENT: memory_state_loaded - {"short_term_count": 12, "long_term_count": 0, "context_count": 6, "timestamp": "2025-05-26T20:46:04.423550"}
+2025-05-26 20:46:04,483 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-05-26 20:46:04,483 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-05-26 20:46:04,484 - memory_diagnostics - INFO - MEMORY EVENT: logger_initialized - {"timestamp": "2025-05-26T20:46:04.484076"}
+2025-05-26 20:46:04,484 - memory_diagnostics - INFO - MEMORY EVENT: logger_initialized - {"timestamp": "2025-05-26T20:46:04.484076"}
+2025-05-26 20:46:04,485 - memory_diagnostics - INFO - MEMORY EVENT: memory_state_loaded - {"short_term_count": 12, "long_term_count": 0, "context_count": 6, "timestamp": "2025-05-26T20:46:04.485764"}
+2025-05-26 20:46:04,485 - memory_diagnostics - INFO - MEMORY EVENT: memory_state_loaded - {"short_term_count": 12, "long_term_count": 0, "context_count": 6, "timestamp": "2025-05-26T20:46:04.485764"}
+2025-05-26 20:46:04,488 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-05-26 20:46:04,488 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-05-26 20:46:04,488 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-05-26 20:46:04,488 - memory_diagnostics - INFO - MEMORY EVENT: logger_initialized - {"timestamp": "2025-05-26T20:46:04.488346"}
+2025-05-26 20:46:04,488 - memory_diagnostics - INFO - MEMORY EVENT: logger_initialized - {"timestamp": "2025-05-26T20:46:04.488346"}
+2025-05-26 20:46:04,488 - memory_diagnostics - INFO - MEMORY EVENT: logger_initialized - {"timestamp": "2025-05-26T20:46:04.488346"}
+2025-05-26 20:46:04,489 - memory_diagnostics - INFO - MEMORY EVENT: memory_state_loaded - {"short_term_count": 12, "long_term_count": 0, "context_count": 6, "timestamp": "2025-05-26T20:46:04.489073"}
+2025-05-26 20:46:04,489 - memory_diagnostics - INFO - MEMORY EVENT: memory_state_loaded - {"short_term_count": 12, "long_term_count": 0, "context_count": 6, "timestamp": "2025-05-26T20:46:04.489073"}
+2025-05-26 20:46:04,489 - memory_diagnostics - INFO - MEMORY EVENT: memory_state_loaded - {"short_term_count": 12, "long_term_count": 0, "context_count": 6, "timestamp": "2025-05-26T20:46:04.489073"}
+2025-05-26 20:47:28,256 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-05-26 20:47:28,256 - memory_diagnostics - INFO - MEMORY EVENT: logger_initialized - {"timestamp": "2025-05-26T20:47:28.256797"}
+2025-05-26 20:47:28,257 - memory_diagnostics - INFO - MEMORY EVENT: memory_state_loaded - {"short_term_count": 12, "long_term_count": 0, "context_count": 6, "timestamp": "2025-05-26T20:47:28.257655"}
+2025-05-26 20:47:28,377 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-05-26 20:47:28,377 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-05-26 20:47:28,378 - memory_diagnostics - INFO - MEMORY EVENT: logger_initialized - {"timestamp": "2025-05-26T20:47:28.378086"}
+2025-05-26 20:47:28,378 - memory_diagnostics - INFO - MEMORY EVENT: logger_initialized - {"timestamp": "2025-05-26T20:47:28.378086"}
+2025-05-26 20:47:28,378 - memory_diagnostics - INFO - MEMORY EVENT: memory_state_loaded - {"short_term_count": 12, "long_term_count": 0, "context_count": 6, "timestamp": "2025-05-26T20:47:28.378562"}
+2025-05-26 20:47:28,378 - memory_diagnostics - INFO - MEMORY EVENT: memory_state_loaded - {"short_term_count": 12, "long_term_count": 0, "context_count": 6, "timestamp": "2025-05-26T20:47:28.378562"}
+2025-05-26 20:47:28,379 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-05-26 20:47:28,379 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-05-26 20:47:28,379 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-05-26 20:47:28,379 - memory_diagnostics - INFO - MEMORY EVENT: logger_initialized - {"timestamp": "2025-05-26T20:47:28.379926"}
+2025-05-26 20:47:28,379 - memory_diagnostics - INFO - MEMORY EVENT: logger_initialized - {"timestamp": "2025-05-26T20:47:28.379926"}
+2025-05-26 20:47:28,379 - memory_diagnostics - INFO - MEMORY EVENT: logger_initialized - {"timestamp": "2025-05-26T20:47:28.379926"}
+2025-05-26 20:47:28,380 - memory_diagnostics - INFO - MEMORY EVENT: memory_state_loaded - {"short_term_count": 12, "long_term_count": 0, "context_count": 6, "timestamp": "2025-05-26T20:47:28.380332"}
+2025-05-26 20:47:28,380 - memory_diagnostics - INFO - MEMORY EVENT: memory_state_loaded - {"short_term_count": 12, "long_term_count": 0, "context_count": 6, "timestamp": "2025-05-26T20:47:28.380332"}
+2025-05-26 20:47:28,380 - memory_diagnostics - INFO - MEMORY EVENT: memory_state_loaded - {"short_term_count": 12, "long_term_count": 0, "context_count": 6, "timestamp": "2025-05-26T20:47:28.380332"}
+2025-05-26 20:48:14,923 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-05-26 20:48:14,923 - memory_diagnostics - INFO - MEMORY EVENT: logger_initialized - {"timestamp": "2025-05-26T20:48:14.923704"}
+2025-05-26 20:48:14,924 - memory_diagnostics - INFO - MEMORY EVENT: memory_state_loaded - {"short_term_count": 12, "long_term_count": 0, "context_count": 6, "timestamp": "2025-05-26T20:48:14.924912"}
+2025-05-26 20:48:15,050 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-05-26 20:48:15,050 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-05-26 20:48:15,050 - memory_diagnostics - INFO - MEMORY EVENT: logger_initialized - {"timestamp": "2025-05-26T20:48:15.050723"}
+2025-05-26 20:48:15,050 - memory_diagnostics - INFO - MEMORY EVENT: logger_initialized - {"timestamp": "2025-05-26T20:48:15.050723"}
+2025-05-26 20:48:15,052 - memory_diagnostics - INFO - MEMORY EVENT: memory_state_loaded - {"short_term_count": 12, "long_term_count": 0, "context_count": 6, "timestamp": "2025-05-26T20:48:15.052370"}
+2025-05-26 20:48:15,052 - memory_diagnostics - INFO - MEMORY EVENT: memory_state_loaded - {"short_term_count": 12, "long_term_count": 0, "context_count": 6, "timestamp": "2025-05-26T20:48:15.052370"}
+2025-05-26 20:48:15,055 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-05-26 20:48:15,055 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-05-26 20:48:15,055 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-05-26 20:48:15,055 - memory_diagnostics - INFO - MEMORY EVENT: logger_initialized - {"timestamp": "2025-05-26T20:48:15.055464"}
+2025-05-26 20:48:15,055 - memory_diagnostics - INFO - MEMORY EVENT: logger_initialized - {"timestamp": "2025-05-26T20:48:15.055464"}
+2025-05-26 20:48:15,055 - memory_diagnostics - INFO - MEMORY EVENT: logger_initialized - {"timestamp": "2025-05-26T20:48:15.055464"}
+2025-05-26 20:48:15,056 - memory_diagnostics - INFO - MEMORY EVENT: memory_state_loaded - {"short_term_count": 12, "long_term_count": 0, "context_count": 6, "timestamp": "2025-05-26T20:48:15.056123"}
+2025-05-26 20:48:15,056 - memory_diagnostics - INFO - MEMORY EVENT: memory_state_loaded - {"short_term_count": 12, "long_term_count": 0, "context_count": 6, "timestamp": "2025-05-26T20:48:15.056123"}
+2025-05-26 20:48:15,056 - memory_diagnostics - INFO - MEMORY EVENT: memory_state_loaded - {"short_term_count": 12, "long_term_count": 0, "context_count": 6, "timestamp": "2025-05-26T20:48:15.056123"}
+2025-05-26 20:51:54,229 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-05-26 20:51:54,229 - memory_diagnostics - INFO - MEMORY EVENT: logger_initialized - {"timestamp": "2025-05-26T20:51:54.229482"}
+2025-05-26 20:51:54,230 - memory_diagnostics - INFO - MEMORY EVENT: memory_state_loaded - {"short_term_count": 12, "long_term_count": 0, "context_count": 6, "timestamp": "2025-05-26T20:51:54.230659"}
+2025-05-26 20:51:54,396 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-05-26 20:51:54,396 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-05-26 20:51:54,396 - memory_diagnostics - INFO - MEMORY EVENT: logger_initialized - {"timestamp": "2025-05-26T20:51:54.396483"}
+2025-05-26 20:51:54,396 - memory_diagnostics - INFO - MEMORY EVENT: logger_initialized - {"timestamp": "2025-05-26T20:51:54.396483"}
+2025-05-26 20:51:54,397 - memory_diagnostics - INFO - MEMORY EVENT: memory_state_loaded - {"short_term_count": 12, "long_term_count": 0, "context_count": 6, "timestamp": "2025-05-26T20:51:54.397018"}
+2025-05-26 20:51:54,397 - memory_diagnostics - INFO - MEMORY EVENT: memory_state_loaded - {"short_term_count": 12, "long_term_count": 0, "context_count": 6, "timestamp": "2025-05-26T20:51:54.397018"}
+2025-05-26 20:51:54,398 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-05-26 20:51:54,398 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-05-26 20:51:54,398 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-05-26 20:51:54,398 - memory_diagnostics - INFO - MEMORY EVENT: logger_initialized - {"timestamp": "2025-05-26T20:51:54.398613"}
+2025-05-26 20:51:54,398 - memory_diagnostics - INFO - MEMORY EVENT: logger_initialized - {"timestamp": "2025-05-26T20:51:54.398613"}
+2025-05-26 20:51:54,398 - memory_diagnostics - INFO - MEMORY EVENT: logger_initialized - {"timestamp": "2025-05-26T20:51:54.398613"}
+2025-05-26 20:51:54,399 - memory_diagnostics - INFO - MEMORY EVENT: memory_state_loaded - {"short_term_count": 12, "long_term_count": 0, "context_count": 6, "timestamp": "2025-05-26T20:51:54.399061"}
+2025-05-26 20:51:54,399 - memory_diagnostics - INFO - MEMORY EVENT: memory_state_loaded - {"short_term_count": 12, "long_term_count": 0, "context_count": 6, "timestamp": "2025-05-26T20:51:54.399061"}
+2025-05-26 20:51:54,399 - memory_diagnostics - INFO - MEMORY EVENT: memory_state_loaded - {"short_term_count": 12, "long_term_count": 0, "context_count": 6, "timestamp": "2025-05-26T20:51:54.399061"}
+2025-05-26 20:55:55,031 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-05-26 20:55:55,032 - memory_diagnostics - INFO - MEMORY EVENT: logger_initialized - {"timestamp": "2025-05-26T20:55:55.032227"}
+2025-05-26 20:55:55,033 - memory_diagnostics - INFO - MEMORY EVENT: memory_state_loaded - {"short_term_count": 12, "long_term_count": 0, "context_count": 6, "timestamp": "2025-05-26T20:55:55.033541"}
+2025-05-26 20:55:55,135 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-05-26 20:55:55,135 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-05-26 20:55:55,135 - memory_diagnostics - INFO - MEMORY EVENT: logger_initialized - {"timestamp": "2025-05-26T20:55:55.135661"}
+2025-05-26 20:55:55,135 - memory_diagnostics - INFO - MEMORY EVENT: logger_initialized - {"timestamp": "2025-05-26T20:55:55.135661"}
+2025-05-26 20:55:55,136 - memory_diagnostics - INFO - MEMORY EVENT: memory_state_loaded - {"short_term_count": 12, "long_term_count": 0, "context_count": 6, "timestamp": "2025-05-26T20:55:55.136158"}
+2025-05-26 20:55:55,136 - memory_diagnostics - INFO - MEMORY EVENT: memory_state_loaded - {"short_term_count": 12, "long_term_count": 0, "context_count": 6, "timestamp": "2025-05-26T20:55:55.136158"}
+2025-05-26 20:55:55,137 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-05-26 20:55:55,137 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-05-26 20:55:55,137 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-05-26 20:55:55,137 - memory_diagnostics - INFO - MEMORY EVENT: logger_initialized - {"timestamp": "2025-05-26T20:55:55.137601"}
+2025-05-26 20:55:55,137 - memory_diagnostics - INFO - MEMORY EVENT: logger_initialized - {"timestamp": "2025-05-26T20:55:55.137601"}
+2025-05-26 20:55:55,137 - memory_diagnostics - INFO - MEMORY EVENT: logger_initialized - {"timestamp": "2025-05-26T20:55:55.137601"}
+2025-05-26 20:55:55,138 - memory_diagnostics - INFO - MEMORY EVENT: memory_state_loaded - {"short_term_count": 12, "long_term_count": 0, "context_count": 6, "timestamp": "2025-05-26T20:55:55.138095"}
+2025-05-26 20:55:55,138 - memory_diagnostics - INFO - MEMORY EVENT: memory_state_loaded - {"short_term_count": 12, "long_term_count": 0, "context_count": 6, "timestamp": "2025-05-26T20:55:55.138095"}
+2025-05-26 20:55:55,138 - memory_diagnostics - INFO - MEMORY EVENT: memory_state_loaded - {"short_term_count": 12, "long_term_count": 0, "context_count": 6, "timestamp": "2025-05-26T20:55:55.138095"}
+2025-05-27 10:10:03,372 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-05-27 10:10:03,374 - memory_diagnostics - INFO - MEMORY EVENT: logger_initialized - {"timestamp": "2025-05-27T10:10:03.374645"}
+2025-05-27 10:10:03,376 - memory_diagnostics - INFO - MEMORY EVENT: memory_state_loaded - {"short_term_count": 12, "long_term_count": 0, "context_count": 6, "timestamp": "2025-05-27T10:10:03.376069"}
+2025-05-27 10:15:48,439 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-05-27 10:15:48,439 - memory_diagnostics - INFO - MEMORY EVENT: logger_initialized - {"timestamp": "2025-05-27T10:15:48.439786"}
+2025-05-27 10:15:48,440 - memory_diagnostics - INFO - MEMORY EVENT: memory_state_loaded - {"short_term_count": 12, "long_term_count": 0, "context_count": 6, "timestamp": "2025-05-27T10:15:48.440578"}
+2025-05-27 10:18:13,859 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-05-27 10:18:13,860 - memory_diagnostics - INFO - MEMORY EVENT: logger_initialized - {"timestamp": "2025-05-27T10:18:13.860044"}
+2025-05-27 10:18:13,860 - memory_diagnostics - INFO - MEMORY EVENT: memory_state_loaded - {"short_term_count": 12, "long_term_count": 0, "context_count": 6, "timestamp": "2025-05-27T10:18:13.860930"}
+2025-05-27 10:22:18,767 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-05-27 10:22:18,767 - memory_diagnostics - INFO - MEMORY EVENT: logger_initialized - {"timestamp": "2025-05-27T10:22:18.767934"}
+2025-05-27 10:22:18,768 - memory_diagnostics - INFO - MEMORY EVENT: memory_state_loaded - {"short_term_count": 12, "long_term_count": 0, "context_count": 6, "timestamp": "2025-05-27T10:22:18.768948"}
+2025-05-27 10:22:18,771 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-05-27 10:22:18,771 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-05-27 10:22:18,771 - memory_diagnostics - INFO - MEMORY EVENT: logger_initialized - {"timestamp": "2025-05-27T10:22:18.771123"}
+2025-05-27 10:22:18,771 - memory_diagnostics - INFO - MEMORY EVENT: logger_initialized - {"timestamp": "2025-05-27T10:22:18.771123"}
+2025-05-27 10:22:18,771 - memory_diagnostics - INFO - MEMORY EVENT: memory_state_loaded - {"short_term_count": 12, "long_term_count": 0, "context_count": 6, "timestamp": "2025-05-27T10:22:18.771418"}
+2025-05-27 10:22:18,771 - memory_diagnostics - INFO - MEMORY EVENT: memory_state_loaded - {"short_term_count": 12, "long_term_count": 0, "context_count": 6, "timestamp": "2025-05-27T10:22:18.771418"}
+2025-05-27 10:22:32,965 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-05-27 10:22:32,966 - memory_diagnostics - INFO - MEMORY EVENT: logger_initialized - {"timestamp": "2025-05-27T10:22:32.966022"}
+2025-05-27 10:22:32,966 - memory_diagnostics - INFO - MEMORY EVENT: memory_state_loaded - {"short_term_count": 12, "long_term_count": 0, "context_count": 6, "timestamp": "2025-05-27T10:22:32.966794"}
+2025-05-27 10:22:33,872 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-05-27 10:22:33,873 - memory_diagnostics - INFO - MEMORY EVENT: logger_initialized - {"timestamp": "2025-05-27T10:22:33.873537"}
+2025-05-27 10:22:33,884 - memory_diagnostics - INFO - MEMORY EVENT: memory_state_loaded - {"short_term_count": 12, "long_term_count": 0, "context_count": 6, "timestamp": "2025-05-27T10:22:33.884619"}
+2025-05-27 10:24:10,258 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-05-27 10:24:10,259 - memory_diagnostics - INFO - MEMORY EVENT: logger_initialized - {"timestamp": "2025-05-27T10:24:10.259450"}
+2025-05-27 10:24:10,260 - memory_diagnostics - INFO - MEMORY EVENT: memory_state_loaded - {"short_term_count": 12, "long_term_count": 0, "context_count": 6, "timestamp": "2025-05-27T10:24:10.260927"}
+2025-05-27 10:24:10,265 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-05-27 10:24:10,265 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-05-27 10:24:10,265 - memory_diagnostics - INFO - MEMORY EVENT: logger_initialized - {"timestamp": "2025-05-27T10:24:10.265244"}
+2025-05-27 10:24:10,265 - memory_diagnostics - INFO - MEMORY EVENT: logger_initialized - {"timestamp": "2025-05-27T10:24:10.265244"}
+2025-05-27 10:24:10,267 - memory_diagnostics - INFO - MEMORY EVENT: memory_state_loaded - {"short_term_count": 12, "long_term_count": 0, "context_count": 6, "timestamp": "2025-05-27T10:24:10.267028"}
+2025-05-27 10:24:10,267 - memory_diagnostics - INFO - MEMORY EVENT: memory_state_loaded - {"short_term_count": 12, "long_term_count": 0, "context_count": 6, "timestamp": "2025-05-27T10:24:10.267028"}
+2025-05-27 10:35:56,508 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-05-27 10:35:56,508 - memory_diagnostics - INFO - MEMORY EVENT: logger_initialized - {"timestamp": "2025-05-27T10:35:56.508426"}
+2025-05-27 10:35:56,509 - memory_diagnostics - INFO - MEMORY EVENT: memory_state_loaded - {"short_term_count": 12, "long_term_count": 0, "context_count": 6, "timestamp": "2025-05-27T10:35:56.509373"}
+2025-05-27 10:36:06,870 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-05-27 10:36:06,870 - memory_diagnostics - INFO - MEMORY EVENT: logger_initialized - {"timestamp": "2025-05-27T10:36:06.870912"}
+2025-05-27 10:36:06,871 - memory_diagnostics - INFO - MEMORY EVENT: memory_state_loaded - {"short_term_count": 12, "long_term_count": 0, "context_count": 6, "timestamp": "2025-05-27T10:36:06.871552"}
+2025-05-27 10:36:07,516 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-05-27 10:36:07,516 - memory_diagnostics - INFO - MEMORY EVENT: logger_initialized - {"timestamp": "2025-05-27T10:36:07.516621"}
+2025-05-27 10:36:07,518 - memory_diagnostics - INFO - MEMORY EVENT: memory_state_loaded - {"short_term_count": 12, "long_term_count": 0, "context_count": 6, "timestamp": "2025-05-27T10:36:07.518237"}
+2025-05-27 10:38:25,424 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-05-27 10:38:25,424 - memory_diagnostics - INFO - MEMORY EVENT: logger_initialized - {"timestamp": "2025-05-27T10:38:25.424268"}
+2025-05-27 10:38:25,424 - memory_diagnostics - INFO - MEMORY EVENT: memory_state_loaded - {"short_term_count": 12, "long_term_count": 0, "context_count": 6, "timestamp": "2025-05-27T10:38:25.424985"}
+2025-05-27 10:38:25,426 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-05-27 10:38:25,426 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-05-27 10:38:25,426 - memory_diagnostics - INFO - MEMORY EVENT: logger_initialized - {"timestamp": "2025-05-27T10:38:25.426901"}
+2025-05-27 10:38:25,426 - memory_diagnostics - INFO - MEMORY EVENT: logger_initialized - {"timestamp": "2025-05-27T10:38:25.426901"}
+2025-05-27 10:38:25,427 - memory_diagnostics - INFO - MEMORY EVENT: memory_state_loaded - {"short_term_count": 12, "long_term_count": 0, "context_count": 6, "timestamp": "2025-05-27T10:38:25.427206"}
+2025-05-27 10:38:25,427 - memory_diagnostics - INFO - MEMORY EVENT: memory_state_loaded - {"short_term_count": 12, "long_term_count": 0, "context_count": 6, "timestamp": "2025-05-27T10:38:25.427206"}
+2025-05-27 10:38:32,359 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-05-27 10:38:32,359 - memory_diagnostics - INFO - MEMORY EVENT: logger_initialized - {"timestamp": "2025-05-27T10:38:32.359941"}
+2025-05-27 10:38:32,360 - memory_diagnostics - INFO - MEMORY EVENT: memory_state_loaded - {"short_term_count": 12, "long_term_count": 0, "context_count": 6, "timestamp": "2025-05-27T10:38:32.360400"}
+2025-05-27 10:38:32,950 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-05-27 10:38:32,951 - memory_diagnostics - INFO - MEMORY EVENT: logger_initialized - {"timestamp": "2025-05-27T10:38:32.951036"}
+2025-05-27 10:38:32,951 - memory_diagnostics - INFO - MEMORY EVENT: memory_state_loaded - {"short_term_count": 12, "long_term_count": 0, "context_count": 6, "timestamp": "2025-05-27T10:38:32.951355"}
+2025-05-27 10:39:19,557 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-05-27 10:39:19,557 - memory_diagnostics - INFO - MEMORY EVENT: logger_initialized - {"timestamp": "2025-05-27T10:39:19.557879"}
+2025-05-27 10:39:19,558 - memory_diagnostics - INFO - MEMORY EVENT: memory_state_loaded - {"short_term_count": 12, "long_term_count": 0, "context_count": 6, "timestamp": "2025-05-27T10:39:19.558658"}
+2025-05-27 10:39:37,123 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-05-27 10:39:37,123 - memory_diagnostics - INFO - MEMORY EVENT: logger_initialized - {"timestamp": "2025-05-27T10:39:37.123549"}
+2025-05-27 10:39:37,124 - memory_diagnostics - INFO - MEMORY EVENT: memory_state_loaded - {"short_term_count": 12, "long_term_count": 0, "context_count": 6, "timestamp": "2025-05-27T10:39:37.124150"}
+2025-05-27 10:43:15,765 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-05-27 10:43:15,765 - memory_diagnostics - INFO - MEMORY EVENT: logger_initialized - {"timestamp": "2025-05-27T10:43:15.765755"}
+2025-05-27 10:43:15,766 - memory_diagnostics - INFO - MEMORY EVENT: memory_state_loaded - {"short_term_count": 12, "long_term_count": 0, "context_count": 6, "timestamp": "2025-05-27T10:43:15.766500"}
+2025-05-27 10:45:46,631 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-05-27 10:45:46,631 - memory_diagnostics - INFO - MEMORY EVENT: logger_initialized - {"timestamp": "2025-05-27T10:45:46.631733"}
+2025-05-27 10:45:46,632 - memory_diagnostics - INFO - MEMORY EVENT: memory_state_loaded - {"short_term_count": 12, "long_term_count": 0, "context_count": 6, "timestamp": "2025-05-27T10:45:46.632514"}
+2025-05-27 10:45:46,638 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-05-27 10:45:46,638 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-05-27 10:45:46,638 - memory_diagnostics - INFO - MEMORY EVENT: logger_initialized - {"timestamp": "2025-05-27T10:45:46.638137"}
+2025-05-27 10:45:46,638 - memory_diagnostics - INFO - MEMORY EVENT: logger_initialized - {"timestamp": "2025-05-27T10:45:46.638137"}
+2025-05-27 10:45:46,638 - memory_diagnostics - INFO - MEMORY EVENT: memory_state_loaded - {"short_term_count": 12, "long_term_count": 0, "context_count": 6, "timestamp": "2025-05-27T10:45:46.638571"}
+2025-05-27 10:45:46,638 - memory_diagnostics - INFO - MEMORY EVENT: memory_state_loaded - {"short_term_count": 12, "long_term_count": 0, "context_count": 6, "timestamp": "2025-05-27T10:45:46.638571"}
+2025-05-27 10:45:57,168 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-05-27 10:45:57,169 - memory_diagnostics - INFO - MEMORY EVENT: logger_initialized - {"timestamp": "2025-05-27T10:45:57.169060"}
+2025-05-27 10:45:57,169 - memory_diagnostics - INFO - MEMORY EVENT: memory_state_loaded - {"short_term_count": 12, "long_term_count": 0, "context_count": 6, "timestamp": "2025-05-27T10:45:57.169752"}
+2025-05-27 10:45:58,032 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-05-27 10:45:58,033 - memory_diagnostics - INFO - MEMORY EVENT: logger_initialized - {"timestamp": "2025-05-27T10:45:58.033022"}
+2025-05-27 10:45:58,034 - memory_diagnostics - INFO - MEMORY EVENT: memory_state_loaded - {"short_term_count": 12, "long_term_count": 0, "context_count": 6, "timestamp": "2025-05-27T10:45:58.034749"}
+2025-05-27 10:46:27,103 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-05-27 10:46:27,103 - memory_diagnostics - INFO - MEMORY EVENT: logger_initialized - {"timestamp": "2025-05-27T10:46:27.103515"}
+2025-05-27 10:46:27,105 - memory_diagnostics - INFO - MEMORY EVENT: memory_state_loaded - {"short_term_count": 12, "long_term_count": 0, "context_count": 6, "timestamp": "2025-05-27T10:46:27.104970"}
+2025-05-27 10:59:53,658 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-05-27 10:59:53,658 - memory_diagnostics - INFO - MEMORY EVENT: logger_initialized - {"timestamp": "2025-05-27T10:59:53.658828"}
+2025-05-27 10:59:53,659 - memory_diagnostics - INFO - MEMORY EVENT: memory_state_loaded - {"short_term_count": 12, "long_term_count": 0, "context_count": 6, "timestamp": "2025-05-27T10:59:53.659555"}
+2025-05-27 10:59:53,663 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-05-27 10:59:53,663 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-05-27 10:59:53,663 - memory_diagnostics - INFO - MEMORY EVENT: logger_initialized - {"timestamp": "2025-05-27T10:59:53.663972"}
+2025-05-27 10:59:53,663 - memory_diagnostics - INFO - MEMORY EVENT: logger_initialized - {"timestamp": "2025-05-27T10:59:53.663972"}
+2025-05-27 10:59:53,664 - memory_diagnostics - INFO - MEMORY EVENT: memory_state_loaded - {"short_term_count": 12, "long_term_count": 0, "context_count": 6, "timestamp": "2025-05-27T10:59:53.664249"}
+2025-05-27 10:59:53,664 - memory_diagnostics - INFO - MEMORY EVENT: memory_state_loaded - {"short_term_count": 12, "long_term_count": 0, "context_count": 6, "timestamp": "2025-05-27T10:59:53.664249"}
+2025-05-27 11:00:02,634 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-05-27 11:00:02,634 - memory_diagnostics - INFO - MEMORY EVENT: logger_initialized - {"timestamp": "2025-05-27T11:00:02.634476"}
+2025-05-27 11:00:02,635 - memory_diagnostics - INFO - MEMORY EVENT: memory_state_loaded - {"short_term_count": 12, "long_term_count": 0, "context_count": 6, "timestamp": "2025-05-27T11:00:02.635139"}
+2025-05-27 11:00:03,318 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-05-27 11:00:03,318 - memory_diagnostics - INFO - MEMORY EVENT: logger_initialized - {"timestamp": "2025-05-27T11:00:03.318855"}
+2025-05-27 11:00:03,319 - memory_diagnostics - INFO - MEMORY EVENT: memory_state_loaded - {"short_term_count": 12, "long_term_count": 0, "context_count": 6, "timestamp": "2025-05-27T11:00:03.319362"}
+2025-05-27 11:00:06,491 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-05-27 11:00:06,491 - memory_diagnostics - INFO - MEMORY EVENT: logger_initialized - {"timestamp": "2025-05-27T11:00:06.491206"}
+2025-05-27 11:00:06,491 - memory_diagnostics - INFO - MEMORY EVENT: memory_state_loaded - {"short_term_count": 12, "long_term_count": 0, "context_count": 6, "timestamp": "2025-05-27T11:00:06.491720"}
+2025-05-27 11:00:29,960 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-05-27 11:00:29,961 - memory_diagnostics - INFO - MEMORY EVENT: logger_initialized - {"timestamp": "2025-05-27T11:00:29.961046"}
+2025-05-27 11:00:29,961 - memory_diagnostics - INFO - MEMORY EVENT: memory_state_loaded - {"short_term_count": 12, "long_term_count": 0, "context_count": 6, "timestamp": "2025-05-27T11:00:29.961807"}
+2025-05-27 11:00:29,963 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-05-27 11:00:29,963 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-05-27 11:00:29,963 - memory_diagnostics - INFO - MEMORY EVENT: logger_initialized - {"timestamp": "2025-05-27T11:00:29.963420"}
+2025-05-27 11:00:29,963 - memory_diagnostics - INFO - MEMORY EVENT: logger_initialized - {"timestamp": "2025-05-27T11:00:29.963420"}
+2025-05-27 11:00:29,963 - memory_diagnostics - INFO - MEMORY EVENT: memory_state_loaded - {"short_term_count": 12, "long_term_count": 0, "context_count": 6, "timestamp": "2025-05-27T11:00:29.963775"}
+2025-05-27 11:00:29,963 - memory_diagnostics - INFO - MEMORY EVENT: memory_state_loaded - {"short_term_count": 12, "long_term_count": 0, "context_count": 6, "timestamp": "2025-05-27T11:00:29.963775"}
+2025-05-27 11:00:50,832 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-05-27 11:00:50,832 - memory_diagnostics - INFO - MEMORY EVENT: logger_initialized - {"timestamp": "2025-05-27T11:00:50.832548"}
+2025-05-27 11:00:50,833 - memory_diagnostics - INFO - MEMORY EVENT: memory_state_loaded - {"short_term_count": 12, "long_term_count": 0, "context_count": 6, "timestamp": "2025-05-27T11:00:50.833300"}
+2025-05-27 11:11:05,682 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-05-27 11:11:05,683 - memory_diagnostics - INFO - MEMORY EVENT: logger_initialized - {"timestamp": "2025-05-27T11:11:05.683265"}
+2025-05-27 11:11:05,684 - memory_diagnostics - INFO - MEMORY EVENT: memory_state_loaded - {"short_term_count": 12, "long_term_count": 0, "context_count": 6, "timestamp": "2025-05-27T11:11:05.684060"}
+2025-05-27 11:14:06,198 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-05-27 11:14:06,198 - memory_diagnostics - INFO - MEMORY EVENT: logger_initialized - {"timestamp": "2025-05-27T11:14:06.198948"}
+2025-05-27 11:14:06,199 - memory_diagnostics - INFO - MEMORY EVENT: memory_state_loaded - {"short_term_count": 12, "long_term_count": 0, "context_count": 6, "timestamp": "2025-05-27T11:14:06.199580"}
+2025-05-27 11:16:36,721 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-05-27 11:16:36,721 - memory_diagnostics - INFO - MEMORY EVENT: logger_initialized - {"timestamp": "2025-05-27T11:16:36.721761"}
+2025-05-27 11:16:36,722 - memory_diagnostics - INFO - MEMORY EVENT: memory_state_loaded - {"short_term_count": 12, "long_term_count": 0, "context_count": 6, "timestamp": "2025-05-27T11:16:36.722332"}
+2025-05-27 11:16:36,725 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-05-27 11:16:36,725 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-05-27 11:16:36,725 - memory_diagnostics - INFO - MEMORY EVENT: logger_initialized - {"timestamp": "2025-05-27T11:16:36.725586"}
+2025-05-27 11:16:36,725 - memory_diagnostics - INFO - MEMORY EVENT: logger_initialized - {"timestamp": "2025-05-27T11:16:36.725586"}
+2025-05-27 11:16:36,725 - memory_diagnostics - INFO - MEMORY EVENT: memory_state_loaded - {"short_term_count": 12, "long_term_count": 0, "context_count": 6, "timestamp": "2025-05-27T11:16:36.725837"}
+2025-05-27 11:16:36,725 - memory_diagnostics - INFO - MEMORY EVENT: memory_state_loaded - {"short_term_count": 12, "long_term_count": 0, "context_count": 6, "timestamp": "2025-05-27T11:16:36.725837"}
+2025-05-27 11:16:43,396 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-05-27 11:16:43,396 - memory_diagnostics - INFO - MEMORY EVENT: logger_initialized - {"timestamp": "2025-05-27T11:16:43.396212"}
+2025-05-27 11:16:43,396 - memory_diagnostics - INFO - MEMORY EVENT: memory_state_loaded - {"short_term_count": 12, "long_term_count": 0, "context_count": 6, "timestamp": "2025-05-27T11:16:43.396687"}
+2025-05-27 11:16:43,919 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-05-27 11:16:43,919 - memory_diagnostics - INFO - MEMORY EVENT: logger_initialized - {"timestamp": "2025-05-27T11:16:43.919966"}
+2025-05-27 11:16:43,920 - memory_diagnostics - INFO - MEMORY EVENT: memory_state_loaded - {"short_term_count": 12, "long_term_count": 0, "context_count": 6, "timestamp": "2025-05-27T11:16:43.920361"}
+2025-05-27 11:17:13,367 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-05-27 11:17:13,367 - memory_diagnostics - INFO - MEMORY EVENT: logger_initialized - {"timestamp": "2025-05-27T11:17:13.367297"}
+2025-05-27 11:17:13,367 - memory_diagnostics - INFO - MEMORY EVENT: memory_state_loaded - {"short_term_count": 12, "long_term_count": 0, "context_count": 6, "timestamp": "2025-05-27T11:17:13.367913"}
+2025-05-27 11:17:13,369 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-05-27 11:17:13,369 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-05-27 11:17:13,369 - memory_diagnostics - INFO - MEMORY EVENT: logger_initialized - {"timestamp": "2025-05-27T11:17:13.369332"}
+2025-05-27 11:17:13,369 - memory_diagnostics - INFO - MEMORY EVENT: logger_initialized - {"timestamp": "2025-05-27T11:17:13.369332"}
+2025-05-27 11:17:13,369 - memory_diagnostics - INFO - MEMORY EVENT: memory_state_loaded - {"short_term_count": 12, "long_term_count": 0, "context_count": 6, "timestamp": "2025-05-27T11:17:13.369632"}
+2025-05-27 11:17:13,369 - memory_diagnostics - INFO - MEMORY EVENT: memory_state_loaded - {"short_term_count": 12, "long_term_count": 0, "context_count": 6, "timestamp": "2025-05-27T11:17:13.369632"}
+2025-05-27 11:20:06,094 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-05-27 11:20:06,094 - memory_diagnostics - INFO - MEMORY EVENT: logger_initialized - {"timestamp": "2025-05-27T11:20:06.094625"}
+2025-05-27 11:20:06,095 - memory_diagnostics - INFO - MEMORY EVENT: memory_state_loaded - {"short_term_count": 12, "long_term_count": 0, "context_count": 6, "timestamp": "2025-05-27T11:20:06.095207"}
+2025-05-27 11:20:06,098 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-05-27 11:20:06,098 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-05-27 11:20:06,098 - memory_diagnostics - INFO - MEMORY EVENT: logger_initialized - {"timestamp": "2025-05-27T11:20:06.098684"}
+2025-05-27 11:20:06,098 - memory_diagnostics - INFO - MEMORY EVENT: logger_initialized - {"timestamp": "2025-05-27T11:20:06.098684"}
+2025-05-27 11:20:06,098 - memory_diagnostics - INFO - MEMORY EVENT: memory_state_loaded - {"short_term_count": 12, "long_term_count": 0, "context_count": 6, "timestamp": "2025-05-27T11:20:06.098968"}
+2025-05-27 11:20:06,098 - memory_diagnostics - INFO - MEMORY EVENT: memory_state_loaded - {"short_term_count": 12, "long_term_count": 0, "context_count": 6, "timestamp": "2025-05-27T11:20:06.098968"}
+2025-05-27 11:20:12,828 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-05-27 11:20:12,829 - memory_diagnostics - INFO - MEMORY EVENT: logger_initialized - {"timestamp": "2025-05-27T11:20:12.829032"}
+2025-05-27 11:20:12,829 - memory_diagnostics - INFO - MEMORY EVENT: memory_state_loaded - {"short_term_count": 12, "long_term_count": 0, "context_count": 6, "timestamp": "2025-05-27T11:20:12.829586"}
+2025-05-27 11:20:13,360 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-05-27 11:20:13,360 - memory_diagnostics - INFO - MEMORY EVENT: logger_initialized - {"timestamp": "2025-05-27T11:20:13.360368"}
+2025-05-27 11:20:13,360 - memory_diagnostics - INFO - MEMORY EVENT: memory_state_loaded - {"short_term_count": 12, "long_term_count": 0, "context_count": 6, "timestamp": "2025-05-27T11:20:13.360842"}
+2025-05-27 11:20:38,974 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-05-27 11:20:38,974 - memory_diagnostics - INFO - MEMORY EVENT: logger_initialized - {"timestamp": "2025-05-27T11:20:38.974633"}
+2025-05-27 11:20:38,975 - memory_diagnostics - INFO - MEMORY EVENT: memory_state_loaded - {"short_term_count": 12, "long_term_count": 0, "context_count": 6, "timestamp": "2025-05-27T11:20:38.975269"}
+2025-05-27 11:20:38,977 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-05-27 11:20:38,977 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-05-27 11:20:38,977 - memory_diagnostics - INFO - MEMORY EVENT: logger_initialized - {"timestamp": "2025-05-27T11:20:38.977135"}
+2025-05-27 11:20:38,977 - memory_diagnostics - INFO - MEMORY EVENT: logger_initialized - {"timestamp": "2025-05-27T11:20:38.977135"}
+2025-05-27 11:20:38,977 - memory_diagnostics - INFO - MEMORY EVENT: memory_state_loaded - {"short_term_count": 12, "long_term_count": 0, "context_count": 6, "timestamp": "2025-05-27T11:20:38.977439"}
+2025-05-27 11:20:38,977 - memory_diagnostics - INFO - MEMORY EVENT: memory_state_loaded - {"short_term_count": 12, "long_term_count": 0, "context_count": 6, "timestamp": "2025-05-27T11:20:38.977439"}
+2025-05-27 11:22:07,942 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-05-27 11:22:07,942 - memory_diagnostics - INFO - MEMORY EVENT: logger_initialized - {"timestamp": "2025-05-27T11:22:07.942700"}
+2025-05-27 11:22:07,943 - memory_diagnostics - INFO - MEMORY EVENT: memory_state_loaded - {"short_term_count": 12, "long_term_count": 0, "context_count": 6, "timestamp": "2025-05-27T11:22:07.943373"}
+2025-05-27 11:22:07,947 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-05-27 11:22:07,947 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-05-27 11:22:07,947 - memory_diagnostics - INFO - MEMORY EVENT: logger_initialized - {"timestamp": "2025-05-27T11:22:07.947149"}
+2025-05-27 11:22:07,947 - memory_diagnostics - INFO - MEMORY EVENT: logger_initialized - {"timestamp": "2025-05-27T11:22:07.947149"}
+2025-05-27 11:22:07,947 - memory_diagnostics - INFO - MEMORY EVENT: memory_state_loaded - {"short_term_count": 12, "long_term_count": 0, "context_count": 6, "timestamp": "2025-05-27T11:22:07.947418"}
+2025-05-27 11:22:07,947 - memory_diagnostics - INFO - MEMORY EVENT: memory_state_loaded - {"short_term_count": 12, "long_term_count": 0, "context_count": 6, "timestamp": "2025-05-27T11:22:07.947418"}
+2025-05-27 11:22:14,679 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-05-27 11:22:14,680 - memory_diagnostics - INFO - MEMORY EVENT: logger_initialized - {"timestamp": "2025-05-27T11:22:14.680031"}
+2025-05-27 11:22:14,680 - memory_diagnostics - INFO - MEMORY EVENT: memory_state_loaded - {"short_term_count": 12, "long_term_count": 0, "context_count": 6, "timestamp": "2025-05-27T11:22:14.680490"}
+2025-05-27 11:22:15,297 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-05-27 11:22:15,297 - memory_diagnostics - INFO - MEMORY EVENT: logger_initialized - {"timestamp": "2025-05-27T11:22:15.297300"}
+2025-05-27 11:22:15,297 - memory_diagnostics - INFO - MEMORY EVENT: memory_state_loaded - {"short_term_count": 12, "long_term_count": 0, "context_count": 6, "timestamp": "2025-05-27T11:22:15.297714"}
+2025-05-27 11:22:39,977 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-05-27 11:22:39,977 - memory_diagnostics - INFO - MEMORY EVENT: logger_initialized - {"timestamp": "2025-05-27T11:22:39.977634"}
+2025-05-27 11:22:39,978 - memory_diagnostics - INFO - MEMORY EVENT: memory_state_loaded - {"short_term_count": 12, "long_term_count": 0, "context_count": 6, "timestamp": "2025-05-27T11:22:39.978337"}
+2025-05-27 11:22:39,979 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-05-27 11:22:39,979 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-05-27 11:22:39,979 - memory_diagnostics - INFO - MEMORY EVENT: logger_initialized - {"timestamp": "2025-05-27T11:22:39.979843"}
+2025-05-27 11:22:39,979 - memory_diagnostics - INFO - MEMORY EVENT: logger_initialized - {"timestamp": "2025-05-27T11:22:39.979843"}
+2025-05-27 11:22:39,980 - memory_diagnostics - INFO - MEMORY EVENT: memory_state_loaded - {"short_term_count": 12, "long_term_count": 0, "context_count": 6, "timestamp": "2025-05-27T11:22:39.980169"}
+2025-05-27 11:22:39,980 - memory_diagnostics - INFO - MEMORY EVENT: memory_state_loaded - {"short_term_count": 12, "long_term_count": 0, "context_count": 6, "timestamp": "2025-05-27T11:22:39.980169"}
+2025-05-27 11:29:41,545 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-05-27 11:29:41,545 - memory_diagnostics - INFO - MEMORY EVENT: logger_initialized - {"timestamp": "2025-05-27T11:29:41.545722"}
+2025-05-27 11:29:41,546 - memory_diagnostics - INFO - MEMORY EVENT: memory_state_loaded - {"short_term_count": 12, "long_term_count": 0, "context_count": 6, "timestamp": "2025-05-27T11:29:41.546384"}
+2025-05-27 11:38:54,195 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-05-27 11:38:54,196 - memory_diagnostics - INFO - MEMORY EVENT: logger_initialized - {"timestamp": "2025-05-27T11:38:54.196029"}
+2025-05-27 11:38:54,196 - memory_diagnostics - INFO - MEMORY EVENT: memory_state_loaded - {"short_term_count": 12, "long_term_count": 0, "context_count": 6, "timestamp": "2025-05-27T11:38:54.196633"}
+2025-05-27 11:39:04,034 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-05-27 11:39:04,035 - memory_diagnostics - INFO - MEMORY EVENT: logger_initialized - {"timestamp": "2025-05-27T11:39:04.034989"}
+2025-05-27 11:39:04,035 - memory_diagnostics - INFO - MEMORY EVENT: memory_state_loaded - {"short_term_count": 12, "long_term_count": 0, "context_count": 6, "timestamp": "2025-05-27T11:39:04.035535"}
+2025-05-27 11:40:27,594 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-05-27 11:40:27,594 - memory_diagnostics - INFO - MEMORY EVENT: logger_initialized - {"timestamp": "2025-05-27T11:40:27.594330"}
+2025-05-27 11:40:27,595 - memory_diagnostics - INFO - MEMORY EVENT: memory_state_loaded - {"short_term_count": 12, "long_term_count": 0, "context_count": 6, "timestamp": "2025-05-27T11:40:27.595056"}
+2025-05-27 11:46:23,134 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-05-27 11:46:23,134 - memory_diagnostics - INFO - MEMORY EVENT: logger_initialized - {"timestamp": "2025-05-27T11:46:23.134936"}
+2025-05-27 11:46:23,135 - memory_diagnostics - INFO - MEMORY EVENT: memory_state_loaded - {"short_term_count": 12, "long_term_count": 0, "context_count": 6, "timestamp": "2025-05-27T11:46:23.135699"}
+2025-05-27 12:31:56,519 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-05-27 12:31:56,519 - memory_diagnostics - INFO - MEMORY EVENT: logger_initialized - {"timestamp": "2025-05-27T12:31:56.519826"}
+2025-05-27 12:31:56,520 - memory_diagnostics - INFO - MEMORY EVENT: memory_state_loaded - {"short_term_count": 12, "long_term_count": 0, "context_count": 6, "timestamp": "2025-05-27T12:31:56.520602"}
+2025-05-27 12:31:56,526 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-05-27 12:31:56,526 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-05-27 12:31:56,526 - memory_diagnostics - INFO - MEMORY EVENT: logger_initialized - {"timestamp": "2025-05-27T12:31:56.526368"}
+2025-05-27 12:31:56,526 - memory_diagnostics - INFO - MEMORY EVENT: logger_initialized - {"timestamp": "2025-05-27T12:31:56.526368"}
+2025-05-27 12:31:56,526 - memory_diagnostics - INFO - MEMORY EVENT: memory_state_loaded - {"short_term_count": 12, "long_term_count": 0, "context_count": 6, "timestamp": "2025-05-27T12:31:56.526655"}
+2025-05-27 12:31:56,526 - memory_diagnostics - INFO - MEMORY EVENT: memory_state_loaded - {"short_term_count": 12, "long_term_count": 0, "context_count": 6, "timestamp": "2025-05-27T12:31:56.526655"}
+2025-05-27 12:32:04,263 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-05-27 12:32:04,263 - memory_diagnostics - INFO - MEMORY EVENT: logger_initialized - {"timestamp": "2025-05-27T12:32:04.263787"}
+2025-05-27 12:32:04,264 - memory_diagnostics - INFO - MEMORY EVENT: memory_state_loaded - {"short_term_count": 12, "long_term_count": 0, "context_count": 6, "timestamp": "2025-05-27T12:32:04.264274"}
+2025-05-27 12:32:04,813 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-05-27 12:32:04,814 - memory_diagnostics - INFO - MEMORY EVENT: logger_initialized - {"timestamp": "2025-05-27T12:32:04.814049"}
+2025-05-27 12:32:04,814 - memory_diagnostics - INFO - MEMORY EVENT: memory_state_loaded - {"short_term_count": 12, "long_term_count": 0, "context_count": 6, "timestamp": "2025-05-27T12:32:04.814454"}
+2025-05-27 12:32:38,424 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-05-27 12:32:38,424 - memory_diagnostics - INFO - MEMORY EVENT: logger_initialized - {"timestamp": "2025-05-27T12:32:38.424735"}
+2025-05-27 12:32:38,426 - memory_diagnostics - INFO - MEMORY EVENT: memory_state_loaded - {"short_term_count": 12, "long_term_count": 0, "context_count": 6, "timestamp": "2025-05-27T12:32:38.426138"}
+2025-05-27 12:43:06,328 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-05-27 12:43:06,331 - memory_diagnostics - INFO - MEMORY EVENT: logger_initialized - {"timestamp": "2025-05-27T12:43:06.331439"}
+2025-05-27 12:43:06,332 - memory_diagnostics - INFO - MEMORY EVENT: memory_state_loaded - {"short_term_count": 12, "long_term_count": 0, "context_count": 6, "timestamp": "2025-05-27T12:43:06.332008"}
+2025-05-27 12:43:06,337 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-05-27 12:43:06,337 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-05-27 12:43:06,337 - memory_diagnostics - INFO - MEMORY EVENT: logger_initialized - {"timestamp": "2025-05-27T12:43:06.337355"}
+2025-05-27 12:43:06,337 - memory_diagnostics - INFO - MEMORY EVENT: logger_initialized - {"timestamp": "2025-05-27T12:43:06.337355"}
+2025-05-27 12:43:06,337 - memory_diagnostics - INFO - MEMORY EVENT: memory_state_loaded - {"short_term_count": 12, "long_term_count": 0, "context_count": 6, "timestamp": "2025-05-27T12:43:06.337609"}
+2025-05-27 12:43:06,337 - memory_diagnostics - INFO - MEMORY EVENT: memory_state_loaded - {"short_term_count": 12, "long_term_count": 0, "context_count": 6, "timestamp": "2025-05-27T12:43:06.337609"}
+2025-05-27 12:43:14,912 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-05-27 12:43:14,912 - memory_diagnostics - INFO - MEMORY EVENT: logger_initialized - {"timestamp": "2025-05-27T12:43:14.912315"}
+2025-05-27 12:43:14,912 - memory_diagnostics - INFO - MEMORY EVENT: memory_state_loaded - {"short_term_count": 12, "long_term_count": 0, "context_count": 6, "timestamp": "2025-05-27T12:43:14.912732"}
+2025-05-27 12:43:15,462 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-05-27 12:43:15,462 - memory_diagnostics - INFO - MEMORY EVENT: logger_initialized - {"timestamp": "2025-05-27T12:43:15.462546"}
+2025-05-27 12:43:15,462 - memory_diagnostics - INFO - MEMORY EVENT: memory_state_loaded - {"short_term_count": 12, "long_term_count": 0, "context_count": 6, "timestamp": "2025-05-27T12:43:15.462947"}
+2025-05-27 12:44:31,085 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-05-27 12:44:31,086 - memory_diagnostics - INFO - MEMORY EVENT: logger_initialized - {"timestamp": "2025-05-27T12:44:31.086096"}
+2025-05-27 12:44:31,086 - memory_diagnostics - INFO - MEMORY EVENT: memory_state_loaded - {"short_term_count": 12, "long_term_count": 0, "context_count": 6, "timestamp": "2025-05-27T12:44:31.086757"}
+2025-05-27 12:44:31,090 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-05-27 12:44:31,090 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-05-27 12:44:31,090 - memory_diagnostics - INFO - MEMORY EVENT: logger_initialized - {"timestamp": "2025-05-27T12:44:31.090844"}
+2025-05-27 12:44:31,090 - memory_diagnostics - INFO - MEMORY EVENT: logger_initialized - {"timestamp": "2025-05-27T12:44:31.090844"}
+2025-05-27 12:44:31,091 - memory_diagnostics - INFO - MEMORY EVENT: memory_state_loaded - {"short_term_count": 12, "long_term_count": 0, "context_count": 6, "timestamp": "2025-05-27T12:44:31.091114"}
+2025-05-27 12:44:31,091 - memory_diagnostics - INFO - MEMORY EVENT: memory_state_loaded - {"short_term_count": 12, "long_term_count": 0, "context_count": 6, "timestamp": "2025-05-27T12:44:31.091114"}
+2025-05-27 12:44:37,736 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-05-27 12:44:37,736 - memory_diagnostics - INFO - MEMORY EVENT: logger_initialized - {"timestamp": "2025-05-27T12:44:37.736405"}
+2025-05-27 12:44:37,736 - memory_diagnostics - INFO - MEMORY EVENT: memory_state_loaded - {"short_term_count": 12, "long_term_count": 0, "context_count": 6, "timestamp": "2025-05-27T12:44:37.736858"}
+2025-05-27 12:44:38,280 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-05-27 12:44:38,280 - memory_diagnostics - INFO - MEMORY EVENT: logger_initialized - {"timestamp": "2025-05-27T12:44:38.280662"}
+2025-05-27 12:44:38,281 - memory_diagnostics - INFO - MEMORY EVENT: memory_state_loaded - {"short_term_count": 12, "long_term_count": 0, "context_count": 6, "timestamp": "2025-05-27T12:44:38.281111"}
+2025-05-27 12:46:22,169 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-05-27 12:46:22,170 - memory_diagnostics - INFO - MEMORY EVENT: logger_initialized - {"timestamp": "2025-05-27T12:46:22.170465"}
+2025-05-27 12:46:22,171 - memory_diagnostics - INFO - MEMORY EVENT: memory_state_loaded - {"short_term_count": 12, "long_term_count": 0, "context_count": 6, "timestamp": "2025-05-27T12:46:22.171202"}
+2025-05-27 12:46:22,172 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-05-27 12:46:22,172 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-05-27 12:46:22,172 - memory_diagnostics - INFO - MEMORY EVENT: logger_initialized - {"timestamp": "2025-05-27T12:46:22.172658"}
+2025-05-27 12:46:22,172 - memory_diagnostics - INFO - MEMORY EVENT: logger_initialized - {"timestamp": "2025-05-27T12:46:22.172658"}
+2025-05-27 12:46:22,173 - memory_diagnostics - INFO - MEMORY EVENT: memory_state_loaded - {"short_term_count": 12, "long_term_count": 0, "context_count": 6, "timestamp": "2025-05-27T12:46:22.172999"}
+2025-05-27 12:46:22,173 - memory_diagnostics - INFO - MEMORY EVENT: memory_state_loaded - {"short_term_count": 12, "long_term_count": 0, "context_count": 6, "timestamp": "2025-05-27T12:46:22.172999"}
+2025-05-27 12:59:12,544 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-05-27 12:59:12,544 - memory_diagnostics - INFO - MEMORY EVENT: logger_initialized - {"timestamp": "2025-05-27T12:59:12.544593"}
+2025-05-27 12:59:12,545 - memory_diagnostics - INFO - MEMORY EVENT: memory_state_loaded - {"short_term_count": 12, "long_term_count": 0, "context_count": 6, "timestamp": "2025-05-27T12:59:12.545204"}
+2025-05-27 12:59:12,548 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-05-27 12:59:12,548 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-05-27 12:59:12,549 - memory_diagnostics - INFO - MEMORY EVENT: logger_initialized - {"timestamp": "2025-05-27T12:59:12.549010"}
+2025-05-27 12:59:12,549 - memory_diagnostics - INFO - MEMORY EVENT: logger_initialized - {"timestamp": "2025-05-27T12:59:12.549010"}
+2025-05-27 12:59:12,549 - memory_diagnostics - INFO - MEMORY EVENT: memory_state_loaded - {"short_term_count": 12, "long_term_count": 0, "context_count": 6, "timestamp": "2025-05-27T12:59:12.549336"}
+2025-05-27 12:59:12,549 - memory_diagnostics - INFO - MEMORY EVENT: memory_state_loaded - {"short_term_count": 12, "long_term_count": 0, "context_count": 6, "timestamp": "2025-05-27T12:59:12.549336"}
+2025-05-27 12:59:20,536 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-05-27 12:59:20,536 - memory_diagnostics - INFO - MEMORY EVENT: logger_initialized - {"timestamp": "2025-05-27T12:59:20.536846"}
+2025-05-27 12:59:20,537 - memory_diagnostics - INFO - MEMORY EVENT: memory_state_loaded - {"short_term_count": 12, "long_term_count": 0, "context_count": 6, "timestamp": "2025-05-27T12:59:20.537310"}
+2025-05-27 12:59:21,139 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-05-27 12:59:21,139 - memory_diagnostics - INFO - MEMORY EVENT: logger_initialized - {"timestamp": "2025-05-27T12:59:21.139454"}
+2025-05-27 12:59:21,139 - memory_diagnostics - INFO - MEMORY EVENT: memory_state_loaded - {"short_term_count": 12, "long_term_count": 0, "context_count": 6, "timestamp": "2025-05-27T12:59:21.139887"}
+2025-05-27 13:06:05,330 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-05-27 13:06:05,330 - memory_diagnostics - INFO - MEMORY EVENT: logger_initialized - {"timestamp": "2025-05-27T13:06:05.330915"}
+2025-05-27 13:06:05,331 - memory_diagnostics - INFO - MEMORY EVENT: memory_state_loaded - {"short_term_count": 12, "long_term_count": 0, "context_count": 6, "timestamp": "2025-05-27T13:06:05.331538"}
+2025-05-27 13:06:05,334 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-05-27 13:06:05,334 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-05-27 13:06:05,334 - memory_diagnostics - INFO - MEMORY EVENT: logger_initialized - {"timestamp": "2025-05-27T13:06:05.334854"}
+2025-05-27 13:06:05,334 - memory_diagnostics - INFO - MEMORY EVENT: logger_initialized - {"timestamp": "2025-05-27T13:06:05.334854"}
+2025-05-27 13:06:05,335 - memory_diagnostics - INFO - MEMORY EVENT: memory_state_loaded - {"short_term_count": 12, "long_term_count": 0, "context_count": 6, "timestamp": "2025-05-27T13:06:05.335119"}
+2025-05-27 13:06:05,335 - memory_diagnostics - INFO - MEMORY EVENT: memory_state_loaded - {"short_term_count": 12, "long_term_count": 0, "context_count": 6, "timestamp": "2025-05-27T13:06:05.335119"}
+2025-05-27 13:06:11,513 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-05-27 13:06:11,513 - memory_diagnostics - INFO - MEMORY EVENT: logger_initialized - {"timestamp": "2025-05-27T13:06:11.513823"}
+2025-05-27 13:06:11,514 - memory_diagnostics - INFO - MEMORY EVENT: memory_state_loaded - {"short_term_count": 12, "long_term_count": 0, "context_count": 6, "timestamp": "2025-05-27T13:06:11.514332"}
+2025-05-27 13:06:12,043 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-05-27 13:06:12,044 - memory_diagnostics - INFO - MEMORY EVENT: logger_initialized - {"timestamp": "2025-05-27T13:06:12.043992"}
+2025-05-27 13:06:12,044 - memory_diagnostics - INFO - MEMORY EVENT: memory_state_loaded - {"short_term_count": 12, "long_term_count": 0, "context_count": 6, "timestamp": "2025-05-27T13:06:12.044433"}
+2025-05-27 13:08:27,922 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-05-27 13:08:27,923 - memory_diagnostics - INFO - MEMORY EVENT: logger_initialized - {"timestamp": "2025-05-27T13:08:27.923060"}
+2025-05-27 13:08:27,923 - memory_diagnostics - INFO - MEMORY EVENT: memory_state_loaded - {"short_term_count": 12, "long_term_count": 0, "context_count": 6, "timestamp": "2025-05-27T13:08:27.923668"}
+2025-05-27 13:16:30,955 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-05-27 13:16:30,955 - memory_diagnostics - INFO - MEMORY EVENT: logger_initialized - {"timestamp": "2025-05-27T13:16:30.955361"}
+2025-05-27 13:16:30,955 - memory_diagnostics - INFO - MEMORY EVENT: memory_state_loaded - {"short_term_count": 12, "long_term_count": 0, "context_count": 6, "timestamp": "2025-05-27T13:16:30.955954"}
+2025-05-27 13:24:03,967 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-05-27 13:24:03,968 - memory_diagnostics - INFO - MEMORY EVENT: logger_initialized - {"timestamp": "2025-05-27T13:24:03.968098"}
+2025-05-27 13:24:03,968 - memory_diagnostics - INFO - MEMORY EVENT: memory_state_loaded - {"short_term_count": 12, "long_term_count": 0, "context_count": 6, "timestamp": "2025-05-27T13:24:03.968845"}
+2025-05-27 13:30:44,985 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-05-27 13:30:44,985 - memory_diagnostics - INFO - MEMORY EVENT: logger_initialized - {"timestamp": "2025-05-27T13:30:44.985581"}
+2025-05-27 13:30:44,986 - memory_diagnostics - INFO - MEMORY EVENT: memory_state_loaded - {"short_term_count": 12, "long_term_count": 0, "context_count": 6, "timestamp": "2025-05-27T13:30:44.986346"}
+2025-05-27 13:32:56,239 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-05-27 13:32:56,240 - memory_diagnostics - INFO - MEMORY EVENT: logger_initialized - {"timestamp": "2025-05-27T13:32:56.240203"}
+2025-05-27 13:32:56,240 - memory_diagnostics - INFO - MEMORY EVENT: memory_state_loaded - {"short_term_count": 12, "long_term_count": 0, "context_count": 6, "timestamp": "2025-05-27T13:32:56.240934"}
+2025-05-27 13:36:26,262 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-05-27 13:36:26,263 - memory_diagnostics - INFO - MEMORY EVENT: logger_initialized - {"timestamp": "2025-05-27T13:36:26.263163"}
+2025-05-27 13:36:26,263 - memory_diagnostics - INFO - MEMORY EVENT: memory_state_loaded - {"short_term_count": 12, "long_term_count": 0, "context_count": 6, "timestamp": "2025-05-27T13:36:26.263776"}
+2025-05-27 13:36:26,325 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-05-27 13:36:26,325 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-05-27 13:36:26,326 - memory_diagnostics - INFO - MEMORY EVENT: logger_initialized - {"timestamp": "2025-05-27T13:36:26.326005"}
+2025-05-27 13:36:26,326 - memory_diagnostics - INFO - MEMORY EVENT: logger_initialized - {"timestamp": "2025-05-27T13:36:26.326005"}
+2025-05-27 13:36:26,326 - memory_diagnostics - INFO - MEMORY EVENT: memory_state_loaded - {"short_term_count": 12, "long_term_count": 0, "context_count": 6, "timestamp": "2025-05-27T13:36:26.326305"}
+2025-05-27 13:36:26,326 - memory_diagnostics - INFO - MEMORY EVENT: memory_state_loaded - {"short_term_count": 12, "long_term_count": 0, "context_count": 6, "timestamp": "2025-05-27T13:36:26.326305"}
+2025-05-27 13:36:26,327 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-05-27 13:36:26,327 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-05-27 13:36:26,327 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-05-27 13:36:26,327 - memory_diagnostics - INFO - MEMORY EVENT: logger_initialized - {"timestamp": "2025-05-27T13:36:26.327280"}
+2025-05-27 13:36:26,327 - memory_diagnostics - INFO - MEMORY EVENT: logger_initialized - {"timestamp": "2025-05-27T13:36:26.327280"}
+2025-05-27 13:36:26,327 - memory_diagnostics - INFO - MEMORY EVENT: logger_initialized - {"timestamp": "2025-05-27T13:36:26.327280"}
+2025-05-27 13:36:26,327 - memory_diagnostics - INFO - MEMORY EVENT: memory_state_loaded - {"short_term_count": 12, "long_term_count": 0, "context_count": 6, "timestamp": "2025-05-27T13:36:26.327563"}
+2025-05-27 13:36:26,327 - memory_diagnostics - INFO - MEMORY EVENT: memory_state_loaded - {"short_term_count": 12, "long_term_count": 0, "context_count": 6, "timestamp": "2025-05-27T13:36:26.327563"}
+2025-05-27 13:36:26,327 - memory_diagnostics - INFO - MEMORY EVENT: memory_state_loaded - {"short_term_count": 12, "long_term_count": 0, "context_count": 6, "timestamp": "2025-05-27T13:36:26.327563"}
+2025-05-27 13:44:41,925 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-05-27 13:44:41,925 - memory_diagnostics - INFO - MEMORY EVENT: logger_initialized - {"timestamp": "2025-05-27T13:44:41.925798"}
+2025-05-27 13:44:41,926 - memory_diagnostics - INFO - MEMORY EVENT: memory_state_loaded - {"short_term_count": 12, "long_term_count": 0, "context_count": 6, "timestamp": "2025-05-27T13:44:41.926440"}
+2025-05-27 13:44:41,972 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-05-27 13:44:41,972 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-05-27 13:44:41,972 - memory_diagnostics - INFO - MEMORY EVENT: logger_initialized - {"timestamp": "2025-05-27T13:44:41.972943"}
+2025-05-27 13:44:41,972 - memory_diagnostics - INFO - MEMORY EVENT: logger_initialized - {"timestamp": "2025-05-27T13:44:41.972943"}
+2025-05-27 13:44:41,973 - memory_diagnostics - INFO - MEMORY EVENT: memory_state_loaded - {"short_term_count": 12, "long_term_count": 0, "context_count": 6, "timestamp": "2025-05-27T13:44:41.973191"}
+2025-05-27 13:44:41,973 - memory_diagnostics - INFO - MEMORY EVENT: memory_state_loaded - {"short_term_count": 12, "long_term_count": 0, "context_count": 6, "timestamp": "2025-05-27T13:44:41.973191"}
+2025-05-27 13:44:41,974 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-05-27 13:44:41,974 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-05-27 13:44:41,974 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-05-27 13:44:41,974 - memory_diagnostics - INFO - MEMORY EVENT: logger_initialized - {"timestamp": "2025-05-27T13:44:41.974086"}
+2025-05-27 13:44:41,974 - memory_diagnostics - INFO - MEMORY EVENT: logger_initialized - {"timestamp": "2025-05-27T13:44:41.974086"}
+2025-05-27 13:44:41,974 - memory_diagnostics - INFO - MEMORY EVENT: logger_initialized - {"timestamp": "2025-05-27T13:44:41.974086"}
+2025-05-27 13:44:41,974 - memory_diagnostics - INFO - MEMORY EVENT: memory_state_loaded - {"short_term_count": 12, "long_term_count": 0, "context_count": 6, "timestamp": "2025-05-27T13:44:41.974304"}
+2025-05-27 13:44:41,974 - memory_diagnostics - INFO - MEMORY EVENT: memory_state_loaded - {"short_term_count": 12, "long_term_count": 0, "context_count": 6, "timestamp": "2025-05-27T13:44:41.974304"}
+2025-05-27 13:44:41,974 - memory_diagnostics - INFO - MEMORY EVENT: memory_state_loaded - {"short_term_count": 12, "long_term_count": 0, "context_count": 6, "timestamp": "2025-05-27T13:44:41.974304"}
+2025-05-27 13:50:54,262 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-05-27 13:50:54,263 - memory_diagnostics - INFO - MEMORY EVENT: logger_initialized - {"timestamp": "2025-05-27T13:50:54.263251"}
+2025-05-27 13:50:54,263 - memory_diagnostics - INFO - MEMORY EVENT: memory_state_loaded - {"short_term_count": 12, "long_term_count": 0, "context_count": 6, "timestamp": "2025-05-27T13:50:54.263839"}
+2025-05-27 13:50:54,267 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-05-27 13:50:54,267 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-05-27 13:50:54,267 - memory_diagnostics - INFO - MEMORY EVENT: logger_initialized - {"timestamp": "2025-05-27T13:50:54.267356"}
+2025-05-27 13:50:54,267 - memory_diagnostics - INFO - MEMORY EVENT: logger_initialized - {"timestamp": "2025-05-27T13:50:54.267356"}
+2025-05-27 13:50:54,267 - memory_diagnostics - INFO - MEMORY EVENT: memory_state_loaded - {"short_term_count": 12, "long_term_count": 0, "context_count": 6, "timestamp": "2025-05-27T13:50:54.267612"}
+2025-05-27 13:50:54,267 - memory_diagnostics - INFO - MEMORY EVENT: memory_state_loaded - {"short_term_count": 12, "long_term_count": 0, "context_count": 6, "timestamp": "2025-05-27T13:50:54.267612"}
+2025-05-27 13:51:00,239 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-05-27 13:51:00,239 - memory_diagnostics - INFO - MEMORY EVENT: logger_initialized - {"timestamp": "2025-05-27T13:51:00.239699"}
+2025-05-27 13:51:00,239 - memory_diagnostics - INFO - MEMORY EVENT: memory_state_loaded - {"short_term_count": 12, "long_term_count": 0, "context_count": 6, "timestamp": "2025-05-27T13:51:00.239973"}
+2025-05-27 13:51:00,289 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-05-27 13:51:00,289 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-05-27 13:51:00,289 - memory_diagnostics - INFO - MEMORY EVENT: logger_initialized - {"timestamp": "2025-05-27T13:51:00.289181"}
+2025-05-27 13:51:00,289 - memory_diagnostics - INFO - MEMORY EVENT: logger_initialized - {"timestamp": "2025-05-27T13:51:00.289181"}
+2025-05-27 13:51:00,289 - memory_diagnostics - INFO - MEMORY EVENT: memory_state_loaded - {"short_term_count": 12, "long_term_count": 0, "context_count": 6, "timestamp": "2025-05-27T13:51:00.289443"}
+2025-05-27 13:51:00,289 - memory_diagnostics - INFO - MEMORY EVENT: memory_state_loaded - {"short_term_count": 12, "long_term_count": 0, "context_count": 6, "timestamp": "2025-05-27T13:51:00.289443"}
+2025-05-27 13:51:00,784 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-05-27 13:51:00,784 - memory_diagnostics - INFO - MEMORY EVENT: logger_initialized - {"timestamp": "2025-05-27T13:51:00.784833"}
+2025-05-27 13:51:00,785 - memory_diagnostics - INFO - MEMORY EVENT: memory_state_loaded - {"short_term_count": 12, "long_term_count": 0, "context_count": 6, "timestamp": "2025-05-27T13:51:00.785163"}
+2025-05-27 13:53:11,835 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-05-27 13:53:11,835 - memory_diagnostics - INFO - MEMORY EVENT: logger_initialized - {"timestamp": "2025-05-27T13:53:11.835151"}
+2025-05-27 13:53:11,835 - memory_diagnostics - INFO - MEMORY EVENT: memory_state_loaded - {"short_term_count": 12, "long_term_count": 0, "context_count": 6, "timestamp": "2025-05-27T13:53:11.835762"}
+2025-05-27 13:53:11,884 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-05-27 13:53:11,884 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-05-27 13:53:11,884 - memory_diagnostics - INFO - MEMORY EVENT: logger_initialized - {"timestamp": "2025-05-27T13:53:11.884435"}
+2025-05-27 13:53:11,884 - memory_diagnostics - INFO - MEMORY EVENT: logger_initialized - {"timestamp": "2025-05-27T13:53:11.884435"}
+2025-05-27 13:53:11,884 - memory_diagnostics - INFO - MEMORY EVENT: memory_state_loaded - {"short_term_count": 12, "long_term_count": 0, "context_count": 6, "timestamp": "2025-05-27T13:53:11.884755"}
+2025-05-27 13:53:11,884 - memory_diagnostics - INFO - MEMORY EVENT: memory_state_loaded - {"short_term_count": 12, "long_term_count": 0, "context_count": 6, "timestamp": "2025-05-27T13:53:11.884755"}
+2025-05-27 13:53:11,885 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-05-27 13:53:11,885 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-05-27 13:53:11,885 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-05-27 13:53:11,885 - memory_diagnostics - INFO - MEMORY EVENT: logger_initialized - {"timestamp": "2025-05-27T13:53:11.885945"}
+2025-05-27 13:53:11,885 - memory_diagnostics - INFO - MEMORY EVENT: logger_initialized - {"timestamp": "2025-05-27T13:53:11.885945"}
+2025-05-27 13:53:11,885 - memory_diagnostics - INFO - MEMORY EVENT: logger_initialized - {"timestamp": "2025-05-27T13:53:11.885945"}
+2025-05-27 13:53:11,886 - memory_diagnostics - INFO - MEMORY EVENT: memory_state_loaded - {"short_term_count": 12, "long_term_count": 0, "context_count": 6, "timestamp": "2025-05-27T13:53:11.886364"}
+2025-05-27 13:53:11,886 - memory_diagnostics - INFO - MEMORY EVENT: memory_state_loaded - {"short_term_count": 12, "long_term_count": 0, "context_count": 6, "timestamp": "2025-05-27T13:53:11.886364"}
+2025-05-27 13:53:11,886 - memory_diagnostics - INFO - MEMORY EVENT: memory_state_loaded - {"short_term_count": 12, "long_term_count": 0, "context_count": 6, "timestamp": "2025-05-27T13:53:11.886364"}
+2025-05-27 13:58:15,303 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-05-27 13:58:15,303 - memory_diagnostics - INFO - MEMORY EVENT: logger_initialized - {"timestamp": "2025-05-27T13:58:15.303454"}
+2025-05-27 13:58:15,304 - memory_diagnostics - INFO - MEMORY EVENT: memory_state_loaded - {"short_term_count": 12, "long_term_count": 0, "context_count": 6, "timestamp": "2025-05-27T13:58:15.304416"}
+2025-05-27 13:58:15,973 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-05-27 13:58:15,973 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-05-27 13:58:15,973 - memory_diagnostics - INFO - MEMORY EVENT: logger_initialized - {"timestamp": "2025-05-27T13:58:15.973207"}
+2025-05-27 13:58:15,973 - memory_diagnostics - INFO - MEMORY EVENT: logger_initialized - {"timestamp": "2025-05-27T13:58:15.973207"}
+2025-05-27 13:58:15,973 - memory_diagnostics - INFO - MEMORY EVENT: memory_state_loaded - {"short_term_count": 12, "long_term_count": 0, "context_count": 6, "timestamp": "2025-05-27T13:58:15.973533"}
+2025-05-27 13:58:15,973 - memory_diagnostics - INFO - MEMORY EVENT: memory_state_loaded - {"short_term_count": 12, "long_term_count": 0, "context_count": 6, "timestamp": "2025-05-27T13:58:15.973533"}
+2025-05-27 13:58:15,974 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-05-27 13:58:15,974 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-05-27 13:58:15,974 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-05-27 13:58:15,974 - memory_diagnostics - INFO - MEMORY EVENT: logger_initialized - {"timestamp": "2025-05-27T13:58:15.974611"}
+2025-05-27 13:58:15,974 - memory_diagnostics - INFO - MEMORY EVENT: logger_initialized - {"timestamp": "2025-05-27T13:58:15.974611"}
+2025-05-27 13:58:15,974 - memory_diagnostics - INFO - MEMORY EVENT: logger_initialized - {"timestamp": "2025-05-27T13:58:15.974611"}
+2025-05-27 13:58:15,975 - memory_diagnostics - INFO - MEMORY EVENT: memory_state_loaded - {"short_term_count": 12, "long_term_count": 0, "context_count": 6, "timestamp": "2025-05-27T13:58:15.974991"}
+2025-05-27 13:58:15,975 - memory_diagnostics - INFO - MEMORY EVENT: memory_state_loaded - {"short_term_count": 12, "long_term_count": 0, "context_count": 6, "timestamp": "2025-05-27T13:58:15.974991"}
+2025-05-27 13:58:15,975 - memory_diagnostics - INFO - MEMORY EVENT: memory_state_loaded - {"short_term_count": 12, "long_term_count": 0, "context_count": 6, "timestamp": "2025-05-27T13:58:15.974991"}
+2025-05-27 13:59:28,984 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-05-27 13:59:28,984 - memory_diagnostics - INFO - MEMORY EVENT: logger_initialized - {"timestamp": "2025-05-27T13:59:28.984949"}
+2025-05-27 13:59:28,985 - memory_diagnostics - INFO - MEMORY EVENT: memory_state_loaded - {"short_term_count": 12, "long_term_count": 0, "context_count": 6, "timestamp": "2025-05-27T13:59:28.985839"}
+2025-05-27 13:59:29,035 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-05-27 13:59:29,035 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-05-27 13:59:29,035 - memory_diagnostics - INFO - MEMORY EVENT: logger_initialized - {"timestamp": "2025-05-27T13:59:29.035522"}
+2025-05-27 13:59:29,035 - memory_diagnostics - INFO - MEMORY EVENT: logger_initialized - {"timestamp": "2025-05-27T13:59:29.035522"}
+2025-05-27 13:59:29,035 - memory_diagnostics - INFO - MEMORY EVENT: memory_state_loaded - {"short_term_count": 12, "long_term_count": 0, "context_count": 6, "timestamp": "2025-05-27T13:59:29.035828"}
+2025-05-27 13:59:29,035 - memory_diagnostics - INFO - MEMORY EVENT: memory_state_loaded - {"short_term_count": 12, "long_term_count": 0, "context_count": 6, "timestamp": "2025-05-27T13:59:29.035828"}
+2025-05-27 14:01:12,232 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-05-27 14:01:12,232 - memory_diagnostics - INFO - MEMORY EVENT: logger_initialized - {"timestamp": "2025-05-27T14:01:12.232946"}
+2025-05-27 14:01:12,233 - memory_diagnostics - INFO - MEMORY EVENT: memory_state_loaded - {"short_term_count": 12, "long_term_count": 0, "context_count": 6, "timestamp": "2025-05-27T14:01:12.233502"}
+2025-05-27 14:01:12,320 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-05-27 14:01:12,320 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-05-27 14:01:12,320 - memory_diagnostics - INFO - MEMORY EVENT: logger_initialized - {"timestamp": "2025-05-27T14:01:12.320727"}
+2025-05-27 14:01:12,320 - memory_diagnostics - INFO - MEMORY EVENT: logger_initialized - {"timestamp": "2025-05-27T14:01:12.320727"}
+2025-05-27 14:01:12,321 - memory_diagnostics - INFO - MEMORY EVENT: memory_state_loaded - {"short_term_count": 12, "long_term_count": 0, "context_count": 6, "timestamp": "2025-05-27T14:01:12.321067"}
+2025-05-27 14:01:12,321 - memory_diagnostics - INFO - MEMORY EVENT: memory_state_loaded - {"short_term_count": 12, "long_term_count": 0, "context_count": 6, "timestamp": "2025-05-27T14:01:12.321067"}
+2025-05-27 14:05:57,479 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-05-27 14:05:57,479 - memory_diagnostics - INFO - MEMORY EVENT: logger_initialized - {"timestamp": "2025-05-27T14:05:57.479678"}
+2025-05-27 14:05:57,480 - memory_diagnostics - INFO - MEMORY EVENT: memory_state_loaded - {"short_term_count": 12, "long_term_count": 0, "context_count": 6, "timestamp": "2025-05-27T14:05:57.480182"}
+2025-05-27 14:05:57,484 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-05-27 14:05:57,484 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-05-27 14:05:57,484 - memory_diagnostics - INFO - MEMORY EVENT: logger_initialized - {"timestamp": "2025-05-27T14:05:57.484348"}
+2025-05-27 14:05:57,484 - memory_diagnostics - INFO - MEMORY EVENT: logger_initialized - {"timestamp": "2025-05-27T14:05:57.484348"}
+2025-05-27 14:05:57,484 - memory_diagnostics - INFO - MEMORY EVENT: memory_state_loaded - {"short_term_count": 12, "long_term_count": 0, "context_count": 6, "timestamp": "2025-05-27T14:05:57.484615"}
+2025-05-27 14:05:57,484 - memory_diagnostics - INFO - MEMORY EVENT: memory_state_loaded - {"short_term_count": 12, "long_term_count": 0, "context_count": 6, "timestamp": "2025-05-27T14:05:57.484615"}
+2025-05-27 14:06:03,638 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-05-27 14:06:03,638 - memory_diagnostics - INFO - MEMORY EVENT: logger_initialized - {"timestamp": "2025-05-27T14:06:03.638883"}
+2025-05-27 14:06:03,639 - memory_diagnostics - INFO - MEMORY EVENT: memory_state_loaded - {"short_term_count": 12, "long_term_count": 0, "context_count": 6, "timestamp": "2025-05-27T14:06:03.639185"}
+2025-05-27 14:06:03,699 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-05-27 14:06:03,699 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-05-27 14:06:03,699 - memory_diagnostics - INFO - MEMORY EVENT: logger_initialized - {"timestamp": "2025-05-27T14:06:03.699766"}
+2025-05-27 14:06:03,699 - memory_diagnostics - INFO - MEMORY EVENT: logger_initialized - {"timestamp": "2025-05-27T14:06:03.699766"}
+2025-05-27 14:06:03,700 - memory_diagnostics - INFO - MEMORY EVENT: memory_state_loaded - {"short_term_count": 12, "long_term_count": 0, "context_count": 6, "timestamp": "2025-05-27T14:06:03.700024"}
+2025-05-27 14:06:03,700 - memory_diagnostics - INFO - MEMORY EVENT: memory_state_loaded - {"short_term_count": 12, "long_term_count": 0, "context_count": 6, "timestamp": "2025-05-27T14:06:03.700024"}
+2025-05-27 14:06:04,207 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-05-27 14:06:57,871 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-05-27 14:06:57,872 - memory_diagnostics - INFO - MEMORY EVENT: logger_initialized - {"timestamp": "2025-05-27T14:06:57.872250"}
+2025-05-27 14:06:57,872 - memory_diagnostics - INFO - MEMORY EVENT: memory_state_loaded - {"short_term_count": 12, "long_term_count": 0, "context_count": 6, "timestamp": "2025-05-27T14:06:57.872724"}
+2025-05-27 14:06:57,879 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-05-27 14:06:57,879 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-05-27 14:06:57,879 - memory_diagnostics - INFO - MEMORY EVENT: logger_initialized - {"timestamp": "2025-05-27T14:06:57.879583"}
+2025-05-27 14:06:57,879 - memory_diagnostics - INFO - MEMORY EVENT: logger_initialized - {"timestamp": "2025-05-27T14:06:57.879583"}
+2025-05-27 14:06:57,879 - memory_diagnostics - INFO - MEMORY EVENT: memory_state_loaded - {"short_term_count": 12, "long_term_count": 0, "context_count": 6, "timestamp": "2025-05-27T14:06:57.879843"}
+2025-05-27 14:06:57,879 - memory_diagnostics - INFO - MEMORY EVENT: memory_state_loaded - {"short_term_count": 12, "long_term_count": 0, "context_count": 6, "timestamp": "2025-05-27T14:06:57.879843"}
+2025-05-27 14:07:03,972 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-05-27 14:07:03,972 - memory_diagnostics - INFO - MEMORY EVENT: logger_initialized - {"timestamp": "2025-05-27T14:07:03.972705"}
+2025-05-27 14:07:03,973 - memory_diagnostics - INFO - MEMORY EVENT: memory_state_loaded - {"short_term_count": 12, "long_term_count": 0, "context_count": 6, "timestamp": "2025-05-27T14:07:03.972987"}
+2025-05-27 14:07:04,020 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-05-27 14:07:04,020 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-05-27 14:07:04,021 - memory_diagnostics - INFO - MEMORY EVENT: logger_initialized - {"timestamp": "2025-05-27T14:07:04.021023"}
+2025-05-27 14:07:04,021 - memory_diagnostics - INFO - MEMORY EVENT: logger_initialized - {"timestamp": "2025-05-27T14:07:04.021023"}
+2025-05-27 14:07:04,021 - memory_diagnostics - INFO - MEMORY EVENT: memory_state_loaded - {"short_term_count": 12, "long_term_count": 0, "context_count": 6, "timestamp": "2025-05-27T14:07:04.021300"}
+2025-05-27 14:07:04,021 - memory_diagnostics - INFO - MEMORY EVENT: memory_state_loaded - {"short_term_count": 12, "long_term_count": 0, "context_count": 6, "timestamp": "2025-05-27T14:07:04.021300"}
+2025-05-27 14:09:10,536 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-05-27 14:09:10,536 - memory_diagnostics - INFO - MEMORY EVENT: logger_initialized - {"timestamp": "2025-05-27T14:09:10.536506"}
+2025-05-27 14:09:10,537 - memory_diagnostics - INFO - MEMORY EVENT: memory_state_loaded - {"short_term_count": 12, "long_term_count": 0, "context_count": 6, "timestamp": "2025-05-27T14:09:10.537162"}
+2025-05-27 14:09:38,023 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-05-27 14:09:38,024 - memory_diagnostics - INFO - MEMORY EVENT: logger_initialized - {"timestamp": "2025-05-27T14:09:38.024104"}
+2025-05-27 14:09:38,024 - memory_diagnostics - INFO - MEMORY EVENT: memory_state_loaded - {"short_term_count": 12, "long_term_count": 0, "context_count": 6, "timestamp": "2025-05-27T14:09:38.024608"}
+2025-05-27 14:09:38,028 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-05-27 14:09:38,028 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-05-27 14:09:38,028 - memory_diagnostics - INFO - MEMORY EVENT: logger_initialized - {"timestamp": "2025-05-27T14:09:38.028449"}
+2025-05-27 14:09:38,028 - memory_diagnostics - INFO - MEMORY EVENT: logger_initialized - {"timestamp": "2025-05-27T14:09:38.028449"}
+2025-05-27 14:09:38,028 - memory_diagnostics - INFO - MEMORY EVENT: memory_state_loaded - {"short_term_count": 12, "long_term_count": 0, "context_count": 6, "timestamp": "2025-05-27T14:09:38.028716"}
+2025-05-27 14:09:38,028 - memory_diagnostics - INFO - MEMORY EVENT: memory_state_loaded - {"short_term_count": 12, "long_term_count": 0, "context_count": 6, "timestamp": "2025-05-27T14:09:38.028716"}
+2025-05-27 14:09:44,213 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-05-27 14:09:44,213 - memory_diagnostics - INFO - MEMORY EVENT: logger_initialized - {"timestamp": "2025-05-27T14:09:44.213626"}
+2025-05-27 14:09:44,214 - memory_diagnostics - INFO - MEMORY EVENT: memory_state_loaded - {"short_term_count": 12, "long_term_count": 0, "context_count": 6, "timestamp": "2025-05-27T14:09:44.214073"}
+2025-05-27 14:19:04,107 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-05-27 14:19:04,107 - memory_diagnostics - INFO - MEMORY EVENT: logger_initialized - {"timestamp": "2025-05-27T14:19:04.107925"}
+2025-05-27 14:19:04,108 - memory_diagnostics - INFO - MEMORY EVENT: memory_state_loaded - {"short_term_count": 12, "long_term_count": 0, "context_count": 6, "timestamp": "2025-05-27T14:19:04.108573"}
+2025-05-27 14:19:04,112 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-05-27 14:19:04,112 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-05-27 14:19:04,112 - memory_diagnostics - INFO - MEMORY EVENT: logger_initialized - {"timestamp": "2025-05-27T14:19:04.112848"}
+2025-05-27 14:19:04,112 - memory_diagnostics - INFO - MEMORY EVENT: logger_initialized - {"timestamp": "2025-05-27T14:19:04.112848"}
+2025-05-27 14:19:04,113 - memory_diagnostics - INFO - MEMORY EVENT: memory_state_loaded - {"short_term_count": 12, "long_term_count": 0, "context_count": 6, "timestamp": "2025-05-27T14:19:04.113106"}
+2025-05-27 14:19:04,113 - memory_diagnostics - INFO - MEMORY EVENT: memory_state_loaded - {"short_term_count": 12, "long_term_count": 0, "context_count": 6, "timestamp": "2025-05-27T14:19:04.113106"}
+2025-05-27 14:19:09,986 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-05-27 14:19:09,986 - memory_diagnostics - INFO - MEMORY EVENT: logger_initialized - {"timestamp": "2025-05-27T14:19:09.986671"}
+2025-05-27 14:19:10,691 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-05-27 14:19:10,691 - memory_diagnostics - INFO - MEMORY EVENT: logger_initialized - {"timestamp": "2025-05-27T14:19:10.691650"}
+2025-05-27 14:19:10,691 - memory_diagnostics - INFO - MEMORY EVENT: memory_state_loaded - {"short_term_count": 12, "long_term_count": 0, "context_count": 6, "timestamp": "2025-05-27T14:19:10.691988"}
+2025-05-27 14:33:31,388 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-05-27 14:33:31,388 - memory_diagnostics - INFO - MEMORY EVENT: logger_initialized - {"timestamp": "2025-05-27T14:33:31.388952"}
+2025-05-27 14:33:31,389 - memory_diagnostics - INFO - MEMORY EVENT: memory_state_loaded - {"short_term_count": 12, "long_term_count": 0, "context_count": 6, "timestamp": "2025-05-27T14:33:31.389778"}
+2025-05-27 14:34:22,895 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-05-27 14:34:22,895 - memory_diagnostics - INFO - MEMORY EVENT: logger_initialized - {"timestamp": "2025-05-27T14:34:22.895913"}
+2025-05-27 14:34:22,896 - memory_diagnostics - INFO - MEMORY EVENT: memory_state_loaded - {"short_term_count": 12, "long_term_count": 0, "context_count": 6, "timestamp": "2025-05-27T14:34:22.896428"}
+2025-05-27 14:34:22,900 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-05-27 14:34:22,900 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-05-27 14:34:22,900 - memory_diagnostics - INFO - MEMORY EVENT: logger_initialized - {"timestamp": "2025-05-27T14:34:22.900823"}
+2025-05-27 14:34:22,900 - memory_diagnostics - INFO - MEMORY EVENT: logger_initialized - {"timestamp": "2025-05-27T14:34:22.900823"}
+2025-05-27 14:34:22,901 - memory_diagnostics - INFO - MEMORY EVENT: memory_state_loaded - {"short_term_count": 12, "long_term_count": 0, "context_count": 6, "timestamp": "2025-05-27T14:34:22.901090"}
+2025-05-27 14:34:22,901 - memory_diagnostics - INFO - MEMORY EVENT: memory_state_loaded - {"short_term_count": 12, "long_term_count": 0, "context_count": 6, "timestamp": "2025-05-27T14:34:22.901090"}
+2025-05-27 14:34:28,874 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-05-27 14:34:28,874 - memory_diagnostics - INFO - MEMORY EVENT: logger_initialized - {"timestamp": "2025-05-27T14:34:28.874125"}
+2025-05-27 14:34:28,874 - memory_diagnostics - INFO - MEMORY EVENT: memory_state_loaded - {"short_term_count": 12, "long_term_count": 0, "context_count": 6, "timestamp": "2025-05-27T14:34:28.874762"}
+2025-05-27 14:34:29,631 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-05-27 14:34:29,631 - memory_diagnostics - INFO - MEMORY EVENT: logger_initialized - {"timestamp": "2025-05-27T14:34:29.631956"}
+2025-05-27 14:34:29,632 - memory_diagnostics - INFO - MEMORY EVENT: memory_state_loaded - {"short_term_count": 12, "long_term_count": 0, "context_count": 6, "timestamp": "2025-05-27T14:34:29.632304"}
+2025-05-27 14:35:02,766 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-05-27 14:35:02,766 - memory_diagnostics - INFO - MEMORY EVENT: logger_initialized - {"timestamp": "2025-05-27T14:35:02.766240"}
+2025-05-27 14:35:02,766 - memory_diagnostics - INFO - MEMORY EVENT: memory_state_loaded - {"short_term_count": 12, "long_term_count": 0, "context_count": 6, "timestamp": "2025-05-27T14:35:02.766743"}
+2025-05-27 14:35:02,770 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-05-27 14:35:02,770 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-05-27 14:35:02,770 - memory_diagnostics - INFO - MEMORY EVENT: logger_initialized - {"timestamp": "2025-05-27T14:35:02.770571"}
+2025-05-27 14:35:02,770 - memory_diagnostics - INFO - MEMORY EVENT: logger_initialized - {"timestamp": "2025-05-27T14:35:02.770571"}
+2025-05-27 14:35:02,770 - memory_diagnostics - INFO - MEMORY EVENT: memory_state_loaded - {"short_term_count": 12, "long_term_count": 0, "context_count": 6, "timestamp": "2025-05-27T14:35:02.770836"}
+2025-05-27 14:35:02,770 - memory_diagnostics - INFO - MEMORY EVENT: memory_state_loaded - {"short_term_count": 12, "long_term_count": 0, "context_count": 6, "timestamp": "2025-05-27T14:35:02.770836"}
+2025-05-27 14:35:08,978 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-05-27 14:35:08,978 - memory_diagnostics - INFO - MEMORY EVENT: logger_initialized - {"timestamp": "2025-05-27T14:35:08.978884"}
+2025-05-27 14:35:08,979 - memory_diagnostics - INFO - MEMORY EVENT: memory_state_loaded - {"short_term_count": 12, "long_term_count": 0, "context_count": 6, "timestamp": "2025-05-27T14:35:08.979340"}
+2025-05-27 14:35:09,721 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-05-27 14:37:24,440 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-05-27 14:37:24,440 - memory_diagnostics - INFO - MEMORY EVENT: logger_initialized - {"timestamp": "2025-05-27T14:37:24.440638"}
+2025-05-27 14:37:24,441 - memory_diagnostics - INFO - MEMORY EVENT: memory_state_loaded - {"short_term_count": 12, "long_term_count": 0, "context_count": 6, "timestamp": "2025-05-27T14:37:24.441204"}
+2025-05-27 14:37:24,445 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-05-27 14:37:24,445 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-05-27 14:37:24,445 - memory_diagnostics - INFO - MEMORY EVENT: logger_initialized - {"timestamp": "2025-05-27T14:37:24.445360"}
+2025-05-27 14:37:24,445 - memory_diagnostics - INFO - MEMORY EVENT: logger_initialized - {"timestamp": "2025-05-27T14:37:24.445360"}
+2025-05-27 14:37:24,445 - memory_diagnostics - INFO - MEMORY EVENT: memory_state_loaded - {"short_term_count": 12, "long_term_count": 0, "context_count": 6, "timestamp": "2025-05-27T14:37:24.445635"}
+2025-05-27 14:37:24,445 - memory_diagnostics - INFO - MEMORY EVENT: memory_state_loaded - {"short_term_count": 12, "long_term_count": 0, "context_count": 6, "timestamp": "2025-05-27T14:37:24.445635"}
+2025-05-27 14:37:30,519 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-05-27 14:37:30,519 - memory_diagnostics - INFO - MEMORY EVENT: logger_initialized - {"timestamp": "2025-05-27T14:37:30.519096"}
+2025-05-27 14:37:30,519 - memory_diagnostics - INFO - MEMORY EVENT: memory_state_loaded - {"short_term_count": 12, "long_term_count": 0, "context_count": 6, "timestamp": "2025-05-27T14:37:30.519534"}
+2025-05-27 14:37:31,264 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-05-27 14:37:31,264 - memory_diagnostics - INFO - MEMORY EVENT: logger_initialized - {"timestamp": "2025-05-27T14:37:31.264496"}
+2025-05-27 14:39:06,770 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-05-27 14:39:06,770 - memory_diagnostics - INFO - MEMORY EVENT: logger_initialized - {"timestamp": "2025-05-27T14:39:06.770597"}
+2025-05-27 14:39:06,771 - memory_diagnostics - INFO - MEMORY EVENT: memory_state_loaded - {"short_term_count": 12, "long_term_count": 0, "context_count": 6, "timestamp": "2025-05-27T14:39:06.771186"}
+2025-05-27 14:39:06,775 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-05-27 14:39:06,775 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-05-27 14:39:06,775 - memory_diagnostics - INFO - MEMORY EVENT: logger_initialized - {"timestamp": "2025-05-27T14:39:06.775364"}
+2025-05-27 14:39:06,775 - memory_diagnostics - INFO - MEMORY EVENT: logger_initialized - {"timestamp": "2025-05-27T14:39:06.775364"}
+2025-05-27 14:39:06,775 - memory_diagnostics - INFO - MEMORY EVENT: memory_state_loaded - {"short_term_count": 12, "long_term_count": 0, "context_count": 6, "timestamp": "2025-05-27T14:39:06.775632"}
+2025-05-27 14:39:06,775 - memory_diagnostics - INFO - MEMORY EVENT: memory_state_loaded - {"short_term_count": 12, "long_term_count": 0, "context_count": 6, "timestamp": "2025-05-27T14:39:06.775632"}
+2025-05-27 14:39:12,833 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-05-27 14:39:12,833 - memory_diagnostics - INFO - MEMORY EVENT: logger_initialized - {"timestamp": "2025-05-27T14:39:12.833657"}
+2025-05-27 14:39:12,834 - memory_diagnostics - INFO - MEMORY EVENT: memory_state_loaded - {"short_term_count": 12, "long_term_count": 0, "context_count": 6, "timestamp": "2025-05-27T14:39:12.834132"}
+2025-05-27 14:39:13,555 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-05-27 14:39:13,555 - memory_diagnostics - INFO - MEMORY EVENT: logger_initialized - {"timestamp": "2025-05-27T14:39:13.555502"}
+2025-05-27 14:45:08,048 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-05-27 14:45:08,048 - memory_diagnostics - INFO - MEMORY EVENT: logger_initialized - {"timestamp": "2025-05-27T14:45:08.048870"}
+2025-05-27 14:45:08,049 - memory_diagnostics - INFO - MEMORY EVENT: memory_state_loaded - {"short_term_count": 12, "long_term_count": 0, "context_count": 6, "timestamp": "2025-05-27T14:45:08.049441"}
+2025-05-27 14:45:08,053 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-05-27 14:45:08,053 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-05-27 14:45:08,053 - memory_diagnostics - INFO - MEMORY EVENT: logger_initialized - {"timestamp": "2025-05-27T14:45:08.053592"}
+2025-05-27 14:45:08,053 - memory_diagnostics - INFO - MEMORY EVENT: logger_initialized - {"timestamp": "2025-05-27T14:45:08.053592"}
+2025-05-27 14:45:08,053 - memory_diagnostics - INFO - MEMORY EVENT: memory_state_loaded - {"short_term_count": 12, "long_term_count": 0, "context_count": 6, "timestamp": "2025-05-27T14:45:08.053868"}
+2025-05-27 14:45:08,053 - memory_diagnostics - INFO - MEMORY EVENT: memory_state_loaded - {"short_term_count": 12, "long_term_count": 0, "context_count": 6, "timestamp": "2025-05-27T14:45:08.053868"}
+2025-05-27 15:35:49,960 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-05-27 15:35:49,960 - memory_diagnostics - INFO - MEMORY EVENT: logger_initialized - {"timestamp": "2025-05-27T15:35:49.960516"}
+2025-05-27 15:35:49,961 - memory_diagnostics - INFO - MEMORY EVENT: memory_state_loaded - {"short_term_count": 12, "long_term_count": 0, "context_count": 6, "timestamp": "2025-05-27T15:35:49.961368"}
+2025-05-27 15:35:49,966 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-05-27 15:35:49,966 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-05-27 15:35:49,966 - memory_diagnostics - INFO - MEMORY EVENT: logger_initialized - {"timestamp": "2025-05-27T15:35:49.966052"}
+2025-05-27 15:35:49,966 - memory_diagnostics - INFO - MEMORY EVENT: logger_initialized - {"timestamp": "2025-05-27T15:35:49.966052"}
+2025-05-27 15:35:49,966 - memory_diagnostics - INFO - MEMORY EVENT: memory_state_loaded - {"short_term_count": 12, "long_term_count": 0, "context_count": 6, "timestamp": "2025-05-27T15:35:49.966306"}
+2025-05-27 15:35:49,966 - memory_diagnostics - INFO - MEMORY EVENT: memory_state_loaded - {"short_term_count": 12, "long_term_count": 0, "context_count": 6, "timestamp": "2025-05-27T15:35:49.966306"}
+2025-05-27 15:47:39,825 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-05-27 15:47:39,826 - memory_diagnostics - INFO - MEMORY EVENT: logger_initialized - {"timestamp": "2025-05-27T15:47:39.826265"}
+2025-05-27 15:47:39,826 - memory_diagnostics - INFO - MEMORY EVENT: memory_state_loaded - {"short_term_count": 12, "long_term_count": 0, "context_count": 6, "timestamp": "2025-05-27T15:47:39.826873"}
+2025-05-27 15:47:39,830 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-05-27 15:47:39,830 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-05-27 15:47:39,830 - memory_diagnostics - INFO - MEMORY EVENT: logger_initialized - {"timestamp": "2025-05-27T15:47:39.830904"}
+2025-05-27 15:47:39,830 - memory_diagnostics - INFO - MEMORY EVENT: logger_initialized - {"timestamp": "2025-05-27T15:47:39.830904"}
+2025-05-27 15:47:39,831 - memory_diagnostics - INFO - MEMORY EVENT: memory_state_loaded - {"short_term_count": 12, "long_term_count": 0, "context_count": 6, "timestamp": "2025-05-27T15:47:39.831159"}
+2025-05-27 15:47:39,831 - memory_diagnostics - INFO - MEMORY EVENT: memory_state_loaded - {"short_term_count": 12, "long_term_count": 0, "context_count": 6, "timestamp": "2025-05-27T15:47:39.831159"}
+2025-05-27 16:36:43,769 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-05-27 16:36:43,769 - memory_diagnostics - INFO - MEMORY EVENT: logger_initialized - {"timestamp": "2025-05-27T16:36:43.769875"}
+2025-05-27 16:36:43,770 - memory_diagnostics - INFO - MEMORY EVENT: memory_state_loaded - {"short_term_count": 12, "long_term_count": 0, "context_count": 6, "timestamp": "2025-05-27T16:36:43.770470"}
+2025-05-27 16:36:43,774 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-05-27 16:36:43,774 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-05-27 16:36:43,774 - memory_diagnostics - INFO - MEMORY EVENT: logger_initialized - {"timestamp": "2025-05-27T16:36:43.774912"}
+2025-05-27 16:36:43,774 - memory_diagnostics - INFO - MEMORY EVENT: logger_initialized - {"timestamp": "2025-05-27T16:36:43.774912"}
+2025-05-27 16:36:43,775 - memory_diagnostics - INFO - MEMORY EVENT: memory_state_loaded - {"short_term_count": 12, "long_term_count": 0, "context_count": 6, "timestamp": "2025-05-27T16:36:43.775170"}
+2025-05-27 16:36:43,775 - memory_diagnostics - INFO - MEMORY EVENT: memory_state_loaded - {"short_term_count": 12, "long_term_count": 0, "context_count": 6, "timestamp": "2025-05-27T16:36:43.775170"}
+2025-05-27 16:46:01,842 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-05-27 16:46:01,842 - memory_diagnostics - INFO - MEMORY EVENT: logger_initialized - {"timestamp": "2025-05-27T16:46:01.842806"}
+2025-05-27 16:46:01,843 - memory_diagnostics - INFO - MEMORY EVENT: memory_state_loaded - {"short_term_count": 12, "long_term_count": 0, "context_count": 6, "timestamp": "2025-05-27T16:46:01.843400"}
+2025-05-27 16:46:01,847 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-05-27 16:46:01,847 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-05-27 16:46:01,847 - memory_diagnostics - INFO - MEMORY EVENT: logger_initialized - {"timestamp": "2025-05-27T16:46:01.847765"}
+2025-05-27 16:46:01,847 - memory_diagnostics - INFO - MEMORY EVENT: logger_initialized - {"timestamp": "2025-05-27T16:46:01.847765"}
+2025-05-27 16:46:01,848 - memory_diagnostics - INFO - MEMORY EVENT: memory_state_loaded - {"short_term_count": 12, "long_term_count": 0, "context_count": 6, "timestamp": "2025-05-27T16:46:01.848007"}
+2025-05-27 16:46:01,848 - memory_diagnostics - INFO - MEMORY EVENT: memory_state_loaded - {"short_term_count": 12, "long_term_count": 0, "context_count": 6, "timestamp": "2025-05-27T16:46:01.848007"}
+2025-05-27 16:46:09,276 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-05-27 16:46:09,276 - memory_diagnostics - INFO - MEMORY EVENT: logger_initialized - {"timestamp": "2025-05-27T16:46:09.276584"}
+2025-05-27 16:46:09,276 - memory_diagnostics - INFO - MEMORY EVENT: memory_state_loaded - {"short_term_count": 12, "long_term_count": 0, "context_count": 6, "timestamp": "2025-05-27T16:46:09.276983"}
+2025-05-27 16:46:09,279 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-05-27 16:46:09,279 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-05-27 16:46:09,279 - memory_diagnostics - INFO - MEMORY EVENT: logger_initialized - {"timestamp": "2025-05-27T16:46:09.279329"}
+2025-05-27 16:46:09,279 - memory_diagnostics - INFO - MEMORY EVENT: logger_initialized - {"timestamp": "2025-05-27T16:46:09.279329"}
+2025-05-27 16:46:09,279 - memory_diagnostics - INFO - MEMORY EVENT: memory_state_loaded - {"short_term_count": 12, "long_term_count": 0, "context_count": 6, "timestamp": "2025-05-27T16:46:09.279571"}
+2025-05-27 16:46:09,279 - memory_diagnostics - INFO - MEMORY EVENT: memory_state_loaded - {"short_term_count": 12, "long_term_count": 0, "context_count": 6, "timestamp": "2025-05-27T16:46:09.279571"}
+2025-05-27 16:46:59,493 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-05-27 16:46:59,494 - memory_diagnostics - INFO - MEMORY EVENT: logger_initialized - {"timestamp": "2025-05-27T16:46:59.494004"}
+2025-05-27 16:46:59,494 - memory_diagnostics - INFO - MEMORY EVENT: memory_state_loaded - {"short_term_count": 12, "long_term_count": 0, "context_count": 6, "timestamp": "2025-05-27T16:46:59.494809"}
+2025-05-27 16:46:59,498 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-05-27 16:46:59,498 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-05-27 16:46:59,498 - memory_diagnostics - INFO - MEMORY EVENT: logger_initialized - {"timestamp": "2025-05-27T16:46:59.498198"}
+2025-05-27 16:46:59,498 - memory_diagnostics - INFO - MEMORY EVENT: logger_initialized - {"timestamp": "2025-05-27T16:46:59.498198"}
+2025-05-27 16:46:59,498 - memory_diagnostics - INFO - MEMORY EVENT: memory_state_loaded - {"short_term_count": 12, "long_term_count": 0, "context_count": 6, "timestamp": "2025-05-27T16:46:59.498459"}
+2025-05-27 16:46:59,498 - memory_diagnostics - INFO - MEMORY EVENT: memory_state_loaded - {"short_term_count": 12, "long_term_count": 0, "context_count": 6, "timestamp": "2025-05-27T16:46:59.498459"}
+2025-05-27 17:45:09,862 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-05-27 17:45:09,862 - memory_diagnostics - INFO - MEMORY EVENT: logger_initialized - {"timestamp": "2025-05-27T17:45:09.862725"}
+2025-05-27 17:45:09,863 - memory_diagnostics - INFO - MEMORY EVENT: memory_state_loaded - {"short_term_count": 12, "long_term_count": 0, "context_count": 6, "timestamp": "2025-05-27T17:45:09.863416"}
+2025-05-27 17:45:09,867 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-05-27 17:45:09,867 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-05-27 17:45:09,867 - memory_diagnostics - INFO - MEMORY EVENT: logger_initialized - {"timestamp": "2025-05-27T17:45:09.867833"}
+2025-05-27 17:45:09,867 - memory_diagnostics - INFO - MEMORY EVENT: logger_initialized - {"timestamp": "2025-05-27T17:45:09.867833"}
+2025-05-27 17:45:09,868 - memory_diagnostics - INFO - MEMORY EVENT: memory_state_loaded - {"short_term_count": 12, "long_term_count": 0, "context_count": 6, "timestamp": "2025-05-27T17:45:09.868080"}
+2025-05-27 17:45:09,868 - memory_diagnostics - INFO - MEMORY EVENT: memory_state_loaded - {"short_term_count": 12, "long_term_count": 0, "context_count": 6, "timestamp": "2025-05-27T17:45:09.868080"}

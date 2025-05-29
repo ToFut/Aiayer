@@ -1,6 +1,7 @@
 <script>
     import { onMount, onDestroy, createEventDispatcher } from 'svelte';
     import { Bridge } from '../services/bridge';
+    import ScreenViewer from './ScreenViewer.svelte';
     
     // Create event dispatcher
     const dispatch = createEventDispatcher();
@@ -21,6 +22,7 @@
     let notificationCount = 0;
     let sensorData = null;
     let persistToMemory = true;
+    let showScreenViewer = false;
     
     // Position tracking for draggable widget
     let widgetX = 20;
@@ -262,6 +264,14 @@
         }
     }
     
+    function toggleScreenViewer() {
+        showScreenViewer = !showScreenViewer;
+    }
+    
+    function handleScreenViewerClose() {
+        showScreenViewer = false;
+    }
+    
     function toggleWidget() {
         console.log('Toggling widget:', { isMinimized, isExpanded }); // Debug log
         if (isMinimized) {
@@ -416,6 +426,18 @@
             <div class="connection-indicator connecting"></div>
         {/if}
     </div>
+    
+    <!-- Screen Viewer Modal -->
+    {#if showScreenViewer}
+        <div class="screen-viewer-modal">
+            <div class="screen-viewer-container">
+                <ScreenViewer 
+                    on:close={handleScreenViewerClose}
+                    bridgeService={bridge}
+                />
+            </div>
+        </div>
+    {/if}
 </div>
 
 <style>
@@ -1395,6 +1417,48 @@
         
         .widget:hover .widget-icon {
             opacity: 0.7;
+        }
+    }
+
+    /* Screen Viewer Modal Styles */
+    .screen-viewer-modal {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background: rgba(0, 0, 0, 0.8);
+        backdrop-filter: blur(8px);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 10000;
+        animation: modalFadeIn 0.3s ease;
+    }
+
+    .screen-viewer-container {
+        position: relative;
+        max-width: 95vw;
+        max-height: 95vh;
+        border-radius: 16px;
+        overflow: hidden;
+        box-shadow: 0 16px 64px rgba(0, 0, 0, 0.3);
+        animation: modalSlideIn 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    @keyframes modalFadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+    }
+
+    @keyframes modalSlideIn {
+        from { 
+            opacity: 0; 
+            transform: scale(0.9) translateY(20px); 
+        }
+        to { 
+            opacity: 1; 
+            transform: scale(1) translateY(0); 
         }
     }
 </style>

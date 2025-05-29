@@ -1,0 +1,10 @@
+FROM llama3.2:1b
+
+PARAMETER num_ctx 2048
+PARAMETER num_batch 256
+PARAMETER num_thread 4
+PARAMETER num_gpu 1
+
+TEMPLATE """{{ .Prompt }}"""
+
+SYSTEM "You are a helpful assistant. Be concise."

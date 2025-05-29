@@ -14,6 +14,16 @@ from typing import Dict, Any, Optional
 import aiohttp
 import traceback
 
+# Import the warmup manager for fast responses
+try:
+    sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+    from llm_warmup_manager import get_warmup_manager
+    WARMUP_MANAGER_AVAILABLE = True
+    logging.getLogger(__name__).info("🔥 LLM Warmup Manager available")
+except ImportError:
+    WARMUP_MANAGER_AVAILABLE = False
+    logging.getLogger(__name__).warning("⚠️ LLM Warmup Manager not available")
+
 # Add parent directory to Python path for imports
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
@@ -40,15 +50,19 @@ logger = logging.getLogger(__name__)
 class LLMService:
     """LLM service that handles language model operations and WebSocket communication."""
     
-    def __init__(self, model_name="llama3.2:latest", host="localhost", port=11434):
+    def __init__(self, model_name="llama3.2:1b", host="localhost", port=11434):
         """
         Initialize the LLM interface.
         
         Args:
-            model_name (str): Name of the Ollama model to use (llama3.2:latest for chat, llava for screen sensor)
+            model_name (str): Name of the Ollama model to use (llama3.2:1b for fast responses)
             host (str): Hostname where Ollama API is running
             port (int): Port for Ollama API
         """
+        # Use fastest model by default
+        if model_name == "llama3.2:latest":
+            model_name = "llama3.2:1b"  # Force 1b for speed
+            
         self.model_name = model_name
         self.host = host
         self.port = port
@@ -56,9 +70,12 @@ class LLMService:
         self.logger = logging.getLogger(__name__)
         self.running = False
         self.last_request_time = 0
-        self.min_request_interval = 0.5  # Reduced from 1 to 0.5 seconds
-        self.timeout = 30  # Reduced from 60 to 30 seconds
-        self.max_retries = 2  # Reduced from 3 to 2
+        self.min_request_interval = 0.1  # Very fast interval for warmup manager
+        self.timeout = 20  # Consistent timeout value across system components
+        self.max_retries = 2  # Increased retries for better reliability
+        
+        # Warmup manager for fast responses
+        self.warmup_manager = None
         
         # Initialize aiohttp session with connection pooling
         self.session = None
@@ -84,15 +101,24 @@ class LLMService:
         self._initialize_llm()
     
     def _initialize_llm(self):
-        """Initialize the LLM client."""
+        """Initialize the LLM client with warmup manager."""
         try:
-            # Import and initialize Ollama client
+            # Always create a fallback LocalLLM client
             from llm.model import LocalLLM
-            self.llm_client = LocalLLM(model_name=self.model_name)  # Use the available model
-            # Start the LLM client
-            asyncio.create_task(self.llm_client.start())
+            self.llm_client = LocalLLM(model_name=self.model_name)
+            
+            # Check if warmup manager is available
+            if WARMUP_MANAGER_AVAILABLE:
+                logger.info("🔥 Initializing with LLM Warmup Manager for fast responses")
+                logger.info("📋 Standard LLM client created as fallback")
+                # Warmup manager will be initialized async in start()
+                self.use_warmup_manager = True
+            else:
+                logger.info("⚠️ Using standard LLM client only")
+                self.use_warmup_manager = False
+            
             self.running = True
-            logger.info("LLM client initialized with Ollama")
+            logger.info("LLM client initialized")
         except Exception as e:
             logger.error(f"Error initializing LLM client: {e}")
             logger.error(f"Python path: {sys.path}")  # Add debug logging
@@ -102,7 +128,15 @@ class LLMService:
     async def start(self):
         """Start the LLM service."""
         try:
-            if not self.llm_client:
+            # Initialize warmup manager if using it
+            if WARMUP_MANAGER_AVAILABLE and self.use_warmup_manager:
+                logger.info("🔥 Starting LLM Warmup Manager...")
+                self.warmup_manager = await get_warmup_manager()
+                if self.warmup_manager.is_model_warm():
+                    logger.info("✅ LLM model is warm and ready for fast responses")
+                else:
+                    logger.warning("⚠️ LLM model warmup in progress...")
+            elif not self.llm_client:
                 logger.error("LLM client not initialized")
                 return False
             
@@ -229,67 +263,72 @@ class LLMService:
     async def generate_response(self, query: str, context: Dict[str, Any] = None) -> str:
         """Generate a response using the LLM with context."""
         try:
-            # Build system message with context
-            system_message = "You are a helpful assistant with access to the user's environment context.\n\n"
-            
-            # Try to load context from last_context.json if not provided
-            if not context:
-                try:
-                    context_file = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'memory', 'last_context.json')
-                    if os.path.exists(context_file):
-                        with open(context_file, 'r') as f:
-                            loaded_context = json.load(f)
-                            if loaded_context:
-                                context = loaded_context
-                                logger.info(f"Loaded context from {context_file}")
-                except Exception as e:
-                    logger.warning(f"Could not load context from file: {e}")
-            
-            # Enhanced context integration
-            if context:
-                # Add active window and application context
-                active_window = context.get('active_window')
-                active_app = context.get('active_app')
-                if active_window:
-                    system_message += f"Active Window: {active_window}\n"
-                if active_app:
-                    system_message += f"Active Application: {active_app}\n"
+            # Check if we have a pre-built system message from enhanced handlers
+            if context and context.get("system_message"):
+                system_message = context["system_message"]
+                logger.info(f"Using pre-built system message with context: {len(system_message)} chars")
+            else:
+                # Build system message with context
+                system_message = "You are a helpful assistant with access to the user's environment context.\n\n"
                 
-                # Add running applications
-                active_apps = context.get('active_apps', [])
-                if active_apps:
-                    system_message += "Running Applications:\n"
-                    for app in active_apps[:5]:  # Show top 5 apps
-                        system_message += f"- {app}\n"
+                # Try to load context from last_context.json if not provided
+                if not context:
+                    try:
+                        context_file = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'memory', 'last_context.json')
+                        if os.path.exists(context_file):
+                            with open(context_file, 'r') as f:
+                                loaded_context = json.load(f)
+                                if loaded_context:
+                                    context = loaded_context
+                                    logger.info(f"Loaded context from {context_file}")
+                    except Exception as e:
+                        logger.warning(f"Could not load context from file: {e}")
                 
-                # Add screen content
-                screen_text = context.get('screen_text', '')
-                if screen_text:
-                    # Truncate very long text
-                    if len(screen_text) > 1000:
-                        truncated_text = screen_text[:1000] + "...(truncated)"
-                    else:
-                        truncated_text = screen_text
-                    system_message += f"\nScreen Content:\n{truncated_text}\n"
-                
-                # Add window history if available
-                window_history = context.get('window_history', [])
-                if window_history:
-                    system_message += "\nRecent Window History:\n"
-                    for window in window_history[:3]:  # Show last 3 windows
-                        system_message += f"- {window}\n"
-                
-                # Add LLaVA visual description if available
-                visual_context = context.get('visual_context', '')
-                if visual_context:
-                    system_message += f"\nVisual Content Description:\n{visual_context}\n"
+                # Enhanced context integration (only if no pre-built system message)
+                if context:
+                    # Add active window and application context
+                    active_window = context.get('active_window')
+                    active_app = context.get('active_app')
+                    if active_window:
+                        system_message += f"Active Window: {active_window}\n"
+                    if active_app:
+                        system_message += f"Active Application: {active_app}\n"
                     
-                # Add timestamp information
-                ts = context.get('timestamp')
-                if ts:
-                    from datetime import datetime
-                    date_str = datetime.fromtimestamp(ts).strftime('%Y-%m-%d %H:%M:%S')
-                    system_message += f"\nContext Timestamp: {date_str}\n"
+                    # Add running applications
+                    active_apps = context.get('active_apps', [])
+                    if active_apps:
+                        system_message += "Running Applications:\n"
+                        for app in active_apps[:5]:  # Show top 5 apps
+                            system_message += f"- {app}\n"
+                    
+                    # Add screen content
+                    screen_text = context.get('screen_text', '')
+                    if screen_text:
+                        # Truncate very long text
+                        if len(screen_text) > 1000:
+                            truncated_text = screen_text[:1000] + "...(truncated)"
+                        else:
+                            truncated_text = screen_text
+                        system_message += f"\nScreen Content:\n{truncated_text}\n"
+                    
+                    # Add window history if available
+                    window_history = context.get('window_history', [])
+                    if window_history:
+                        system_message += "\nRecent Window History:\n"
+                        for window in window_history[:3]:  # Show last 3 windows
+                            system_message += f"- {window}\n"
+                    
+                    # Add LLaVA visual description if available
+                    visual_context = context.get('visual_context', '')
+                    if visual_context:
+                        system_message += f"\nVisual Content Description:\n{visual_context}\n"
+                        
+                    # Add timestamp information
+                    ts = context.get('timestamp')
+                    if ts:
+                        from datetime import datetime
+                        date_str = datetime.fromtimestamp(ts).strftime('%Y-%m-%d %H:%M:%S')
+                        system_message += f"\nContext Timestamp: {date_str}\n"
                 
             # Add instructions for special queries
             if "what am i seeing" in query.lower() or "what's on my screen" in query.lower():
@@ -304,9 +343,26 @@ class LLMService:
                 {"role": "user", "content": query}
             ]
             
-            # Generate response
-            response = await self.llm_client.generate_response(messages)
-            return response
+            # Use warmup manager if available for fast responses
+            if WARMUP_MANAGER_AVAILABLE and self.use_warmup_manager and self.warmup_manager:
+                logger.info("⚡ Using warmup manager for fast response...")
+                response = await self.warmup_manager.fast_generate_response(
+                    messages, 
+                    max_tokens=self.max_tokens, 
+                    temperature=self.temperature
+                )
+                return response
+            else:
+                # Fallback to standard LLM client
+                logger.info("🐌 Using standard LLM client...")
+                # Ensure LLM client is started
+                if not self.llm_client.running:
+                    logger.info("Starting LLM client...")
+                    await self.llm_client.start()
+                
+                # Generate response
+                response = await self.llm_client.generate_response(messages)
+                return response
             
         except Exception as e:
             logger.error(f"Error generating response: {e}")
@@ -435,6 +491,11 @@ class LLMService:
             
             # Initialize the HTTP session
             self._init_session()
+            
+            # Start the LLM client if using standard client
+            if self.llm_client and hasattr(self.llm_client, 'start'):
+                await self.llm_client.start()
+                logger.info("LocalLLM client started successfully")
             
             # Test connection to Ollama
             async with self.session.get(f"{self.base_url}/api/tags") as response:

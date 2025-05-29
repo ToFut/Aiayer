@@ -57,6 +57,7 @@ class RealLLMBackend8767:
         self.start_time = datetime.now()
         self.ollama_url = "http://localhost:11434"
         self.model = "llama3.2:1b"  # Fast model
+        self.timeout = 20  # Consistent timeout with other components
         
         # Initialize automation systems
         self.brain_router = None
@@ -65,13 +66,25 @@ class RealLLMBackend8767:
         
         if BRAIN_ROUTER_AVAILABLE:
             try:
-                # Import Ask handler for other modes
-                from brain.handlers.ask_mode_handler import handle_ask_mode
-                self.ask_handler = handle_ask_mode
-                logger.info("🧠 Ask Mode Handler initialized")
+                # Import Enhanced Ask handler and Suggest handler
+                from brain.handlers.enhanced_ask_mode_handler import handle_enhanced_ask_mode
+                from brain.handlers.suggest_mode_handler import handle_suggest_mode
+                self.ask_handler = handle_enhanced_ask_mode
+                self.suggest_handler = handle_suggest_mode
+                logger.info("🧠 Enhanced Ask Mode Handler initialized")
+                logger.info("🧠 Suggest Mode Handler initialized")
             except Exception as e:
-                logger.error(f"Failed to initialize ask handler: {e}")
-                self.ask_handler = None
+                logger.error(f"Failed to initialize enhanced handlers: {e}")
+                # Fallback to original ask handler
+                try:
+                    from brain.handlers.ask_mode_handler import handle_ask_mode
+                    self.ask_handler = handle_ask_mode
+                    self.suggest_handler = None
+                    logger.info("🧠 Fallback Ask Mode Handler initialized")
+                except Exception as e2:
+                    logger.error(f"Failed to initialize fallback ask handler: {e2}")
+                    self.ask_handler = None
+                    self.suggest_handler = None
         
         if REAL_AUTOMATION_AVAILABLE:
             logger.info("🤖 Real Automation Handler ready for AGENT mode")
@@ -178,6 +191,23 @@ class RealLLMBackend8767:
         try:
             self.connected_clients.add(client_id)
             logger.info(f"Client connected: {client_id} from {websocket.remote_address[0]}")
+            
+            # Send connection establishment message
+            connection_msg = {
+                "type": "connection_established",
+                "message": "Real LLM Backend 8767 with Enhanced Ask/Suggest Handlers",
+                "client_id": client_id,
+                "features": {
+                    "enhanced_ask_mode": True,
+                    "enhanced_suggest_mode": True,
+                    "semantic_search": True,
+                    "visual_context": True,
+                    "streaming_responses": True,
+                    "all_chat_modes": ["ask", "agent", "suggest", "general"]
+                },
+                "timestamp": datetime.now().isoformat()
+            }
+            await websocket.send(json.dumps(connection_msg))
             
             async for message in websocket:
                 try:
@@ -337,9 +367,9 @@ class RealLLMBackend8767:
                     logger.error(f"Error with Real Automation Handler: {e}")
                     # Fallback to regular LLM
             
-            # Use Brain Router handlers for other modes
+            # Use Brain Router handlers for Ask and Suggest modes
             elif mode == "Ask" and self.ask_handler and BRAIN_ROUTER_AVAILABLE:
-                logger.info(f"🧠 Routing {mode} mode request to Brain Router: {message}")
+                logger.info(f"🧠 Routing {mode} mode request to Enhanced Brain Router: {message}")
                 
                 # Create chat request object
                 from brain.core.brain_router import ChatRequest, ChatMode, Priority
@@ -356,12 +386,14 @@ class RealLLMBackend8767:
                     brain_response = await self.ask_handler(request)
                     
                     if brain_response.success:
-                        return {
+                        response_data = {
                             "type": "final_response",
                             "mode": mode,
                             "response": brain_response.response,
                             "ai_powered": True,
                             "brain_router_used": True,
+                            "enhanced_memory_used": brain_response.metadata.get("enhanced_memory_used", False),
+                            "semantic_search_used": brain_response.metadata.get("semantic_search_used", False),
                             "processing_time": brain_response.processing_time,
                             "confidence": brain_response.confidence,
                             "verification_status": brain_response.verification_status,
@@ -369,6 +401,58 @@ class RealLLMBackend8767:
                             "client_id": client_id,
                             "timestamp": datetime.now().isoformat()
                         }
+                        
+                        # Add metadata if available
+                        if brain_response.metadata:
+                            response_data["metadata"] = brain_response.metadata
+                        
+                        return response_data
+                    else:
+                        # Fallback to regular LLM if handler fails
+                        logger.warning(f"{mode} Handler failed, falling back to LLM: {brain_response.response}")
+                except Exception as e:
+                    logger.error(f"Error with {mode} Handler: {e}")
+                    # Fallback to regular LLM
+            
+            elif mode == "Suggest" and hasattr(self, 'suggest_handler') and self.suggest_handler and BRAIN_ROUTER_AVAILABLE:
+                logger.info(f"🧠 Routing {mode} mode request to Suggest Handler: {message}")
+                
+                # Create chat request object for Suggest mode
+                from brain.core.brain_router import ChatRequest, ChatMode, Priority
+                request = ChatRequest(
+                    mode=ChatMode.SUGGEST,
+                    query=message,
+                    user_id=client_id,
+                    session_id=session_id,
+                    timestamp=time.time(),
+                    context={"source": "real_llm_backend_8767"}
+                )
+                
+                try:
+                    brain_response = await self.suggest_handler(request)
+                    
+                    if brain_response.success:
+                        response_data = {
+                            "type": "final_response",
+                            "mode": mode,
+                            "response": brain_response.response,
+                            "ai_powered": True,
+                            "brain_router_used": True,
+                            "suggest_mode_used": brain_response.metadata.get("suggest_mode_used", False),
+                            "memory_integrated": brain_response.metadata.get("memory_integrated", False),
+                            "processing_time": brain_response.processing_time,
+                            "confidence": brain_response.confidence,
+                            "verification_status": brain_response.verification_status,
+                            "resources_used": brain_response.resources_used,
+                            "client_id": client_id,
+                            "timestamp": datetime.now().isoformat()
+                        }
+                        
+                        # Add metadata if available
+                        if brain_response.metadata:
+                            response_data["metadata"] = brain_response.metadata
+                        
+                        return response_data
                     else:
                         # Fallback to regular LLM if handler fails
                         logger.warning(f"{mode} Handler failed, falling back to LLM: {brain_response.response}")
@@ -427,19 +511,39 @@ class RealLLMBackend8767:
             import functools
             
             def make_request():
-                response = requests.post(
-                    f"{self.ollama_url}/api/generate",
-                    json=payload,
-                    timeout=40  # Extended timeout for better reliability
-                )
-                response.raise_for_status()
-                return response.json()
+                try:
+                    response = requests.post(
+                        f"{self.ollama_url}/api/generate",
+                        json=payload,
+                        timeout=self.timeout  # Use consistent timeout attribute
+                    )
+                    response.raise_for_status()
+                    return response.json()
+                except requests.exceptions.ReadTimeout:
+                    logger.error("Ollama request timed out - likely processing a large request")
+                    raise Exception("Request timed out. The model is taking too long to respond.")
+                except requests.exceptions.ConnectionError:
+                    logger.error("Ollama connection error - service may be down")
+                    raise Exception("Unable to connect to LLM service. Please check if Ollama is running.")
+                except Exception as e:
+                    logger.error(f"Unexpected Ollama error: {str(e)}")
+                    raise
             
             # Run in thread pool to avoid blocking
             loop = asyncio.get_event_loop()
-            result = await loop.run_in_executor(None, make_request)
+            for attempt in range(3):  # Try up to 3 times
+                try:
+                    result = await loop.run_in_executor(None, make_request)
+                    return result.get("response", "I don't have a response for that.").strip()
+                except Exception as e:
+                    if attempt < 2:  # If not last attempt
+                        logger.warning(f"Retrying Ollama request ({attempt+1}/3): {str(e)}")
+                        await asyncio.sleep(0.5 * (attempt + 1))  # Backoff
+                    else:
+                        raise  # Last attempt failed, propagate error
             
-            return result.get("response", "I don't have a response for that.").strip()
+            # This shouldn't be reached due to the exception above
+            return "Error generating response."
             
         except Exception as e:
             logger.error(f"Ollama API error: {e}")

@@ -1,0 +1,216 @@
+INFO:memory.enhanced_semantic_search:Enhanced semantic search initialized with embedding dim: 384
+INFO:memory.enhanced_semantic_search:Hybrid retrieval enabled: True
+INFO:memory.semantic_search_agent:Loading 743 existing documents from storage
+INFO:memory.semantic_search_agent:EnterpriseVectorStore initialized with enterprise-grade features
+INFO:memory.semantic_search_agent:SemanticSearchAgent initialized with enterprise-grade capabilities
+INFO:agent_workflow.input_controller:Detected screen size: 1470x956
+INFO:agent_workflow.input_controller:Input listeners started successfully
+INFO:agent_workflow.input_controller:🚨 Emergency shutdown: Press Ctrl+1 to immediately stop agent
+INFO:llava_processor:Connected to Ollama API v0.6.8
+INFO:total_screen_analyzer:LLaVA visual processor initialized for total screen analysis
+INFO:total_screen_analyzer:Total Screen Analyzer initialized with 8s interval
+INFO:universal_intelligent_automation_handler:🤖 Universal automation components loaded successfully
+INFO:memory.semantic_search_agent:Loading 743 existing documents from storage
+INFO:memory.semantic_search_agent:EnterpriseVectorStore initialized with enterprise-grade features
+INFO:memory.semantic_search_agent:SemanticSearchAgent initialized with enterprise-grade capabilities
+INFO:application_integration_framework:📱 Registered 2 application integrators
+INFO:application_integration_framework:📱 Registered 2 application integrators
+INFO:sensors.process_sensor:Process sensor initialized with config: {'interval_sec': 5, 'max_memory_mb': 50, 'cleanup_threshold_mb': 25, 'max_errors': 3, 'exclude_patterns': ['system', 'kernel'], 'max_processes': 100}
+INFO:memory.memory_system:Memory logger initialized
+INFO:memory_diagnostics:Memory diagnostic logger initialized
+INFO:memory_diagnostics:MEMORY EVENT: logger_initialized - {"timestamp": "2025-05-27T13:30:44.985581"}
+INFO:memory.memory_system:Diagnostic logger initialized
+2025-05-27 13:30:44,985 - INFO - [ConsciousMemory] Initialized as middle layer for memory system
+INFO:memory.conscious_memory:[ConsciousMemory] Initialized as middle layer for memory system
+INFO:memory.memory_system:Conscious memory initialized
+INFO:memory.enhanced_semantic_search:Enhanced semantic search initialized with embedding dim: 384
+INFO:memory.enhanced_semantic_search:Hybrid retrieval enabled: True
+INFO:memory.memory_system:Enhanced semantic search initialized
+INFO:memory.memory_system:🔄 Loading memory state from /Users/segevbin/Desktop/SensAI/Aiayer/memory/memory/memory_state.json
+INFO:memory.memory_system:  - Found 12 short-term memory items
+INFO:memory.memory_system:  - No long-term memory found, initializing empty
+INFO:memory.memory_system:  - Found context memory with 6 items
+INFO:memory.memory_system:✅ Successfully loaded memory state
+INFO:memory_diagnostics:MEMORY EVENT: memory_state_loaded - {"short_term_count": 12, "long_term_count": 0, "context_count": 6, "timestamp": "2025-05-27T13:30:44.986346"}
+INFO:memory.memory_system:Memory system initialized
+INFO:enhanced_realtime_system_bridge:EnhancedRealtimeSystemBridge initialized - living in the system, not capturing it
+INFO:__main__:🚀 Efficient system bridge initialized - living in the system!
+INFO:__main__:✅ Using efficient OS integration - no screen capture overhead
+INFO:__main__:Universal Intelligent Automation handler initialized for Agent mode
+INFO:__main__:Contextual AI Backend initialized - Ollama: True, Memory: Active
+INFO:__main__:🚀 Starting Enhanced Enterprise Backend 8767 with Efficient System Integration...
+INFO:__main__:🧠 Contextual AI responses enabled
+INFO:__main__:🔍 Semantic memory integration active
+INFO:__main__:🎯 Modes: Agent, Ask, Suggest, General (all contextual)
+INFO:__main__:🚀 Starting efficient system bridge...
+INFO:__main__:✅ Efficient system bridge started successfully
+INFO:__main__:✅ Enhanced Enterprise Backend 8767 started successfully
+INFO:__main__:🌐 WebSocket server listening on ws://localhost:8767
+INFO:__main__:🤖 Ollama integration: ✅ Active
+INFO:__main__:🧠 Contextual memory system ready
+INFO:__main__:🚀 Efficient system integration active - no screen capture overhead!
+INFO:__main__:⚡ System Bridge WebSocket: ws://localhost:8768
+INFO:enhanced_realtime_system_bridge:Starting enhanced real-time system bridge...
+INFO:system_integrated_monitor:🚀 Starting system-integrated monitoring (no screen capture)
+INFO:system_integrated_monitor:Platform: Darwin 23.1.0
+INFO:system_integrated_monitor:🍎 Starting macOS system integration...
+INFO:websockets.server:server listening on 127.0.0.1:8767
+INFO:websockets.server:server listening on [::1]:8767
+INFO:websockets.server:connection open
+INFO:__main__:Client connected: client_1748367045297 from ::1
+INFO:websockets.server:connection open
+INFO:__main__:Client connected: client_1748367045538 from ::1
+INFO:__main__:Processing contextual register from client_1748367045538
+INFO:__main__:Client registration: client_1748367045538 (ui v1.0.0)
+INFO:websockets.server:connection open
+INFO:__main__:Client connected: client_1748367055789 from ::1
+INFO:__main__:Processing contextual register from client_1748367055789
+INFO:__main__:Client registration: client_1748367055789 (test_client v1.0.0)
+WARNING:__main__:No system state available from bridge
+/Users/segevbin/Desktop/SensAI/Aiayer/memory/semantic_search_agent.py:336: RuntimeWarning: divide by zero encountered in log
+  idf = np.log(self.total_documents / (self.document_frequencies[token] + 1))
+INFO:memory.semantic_search_agent:Document 6dd28db169600a189c963afdb702313309a2b17ff8e140a77b9689ceff615d97 added to enterprise vector store
+INFO:memory.semantic_search_agent:Memory added successfully: 6dd28db169600a189c963afdb702313309a2b17ff8e140a77b9689ceff615d97
+INFO:memory.semantic_search_agent:Document 5c4d22b25be8336dc59280a78df3b8bfa9783c2fa5049149620ee10039ae36a0 added to enterprise vector store
+INFO:memory.semantic_search_agent:Memory added successfully: 5c4d22b25be8336dc59280a78df3b8bfa9783c2fa5049149620ee10039ae36a0
+INFO:memory.semantic_search_agent:Document f978c86742c9cb574323d99bd60e2f9b474d0173defd832d7477b11b2a3f9146 added to enterprise vector store
+INFO:memory.semantic_search_agent:Memory added successfully: f978c86742c9cb574323d99bd60e2f9b474d0173defd832d7477b11b2a3f9146
+INFO:memory.semantic_search_agent:Document a64dc7674f37eea27359cb3df71de56e0d5bc5a8b57baffe00fba28bf4a9d524 added to enterprise vector store
+INFO:memory.semantic_search_agent:Memory added successfully: a64dc7674f37eea27359cb3df71de56e0d5bc5a8b57baffe00fba28bf4a9d524
+INFO:memory.semantic_search_agent:Document f736fb16c66bcc59f98e3e336ca6fbc21cc05f1d15bd09ef45afc472a8502b27 added to enterprise vector store
+INFO:memory.semantic_search_agent:Memory added successfully: f736fb16c66bcc59f98e3e336ca6fbc21cc05f1d15bd09ef45afc472a8502b27
+INFO:memory.semantic_search_agent:Document 2ab8aa992de9a1b184e41c97a6b94778b45d19814863efb81b3a67f35f50aad3 added to enterprise vector store
+INFO:memory.semantic_search_agent:Memory added successfully: 2ab8aa992de9a1b184e41c97a6b94778b45d19814863efb81b3a67f35f50aad3
+INFO:memory.semantic_search_agent:Document ca249b336346820786ff41d1f22f6ede5e4f7c457741d5db2840a37bbe1b1d1f added to enterprise vector store
+INFO:memory.semantic_search_agent:Memory added successfully: ca249b336346820786ff41d1f22f6ede5e4f7c457741d5db2840a37bbe1b1d1f
+INFO:memory.semantic_search_agent:Document b7b2918c501d3b70c45a84881e9d77443e71bf58a332027b64bc03e828e9214e added to enterprise vector store
+INFO:memory.semantic_search_agent:Memory added successfully: b7b2918c501d3b70c45a84881e9d77443e71bf58a332027b64bc03e828e9214e
+INFO:memory.semantic_search_agent:Document b0425819ac339621f9645438b9b8493917c961356d46691503f05cf85318ff55 added to enterprise vector store
+INFO:memory.semantic_search_agent:Memory added successfully: b0425819ac339621f9645438b9b8493917c961356d46691503f05cf85318ff55
+INFO:memory.semantic_search_agent:Document 150c073aff65a3817545baff20bd32bee3d3c6e47fe9a085625151cbfbdd9244 added to enterprise vector store
+INFO:memory.semantic_search_agent:Memory added successfully: 150c073aff65a3817545baff20bd32bee3d3c6e47fe9a085625151cbfbdd9244
+INFO:__main__:Enterprise contextual knowledge initialized
+INFO:memory.semantic_search_agent:Document 514330259e0856ad91f661f0a002ec0c7827412c328484d0fb8492b32798e19a added to enterprise vector store
+INFO:memory.semantic_search_agent:Memory added successfully: 514330259e0856ad91f661f0a002ec0c7827412c328484d0fb8492b32798e19a
+/Users/segevbin/Desktop/SensAI/Aiayer/memory/semantic_search_agent.py:223: RuntimeWarning: invalid value encountered in scalar divide
+  similarity = np.dot(query_embedding, doc_embedding) / (
+INFO:memory.semantic_search_agent:Similarity search completed in 0.0028s, found 5 results
+INFO:memory.semantic_search_agent:Search completed successfully in 0.0051s, found 5 results
+INFO:__main__:🎯 [STREAMING] Creating Agent automation plan for: open Safari and search for flights
+INFO:__main__:🔧 Automation handler available: True
+INFO:__main__:🧠 Using Universal Intelligent Automation handler for real LLM planning
+INFO:llm.llm_service:🔥 LLM Warmup Manager available
+INFO:llm.llm_service:🔥 Initializing with LLM Warmup Manager for fast responses
+INFO:llm.llm_service:📋 Standard LLM client created as fallback
+INFO:llm.llm_service:LLM client initialized
+INFO:llm.llm_service:🔥 Initializing with LLM Warmup Manager for fast responses
+INFO:llm.llm_service:📋 Standard LLM client created as fallback
+INFO:llm.llm_service:LLM client initialized
+INFO:llm.model:Connected to Ollama version: 0.6.8
+INFO:llm.llm_service:LocalLLM client started successfully
+INFO:llm.llm_service:LLM service initialized successfully
+INFO:universal_intelligent_automation_handler:🧠 LLM service initialized for universal planning (async)
+INFO:llm.llm_service:Generated system message with context: 76 chars
+INFO:llm.llm_service:🐌 Using standard LLM client...
+WARNING:__main__:No system state available from bridge
+INFO:memory.semantic_search_agent:Document 2496d9fd7c51e213d77e165a352c1b38184cf0f6be9f014e295e82c89e8cb97a added to enterprise vector store
+INFO:memory.semantic_search_agent:Memory added successfully: 2496d9fd7c51e213d77e165a352c1b38184cf0f6be9f014e295e82c89e8cb97a
+INFO:memory.semantic_search_agent:Similarity search completed in 0.0067s, found 5 results
+INFO:memory.semantic_search_agent:Search completed successfully in 0.0129s, found 5 results
+INFO:__main__:🎯 [STREAMING] Creating Agent automation plan for: search best flights in safari
+INFO:__main__:🔧 Automation handler available: True
+INFO:__main__:🧠 Using Universal Intelligent Automation handler for real LLM planning
+INFO:llm.llm_service:Generated system message with context: 76 chars
+INFO:llm.llm_service:🐌 Using standard LLM client...
+INFO:universal_intelligent_automation_handler:🧹 Cleaned JSON response: {
+"title": "Safari Web Search: Open Safari and Search for Flights",
+"description": "Open Safari, navigate to Google, search for flights from NYC to Miami",
+"request_type": "web_search",
+"complexity_sc...
+ERROR:universal_intelligent_automation_handler:Failed to parse LLM JSON response: Invalid control character at: line 23 column 30 (char 684)
+ERROR:universal_intelligent_automation_handler:Raw response: ```json
+{
+  "title": "Safari Web Search: Open Safari and Search for Flights",
+  "description": "Open Safari, navigate to Google, search for flights from NYC to Miami",
+  "request_type": "web_search",
+  "complexity_score": 0.2,
+  "estimated_duration": 30, // seconds
+  "success_probability": 0.9,
+  "fallback_strategies": [
+    {
+      "id": "fallback_strategy_1",
+      "description": "If Google flight search results are too slow to load, fall back to default browser"
+    },
+    {
+      "id": "fall...
+ERROR:universal_intelligent_automation_handler:Error creating universal automation plan: LLM returned invalid JSON: Invalid control character at: line 23 column 30 (char 684)
+INFO:__main__:🧠 Universal plan result: False - processing_time: 0.00s
+WARNING:__main__:⚠️ [STREAMING] Agent automation failed: Unknown automation error
+ERROR:__main__:Error in fast warmup response: received 1000 (OK); then sent 1000 (OK)
+ERROR:__main__:Ollama error: received 1000 (OK); then sent 1000 (OK)
+INFO:__main__:🎯 Executing Agent mode automation for: open Safari and search for flights
+INFO:universal_intelligent_automation_handler:🔄 Legacy handle_user_instruction called, creating plan for: open Safari and search for flights
+INFO:llm.llm_service:Generated system message with context: 76 chars
+INFO:llm.llm_service:🐌 Using standard LLM client...
+INFO:universal_intelligent_automation_handler:🧹 Cleaned JSON response: {
+"title": "Search Best Flights in Safari",
+"description": "User wants to find best flights in Safari, and we need to automate this process using various web search tools.",
+"request_type": "flight_se...
+ERROR:universal_intelligent_automation_handler:Failed to parse LLM JSON response: Expecting value: line 6 column 23 (char 254)
+ERROR:universal_intelligent_automation_handler:Raw response: ```json
+{
+  "title": "Search Best Flights in Safari",
+  "description": "User wants to find best flights in Safari, and we need to automate this process using various web search tools.",
+  "request_type": "flight_search",
+  "complexity_score": 0.5,
+  "estimated_duration": total_seconds(30),
+  "success_probability": 0.9,
+  "fallback_strategies": ["Open Google", "Use Bing", "Ask Siri"],
+  "user_guidance_needed": true,
+  "steps": [
+    {
+      "id": "step_1",
+      "description": "Open Safari and na...
+ERROR:universal_intelligent_automation_handler:Error creating universal automation plan: LLM returned invalid JSON: Expecting value: line 6 column 23 (char 254)
+INFO:__main__:🧠 Universal plan result: False - processing_time: 0.00s
+WARNING:__main__:⚠️ [STREAMING] Agent automation failed: Unknown automation error
+INFO:llm_warmup_manager:🔥 LLM Warmup Manager initialized
+INFO:llm_warmup_manager:🔥 Warming up model...
+INFO:llm_warmup_manager:✅ Using fast model: llama3.2:1b
+INFO:llm_warmup_manager:✅ Model llama3.2:1b warmed up in 0.86s
+INFO:llm_warmup_manager:🔥 LLM Warmup Manager started successfully
+INFO:universal_intelligent_automation_handler:🧹 Cleaned JSON response: {
+"title": "Safari Flight Search",
+"description": "Automated flight search using Safari and Google API",
+"request_type": "web_search",
+"complexity_score": 0.8,
+"estimated_duration": 30, # seconds
+"suc...
+ERROR:universal_intelligent_automation_handler:Failed to parse LLM JSON response: Expecting property name enclosed in double quotes: line 6 column 27 (char 186)
+ERROR:universal_intelligent_automation_handler:Raw response: ```json
+{
+  "title": "Safari Flight Search",
+  "description": "Automated flight search using Safari and Google API",
+  "request_type": "web_search",
+  "complexity_score": 0.8,
+  "estimated_duration": 30, # seconds
+  "success_probability": 0.9,
+  "fallback_strategies": [
+    {
+      "id": "flight_search_fallback",
+      "description": "Fallback action if primary fails (Google API error)",
+      "action_type": "open_app|navigate_url|null"
+    },
+    {
+      "id": "wait_for_page_load",
+      "descr...
+ERROR:universal_intelligent_automation_handler:Error creating universal automation plan: LLM returned invalid JSON: Expecting property name enclosed in double quotes: line 6 column 27 (char 186)
+WARNING:__main__:⚠️ Agent automation failed: Failed to create automation plan
+ERROR:__main__:Error in streaming response: received 1000 (OK); then sent 1000 (OK)
+INFO:__main__:🎯 Executing Agent mode automation for: open Safari and search for flights
+INFO:universal_intelligent_automation_handler:🔄 Legacy handle_user_instruction called, creating plan for: open Safari and search for flights
+INFO:llm.llm_service:Generated system message with context: 76 chars
+INFO:llm.llm_service:🐌 Using standard LLM client...
+INFO:llm_warmup_manager:⚡ Fast response in 9.36s
+INFO:memory.semantic_search_agent:Document 974ea96d2ec263deeefc464e761553a8a418f3b0b161e9c030d8017ec67ce099 added to enterprise vector store
+INFO:memory.semantic_search_agent:Memory added successfully: 974ea96d2ec263deeefc464e761553a8a418f3b0b161e9c030d8017ec67ce099

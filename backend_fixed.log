@@ -1,0 +1,122 @@
+INFO:memory.enhanced_semantic_search:Enhanced semantic search initialized with embedding dim: 384
+INFO:memory.enhanced_semantic_search:Hybrid retrieval enabled: True
+INFO:memory.semantic_search_agent:Loading 756 existing documents from storage
+INFO:memory.semantic_search_agent:EnterpriseVectorStore initialized with enterprise-grade features
+INFO:memory.semantic_search_agent:SemanticSearchAgent initialized with enterprise-grade capabilities
+INFO:agent_workflow.input_controller:Detected screen size: 1470x956
+INFO:agent_workflow.input_controller:Input listeners started successfully
+INFO:agent_workflow.input_controller:🚨 Emergency shutdown: Press Ctrl+1 to immediately stop agent
+INFO:llava_processor:Connected to Ollama API v0.6.8
+INFO:total_screen_analyzer:LLaVA visual processor initialized for total screen analysis
+INFO:total_screen_analyzer:Total Screen Analyzer initialized with 8s interval
+INFO:universal_intelligent_automation_handler:🤖 Universal automation components loaded successfully
+INFO:memory.semantic_search_agent:Loading 756 existing documents from storage
+INFO:memory.semantic_search_agent:EnterpriseVectorStore initialized with enterprise-grade features
+INFO:memory.semantic_search_agent:SemanticSearchAgent initialized with enterprise-grade capabilities
+INFO:application_integration_framework:📱 Registered 2 application integrators
+INFO:application_integration_framework:📱 Registered 2 application integrators
+INFO:sensors.process_sensor:Process sensor initialized with config: {'interval_sec': 5, 'max_memory_mb': 50, 'cleanup_threshold_mb': 25, 'max_errors': 3, 'exclude_patterns': ['system', 'kernel'], 'max_processes': 100}
+INFO:memory.memory_system:Memory logger initialized
+INFO:memory_diagnostics:Memory diagnostic logger initialized
+INFO:memory_diagnostics:MEMORY EVENT: logger_initialized - {"timestamp": "2025-05-27T13:32:56.240203"}
+INFO:memory.memory_system:Diagnostic logger initialized
+2025-05-27 13:32:56,240 - INFO - [ConsciousMemory] Initialized as middle layer for memory system
+INFO:memory.conscious_memory:[ConsciousMemory] Initialized as middle layer for memory system
+INFO:memory.memory_system:Conscious memory initialized
+INFO:memory.enhanced_semantic_search:Enhanced semantic search initialized with embedding dim: 384
+INFO:memory.enhanced_semantic_search:Hybrid retrieval enabled: True
+INFO:memory.memory_system:Enhanced semantic search initialized
+INFO:memory.memory_system:🔄 Loading memory state from /Users/segevbin/Desktop/SensAI/Aiayer/memory/memory/memory_state.json
+INFO:memory.memory_system:  - Found 12 short-term memory items
+INFO:memory.memory_system:  - No long-term memory found, initializing empty
+INFO:memory.memory_system:  - Found context memory with 6 items
+INFO:memory.memory_system:✅ Successfully loaded memory state
+INFO:memory_diagnostics:MEMORY EVENT: memory_state_loaded - {"short_term_count": 12, "long_term_count": 0, "context_count": 6, "timestamp": "2025-05-27T13:32:56.240934"}
+INFO:memory.memory_system:Memory system initialized
+INFO:enhanced_realtime_system_bridge:EnhancedRealtimeSystemBridge initialized - living in the system, not capturing it
+INFO:__main__:🚀 Efficient system bridge initialized - living in the system!
+INFO:__main__:✅ Using efficient OS integration - no screen capture overhead
+INFO:__main__:Universal Intelligent Automation handler initialized for Agent mode
+INFO:__main__:Contextual AI Backend initialized - Ollama: True, Memory: Active
+INFO:__main__:🚀 Starting Enhanced Enterprise Backend 8767 with Efficient System Integration...
+INFO:__main__:🧠 Contextual AI responses enabled
+INFO:__main__:🔍 Semantic memory integration active
+INFO:__main__:🎯 Modes: Agent, Ask, Suggest, General (all contextual)
+INFO:__main__:🚀 Starting efficient system bridge...
+INFO:__main__:✅ Efficient system bridge started successfully
+INFO:__main__:✅ Enhanced Enterprise Backend 8767 started successfully
+INFO:__main__:🌐 WebSocket server listening on ws://localhost:8767
+INFO:__main__:🤖 Ollama integration: ✅ Active
+INFO:__main__:🧠 Contextual memory system ready
+INFO:__main__:🚀 Efficient system integration active - no screen capture overhead!
+INFO:__main__:⚡ System Bridge WebSocket: ws://localhost:8768
+INFO:enhanced_realtime_system_bridge:Starting enhanced real-time system bridge...
+INFO:system_integrated_monitor:🚀 Starting system-integrated monitoring (no screen capture)
+INFO:system_integrated_monitor:Platform: Darwin 23.1.0
+INFO:system_integrated_monitor:🍎 Starting macOS system integration...
+INFO:websockets.server:server listening on [::1]:8767
+INFO:websockets.server:server listening on 127.0.0.1:8767
+INFO:websockets.server:connection open
+INFO:__main__:Client connected: client_1748367188504 from ::1
+INFO:__main__:Processing contextual register from client_1748367188504
+INFO:__main__:Client registration: client_1748367188504 (test_client v1.0.0)
+WARNING:__main__:No system state available from bridge
+/Users/segevbin/Desktop/SensAI/Aiayer/memory/semantic_search_agent.py:336: RuntimeWarning: divide by zero encountered in log
+  idf = np.log(self.total_documents / (self.document_frequencies[token] + 1))
+INFO:memory.semantic_search_agent:Document e7a71922d5b24683606b469c4273f51eeadc3129b51095f4a61f49b376b2b875 added to enterprise vector store
+INFO:memory.semantic_search_agent:Memory added successfully: e7a71922d5b24683606b469c4273f51eeadc3129b51095f4a61f49b376b2b875
+INFO:memory.semantic_search_agent:Document 2e00696cbf11d15e5720284929ef550a64b4df3c6bcb5d607428c81c6b5a3c29 added to enterprise vector store
+INFO:memory.semantic_search_agent:Memory added successfully: 2e00696cbf11d15e5720284929ef550a64b4df3c6bcb5d607428c81c6b5a3c29
+INFO:memory.semantic_search_agent:Document a2052b1dc5e3d50c7f40849b7393fad322584d86befb26a9f25445efb5dfd107 added to enterprise vector store
+INFO:memory.semantic_search_agent:Memory added successfully: a2052b1dc5e3d50c7f40849b7393fad322584d86befb26a9f25445efb5dfd107
+INFO:memory.semantic_search_agent:Document 33c29162675048ee146cf70e5e3510390e1aa255deace255dc97dedeffef70fa added to enterprise vector store
+INFO:memory.semantic_search_agent:Memory added successfully: 33c29162675048ee146cf70e5e3510390e1aa255deace255dc97dedeffef70fa
+INFO:memory.semantic_search_agent:Document f24755b881b60fa36278e1112e11c3363f9b46e52a67a8af7ef79a545e6bf53b added to enterprise vector store
+INFO:memory.semantic_search_agent:Memory added successfully: f24755b881b60fa36278e1112e11c3363f9b46e52a67a8af7ef79a545e6bf53b
+INFO:memory.semantic_search_agent:Document ed948a1be1979ec126730efbb45e232ecd93c64e5328b368b1aa965cf087deac added to enterprise vector store
+INFO:memory.semantic_search_agent:Memory added successfully: ed948a1be1979ec126730efbb45e232ecd93c64e5328b368b1aa965cf087deac
+INFO:memory.semantic_search_agent:Document 6ba2322928b813c2a881f7940f6eecdee32c96201574a0293d9311a38eef9311 added to enterprise vector store
+INFO:memory.semantic_search_agent:Memory added successfully: 6ba2322928b813c2a881f7940f6eecdee32c96201574a0293d9311a38eef9311
+INFO:memory.semantic_search_agent:Document e6f9c6ccebbd3051e697a83ca97c02248b921b9b6c9bb8548ee0c33381415813 added to enterprise vector store
+INFO:memory.semantic_search_agent:Memory added successfully: e6f9c6ccebbd3051e697a83ca97c02248b921b9b6c9bb8548ee0c33381415813
+INFO:memory.semantic_search_agent:Document 54f57e390b7f6ea9f34d133a7756bd3fd03f2c3516f133626723a999b3c575d3 added to enterprise vector store
+INFO:memory.semantic_search_agent:Memory added successfully: 54f57e390b7f6ea9f34d133a7756bd3fd03f2c3516f133626723a999b3c575d3
+INFO:memory.semantic_search_agent:Document 3c0a6c51d2335f06ce64b1f5e109234f3030cdd5954ec6857915babc006dff98 added to enterprise vector store
+INFO:memory.semantic_search_agent:Memory added successfully: 3c0a6c51d2335f06ce64b1f5e109234f3030cdd5954ec6857915babc006dff98
+INFO:__main__:Enterprise contextual knowledge initialized
+INFO:memory.semantic_search_agent:Document 6d1a1cadc33977618a1e300780e16aa3580e8cb317d81581f46a3c651e999a26 added to enterprise vector store
+INFO:memory.semantic_search_agent:Memory added successfully: 6d1a1cadc33977618a1e300780e16aa3580e8cb317d81581f46a3c651e999a26
+/Users/segevbin/Desktop/SensAI/Aiayer/memory/semantic_search_agent.py:223: RuntimeWarning: invalid value encountered in scalar divide
+  similarity = np.dot(query_embedding, doc_embedding) / (
+INFO:memory.semantic_search_agent:Similarity search completed in 0.0028s, found 5 results
+INFO:memory.semantic_search_agent:Search completed successfully in 0.0053s, found 5 results
+INFO:__main__:🎯 [STREAMING] Creating Agent automation plan for: open Safari and search for flights
+INFO:__main__:🔧 Automation handler available: True
+INFO:__main__:🧠 Falling back to Universal Intelligent Automation handler
+INFO:llm.llm_service:🔥 LLM Warmup Manager available
+INFO:llm.llm_service:🔥 Initializing with LLM Warmup Manager for fast responses
+INFO:llm.llm_service:📋 Standard LLM client created as fallback
+INFO:llm.llm_service:LLM client initialized
+INFO:llm.llm_service:🔥 Initializing with LLM Warmup Manager for fast responses
+INFO:llm.llm_service:📋 Standard LLM client created as fallback
+INFO:llm.llm_service:LLM client initialized
+INFO:llm.model:Connected to Ollama version: 0.6.8
+INFO:llm.llm_service:LocalLLM client started successfully
+INFO:llm.llm_service:LLM service initialized successfully
+INFO:universal_intelligent_automation_handler:🧠 LLM service initialized for universal planning (async)
+INFO:llm.llm_service:Generated system message with context: 76 chars
+INFO:llm.llm_service:🐌 Using standard LLM client...
+INFO:universal_intelligent_automation_handler:🧹 Cleaned JSON response: {
+"title": "Open Safari and Search for Flights",
+"description": "Automate finding flights from New York City to Miami using Safari.",
+"request_type": "flight_search",
+"complexity_score": 0.2,
+"estimat...
+INFO:universal_intelligent_automation_handler:🧠 Created universal plan 'Open Safari and Search for Flights' (flight_search) with 6 steps
+INFO:__main__:🧠 Universal plan result: True - processing_time: 29.35s
+INFO:__main__:🔍 Sending WebSocket response with buttons: [{'id': 'do_universal_1748367217_test_session_agent', 'text': '🟢 EXECUTE', 'action': 'execute_plan', 'plan_id': 'universal_1748367217_test_session_agent', 'style': 'success', 'description': 'Execute this flight search automation'}, {'id': 'dismiss_universal_1748367217_test_session_agent', 'text': '🔴 CANCEL', 'action': 'cancel_plan', 'plan_id': 'universal_1748367217_test_session_agent', 'style': 'danger', 'description': 'Cancel this automation'}, {'id': 'adjust_universal_1748367217_test_session_agent', 'text': '🟡 MODIFY', 'action': 'modify_plan', 'plan_id': 'universal_1748367217_test_session_agent', 'style': 'warning', 'description': 'Modify the plan before execution'}, {'id': 'simulate_universal_1748367217_test_session_agent', 'text': '🔍 SIMULATE', 'action': 'simulate_plan', 'plan_id': 'universal_1748367217_test_session_agent', 'style': 'info', 'description': 'Simulate execution without performing actions'}]
+ERROR:__main__:❌ Failed to send WebSocket response: received 1000 (OK); then sent 1000 (OK)
+ERROR:__main__:❌ Even simplified response failed: received 1000 (OK); then sent 1000 (OK)
+INFO:memory.semantic_search_agent:Document 3d5d14ba0496f3f5c416683c7acccd2b90f47518891fc2ece58e4a450d542804 added to enterprise vector store
+INFO:memory.semantic_search_agent:Memory added successfully: 3d5d14ba0496f3f5c416683c7acccd2b90f47518891fc2ece58e4a450d542804
+INFO:__main__:✅ [STREAMING] Agent automation successful: Automation plan created

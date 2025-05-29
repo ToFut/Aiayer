@@ -219,10 +219,14 @@ class EnterpriseVectorStore:
                     if source_filter and self.documents[doc_id].source != source_filter:
                         continue
                     
-                    # Calculate cosine similarity
-                    similarity = np.dot(query_embedding, doc_embedding) / (
-                        np.linalg.norm(query_embedding) * np.linalg.norm(doc_embedding)
-                    )
+                    # Calculate cosine similarity with zero-norm protection
+                    query_norm = np.linalg.norm(query_embedding)
+                    doc_norm = np.linalg.norm(doc_embedding)
+                    
+                    if query_norm == 0 or doc_norm == 0:
+                        similarity = 0.0  # Handle zero embeddings
+                    else:
+                        similarity = np.dot(query_embedding, doc_embedding) / (query_norm * doc_norm)
                     
                     if similarity >= min_similarity:
                         similarities.append((doc_id, float(similarity)))
@@ -333,7 +337,12 @@ class SemanticSearchAgent:
                 break
             
             tf = count / len(tokens) if tokens else 0
-            idf = np.log(self.total_documents / (self.document_frequencies[token] + 1))
+            # Prevent divide by zero warning
+            denominator = self.document_frequencies[token] + 1
+            if self.total_documents == 0 or denominator == 0:
+                idf = 0.0
+            else:
+                idf = np.log(self.total_documents / denominator)
             embedding[i] = tf * idf
         
         return embedding

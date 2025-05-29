@@ -1,0 +1,276 @@
+2025-05-27 16:38:44,210 - __main__ - INFO - 🚀 Starting Comprehensive AgentMode Test Suite
+2025-05-27 16:38:44,210 - __main__ - INFO - ============================================================
+2025-05-27 16:38:44,211 - __main__ - INFO - 🔌 Connecting to backend at ws://localhost:8767
+2025-05-27 16:38:44,266 - __main__ - INFO - ✅ Connected to backend successfully
+2025-05-27 16:38:44,267 - __main__ - INFO - 🧪 TEST 1: Basic AgentMode Functionality
+2025-05-27 16:38:44,267 - __main__ - INFO -   📝 Testing: Simple Click Action
+2025-05-27 16:38:44,267 - __main__ - INFO - ❌ FAIL - Basic Agent - Simple Click Action
+2025-05-27 16:38:44,267 - __main__ - WARNING - ⚠️  Issue: Response indicates failure
+2025-05-27 16:38:44,267 - __main__ - WARNING - ⚠️  Issue: No automation plan created
+2025-05-27 16:38:45,269 - __main__ - INFO -   📝 Testing: Simple Text Input
+2025-05-27 16:38:45,271 - __main__ - INFO - ❌ FAIL - Basic Agent - Simple Text Input
+2025-05-27 16:38:45,271 - __main__ - WARNING - ⚠️  Issue: Error in response: Unknown message type: agent_request
+2025-05-27 16:38:45,271 - __main__ - WARNING - ⚠️  Issue: Response indicates failure
+2025-05-27 16:38:45,271 - __main__ - WARNING - ⚠️  Issue: No automation plan created
+2025-05-27 16:38:46,274 - __main__ - INFO -   📝 Testing: Basic Navigation
+2025-05-27 16:38:46,278 - __main__ - INFO - ❌ FAIL - Basic Agent - Basic Navigation
+2025-05-27 16:38:46,279 - __main__ - WARNING - ⚠️  Issue: Error in response: Unknown message type: agent_request
+2025-05-27 16:38:46,279 - __main__ - WARNING - ⚠️  Issue: Response indicates failure
+2025-05-27 16:38:46,279 - __main__ - WARNING - ⚠️  Issue: No automation plan created
+2025-05-27 16:38:47,281 - __main__ - INFO - 🧪 TEST 2: Complex AgentMode Scenarios
+2025-05-27 16:38:47,282 - __main__ - INFO -   📝 Testing: Multi-step Web Search
+2025-05-27 16:38:47,283 - __main__ - INFO - ❌ FAIL - Complex Agent - Multi-step Web Search
+2025-05-27 16:38:47,283 - __main__ - WARNING - ⚠️  Issue: Error in response: Unknown message type: agent_request
+2025-05-27 16:38:47,283 - __main__ - WARNING - ⚠️  Issue: Expected at least 3 steps, got 0
+2025-05-27 16:38:49,285 - __main__ - INFO -   📝 Testing: Form Filling
+2025-05-27 16:38:49,287 - __main__ - INFO - ❌ FAIL - Complex Agent - Form Filling
+2025-05-27 16:38:49,287 - __main__ - WARNING - ⚠️  Issue: Error in response: Unknown message type: agent_request
+2025-05-27 16:38:49,287 - __main__ - WARNING - ⚠️  Issue: Expected at least 4 steps, got 0
+2025-05-27 16:38:51,288 - __main__ - INFO -   📝 Testing: File Operations
+2025-05-27 16:38:51,289 - __main__ - INFO - ❌ FAIL - Complex Agent - File Operations
+2025-05-27 16:38:51,289 - __main__ - WARNING - ⚠️  Issue: Error in response: Unknown message type: agent_request
+2025-05-27 16:38:51,289 - __main__ - WARNING - ⚠️  Issue: Expected at least 2 steps, got 0
+2025-05-27 16:38:53,290 - __main__ - INFO - 🧪 TEST 3: UI Detection Capabilities
+2025-05-27 16:38:53,290 - __main__ - INFO -   📝 Testing: Button Detection
+2025-05-27 16:38:53,290 - __main__ - INFO - ❌ FAIL - UI Detection - Button Detection
+2025-05-27 16:38:53,291 - __main__ - WARNING - ⚠️  Issue: Error in response: Unknown message type: agent_request
+2025-05-27 16:38:53,291 - __main__ - WARNING - ⚠️  Issue: No coordinate information found for click action
+2025-05-27 16:38:54,294 - __main__ - INFO -   📝 Testing: Input Field Detection
+2025-05-27 16:38:54,299 - __main__ - INFO - ❌ FAIL - UI Detection - Input Field Detection
+2025-05-27 16:38:54,300 - __main__ - WARNING - ⚠️  Issue: Error in response: Unknown message type: agent_request
+2025-05-27 16:38:55,301 - __main__ - INFO -   📝 Testing: Link Detection
+2025-05-27 16:38:55,303 - __main__ - INFO - ❌ FAIL - UI Detection - Link Detection
+2025-05-27 16:38:55,303 - __main__ - WARNING - ⚠️  Issue: Error in response: Unknown message type: agent_request
+2025-05-27 16:38:55,303 - __main__ - WARNING - ⚠️  Issue: No coordinate information found for click action
+2025-05-27 16:38:56,304 - __main__ - INFO - 🧪 TEST 4: Memory Integration
+2025-05-27 16:38:56,305 - __main__ - INFO -   📝 Establishing context...
+2025-05-27 16:38:58,307 - __main__ - INFO -   📝 Testing context-aware follow-up...
+2025-05-27 16:38:58,309 - __main__ - INFO - ❌ FAIL - Memory Integration - Context Awareness
+2025-05-27 16:38:58,309 - __main__ - WARNING - ⚠️  Issue: Error in response: Unknown message type: agent_request
+2025-05-27 16:38:58,309 - __main__ - WARNING - ⚠️  Issue: Response doesn't show context awareness from previous message
+2025-05-27 16:38:58,310 - __main__ - INFO - 🧪 TEST 5: Error Handling
+2025-05-27 16:38:58,310 - __main__ - INFO -   📝 Testing: Invalid Request Format
+2025-05-27 16:38:58,312 - __main__ - INFO - ✅ PASS - Error Handling - Invalid Request Format
+2025-05-27 16:38:59,314 - __main__ - INFO -   📝 Testing: Empty Message
+2025-05-27 16:38:59,314 - __main__ - INFO - ✅ PASS - Error Handling - Empty Message
+2025-05-27 16:39:00,316 - __main__ - INFO -   📝 Testing: Malformed JSON
+2025-05-27 16:39:00,317 - __main__ - INFO - ✅ PASS - Error Handling - Malformed JSON
+2025-05-27 16:39:01,319 - __main__ - INFO - 🧪 TEST 6: Performance Metrics
+2025-05-27 16:39:01,320 - __main__ - INFO -   📝 Testing rapid requests...
+2025-05-27 16:39:03,857 - __main__ - INFO - ✅ PASS - Performance - Rapid Requests
+2025-05-27 16:39:03,858 - __main__ - INFO - 
+============================================================
+2025-05-27 16:39:03,858 - __main__ - INFO - 📊 COMPREHENSIVE TEST REPORT
+2025-05-27 16:39:03,858 - __main__ - INFO - ============================================================
+2025-05-27 16:39:03,858 - __main__ - INFO - 📈 Total Tests: 14
+2025-05-27 16:39:03,858 - __main__ - INFO - ✅ Passed: 4
+2025-05-27 16:39:03,858 - __main__ - INFO - ❌ Failed: 10
+2025-05-27 16:39:03,858 - __main__ - INFO - 📊 Success Rate: 28.6%
+2025-05-27 16:39:03,858 - __main__ - INFO - 
+🔍 IDENTIFIED ISSUES:
+2025-05-27 16:39:03,858 - __main__ - INFO -   ⚠️  Error in response: Unknown message type: agent_request (occurred 9 times)
+2025-05-27 16:39:03,858 - __main__ - INFO -   ⚠️  Response indicates failure (occurred 3 times)
+2025-05-27 16:39:03,858 - __main__ - INFO -   ⚠️  No automation plan created (occurred 3 times)
+2025-05-27 16:39:03,858 - __main__ - INFO -   ⚠️  No coordinate information found for click action (occurred 2 times)
+2025-05-27 16:39:03,858 - __main__ - INFO -   ⚠️  Expected at least 3 steps, got 0 (occurred 1 times)
+2025-05-27 16:39:03,858 - __main__ - INFO -   ⚠️  Expected at least 4 steps, got 0 (occurred 1 times)
+2025-05-27 16:39:03,858 - __main__ - INFO -   ⚠️  Expected at least 2 steps, got 0 (occurred 1 times)
+2025-05-27 16:39:03,858 - __main__ - INFO -   ⚠️  Response doesn't show context awareness from previous message (occurred 1 times)
+2025-05-27 16:39:03,859 - __main__ - INFO - 
+📋 Detailed report saved: logs/agent_test_report_1748378343.json
+2025-05-27 16:42:35,811 - __main__ - INFO - 🚀 Starting Comprehensive AgentMode Test Suite
+2025-05-27 16:42:35,811 - __main__ - INFO - ============================================================
+2025-05-27 16:42:35,811 - __main__ - INFO - 🔌 Connecting to backend at ws://localhost:8767
+2025-05-27 16:42:35,860 - __main__ - INFO - ✅ Connected to backend successfully
+2025-05-27 16:42:35,860 - __main__ - INFO - 🧪 TEST 1: Basic AgentMode Functionality
+2025-05-27 16:42:35,860 - __main__ - INFO -   📝 Testing: Simple Click Action
+2025-05-27 16:42:35,860 - __main__ - INFO - ❌ FAIL - Basic Agent - Simple Click Action
+2025-05-27 16:42:35,860 - __main__ - WARNING - ⚠️  Issue: Response indicates failure
+2025-05-27 16:42:35,860 - __main__ - WARNING - ⚠️  Issue: No automation plan created
+2025-05-27 16:42:36,861 - __main__ - INFO -   📝 Testing: Simple Text Input
+2025-05-27 16:42:51,433 - __main__ - INFO - ❌ FAIL - Basic Agent - Simple Text Input
+2025-05-27 16:42:51,434 - __main__ - WARNING - ⚠️  Issue: Slow response time: 14.57s
+2025-05-27 16:42:51,435 - __main__ - WARNING - ⚠️  Issue: No automation plan created
+2025-05-27 16:42:52,436 - __main__ - INFO -   📝 Testing: Basic Navigation
+2025-05-27 16:42:58,627 - __main__ - INFO - ❌ FAIL - Basic Agent - Basic Navigation
+2025-05-27 16:42:58,627 - __main__ - WARNING - ⚠️  Issue: No automation plan created
+2025-05-27 16:42:59,628 - __main__ - INFO - 🧪 TEST 2: Complex AgentMode Scenarios
+2025-05-27 16:42:59,629 - __main__ - INFO -   📝 Testing: Multi-step Web Search
+2025-05-27 16:43:05,036 - __main__ - INFO - ❌ FAIL - Complex Agent - Multi-step Web Search
+2025-05-27 16:43:05,037 - __main__ - WARNING - ⚠️  Issue: Expected at least 3 steps, got 0
+2025-05-27 16:43:07,039 - __main__ - INFO -   📝 Testing: Form Filling
+2025-05-27 16:43:11,908 - __main__ - INFO - ❌ FAIL - Complex Agent - Form Filling
+2025-05-27 16:43:11,909 - __main__ - WARNING - ⚠️  Issue: Expected at least 4 steps, got 0
+2025-05-27 16:43:13,910 - __main__ - INFO -   📝 Testing: File Operations
+2025-05-27 16:43:13,912 - __main__ - INFO - ❌ FAIL - Complex Agent - File Operations
+2025-05-27 16:43:13,912 - __main__ - WARNING - ⚠️  Issue: Expected at least 2 steps, got 0
+2025-05-27 16:43:15,914 - __main__ - INFO - 🧪 TEST 3: UI Detection Capabilities
+2025-05-27 16:43:15,915 - __main__ - INFO -   📝 Testing: Button Detection
+2025-05-27 16:43:22,303 - __main__ - INFO - ✅ PASS - UI Detection - Button Detection
+2025-05-27 16:43:22,303 - __main__ - WARNING - ⚠️  Issue: No coordinate information found for click action
+2025-05-27 16:43:23,304 - __main__ - INFO -   📝 Testing: Input Field Detection
+2025-05-27 16:43:29,595 - __main__ - INFO - ✅ PASS - UI Detection - Input Field Detection
+2025-05-27 16:43:30,618 - __main__ - INFO -   📝 Testing: Link Detection
+2025-05-27 16:43:36,059 - __main__ - INFO - ✅ PASS - UI Detection - Link Detection
+2025-05-27 16:43:36,060 - __main__ - WARNING - ⚠️  Issue: No coordinate information found for click action
+2025-05-27 16:43:37,062 - __main__ - INFO - 🧪 TEST 4: Memory Integration
+2025-05-27 16:43:37,062 - __main__ - INFO -   📝 Establishing context...
+2025-05-27 16:43:44,099 - __main__ - INFO -   📝 Testing context-aware follow-up...
+2025-05-27 16:43:49,999 - __main__ - INFO - ✅ PASS - Memory Integration - Context Awareness
+2025-05-27 16:43:50,000 - __main__ - INFO - 🧪 TEST 5: Error Handling
+2025-05-27 16:43:50,001 - __main__ - INFO -   📝 Testing: Invalid Request Format
+2025-05-27 16:43:55,007 - __main__ - INFO - ✅ PASS - Error Handling - Invalid Request Format
+2025-05-27 16:43:56,009 - __main__ - INFO -   📝 Testing: Empty Message
+2025-05-27 16:43:58,840 - __main__ - INFO - ❌ FAIL - Error Handling - Empty Message
+2025-05-27 16:43:58,841 - __main__ - WARNING - ⚠️  Issue: Error scenario not handled properly
+2025-05-27 16:43:59,843 - __main__ - INFO -   📝 Testing: Malformed JSON
+2025-05-27 16:43:59,844 - __main__ - INFO - ✅ PASS - Error Handling - Malformed JSON
+2025-05-27 16:44:00,846 - __main__ - INFO - 🧪 TEST 6: Performance Metrics
+2025-05-27 16:44:00,847 - __main__ - INFO -   📝 Testing rapid requests...
+2025-05-27 16:44:21,314 - __main__ - INFO - ✅ PASS - Performance - Rapid Requests
+2025-05-27 16:44:21,317 - __main__ - INFO - 
+============================================================
+2025-05-27 16:44:21,317 - __main__ - INFO - 📊 COMPREHENSIVE TEST REPORT
+2025-05-27 16:44:21,318 - __main__ - INFO - ============================================================
+2025-05-27 16:44:21,318 - __main__ - INFO - 📈 Total Tests: 14
+2025-05-27 16:44:21,318 - __main__ - INFO - ✅ Passed: 7
+2025-05-27 16:44:21,318 - __main__ - INFO - ❌ Failed: 7
+2025-05-27 16:44:21,318 - __main__ - INFO - 📊 Success Rate: 50.0%
+2025-05-27 16:44:21,318 - __main__ - INFO - 
+🔍 IDENTIFIED ISSUES:
+2025-05-27 16:44:21,318 - __main__ - INFO -   ⚠️  No automation plan created (occurred 3 times)
+2025-05-27 16:44:21,318 - __main__ - INFO -   ⚠️  No coordinate information found for click action (occurred 2 times)
+2025-05-27 16:44:21,318 - __main__ - INFO -   ⚠️  Response indicates failure (occurred 1 times)
+2025-05-27 16:44:21,319 - __main__ - INFO -   ⚠️  Slow response time: 14.57s (occurred 1 times)
+2025-05-27 16:44:21,319 - __main__ - INFO -   ⚠️  Expected at least 3 steps, got 0 (occurred 1 times)
+2025-05-27 16:44:21,319 - __main__ - INFO -   ⚠️  Expected at least 4 steps, got 0 (occurred 1 times)
+2025-05-27 16:44:21,319 - __main__ - INFO -   ⚠️  Expected at least 2 steps, got 0 (occurred 1 times)
+2025-05-27 16:44:21,319 - __main__ - INFO -   ⚠️  Error scenario not handled properly (occurred 1 times)
+2025-05-27 16:44:21,324 - __main__ - INFO - 
+📋 Detailed report saved: logs/agent_test_report_1748378661.json
+2025-05-27 16:49:47,344 - __main__ - INFO - 🚀 Starting Comprehensive AgentMode Test Suite
+2025-05-27 16:49:47,345 - __main__ - INFO - ============================================================
+2025-05-27 16:49:47,345 - __main__ - INFO - 🔌 Connecting to backend at ws://localhost:8767
+2025-05-27 16:49:47,373 - __main__ - INFO - ✅ Connected to backend successfully
+2025-05-27 16:49:47,373 - __main__ - INFO - 🧪 TEST 1: Basic AgentMode Functionality
+2025-05-27 16:49:47,373 - __main__ - INFO -   📝 Testing: Simple Click Action
+2025-05-27 16:49:47,373 - __main__ - INFO - ❌ FAIL - Basic Agent - Simple Click Action
+2025-05-27 16:49:47,373 - __main__ - WARNING - ⚠️  Issue: Response indicates failure
+2025-05-27 16:49:48,374 - __main__ - INFO -   📝 Testing: Simple Text Input
+2025-05-27 16:50:02,107 - __main__ - INFO - ✅ PASS - Basic Agent - Simple Text Input
+2025-05-27 16:50:02,108 - __main__ - WARNING - ⚠️  Issue: Slow response time: 13.73s
+2025-05-27 16:50:03,109 - __main__ - INFO -   📝 Testing: Basic Navigation
+2025-05-27 16:50:09,720 - __main__ - INFO - ✅ PASS - Basic Agent - Basic Navigation
+2025-05-27 16:50:10,722 - __main__ - INFO - 🧪 TEST 2: Complex AgentMode Scenarios
+2025-05-27 16:50:10,723 - __main__ - INFO -   📝 Testing: Multi-step Web Search
+2025-05-27 16:50:17,362 - __main__ - INFO - ❌ FAIL - Complex Agent - Multi-step Web Search
+2025-05-27 16:50:17,363 - __main__ - WARNING - ⚠️  Issue: Expected at least 3 steps, got 0
+2025-05-27 16:50:19,365 - __main__ - INFO -   📝 Testing: Form Filling
+2025-05-27 16:50:34,315 - __main__ - INFO - ❌ FAIL - Complex Agent - Form Filling
+2025-05-27 16:50:34,316 - __main__ - WARNING - ⚠️  Issue: Expected at least 4 steps, got 0
+2025-05-27 16:50:36,317 - __main__ - INFO -   📝 Testing: File Operations
+2025-05-27 16:50:36,318 - __main__ - INFO - ❌ FAIL - Complex Agent - File Operations
+2025-05-27 16:50:36,318 - __main__ - WARNING - ⚠️  Issue: Expected at least 2 steps, got 0
+2025-05-27 16:50:38,321 - __main__ - INFO - 🧪 TEST 3: UI Detection Capabilities
+2025-05-27 16:50:38,322 - __main__ - INFO -   📝 Testing: Button Detection
+2025-05-27 16:50:53,733 - __main__ - INFO - ✅ PASS - UI Detection - Button Detection
+2025-05-27 16:50:53,735 - __main__ - WARNING - ⚠️  Issue: No coordinate information found for click action
+2025-05-27 16:50:54,736 - __main__ - INFO -   📝 Testing: Input Field Detection
+2025-05-27 16:51:07,011 - __main__ - INFO - ✅ PASS - UI Detection - Input Field Detection
+2025-05-27 16:51:08,014 - __main__ - INFO -   📝 Testing: Link Detection
+2025-05-27 16:51:15,455 - __main__ - INFO - ✅ PASS - UI Detection - Link Detection
+2025-05-27 16:51:15,456 - __main__ - WARNING - ⚠️  Issue: No coordinate information found for click action
+2025-05-27 16:51:16,458 - __main__ - INFO - 🧪 TEST 4: Memory Integration
+2025-05-27 16:51:16,458 - __main__ - INFO -   📝 Establishing context...
+2025-05-27 16:51:28,229 - __main__ - INFO -   📝 Testing context-aware follow-up...
+2025-05-27 16:51:44,377 - __main__ - INFO - ✅ PASS - Memory Integration - Context Awareness
+2025-05-27 16:51:44,378 - __main__ - INFO - 🧪 TEST 5: Error Handling
+2025-05-27 16:51:44,378 - __main__ - INFO -   📝 Testing: Invalid Request Format
+2025-05-27 17:00:26,908 - __main__ - INFO - 🚀 Starting Comprehensive AgentMode Test Suite
+2025-05-27 17:00:26,908 - __main__ - INFO - ============================================================
+2025-05-27 17:00:26,908 - __main__ - INFO - 🔌 Connecting to backend at ws://localhost:8767
+2025-05-27 17:00:26,950 - __main__ - INFO - ✅ Connected to backend successfully
+2025-05-27 17:00:26,950 - __main__ - INFO - 🧪 TEST 1: Basic AgentMode Functionality
+2025-05-27 17:00:26,950 - __main__ - INFO -   📝 Testing: Simple Click Action
+2025-05-27 17:00:48,869 - __main__ - INFO - ✅ PASS - Basic Agent - Simple Click Action
+2025-05-27 17:00:48,870 - __main__ - WARNING - ⚠️  Issue: Slow response time: 21.92s
+2025-05-27 17:00:49,870 - __main__ - INFO -   📝 Testing: Simple Text Input
+2025-05-27 17:01:02,378 - __main__ - INFO - ✅ PASS - Basic Agent - Simple Text Input
+2025-05-27 17:01:02,379 - __main__ - WARNING - ⚠️  Issue: Slow response time: 12.51s
+2025-05-27 17:01:03,380 - __main__ - INFO -   📝 Testing: Basic Navigation
+2025-05-27 17:01:19,292 - __main__ - INFO - ✅ PASS - Basic Agent - Basic Navigation
+2025-05-27 17:01:19,295 - __main__ - WARNING - ⚠️  Issue: Slow response time: 15.91s
+2025-05-27 17:01:20,297 - __main__ - INFO - 🧪 TEST 2: Complex AgentMode Scenarios
+2025-05-27 17:01:20,297 - __main__ - INFO -   📝 Testing: Multi-step Web Search
+2025-05-27 17:01:47,126 - __main__ - INFO - ✅ PASS - Complex Agent - Multi-step Web Search
+2025-05-27 17:01:47,128 - __main__ - WARNING - ⚠️  Issue: Very slow response for complex scenario: 26.83s
+2025-05-27 17:01:49,132 - __main__ - INFO -   📝 Testing: Form Filling
+2025-05-27 17:01:49,670 - __main__ - INFO - ❌ FAIL - Complex Agent - Form Filling
+2025-05-27 17:01:49,670 - __main__ - WARNING - ⚠️  Issue: Expected at least 4 steps, got 0
+2025-05-27 17:01:51,671 - __main__ - INFO -   📝 Testing: File Operations
+2025-05-27 17:02:21,678 - __main__ - ERROR - ⏰ Request timed out
+2025-05-27 17:02:21,680 - __main__ - INFO - ❌ FAIL - Complex Agent - File Operations
+2025-05-27 17:02:21,680 - __main__ - WARNING - ⚠️  Issue: Error in response: timeout
+2025-05-27 17:02:21,680 - __main__ - WARNING - ⚠️  Issue: Very slow response for complex scenario: 30.01s
+2025-05-27 17:02:21,680 - __main__ - WARNING - ⚠️  Issue: Expected at least 2 steps, got 0
+2025-05-27 17:02:23,683 - __main__ - INFO - 🧪 TEST 3: UI Detection Capabilities
+2025-05-27 17:02:23,684 - __main__ - INFO -   📝 Testing: Button Detection
+2025-05-27 17:16:12,134 - __main__ - INFO - 🚀 Starting Comprehensive AgentMode Test Suite
+2025-05-27 17:16:12,134 - __main__ - INFO - ============================================================
+2025-05-27 17:16:12,134 - __main__ - INFO - 🔌 Connecting to backend at ws://localhost:8767
+2025-05-27 17:16:12,165 - __main__ - INFO - ✅ Connected to backend successfully
+2025-05-27 17:16:12,165 - __main__ - INFO - 🧪 TEST 1: Basic AgentMode Functionality
+2025-05-27 17:16:12,165 - __main__ - INFO -   📝 Testing: Simple Click Action
+2025-05-27 17:16:12,421 - __main__ - INFO - ✅ PASS - Basic Agent - Simple Click Action
+2025-05-27 17:16:13,422 - __main__ - INFO -   📝 Testing: Simple Text Input
+2025-05-27 17:16:13,704 - __main__ - INFO - ✅ PASS - Basic Agent - Simple Text Input
+2025-05-27 17:16:14,705 - __main__ - INFO -   📝 Testing: Basic Navigation
+2025-05-27 17:16:14,960 - __main__ - INFO - ✅ PASS - Basic Agent - Basic Navigation
+2025-05-27 17:16:15,961 - __main__ - INFO - 🧪 TEST 2: Complex AgentMode Scenarios
+2025-05-27 17:16:15,962 - __main__ - INFO -   📝 Testing: Multi-step Web Search
+2025-05-27 17:16:16,225 - __main__ - INFO - ✅ PASS - Complex Agent - Multi-step Web Search
+2025-05-27 17:16:18,226 - __main__ - INFO -   📝 Testing: Form Filling
+2025-05-27 17:16:18,489 - __main__ - INFO - ❌ FAIL - Complex Agent - Form Filling
+2025-05-27 17:16:18,489 - __main__ - WARNING - ⚠️  Issue: Expected at least 4 steps, got 0
+2025-05-27 17:16:20,490 - __main__ - INFO -   📝 Testing: File Operations
+2025-05-27 17:16:20,727 - __main__ - INFO - ✅ PASS - Complex Agent - File Operations
+2025-05-27 17:16:22,728 - __main__ - INFO - 🧪 TEST 3: UI Detection Capabilities
+2025-05-27 17:16:22,729 - __main__ - INFO -   📝 Testing: Button Detection
+2025-05-27 17:16:22,996 - __main__ - INFO - ✅ PASS - UI Detection - Button Detection
+2025-05-27 17:16:22,996 - __main__ - WARNING - ⚠️  Issue: No coordinate information found for click action
+2025-05-27 17:16:23,997 - __main__ - INFO -   📝 Testing: Input Field Detection
+2025-05-27 17:16:24,250 - __main__ - INFO - ✅ PASS - UI Detection - Input Field Detection
+2025-05-27 17:16:25,251 - __main__ - INFO -   📝 Testing: Link Detection
+2025-05-27 17:16:25,509 - __main__ - INFO - ✅ PASS - UI Detection - Link Detection
+2025-05-27 17:16:25,509 - __main__ - WARNING - ⚠️  Issue: No coordinate information found for click action
+2025-05-27 17:16:26,510 - __main__ - INFO - 🧪 TEST 4: Memory Integration
+2025-05-27 17:16:26,510 - __main__ - INFO -   📝 Establishing context...
+2025-05-27 17:16:28,730 - __main__ - INFO -   📝 Testing context-aware follow-up...
+2025-05-27 17:16:28,998 - __main__ - INFO - ✅ PASS - Memory Integration - Context Awareness
+2025-05-27 17:16:28,998 - __main__ - INFO - 🧪 TEST 5: Error Handling
+2025-05-27 17:16:28,998 - __main__ - INFO -   📝 Testing: Invalid Request Format
+2025-05-27 17:16:28,999 - __main__ - INFO - ✅ PASS - Error Handling - Invalid Request Format
+2025-05-27 17:16:29,999 - __main__ - INFO -   📝 Testing: Empty Message
+2025-05-27 17:16:30,225 - __main__ - INFO - ❌ FAIL - Error Handling - Empty Message
+2025-05-27 17:16:30,225 - __main__ - WARNING - ⚠️  Issue: Error scenario not handled properly
+2025-05-27 17:16:31,226 - __main__ - INFO -   📝 Testing: Malformed JSON
+2025-05-27 17:16:35,882 - __main__ - INFO - ❌ FAIL - Error Handling - Malformed JSON
+2025-05-27 17:16:35,883 - __main__ - WARNING - ⚠️  Issue: Error scenario not handled properly
+2025-05-27 17:16:36,885 - __main__ - INFO - 🧪 TEST 6: Performance Metrics
+2025-05-27 17:16:36,885 - __main__ - INFO -   📝 Testing rapid requests...
+2025-05-27 17:16:39,396 - __main__ - INFO - ✅ PASS - Performance - Rapid Requests
+2025-05-27 17:16:39,399 - __main__ - INFO - 
+============================================================
+2025-05-27 17:16:39,399 - __main__ - INFO - 📊 COMPREHENSIVE TEST REPORT
+2025-05-27 17:16:39,399 - __main__ - INFO - ============================================================
+2025-05-27 17:16:39,399 - __main__ - INFO - 📈 Total Tests: 14
+2025-05-27 17:16:39,399 - __main__ - INFO - ✅ Passed: 11
+2025-05-27 17:16:39,400 - __main__ - INFO - ❌ Failed: 3
+2025-05-27 17:16:39,400 - __main__ - INFO - 📊 Success Rate: 78.6%
+2025-05-27 17:16:39,400 - __main__ - INFO - 
+🔍 IDENTIFIED ISSUES:
+2025-05-27 17:16:39,400 - __main__ - INFO -   ⚠️  No coordinate information found for click action (occurred 2 times)
+2025-05-27 17:16:39,400 - __main__ - INFO -   ⚠️  Error scenario not handled properly (occurred 2 times)
+2025-05-27 17:16:39,400 - __main__ - INFO -   ⚠️  Expected at least 4 steps, got 0 (occurred 1 times)
+2025-05-27 17:16:39,403 - __main__ - INFO - 
+📋 Detailed report saved: logs/agent_test_report_1748380599.json

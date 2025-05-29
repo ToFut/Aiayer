@@ -1,6 +1,57 @@
 /Users/segevbin/Desktop/SensAI/Aiayer/sensors/enhanced_fixed_process_sensor.py:16: DeprecationWarning: websockets.client.WebSocketClientProtocol is deprecated
   from websockets.client import WebSocketClientProtocol
-2025-05-23 16:26:45,543 - __main__ - ERROR - Error connecting to bridge server: Multiple exceptions: [Errno 61] Connect call failed ('::1', 8765, 0, 0), [Errno 61] Connect call failed ('127.0.0.1', 8765)
-2025-05-23 16:26:45,543 - __main__ - ERROR - Failed to connect to bridge server
-2025-05-23 16:26:50,548 - __main__ - ERROR - Error connecting to bridge server: Multiple exceptions: [Errno 61] Connect call failed ('::1', 8765, 0, 0), [Errno 61] Connect call failed ('127.0.0.1', 8765)
-2025-05-23 16:26:50,548 - __main__ - ERROR - Failed to connect to bridge server
+2025-05-27 17:45:22,756 - __main__ - INFO - Connected to bridge server
+2025-05-27 17:45:22,757 - __main__ - INFO - Received welcome: connection_established
+2025-05-27 17:45:22,757 - __main__ - INFO - Sent registration message
+2025-05-27 17:45:22,757 - __main__ - INFO - Registration successful: Successfully registered with Enhanced Enterprise Backend
+2025-05-27 17:45:23,011 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-27 17:45:23,012 - __main__ - ERROR - Received error: None
+2025-05-27 17:45:23,012 - __main__ - ERROR - Received error: None
+2025-05-27 17:45:28,229 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-27 17:45:28,230 - __main__ - ERROR - Received error: None
+2025-05-27 17:45:28,230 - __main__ - ERROR - Received error: None
+2025-05-27 17:45:33,402 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-27 17:45:33,402 - __main__ - ERROR - Received error: None
+2025-05-27 17:45:33,402 - __main__ - ERROR - Received error: None
+2025-05-27 17:45:38,619 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-27 17:45:38,619 - __main__ - ERROR - Received error: None
+2025-05-27 17:45:38,620 - __main__ - ERROR - Received error: None
+2025-05-27 17:45:43,797 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-27 17:45:43,797 - __main__ - ERROR - Received error: None
+2025-05-27 17:45:43,797 - __main__ - ERROR - Received error: None
+2025-05-27 17:45:48,986 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-27 17:45:48,986 - __main__ - ERROR - Received error: None
+2025-05-27 17:45:48,986 - __main__ - ERROR - Received error: None
+2025-05-27 17:45:54,166 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-27 17:45:54,166 - __main__ - ERROR - Received error: None
+2025-05-27 17:45:54,166 - __main__ - ERROR - Received error: None
+2025-05-27 17:45:59,353 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-27 17:45:59,353 - __main__ - ERROR - Received error: None
+2025-05-27 17:45:59,353 - __main__ - ERROR - Received error: None
+2025-05-27 17:46:04,577 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-27 17:46:04,577 - __main__ - ERROR - Received error: None
+2025-05-27 17:46:04,577 - __main__ - ERROR - Received error: None
+2025-05-27 17:46:09,751 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-27 17:46:09,752 - __main__ - ERROR - Received error: None
+2025-05-27 17:46:09,752 - __main__ - ERROR - Received error: None
+2025-05-27 17:46:14,924 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-27 17:46:14,925 - __main__ - ERROR - Received error: None
+2025-05-27 17:46:14,925 - __main__ - ERROR - Received error: None
+2025-05-27 17:46:20,104 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-27 17:46:20,104 - __main__ - ERROR - Received error: None
+2025-05-27 17:46:20,104 - __main__ - ERROR - Received error: None
+2025-05-27 17:46:25,310 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-27 17:46:25,310 - __main__ - ERROR - Received error: None
+2025-05-27 17:46:25,310 - __main__ - ERROR - Received error: None
+2025-05-27 17:46:30,537 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-27 17:46:30,540 - __main__ - ERROR - Received error: None
+2025-05-27 17:46:30,540 - __main__ - ERROR - Received error: None
+2025-05-27 17:46:35,849 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-27 17:46:35,853 - __main__ - ERROR - Received error: None
+2025-05-27 17:46:35,853 - __main__ - ERROR - Received error: None
+2025-05-27 17:46:41,177 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-27 17:46:41,180 - __main__ - ERROR - Received error: None
+2025-05-27 17:46:41,181 - __main__ - ERROR - Received error: None
+2025-05-27 17:46:46,484 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
+2025-05-27 17:46:46,486 - __main__ - ERROR - Received error: None
+2025-05-27 17:46:46,487 - __main__ - ERROR - Received error: None

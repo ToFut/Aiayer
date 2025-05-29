@@ -1,0 +1,73 @@
+INFO:memory.enhanced_semantic_search:Enhanced semantic search initialized with embedding dim: 384
+INFO:memory.enhanced_semantic_search:Hybrid retrieval enabled: True
+INFO:memory.semantic_search_agent:Loading 850 existing documents from storage
+INFO:memory.semantic_search_agent:EnterpriseVectorStore initialized with enterprise-grade features
+INFO:memory.semantic_search_agent:SemanticSearchAgent initialized with enterprise-grade capabilities
+INFO:__main__:⚠️ Semantic search temporarily disabled for startup fix
+INFO:__main__:⚠️ System bridge disabled for startup fix
+INFO:__main__:⚠️ Fallback to screen capture - Available: True
+INFO:__main__:✅ Mock Automation handler initialized for Agent mode (temporary)
+INFO:__main__:Contextual AI Backend initialized - Ollama: True, Memory: Active
+INFO:__main__:🚀 Starting Enhanced Enterprise Backend 8767 with Efficient System Integration...
+INFO:__main__:🧠 Contextual AI responses enabled
+INFO:__main__:🔍 Semantic memory integration active
+INFO:__main__:🎯 Modes: Agent, Ask, Suggest, General (all contextual)
+INFO:__main__:✅ Enhanced Enterprise Backend 8767 started successfully
+INFO:__main__:🌐 WebSocket server listening on ws://localhost:8767
+INFO:__main__:🤖 Ollama integration: ✅ Active
+INFO:__main__:🧠 Contextual memory system ready
+INFO:__main__:⚠️ Using fallback screen capture mode
+INFO:websockets.server:server listening on 127.0.0.1:8767
+INFO:websockets.server:server listening on [::1]:8767
+INFO:websockets.server:connection open
+INFO:__main__:Client connected: client_1748371286055 from ::1
+INFO:websockets.server:connection open
+INFO:__main__:Client connected: client_1748371286056 from ::1
+INFO:__main__:Processing contextual register from client_1748371286055
+INFO:__main__:Client registration: client_1748371286055 (ui v1.0.0)
+/Users/segevbin/Desktop/SensAI/Aiayer/memory/semantic_search_agent.py:340: RuntimeWarning: divide by zero encountered in log
+  idf = np.log(self.total_documents / (self.document_frequencies[token] + 1))
+INFO:memory.semantic_search_agent:Document c0921c7ca0863bd6c4ac02785625acf2ee3d0aaedb5e84766264379343213fc7 added to enterprise vector store
+INFO:memory.semantic_search_agent:Memory added successfully: c0921c7ca0863bd6c4ac02785625acf2ee3d0aaedb5e84766264379343213fc7
+INFO:memory.semantic_search_agent:Document dc61493bffab5c95a16ddda2c78880b69cb35601696d90a2660e3e1aafbf527e added to enterprise vector store
+INFO:memory.semantic_search_agent:Memory added successfully: dc61493bffab5c95a16ddda2c78880b69cb35601696d90a2660e3e1aafbf527e
+INFO:memory.semantic_search_agent:Document 8b98dae1cbe9136c3f4de874b1b47a6804c6344e5e7878d918c0ba3a14689d1b added to enterprise vector store
+INFO:memory.semantic_search_agent:Memory added successfully: 8b98dae1cbe9136c3f4de874b1b47a6804c6344e5e7878d918c0ba3a14689d1b
+INFO:memory.semantic_search_agent:Document 8fce7dc8cfdecfcc5f8e0f35c3670ea4da710b073fdbd1255f8aa01d1f5c2829 added to enterprise vector store
+INFO:memory.semantic_search_agent:Memory added successfully: 8fce7dc8cfdecfcc5f8e0f35c3670ea4da710b073fdbd1255f8aa01d1f5c2829
+INFO:memory.semantic_search_agent:Document aa4b5dfb24588d93b728f5fde1ebb396bc220f1e3f1e5ae221320a951e8ceba5 added to enterprise vector store
+INFO:memory.semantic_search_agent:Memory added successfully: aa4b5dfb24588d93b728f5fde1ebb396bc220f1e3f1e5ae221320a951e8ceba5
+INFO:memory.semantic_search_agent:Document c295cc60a75bd47e14fa35bf222806784a7dbe4b5a91ac17b192004a27066dc9 added to enterprise vector store
+INFO:memory.semantic_search_agent:Memory added successfully: c295cc60a75bd47e14fa35bf222806784a7dbe4b5a91ac17b192004a27066dc9
+INFO:memory.semantic_search_agent:Document a70e17a20bc922bc28690955b13b00dbc9d25ecd40f33c19c992b65110df8103 added to enterprise vector store
+INFO:memory.semantic_search_agent:Memory added successfully: a70e17a20bc922bc28690955b13b00dbc9d25ecd40f33c19c992b65110df8103
+INFO:memory.semantic_search_agent:Document bae7fe3fd967f3a4224b9bdd0a9ba41f5f75c56825ebce9239edc2f23914f042 added to enterprise vector store
+INFO:memory.semantic_search_agent:Memory added successfully: bae7fe3fd967f3a4224b9bdd0a9ba41f5f75c56825ebce9239edc2f23914f042
+INFO:memory.semantic_search_agent:Document 448adf0df4276b4ff05e7d20f01d2d176aed0a4a72c9b7636a4b0ce0ad499bdd added to enterprise vector store
+INFO:memory.semantic_search_agent:Memory added successfully: 448adf0df4276b4ff05e7d20f01d2d176aed0a4a72c9b7636a4b0ce0ad499bdd
+INFO:memory.semantic_search_agent:Document ea741162b5ef7a15a478775217e627549ba909ec8e240b26add027ab349be6fe added to enterprise vector store
+INFO:memory.semantic_search_agent:Memory added successfully: ea741162b5ef7a15a478775217e627549ba909ec8e240b26add027ab349be6fe
+INFO:__main__:Enterprise contextual knowledge initialized
+INFO:memory.semantic_search_agent:Document 0bc46f7da3c04c96bcfa4416c1d341cfad69d6677c530e1aef267357f4b45661 added to enterprise vector store
+INFO:memory.semantic_search_agent:Memory added successfully: 0bc46f7da3c04c96bcfa4416c1d341cfad69d6677c530e1aef267357f4b45661
+INFO:memory.semantic_search_agent:Similarity search completed in 0.0041s, found 5 results
+INFO:memory.semantic_search_agent:Search completed successfully in 0.0063s, found 5 results
+INFO:__main__:🎯 [STREAMING] Creating Agent automation plan for: Search SEGEV in Google
+INFO:__main__:🔧 Automation handler available: True
+INFO:__main__:🔧 Using legacy automation handler
+INFO:__main__:🔧 Legacy plan result: True - No error
+INFO:__main__:🔍 Sending WebSocket response with buttons: [{'text': '🚀 Execute', 'action': 'execute_plan', 'style': 'execute-btn', 'description': 'Execute the automation plan'}, {'text': '❌ Cancel', 'action': 'cancel_plan', 'style': 'cancel-btn', 'description': 'Cancel the automation plan'}, {'text': '🔧 Adjust', 'action': 'modify_plan', 'style': 'adjust-btn', 'description': 'Modify the automation plan'}]
+ERROR:__main__:❌ [STREAMING] Agent automation error: cannot access local variable 'plan_id' where it is not associated with a value
+INFO:llm_warmup_manager:🔥 LLM Warmup Manager initialized
+INFO:llm_warmup_manager:🔥 Warming up model...
+INFO:llm_warmup_manager:✅ Using fast model: llama3.2:1b
+INFO:llm_warmup_manager:✅ Model llama3.2:1b warmed up in 5.02s
+INFO:llm_warmup_manager:🔥 LLM Warmup Manager started successfully
+INFO:websockets.server:connection open
+INFO:__main__:Client connected: client_1748371306764 from ::1
+INFO:__main__:Processing contextual chat_message from client_1748371306764
+ERROR:__main__:Error processing message from client_1748371306764: received 1000 (OK); then sent 1000 (OK)
+INFO:__main__:Client disconnected: client_1748371306764
+INFO:llm_warmup_manager:⚡ Fast response in 7.07s
+INFO:memory.semantic_search_agent:Document e483fa6da3c7d36e13fa2df9a0b4b8908a9622570ff36a5aec68843f02f35a71 added to enterprise vector store
+INFO:memory.semantic_search_agent:Memory added successfully: e483fa6da3c7d36e13fa2df9a0b4b8908a9622570ff36a5aec68843f02f35a71

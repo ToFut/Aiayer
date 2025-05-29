@@ -51,7 +51,7 @@ class TotalScreenAnalyzer:
     for comprehensive memory storage and context awareness.
     """
     
-    def __init__(self, bridge_uri="ws://localhost:8765", capture_interval=8, fast_mode=True):
+    def __init__(self, bridge_uri="ws://localhost:8767", capture_interval=8, fast_mode=True):
         self.bridge_uri = bridge_uri
         self.capture_interval = capture_interval
         self.running = True

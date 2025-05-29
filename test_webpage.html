@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AgentMode Test Webpage - Real Automation Demo</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #333;
+        }
+        
+        .container {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        
+        h1 {
+            text-align: center;
+            color: #4a5568;
+            margin-bottom: 30px;
+            font-size: 2.5em;
+        }
+        
+        .section {
+            background: #f7fafc;
+            margin: 20px 0;
+            padding: 25px;
+            border-radius: 10px;
+            border-left: 5px solid #667eea;
+        }
+        
+        .section h2 {
+            color: #2d3748;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .section h2:before {
+            content: "🎯";
+            margin-right: 10px;
+        }
+        
+        button {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 5px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+        }
+        
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+        }
+        
+        button:active {
+            transform: translateY(0);
+        }
+        
+        input, select, textarea {
+            padding: 12px;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: 16px;
+            margin: 5px;
+            transition: border-color 0.3s ease;
+        }
+        
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+        
+        .form-group {
+            margin: 15px 0;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 600;
+            color: #4a5568;
+        }
+        
+        .search-box {
+            width: 100%;
+            max-width: 400px;
+            position: relative;
+        }
+        
+        .search-input {
+            width: 100%;
+            padding-right: 50px;
+        }
+        
+        .search-btn {
+            position: absolute;
+            right: 5px;
+            top: 50%;
+            transform: translateY(-50%);
+            padding: 8px 15px;
+            font-size: 14px;
+        }
+        
+        .result-area {
+            background: #edf2f7;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 20px;
+            min-height: 100px;
+            border: 2px dashed #cbd5e0;
+        }
+        
+        .success {
+            background: #f0fff4;
+            border-color: #68d391;
+            color: #22543d;
+        }
+        
+        .shopping-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: white;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 8px;
+            border: 1px solid #e2e8f0;
+        }
+        
+        .item-info {
+            flex: 1;
+        }
+        
+        .item-name {
+            font-weight: 600;
+            color: #2d3748;
+        }
+        
+        .item-price {
+            color: #667eea;
+            font-size: 18px;
+            font-weight: 700;
+        }
+        
+        .cart-count {
+            background: #667eea;
+            color: white;
+            border-radius: 50%;
+            padding: 5px 10px;
+            font-size: 14px;
+            margin-left: 10px;
+        }
+        
+        .settings-group {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 15px;
+            background: white;
+            margin: 10px 0;
+            border-radius: 8px;
+        }
+        
+        .toggle {
+            position: relative;
+            width: 60px;
+            height: 30px;
+            background: #cbd5e0;
+            border-radius: 15px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+        
+        .toggle.active {
+            background: #667eea;
+        }
+        
+        .toggle-slider {
+            position: absolute;
+            top: 3px;
+            left: 3px;
+            width: 24px;
+            height: 24px;
+            background: white;
+            border-radius: 50%;
+            transition: transform 0.3s ease;
+        }
+        
+        .toggle.active .toggle-slider {
+            transform: translateX(30px);
+        }
+        
+        .status {
+            padding: 10px;
+            border-radius: 5px;
+            margin-top: 10px;
+            font-weight: 600;
+            text-align: center;
+        }
+        
+        .dark-mode {
+            background: #2d3748;
+            color: #e2e8f0;
+        }
+        
+        .dark-mode .container {
+            background: #4a5568;
+            color: #e2e8f0;
+        }
+        
+        .dark-mode .section {
+            background: #2d3748;
+        }
+        
+        .dark-mode input, .dark-mode select, .dark-mode textarea {
+            background: #4a5568;
+            color: #e2e8f0;
+            border-color: #667eea;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🤖 AgentMode Real Automation Test Page</h1>
+        
+        <!-- Search Section -->
+        <div class="section">
+            <h2>Search & Navigation</h2>
+            <div class="search-box">
+                <input type="text" id="search-input" class="search-input" placeholder="Search for anything..." />
+                <button id="search-btn" class="search-btn">🔍 Search</button>
+            </div>
+            <div id="search-results" class="result-area">
+                Search results will appear here...
+            </div>
+        </div>
+        
+        <!-- Contact Form Section -->
+        <div class="section">
+            <h2>Contact Form</h2>
+            <form id="contact-form">
+                <div class="form-group">
+                    <label for="name">Full Name:</label>
+                    <input type="text" id="name" name="name" placeholder="Enter your full name" />
+                </div>
+                <div class="form-group">
+                    <label for="email">Email Address:</label>
+                    <input type="email" id="email" name="email" placeholder="Enter your email" />
+                </div>
+                <div class="form-group">
+                    <label for="phone">Phone Number:</label>
+                    <input type="tel" id="phone" name="phone" placeholder="Enter your phone number" />
+                </div>
+                <div class="form-group">
+                    <label for="subject">Subject:</label>
+                    <select id="subject" name="subject">
+                        <option value="">Select a subject</option>
+                        <option value="general">General Inquiry</option>
+                        <option value="support">Technical Support</option>
+                        <option value="sales">Sales Question</option>
+                        <option value="feedback">Feedback</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="message">Message:</label>
+                    <textarea id="message" name="message" rows="4" placeholder="Enter your message"></textarea>
+                </div>
+                <button type="submit" id="submit-btn">📧 Send Message</button>
+            </form>
+            <div id="form-result" class="result-area">
+                Form submission result will appear here...
+            </div>
+        </div>
+        
+        <!-- Shopping Cart Section -->
+        <div class="section">
+            <h2>E-commerce Demo</h2>
+            <div class="shopping-item">
+                <div class="item-info">
+                    <div class="item-name">Premium Laptop</div>
+                    <div>High-performance laptop for professionals</div>
+                </div>
+                <div class="item-price">$1,299</div>
+                <button id="add-laptop" class="cart-btn">🛒 Add to Cart</button>
+            </div>
+            <div class="shopping-item">
+                <div class="item-info">
+                    <div class="item-name">Wireless Headphones</div>
+                    <div>Noise-cancelling Bluetooth headphones</div>
+                </div>
+                <div class="item-price">$299</div>
+                <button id="add-headphones" class="cart-btn">🛒 Add to Cart</button>
+            </div>
+            <div class="shopping-item">
+                <div class="item-info">
+                    <div class="item-name">Smart Watch</div>
+                    <div>Fitness tracking and notifications</div>
+                </div>
+                <div class="item-price">$399</div>
+                <button id="add-watch" class="cart-btn">🛒 Add to Cart</button>
+            </div>
+            <div style="text-align: center; margin-top: 20px;">
+                <button id="view-cart">🛍️ View Cart <span id="cart-count" class="cart-count">0</span></button>
+                <button id="checkout-btn" style="background: #48bb78; margin-left: 10px;">💳 Proceed to Checkout</button>
+            </div>
+            <div id="cart-result" class="result-area">
+                Cart actions will appear here...
+            </div>
+        </div>
+        
+        <!-- Settings Section -->
+        <div class="section">
+            <h2>Settings & Preferences</h2>
+            <div class="settings-group">
+                <div>
+                    <strong>Dark Mode</strong>
+                    <div>Switch to dark theme</div>
+                </div>
+                <div class="toggle" id="dark-mode-toggle">
+                    <div class="toggle-slider"></div>
+                </div>
+            </div>
+            <div class="settings-group">
+                <div>
+                    <strong>Notifications</strong>
+                    <div>Enable push notifications</div>
+                </div>
+                <div class="toggle" id="notifications-toggle">
+                    <div class="toggle-slider"></div>
+                </div>
+            </div>
+            <div class="settings-group">
+                <div>
+                    <strong>Auto-save</strong>
+                    <div>Automatically save changes</div>
+                </div>
+                <div class="toggle" id="autosave-toggle">
+                    <div class="toggle-slider"></div>
+                </div>
+            </div>
+            <button id="save-settings" style="background: #48bb78; margin-top: 15px;">💾 Save Settings</button>
+            <div id="settings-result" class="result-area">
+                Settings changes will appear here...
+            </div>
+        </div>
+        
+        <!-- Action Buttons -->
+        <div class="section">
+            <h2>Quick Actions</h2>
+            <button id="demo-btn1">🎯 Demo Action 1</button>
+            <button id="demo-btn2">⚡ Demo Action 2</button>
+            <button id="demo-btn3">🚀 Demo Action 3</button>
+            <button id="reset-page">🔄 Reset Page</button>
+            <div id="action-result" class="result-area">
+                Action results will appear here...
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Cart functionality
+        let cartItems = 0;
+        const cartCount = document.getElementById('cart-count');
+        const cartResult = document.getElementById('cart-result');
+        
+        function updateCartDisplay() {
+            cartCount.textContent = cartItems;
+        }
+        
+        // Search functionality
+        document.getElementById('search-btn').addEventListener('click', function() {
+            const searchInput = document.getElementById('search-input');
+            const searchResults = document.getElementById('search-results');
+            const query = searchInput.value.trim();
+            
+            if (query) {
+                searchResults.innerHTML = `
+                    <div class="success">
+                        <strong>Search Results for "${query}":</strong><br>
+                        ✅ Found 3 relevant results<br>
+                        🔍 Search completed successfully at ${new Date().toLocaleTimeString()}
+                    </div>
+                `;
+                searchResults.className = 'result-area success';
+            } else {
+                searchResults.innerHTML = '❌ Please enter a search query';
+                searchResults.className = 'result-area';
+            }
+        });
+        
+        // Contact form functionality
+        document.getElementById('contact-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const formResult = document.getElementById('form-result');
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            
+            if (name && email) {
+                formResult.innerHTML = `
+                    <div class="success">
+                        <strong>✅ Message Sent Successfully!</strong><br>
+                        Thank you ${name}! We'll contact you at ${email}<br>
+                        Submitted at ${new Date().toLocaleTimeString()}
+                    </div>
+                `;
+                formResult.className = 'result-area success';
+            } else {
+                formResult.innerHTML = '❌ Please fill in all required fields';
+                formResult.className = 'result-area';
+            }
+        });
+        
+        // Shopping cart functionality
+        document.getElementById('add-laptop').addEventListener('click', function() {
+            cartItems++;
+            updateCartDisplay();
+            cartResult.innerHTML = `✅ Premium Laptop added to cart! Total items: ${cartItems}`;
+            cartResult.className = 'result-area success';
+        });
+        
+        document.getElementById('add-headphones').addEventListener('click', function() {
+            cartItems++;
+            updateCartDisplay();
+            cartResult.innerHTML = `✅ Wireless Headphones added to cart! Total items: ${cartItems}`;
+            cartResult.className = 'result-area success';
+        });
+        
+        document.getElementById('add-watch').addEventListener('click', function() {
+            cartItems++;
+            updateCartDisplay();
+            cartResult.innerHTML = `✅ Smart Watch added to cart! Total items: ${cartItems}`;
+            cartResult.className = 'result-area success';
+        });
+        
+        document.getElementById('view-cart').addEventListener('click', function() {
+            cartResult.innerHTML = `
+                <div class="success">
+                    <strong>🛍️ Shopping Cart</strong><br>
+                    Items in cart: ${cartItems}<br>
+                    Ready for checkout!
+                </div>
+            `;
+            cartResult.className = 'result-area success';
+        });
+        
+        document.getElementById('checkout-btn').addEventListener('click', function() {
+            if (cartItems > 0) {
+                cartResult.innerHTML = `
+                    <div class="success">
+                        <strong>💳 Checkout Process Started</strong><br>
+                        Processing ${cartItems} items...<br>
+                        Redirecting to payment at ${new Date().toLocaleTimeString()}
+                    </div>
+                `;
+                cartResult.className = 'result-area success';
+            } else {
+                cartResult.innerHTML = '❌ Cart is empty! Add items before checkout.';
+                cartResult.className = 'result-area';
+            }
+        });
+        
+        // Settings functionality
+        function toggleSetting(toggleId, settingName) {
+            const toggle = document.getElementById(toggleId);
+            toggle.addEventListener('click', function() {
+                toggle.classList.toggle('active');
+                const isActive = toggle.classList.contains('active');
+                const settingsResult = document.getElementById('settings-result');
+                settingsResult.innerHTML = `✅ ${settingName} ${isActive ? 'enabled' : 'disabled'}`;
+                settingsResult.className = 'result-area success';
+                
+                // Special handling for dark mode
+                if (toggleId === 'dark-mode-toggle') {
+                    document.body.classList.toggle('dark-mode', isActive);
+                }
+            });
+        }
+        
+        toggleSetting('dark-mode-toggle', 'Dark Mode');
+        toggleSetting('notifications-toggle', 'Notifications');
+        toggleSetting('autosave-toggle', 'Auto-save');
+        
+        document.getElementById('save-settings').addEventListener('click', function() {
+            const settingsResult = document.getElementById('settings-result');
+            settingsResult.innerHTML = `
+                <div class="success">
+                    <strong>💾 Settings Saved Successfully!</strong><br>
+                    All preferences updated at ${new Date().toLocaleTimeString()}
+                </div>
+            `;
+            settingsResult.className = 'result-area success';
+        });
+        
+        // Demo action buttons
+        document.getElementById('demo-btn1').addEventListener('click', function() {
+            const actionResult = document.getElementById('action-result');
+            actionResult.innerHTML = `✅ Demo Action 1 executed at ${new Date().toLocaleTimeString()}`;
+            actionResult.className = 'result-area success';
+        });
+        
+        document.getElementById('demo-btn2').addEventListener('click', function() {
+            const actionResult = document.getElementById('action-result');
+            actionResult.innerHTML = `⚡ Demo Action 2 completed at ${new Date().toLocaleTimeString()}`;
+            actionResult.className = 'result-area success';
+        });
+        
+        document.getElementById('demo-btn3').addEventListener('click', function() {
+            const actionResult = document.getElementById('action-result');
+            actionResult.innerHTML = `🚀 Demo Action 3 launched at ${new Date().toLocaleTimeString()}`;
+            actionResult.className = 'result-area success';
+        });
+        
+        // Reset page functionality
+        document.getElementById('reset-page').addEventListener('click', function() {
+            // Reset all forms and results
+            document.getElementById('contact-form').reset();
+            document.getElementById('search-input').value = '';
+            cartItems = 0;
+            updateCartDisplay();
+            
+            // Reset all result areas
+            const resultAreas = document.querySelectorAll('.result-area');
+            resultAreas.forEach(area => {
+                if (area.id === 'search-results') {
+                    area.innerHTML = 'Search results will appear here...';
+                } else if (area.id === 'form-result') {
+                    area.innerHTML = 'Form submission result will appear here...';
+                } else if (area.id === 'cart-result') {
+                    area.innerHTML = 'Cart actions will appear here...';
+                } else if (area.id === 'settings-result') {
+                    area.innerHTML = 'Settings changes will appear here...';
+                } else if (area.id === 'action-result') {
+                    area.innerHTML = 'Action results will appear here...';
+                }
+                area.className = 'result-area';
+            });
+            
+            // Reset toggles
+            const toggles = document.querySelectorAll('.toggle');
+            toggles.forEach(toggle => toggle.classList.remove('active'));
+            document.body.classList.remove('dark-mode');
+            
+            const actionResult = document.getElementById('action-result');
+            actionResult.innerHTML = `🔄 Page reset completed at ${new Date().toLocaleTimeString()}`;
+            actionResult.className = 'result-area success';
+        });
+        
+        // Add some dynamic effects
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('🤖 AgentMode Test Page Loaded - Ready for automation!');
+        });
+    </script>
+</body>
+</html>

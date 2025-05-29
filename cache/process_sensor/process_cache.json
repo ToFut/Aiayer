@@ -1,0 +1,195 @@
+{
+  "timestamp": "2025-05-27T17:46:46.482691",
+  "active_app": "Unknown",
+  "active_window": "Unknown Window",
+  "active_processes": [
+    {
+      "name": "Safari",
+      "pid": 68308,
+      "type": "browser",
+      "memory_mb": 46.7,
+      "cpu_percent": 11.5,
+      "create_time": 1748277393.939472
+    },
+    {
+      "name": "Google Chrome",
+      "pid": 640,
+      "type": "browser",
+      "memory_mb": 40.3,
+      "cpu_percent": 0.7,
+      "create_time": 1747982318.105106
+    },
+    {
+      "name": "Google Chrome Helper (Renderer)",
+      "pid": 16492,
+      "type": "browser",
+      "memory_mb": 38.3,
+      "cpu_percent": 0.2,
+      "create_time": 1748292870.713376
+    },
+    {
+      "name": "Cursor Helper (Renderer)",
+      "pid": 20004,
+      "type": "other",
+      "memory_mb": 34.1,
+      "cpu_percent": 0.4,
+      "create_time": 1748369900.035158
+    },
+    {
+      "name": "Cursor",
+      "pid": 19994,
+      "type": "other",
+      "memory_mb": 33.0,
+      "cpu_percent": 0.8,
+      "create_time": 1748369899.177015
+    },
+    {
+      "name": "CommCenter",
+      "pid": 52906,
+      "type": "other",
+      "memory_mb": 28.9,
+      "cpu_percent": 0,
+      "create_time": 1748382405.07665
+    },
+    {
+      "name": "Cursor Helper (Plugin): extension-host [2-2]",
+      "pid": 20285,
+      "type": "other",
+      "memory_mb": 23.5,
+      "cpu_percent": 0.3,
+      "create_time": 1748369901.026803
+    },
+    {
+      "name": "zoom.us",
+      "pid": 49383,
+      "type": "communication",
+      "memory_mb": 23.3,
+      "cpu_percent": 1.6,
+      "create_time": 1748379391.534927
+    },
+    {
+      "name": "chronod",
+      "pid": 52898,
+      "type": "other",
+      "memory_mb": 19.4,
+      "cpu_percent": 6.4,
+      "create_time": 1748382397.066063
+    },
+    {
+      "name": "mongod",
+      "pid": 5629,
+      "type": "other",
+      "memory_mb": 17.4,
+      "cpu_percent": 0.4,
+      "create_time": 1747982342.419521
+    },
+    {
+      "name": "Google Chrome Helper",
+      "pid": 1206,
+      "type": "browser",
+      "memory_mb": 16.3,
+      "cpu_percent": 0.3,
+      "create_time": 1747982326.995132
+    },
+    {
+      "name": "knowledge-agent",
+      "pid": 39389,
+      "type": "browser",
+      "memory_mb": 15.4,
+      "cpu_percent": 0.5,
+      "create_time": 1748233664.102723
+    },
+    {
+      "name": "identityservicesd",
+      "pid": 639,
+      "type": "other",
+      "memory_mb": 15.2,
+      "cpu_percent": 0.4,
+      "create_time": 1747982318.090609
+    },
+    {
+      "name": "callservicesd",
+      "pid": 51909,
+      "type": "other",
+      "memory_mb": 14.2,
+      "cpu_percent": 0.8,
+      "create_time": 1748381827.559005
+    },
+    {
+      "name": "Cursor Helper (Plugin): extension-host [1-1]",
+      "pid": 20284,
+      "type": "other",
+      "memory_mb": 13.7,
+      "cpu_percent": 0,
+      "create_time": 1748369901.014621
+    },
+    {
+      "name": "Cursor Helper (GPU)",
+      "pid": 20000,
+      "type": "other",
+      "memory_mb": 13.1,
+      "cpu_percent": 0,
+      "create_time": 1748369899.765483
+    },
+    {
+      "name": "Mail",
+      "pid": 9340,
+      "type": "communication",
+      "memory_mb": 12.5,
+      "cpu_percent": 0.2,
+      "create_time": 1748157211.346697
+    },
+    {
+      "name": "sharingd",
+      "pid": 699,
+      "type": "other",
+      "memory_mb": 11.8,
+      "cpu_percent": 0.8,
+      "create_time": 1747982319.132109
+    },
+    {
+      "name": "Finder",
+      "pid": 667,
+      "type": "other",
+      "memory_mb": 11.5,
+      "cpu_percent": 0.3,
+      "create_time": 1747982318.566747
+    },
+    {
+      "name": "Notes",
+      "pid": 660,
+      "type": "other",
+      "memory_mb": 11.4,
+      "cpu_percent": 0.5,
+      "create_time": 1747982318.516724
+    }
+  ],
+  "active_apps": [
+    "Safari",
+    "Google Chrome",
+    "Google Chrome Helper (Renderer)",
+    "Cursor Helper (Renderer)",
+    "Cursor",
+    "CommCenter",
+    "Cursor Helper (Plugin): extension-host [2-2]",
+    "zoom.us",
+    "chronod",
+    "mongod",
+    "Google Chrome Helper",
+    "knowledge-agent",
+    "identityservicesd",
+    "callservicesd",
+    "Cursor Helper (Plugin): extension-host [1-1]",
+    "Cursor Helper (GPU)",
+    "Mail",
+    "sharingd",
+    "Finder",
+    "Notes"
+  ],
+  "system_info": {
+    "cpu_count": 8,
+    "memory_total_gb": 8.0,
+    "memory_used_percent": 89.9
+  },
+  "is_significant_action": true
+}

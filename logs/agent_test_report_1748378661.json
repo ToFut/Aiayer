@@ -1,0 +1,343 @@
+{
+  "summary": {
+    "total_tests": 14,
+    "passed": 7,
+    "failed": 7,
+    "success_rate": 50.0
+  },
+  "test_results": [
+    {
+      "test_name": "Basic Agent - Simple Click Action",
+      "success": false,
+      "timestamp": "2025-05-27T16:42:35.860757",
+      "details": {
+        "response_time": 0.00015115737915039062,
+        "response": {
+          "type": "connection_established",
+          "client_id": "client_1748378555860",
+          "message": "Connected to Enhanced Enterprise Backend 8767 with Contextual Memory",
+          "timestamp": "2025-05-27T16:42:35.860342",
+          "ai_features": {
+            "ollama_available": true,
+            "contextual_memory": true,
+            "semantic_search": true,
+            "intelligent_fallback": true,
+            "real_responses": true
+          },
+          "capabilities": [
+            "contextual_ai_responses",
+            "semantic_memory_integration",
+            "ollama_llm_support",
+            "intelligent_processing",
+            "agent_automation",
+            "knowledge_retrieval",
+            "proactive_suggestions",
+            "conversation_memory"
+          ]
+        }
+      },
+      "issues": [
+        "Response indicates failure",
+        "No automation plan created"
+      ]
+    },
+    {
+      "test_name": "Basic Agent - Simple Text Input",
+      "success": false,
+      "timestamp": "2025-05-27T16:42:51.433539",
+      "details": {
+        "response_time": 14.571574926376343,
+        "response": {
+          "type": "final_response",
+          "mode": "agent",
+          "response": "\ud83e\udd16 Based on your current screen state, here's what I can observe:\n\n1. You're currently viewing a webpage with mixed interface elements, including images, videos, and colorful content.\n2. The normal brightness levels are visible, but there might be slight variations depending on the specific webpage or window you're interacting with.\n\nGiven this context, it seems like you want to perform some action related to searching for something. You've already clicked the search button (although not explicitly stated), so I'm assuming that's what you meant by \"Click on the search button\".\n\nTo answer your question directly:\n\n* It looks like you have access to email apps (e.g., Gmail, Outlook) since they're visible and interactive.\n* If you switch to a file manager or explore system information, you might be able to see relevant files or system details.\n\nAs for actionable information, here are some potential next steps:\n\n1. Check your email account to search for specific messages or emails.\n2. Open the file manager to browse or download files from your device.\n3. Explore system information (e.g., running apps, network settings) to find useful data.\n\nKeep in mind that I don't have direct access to your user profile or history, so I won't be able to provide more specific suggestions based on your recent activities. However, I can offer general guidance and tips for searching online.\n\nHow would you like to proceed?",
+          "client_id": "client_1748378555860",
+          "timestamp": "2025-05-27T16:42:51.429392",
+          "processing_method": "agnostic_deep_data",
+          "data_sources": [
+            "screen_analysis",
+            "memory_context"
+          ],
+          "success": true
+        }
+      },
+      "issues": [
+        "Slow response time: 14.57s",
+        "No automation plan created"
+      ]
+    },
+    {
+      "test_name": "Basic Agent - Basic Navigation",
+      "success": false,
+      "timestamp": "2025-05-27T16:42:58.626957",
+      "details": {
+        "response_time": 6.1904661655426025,
+        "response": {
+          "type": "final_response",
+          "mode": "agent",
+          "response": "\ud83e\udd16 Based on your current screen state, I can provide the following response to the user's query:\n\n\"Hello World!\"\n\nYou've typed 'hello world' in the text field. This is a standard greeting message that is commonly used in various contexts such as emails, chat windows, or even as a welcome message.\n\nI'm not currently aware of any specific email app or file manager on your screen, so I can't see if you have saved any files to it. However, I am seeing the Rich visual content (email) from Gmail, with its normal brightness levels and visible images and videos.\n\nIf you'd like to save a new message or attach a document to it, you can do so by tapping on the \"Compose\" button (looks like a pen) at the top left corner of your screen.",
+          "client_id": "client_1748378555860",
+          "timestamp": "2025-05-27T16:42:58.625002",
+          "processing_method": "agnostic_deep_data",
+          "data_sources": [
+            "screen_analysis",
+            "memory_context"
+          ],
+          "success": true
+        }
+      },
+      "issues": [
+        "No automation plan created"
+      ]
+    },
+    {
+      "test_name": "Complex Agent - Multi-step Web Search",
+      "success": false,
+      "timestamp": "2025-05-27T16:43:05.036410",
+      "details": {
+        "response_time": 5.407146692276001,
+        "steps_count": 0,
+        "response": {
+          "type": "final_response",
+          "mode": "agent",
+          "response": "\ud83e\udd16 Based on the current screen state and available context, I notice that the user is in Google Chrome. Here's a helpful response:\n\n\"Google just launched its latest feature: 'Quick Open'. You can now quickly open websites to their homepage by swiping left from any webpage or opening an email app.\"\n\nYou don't have Gmail set up yet, but if you had, it would also be accessible directly through the Quick Open feature.\n\n(Note that I'm assuming a recent context and memory is not available as per your current query. If you want to consider more scenarios, please provide more information about the user's current state.)",
+          "client_id": "client_1748378555860",
+          "timestamp": "2025-05-27T16:43:05.031333",
+          "processing_method": "agnostic_deep_data",
+          "data_sources": [
+            "screen_analysis",
+            "memory_context"
+          ],
+          "success": true
+        }
+      },
+      "issues": [
+        "Expected at least 3 steps, got 0"
+      ]
+    },
+    {
+      "test_name": "Complex Agent - Form Filling",
+      "success": false,
+      "timestamp": "2025-05-27T16:43:11.908535",
+      "details": {
+        "response_time": 4.867825746536255,
+        "steps_count": 0,
+        "response": {
+          "type": "final_response",
+          "mode": "agent",
+          "response": "\ud83e\udd16 Based on the current screen state and available context, I observe the following:\n\n1. The user has opened Google Chrome as their default browser.\n2. They have recently accessed a webpage using Gmail.\n3. As they type \"AI automation tools\" into the search bar, Chrome displays the first result from the search engine.\n\nI can see that Chrome is displaying the first result of the search query \"AI automation tools\", which suggests that Google has already analyzed the user's input and provided relevant results directly in the browser window.\n\nTo provide a helpful response to the user's query:\n\n* The top result, titled \"Automation Tools | AI-powered Solutions for Business\", appears to be a comprehensive list of AI-related products and services.\n* The first item on this list is likely to be an overview or summary of AI automation tools, providing an introduction to what they are and how they can benefit businesses.\n\nSince Chrome provides the top result directly in the browser window, there's no need for the user to click on any links. They can simply view the information provided by Google as a direct response to their query.",
+          "client_id": "client_1748378555860",
+          "timestamp": "2025-05-27T16:43:11.906864",
+          "processing_method": "agnostic_deep_data",
+          "data_sources": [
+            "screen_analysis",
+            "memory_context"
+          ],
+          "success": true
+        }
+      },
+      "issues": [
+        "Expected at least 4 steps, got 0"
+      ]
+    },
+    {
+      "test_name": "Complex Agent - File Operations",
+      "success": false,
+      "timestamp": "2025-05-27T16:43:13.912427",
+      "details": {
+        "response_time": 0.0005419254302978516,
+        "steps_count": 0,
+        "response": {
+          "type": "final_response",
+          "mode": "agent",
+          "response": "\ud83e\udd16 I cannot fill out a contact form with personal information such as \"name\", \"email\", and \"message\" for an unknown user. Would you like help writing a message?",
+          "client_id": "client_1748378555860",
+          "timestamp": "2025-05-27T16:43:13.867968",
+          "processing_method": "agnostic_deep_data",
+          "data_sources": [
+            "screen_analysis",
+            "memory_context"
+          ],
+          "success": true
+        }
+      },
+      "issues": [
+        "Expected at least 2 steps, got 0"
+      ]
+    },
+    {
+      "test_name": "UI Detection - Button Detection",
+      "success": true,
+      "timestamp": "2025-05-27T16:43:22.303028",
+      "details": {
+        "response_time": 6.387614965438843,
+        "has_coordinates": false,
+        "response": {
+          "type": "final_response",
+          "mode": "agent",
+          "response": "\ud83e\udd16 Based on your description of the current screen state, I can provide a helpful response to your query. Since we don't have any direct access to your desktop or application, I'll need to make some assumptions about what's visible on your screen.\n\nAssuming you're using a Windows 10/11 operating system with a mixed interface (e.g., Taskbar, Notification Area), here's what I can observe:\n\n* The Taskbar is visible, and the System Tray icon for \"File Explorer\" (or a similar file manager) is also showing up. This suggests that File Explorer or another file manager might be open on your screen.\n* In the File Explorer window, you should see a list of files and folders. If you click on the \"This PC\" or \"Computer\" option in File Explorer, it will take you to your local disk drive (e.g., C:).\n* The System Information app is also visible, which provides information about your system, including its version, processor, and other details.\n\nNow, let's assume that we're writing to a file called 'test.txt' using Python. To do this, we'll use the `os` module in Python.\n\n```python\nimport os\n\n# Create a new text file called 'test.txt'\nwith open('test.txt', 'w') as f:\n    # Write 'Hello World' to the file\n    f.write('Hello World\\n')\n```\n\nThis code creates a new text file called `test",
+          "client_id": "client_1748378555860",
+          "timestamp": "2025-05-27T16:43:22.301628",
+          "processing_method": "agnostic_deep_data",
+          "data_sources": [
+            "screen_analysis",
+            "memory_context"
+          ],
+          "success": true
+        }
+      },
+      "issues": [
+        "No coordinate information found for click action"
+      ]
+    },
+    {
+      "test_name": "UI Detection - Input Field Detection",
+      "success": true,
+      "timestamp": "2025-05-27T16:43:29.595130",
+      "details": {
+        "response_time": 6.290015935897827,
+        "has_coordinates": false,
+        "response": {
+          "type": "final_response",
+          "mode": "agent",
+          "response": "\ud83e\udd16 Based on the current screen state and available context, I've gathered some relevant information:\n\n1. **Current display resolution:** 2940x1912\n2. **Display brightness level:** Mixed interface with normal brightness levels ( likely between 50% to 70%)\n3. **Rich visual content visible:** Images, videos, or colorful interface\n\nWith this information in mind, I can answer the user's query to find and click the submit button on the current page.\n\n**Actionable Information:**\n\n* The submit button is likely a clickable element that triggers an action (e.g., submitting a form, creating a new document).\n* Given the mixed interface with normal brightness levels, it's possible that the submit button may have a different color scheme or visual style compared to other elements on the page.\n\n**Response:**\n\nTo find and click the submit button on the current page:\n\n1. Take note of any visually distinct buttons or icons on the page.\n2. Look for areas with bold text or bright colors, which might indicate clickable elements like submit buttons.\n3. If you can see a prominent overlay or header section with a prominent call-to-action (e.g., \"Submit\"), that could be a good starting point.\n\nBy observing the user's screen and considering the context, I believe the user can find and click the submit button on the current page by examining the visually distinct elements on the screen.",
+          "client_id": "client_1748378555860",
+          "timestamp": "2025-05-27T16:43:29.592306",
+          "processing_method": "agnostic_deep_data",
+          "data_sources": [
+            "screen_analysis",
+            "memory_context"
+          ],
+          "success": true
+        }
+      },
+      "issues": []
+    },
+    {
+      "test_name": "UI Detection - Link Detection",
+      "success": true,
+      "timestamp": "2025-05-27T16:43:36.059523",
+      "details": {
+        "response_time": 5.434602975845337,
+        "has_coordinates": false,
+        "response": {
+          "type": "final_response",
+          "mode": "agent",
+          "response": "\ud83e\udd16 Based on your current screen state, I can infer that the search input field is visible on your screen. Here's a helpful response:\n\n\"Hey, for the search input field, it looks like it's currently focused on the top-right corner of your screen. You're also typing 'test query' into the search bar. Your email app is likely taking over and displaying any relevant results from your inbox.\"\n\nI was able to observe this because I'm running on a recent version of Android (version 11) with a high-resolution display, which provides clear visibility and responsiveness. The search input field's focus is also apparent due to the way it highlights the active character in the input field. Additionally, the system's rich visual content is visible, including images and videos.\n\nIf you'd like me to provide more specific information about your current context or screen state (e.g., location services, recent apps opened), feel free to let me know!",
+          "client_id": "client_1748378555860",
+          "timestamp": "2025-05-27T16:43:36.058177",
+          "processing_method": "agnostic_deep_data",
+          "data_sources": [
+            "screen_analysis",
+            "memory_context"
+          ],
+          "success": true
+        }
+      },
+      "issues": [
+        "No coordinate information found for click action"
+      ]
+    },
+    {
+      "test_name": "Memory Integration - Context Awareness",
+      "success": true,
+      "timestamp": "2025-05-27T16:43:49.998756",
+      "details": {
+        "response_time": 5.8983540534973145,
+        "context_aware": true,
+        "response": {
+          "type": "final_response",
+          "mode": "agent",
+          "response": "\ud83e\udd16 Based on your current screen state, I can infer that you are currently using a desktop computer with the following characteristics:\n\n* 2940x1912 resolution (a relatively high-definition display)\n* Mixed interface with normal brightness levels\n* Rich visual content visible (images, videos, or colorful interface)\n\nGiven this context, here's what I'd like to observe and provide an answer to your query:\n\n1. **Email client**: You are likely using a desktop email client such as Gmail, Outlook, or Yahoo Mail.\n2. **Desktop application**: It seems you have opened a specific email client app (e.g., Gmail) on the right-hand side of the screen.\n3. **Task list or inbox**: Your task list or inbox is visible on the left-hand side of the screen.\n\nConsidering your current workflow and context, here are some suggestions to automate your daily email workflow:\n\n1. **Schedule a daily check-in**: Set up a reminder to check your inbox daily at a specific time (e.g., 8:00 AM) to review new emails.\n2. **Create a custom filter or rule**: Use the built-in filtering and searching features in your email client to create a custom rule that moves spam, urgent, or important emails to a separate folder or label.\n3. **Automate email responses**: Use a template or macro in your email client to automate repetitive tasks, such as sending follow-up emails or responding to similar messages.\n\nTo automate these tasks, you can use the",
+          "client_id": "client_1748378555860",
+          "timestamp": "2025-05-27T16:43:49.995028",
+          "processing_method": "agnostic_deep_data",
+          "data_sources": [
+            "screen_analysis",
+            "memory_context"
+          ],
+          "success": true
+        }
+      },
+      "issues": []
+    },
+    {
+      "test_name": "Error Handling - Invalid Request Format",
+      "success": true,
+      "timestamp": "2025-05-27T16:43:55.006863",
+      "details": {
+        "response": {
+          "error": ""
+        }
+      },
+      "issues": []
+    },
+    {
+      "test_name": "Error Handling - Empty Message",
+      "success": false,
+      "timestamp": "2025-05-27T16:43:58.840652",
+      "details": {
+        "response": {
+          "type": "final_response",
+          "mode": "agent",
+          "response": "\ud83e\udd16 Based on your current screen state, I'm assuming you're looking for a response related to setting up an automation. Here's what I see:\n\n**Observations:**\n\n* You have the \"Automation\" tab open with a few options visible (e.g., \"Create new script\", \"Edit existing script\", and a list of available triggers).\n* The \"Triggers\" section has several options, including \"Scheduled\", \"User activity\", and \"Event\". However, no specific trigger is currently selected.\n* The \"Actions\" section includes options like \"Run command\", \"Execute file\", and \"Send notification\". Again, none of these are highlighted as selected.\n\n**Actionable Information:**\n\nGiven the current screen state, here's what you might need to do to set up an automation:\n\n1. Select a trigger from the \"Triggers\" section (e.g., \"Scheduled\" or \"User activity\"). This will allow you to choose when and how your automation should run.\n2. Choose an action from the \"Actions\" section that suits your needs. For example, if you want to automate a task, select \"Execute file\".\n3. Consider specifying any necessary parameters or settings for the chosen action (e.g., file path, command line arguments).\n\n**Additional Information:**\n\nIf you have email apps like Gmail or Outlook open on your screen, you might see a notification or an option to set up automation reminders.\n\nTo confirm, can you please clarify which type of automation you're looking",
+          "client_id": "client_1748378555860",
+          "timestamp": "2025-05-27T16:43:58.838388",
+          "processing_method": "agnostic_deep_data",
+          "data_sources": [
+            "screen_analysis",
+            "memory_context"
+          ],
+          "success": true
+        }
+      },
+      "issues": [
+        "Error scenario not handled properly"
+      ]
+    },
+    {
+      "test_name": "Error Handling - Malformed JSON",
+      "success": true,
+      "timestamp": "2025-05-27T16:43:59.844574",
+      "details": {
+        "response": {
+          "type": "error",
+          "error": "Unknown message type: unknown",
+          "client_id": "client_1748378555860",
+          "timestamp": "2025-05-27T16:43:58.838691"
+        }
+      },
+      "issues": []
+    },
+    {
+      "test_name": "Performance - Rapid Requests",
+      "success": true,
+      "timestamp": "2025-05-27T16:44:21.314189",
+      "details": {
+        "avg_response_time": 3.592373752593994,
+        "max_response_time": 6.3234241008758545,
+        "all_times": [
+          1.8270127773284912,
+          0.0007059574127197266,
+          6.2842559814453125,
+          3.5264699459075928,
+          6.3234241008758545
+        ]
+      },
+      "issues": []
+    }
+  ],
+  "all_issues": [
+    "Response indicates failure",
+    "No automation plan created",
+    "Slow response time: 14.57s",
+    "No automation plan created",
+    "No automation plan created",
+    "Expected at least 3 steps, got 0",
+    "Expected at least 4 steps, got 0",
+    "Expected at least 2 steps, got 0",
+    "No coordinate information found for click action",
+    "No coordinate information found for click action",
+    "Error scenario not handled properly"
+  ]
+}

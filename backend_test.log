@@ -1,0 +1,182 @@
+INFO:memory.enhanced_semantic_search:Enhanced semantic search initialized with embedding dim: 384
+INFO:memory.enhanced_semantic_search:Hybrid retrieval enabled: True
+INFO:memory.semantic_search_agent:Loading 621 existing documents from storage
+INFO:memory.semantic_search_agent:EnterpriseVectorStore initialized with enterprise-grade features
+INFO:memory.semantic_search_agent:SemanticSearchAgent initialized with enterprise-grade capabilities
+INFO:agent_workflow.input_controller:Detected screen size: 1470x956
+INFO:agent_workflow.input_controller:Input listeners started successfully
+INFO:agent_workflow.input_controller:🚨 Emergency shutdown: Press Ctrl+1 to immediately stop agent
+INFO:llava_processor:Connected to Ollama API v0.6.8
+INFO:total_screen_analyzer:LLaVA visual processor initialized for total screen analysis
+INFO:total_screen_analyzer:Total Screen Analyzer initialized with 8s interval
+INFO:universal_intelligent_automation_handler:🤖 Universal automation components loaded successfully
+INFO:memory.semantic_search_agent:Loading 621 existing documents from storage
+INFO:memory.semantic_search_agent:EnterpriseVectorStore initialized with enterprise-grade features
+INFO:memory.semantic_search_agent:SemanticSearchAgent initialized with enterprise-grade capabilities
+INFO:application_integration_framework:📱 Registered 2 application integrators
+INFO:application_integration_framework:📱 Registered 2 application integrators
+INFO:sensors.process_sensor:Process sensor initialized with config: {'interval_sec': 5, 'max_memory_mb': 50, 'cleanup_threshold_mb': 25, 'max_errors': 3, 'exclude_patterns': ['system', 'kernel'], 'max_processes': 100}
+INFO:memory.memory_system:Memory logger initialized
+INFO:memory_diagnostics:Memory diagnostic logger initialized
+INFO:memory_diagnostics:MEMORY EVENT: logger_initialized - {"timestamp": "2025-05-27T11:00:50.832548"}
+INFO:memory.memory_system:Diagnostic logger initialized
+2025-05-27 11:00:50,832 - INFO - [ConsciousMemory] Initialized as middle layer for memory system
+INFO:memory.conscious_memory:[ConsciousMemory] Initialized as middle layer for memory system
+INFO:memory.memory_system:Conscious memory initialized
+INFO:memory.enhanced_semantic_search:Enhanced semantic search initialized with embedding dim: 384
+INFO:memory.enhanced_semantic_search:Hybrid retrieval enabled: True
+INFO:memory.memory_system:Enhanced semantic search initialized
+INFO:memory.memory_system:🔄 Loading memory state from /Users/segevbin/Desktop/SensAI/Aiayer/memory/memory/memory_state.json
+INFO:memory.memory_system:  - Found 12 short-term memory items
+INFO:memory.memory_system:  - No long-term memory found, initializing empty
+INFO:memory.memory_system:  - Found context memory with 6 items
+INFO:memory.memory_system:✅ Successfully loaded memory state
+INFO:memory_diagnostics:MEMORY EVENT: memory_state_loaded - {"short_term_count": 12, "long_term_count": 0, "context_count": 6, "timestamp": "2025-05-27T11:00:50.833300"}
+INFO:memory.memory_system:Memory system initialized
+INFO:enhanced_realtime_system_bridge:EnhancedRealtimeSystemBridge initialized - living in the system, not capturing it
+INFO:__main__:🚀 Efficient system bridge initialized - living in the system!
+INFO:__main__:✅ Using efficient OS integration - no screen capture overhead
+INFO:__main__:Universal Intelligent Automation handler initialized for Agent mode
+INFO:__main__:Contextual AI Backend initialized - Ollama: True, Memory: Active
+INFO:__main__:🚀 Starting Enhanced Enterprise Backend 8767 with Efficient System Integration...
+INFO:__main__:🧠 Contextual AI responses enabled
+INFO:__main__:🔍 Semantic memory integration active
+INFO:__main__:🎯 Modes: Agent, Ask, Suggest, General (all contextual)
+INFO:__main__:🚀 Starting efficient system bridge...
+INFO:__main__:✅ Efficient system bridge started successfully
+INFO:__main__:✅ Enhanced Enterprise Backend 8767 started successfully
+INFO:__main__:🌐 WebSocket server listening on ws://localhost:8767
+INFO:__main__:🤖 Ollama integration: ✅ Active
+INFO:__main__:🧠 Contextual memory system ready
+INFO:__main__:🚀 Efficient system integration active - no screen capture overhead!
+INFO:__main__:⚡ System Bridge WebSocket: ws://localhost:8768
+INFO:enhanced_realtime_system_bridge:Starting enhanced real-time system bridge...
+INFO:system_integrated_monitor:🚀 Starting system-integrated monitoring (no screen capture)
+INFO:system_integrated_monitor:Platform: Darwin 23.1.0
+INFO:system_integrated_monitor:🍎 Starting macOS system integration...
+INFO:websockets.server:server listening on 127.0.0.1:8767
+INFO:websockets.server:server listening on [::1]:8767
+INFO:websockets.server:connection open
+INFO:__main__:Client connected: client_1748358053059 from ::1
+WARNING:__main__:No system state available from bridge
+/Users/segevbin/Desktop/SensAI/Aiayer/memory/semantic_search_agent.py:336: RuntimeWarning: divide by zero encountered in log
+  idf = np.log(self.total_documents / (self.document_frequencies[token] + 1))
+INFO:memory.semantic_search_agent:Document 982f4184c51c21b643d458386ec00ff5027c4718bde9a7677c3104d114e2cb3b added to enterprise vector store
+INFO:memory.semantic_search_agent:Memory added successfully: 982f4184c51c21b643d458386ec00ff5027c4718bde9a7677c3104d114e2cb3b
+INFO:memory.semantic_search_agent:Document d20353e411a34e5683181c7c6e98fd50fbb6787eec94b9d8f3505690c148c75e added to enterprise vector store
+INFO:memory.semantic_search_agent:Memory added successfully: d20353e411a34e5683181c7c6e98fd50fbb6787eec94b9d8f3505690c148c75e
+INFO:memory.semantic_search_agent:Document 62119a11aff3ae1f3ae324d4efc1b52986e8d2c69d5fe7f19676df98f8f6385b added to enterprise vector store
+INFO:memory.semantic_search_agent:Memory added successfully: 62119a11aff3ae1f3ae324d4efc1b52986e8d2c69d5fe7f19676df98f8f6385b
+INFO:memory.semantic_search_agent:Document 05548aab2a5b28a2431351766dac4c28d6c7dc10e3dde6b89228512e917dc7e1 added to enterprise vector store
+INFO:memory.semantic_search_agent:Memory added successfully: 05548aab2a5b28a2431351766dac4c28d6c7dc10e3dde6b89228512e917dc7e1
+INFO:memory.semantic_search_agent:Document 034434251646b2dbb1b11c83350458946d78d44e3223fd7370f2ff00bc2ac7ec added to enterprise vector store
+INFO:memory.semantic_search_agent:Memory added successfully: 034434251646b2dbb1b11c83350458946d78d44e3223fd7370f2ff00bc2ac7ec
+INFO:memory.semantic_search_agent:Document 592f7dd3b31471228a377229d9f272171c08f17bfb15210df2e68dd1ae32100b added to enterprise vector store
+INFO:memory.semantic_search_agent:Memory added successfully: 592f7dd3b31471228a377229d9f272171c08f17bfb15210df2e68dd1ae32100b
+INFO:memory.semantic_search_agent:Document 37c39f9c89e93951b4dbd2ecacad8bae04b86d25f0b4283c1f2ceff0767588f9 added to enterprise vector store
+INFO:memory.semantic_search_agent:Memory added successfully: 37c39f9c89e93951b4dbd2ecacad8bae04b86d25f0b4283c1f2ceff0767588f9
+INFO:memory.semantic_search_agent:Document 6f605ec82a8df2416861e33222059334ced74fa66216b174ba2346ccf5d5e076 added to enterprise vector store
+INFO:memory.semantic_search_agent:Memory added successfully: 6f605ec82a8df2416861e33222059334ced74fa66216b174ba2346ccf5d5e076
+INFO:memory.semantic_search_agent:Document d9b7274ff814f0521aba64c5c43e0332dfc9e66af2f494dc9dbfe79d6b46ca43 added to enterprise vector store
+INFO:memory.semantic_search_agent:Memory added successfully: d9b7274ff814f0521aba64c5c43e0332dfc9e66af2f494dc9dbfe79d6b46ca43
+INFO:memory.semantic_search_agent:Document ca136bdeda4fe6652016489aad48df2056a2f75c5c93528c5167fa1c3b7c74d4 added to enterprise vector store
+INFO:memory.semantic_search_agent:Memory added successfully: ca136bdeda4fe6652016489aad48df2056a2f75c5c93528c5167fa1c3b7c74d4
+INFO:__main__:Enterprise contextual knowledge initialized
+INFO:memory.semantic_search_agent:Document 127d7e9c60d497b8272a1e1ec9ef95605a7ebe1d31ec5bce61a32411b0c0115c added to enterprise vector store
+INFO:memory.semantic_search_agent:Memory added successfully: 127d7e9c60d497b8272a1e1ec9ef95605a7ebe1d31ec5bce61a32411b0c0115c
+/Users/segevbin/Desktop/SensAI/Aiayer/memory/semantic_search_agent.py:223: RuntimeWarning: invalid value encountered in scalar divide
+  similarity = np.dot(query_embedding, doc_embedding) / (
+INFO:memory.semantic_search_agent:Similarity search completed in 0.0087s, found 5 results
+INFO:memory.semantic_search_agent:Search completed successfully in 0.0141s, found 5 results
+INFO:__main__:🎯 [STREAMING] Creating Agent automation plan for: search Spotify omer adam
+INFO:__main__:🔧 Automation handler available: True
+INFO:__main__:🧠 Using Universal Intelligent Automation handler for real LLM planning
+INFO:llm.llm_service:🔥 LLM Warmup Manager available
+INFO:llm.llm_service:🔥 Initializing with LLM Warmup Manager for fast responses
+INFO:llm.llm_service:📋 Standard LLM client created as fallback
+INFO:llm.llm_service:LLM client initialized
+INFO:llm.llm_service:🔥 Initializing with LLM Warmup Manager for fast responses
+INFO:llm.llm_service:📋 Standard LLM client created as fallback
+INFO:llm.llm_service:LLM client initialized
+INFO:llm.model:Connected to Ollama version: 0.6.8
+INFO:llm.llm_service:LocalLLM client started successfully
+INFO:llm.llm_service:LLM service initialized successfully
+INFO:universal_intelligent_automation_handler:🧠 LLM service initialized for universal planning (async)
+INFO:llm.llm_service:Generated system message with context: 76 chars
+INFO:llm.llm_service:🐌 Using standard LLM client...
+INFO:websockets.server:connection open
+INFO:__main__:Client connected: client_1748358073115 from ::1
+INFO:__main__:Processing contextual start_screen_sharing from client_1748358073115
+INFO:__main__:🖥️ Screen sharing request received from client_1748358073115
+ERROR:__main__:❌ Screen capture module not available: cannot import name 'RealtimeScreenTCPServer' from 'realtime_screen_tcp_server' (/Users/segevbin/Desktop/SensAI/Aiayer/realtime_screen_tcp_server.py)
+WARNING:llm.model:Request timed out, retrying (1/3)
+INFO:websockets.server:connection open
+INFO:__main__:Client connected: client_1748358150617 from ::1
+WARNING:__main__:No system state available from bridge
+INFO:memory.semantic_search_agent:Document 26c65a0910324473314592208883ac4b7d811c9a9ae749bf779183ca5051798c added to enterprise vector store
+INFO:memory.semantic_search_agent:Memory added successfully: 26c65a0910324473314592208883ac4b7d811c9a9ae749bf779183ca5051798c
+INFO:memory.semantic_search_agent:Similarity search completed in 0.0358s, found 5 results
+INFO:memory.semantic_search_agent:Search completed successfully in 0.0623s, found 5 results
+INFO:__main__:🎯 [STREAMING] Creating Agent automation plan for: open calculator
+INFO:__main__:🔧 Automation handler available: True
+INFO:__main__:🧠 Using Universal Intelligent Automation handler for real LLM planning
+INFO:llm.llm_service:Generated system message with context: 76 chars
+INFO:llm.llm_service:🐌 Using standard LLM client...
+WARNING:llm.model:Request timed out, retrying (2/3)
+WARNING:llm.model:Request timed out, retrying (1/3)
+ERROR:llm.model:Request timed out after all retries
+ERROR:universal_intelligent_automation_handler:Failed to parse LLM JSON response: Expecting value: line 1 column 1 (char 0)
+ERROR:universal_intelligent_automation_handler:Raw response: Error: Request timed out...
+ERROR:universal_intelligent_automation_handler:Error creating universal automation plan: LLM returned invalid JSON: Expecting value: line 1 column 1 (char 0)
+INFO:__main__:🧠 Universal plan result: False - processing_time: 0.00s
+WARNING:__main__:⚠️ [STREAMING] Agent automation failed: Unknown automation error
+ERROR:__main__:Error in fast warmup response: received 1000 (OK); then sent 1000 (OK)
+ERROR:__main__:Ollama error: received 1000 (OK); then sent 1000 (OK)
+INFO:__main__:🎯 Executing Agent mode automation for: search Spotify omer adam
+ERROR:__main__:❌ Agent automation error: 'UniversalIntelligentAutomationHandler' object has no attribute 'handle_user_instruction'
+INFO:__main__:📋 Providing manual instructions for: search Spotify omer adam
+ERROR:__main__:Error in streaming response: received 1000 (OK); then sent 1000 (OK)
+INFO:__main__:🎯 Executing Agent mode automation for: search Spotify omer adam
+ERROR:__main__:❌ Agent automation error: 'UniversalIntelligentAutomationHandler' object has no attribute 'handle_user_instruction'
+INFO:__main__:📋 Providing manual instructions for: search Spotify omer adam
+INFO:memory.semantic_search_agent:Document a0c49f9df4c5849ab15b3614e625a4741d84c5b30000a312e4f4890c7d6c182c added to enterprise vector store
+INFO:memory.semantic_search_agent:Memory added successfully: a0c49f9df4c5849ab15b3614e625a4741d84c5b30000a312e4f4890c7d6c182c
+ERROR:__main__:Error in streaming chat request: received 1000 (OK); then sent 1000 (OK)
+ERROR:__main__:Error processing message from client_1748358053059: received 1000 (OK); then sent 1000 (OK)
+INFO:__main__:Client disconnected: client_1748358053059
+WARNING:llm.model:Request timed out, retrying (2/3)
+ERROR:universal_intelligent_automation_handler:Failed to parse LLM JSON response: Expecting property name enclosed in double quotes: line 16 column 37 (char 522)
+ERROR:universal_intelligent_automation_handler:Raw response: ```json
+{
+  "title": "Automate opening Calculator",
+  "description": "Open Safari, navigate to Calculator app, and perform basic calculation.",
+  "request_type": "app_usage",
+  "complexity_score": 0.05,
+  "estimated_duration": 10,
+  "success_probability": 0.9,
+  "fallback_strategies": ["open_app|navigate_url|click_element|type_text"],
+  "user_guidance_needed": false,
+
+  "steps": [
+    {
+      "id": "step_1",
+      "description": "Open Safari (30 seconds)",
+      "action_type": "open_app",
+      ...
+ERROR:universal_intelligent_automation_handler:Error creating universal automation plan: LLM returned invalid JSON: Expecting property name enclosed in double quotes: line 16 column 37 (char 522)
+INFO:__main__:🧠 Universal plan result: False - processing_time: 0.00s
+WARNING:__main__:⚠️ [STREAMING] Agent automation failed: Unknown automation error
+ERROR:__main__:Error in fast warmup response: received 1000 (OK); then sent 1000 (OK)
+ERROR:__main__:Ollama error: received 1000 (OK); then sent 1000 (OK)
+INFO:__main__:🎯 Executing Agent mode automation for: open calculator
+ERROR:__main__:❌ Agent automation error: 'UniversalIntelligentAutomationHandler' object has no attribute 'handle_user_instruction'
+INFO:__main__:📋 Providing manual instructions for: open calculator
+ERROR:__main__:Error in streaming response: received 1000 (OK); then sent 1000 (OK)
+INFO:__main__:🎯 Executing Agent mode automation for: open calculator
+ERROR:__main__:❌ Agent automation error: 'UniversalIntelligentAutomationHandler' object has no attribute 'handle_user_instruction'
+INFO:__main__:📋 Providing manual instructions for: open calculator
+INFO:memory.semantic_search_agent:Document 44298fc6f78b2774d5261d44b6f9f45bb97cdb96703f99380e426c0d5356bf1d added to enterprise vector store
+INFO:memory.semantic_search_agent:Memory added successfully: 44298fc6f78b2774d5261d44b6f9f45bb97cdb96703f99380e426c0d5356bf1d
+ERROR:__main__:Error in streaming chat request: received 1000 (OK); then sent 1000 (OK)
+ERROR:__main__:Error processing message from client_1748358150617: received 1000 (OK); then sent 1000 (OK)
+INFO:__main__:Client disconnected: client_1748358150617

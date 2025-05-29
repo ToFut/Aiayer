@@ -1,6 +1,23 @@
-2025-05-23 16:26:45,741 - llava_processor - INFO - Connected to Ollama API v0.6.8
-2025-05-23 16:26:45,741 - total_screen_analyzer - INFO - LLaVA visual processor initialized for total screen analysis
-2025-05-23 16:26:45,741 - total_screen_analyzer - INFO - Total Screen Analyzer initialized with 8s interval
-2025-05-23 16:26:45,741 - total_screen_analyzer - INFO - Starting Total Screen Analyzer
-2025-05-23 16:26:45,748 - total_screen_analyzer - ERROR - Connection error: Multiple exceptions: [Errno 61] Connect call failed ('::1', 8765, 0, 0), [Errno 61] Connect call failed ('127.0.0.1', 8765)
-2025-05-23 16:26:50,752 - total_screen_analyzer - ERROR - Connection error: Multiple exceptions: [Errno 61] Connect call failed ('::1', 8765, 0, 0), [Errno 61] Connect call failed ('127.0.0.1', 8765)
+2025-05-27 17:45:22,918 - llava_processor - INFO - Connected to Ollama API v0.6.8
+2025-05-27 17:45:22,918 - total_screen_analyzer - INFO - LLaVA visual processor initialized for total screen analysis
+2025-05-27 17:45:22,918 - total_screen_analyzer - INFO - Total Screen Analyzer initialized with 8s interval
+2025-05-27 17:45:22,918 - total_screen_analyzer - INFO - Starting Total Screen Analyzer
+2025-05-27 17:45:22,926 - total_screen_analyzer - INFO - Connected to bridge server at ws://localhost:8767
+2025-05-27 17:45:22,926 - total_screen_analyzer - INFO - Received welcome: connection_established
+2025-05-27 17:45:23,114 - total_screen_analyzer - INFO - Starting total screen analysis (hash: efbb6554)
+2025-05-27 17:45:37,344 - total_screen_analyzer - INFO - Lightweight vision analysis completed: 43 UI elements detected
+2025-05-27 17:45:37,357 - total_screen_analyzer - INFO - Completed total screen analysis in 14.24s
+2025-05-27 17:45:37,357 - total_screen_analyzer - INFO - Sent total screen analysis: Cursor - general_computing
+2025-05-27 17:45:45,554 - total_screen_analyzer - INFO - Starting total screen analysis (hash: 05b74526)
+2025-05-27 17:45:59,884 - total_screen_analyzer - INFO - Lightweight vision analysis completed: 43 UI elements detected
+2025-05-27 17:45:59,896 - total_screen_analyzer - INFO - Completed total screen analysis in 14.34s
+2025-05-27 17:45:59,896 - total_screen_analyzer - INFO - Sent total screen analysis: Cursor - general_computing
+2025-05-27 17:46:08,104 - total_screen_analyzer - INFO - Starting total screen analysis (hash: 7d441d1f)
+2025-05-27 17:46:22,415 - total_screen_analyzer - INFO - Lightweight vision analysis completed: 43 UI elements detected
+2025-05-27 17:46:22,426 - total_screen_analyzer - INFO - Completed total screen analysis in 14.32s
+2025-05-27 17:46:22,427 - total_screen_analyzer - INFO - Sent total screen analysis: Cursor - general_computing
+2025-05-27 17:46:30,724 - total_screen_analyzer - INFO - Starting total screen analysis (hash: f446b8f2)
+2025-05-27 17:46:37,877 - total_screen_analyzer - INFO - Lightweight vision analysis completed: 108 UI elements detected
+2025-05-27 17:46:37,903 - total_screen_analyzer - INFO - Completed total screen analysis in 7.18s
+2025-05-27 17:46:37,907 - total_screen_analyzer - INFO - Sent total screen analysis: Safari - communication
+2025-05-27 17:46:46,274 - total_screen_analyzer - INFO - Starting total screen analysis (hash: 1806c123)
