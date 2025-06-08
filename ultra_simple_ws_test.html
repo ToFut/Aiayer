@@ -1,0 +1,140 @@
+<\!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ultra Simple WebSocket Test</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .log { 
+            background: #f5f5f5; 
+            padding: 10px; 
+            border: 1px solid #ddd; 
+            height: 300px; 
+            overflow-y: auto;
+            margin-bottom: 10px;
+            white-space: pre-wrap;
+        }
+        button {
+            padding: 10px;
+            margin: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>Ultra Simple WebSocket Test</h1>
+    <div class="controls">
+        <button onclick="connectWS('ws://localhost:8765')">Connect to 8765</button>
+        <button onclick="connectWS('ws://127.0.0.1:8765')">Connect to 127.0.0.1:8765</button>
+        <button onclick="connectWS('ws://localhost:8766')">Connect to 8766</button>
+        <button onclick="connectWS('ws://localhost:8767')">Connect to 8767</button>
+        <button onclick="sendSimpleMessage()">Send Simple Message</button>
+        <button onclick="checkBrowserSupport()">Check Browser Support</button>
+    </div>
+    <div class="log" id="log"></div>
+
+    <script>
+        let ws = null;
+        const log = document.getElementById('log');
+
+        function addLog(message) {
+            const time = new Date().toLocaleTimeString();
+            log.innerHTML = `[${time}] ${message}\n` + log.innerHTML;
+        }
+
+        function connectWS(url) {
+            // Close existing connection if any
+            if (ws) {
+                addLog(`Closing existing connection to ${ws.url}`);
+                ws.close();
+                ws = null;
+            }
+
+            addLog(`Attempting to connect to ${url}...`);
+            
+            try {
+                ws = new WebSocket(url);
+                
+                // Capture the exact WebSocket URL for reference
+                addLog(`WebSocket created with URL: ${ws.url}`);
+                
+                ws.onopen = function(event) {
+                    addLog(`✅ CONNECTION SUCCESSFUL to ${url}`);
+                    addLog(`Ready state: ${ws.readyState} (OPEN)`);
+                };
+                
+                ws.onclose = function(event) {
+                    addLog(`❌ Connection CLOSED. Code: ${event.code}, Reason: ${event.reason || 'No reason provided'}`);
+                    addLog(`WebSocket close event details: ${JSON.stringify(event)}`);
+                };
+                
+                ws.onerror = function(event) {
+                    addLog(`❌ CONNECTION ERROR to ${url}`);
+                    addLog(`WebSocket error event: ${JSON.stringify(event)}`);
+                    console.error('WebSocket error:', event);
+                };
+                
+                ws.onmessage = function(event) {
+                    addLog(`📩 Message received: ${event.data}`);
+                    try {
+                        const json = JSON.parse(event.data);
+                        addLog(`Parsed JSON: ${JSON.stringify(json, null, 2)}`);
+                    } catch (e) {
+                        addLog(`Not JSON data: ${e.message}`);
+                    }
+                };
+            } catch (error) {
+                addLog(`❌ Exception creating WebSocket: ${error.message}`);
+                console.error('Exception creating WebSocket:', error);
+            }
+        }
+
+        function sendSimpleMessage() {
+            if (\!ws || ws.readyState \!== WebSocket.OPEN) {
+                addLog('❌ Cannot send message - WebSocket is not connected');
+                return;
+            }
+            
+            const message = {
+                type: 'ping',
+                timestamp: new Date().toISOString()
+            };
+            
+            try {
+                ws.send(JSON.stringify(message));
+                addLog(`📤 Message sent: ${JSON.stringify(message)}`);
+            } catch (error) {
+                addLog(`❌ Error sending message: ${error.message}`);
+            }
+        }
+
+        function checkBrowserSupport() {
+            addLog('Checking WebSocket support...');
+            
+            if (window.WebSocket) {
+                addLog('✅ Browser supports WebSocket');
+                addLog(`WebSocket constructor: ${WebSocket.toString()}`);
+                
+                // Check if we're running on http or https
+                const protocol = window.location.protocol;
+                addLog(`Current page protocol: ${protocol}`);
+                
+                if (protocol === 'file:') {
+                    addLog('⚠️ Running from file:// - WebSocket security restrictions may apply');
+                }
+                
+                // Check for any browser extensions that might interfere
+                addLog('Browser information:');
+                addLog(`User Agent: ${navigator.userAgent}`);
+                addLog(`Browser: ${navigator.appName} ${navigator.appVersion}`);
+            } else {
+                addLog('❌ Browser does NOT support WebSocket');
+            }
+        }
+
+        // Run browser support check on load
+        window.onload = checkBrowserSupport;
+    </script>
+</body>
+</html>

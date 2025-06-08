@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minimal Neural UI Detector Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        button {
+            padding: 10px;
+            margin: 10px 0;
+        }
+        #log {
+            padding: 10px;
+            border: 1px solid #ccc;
+            height: 300px;
+            overflow: auto;
+            font-family: monospace;
+            white-space: pre-wrap;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Minimal Neural UI Detector Test</h1>
+    <div>
+        <p>Port: <input type="number" id="port" value="8768" min="1000" max="65535"></p>
+        <button id="connect">Connect</button>
+        <button id="detect" disabled>Detect UI Elements</button>
+        <div id="status">Not connected</div>
+    </div>
+
+    <div id="log"></div>
+
+    <script>
+        const connectBtn = document.getElementById('connect');
+        const detectBtn = document.getElementById('detect');
+        const statusEl = document.getElementById('status');
+        const logEl = document.getElementById('log');
+        const portInput = document.getElementById('port');
+
+        let ws = null;
+
+        function log(message) {
+            const timestamp = new Date().toLocaleTimeString();
+            logEl.innerHTML = `[${timestamp}] ${message}\n` + logEl.innerHTML;
+        }
+
+        connectBtn.addEventListener('click', () => {
+            // Close existing connection
+            if (ws) {
+                ws.close();
+            }
+
+            const port = portInput.value;
+            statusEl.textContent = `Connecting to port ${port}...`;
+            
+            // Create new WebSocket connection
+            ws = new WebSocket(`ws://localhost:${port}`);
+            
+            ws.onopen = () => {
+                statusEl.textContent = 'Connected!';
+                detectBtn.disabled = false;
+                log('WebSocket connection established');
+            };
+            
+            ws.onmessage = (event) => {
+                try {
+                    const data = JSON.parse(event.data);
+                    log(`Received: ${JSON.stringify(data, null, 2)}`);
+                    
+                    // Display welcome message
+                    if (data.type === 'welcome') {
+                        statusEl.textContent = `Connected to ${data.message} (v${data.version})`;
+                    }
+                    
+                    // Display detection results
+                    if (data.type === 'detection_result') {
+                        statusEl.textContent = `Detected ${data.count} elements in ${data.execution_time.toFixed(2)}s`;
+                    }
+                    
+                    // Handle errors
+                    if (data.type === 'error') {
+                        statusEl.textContent = `Error: ${data.error}`;
+                        log(`ERROR: ${data.error}`);
+                    }
+                } catch (e) {
+                    log(`Error parsing message: ${e}`);
+                }
+            };
+            
+            ws.onclose = () => {
+                statusEl.textContent = 'Disconnected';
+                detectBtn.disabled = true;
+                log('WebSocket connection closed');
+                ws = null;
+            };
+            
+            ws.onerror = (error) => {
+                statusEl.textContent = 'Connection error';
+                log(`WebSocket error: ${error}`);
+            };
+        });
+
+        detectBtn.addEventListener('click', () => {
+            if (!ws || ws.readyState !== WebSocket.OPEN) {
+                statusEl.textContent = 'Not connected';
+                return;
+            }
+            
+            statusEl.textContent = 'Detecting UI elements...';
+            
+            // Send detect message with the correct format
+            const message = {
+                action: 'detect'
+            };
+            
+            log(`Sending: ${JSON.stringify(message, null, 2)}`);
+            ws.send(JSON.stringify(message));
+        });
+    </script>
+</body>
+</html>

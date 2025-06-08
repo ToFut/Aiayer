@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Basic Memory Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        .panel {
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 15px;
+        }
+        .log {
+            background-color: #f5f5f5;
+            border: 1px solid #ddd;
+            padding: 10px;
+            height: 200px;
+            overflow-y: auto;
+            font-family: monospace;
+            margin-top: 20px;
+        }
+        .error { color: red; }
+        .success { color: green; }
+        .info { color: blue; }
+        button, input, textarea {
+            margin: 5px 0;
+            padding: 8px;
+        }
+        textarea {
+            width: 100%;
+            height: 100px;
+        }
+        .result-item {
+            margin: 10px 0;
+            padding: 10px;
+            background-color: #f9f9f9;
+            border-radius: 5px;
+            border-left: 4px solid #2196F3;
+        }
+        .result-score {
+            font-weight: bold;
+            color: #2196F3;
+        }
+        #status-indicator {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: red;
+            margin-right: 5px;
+        }
+        .connected {
+            background-color: green !important;
+        }
+    </style>
+</head>
+<body>
+    <h1>Basic Memory Test Interface</h1>
+    
+    <div class="container">
+        <div class="panel">
+            <h2>Connection</h2>
+            <div>
+                <span id="status-indicator"></span>
+                <span id="status-text">Disconnected</span>
+            </div>
+            <input type="text" id="ws-url" value="ws://localhost:8769" style="width: 250px;">
+            <button id="connect-btn">Connect</button>
+            <button id="disconnect-btn">Disconnect</button>
+        </div>
+        
+        <div class="panel">
+            <h2>Add Memory</h2>
+            <textarea id="memory-content" placeholder="Enter memory content..."></textarea>
+            <div>
+                <label for="memory-source">Source:</label>
+                <select id="memory-source">
+                    <option value="user">User</option>
+                    <option value="system">System</option>
+                    <option value="application">Application</option>
+                    <option value="test">Test</option>
+                </select>
+            </div>
+            <button id="add-memory-btn">Add Memory</button>
+        </div>
+        
+        <div class="panel">
+            <h2>Search Memory</h2>
+            <input type="text" id="search-query" placeholder="Enter search query..." style="width: 80%;">
+            <button id="search-memory-btn">Search</button>
+            <div id="search-results"></div>
+        </div>
+    </div>
+    
+    <h2>Log</h2>
+    <div id="log" class="log"></div>
+    
+    <script>
+        // Global variables
+        let socket = null;
+        
+        // DOM elements
+        const wsUrlInput = document.getElementById('ws-url');
+        const connectBtn = document.getElementById('connect-btn');
+        const disconnectBtn = document.getElementById('disconnect-btn');
+        const statusIndicator = document.getElementById('status-indicator');
+        const statusText = document.getElementById('status-text');
+        const memoryContentInput = document.getElementById('memory-content');
+        const memorySourceSelect = document.getElementById('memory-source');
+        const addMemoryBtn = document.getElementById('add-memory-btn');
+        const searchQueryInput = document.getElementById('search-query');
+        const searchMemoryBtn = document.getElementById('search-memory-btn');
+        const searchResultsDiv = document.getElementById('search-results');
+        const logDiv = document.getElementById('log');
+        
+        // Add log entry
+        function addLog(message, type = 'info') {
+            const entry = document.createElement('div');
+            entry.className = type;
+            
+            // Add timestamp
+            const time = new Date().toLocaleTimeString();
+            entry.textContent = `[${time}] ${message}`;
+            
+            logDiv.appendChild(entry);
+            logDiv.scrollTop = logDiv.scrollHeight;
+        }
+        
+        // Update connection status
+        function updateConnectionStatus(connected) {
+            if (connected) {
+                statusIndicator.classList.add('connected');
+                statusText.textContent = 'Connected';
+            } else {
+                statusIndicator.classList.remove('connected');
+                statusText.textContent = 'Disconnected';
+            }
+        }
+        
+        // Connect to WebSocket
+        function connect() {
+            if (socket && socket.readyState === WebSocket.OPEN) {
+                addLog('WebSocket already connected', 'info');
+                return;
+            }
+            
+            const url = wsUrlInput.value;
+            addLog(`Connecting to ${url}...`, 'info');
+            
+            try {
+                socket = new WebSocket(url);
+                
+                socket.onopen = function() {
+                    updateConnectionStatus(true);
+                    addLog('WebSocket connected!', 'success');
+                };
+                
+                socket.onclose = function(event) {
+                    updateConnectionStatus(false);
+                    addLog(`WebSocket disconnected (code: ${event.code})`, 'info');
+                };
+                
+                socket.onerror = function(error) {
+                    updateConnectionStatus(false);
+                    addLog(`WebSocket error`, 'error');
+                };
+                
+                socket.onmessage = function(event) {
+                    try {
+                        const data = JSON.parse(event.data);
+                        addLog(`Received message: ${data.type}`, 'info');
+                        
+                        // Handle different message types
+                        if (data.type === 'search_results') {
+                            displaySearchResults(data);
+                        } else if (data.type === 'memory_added') {
+                            if (data.success) {
+                                addLog(`Memory added successfully (ID: ${data.memory_id})`, 'success');
+                            } else {
+                                addLog(`Failed to add memory: ${data.error || 'Unknown error'}`, 'error');
+                            }
+                        } else if (data.type === 'error') {
+                            addLog(`Server error: ${data.error}`, 'error');
+                        }
+                        
+                        console.log('Message data:', data);
+                    } catch (error) {
+                        addLog(`Error parsing message: ${error}`, 'error');
+                        console.error('Parse error:', error, event.data);
+                    }
+                };
+            } catch (error) {
+                addLog(`Failed to create WebSocket: ${error}`, 'error');
+                updateConnectionStatus(false);
+            }
+        }
+        
+        // Disconnect from WebSocket
+        function disconnect() {
+            if (!socket) {
+                addLog('WebSocket not initialized', 'error');
+                return;
+            }
+            
+            if (socket.readyState === WebSocket.OPEN) {
+                socket.close();
+                addLog('WebSocket disconnected', 'info');
+                updateConnectionStatus(false);
+            } else {
+                addLog('WebSocket not connected', 'info');
+            }
+        }
+        
+        // Add memory
+        function addMemory() {
+            if (!socket || socket.readyState !== WebSocket.OPEN) {
+                addLog('WebSocket not connected', 'error');
+                return;
+            }
+            
+            const content = memoryContentInput.value.trim();
+            if (!content) {
+                addLog('Memory content is required', 'error');
+                return;
+            }
+            
+            const source = memorySourceSelect.value;
+            
+            addLog('Sending add_memory message', 'info');
+            socket.send(JSON.stringify({
+                type: 'add_memory',
+                content: content,
+                source: source,
+                tags: ['test', 'ui']
+            }));
+        }
+        
+        // Search memory
+        function searchMemory() {
+            if (!socket || socket.readyState !== WebSocket.OPEN) {
+                addLog('WebSocket not connected', 'error');
+                return;
+            }
+            
+            const query = searchQueryInput.value.trim();
+            if (!query) {
+                addLog('Search query is required', 'error');
+                return;
+            }
+            
+            addLog('Sending search_memory message', 'info');
+            socket.send(JSON.stringify({
+                type: 'search_memory',
+                query: query,
+                top_k: 5,
+                min_similarity: 0.1
+            }));
+        }
+        
+        // Display search results
+        function displaySearchResults(data) {
+            searchResultsDiv.innerHTML = '';
+            
+            if (!data.results || data.results.length === 0) {
+                searchResultsDiv.innerHTML = '<p>No results found</p>';
+                return;
+            }
+            
+            const resultHeader = document.createElement('h3');
+            resultHeader.textContent = `Found ${data.results.length} results for "${data.query}"`;
+            searchResultsDiv.appendChild(resultHeader);
+            
+            data.results.forEach((result, index) => {
+                const resultItem = document.createElement('div');
+                resultItem.className = 'result-item';
+                
+                const score = result.similarity_score || result.score || 0;
+                const scorePercent = (score * 100).toFixed(1);
+                
+                resultItem.innerHTML = `
+                    <div class="result-header">
+                        <span class="result-score">${scorePercent}%</span>
+                        <span class="result-source">${result.source}</span>
+                    </div>
+                    <div class="result-content">${result.content}</div>
+                `;
+                
+                searchResultsDiv.appendChild(resultItem);
+            });
+        }
+        
+        // Event listeners
+        connectBtn.addEventListener('click', connect);
+        disconnectBtn.addEventListener('click', disconnect);
+        addMemoryBtn.addEventListener('click', addMemory);
+        searchMemoryBtn.addEventListener('click', searchMemory);
+        
+        // Enter key for search
+        searchQueryInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                searchMemory();
+            }
+        });
+        
+        // Initialize
+        addLog('Memory Test Interface initialized', 'info');
+    </script>
+</body>
+</html>

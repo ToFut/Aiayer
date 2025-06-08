@@ -1,0 +1,903 @@
+2025-05-29 12:42:54,327 - dashboard_launcher - INFO - Importing dashboard server module
+2025-05-29 12:42:54,591 - memory.enhanced_semantic_search - INFO - Enhanced semantic search initialized with embedding dim: 384
+2025-05-29 12:42:54,591 - memory.enhanced_semantic_search - INFO - Hybrid retrieval enabled: True
+2025-05-29 12:42:54,897 - dashboard_launcher - ERROR - Failed to import dashboard server: No module named 'flask'
+2025-05-29 12:43:06,974 - dashboard_launcher - INFO - Importing dashboard server module
+2025-05-29 12:43:07,150 - memory.enhanced_semantic_search - INFO - Enhanced semantic search initialized with embedding dim: 384
+2025-05-29 12:43:07,150 - memory.enhanced_semantic_search - INFO - Hybrid retrieval enabled: True
+2025-05-29 12:43:07,263 - dashboard_launcher - ERROR - Failed to import dashboard server: No module named 'flask'
+2025-05-29 12:51:38,303 - dashboard_launcher - INFO - Importing dashboard server module
+2025-05-29 12:51:38,621 - memory.enhanced_semantic_search - INFO - Enhanced semantic search initialized with embedding dim: 384
+2025-05-29 12:51:38,621 - memory.enhanced_semantic_search - INFO - Hybrid retrieval enabled: True
+2025-05-29 12:51:38,991 - task_dashboard - INFO - Task memory dashboard initialized
+2025-05-29 12:51:39,028 - plan_persistence - INFO - Plan persistence manager initialized with 0 stored plans
+2025-05-29 12:51:39,028 - plan_persistence - INFO - Plan persistence service initialized
+2025-05-29 12:51:39,028 - universal_intelligent_automation_handler - INFO - ✅ Plan persistence module loaded successfully
+2025-05-29 12:51:39,456 - agent_workflow.input_controller - INFO - Detected screen size: 1470x956
+2025-05-29 12:51:39,461 - agent_workflow.input_controller - INFO - Input listeners started successfully
+2025-05-29 12:51:39,462 - agent_workflow.input_controller - INFO - 🚨 Emergency shutdown: Press Ctrl+1 to immediately stop agent
+2025-05-29 12:51:39,590 - llava_processor - INFO - Connected to Ollama API v0.6.8
+2025-05-29 12:51:39,590 - total_screen_analyzer - INFO - LLaVA visual processor initialized for total screen analysis
+2025-05-29 12:51:39,590 - total_screen_analyzer - INFO - Total Screen Analyzer initialized with 8s interval
+2025-05-29 12:51:39,590 - universal_intelligent_automation_handler - INFO - 🤖 Universal automation components loaded successfully
+2025-05-29 12:51:39,599 - brain.core.brain_router - INFO - ✅ Plan persistence module loaded in brain router
+2025-05-29 12:51:39,601 - brain.core.brain_router - INFO - BrainRouter initialized - The Central Intelligence Hub is online
+2025-05-29 12:51:39,777 - dashboard_launcher - INFO - Dashboard server module imported successfully
+2025-05-29 12:51:39,778 - dashboard_launcher - INFO - Starting Flask dashboard server on port 8081
+2025-05-29 12:51:39,778 - dashboard_launcher - INFO - Dashboard server started in background thread
+2025-05-29 12:51:39,778 - plan_persistence - INFO - Auto-save task started with 60s interval
+2025-05-29 12:51:39,783 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:8081
+ * Running on http://172.20.10.3:8081
+2025-05-29 12:51:39,783 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-05-29 12:52:44,965 - dashboard_launcher - INFO - Importing dashboard server module
+2025-05-29 12:52:45,344 - memory.enhanced_semantic_search - INFO - Enhanced semantic search initialized with embedding dim: 384
+2025-05-29 12:52:45,344 - memory.enhanced_semantic_search - INFO - Hybrid retrieval enabled: True
+2025-05-29 12:52:45,710 - task_dashboard - INFO - Task memory dashboard initialized
+2025-05-29 12:52:45,713 - plan_persistence - INFO - Plan persistence manager initialized with 0 stored plans
+2025-05-29 12:52:45,713 - plan_persistence - INFO - Plan persistence service initialized
+2025-05-29 12:52:45,713 - universal_intelligent_automation_handler - INFO - ✅ Plan persistence module loaded successfully
+2025-05-29 12:52:46,283 - agent_workflow.input_controller - INFO - Detected screen size: 1470x956
+2025-05-29 12:52:46,288 - agent_workflow.input_controller - INFO - Input listeners started successfully
+2025-05-29 12:52:46,288 - agent_workflow.input_controller - INFO - 🚨 Emergency shutdown: Press Ctrl+1 to immediately stop agent
+2025-05-29 12:52:46,394 - llava_processor - INFO - Connected to Ollama API v0.6.8
+2025-05-29 12:52:46,394 - total_screen_analyzer - INFO - LLaVA visual processor initialized for total screen analysis
+2025-05-29 12:52:46,394 - total_screen_analyzer - INFO - Total Screen Analyzer initialized with 8s interval
+2025-05-29 12:52:46,394 - universal_intelligent_automation_handler - INFO - 🤖 Universal automation components loaded successfully
+2025-05-29 12:52:46,396 - brain.core.brain_router - INFO - ✅ Plan persistence module loaded in brain router
+2025-05-29 12:52:46,399 - brain.core.brain_router - INFO - BrainRouter initialized - The Central Intelligence Hub is online
+2025-05-29 12:52:46,555 - dashboard_launcher - INFO - Dashboard server module imported successfully
+2025-05-29 12:52:46,555 - dashboard_launcher - INFO - Starting Flask dashboard server on port 8081
+2025-05-29 12:52:46,555 - dashboard_launcher - INFO - Dashboard server started in background thread
+2025-05-29 12:52:46,555 - plan_persistence - INFO - Auto-save task started with 60s interval
+2025-05-29 13:20:36,881 - dashboard_launcher - INFO - Importing dashboard server module
+2025-05-29 13:20:37,393 - memory.enhanced_semantic_search - INFO - Enhanced semantic search initialized with embedding dim: 384
+2025-05-29 13:20:37,393 - memory.enhanced_semantic_search - INFO - Hybrid retrieval enabled: True
+2025-05-29 13:20:37,740 - task_dashboard - INFO - Task memory dashboard initialized
+2025-05-29 13:20:37,742 - plan_persistence - INFO - Plan persistence manager initialized with 0 stored plans
+2025-05-29 13:20:37,742 - plan_persistence - INFO - Plan persistence service initialized
+2025-05-29 13:20:37,742 - universal_intelligent_automation_handler - INFO - ✅ Plan persistence module loaded successfully
+2025-05-29 13:20:39,117 - agent_workflow.input_controller - INFO - Detected screen size: 1470x956
+2025-05-29 13:20:39,265 - agent_workflow.input_controller - INFO - Input listeners started successfully
+2025-05-29 13:20:39,265 - agent_workflow.input_controller - INFO - 🚨 Emergency shutdown: Press Ctrl+1 to immediately stop agent
+2025-05-29 13:20:39,735 - llava_processor - INFO - Connected to Ollama API v0.6.8
+2025-05-29 13:20:39,735 - total_screen_analyzer - INFO - LLaVA visual processor initialized for total screen analysis
+2025-05-29 13:20:39,735 - total_screen_analyzer - INFO - Total Screen Analyzer initialized with 8s interval
+2025-05-29 13:20:39,735 - universal_intelligent_automation_handler - INFO - 🤖 Universal automation components loaded successfully
+2025-05-29 13:20:39,738 - brain.core.brain_router - INFO - ✅ Plan persistence module loaded in brain router
+2025-05-29 13:20:39,740 - brain.core.brain_router - INFO - BrainRouter initialized - The Central Intelligence Hub is online
+2025-05-29 13:20:39,935 - llm_suggestion_detector - INFO - LLM Suggestion Detector initialized
+2025-05-29 13:20:39,940 - dashboard_launcher - INFO - Dashboard server module imported successfully
+2025-05-29 13:20:39,940 - dashboard_launcher - INFO - Starting Flask dashboard server on port 8081
+2025-05-29 13:20:39,940 - dashboard_launcher - INFO - Dashboard server started in background thread
+2025-05-29 13:20:39,940 - plan_persistence - INFO - Auto-save task started with 60s interval
+2025-05-29 13:20:40,089 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:8081
+ * Running on http://127.0.0.1:8081
+2025-05-29 13:20:40,089 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-05-29 13:44:19,752 - dashboard_launcher - INFO - Importing dashboard server module
+2025-05-29 13:44:20,055 - memory.enhanced_semantic_search - INFO - Enhanced semantic search initialized with embedding dim: 384
+2025-05-29 13:44:20,055 - memory.enhanced_semantic_search - INFO - Hybrid retrieval enabled: True
+2025-05-29 13:44:20,419 - task_dashboard - INFO - Task memory dashboard initialized
+2025-05-29 13:44:20,429 - plan_persistence - INFO - Plan persistence manager initialized with 0 stored plans
+2025-05-29 13:44:20,429 - plan_persistence - INFO - Plan persistence service initialized
+2025-05-29 13:44:20,429 - universal_intelligent_automation_handler - INFO - ✅ Plan persistence module loaded successfully
+2025-05-29 13:44:20,890 - agent_workflow.input_controller - INFO - Detected screen size: 1470x956
+2025-05-29 13:44:20,894 - agent_workflow.input_controller - INFO - Input listeners started successfully
+2025-05-29 13:44:20,894 - agent_workflow.input_controller - INFO - 🚨 Emergency shutdown: Press Ctrl+1 to immediately stop agent
+2025-05-29 13:44:20,984 - llava_processor - INFO - Connected to Ollama API v0.6.8
+2025-05-29 13:44:20,985 - total_screen_analyzer - INFO - LLaVA visual processor initialized for total screen analysis
+2025-05-29 13:44:20,985 - total_screen_analyzer - INFO - Total Screen Analyzer initialized with 8s interval
+2025-05-29 13:44:20,985 - universal_intelligent_automation_handler - INFO - 🤖 Universal automation components loaded successfully
+2025-05-29 13:44:20,994 - brain.core.brain_router - INFO - ✅ Plan persistence module loaded in brain router
+2025-05-29 13:44:20,996 - brain.core.brain_router - INFO - BrainRouter initialized - The Central Intelligence Hub is online
+2025-05-29 13:44:21,218 - llm_suggestion_detector - INFO - LLM Suggestion Detector initialized
+2025-05-29 13:44:21,224 - dashboard_launcher - INFO - Dashboard server module imported successfully
+2025-05-29 13:44:21,224 - dashboard_launcher - INFO - Starting Flask dashboard server on port 8081
+2025-05-29 13:44:21,224 - dashboard_launcher - INFO - Dashboard server started in background thread
+2025-05-29 13:44:21,225 - plan_persistence - INFO - Auto-save task started with 60s interval
+2025-05-29 13:44:21,426 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:8081
+ * Running on http://172.20.10.3:8081
+2025-05-29 13:44:21,426 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-05-29 13:44:24,980 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 13:44:24] "GET / HTTP/1.1" 200 -
+2025-05-29 13:44:25,082 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 13:44:25] "GET /static/js/dashboard.js HTTP/1.1" 200 -
+2025-05-29 13:44:25,082 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 13:44:25] "GET /static/css/dashboard.css HTTP/1.1" 200 -
+2025-05-29 13:44:27,884 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 13:44:27] "GET /api/metrics HTTP/1.1" 200 -
+2025-05-29 13:44:27,884 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 13:44:27] "GET /api/time-series HTTP/1.1" 200 -
+2025-05-29 13:44:37,915 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 13:44:37] "GET /api/metrics HTTP/1.1" 200 -
+2025-05-29 13:44:37,921 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 13:44:37] "GET /api/time-series HTTP/1.1" 200 -
+2025-05-29 13:44:47,980 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 13:44:47] "GET /api/metrics HTTP/1.1" 200 -
+2025-05-29 13:44:47,981 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 13:44:47] "GET /api/time-series HTTP/1.1" 200 -
+2025-05-29 13:44:58,082 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 13:44:58] "GET /api/metrics HTTP/1.1" 200 -
+2025-05-29 13:44:58,109 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 13:44:58] "GET /api/time-series HTTP/1.1" 200 -
+2025-05-29 13:45:08,184 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 13:45:08] "GET /api/metrics HTTP/1.1" 200 -
+2025-05-29 13:45:08,187 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 13:45:08] "GET /api/time-series HTTP/1.1" 200 -
+2025-05-29 13:45:18,248 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 13:45:18] "GET /api/metrics HTTP/1.1" 200 -
+2025-05-29 13:45:18,248 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 13:45:18] "GET /api/time-series HTTP/1.1" 200 -
+2025-05-29 13:45:28,463 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 13:45:28] "GET /api/metrics HTTP/1.1" 200 -
+2025-05-29 13:45:28,466 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 13:45:28] "GET /api/time-series HTTP/1.1" 200 -
+2025-05-29 13:45:39,202 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 13:45:39] "GET /api/metrics HTTP/1.1" 200 -
+2025-05-29 13:45:39,203 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 13:45:39] "GET /api/time-series HTTP/1.1" 200 -
+2025-05-29 13:45:46,152 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 13:45:46] "GET /api/metrics HTTP/1.1" 200 -
+2025-05-29 13:45:46,153 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 13:45:46] "GET /api/time-series HTTP/1.1" 200 -
+2025-05-29 13:45:49,241 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 13:45:49] "GET /api/metrics HTTP/1.1" 200 -
+2025-05-29 13:45:49,242 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 13:45:49] "GET /api/time-series HTTP/1.1" 200 -
+2025-05-29 13:45:59,881 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 13:45:59] "GET /api/metrics HTTP/1.1" 200 -
+2025-05-29 13:45:59,882 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 13:45:59] "GET /api/time-series HTTP/1.1" 200 -
+2025-05-29 13:46:16,772 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 13:46:16] "GET /api/metrics HTTP/1.1" 200 -
+2025-05-29 13:46:16,773 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 13:46:16] "GET /api/time-series HTTP/1.1" 200 -
+2025-05-29 13:46:30,833 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 13:46:30] "GET /api/metrics HTTP/1.1" 200 -
+2025-05-29 13:46:30,838 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 13:46:30] "GET /api/time-series HTTP/1.1" 200 -
+2025-05-29 13:46:53,608 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 13:46:53] "GET /api/metrics HTTP/1.1" 200 -
+2025-05-29 13:46:53,610 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 13:46:53] "GET /api/time-series HTTP/1.1" 200 -
+2025-05-29 13:49:47,494 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 13:49:47] "GET /api/metrics HTTP/1.1" 200 -
+2025-05-29 13:49:47,497 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 13:49:47] "GET /api/time-series HTTP/1.1" 200 -
+2025-05-29 13:54:40,731 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 13:54:40] "GET /api/metrics HTTP/1.1" 200 -
+2025-05-29 13:54:40,733 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 13:54:40] "GET /api/time-series HTTP/1.1" 200 -
+2025-05-29 13:54:44,625 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 13:54:44] "GET /api/metrics HTTP/1.1" 200 -
+2025-05-29 13:54:44,626 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 13:54:44] "GET /api/time-series HTTP/1.1" 200 -
+2025-05-29 13:54:54,715 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 13:54:54] "GET /api/metrics HTTP/1.1" 200 -
+2025-05-29 13:54:54,728 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 13:54:54] "GET /api/time-series HTTP/1.1" 200 -
+2025-05-29 13:55:21,706 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 13:55:21] "GET /api/metrics HTTP/1.1" 200 -
+2025-05-29 13:55:21,742 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 13:55:21] "GET /api/time-series HTTP/1.1" 200 -
+2025-05-29 13:55:32,382 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 13:55:32] "GET /api/metrics HTTP/1.1" 200 -
+2025-05-29 13:55:32,383 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 13:55:32] "GET /api/time-series HTTP/1.1" 200 -
+2025-05-29 13:56:02,904 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 13:56:02] "GET /api/metrics HTTP/1.1" 200 -
+2025-05-29 13:56:02,905 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 13:56:02] "GET /api/time-series HTTP/1.1" 200 -
+2025-05-29 13:56:12,354 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 13:56:12] "GET /api/metrics HTTP/1.1" 200 -
+2025-05-29 13:56:12,356 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 13:56:12] "GET /api/time-series HTTP/1.1" 200 -
+2025-05-29 13:56:22,393 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 13:56:22] "GET /api/time-series HTTP/1.1" 200 -
+2025-05-29 13:56:22,395 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 13:56:22] "GET /api/metrics HTTP/1.1" 200 -
+2025-05-29 13:56:32,620 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 13:56:32] "GET /api/time-series HTTP/1.1" 200 -
+2025-05-29 13:56:32,620 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 13:56:32] "GET /api/metrics HTTP/1.1" 200 -
+2025-05-29 13:56:46,933 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 13:56:46] "GET /api/metrics HTTP/1.1" 200 -
+2025-05-29 13:56:46,935 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 13:56:46] "GET /api/time-series HTTP/1.1" 200 -
+2025-05-29 13:57:08,186 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 13:57:08] "GET /api/metrics HTTP/1.1" 200 -
+2025-05-29 13:57:08,189 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 13:57:08] "GET /api/time-series HTTP/1.1" 200 -
+2025-05-29 13:57:55,950 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 13:57:55] "GET /api/metrics HTTP/1.1" 200 -
+2025-05-29 13:57:56,505 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 13:57:56] "GET /api/time-series HTTP/1.1" 200 -
+2025-05-29 13:59:06,834 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 13:59:06] "GET /api/metrics HTTP/1.1" 200 -
+2025-05-29 13:59:06,836 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 13:59:06] "GET /api/time-series HTTP/1.1" 200 -
+2025-05-29 14:00:42,038 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:00:42] "GET /api/metrics HTTP/1.1" 200 -
+2025-05-29 14:00:42,054 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:00:42] "GET /api/time-series HTTP/1.1" 200 -
+2025-05-29 14:03:12,783 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:03:12] "GET /api/metrics HTTP/1.1" 200 -
+2025-05-29 14:03:12,785 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:03:12] "GET /api/time-series HTTP/1.1" 200 -
+2025-05-29 14:08:49,743 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:08:49] "GET /api/metrics HTTP/1.1" 200 -
+2025-05-29 14:08:49,746 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:08:49] "GET /api/time-series HTTP/1.1" 200 -
+2025-05-29 14:16:31,414 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:16:31] "GET /api/metrics HTTP/1.1" 200 -
+2025-05-29 14:16:31,415 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:16:31] "GET /api/time-series HTTP/1.1" 200 -
+2025-05-29 14:16:41,392 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:16:41] "GET /api/metrics HTTP/1.1" 200 -
+2025-05-29 14:16:41,394 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:16:41] "GET /api/time-series HTTP/1.1" 200 -
+2025-05-29 14:16:54,150 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:16:54] "GET /api/metrics HTTP/1.1" 200 -
+2025-05-29 14:16:54,152 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:16:54] "GET /api/time-series HTTP/1.1" 200 -
+2025-05-29 14:17:10,045 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:17:10] "GET /api/metrics HTTP/1.1" 200 -
+2025-05-29 14:17:10,048 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:17:10] "GET /api/time-series HTTP/1.1" 200 -
+2025-05-29 14:17:28,295 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:17:28] "GET /api/metrics HTTP/1.1" 200 -
+2025-05-29 14:17:28,296 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:17:28] "GET /api/time-series HTTP/1.1" 200 -
+2025-05-29 14:17:38,399 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:17:38] "GET /api/metrics HTTP/1.1" 200 -
+2025-05-29 14:17:38,401 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:17:38] "GET /api/time-series HTTP/1.1" 200 -
+2025-05-29 14:17:48,928 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:17:48] "GET /api/metrics HTTP/1.1" 200 -
+2025-05-29 14:17:48,932 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:17:48] "GET /api/time-series HTTP/1.1" 200 -
+2025-05-29 14:17:58,938 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:17:58] "GET /api/metrics HTTP/1.1" 200 -
+2025-05-29 14:17:58,940 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:17:58] "GET /api/time-series HTTP/1.1" 200 -
+2025-05-29 14:18:08,956 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:18:08] "GET /api/metrics HTTP/1.1" 200 -
+2025-05-29 14:18:08,957 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:18:08] "GET /api/time-series HTTP/1.1" 200 -
+2025-05-29 14:18:11,883 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:18:11] "[35m[1mGET /api/tasks HTTP/1.1[0m" 500 -
+2025-05-29 14:18:16,480 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:18:16] "GET /api/reports HTTP/1.1" 200 -
+2025-05-29 14:18:18,073 - task_dashboard - INFO - Generated comprehensive task memory report: logs/dashboard/task_memory_report_1748542698.json
+2025-05-29 14:18:18,075 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:18:18] "POST /api/generate-report HTTP/1.1" 200 -
+2025-05-29 14:18:18,081 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:18:18] "GET /api/reports HTTP/1.1" 200 -
+2025-05-29 14:18:18,977 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:18:18] "GET /api/metrics HTTP/1.1" 200 -
+2025-05-29 14:18:18,978 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:18:18] "GET /api/time-series HTTP/1.1" 200 -
+2025-05-29 14:18:18,978 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:18:18] "GET /api/reports HTTP/1.1" 200 -
+2025-05-29 14:18:19,360 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:18:19] "[35m[1mPOST /api/update-metrics HTTP/1.1[0m" 500 -
+2025-05-29 14:18:29,133 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:18:29] "GET /api/metrics HTTP/1.1" 200 -
+2025-05-29 14:18:29,136 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:18:29] "GET /api/time-series HTTP/1.1" 200 -
+2025-05-29 14:18:40,285 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:18:40] "GET /api/metrics HTTP/1.1" 200 -
+2025-05-29 14:18:40,285 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:18:40] "GET /api/time-series HTTP/1.1" 200 -
+2025-05-29 14:18:54,482 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:18:54] "GET /api/metrics HTTP/1.1" 200 -
+2025-05-29 14:18:54,498 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:18:54] "GET /api/time-series HTTP/1.1" 200 -
+2025-05-29 14:19:15,711 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:19:15] "GET /api/time-series HTTP/1.1" 200 -
+2025-05-29 14:19:15,736 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:19:15] "GET /api/metrics HTTP/1.1" 200 -
+2025-05-29 14:19:29,694 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:19:29] "GET /api/metrics HTTP/1.1" 200 -
+2025-05-29 14:19:29,697 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:19:29] "GET /api/time-series HTTP/1.1" 200 -
+2025-05-29 14:19:37,821 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:19:37] "GET /api/metrics HTTP/1.1" 200 -
+2025-05-29 14:19:37,822 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:19:37] "GET /api/time-series HTTP/1.1" 200 -
+2025-05-29 14:19:49,544 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:19:49] "GET /api/metrics HTTP/1.1" 200 -
+2025-05-29 14:19:49,545 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:19:49] "GET /api/time-series HTTP/1.1" 200 -
+2025-05-29 14:19:59,573 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:19:59] "GET /api/metrics HTTP/1.1" 200 -
+2025-05-29 14:19:59,574 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:19:59] "GET /api/time-series HTTP/1.1" 200 -
+2025-05-29 14:20:09,681 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:20:09] "GET /api/metrics HTTP/1.1" 200 -
+2025-05-29 14:20:09,683 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:20:09] "GET /api/time-series HTTP/1.1" 200 -
+2025-05-29 14:20:20,314 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:20:20] "GET /api/metrics HTTP/1.1" 200 -
+2025-05-29 14:20:20,322 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:20:20] "GET /api/time-series HTTP/1.1" 200 -
+2025-05-29 14:20:30,402 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:20:30] "GET /api/metrics HTTP/1.1" 200 -
+2025-05-29 14:20:30,403 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:20:30] "GET /api/time-series HTTP/1.1" 200 -
+2025-05-29 14:20:40,492 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:20:40] "GET /api/metrics HTTP/1.1" 200 -
+2025-05-29 14:20:40,494 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:20:40] "GET /api/time-series HTTP/1.1" 200 -
+2025-05-29 14:20:50,625 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:20:50] "GET /api/time-series HTTP/1.1" 200 -
+2025-05-29 14:20:50,626 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:20:50] "GET /api/metrics HTTP/1.1" 200 -
+2025-05-29 14:21:00,815 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:21:00] "GET /api/metrics HTTP/1.1" 200 -
+2025-05-29 14:21:00,816 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:21:00] "GET /api/time-series HTTP/1.1" 200 -
+2025-05-29 14:21:12,145 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:21:12] "GET /api/metrics HTTP/1.1" 200 -
+2025-05-29 14:21:12,150 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:21:12] "GET /api/time-series HTTP/1.1" 200 -
+2025-05-29 14:21:26,092 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:21:26] "GET /api/metrics HTTP/1.1" 200 -
+2025-05-29 14:21:26,102 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:21:26] "GET /api/time-series HTTP/1.1" 200 -
+2025-05-29 14:21:36,171 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:21:36] "GET /api/metrics HTTP/1.1" 200 -
+2025-05-29 14:21:36,174 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:21:36] "GET /api/time-series HTTP/1.1" 200 -
+2025-05-29 14:21:47,280 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:21:47] "GET /api/metrics HTTP/1.1" 200 -
+2025-05-29 14:21:47,281 - dashboard_server - ERROR - Error getting time series: Expecting value: line 1 column 1 (char 0)
+2025-05-29 14:21:47,282 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:21:47] "GET /api/time-series HTTP/1.1" 200 -
+2025-05-29 14:21:57,548 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:21:57] "GET /api/metrics HTTP/1.1" 200 -
+2025-05-29 14:21:57,549 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:21:57] "GET /api/time-series HTTP/1.1" 200 -
+2025-05-29 14:22:11,260 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:22:11] "GET /api/metrics HTTP/1.1" 200 -
+2025-05-29 14:22:11,261 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:22:11] "GET /api/time-series HTTP/1.1" 200 -
+2025-05-29 14:22:13,089 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:22:13] "GET / HTTP/1.1" 200 -
+2025-05-29 14:22:13,160 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:22:13] "[36mGET /static/css/dashboard.css HTTP/1.1[0m" 304 -
+2025-05-29 14:22:13,161 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:22:13] "GET /static/js/dashboard.js HTTP/1.1" 200 -
+2025-05-29 14:22:13,189 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:22:13] "GET /api/metrics HTTP/1.1" 200 -
+2025-05-29 14:22:13,189 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:22:13] "GET /api/time-series HTTP/1.1" 200 -
+2025-05-29 14:22:19,557 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:22:19] "[35m[1mGET /api/tasks HTTP/1.1[0m" 500 -
+2025-05-29 14:22:22,752 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:22:22] "GET /api/reports HTTP/1.1" 200 -
+2025-05-29 14:22:23,203 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:22:23] "GET /api/metrics HTTP/1.1" 200 -
+2025-05-29 14:22:23,203 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:22:23] "GET /api/reports HTTP/1.1" 200 -
+2025-05-29 14:22:23,204 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:22:23] "GET /api/time-series HTTP/1.1" 200 -
+2025-05-29 14:22:25,570 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:22:25] "GET /api/reports/1748542698 HTTP/1.1" 200 -
+2025-05-29 14:22:33,199 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:22:33] "GET /api/reports HTTP/1.1" 200 -
+2025-05-29 14:22:33,200 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:22:33] "GET /api/time-series HTTP/1.1" 200 -
+2025-05-29 14:22:33,200 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:22:33] "GET /api/metrics HTTP/1.1" 200 -
+2025-05-29 14:22:36,072 - task_dashboard - INFO - Generated comprehensive task memory report: logs/dashboard/task_memory_report_1748542956.json
+2025-05-29 14:22:36,073 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:22:36] "POST /api/generate-report HTTP/1.1" 200 -
+2025-05-29 14:22:36,079 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:22:36] "GET /api/reports HTTP/1.1" 200 -
+2025-05-29 14:22:39,533 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:22:39] "[35m[1mPOST /api/update-metrics HTTP/1.1[0m" 500 -
+2025-05-29 14:22:40,588 - task_dashboard - INFO - Generated comprehensive task memory report: logs/dashboard/task_memory_report_1748542960.json
+2025-05-29 14:22:40,588 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:22:40] "POST /api/generate-report HTTP/1.1" 200 -
+2025-05-29 14:22:40,593 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:22:40] "GET /api/reports HTTP/1.1" 200 -
+2025-05-29 14:22:43,191 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:22:43] "GET /api/time-series HTTP/1.1" 200 -
+2025-05-29 14:22:43,191 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:22:43] "GET /api/metrics HTTP/1.1" 200 -
+2025-05-29 14:22:47,956 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:22:47] "GET /api/metrics HTTP/1.1" 200 -
+2025-05-29 14:22:47,957 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:22:47] "GET /api/time-series HTTP/1.1" 200 -
+2025-05-29 14:22:53,243 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:22:53] "GET /api/time-series HTTP/1.1" 200 -
+2025-05-29 14:22:53,244 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:22:53] "GET /api/metrics HTTP/1.1" 200 -
+2025-05-29 14:23:03,317 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:23:03] "GET /api/time-series HTTP/1.1" 200 -
+2025-05-29 14:23:03,317 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:23:03] "GET /api/metrics HTTP/1.1" 200 -
+2025-05-29 14:23:13,380 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:23:13] "GET /api/metrics HTTP/1.1" 200 -
+2025-05-29 14:23:13,380 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:23:13] "GET /api/time-series HTTP/1.1" 200 -
+2025-05-29 14:23:30,180 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:23:30] "GET /api/metrics HTTP/1.1" 200 -
+2025-05-29 14:23:30,181 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:23:30] "GET /api/time-series HTTP/1.1" 200 -
+2025-05-29 14:23:40,236 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:23:40] "GET /api/time-series HTTP/1.1" 200 -
+2025-05-29 14:23:40,237 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:23:40] "GET /api/metrics HTTP/1.1" 200 -
+2025-05-29 14:23:50,327 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:23:50] "GET /api/metrics HTTP/1.1" 200 -
+2025-05-29 14:23:50,353 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:23:50] "GET /api/time-series HTTP/1.1" 200 -
+2025-05-29 14:24:00,426 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:24:00] "GET /api/metrics HTTP/1.1" 200 -
+2025-05-29 14:24:00,427 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:24:00] "GET /api/time-series HTTP/1.1" 200 -
+2025-05-29 14:24:10,902 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:24:10] "GET /api/metrics HTTP/1.1" 200 -
+2025-05-29 14:24:10,903 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:24:10] "GET /api/time-series HTTP/1.1" 200 -
+2025-05-29 14:24:21,031 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:24:21] "GET /api/metrics HTTP/1.1" 200 -
+2025-05-29 14:24:21,031 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:24:21] "GET /api/time-series HTTP/1.1" 200 -
+2025-05-29 14:24:31,123 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:24:31] "GET /api/time-series HTTP/1.1" 200 -
+2025-05-29 14:24:31,124 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:24:31] "GET /api/metrics HTTP/1.1" 200 -
+2025-05-29 14:24:42,985 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:24:42] "GET /api/metrics HTTP/1.1" 200 -
+2025-05-29 14:24:42,986 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:24:42] "GET /api/time-series HTTP/1.1" 200 -
+2025-05-29 14:24:53,080 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:24:53] "GET /api/time-series HTTP/1.1" 200 -
+2025-05-29 14:24:53,081 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:24:53] "GET /api/metrics HTTP/1.1" 200 -
+2025-05-29 14:25:05,980 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:25:05] "GET /api/metrics HTTP/1.1" 200 -
+2025-05-29 14:25:05,983 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:25:05] "GET /api/time-series HTTP/1.1" 200 -
+2025-05-29 14:25:21,610 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:25:21] "GET /api/metrics HTTP/1.1" 200 -
+2025-05-29 14:25:22,129 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:25:22] "GET /api/time-series HTTP/1.1" 200 -
+2025-05-29 14:25:29,907 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:25:29] "GET /api/metrics HTTP/1.1" 200 -
+2025-05-29 14:25:29,912 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:25:29] "GET /api/time-series HTTP/1.1" 200 -
+2025-05-29 14:25:41,840 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:25:41] "GET /api/metrics HTTP/1.1" 200 -
+2025-05-29 14:25:41,877 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:25:41] "GET /api/time-series HTTP/1.1" 200 -
+2025-05-29 14:26:00,124 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:26:00] "GET /api/metrics HTTP/1.1" 200 -
+2025-05-29 14:26:00,125 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:26:00] "GET /api/time-series HTTP/1.1" 200 -
+2025-05-29 14:26:14,692 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:26:14] "GET /api/time-series HTTP/1.1" 200 -
+2025-05-29 14:26:14,693 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:26:14] "GET /api/metrics HTTP/1.1" 200 -
+2025-05-29 14:26:58,745 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:26:58] "GET /api/metrics HTTP/1.1" 200 -
+2025-05-29 14:26:58,746 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:26:58] "GET /api/time-series HTTP/1.1" 200 -
+2025-05-29 14:27:15,376 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:27:15] "GET /api/time-series HTTP/1.1" 200 -
+2025-05-29 14:27:15,377 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:27:15] "GET /api/metrics HTTP/1.1" 200 -
+2025-05-29 14:27:25,482 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:27:25] "GET /api/time-series HTTP/1.1" 200 -
+2025-05-29 14:27:25,483 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:27:25] "GET /api/metrics HTTP/1.1" 200 -
+2025-05-29 14:27:41,961 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:27:41] "GET /api/metrics HTTP/1.1" 200 -
+2025-05-29 14:27:41,961 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:27:41] "GET /api/time-series HTTP/1.1" 200 -
+2025-05-29 14:28:00,122 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:28:00] "GET /api/time-series HTTP/1.1" 200 -
+2025-05-29 14:28:00,123 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:28:00] "GET /api/metrics HTTP/1.1" 200 -
+2025-05-29 14:28:19,712 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:28:19] "GET /api/metrics HTTP/1.1" 200 -
+2025-05-29 14:28:19,713 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:28:19] "GET /api/time-series HTTP/1.1" 200 -
+2025-05-29 14:28:37,451 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:28:37] "GET /api/metrics HTTP/1.1" 200 -
+2025-05-29 14:28:37,453 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:28:37] "GET /api/time-series HTTP/1.1" 200 -
+2025-05-29 14:28:48,053 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:28:48] "GET /api/metrics HTTP/1.1" 200 -
+2025-05-29 14:28:48,054 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:28:48] "GET /api/time-series HTTP/1.1" 200 -
+2025-05-29 14:28:57,625 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:28:57] "GET /api/metrics HTTP/1.1" 200 -
+2025-05-29 14:28:57,631 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:28:57] "GET /api/time-series HTTP/1.1" 200 -
+2025-05-29 14:29:14,099 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:29:14] "GET /api/time-series HTTP/1.1" 200 -
+2025-05-29 14:29:14,099 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:29:14] "GET /api/metrics HTTP/1.1" 200 -
+2025-05-29 14:29:32,051 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:29:32] "GET /api/metrics HTTP/1.1" 200 -
+2025-05-29 14:29:32,052 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:29:32] "GET /api/time-series HTTP/1.1" 200 -
+2025-05-29 14:29:42,691 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:29:42] "GET /api/metrics HTTP/1.1" 200 -
+2025-05-29 14:29:42,693 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:29:42] "GET /api/time-series HTTP/1.1" 200 -
+2025-05-29 14:30:23,257 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:30:23] "GET /api/metrics HTTP/1.1" 200 -
+2025-05-29 14:30:23,257 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:30:23] "GET /api/time-series HTTP/1.1" 200 -
+2025-05-29 14:30:44,413 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:30:44] "GET /api/time-series HTTP/1.1" 200 -
+2025-05-29 14:30:44,413 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:30:44] "GET /api/metrics HTTP/1.1" 200 -
+2025-05-29 14:30:54,532 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:30:54] "GET /api/metrics HTTP/1.1" 200 -
+2025-05-29 14:30:54,532 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:30:54] "GET /api/time-series HTTP/1.1" 200 -
+2025-05-29 14:31:07,549 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:31:07] "GET /api/metrics HTTP/1.1" 200 -
+2025-05-29 14:31:07,550 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:31:07] "GET /api/time-series HTTP/1.1" 200 -
+2025-05-29 14:31:26,347 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:31:26] "GET /api/metrics HTTP/1.1" 200 -
+2025-05-29 14:31:26,348 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:31:26] "GET /api/time-series HTTP/1.1" 200 -
+2025-05-29 14:31:40,336 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:31:40] "GET /api/time-series HTTP/1.1" 200 -
+2025-05-29 14:31:40,336 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:31:40] "GET /api/metrics HTTP/1.1" 200 -
+2025-05-29 14:31:50,469 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:31:50] "GET /api/time-series HTTP/1.1" 200 -
+2025-05-29 14:31:50,470 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:31:50] "GET /api/metrics HTTP/1.1" 200 -
+2025-05-29 14:32:02,814 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:32:02] "GET /api/metrics HTTP/1.1" 200 -
+2025-05-29 14:32:02,831 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:32:02] "GET /api/time-series HTTP/1.1" 200 -
+2025-05-29 14:32:11,435 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:32:11] "GET /api/metrics HTTP/1.1" 200 -
+2025-05-29 14:32:11,436 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:32:11] "GET /api/time-series HTTP/1.1" 200 -
+2025-05-29 14:32:27,336 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:32:27] "GET /api/metrics HTTP/1.1" 200 -
+2025-05-29 14:32:27,338 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:32:27] "GET /api/time-series HTTP/1.1" 200 -
+2025-05-29 14:32:37,426 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:32:37] "GET /api/time-series HTTP/1.1" 200 -
+2025-05-29 14:32:37,427 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:32:37] "GET /api/metrics HTTP/1.1" 200 -
+2025-05-29 14:32:51,101 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:32:51] "GET /api/metrics HTTP/1.1" 200 -
+2025-05-29 14:32:51,101 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:32:51] "GET /api/time-series HTTP/1.1" 200 -
+2025-05-29 14:33:09,752 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:33:09] "GET /api/metrics HTTP/1.1" 200 -
+2025-05-29 14:33:09,753 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:33:09] "GET /api/time-series HTTP/1.1" 200 -
+2025-05-29 14:33:20,580 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:33:20] "GET /api/metrics HTTP/1.1" 200 -
+2025-05-29 14:33:20,580 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:33:20] "GET /api/time-series HTTP/1.1" 200 -
+2025-05-29 14:33:30,674 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:33:30] "GET /api/time-series HTTP/1.1" 200 -
+2025-05-29 14:33:30,675 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:33:30] "GET /api/metrics HTTP/1.1" 200 -
+2025-05-29 14:33:40,866 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:33:40] "GET /api/time-series HTTP/1.1" 200 -
+2025-05-29 14:33:40,866 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:33:40] "GET /api/metrics HTTP/1.1" 200 -
+2025-05-29 14:34:05,345 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:34:05] "GET /api/time-series HTTP/1.1" 200 -
+2025-05-29 14:34:05,346 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:34:05] "GET /api/metrics HTTP/1.1" 200 -
+2025-05-29 14:34:24,410 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:34:24] "GET /api/metrics HTTP/1.1" 200 -
+2025-05-29 14:34:24,412 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:34:24] "GET /api/time-series HTTP/1.1" 200 -
+2025-05-29 14:35:01,910 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:35:01] "GET /api/time-series HTTP/1.1" 200 -
+2025-05-29 14:35:01,911 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:35:01] "GET /api/metrics HTTP/1.1" 200 -
+2025-05-29 14:35:12,020 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:35:12] "GET /api/metrics HTTP/1.1" 200 -
+2025-05-29 14:35:12,021 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:35:12] "GET /api/time-series HTTP/1.1" 200 -
+2025-05-29 14:35:24,691 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:35:24] "GET /api/time-series HTTP/1.1" 200 -
+2025-05-29 14:35:24,692 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:35:24] "GET /api/metrics HTTP/1.1" 200 -
+2025-05-29 14:35:52,410 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:35:52] "GET /api/metrics HTTP/1.1" 200 -
+2025-05-29 14:35:52,411 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:35:52] "GET /api/time-series HTTP/1.1" 200 -
+2025-05-29 14:36:21,712 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:36:21] "GET /api/metrics HTTP/1.1" 200 -
+2025-05-29 14:36:21,754 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:36:21] "GET /api/time-series HTTP/1.1" 200 -
+2025-05-29 14:37:13,761 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:37:13] "GET /api/metrics HTTP/1.1" 200 -
+2025-05-29 14:37:13,762 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:37:13] "GET /api/time-series HTTP/1.1" 200 -
+2025-05-29 14:37:23,848 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:37:23] "GET /api/time-series HTTP/1.1" 200 -
+2025-05-29 14:37:23,848 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:37:23] "GET /api/metrics HTTP/1.1" 200 -
+2025-05-29 14:37:34,711 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:37:34] "GET /api/time-series HTTP/1.1" 200 -
+2025-05-29 14:37:34,712 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:37:34] "GET /api/metrics HTTP/1.1" 200 -
+2025-05-29 14:37:47,654 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:37:47] "GET /api/metrics HTTP/1.1" 200 -
+2025-05-29 14:37:47,655 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:37:47] "GET /api/time-series HTTP/1.1" 200 -
+2025-05-29 14:38:04,693 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:38:04] "GET /api/metrics HTTP/1.1" 200 -
+2025-05-29 14:38:04,693 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:38:04] "GET /api/time-series HTTP/1.1" 200 -
+2025-05-29 14:38:35,455 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:38:35] "GET /api/metrics HTTP/1.1" 200 -
+2025-05-29 14:38:35,455 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:38:35] "GET /api/time-series HTTP/1.1" 200 -
+2025-05-29 14:39:22,942 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:39:22] "GET /api/time-series HTTP/1.1" 200 -
+2025-05-29 14:39:22,943 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:39:22] "GET /api/metrics HTTP/1.1" 200 -
+2025-05-29 14:40:39,345 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:40:39] "GET /api/time-series HTTP/1.1" 200 -
+2025-05-29 14:40:39,346 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:40:39] "GET /api/metrics HTTP/1.1" 200 -
+2025-05-29 14:40:48,522 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:40:48] "GET /api/metrics HTTP/1.1" 200 -
+2025-05-29 14:40:48,604 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:40:48] "GET /api/time-series HTTP/1.1" 200 -
+2025-05-29 14:41:01,881 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:41:01] "GET /api/metrics HTTP/1.1" 200 -
+2025-05-29 14:41:02,021 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:41:02] "GET /api/time-series HTTP/1.1" 200 -
+2025-05-29 14:41:16,544 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:41:16] "GET /api/metrics HTTP/1.1" 200 -
+2025-05-29 14:41:16,606 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:41:16] "GET /api/time-series HTTP/1.1" 200 -
+2025-05-29 14:41:46,694 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:41:46] "GET /api/metrics HTTP/1.1" 200 -
+2025-05-29 14:41:46,694 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:41:46] "GET /api/time-series HTTP/1.1" 200 -
+2025-05-29 14:42:02,140 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:42:02] "GET /api/time-series HTTP/1.1" 200 -
+2025-05-29 14:42:02,143 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:42:02] "GET /api/metrics HTTP/1.1" 200 -
+2025-05-29 14:42:12,143 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:42:12] "GET /api/metrics HTTP/1.1" 200 -
+2025-05-29 14:42:12,144 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:42:12] "GET /api/time-series HTTP/1.1" 200 -
+2025-05-29 14:42:22,174 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:42:22] "GET /api/metrics HTTP/1.1" 200 -
+2025-05-29 14:42:22,175 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:42:22] "GET /api/time-series HTTP/1.1" 200 -
+2025-05-29 14:42:32,847 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:42:32] "GET /api/time-series HTTP/1.1" 200 -
+2025-05-29 14:42:32,848 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:42:32] "GET /api/metrics HTTP/1.1" 200 -
+2025-05-29 14:42:49,110 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:42:49] "GET /api/time-series HTTP/1.1" 200 -
+2025-05-29 14:42:49,110 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:42:49] "GET /api/metrics HTTP/1.1" 200 -
+2025-05-29 14:43:07,599 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:43:07] "GET /api/metrics HTTP/1.1" 200 -
+2025-05-29 14:43:07,600 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:43:07] "GET /api/time-series HTTP/1.1" 200 -
+2025-05-29 14:43:27,413 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:43:27] "GET /api/metrics HTTP/1.1" 200 -
+2025-05-29 14:43:27,413 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:43:27] "GET /api/time-series HTTP/1.1" 200 -
+2025-05-29 14:43:37,445 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:43:37] "GET /api/time-series HTTP/1.1" 200 -
+2025-05-29 14:43:37,448 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:43:37] "GET /api/metrics HTTP/1.1" 200 -
+2025-05-29 14:43:39,208 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:43:39] "GET / HTTP/1.1" 200 -
+2025-05-29 14:43:39,284 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:43:39] "[36mGET /static/css/dashboard.css HTTP/1.1[0m" 304 -
+2025-05-29 14:43:39,289 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:43:39] "[36mGET /static/js/dashboard.js HTTP/1.1[0m" 304 -
+2025-05-29 14:43:39,318 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:43:39] "GET /api/time-series HTTP/1.1" 200 -
+2025-05-29 14:43:39,318 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:43:39] "GET /api/metrics HTTP/1.1" 200 -
+2025-05-29 14:43:42,396 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:43:42] "[35m[1mGET /api/tasks HTTP/1.1[0m" 500 -
+2025-05-29 14:43:46,334 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:43:46] "GET /api/time-series HTTP/1.1" 200 -
+2025-05-29 14:43:46,334 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:43:46] "GET /api/metrics HTTP/1.1" 200 -
+2025-05-29 14:43:49,380 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:43:49] "GET /api/metrics HTTP/1.1" 200 -
+2025-05-29 14:43:49,381 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:43:49] "GET /api/time-series HTTP/1.1" 200 -
+2025-05-29 14:43:59,518 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:43:59] "GET /api/time-series HTTP/1.1" 200 -
+2025-05-29 14:43:59,519 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:43:59] "GET /api/metrics HTTP/1.1" 200 -
+2025-05-29 14:44:09,549 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:44:09] "GET /api/time-series HTTP/1.1" 200 -
+2025-05-29 14:44:09,549 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:44:09] "GET /api/metrics HTTP/1.1" 200 -
+2025-05-29 14:44:19,571 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:44:19] "GET /api/metrics HTTP/1.1" 200 -
+2025-05-29 14:44:19,572 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:44:19] "GET /api/time-series HTTP/1.1" 200 -
+2025-05-29 14:44:29,664 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:44:29] "GET /api/time-series HTTP/1.1" 200 -
+2025-05-29 14:44:29,665 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:44:29] "GET /api/metrics HTTP/1.1" 200 -
+2025-05-29 14:44:39,770 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:44:39] "GET /api/time-series HTTP/1.1" 200 -
+2025-05-29 14:44:39,771 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:44:39] "GET /api/metrics HTTP/1.1" 200 -
+2025-05-29 14:44:57,209 - dashboard_launcher - INFO - Importing dashboard server module
+2025-05-29 14:44:57,519 - memory.enhanced_semantic_search - INFO - Enhanced semantic search initialized with embedding dim: 384
+2025-05-29 14:44:57,519 - memory.enhanced_semantic_search - INFO - Hybrid retrieval enabled: True
+2025-05-29 14:44:57,949 - task_dashboard - INFO - Task memory dashboard initialized
+2025-05-29 14:44:57,962 - dashboard_launcher - ERROR - Error starting dashboard server: invalid syntax (universal_intelligent_automation_handler.py, line 1153)
+2025-05-29 14:45:06,635 - dashboard_launcher - INFO - Importing dashboard server module
+2025-05-29 14:45:07,013 - memory.enhanced_semantic_search - INFO - Enhanced semantic search initialized with embedding dim: 384
+2025-05-29 14:45:07,013 - memory.enhanced_semantic_search - INFO - Hybrid retrieval enabled: True
+2025-05-29 14:45:08,120 - task_dashboard - INFO - Task memory dashboard initialized
+2025-05-29 14:45:08,149 - dashboard_launcher - ERROR - Error starting dashboard server: invalid syntax (universal_intelligent_automation_handler.py, line 1153)
+2025-05-29 14:45:27,726 - dashboard_launcher - INFO - Importing dashboard server module
+2025-05-29 14:45:27,965 - memory.enhanced_semantic_search - INFO - Enhanced semantic search initialized with embedding dim: 384
+2025-05-29 14:45:27,966 - memory.enhanced_semantic_search - INFO - Hybrid retrieval enabled: True
+2025-05-29 14:45:28,295 - task_dashboard - INFO - Task memory dashboard initialized
+2025-05-29 14:45:28,301 - dashboard_launcher - ERROR - Error starting dashboard server: unmatched '}' (universal_intelligent_automation_handler.py, line 1199)
+2025-05-29 14:45:43,440 - dashboard_launcher - INFO - Importing dashboard server module
+2025-05-29 14:45:43,648 - memory.enhanced_semantic_search - INFO - Enhanced semantic search initialized with embedding dim: 384
+2025-05-29 14:45:43,648 - memory.enhanced_semantic_search - INFO - Hybrid retrieval enabled: True
+2025-05-29 14:45:43,843 - task_dashboard - INFO - Task memory dashboard initialized
+2025-05-29 14:45:44,278 - agent_workflow.input_controller - INFO - Detected screen size: 1470x956
+2025-05-29 14:45:44,282 - agent_workflow.input_controller - INFO - Input listeners started successfully
+2025-05-29 14:45:44,282 - agent_workflow.input_controller - INFO - 🚨 Emergency shutdown: Press Ctrl+1 to immediately stop agent
+2025-05-29 14:45:44,378 - llava_processor - INFO - Connected to Ollama API v0.6.8
+2025-05-29 14:45:44,378 - total_screen_analyzer - INFO - LLaVA visual processor initialized for total screen analysis
+2025-05-29 14:45:44,379 - total_screen_analyzer - INFO - Total Screen Analyzer initialized with 8s interval
+2025-05-29 14:45:44,379 - adaptive_retry_automation_handler - INFO - 🔄 Adaptive retry automation system loaded
+2025-05-29 14:45:44,379 - universal_intelligent_automation_handler - INFO - ✅ Adaptive retry automation handler loaded successfully
+2025-05-29 14:45:44,380 - plan_persistence - INFO - Plan persistence manager initialized with 6 stored plans
+2025-05-29 14:45:44,381 - plan_persistence - INFO - Plan persistence service initialized
+2025-05-29 14:45:44,381 - universal_intelligent_automation_handler - INFO - ✅ Plan persistence module loaded successfully
+2025-05-29 14:45:44,383 - agent_workflow.input_controller - INFO - Input listeners started successfully
+2025-05-29 14:45:44,383 - agent_workflow.input_controller - INFO - 🚨 Emergency shutdown: Press Ctrl+1 to immediately stop agent
+2025-05-29 14:45:44,386 - llava_processor - INFO - Connected to Ollama API v0.6.8
+2025-05-29 14:45:44,386 - total_screen_analyzer - INFO - LLaVA visual processor initialized for total screen analysis
+2025-05-29 14:45:44,387 - total_screen_analyzer - INFO - Total Screen Analyzer initialized with 8s interval
+2025-05-29 14:45:44,387 - universal_intelligent_automation_handler - INFO - 🤖 Universal automation components loaded successfully
+2025-05-29 14:45:44,388 - brain.core.brain_router - INFO - ✅ Plan persistence module loaded in brain router
+2025-05-29 14:45:44,390 - brain.core.brain_router - INFO - BrainRouter initialized - The Central Intelligence Hub is online
+2025-05-29 14:45:44,548 - llm_suggestion_detector - INFO - LLM Suggestion Detector initialized
+2025-05-29 14:45:44,553 - dashboard_launcher - INFO - Dashboard server module imported successfully
+2025-05-29 14:45:44,553 - dashboard_launcher - INFO - Starting Flask dashboard server on port 8081
+2025-05-29 14:45:44,553 - dashboard_launcher - INFO - Dashboard server started in background thread
+2025-05-29 14:45:44,553 - plan_persistence - INFO - Auto-save task started with 60s interval
+2025-05-29 14:45:44,562 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:8081
+ * Running on http://192.168.1.102:8081
+2025-05-29 14:45:44,562 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-05-29 14:45:45,208 - pynput.mouse.Listener - ERROR - Unhandled exception in listener callback
+Traceback (most recent call last):
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/pynput/_util/__init__.py", line 230, in inner
+    return f(self, *args, **kwargs)
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/pynput/_util/darwin.py", line 290, in _handler
+    self._handle_message(proxy, event_type, event, refcon, is_injected)
+    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/pynput/mouse/_darwin.py", line 181, in _handle_message
+    (px, py) = Quartz.CGEventGetLocation(event)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/objc/_lazyimport.py", line 177, in __getattr__
+    value = getattr(p, name)
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/objc/_lazyimport.py", line 191, in __getattr__
+    value = get_constant(name)
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/objc/_lazyimport.py", line 359, in get_constant
+    funcmap.pop(name)
+    ~~~~~~~~~~~^^^^^^
+KeyError: 'CGEventGetLocation'
+2025-05-29 14:45:49,906 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:45:49] "GET /api/metrics HTTP/1.1" 200 -
+2025-05-29 14:45:54,140 - dashboard_server - WARNING - Task memory manager not available, returning empty task list
+2025-05-29 14:45:54,141 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:45:54] "GET /api/tasks HTTP/1.1" 200 -
+2025-05-29 14:45:58,410 - dashboard_server - WARNING - Task memory manager not available, returning dummy task for test-task-123
+2025-05-29 14:45:58,411 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:45:58] "GET /api/tasks/test-task-123 HTTP/1.1" 200 -
+2025-05-29 14:45:59,058 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:45:59] "GET /api/metrics HTTP/1.1" 200 -
+2025-05-29 14:45:59,058 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:45:59] "GET /api/time-series HTTP/1.1" 200 -
+2025-05-29 14:46:02,944 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:46:02] "GET / HTTP/1.1" 200 -
+2025-05-29 14:46:09,157 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:46:09] "GET /api/time-series HTTP/1.1" 200 -
+2025-05-29 14:46:09,157 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:46:09] "GET /api/metrics HTTP/1.1" 200 -
+2025-05-29 14:46:23,283 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:46:23] "GET /api/time-series HTTP/1.1" 200 -
+2025-05-29 14:46:23,284 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:46:23] "GET /api/metrics HTTP/1.1" 200 -
+2025-05-29 14:46:33,638 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:46:33] "GET /api/time-series HTTP/1.1" 200 -
+2025-05-29 14:46:33,639 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:46:33] "GET /api/metrics HTTP/1.1" 200 -
+2025-05-29 14:46:35,401 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:46:35] "GET / HTTP/1.1" 200 -
+2025-05-29 14:46:35,554 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:46:35] "[36mGET /static/js/dashboard.js HTTP/1.1[0m" 304 -
+2025-05-29 14:46:35,567 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:46:35] "[36mGET /static/css/dashboard.css HTTP/1.1[0m" 304 -
+2025-05-29 14:46:35,628 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:46:35] "GET /api/metrics HTTP/1.1" 200 -
+2025-05-29 14:46:35,633 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:46:35] "GET /api/time-series HTTP/1.1" 200 -
+2025-05-29 14:46:45,659 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:46:45] "GET /api/metrics HTTP/1.1" 200 -
+2025-05-29 14:46:45,661 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:46:45] "GET /api/time-series HTTP/1.1" 200 -
+2025-05-29 14:46:55,622 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:46:55] "GET /api/metrics HTTP/1.1" 200 -
+2025-05-29 14:46:55,623 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:46:55] "GET /api/time-series HTTP/1.1" 200 -
+2025-05-29 14:47:05,620 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:47:05] "GET /api/metrics HTTP/1.1" 200 -
+2025-05-29 14:47:05,620 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:47:05] "GET /api/time-series HTTP/1.1" 200 -
+2025-05-29 14:47:09,643 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:47:09] "GET /api/reports HTTP/1.1" 200 -
+2025-05-29 14:47:11,598 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:47:11] "GET /api/reports/1748542960 HTTP/1.1" 200 -
+2025-05-29 14:47:15,620 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:47:15] "GET /api/reports HTTP/1.1" 200 -
+2025-05-29 14:47:15,621 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:47:15] "GET /api/time-series HTTP/1.1" 200 -
+2025-05-29 14:47:15,621 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:47:15] "GET /api/metrics HTTP/1.1" 200 -
+2025-05-29 14:47:15,827 - task_dashboard - INFO - Generated comprehensive task memory report: logs/dashboard/task_memory_report_1748544435.json
+2025-05-29 14:47:15,828 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:47:15] "POST /api/generate-report HTTP/1.1" 200 -
+2025-05-29 14:47:15,831 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:47:15] "GET /api/reports HTTP/1.1" 200 -
+2025-05-29 14:47:27,320 - dashboard_launcher - INFO - Importing dashboard server module
+2025-05-29 14:47:27,524 - memory.enhanced_semantic_search - INFO - Enhanced semantic search initialized with embedding dim: 384
+2025-05-29 14:47:27,525 - memory.enhanced_semantic_search - INFO - Hybrid retrieval enabled: True
+2025-05-29 14:47:27,715 - task_dashboard - INFO - Task memory dashboard initialized
+2025-05-29 14:47:27,982 - agent_workflow.input_controller - INFO - Detected screen size: 1470x956
+2025-05-29 14:47:27,987 - agent_workflow.input_controller - INFO - Input listeners started successfully
+2025-05-29 14:47:27,987 - agent_workflow.input_controller - INFO - 🚨 Emergency shutdown: Press Ctrl+1 to immediately stop agent
+2025-05-29 14:47:28,046 - llava_processor - INFO - Connected to Ollama API v0.6.8
+2025-05-29 14:47:28,046 - total_screen_analyzer - INFO - LLaVA visual processor initialized for total screen analysis
+2025-05-29 14:47:28,046 - total_screen_analyzer - INFO - Total Screen Analyzer initialized with 8s interval
+2025-05-29 14:47:28,046 - adaptive_retry_automation_handler - INFO - 🔄 Adaptive retry automation system loaded
+2025-05-29 14:47:28,046 - universal_intelligent_automation_handler - INFO - ✅ Adaptive retry automation handler loaded successfully
+2025-05-29 14:47:28,048 - plan_persistence - INFO - Plan persistence manager initialized with 8 stored plans
+2025-05-29 14:47:28,048 - plan_persistence - INFO - Plan persistence service initialized
+2025-05-29 14:47:28,048 - universal_intelligent_automation_handler - INFO - ✅ Plan persistence module loaded successfully
+2025-05-29 14:47:28,050 - agent_workflow.input_controller - INFO - Input listeners started successfully
+2025-05-29 14:47:28,050 - agent_workflow.input_controller - INFO - 🚨 Emergency shutdown: Press Ctrl+1 to immediately stop agent
+2025-05-29 14:47:28,064 - llava_processor - INFO - Connected to Ollama API v0.6.8
+2025-05-29 14:47:28,064 - total_screen_analyzer - INFO - LLaVA visual processor initialized for total screen analysis
+2025-05-29 14:47:28,064 - total_screen_analyzer - INFO - Total Screen Analyzer initialized with 8s interval
+2025-05-29 14:47:28,064 - universal_intelligent_automation_handler - INFO - 🤖 Universal automation components loaded successfully
+2025-05-29 14:47:28,066 - brain.core.brain_router - INFO - ✅ Plan persistence module loaded in brain router
+2025-05-29 14:47:28,068 - brain.core.brain_router - INFO - BrainRouter initialized - The Central Intelligence Hub is online
+2025-05-29 14:47:28,205 - llm_suggestion_detector - INFO - LLM Suggestion Detector initialized
+2025-05-29 14:47:28,209 - dashboard_launcher - INFO - Dashboard server module imported successfully
+2025-05-29 14:47:28,209 - dashboard_launcher - INFO - Starting Flask dashboard server on port 8081
+2025-05-29 14:47:28,209 - dashboard_launcher - INFO - Dashboard server started in background thread
+2025-05-29 14:47:28,209 - plan_persistence - INFO - Auto-save task started with 60s interval
+2025-05-29 14:47:28,345 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:8081
+ * Running on http://192.168.1.102:8081
+2025-05-29 14:47:28,345 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-05-29 14:47:32,703 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:47:32] "GET /api/metrics HTTP/1.1" 200 -
+2025-05-29 14:47:35,722 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:47:35] "GET /api/metrics HTTP/1.1" 200 -
+2025-05-29 14:47:35,724 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:47:35] "GET /api/reports HTTP/1.1" 200 -
+2025-05-29 14:47:35,724 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:47:35] "GET /api/time-series HTTP/1.1" 200 -
+2025-05-29 14:47:45,795 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:47:45] "GET /api/metrics HTTP/1.1" 200 -
+2025-05-29 14:47:45,798 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:47:45] "GET /api/reports HTTP/1.1" 200 -
+2025-05-29 14:47:45,798 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:47:45] "GET /api/time-series HTTP/1.1" 200 -
+2025-05-29 14:47:55,983 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:47:55] "GET /api/metrics HTTP/1.1" 200 -
+2025-05-29 14:47:55,983 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:47:55] "GET /api/reports HTTP/1.1" 200 -
+2025-05-29 14:47:55,984 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:47:55] "GET /api/time-series HTTP/1.1" 200 -
+2025-05-29 14:48:07,044 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:48:07] "GET /api/metrics HTTP/1.1" 200 -
+2025-05-29 14:48:07,045 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:48:07] "GET /api/time-series HTTP/1.1" 200 -
+2025-05-29 14:48:07,045 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:48:07] "GET /api/reports HTTP/1.1" 200 -
+2025-05-29 14:48:08,697 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:48:08] "GET / HTTP/1.1" 200 -
+2025-05-29 14:48:08,785 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:48:08] "[36mGET /static/css/dashboard.css HTTP/1.1[0m" 304 -
+2025-05-29 14:48:08,787 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:48:08] "GET /static/js/dashboard.js HTTP/1.1" 200 -
+2025-05-29 14:48:08,823 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:48:08] "GET /api/metrics HTTP/1.1" 200 -
+2025-05-29 14:48:08,828 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:48:08] "GET /api/time-series HTTP/1.1" 200 -
+2025-05-29 14:48:11,680 - pynput.mouse.Listener - ERROR - Unhandled exception in listener callback
+Traceback (most recent call last):
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/pynput/_util/__init__.py", line 230, in inner
+    return f(self, *args, **kwargs)
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/pynput/_util/darwin.py", line 290, in _handler
+    self._handle_message(proxy, event_type, event, refcon, is_injected)
+    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/pynput/mouse/_darwin.py", line 181, in _handle_message
+    (px, py) = Quartz.CGEventGetLocation(event)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/objc/_lazyimport.py", line 177, in __getattr__
+    value = getattr(p, name)
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/objc/_lazyimport.py", line 191, in __getattr__
+    value = get_constant(name)
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/objc/_lazyimport.py", line 359, in get_constant
+    funcmap.pop(name)
+    ~~~~~~~~~~~^^^^^^
+KeyError: 'CGEventGetLocation'
+2025-05-29 14:48:15,052 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:48:15] "GET / HTTP/1.1" 200 -
+2025-05-29 14:48:15,079 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:48:15] "[36mGET /static/css/dashboard.css HTTP/1.1[0m" 304 -
+2025-05-29 14:48:15,079 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:48:15] "[36mGET /static/js/dashboard.js HTTP/1.1[0m" 304 -
+2025-05-29 14:48:15,098 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:48:15] "GET /api/metrics HTTP/1.1" 200 -
+2025-05-29 14:48:15,098 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:48:15] "GET /api/time-series HTTP/1.1" 200 -
+2025-05-29 14:48:25,212 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:48:25] "GET /api/time-series HTTP/1.1" 200 -
+2025-05-29 14:48:25,214 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:48:25] "GET /api/metrics HTTP/1.1" 200 -
+2025-05-29 14:48:35,300 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:48:35] "GET /api/time-series HTTP/1.1" 200 -
+2025-05-29 14:48:35,301 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:48:35] "GET /api/metrics HTTP/1.1" 200 -
+2025-05-29 14:48:37,666 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:48:37] "GET / HTTP/1.1" 200 -
+2025-05-29 14:48:37,685 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:48:37] "[36mGET /static/css/dashboard.css HTTP/1.1[0m" 304 -
+2025-05-29 14:48:37,685 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:48:37] "[36mGET /static/js/dashboard.js HTTP/1.1[0m" 304 -
+2025-05-29 14:48:37,695 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:48:37] "GET /api/metrics HTTP/1.1" 200 -
+2025-05-29 14:48:37,695 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:48:37] "GET /api/time-series HTTP/1.1" 200 -
+2025-05-29 14:48:47,811 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:48:47] "GET /api/time-series HTTP/1.1" 200 -
+2025-05-29 14:48:47,812 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:48:47] "GET /api/metrics HTTP/1.1" 200 -
+2025-05-29 14:48:57,875 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:48:57] "GET /api/metrics HTTP/1.1" 200 -
+2025-05-29 14:48:57,875 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:48:57] "GET /api/time-series HTTP/1.1" 200 -
+2025-05-29 14:49:08,227 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:49:08] "GET /api/metrics HTTP/1.1" 200 -
+2025-05-29 14:49:08,254 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:49:08] "GET /api/time-series HTTP/1.1" 200 -
+2025-05-29 14:49:18,455 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:49:18] "GET /api/metrics HTTP/1.1" 200 -
+2025-05-29 14:49:18,476 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:49:18] "GET /api/time-series HTTP/1.1" 200 -
+2025-05-29 14:49:28,197 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:49:28] "GET /api/metrics HTTP/1.1" 200 -
+2025-05-29 14:49:28,198 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:49:28] "GET /api/time-series HTTP/1.1" 200 -
+2025-05-29 14:49:38,278 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:49:38] "GET /api/time-series HTTP/1.1" 200 -
+2025-05-29 14:49:38,279 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:49:38] "GET /api/metrics HTTP/1.1" 200 -
+2025-05-29 14:50:22,595 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:50:22] "GET /api/metrics HTTP/1.1" 200 -
+2025-05-29 14:50:22,607 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:50:22] "GET /api/time-series HTTP/1.1" 200 -
+2025-05-29 14:50:33,195 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:50:33] "GET /api/metrics HTTP/1.1" 200 -
+2025-05-29 14:50:33,196 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:50:33] "GET /api/time-series HTTP/1.1" 200 -
+2025-05-29 14:50:43,299 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:50:43] "GET /api/time-series HTTP/1.1" 200 -
+2025-05-29 14:50:43,300 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:50:43] "GET /api/metrics HTTP/1.1" 200 -
+2025-05-29 14:50:54,623 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:50:54] "GET /api/time-series HTTP/1.1" 200 -
+2025-05-29 14:50:54,623 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:50:54] "GET /api/metrics HTTP/1.1" 200 -
+2025-05-29 14:51:07,569 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:51:07] "GET /api/metrics HTTP/1.1" 200 -
+2025-05-29 14:51:07,569 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:51:07] "GET /api/time-series HTTP/1.1" 200 -
+2025-05-29 14:51:23,553 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:51:23] "GET /api/metrics HTTP/1.1" 200 -
+2025-05-29 14:51:23,553 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:51:23] "GET /api/time-series HTTP/1.1" 200 -
+2025-05-29 14:51:34,676 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:51:34] "GET /api/time-series HTTP/1.1" 200 -
+2025-05-29 14:51:34,676 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:51:34] "GET /api/metrics HTTP/1.1" 200 -
+2025-05-29 14:52:12,427 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:52:12] "GET /api/time-series HTTP/1.1" 200 -
+2025-05-29 14:52:12,428 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:52:12] "GET /api/metrics HTTP/1.1" 200 -
+2025-05-29 14:53:15,132 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:53:15] "GET /api/metrics HTTP/1.1" 200 -
+2025-05-29 14:53:15,132 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:53:15] "GET /api/time-series HTTP/1.1" 200 -
+2025-05-29 14:53:50,685 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:53:50] "GET /api/metrics HTTP/1.1" 200 -
+2025-05-29 14:53:50,687 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:53:50] "GET /api/time-series HTTP/1.1" 200 -
+2025-05-29 14:54:00,847 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:54:00] "GET /api/metrics HTTP/1.1" 200 -
+2025-05-29 14:54:00,848 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:54:00] "GET /api/time-series HTTP/1.1" 200 -
+2025-05-29 14:54:13,466 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:54:13] "GET /api/metrics HTTP/1.1" 200 -
+2025-05-29 14:54:13,466 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:54:13] "GET /api/time-series HTTP/1.1" 200 -
+2025-05-29 14:54:24,401 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:54:24] "GET /api/metrics HTTP/1.1" 200 -
+2025-05-29 14:54:24,402 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:54:24] "GET /api/time-series HTTP/1.1" 200 -
+2025-05-29 14:54:34,511 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:54:34] "GET /api/time-series HTTP/1.1" 200 -
+2025-05-29 14:54:34,511 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:54:34] "GET /api/metrics HTTP/1.1" 200 -
+2025-05-29 14:54:39,601 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:54:39] "GET /api/time-series HTTP/1.1" 200 -
+2025-05-29 14:54:44,625 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:54:44] "GET /api/time-series HTTP/1.1" 200 -
+2025-05-29 14:54:44,625 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:54:44] "GET /api/metrics HTTP/1.1" 200 -
+2025-05-29 14:54:54,707 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:54:54] "GET /api/time-series HTTP/1.1" 200 -
+2025-05-29 14:54:54,707 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:54:54] "GET /api/metrics HTTP/1.1" 200 -
+2025-05-29 14:54:57,584 - dashboard_launcher - INFO - Importing dashboard server module
+2025-05-29 14:54:57,789 - memory.enhanced_semantic_search - INFO - Enhanced semantic search initialized with embedding dim: 384
+2025-05-29 14:54:57,789 - memory.enhanced_semantic_search - INFO - Hybrid retrieval enabled: True
+2025-05-29 14:54:57,995 - task_dashboard - INFO - Task memory dashboard initialized
+2025-05-29 14:54:58,329 - agent_workflow.input_controller - INFO - Detected screen size: 1470x956
+2025-05-29 14:54:58,333 - agent_workflow.input_controller - INFO - Input listeners started successfully
+2025-05-29 14:54:58,333 - agent_workflow.input_controller - INFO - 🚨 Emergency shutdown: Press Ctrl+1 to immediately stop agent
+2025-05-29 14:54:58,513 - llava_processor - INFO - Connected to Ollama API v0.6.8
+2025-05-29 14:54:58,514 - total_screen_analyzer - INFO - LLaVA visual processor initialized for total screen analysis
+2025-05-29 14:54:58,514 - total_screen_analyzer - INFO - Total Screen Analyzer initialized with 8s interval
+2025-05-29 14:54:58,514 - adaptive_retry_automation_handler - INFO - 🔄 Adaptive retry automation system loaded
+2025-05-29 14:54:58,514 - universal_intelligent_automation_handler - INFO - ✅ Adaptive retry automation handler loaded successfully
+2025-05-29 14:54:58,516 - plan_persistence - INFO - Plan persistence manager initialized with 7 stored plans
+2025-05-29 14:54:58,516 - plan_persistence - INFO - Plan persistence service initialized
+2025-05-29 14:54:58,516 - universal_intelligent_automation_handler - INFO - ✅ Plan persistence module loaded successfully
+2025-05-29 14:54:58,518 - agent_workflow.input_controller - INFO - Input listeners started successfully
+2025-05-29 14:54:58,518 - agent_workflow.input_controller - INFO - 🚨 Emergency shutdown: Press Ctrl+1 to immediately stop agent
+2025-05-29 14:54:58,522 - llava_processor - INFO - Connected to Ollama API v0.6.8
+2025-05-29 14:54:58,522 - total_screen_analyzer - INFO - LLaVA visual processor initialized for total screen analysis
+2025-05-29 14:54:58,522 - total_screen_analyzer - INFO - Total Screen Analyzer initialized with 8s interval
+2025-05-29 14:54:58,523 - universal_intelligent_automation_handler - INFO - 🤖 Universal automation components loaded successfully
+2025-05-29 14:54:58,525 - brain.core.brain_router - INFO - ✅ Plan persistence module loaded in brain router
+2025-05-29 14:54:58,527 - brain.core.brain_router - INFO - BrainRouter initialized - The Central Intelligence Hub is online
+2025-05-29 14:54:58,684 - llm_suggestion_detector - INFO - LLM Suggestion Detector initialized
+2025-05-29 14:54:58,688 - dashboard_launcher - INFO - Dashboard server module imported successfully
+2025-05-29 14:54:58,689 - dashboard_launcher - INFO - Starting Flask dashboard server on port 8081
+2025-05-29 14:54:58,689 - dashboard_launcher - INFO - Dashboard server started in background thread
+2025-05-29 14:54:58,690 - plan_persistence - INFO - Auto-save task started with 60s interval
+2025-05-29 14:54:58,822 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:8081
+ * Running on http://192.168.1.102:8081
+2025-05-29 14:54:58,822 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-05-29 14:55:05,823 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:55:05] "GET /api/metrics HTTP/1.1" 200 -
+2025-05-29 14:55:05,823 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:55:05] "GET /api/time-series HTTP/1.1" 200 -
+2025-05-29 14:55:21,522 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:55:21] "GET /api/time-series HTTP/1.1" 200 -
+2025-05-29 14:55:21,522 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:55:21] "GET /api/metrics HTTP/1.1" 200 -
+2025-05-29 14:55:44,857 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:55:44] "GET /api/metrics HTTP/1.1" 200 -
+2025-05-29 14:55:44,959 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:55:44] "GET /api/time-series HTTP/1.1" 200 -
+2025-05-29 14:55:55,069 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:55:55] "GET /api/metrics HTTP/1.1" 200 -
+2025-05-29 14:55:55,078 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:55:55] "GET /api/time-series HTTP/1.1" 200 -
+2025-05-29 14:55:55,257 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:55:55] "GET / HTTP/1.1" 200 -
+2025-05-29 14:56:00,668 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:56:00] "GET /static/js/dashboard.js HTTP/1.1" 200 -
+2025-05-29 14:56:05,976 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:56:05] "GET /static/js/dashboard.js HTTP/1.1" 200 -
+2025-05-29 14:56:12,128 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:56:12] "GET /api/metrics HTTP/1.1" 200 -
+2025-05-29 14:56:12,172 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:56:12] "GET /api/time-series HTTP/1.1" 200 -
+2025-05-29 14:56:18,672 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:56:18] "GET /api/metrics HTTP/1.1" 200 -
+2025-05-29 14:56:18,677 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:56:18] "GET /api/time-series HTTP/1.1" 200 -
+2025-05-29 14:56:29,042 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:56:29] "GET /api/metrics HTTP/1.1" 200 -
+2025-05-29 14:56:29,043 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:56:29] "GET /api/time-series HTTP/1.1" 200 -
+2025-05-29 14:56:39,190 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:56:39] "GET /api/time-series HTTP/1.1" 200 -
+2025-05-29 14:56:39,191 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:56:39] "GET /api/metrics HTTP/1.1" 200 -
+2025-05-29 14:56:50,926 - dashboard_launcher - INFO - Importing dashboard server module
+2025-05-29 14:56:51,185 - memory.enhanced_semantic_search - INFO - Enhanced semantic search initialized with embedding dim: 384
+2025-05-29 14:56:51,185 - memory.enhanced_semantic_search - INFO - Hybrid retrieval enabled: True
+2025-05-29 14:56:51,526 - task_dashboard - INFO - Task memory dashboard initialized
+2025-05-29 14:56:51,933 - agent_workflow.input_controller - INFO - Detected screen size: 1470x956
+2025-05-29 14:56:51,939 - agent_workflow.input_controller - INFO - Input listeners started successfully
+2025-05-29 14:56:51,939 - agent_workflow.input_controller - INFO - 🚨 Emergency shutdown: Press Ctrl+1 to immediately stop agent
+2025-05-29 14:56:52,034 - llava_processor - INFO - Connected to Ollama API v0.6.8
+2025-05-29 14:56:52,034 - total_screen_analyzer - INFO - LLaVA visual processor initialized for total screen analysis
+2025-05-29 14:56:52,034 - total_screen_analyzer - INFO - Total Screen Analyzer initialized with 8s interval
+2025-05-29 14:56:52,034 - adaptive_retry_automation_handler - INFO - 🔄 Adaptive retry automation system loaded
+2025-05-29 14:56:52,034 - universal_intelligent_automation_handler - INFO - ✅ Adaptive retry automation handler loaded successfully
+2025-05-29 14:56:52,036 - plan_persistence - INFO - Plan persistence manager initialized with 8 stored plans
+2025-05-29 14:56:52,036 - plan_persistence - INFO - Plan persistence service initialized
+2025-05-29 14:56:52,036 - universal_intelligent_automation_handler - INFO - ✅ Plan persistence module loaded successfully
+2025-05-29 14:56:52,039 - agent_workflow.input_controller - INFO - Input listeners started successfully
+2025-05-29 14:56:52,039 - agent_workflow.input_controller - INFO - 🚨 Emergency shutdown: Press Ctrl+1 to immediately stop agent
+2025-05-29 14:56:52,041 - llava_processor - INFO - Connected to Ollama API v0.6.8
+2025-05-29 14:56:52,041 - total_screen_analyzer - INFO - LLaVA visual processor initialized for total screen analysis
+2025-05-29 14:56:52,042 - total_screen_analyzer - INFO - Total Screen Analyzer initialized with 8s interval
+2025-05-29 14:56:52,042 - universal_intelligent_automation_handler - INFO - 🤖 Universal automation components loaded successfully
+2025-05-29 14:56:52,044 - brain.core.brain_router - INFO - ✅ Plan persistence module loaded in brain router
+2025-05-29 14:56:52,045 - brain.core.brain_router - INFO - BrainRouter initialized - The Central Intelligence Hub is online
+2025-05-29 14:56:52,203 - llm_suggestion_detector - INFO - LLM Suggestion Detector initialized
+2025-05-29 14:56:52,209 - dashboard_launcher - INFO - Dashboard server module imported successfully
+2025-05-29 14:56:52,209 - dashboard_launcher - INFO - Starting Flask dashboard server on port 8081
+2025-05-29 14:56:52,209 - dashboard_launcher - INFO - Dashboard server started in background thread
+2025-05-29 14:56:52,210 - plan_persistence - INFO - Auto-save task started with 60s interval
+2025-05-29 14:56:52,220 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:8081
+ * Running on http://192.168.1.102:8081
+2025-05-29 14:56:52,220 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-05-29 14:56:59,342 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:56:59] "GET /api/metrics HTTP/1.1" 200 -
+2025-05-29 14:56:59,342 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:56:59] "GET /api/time-series HTTP/1.1" 200 -
+2025-05-29 14:57:13,112 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:57:13] "GET /api/metrics HTTP/1.1" 200 -
+2025-05-29 14:57:13,113 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:57:13] "GET /api/time-series HTTP/1.1" 200 -
+2025-05-29 14:57:38,984 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:57:38] "GET /api/time-series HTTP/1.1" 200 -
+2025-05-29 14:57:38,984 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:57:38] "GET /api/metrics HTTP/1.1" 200 -
+2025-05-29 14:57:57,681 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:57:57] "GET /api/metrics HTTP/1.1" 200 -
+2025-05-29 14:57:57,681 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:57:57] "GET /api/time-series HTTP/1.1" 200 -
+2025-05-29 14:58:07,728 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:58:07] "GET /api/time-series HTTP/1.1" 200 -
+2025-05-29 14:58:07,729 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:58:07] "GET /api/metrics HTTP/1.1" 200 -
+2025-05-29 14:58:16,479 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:58:16] "GET /api/time-series HTTP/1.1" 200 -
+2025-05-29 14:58:17,840 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:58:17] "GET /api/metrics HTTP/1.1" 200 -
+2025-05-29 14:58:17,841 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:58:17] "GET /api/time-series HTTP/1.1" 200 -
+2025-05-29 14:58:30,817 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:58:30] "GET /api/time-series HTTP/1.1" 200 -
+2025-05-29 14:58:30,818 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:58:30] "GET /api/metrics HTTP/1.1" 200 -
+2025-05-29 14:58:40,942 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:58:40] "GET /api/metrics HTTP/1.1" 200 -
+2025-05-29 14:58:40,942 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:58:40] "GET /api/time-series HTTP/1.1" 200 -
+2025-05-29 14:58:52,444 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:58:52] "GET /api/time-series HTTP/1.1" 200 -
+2025-05-29 14:58:52,444 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:58:52] "GET /api/metrics HTTP/1.1" 200 -
+2025-05-29 14:59:05,859 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:59:05] "GET /api/metrics HTTP/1.1" 200 -
+2025-05-29 14:59:05,859 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:59:05] "GET /api/time-series HTTP/1.1" 200 -
+2025-05-29 14:59:19,525 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:59:19] "GET /api/time-series HTTP/1.1" 200 -
+2025-05-29 14:59:19,526 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:59:19] "GET /api/metrics HTTP/1.1" 200 -
+2025-05-29 14:59:29,640 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:59:29] "GET /api/metrics HTTP/1.1" 200 -
+2025-05-29 14:59:29,640 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:59:29] "GET /api/time-series HTTP/1.1" 200 -
+2025-05-29 14:59:31,768 - pynput.mouse.Listener - ERROR - Unhandled exception in listener callback
+Traceback (most recent call last):
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/pynput/_util/__init__.py", line 230, in inner
+    return f(self, *args, **kwargs)
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/pynput/_util/darwin.py", line 290, in _handler
+    self._handle_message(proxy, event_type, event, refcon, is_injected)
+    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/pynput/mouse/_darwin.py", line 181, in _handle_message
+    (px, py) = Quartz.CGEventGetLocation(event)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/objc/_lazyimport.py", line 177, in __getattr__
+    value = getattr(p, name)
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/objc/_lazyimport.py", line 191, in __getattr__
+    value = get_constant(name)
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/objc/_lazyimport.py", line 359, in get_constant
+    funcmap.pop(name)
+    ~~~~~~~~~~~^^^^^^
+KeyError: 'CGEventGetLocation'
+2025-05-29 14:59:39,763 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:59:39] "GET /api/metrics HTTP/1.1" 200 -
+2025-05-29 14:59:39,763 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:59:39] "GET /api/time-series HTTP/1.1" 200 -
+2025-05-29 14:59:49,851 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:59:49] "GET /api/time-series HTTP/1.1" 200 -
+2025-05-29 14:59:49,851 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 14:59:49] "GET /api/metrics HTTP/1.1" 200 -
+2025-05-29 15:00:01,885 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 15:00:01] "GET /api/metrics HTTP/1.1" 200 -
+2025-05-29 15:00:01,892 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 15:00:01] "GET /api/time-series HTTP/1.1" 200 -
+2025-05-29 15:00:16,347 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 15:00:16] "GET /api/metrics HTTP/1.1" 200 -
+2025-05-29 15:00:16,347 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 15:00:16] "GET /api/time-series HTTP/1.1" 200 -
+2025-05-29 15:00:51,851 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 15:00:51] "GET /api/metrics HTTP/1.1" 200 -
+2025-05-29 15:00:51,851 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 15:00:51] "GET /api/time-series HTTP/1.1" 200 -
+2025-05-29 15:01:33,366 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 15:01:33] "GET /api/time-series HTTP/1.1" 200 -
+2025-05-29 15:01:33,366 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 15:01:33] "GET /api/metrics HTTP/1.1" 200 -
+2025-05-29 15:01:43,455 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 15:01:43] "GET /api/metrics HTTP/1.1" 200 -
+2025-05-29 15:01:43,455 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 15:01:43] "GET /api/time-series HTTP/1.1" 200 -
+2025-05-29 15:01:47,166 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 15:01:47] "GET / HTTP/1.1" 200 -
+2025-05-29 15:01:47,279 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 15:01:47] "[36mGET /static/css/dashboard.css HTTP/1.1[0m" 304 -
+2025-05-29 15:01:47,280 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 15:01:47] "GET /static/js/dashboard.js?v=1 HTTP/1.1" 200 -
+2025-05-29 15:01:47,321 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 15:01:47] "GET /api/metrics HTTP/1.1" 200 -
+2025-05-29 15:01:47,331 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 15:01:47] "GET /api/time-series HTTP/1.1" 200 -
+2025-05-29 15:01:57,357 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 15:01:57] "GET /api/metrics HTTP/1.1" 200 -
+2025-05-29 15:01:57,357 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 15:01:57] "GET /api/time-series HTTP/1.1" 200 -
+2025-05-29 15:02:07,469 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 15:02:07] "GET /api/metrics HTTP/1.1" 200 -
+2025-05-29 15:02:07,470 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 15:02:07] "GET /api/time-series HTTP/1.1" 200 -
+2025-05-29 15:02:17,503 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 15:02:17] "GET /api/time-series HTTP/1.1" 200 -
+2025-05-29 15:02:17,507 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 15:02:17] "GET /api/metrics HTTP/1.1" 200 -
+2025-05-29 15:02:27,690 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 15:02:27] "GET /api/time-series HTTP/1.1" 200 -
+2025-05-29 15:02:27,696 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 15:02:27] "GET /api/metrics HTTP/1.1" 200 -
+2025-05-29 15:02:37,681 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 15:02:37] "GET /api/metrics HTTP/1.1" 200 -
+2025-05-29 15:02:37,681 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 15:02:37] "GET /api/time-series HTTP/1.1" 200 -
+2025-05-29 15:02:47,753 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 15:02:47] "GET /api/metrics HTTP/1.1" 200 -
+2025-05-29 15:02:47,754 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 15:02:47] "GET /api/time-series HTTP/1.1" 200 -
+2025-05-29 15:02:59,800 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 15:02:59] "GET /api/metrics HTTP/1.1" 200 -
+2025-05-29 15:02:59,801 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 15:02:59] "GET /api/time-series HTTP/1.1" 200 -
+2025-05-29 15:03:02,049 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 15:03:02] "GET / HTTP/1.1" 200 -
+2025-05-29 15:03:02,106 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 15:03:02] "[36mGET /static/css/dashboard.css HTTP/1.1[0m" 304 -
+2025-05-29 15:03:02,106 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 15:03:02] "[36mGET /static/js/dashboard.js?v=1 HTTP/1.1[0m" 304 -
+2025-05-29 15:03:02,127 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 15:03:02] "GET /api/metrics HTTP/1.1" 200 -
+2025-05-29 15:03:02,127 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 15:03:02] "GET /api/time-series HTTP/1.1" 200 -
+2025-05-29 15:03:03,540 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 15:03:03] "GET / HTTP/1.1" 200 -
+2025-05-29 15:03:03,556 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 15:03:03] "[36mGET /static/css/dashboard.css HTTP/1.1[0m" 304 -
+2025-05-29 15:03:03,556 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 15:03:03] "[36mGET /static/js/dashboard.js?v=1 HTTP/1.1[0m" 304 -
+2025-05-29 15:03:03,565 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 15:03:03] "GET /api/metrics HTTP/1.1" 200 -
+2025-05-29 15:03:03,565 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 15:03:03] "GET /api/time-series HTTP/1.1" 200 -
+2025-05-29 15:03:13,685 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 15:03:13] "GET /api/metrics HTTP/1.1" 200 -
+2025-05-29 15:03:13,686 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 15:03:13] "GET /api/time-series HTTP/1.1" 200 -
+2025-05-29 15:03:23,778 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 15:03:23] "GET /api/time-series HTTP/1.1" 200 -
+2025-05-29 15:03:23,779 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 15:03:23] "GET /api/metrics HTTP/1.1" 200 -
+2025-05-29 15:03:33,870 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 15:03:33] "GET /api/time-series HTTP/1.1" 200 -
+2025-05-29 15:03:33,871 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 15:03:33] "GET /api/metrics HTTP/1.1" 200 -
+2025-05-29 15:03:43,955 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 15:03:43] "GET /api/metrics HTTP/1.1" 200 -
+2025-05-29 15:03:43,955 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 15:03:43] "GET /api/time-series HTTP/1.1" 200 -
+2025-05-29 15:03:54,052 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 15:03:54] "GET /api/time-series HTTP/1.1" 200 -
+2025-05-29 15:03:54,055 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 15:03:54] "GET /api/metrics HTTP/1.1" 200 -
+2025-05-29 15:04:04,159 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 15:04:04] "GET /api/metrics HTTP/1.1" 200 -
+2025-05-29 15:04:04,159 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 15:04:04] "GET /api/time-series HTTP/1.1" 200 -
+2025-05-29 15:04:18,411 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 15:04:18] "GET /api/time-series HTTP/1.1" 200 -
+2025-05-29 15:04:18,412 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 15:04:18] "GET /api/metrics HTTP/1.1" 200 -
+2025-05-29 15:04:55,761 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 15:04:55] "GET /api/metrics HTTP/1.1" 200 -
+2025-05-29 15:04:55,762 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 15:04:55] "GET /api/time-series HTTP/1.1" 200 -
+2025-05-29 15:05:05,877 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 15:05:05] "GET /api/metrics HTTP/1.1" 200 -
+2025-05-29 15:05:05,878 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 15:05:05] "GET /api/time-series HTTP/1.1" 200 -
+2025-05-29 15:05:16,250 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 15:05:16] "GET /api/time-series HTTP/1.1" 200 -
+2025-05-29 15:05:16,251 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 15:05:16] "GET /api/metrics HTTP/1.1" 200 -
+2025-05-29 15:05:26,339 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 15:05:26] "GET /api/time-series HTTP/1.1" 200 -
+2025-05-29 15:05:26,340 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 15:05:26] "GET /api/metrics HTTP/1.1" 200 -
+2025-05-29 15:05:28,211 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 15:05:28] "GET /api/time-series HTTP/1.1" 200 -
+2025-05-29 15:05:36,377 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 15:05:36] "GET /api/time-series HTTP/1.1" 200 -
+2025-05-29 15:05:36,378 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 15:05:36] "GET /api/metrics HTTP/1.1" 200 -
+2025-05-29 15:05:50,875 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 15:05:50] "GET /api/time-series HTTP/1.1" 200 -
+2025-05-29 15:05:50,876 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 15:05:50] "GET /api/metrics HTTP/1.1" 200 -
+2025-05-29 15:06:02,215 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 15:06:02] "GET /api/time-series HTTP/1.1" 200 -
+2025-05-29 15:06:02,216 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 15:06:02] "GET /api/metrics HTTP/1.1" 200 -
+2025-05-29 15:06:20,844 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 15:06:20] "GET /api/time-series HTTP/1.1" 200 -
+2025-05-29 15:06:20,845 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 15:06:20] "GET /api/metrics HTTP/1.1" 200 -
+2025-05-29 15:07:05,131 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 15:07:05] "GET /api/metrics HTTP/1.1" 200 -
+2025-05-29 15:07:05,132 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 15:07:05] "GET /api/time-series HTTP/1.1" 200 -
+2025-05-29 15:07:39,565 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 15:07:39] "GET /api/metrics HTTP/1.1" 200 -
+2025-05-29 15:07:39,566 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 15:07:39] "GET /api/time-series HTTP/1.1" 200 -
+2025-05-29 15:07:49,406 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 15:07:49] "GET /api/time-series HTTP/1.1" 200 -
+2025-05-29 15:07:49,549 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 15:07:49] "GET /api/time-series HTTP/1.1" 200 -
+2025-05-29 15:07:49,549 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 15:07:49] "GET /api/metrics HTTP/1.1" 200 -
+2025-05-29 15:08:00,016 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 15:08:00] "GET /api/metrics HTTP/1.1" 200 -
+2025-05-29 15:08:00,016 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 15:08:00] "GET /api/time-series HTTP/1.1" 200 -
+2025-05-29 15:08:18,789 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 15:08:18] "GET /api/time-series HTTP/1.1" 200 -
+2025-05-29 15:08:18,790 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 15:08:18] "GET /api/metrics HTTP/1.1" 200 -
+2025-05-29 15:08:37,947 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 15:08:37] "GET /api/time-series HTTP/1.1" 200 -
+2025-05-29 15:08:37,949 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 15:08:37] "GET /api/metrics HTTP/1.1" 200 -
+2025-05-29 15:09:23,756 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 15:09:23] "GET /api/time-series HTTP/1.1" 200 -
+2025-05-29 15:09:23,757 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 15:09:23] "GET /api/metrics HTTP/1.1" 200 -
+2025-05-29 15:10:15,203 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 15:10:15] "GET /api/time-series HTTP/1.1" 200 -
+2025-05-29 15:10:15,204 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 15:10:15] "GET /api/metrics HTTP/1.1" 200 -
+2025-05-29 15:10:25,099 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 15:10:25] "GET /api/time-series HTTP/1.1" 200 -
+2025-05-29 15:10:25,099 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 15:10:25] "GET /api/metrics HTTP/1.1" 200 -
+2025-05-29 15:10:35,211 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 15:10:35] "GET /api/time-series HTTP/1.1" 200 -
+2025-05-29 15:10:35,212 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 15:10:35] "GET /api/metrics HTTP/1.1" 200 -
+2025-05-29 15:10:45,265 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 15:10:45] "GET /api/metrics HTTP/1.1" 200 -
+2025-05-29 15:10:45,266 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 15:10:45] "GET /api/time-series HTTP/1.1" 200 -
+2025-05-29 15:10:56,432 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 15:10:56] "GET /api/metrics HTTP/1.1" 200 -
+2025-05-29 15:10:56,432 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 15:10:56] "GET /api/time-series HTTP/1.1" 200 -
+2025-05-29 15:11:07,925 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 15:11:07] "GET /api/metrics HTTP/1.1" 200 -
+2025-05-29 15:11:07,925 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 15:11:07] "GET /api/time-series HTTP/1.1" 200 -
+2025-05-29 15:11:29,340 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 15:11:29] "GET /api/time-series HTTP/1.1" 200 -
+2025-05-29 15:11:29,340 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 15:11:29] "GET /api/metrics HTTP/1.1" 200 -
+2025-05-29 15:12:13,787 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 15:12:13] "GET /api/time-series HTTP/1.1" 200 -
+2025-05-29 15:12:13,788 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 15:12:13] "GET /api/metrics HTTP/1.1" 200 -
+2025-05-29 15:12:57,669 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 15:12:57] "GET /api/time-series HTTP/1.1" 200 -
+2025-05-29 15:12:57,670 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 15:12:57] "GET /api/metrics HTTP/1.1" 200 -
+2025-05-29 15:14:12,126 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 15:14:12] "GET /api/metrics HTTP/1.1" 200 -
+2025-05-29 15:14:12,138 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 15:14:12] "GET /api/time-series HTTP/1.1" 200 -
+2025-05-29 15:14:22,002 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 15:14:22] "GET /api/metrics HTTP/1.1" 200 -
+2025-05-29 15:14:22,003 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 15:14:22] "GET /api/time-series HTTP/1.1" 200 -
+2025-05-29 15:14:33,420 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 15:14:33] "GET /api/time-series HTTP/1.1" 200 -
+2025-05-29 15:14:33,420 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 15:14:33] "GET /api/metrics HTTP/1.1" 200 -
+2025-05-29 15:14:44,094 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 15:14:44] "GET /api/metrics HTTP/1.1" 200 -
+2025-05-29 15:14:44,094 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 15:14:44] "GET /api/time-series HTTP/1.1" 200 -
+2025-05-29 15:14:56,616 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 15:14:56] "GET /api/metrics HTTP/1.1" 200 -
+2025-05-29 15:14:56,617 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 15:14:56] "GET /api/time-series HTTP/1.1" 200 -
+2025-05-29 15:15:06,730 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 15:15:06] "GET /api/metrics HTTP/1.1" 200 -
+2025-05-29 15:15:06,734 - werkzeug - INFO - 127.0.0.1 - - [29/May/2025 15:15:06] "GET /api/time-series HTTP/1.1" 200 -

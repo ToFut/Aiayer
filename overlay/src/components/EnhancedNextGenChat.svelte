@@ -1252,9 +1252,9 @@
         <div class="messages" bind:this={chatContainer} on:scroll={handleScroll}>
           {#if messages.length === 0}
             <div class="welcome-message">
-              <div class="welcome-icon">👋</div>
+              <div class="welcome-icon">🌟</div>
               <h3>Welcome to SensAI</h3>
-              <p>I can help analyze and provide insights about your system.</p>
+              <p>Your intelligent AI companion for system analysis and automation.</p>
               <div class="quick-questions">
                 {#each quickQuestions as question}
                   <button 

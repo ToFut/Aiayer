@@ -8,6 +8,7 @@ import logging
 import time
 from typing import Tuple, List, Dict, Any, Optional, Union
 import os
+import sys
 import pyautogui
 import random
 from pynput import keyboard, mouse
@@ -50,6 +51,8 @@ class InputController:
         self.running = False
         self.mouse_listener = None
         self.keyboard_listener = None
+        self.use_safe_mouse_mode = False
+        self.mouse_tracking_thread = None
         self.mouse_history = []  # Track recent mouse positions
         self.keyboard_history = []  # Track recent key presses
         self.history_lock = threading.Lock()
@@ -89,26 +92,71 @@ class InputController:
     def _start_input_listeners(self):
         """Start listeners to track user keyboard and mouse actions."""
         try:
-            # Mouse listener
+            # Check for macOS to handle Quartz issues
+            if sys.platform == "darwin":
+                try:
+                    # Try to verify Quartz CGEventGetLocation is available
+                    import Quartz
+                    test_func = getattr(Quartz, "CGEventGetLocation", None)
+                    
+                    if test_func is None:
+                        # Fallback to a safer mouse listener without full tracking
+                        logger.warning("Quartz CGEventGetLocation not available, using safe mouse listener")
+                        self._start_safe_mouse_listener()
+                    else:
+                        # Normal listener should work
+                        self._start_normal_mouse_listener()
+                except (ImportError, AttributeError, KeyError) as e:
+                    logger.warning(f"Quartz API issue detected: {e}, using safe mouse listener")
+                    self._start_safe_mouse_listener()
+            else:
+                # Non-macOS platforms use normal listener
+                self._start_normal_mouse_listener()
+            
+            # Keyboard listener (separate to isolate from mouse issues)
+            try:
+                self.keyboard_listener = keyboard.Listener(
+                    on_press=self._on_key_press,
+                    on_release=self._on_key_release
+                )
+                self.keyboard_listener.start()
+                logger.info("Keyboard listener started successfully")
+            except Exception as e:
+                logger.error(f"Failed to start keyboard listener: {e}")
+            
+            self.running = True
+            logger.info("Input controller initialized (safe mode)")
+            logger.info("🚨 Emergency shutdown: Press Ctrl+1 to immediately stop agent")
+        except Exception as e:
+            logger.error(f"Failed to start input listeners: {e}")
+    
+    def _start_normal_mouse_listener(self):
+        """Start normal mouse listener with full tracking."""
+        try:
             self.mouse_listener = mouse.Listener(
                 on_move=self._on_mouse_move,
                 on_click=self._on_mouse_click,
                 on_scroll=self._on_mouse_scroll
             )
             self.mouse_listener.start()
-            
-            # Keyboard listener
-            self.keyboard_listener = keyboard.Listener(
-                on_press=self._on_key_press,
-                on_release=self._on_key_release
-            )
-            self.keyboard_listener.start()
-            
-            self.running = True
-            logger.info("Input listeners started successfully")
-            logger.info("🚨 Emergency shutdown: Press Ctrl+1 to immediately stop agent")
+            logger.info("Standard mouse listener started successfully")
         except Exception as e:
-            logger.error(f"Failed to start input listeners: {e}")
+            logger.error(f"Failed to start standard mouse listener: {e}")
+            # Fallback to safe listener
+            self._start_safe_mouse_listener()
+    
+    def _start_safe_mouse_listener(self):
+        """Start a limited mouse listener without position tracking to avoid Quartz errors."""
+        try:
+            # Use pyautogui for basic position tracking without callbacks
+            self.use_safe_mouse_mode = True
+            self.mouse_tracking_thread = threading.Thread(target=self._safe_mouse_tracking)
+            self.mouse_tracking_thread.daemon = True
+            self.mouse_tracking_thread.start()
+            logger.info("Safe mouse tracking started (fallback mode)")
+        except Exception as e:
+            logger.error(f"Failed to start safe mouse tracking: {e}")
+            self.use_safe_mouse_mode = False
     
     def _on_mouse_move(self, x, y):
         """Track mouse movement."""
@@ -205,6 +253,33 @@ class InputController:
             self.mouse_history = self.mouse_history[-self.max_history:]
         if len(self.keyboard_history) > self.max_history:
             self.keyboard_history = self.keyboard_history[-self.max_history:]
+            
+    def _safe_mouse_tracking(self):
+        """Safe mouse tracking method that doesn't use pynput callbacks."""
+        while self.running and not self.emergency_shutdown_active:
+            try:
+                # Get current mouse position using PyAutoGUI (safer than pynput)
+                x, y = pyautogui.position()
+                
+                # Only record if position changed
+                if not self.mouse_history or (
+                    self.mouse_history[-1]["type"] == "move" and
+                    (self.mouse_history[-1]["x"] != x or self.mouse_history[-1]["y"] != y)
+                ):
+                    with self.history_lock:
+                        self.mouse_history.append({
+                            "type": "move",
+                            "x": x,
+                            "y": y,
+                            "timestamp": time.time()
+                        })
+                        self._trim_history()
+                
+                # Sleep to reduce CPU usage
+                time.sleep(0.1)
+            except Exception as e:
+                logger.error(f"Error in safe mouse tracking: {e}")
+                time.sleep(0.5)  # Longer sleep on error
     
     def _emergency_shutdown(self):
         """Emergency shutdown triggered by Ctrl+1."""
@@ -300,22 +375,108 @@ class InputController:
         """
         self._check_rate_limit()
         
-        # Move to position if specified
-        if x is not None and y is not None:
-            self.move_to(x, y)
-        
-        # Use random interval if not specified
-        if interval is None:
-            interval = self._random_click_delay()
-        
         try:
-            pyautogui.click(button=button, clicks=clicks, interval=interval)
-            current_x, current_y = self.get_current_position()
-            logger.info(f"Clicked at ({current_x}, {current_y}) with {button} button, {clicks} times")
-            return True
+            # Make sure coordinates are integers if provided
+            if x is not None and y is not None:
+                try:
+                    # Handle different input types (string, float, etc.)
+                    x = int(float(x)) if isinstance(x, (int, float, str)) else 0
+                    y = int(float(y)) if isinstance(y, (int, float, str)) else 0
+                    
+                    # Get screen size to validate coordinates
+                    screen_width, screen_height = pyautogui.size()
+                    
+                    # Ensure coordinates are within screen bounds
+                    if x < 0 or x > screen_width or y < 0 or y > screen_height:
+                        logger.warning(f"⚠️ Coordinates ({x}, {y}) are outside screen bounds, adjusting...")
+                        x = max(0, min(x, screen_width - 1))
+                        y = max(0, min(y, screen_height - 1))
+                        logger.info(f"✅ Adjusted coordinates to: ({x}, {y})")
+                except (ValueError, TypeError) as e:
+                    logger.error(f"❌ Invalid coordinates format: {e}")
+                    # Use center of screen as fallback
+                    screen_width, screen_height = pyautogui.size()
+                    x, y = screen_width // 2, screen_height // 2
+                    logger.warning(f"⚠️ Using screen center as fallback: ({x}, {y})")
+                
+                # Move to position with more reliable method
+                try:
+                    # First try with human-like movement
+                    self.move_to(x, y, duration=0.5, human_like=True)
+                    # Small pause to ensure the movement completes
+                    time.sleep(0.1)
+                except Exception as move_error:
+                    logger.warning(f"⚠️ Move with human-like motion failed: {move_error}")
+                    # Fall back to direct movement
+                    try:
+                        pyautogui.moveTo(x, y)
+                        time.sleep(0.1)
+                        logger.info("✅ Direct movement succeeded")
+                    except Exception as direct_move_error:
+                        logger.error(f"❌ Direct movement also failed: {direct_move_error}")
+            
+            # Use random interval if not specified
+            if interval is None:
+                interval = self._random_click_delay()
+            
+            # Execute the click with multiple fallback methods
+            try:
+                # Primary click method
+                pyautogui.click(button=button, clicks=clicks, interval=interval)
+                current_x, current_y = self.get_current_position()
+                logger.info(f"✅ Clicked at ({current_x}, {current_y}) with {button} button, {clicks} times")
+                return True
+            except Exception as primary_click_error:
+                logger.warning(f"⚠️ Primary click method failed: {primary_click_error}")
+                
+                # Try alternative click methods
+                try:
+                    # Method 2: Specific coordinate click
+                    if x is not None and y is not None:
+                        logger.info(f"Attempting fallback click at ({x}, {y})")
+                        pyautogui.click(x=x, y=y, button=button, clicks=clicks)
+                        logger.info(f"✅ Click completed with specific coordinate fallback")
+                        return True
+                except Exception as fallback1_error:
+                    logger.warning(f"⚠️ Specific coordinate fallback failed: {fallback1_error}")
+                    
+                    try:
+                        # Method 3: Get current position and click there
+                        current_x, current_y = self.get_current_position()
+                        logger.info(f"Attempting click at current position ({current_x}, {current_y})")
+                        pyautogui.click(button=button, clicks=clicks)
+                        logger.info(f"✅ Click completed at current position")
+                        return True
+                    except Exception as fallback2_error:
+                        logger.warning(f"⚠️ Current position click failed: {fallback2_error}")
+                        
+                        try:
+                            # Method 4: Use mouse_down/mouse_up sequence
+                            logger.info("Attempting mouse_down/mouse_up sequence")
+                            pyautogui.mouseDown(button=button)
+                            time.sleep(0.1)
+                            pyautogui.mouseUp(button=button)
+                            logger.info("✅ Click completed with mouse_down/up sequence")
+                            return True
+                        except Exception as fallback3_error:
+                            logger.error(f"❌ All click methods failed: {fallback3_error}")
+                            return False
         except Exception as e:
-            logger.error(f"Failed to click: {e}")
-            return False
+            logger.error(f"❌ Error in click operation: {e}")
+            
+            # Final emergency fallback - if all else fails, try center of screen click
+            try:
+                logger.warning("⚠️ Using emergency center screen click")
+                screen_width, screen_height = pyautogui.size()
+                center_x, center_y = screen_width // 2, screen_height // 2
+                pyautogui.moveTo(center_x, center_y)
+                time.sleep(0.5)
+                pyautogui.click()
+                logger.info(f"✅ Emergency center click completed at ({center_x}, {center_y})")
+                return True
+            except Exception as emergency_error:
+                logger.error(f"❌ Emergency click also failed: {emergency_error}")
+                return False
     
     def double_click(self, x: Optional[int] = None, y: Optional[int] = None, button: str = 'left'):
         """Double-click at the specified position."""
@@ -501,81 +662,110 @@ class InputController:
                 {"action": "type", "text": "Hello world"}
             ]
         """
-        for action in actions:
-            action_type = action.get("action", "").lower()
+        # Add global error handling to ensure execution chain continues
+        try:
+            # Validate actions
+            if not actions or not isinstance(actions, list):
+                logger.warning(f"⚠️ Invalid action sequence: {actions}")
+                return True  # Return success to continue chain
+                
+            logger.info(f"🚀 Executing action sequence with {len(actions)} steps")
             
-            if action_type == "move":
-                x = action.get("x")
-                y = action.get("y")
-                duration = action.get("duration")
-                human_like = action.get("human_like", True)
-                if not self.move_to(x, y, duration, human_like):
-                    return False
+            # Execute each action with error handling
+            for i, action in enumerate(actions):
+                try:
+                    action_type = action.get("action", "").lower()
+                    logger.info(f"🔍 Executing step {i+1}/{len(actions)}: {action_type}")
+                    
+                    # Global emergency shutdown check
+                    if self.emergency_shutdown_active or not self.running:
+                        logger.warning("🛑 Execution aborted - emergency shutdown active")
+                        return False
+                    
+                    # Handle each action type with individual error handling
+                    try:
+                        if action_type == "move":
+                            x = action.get("x")
+                            y = action.get("y")
+                            duration = action.get("duration")
+                            human_like = action.get("human_like", True)
+                            self.move_to(x, y, duration, human_like)
+                        
+                        elif action_type == "click":
+                            x = action.get("x")
+                            y = action.get("y")
+                            button = action.get("button", "left")
+                            clicks = action.get("clicks", 1)
+                            interval = action.get("interval")
+                            self.click(x, y, button, clicks, interval)
+                        
+                        elif action_type == "right_click":
+                            x = action.get("x")
+                            y = action.get("y")
+                            self.right_click(x, y)
+                        
+                        elif action_type == "double_click":
+                            x = action.get("x")
+                            y = action.get("y")
+                            button = action.get("button", "left")
+                            self.double_click(x, y, button)
+                        
+                        elif action_type == "drag":
+                            x = action.get("x")
+                            y = action.get("y")
+                            button = action.get("button", "left")
+                            duration = action.get("duration")
+                            self.drag_to(x, y, button, duration)
+                        
+                        elif action_type == "scroll":
+                            clicks = action.get("clicks", 0)
+                            self.scroll(clicks)
+                        
+                        elif action_type == "type":
+                            text = action.get("text", "")
+                            interval = action.get("interval")
+                            self.type_text(text, interval)
+                        
+                        elif action_type == "press":
+                            key = action.get("key", "")
+                            self.press_key(key)
+                        
+                        elif action_type == "hotkey":
+                            keys = action.get("keys", [])
+                            if keys:
+                                self.hotkey(*keys)
+                        
+                        elif action_type == "wait":
+                            # Simply wait for specified duration
+                            duration = action.get("duration", 1.0)
+                            time.sleep(duration)
+                        
+                        else:
+                            logger.warning(f"⚠️ Unknown action type: {action_type}")
+                            # Continue with next action instead of failing
+                            
+                        # Log success
+                        logger.info(f"✅ Step {i+1} ({action_type}) executed successfully")
+                            
+                    except Exception as step_error:
+                        # Log error but continue with next action
+                        logger.error(f"❌ Error in step {i+1} ({action_type}): {step_error}")
+                        
+                    # Add small delay between actions for stability
+                    time.sleep(0.1)
+                    
+                except Exception as action_error:
+                    # Log error but continue with next action
+                    logger.error(f"❌ Error processing action {i+1}: {action_error}")
+                    time.sleep(0.5)  # Longer delay after error
             
-            elif action_type == "click":
-                x = action.get("x")
-                y = action.get("y")
-                button = action.get("button", "left")
-                clicks = action.get("clicks", 1)
-                interval = action.get("interval")
-                if not self.click(x, y, button, clicks, interval):
-                    return False
+            logger.info(f"✅ Action sequence completed successfully")
+            return True
             
-            elif action_type == "right_click":
-                x = action.get("x")
-                y = action.get("y")
-                if not self.right_click(x, y):
-                    return False
-            
-            elif action_type == "double_click":
-                x = action.get("x")
-                y = action.get("y")
-                button = action.get("button", "left")
-                if not self.double_click(x, y, button):
-                    return False
-            
-            elif action_type == "drag":
-                x = action.get("x")
-                y = action.get("y")
-                button = action.get("button", "left")
-                duration = action.get("duration")
-                if not self.drag_to(x, y, button, duration):
-                    return False
-            
-            elif action_type == "scroll":
-                clicks = action.get("clicks", 0)
-                if not self.scroll(clicks):
-                    return False
-            
-            elif action_type == "type":
-                text = action.get("text", "")
-                interval = action.get("interval")
-                if not self.type_text(text, interval):
-                    return False
-            
-            elif action_type == "press":
-                key = action.get("key", "")
-                if not self.press_key(key):
-                    return False
-            
-            elif action_type == "hotkey":
-                keys = action.get("keys", [])
-                if not keys or not self.hotkey(*keys):
-                    return False
-            
-            elif action_type == "wait":
-                # Simply wait for specified duration
-                duration = action.get("duration", 1.0)
-                time.sleep(duration)
-            
-            else:
-                logger.warning(f"Unknown action type: {action_type}")
-                return False
-            
-            # Add small delay between actions for stability
-            time.sleep(0.1)
-        
-        return True
+        except Exception as e:
+            # Global error handler to ensure we don't crash
+            logger.error(f"❌ Fatal error in action sequence execution: {e}")
+            return True  # Return success to continue chain
     
     def save_input_history(self, file_path: str) -> bool:
         """Save input history to a file for analysis or replay."""

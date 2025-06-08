@@ -1,78 +1,80 @@
 #!/usr/bin/env python3
 """
-Test Client for Simple Brain Router
-Tests all 4 modes and connectivity
+Test client for brain router connector
 """
-
 import asyncio
-import json
 import websockets
+import json
 import sys
 
-async def test_brain_router():
-    """Test all brain router modes"""
-    uri = "ws://localhost:8765"
-    
+async def send_test_message():
+    """Send a test message to the brain router connector"""
     try:
-        print("🔗 Connecting to Brain Router...")
-        async with websockets.connect(uri) as websocket:
+        uri = "ws://localhost:8766"
+        print(f"Connecting to {uri}...")
+        
+        async with websockets.connect(uri) as ws:
+            print("Connected")
             
-            # Wait for connection confirmation
-            initial_msg = await websocket.recv()
-            connection_data = json.loads(initial_msg)
-            print(f"✅ Connected: {connection_data.get('message')}")
-            print(f"📋 Available modes: {connection_data.get('available_modes')}")
-            print()
+            # Wait for welcome message
+            welcome = await ws.recv()
+            print(f"Welcome message: {welcome}")
             
-            # Test each mode
-            test_cases = [
-                {"mode": "Agent", "message": "Click on Documents folder"},
-                {"mode": "Ask", "message": "What is the system status?"},
-                {"mode": "Suggest", "message": "Help me optimize my workflow"},
-                {"mode": "General", "message": "Hello, how are you?"}
-            ]
-            
-            for test in test_cases:
-                print(f"🧪 Testing {test['mode']} Mode...")
-                
-                # Send request
-                request = {
-                    "type": "chat_request",
-                    "mode": test["mode"],
-                    "message": test["message"]
+            # Register
+            registration = {
+                "type": "register",
+                "payload": {
+                    "client_type": "test_client",
+                    "client_id": "test_client",
+                    "version": "1.0",
+                    "capabilities": ["text"]
                 }
+            }
+            print("Sending registration...")
+            await ws.send(json.dumps(registration))
+            
+            # Wait for registration confirmation
+            try:
+                reg_response = await asyncio.wait_for(ws.recv(), timeout=2)
+                print(f"Registration response: {reg_response}")
+            except asyncio.TimeoutError:
+                print("No registration response (this is normal)")
+            
+            # Send test query
+            query = "This is a test query"
+            if len(sys.argv) > 1:
+                query = " ".join(sys.argv[1:])
                 
-                await websocket.send(json.dumps(request))
-                
-                # Get response
-                response = await websocket.recv()
-                result = json.loads(response)
-                
-                if result.get("success"):
-                    print(f"   ✅ {result['response']}")
-                    print(f"   ⏱️ Processing time: {result['processing_time']}s")
-                else:
-                    print(f"   ❌ Error: {result.get('error')}")
-                print()
+            test_query = {
+                "type": "llm_request",
+                "payload": {
+                    "query": query,
+                    "mode": "ask",
+                    "session_id": "test_session",
+                    "user_id": "test_user"
+                }
+            }
+            print(f"Sending test query: {query}")
+            await ws.send(json.dumps(test_query))
             
-            # Test system status
-            print("📊 Getting system status...")
-            await websocket.send(json.dumps({"type": "system_status"}))
-            status_response = await websocket.recv()
-            status = json.loads(status_response)
+            # Wait for typing indicator
+            try:
+                typing = await asyncio.wait_for(ws.recv(), timeout=2)
+                print(f"Typing indicator: {typing}")
+            except asyncio.TimeoutError:
+                print("No typing indicator received")
             
-            print(f"   Status: {status.get('status')}")
-            print(f"   Uptime: {status.get('uptime_seconds')}s")
-            print(f"   Connected clients: {status.get('connected_clients')}")
-            print(f"   Version: {status.get('version')}")
+            # Wait for response with timeout
+            try:
+                response = await asyncio.wait_for(ws.recv(), timeout=15)
+                print(f"Response: {response}")
+            except asyncio.TimeoutError:
+                print("No response received after 15 seconds")
             
-            print("\n🎉 All tests completed successfully!")
-            return True
-            
+            print("Test completed")
+    
     except Exception as e:
-        print(f"❌ Test failed: {e}")
-        return False
+        print(f"Error: {e}")
 
 if __name__ == "__main__":
-    success = asyncio.run(test_brain_router())
-    sys.exit(0 if success else 1)
+    asyncio.run(send_test_message())

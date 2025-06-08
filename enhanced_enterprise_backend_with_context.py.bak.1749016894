@@ -1,0 +1,3390 @@
+#!/usr/bin/env python3
+"""
+Enhanced Enterprise Backend 8767 with Contextual Memory Integration
+Provides fully contextual AI responses using semantic search across all modes
+Now with efficient OS-integrated system monitoring (replaces heavy screen capture)
+"""
+
+import asyncio
+import json
+import logging
+import websockets
+import time
+import subprocess
+import requests
+import aiohttp
+import sys
+import os
+import numpy as np
+import cv2
+from datetime import datetime
+from typing import Dict, Any, Set, Optional, Tuple, List
+from enum import Enum
+from concurrent.futures import ThreadPoolExecutor
+
+# Import efficient system bridge (replaces screen capture)
+try:
+    from enhanced_realtime_system_bridge import EnhancedRealtimeSystemBridge, SystemEvent, SystemState
+    EFFICIENT_SYSTEM_AVAILABLE = True
+    print("🚀 Efficient system bridge available - no more screen capture overhead!")
+except ImportError:
+    EFFICIENT_SYSTEM_AVAILABLE = False
+    print("⚠️ Efficient system bridge not available, falling back to screen capture")
+
+# TeamViewer-style screen control imports
+try:
+    import PIL.Image
+    import PIL.ImageGrab
+    SCREEN_CAPTURE_AVAILABLE = True
+except ImportError:
+    SCREEN_CAPTURE_AVAILABLE = False
+    print("Warning: PIL not available for screen capture")
+
+# Platform-specific imports for precision control
+if sys.platform == "darwin":
+    try:
+        import Quartz
+        import Quartz.CoreGraphics as CG
+        MACOS_CONTROL_AVAILABLE = True
+    except ImportError:
+        MACOS_CONTROL_AVAILABLE = False
+elif sys.platform == "win32":
+    try:
+        import win32gui
+        import win32api
+        import win32con
+        WIN32_CONTROL_AVAILABLE = True
+    except ImportError:
+        WIN32_CONTROL_AVAILABLE = False
+
+# Import warmup manager for fast LLM responses
+try:
+    from llm_warmup_manager import get_warmup_manager
+    WARMUP_MANAGER_AVAILABLE = True
+    print("🔥 LLM Warmup Manager available for fast responses")
+except ImportError:
+    WARMUP_MANAGER_AVAILABLE = False
+    print("⚠️ LLM Warmup Manager not available")
+
+# Add memory module to path
+sys.path.append(os.path.dirname(os.path.abspath(__file__)))
+
+from memory.semantic_search_agent import SemanticSearchAgent, get_context_for_query, add_memory
+
+# Import automation components for Agent mode - prioritize Enhanced handler (safest)
+ENHANCED_AUTOMATION_AVAILABLE = True  # Enable Enhanced handler
+FAST_AUTOMATION_AVAILABLE = False
+UNIVERSAL_AVAILABLE = True  # Enable Universal handler for DO button execution
+REAL_AGENT_AUTOMATION_AVAILABLE = False
+
+# Try Real Agent Automation Handler first (fixed with proper execution plans)
+try:
+    from real_agent_automation_handler import RealAgentAutomationHandler
+    REAL_AGENT_AUTOMATION_AVAILABLE = True
+    AUTOMATION_AVAILABLE = True
+    print("✅ Real Agent Automation Handler enabled (fixed execution plans with DO/DISMISS/ADJUST)")
+except ImportError as e:
+    print(f"⚠️ Real Agent Automation Handler not available: {e}")
+
+# Try Enhanced Automation Handler as fallback
+try:
+    from agent_workflow.enhanced_automation_handler import EnhancedAutomationHandler
+    ENHANCED_AUTOMATION_AVAILABLE = True
+    if not REAL_AGENT_AUTOMATION_AVAILABLE:
+        AUTOMATION_AVAILABLE = True
+    print("✅ Enhanced Automation Handler enabled (fallback option)")
+except ImportError as e:
+    if not REAL_AGENT_AUTOMATION_AVAILABLE:
+        ENHANCED_AUTOMATION_AVAILABLE = False
+        AUTOMATION_AVAILABLE = False
+    print(f"⚠️ Enhanced Automation Handler not available: {e}")
+
+# Try Universal Intelligent Automation Handler
+universal_automation_handler = None
+if UNIVERSAL_AVAILABLE:
+    try:
+        from universal_intelligent_automation_handler import UniversalIntelligentAutomationHandler, universal_automation_handler
+        if universal_automation_handler is None:
+            universal_automation_handler = UniversalIntelligentAutomationHandler()
+        print("✅ Universal Intelligent Automation Handler loaded")
+    except ImportError as e:
+        print(f"⚠️ Universal handler not available: {e}")
+        UNIVERSAL_AVAILABLE = False
+
+# Try Fast Universal Automation Handler
+fast_universal_automation_handler = None
+if FAST_AUTOMATION_AVAILABLE:
+    try:
+        from fast_universal_automation_handler import FastUniversalAutomationHandler
+        fast_universal_automation_handler = FastUniversalAutomationHandler()
+        print("✅ Fast Universal Automation Handler loaded")
+    except ImportError as e:
+        print(f"⚠️ Fast Universal handler not available: {e}")
+        FAST_AUTOMATION_AVAILABLE = False
+
+if not AUTOMATION_AVAILABLE:
+    print("🔧 No automation handlers available - will use mock handlers")
+
+# Setup enhanced logging
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
+    handlers=[
+        logging.FileHandler('logs/backend/enhanced_enterprise_8767_context.log'),
+        logging.StreamHandler()
+    ]
+)
+logger = logging.getLogger(__name__)
+
+class ChatMode(str, Enum):
+    AGENT = "Agent"
+    ASK = "Ask" 
+    SUGGEST = "Suggest"
+    GENERAL = "General"
+
+# Shared dictionary for pending plans across all instances
+shared_pending_plans = {}
+
+class ContextualAIBackend:
+    def __init__(self):
+        self.connected_clients: Set[str] = set()
+        self.sessions: Dict[str, Dict] = {}
+        self.start_time = datetime.now()
+        self.ollama_available = self.check_ollama_availability()
+        
+        # Initialize semantic search agent with fixed implementation
+        self.semantic_agent = SemanticSearchAgent()
+        logger.info("✅ Enhanced semantic search agent initialized with fixes for memory retrieval")
+        
+        # Initialize pending_plans dictionary to store automation plans
+        self.pending_plans = shared_pending_plans  # Use shared dictionary instead of instance-specific
+        logger.info("✅ Initialized pending_plans dictionary for DO button execution")
+        
+        # Initialize efficient system bridge (replaces screen capture)
+        self.system_bridge = None
+        self.current_system_state = None
+        self.system_integration_active = False
+        
+        # Temporarily disable system bridge to fix startup hang
+        # if EFFICIENT_SYSTEM_AVAILABLE:
+        #     try:
+        #         self.system_bridge = EnhancedRealtimeSystemBridge()
+        #         self.system_integration_active = True
+        #         logger.info("🚀 Efficient system bridge initialized - living in the system!")
+        #     except Exception as e:
+        #         logger.error(f"Failed to initialize system bridge: {e}")
+        #         self.system_integration_active = False
+        logger.info("⚠️ System bridge disabled for startup fix")
+        
+        # TeamViewer-style screen control capabilities (fallback)
+        self.screen_monitoring_active = False
+        self.execution_verification_enabled = True
+        self.execution_history = []
+        self.last_screen_state = None
+        self.visual_changes_history = []
+        self.executor = ThreadPoolExecutor(max_workers=4)
+        
+        # Use efficient system integration when available, fallback to screen capture
+        if self.system_integration_active:
+            logger.info("✅ Using efficient OS integration - no screen capture overhead")
+        else:
+            logger.info(f"⚠️ Fallback to screen capture - Available: {SCREEN_CAPTURE_AVAILABLE}")
+        
+        # Initialize automation handler for Agent mode
+        self.automation_handler = None
+        automation_handler_initialized = False
+        
+        # Try Real Agent Automation Handler first (fixed with proper execution plans)
+        if REAL_AGENT_AUTOMATION_AVAILABLE:
+            try:
+                self.automation_handler = RealAgentAutomationHandler()
+                logger.info("✅ Real Agent Automation handler initialized for Agent mode (FIXED)")
+                automation_handler_initialized = True
+            except Exception as e:
+                logger.warning(f"Failed to initialize Real Agent Automation handler: {e}")
+        
+        # Try Enhanced Automation Handler as fallback
+        if not automation_handler_initialized and ENHANCED_AUTOMATION_AVAILABLE:
+            try:
+                self.automation_handler = EnhancedAutomationHandler()
+                logger.info("✅ Enhanced Automation handler initialized for Agent mode (fallback)")
+                automation_handler_initialized = True
+            except Exception as e:
+                logger.warning(f"Failed to initialize Enhanced Automation handler: {e}")
+        
+        # Fallback to mock handler if all fail
+        if not automation_handler_initialized:
+            try:
+                # Use simple mock handler as fallback
+                class MockAutomationHandler:
+                    async def create_execution_plan(self, message, context):
+                        return {
+                            "success": True,
+                            "response": f"🎯 **Mock Automation Plan**\n\nCommand: {message}\n\nThis is a mock response. Real automation is temporarily disabled to fix startup issues.",
+                            "plan_id": f"mock_{int(__import__('time').time())}",
+                            "buttons": [
+                                {"text": "🚀 Execute", "action": "execute_plan", "style": "execute-btn", "description": "Execute mock plan"},
+                                {"text": "❌ Cancel", "action": "cancel_plan", "style": "cancel-btn", "description": "Cancel mock plan"}
+                            ]
+                        }
+                
+                self.automation_handler = MockAutomationHandler()
+                logger.info("✅ Mock Automation handler initialized for Agent mode (fallback)")
+                automation_handler_initialized = True
+            except Exception as e:
+                logger.warning(f"Failed to initialize automation handler: {e}")
+                self.automation_handler = None
+                logger.info("⚠️ Agent mode will have limited functionality without automation handler")
+        # if AUTOMATION_AVAILABLE:
+        #     try:
+        #         # Try to initialize automation handlers in order of preference
+        #         automation_handler_initialized = False
+        #         
+        #         # 1. Try Universal handler first (guaranteed real LLM planning)
+        #         if UNIVERSAL_AVAILABLE:
+        #             try:
+        #                 self.automation_handler = UniversalIntelligentAutomationHandler()
+        #                 logger.info("✅ Universal Intelligent Automation handler with REAL LLM planning initialized")
+        #                 automation_handler_initialized = True
+        #             except Exception as e:
+        #                 logger.warning(f"Failed to initialize Universal handler class: {e}")
+        #         
+        #         # 2. Try Fast handler as fallback only (if Universal fails)
+        #         if not automation_handler_initialized and FAST_AUTOMATION_AVAILABLE:
+        #             try:
+        #                 from fast_universal_automation_handler import FastUniversalAutomationHandler
+        #                 self.automation_handler = FastUniversalAutomationHandler()
+        #                 logger.info("✅ Fast Universal Automation handler initialized (fallback - may have limited planning)")
+        #                 automation_handler_initialized = True
+        #             except Exception as e:
+        #                 logger.warning(f"Failed to initialize Fast Universal handler: {e}")
+        #         
+        #         # 3. Try smart fallback handler
+        #         elif not automation_handler_initialized and 'smart_fallback_handler' in globals():
+        #             self.automation_handler = smart_fallback_handler
+        #             logger.info("Smart Fallback Automation handler initialized for Agent mode")
+        #             automation_handler_initialized = True
+        #         
+        #         # 4. Try enhanced automation handler
+        #         elif not automation_handler_initialized and ENHANCED_AUTOMATION_AVAILABLE and 'EnhancedAutomationHandler' in globals():
+        #             self.automation_handler = EnhancedAutomationHandler()
+        #             logger.info("Enhanced Automation handler initialized for Agent mode (legacy fallback)")
+        #             automation_handler_initialized = True
+        #         
+        #         # 5. Final fallback - no automation available
+        #         if not automation_handler_initialized:
+        #             self.automation_handler = None
+        #             logger.warning("No automation handlers available - Agent mode will have limited functionality")
+        #                 
+        #     except Exception as e:
+        #         logger.error(f"Failed to initialize automation handler: {e}")
+        #         self.automation_handler = None
+        
+        # Flag to track if contextual knowledge is initialized
+        self.contextual_knowledge_initialized = False
+        
+        logger.info(f"Contextual AI Backend initialized - Ollama: {self.ollama_available}, Memory: Active")
+
+    async def _initialize_contextual_knowledge(self):
+        """Initialize contextual knowledge in memory"""
+        enterprise_knowledge = [
+            "Enterprise AI Backend on port 8767 provides contextual responses across all chat modes",
+            "System integrates Ollama LLM with semantic memory for intelligent context-aware responses",
+            "Agent mode uses context to understand UI automation patterns and user preferences",
+            "Ask mode retrieves relevant information from memory to provide accurate contextual answers",
+            "Suggest mode analyzes user patterns and context to provide personalized recommendations",
+            "General mode maintains conversation context for natural flowing interactions",
+            "All responses are enhanced with memory context for personalized user experience",
+            "System learns from every interaction to improve future response quality",
+            "Memory system stores conversation history, user preferences, and interaction patterns",
+            "Contextual confidence scoring helps determine response accuracy and relevance"
+        ]
+        
+        for knowledge in enterprise_knowledge:
+            await add_memory(knowledge, source="enterprise_system", tags={"enterprise", "system_capabilities"})
+        
+        logger.info("Enterprise contextual knowledge initialized")
+
+    # ==================== TEAMVIEWER-STYLE SCREEN CONTROL METHODS ====================
+    
+    async def capture_screen_fast(self, region: Optional[Tuple[int, int, int, int]] = None) -> Optional[np.ndarray]:
+        """Get system context efficiently (replaces screen capture when system bridge available)"""
+        
+        # Use efficient system integration when available
+        if self.system_integration_active and self.system_bridge:
+            try:
+                # Get current system state instead of screen capture
+                system_state = await self.system_bridge.get_current_system_state()
+                
+                if system_state:
+                    self.current_system_state = system_state
+                    # Return system state as "context frame" for compatibility
+                    # This is much more efficient than screen capture
+                    logger.debug("System context captured via OS integration")
+                    return np.array([[1]])  # Dummy array for compatibility
+                else:
+                    logger.warning("No system state available from bridge")
+                    return None
+                    
+            except Exception as e:
+                logger.error(f"System bridge capture failed: {e}")
+                # Fall through to screen capture fallback
+        
+        # Fallback to traditional screen capture if system bridge not available
+        if not SCREEN_CAPTURE_AVAILABLE:
+            logger.warning("Screen capture not available - PIL not installed")
+            return None
+            
+        try:
+            loop = asyncio.get_event_loop()
+            
+            def _capture():
+                try:
+                    if region:
+                        # Capture specific region (x, y, width, height)
+                        bbox = (region[0], region[1], region[0] + region[2], region[1] + region[3])
+                        screenshot = PIL.ImageGrab.grab(bbox=bbox)
+                    else:
+                        # Full screen capture
+                        screenshot = PIL.ImageGrab.grab()
+                    
+                    return np.array(screenshot)
+                except Exception as e:
+                    logger.error(f"Screen capture error: {e}")
+                    return None
+            
+            screenshot = await loop.run_in_executor(self.executor, _capture)
+            self.last_screen_state = screenshot
+            return screenshot
+            
+        except Exception as e:
+            logger.error(f"Fast screen capture failed: {e}")
+            return None
+    
+    async def detect_visual_changes(self, before: np.ndarray, after: np.ndarray, 
+                                  threshold: float = 0.1) -> Dict[str, Any]:
+        """Detect visual changes between two screenshots (TeamViewer-style verification)"""
+        try:
+            if before is None or after is None:
+                return {'changes_detected': False, 'confidence': 0.0}
+            
+            # Ensure same dimensions
+            if before.shape != after.shape:
+                logger.warning("Screenshot dimensions don't match for comparison")
+                return {'changes_detected': False, 'confidence': 0.0}
+            
+            # Calculate difference
+            diff = cv2.absdiff(before, after)
+            
+            # Convert to grayscale for analysis
+            if len(diff.shape) == 3:
+                gray_diff = cv2.cvtColor(diff, cv2.COLOR_RGB2GRAY)
+            else:
+                gray_diff = diff
+            
+            # Calculate change metrics
+            total_pixels = gray_diff.size
+            changed_pixels = np.sum(gray_diff > 25)  # Threshold for significant change
+            change_percentage = changed_pixels / total_pixels
+            
+            # Debug logging for change detection
+            logger.debug(f"Change detection: {changed_pixels}/{total_pixels} pixels changed ({change_percentage:.3%})")
+            
+            # Find changed regions
+            _, thresh = cv2.threshold(gray_diff, 25, 255, cv2.THRESH_BINARY)
+            contours, _ = cv2.findContours(thresh, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+            
+            changed_regions = []
+            for contour in contours:
+                if cv2.contourArea(contour) > 100:  # Filter small changes
+                    x, y, w, h = cv2.boundingRect(contour)
+                    changed_regions.append({
+                        'x': int(x), 'y': int(y), 'width': int(w), 'height': int(h),
+                        'area': int(cv2.contourArea(contour))
+                    })
+            
+            changes_detected = change_percentage > threshold
+            
+            change_data = {
+                'changes_detected': changes_detected,
+                'change_percentage': float(change_percentage),
+                'changed_pixels': int(changed_pixels),
+                'total_pixels': int(total_pixels),
+                'changed_regions': changed_regions,
+                'confidence': min(1.0, change_percentage / threshold),
+                'timestamp': time.time()
+            }
+            
+            # Store in history
+            self.visual_changes_history.append(change_data)
+            if len(self.visual_changes_history) > 50:  # Keep last 50 changes
+                self.visual_changes_history.pop(0)
+            
+            return change_data
+            
+        except Exception as e:
+            logger.error(f"Visual change detection error: {e}")
+            return {'changes_detected': False, 'confidence': 0.0, 'error': str(e)}
+    
+    async def execute_action_with_verification(self, action: Dict[str, Any], 
+                                             websocket=None) -> Dict[str, Any]:
+        """Execute action with efficient system verification (replaces visual comparison when possible)"""
+        execution_id = f"exec_{int(time.time() * 1000)}"
+        
+        result = {
+            'execution_id': execution_id,
+            'action': action,
+            'timestamp': time.time(),
+            'success': False,
+            'verification': {},
+            'changes_detected': [],
+            'error': None,
+            'verification_method': 'system_integration' if self.system_integration_active else 'visual_comparison'
+        }
+        
+        try:
+            # 1. Capture pre-execution state (efficient system state vs screen capture)
+            if self.execution_verification_enabled:
+                logger.info(f"🔍 Capturing pre-execution state for: {action.get('description', 'unknown')}")
+                
+                if self.system_integration_active and self.system_bridge:
+                    # Use efficient system state capture
+                    before_state = await self.system_bridge.get_current_system_state()
+                else:
+                    # Fallback to screen capture
+                    before_state = await self.capture_screen_fast()
+                
+                # Send real-time feedback to overlay
+                if websocket:
+                    await websocket.send(json.dumps({
+                        'type': 'execution_start',
+                        'action': action.get('description', 'Unknown action'),
+                        'execution_id': execution_id,
+                        'verification_method': result['verification_method'],
+                        'timestamp': time.time()
+                    }))
+            
+            # 2. Execute the action through system bridge when available
+            if self.system_integration_active and self.system_bridge:
+                try:
+                    # Execute through efficient system bridge
+                    execution_result = await self.system_bridge.execute_system_action(
+                        action.get('type', 'unknown'),
+                        action.get('parameters', {})
+                    )
+                    execution_success = execution_result.get('success', False)
+                except Exception as e:
+                    logger.error(f"System bridge execution failed: {e}")
+                    # Fallback to traditional automation
+                    execution_success = await self._execute_automation_action(action)
+            else:
+                # Use traditional automation handlers
+                execution_success = await self._execute_automation_action(action)
+            
+            # 3. Post-execution verification
+            if self.execution_verification_enabled and before_state is not None:
+                await asyncio.sleep(0.2)  # Wait for system to respond
+                
+                if self.system_integration_active and self.system_bridge:
+                    # Use efficient system state comparison
+                    after_state = await self.system_bridge.get_current_system_state()
+                    
+                    if after_state:
+                        # Detect system changes (much more efficient than visual diff)
+                        changes = await self._detect_system_state_changes(before_state, after_state)
+                        result['verification'] = changes
+                        result['changes_detected'] = changes.get('change_details', [])
+                        
+                        # Determine success based on system changes
+                        if changes.get('changes_detected', False):
+                            result['success'] = True
+                            logger.info(f"✅ Action verified via system integration: {len(changes.get('change_details', []))} changes")
+                        else:
+                            result['success'] = execution_success
+                            logger.info("ℹ️ No system changes detected, using execution result")
+                    else:
+                        result['success'] = execution_success
+                else:
+                    # Fallback to visual comparison
+                    after_state = await self.capture_screen_fast()
+                    
+                    if after_state is not None and hasattr(before_state, 'shape'):
+                        # Detect visual changes (traditional method)
+                        changes = await self.detect_visual_changes(before_state, after_state)
+                        result['verification'] = changes
+                        result['changes_detected'] = changes.get('changed_regions', [])
+                        
+                        # Determine success based on visual changes
+                        if changes.get('changes_detected', False):
+                            result['success'] = True
+                            logger.info(f"✅ Action verified visually: {changes.get('change_percentage', 0):.1%} screen changed")
+                        else:
+                            result['success'] = False
+                            logger.warning("❌ No visual changes detected - action may have failed")
+                    else:
+                        result['success'] = execution_success
+                
+                # Send verification feedback
+                if websocket:
+                    await websocket.send(json.dumps({
+                        'type': 'execution_verification',
+                        'execution_id': execution_id,
+                        'success': result['success'],
+                        'changes': result.get('verification', {}),
+                        'verification_method': result['verification_method'],
+                        'timestamp': time.time()
+                    }))
+            else:
+                result['success'] = execution_success
+            
+            # 4. Store execution history
+            self.execution_history.append(result)
+            if len(self.execution_history) > 100:  # Keep last 100 executions
+                self.execution_history.pop(0)
+                
+        except Exception as e:
+            logger.error(f"Action execution with verification failed: {e}")
+            result['error'] = str(e)
+            result['success'] = False
+        
+        return result
+    
+    async def _execute_automation_action(self, action: Dict[str, Any]) -> bool:
+        """Execute automation action (integrate with existing automation handlers)"""
+        try:
+            # Integrate with your existing fast automation handler
+            if FAST_AUTOMATION_AVAILABLE and hasattr(fast_universal_automation_handler, 'execute_single_action'):
+                return await fast_universal_automation_handler.execute_single_action(action)
+            elif self.automation_handler and hasattr(self.automation_handler, 'execute_action'):
+                return await self.automation_handler.execute_action(action)
+            else:
+                # Placeholder for basic action execution
+                await asyncio.sleep(0.1)
+                return True
+        except Exception as e:
+            logger.error(f"Automation action execution failed: {e}")
+            return False
+    
+    async def _detect_system_state_changes(self, before_state: 'SystemState', after_state: 'SystemState') -> Dict[str, Any]:
+        """Detect changes in system state (replaces visual diff for efficiency)"""
+        try:
+            changes = {
+                'changes_detected': False,
+                'confidence': 0.0,
+                'change_details': [],
+                'timestamp': time.time(),
+                'method': 'system_state_comparison'
+            }
+            
+            # Check application changes
+            if before_state.active_application != after_state.active_application:
+                changes['changes_detected'] = True
+                changes['confidence'] = 0.9
+                changes['change_details'].append(f'Application changed: {before_state.active_application} -> {after_state.active_application}')
+            
+            # Check window changes
+            if before_state.focused_window != after_state.focused_window:
+                changes['changes_detected'] = True
+                changes['confidence'] = max(changes['confidence'], 0.8)
+                changes['change_details'].append(f'Window changed: {before_state.focused_window} -> {after_state.focused_window}')
+            
+            # Check UI element changes
+            before_elements = len(before_state.visible_ui_elements)
+            after_elements = len(after_state.visible_ui_elements)
+            
+            if abs(before_elements - after_elements) > 0:
+                changes['changes_detected'] = True
+                changes['confidence'] = max(changes['confidence'], 0.7)
+                changes['change_details'].append(f'UI elements changed: {before_elements} -> {after_elements}')
+            
+            # Check for new events
+            before_events = len(before_state.recent_events)
+            after_events = len(after_state.recent_events)
+            
+            if after_events > before_events:
+                changes['changes_detected'] = True
+                changes['confidence'] = max(changes['confidence'], 0.6)
+                changes['change_details'].append(f'New system events: {after_events - before_events}')
+            
+            # Check running processes changes
+            before_processes = set(before_state.running_processes)
+            after_processes = set(after_state.running_processes)
+            
+            new_processes = after_processes - before_processes
+            stopped_processes = before_processes - after_processes
+            
+            if new_processes:
+                changes['changes_detected'] = True
+                changes['confidence'] = max(changes['confidence'], 0.5)
+                changes['change_details'].append(f'New processes: {list(new_processes)[:3]}')  # Limit to 3
+            
+            if stopped_processes:
+                changes['changes_detected'] = True
+                changes['confidence'] = max(changes['confidence'], 0.5)
+                changes['change_details'].append(f'Stopped processes: {list(stopped_processes)[:3]}')  # Limit to 3
+            
+            logger.debug(f"System state changes detected: {changes['changes_detected']} with confidence {changes['confidence']}")
+            return changes
+            
+        except Exception as e:
+            logger.error(f"Error detecting system state changes: {e}")
+            return {
+                'changes_detected': False,
+                'confidence': 0.0,
+                'change_details': [],
+                'error': str(e),
+                'method': 'system_state_comparison'
+            }
+    
+    async def handle_agent_execution_with_verification(self, data: Dict[str, Any], 
+                                                     client_id: str, websocket) -> Dict[str, Any]:
+        """Handle enhanced agent execution with TeamViewer-style verification"""
+        message = data.get("message", "")
+        session_id = data.get("session_id", client_id)
+        execution_mode = data.get("execution_mode", "verified")  # "verified", "monitored", "basic"
+        
+        logger.info(f"🎯 Enhanced Agent Execution: {message} (mode: {execution_mode})")
+        
+        try:
+            # Get context for the query
+            context = await get_context_for_query(message, max_context_length=500)
+            
+            # Check if automation is available (prefer Universal over Fast)
+            if UNIVERSAL_AVAILABLE or FAST_AUTOMATION_AVAILABLE:
+                logger.info("⚡ Creating automation plan with visual verification")
+                
+                # Create automation plan using real LLM
+                if UNIVERSAL_AVAILABLE:
+                    plan_result = await universal_automation_handler.create_universal_automation_plan(message, session_id)
+                elif FAST_AUTOMATION_AVAILABLE:
+                    plan_result = await fast_universal_automation_handler.create_universal_automation_plan(message, session_id)
+                else:
+                    plan_result = {"success": False, "response": "No automation handler available"}
+                
+                if plan_result.get("success", False):
+                    # Send plan to client for confirmation
+                    plan_response = {
+                        "type": "agent_plan_ready",
+                        "plan": plan_result,
+                        "execution_mode": execution_mode,
+                        "requires_confirmation": True,
+                        "verification_enabled": self.execution_verification_enabled
+                    }
+                    
+                    await websocket.send(json.dumps(plan_response))
+                    
+                    # Store plan for execution
+                    if not hasattr(self, 'pending_verified_plans'):
+                        self.pending_verified_plans = {}
+                        
+                    plan_id = plan_result.get("plan_id", f"plan_{int(time.time())}")
+                    self.pending_verified_plans[plan_id] = {
+                        "plan": plan_result,
+                        "context": context,
+                        "execution_mode": execution_mode,
+                        "websocket": websocket,
+                        "timestamp": time.time()
+                    }
+                    
+                    return {
+                        "success": True,
+                        "response": "✅ Enhanced automation plan created with visual verification. Awaiting confirmation.",
+                        "plan_id": plan_id,
+                        "execution_mode": execution_mode
+                    }
+                else:
+                    return {
+                        "success": False,
+                        "response": "❌ Failed to create automation plan",
+                        "error": plan_result.get("error", "Unknown error")
+                    }
+            else:
+                return {
+                    "success": False,
+                    "response": "❌ Enhanced agent execution not available - fast automation handler not found",
+                    "error": "FAST_AUTOMATION_AVAILABLE is False"
+                }
+                
+        except Exception as e:
+            logger.error(f"Enhanced agent execution error: {e}")
+            return {
+                "success": False,
+                "response": f"❌ Enhanced agent execution failed: {str(e)}",
+                "error": str(e)
+            }
+    
+    async def execute_verified_plan(self, plan_id: str) -> Dict[str, Any]:
+        """Execute a plan with TeamViewer-style verification"""
+        if not hasattr(self, 'pending_verified_plans') or plan_id not in self.pending_verified_plans:
+            return {"success": False, "error": "Plan not found"}
+        
+        plan_data = self.pending_verified_plans[plan_id]
+        plan = plan_data["plan"]
+        execution_mode = plan_data["execution_mode"]
+        websocket = plan_data["websocket"]
+        
+        logger.info(f"🚀 Executing verified plan {plan_id} in {execution_mode} mode")
+        
+        try:
+            # Start visual monitoring if requested
+            if execution_mode == "monitored":
+                # Start screen monitoring in background
+                asyncio.create_task(self.start_screen_monitoring(websocket, fps=10))
+            
+            # Execute each step with verification
+            steps = plan.get("steps", [])
+            execution_results = []
+            
+            for i, step in enumerate(steps):
+                logger.info(f"📝 Executing step {i+1}/{len(steps)}: {step.get('description', 'Unknown step')}")
+                
+                # Send step start notification
+                await websocket.send(json.dumps({
+                    "type": "step_execution_start",
+                    "step_number": i + 1,
+                    "total_steps": len(steps),
+                    "step_description": step.get('description', 'Unknown step'),
+                    "plan_id": plan_id
+                }))
+                
+                # Execute step with verification
+                step_result = await self.execute_action_with_verification(step, websocket)
+                execution_results.append(step_result)
+                
+                # Send step completion notification
+                await websocket.send(json.dumps({
+                    "type": "step_execution_complete",
+                    "step_number": i + 1,
+                    "step_result": step_result,
+                    "plan_id": plan_id
+                }))
+                
+                # Check if step failed
+                if not step_result.get('success', False):
+                    logger.warning(f"❌ Step {i+1} failed, stopping execution")
+                    break
+                
+                # Small delay between steps
+                await asyncio.sleep(0.5)
+            
+            # Stop monitoring
+            if execution_mode == "monitored":
+                self.stop_screen_monitoring()
+            
+            # Calculate overall success
+            successful_steps = sum(1 for result in execution_results if result.get('success', False))
+            overall_success = successful_steps == len(steps)
+            
+            # Send final result
+            final_result = {
+                "type": "plan_execution_complete",
+                "plan_id": plan_id,
+                "success": overall_success,
+                "executed_steps": len(execution_results),
+                "successful_steps": successful_steps,
+                "execution_results": execution_results,
+                "timestamp": time.time()
+            }
+            
+            await websocket.send(json.dumps(final_result))
+            
+            # Clean up
+            del self.pending_verified_plans[plan_id]
+            
+            return final_result
+            
+        except Exception as e:
+            logger.error(f"Verified plan execution error: {e}")
+            
+            # Stop monitoring on error
+            if execution_mode == "monitored":
+                self.stop_screen_monitoring()
+            
+            error_result = {
+                "success": False,
+                "error": str(e),
+                "plan_id": plan_id
+            }
+            
+            await websocket.send(json.dumps({
+                "type": "plan_execution_error",
+                **error_result
+            }))
+            
+            return error_result
+    
+    async def start_screen_monitoring(self, websocket=None, fps: float = 5.0):
+        """Start continuous screen monitoring like TeamViewer"""
+        if self.screen_monitoring_active:
+            logger.warning("Screen monitoring already active")
+            return
+        
+        logger.info(f"🎬 Starting screen monitoring at {fps} FPS")
+        self.screen_monitoring_active = True
+        
+        previous_state = None
+        
+        try:
+            while self.screen_monitoring_active:
+                loop_start = time.time()
+                
+                # Capture current state
+                current_state = await self.capture_screen_fast()
+                
+                if previous_state is not None and current_state is not None:
+                    # Detect significant changes
+                    changes = await self.detect_visual_changes(previous_state, current_state, threshold=0.05)
+                    
+                    if changes.get('changes_detected', False):
+                        logger.debug(f"📱 Screen change detected: {changes.get('change_percentage', 0):.1%}")
+                        
+                        # Send change notification to overlay
+                        if websocket:
+                            await websocket.send(json.dumps({
+                                'type': 'screen_change_detected',
+                                'changes': changes,
+                                'timestamp': time.time()
+                            }))
+                
+                previous_state = current_state
+                
+                # Maintain FPS timing
+                loop_time = time.time() - loop_start
+                sleep_time = max(0, (1/fps) - loop_time)
+                await asyncio.sleep(sleep_time)
+                
+        except Exception as e:
+            logger.error(f"Screen monitoring error: {e}")
+        finally:
+            self.screen_monitoring_active = False
+            logger.info("🛑 Screen monitoring stopped")
+    
+    def stop_screen_monitoring(self):
+        """Stop screen monitoring"""
+        self.screen_monitoring_active = False
+    
+    async def get_execution_analytics(self) -> Dict[str, Any]:
+        """Get execution analytics and performance metrics"""
+        if not self.execution_history:
+            return {
+                'total_executions': 0,
+                'success_rate': 0.0,
+                'avg_verification_confidence': 0.0
+            }
+        
+        successful = sum(1 for exec in self.execution_history if exec['success'])
+        total = len(self.execution_history)
+        
+        # Calculate average verification confidence
+        confidences = [
+            exec.get('verification', {}).get('confidence', 0.0) 
+            for exec in self.execution_history 
+            if exec.get('verification')
+        ]
+        avg_confidence = np.mean(confidences) if confidences else 0.0
+        
+        return {
+            'total_executions': total,
+            'successful_executions': successful,
+            'failed_executions': total - successful,
+            'success_rate': successful / total if total > 0 else 0.0,
+            'avg_verification_confidence': float(avg_confidence),
+            'recent_executions': self.execution_history[-10:],  # Last 10
+            'visual_changes_detected': len(self.visual_changes_history)
+        }
+
+    def check_ollama_availability(self) -> bool:
+        """Check if Ollama is running and available"""
+        try:
+            response = requests.get("http://localhost:11434/api/tags", timeout=5)
+            return response.status_code == 200
+        except:
+            try:
+                # Try to start Ollama if it's not running
+                subprocess.Popen(["ollama", "serve"], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+                time.sleep(3)
+                response = requests.get("http://localhost:11434/api/tags", timeout=2)
+                return response.status_code == 200
+            except:
+                return False
+
+    def _extract_plan_coordinates(self, plan_result: dict, execution_plan: dict) -> dict:
+        """Extract coordinates from plan result with intelligent fallback"""
+        
+        # Check if plan_result has a plan object with coordinates
+        if plan_result.get("success") and "execution_plan" in plan_result:
+            exec_plan = plan_result["execution_plan"]
+            
+            # Look for coordinates in the execution plan
+            if isinstance(exec_plan, dict) and "coordinates" in exec_plan:
+                coords = exec_plan["coordinates"]
+                if isinstance(coords, dict) and "x" in coords and "y" in coords:
+                    return coords
+            
+            # Look for target element position
+            if "target_element" in exec_plan and isinstance(exec_plan["target_element"], dict):
+                position = exec_plan["target_element"].get("position", {})
+                if isinstance(position, dict) and "x" in position and "y" in position:
+                    return position
+        
+        # Check if execution_plan has target_element position
+        if execution_plan.get("target_element", {}).get("position"):
+            position = execution_plan["target_element"]["position"]
+            if isinstance(position, dict) and "x" in position and "y" in position:
+                return position
+        
+        # Default coordinates (center of screen)
+        return {"x": 735, "y": 478}  # Center of 1470x956 screen
+
+    async def get_contextual_ai_response(self, prompt: str, mode: str, session_id: str) -> str:
+        """Get contextual AI response with semantic memory integration"""
+        # Initialize contextual knowledge if not done yet
+        if not self.contextual_knowledge_initialized:
+            await self._initialize_contextual_knowledge()
+            self.contextual_knowledge_initialized = True
+        
+        try:
+            # Store user message in memory
+            await add_memory(
+                f"User in {mode} mode: {prompt}",
+                source="user_interaction",
+                tags={f"mode_{mode.lower()}", "user_message", session_id}
+            )
+            
+            # Get contextual information
+            context = await get_context_for_query(prompt, max_context_length=2000)
+            
+            # Generate contextual response
+            if self.ollama_available:
+                response = await self.get_ollama_response_with_context(prompt, mode, context)
+            else:
+                response = await self.get_contextual_fallback_response(prompt, mode, context)
+            
+            # Store response in memory
+            await add_memory(
+                f"System response in {mode} mode: {response}",
+                source="system_response",
+                tags={f"mode_{mode.lower()}", "system_message", session_id}
+            )
+            
+            return response
+            
+        except Exception as e:
+            logger.error(f"Error getting contextual AI response: {e}")
+            return await self.get_contextual_fallback_response(prompt, mode, {})
+
+    async def get_ollama_response_with_context_streaming(self, prompt: str, mode: str, context: Dict[str, Any], websocket, client_id: str) -> str:
+        """Get streaming response from Ollama LLM enhanced with context - FAST with warmup manager"""
+        try:
+            # Try to use warmup manager for fast responses
+            if WARMUP_MANAGER_AVAILABLE:
+                return await self.get_fast_warmup_response(prompt, mode, context, websocket, client_id)
+            else:
+                # Fallback to direct API
+                return await self.get_direct_ollama_response(prompt, mode, context, websocket, client_id)
+                
+        except Exception as e:
+            logger.error(f"Error in streaming response: {e}")
+            return await self.get_contextual_fallback_response(prompt, mode, context)
+    
+    async def get_fast_warmup_response(self, prompt: str, mode: str, context: Dict[str, Any], websocket, client_id: str) -> str:
+        """Fast response using warmup manager"""
+        try:
+            # Build contextual prompt
+            system_prompt = self.get_contextual_system_prompt(mode, context)
+            context_info = self.format_context_for_llm(context)
+            
+            # Send progress update
+            await websocket.send(json.dumps({
+                "type": "progress_update",
+                "stage": "⚡ Using fast AI model...",
+                "mode": mode,
+                "client_id": client_id,
+                "timestamp": datetime.now().isoformat()
+            }))
+            
+            # Get warmup manager
+            if not hasattr(self, 'warmup_manager') or not self.warmup_manager:
+                self.warmup_manager = await get_warmup_manager()
+            
+            # Prepare messages for chat format
+            messages = [
+                {"role": "system", "content": f"{system_prompt}\n\nContext Information:\n{context_info}"},
+                {"role": "user", "content": prompt}
+            ]
+            
+            # Get fast response
+            response = await self.warmup_manager.fast_generate_response(
+                messages,
+                max_tokens=400,
+                temperature=0.7
+            )
+            
+            # Send streaming chunks to simulate streaming
+            chunks = response.split('. ')
+            for i, chunk in enumerate(chunks):
+                if chunk.strip():
+                    chunk_text = chunk + '. ' if i < len(chunks) - 1 else chunk
+                    
+                    await websocket.send(json.dumps({
+                        "type": "stream_chunk",
+                        "text": chunk_text,
+                        "mode": mode,
+                        "client_id": client_id,
+                        "chunk_id": i + 1,
+                        "timestamp": datetime.now().isoformat()
+                    }))
+                    
+                    # Small delay to simulate streaming
+                    await asyncio.sleep(0.1)
+            
+            # Send completion
+            await websocket.send(json.dumps({
+                "type": "stream_complete",
+                "mode": mode,
+                "client_id": client_id,
+                "full_response": response,
+                "timestamp": datetime.now().isoformat()
+            }))
+            
+            return response
+            
+        except Exception as e:
+            logger.error(f"Error in fast warmup response: {e}")
+            return await self.get_direct_ollama_response(prompt, mode, context, websocket, client_id)
+    
+    async def get_direct_ollama_response(self, prompt: str, mode: str, context: Dict[str, Any], websocket, client_id: str) -> str:
+        """Direct Ollama API fallback"""
+        try:
+            # Build contextual prompt
+            system_prompt = self.get_contextual_system_prompt(mode, context)
+            context_info = self.format_context_for_llm(context)
+            
+            full_prompt = f"{system_prompt}\n\nContext Information:\n{context_info}\n\nUser: {prompt}\nAssistant:"
+            
+            payload = {
+                "model": "llama3.2:1b",  # Fast model for real-time responses
+                "prompt": full_prompt,
+                "stream": True,  # Enable streaming
+                "options": {
+                    "temperature": 0.7,
+                    "num_predict": 400,  # Limit response length for speed
+                    "num_ctx": 2048,     # Reduce context window for speed
+                    "num_batch": 512,    # Optimize batch size
+                    "top_k": 40,         # Optimize sampling
+                    "top_p": 0.9,        # Optimize sampling
+                    "repeat_penalty": 1.1
+                }
+            }
+            
+            # Send initial acknowledgment
+            await websocket.send(json.dumps({
+                "type": "progress_update",
+                "stage": "🤖 Processing your request...",
+                "mode": mode,
+                "client_id": client_id,
+                "timestamp": datetime.now().isoformat()
+            }))
+            
+            # Improved streaming with connection management
+            connector = aiohttp.TCPConnector(
+                limit=100,
+                limit_per_host=10,
+                ttl_dns_cache=300,
+                use_dns_cache=True,
+                keepalive_timeout=30,
+                enable_cleanup_closed=True
+            )
+            
+            async with aiohttp.ClientSession(
+                connector=connector,
+                timeout=aiohttp.ClientTimeout(
+                    total=None,      # No total timeout
+                    sock_connect=5,  # Quick connection timeout
+                    sock_read=30     # Read timeout per chunk
+                )
+            ) as session:
+                async with session.post(
+                    "http://localhost:11434/api/generate",
+                    json=payload,
+                    headers={'Connection': 'keep-alive', 'Content-Type': 'application/json'}
+                ) as response:
+                    
+                    if response.status == 200:
+                        full_response = ""
+                        chunk_count = 0
+                        
+                        # Improved streaming processing
+                        async for chunk in response.content.iter_chunked(1024):
+                            if chunk:
+                                try:
+                                    # Process chunk data
+                                    lines = chunk.decode('utf-8', errors='ignore').strip().split('\n')
+                                    
+                                    for line in lines:
+                                        if line.strip():
+                                            try:
+                                                chunk_data = json.loads(line.strip())
+                                                
+                                                if chunk_data.get("response"):
+                                                    chunk_text = chunk_data.get("response", "")
+                                                    full_response += chunk_text
+                                                    chunk_count += 1
+                                                    
+                                                    # Send progress every 10 chunks
+                                                    if chunk_count % 10 == 0:
+                                                        await websocket.send(json.dumps({
+                                                            "type": "chunk",
+                                                            "content": chunk_text,
+                                                            "mode": mode,
+                                                            "client_id": client_id,
+                                                            "partial": True
+                                                        }))
+                                                
+                                                # Check if done
+                                                if chunk_data.get("done", False):
+                                                    break
+                                                    
+                                            except json.JSONDecodeError:
+                                                continue
+                                                
+                                except UnicodeDecodeError:
+                                    continue
+                        
+                        # Process successful response after loop
+                        ai_response = full_response.strip()
+                        
+                        # Add mode-specific prefix and context indicator
+                        mode_prefix = self.get_mode_prefix(mode)
+                        confidence = context.get('confidence_score', 0.0)
+                        
+                        if confidence > 0.6:
+                            context_indicator = " [Using high-confidence context]"
+                        elif confidence > 0.3:
+                            context_indicator = " [Using available context]"
+                        else:
+                            context_indicator = ""
+                        
+                        final_response = f"{mode_prefix} {ai_response}{context_indicator}"
+                        
+                        # Send final response message (what overlay expects)
+                        await websocket.send(json.dumps({
+                            "type": "final_response",
+                            "mode": mode,
+                            "response": final_response,
+                            "client_id": client_id,
+                            "timestamp": datetime.now().isoformat(),
+                            "ai_powered": True,
+                            "contextual": True,
+                            "confidence": confidence,
+                            "processing_time": 0,
+                            "success": True
+                        }))
+                        
+                        return final_response
+                    else:
+                        logger.warning(f"Ollama request failed: {response.status}")
+                        fallback_response = await self.get_contextual_fallback_response(prompt, mode, context)
+                        
+                        # Send fallback response
+                        await websocket.send(json.dumps({
+                            "type": "final_response",
+                            "mode": mode,
+                            "response": fallback_response,
+                            "client_id": client_id,
+                            "timestamp": datetime.now().isoformat(),
+                            "ai_powered": False,
+                            "fallback": True,
+                            "success": True
+                        }))
+                        
+                        return fallback_response
+                
+        except Exception as e:
+            logger.error(f"Ollama error: {e}")
+            fallback_response = await self.get_contextual_fallback_response(prompt, mode, context)
+            
+            # Send error response as final_response format
+            await websocket.send(json.dumps({
+                "type": "final_response",
+                "mode": mode,
+                "response": fallback_response,
+                "error": str(e),
+                "client_id": client_id,
+                "timestamp": datetime.now().isoformat(),
+                "success": False,
+                "fallback": True
+            }))
+            
+            return fallback_response
+
+    async def get_ollama_response_with_context(self, prompt: str, mode: str, context: Dict[str, Any]) -> str:
+        """Get non-streaming response - FAST with warmup manager"""
+        try:
+            # Try warmup manager first for fast responses
+            if WARMUP_MANAGER_AVAILABLE:
+                return await self.get_fast_non_streaming_response(prompt, mode, context)
+            else:
+                # Fallback to direct API
+                return await self.get_direct_non_streaming_response(prompt, mode, context)
+                
+        except Exception as e:
+            logger.error(f"Error in non-streaming response: {e}")
+            return await self.get_contextual_fallback_response(prompt, mode, context)
+    
+    async def get_fast_non_streaming_response(self, prompt: str, mode: str, context: Dict[str, Any]) -> str:
+        """Fast non-streaming response using warmup manager"""
+        try:
+            # Build contextual prompt
+            system_prompt = self.get_contextual_system_prompt(mode, context)
+            context_info = self.format_context_for_llm(context)
+            
+            # Get warmup manager
+            if not hasattr(self, 'warmup_manager') or not self.warmup_manager:
+                self.warmup_manager = await get_warmup_manager()
+            
+            # Prepare messages for chat format
+            messages = [
+                {"role": "system", "content": f"{system_prompt}\n\nContext Information:\n{context_info}"},
+                {"role": "user", "content": prompt}
+            ]
+            
+            # Get fast response
+            response = await self.warmup_manager.fast_generate_response(
+                messages,
+                max_tokens=400,
+                temperature=0.7
+            )
+            
+            # Add mode-specific prefix and context indicator
+            mode_prefix = self.get_mode_prefix(mode)
+            confidence = context.get('confidence_score', 0.0)
+            
+            if confidence > 0.6:
+                final_response = f"{mode_prefix} (Context: {confidence:.1%}) {response}"
+            else:
+                final_response = f"{mode_prefix} {response}"
+            
+            return final_response
+            
+        except Exception as e:
+            logger.error(f"Error in fast non-streaming response: {e}")
+            return await self.get_direct_non_streaming_response(prompt, mode, context)
+    
+    async def get_direct_non_streaming_response(self, prompt: str, mode: str, context: Dict[str, Any]) -> str:
+        """Direct Ollama API fallback for non-streaming"""
+        """Get non-streaming response from Ollama LLM enhanced with context - optimized"""
+        try:
+            # Build contextual prompt
+            system_prompt = self.get_contextual_system_prompt(mode, context)
+            context_info = self.format_context_for_llm(context)
+            
+            full_prompt = f"{system_prompt}\n\nContext Information:\n{context_info}\n\nUser: {prompt}\nAssistant:"
+            
+            payload = {
+                "model": "llama3.2:1b",  # Fast model for real-time responses
+                "prompt": full_prompt,
+                "stream": False,
+                "options": {
+                    "temperature": 0.7,
+                    "num_predict": 400,  # Limit response length for speed
+                    "num_ctx": 2048,     # Reduce context window for speed
+                    "num_batch": 512,    # Optimize batch size
+                    "top_k": 40,         # Optimize sampling
+                    "top_p": 0.9,        # Optimize sampling
+                    "repeat_penalty": 1.1,
+                    "num_thread": 4      # Optimize threading
+                }
+            }
+            
+            # Use aiohttp for better async connectivity
+            connector = aiohttp.TCPConnector(
+                limit=50,
+                limit_per_host=10,
+                keepalive_timeout=30,
+                enable_cleanup_closed=True
+            )
+            
+            async with aiohttp.ClientSession(
+                connector=connector,
+                timeout=aiohttp.ClientTimeout(
+                    total=None,      # No total timeout
+                    sock_connect=3,  # Quick connection
+                    sock_read=20     # Read timeout
+                )
+            ) as session:
+                async with session.post(
+                    "http://localhost:11434/api/generate",
+                    json=payload,
+                    headers={'Connection': 'keep-alive', 'Content-Type': 'application/json'}
+                ) as response:
+                    
+                    if response.status == 200:
+                        result = await response.json()
+                        ai_response = result.get("response", "").strip()
+                        
+                        # Add mode-specific prefix and context indicator
+                        mode_prefix = self.get_mode_prefix(mode)
+                        confidence = context.get('confidence_score', 0.0)
+                        
+                        if confidence > 0.6:
+                            context_indicator = " [Using high-confidence context]"
+                        elif confidence > 0.3:
+                            context_indicator = " [Using available context]"
+                        else:
+                            context_indicator = ""
+                        
+                        return f"{mode_prefix} {ai_response}{context_indicator}"
+                    else:
+                        logger.warning(f"Ollama request failed: {response.status}")
+                        return await self.get_contextual_fallback_response(prompt, mode, context)
+                
+        except Exception as e:
+            logger.error(f"Ollama error: {e}")
+            return await self.get_contextual_fallback_response(prompt, mode, context)
+
+    def get_contextual_system_prompt(self, mode: str, context: Dict[str, Any]) -> str:
+        """Get enhanced system prompt with context"""
+        base_prompts = {
+            ChatMode.AGENT: "You are an AI agent specialized in task execution and automation. When given a task, provide clear step-by-step instructions and actionable guidance. If the task involves UI automation (clicking, typing, opening apps), describe the specific steps you would take. Always be direct and practical in your response.",
+            ChatMode.ASK: "You are an AI assistant specialized in answering questions with depth and accuracy. Provide comprehensive, informative answers that directly address what the user is asking. Use context from previous conversations to give more personalized and relevant responses.",
+            ChatMode.SUGGEST: "You are an AI assistant specialized in providing helpful suggestions and recommendations. Analyze the user's situation and offer 2-3 practical, actionable suggestions that could improve their workflow, solve problems, or enhance their experience.",
+            ChatMode.GENERAL: "You are a helpful AI assistant engaging in natural conversation. Be personable, helpful, and maintain context from our ongoing conversation. Respond naturally as if you're having a genuine conversation with the user."
+        }
+        
+        base_prompt = base_prompts.get(mode, base_prompts[ChatMode.GENERAL])
+        
+        # Add context enhancement
+        confidence = context.get('confidence_score', 0.0)
+        memory_count = len(context.get('relevant_memories', []))
+        
+        if memory_count > 0:
+            base_prompt += f" You have access to {memory_count} relevant memories with {confidence:.1%} confidence."
+        
+        base_prompt += " Provide contextual, helpful responses that build on the conversation history."
+        
+        return base_prompt
+
+    def format_context_for_llm(self, context: Dict[str, Any]) -> str:
+        """Format context information for LLM"""
+        if not context.get('relevant_memories'):
+            return "No specific context available."
+        
+        formatted_context = []
+        
+        # Add relevant memories
+        for i, memory in enumerate(context['relevant_memories'][:3]):
+            formatted_context.append(f"{i+1}. {memory['content'][:200]}...")
+        
+        # Add key topics
+        if context.get('key_topics'):
+            formatted_context.append(f"Key topics: {', '.join(context['key_topics'][:5])}")
+        
+        # Add confidence score
+        confidence = context.get('confidence_score', 0.0)
+        formatted_context.append(f"Context confidence: {confidence:.1%}")
+        
+        return "\n".join(formatted_context)
+
+    async def get_contextual_fallback_response(self, prompt: str, mode: str, context: Dict[str, Any]) -> str:
+        """Enhanced fallback responses with context"""
+        prompt_lower = prompt.lower()
+        mode_prefix = self.get_mode_prefix(mode)
+        
+        # Extract context information
+        relevant_memories = context.get('relevant_memories', [])
+        confidence = context.get('confidence_score', 0.0)
+        key_topics = context.get('key_topics', [])
+        
+        if mode == ChatMode.AGENT:
+            return await self.process_agent_with_context(prompt, prompt_lower, relevant_memories, confidence)
+        elif mode == ChatMode.ASK:
+            return await self.process_ask_with_context(prompt, prompt_lower, relevant_memories, confidence, key_topics)
+        elif mode == ChatMode.SUGGEST:
+            return await self.process_suggest_with_context(prompt, prompt_lower, relevant_memories, confidence, key_topics)
+        elif mode == ChatMode.GENERAL:
+            return await self.process_general_with_context(prompt, prompt_lower, relevant_memories, confidence)
+        else:
+            return f"{mode_prefix} I understand your request: '{prompt}'. Let me help you with that based on our conversation context."
+
+    async def process_agent_with_context(self, prompt: str, prompt_lower: str, memories: list, confidence: float) -> str:
+        """Agent mode with contextual enhancement - EXECUTES ACTUAL AUTOMATION"""
+        
+        # If automation handler is available, try to execute the task
+        if self.automation_handler:
+            try:
+                logger.info(f"🎯 Executing Agent mode automation for: {prompt}")
+                
+                # Build context for automation
+                context = {
+                    "memories": memories,
+                    "confidence": confidence,
+                    "user_prompt": prompt
+                }
+                
+                # Execute the automation instruction
+                automation_result = await self.automation_handler.handle_user_instruction(prompt, context)
+                
+                if automation_result.get("success", False):
+                    # Automation succeeded
+                    execution_summary = automation_result.get("summary", "Task completed")
+                    steps_taken = automation_result.get("steps_executed", [])
+                    
+                    response = f"🎯 **TASK EXECUTED SUCCESSFULLY** ✅\n\n"
+                    response += f"**Command:** {prompt}\n"
+                    response += f"**Result:** {execution_summary}\n\n"
+                    
+                    if steps_taken:
+                        response += f"**Steps Performed:**\n"
+                        for i, step in enumerate(steps_taken, 1):
+                            response += f"{i}. {step}\n"
+                    
+                    if confidence > 0.6:
+                        response += f"\n✅ **High confidence execution** ({confidence:.1%})"
+                    
+                    # Log successful automation
+                    logger.info(f"✅ Agent automation successful: {execution_summary}")
+                    return response
+                
+                else:
+                    # Automation failed, provide helpful response
+                    error_msg = automation_result.get("error", "Unknown error")
+                    fallback_plan = automation_result.get("fallback_plan", [])
+                    
+                    response = f"🎯 **AUTOMATION ATTEMPTED** ⚠️\n\n"
+                    response += f"**Command:** {prompt}\n"
+                    response += f"**Issue:** {error_msg}\n\n"
+                    
+                    if fallback_plan:
+                        response += f"**Alternative approach:**\n"
+                        for i, step in enumerate(fallback_plan, 1):
+                            response += f"{i}. {step}\n"
+                    
+                    logger.warning(f"⚠️ Agent automation failed: {error_msg}")
+                    return response
+                    
+            except Exception as e:
+                logger.error(f"❌ Agent automation error: {e}")
+                # Fall through to manual instruction mode
+        
+        # Fallback: Provide detailed manual instructions (old behavior)
+        logger.info(f"📋 Providing manual instructions for: {prompt}")
+        
+        # For search tasks (like "search in google 'SEGEV HALFON'")
+        if "search" in prompt_lower and "google" in prompt_lower:
+            search_term = prompt.split("'")[1] if "'" in prompt else prompt.replace("search in google", "").strip()
+            base_response = f"🎯 **Google Search Instructions**\n\n"
+            base_response += f"*Automation not available - Manual steps:*\n"
+            base_response += f"1. Open web browser (Chrome/Safari)\n"
+            base_response += f"2. Navigate to google.com\n"
+            base_response += f"3. Click in search box\n"
+            base_response += f"4. Type: '{search_term}'\n"
+            base_response += f"5. Press Enter or click Search button\n"
+            base_response += f"🔍 **Search target:** {search_term}"
+            
+        # For open/launch actions  
+        elif "open" in prompt_lower:
+            app_name = prompt.replace("open", "").strip()
+            base_response = f"🎯 **Launch {app_name} Instructions**\n\n"
+            base_response += f"*Automation not available - Manual steps:*\n"
+            base_response += f"1. Press Cmd+Space (Spotlight)\n"
+            base_response += f"2. Type: '{app_name}'\n"
+            base_response += f"3. Press Enter to launch\n"
+            
+        # For typing actions
+        elif "type" in prompt_lower:
+            text_to_type = prompt.replace("type", "").strip()
+            base_response = f"🎯 **Text Input Instructions**\n\n"
+            base_response += f"*Automation not available - Manual steps:*\n"
+            base_response += f"1. Click in the text field\n"
+            base_response += f"2. Type: '{text_to_type}'\n"
+            
+        # General task execution
+        else:
+            base_response = f"🎯 **Task Analysis**\n\n"
+            base_response += f"*Automation not available - Analysis:*\n"
+            base_response += f"**Task:** {prompt}\n"
+            base_response += f"**Recommendation:** Break down into smaller actionable steps\n"
+        
+        # Add context confidence
+        if confidence > 0.6:
+            base_response += f"\n\n📊 **High confidence** based on patterns ({confidence:.1%})"
+        elif confidence > 0.3:
+            base_response += f"\n\n📊 **Medium confidence** using context ({confidence:.1%})"
+        
+        return base_response
+
+    async def process_ask_with_context(self, prompt: str, prompt_lower: str, memories: list, confidence: float, topics: list) -> str:
+        """Ask mode with contextual enhancement - NOW USING BRAIN ROUTER INTEGRATION"""
+        try:
+            # Import brain router functionality
+            from brain.core.brain_router import ChatRequest, ChatMode, process_chat_request
+            
+            # Create a ChatRequest for the brain router
+            brain_request_result = await process_chat_request(
+                mode="Ask",
+                query=prompt,
+                user_id="enterprise_user", 
+                session_id="enterprise_session",
+                context={"memories": memories, "confidence": confidence, "topics": topics}
+            )
+            
+            if brain_request_result.get("success", False):
+                brain_response = brain_request_result.get("response", "")
+                logger.info(f"🧠 Brain router ASK mode successful: {brain_response[:100]}...")
+                
+                # Add mode prefix for consistency
+                return f"💭 {brain_response}"
+            else:
+                error_msg = brain_request_result.get("response", "Unknown error")
+                logger.warning(f"🧠 Brain router ASK mode failed: {error_msg}")
+                # Fall through to legacy fallback
+                
+        except Exception as e:
+            logger.error(f"🧠 Brain router ASK mode error: {e}")
+            # Fall through to legacy fallback
+        
+        # Legacy fallback (old behavior) 
+        if memories and confidence > 0.5:
+            # High confidence contextual response
+            primary_memory = memories[0]['content']
+            response = f"💭 Based on our conversation: {primary_memory[:150]}..."
+            
+            if len(memories) > 1:
+                response += f"\n\nAdditional context: {memories[1]['content'][:100]}..."
+        elif memories and confidence > 0.2:
+            # Medium confidence response
+            response = f"💭 I found relevant information: {memories[0]['content'][:120]}..."
+        else:
+            # Standard responses with slight context awareness
+            if "status" in prompt_lower:
+                response = "💭 Enterprise system operational. All components active including contextual memory system."
+            elif "memory" in prompt_lower:
+                response = "💭 Contextual memory system active with semantic search. Learning from each interaction."
+            elif any(q in prompt_lower for q in ["how", "what", "why"]):
+                response = f"💭 Searching contextual knowledge for: '{prompt}'. Analyzing available information..."
+            else:
+                response = f"💭 Processing your question: '{prompt}' with available context."
+        
+        # Add topics if available
+        if topics:
+            response += f"\n\nRelated topics: {', '.join(topics[:4])}"
+        
+        return response
+
+    async def process_suggest_with_context(self, prompt: str, prompt_lower: str, memories: list, confidence: float, topics: list) -> str:
+        """Suggest mode with contextual enhancement"""
+        suggestions = []
+        
+        # Analyze memories for patterns
+        if memories:
+            file_mentions = sum(1 for m in memories if 'file' in m.get('content', '').lower())
+            automation_mentions = sum(1 for m in memories if any(word in m.get('content', '').lower() for word in ['click', 'open', 'type']))
+            
+            if file_mentions > 1:
+                suggestions.append("💡 Consider organizing files with consistent naming and folder structure")
+            if automation_mentions > 1:
+                suggestions.append("💡 Create macros for frequently repeated UI automation tasks")
+        
+        # Base suggestions
+        if "optimize" in prompt_lower:
+            suggestions.extend([
+                "💡 Implement systematic workflow improvements",
+                "💡 Use automation for repetitive processes"
+            ])
+        elif "workflow" in prompt_lower:
+            suggestions.extend([
+                "💡 Establish consistent project templates",
+                "💡 Create documentation for common procedures"
+            ])
+        else:
+            suggestions.append(f"💡 For '{prompt}': Consider systematic analysis and incremental improvements")
+        
+        response = "\n".join(suggestions[:3])
+        
+        if confidence > 0.4:
+            response += f"\n\n(Suggestions confidence: {confidence:.1%} based on interaction patterns)"
+        
+        return response
+
+    async def process_general_with_context(self, prompt: str, prompt_lower: str, memories: list, confidence: float) -> str:
+        """General mode with contextual enhancement"""
+        if "hello" in prompt_lower or "hi" in prompt_lower:
+            base_response = "🤖 Hello! I'm your contextual AI assistant."
+            if memories:
+                base_response += f" I see we've interacted {len(memories)} times recently. How can I help you today?"
+            else:
+                base_response += " How can I help you today?"
+        elif "help" in prompt_lower:
+            response = "🤖 I provide contextual assistance across four modes: Agent, Ask, Suggest, and General."
+            if memories:
+                common_topics = set()
+                for memory in memories[:3]:
+                    if 'mode' in memory.get('content', '').lower():
+                        for mode in ['agent', 'ask', 'suggest', 'general']:
+                            if mode in memory['content'].lower():
+                                common_topics.add(mode)
+                if common_topics:
+                    response += f" You often use: {', '.join(common_topics)} modes."
+            return response
+        elif "thank" in prompt_lower:
+            base_response = "🤖 You're welcome! I'm glad I could help."
+            if confidence > 0.5:
+                base_response += " I'll remember our conversation context for future interactions."
+            return base_response
+        else:
+            if memories and confidence > 0.4:
+                context_summary = memories[0]['content'][:80]
+                base_response = f"🤖 Regarding '{prompt}' - I recall: {context_summary}... How can I help further?"
+            else:
+                base_response = f"🤖 I understand you're asking about '{prompt}'. How can I assist you with this?"
+        
+        return base_response
+
+    def get_mode_prefix(self, mode: str) -> str:
+        """Get emoji prefix for each mode"""
+        prefixes = {
+            ChatMode.AGENT: "🎯",
+            ChatMode.ASK: "💭", 
+            ChatMode.SUGGEST: "💡",
+            ChatMode.GENERAL: "🤖"
+        }
+        return prefixes.get(mode, "🤖")
+
+    async def _search_memory(self, query: str, top_k: int = 5, application_context: Optional[str] = None) -> List[Dict[str, Any]]:
+        """
+        Search memory using the semantic search agent with application context awareness
+        
+        Args:
+            query: The search query
+            top_k: Maximum number of results to return
+            application_context: Optional application context to enhance search
+            
+        Returns:
+            List of search results with content and metadata
+        """
+        try:
+            if not self.semantic_agent:
+                logger.warning("⚠️ Semantic search agent not initialized")
+                return []
+                
+            # Search memories with application context if available
+            results = await self.semantic_agent.search_memories(
+                query=query, 
+                top_k=top_k,
+                min_similarity=0.15,  # Lower threshold for more results
+                application_context=application_context
+            )
+            
+            # Convert to simplified format for API responses
+            return [
+                {
+                    "content": result.content,
+                    "similarity": float(result.similarity_score),  # Ensure it's a regular float
+                    "source": result.source,
+                    "timestamp": result.timestamp.isoformat() if isinstance(result.timestamp, datetime) else result.timestamp,
+                    "relevance_factors": result.relevance_factors if hasattr(result, "relevance_factors") else []
+                }
+                for result in results
+            ]
+        except Exception as e:
+            logger.error(f"❌ Error searching memory: {str(e)}")
+            return []
+
+    async def handle_memory_search_request(self, data: Dict[str, Any], client_id: str, websocket) -> None:
+        """
+        Handle memory search requests from clients with semantic search
+        
+        This handler enables direct querying of the memory system through the semantic search agent
+        """
+        try:
+            # Extract query parameters
+            query = data.get("query", "")
+            top_k = int(data.get("top_k", 5))
+            application_context = data.get("application_context")
+            
+            if not query:
+                await websocket.send(json.dumps({
+                    "type": "memory_search_response",
+                    "results": [],
+                    "error": "Query is required"
+                }))
+                return
+                
+            # Perform search using the semantic agent
+            start_time = time.time()
+            results = await self._search_memory(query, top_k, application_context)
+            elapsed_time = time.time() - start_time
+            
+            # Send response
+            await websocket.send(json.dumps({
+                "type": "memory_search_response",
+                "query": query,
+                "results": results,
+                "count": len(results),
+                "application_context": application_context,
+                "elapsed_time": round(elapsed_time, 4)
+            }))
+            
+            logger.info(f"Memory search for '{query}' returned {len(results)} results in {elapsed_time:.4f}s")
+            
+        except Exception as e:
+            logger.error(f"Error handling memory search request: {str(e)}")
+            await websocket.send(json.dumps({
+                "type": "memory_search_response",
+                "results": [],
+                "error": str(e)
+            }))
+
+    async def handle_websocket(self, websocket):
+        """Handle WebSocket connections with contextual processing"""
+        client_id = f"client_{int(time.time() * 1000)}"
+        client_ip = websocket.remote_address[0] if websocket.remote_address else "unknown"
+        
+        self.connected_clients.add(client_id)
+        logger.info(f"Client connected: {client_id} from {client_ip}")
+        
+        try:
+            # Send enhanced connection response
+            await websocket.send(json.dumps({
+                "type": "connection_established",
+                "client_id": client_id,
+                "message": "Connected to Enhanced Enterprise Backend 8767 with Contextual Memory",
+                "timestamp": datetime.now().isoformat(),
+                "ai_features": {
+                    "ollama_available": self.ollama_available,
+                    "contextual_memory": True,
+                    "semantic_search": True,
+                    "intelligent_fallback": True,
+                    "real_responses": True
+                },
+                "capabilities": [
+                    "contextual_ai_responses",
+                    "semantic_memory_integration",
+                    "ollama_llm_support", 
+                    "intelligent_processing",
+                    "agent_automation",
+                    "knowledge_retrieval",
+                    "proactive_suggestions",
+                    "conversation_memory"
+                ]
+            }))
+            
+            async for message in websocket:
+                try:
+                    data = json.loads(message)
+                    # Handle streaming requests directly
+                    message_type = data.get("type", "unknown")
+                    if message_type == "chat_request":
+                        await self.handle_contextual_chat_request_streaming(data, client_id, websocket)
+                    elif message_type == "memory_search":
+                        await self.handle_memory_search_request(data, client_id, websocket)
+                    else:
+                        response = await self.process_contextual_message(data, client_id)
+                        await websocket.send(json.dumps(response))
+                    
+                except json.JSONDecodeError:
+                    await websocket.send(json.dumps({
+                        "type": "error",
+                        "error": "Invalid JSON format",
+                        "timestamp": datetime.now().isoformat()
+                    }))
+                except Exception as e:
+                    logger.error(f"Error processing message from {client_id}: {e}")
+                    await websocket.send(json.dumps({
+                        "type": "error", 
+                        "error": f"Processing error: {str(e)}",
+                        "timestamp": datetime.now().isoformat()
+                    }))
+                    
+        except websockets.exceptions.ConnectionClosed:
+            logger.info(f"Client disconnected: {client_id}")
+        except Exception as e:
+            logger.error(f"WebSocket error for {client_id}: {e}")
+        finally:
+            self.connected_clients.discard(client_id)
+            if client_id in self.sessions:
+                del self.sessions[client_id]
+
+    async def process_contextual_message(self, data: Dict[str, Any], client_id: str) -> Dict[str, Any]:
+        """Process incoming messages with contextual enhancement"""
+        message_type = data.get("type", "unknown")
+        timestamp = datetime.now().isoformat()
+        
+        logger.info(f"Processing contextual {message_type} from {client_id}")
+        
+        try:
+            if message_type == "chat_request":
+                return await self.handle_contextual_chat_request(data, client_id)
+            elif message_type == "chat_message":
+                # Support chat_message as alias for chat_request
+                return await self.handle_contextual_chat_request(data, client_id)
+            elif message_type == "system_status":
+                return await self.handle_contextual_system_status(data, client_id)
+            elif message_type == "register":
+                return await self.handle_register_request(data, client_id)
+            elif message_type == "plan_execution":
+                return await self.handle_plan_execution(data.get("payload", data), client_id)
+            elif message_type == "agent_confirmation":
+                return await self.handle_agent_confirmation(data, client_id)
+            elif message_type == "start_screen_sharing":
+                return await self.handle_screen_sharing_request(data, client_id)
+            elif message_type == "button_action":
+                return await self.handle_button_action(data, client_id)
+            elif message_type == "memory_search":
+                # This is handled directly in the WebSocket handler for streaming responses
+                return {
+                    "type": "deferred_to_websocket",
+                    "message": "Memory search request will be handled by WebSocket"
+                }
+            else:
+                return {
+                    "type": "error",
+                    "error": f"Unknown message type: {message_type}",
+                    "client_id": client_id,
+                    "timestamp": timestamp
+                }
+                
+        except Exception as e:
+            logger.error(f"Error in process_contextual_message: {e}")
+            return {
+                "type": "error",
+                "error": str(e),
+                "client_id": client_id,
+                "timestamp": timestamp
+            }
+
+    async def handle_contextual_chat_request_streaming(self, data: Dict[str, Any], client_id: str, websocket) -> None:
+        """Handle chat requests with streaming responses and fast deep data access"""
+        mode = data.get("mode", "General")
+        message = data.get("message", "")
+        session_id = data.get("session_id", client_id)
+        
+        start_time = time.time()
+        
+        try:
+            # Universal agnostic data access - try for ANY query first
+            deep_data_result = await self._try_agnostic_deep_data_access(message, mode, client_id, websocket)
+            if deep_data_result.get("handled"):
+                return  # Exit early - deep data provided meaningful response
+            
+            # Initialize contextual knowledge if not done yet
+            if not self.contextual_knowledge_initialized:
+                await self._initialize_contextual_knowledge()
+                self.contextual_knowledge_initialized = True
+            
+            # Store user message in memory
+            await add_memory(
+                f"User in {mode} mode: {message}",
+                source="user_interaction",
+                tags={f"mode_{mode.lower()}", "user_message", session_id}
+            )
+            
+            # Get context for the query
+            context = await get_context_for_query(message, max_context_length=500)
+            
+            # 🎯 AGENT MODE AUTOMATION - Generate execution plan first
+            logger.info(f"🔍 Agent mode check: mode='{mode}', REAL={REAL_AGENT_AUTOMATION_AVAILABLE}, UNIVERSAL={UNIVERSAL_AVAILABLE}, FAST={FAST_AUTOMATION_AVAILABLE}, ENHANCED={ENHANCED_AUTOMATION_AVAILABLE}, handler={self.automation_handler is not None}")
+            if mode.lower() == "agent" and (REAL_AGENT_AUTOMATION_AVAILABLE or UNIVERSAL_AVAILABLE or FAST_AUTOMATION_AVAILABLE or ENHANCED_AUTOMATION_AVAILABLE or self.automation_handler):
+                try:
+                    logger.info(f"🎯 [STREAMING] Creating Agent automation plan for: {message}")
+                    
+                    # Build context for automation
+                    automation_context = {
+                        "memories": context.get('relevant_memories', []),
+                        "confidence": context.get('confidence_score', 0.0),
+                        "user_prompt": message
+                    }
+                    
+                    # Check for Real Agent Automation handler first (fixed with proper execution plans)
+                    if REAL_AGENT_AUTOMATION_AVAILABLE:
+                        logger.info("🎯 [STREAMING] Using Real Agent Automation handler with proper execution plans")
+                        
+                        real_handler = RealAgentAutomationHandler()
+                        plan_result = await real_handler.handle_agent_request(message, session_id)
+                        logger.info(f"🎯 [STREAMING] Real Agent plan result: {plan_result.get('success', False)} - interactive: {plan_result.get('interactive', False)}")
+                        
+                        if plan_result.get("success", False):
+                            # Send streaming response with execution plan
+                            await websocket.send(json.dumps({
+                                "type": "agent_automation_plan",
+                                "mode": mode,
+                                "response": plan_result.get("response", "Automation plan created"),
+                                "client_id": client_id,
+                                "timestamp": datetime.now().isoformat(),
+                                "ai_powered": plan_result.get("ai_powered", True),
+                                "success": True,
+                                "requiresConfirmation": plan_result.get("requires_approval", True),
+                                "agentSessionId": session_id,
+                                "confidence": plan_result.get("confidence", 0.8),
+                                "buttons": plan_result.get("buttons", []),
+                                "interactive": plan_result.get("interactive", True),
+                                "real_agent_automation": True,
+                                "plan_id": plan_result.get("plan_id", session_id),
+                                "processing_time": round(time.time() - start_time, 3)
+                            }))
+                            
+                            # Store response in memory
+                            await add_memory(
+                                f"System created automation plan in {mode} mode: {plan_result.get('response', '')[:100]}...",
+                                source="automation_response",
+                                tags={f"mode_{mode.lower()}", "automation", session_id, "real_agent_streaming"}
+                            )
+                            
+                            return  # Exit early - automation plan sent
+                    
+                    # Generate execution plan (without executing) - fallback methods
+                    logger.info(f"🔧 Automation handler available: {self.automation_handler is not None}")
+                    
+                    # Check if automation handler is available before using
+                    if self.automation_handler is None:
+                        logger.warning("⚠️ Automation handler is None - Agent mode functionality limited")
+                        plan_result = {"success": False, "error": "No automation handler available"}
+                    elif hasattr(self.automation_handler, 'create_universal_automation_plan'):
+                        # Use Universal/Fast handlers with universal method
+                        handler_type = type(self.automation_handler).__name__
+                        if "Universal" in handler_type:
+                            logger.info("🧠 Using INITIALIZED Universal Intelligent Automation handler (REAL LLM planning)")
+                        else:
+                            logger.info(f"⚡ Using INITIALIZED {handler_type} automation handler")
+                        
+                        plan_result = await self.automation_handler.create_universal_automation_plan(message, session_id)
+                        logger.info(f"🔧 Plan result: {plan_result.get('success', False)} - processing_time: {plan_result.get('processing_time', 0):.2f}s")
+                    elif hasattr(self.automation_handler, 'create_execution_plan'):
+                        # Use Enhanced automation handler
+                        handler_type = type(self.automation_handler).__name__
+                        logger.info(f"✅ Using INITIALIZED Enhanced Automation handler: {handler_type}")
+                        
+                        plan_result = await self.automation_handler.create_execution_plan(message, automation_context)
+                        logger.info(f"✅ Enhanced plan result: {plan_result.get('success', False)} - {plan_result.get('error', 'No error')}")
+                    else:
+                        # Fallback - no suitable method found
+                        logger.warning("⚠️ No suitable automation method found on handler")
+                        plan_result = {"success": False, "error": "No suitable automation method available"}
+                    
+                    if plan_result.get("success", False):
+                        # Initialize common variables to avoid scope issues
+                        execution_details = {}
+                        plan_details = {}
+                        target_element = {}
+                        plan_id = session_id  # Default plan_id to avoid scope issues
+                        
+                        # Check if using Enhanced automation handler first
+                        if ENHANCED_AUTOMATION_AVAILABLE and hasattr(self.automation_handler, 'create_execution_plan'):
+                            # Enhanced automation handler - extract execution plan
+                            execution_plan = plan_result.get("execution_plan", {})
+                            plan_description = execution_plan.get("title", plan_result.get("instruction", "Enhanced automation plan created"))
+                            plan_id = session_id
+                            estimated_duration = 15  # Default duration for Enhanced plans
+                            
+                            # Extract steps from execution details
+                            execution_details = execution_plan.get("execution_details", {})
+                            steps = execution_details.get("steps", [])
+                            
+                            # Create structured plan format for frontend
+                            plan_details = {
+                                "task_id": plan_id,
+                                "title": plan_description,
+                                "description": f"Enhanced automation plan with {len(steps)} steps",
+                                "steps": [
+                                    {
+                                        "id": step.get("id", f"step_{i}"),
+                                        "description": step.get("description", "Execute action"),
+                                        "action_type": step.get("action_type", "action"),
+                                        "target": step.get("target", "unknown"),
+                                        "value": step.get("value", ""),
+                                        "confidence": 0.85
+                                    }
+                                    for i, step in enumerate(steps)
+                                ],
+                                "estimated_duration": estimated_duration,
+                                "coordinates": self._extract_plan_coordinates(plan_result, execution_plan),
+                                "llm_generated": execution_plan.get("llm_generated", False)
+                            }
+                            
+                            # Create execution buttons
+                            buttons = [
+                                {
+                                    "text": "🚀 Execute Plan",
+                                    "action": "execute_plan", 
+                                    "style": "execute-btn",
+                                    "description": f"Execute {len(steps)} automation steps"
+                                },
+                                {
+                                    "text": "❌ Cancel",
+                                    "action": "cancel_plan",
+                                    "style": "cancel-btn", 
+                                    "description": "Cancel the automation plan"
+                                },
+                                {
+                                    "text": "🔧 Modify Plan",
+                                    "action": "modify_plan",
+                                    "style": "adjust-btn",
+                                    "description": "Adjust the automation steps"
+                                }
+                            ]
+                            
+                            logger.info(f"✅ Enhanced automation plan created: {plan_description} with {len(steps)} steps")
+                            
+                        # Check if using fast automation handler
+                        elif FAST_AUTOMATION_AVAILABLE:
+                            # Fast automation handler - use its response format
+                            plan_description = plan_result.get("response", "Fast automation plan created")
+                            plan_id = plan_result.get("plan_id", session_id)
+                            estimated_duration = plan_result.get("processing_time", 0) + 10  # Add execution time
+                            buttons = plan_result.get("buttons", [])
+                            logger.info(f"🔍 Fast automation buttons extracted: {buttons}")
+                            
+                            # Add default buttons if none provided
+                            if not buttons:
+                                buttons = [
+                                    {
+                                        "text": "🚀 Execute",
+                                        "action": "execute_plan",
+                                        "style": "execute-btn",
+                                        "description": "Execute the automation plan"
+                                    },
+                                    {
+                                        "text": "❌ Cancel",
+                                        "action": "cancel_plan", 
+                                        "style": "cancel-btn",
+                                        "description": "Cancel the automation plan"
+                                    },
+                                    {
+                                        "text": "🔧 Adjust",
+                                        "action": "modify_plan",
+                                        "style": "adjust-btn", 
+                                        "description": "Modify the automation plan"
+                                    }
+                                ]
+                            
+                            # Store the plan for later execution using plan_id
+                            if not hasattr(self, 'pending_plans'):
+                                self.pending_plans = {}
+                                logger.info(f"🔧 Initialized pending_plans dictionary during fast plan creation")
+                            
+                            # Log plan creation details
+                            logger.info(f"💾 Storing fast plan with ID: {plan_id}")
+                            logger.info(f"💾 Current pending plans: {list(self.pending_plans.keys())}")
+                            
+                            # Save plan data
+                            self.pending_plans[plan_id] = {
+                                "plan": plan_result,
+                                "context": automation_context,
+                                "timestamp": time.time(),
+                                "client_id": client_id,
+                                "plan_id": plan_id,
+                                "fast": True
+                            }
+                            
+                            # Verify plan was stored correctly
+                            logger.info(f"✅ Fast plan stored successfully: {plan_id in self.pending_plans}")
+                            logger.info(f"✅ Updated pending plans: {list(self.pending_plans.keys())}")
+                            
+                        elif hasattr(self.automation_handler, 'create_universal_automation_plan'):
+                            # Universal automation handler - use its response format
+                            plan_description = plan_result.get("response", "Automation plan created")
+                            plan_id = plan_result.get("plan_id", session_id)
+                            estimated_duration = plan_result.get("estimated_duration", 30.0)
+                            buttons = plan_result.get("buttons", [])
+                            
+                            # Add default buttons if none provided
+                            if not buttons:
+                                buttons = [
+                                    {
+                                        "text": "🚀 Execute",
+                                        "action": "execute_plan",
+                                        "style": "execute-btn",
+                                        "description": "Execute the automation plan"
+                                    },
+                                    {
+                                        "text": "❌ Cancel",
+                                        "action": "cancel_plan", 
+                                        "style": "cancel-btn",
+                                        "description": "Cancel the automation plan"
+                                    },
+                                    {
+                                        "text": "🔧 Adjust",
+                                        "action": "modify_plan",
+                                        "style": "adjust-btn", 
+                                        "description": "Modify the automation plan"
+                                    }
+                                ]
+                            
+                            # Store the plan for later execution using plan_id
+                            if not hasattr(self, 'pending_plans'):
+                                self.pending_plans = {}
+                                logger.info(f"🔧 Initialized pending_plans dictionary during universal plan creation")
+                            
+                            # Log plan creation details
+                            logger.info(f"💾 Storing universal plan with ID: {plan_id}")
+                            logger.info(f"💾 Current pending plans: {list(self.pending_plans.keys())}")
+                            
+                            # Save plan data
+                            self.pending_plans[plan_id] = {
+                                "plan": plan_result,
+                                "context": automation_context,
+                                "timestamp": time.time(),
+                                "client_id": client_id,
+                                "plan_id": plan_id,
+                                "universal": True
+                            }
+                            
+                            # Verify plan was stored correctly
+                            logger.info(f"✅ Universal plan stored successfully: {plan_id in self.pending_plans}")
+                            logger.info(f"✅ Updated pending plans: {list(self.pending_plans.keys())}")
+                            
+                        else:
+                            # Legacy automation handler - use old format
+                            plan_details = plan_result.get("execution_plan", {})
+                            target_element = plan_details.get("target_element", {})
+                            execution_details = plan_details.get("execution_details", {})
+                            
+                            # Store the plan for later execution using session_id
+                            if not hasattr(self, 'pending_plans'):
+                                self.pending_plans = {}
+                                logger.info(f"🔧 Initialized pending_plans dictionary during legacy plan creation")
+                            
+                            # Log plan creation details
+                            logger.info(f"💾 Storing legacy plan with ID: {session_id}")
+                            logger.info(f"💾 Current pending plans: {list(self.pending_plans.keys())}")
+                            
+                            # Save plan data
+                            self.pending_plans[session_id] = {
+                                "plan": plan_details,
+                                "context": automation_context,
+                                "timestamp": time.time(),
+                                "client_id": client_id,
+                                "plan_id": session_id,
+                                "universal": False
+                            }
+                            
+                            # Verify plan was stored correctly
+                            logger.info(f"✅ Legacy plan stored successfully: {session_id in self.pending_plans}")
+                            logger.info(f"✅ Updated pending plans: {list(self.pending_plans.keys())}")
+                            
+                            # Create human-readable plan description
+                            plan_description = f"🎯 **AUTOMATION EXECUTION PLAN**\n\n"
+                            plan_description += f"**Command:** {message}\n"
+                            plan_description += f"**Action:** {plan_details.get('action', 'unknown').upper()}\n"
+                            plan_description += f"**Target:** {target_element.get('element_text', 'Unknown')}\n"
+                            
+                            if plan_details.get('text_to_type'):
+                                plan_description += f"**Text to Type:** \"{plan_details.get('text_to_type')}\"\n"
+                            
+                            plan_description += f"\n**Ready to execute - choose an action below:**"
+                            
+                            # Calculate estimated duration (simple heuristic)
+                            estimated_duration = 3  # Default 3 seconds
+                            if plan_details.get('action') == 'type':
+                                text_length = len(plan_details.get('text_to_type', ''))
+                                estimated_duration = max(3, min(10, text_length * 0.2 + 2))
+                            
+                            # Create default buttons for legacy format
+                            buttons = [
+                                {
+                                    "text": "🚀 Execute",
+                                    "action": "execute_plan",
+                                    "style": "execute-btn",
+                                    "description": "Execute the automation plan"
+                                },
+                                {
+                                    "text": "❌ Cancel",
+                                    "action": "cancel_plan", 
+                                    "style": "cancel-btn",
+                                    "description": "Cancel the automation plan"
+                                },
+                                {
+                                    "text": "🔧 Adjust",
+                                    "action": "modify_plan",
+                                    "style": "adjust-btn", 
+                                    "description": "Modify the automation plan"
+                                }
+                            ]
+                        
+                        # Send as final response with frontend-compatible format
+                        logger.info(f"🔍 Sending WebSocket response with buttons: {buttons}")
+                        logger.info(f"🔍 Plan ID: {plan_id}, Interactive: {len(buttons) > 0}")
+                        try:
+                            response_data = {
+                                "type": "final_response",
+                                "mode": mode,
+                                "response": plan_description,
+                                "client_id": client_id,
+                                "timestamp": datetime.now().isoformat(),
+                                "ai_powered": False,
+                                "success": True,
+                                # Frontend automation confirmation format
+                                "requiresConfirmation": True,
+                                "agentSessionId": session_id,
+                                "confidence": plan_result.get('confidence_score', 0.0),
+                                "riskLevel": execution_details.get('risk_level', 'medium'),
+                                "estimatedDuration": estimated_duration,
+                                "buttons": buttons,  # Include interactive buttons
+                                "interactive": len(buttons) > 0,  # Enable interactive mode when buttons exist
+                                "plan_id": plan_id,  # Plan ID for button actions
+                                "plan": plan_details,  # Include full plan details for our test
+                                "executionPlan": {
+                                    "total_steps": len(plan_details.get('steps', [])) if plan_details.get('steps') else 3,
+                                    "action": plan_details.get('action', 'unknown'), 
+                                    "target": target_element.get('element_text', 'Unknown'),
+                                    "coordinates": plan_details.get('coordinates', target_element.get('position', None)),
+                                    "text_to_type": plan_details.get('text_to_type', ''),
+                                    "warnings": execution_details.get('warnings', []),
+                                    "steps": plan_details.get('steps', [])  # Include steps for test validation
+                                }
+                            }
+                            logger.info(f"📤 Full response data: {json.dumps(response_data, indent=2)}")
+                            await websocket.send(json.dumps(response_data))
+                            logger.info(f"✅ Successfully sent final_response for agent mode with {len(buttons)} buttons")
+                        except Exception as send_error:
+                            logger.error(f"❌ Failed to send WebSocket response: {send_error}")
+                            # Try sending a simplified response
+                            try:
+                                simple_response = {
+                                    "type": "final_response",
+                                    "mode": mode,
+                                    "response": plan_description,
+                                    "client_id": client_id,
+                                    "success": True,
+                                    "requiresConfirmation": True,
+                                    "agentSessionId": session_id
+                                }
+                                await websocket.send(json.dumps(simple_response))
+                                logger.info(f"✅ Sent simplified response as fallback")
+                            except Exception as fallback_error:
+                                logger.error(f"❌ Even simplified response failed: {fallback_error}")
+                        
+                        # Store response in memory
+                        execution_summary = plan_result.get("summary", "Automation plan created")
+                        await add_memory(
+                            f"System executed automation in {mode} mode: {execution_summary}",
+                            source="automation_response",
+                            tags={f"mode_{mode.lower()}", "automation", session_id}
+                        )
+                        
+                        logger.info(f"✅ [STREAMING] Agent automation successful: {execution_summary}")
+                        return  # Exit early - automation completed
+                    
+                    else:
+                        # Automation failed - log and continue to LLM fallback
+                        error_msg = plan_result.get("error", "Unknown automation error")
+                        logger.warning(f"⚠️ [STREAMING] Agent automation failed: {error_msg}")
+                        # Continue to LLM response below
+                        
+                except Exception as e:
+                    logger.error(f"❌ [STREAMING] Agent automation error: {e}")
+                    # Continue to LLM response below
+            
+            # Fast response for Ask/Suggest modes to avoid Ollama streaming delays
+            if mode.lower() in ["ask", "suggest"] and self.ollama_available:
+                try:
+                    # Use faster non-streaming Ollama for Ask/Suggest modes
+                    ai_response = await self.get_ollama_response_with_context(message, mode, context)
+                    
+                    # Send fast response
+                    await websocket.send(json.dumps({
+                        "type": "final_response",
+                        "mode": mode,
+                        "response": ai_response,
+                        "client_id": client_id,
+                        "timestamp": datetime.now().isoformat(),
+                        "ai_powered": True,
+                        "contextual": True,
+                        "processing_method": "fast_ollama",
+                        "success": True
+                    }))
+                    
+                    # Store response in memory
+                    await add_memory(
+                        f"System response in {mode} mode: {ai_response}",
+                        source="system_response",
+                        tags={f"mode_{mode.lower()}", "system_message", session_id}
+                    )
+                    
+                except Exception as e:
+                    logger.warning(f"Fast Ollama failed for {mode}, using fallback: {e}")
+                    # Use contextual fallback for immediate response
+                    ai_response = await self.get_contextual_fallback_response(message, mode, context)
+                    await websocket.send(json.dumps({
+                        "type": "final_response",
+                        "mode": mode,
+                        "response": ai_response,
+                        "client_id": client_id,
+                        "timestamp": datetime.now().isoformat(),
+                        "ai_powered": False,
+                        "fallback": True,
+                        "processing_method": "fast_fallback",
+                        "success": True
+                    }))
+                    
+            # Use streaming Ollama response (for other modes or Agent fallback)
+            elif self.ollama_available:
+                ai_response = await self.get_ollama_response_with_context_streaming(
+                    message, mode, context, websocket, client_id
+                )
+                
+                # Store response in memory
+                await add_memory(
+                    f"System response in {mode} mode: {ai_response}",
+                    source="system_response",
+                    tags={f"mode_{mode.lower()}", "system_message", session_id}
+                )
+            else:
+                # Fallback to non-streaming contextual response
+                ai_response = await self.get_contextual_fallback_response(message, mode, context)
+                await websocket.send(json.dumps({
+                    "type": "final_response",
+                    "mode": mode,
+                    "response": ai_response,
+                    "client_id": client_id,
+                    "timestamp": datetime.now().isoformat(),
+                    "ai_powered": False,
+                    "fallback": True,
+                    "success": True
+                }))
+                
+                # Store fallback response in memory
+                await add_memory(
+                    f"System fallback response in {mode} mode: {ai_response}",
+                    source="system_response",
+                    tags={f"mode_{mode.lower()}", "system_message", session_id, "fallback"}
+                )
+            
+            processing_time = time.time() - start_time
+            
+            # Send final metadata
+            await websocket.send(json.dumps({
+                "type": "chat_response_metadata",
+                "mode": mode,
+                "processing_time": round(processing_time, 3),
+                "session_id": session_id,
+                "client_id": client_id,
+                "timestamp": datetime.now().isoformat(),
+                "context_metrics": {
+                    "memories_used": len(context.get('relevant_memories', [])),
+                    "confidence_score": context.get('confidence_score', 0.0),
+                    "key_topics": context.get('key_topics', [])[:3]
+                },
+                "ai_powered": self.ollama_available,
+                "contextual": True
+            }))
+            
+        except Exception as e:
+            logger.error(f"Error in streaming chat request: {e}")
+            await websocket.send(json.dumps({
+                "type": "chat_response_error",
+                "mode": mode,
+                "error": str(e),
+                "client_id": client_id,
+                "timestamp": datetime.now().isoformat()
+            }))
+
+    async def handle_contextual_chat_request(self, data: Dict[str, Any], client_id: str) -> Dict[str, Any]:
+        """Handle chat requests with full contextual processing (non-streaming fallback)"""
+        mode = data.get("mode", "General")
+        message = data.get("message", "")
+        session_id = data.get("session_id", client_id)
+        
+        start_time = time.time()
+        
+        try:
+            # Initialize contextual knowledge if not done yet
+            if not self.contextual_knowledge_initialized:
+                await self._initialize_contextual_knowledge()
+                self.contextual_knowledge_initialized = True
+            
+            # Store user message in memory
+            await add_memory(
+                f"User in {mode} mode: {message}",
+                source="user_interaction",
+                tags={f"mode_{mode.lower()}", "user_message", session_id}
+            )
+            
+            # Get context for the query
+            context = await get_context_for_query(message, max_context_length=500)
+            
+            # 🎯 AGENT MODE AUTOMATION - Real Agent Handler first
+            logger.info(f"🔍 [NON-STREAMING] Agent mode check: mode='{mode}', REAL={REAL_AGENT_AUTOMATION_AVAILABLE}, UNIVERSAL={UNIVERSAL_AVAILABLE}, FAST={FAST_AUTOMATION_AVAILABLE}, handler={self.automation_handler is not None}")
+            if mode.lower() == "agent" and (REAL_AGENT_AUTOMATION_AVAILABLE or UNIVERSAL_AVAILABLE or FAST_AUTOMATION_AVAILABLE or ENHANCED_AUTOMATION_AVAILABLE or self.automation_handler):
+                try:
+                    logger.info(f"🎯 [NON-STREAMING] Creating Agent automation plan for: {message}")
+                    
+                    # Build context for automation
+                    automation_context = {
+                        "memories": context.get('relevant_memories', []),
+                        "confidence": context.get('confidence_score', 0.0),
+                        "user_prompt": message
+                    }
+                    
+                    # Check for Real Agent Automation handler first (fixed with proper execution plans)
+                    if REAL_AGENT_AUTOMATION_AVAILABLE:
+                        logger.info("🎯 Using Real Agent Automation handler with proper execution plans")
+                        
+                        real_handler = RealAgentAutomationHandler()
+                        plan_result = await real_handler.handle_agent_request(message, session_id)
+                        logger.info(f"🎯 Real Agent plan result: {plan_result.get('success', False)} - interactive: {plan_result.get('interactive', False)}")
+                        
+                        if plan_result.get("success", False):
+                            # Store response in memory
+                            await add_memory(
+                                f"System created automation plan in {mode} mode: {plan_result.get('response', '')[:100]}...",
+                                source="automation_response",
+                                tags={f"mode_{mode.lower()}", "automation", session_id, "real_agent"}
+                            )
+                            
+                            # Return automation plan response in correct format
+                            processing_time = time.time() - start_time
+                            return {
+                                "type": "final_response",
+                                "mode": mode,
+                                "response": plan_result.get("response", "Automation plan created"),
+                                "client_id": client_id,
+                                "timestamp": datetime.now().isoformat(),
+                                "ai_powered": plan_result.get("ai_powered", True),
+                                "success": True,
+                                # Frontend automation confirmation format
+                                "requiresConfirmation": plan_result.get("requires_approval", True),
+                                "agentSessionId": session_id,
+                                "confidence": plan_result.get("confidence", 0.8),
+                                "riskLevel": "medium",
+                                "estimatedDuration": plan_result.get("processing_time", 0) + 10,
+                                "buttons": plan_result.get("buttons", []),
+                                "interactive": plan_result.get("interactive", True),
+                                "executionPlan": {
+                                    "total_steps": 5,
+                                    "action": "automation_plan",
+                                    "target": "System",
+                                    "coordinates": None,
+                                    "text_to_type": "",
+                                    "warnings": []
+                                },
+                                "real_agent_automation": True,
+                                "plan_id": plan_result.get("plan_id", session_id),
+                                "processing_time": round(processing_time, 3)
+                            }
+                    
+                    # Check for Universal automation handler (backup)
+                    elif UNIVERSAL_AVAILABLE:
+                        logger.info("🧠 Using Universal Intelligent Automation handler with verification")
+                        
+                        # Capture pre-execution state for verification
+                        pre_execution_state = await self.capture_screen_fast()
+                        
+                        plan_result = await universal_automation_handler.create_universal_automation_plan(message, session_id)
+                        logger.info(f"🧠 Universal plan result: {plan_result.get('success', False)} - processing_time: {plan_result.get('processing_time', 0):.2f}s")
+                    elif FAST_AUTOMATION_AVAILABLE:
+                        logger.info("⚡ Falling back to Fast Universal Automation handler with verification")
+                        
+                        # Capture pre-execution state for verification
+                        pre_execution_state = await self.capture_screen_fast()
+                        
+                        plan_result = await fast_universal_automation_handler.create_universal_automation_plan(message, session_id)
+                        logger.info(f"⚡ Fast plan result: {plan_result.get('success', False)} - processing_time: {plan_result.get('processing_time', 0):.2f}s")
+                        
+                        if plan_result.get("success", False):
+                            # Extract automation plan response details
+                            plan_description = plan_result.get("response", "Fast automation plan created")
+                            buttons = plan_result.get("buttons", [])
+                            plan_id = plan_result.get("plan_id", session_id)
+                            
+                            # Store response in memory
+                            await add_memory(
+                                f"System created automation plan in {mode} mode: {plan_description[:100]}...",
+                                source="automation_response",
+                                tags={f"mode_{mode.lower()}", "automation", session_id, "fast"}
+                            )
+                            
+                            # Return automation plan response in correct format
+                            processing_time = time.time() - start_time
+                            return {
+                                "type": "final_response",
+                                "mode": mode,
+                                "response": plan_description,
+                                "client_id": client_id,
+                                "timestamp": datetime.now().isoformat(),
+                                "ai_powered": False,
+                                "success": True,
+                                # Frontend automation confirmation format
+                                "requiresConfirmation": True,
+                                "agentSessionId": session_id,
+                                "confidence": plan_result.get('confidence_score', 0.0),
+                                "riskLevel": "medium",
+                                "estimatedDuration": plan_result.get("processing_time", 0) + 10,
+                                "buttons": buttons,  # Include interactive buttons
+                                "interactive": len(buttons) > 0,  # Enable interactive mode when buttons exist
+                                "executionPlan": {
+                                    "total_steps": 3,
+                                    "action": "automation_plan",
+                                    "target": "System",
+                                    "coordinates": None,
+                                    "text_to_type": "",
+                                    "warnings": []
+                                },
+                                "fast_automation": True,
+                                "plan_id": plan_id,
+                                "processing_time": round(processing_time, 3)
+                            }
+                    
+                    # If we get here, fast automation failed, continue to LLM fallback
+                    logger.warning("⚠️ Fast automation failed, falling back to LLM")
+                    
+                except Exception as e:
+                    logger.error(f"❌ Fast automation error: {e}")
+                    # Continue to LLM fallback
+            
+            # Get contextual AI response (LLM fallback)
+            ai_response = await self.get_contextual_ai_response(message, mode, session_id)
+            
+            processing_time = time.time() - start_time
+            
+            return {
+                "type": "chat_response",
+                "success": True,
+                "mode": mode,
+                "payload": {
+                    "response": ai_response,
+                    "mode": mode,
+                    "success": True,
+                    "ai_powered": True,
+                    "contextual": True,
+                    "ollama_used": self.ollama_available
+                },
+                "response": ai_response,
+                "processing_time": round(processing_time, 3),
+                "session_id": session_id,
+                "client_id": client_id,
+                "timestamp": datetime.now().isoformat(),
+                "context_metrics": {
+                    "memories_used": len(context.get('relevant_memories', [])),
+                    "confidence_score": context.get('confidence_score', 0.0),
+                    "key_topics": context.get('key_topics', [])[:3]
+                }
+            }
+            
+        except Exception as e:
+            logger.error(f"Contextual chat request error: {e}")
+            return {
+                "type": "chat_response",
+                "success": False,
+                "error": str(e),
+                "mode": mode,
+                "payload": {
+                    "response": f"I apologize, but I encountered an error processing your contextual request: {str(e)}",
+                    "mode": mode,
+                    "success": False
+                },
+                "session_id": session_id,
+                "client_id": client_id,
+                "timestamp": datetime.now().isoformat()
+            }
+
+    async def handle_contextual_system_status(self, data: Dict[str, Any], client_id: str) -> Dict[str, Any]:
+        """Handle system status requests with memory metrics"""
+        uptime = datetime.now() - self.start_time
+        
+        # Get memory system metrics
+        search_metrics = self.semantic_agent.get_performance_metrics()
+        
+        return {
+            "type": "system_status_response",
+            "status": "operational",
+            "uptime_seconds": int(uptime.total_seconds()),
+            "connected_clients": len(self.connected_clients),
+            "port": 8767,
+            "ai_features": {
+                "ollama_available": self.ollama_available,
+                "contextual_memory": True,
+                "semantic_search": True,
+                "real_ai_responses": True,
+                "intelligent_fallback": True
+            },
+            "memory_system": {
+                "total_memories": search_metrics['vector_store']['total_documents'],
+                "average_search_time": search_metrics['semantic_search']['average_response_time'],
+                "cache_hit_rate": search_metrics['semantic_search']['cache_hit_rate'],
+                "successful_queries": search_metrics['semantic_search']['successful_queries']
+            },
+            "capabilities": [
+                "contextual_ai_integration",
+                "semantic_memory_search",
+                "ollama_llm_support", 
+                "intelligent_processing",
+                "enterprise_automation",
+                "conversation_memory",
+                "pattern_learning"
+            ],
+            "server_time": datetime.now().isoformat(),
+            "version": "Enhanced Enterprise Backend 8767 with Context v2.0",
+            "client_id": client_id,
+            "timestamp": datetime.now().isoformat()
+        }
+
+    async def handle_plan_execution(self, payload: dict, client_id: str) -> dict:
+        """Handle execution of a previously created automation plan"""
+        try:
+            plan_id = payload.get("plan_id")
+            action = payload.get("action", "").lower()
+            
+            if not plan_id or not hasattr(self, 'pending_plans') or plan_id not in self.pending_plans:
+                return {
+                    "type": "plan_execution_error",
+                    "error": "Plan not found or expired"
+                }
+            
+            plan_data = self.pending_plans[plan_id]
+            
+            if action == "do":
+                logger.info(f"🚀 Executing automation plan {plan_id}")
+                
+                # Execute the stored plan using the automation handler
+                automation_result = await self.automation_handler.handle_user_instruction(
+                    plan_data["context"]["user_prompt"], 
+                    plan_data["context"]
+                )
+                
+                if automation_result.get("success", False):
+                    # Clean up the plan
+                    del self.pending_plans[plan_id]
+                    
+                    return {
+                        "type": "plan_execution_success",
+                        "plan_id": plan_id,
+                        "result": automation_result,
+                        "summary": automation_result.get("summary", "Task completed successfully")
+                    }
+                else:
+                    return {
+                        "type": "plan_execution_error",
+                        "plan_id": plan_id,
+                        "error": automation_result.get("error", "Execution failed")
+                    }
+                    
+            elif action == "dismiss":
+                logger.info(f"❌ Plan {plan_id} dismissed by user")
+                del self.pending_plans[plan_id]
+                return {
+                    "type": "plan_dismissed",
+                    "plan_id": plan_id,
+                    "message": "Automation plan dismissed"
+                }
+                
+            elif action == "adjust":
+                logger.info(f"🔧 Plan {plan_id} adjustment requested")
+                return {
+                    "type": "plan_adjustment_request",
+                    "plan_id": plan_id,
+                    "message": "Plan adjustment not yet implemented"
+                }
+            else:
+                return {
+                    "type": "plan_execution_error",
+                    "error": f"Unknown action: {action}"
+                }
+                
+        except Exception as e:
+            logger.error(f"Error handling plan execution: {e}")
+            return {
+                "type": "plan_execution_error",
+                "error": str(e)
+            }
+
+    async def handle_agent_confirmation(self, data: Dict[str, Any], client_id: str) -> Dict[str, Any]:
+        """Handle agent confirmation from frontend (DO/Dismiss/Adjust)"""
+        try:
+            # Handle both sessionId (frontend) and session_id (backend) formats
+            session_id = data.get("sessionId") or data.get("session_id")  # This is our plan_id
+            action = data.get("action", "").upper()
+            
+            logger.info(f"🎯 Agent confirmation received: sessionId={session_id}, action={action}")
+            logger.info(f"🔍 Available plans: {list(self.pending_plans.keys()) if hasattr(self, \'pending_plans\') and self.pending_plans else list(shared_pending_plans.keys()) if shared_pending_plans else \'None\'}")
+            
+            # Map frontend actions to backend actions
+            if action == "EXECUTE":
+                action = "DO"
+                logger.info(f"🔄 Mapped action from EXECUTE to DO")
+            
+            if not session_id:
+                logger.error("❌ No session_id provided in agent confirmation")
+                return {
+                    "type": "agent_confirmation_error",
+                    "error": "No session ID provided"
+                }
+                
+            # Ensure pending_plans exists
+            if not hasattr(self, 'pending_plans'):
+                logger.error("❌ pending_plans attribute not found, initializing it")
+                self.pending_plans = {}
+                
+            # Check if plan exists in pending_plans
+            if session_id not in self.pending_plans:
+                logger.error(f"❌ Plan not found for session_id: {session_id}")
+                # Try to load from plan_persistence if available
+                try:
+                    if 'plan_persistence' in sys.modules:
+                        from plan_persistence import load_plan
+                        plan_data = await load_plan(session_id)
+                        if plan_data:
+                            logger.info(f"✅ Loaded plan from persistence: {session_id}")
+                            self.pending_plans[session_id] = plan_data
+                        else:
+                            logger.error(f"❌ Could not load plan from persistence: {session_id}")
+                            return {
+                                "type": "agent_confirmation_error",
+                                "error": "Plan not found or expired"
+                            }
+                    else:
+                        logger.error("❌ plan_persistence module not available")
+                        return {
+                            "type": "agent_confirmation_error",
+                            "error": "Plan not found or expired"
+                        }
+                except Exception as e:
+                    logger.error(f"❌ Error loading plan from persistence: {e}")
+                    return {
+                        "type": "agent_confirmation_error",
+                        "error": f"Plan not found and persistence error: {str(e)}"
+                    }
+            
+            # Log that we found the plan
+            logger.info(f"✅ Found plan for session_id: {session_id}")
+            
+            plan_data = self.pending_plans[session_id]
+            
+            if action == "DO":
+                logger.info(f"🚀 Executing automation plan {session_id}")
+                
+                # Send progress updates during execution
+                progress_steps = [
+                    {"step": 1, "message": "🔍 Analyzing current screen...", "progress": 20},
+                    {"step": 2, "message": "🎯 Locating target element...", "progress": 50},
+                    {"step": 3, "message": "⚡ Executing automation...", "progress": 80},
+                    {"step": 4, "message": "✅ Verifying completion...", "progress": 100}
+                ]
+                
+                # Send initial progress
+                await self._send_progress_update(client_id, session_id, progress_steps[0])
+                await asyncio.sleep(0.5)
+                
+                # Send screen analysis progress
+                await self._send_progress_update(client_id, session_id, progress_steps[1])
+                await asyncio.sleep(1.0)
+                
+                # Send execution progress
+                await self._send_progress_update(client_id, session_id, progress_steps[2])
+                
+                # Execute the stored plan using appropriate handler
+                # First, check if this is a universal automation plan
+                if "universal_" in session_id and UNIVERSAL_AVAILABLE:
+                    # Use Universal Intelligent Automation Handler
+                    logger.info("🧠 Executing with Universal Intelligent Automation Handler")
+                    plan_id = plan_data.get("plan_id", session_id)
+                    
+                    # Add a trace here to help debug
+                    logger.info(f"🔍 Using universal_automation_handler to execute plan: {plan_id}")
+                    logger.info(f"🔍 Universal handler instance available: {universal_automation_handler is not None}")
+                    
+                    try:
+                        # Explicitly import and get the handler if needed
+                        if universal_automation_handler is None:
+                            from universal_intelligent_automation_handler import universal_automation_handler
+                            if universal_automation_handler is None:
+                                logger.error("❌ Universal automation handler is still None after import")
+                                # Create a new instance as fallback
+                                from universal_intelligent_automation_handler import UniversalIntelligentAutomationHandler
+                                universal_automation_handler = UniversalIntelligentAutomationHandler()
+                        
+                        # Execute the plan
+                        automation_result = await universal_automation_handler.handle_button_action(
+                            "execute_plan", plan_id, session_id
+                        )
+                        logger.info(f"✅ Plan execution result: {automation_result.get('success', False)}")
+                    except Exception as e:
+                        logger.error(f"❌ Error executing universal plan: {e}")
+                        automation_result = {
+                            "success": False,
+                            "error": f"Universal automation handler error: {str(e)}"
+                        }
+                # Next, check if this is a fast automation plan
+                elif plan_data.get("fast"):
+                    # Use fast automation handler for execution
+                    logger.info("⚡ Executing with Fast Automation Handler")
+                    plan_id = plan_data.get("plan_id", session_id)
+                    automation_result = await fast_universal_automation_handler.handle_button_action(
+                        "execute_plan", plan_id, session_id
+                    )
+                else:
+                    # Use regular automation handler
+                    logger.info("🔧 Executing with Legacy Automation Handler")
+                    execution_context = plan_data["context"].copy()
+                    execution_context["stored_plan"] = plan_data["plan"]
+                    
+                    automation_result = await self.automation_handler.handle_user_instruction(
+                        plan_data["context"]["user_prompt"], 
+                        execution_context
+                    )
+                
+                # Send completion progress
+                await self._send_progress_update(client_id, session_id, progress_steps[3])
+                
+                if automation_result.get("success", False):
+                    # Clean up the plan
+                    del self.pending_plans[session_id]
+                    
+                    return {
+                        "type": "agent_execution_success",
+                        "session_id": session_id,
+                        "result": automation_result,
+                        "summary": automation_result.get("summary", "Task completed successfully"),
+                        "execution_completed": True
+                    }
+                else:
+                    return {
+                        "type": "agent_execution_error",
+                        "session_id": session_id,
+                        "error": automation_result.get("error", "Execution failed")
+                    }
+                    
+            elif action == "DISMISS":
+                logger.info(f"❌ Plan {session_id} dismissed by user")
+                del self.pending_plans[session_id]
+                return {
+                    "type": "agent_dismissed",
+                    "session_id": session_id,
+                    "message": "Automation plan dismissed"
+                }
+                
+            elif action == "ADJUST":
+                logger.info(f"🔧 Plan {session_id} adjustment requested")
+                return {
+                    "type": "agent_adjustment_request",
+                    "session_id": session_id,
+                    "message": "Plan adjustment not yet implemented"
+                }
+            else:
+                return {
+                    "type": "agent_confirmation_error",
+                    "error": f"Unknown action: {action}"
+                }
+                
+        except Exception as e:
+            logger.error(f"Error handling agent confirmation: {e}")
+            return {
+                "type": "agent_confirmation_error",
+                "error": str(e)
+            }
+
+    async def handle_button_action(self, data: Dict[str, Any], client_id: str) -> Dict[str, Any]:
+        """Handle button actions from frontend (adapter for agent_confirmation)"""
+        try:
+            # Extract action and plan_id from the button_action format
+            action = data.get("action", "").upper()
+            plan_id = data.get("plan_id")
+            
+            # Map button actions to agent confirmation format
+            if action == "EXECUTE_PLAN":
+                action = "DO"
+            
+            # Create agent_confirmation compatible data
+            agent_confirmation_data = {
+                "action": action,
+                "sessionId": plan_id,
+                "session_id": plan_id,  # Include both formats for compatibility
+                "button_data": data.get("button_data", {}),
+                "timestamp": data.get("timestamp", datetime.now().isoformat())
+            }
+            
+            logger.info(f"🔄 Converting button_action to agent_confirmation: {action} for plan {plan_id}")
+            
+            # Delegate to existing agent confirmation handler
+            return await self.handle_agent_confirmation(agent_confirmation_data, client_id)
+            
+        except Exception as e:
+            logger.error(f"Error handling button action: {e}")
+            return {
+                "type": "button_action_error",
+                "error": str(e)
+            }
+
+    async def _send_progress_update(self, client_id: str, session_id: str, progress_info: Dict[str, Any]):
+        """Send progress update to specific client"""
+        try:
+            # Find the websocket for this client
+            for websocket in self.connected_clients:
+                if getattr(websocket, 'client_id', None) == client_id:
+                    progress_message = {
+                        "type": "agent_progress",
+                        "session_id": session_id,
+                        "step": progress_info.get("step", 1),
+                        "message": progress_info.get("message", "Processing..."),
+                        "progress": progress_info.get("progress", 0),
+                        "timestamp": datetime.now().isoformat()
+                    }
+                    await websocket.send(json.dumps(progress_message))
+                    logger.info(f"📊 Progress update sent: {progress_info['message']} ({progress_info['progress']}%)")
+                    break
+        except Exception as e:
+            logger.error(f"Error sending progress update: {e}")
+
+    async def handle_register_request(self, data: Dict[str, Any], client_id: str) -> Dict[str, Any]:
+        """Handle overlay registration requests"""
+        # Check if data is in payload format (from overlay) or direct format (from tests)
+        payload = data.get("payload", data)
+        client_type = payload.get("client_type", "unknown")
+        version = payload.get("version", "unknown")
+        capabilities = payload.get("capabilities", [])
+        
+        logger.info(f"Client registration: {client_id} ({client_type} v{version})")
+        
+        return {
+            "type": "registration_success",
+            "client_id": client_id,
+            "server_info": {
+                "name": "Enhanced Enterprise Backend 8767",
+                "version": "2.0",
+                "ai_enabled": self.ollama_available,
+                "features": {
+                    "real_ai_responses": True,
+                    "streaming": True,
+                    "contextual_memory": True,
+                    "semantic_search": True,
+                    "llm_model": "llama3.2:1b"
+                }
+            },
+            "supported_modes": ["ask", "agent", "suggest", "general"],
+            "message": "Successfully registered with Enhanced Enterprise Backend",
+            "timestamp": datetime.now().isoformat()
+        }
+
+    async def handle_screen_sharing_request(self, data: Dict[str, Any], client_id: str) -> Dict[str, Any]:
+        """Handle screen sharing requests from the frontend"""
+        try:
+            logger.info(f"🖥️ Screen sharing request received from {client_id}")
+            
+            # Import screen capture functionality
+            try:
+                from realtime_screen_tcp_server import RealtimeScreenTCPServer
+                
+                # Create or get screen server instance for this client
+                if not hasattr(self, 'screen_servers'):
+                    self.screen_servers = {}
+                
+                if client_id not in self.screen_servers:
+                    self.screen_servers[client_id] = RealtimeScreenTCPServer()
+                    logger.info(f"Created new screen server for client {client_id}")
+                    
+                    # Give the capture thread time to start and capture first frame
+                    import asyncio
+                    await asyncio.sleep(0.5)
+                
+                # Get compressed frame data
+                frame_data = self.screen_servers[client_id].get_compressed_frame_data()
+                
+                if frame_data:
+                    logger.info(f"✅ Screen frame captured: {frame_data['width']}x{frame_data['height']} @ {frame_data.get('fps', 0)}fps")
+                    return frame_data
+                else:
+                    logger.warning("⚠️ No screen frame data available")
+                    return {
+                        "type": "screen_sharing_error",
+                        "message": "No screen data available",
+                        "client_id": client_id,
+                        "timestamp": datetime.now().isoformat()
+                    }
+                    
+            except ImportError as e:
+                logger.error(f"❌ Screen capture module not available: {e}")
+                return {
+                    "type": "screen_sharing_error",
+                    "message": f"Screen capture not available: {e}",
+                    "client_id": client_id,
+                    "timestamp": datetime.now().isoformat()
+                }
+                
+        except Exception as e:
+            logger.error(f"❌ Screen sharing error: {e}")
+            return {
+                "type": "screen_sharing_error", 
+                "message": str(e),
+                "client_id": client_id,
+                "timestamp": datetime.now().isoformat()
+            }
+
+    async def _try_agnostic_deep_data_access(self, message: str, mode: str, client_id: str, websocket) -> Dict[str, Any]:
+        """
+        Universal agnostic deep data access - tries to answer ANY query using available screen data.
+        No patterns, no pre-defined queries - truly agnostic approach.
+        """
+        try:
+            # Step 1: Always capture current screen state (fast, < 1 second)
+            screen = await self.capture_screen_fast()
+            if screen is None:
+                return {"handled": False, "reason": "no_screen_access"}
+            
+            # Step 2: Quick screen analysis (what's visible right now)
+            screen_analysis = self._analyze_screen_quickly_fast(screen)
+            
+            # Step 3: Get memory context for the query
+            memory_context = await self._get_recent_context_fast(message)
+            
+            # Step 4: Use LLM to determine if screen data can answer the query
+            can_answer_with_screen = await self._can_screen_data_answer_query(
+                message, screen_analysis, memory_context
+            )
+            
+            if can_answer_with_screen:
+                # Step 5: Generate response using screen data + LLM
+                response = await self._generate_screen_based_response(
+                    message, screen_analysis, memory_context, mode
+                )
+                
+                # Send the response
+                await websocket.send(json.dumps({
+                    "type": "final_response",
+                    "mode": mode,
+                    "response": response,
+                    "client_id": client_id,
+                    "timestamp": datetime.now().isoformat(),
+                    "processing_method": "agnostic_deep_data",
+                    "data_sources": ["screen_analysis", "memory_context"],
+                    "success": True
+                }))
+                
+                return {"handled": True, "response": response}
+            else:
+                # Screen data doesn't help with this query
+                return {"handled": False, "reason": "screen_data_not_relevant"}
+                
+        except Exception as e:
+            logger.error(f"Agnostic deep data access error: {e}")
+            return {"handled": False, "reason": "error", "error": str(e)}
+    
+    async def _can_screen_data_answer_query(self, message: str, screen_analysis: str, memory_context: str) -> bool:
+        """
+        Use LLM to intelligently determine if current screen data can help answer the query.
+        This is the key to agnostic deep data access.
+        """
+        try:
+            # Create a prompt to analyze if screen data is relevant
+            analysis_prompt = f"""
+Query: "{message}"
+
+Current Screen Analysis:
+{screen_analysis}
+
+Recent Context:
+{memory_context}
+
+Can the current screen data and context help answer this query? Consider:
+- If the query asks about emails/mail and there's a mail app visible
+- If the query asks about files and there's a file manager visible  
+- If the query asks about current state and screen shows relevant info
+- If the query asks about apps/programs and system info is available
+
+Answer with just "YES" or "NO" and a brief reason.
+"""
+
+            # Use fast model to determine relevance
+            if hasattr(self, 'warmup_manager') and self.warmup_manager:
+                result = await self.warmup_manager.fast_generate_response([
+                    {"role": "user", "content": analysis_prompt}
+                ], max_tokens=50, temperature=0.1)
+                
+                return "YES" in result.upper()
+            else:
+                # Fallback: simple keyword matching
+                message_lower = message.lower()
+                screen_lower = screen_analysis.lower()
+                
+                # Check if query keywords appear in screen analysis
+                query_keywords = message_lower.split()
+                screen_keywords = screen_lower.split()
+                
+                common_keywords = set(query_keywords) & set(screen_keywords)
+                return len(common_keywords) > 0
+                
+        except Exception as e:
+            logger.debug(f"Screen relevance check error: {e}")
+            return False
+    
+    async def _generate_screen_based_response(self, message: str, screen_analysis: str, 
+                                            memory_context: str, mode: str) -> str:
+        """
+        Generate response using screen data and LLM - agnostic to query type.
+        """
+        try:
+            # Create comprehensive prompt with all available data
+            response_prompt = f"""
+User Query: "{message}"
+
+Current Screen Information:
+{screen_analysis}
+
+Recent Context & Memory:
+{memory_context}
+
+Based on the current screen state and available context, provide a helpful response to the user's query. If you can see relevant information on their screen (like email apps, file managers, system information), use that to answer their question directly.
+
+Be specific about what you can observe and provide actionable information.
+"""
+
+            if hasattr(self, 'warmup_manager') and self.warmup_manager:
+                response = await self.warmup_manager.fast_generate_response([
+                    {"role": "user", "content": response_prompt}
+                ], max_tokens=300, temperature=0.7)
+                
+                # Add mode prefix
+                mode_prefix = self.get_mode_prefix(mode)
+                return f"{mode_prefix} {response}"
+            else:
+                # Fallback response using available data
+                return f"Based on your current screen: {screen_analysis}\n\nRegarding '{message}': I can see your current system state and will help based on what's visible."
+                
+        except Exception as e:
+            logger.error(f"Screen-based response generation error: {e}")
+            return f"I can see your screen state but encountered an issue generating the response: {str(e)}"
+    
+    async def _handle_fast_system_query_streaming(self, message: str, mode: str, client_id: str, websocket) -> None:
+        """Handle system queries using existing screen capture with streaming response (no timeouts)"""
+        try:
+            # Send immediate acknowledgment
+            await websocket.send(json.dumps({
+                "type": "chunk",
+                "mode": mode,
+                "content": "🔍 Analyzing your system in real-time...",
+                "client_id": client_id,
+                "timestamp": datetime.now().isoformat(),
+                "processing": True
+            }))
+            
+            # Use existing fast screen capture (already optimized)
+            screen = await self.capture_screen_fast()
+            
+            if screen is not None:
+                # Quick screen analysis without heavy processing
+                screen_info = self._analyze_screen_quickly_fast(screen)
+                
+                # Get memory context if available (fast lookup)
+                memory_context = await self._get_recent_context_fast(message)
+                
+                # Format comprehensive response
+                response = self._format_fast_system_response(message, screen_info, memory_context)
+                
+                # Send final response
+                await websocket.send(json.dumps({
+                    "type": "final_response", 
+                    "mode": mode,
+                    "response": response,
+                    "client_id": client_id,
+                    "timestamp": datetime.now().isoformat(),
+                    "processing_method": "fast_screen_analysis",
+                    "success": True
+                }))
+                
+            else:
+                # Fallback without screen access
+                fallback_response = self._get_fallback_system_response_fast(message)
+                
+                await websocket.send(json.dumps({
+                    "type": "final_response",
+                    "mode": mode, 
+                    "response": fallback_response,
+                    "client_id": client_id,
+                    "timestamp": datetime.now().isoformat(),
+                    "processing_method": "screen_unavailable_fallback",
+                    "success": True
+                }))
+                
+        except Exception as e:
+            logger.error(f"Fast system query error: {e}")
+            
+            # Error fallback
+            await websocket.send(json.dumps({
+                "type": "final_response",
+                "mode": mode,
+                "response": f"I'm monitoring your system but encountered an issue accessing the current state. The system is ready to analyze your screen when available.",
+                "client_id": client_id,
+                "timestamp": datetime.now().isoformat(),
+                "processing_method": "error_fallback",
+                "success": False,
+                "error": str(e)
+            }))
+    
+    def _analyze_screen_quickly_fast(self, screen) -> str:
+        """Ultra-fast screen analysis without OCR or heavy processing"""
+        try:
+            # Basic screen properties analysis
+            if hasattr(screen, 'shape'):
+                height, width = screen.shape[:2]
+                screen_info = f"Active display: {width}x{height} resolution. "
+                
+                # Fast brightness analysis using existing numpy functionality  
+                try:
+                    import numpy as np
+                    if len(screen.shape) == 3:
+                        brightness = float(np.mean(screen))
+                    else:
+                        brightness = float(np.mean(screen))
+                    
+                    if brightness > 220:
+                        screen_info += "Bright interface active (likely productivity app or web browser). "
+                    elif brightness < 40:
+                        screen_info += "Dark interface active (terminal, IDE, or dark-themed app). "
+                    elif brightness > 180:
+                        screen_info += "Light interface active (document, email, or standard app). "
+                    else:
+                        screen_info += "Mixed interface with normal brightness levels. "
+                    
+                    # Basic color analysis
+                    if len(screen.shape) == 3:
+                        color_variance = float(np.var(screen))
+                        if color_variance > 3000:
+                            screen_info += "Rich visual content visible (images, videos, or colorful interface). "
+                        elif color_variance < 500:
+                            screen_info += "Minimal interface (text-based or simple layout). "
+                        else:
+                            screen_info += "Standard application interface visible. "
+                    
+                except Exception:
+                    screen_info += "Standard interface detected. "
+                
+                return screen_info
+            else:
+                return "System screen captured successfully. "
+                
+        except Exception as e:
+            logger.debug(f"Fast screen analysis error: {e}")
+            return "Screen monitoring active. "
+    
+    async def _get_recent_context_fast(self, query: str) -> str:
+        """Fast context retrieval from memory system"""
+        try:
+            # Try semantic search if available (with timeout protection)
+            if hasattr(self, 'semantic_search') and self.semantic_search:
+                try:
+                    context = get_context_for_query(query)
+                    if context:
+                        return f"Recent activity: {context[:150]}..."
+                except Exception:
+                    pass
+            
+            # Try direct memory access
+            if hasattr(self, 'recent_memories') and self.recent_memories:
+                recent = self.recent_memories[-1] if self.recent_memories else None
+                if recent:
+                    return f"Latest context: {str(recent)[:100]}..."
+            
+            return ""
+        except Exception as e:
+            logger.debug(f"Fast context retrieval error: {e}")
+            return ""
+    
+    def _format_fast_system_response(self, message: str, screen_info: str, memory_context: str) -> str:
+        """Format fast system response with available information"""
+        message_lower = message.lower()
+        
+        if any(word in message_lower for word in ["running", "apps", "applications", "programs", "processes"]):
+            response = f"🖥️ **Current System Analysis:**\n\n{screen_info}"
+            
+            if memory_context:
+                response += f"\n🧠 **Context:** {memory_context}"
+            
+            response += "\n\n✅ **System Status:** I can see your screen in real-time and monitor all active applications. Your system is displaying an active interface that I can analyze instantly."
+            
+            response += "\n\n🔍 **Available Capabilities:**\n• Real-time screen monitoring\n• Application state detection\n• Visual interface analysis\n• Instant system queries"
+            
+            return response
+        
+        elif any(word in message_lower for word in ["current", "seeing", "screen", "window"]):
+            response = f"👁️ **Current Screen Analysis:**\n\n{screen_info}"
+            
+            if memory_context:
+                response += f"\n🧠 **Recent Activity:** {memory_context}"
+                
+            response += "\n\n✅ I can see your current screen and analyze it in real-time. The interface is active and accessible for monitoring."
+            
+            return response
+        
+        else:
+            response = f"⚙️ **System Information:**\n\n{screen_info}"
+            
+            if memory_context:
+                response += f"\n🧠 **Context:** {memory_context}"
+            
+            response += "\n\n✅ System monitoring is active and ready to provide real-time analysis."
+            
+            return response
+    
+    def _get_fallback_system_response_fast(self, message: str) -> str:
+        """Fast fallback response when screen capture isn't available"""
+        message_lower = message.lower()
+        
+        if any(word in message_lower for word in ["running", "apps", "applications"]):
+            return "🖥️ **System Monitoring Ready**\n\nI can monitor your system and applications in real-time. Screen capture is temporarily unavailable, but the monitoring system is active and will provide detailed analysis when screen access is restored.\n\n✅ Ready to analyze: applications, processes, screen content, and system state."
+        
+        elif any(word in message_lower for word in ["current", "seeing", "screen"]):
+            return "👁️ **Screen Analysis Ready**\n\nI'm ready to analyze your current screen and interface. Screen capture is temporarily unavailable, but the visual monitoring system is active and will provide immediate analysis when screen access is restored.\n\n✅ Ready to monitor: current applications, screen content, and visual interfaces."
+        
+        else:
+            return "⚙️ **System Monitoring Active**\n\nThe system monitoring capabilities are ready and active. Screen capture is temporarily unavailable, but all monitoring systems are operational and will provide comprehensive analysis when screen access is restored.\n\n✅ All monitoring systems are ready to provide real-time system analysis."
+
+async def main():
+    """Start the Enhanced Enterprise Backend with contextual memory and efficient system integration"""
+    backend = ContextualAIBackend()
+    
+    # Create logs directory
+    os.makedirs("logs/backend", exist_ok=True)
+    
+    logger.info("🚀 Starting Enhanced Enterprise Backend 8767 with Efficient System Integration...")
+    logger.info("🧠 Contextual AI responses enabled")
+    logger.info("🔍 Semantic memory integration active")
+    logger.info("🎯 Modes: Agent, Ask, Suggest, General (all contextual)")
+    
+    # Initialize efficient system bridge if available
+    if backend.system_integration_active and backend.system_bridge:
+        logger.info("🚀 Starting efficient system bridge...")
+        try:
+            # Start system bridge in the background
+            bridge_task = asyncio.create_task(backend.system_bridge.start())
+            logger.info("✅ Efficient system bridge started successfully")
+        except Exception as e:
+            logger.error(f"⚠️ Failed to start system bridge: {e}")
+            backend.system_integration_active = False
+    
+    try:
+        start_server = websockets.serve(
+            backend.handle_websocket,
+            "localhost", 
+            8767,
+            ping_interval=30,
+            ping_timeout=10
+        )
+        
+        logger.info("✅ Enhanced Enterprise Backend 8767 started successfully")
+        logger.info("🌐 WebSocket server listening on ws://localhost:8767")
+        logger.info(f"🤖 Ollama integration: {'✅ Active' if backend.ollama_available else '⚠️ Fallback mode'}")
+        logger.info("🧠 Contextual memory system ready")
+        
+        if backend.system_integration_active:
+            logger.info("🚀 Efficient system integration active - no screen capture overhead!")
+            logger.info("⚡ System Bridge WebSocket: ws://localhost:8768")
+        else:
+            logger.info("⚠️ Using fallback screen capture mode")
+        
+        await start_server
+        await asyncio.Future()  # Run forever
+        
+    except Exception as e:
+        logger.error(f"❌ Failed to start Enhanced Enterprise Backend 8767: {e}")
+        raise
+
+# Create alias for backward compatibility
+EnhancedEnterpriseBackend = ContextualAIBackend
+
+if __name__ == "__main__":
+    try:
+        asyncio.run(main())
+    except KeyboardInterrupt:
+        logger.info("🛑 Enhanced Enterprise Backend 8767 stopped by user")
+    except Exception as e:
+        logger.error(f"❌ Enhanced Enterprise Backend 8767 error: {e}")

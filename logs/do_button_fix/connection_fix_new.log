@@ -1,0 +1,26 @@
+2025-06-03 20:11:24,149 - INFO - Plan persistence manager initialized with 51 stored plans
+2025-06-03 20:11:24,149 - INFO - Plan persistence service initialized
+2025-06-03 20:11:24,149 - INFO - ✅ Plan persistence module loaded successfully
+2025-06-03 20:11:24,151 - INFO - Port 8766 is available
+2025-06-03 20:11:24,151 - INFO - Starting DO Button Connection Fix proxy on localhost:8766
+2025-06-03 20:11:24,181 - INFO - server listening on 127.0.0.1:8766
+2025-06-03 20:11:24,181 - INFO - server listening on [::1]:8766
+2025-06-03 20:11:24,181 - INFO - ✅ DO Button Connection Fix proxy running on ws://localhost:8766
+2025-06-03 20:11:24,181 - INFO - 📋 Proxy forwards to DO button server (8765) and Neural UI server (8768)
+2025-06-03 20:11:37,330 - INFO - connection open
+2025-06-03 20:11:37,331 - INFO - Client 25150bcc-4166-48b2-ba58-886ff2265411 connected
+2025-06-03 20:11:37,331 - INFO - Received message type: button_action from client 25150bcc-4166-48b2-ba58-886ff2265411
+2025-06-03 20:11:37,345 - INFO - Connected to DO button server
+2025-06-03 20:11:37,345 - WARNING - Plan test_plan_1748995897 not found in metadata
+2025-06-03 20:11:37,346 - INFO - Plan test_plan_1748995897 saved successfully
+2025-06-03 20:11:37,346 - INFO - Created and saved dummy plan test_plan_1748995897
+2025-06-03 20:11:37,346 - INFO - Forwarded message to DO button server: button_action
+2025-06-03 20:11:37,346 - INFO - Received response from DO button server
+2025-06-03 20:11:37,348 - INFO - connection open
+2025-06-03 20:11:37,348 - INFO - Client 5f0745db-94e8-4eb8-a9de-bdad5efe15ca connected
+2025-06-03 20:11:37,348 - INFO - Received message type: agent_confirmation from client 5f0745db-94e8-4eb8-a9de-bdad5efe15ca
+2025-06-03 20:11:37,348 - ERROR - Error processing message: 'ClientConnection' object has no attribute 'closed'
+2025-06-03 20:11:37,350 - INFO - connection open
+2025-06-03 20:11:37,350 - INFO - Client 65d55479-c4f3-401c-a5f0-048d4bbdd06a connected
+2025-06-03 20:11:37,350 - INFO - Received message type: do_button from client 65d55479-c4f3-401c-a5f0-048d4bbdd06a
+2025-06-03 20:11:37,350 - ERROR - Error processing message: 'ClientConnection' object has no attribute 'closed'

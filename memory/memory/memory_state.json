@@ -1,6 +1,4 @@
 {
-  "version": "1.0",
-  "last_update": "2025-05-23T15:09:56.660628",
   "short_term": [
     {
       "timestamp": "2025-05-23T15:05:41.686939",
@@ -457,6 +455,38 @@
         "data_quality": "high"
       },
       "memory_id": "stm_1748038186616"
+    },
+    {
+      "type": "web_content",
+      "url": "https://www.amazon.com/products/smartphone",
+      "title": "Premium Smartphone XYZ - Amazon.com",
+      "searchable_text": "\n        Premium Smartphone XYZ with 108MP Camera\n\n        Price: $899.99\n        Save $100.00 (10%)\n        FREE Shipping\n        In Stock.\n        \n        Buy Now | Add to Cart | Add to List\n        \n        Features:\n        \u2022 6.8\" Dynamic AMOLED Display\n        \u2022 108MP Camera with 8K Video\n        \u2022 5000mAh Battery\n        \u2022 5G Connectivity\n        \n        Product Description:\n        Experience the ultimate smartphone with revolutionary camera technology...\n        ",
+      "timestamp": 1748803660.43971,
+      "source": "web_browser"
+    },
+    {
+      "type": "web_content",
+      "url": "https://accounts.google.com/signup",
+      "title": "Create your Google Account",
+      "searchable_text": "\n        Create your Google Account\n        \n        First name:\n        Last name:\n        \n        Username: @gmail.com\n        \n        Password:\n        Confirm password:\n        \n        Next | Sign in instead\n        \n        By creating an account, you agree to our Terms of Service and acknowledge \n        that you have read our Privacy Policy to learn how we collect and use your data.\n        ",
+      "timestamp": 1748803660.439711,
+      "source": "web_browser"
+    },
+    {
+      "type": "web_content",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch",
+      "title": "Using the Fetch API - Web APIs | MDN",
+      "searchable_text": "\n        Using the Fetch API\n        \n        The Fetch API provides a JavaScript interface for accessing and manipulating \n        parts of the HTTP pipeline, such as requests and responses. It also provides \n        a global fetch() method that provides an easy, logical way to fetch resources \n        asynchronously across the network.\n        \n        Basic fetch request:\n        \n        ```javascript\n        fetch('https://api.example.com/data')\n          .then(response => response.json())\n          .then(data => console.log(data))\n          .catch(error => console.error('Error:', error));\n        ```\n        \n        Supply request options:\n        \n        ```javascript\n        fetch('https://api.example.com/data', {\n          method: 'POST',\n          headers: {\n            'Content-Type': 'application/json',\n          },\n          body: JSON.stringify(data),\n        })\n        ```\n        ",
+      "timestamp": 1748803660.439711,
+      "source": "web_browser"
+    },
+    {
+      "type": "application",
+      "application": "Chrome",
+      "title": "Premium Smartphone XYZ - Amazon.com - Google Chrome",
+      "searchable_text": "Browser window showing Amazon product page",
+      "timestamp": 1748803660.439712,
+      "source": "process_sensor"
     }
   ],
   "long_term": [],
@@ -471,5 +501,12 @@
     "activities": [],
     "relationships": {},
     "by_timestamp": {}
-  }
+  },
+  "_sensor_data_storage": {
+    "screen": {},
+    "process": {},
+    "file": {},
+    "other": {}
+  },
+  "last_update": "2025-06-08T00:10:32.180992"
 }

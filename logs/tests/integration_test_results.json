@@ -1,0 +1,22 @@
+{
+  "timestamp": "2025-06-08T00:08:12.370490",
+  "tests": {
+    "websocket_connection": false,
+    "backend_integration": false,
+    "brain_router_modes": {
+      "Agent": false,
+      "Ask": false,
+      "Suggest": false,
+      "General": false
+    },
+    "chat_flow_integration": false,
+    "memory_system_integration": false,
+    "sensor_integration": {
+      "process_sensor": false,
+      "screen_sensor": false,
+      "memory_system": false
+    }
+  },
+  "overall_success": false,
+  "success_rate": "0/11 (0.0%)"
+}

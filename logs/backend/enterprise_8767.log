@@ -73,3 +73,175 @@ aiohttp.client_exceptions.SocketTimeoutError: Timeout on reading data from socke
 
 2025-05-22 23:59:59,693 - llava_processor - INFO - Retrying in 1.0 seconds...
 2025-05-23 00:00:00,695 - llava_processor - INFO - Sending LLaVA request (attempt 2/3)
+2025-06-05 01:41:31,413 - __main__ - INFO - Enterprise Backend 8767 initialized
+2025-06-05 01:41:31,413 - __main__ - INFO - 🚀 Starting Enterprise Backend on port 8767...
+2025-06-05 01:41:31,413 - __main__ - INFO - 🧠 Brain Router integration enabled
+2025-06-05 01:41:31,413 - __main__ - INFO - 🎯 Modes: Agent, Ask, Suggest, General
+2025-06-05 01:41:31,426 - __main__ - INFO - ✅ Enterprise Backend 8767 started successfully
+2025-06-05 01:41:31,426 - __main__ - INFO - 🌐 WebSocket server listening on ws://localhost:8767
+2025-06-05 01:41:31,430 - websockets.server - INFO - server listening on 127.0.0.1:8767
+2025-06-05 01:41:31,430 - websockets.server - INFO - server listening on [::1]:8767
+2025-06-05 01:41:32,218 - websockets.server - INFO - connection open
+2025-06-05 01:41:32,218 - __main__ - INFO - Client connected: client_1749102092218 from ::1
+2025-06-05 01:41:32,219 - __main__ - INFO - Processing register from client_1749102092218
+2025-06-05 01:41:48,107 - __main__ - INFO - Processing sensor_data from client_1749102092218
+2025-06-05 01:42:23,372 - __main__ - INFO - Client disconnected: client_1749102092218
+2025-06-05 01:42:27,773 - websockets.server - INFO - connection open
+2025-06-05 01:42:27,775 - __main__ - INFO - Client connected: client_1749102147775 from ::1
+2025-06-05 01:42:27,810 - __main__ - INFO - Processing register from client_1749102147775
+2025-06-05 01:42:37,661 - websockets.server - INFO - connection open
+2025-06-05 01:42:37,662 - __main__ - INFO - Client connected: client_1749102157662 from ::1
+2025-06-05 01:42:37,663 - websockets.server - INFO - connection open
+2025-06-05 01:42:37,663 - __main__ - INFO - Client connected: client_1749102157663 from ::1
+2025-06-05 01:42:37,664 - __main__ - INFO - Processing register from client_1749102157662
+2025-06-05 01:42:44,999 - __main__ - INFO - Processing sensor_data from client_1749102147775
+2025-06-05 01:42:52,309 - __main__ - INFO - Processing chat_request from client_1749102157663
+2025-06-05 01:42:52,309 - __main__ - INFO - Agent mode processing: open Google and Check SEGEV
+2025-06-05 01:42:52,792 - agent_workflow.input_controller - INFO - Detected screen size: 1470x956
+2025-06-05 01:42:53,176 - llava_processor - INFO - Connected to Ollama API v0.6.8
+2025-06-05 01:42:53,179 - llava_processor - INFO - Connected to Ollama API v0.6.8
+2025-06-05 01:42:53,179 - total_screen_analyzer - INFO - LLaVA visual processor initialized for total screen analysis
+2025-06-05 01:42:53,179 - total_screen_analyzer - INFO - Total Screen Analyzer initialized with 8s interval
+2025-06-05 01:42:53,183 - agent_workflow.input_controller - INFO - Standard mouse listener started successfully
+2025-06-05 01:42:53,183 - agent_workflow.input_controller - INFO - Keyboard listener started successfully
+2025-06-05 01:42:53,183 - agent_workflow.input_controller - INFO - Input controller initialized (safe mode)
+2025-06-05 01:42:53,183 - agent_workflow.input_controller - INFO - 🚨 Emergency shutdown: Press Ctrl+1 to immediately stop agent
+2025-06-05 01:42:53,329 - ui_automation_engine - INFO - ✅ UI automation permissions granted
+2025-06-05 01:42:53,329 - professional_agent - INFO - ✅ Professional Agent components initialized
+2025-06-05 01:42:53,329 - professional_agent - INFO - 🚀 Starting professional agent session: c9ce6470-8b49-4903-883c-cb00fe21309d
+2025-06-05 01:42:53,329 - professional_agent - INFO - User request: open Google and Check SEGEV
+2025-06-05 01:42:53,885 - professional_agent - INFO - 📸 Screenshot captured: 2940x1912 pixels
+2025-06-05 01:42:53,885 - professional_agent - INFO - 🔍 Running comprehensive screen analysis...
+2025-06-05 01:42:54,204 - total_screen_analyzer - INFO - Starting total screen analysis (hash: 185f3ed2)
+2025-06-05 01:43:05,049 - total_screen_analyzer - INFO - Lightweight vision analysis completed: 536 UI elements detected
+2025-06-05 01:43:05,063 - total_screen_analyzer - INFO - Completed total screen analysis in 10.86s
+2025-06-05 01:43:05,064 - professional_agent - INFO - 🎯 Found 442 UI elements
+2025-06-05 01:43:05,065 - professional_agent - INFO - 📝 Extracted 293 text elements
+2025-06-05 01:43:05,082 - professional_agent - INFO - 🖥️  Application: ai-assistant-overlay
+2025-06-05 01:43:05,082 - professional_agent - INFO - 🪟 Window: Main Window
+2025-06-05 01:43:05,082 - professional_agent - INFO - ✅ Screen analysis complete: 442 total elements, 420 actionable elements
+2025-06-05 01:43:05,082 - professional_agent - INFO - 🎯 Top actionable elements: ['interactive_element@(1470,87)', 'interactive_element@(1416,1557)', 'interactive_element@(1492,1058)', 'widget@(2318,1164)', 'widget@(2849,1741)']
+2025-06-05 01:43:05,083 - __main__ - INFO - Processing sensor_data from client_1749102147775
+2025-06-05 01:43:35,127 - professional_agent - WARNING - LLM plan generation failed: 
+2025-06-05 01:43:35,137 - professional_agent - INFO - Executing step 1/1: Take screenshot to validate completion
+2025-06-05 01:43:35,138 - professional_agent - INFO - Executing step: Take screenshot to validate completion
+2025-06-05 01:43:50,480 - __main__ - INFO - Client disconnected: client_1749102147775
+2025-06-05 01:43:50,496 - websockets.server - INFO - connection open
+2025-06-05 01:43:50,497 - __main__ - INFO - Client connected: client_1749102230497 from ::1
+2025-06-05 01:43:50,498 - __main__ - INFO - Processing register from client_1749102230497
+2025-06-05 01:44:16,222 - __main__ - INFO - Processing sensor_data from client_1749102230497
+2025-06-05 01:44:29,463 - __main__ - INFO - Processing sensor_data from client_1749102230497
+2025-06-05 01:44:53,210 - __main__ - INFO - Processing sensor_data from client_1749102230497
+2025-06-05 01:45:40,527 - __main__ - INFO - Client disconnected: client_1749102230497
+2025-06-05 01:45:48,664 - websockets.server - INFO - connection open
+2025-06-05 01:45:48,664 - __main__ - INFO - Client connected: client_1749102348664 from ::1
+2025-06-05 01:45:48,665 - __main__ - INFO - Processing register from client_1749102348664
+2025-06-05 01:46:14,108 - __main__ - INFO - Processing sensor_data from client_1749102348664
+2025-06-05 01:50:58,891 - __main__ - INFO - Client disconnected: client_1749102348664
+2025-06-05 01:50:58,895 - websockets.server - INFO - connection open
+2025-06-05 01:50:58,895 - __main__ - INFO - Client connected: client_1749102658895 from ::1
+2025-06-05 01:50:58,896 - __main__ - INFO - Processing register from client_1749102658895
+2025-06-05 01:50:59,356 - __main__ - INFO - Client disconnected: client_1749102157663
+2025-06-05 01:50:59,357 - __main__ - INFO - Client disconnected: client_1749102157662
+2025-06-05 01:51:15,529 - websockets.server - INFO - connection open
+2025-06-05 01:51:15,532 - __main__ - INFO - Client connected: client_1749102675532 from ::1
+2025-06-05 01:51:15,533 - websockets.server - INFO - connection open
+2025-06-05 01:51:15,534 - __main__ - INFO - Client connected: client_1749102675534 from ::1
+2025-06-05 01:51:15,548 - __main__ - INFO - Processing register from client_1749102675532
+2025-06-05 01:51:20,028 - __main__ - INFO - Client disconnected: client_1749102675534
+2025-06-05 01:51:20,029 - __main__ - INFO - Client disconnected: client_1749102675532
+2025-06-05 01:52:08,238 - __main__ - INFO - Enterprise Backend 8767 initialized
+2025-06-05 01:52:08,238 - __main__ - INFO - 🚀 Starting Enterprise Backend on port 8767...
+2025-06-05 01:52:08,238 - __main__ - INFO - 🧠 Brain Router integration enabled
+2025-06-05 01:52:08,238 - __main__ - INFO - 🎯 Modes: Agent, Ask, Suggest, General
+2025-06-05 01:52:08,258 - __main__ - INFO - ✅ Enterprise Backend 8767 started successfully
+2025-06-05 01:52:08,258 - __main__ - INFO - 🌐 WebSocket server listening on ws://localhost:8767
+2025-06-05 01:52:08,264 - websockets.server - INFO - server listening on 127.0.0.1:8767
+2025-06-05 01:52:08,264 - websockets.server - INFO - server listening on [::1]:8767
+2025-06-05 01:52:09,337 - websockets.server - INFO - connection open
+2025-06-05 01:52:09,337 - __main__ - INFO - Client connected: client_1749102729337 from ::1
+2025-06-05 01:52:09,338 - __main__ - INFO - Processing register from client_1749102729337
+2025-06-05 01:52:49,677 - __main__ - INFO - Client disconnected: client_1749102729337
+2025-06-05 01:52:49,680 - websockets.server - INFO - connection open
+2025-06-05 01:52:49,680 - __main__ - INFO - Client connected: client_1749102769680 from ::1
+2025-06-05 01:52:49,682 - __main__ - INFO - Processing register from client_1749102769680
+2025-06-05 01:53:39,795 - __main__ - INFO - Client disconnected: client_1749102769680
+2025-06-05 01:53:50,054 - websockets.server - INFO - connection open
+2025-06-05 01:53:50,054 - __main__ - INFO - Client connected: client_1749102830054 from ::1
+2025-06-05 01:53:50,055 - __main__ - INFO - Processing register from client_1749102830054
+2025-06-05 01:54:12,965 - __main__ - INFO - Processing sensor_data from client_1749102830054
+2025-06-05 01:54:37,631 - __main__ - INFO - Processing sensor_data from client_1749102830054
+2025-06-05 01:55:09,020 - __main__ - INFO - Client disconnected: client_1749102830054
+2025-06-05 01:55:09,021 - websockets.server - INFO - connection open
+2025-06-05 01:55:09,022 - __main__ - INFO - Client connected: client_1749102909022 from ::1
+2025-06-05 01:55:09,022 - __main__ - INFO - Processing register from client_1749102909022
+2025-06-05 01:56:10,754 - __main__ - INFO - Enterprise Backend 8767 initialized
+2025-06-05 01:56:10,755 - __main__ - INFO - 🚀 Starting Enterprise Backend on port 8767...
+2025-06-05 01:56:10,755 - __main__ - INFO - 🧠 Brain Router integration enabled
+2025-06-05 01:56:10,755 - __main__ - INFO - 🎯 Modes: Agent, Ask, Suggest, General
+2025-06-05 01:56:10,774 - __main__ - INFO - ✅ Enterprise Backend 8767 started successfully
+2025-06-05 01:56:10,774 - __main__ - INFO - 🌐 WebSocket server listening on ws://localhost:8767
+2025-06-05 01:56:10,781 - websockets.server - INFO - server listening on 127.0.0.1:8767
+2025-06-05 01:56:10,781 - websockets.server - INFO - server listening on [::1]:8767
+2025-06-05 01:56:11,883 - websockets.server - INFO - connection open
+2025-06-05 01:56:11,883 - __main__ - INFO - Client connected: client_1749102971883 from ::1
+2025-06-05 01:56:11,884 - __main__ - INFO - Processing register from client_1749102971883
+2025-06-05 01:56:35,137 - __main__ - INFO - Processing sensor_data from client_1749102971883
+2025-06-05 01:57:32,516 - __main__ - INFO - Client disconnected: client_1749102971883
+2025-06-05 01:58:01,084 - websockets.server - INFO - connection open
+2025-06-05 01:58:01,086 - __main__ - INFO - Client connected: client_1749103081086 from ::1
+2025-06-05 01:58:01,089 - __main__ - INFO - Processing register from client_1749103081086
+2025-06-05 01:58:47,643 - __main__ - INFO - Client disconnected: client_1749103081086
+2025-06-05 01:58:47,645 - websockets.server - INFO - connection open
+2025-06-05 01:58:47,645 - __main__ - INFO - Client connected: client_1749103127645 from ::1
+2025-06-05 01:58:47,646 - __main__ - INFO - Processing register from client_1749103127645
+2025-06-05 01:58:56,082 - websockets.server - INFO - connection open
+2025-06-05 01:58:56,083 - __main__ - INFO - Client connected: client_1749103136083 from ::1
+2025-06-05 01:58:56,083 - websockets.server - INFO - connection open
+2025-06-05 01:58:56,084 - __main__ - INFO - Client connected: client_1749103136084 from ::1
+2025-06-05 01:58:56,086 - __main__ - INFO - Processing register from client_1749103136083
+2025-06-05 01:59:01,265 - __main__ - INFO - Processing chat_request from client_1749103136084
+2025-06-05 01:59:01,266 - __main__ - INFO - Agent mode processing: Search SEGEV in Google
+2025-06-05 01:59:01,844 - agent_workflow.input_controller - INFO - Detected screen size: 1470x956
+2025-06-05 01:59:02,544 - llava_processor - INFO - Connected to Ollama API v0.6.8
+2025-06-05 01:59:02,547 - llava_processor - INFO - Connected to Ollama API v0.6.8
+2025-06-05 01:59:02,547 - total_screen_analyzer - INFO - LLaVA visual processor initialized for total screen analysis
+2025-06-05 01:59:02,547 - total_screen_analyzer - INFO - Total Screen Analyzer initialized with 8s interval
+2025-06-05 01:59:02,548 - agent_workflow.input_controller - INFO - Standard mouse listener started successfully
+2025-06-05 01:59:02,548 - agent_workflow.input_controller - INFO - Keyboard listener started successfully
+2025-06-05 01:59:02,549 - agent_workflow.input_controller - INFO - Input controller initialized (safe mode)
+2025-06-05 01:59:02,549 - agent_workflow.input_controller - INFO - 🚨 Emergency shutdown: Press Ctrl+1 to immediately stop agent
+2025-06-05 01:59:02,919 - ui_automation_engine - INFO - ✅ UI automation permissions granted
+2025-06-05 01:59:02,920 - professional_agent - INFO - ✅ Professional Agent components initialized
+2025-06-05 01:59:02,921 - professional_agent - INFO - 🚀 Starting professional agent session: 34f58abc-0fe3-49a7-b1d0-ca54c5b10648
+2025-06-05 01:59:02,921 - professional_agent - INFO - User request: Search SEGEV in Google
+2025-06-05 01:59:03,473 - professional_agent - INFO - 📸 Screenshot captured: 2940x1912 pixels
+2025-06-05 01:59:03,474 - professional_agent - INFO - 🔍 Running comprehensive screen analysis...
+2025-06-05 01:59:03,780 - total_screen_analyzer - INFO - Starting total screen analysis (hash: 6ce697a5)
+2025-06-05 01:59:48,526 - total_screen_analyzer - INFO - Lightweight vision analysis completed: 80 UI elements detected
+2025-06-05 01:59:48,550 - total_screen_analyzer - INFO - Completed total screen analysis in 44.77s
+2025-06-05 01:59:48,551 - professional_agent - INFO - 🎯 Found 2640 UI elements
+2025-06-05 01:59:48,563 - professional_agent - INFO - 📝 Extracted 562 text elements
+2025-06-05 01:59:48,970 - professional_agent - INFO - 🖥️  Application: Cursor
+2025-06-05 01:59:48,970 - professional_agent - INFO - 🪟 Window: Main Window
+2025-06-05 01:59:48,975 - professional_agent - INFO - ✅ Screen analysis complete: 2640 total elements, 2638 actionable elements
+2025-06-05 01:59:48,975 - professional_agent - INFO - 🎯 Top actionable elements: ['text_field@(237,839)', 'text_field@(2789,1889)', 'widget@(34,1889)', 'widget@(1781,273)', 'button@(2885,1776)']
+2025-06-05 01:59:48,978 - __main__ - INFO - Processing sensor_data from client_1749103127645
+2025-06-05 02:00:09,609 - __main__ - INFO - Client disconnected: client_1749103127645
+2025-06-05 02:00:19,198 - professional_agent - WARNING - LLM plan generation failed: 
+2025-06-05 02:00:19,205 - professional_agent - INFO - Executing step 1/1: Take screenshot to validate completion
+2025-06-05 02:00:19,206 - professional_agent - INFO - Executing step: Take screenshot to validate completion
+2025-06-05 02:00:38,053 - websockets.server - INFO - connection open
+2025-06-05 02:00:38,054 - __main__ - INFO - Client connected: client_1749103238054 from ::1
+2025-06-05 02:00:38,055 - __main__ - INFO - Processing register from client_1749103238054
+2025-06-05 02:08:56,518 - __main__ - INFO - Enterprise Backend 8767 initialized
+2025-06-05 02:08:56,519 - __main__ - INFO - 🚀 Starting Enterprise Backend on port 8767...
+2025-06-05 02:08:56,519 - __main__ - INFO - 🧠 Brain Router integration enabled
+2025-06-05 02:08:56,519 - __main__ - INFO - 🎯 Modes: Agent, Ask, Suggest, General
+2025-06-05 02:08:56,535 - __main__ - INFO - ✅ Enterprise Backend 8767 started successfully
+2025-06-05 02:08:56,535 - __main__ - INFO - 🌐 WebSocket server listening on ws://localhost:8767
+2025-06-05 02:08:56,539 - websockets.server - INFO - server listening on [::1]:8767
+2025-06-05 02:08:56,539 - websockets.server - INFO - server listening on 127.0.0.1:8767
+2025-06-05 02:08:57,649 - websockets.server - INFO - connection open
+2025-06-05 02:08:57,650 - __main__ - INFO - Client connected: client_1749103737650 from ::1
+2025-06-05 02:08:57,650 - __main__ - INFO - Processing register from client_1749103737650

@@ -1,0 +1,24 @@
+2025-06-04 02:50:56,727 - ultimate_do_button - DEBUG - Debug mode enabled
+2025-06-04 02:50:56,728 - ultimate_do_button - INFO - Starting Ultimate DO Button Server (version 2.0)
+2025-06-04 02:50:56,728 - ultimate_do_button - INFO - Python version: 3.13.3 (main, Apr  8 2025, 13:54:08) [Clang 16.0.0 (clang-1600.0.26.6)]
+2025-06-04 02:50:56,728 - ultimate_do_button - INFO - Websockets version: 15.0.1
+2025-06-04 02:50:57,785 - ultimate_do_button - INFO - Port 8765 is available
+2025-06-04 02:50:57,786 - ultimate_do_button - INFO - 🚀 Starting Ultimate DO Button Server on 0.0.0.0:8765
+2025-06-04 02:50:57,823 - websockets.server - INFO - server listening on 0.0.0.0:8765
+2025-06-04 02:50:57,824 - ultimate_do_button - INFO - ✅ WebSocket server initialized successfully
+2025-06-04 02:50:57,825 - ultimate_do_button - INFO - ✅ Ultimate DO button server running on ws://0.0.0.0:8765
+2025-06-04 02:50:57,825 - ultimate_do_button - INFO - 🎯 Ready to handle DO button clicks with REAL AUTOMATION
+2025-06-04 02:50:57,825 - ultimate_do_button - INFO - 🖱️ Automation available: True
+2025-06-04 02:50:57,825 - ultimate_do_button - INFO - 🤖 Real mouse/keyboard automation will be performed on DO button clicks
+2025-06-04 02:50:57,825 - ultimate_do_button - INFO - ⚙️ Actions supported: click, type, key press, and hotkeys
+2025-06-04 02:50:57,825 - ultimate_do_button - INFO - 📋 Server supports all three message formats: agent_confirmation, button_action, and do_button
+2025-06-04 02:50:57,825 - ultimate_do_button - INFO - 🔄 CORS enabled: Server accepts connections from any origin
+2025-06-04 02:50:57,825 - ultimate_do_button - INFO - Server status: 0 clients connected, 0 executions completed
+2025-06-04 02:51:57,829 - ultimate_do_button - INFO - Server status: 0 clients connected, 0 executions completed
+2025-06-04 02:52:29,608 - websockets.server - INFO - connection open
+2025-06-04 02:52:29,611 - ultimate_do_button - INFO - 🔌 Client client_5421591456 connected from 127.0.0.1
+2025-06-04 02:52:29,613 - ultimate_do_button - INFO - ✅ Welcome message sent to client_5421591456
+2025-06-04 02:52:29,615 - ultimate_do_button - INFO - 📩 Received from client_5421591456: do_button_action
+2025-06-04 02:52:29,615 - ultimate_do_button - DEBUG - Full message: {"type": "do_button_action", "do_button_action": {"plan_id": "test_plan_1749019949", "action": "execute"}, "client_id": "test_client"}
+2025-06-04 02:52:29,618 - ultimate_do_button - INFO - Client client_5421591456 disconnected
+2025-06-04 02:52:57,832 - ultimate_do_button - INFO - Server status: 0 clients connected, 0 executions completed

@@ -1,0 +1,58 @@
+{
+  "scenario": {
+    "id": "ask_context_understanding",
+    "mode": "ask",
+    "message": "what's currently visible on my screen?",
+    "expected_keywords": [
+      "screen",
+      "visible",
+      "display",
+      "showing"
+    ],
+    "memory_indicators": [
+      "screen sensor",
+      "visual",
+      "ui"
+    ],
+    "context_indicators": [
+      "currently",
+      "visible",
+      "displayed"
+    ],
+    "description": "Tests ask mode's ability to understand and describe current screen context"
+  },
+  "final_response": {
+    "type": "final_response",
+    "mode": "ask",
+    "response": "\ud83e\udd16 Based on your current screen state and recent context, I can provide the following response:\n\nYou are currently viewing a rich visual content-rich interface. Your screen is displaying various applications such as email apps (e.g., Gmail), file managers (e.g., File Explorer or Finder), and system information (e.g., System Information). You also have the option to view your email inbox, which might be open in one of these apps.\n\nAdditionally, you may have recently viewed a video or image that is currently playing in the background. It's possible that you are viewing it through an app like YouTube or Google Photos, but without more context, I wouldn't know for sure.\n\nTo get the most accurate information, I recommend checking your email inbox directly to see if you've opened any new emails recently. You can also try closing and reopening some of these apps to see if they update their UI and display new content.\n\nKeep in mind that system information might include details about your device's performance, memory usage, or other system-related data. However, it won't provide specific information about what you're currently viewing on your screen unless you have a particular app open that provides this type of data.",
+    "client_id": "client_1748527116279",
+    "timestamp": "2025-05-29T10:01:54.512108",
+    "processing_method": "agnostic_deep_data",
+    "data_sources": [
+      "screen_analysis",
+      "memory_context"
+    ],
+    "success": true
+  },
+  "combined_response": "\ud83e\udd16 Based on your current screen state and recent context, I can provide the following response:\n\nYou are currently viewing a rich visual content-rich interface. Your screen is displaying various applications such as email apps (e.g., Gmail), file managers (e.g., File Explorer or Finder), and system information (e.g., System Information). You also have the option to view your email inbox, which might be open in one of these apps.\n\nAdditionally, you may have recently viewed a video or image that is currently playing in the background. It's possible that you are viewing it through an app like YouTube or Google Photos, but without more context, I wouldn't know for sure.\n\nTo get the most accurate information, I recommend checking your email inbox directly to see if you've opened any new emails recently. You can also try closing and reopening some of these apps to see if they update their UI and display new content.\n\nKeep in mind that system information might include details about your device's performance, memory usage, or other system-related data. However, it won't provide specific information about what you're currently viewing on your screen unless you have a particular app open that provides this type of data.",
+  "progress_updates": [],
+  "response_time": 28.41182518005371,
+  "evaluation": {
+    "success": false,
+    "quality_score": 0.49999999999999994,
+    "memory_score": 0.6666666666666666,
+    "context_score": 0.3333333333333333,
+    "explanation": "Found 2/4 keywords, 2/3 memory indicators, 1/3 context indicators. Overall quality: 0.50/1.0",
+    "keyword_matches": [
+      "screen",
+      "display"
+    ],
+    "memory_matches": [
+      "visual",
+      "ui"
+    ],
+    "context_matches": [
+      "currently"
+    ]
+  }
+}

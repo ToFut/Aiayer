@@ -1,0 +1,4 @@
+  File "<string>", line 1
+    import asyncio, websockets, json, time; async def handle(websocket, path): async for message in websocket: print(f"Received: {message}"); try: data = json.loads(message); if data.get("type") == "register": await websocket.send(json.dumps({"type": "registered"})); except: pass; async def main(): async with websockets.serve(handle, "localhost", 8765): await asyncio.Future(); asyncio.run(main())
+                                            ^^^^^
+SyntaxError: invalid syntax

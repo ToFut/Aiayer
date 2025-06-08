@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SensAI Text-to-Speech Demo</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f5f5f7;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: white;
+            border-radius: 12px;
+            padding: 20px 30px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+        
+        h1 {
+            color: #007AFF;
+            font-weight: 600;
+            margin-bottom: 10px;
+            font-size: 28px;
+        }
+        
+        h2 {
+            color: #333;
+            font-weight: 500;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            font-size: 22px;
+        }
+        
+        p {
+            margin-bottom: 15px;
+        }
+        
+        .controls {
+            background-color: #f8f8f8;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            align-items: center;
+        }
+        
+        button {
+            background-color: #007AFF;
+            color: white;
+            border: none;
+            border-radius: 20px;
+            padding: 8px 16px;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        button:hover {
+            background-color: #0066CC;
+            transform: translateY(-1px);
+        }
+        
+        button:active {
+            transform: translateY(1px);
+        }
+        
+        .button-secondary {
+            background-color: #E5E5EA;
+            color: #333;
+        }
+        
+        .button-secondary:hover {
+            background-color: #D1D1D6;
+        }
+        
+        select, input {
+            padding: 8px 12px;
+            border-radius: 8px;
+            border: 1px solid #D1D1D6;
+            font-size: 14px;
+        }
+        
+        .message {
+            padding: 15px;
+            background-color: #f5f5f7;
+            border-radius: 12px;
+            margin-bottom: 15px;
+        }
+        
+        .message.ai {
+            background-color: #E5F1FF;
+        }
+        
+        .status {
+            font-size: 14px;
+            color: #8E8E93;
+            margin-left: 15px;
+        }
+        
+        .status.speaking {
+            color: #007AFF;
+            animation: pulse 2s infinite;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        @keyframes pulse {
+            0% {
+                opacity: 0.6;
+            }
+            50% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 0.6;
+            }
+        }
+        
+        .icon {
+            width: 18px;
+            height: 18px;
+        }
+        
+        .demo-messages {
+            max-height: 300px;
+            overflow-y: auto;
+            margin: 20px 0;
+            padding: 10px;
+            border-radius: 8px;
+            background-color: #FAFAFC;
+            border: 1px solid #E5E5EA;
+        }
+        
+        .settings-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .setting-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        
+        label {
+            font-size: 14px;
+            color: #666;
+        }
+        
+        .slider-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .slider-value {
+            width: 40px;
+            text-align: center;
+            font-size: 14px;
+            color: #666;
+        }
+        
+        footer {
+            margin-top: 40px;
+            text-align: center;
+            font-size: 14px;
+            color: #8E8E93;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>SensAI Text-to-Speech Demo</h1>
+        <p>This demo shows how the text-to-speech feature works in SensAI overlay. You can try different voice settings and listen to sample AI responses.</p>
+        
+        <div class="controls">
+            <button id="toggleSpeech">
+                <svg class="icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M11 5L6 9H2V15H6L11 19V5Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M15.54 8.46C16.4774 9.39764 17.004 10.6692 17.004 11.995C17.004 13.3208 16.4774 14.5924 15.54 15.53" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M19 5C20.2731 6.52779 21 8.51843 21 10.6667C21 12.8149 20.2731 14.8056 19 16.3333" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                Enable Text-to-Speech
+            </button>
+            <button id="stopSpeech" class="button-secondary">Stop Speaking</button>
+            <div class="status" id="speechStatus">Not speaking</div>
+        </div>
+        
+        <h2>Voice Settings</h2>
+        <div class="settings-grid">
+            <div class="setting-group">
+                <label for="voiceSelect">Voice:</label>
+                <select id="voiceSelect"></select>
+            </div>
+            
+            <div class="setting-group">
+                <label for="rateRange">Rate:</label>
+                <div class="slider-container">
+                    <input type="range" id="rateRange" min="0.5" max="2" step="0.1" value="1">
+                    <span class="slider-value" id="rateValue">1.0</span>
+                </div>
+            </div>
+            
+            <div class="setting-group">
+                <label for="pitchRange">Pitch:</label>
+                <div class="slider-container">
+                    <input type="range" id="pitchRange" min="0.5" max="1.5" step="0.1" value="1">
+                    <span class="slider-value" id="pitchValue">1.0</span>
+                </div>
+            </div>
+            
+            <div class="setting-group">
+                <label for="volumeRange">Volume:</label>
+                <div class="slider-container">
+                    <input type="range" id="volumeRange" min="0" max="1" step="0.1" value="0.8">
+                    <span class="slider-value" id="volumeValue">0.8</span>
+                </div>
+            </div>
+        </div>
+        
+        <h2>Sample Messages</h2>
+        <div class="demo-messages" id="demoMessages">
+            <div class="message">
+                <p>What are the benefits of text-to-speech for AI assistants?</p>
+            </div>
+            
+            <div class="message ai" data-message="Text-to-speech offers several benefits for AI assistants:
+
+1. **Accessibility**: Makes content available to users with visual impairments or reading difficulties
+2. **Multitasking**: Allows users to listen to responses while focusing on other tasks
+3. **Comprehension**: Some users absorb information better through audio than reading
+4. **Reduced eye strain**: Decreases screen time and associated eye fatigue
+5. **Personalization**: Voice settings can be customized to user preferences
+
+This technology creates a more inclusive and versatile user experience while providing alternative ways to consume information.">
+                <p>Text-to-speech offers several benefits for AI assistants:</p>
+                <ol>
+                    <li><strong>Accessibility</strong>: Makes content available to users with visual impairments or reading difficulties</li>
+                    <li><strong>Multitasking</strong>: Allows users to listen to responses while focusing on other tasks</li>
+                    <li><strong>Comprehension</strong>: Some users absorb information better through audio than reading</li>
+                    <li><strong>Reduced eye strain</strong>: Decreases screen time and associated eye fatigue</li>
+                    <li><strong>Personalization</strong>: Voice settings can be customized to user preferences</li>
+                </ol>
+                <p>This technology creates a more inclusive and versatile user experience while providing alternative ways to consume information.</p>
+                <button class="speak-button button-secondary">Speak This Response</button>
+            </div>
+            
+            <div class="message">
+                <p>How does the SensAI text-to-speech system work?</p>
+            </div>
+            
+            <div class="message ai" data-message="The SensAI text-to-speech system works through these components:
+
+1. **Speech Service**: Core module that interfaces with the Web Speech API
+2. **Voice Selection**: Automatically chooses optimal voice based on user's system language
+3. **Text Processing**: Cleans up markdown and code blocks for better speech quality
+4. **User Controls**: Simple toggle button with visual feedback for speaking state
+5. **Settings Persistence**: Remembers user preferences between sessions
+
+The system automatically reads new AI responses when enabled and allows users to stop speech at any time. It's designed to be lightweight, accessible, and seamlessly integrated into the existing interface.">
+                <p>The SensAI text-to-speech system works through these components:</p>
+                <ol>
+                    <li><strong>Speech Service</strong>: Core module that interfaces with the Web Speech API</li>
+                    <li><strong>Voice Selection</strong>: Automatically chooses optimal voice based on user's system language</li>
+                    <li><strong>Text Processing</strong>: Cleans up markdown and code blocks for better speech quality</li>
+                    <li><strong>User Controls</strong>: Simple toggle button with visual feedback for speaking state</li>
+                    <li><strong>Settings Persistence</strong>: Remembers user preferences between sessions</li>
+                </ol>
+                <p>The system automatically reads new AI responses when enabled and allows users to stop speech at any time. It's designed to be lightweight, accessible, and seamlessly integrated into the existing interface.</p>
+                <button class="speak-button button-secondary">Speak This Response</button>
+            </div>
+            
+            <div class="message">
+                <p>Can you explain a complex concept that demonstrates text-to-speech capabilities?</p>
+            </div>
+            
+            <div class="message ai" data-message="Let me explain quantum computing:
+
+Quantum computing harnesses quantum mechanics to process information in fundamentally different ways than classical computers. While classical computers use bits (0s and 1s), quantum computers use quantum bits or 'qubits.'
+
+The power of quantum computing comes from two key principles:
+
+1. Superposition: Qubits can exist in multiple states simultaneously, not just 0 or 1
+2. Entanglement: Qubits can be correlated in ways that have no classical equivalent
+
+These properties allow quantum computers to explore multiple solutions simultaneously and solve certain problems exponentially faster than classical computers. Potential applications include cryptography, drug discovery, optimization problems, and simulating quantum systems.
+
+However, quantum computers face significant challenges: maintaining quantum coherence (qubits are extremely fragile to environmental interference), error correction, and scaling the number of qubits while maintaining their quality.
+
+Despite these challenges, quantum computing represents a revolutionary approach to computation that could transform fields ranging from materials science to artificial intelligence.">
+                <p>Let me explain quantum computing:</p>
+                <p>Quantum computing harnesses quantum mechanics to process information in fundamentally different ways than classical computers. While classical computers use bits (0s and 1s), quantum computers use quantum bits or 'qubits.'</p>
+                <p>The power of quantum computing comes from two key principles:</p>
+                <ol>
+                    <li><strong>Superposition</strong>: Qubits can exist in multiple states simultaneously, not just 0 or 1</li>
+                    <li><strong>Entanglement</strong>: Qubits can be correlated in ways that have no classical equivalent</li>
+                </ol>
+                <p>These properties allow quantum computers to explore multiple solutions simultaneously and solve certain problems exponentially faster than classical computers. Potential applications include cryptography, drug discovery, optimization problems, and simulating quantum systems.</p>
+                <p>However, quantum computers face significant challenges: maintaining quantum coherence (qubits are extremely fragile to environmental interference), error correction, and scaling the number of qubits while maintaining their quality.</p>
+                <p>Despite these challenges, quantum computing represents a revolutionary approach to computation that could transform fields ranging from materials science to artificial intelligence.</p>
+                <button class="speak-button button-secondary">Speak This Response</button>
+            </div>
+        </div>
+        
+        <h2>Add Your Own Text</h2>
+        <textarea id="customText" rows="4" style="width: 100%; padding: 10px; border-radius: 8px; border: 1px solid #D1D1D6; margin-bottom: 10px;" placeholder="Enter text to be spoken..."></textarea>
+        <button id="speakCustom">Speak Custom Text</button>
+        
+        <footer>
+            <p>SensAI Overlay Text-to-Speech Demo | Built with Web Speech API</p>
+        </footer>
+    </div>
+    
+    <script>
+        // Speech synthesis setup
+        let speechSynthesis = window.speechSynthesis;
+        let voices = [];
+        let currentVoice = null;
+        let speaking = false;
+        let enabled = true;
+        let rate = 1.0;
+        let pitch = 1.0;
+        let volume = 0.8;
+        
+        // DOM elements
+        const toggleButton = document.getElementById('toggleSpeech');
+        const stopButton = document.getElementById('stopSpeech');
+        const speechStatus = document.getElementById('speechStatus');
+        const voiceSelect = document.getElementById('voiceSelect');
+        const rateRange = document.getElementById('rateRange');
+        const pitchRange = document.getElementById('pitchRange');
+        const volumeRange = document.getElementById('volumeRange');
+        const rateValue = document.getElementById('rateValue');
+        const pitchValue = document.getElementById('pitchValue');
+        const volumeValue = document.getElementById('volumeValue');
+        const customText = document.getElementById('customText');
+        const speakCustomButton = document.getElementById('speakCustom');
+        const speakButtons = document.querySelectorAll('.speak-button');
+        
+        // Initialize voices
+        function loadVoices() {
+            voices = speechSynthesis.getVoices();
+            voiceSelect.innerHTML = '';
+            
+            if (voices.length === 0) {
+                const option = document.createElement('option');
+                option.textContent = 'No voices available';
+                voiceSelect.appendChild(option);
+                return;
+            }
+            
+            // Add voices to select
+            voices.forEach(voice => {
+                const option = document.createElement('option');
+                option.value = voice.voiceURI;
+                option.textContent = `${voice.name} (${voice.lang})`;
+                if (voice.default) {
+                    option.selected = true;
+                    currentVoice = voice;
+                }
+                voiceSelect.appendChild(option);
+            });
+            
+            // If no default voice, select first
+            if (!currentVoice && voices.length > 0) {
+                currentVoice = voices[0];
+            }
+        }
+        
+        // Initialize voices - handle Chrome async voice loading
+        if (speechSynthesis.onvoiceschanged !== undefined) {
+            speechSynthesis.onvoiceschanged = loadVoices;
+        }
+        loadVoices();
+        
+        // Clean text for speech
+        function cleanTextForSpeech(text) {
+            if (!text) return '';
+            
+            return text
+                // Remove code blocks
+                .replace(/```[\s\S]*?```/g, 'Code block omitted.')
+                // Remove inline code
+                .replace(/`([^`]+)`/g, '$1')
+                // Remove Markdown links but keep the text
+                .replace(/\[([^\]]+)\]\([^)]+\)/g, '$1')
+                // Remove Markdown emphasis/bold
+                .replace(/(\*\*|__)(.*?)\1/g, '$2')
+                .replace(/(\*|_)(.*?)\1/g, '$2')
+                // Remove special characters that might cause issues
+                .replace(/[#>*_~]/g, ' ')
+                // Replace multiple spaces with a single space
+                .replace(/\s+/g, ' ')
+                .trim();
+        }
+        
+        // Speak text
+        function speak(text) {
+            if (!enabled || !speechSynthesis) return;
+            
+            // Cancel any current speech
+            speechSynthesis.cancel();
+            
+            const cleanText = cleanTextForSpeech(text);
+            const utterance = new SpeechSynthesisUtterance(cleanText);
+            
+            if (currentVoice) {
+                utterance.voice = currentVoice;
+            }
+            
+            utterance.rate = rate;
+            utterance.pitch = pitch;
+            utterance.volume = volume;
+            
+            utterance.onstart = () => {
+                speaking = true;
+                updateSpeakingStatus();
+            };
+            
+            utterance.onend = () => {
+                speaking = false;
+                updateSpeakingStatus();
+            };
+            
+            utterance.onerror = (error) => {
+                console.error('Speech synthesis error:', error);
+                speaking = false;
+                updateSpeakingStatus();
+            };
+            
+            speechSynthesis.speak(utterance);
+        }
+        
+        // Update UI to reflect speaking status
+        function updateSpeakingStatus() {
+            if (speaking) {
+                speechStatus.innerHTML = `
+                    <svg class="icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M9 8V16" stroke="#007AFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M12 6V18" stroke="#007AFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M15 10V14" stroke="#007AFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M18 8V16" stroke="#007AFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M6 10V14" stroke="#007AFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    Speaking...
+                `;
+                speechStatus.classList.add('speaking');
+            } else {
+                speechStatus.textContent = 'Not speaking';
+                speechStatus.classList.remove('speaking');
+            }
+            
+            toggleButton.textContent = enabled ? 'Disable Text-to-Speech' : 'Enable Text-to-Speech';
+        }
+        
+        // Event listeners
+        toggleButton.addEventListener('click', () => {
+            enabled = !enabled;
+            if (!enabled && speaking) {
+                speechSynthesis.cancel();
+                speaking = false;
+            }
+            updateSpeakingStatus();
+        });
+        
+        stopButton.addEventListener('click', () => {
+            speechSynthesis.cancel();
+            speaking = false;
+            updateSpeakingStatus();
+        });
+        
+        voiceSelect.addEventListener('change', (e) => {
+            const selectedVoice = voices.find(voice => voice.voiceURI === e.target.value);
+            if (selectedVoice) {
+                currentVoice = selectedVoice;
+            }
+        });
+        
+        rateRange.addEventListener('input', (e) => {
+            rate = parseFloat(e.target.value);
+            rateValue.textContent = rate.toFixed(1);
+        });
+        
+        pitchRange.addEventListener('input', (e) => {
+            pitch = parseFloat(e.target.value);
+            pitchValue.textContent = pitch.toFixed(1);
+        });
+        
+        volumeRange.addEventListener('input', (e) => {
+            volume = parseFloat(e.target.value);
+            volumeValue.textContent = volume.toFixed(1);
+        });
+        
+        speakCustomButton.addEventListener('click', () => {
+            if (customText.value.trim()) {
+                speak(customText.value);
+            }
+        });
+        
+        // Add event listeners to speak buttons in AI messages
+        speakButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const message = button.closest('.message');
+                if (message && message.dataset.message) {
+                    speak(message.dataset.message);
+                }
+            });
+        });
+        
+        // Initial UI setup
+        updateSpeakingStatus();
+    </script>
+</body>
+</html>

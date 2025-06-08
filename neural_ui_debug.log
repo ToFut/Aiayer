@@ -1,0 +1,94 @@
+2025-06-04 13:17:40,304 - neural_ui_detector - INFO - PyTorch 2.7.0 available
+2025-06-04 13:17:40,392 - neural_ui_detector - INFO - Ultralytics 8.3.148 available
+2025-06-04 13:17:40,585 - neural_ui_detector - INFO - Transformers 4.51.3 available
+2025-06-04 13:17:40,636 - neural_ui_detector - INFO - ONNX Runtime 1.22.0 available
+2025-06-04 13:17:40,636 - neural_ui_detector - INFO - OpenCV 4.11.0 available
+2025-06-04 13:17:40,673 - neural_ui_detector - INFO - Selenium available for browser automation
+2025-06-04 13:17:40,673 - neural_ui_detector - INFO - Neural UI Detector available components:
+2025-06-04 13:17:40,673 - neural_ui_detector - INFO - - YOLO Object Detection: ✅
+2025-06-04 13:17:40,673 - neural_ui_detector - INFO - - LayoutLM Document Understanding: ✅
+2025-06-04 13:17:40,673 - neural_ui_detector - INFO - - ONNX Model Acceleration: ✅
+2025-06-04 13:17:40,674 - neural_ui_detector - INFO - - Computer Vision Support: ✅
+2025-06-04 13:17:40,674 - neural_ui_detector - INFO - - Browser Automation: ✅
+2025-06-04 13:17:40,707 - neural_ui_detector - INFO - Loaded pre-trained YOLOv8n model
+2025-06-04 13:17:46,182 - neural_ui_detector - INFO - LayoutLM imports available (old API)
+2025-06-04 13:18:49,286 - neural_ui_detector - INFO - Started new Chrome instance in headless mode
+2025-06-04 13:18:52,192 - neural_ui_detector - INFO - Using EasyOCR for text recognition
+2025-06-04 13:18:52,210 - neural_ui_detector - INFO - Loaded 3 templates for matching
+2025-06-04 13:18:52,210 - neural_ui_detector - INFO - UI Detector Ensemble initialized
+2025-06-04 13:18:52,210 - neural_ui_detector - INFO - Loaded interaction memory with 3 entries
+2025-06-04 13:18:52,221 - fixed_neural_ui_detector_server - INFO - Debug logging enabled
+2025-06-04 13:18:53,382 - asyncio - DEBUG - Using selector: KqueueSelector
+2025-06-04 13:18:53,392 - fixed_neural_ui_detector_server - INFO - Starting Neural UI Detector WebSocket Server on port 8769
+2025-06-04 13:18:53,423 - websockets.server - INFO - server listening on 127.0.0.1:8769
+2025-06-04 13:18:53,423 - websockets.server - INFO - server listening on [::1]:8769
+2025-06-04 13:18:58,405 - websockets.server - DEBUG - = connection is CONNECTING
+2025-06-04 13:18:58,410 - websockets.server - DEBUG - < GET / HTTP/1.1
+2025-06-04 13:18:58,411 - websockets.server - DEBUG - < Host: localhost:8769
+2025-06-04 13:18:58,411 - websockets.server - DEBUG - < Upgrade: websocket
+2025-06-04 13:18:58,411 - websockets.server - DEBUG - < Connection: Upgrade
+2025-06-04 13:18:58,411 - websockets.server - DEBUG - < Sec-WebSocket-Key: Mf+KgMD4uHFjLkcKPK3uEA==
+2025-06-04 13:18:58,411 - websockets.server - DEBUG - < Sec-WebSocket-Version: 13
+2025-06-04 13:18:58,411 - websockets.server - DEBUG - < Sec-WebSocket-Extensions: permessage-deflate; client_max_window_bits
+2025-06-04 13:18:58,411 - websockets.server - DEBUG - < User-Agent: Python/3.13 websockets/15.0.1
+2025-06-04 13:18:58,413 - websockets.server - DEBUG - > HTTP/1.1 101 Switching Protocols
+2025-06-04 13:18:58,414 - websockets.server - DEBUG - > Date: Wed, 04 Jun 2025 17:18:58 GMT
+2025-06-04 13:18:58,414 - websockets.server - DEBUG - > Upgrade: websocket
+2025-06-04 13:18:58,414 - websockets.server - DEBUG - > Connection: Upgrade
+2025-06-04 13:18:58,414 - websockets.server - DEBUG - > Sec-WebSocket-Accept: Fgn889Opm0FTiO1XmSatqRtNK3M=
+2025-06-04 13:18:58,414 - websockets.server - DEBUG - > Sec-WebSocket-Extensions: permessage-deflate; server_max_window_bits=12; client_max_window_bits=12
+2025-06-04 13:18:58,414 - websockets.server - DEBUG - > Server: Python/3.13 websockets/15.0.1
+2025-06-04 13:18:58,414 - websockets.server - DEBUG - = connection is OPEN
+2025-06-04 13:18:58,414 - websockets.server - INFO - connection open
+2025-06-04 13:18:58,414 - fixed_neural_ui_detector_server - INFO - Client 6044975856 connected
+2025-06-04 13:18:58,414 - websockets.server - DEBUG - > TEXT '{"type": "welcome", "message": "Connected to Ne...server_id": "bbc6f504"}' [218 bytes]
+2025-06-04 13:18:58,416 - websockets.server - DEBUG - < TEXT '{"type": "test", "message": "Hello from test sc...amp": 1749057538.41577}' [84 bytes]
+2025-06-04 13:18:58,416 - fixed_neural_ui_detector_server - INFO - Received message from client 6044975856: unknown
+2025-06-04 13:18:58,416 - fixed_neural_ui_detector_server - INFO - Command  completed in 0.00s
+2025-06-04 13:18:58,416 - websockets.server - DEBUG - > TEXT '{"type": "error", "error": "Unknown action: "}' [46 bytes]
+2025-06-04 13:18:58,417 - websockets.server - DEBUG - < TEXT '{"action": "detect", "timestamp": 1749057538.417213}' [52 bytes]
+2025-06-04 13:18:58,417 - fixed_neural_ui_detector_server - INFO - Received message from client 6044975856: detect
+2025-06-04 13:18:58,418 - asyncio - DEBUG - Using selector: KqueueSelector
+2025-06-04 13:18:58,871 - PIL.PngImagePlugin - DEBUG - STREAM b'IHDR' 16 13
+2025-06-04 13:18:58,878 - PIL.PngImagePlugin - DEBUG - STREAM b'iCCP' 41 3135
+2025-06-04 13:18:58,878 - PIL.PngImagePlugin - DEBUG - iCCP profile name b'ICC Profile'
+2025-06-04 13:18:58,879 - PIL.PngImagePlugin - DEBUG - Compression method 0
+2025-06-04 13:18:58,879 - PIL.PngImagePlugin - DEBUG - STREAM b'eXIf' 3188 56
+2025-06-04 13:18:58,879 - PIL.PngImagePlugin - DEBUG - STREAM b'IDAT' 3256 16384
+2025-06-04 13:18:59,867 - neural_ui_detector - INFO - Took screenshot: cache/neural_ui_detector/screenshot_1749057538.png
+2025-06-04 13:18:59,874 - neural_ui_detector - INFO - Running yolo detector with 10s timeout
+
+🚀 Starting Fixed Neural UI Detector WebSocket Server on port 8769...
+
+======================================================================
+🚀 Neural UI Detector WebSocket Server running on ws://localhost:8769
+🧠 Server capabilities: detect, find, click, type, key, hotkey, visualize
+======================================================================
+
+
+image 1/1 /Users/segevbin/Desktop/SensAI/Aiayer/cache/neural_ui_detector/screenshot_1749057538.png: 416x640 (no detections), 149.7ms
+Speed: 17.1ms preprocess, 149.7ms inference, 10.9ms postprocess per image at shape (1, 3, 416, 640)
+2025-06-04 13:19:00,757 - neural_ui_detector - INFO - YOLO detected 0 UI elements
+2025-06-04 13:19:00,758 - neural_ui_detector - INFO - Running accessibility detector with 3s timeout
+2025-06-04 13:19:00,758 - neural_ui_detector - INFO - macOS accessibility detected 2 UI elements
+2025-06-04 13:19:00,758 - neural_ui_detector - INFO - Running ocr detector with 8s timeout
+2025-06-04 13:19:00,862 - neural_ui_detector - INFO - Resized image for OCR from 2940x1912 to 1200x780
+/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/torch/utils/data/dataloader.py:683: UserWarning: 'pin_memory' argument is set as true but not supported on MPS now, then device pinned memory won't be used.
+  warnings.warn(warn_msg)
+2025-06-04 13:19:03,837 - neural_ui_detector - INFO - OCR optimized detected 18 text elements
+2025-06-04 13:19:03,938 - neural_ui_detector - INFO - Merged 20 elements into 20 unique elements
+2025-06-04 13:19:05,226 - neural_ui_detector - INFO - Saved detection result: cache/neural_ui_detector/detection_1749057539.json
+2025-06-04 13:19:05,230 - neural_ui_detector - INFO - UI detection completed in 6.43s with 20 elements
+2025-06-04 13:19:05,238 - fixed_neural_ui_detector_server - WARNING - Slow operation: ui_detect took 6.82s
+2025-06-04 13:19:05,919 - neural_ui_detector - INFO - Saved visualization: cache/neural_ui_detector/visualization_1749057545.png
+2025-06-04 13:19:05,998 - fixed_neural_ui_detector_server - WARNING - Slow operation: command_detect took 7.58s
+2025-06-04 13:19:05,999 - fixed_neural_ui_detector_server - INFO - Command detect completed in 7.58s
+2025-06-04 13:19:06,036 - websockets.server - DEBUG - > TEXT '{"type": "detection_result", "timestamp": 17490...RrQAAAABJRU5ErkJggg=="}' [4517070 bytes]
+2025-06-04 13:19:06,392 - websockets.server - DEBUG - < CLOSE 1009 (message too big) frame with 3417075 bytes ...s limit of 1048576 bytes [57 bytes]
+2025-06-04 13:19:06,393 - websockets.server - DEBUG - > CLOSE 1009 (message too big) frame with 3417075 bytes ...s limit of 1048576 bytes [57 bytes]
+2025-06-04 13:19:06,393 - websockets.server - DEBUG - = connection is CLOSING
+2025-06-04 13:19:06,393 - websockets.server - DEBUG - > EOF
+2025-06-04 13:19:06,395 - websockets.server - DEBUG - x half-closing TCP connection
+2025-06-04 13:19:06,402 - websockets.server - DEBUG - < EOF
+2025-06-04 13:19:06,402 - websockets.server - DEBUG - = connection is CLOSED
+2025-06-04 13:19:06,404 - fixed_neural_ui_detector_server - INFO - Client 6044975856 disconnected: code=1009, reason=frame with 3417075 bytes exceeds limit of 1048576 bytes

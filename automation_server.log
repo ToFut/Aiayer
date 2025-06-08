@@ -1,0 +1,64 @@
+2025-06-06 23:14:05,206 - agent_workflow.input_controller - INFO - Detected screen size: 1470x956
+2025-06-06 23:14:05,207 - agent_workflow.input_controller - INFO - Standard mouse listener started successfully
+2025-06-06 23:14:05,208 - agent_workflow.input_controller - INFO - Keyboard listener started successfully
+2025-06-06 23:14:05,208 - agent_workflow.input_controller - INFO - Input controller initialized (safe mode)
+2025-06-06 23:14:05,208 - agent_workflow.input_controller - INFO - 🚨 Emergency shutdown: Press Ctrl+1 to immediately stop agent
+2025-06-06 23:14:05,208 - direct_coordinate_automation - INFO - ✅ Input controller loaded successfully
+2025-06-06 23:14:06,294 - websockets.server - INFO - server listening on 0.0.0.0:8765
+2025-06-06 23:14:06,295 - direct_coordinate_automation - INFO - ✅ Direct Coordinate Automation Server running on ws://0.0.0.0:8765
+2025-06-06 23:14:06,295 - direct_coordinate_automation - INFO - 🎮 Physical automation ready - REAL mouse and keyboard actions enabled
+2025-06-06 23:14:06,295 - direct_coordinate_automation - INFO - Server status: 0 clients connected, 0 executions completed
+2025-06-06 23:14:08,004 - websockets.server - INFO - connection open
+2025-06-06 23:14:08,004 - direct_coordinate_automation - INFO - Client client_4948923392 connected from 127.0.0.1
+2025-06-06 23:14:08,009 - direct_coordinate_automation - INFO - Received message type: register
+2025-06-06 23:14:11,198 - websockets.server - INFO - connection open
+2025-06-06 23:14:11,198 - direct_coordinate_automation - INFO - Client client_4948566864 connected from 127.0.0.1
+2025-06-06 23:14:11,199 - direct_coordinate_automation - INFO - Received message type: register
+2025-06-06 23:14:11,199 - direct_coordinate_automation - INFO - Received message type: start_screen_sharing
+2025-06-06 23:14:11,199 - direct_coordinate_automation - INFO - Screen sharing requested by client client_4948566864
+2025-06-06 23:14:11,199 - direct_coordinate_automation - INFO - Screen capture activated
+2025-06-06 23:14:21,651 - direct_coordinate_automation - INFO - Received message type: stop_screen_sharing
+2025-06-06 23:14:21,652 - direct_coordinate_automation - INFO - Screen sharing stop requested by client client_4948566864
+2025-06-06 23:14:21,652 - direct_coordinate_automation - INFO - Screen capture deactivated
+2025-06-06 23:14:21,655 - direct_coordinate_automation - INFO - Client client_4948566864 disconnected
+2025-06-06 23:15:06,297 - direct_coordinate_automation - INFO - Server status: 1 clients connected, 0 executions completed
+2025-06-06 23:15:46,169 - websockets.server - INFO - connection open
+2025-06-06 23:15:46,170 - direct_coordinate_automation - INFO - Client client_4949540944 connected from 127.0.0.1
+2025-06-06 23:15:46,171 - direct_coordinate_automation - INFO - Received message type: register
+2025-06-06 23:15:46,172 - direct_coordinate_automation - INFO - Client client_4949540944 disconnected
+2025-06-06 23:16:06,743 - direct_coordinate_automation - INFO - Server status: 1 clients connected, 0 executions completed
+2025-06-06 23:17:06,894 - direct_coordinate_automation - INFO - Server status: 1 clients connected, 0 executions completed
+2025-06-06 23:18:06,900 - direct_coordinate_automation - INFO - Server status: 1 clients connected, 0 executions completed
+2025-06-06 23:19:08,805 - direct_coordinate_automation - INFO - Server status: 1 clients connected, 0 executions completed
+2025-06-06 23:20:09,032 - direct_coordinate_automation - INFO - Server status: 1 clients connected, 0 executions completed
+2025-06-06 23:21:09,278 - direct_coordinate_automation - INFO - Server status: 1 clients connected, 0 executions completed
+2025-06-06 23:21:10,223 - websockets.server - INFO - connection open
+2025-06-06 23:21:10,229 - direct_coordinate_automation - INFO - Client client_4948945984 connected from 127.0.0.1
+2025-06-06 23:21:10,235 - direct_coordinate_automation - INFO - Received message type: start_screen_sharing
+2025-06-06 23:21:10,236 - direct_coordinate_automation - INFO - Screen sharing requested by client client_4948945984
+2025-06-06 23:21:10,236 - direct_coordinate_automation - INFO - Screen capture activated
+2025-06-06 23:21:12,130 - direct_coordinate_automation - INFO - Screen capture deactivated due to client disconnect
+2025-06-06 23:21:12,133 - direct_coordinate_automation - INFO - Client client_4948945984 disconnected
+2025-06-06 23:21:15,345 - websockets.server - INFO - connection open
+2025-06-06 23:21:15,348 - direct_coordinate_automation - INFO - Client client_4948949024 connected from 127.0.0.1
+2025-06-06 23:21:15,351 - direct_coordinate_automation - INFO - Received message type: stop_screen_sharing
+2025-06-06 23:21:15,351 - direct_coordinate_automation - INFO - Screen sharing stop requested by client client_4948949024
+2025-06-06 23:21:15,352 - direct_coordinate_automation - INFO - Client client_4948949024 disconnected
+2025-06-06 23:22:09,299 - direct_coordinate_automation - INFO - Server status: 1 clients connected, 0 executions completed
+2025-06-06 23:23:09,308 - direct_coordinate_automation - INFO - Server status: 1 clients connected, 0 executions completed
+2025-06-06 23:24:09,315 - direct_coordinate_automation - INFO - Server status: 1 clients connected, 0 executions completed
+2025-06-06 23:25:09,320 - direct_coordinate_automation - INFO - Server status: 1 clients connected, 0 executions completed
+2025-06-06 23:26:09,331 - direct_coordinate_automation - INFO - Server status: 1 clients connected, 0 executions completed
+2025-06-06 23:27:09,343 - direct_coordinate_automation - INFO - Server status: 1 clients connected, 0 executions completed
+2025-06-06 23:28:09,346 - direct_coordinate_automation - INFO - Server status: 1 clients connected, 0 executions completed
+2025-06-06 23:28:57,351 - direct_coordinate_automation - INFO - Client client_4948923392 disconnected
+2025-06-06 23:28:57,667 - websockets.server - INFO - connection open
+2025-06-06 23:28:57,667 - direct_coordinate_automation - INFO - Client client_4949591616 connected from 127.0.0.1
+2025-06-06 23:28:57,670 - direct_coordinate_automation - INFO - Received message type: register
+2025-06-06 23:29:09,349 - direct_coordinate_automation - INFO - Server status: 1 clients connected, 0 executions completed
+2025-06-06 23:30:09,351 - direct_coordinate_automation - INFO - Server status: 1 clients connected, 0 executions completed
+2025-06-06 23:31:09,354 - direct_coordinate_automation - INFO - Server status: 1 clients connected, 0 executions completed
+2025-06-06 23:32:09,357 - direct_coordinate_automation - INFO - Server status: 1 clients connected, 0 executions completed
+2025-06-06 23:33:09,359 - direct_coordinate_automation - INFO - Server status: 1 clients connected, 0 executions completed
+2025-06-06 23:34:09,360 - direct_coordinate_automation - INFO - Server status: 1 clients connected, 0 executions completed
+2025-06-06 23:35:09,363 - direct_coordinate_automation - INFO - Server status: 1 clients connected, 0 executions completed

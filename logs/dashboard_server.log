@@ -1,0 +1,12 @@
+2025-06-08 01:20:11,063 - dashboard_launcher - INFO - Importing dashboard server module
+2025-06-08 01:20:11,832 - dashboard_launcher - INFO - Dashboard server module imported successfully
+2025-06-08 01:20:11,832 - dashboard_launcher - INFO - Starting Flask dashboard server on port 8081
+2025-06-08 01:20:11,833 - dashboard_launcher - INFO - Dashboard server started in background thread
+2025-06-08 01:20:41,108 - dashboard_launcher - INFO - Importing dashboard server module
+2025-06-08 01:20:41,362 - dashboard_launcher - INFO - Dashboard server module imported successfully
+2025-06-08 01:20:41,362 - dashboard_launcher - INFO - Starting FastAPI dashboard server on port 8081
+2025-06-08 01:20:41,408 - dashboard_server - INFO - Connected to memory system
+2025-06-08 01:25:21,641 - dashboard_server - WARNING - Connection to memory system closed
+2025-06-08 01:25:21,645 - dashboard_server - ERROR - Error connecting to memory system: Multiple exceptions: [Errno 61] Connect call failed ('::1', 8765, 0, 0), [Errno 61] Connect call failed ('127.0.0.1', 8765)
+2025-06-08 01:25:26,648 - dashboard_server - ERROR - Error connecting to memory system: Multiple exceptions: [Errno 61] Connect call failed ('::1', 8765, 0, 0), [Errno 61] Connect call failed ('127.0.0.1', 8765)
+2025-06-08 01:25:31,652 - dashboard_server - INFO - Connected to memory system

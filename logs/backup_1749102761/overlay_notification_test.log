@@ -1,0 +1,75 @@
+2025-06-04 14:02:15,873 - INFO - Connecting to ws://localhost:8765...
+2025-06-04 14:02:15,951 - INFO - Connected to ws://localhost:8765! Welcome message received.
+2025-06-04 14:02:15,951 - INFO - Sending suggestion format to port 8765: [PORT 8765, FORMAT suggestion] 🔔 COMPREHENSIVE TEST: This notification tests all possible formats and ports
+2025-06-04 14:02:15,951 - INFO - Response received from port 8765
+2025-06-04 14:02:16,952 - INFO - Connecting to ws://localhost:8765...
+2025-06-04 14:02:16,954 - INFO - Connected to ws://localhost:8765! Welcome message received.
+2025-06-04 14:02:16,954 - INFO - Sending message format to port 8765: [PORT 8765, FORMAT message] 🔔 COMPREHENSIVE TEST: This notification tests all possible formats and ports
+2025-06-04 14:02:16,955 - INFO - Response received from port 8765
+2025-06-04 14:02:17,956 - INFO - Connecting to ws://localhost:8765...
+2025-06-04 14:02:17,958 - INFO - Connected to ws://localhost:8765! Welcome message received.
+2025-06-04 14:02:17,958 - INFO - Sending legacy format to port 8765: [PORT 8765, FORMAT legacy] 🔔 COMPREHENSIVE TEST: This notification tests all possible formats and ports
+2025-06-04 14:02:17,959 - INFO - Response received from port 8765
+2025-06-04 14:02:18,960 - INFO - Connecting to ws://localhost:8765...
+2025-06-04 14:02:18,962 - INFO - Connected to ws://localhost:8765! Welcome message received.
+2025-06-04 14:02:18,963 - INFO - Sending client_message format to port 8765: [PORT 8765, FORMAT client_message] 🔔 COMPREHENSIVE TEST: This notification tests all possible formats and ports
+2025-06-04 14:02:18,963 - INFO - Response received from port 8765
+2025-06-04 14:02:19,965 - INFO - Connecting to ws://localhost:8765...
+2025-06-04 14:02:19,969 - INFO - Connected to ws://localhost:8765! Welcome message received.
+2025-06-04 14:02:19,969 - INFO - Sending do_button_action format to port 8765: [PORT 8765, FORMAT do_button_action] 🔔 COMPREHENSIVE TEST: This notification tests all possible formats and ports
+2025-06-04 14:02:19,970 - INFO - Response received from port 8765
+2025-06-04 14:02:20,971 - INFO - Connecting to ws://localhost:8766...
+2025-06-04 14:02:20,987 - ERROR - Error connecting to port 8766: received 1011 (internal error); then sent 1011 (internal error)
+2025-06-04 14:02:21,988 - INFO - Connecting to ws://localhost:8766...
+2025-06-04 14:02:21,991 - ERROR - Error connecting to port 8766: received 1011 (internal error); then sent 1011 (internal error)
+2025-06-04 14:02:22,993 - INFO - Connecting to ws://localhost:8766...
+2025-06-04 14:02:23,069 - ERROR - Error connecting to port 8766: received 1011 (internal error); then sent 1011 (internal error)
+2025-06-04 14:02:24,070 - INFO - Connecting to ws://localhost:8766...
+2025-06-04 14:02:24,073 - ERROR - Error connecting to port 8766: received 1011 (internal error); then sent 1011 (internal error)
+2025-06-04 14:02:25,074 - INFO - Connecting to ws://localhost:8766...
+2025-06-04 14:02:25,078 - ERROR - Error connecting to port 8766: received 1011 (internal error); then sent 1011 (internal error)
+2025-06-04 14:02:26,080 - INFO - Connecting to ws://localhost:8767/ws...
+2025-06-04 14:02:26,083 - INFO - Connected to ws://localhost:8767/ws! Welcome message received.
+2025-06-04 14:02:26,083 - INFO - Registered with backend server
+2025-06-04 14:02:26,083 - INFO - Sending suggestion format to port 8767: [PORT 8767, FORMAT suggestion] 🔔 COMPREHENSIVE TEST: This notification tests all possible formats and ports
+2025-06-04 14:02:26,084 - INFO - Response received from port 8767
+2025-06-04 14:02:27,097 - INFO - Connecting to ws://localhost:8767/ws...
+2025-06-04 14:02:27,130 - INFO - Connected to ws://localhost:8767/ws! Welcome message received.
+2025-06-04 14:02:27,160 - INFO - Registered with backend server
+2025-06-04 14:02:27,160 - INFO - Sending message format to port 8767: [PORT 8767, FORMAT message] 🔔 COMPREHENSIVE TEST: This notification tests all possible formats and ports
+2025-06-04 14:02:27,169 - INFO - Response received from port 8767
+2025-06-04 14:02:28,173 - INFO - Connecting to ws://localhost:8767/ws...
+2025-06-04 14:02:28,175 - INFO - Connected to ws://localhost:8767/ws! Welcome message received.
+2025-06-04 14:02:28,176 - INFO - Registered with backend server
+2025-06-04 14:02:28,176 - INFO - Sending legacy format to port 8767: [PORT 8767, FORMAT legacy] 🔔 COMPREHENSIVE TEST: This notification tests all possible formats and ports
+2025-06-04 14:02:28,176 - INFO - Response received from port 8767
+2025-06-04 14:02:29,177 - INFO - Connecting to ws://localhost:8767/ws...
+2025-06-04 14:02:29,180 - INFO - Connected to ws://localhost:8767/ws! Welcome message received.
+2025-06-04 14:02:29,181 - INFO - Registered with backend server
+2025-06-04 14:02:29,181 - INFO - Sending client_message format to port 8767: [PORT 8767, FORMAT client_message] 🔔 COMPREHENSIVE TEST: This notification tests all possible formats and ports
+2025-06-04 14:02:29,181 - INFO - Response received from port 8767
+2025-06-04 14:02:30,183 - INFO - Connecting to ws://localhost:8767/ws...
+2025-06-04 14:02:30,187 - INFO - Connected to ws://localhost:8767/ws! Welcome message received.
+2025-06-04 14:02:30,187 - INFO - Registered with backend server
+2025-06-04 14:02:30,187 - INFO - Sending do_button_action format to port 8767: [PORT 8767, FORMAT do_button_action] 🔔 COMPREHENSIVE TEST: This notification tests all possible formats and ports
+2025-06-04 14:02:30,188 - INFO - Response received from port 8767
+2025-06-04 14:02:31,190 - INFO - Connecting to ws://localhost:8768...
+2025-06-04 14:02:31,199 - INFO - Connected to ws://localhost:8768! Welcome message received.
+2025-06-04 14:02:31,200 - INFO - Sending suggestion format to port 8768: [PORT 8768, FORMAT suggestion] 🔔 COMPREHENSIVE TEST: This notification tests all possible formats and ports
+2025-06-04 14:02:31,200 - INFO - Response received from port 8768
+2025-06-04 14:02:32,202 - INFO - Connecting to ws://localhost:8768...
+2025-06-04 14:02:32,207 - INFO - Connected to ws://localhost:8768! Welcome message received.
+2025-06-04 14:02:32,207 - INFO - Sending message format to port 8768: [PORT 8768, FORMAT message] 🔔 COMPREHENSIVE TEST: This notification tests all possible formats and ports
+2025-06-04 14:02:32,207 - INFO - Response received from port 8768
+2025-06-04 14:02:33,209 - INFO - Connecting to ws://localhost:8768...
+2025-06-04 14:02:33,221 - INFO - Connected to ws://localhost:8768! Welcome message received.
+2025-06-04 14:02:33,221 - INFO - Sending legacy format to port 8768: [PORT 8768, FORMAT legacy] 🔔 COMPREHENSIVE TEST: This notification tests all possible formats and ports
+2025-06-04 14:02:33,222 - INFO - Response received from port 8768
+2025-06-04 14:02:34,224 - INFO - Connecting to ws://localhost:8768...
+2025-06-04 14:02:34,226 - INFO - Connected to ws://localhost:8768! Welcome message received.
+2025-06-04 14:02:34,226 - INFO - Sending client_message format to port 8768: [PORT 8768, FORMAT client_message] 🔔 COMPREHENSIVE TEST: This notification tests all possible formats and ports
+2025-06-04 14:02:34,227 - INFO - Response received from port 8768
+2025-06-04 14:02:35,229 - INFO - Connecting to ws://localhost:8768...
+2025-06-04 14:02:35,237 - INFO - Connected to ws://localhost:8768! Welcome message received.
+2025-06-04 14:02:35,238 - INFO - Sending do_button_action format to port 8768: [PORT 8768, FORMAT do_button_action] 🔔 COMPREHENSIVE TEST: This notification tests all possible formats and ports
+2025-06-04 14:02:35,238 - INFO - Response received from port 8768

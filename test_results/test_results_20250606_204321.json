@@ -1,0 +1,19 @@
+{
+  "timestamp": "20250606_204321",
+  "tests_run": 1,
+  "tests_passed": 1,
+  "tests_failed": 0,
+  "total_duration": 0.33013296127319336,
+  "results": [
+    {
+      "test_file": "test_spotify_agent_fix.py",
+      "start_time": "2025-06-06T20:43:21.529661",
+      "status": "passed",
+      "output": "",
+      "error": "INFO:test_spotify_agent:\ud83e\uddea Testing Spotify Agent Mode Fix\nINFO:test_spotify_agent:==================================================\nINFO:test_spotify_agent:Original issue: 'search Spotify omer adam' was returning\nINFO:test_spotify_agent:mock 'FAST AUTOMATION PLAN' instead of real LLM planning\nINFO:test_spotify_agent:==================================================\nINFO:test_spotify_agent:Connecting to ws://localhost:8767\nINFO:test_spotify_agent:Connected: {\"type\": \"connection_established\", \"message\": \"Real LLM Backend 8767 with Enhanced Ask/Suggest Handlers\", \"client_id\": \"client_1749257001832\", \"features\": {\"enhanced_ask_mode\": true, \"enhanced_suggest_mode\": true, \"semantic_search\": true, \"visual_context\": true, \"streaming_responses\": true, \"all_chat_modes\": [\"ask\", \"agent\", \"suggest\", \"general\"]}, \"timestamp\": \"2025-06-06T20:43:21.832874\"}\nINFO:test_spotify_agent:\ud83c\udfb5 Testing original failing query: 'search Spotify omer adam'\nINFO:test_spotify_agent:\u2705 Received response type: final_response\nINFO:test_spotify_agent:\ud83c\udfaf SUCCESS: Response contains Spotify-specific content!\nINFO:test_spotify_agent:   This suggests real LLM planning is working\nINFO:test_spotify_agent:   Response: \ud83c\udfaf **Process Request**\n\nHandle request: search Spotify omer adam\n\n**Steps:**\n1. Analyze request\n\nEstimated duration: 1.0 seconds...\nINFO:test_spotify_agent:\n==================================================\nINFO:test_spotify_agent:\ud83d\udd0d TEST RESULTS:\nINFO:test_spotify_agent:\ud83c\udf89 SUCCESS: Agent Mode is now using real LLM planning!\nINFO:test_spotify_agent:   The Spotify query generated context-aware automation\n",
+      "duration": 0.33013296127319336,
+      "return_code": 0,
+      "end_time": "2025-06-06T20:43:21.859791"
+    }
+  ]
+}

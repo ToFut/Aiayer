@@ -33,7 +33,7 @@ async def test_universal_automation():
     
     try:
         # Import the universal automation handler
-        from universal_intelligent_automation_handler import handle_universal_automation
+        from fixed_universal_automation_handler import fixed_handle_universal_automation
         
         for i, request in enumerate(test_requests, 1):
             print(f"\n🔍 Test {i}: '{request}'")
@@ -41,7 +41,7 @@ async def test_universal_automation():
             
             try:
                 # Create automation plan
-                result = await handle_universal_automation(request, f"test_session_{i}")
+                result = await fixed_handle_universal_automation(request, f"test_session_{i}")
                 
                 if result["success"]:
                     print(f"✅ Plan created successfully!")
@@ -72,7 +72,7 @@ async def test_universal_automation():
     
     except ImportError as e:
         print(f"❌ Failed to import universal automation handler: {e}")
-        print("Make sure the universal_intelligent_automation_handler.py file is properly created")
+        print("Make sure the fixed_universal_automation_handler.py file is properly created")
         return False
     
     except Exception as e:
@@ -143,7 +143,7 @@ async def test_flight_search_specifically():
     print("=" * 60)
     
     try:
-        from universal_intelligent_automation_handler import handle_universal_automation
+        from fixed_universal_automation_handler import fixed_handle_universal_automation
         
         flight_requests = [
             "search flight from nyc to miami",
@@ -156,7 +156,7 @@ async def test_flight_search_specifically():
         for i, request in enumerate(flight_requests, 1):
             print(f"\\n✈️ Flight Test {i}: '{request}'")
             
-            result = await handle_universal_automation(request, f"flight_test_{i}")
+            result = await fixed_handle_universal_automation(request, f"flight_test_{i}")
             
             if result["success"]:
                 print(f"   ✅ Flight search plan created!")
@@ -197,19 +197,19 @@ async def main():
     # Test flight search specifically
     success3 = await test_flight_search_specifically()
     
-    print(f"\\n📊 Test Results Summary:")
+    print(f"\n📊 Test Results Summary:")
     print(f"   Universal Automation: {'✅ PASS' if success1 else '❌ FAIL'}")
     print(f"   Agent Mode Handler: {'✅ PASS' if success2 else '❌ FAIL'}")
     print(f"   Flight Search Tests: {'✅ PASS' if success3 else '❌ FAIL'}")
     
     overall_success = success1 and success2 and success3
-    print(f"\\n🎯 Overall Result: {'✅ ALL TESTS PASSED' if overall_success else '❌ SOME TESTS FAILED'}")
+    print(f"\n🎯 Overall Result: {'✅ ALL TESTS PASSED' if overall_success else '❌ SOME TESTS FAILED'}")
     
     if overall_success:
-        print(f"\\n🎉 The improved agent automation system is working correctly!")
+        print(f"\n🎉 The improved agent automation system is working correctly!")
         print("✨ It now creates detailed, specific plans for ANY type of user request!")
     else:
-        print(f"\\n🔧 Some issues need to be addressed before the system is fully functional.")
+        print(f"\n🔧 Some issues need to be addressed before the system is fully functional.")
 
 if __name__ == "__main__":
     asyncio.run(main())

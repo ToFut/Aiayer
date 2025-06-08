@@ -1,0 +1,27 @@
+2025-06-07 23:12:32,473 - INFO - Starting Brain Router Connector on port 8766
+2025-06-07 23:12:32,506 - INFO - server listening on 0.0.0.0:8766
+2025-06-07 23:12:32,619 - INFO - connection open
+2025-06-07 23:12:32,620 - INFO - Client client_1749352352620 connected
+2025-06-07 23:12:32,626 - INFO - Received message type: register from client client_1749352352620
+2025-06-07 23:12:32,626 - INFO - Forwarding to brain router: {"type":"register","client_id":"overlay_user_1749352225431","session_id":"overlay_session_1749352225...
+2025-06-07 23:12:32,626 - INFO - Creating new backend connection for client client_1749352352620
+2025-06-07 23:12:32,662 - INFO - Received from backend: connection_established message
+2025-06-07 23:12:32,662 - INFO - Received from backend: registration_success message
+2025-06-07 23:12:34,469 - INFO - connection open
+2025-06-07 23:12:34,469 - INFO - Client client_1749352354469 connected
+2025-06-07 23:12:34,469 - INFO - Received message type: register from client client_1749352354469
+2025-06-07 23:12:34,469 - INFO - Forwarding to brain router: {"type": "register", "payload": {"client_type": "test_client", "client_id": "test_client", "version"...
+2025-06-07 23:12:34,469 - INFO - Creating new backend connection for client client_1749352354469
+2025-06-07 23:12:34,472 - INFO - Received from backend: connection_established message
+2025-06-07 23:12:34,472 - INFO - Received from backend: registration_success message
+2025-06-07 23:12:34,473 - INFO - Received message type: llm_request from client client_1749352354469
+2025-06-07 23:12:34,473 - INFO - Forwarding to brain router: {"type": "chat_request", "message": "Testing the brain router connection", "mode": "ask", "session_i...
+2025-06-07 23:12:34,481 - INFO - Backend connection closed
+2025-06-07 23:12:34,481 - ERROR - connection handler failed
+Traceback (most recent call last):
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/asyncio/server.py", line 376, in conn_handler
+    await self.handler(connection)
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/brain_router_connector.py", line 200, in handle_client
+    del backend_connections[websocket]
+        ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^
+KeyError: <websockets.asyncio.server.ServerConnection object at 0x1041125d0>

@@ -1,0 +1,30 @@
+2025-06-03 20:17:08,854 - INFO - Detected screen size: 1470x956
+2025-06-03 20:17:09,152 - INFO - Standard mouse listener started successfully
+2025-06-03 20:17:09,153 - INFO - Keyboard listener started successfully
+2025-06-03 20:17:09,153 - INFO - Input controller initialized (safe mode)
+2025-06-03 20:17:09,153 - INFO - 🚨 Emergency shutdown: Press Ctrl+1 to immediately stop agent
+2025-06-03 20:17:09,280 - INFO - Connected to Ollama API v0.6.8
+2025-06-03 20:17:09,280 - INFO - LLaVA visual processor initialized for total screen analysis
+2025-06-03 20:17:09,280 - INFO - Total Screen Analyzer initialized with 8s interval
+2025-06-03 20:17:09,280 - INFO - 🔄 Adaptive retry automation system loaded
+2025-06-03 20:17:09,280 - INFO - ✅ Adaptive retry automation handler loaded successfully
+2025-06-03 20:17:09,281 - INFO - Plan persistence manager initialized with 52 stored plans
+2025-06-03 20:17:09,281 - INFO - Plan persistence service initialized
+2025-06-03 20:17:09,281 - INFO - ✅ Plan persistence module loaded successfully
+2025-06-03 20:17:09,288 - INFO - Standard mouse listener started successfully
+2025-06-03 20:17:09,288 - INFO - Keyboard listener started successfully
+2025-06-03 20:17:09,288 - INFO - Input controller initialized (safe mode)
+2025-06-03 20:17:09,288 - INFO - 🚨 Emergency shutdown: Press Ctrl+1 to immediately stop agent
+2025-06-03 20:17:09,290 - INFO - Connected to Ollama API v0.6.8
+2025-06-03 20:17:09,290 - INFO - LLaVA visual processor initialized for total screen analysis
+2025-06-03 20:17:09,290 - INFO - Total Screen Analyzer initialized with 8s interval
+2025-06-03 20:17:09,290 - INFO - 🤖 Universal automation components loaded successfully
+2025-06-03 20:17:09,290 - INFO - ✅ Universal automation handler loaded successfully
+2025-06-03 20:17:09,291 - INFO - Starting direct plan execution test
+2025-06-03 20:17:09,291 - INFO - Adding test plan test_plan_1748996229 to active plans
+2025-06-03 20:17:09,291 - INFO - Executing test plan test_plan_1748996229
+2025-06-03 20:17:09,291 - INFO - Handler object has attributes: ['__class__', '__delattr__', '__dict__', '__dir__', '__doc__', '__eq__', '__firstlineno__', '__format__', '__ge__', '__getattribute__', '__getstate__', '__gt__', '__hash__', '__init__', '__init_subclass__', '__le__', '__lt__', '__module__', '__ne__', '__new__', '__reduce__', '__reduce_ex__', '__repr__', '__setattr__', '__sizeof__', '__static_attributes__', '__str__', '__subclasshook__', '__weakref__', '_cancel_plan', '_click_search_result', '_create_advanced_llm_plan', '_ensure_llm_service', '_execute_analyze_screen', '_execute_click_element', '_execute_hotkey', '_execute_navigate_url', '_execute_open_app', '_execute_plan', '_execute_smart_step', '_execute_type_text', '_execute_universal_plan', '_execute_wait', '_format_universal_response', '_modify_plan', '_simulate_plan', 'active_plans', 'automation_available', 'create_universal_automation_plan', 'handle_button_action', 'handle_user_instruction', 'input_controller', 'llm_initialized', 'llm_service', 'screen_analyzer']
+2025-06-03 20:17:09,291 - INFO - 🔘 Handling button action: execute_plan for plan: test_plan_1748996229
+2025-06-03 20:17:09,291 - ERROR - ❌ Error handling button action: 'dict' object has no attribute 'title'
+2025-06-03 20:17:09,291 - INFO - Execution result: {'success': False, 'response': "❌ Error executing action: 'dict' object has no attribute 'title'", 'interactive': False}
+2025-06-03 20:17:09,291 - ERROR - ❌ Test failed: Direct plan execution failed

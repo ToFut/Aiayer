@@ -1,0 +1,371 @@
+2025-06-03 18:56:15,002 - INFO - Detected screen size: 1470x956
+2025-06-03 18:56:15,004 - INFO - Standard mouse listener started successfully
+2025-06-03 18:56:15,004 - INFO - Keyboard listener started successfully
+2025-06-03 18:56:15,004 - INFO - Input controller initialized (safe mode)
+2025-06-03 18:56:15,004 - INFO - 🚨 Emergency shutdown: Press Ctrl+1 to immediately stop agent
+2025-06-03 18:56:15,004 - INFO - ✅ Input controller loaded successfully
+2025-06-03 18:56:15,010 - INFO - Plan persistence manager initialized with 44 stored plans
+2025-06-03 18:56:15,010 - INFO - Plan persistence service initialized
+2025-06-03 18:56:15,011 - INFO - ✅ Plan persistence module loaded successfully
+2025-06-03 18:56:15,409 - INFO - Standard mouse listener started successfully
+2025-06-03 18:56:15,410 - INFO - Keyboard listener started successfully
+2025-06-03 18:56:15,410 - INFO - Input controller initialized (safe mode)
+2025-06-03 18:56:15,410 - INFO - 🚨 Emergency shutdown: Press Ctrl+1 to immediately stop agent
+2025-06-03 18:56:15,470 - INFO - Connected to Ollama API v0.6.8
+2025-06-03 18:56:15,470 - INFO - LLaVA visual processor initialized for total screen analysis
+2025-06-03 18:56:15,470 - INFO - Total Screen Analyzer initialized with 8s interval
+2025-06-03 18:56:15,470 - INFO - 🤖 Real automation components loaded successfully
+2025-06-03 18:56:15,471 - INFO - Standard mouse listener started successfully
+2025-06-03 18:56:15,471 - INFO - Keyboard listener started successfully
+2025-06-03 18:56:15,471 - INFO - Input controller initialized (safe mode)
+2025-06-03 18:56:15,471 - INFO - 🚨 Emergency shutdown: Press Ctrl+1 to immediately stop agent
+2025-06-03 18:56:15,474 - INFO - Connected to Ollama API v0.6.8
+2025-06-03 18:56:15,474 - INFO - LLaVA visual processor initialized for total screen analysis
+2025-06-03 18:56:15,474 - INFO - Total Screen Analyzer initialized with 8s interval
+2025-06-03 18:56:15,474 - INFO - 🤖 Real automation components loaded successfully
+2025-06-03 18:56:15,474 - INFO - ✅ Real agent automation handler loaded successfully
+2025-06-03 18:56:15,477 - INFO - Standard mouse listener started successfully
+2025-06-03 18:56:15,477 - INFO - Keyboard listener started successfully
+2025-06-03 18:56:15,477 - INFO - Input controller initialized (safe mode)
+2025-06-03 18:56:15,477 - INFO - 🚨 Emergency shutdown: Press Ctrl+1 to immediately stop agent
+2025-06-03 18:56:15,479 - INFO - Connected to Ollama API v0.6.8
+2025-06-03 18:56:15,479 - INFO - LLaVA visual processor initialized for total screen analysis
+2025-06-03 18:56:15,479 - INFO - Total Screen Analyzer initialized with 8s interval
+2025-06-03 18:56:15,479 - INFO - 🔄 Adaptive retry automation system loaded
+2025-06-03 18:56:15,479 - INFO - ✅ Adaptive retry automation handler loaded successfully
+2025-06-03 18:56:15,479 - INFO - ✅ Plan persistence module loaded successfully
+2025-06-03 18:56:15,480 - INFO - Standard mouse listener started successfully
+2025-06-03 18:56:15,480 - INFO - Keyboard listener started successfully
+2025-06-03 18:56:15,480 - INFO - Input controller initialized (safe mode)
+2025-06-03 18:56:15,480 - INFO - 🚨 Emergency shutdown: Press Ctrl+1 to immediately stop agent
+2025-06-03 18:56:15,482 - INFO - Connected to Ollama API v0.6.8
+2025-06-03 18:56:15,482 - INFO - LLaVA visual processor initialized for total screen analysis
+2025-06-03 18:56:15,482 - INFO - Total Screen Analyzer initialized with 8s interval
+2025-06-03 18:56:15,482 - INFO - 🤖 Universal automation components loaded successfully
+2025-06-03 18:56:15,482 - INFO - ✅ Universal automation handler loaded successfully
+2025-06-03 18:56:15,482 - INFO - Port 8765 is available
+2025-06-03 18:56:15,482 - INFO - Starting ultimate DO button server on localhost:8765
+2025-06-03 18:56:15,493 - INFO - server listening on 127.0.0.1:8765
+2025-06-03 18:56:15,493 - INFO - server listening on [::1]:8765
+2025-06-03 18:56:15,493 - INFO - ✅ Ultimate DO Button Server running on ws://localhost:8765
+2025-06-03 18:56:15,493 - INFO - 📋 Server supports all three message formats: agent_confirmation, button_action, and do_button
+2025-06-03 18:56:20,349 - ERROR - opening handshake failed
+Traceback (most recent call last):
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/http11.py", line 138, in parse
+    request_line = yield from parse_line(read_line)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/http11.py", line 309, in parse_line
+    line = yield from read_line(MAX_LINE_LENGTH)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/streams.py", line 46, in read_line
+    raise EOFError(f"stream ends after {p} bytes, before end of line")
+EOFError: stream ends after 0 bytes, before end of line
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/server.py", line 545, in parse
+    request = yield from Request.parse(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^
+        self.reader.read_line,
+        ^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/http11.py", line 140, in parse
+    raise EOFError("connection closed while reading HTTP request line") from exc
+EOFError: connection closed while reading HTTP request line
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/asyncio/server.py", line 356, in conn_handler
+    await connection.handshake(
+    ...<3 lines>...
+    )
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/asyncio/server.py", line 207, in handshake
+    raise self.protocol.handshake_exc
+websockets.exceptions.InvalidMessage: did not receive a valid HTTP request
+2025-06-03 18:56:20,376 - INFO - connection open
+2025-06-03 18:56:20,376 - INFO - Client client_4961324240 connected
+2025-06-03 18:56:20,377 - INFO - Received message type: ping
+2025-06-03 18:56:20,378 - INFO - connection open
+2025-06-03 18:56:20,378 - INFO - Client client_4961325840 connected
+2025-06-03 18:56:20,379 - INFO - Received message type: agent_confirmation
+2025-06-03 18:56:20,379 - INFO - Agent confirmation received: {'type': 'agent_confirmation', 'action': 'DO', 'session_id': 'test_session_1748991380'}
+2025-06-03 18:56:20,379 - INFO - Using universal automation handler for execute_plan on plan test_session_1748991380
+2025-06-03 18:56:20,379 - INFO - 🔘 Handling button action: execute_plan for plan: test_session_1748991380
+2025-06-03 18:56:20,379 - WARNING - Plan test_session_1748991380 not found in metadata
+2025-06-03 18:56:20,379 - WARNING - ❌ Plan not found for button action: test_session_1748991380
+2025-06-03 18:56:20,379 - INFO - Universal handler result: {'success': False, 'response': '❌ Plan not found. It may have expired or been cancelled.', 'interactive': False}
+2025-06-03 18:56:21,383 - INFO - connection open
+2025-06-03 18:56:21,383 - INFO - Client client_4961118992 connected
+2025-06-03 18:56:21,384 - INFO - Received message type: button_action
+2025-06-03 18:56:21,384 - INFO - Button action received: {'type': 'button_action', 'action': 'EXECUTE_PLAN', 'plan_id': 'test_plan_1748991381'}
+2025-06-03 18:56:21,384 - INFO - Using universal automation handler for execute_plan on plan test_plan_1748991381
+2025-06-03 18:56:21,384 - INFO - 🔘 Handling button action: execute_plan for plan: test_plan_1748991381
+2025-06-03 18:56:21,384 - WARNING - Plan test_plan_1748991381 not found in metadata
+2025-06-03 18:56:21,384 - WARNING - ❌ Plan not found for button action: test_plan_1748991381
+2025-06-03 18:56:21,384 - INFO - Universal handler result: {'success': False, 'response': '❌ Plan not found. It may have expired or been cancelled.', 'interactive': False}
+2025-06-03 18:56:22,388 - INFO - connection open
+2025-06-03 18:56:22,388 - INFO - Client client_4961121120 connected
+2025-06-03 18:56:22,388 - INFO - Received message type: do_button
+2025-06-03 18:56:22,388 - INFO - DO button message received: {'type': 'do_button', 'button': 'DO', 'plan_id': 'test_plan_1748991382'}
+2025-06-03 18:56:22,389 - INFO - Using universal automation handler for execute_plan on plan test_plan_1748991382
+2025-06-03 18:56:22,389 - INFO - 🔘 Handling button action: execute_plan for plan: test_plan_1748991382
+2025-06-03 18:56:22,389 - WARNING - Plan test_plan_1748991382 not found in metadata
+2025-06-03 18:56:22,389 - WARNING - ❌ Plan not found for button action: test_plan_1748991382
+2025-06-03 18:56:22,389 - INFO - Universal handler result: {'success': False, 'response': '❌ Plan not found. It may have expired or been cancelled.', 'interactive': False}
+2025-06-03 18:56:23,393 - INFO - connection open
+2025-06-03 18:56:23,393 - INFO - Client client_4961123856 connected
+2025-06-03 18:56:23,394 - INFO - Received message type: agent_confirmation
+2025-06-03 18:56:23,394 - INFO - Agent confirmation received: {'type': 'agent_confirmation', 'action': 'DISMISS', 'session_id': 'test_session_dismiss_1748991383'}
+2025-06-03 18:56:23,394 - INFO - Using universal automation handler for cancel_plan on plan test_session_dismiss_1748991383
+2025-06-03 18:56:23,394 - INFO - 🔘 Handling button action: cancel_plan for plan: test_session_dismiss_1748991383
+2025-06-03 18:56:23,394 - WARNING - Plan test_session_dismiss_1748991383 not found in metadata
+2025-06-03 18:56:23,394 - WARNING - ❌ Plan not found for button action: test_session_dismiss_1748991383
+2025-06-03 18:56:23,394 - INFO - Universal handler result: {'success': False, 'response': '❌ Plan not found. It may have expired or been cancelled.', 'interactive': False}
+2025-06-03 18:57:32,194 - INFO - connection open
+2025-06-03 18:57:32,194 - INFO - Client client_4961123856 connected
+2025-06-03 18:57:32,195 - INFO - Received message type: unknown
+2025-06-03 18:57:32,195 - WARNING - Unknown message type: unknown
+2025-06-03 19:11:24,503 - ERROR - opening handshake failed
+Traceback (most recent call last):
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/http11.py", line 138, in parse
+    request_line = yield from parse_line(read_line)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/http11.py", line 309, in parse_line
+    line = yield from read_line(MAX_LINE_LENGTH)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/streams.py", line 46, in read_line
+    raise EOFError(f"stream ends after {p} bytes, before end of line")
+EOFError: stream ends after 0 bytes, before end of line
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/server.py", line 545, in parse
+    request = yield from Request.parse(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^
+        self.reader.read_line,
+        ^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/http11.py", line 140, in parse
+    raise EOFError("connection closed while reading HTTP request line") from exc
+EOFError: connection closed while reading HTTP request line
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/asyncio/server.py", line 356, in conn_handler
+    await connection.handshake(
+    ...<3 lines>...
+    )
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/asyncio/server.py", line 207, in handshake
+    raise self.protocol.handshake_exc
+websockets.exceptions.InvalidMessage: did not receive a valid HTTP request
+2025-06-03 19:11:24,551 - INFO - connection open
+2025-06-03 19:11:24,551 - INFO - Client client_4961122944 connected
+2025-06-03 19:11:24,552 - INFO - Received message type: ping
+2025-06-03 19:11:24,588 - ERROR - opening handshake failed
+Traceback (most recent call last):
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/http11.py", line 138, in parse
+    request_line = yield from parse_line(read_line)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/http11.py", line 309, in parse_line
+    line = yield from read_line(MAX_LINE_LENGTH)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/streams.py", line 46, in read_line
+    raise EOFError(f"stream ends after {p} bytes, before end of line")
+EOFError: stream ends after 0 bytes, before end of line
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/server.py", line 545, in parse
+    request = yield from Request.parse(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^
+        self.reader.read_line,
+        ^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/http11.py", line 140, in parse
+    raise EOFError("connection closed while reading HTTP request line") from exc
+EOFError: connection closed while reading HTTP request line
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/asyncio/server.py", line 356, in conn_handler
+    await connection.handshake(
+    ...<3 lines>...
+    )
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/asyncio/server.py", line 207, in handshake
+    raise self.protocol.handshake_exc
+websockets.exceptions.InvalidMessage: did not receive a valid HTTP request
+2025-06-03 19:11:38,255 - ERROR - opening handshake failed
+Traceback (most recent call last):
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/http11.py", line 138, in parse
+    request_line = yield from parse_line(read_line)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/http11.py", line 309, in parse_line
+    line = yield from read_line(MAX_LINE_LENGTH)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/streams.py", line 46, in read_line
+    raise EOFError(f"stream ends after {p} bytes, before end of line")
+EOFError: stream ends after 0 bytes, before end of line
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/server.py", line 545, in parse
+    request = yield from Request.parse(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^
+        self.reader.read_line,
+        ^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/http11.py", line 140, in parse
+    raise EOFError("connection closed while reading HTTP request line") from exc
+EOFError: connection closed while reading HTTP request line
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/asyncio/server.py", line 356, in conn_handler
+    await connection.handshake(
+    ...<3 lines>...
+    )
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/asyncio/server.py", line 207, in handshake
+    raise self.protocol.handshake_exc
+websockets.exceptions.InvalidMessage: did not receive a valid HTTP request
+2025-06-03 19:11:38,380 - INFO - connection open
+2025-06-03 19:11:38,380 - INFO - Client client_4961119600 connected
+2025-06-03 19:11:38,381 - INFO - Received message type: ping
+2025-06-03 19:11:38,386 - ERROR - opening handshake failed
+Traceback (most recent call last):
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/http11.py", line 138, in parse
+    request_line = yield from parse_line(read_line)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/http11.py", line 309, in parse_line
+    line = yield from read_line(MAX_LINE_LENGTH)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/streams.py", line 46, in read_line
+    raise EOFError(f"stream ends after {p} bytes, before end of line")
+EOFError: stream ends after 0 bytes, before end of line
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/server.py", line 545, in parse
+    request = yield from Request.parse(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^
+        self.reader.read_line,
+        ^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/http11.py", line 140, in parse
+    raise EOFError("connection closed while reading HTTP request line") from exc
+EOFError: connection closed while reading HTTP request line
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/asyncio/server.py", line 356, in conn_handler
+    await connection.handshake(
+    ...<3 lines>...
+    )
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/asyncio/server.py", line 207, in handshake
+    raise self.protocol.handshake_exc
+websockets.exceptions.InvalidMessage: did not receive a valid HTTP request
+2025-06-03 19:12:20,942 - INFO - connection open
+2025-06-03 19:12:20,943 - INFO - Client client_4961118688 connected
+2025-06-03 19:12:20,944 - INFO - Received message type: do_button
+2025-06-03 19:12:20,944 - INFO - DO button message received: {'type': 'do_button', 'action': 'display', 'content': {'title': 'Test Suggestion', 'message': 'This is a test suggestion for the DO button. Would you like to execute this action?', 'buttons': [{'id': 'do_it', 'text': 'Yes, do it', 'type': 'primary'}, {'id': 'dismiss', 'text': 'No thanks', 'type': 'secondary'}]}, 'notification': True, 'play_sound': True, 'importance': 'high'}
+2025-06-03 19:12:20,945 - INFO - Using universal automation handler for  on plan 
+2025-06-03 19:12:20,945 - INFO - 🔘 Handling button action:  for plan: 
+2025-06-03 19:12:20,946 - WARNING - Plan  not found in metadata
+2025-06-03 19:12:20,946 - WARNING - ❌ Plan not found for button action: 
+2025-06-03 19:12:20,946 - INFO - Universal handler result: {'success': False, 'response': '❌ Plan not found. It may have expired or been cancelled.', 'interactive': False}
+2025-06-03 19:12:22,947 - INFO - Received message type: agent_confirmation
+2025-06-03 19:12:22,947 - INFO - Agent confirmation received: {'type': 'agent_confirmation', 'action': 'EXECUTE', 'session_id': 'test_session_1748992342', 'timestamp': '2025-06-03T19:12:22.945656'}
+2025-06-03 19:12:22,947 - INFO - Using universal automation handler for execute_plan on plan test_session_1748992342
+2025-06-03 19:12:22,947 - INFO - 🔘 Handling button action: execute_plan for plan: test_session_1748992342
+2025-06-03 19:12:22,948 - WARNING - Plan test_session_1748992342 not found in metadata
+2025-06-03 19:12:22,948 - WARNING - ❌ Plan not found for button action: test_session_1748992342
+2025-06-03 19:12:22,948 - INFO - Universal handler result: {'success': False, 'response': '❌ Plan not found. It may have expired or been cancelled.', 'interactive': False}
+2025-06-03 19:17:10,758 - ERROR - opening handshake failed
+Traceback (most recent call last):
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/http11.py", line 138, in parse
+    request_line = yield from parse_line(read_line)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/http11.py", line 309, in parse_line
+    line = yield from read_line(MAX_LINE_LENGTH)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/streams.py", line 46, in read_line
+    raise EOFError(f"stream ends after {p} bytes, before end of line")
+EOFError: stream ends after 0 bytes, before end of line
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/server.py", line 545, in parse
+    request = yield from Request.parse(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^
+        self.reader.read_line,
+        ^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/http11.py", line 140, in parse
+    raise EOFError("connection closed while reading HTTP request line") from exc
+EOFError: connection closed while reading HTTP request line
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/asyncio/server.py", line 356, in conn_handler
+    await connection.handshake(
+    ...<3 lines>...
+    )
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/asyncio/server.py", line 207, in handshake
+    raise self.protocol.handshake_exc
+websockets.exceptions.InvalidMessage: did not receive a valid HTTP request
+2025-06-03 19:17:10,785 - INFO - connection open
+2025-06-03 19:17:10,786 - INFO - Client client_4963188816 connected
+2025-06-03 19:17:10,787 - INFO - Received message type: ping
+2025-06-03 19:17:10,788 - INFO - connection open
+2025-06-03 19:17:10,788 - INFO - Client client_4963189424 connected
+2025-06-03 19:17:10,789 - INFO - Received message type: agent_confirmation
+2025-06-03 19:17:10,789 - INFO - Agent confirmation received: {'type': 'agent_confirmation', 'action': 'DO', 'session_id': 'test_session_1748992630'}
+2025-06-03 19:17:10,789 - INFO - Using universal automation handler for execute_plan on plan test_session_1748992630
+2025-06-03 19:17:10,789 - INFO - 🔘 Handling button action: execute_plan for plan: test_session_1748992630
+2025-06-03 19:17:10,789 - WARNING - Plan test_session_1748992630 not found in metadata
+2025-06-03 19:17:10,789 - WARNING - ❌ Plan not found for button action: test_session_1748992630
+2025-06-03 19:17:10,789 - INFO - Universal handler result: {'success': False, 'response': '❌ Plan not found. It may have expired or been cancelled.', 'interactive': False}
+2025-06-03 19:17:11,799 - INFO - connection open
+2025-06-03 19:17:11,799 - INFO - Client client_4963190032 connected
+2025-06-03 19:17:11,801 - INFO - Received message type: button_action
+2025-06-03 19:17:11,801 - INFO - Button action received: {'type': 'button_action', 'action': 'EXECUTE_PLAN', 'plan_id': 'test_plan_1748992631'}
+2025-06-03 19:17:11,801 - INFO - Using universal automation handler for execute_plan on plan test_plan_1748992631
+2025-06-03 19:17:11,801 - INFO - 🔘 Handling button action: execute_plan for plan: test_plan_1748992631
+2025-06-03 19:17:11,801 - WARNING - Plan test_plan_1748992631 not found in metadata
+2025-06-03 19:17:11,801 - WARNING - ❌ Plan not found for button action: test_plan_1748992631
+2025-06-03 19:17:11,801 - INFO - Universal handler result: {'success': False, 'response': '❌ Plan not found. It may have expired or been cancelled.', 'interactive': False}
+2025-06-03 19:17:12,806 - INFO - connection open
+2025-06-03 19:17:12,806 - INFO - Client client_4963190640 connected
+2025-06-03 19:17:12,807 - INFO - Received message type: do_button
+2025-06-03 19:17:12,807 - INFO - DO button message received: {'type': 'do_button', 'button': 'DO', 'plan_id': 'test_plan_1748992632'}
+2025-06-03 19:17:12,807 - INFO - Using universal automation handler for execute_plan on plan test_plan_1748992632
+2025-06-03 19:17:12,807 - INFO - 🔘 Handling button action: execute_plan for plan: test_plan_1748992632
+2025-06-03 19:17:12,807 - WARNING - Plan test_plan_1748992632 not found in metadata
+2025-06-03 19:17:12,807 - WARNING - ❌ Plan not found for button action: test_plan_1748992632
+2025-06-03 19:17:12,807 - INFO - Universal handler result: {'success': False, 'response': '❌ Plan not found. It may have expired or been cancelled.', 'interactive': False}
+2025-06-03 19:17:13,811 - INFO - connection open
+2025-06-03 19:17:13,811 - INFO - Client client_4963191248 connected
+2025-06-03 19:17:13,811 - INFO - Received message type: agent_confirmation
+2025-06-03 19:17:13,811 - INFO - Agent confirmation received: {'type': 'agent_confirmation', 'action': 'DISMISS', 'session_id': 'test_session_dismiss_1748992633'}
+2025-06-03 19:17:13,811 - INFO - Using universal automation handler for cancel_plan on plan test_session_dismiss_1748992633
+2025-06-03 19:17:13,811 - INFO - 🔘 Handling button action: cancel_plan for plan: test_session_dismiss_1748992633
+2025-06-03 19:17:13,811 - WARNING - Plan test_session_dismiss_1748992633 not found in metadata
+2025-06-03 19:17:13,811 - WARNING - ❌ Plan not found for button action: test_session_dismiss_1748992633
+2025-06-03 19:17:13,811 - INFO - Universal handler result: {'success': False, 'response': '❌ Plan not found. It may have expired or been cancelled.', 'interactive': False}

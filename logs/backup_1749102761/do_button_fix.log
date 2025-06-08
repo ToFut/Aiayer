@@ -1,0 +1,12 @@
+2025-06-03 19:45:01,316 - do_button_neural_proxy - INFO - ============================================================
+2025-06-03 19:45:01,316 - do_button_neural_proxy - INFO -   DO Button Neural UI Proxy - Starting
+2025-06-03 19:45:01,316 - do_button_neural_proxy - INFO - ============================================================
+2025-06-03 19:45:01,316 - do_button_neural_proxy - INFO - This proxy bridges communication between:
+2025-06-03 19:45:01,317 - do_button_neural_proxy - INFO - - The Ultimate DO Button Server (port 8765)
+2025-06-03 19:45:01,317 - do_button_neural_proxy - INFO - - The Neural UI Detector Server (port 8768)
+2025-06-03 19:45:01,317 - do_button_neural_proxy - INFO - - Client applications like the overlay chat
+2025-06-03 19:45:01,317 - do_button_neural_proxy - INFO - ============================================================
+2025-06-03 19:45:01,319 - do_button_neural_proxy - INFO - Server status: DO Button (8765): True, Neural UI (8768): False, Backend (8767): True
+2025-06-03 19:45:01,319 - do_button_neural_proxy - ERROR - ❌ The Neural UI Detector Server is not running on port 8768!
+2025-06-03 19:45:01,319 - do_button_neural_proxy - ERROR -    Please run 'python3 neural_ui_detector_server.py' first.
+2025-06-03 19:45:01,319 - do_button_neural_proxy - ERROR - Failed to verify server connectivity. Please make sure all required servers are running.

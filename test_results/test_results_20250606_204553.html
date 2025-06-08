@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Test Results 20250606_204553</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        h1 { color: #333; }
+        .summary { 
+            background-color: #f5f5f5; 
+            padding: 15px; 
+            border-radius: 5px; 
+            margin-bottom: 20px; 
+        }
+        .passed { color: green; }
+        .failed { color: red; }
+        .test { 
+            margin-bottom: 15px; 
+            padding: 10px; 
+            border: 1px solid #ddd; 
+            border-radius: 3px; 
+        }
+        .test.passed { border-left: 5px solid green; }
+        .test.failed, .test.error, .test.timeout { border-left: 5px solid red; }
+        .output { 
+            background-color: #f9f9f9; 
+            padding: 10px; 
+            border-radius: 3px; 
+            white-space: pre-wrap; 
+            max-height: 300px; 
+            overflow: auto; 
+        }
+        .error-output { 
+            background-color: #fff0f0; 
+            padding: 10px; 
+            border-radius: 3px; 
+            white-space: pre-wrap; 
+            max-height: 300px; 
+            overflow: auto; 
+        }
+    </style>
+</head>
+<body>
+    <h1>Test Results: 20250606_204553</h1>
+    
+    <div class="summary">
+        <p><strong>Tests Run:</strong> 1</p>
+        <p><strong>Tests Passed:</strong> <span class="passed">1</span></p>
+        <p><strong>Tests Failed:</strong> <span class="failed">0</span></p>
+        <p><strong>Total Duration:</strong> 1.38s</p>
+    </div>
+    
+    <h2>Test Details</h2>
+
+    <h3>Misc (1/1 passed)</h3>
+
+    <div class="test passed">
+        <h4>test_json_parsing.py - <span class="passed">PASSED</span> (1.38s)</h4>
+
+        <h5>Output:</h5>
+        <div class="output">
+===== JSON PARSING TEST RESULTS =====
+
+
+----- Testing: test_valid_json -----
+❌ FAILED: test_valid_json - AttributeError: 'UniversalIntelligentAutomationHandler' object has no attribute '_create_advanced_llm_plan'
+
+----- Testing: test_markdown_json -----
+❌ FAILED: test_markdown_json - AttributeError: 'UniversalIntelligentAutomationHandler' object has no attribute '_create_advanced_llm_plan'
+
+----- Testing: test_messy_json -----
+❌ FAILED: test_messy_json - AttributeError: 'UniversalIntelligentAutomationHandler' object has no attribute '_create_advanced_llm_plan'
+
+----- Testing: test_single_quotes -----
+❌ FAILED: test_single_quotes - AttributeError: 'UniversalIntelligentAutomationHandler' object has no attribute '_create_advanced_llm_plan'
+
+----- Testing: test_python_literals -----
+❌ FAILED: test_python_literals - AttributeError: 'UniversalIntelligentAutomationHandler' object has no attribute '_create_advanced_llm_plan'
+
+----- Testing: test_unquoted_keys -----
+❌ FAILED: test_unquoted_keys - AttributeError: 'UniversalIntelligentAutomationHandler' object has no attribute '_create_advanced_llm_plan'
+
+----- Testing: test_coordinate_formats -----
+❌ FAILED: test_coordinate_formats - AttributeError: 'UniversalIntelligentAutomationHandler' object has no attribute '_create_advanced_llm_plan'
+
+===== TEST COMPLETED =====
+
+</div>
+
+        <h5>Error:</h5>
+        <div class="error-output">2025-06-06 20:45:52,934 - INFO - Detected screen size: 1470x956
+2025-06-06 20:45:53,383 - INFO - Standard mouse listener started successfully
+2025-06-06 20:45:53,383 - INFO - Keyboard listener started successfully
+2025-06-06 20:45:53,383 - INFO - Input controller initialized (safe mode)
+2025-06-06 20:45:53,383 - INFO - 🚨 Emergency shutdown: Press Ctrl+1 to immediately stop agent
+2025-06-06 20:45:53,454 - INFO - Connected to Ollama API v0.6.8
+2025-06-06 20:45:53,455 - INFO - LLaVA visual processor initialized for total screen analysis
+2025-06-06 20:45:53,455 - INFO - Total Screen Analyzer initialized with 8s interval
+2025-06-06 20:45:53,455 - INFO - 🔄 Adaptive retry automation system loaded
+2025-06-06 20:45:53,455 - INFO - ✅ Adaptive retry automation handler loaded successfully
+2025-06-06 20:45:53,457 - INFO - Loaded 12 plans from metadata
+2025-06-06 20:45:53,457 - INFO - Plan persistence system initialized
+2025-06-06 20:45:53,457 - INFO - ✅ Plan persistence module loaded successfully
+2025-06-06 20:45:53,458 - INFO - Standard mouse listener started successfully
+2025-06-06 20:45:53,459 - INFO - Keyboard listener started successfully
+2025-06-06 20:45:53,459 - INFO - Input controller initialized (safe mode)
+2025-06-06 20:45:53,459 - INFO - 🚨 Emergency shutdown: Press Ctrl+1 to immediately stop agent
+2025-06-06 20:45:53,461 - INFO - Connected to Ollama API v0.6.8
+2025-06-06 20:45:53,461 - INFO - LLaVA visual processor initialized for total screen analysis
+2025-06-06 20:45:53,461 - INFO - Total Screen Analyzer initialized with 8s interval
+2025-06-06 20:45:53,461 - INFO - 🤖 Universal automation components loaded successfully
+2025-06-06 20:45:53,462 - INFO - Standard mouse listener started successfully
+2025-06-06 20:45:53,462 - INFO - Keyboard listener started successfully
+2025-06-06 20:45:53,462 - INFO - Input controller initialized (safe mode)
+2025-06-06 20:45:53,462 - INFO - 🚨 Emergency shutdown: Press Ctrl+1 to immediately stop agent
+2025-06-06 20:45:53,470 - INFO - Connected to Ollama API v0.6.8
+2025-06-06 20:45:53,470 - INFO - LLaVA visual processor initialized for total screen analysis
+2025-06-06 20:45:53,470 - INFO - Total Screen Analyzer initialized with 8s interval
+2025-06-06 20:45:53,470 - INFO - 🤖 Universal automation components loaded successfully
+</div>
+
+    </div>
+
+</body>
+</html>

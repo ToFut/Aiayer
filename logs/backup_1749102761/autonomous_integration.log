@@ -1,0 +1,115 @@
+2025-06-05 00:53:04,621 - memory.enhanced_semantic_search - INFO - Enhanced semantic search initialized with embedding dim: 384
+2025-06-05 00:53:04,621 - memory.enhanced_semantic_search - INFO - Hybrid retrieval enabled: True
+2025-06-05 00:53:05,392 - agent_workflow.input_controller - INFO - Detected screen size: 1470x956
+2025-06-05 00:53:05,395 - agent_workflow.input_controller - INFO - Standard mouse listener started successfully
+2025-06-05 00:53:05,395 - agent_workflow.input_controller - INFO - Keyboard listener started successfully
+2025-06-05 00:53:05,395 - agent_workflow.input_controller - INFO - Input controller initialized (safe mode)
+2025-06-05 00:53:05,395 - agent_workflow.input_controller - INFO - 🚨 Emergency shutdown: Press Ctrl+1 to immediately stop agent
+2025-06-05 00:53:07,378 - llava_processor - INFO - Connected to Ollama API v0.6.8
+2025-06-05 00:53:07,384 - total_screen_analyzer - INFO - LLaVA visual processor initialized for total screen analysis
+2025-06-05 00:53:07,384 - total_screen_analyzer - INFO - Total Screen Analyzer initialized with 8s interval
+2025-06-05 00:53:07,384 - adaptive_retry_automation_handler - INFO - 🔄 Adaptive retry automation system loaded
+2025-06-05 00:53:07,405 - universal_intelligent_automation_handler - INFO - ✅ Adaptive retry automation handler loaded successfully
+2025-06-05 00:53:07,435 - plan_persistence - INFO - Loaded 2 plans from metadata
+2025-06-05 00:53:07,436 - plan_persistence - INFO - Plan persistence system initialized
+2025-06-05 00:53:07,436 - universal_intelligent_automation_handler - INFO - ✅ Plan persistence module loaded successfully
+2025-06-05 00:53:07,439 - agent_workflow.input_controller - INFO - Standard mouse listener started successfully
+2025-06-05 00:53:07,441 - agent_workflow.input_controller - INFO - Keyboard listener started successfully
+2025-06-05 00:53:07,441 - agent_workflow.input_controller - INFO - Input controller initialized (safe mode)
+2025-06-05 00:53:07,441 - agent_workflow.input_controller - INFO - 🚨 Emergency shutdown: Press Ctrl+1 to immediately stop agent
+2025-06-05 00:53:07,490 - llava_processor - INFO - Connected to Ollama API v0.6.8
+2025-06-05 00:53:07,490 - total_screen_analyzer - INFO - LLaVA visual processor initialized for total screen analysis
+2025-06-05 00:53:07,491 - total_screen_analyzer - INFO - Total Screen Analyzer initialized with 8s interval
+2025-06-05 00:53:07,491 - universal_intelligent_automation_handler - INFO - 🤖 Universal automation components loaded successfully
+2025-06-05 00:53:07,492 - AutonomousIntegration - ERROR - Failed to import LLM model. Check your PYTHONPATH.
+2025-06-05 00:53:07,493 - AutonomousAwareness - INFO - Autonomous Awareness System initialized
+2025-06-05 00:53:07,493 - sensors.process_sensor - INFO - Process sensor initialized with config: {'interval_sec': 5, 'max_memory_mb': 50, 'cleanup_threshold_mb': 25, 'max_errors': 3, 'exclude_patterns': ['system', 'kernel'], 'max_processes': 100}
+2025-06-05 00:53:07,494 - memory.memory_system - INFO - Memory logger initialized
+2025-06-05 00:53:07,494 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-06-05 00:53:07,494 - memory_diagnostics - INFO - MEMORY EVENT: logger_initialized - {"timestamp": "2025-06-05T00:53:07.494697"}
+2025-06-05 00:53:07,495 - memory.memory_system - INFO - Diagnostic logger initialized
+2025-06-05 00:53:07,495 - memory.conscious_memory - INFO - [ConsciousMemory] Initialized as middle layer for memory system
+2025-06-05 00:53:07,495 - memory.memory_system - INFO - Conscious memory initialized
+2025-06-05 00:53:07,495 - memory.enhanced_semantic_search - INFO - Enhanced semantic search initialized with embedding dim: 384
+2025-06-05 00:53:07,495 - memory.enhanced_semantic_search - INFO - Hybrid retrieval enabled: True
+2025-06-05 00:53:07,495 - memory.memory_system - INFO - Enhanced semantic search initialized
+2025-06-05 00:53:07,495 - memory.memory_system - INFO - 🔄 Loading memory state from /Users/segevbin/Desktop/SensAI/Aiayer/memory/memory/memory_state.json
+2025-06-05 00:53:07,495 - memory.memory_system - INFO -   - Found 16 short-term memory items
+2025-06-05 00:53:07,496 - memory.memory_system - INFO -   - No long-term memory found, initializing empty
+2025-06-05 00:53:07,496 - memory.memory_system - INFO -   - Found context memory with 6 items
+2025-06-05 00:53:07,496 - memory.memory_system - INFO -   - Initialized new sensor data storage
+2025-06-05 00:53:07,496 - memory.memory_system - INFO - ✅ Successfully loaded memory state
+2025-06-05 00:53:07,496 - memory_diagnostics - INFO - MEMORY EVENT: memory_state_loaded - {"short_term_count": 16, "long_term_count": 0, "context_count": 6, "timestamp": "2025-06-05T00:53:07.496133"}
+2025-06-05 00:53:07,496 - memory.memory_system - INFO - Memory system initialized
+2025-06-05 00:53:07,496 - memory.enhanced_semantic_search - INFO - Enhanced semantic search initialized with embedding dim: 384
+2025-06-05 00:53:07,496 - memory.enhanced_semantic_search - INFO - Hybrid retrieval enabled: True
+2025-06-05 00:53:07,496 - AutonomousIntegration - ERROR - Failed to initialize conscious memory: ConsciousMemory.__init__() missing 2 required positional arguments: 'llm_provider' and 'memory_system'
+2025-06-05 00:53:07,500 - agent_workflow.input_controller - INFO - Standard mouse listener started successfully
+2025-06-05 00:53:07,500 - agent_workflow.input_controller - INFO - Keyboard listener started successfully
+2025-06-05 00:53:07,500 - agent_workflow.input_controller - INFO - Input controller initialized (safe mode)
+2025-06-05 00:53:07,500 - agent_workflow.input_controller - INFO - 🚨 Emergency shutdown: Press Ctrl+1 to immediately stop agent
+2025-06-05 00:53:07,522 - llava_processor - INFO - Connected to Ollama API v0.6.8
+2025-06-05 00:53:07,526 - total_screen_analyzer - INFO - LLaVA visual processor initialized for total screen analysis
+2025-06-05 00:53:07,526 - total_screen_analyzer - INFO - Total Screen Analyzer initialized with 8s interval
+2025-06-05 00:53:07,526 - universal_intelligent_automation_handler - INFO - 🤖 Universal automation components loaded successfully
+2025-06-05 00:53:07,529 - AutonomousIntegration - INFO - Enhanced Autonomous Awareness System initialized with integrations
+2025-06-05 00:53:07,532 - AutonomousAwareness - INFO - Autonomous Awareness System started
+2025-06-05 00:53:07,868 - AutonomousAwareness - INFO - Memory monitor loop started
+2025-06-05 00:53:07,869 - AutonomousAwareness - INFO - Suggestion generator loop started
+2025-06-05 00:53:07,869 - AutonomousAwareness - INFO - Suggestion delivery loop started
+2025-06-05 00:53:07,869 - AutonomousAwareness - INFO - Execution monitor loop started
+2025-06-05 00:53:07,869 - AutonomousAwareness - INFO - Persistence loop started
+2025-06-05 00:53:07,869 - AutonomousAwareness - INFO - Saved persistence data
+2025-06-05 00:53:07,869 - AutonomousIntegration - ERROR - Error scanning memory for patterns: EnhancedSemanticSearch.search() got an unexpected keyword argument 'threshold'
+2025-06-05 00:53:07,869 - AutonomousIntegration - ERROR - Error scanning memory for patterns: EnhancedSemanticSearch.search() got an unexpected keyword argument 'threshold'
+2025-06-05 00:53:07,870 - AutonomousIntegration - ERROR - Websocket connection error: Multiple exceptions: [Errno 61] Connect call failed ('::1', 8765, 0, 0), [Errno 61] Connect call failed ('127.0.0.1', 8765)
+2025-06-05 00:53:12,992 - AutonomousIntegration - ERROR - Websocket connection error: Multiple exceptions: [Errno 61] Connect call failed ('::1', 8765, 0, 0), [Errno 61] Connect call failed ('127.0.0.1', 8765)
+2025-06-05 00:53:17,997 - AutonomousIntegration - ERROR - Websocket connection error: Multiple exceptions: [Errno 61] Connect call failed ('::1', 8765, 0, 0), [Errno 61] Connect call failed ('127.0.0.1', 8765)
+2025-06-05 00:53:22,872 - AutonomousIntegration - ERROR - Error scanning memory for patterns: EnhancedSemanticSearch.search() got an unexpected keyword argument 'threshold'
+2025-06-05 00:53:23,001 - AutonomousIntegration - ERROR - Websocket connection error: Multiple exceptions: [Errno 61] Connect call failed ('::1', 8765, 0, 0), [Errno 61] Connect call failed ('127.0.0.1', 8765)
+2025-06-05 00:53:28,005 - AutonomousIntegration - ERROR - Websocket connection error: Multiple exceptions: [Errno 61] Connect call failed ('::1', 8765, 0, 0), [Errno 61] Connect call failed ('127.0.0.1', 8765)
+2025-06-05 00:53:33,007 - AutonomousIntegration - ERROR - Websocket connection error: Multiple exceptions: [Errno 61] Connect call failed ('::1', 8765, 0, 0), [Errno 61] Connect call failed ('127.0.0.1', 8765)
+2025-06-05 00:53:37,871 - AutonomousIntegration - ERROR - Error scanning memory for patterns: EnhancedSemanticSearch.search() got an unexpected keyword argument 'threshold'
+2025-06-05 00:53:37,873 - AutonomousIntegration - ERROR - Error scanning memory for patterns: EnhancedSemanticSearch.search() got an unexpected keyword argument 'threshold'
+2025-06-05 00:53:38,010 - AutonomousIntegration - ERROR - Websocket connection error: Multiple exceptions: [Errno 61] Connect call failed ('::1', 8765, 0, 0), [Errno 61] Connect call failed ('127.0.0.1', 8765)
+2025-06-05 00:53:43,012 - AutonomousIntegration - ERROR - Websocket connection error: Multiple exceptions: [Errno 61] Connect call failed ('::1', 8765, 0, 0), [Errno 61] Connect call failed ('127.0.0.1', 8765)
+2025-06-05 00:53:48,014 - AutonomousIntegration - ERROR - Websocket connection error: Multiple exceptions: [Errno 61] Connect call failed ('::1', 8765, 0, 0), [Errno 61] Connect call failed ('127.0.0.1', 8765)
+2025-06-05 00:53:52,875 - AutonomousIntegration - ERROR - Error scanning memory for patterns: EnhancedSemanticSearch.search() got an unexpected keyword argument 'threshold'
+2025-06-05 00:53:53,017 - AutonomousIntegration - ERROR - Websocket connection error: Multiple exceptions: [Errno 61] Connect call failed ('::1', 8765, 0, 0), [Errno 61] Connect call failed ('127.0.0.1', 8765)
+2025-06-05 00:53:58,021 - AutonomousIntegration - ERROR - Websocket connection error: Multiple exceptions: [Errno 61] Connect call failed ('::1', 8765, 0, 0), [Errno 61] Connect call failed ('127.0.0.1', 8765)
+2025-06-05 00:54:03,026 - AutonomousIntegration - ERROR - Websocket connection error: Multiple exceptions: [Errno 61] Connect call failed ('::1', 8765, 0, 0), [Errno 61] Connect call failed ('127.0.0.1', 8765)
+2025-06-05 00:54:07,873 - AutonomousIntegration - ERROR - Error scanning memory for patterns: EnhancedSemanticSearch.search() got an unexpected keyword argument 'threshold'
+2025-06-05 00:54:07,875 - AutonomousIntegration - ERROR - Error scanning memory for patterns: EnhancedSemanticSearch.search() got an unexpected keyword argument 'threshold'
+2025-06-05 00:54:08,038 - AutonomousIntegration - ERROR - Websocket connection error: Multiple exceptions: [Errno 61] Connect call failed ('::1', 8765, 0, 0), [Errno 61] Connect call failed ('127.0.0.1', 8765)
+2025-06-05 00:54:13,041 - AutonomousIntegration - ERROR - Websocket connection error: Multiple exceptions: [Errno 61] Connect call failed ('::1', 8765, 0, 0), [Errno 61] Connect call failed ('127.0.0.1', 8765)
+2025-06-05 00:54:18,044 - AutonomousIntegration - ERROR - Websocket connection error: Multiple exceptions: [Errno 61] Connect call failed ('::1', 8765, 0, 0), [Errno 61] Connect call failed ('127.0.0.1', 8765)
+2025-06-05 00:54:22,877 - AutonomousIntegration - ERROR - Error scanning memory for patterns: EnhancedSemanticSearch.search() got an unexpected keyword argument 'threshold'
+2025-06-05 00:54:23,047 - AutonomousIntegration - ERROR - Websocket connection error: Multiple exceptions: [Errno 61] Connect call failed ('::1', 8765, 0, 0), [Errno 61] Connect call failed ('127.0.0.1', 8765)
+2025-06-05 00:54:28,051 - AutonomousIntegration - ERROR - Websocket connection error: Multiple exceptions: [Errno 61] Connect call failed ('::1', 8765, 0, 0), [Errno 61] Connect call failed ('127.0.0.1', 8765)
+2025-06-05 00:54:33,054 - AutonomousIntegration - ERROR - Websocket connection error: Multiple exceptions: [Errno 61] Connect call failed ('::1', 8765, 0, 0), [Errno 61] Connect call failed ('127.0.0.1', 8765)
+2025-06-05 00:54:37,876 - AutonomousIntegration - ERROR - Error scanning memory for patterns: EnhancedSemanticSearch.search() got an unexpected keyword argument 'threshold'
+2025-06-05 00:54:37,878 - AutonomousIntegration - ERROR - Error scanning memory for patterns: EnhancedSemanticSearch.search() got an unexpected keyword argument 'threshold'
+2025-06-05 00:54:38,057 - AutonomousIntegration - ERROR - Websocket connection error: Multiple exceptions: [Errno 61] Connect call failed ('::1', 8765, 0, 0), [Errno 61] Connect call failed ('127.0.0.1', 8765)
+2025-06-05 00:54:43,060 - AutonomousIntegration - ERROR - Websocket connection error: Multiple exceptions: [Errno 61] Connect call failed ('::1', 8765, 0, 0), [Errno 61] Connect call failed ('127.0.0.1', 8765)
+2025-06-05 00:54:48,063 - AutonomousIntegration - ERROR - Websocket connection error: Multiple exceptions: [Errno 61] Connect call failed ('::1', 8765, 0, 0), [Errno 61] Connect call failed ('127.0.0.1', 8765)
+2025-06-05 00:54:52,879 - AutonomousIntegration - ERROR - Error scanning memory for patterns: EnhancedSemanticSearch.search() got an unexpected keyword argument 'threshold'
+2025-06-05 00:54:53,068 - AutonomousIntegration - ERROR - Websocket connection error: Multiple exceptions: [Errno 61] Connect call failed ('::1', 8765, 0, 0), [Errno 61] Connect call failed ('127.0.0.1', 8765)
+2025-06-05 00:54:58,070 - AutonomousIntegration - ERROR - Websocket connection error: Multiple exceptions: [Errno 61] Connect call failed ('::1', 8765, 0, 0), [Errno 61] Connect call failed ('127.0.0.1', 8765)
+2025-06-05 00:55:03,073 - AutonomousIntegration - ERROR - Websocket connection error: Multiple exceptions: [Errno 61] Connect call failed ('::1', 8765, 0, 0), [Errno 61] Connect call failed ('127.0.0.1', 8765)
+2025-06-05 00:55:07,879 - AutonomousIntegration - ERROR - Error scanning memory for patterns: EnhancedSemanticSearch.search() got an unexpected keyword argument 'threshold'
+2025-06-05 00:55:07,880 - AutonomousIntegration - ERROR - Error scanning memory for patterns: EnhancedSemanticSearch.search() got an unexpected keyword argument 'threshold'
+2025-06-05 00:55:08,077 - AutonomousIntegration - ERROR - Websocket connection error: Multiple exceptions: [Errno 61] Connect call failed ('::1', 8765, 0, 0), [Errno 61] Connect call failed ('127.0.0.1', 8765)
+2025-06-05 00:55:13,080 - AutonomousIntegration - ERROR - Websocket connection error: Multiple exceptions: [Errno 61] Connect call failed ('::1', 8765, 0, 0), [Errno 61] Connect call failed ('127.0.0.1', 8765)
+2025-06-05 00:55:18,083 - AutonomousIntegration - ERROR - Websocket connection error: Multiple exceptions: [Errno 61] Connect call failed ('::1', 8765, 0, 0), [Errno 61] Connect call failed ('127.0.0.1', 8765)
+2025-06-05 00:55:22,882 - AutonomousIntegration - ERROR - Error scanning memory for patterns: EnhancedSemanticSearch.search() got an unexpected keyword argument 'threshold'
+2025-06-05 00:55:23,086 - AutonomousIntegration - ERROR - Websocket connection error: Multiple exceptions: [Errno 61] Connect call failed ('::1', 8765, 0, 0), [Errno 61] Connect call failed ('127.0.0.1', 8765)
+2025-06-05 00:55:28,188 - AutonomousIntegration - ERROR - Websocket connection error: Multiple exceptions: [Errno 61] Connect call failed ('::1', 8765, 0, 0), [Errno 61] Connect call failed ('127.0.0.1', 8765)
+2025-06-05 00:55:33,190 - AutonomousIntegration - ERROR - Websocket connection error: Multiple exceptions: [Errno 61] Connect call failed ('::1', 8765, 0, 0), [Errno 61] Connect call failed ('127.0.0.1', 8765)
+2025-06-05 00:55:37,881 - AutonomousIntegration - ERROR - Error scanning memory for patterns: EnhancedSemanticSearch.search() got an unexpected keyword argument 'threshold'
+2025-06-05 00:55:37,883 - AutonomousIntegration - ERROR - Error scanning memory for patterns: EnhancedSemanticSearch.search() got an unexpected keyword argument 'threshold'
+2025-06-05 00:55:38,192 - AutonomousIntegration - ERROR - Websocket connection error: Multiple exceptions: [Errno 61] Connect call failed ('::1', 8765, 0, 0), [Errno 61] Connect call failed ('127.0.0.1', 8765)
+2025-06-05 00:55:43,196 - AutonomousIntegration - ERROR - Websocket connection error: Multiple exceptions: [Errno 61] Connect call failed ('::1', 8765, 0, 0), [Errno 61] Connect call failed ('127.0.0.1', 8765)
+2025-06-05 00:55:47,435 - AutonomousAwareness - INFO - Received signal 15, shutting down...
+2025-06-05 00:55:48,198 - AutonomousIntegration - ERROR - Websocket connection error: Multiple exceptions: [Errno 61] Connect call failed ('::1', 8765, 0, 0), [Errno 61] Connect call failed ('127.0.0.1', 8765)
+2025-06-05 00:55:52,884 - AutonomousIntegration - ERROR - Error scanning memory for patterns: EnhancedSemanticSearch.search() got an unexpected keyword argument 'threshold'
+2025-06-05 00:55:53,202 - AutonomousIntegration - ERROR - Websocket connection error: Multiple exceptions: [Errno 61] Connect call failed ('::1', 8765, 0, 0), [Errno 61] Connect call failed ('127.0.0.1', 8765)

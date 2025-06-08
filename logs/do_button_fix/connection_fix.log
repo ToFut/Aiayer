@@ -1,0 +1,118 @@
+2025-06-04 13:19:59,043 - INFO - Loaded 0 plans from metadata
+2025-06-04 13:19:59,044 - INFO - Plan persistence system initialized
+2025-06-04 13:19:59,044 - INFO - ✅ Plan persistence module loaded successfully
+2025-06-04 13:20:00,006 - INFO - Enhanced semantic search initialized with embedding dim: 384
+2025-06-04 13:20:00,006 - INFO - Hybrid retrieval enabled: True
+2025-06-04 13:20:00,476 - INFO - Loading 1808 existing documents from storage
+2025-06-04 13:20:00,631 - INFO - EnterpriseVectorStore initialized with enterprise-grade features
+2025-06-04 13:20:00,659 - INFO - SemanticSearchAgent initialized with enterprise-grade capabilities
+2025-06-04 13:20:00,660 - INFO - ✅ Plan persistence module loaded successfully
+2025-06-04 13:20:00,898 - INFO - Detected screen size: 1470x956
+2025-06-04 13:20:00,908 - INFO - Standard mouse listener started successfully
+2025-06-04 13:20:00,909 - INFO - Keyboard listener started successfully
+2025-06-04 13:20:00,909 - INFO - Input controller initialized (safe mode)
+2025-06-04 13:20:00,909 - INFO - 🚨 Emergency shutdown: Press Ctrl+1 to immediately stop agent
+2025-06-04 13:20:02,922 - WARNING - Error checking LLaVA availability: HTTPConnectionPool(host='localhost', port=11434): Read timed out. (read timeout=2)
+2025-06-04 13:20:02,923 - INFO - LLaVA visual processor initialized for total screen analysis
+2025-06-04 13:20:02,923 - INFO - Total Screen Analyzer initialized with 8s interval
+2025-06-04 13:20:02,923 - INFO - 🤖 Real automation components loaded successfully
+2025-06-04 13:20:02,965 - INFO - Standard mouse listener started successfully
+2025-06-04 13:20:02,965 - INFO - Keyboard listener started successfully
+2025-06-04 13:20:02,965 - INFO - Input controller initialized (safe mode)
+2025-06-04 13:20:02,965 - INFO - 🚨 Emergency shutdown: Press Ctrl+1 to immediately stop agent
+2025-06-04 13:20:03,336 - INFO - Connected to Ollama API v0.6.8
+2025-06-04 13:20:03,336 - INFO - LLaVA visual processor initialized for total screen analysis
+2025-06-04 13:20:03,336 - INFO - Total Screen Analyzer initialized with 8s interval
+2025-06-04 13:20:03,336 - INFO - 🔄 Adaptive retry automation system loaded
+2025-06-04 13:20:03,336 - INFO - ✅ Adaptive retry automation handler loaded successfully
+2025-06-04 13:20:03,336 - INFO - ✅ Plan persistence module loaded successfully
+2025-06-04 13:20:03,337 - INFO - Standard mouse listener started successfully
+2025-06-04 13:20:03,338 - INFO - Keyboard listener started successfully
+2025-06-04 13:20:03,338 - INFO - Input controller initialized (safe mode)
+2025-06-04 13:20:03,338 - INFO - 🚨 Emergency shutdown: Press Ctrl+1 to immediately stop agent
+2025-06-04 13:20:03,364 - INFO - Connected to Ollama API v0.6.8
+2025-06-04 13:20:03,364 - INFO - LLaVA visual processor initialized for total screen analysis
+2025-06-04 13:20:03,364 - INFO - Total Screen Analyzer initialized with 8s interval
+2025-06-04 13:20:03,364 - INFO - 🤖 Universal automation components loaded successfully
+2025-06-04 13:20:03,364 - INFO - ✅ Using backend's shared_pending_plans dictionary
+2025-06-04 13:20:03,365 - INFO - Port 8766 is available
+2025-06-04 13:20:03,365 - INFO - Starting DO Button Connection Fix proxy on localhost:8766
+2025-06-04 13:20:03,368 - INFO - server listening on 127.0.0.1:8766
+2025-06-04 13:20:03,368 - INFO - server listening on [::1]:8766
+2025-06-04 13:20:03,368 - INFO - ✅ DO Button Connection Fix proxy running on ws://localhost:8766
+2025-06-04 13:20:03,368 - INFO - 📋 Proxy forwards to DO button server (8765) and Neural UI server (8768)
+2025-06-04 13:32:36,442 - INFO - connection open
+2025-06-04 13:32:36,452 - INFO - Client 1f033872-36ce-4471-97eb-cff3ca966707 connected on path: None
+2025-06-04 13:32:36,463 - INFO - Received message type: suggestion from client 1f033872-36ce-4471-97eb-cff3ca966707
+2025-06-04 13:32:36,464 - INFO - Handling suggestion message: ✅ ACTION SUGGESTION: The automatic suggestion syst...
+2025-06-04 13:32:36,466 - INFO - Suggestion forwarded to client
+2025-06-04 13:32:36,963 - INFO - Received message type: unknown from client 1f033872-36ce-4471-97eb-cff3ca966707
+2025-06-04 13:32:36,963 - WARNING - Unknown message type: unknown
+2025-06-04 13:32:36,967 - INFO - connection open
+2025-06-04 13:32:36,967 - INFO - Client 615da5e5-4736-4dca-b0e0-4d120f11b43d connected on path: None
+2025-06-04 13:32:36,968 - INFO - Received message type: suggestion from client 615da5e5-4736-4dca-b0e0-4d120f11b43d
+2025-06-04 13:32:36,968 - INFO - Handling suggestion message: 💡 UI SUGGESTION: Based on the current screen, cons...
+2025-06-04 13:32:36,969 - INFO - Suggestion forwarded to client
+2025-06-04 13:32:37,469 - INFO - Received message type: unknown from client 615da5e5-4736-4dca-b0e0-4d120f11b43d
+2025-06-04 13:32:37,469 - WARNING - Unknown message type: unknown
+2025-06-04 13:33:37,485 - INFO - connection open
+2025-06-04 13:33:37,486 - INFO - Client b51f52cb-bb5c-4d53-8e75-3bad915ebe3c connected on path: None
+2025-06-04 13:33:37,487 - INFO - Received message type: suggestion from client b51f52cb-bb5c-4d53-8e75-3bad915ebe3c
+2025-06-04 13:33:37,488 - INFO - Handling suggestion message: 🔍 ACTION SUGGESTION: I notice you're working on th...
+2025-06-04 13:33:37,488 - INFO - Suggestion forwarded to client
+2025-06-04 13:33:37,989 - INFO - Received message type: unknown from client b51f52cb-bb5c-4d53-8e75-3bad915ebe3c
+2025-06-04 13:33:37,990 - WARNING - Unknown message type: unknown
+2025-06-04 13:34:38,005 - INFO - connection open
+2025-06-04 13:34:38,007 - INFO - Client 0c51c3ed-89fe-4101-93c8-0ea55a06b2da connected on path: None
+2025-06-04 13:34:38,009 - INFO - Received message type: suggestion from client 0c51c3ed-89fe-4101-93c8-0ea55a06b2da
+2025-06-04 13:34:38,010 - INFO - Handling suggestion message: 🧩 AUTOMATION SUGGESTION: I can help you fix the pl...
+2025-06-04 13:34:38,010 - INFO - Suggestion forwarded to client
+2025-06-04 13:34:38,510 - INFO - Received message type: unknown from client 0c51c3ed-89fe-4101-93c8-0ea55a06b2da
+2025-06-04 13:34:38,510 - WARNING - Unknown message type: unknown
+2025-06-04 13:37:56,944 - ERROR - opening handshake failed
+Traceback (most recent call last):
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/http11.py", line 138, in parse
+    request_line = yield from parse_line(read_line)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/http11.py", line 309, in parse_line
+    line = yield from read_line(MAX_LINE_LENGTH)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/streams.py", line 46, in read_line
+    raise EOFError(f"stream ends after {p} bytes, before end of line")
+EOFError: stream ends after 0 bytes, before end of line
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/server.py", line 545, in parse
+    request = yield from Request.parse(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^
+        self.reader.read_line,
+        ^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/http11.py", line 140, in parse
+    raise EOFError("connection closed while reading HTTP request line") from exc
+EOFError: connection closed while reading HTTP request line
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/asyncio/server.py", line 356, in conn_handler
+    await connection.handshake(
+    ...<3 lines>...
+    )
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/asyncio/server.py", line 207, in handshake
+    raise self.protocol.handshake_exc
+websockets.exceptions.InvalidMessage: did not receive a valid HTTP request
+2025-06-04 13:37:56,985 - INFO - connection open
+2025-06-04 13:37:56,985 - INFO - Client bb1df45e-ac32-4b2d-9f3c-9b71aaabeb1f connected on path: None
+2025-06-04 13:37:56,986 - INFO - Received message type: suggestion from client bb1df45e-ac32-4b2d-9f3c-9b71aaabeb1f
+2025-06-04 13:37:56,986 - INFO - Handling suggestion message: 🚨 URGENT NOTIFICATION: This is a direct message to...
+2025-06-04 13:37:56,986 - INFO - Suggestion forwarded to client
+2025-06-04 13:37:57,487 - INFO - Received message type: unknown from client bb1df45e-ac32-4b2d-9f3c-9b71aaabeb1f
+2025-06-04 13:37:57,487 - WARNING - Unknown message type: unknown
+2025-06-04 13:37:57,487 - INFO - Received message type: message from client bb1df45e-ac32-4b2d-9f3c-9b71aaabeb1f
+2025-06-04 13:37:57,487 - WARNING - Unknown message type: message
+2025-06-04 13:37:57,487 - ERROR - Error processing message: received 1000 (OK); then sent 1000 (OK)
+2025-06-04 13:37:57,488 - INFO - Client bb1df45e-ac32-4b2d-9f3c-9b71aaabeb1f disconnected

@@ -18,7 +18,7 @@ class StreamingBackend:
     def __init__(self):
         self.connected_clients = set()
         
-    async def handle_websocket(self, websocket):
+    async def handle_websocket(websocket, path=None):
         """Handle WebSocket connections"""
         client_id = f"client_{int(datetime.now().timestamp() * 1000)}"
         self.connected_clients.add(client_id)

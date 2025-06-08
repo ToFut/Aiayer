@@ -1,0 +1,51 @@
+2025-06-03 02:01:46,984 - plan_persistence - INFO - Plan persistence manager initialized with 30 stored plans
+2025-06-03 02:01:46,985 - plan_persistence - INFO - Plan persistence service initialized
+2025-06-03 02:01:46,986 - real_do_button_executor - INFO - ✅ Plan persistence module loaded
+2025-06-03 02:01:48,111 - agent_workflow.input_controller - INFO - Detected screen size: 1470x956
+2025-06-03 02:01:48,114 - agent_workflow.input_controller - INFO - Standard mouse listener started successfully
+2025-06-03 02:01:48,114 - agent_workflow.input_controller - INFO - Keyboard listener started successfully
+2025-06-03 02:01:48,115 - agent_workflow.input_controller - INFO - Input controller initialized (safe mode)
+2025-06-03 02:01:48,115 - agent_workflow.input_controller - INFO - 🚨 Emergency shutdown: Press Ctrl+1 to immediately stop agent
+2025-06-03 02:01:48,115 - real_do_button_executor - INFO - ✅ Input controller loaded - REAL input execution enabled
+2025-06-03 02:01:48,471 - agent_workflow.input_controller - INFO - Standard mouse listener started successfully
+2025-06-03 02:01:48,475 - agent_workflow.input_controller - INFO - Keyboard listener started successfully
+2025-06-03 02:01:48,477 - agent_workflow.input_controller - INFO - Input controller initialized (safe mode)
+2025-06-03 02:01:48,477 - agent_workflow.input_controller - INFO - 🚨 Emergency shutdown: Press Ctrl+1 to immediately stop agent
+2025-06-03 02:01:48,674 - llava_processor - INFO - Connected to Ollama API v0.6.8
+2025-06-03 02:01:48,675 - total_screen_analyzer - INFO - LLaVA visual processor initialized for total screen analysis
+2025-06-03 02:01:48,675 - total_screen_analyzer - INFO - Total Screen Analyzer initialized with 8s interval
+2025-06-03 02:01:48,675 - adaptive_retry_automation_handler - INFO - 🔄 Adaptive retry automation system loaded
+2025-06-03 02:01:48,676 - universal_intelligent_automation_handler - INFO - ✅ Adaptive retry automation handler loaded successfully
+2025-06-03 02:01:48,676 - universal_intelligent_automation_handler - INFO - ✅ Plan persistence module loaded successfully
+2025-06-03 02:01:48,681 - agent_workflow.input_controller - INFO - Standard mouse listener started successfully
+2025-06-03 02:01:48,683 - agent_workflow.input_controller - INFO - Keyboard listener started successfully
+2025-06-03 02:01:48,683 - agent_workflow.input_controller - INFO - Input controller initialized (safe mode)
+2025-06-03 02:01:48,683 - agent_workflow.input_controller - INFO - 🚨 Emergency shutdown: Press Ctrl+1 to immediately stop agent
+2025-06-03 02:01:48,689 - llava_processor - INFO - Connected to Ollama API v0.6.8
+2025-06-03 02:01:48,689 - total_screen_analyzer - INFO - LLaVA visual processor initialized for total screen analysis
+2025-06-03 02:01:48,689 - total_screen_analyzer - INFO - Total Screen Analyzer initialized with 8s interval
+2025-06-03 02:01:48,690 - universal_intelligent_automation_handler - INFO - 🤖 Universal automation components loaded successfully
+2025-06-03 02:01:48,690 - real_do_button_executor - INFO - ✅ Universal automation handler loaded
+2025-06-03 02:01:48,692 - real_agent_automation_handler - INFO - ✅ Plan persistence module loaded successfully
+2025-06-03 02:01:48,697 - agent_workflow.input_controller - INFO - Standard mouse listener started successfully
+2025-06-03 02:01:48,699 - agent_workflow.input_controller - INFO - Keyboard listener started successfully
+2025-06-03 02:01:48,699 - agent_workflow.input_controller - INFO - Input controller initialized (safe mode)
+2025-06-03 02:01:48,699 - agent_workflow.input_controller - INFO - 🚨 Emergency shutdown: Press Ctrl+1 to immediately stop agent
+2025-06-03 02:01:48,704 - llava_processor - INFO - Connected to Ollama API v0.6.8
+2025-06-03 02:01:48,704 - total_screen_analyzer - INFO - LLaVA visual processor initialized for total screen analysis
+2025-06-03 02:01:48,704 - total_screen_analyzer - INFO - Total Screen Analyzer initialized with 8s interval
+2025-06-03 02:01:48,704 - real_agent_automation_handler - INFO - 🤖 Real automation components loaded successfully
+2025-06-03 02:01:48,704 - real_do_button_executor - WARNING - ⚠️ Real agent automation handler not available: cannot import name 'real_agent_automation_handler' from 'real_agent_automation_handler' (/Users/segevbin/Desktop/SensAI/Aiayer/real_agent_automation_handler.py)
+2025-06-03 02:01:48,704 - real_do_button_executor - INFO - Starting Real DO Button Executor with REAL INPUT (version 2.0)
+2025-06-03 02:01:48,704 - real_do_button_executor - INFO - Python version: 3.13.3 (main, Apr  8 2025, 13:54:08) [Clang 16.0.0 (clang-1600.0.26.6)]
+2025-06-03 02:01:48,704 - real_do_button_executor - INFO - Websockets version: 15.0.1
+2025-06-03 02:01:49,786 - real_do_button_executor - INFO - Port 8765 is available
+2025-06-03 02:01:49,786 - real_do_button_executor - INFO - 🚀 Starting Real DO Button Executor with REAL INPUT on 0.0.0.0:8765
+2025-06-03 02:01:49,808 - websockets.server - INFO - server listening on 0.0.0.0:8765
+2025-06-03 02:01:49,809 - real_do_button_executor - INFO - ✅ WebSocket server initialized successfully
+2025-06-03 02:01:49,809 - real_do_button_executor - INFO - ✅ Real DO Button Executor running on ws://0.0.0.0:8765
+2025-06-03 02:01:49,809 - real_do_button_executor - INFO - 🎯 Ready to handle DO button clicks with REAL AUTOMATION
+2025-06-03 02:01:49,810 - real_do_button_executor - INFO - 🎮 REAL INPUT EXECUTION ENABLED - Will perform actual mouse and keyboard actions
+2025-06-03 02:01:49,810 - real_do_button_executor - INFO - 🤖 Universal automation handler available as fallback
+2025-06-03 02:01:49,810 - real_do_button_executor - INFO - 📂 Plan persistence available for loading plans
+2025-06-03 02:01:49,811 - real_do_button_executor - INFO - Server status: 0 clients connected, 0 executions completed

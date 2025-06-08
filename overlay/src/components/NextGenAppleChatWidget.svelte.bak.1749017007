@@ -1,0 +1,3068 @@
+<script>
+  import { onMount, tick } from 'svelte';
+  import { fade, fly, scale, blur } from 'svelte/transition';
+  import { cubicOut, elasticOut, expoOut } from 'svelte/easing';
+  import ScreenViewer from './ScreenViewer.svelte';
+  
+  export let show = false;
+  export let initialPosition = { x: 20, y: 90 };
+  export let wsEndpoint = 'ws://localhost:8766'; // Changed to use proxy on port 8766
+  
+  let messages = [];
+  let input = '';
+  let ws = null;
+  let loading = false;
+  let chatContainer;
+  let isTyping = false;
+  let typingMessage = 'AI is thinking...';
+  let isDragging = false;
+  let showMinimized = false;
+  let position = { ...initialPosition };
+  let startX, startY, initialX, initialY;
+  let size = { width: 420, height: 680 };
+  let connectionStatus = 'disconnected';
+  let currentMode = 'Ask';
+  let userId = 'overlay_user_' + Date.now();
+  let sessionId = 'overlay_session_' + Date.now();
+  
+  // Advanced UI state
+  let isCompactMode = false;
+  let showModeSelector = true;
+  let inputFocused = false;
+  let lastUserInteraction = Date.now();
+  let adaptiveLayout = 'normal'; // normal, compact, minimal
+  let currentTheme = 'system'; // system, light, dark
+  let gestureStartY = 0;
+  let gestureCurrentY = 0;
+  let isGesturing = false;
+  let quickActionExpanded = false;
+  let soundEnabled = true;
+  let modeDropdownOpen = false;
+  let showScreenViewer = false;
+  
+  // Agent mode confirmation state
+  let pendingConfirmation = null;
+  let currentProgress = { progress: 0, currentStep: '', stepNumber: 0, totalSteps: 0 };
+  let progressVisible = false;
+  
+  // Apple-inspired mode configurations with enhanced metadata
+  const modes = {
+    'Ask': {
+      emoji: '💭',
+      name: 'Ask',
+      description: 'Deep analysis and comprehensive explanations',
+      color: '#007AFF',
+      secondaryColor: '#5AC8FA',
+      gradient: 'linear-gradient(135deg, #007AFF 0%, #5AC8FA 100%)',
+      examples: [
+        'Explain how machine learning algorithms work',
+        'What are the key differences between React and Vue?',
+        'Analyze the pros and cons of remote work',
+        'How do neural networks process information?',
+        'What factors influence market volatility?'
+      ],
+      animationDelay: 0
+    },
+    'Agent': {
+      emoji: '🤖', 
+      name: 'Agent',
+      description: 'Task automation and step-by-step execution',
+      color: '#FF3B30',
+      secondaryColor: '#FF9500',
+      gradient: 'linear-gradient(135deg, #FF3B30 0%, #FF9500 100%)',
+      examples: [
+        'Create a daily productivity workflow for me',
+        'Help me set up a project management system',
+        'Automate my email organization process',
+        'Design a morning routine for better focus',
+        'Build a habit tracking system'
+      ],
+      animationDelay: 100
+    },
+    'Suggest': {
+      emoji: '✨',
+      name: 'Suggest', 
+      description: 'Optimization recommendations and improvements',
+      color: '#30D158',
+      secondaryColor: '#32D74B',
+      gradient: 'linear-gradient(135deg, #30D158 0%, #32D74B 100%)',
+      examples: [
+        'Suggest ways to improve my coding practices',
+        'What tools could enhance my workflow?',
+        'Recommend strategies for better time management',
+        'How can I optimize my workspace for productivity?',
+        'What skills should I develop next?'
+      ],
+      animationDelay: 200
+    },
+    'Creative': {
+      emoji: '🎨',
+      name: 'Creative',
+      description: 'Innovative ideation and creative collaboration', 
+      color: '#AF52DE',
+      secondaryColor: '#BF5AF2',
+      gradient: 'linear-gradient(135deg, #AF52DE 0%, #BF5AF2 100%)',
+      examples: [
+        'Brainstorm unique app ideas for sustainability',
+        'Help me design an engaging user experience',
+        'Create innovative solutions for team collaboration',
+        'Generate creative content ideas for my blog',
+        'Think of original ways to solve this problem'
+      ],
+      animationDelay: 300
+    }
+  };
+
+  // Apple-inspired sound effects (if enabled) - Ultra-gentle volumes
+  const playSound = (type) => {
+    if (!soundEnabled) return;
+    try {
+      const audio = new Audio(`/sounds/${type}.mp3`);
+      audio.volume = 0.02; // Ultra-soft volume for all sounds
+      audio.currentTime = 0; // Reset to beginning for rapid clicks
+      audio.play().catch(() => {
+        // Fallback: try .wav format if .mp3 fails
+        try {
+          const fallbackAudio = new Audio(`/sounds/${type}.wav`);
+          fallbackAudio.volume = 0.02; // Ultra-soft volume for fallback too
+          fallbackAudio.play().catch(() => {});
+        } catch (fallbackError) {
+          console.log(`Sound file not found: ${type}`);
+        }
+      });
+    } catch (e) {
+      console.log(`Error playing sound: ${type}`);
+    }
+  };
+
+  // Enhanced mode-specific sound with pitch and volume control
+  const playModeSound = (type, volume = 0.3, playbackRate = 1.0) => {
+    if (!soundEnabled) return;
+    try {
+      const audio = new Audio(`/sounds/${type}.mp3`);
+      audio.volume = Math.min(volume, 1.0);
+      audio.playbackRate = Math.max(0.5, Math.min(playbackRate, 2.0)); // Clamp between 0.5x and 2x
+      audio.currentTime = 0;
+      
+      audio.play().catch(() => {
+        // Fallback: try .wav format if .mp3 fails
+        try {
+          const fallbackAudio = new Audio(`/sounds/${type}.wav`);
+          fallbackAudio.volume = Math.min(volume, 1.0);
+          fallbackAudio.playbackRate = Math.max(0.5, Math.min(playbackRate, 2.0));
+          fallbackAudio.play().catch(() => {});
+        } catch (fallbackError) {
+          console.log(`Mode sound file not found: ${type}`);
+        }
+      });
+    } catch (e) {
+      console.log(`Error playing mode sound: ${type}`);
+    }
+  };
+
+  // Connection management with enhanced retry logic
+  let reconnectAttempts = 0;
+  let maxReconnectAttempts = 5;
+  let reconnectDelay = 2000; // 2 seconds
+
+  onMount(() => {
+    connectToBackend();
+    setupGestureListeners();
+    setupKeyboardShortcuts();
+    setupAdaptiveLayout();
+    
+    // Close dropdown when clicking outside
+    function handleClickOutside(event) {
+      if (modeDropdownOpen && !event.target.closest('.mode-selector-interactive') && !event.target.closest('.mode-dropdown-container')) {
+        modeDropdownOpen = false;
+      }
+    }
+    
+    document.addEventListener('click', handleClickOutside);
+    
+    return () => {
+      if (ws) ws.close();
+      document.removeEventListener('click', handleClickOutside);
+      cleanupEventListeners();
+    };
+  });
+
+  function connectToBackend() {
+    if (ws && (ws.readyState === WebSocket.CONNECTING || ws.readyState === WebSocket.OPEN)) {
+      return;
+    }
+
+    connectionStatus = 'connecting';
+    
+    try {
+      ws = new WebSocket(wsEndpoint);
+      
+      ws.onopen = () => {
+        console.log('Connected to Enterprise SensAI backend');
+        connectionStatus = 'connected';
+        reconnectAttempts = 0;
+        playSound('connection-success');
+        
+        // Create bridge wrapper for screen sharing
+        bridgeWrapper = createBridgeWrapper();
+        
+        if (messages.length === 0) {
+          addWelcomeMessage();
+        }
+      };
+
+      ws.onmessage = (event) => {
+        try {
+          const data = JSON.parse(event.data);
+          handleBackendMessage(data);
+        } catch (error) {
+          console.error('Error parsing message:', error);
+        }
+      };
+
+      ws.onclose = () => {
+        console.log('Disconnected from backend');
+        connectionStatus = 'disconnected';
+        attemptReconnect();
+      };
+
+      ws.onerror = (error) => {
+        console.error('WebSocket error:', error);
+        connectionStatus = 'error';
+      };
+
+    } catch (error) {
+      console.error('Connection error:', error);
+      connectionStatus = 'error';
+      attemptReconnect();
+    }
+  }
+
+  function attemptReconnect() {
+    if (reconnectAttempts < maxReconnectAttempts) {
+      reconnectAttempts++;
+      console.log(`Reconnect attempt ${reconnectAttempts}/${maxReconnectAttempts}`);
+      
+      setTimeout(() => {
+        connectToBackend();
+      }, reconnectDelay * reconnectAttempts);
+    }
+  }
+
+  function addWelcomeMessage() {
+    const welcomeMessage = {
+      id: Date.now(),
+      type: 'assistant',
+      content: `👋 Welcome to **Enhanced SensAI Enterprise System**
+
+I'm your intelligent assistant with four specialized, fully-enhanced modes:
+
+**💭 Ask** - Deep analysis and comprehensive explanations
+• Research-grade responses with contextual understanding
+• Technical concepts explained with examples and insights
+
+**🤖 Agent** - Task automation and step-by-step execution  
+• Real UI automation capabilities with actual clicking/typing
+• Workflow optimization and process automation
+
+**✨ Suggest** - Optimization recommendations and improvements
+• Proactive insights based on your patterns and context
+• Best practices and enhancement opportunities
+
+**🎨 Creative** - Innovative ideation and creative collaboration
+• Brainstorming unique solutions and original concepts
+• Out-of-the-box thinking with collaborative iteration
+
+*Each mode is now powered by enhanced backend processing with mode-specific prompts and intelligent context awareness. Tap a mode to experience the difference!*`,
+      timestamp: new Date(),
+      confidence: 1.0,
+      mode: 'System',
+      isWelcome: true
+    };
+    
+    messages = [welcomeMessage];
+  }
+
+  function handleBackendMessage(data) {
+    console.log('🎯 Smart Progressive message received:', data);
+    
+    if (data.type === 'connection_established') {
+      console.log('🔗 Smart Progressive connection established:', data.features);
+      return;
+    }
+    
+    if (data.type === 'registration_success') {
+      console.log('📋 Registration successful');
+      return;
+    }
+    
+    // Handle progressive updates with typing indicators
+    if (data.type === 'progress_update') {
+      console.log('⚡ Progress update:', data.stage);
+      
+      // Mode-specific typing messages
+      const modeTypingMessages = {
+        'Ask': [
+          'Analyzing your question...',
+          'Gathering relevant information...',
+          'Processing context and background...',
+          'Formulating comprehensive response...'
+        ],
+        'Agent': [
+          'Planning task execution...',
+          'Analyzing workflow requirements...',
+          'Generating step-by-step guidance...',
+          'Optimizing automation strategy...'
+        ],
+        'Suggest': [
+          'Evaluating current situation...',
+          'Identifying optimization opportunities...',
+          'Generating recommendations...',
+          'Considering best practices...'
+        ],
+        'Creative': [
+          'Exploring creative possibilities...',
+          'Generating innovative ideas...',
+          'Brainstorming unique approaches...',
+          'Inspiring creative solutions...'
+        ]
+      };
+      
+      // Update typing indicator with mode-specific progress or use data.stage
+      if (data.stage) {
+        typingMessage = data.stage;
+      } else {
+        const modeMessages = modeTypingMessages[currentMode] || ['AI is thinking...'];
+        typingMessage = modeMessages[Math.floor(Math.random() * modeMessages.length)];
+      }
+      
+      // Keep typing indicator visible
+      if (!isTyping) {
+        showTypingIndicator();
+      }
+      
+      // Play subtle progress sound
+      playSound('progress-update');
+      return;
+    }
+    
+    // Handle final response
+    if ((data.success !== undefined && data.response) || data.type === 'final_response') {
+      hideTypingIndicator();
+      playSound('message-received');
+      
+      // Check if this is an Agent mode response with interactive buttons (NEW FORMAT)
+      if (data.interactive && data.buttons && data.buttons.length > 0 && currentMode === 'Agent') {
+        console.log('🤖 Agent response with interactive buttons:', data);
+        
+        // Add message with interactive buttons
+        const assistantMessage = {
+          id: Date.now(),
+          type: 'assistant',
+          content: data.response,
+          timestamp: new Date(),
+          confidence: data.confidence || 1.0,
+          mode: data.mode || currentMode,
+          interactive: true,
+          buttons: data.buttons,
+          plan_id: data.plan_id,
+          requires_approval: data.requires_approval
+        };
+        
+        messages = [...messages, assistantMessage];
+        scrollToBottom();
+        return;
+      }
+      
+      // Check if this is an Agent mode response requiring confirmation (OLD FORMAT)
+      if (data.requiresConfirmation && data.agentSessionId && currentMode === 'Agent') {
+        console.log('🤖 Agent response with confirmation buttons:', data);
+        
+        pendingConfirmation = {
+          sessionId: data.agentSessionId,
+          response: data.response,
+          confidence: data.confidence || 0.0,
+          riskLevel: data.riskLevel || 'medium',
+          estimatedDuration: data.estimatedDuration || '30 seconds',
+          executionPlan: data.executionPlan || {}
+        };
+        
+        // Add message with confirmation buttons
+        const assistantMessage = {
+          id: Date.now(),
+          type: 'assistant',
+          content: data.response,
+          timestamp: new Date(),
+          confidence: data.confidence || 1.0,
+          mode: data.mode || currentMode,
+          requiresConfirmation: true,
+          agentSessionId: data.agentSessionId,
+          riskLevel: data.riskLevel,
+          estimatedDuration: data.estimatedDuration,
+          executionPlan: data.executionPlan
+        };
+        
+        messages = [...messages, assistantMessage];
+        scrollToBottom();
+        return;
+      }
+      
+      // Enhanced message processing with mode-specific formatting
+      const processedContent = processResponseByMode(data.response || 'No response received', data.mode || currentMode);
+      
+      const assistantMessage = {
+        id: Date.now(),
+        type: 'assistant',
+        content: processedContent,
+        timestamp: new Date(),
+        confidence: data.confidence || 1.0,
+        mode: data.mode || currentMode,
+        processingTime: data.processing_time || 0,
+        resources: data.resources || [],
+        enterpriseValidated: data.enterprise_validated || false,
+        processingWorker: data.processing_worker || 'unknown',
+        source: data.source || 'unknown',
+        modeSpecific: true  // Flag to indicate enhanced processing
+      };
+      
+      messages = [...messages, assistantMessage];
+      
+      // Mode-specific post-processing actions
+      performModeSpecificActions(assistantMessage);
+      
+      scrollToBottom();
+      
+    } else if (data.type === 'error' || data.type === 'error_response') {
+      hideTypingIndicator();
+      showError(data.error || data.message || 'An error occurred');
+      playSound('error');
+    }
+    
+    // Handle Agent mode execution progress
+    if (data.type === 'execution_progress' && progressVisible) {
+      console.log('🚀 Execution progress update:', data);
+      currentProgress = {
+        progress: data.progress || 0,
+        currentStep: data.currentStep || '',
+        stepNumber: data.stepNumber || 0,
+        totalSteps: data.totalSteps || 0
+      };
+      playSound('progress-update');
+    }
+    
+    // Handle Agent mode execution completion
+    if (data.type === 'execution_complete') {
+      console.log('✅ Execution completed:', data);
+      progressVisible = false;
+      pendingConfirmation = null;
+      
+      // Add completion message
+      const completionMessage = {
+        id: Date.now(),
+        type: 'assistant',
+        content: `✅ **Task Completed Successfully**\n\n${data.result || 'The automation task has been executed.'}`,
+        timestamp: new Date(),
+        confidence: 1.0,
+        mode: 'Agent',
+        isCompletion: true
+      };
+      
+      messages = [...messages, completionMessage];
+      scrollToBottom();
+      playSound('task-complete');
+    }
+    
+    // Handle suggestion messages
+    if (data.type === 'suggestion' || (data.mode === 'SUGGEST' && data.notification)) {
+      console.log('Received suggestion:', data);
+      
+      // Play notification sound if enabled
+      if (data.play_sound && soundEnabled) {
+        playSound('notification');
+      }
+      
+      // Add the suggestion to messages
+      messages = [...messages, {
+        type: 'suggestion',
+        content: data.response || data.data.response,
+        buttons: data.buttons || data.data.buttons,
+        timestamp: new Date().toISOString(),
+        importance: data.importance || data.data.importance
+      }];
+      
+      // Scroll to bottom
+      setTimeout(() => {
+        if (chatContainer) {
+          chatContainer.scrollTop = chatContainer.scrollHeight;
+        }
+      }, 100);
+      
+      return;
+    }
+  }
+
+  function processResponseByMode(response, mode) {
+    // Only apply mode-specific formatting if the response is very generic or clearly mode-inappropriate
+    // Most real backend responses should be displayed as-is
+    
+    // Check if this looks like a generic/fallback response that needs mode formatting
+    const isGenericResponse = (
+      response.includes('Based on your workflow patterns') ||
+      response.includes('I suggest: 1)') ||
+      response.includes('optimize this process') ||
+      response.length < 50 // Very short responses might be fallbacks
+    );
+    
+    // Only apply mode formatting for generic responses or when explicitly requested
+    if (!isGenericResponse) {
+      // For real responses, just return as-is with minimal mode indication
+      const modeEmojis = {
+        'Ask': '💭',
+        'Agent': '🤖', 
+        'Suggest': '✨',
+        'Creative': '🎨'
+      };
+      
+      const emoji = modeEmojis[mode] || '';
+      return `${emoji} ${response}`;
+    }
+    
+    // Apply enhanced formatting only for generic/fallback responses
+    const modeProcessors = {
+      'Ask': (content) => {
+        return `🧠 **Knowledge Response**\n\n${content}`;
+      },
+      
+      'Agent': (content) => {
+        return `🤖 **Task Execution Plan**\n\n${content}\n\n✅ *Ready to assist with implementation*`;
+      },
+      
+      'Suggest': (content) => {
+        return `✨ **Recommendations**\n\n${content}\n\n💡 *Consider these optimizations for best results*`;
+      },
+      
+      'Creative': (content) => {
+        return `🎨 **Creative Ideas**\n\n${content}\n\n🌟 *Feel free to build upon these concepts!*`;
+      }
+    };
+
+    const processor = modeProcessors[mode];
+    return processor ? processor(response) : response;
+  }
+
+  function performModeSpecificActions(message) {
+    // Mode-specific post-processing actions
+    switch (message.mode) {
+      case 'Ask':
+        // Could trigger knowledge base updates or related question suggestions
+        console.log('📚 Knowledge response processed');
+        break;
+        
+      case 'Agent':
+        // Could trigger workflow automation or task tracking
+        console.log('🔧 Agent response processed - ready for task execution');
+        break;
+        
+      case 'Suggest':
+        // Could trigger optimization tracking or improvement monitoring
+        console.log('💡 Suggestions provided - tracking optimization opportunities');
+        break;
+        
+      case 'Creative':
+        // Could trigger inspiration saving or idea development
+        console.log('🎨 Creative ideas generated - inspiring further exploration');
+        break;
+    }
+    
+    // Update last user interaction for adaptive behavior
+    lastUserInteraction = Date.now();
+  }
+
+  function getModeSpecificPlaceholder(mode) {
+    const placeholders = {
+      'Ask': 'Ask a question for deep analysis and explanation...',
+      'Agent': 'Describe a task you need help automating...',
+      'Suggest': 'Tell me what you want to optimize or improve...',
+      'Creative': 'Share your challenge for creative brainstorming...'
+    };
+    
+    return placeholders[mode] || `Ask ${mode} anything...`;
+  }
+
+  function selectMode(mode) {
+    if (currentMode === mode) return;
+    
+    currentMode = mode;
+    
+    // Gentle haptic feedback
+    if (navigator.vibrate) {
+      navigator.vibrate(5); // Reduced vibration
+    }
+    
+    console.log(`Switched to ${mode} mode`);
+  }
+
+  function sendMessage() {
+    if (!input.trim() || connectionStatus !== 'connected') return;
+
+    const userMessage = {
+      id: Date.now(),
+      type: 'user', 
+      content: input.trim(),
+      timestamp: new Date(),
+      mode: currentMode
+    };
+
+    messages = [...messages, userMessage];
+    playSound('message-sent');
+    
+    const originalMessage = input.trim();
+    input = '';
+    
+    showTypingIndicator();
+    
+    // Send original message with mode context separately
+    const payload = {
+      type: "chat_request",
+      mode: currentMode,
+      message: originalMessage, // Send the original user message
+      session_id: sessionId,
+      timestamp: new Date().toISOString(),
+      mode_context: getModeContext(currentMode),
+      user_intent: inferUserIntent(originalMessage, currentMode),
+      mode_instructions: getModeInstructions(currentMode) // Add mode instructions separately
+    };
+
+    console.log('🚀 Sending mode-aware message:', payload);
+    ws.send(JSON.stringify(payload));
+    
+    scrollToBottom();
+  }
+
+  function enhanceModeSpecificMessage(message, mode) {
+    const modePrompts = {
+      'Ask': `[KNOWLEDGE MODE] User asking: ${message}
+      
+Please provide a comprehensive, analytical response with:
+- Deep contextual understanding
+- Relevant background information  
+- Clear explanations with examples
+- Actionable insights where applicable
+- Source reliability when making claims`,
+
+      'Agent': `[AGENT MODE] User requesting task assistance: ${message}
+      
+Please respond as an intelligent task automation agent:
+- Break down complex requests into actionable steps
+- Suggest optimal workflows and automation
+- Provide specific implementation guidance
+- Consider efficiency and best practices
+- Offer proactive task management advice`,
+
+      'Suggest': `[SUGGESTION MODE] User seeking recommendations: ${message}
+      
+Please provide proactive insights and recommendations:
+- Analyze the current situation or context
+- Identify optimization opportunities
+- Suggest improvements and best practices
+- Offer multiple solution alternatives
+- Consider long-term benefits and implications`,
+
+      'Creative': `[CREATIVE MODE] User seeking creative collaboration: ${message}
+      
+Please engage in creative brainstorming and ideation:
+- Generate innovative and original ideas
+- Think outside conventional boundaries
+- Explore multiple creative approaches
+- Build upon concepts collaboratively
+- Inspire further creative exploration`
+    };
+
+    return modePrompts[mode] || message;
+  }
+
+  function getModeContext(mode) {
+    return {
+      'Ask': {
+        focus: 'knowledge_analysis',
+        response_style: 'comprehensive_explanatory',
+        priority: 'accuracy_and_depth'
+      },
+      'Agent': {
+        focus: 'task_execution',
+        response_style: 'structured_actionable',
+        priority: 'efficiency_and_automation'
+      },
+      'Suggest': {
+        focus: 'optimization_recommendations',
+        response_style: 'proactive_advisory',
+        priority: 'improvement_and_innovation'
+      },
+      'Creative': {
+        focus: 'ideation_brainstorming',
+        response_style: 'inspirational_collaborative',
+        priority: 'originality_and_exploration'
+      }
+    }[mode] || {};
+  }
+
+  function getModeInstructions(mode) {
+    return {
+      'Ask': 'Provide comprehensive, analytical responses with deep contextual understanding, relevant background information, clear explanations with examples, and actionable insights where applicable.',
+      
+      'Agent': 'Respond as an intelligent task automation agent. Break down complex requests into actionable steps, suggest optimal workflows and automation, provide specific implementation guidance, and consider efficiency and best practices.',
+      
+      'Suggest': 'Provide proactive insights and recommendations. Analyze the current situation or context, identify optimization opportunities, suggest improvements and best practices, offer multiple solution alternatives, and consider long-term benefits.',
+      
+      'Creative': 'Engage in creative brainstorming and ideation. Generate innovative and original ideas, think outside conventional boundaries, explore multiple creative approaches, and build upon concepts collaboratively.'
+    }[mode] || 'Respond helpfully and accurately to the user\'s question.';
+  }
+
+  function inferUserIntent(message, mode) {
+    const intentPatterns = {
+      'Ask': {
+        explanation: /(?:what|why|how|explain|describe|tell me about)/i,
+        comparison: /(?:compare|difference|versus|vs|better)/i,
+        analysis: /(?:analyze|examine|evaluate|assess)/i,
+        definition: /(?:define|definition|meaning|what is)/i
+      },
+      'Agent': {
+        automation: /(?:automate|schedule|set up|configure)/i,
+        organization: /(?:organize|structure|manage|arrange)/i,
+        workflow: /(?:workflow|process|steps|procedure)/i,
+        efficiency: /(?:optimize|improve|streamline|faster)/i
+      },
+      'Suggest': {
+        recommendation: /(?:suggest|recommend|advise|propose)/i,
+        improvement: /(?:improve|enhance|better|upgrade)/i,
+        alternative: /(?:alternative|option|choice|different)/i,
+        optimization: /(?:optimize|efficient|best practice)/i
+      },
+      'Creative': {
+        brainstorm: /(?:brainstorm|ideas|creative|innovative)/i,
+        design: /(?:design|create|build|make)/i,
+        inspiration: /(?:inspire|motivate|unique|original)/i,
+        exploration: /(?:explore|experiment|try|discover)/i
+      }
+    };
+
+    const modePatterns = intentPatterns[mode] || {};
+    for (const [intent, pattern] of Object.entries(modePatterns)) {
+      if (pattern.test(message)) {
+        return intent;
+      }
+    }
+    return 'general';
+  }
+
+  function showTypingIndicator() {
+    isTyping = true;
+  }
+
+  function hideTypingIndicator() {
+    isTyping = false;
+  }
+
+  function showError(message) {
+    const errorMessage = {
+      id: Date.now(),
+      type: 'error',
+      content: `Error: ${message}`,
+      timestamp: new Date()
+    };
+    
+    messages = [...messages, errorMessage];
+    scrollToBottom();
+  }
+
+  function useExample(example) {
+    input = example;
+    sendMessage();
+  }
+
+  function handleKeyDown(event) {
+    lastUserInteraction = Date.now();
+    
+    if (event.key === 'Enter' && !event.shiftKey) {
+      event.preventDefault();
+      sendMessage();
+    }
+    
+    // Auto-resize textarea
+    const textarea = event.target;
+    textarea.style.height = 'auto';
+    textarea.style.height = Math.min(textarea.scrollHeight, 120) + 'px';
+  }
+
+  function scrollToBottom() {
+    tick().then(() => {
+      if (chatContainer) {
+        chatContainer.scrollTo({
+          top: chatContainer.scrollHeight,
+          behavior: 'smooth'
+        });
+      }
+    });
+  }
+
+  function formatTime(timestamp) {
+    return timestamp.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+  }
+
+  function getConfidenceColor(confidence) {
+    if (confidence >= 0.9) return '#30D158';
+    if (confidence >= 0.7) return '#FF9500'; 
+    if (confidence >= 0.5) return '#FF3B30';
+    return '#8E8E93';
+  }
+
+  function getStatusColor() {
+    switch (connectionStatus) {
+      case 'connected': return '#30D158';
+      case 'connecting': return '#FF9500';
+      case 'error': return '#FF3B30';
+      default: return '#8E8E93';
+    }
+  }
+
+  // Enhanced dragging with momentum
+  function startDrag(event) {
+    if (event.target.closest('.control-btn') || event.target.closest('.mode-tab')) return;
+    
+    isDragging = true;
+    startX = event.clientX;
+    startY = event.clientY;
+    initialX = position.x;
+    initialY = position.y;
+    
+    document.addEventListener('mousemove', onDrag);
+    document.addEventListener('mouseup', stopDrag);
+    
+    // Add visual feedback
+    event.currentTarget.style.cursor = 'grabbing';
+  }
+
+  function onDrag(event) {
+    if (!isDragging) return;
+    
+    const deltaX = event.clientX - startX;
+    const deltaY = event.clientY - startY;
+    
+    position.x = Math.max(0, Math.min(initialX + deltaX, window.innerWidth - size.width));
+    position.y = Math.max(0, Math.min(initialY + deltaY, window.innerHeight - size.height));
+  }
+
+  function stopDrag(event) {
+    isDragging = false;
+    document.removeEventListener('mousemove', onDrag);
+    document.removeEventListener('mouseup', stopDrag);
+    
+    if (event.currentTarget) {
+      event.currentTarget.style.cursor = 'grab';
+    }
+  }
+
+  function toggleMinimize() {
+    showMinimized = !showMinimized;
+    playSound('interface-click');
+    
+    if (showMinimized) {
+      size.height = 60;
+    } else {
+      size.height = 680;
+    }
+  }
+
+  function closeChat() {
+    show = false;
+    playSound('interface-close');
+  }
+
+  // Gesture support
+  function setupGestureListeners() {
+    // Touch gestures for mobile-like interactions
+    document.addEventListener('touchstart', handleTouchStart, { passive: false });
+    document.addEventListener('touchmove', handleTouchMove, { passive: false });
+    document.addEventListener('touchend', handleTouchEnd, { passive: false });
+  }
+
+  function handleTouchStart(event) {
+    if (!show) return;
+    gestureStartY = event.touches[0].clientY;
+    isGesturing = true;
+  }
+
+  function handleTouchMove(event) {
+    if (!isGesturing || !show) return;
+    gestureCurrentY = event.touches[0].clientY;
+    
+    const deltaY = gestureCurrentY - gestureStartY;
+    
+    // Pull down to minimize
+    if (deltaY > 50 && !showMinimized) {
+      toggleMinimize();
+      isGesturing = false;
+    }
+    
+    // Pull up to expand
+    if (deltaY < -50 && showMinimized) {
+      toggleMinimize();
+      isGesturing = false;
+    }
+  }
+
+  function handleTouchEnd() {
+    isGesturing = false;
+  }
+
+  // Keyboard shortcuts
+  function setupKeyboardShortcuts() {
+    document.addEventListener('keydown', handleGlobalKeyDown);
+  }
+
+  function handleGlobalKeyDown(event) {
+    if (!show) return;
+    
+    // Cmd/Ctrl + 1-4 for mode switching
+    if ((event.metaKey || event.ctrlKey) && ['1', '2', '3', '4'].includes(event.key)) {
+      event.preventDefault();
+      const modeKeys = Object.keys(modes);
+      const modeIndex = parseInt(event.key) - 1;
+      if (modeKeys[modeIndex]) {
+        selectMode(modeKeys[modeIndex]);
+      }
+    }
+    
+    // Escape to minimize
+    if (event.key === 'Escape') {
+      if (!showMinimized) {
+        toggleMinimize();
+      }
+    }
+    
+    // Cmd/Ctrl + K to focus input
+    if ((event.metaKey || event.ctrlKey) && event.key === 'k') {
+      event.preventDefault();
+      const inputElement = document.querySelector('.message-input');
+      if (inputElement) {
+        inputElement.focus();
+      }
+    }
+  }
+
+  // Adaptive layout based on usage patterns
+  function setupAdaptiveLayout() {
+    setInterval(() => {
+      const timeSinceInteraction = Date.now() - lastUserInteraction;
+      
+      if (timeSinceInteraction > 300000) { // 5 minutes
+        adaptiveLayout = 'minimal';
+      } else if (timeSinceInteraction > 60000) { // 1 minute
+        adaptiveLayout = 'compact';
+      } else {
+        adaptiveLayout = 'normal';
+      }
+    }, 10000);
+  }
+
+  function cleanupEventListeners() {
+    document.removeEventListener('touchstart', handleTouchStart);
+    document.removeEventListener('touchmove', handleTouchMove);
+    document.removeEventListener('touchend', handleTouchEnd);
+    document.removeEventListener('keydown', handleGlobalKeyDown);
+  }
+
+  // Quick actions
+  function toggleQuickActions() {
+    quickActionExpanded = !quickActionExpanded;
+    playSound('interface-click');
+  }
+
+  function clearConversation() {
+    messages = [];
+    playSound('interface-clear');
+  }
+
+  function toggleSound() {
+    soundEnabled = !soundEnabled;
+    playSound('interface-toggle');
+  }
+
+  function toggleScreenViewer() {
+    showScreenViewer = !showScreenViewer;
+    playSound('interface-toggle');
+  }
+  
+  function handleScreenViewerClose() {
+    showScreenViewer = false;
+    playSound('interface-close');
+  }
+
+  // Create a bridge wrapper for screen viewer
+  let bridgeWrapper = null;
+  
+  function createBridgeWrapper() {
+    if (!ws) return null;
+    
+    return {
+      send: (type, data) => {
+        if (ws && ws.readyState === WebSocket.OPEN) {
+          ws.send(JSON.stringify({ type, ...data }));
+        }
+      },
+      on: (event, handler) => {
+        if (event === 'screen_frame') {
+          ws.screenFrameHandler = handler;
+        }
+      },
+      requestScreenSharing: () => {
+        if (ws && ws.readyState === WebSocket.OPEN) {
+          ws.send(JSON.stringify({ 
+            type: 'start_screen_sharing',
+            timestamp: Date.now()
+          }));
+        }
+      }
+    };
+  }
+
+  function handleInputFocus() {
+    inputFocused = true;
+    lastUserInteraction = Date.now();
+  }
+
+  function handleInputBlur() {
+    inputFocused = false;
+  }
+
+  // Agent mode confirmation functions
+  async function confirmExecution() {
+    if (!ws || ws.readyState !== WebSocket.OPEN) {
+        addToLog('Not connected to WebSocket server', 'error');
+        return;
+    }
+
+    // Find the last assistant message with a plan_id
+    const lastPlanMsg = messages.slice().reverse().find(msg => msg.plan_id);
+    if (!lastPlanMsg || !lastPlanMsg.plan_id) {
+        addToLog('No plan found to execute', 'error');
+        return;
+    }
+
+    const message = {
+        type: 'agent_confirmation',
+        action: 'DO',
+        plan_id: lastPlanMsg.plan_id,
+        session_id: sessionId,
+        timestamp: Date.now()
+    };
+
+    try {
+        ws.send(JSON.stringify(message));
+        addToLog('Sent DO button click: ' + JSON.stringify(message, null, 2), 'client');
+        
+        // Show progress indicator
+        progressVisible = true;
+        currentProgress = { 
+            progress: 0, 
+            currentStep: 'Starting automation...', 
+            stepNumber: 0, 
+            totalSteps: 3 
+        };
+    } catch (error) {
+        addToLog('Error sending DO button message: ' + error.message, 'error');
+        progressVisible = false;
+    }
+}
+
+  function dismissExecution() {
+    if (!pendingConfirmation) return;
+    
+    console.log('❌ User dismissed execution');
+    playSound('interface-cancel');
+    
+    // Send dismissal to backend
+    const payload = {
+      type: "agent_confirmation", 
+      action: "dismiss",
+      sessionId: pendingConfirmation.sessionId,
+      timestamp: new Date().toISOString()
+    };
+    
+    console.log('🛑 Sending execution dismissal:', payload);
+    ws.send(JSON.stringify(payload));
+    
+    // Add dismissal message
+    const dismissalMessage = {
+      id: Date.now(),
+      type: 'assistant',
+      content: '❌ **Task Dismissed**\n\nThe automation task has been cancelled at your request.',
+      timestamp: new Date(),
+      confidence: 1.0,
+      mode: 'Agent',
+      isDismissed: true
+    };
+    
+    messages = [...messages, dismissalMessage];
+    
+    // Clear confirmation state
+    pendingConfirmation = null;
+    progressVisible = false;
+    
+    scrollToBottom();
+  }
+
+  function adjustExecution() {
+    if (!pendingConfirmation) return;
+    
+    console.log('🔧 User requested adjustment');
+    playSound('interface-adjust');
+    
+    // For now, treat adjust as dismiss and ask for clarification
+    const adjustMessage = {
+      id: Date.now(),
+      type: 'assistant',
+      content: '🔧 **Task Adjustment Requested**\n\nPlease provide more specific instructions for how you\'d like me to modify this automation task.',
+      timestamp: new Date(),
+      confidence: 1.0,
+      mode: 'Agent',
+      isAdjustment: true
+    };
+    
+    messages = [...messages, adjustMessage];
+    
+    // Clear confirmation state
+    pendingConfirmation = null;
+    progressVisible = false;
+    
+    scrollToBottom();
+  }
+
+  // Handle interactive automation button clicks (NEW FORMAT)
+  function handleAutomationButton(action, planId, buttonData) {
+    console.log('🎯 Automation button clicked:', { action, planId, buttonData });
+    playSound('interface-click');
+    
+    // Send button action to backend
+    const payload = {
+      type: "button_action",
+      action: action,
+      plan_id: planId,
+      button_data: buttonData,
+      timestamp: Date.now()
+    };
+    
+    console.log('📤 Sending button action:', payload);
+    ws.send(JSON.stringify(payload));
+    
+    // Update button state or show loading indicator
+    if (action === 'execute_plan') {
+      progressVisible = true;
+      currentProgress = { 
+        progress: 0, 
+        currentStep: 'Starting automation...', 
+        stepNumber: 0, 
+        totalSteps: 3 
+      };
+    }
+    
+    // Remove buttons from the message to prevent multiple clicks
+    messages = messages.map(msg => {
+      if (msg.plan_id === planId) {
+        return { ...msg, interactive: false, buttons: [] };
+      }
+      return msg;
+    });
+  }
+</script>
+
+{#if show}
+<div 
+  class="next-gen-chat-overlay" 
+  class:minimized={showMinimized}
+  class:compact={adaptiveLayout === 'compact'}
+  class:minimal={adaptiveLayout === 'minimal'}
+  style="left: {position.x}px; top: {position.y}px; width: {size.width}px; height: {showMinimized ? 60 : size.height}px;"
+  in:fly={{ y: 20, duration: 300, easing: cubicOut }}
+  out:scale={{ duration: 200, easing: expoOut }}
+>
+  <!-- Glassmorphism Background -->
+  <div class="glass-background"></div>
+  
+  <!-- Dynamic Header with enhanced controls -->
+  <div class="chat-header" 
+     on:mousedown={startDrag}
+     on:keydown={(e) => e.key === 'Enter' && startDrag(e)}
+     role="button"
+     tabindex="0"
+     aria-label="Drag chat window"
+>
+    <div class="header-content">
+      <div class="status-section">
+        <div class="status-indicator" style="background-color: {getStatusColor()};"></div>
+        <div class="title-section">
+          <h3>SensAI</h3>
+          <span class="subtitle">{connectionStatus}</span>
+        </div>
+      </div>
+      
+      <div class="header-controls">
+        <button class="control-btn screen-share-btn" class:active={showScreenViewer} on:click={toggleScreenViewer} title="Toggle Screen Sharing">
+          {showScreenViewer ? '🖥️' : '📺'}
+        </button>
+        <button class="control-btn sound-btn" class:active={soundEnabled} on:click={toggleSound}>
+          {soundEnabled ? '🔊' : '🔇'}
+        </button>
+        <button class="control-btn quick-actions-btn" on:click={toggleQuickActions}>
+          ⚡
+        </button>
+        <button class="control-btn minimize-btn" on:click={toggleMinimize}>
+          {showMinimized ? '◯' : '−'}
+        </button>
+        <button class="control-btn close-btn" on:click={closeChat}>×</button>
+      </div>
+    </div>
+  </div>
+
+  {#if !showMinimized}
+
+    <!-- Quick Actions Panel -->
+    {#if quickActionExpanded}
+      <div class="quick-actions-panel" transition:fly={{ y: -10, duration: 200 }}>
+        <button class="quick-action" on:click={clearConversation}>
+          🗑️ Clear Chat
+        </button>
+        <button class="quick-action" on:click={() => showModeSelector = !showModeSelector}>
+          {showModeSelector ? '🔼' : '🔽'} Toggle Modes
+        </button>
+        <button class="quick-action" on:click={() => isCompactMode = !isCompactMode}>
+          📱 Compact Mode
+        </button>
+      </div>
+    {/if}
+
+    <!-- Enhanced Messages Area -->
+    <div class="chat-messages" bind:this={chatContainer}>
+      {#each messages as message (message.id)}
+        <div 
+          class="message {message.type}" 
+          class:welcome={message.isWelcome}
+          transition:fly={{ y: 20, duration: 300, easing: cubicOut }}
+        >
+          <div class="message-avatar">
+            {#if message.type === 'user'}
+              <div class="user-avatar">👤</div>
+            {:else if message.type === 'assistant'}
+              <div class="ai-avatar">
+                <div class="ai-eye"></div>
+                <div class="ai-glow"></div>
+              </div>
+            {:else if message.type === 'suggestion'}
+              <div class="suggestion-avatar">💡</div>
+            {:else}
+              <div class="system-avatar">ℹ️</div>
+            {/if}
+          </div>
+          
+          <div class="message-content-wrapper">
+            <div class="message-content">
+              {@html message.content.replace(/\n/g, '<br>').replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')}
+            </div>
+            
+            <!-- Agent Mode Confirmation Buttons -->
+            {#if message.requiresConfirmation && message.type === 'assistant'}
+              <div class="confirmation-buttons" transition:fly={{ y: 10, duration: 300 }}>
+                <div class="confirmation-header">
+                  <div class="risk-indicator" class:low={message.riskLevel === 'low'} class:medium={message.riskLevel === 'medium'} class:high={message.riskLevel === 'high'}>
+                    {message.riskLevel || 'medium'} risk
+                  </div>
+                  <div class="duration-estimate">
+                    ⏱️ ~{message.estimatedDuration || '30 seconds'}
+                  </div>
+                </div>
+                <div class="button-group">
+                  <button class="action-btn execute-btn" on:click={confirmExecution}>
+                    <span class="btn-icon">✅</span>
+                    <span class="btn-text">DO</span>
+                  </button>
+                  <button class="action-btn dismiss-btn" on:click={dismissExecution}>
+                    <span class="btn-icon">❌</span>
+                    <span class="btn-text">Dismiss</span>
+                  </button>
+                  <button class="action-btn adjust-btn" on:click={adjustExecution}>
+                    <span class="btn-icon">🔧</span>
+                    <span class="btn-text">Adjust</span>
+                  </button>
+                </div>
+              </div>
+            {/if}
+            
+            <!-- Interactive Automation Buttons (NEW FORMAT) -->
+            {#if message.interactive && message.buttons && message.buttons.length > 0 && message.type === 'assistant'}
+              <div class="interactive-buttons" transition:fly={{ y: 10, duration: 300 }}>
+                <div class="button-group">
+                  {#each message.buttons as button}
+                    <button 
+                      class="automation-btn {button.style}" 
+                      on:click={() => handleAutomationButton(button.action, message.plan_id, button)}
+                      title={button.description}
+                    >
+                      <span class="btn-text">{button.text}</span>
+                    </button>
+                  {/each}
+                </div>
+              </div>
+            {/if}
+            
+            <!-- Suggestion Buttons -->
+            {#if message.buttons && message.buttons.length > 0 && message.type === 'suggestion'}
+              <div class="suggestion-buttons" transition:fly={{ y: 10, duration: 300 }}>
+                <div class="button-group">
+                  {#each message.buttons as button}
+                    <button 
+                      class="suggestion-btn {button.style || 'success'}" 
+                      on:click={() => handleAutomationButton(button.action || 'execute', message.plan_id, button)}
+                      title={button.description || button.text}
+                    >
+                      <span class="btn-text">{button.text}</span>
+                    </button>
+                  {/each}
+                </div>
+              </div>
+            {/if}
+            
+            <div class="message-meta">
+              <span class="timestamp">{formatTime(message.timestamp)}</span>
+              {#if message.confidence !== undefined && message.type === 'assistant'}
+                <div class="confidence-indicator">
+                  <div class="confidence-dot" style="background-color: {getConfidenceColor(message.confidence)}"></div>
+                  <span class="confidence-text">{Math.round(message.confidence * 100)}%</span>
+                </div>
+              {/if}
+              {#if message.mode && message.type === 'assistant'}
+                <span class="mode-badge" style="background: {modes[message.mode]?.gradient || '#8E8E93'}">
+                  {modes[message.mode]?.emoji || ''} {message.mode}
+                </span>
+              {/if}
+            </div>
+          </div>
+        </div>
+      {/each}
+
+      {#if isTyping}
+        <div class="typing-indicator" transition:fade={{ duration: 200 }}>
+          <div class="typing-avatar">
+            <div class="ai-avatar typing">
+              <div class="ai-eye pulsing"></div>
+            </div>
+          </div>
+          <div class="typing-content">
+            <div class="typing-dots">
+              <div class="dot"></div>
+              <div class="dot"></div>
+              <div class="dot"></div>
+            </div>
+            <span class="typing-text progressive">{typingMessage}</span>
+          </div>
+        </div>
+      {/if}
+
+      <!-- Agent Mode Progress Bar -->
+      {#if progressVisible && currentProgress.progress > 0}
+        <div class="progress-container" transition:fade={{ duration: 300 }}>
+          <div class="progress-header">
+            <span class="progress-title">🚀 Executing Automation</span>
+            <span class="progress-percentage">{currentProgress.progress}%</span>
+          </div>
+          <div class="progress-bar">
+            <div class="progress-fill" style="width: {currentProgress.progress}%"></div>
+          </div>
+          <div class="progress-details">
+            <span class="current-step">{currentProgress.currentStep}</span>
+            <span class="step-counter">Step {currentProgress.stepNumber} of {currentProgress.totalSteps}</span>
+          </div>
+        </div>
+      {/if}
+    </div>
+
+    <!-- Smart Suggestions -->
+    {#if connectionStatus === 'connected' && !isTyping && modes[currentMode]}
+      <div class="smart-suggestions" transition:fly={{ y: 10, duration: 200 }}>
+        {#each modes[currentMode].examples.slice(0, isCompactMode ? 1 : 2) as example, index}
+          <button 
+            class="suggestion-chip" 
+            on:click={() => useExample(example)}
+            in:fly={{ x: -20, duration: 200, delay: index * 50 }}
+          >
+            {example}
+          </button>
+        {/each}
+      </div>
+    {/if}
+
+    <!-- Enhanced Input Area with Integrated Mode Selector -->
+    <div class="input-area" class:focused={inputFocused}>
+      <!-- Compact Mode Selector Integrated in Input -->
+      <div class="input-mode-selector">
+        {#each Object.entries(modes) as [modeKey, modeData], index}
+          <button 
+            class="input-mode-tab" 
+            class:active={currentMode === modeKey}
+            on:click={() => selectMode(modeKey)}
+            style="--mode-color: {modeData.color};"
+          >
+            <span class="input-mode-emoji">{modeData.emoji}</span>
+            <span class="input-mode-name" style="color: {modeData.color};">{modeData.name}</span>
+          </button>
+        {/each}
+      </div>
+      
+      <div class="input-container">
+        <div class="input-wrapper">
+          <textarea
+            bind:value={input}
+            placeholder={getModeSpecificPlaceholder(currentMode)}
+            class="message-input"
+            on:keydown={handleKeyDown}
+            on:focus={handleInputFocus}
+            on:blur={handleInputBlur}
+            disabled={connectionStatus !== 'connected'}
+            rows="1"
+          ></textarea>
+          
+          <!-- Input accessories -->
+          <div class="input-accessories">
+            <div class="mode-indicator-mini" style="background: {modes[currentMode]?.gradient}">
+              {modes[currentMode]?.emoji}
+            </div>
+          </div>
+        </div>
+        
+        <button 
+          class="send-btn" 
+          class:active={input.trim().length > 0}
+          on:click={sendMessage}
+          disabled={!input.trim() || connectionStatus !== 'connected'}
+          style="background: {modes[currentMode]?.gradient};"
+        >
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M22 2L11 13" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M22 2L15 22L11 13L2 9L22 2Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+  {/if}
+</div>
+
+<!-- Screen Viewer Modal -->
+{#if showScreenViewer}
+  <div class="screen-viewer-modal" transition:fade={{ duration: 300 }}>
+    <div class="screen-viewer-container" transition:scale={{ duration: 400, easing: elasticOut }}>
+      <ScreenViewer 
+        on:close={handleScreenViewerClose}
+        bridge={bridgeWrapper}
+      />
+    </div>
+  </div>
+{/if}
+
+{/if}
+
+<style>
+  /* CSS Custom Properties for theming */
+  .next-gen-chat-overlay {
+    --primary-blur: saturate(180%) blur(20px);
+    --secondary-blur: blur(10px);
+    --border-radius-large: 20px;
+    --border-radius-medium: 12px;
+    --border-radius-small: 8px;
+    --shadow-small: 0 2px 8px rgba(0, 0, 0, 0.1);
+    --shadow-medium: 0 8px 25px rgba(0, 0, 0, 0.15);
+    --shadow-large: 0 20px 40px rgba(0, 0, 0, 0.2);
+    --transition-fast: 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-normal: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-slow: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    --font-system: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', Roboto, system-ui, sans-serif;
+    --font-mono: 'SF Mono', Monaco, 'Cascadia Code', 'Roboto Mono', Consolas, monospace;
+  }
+
+  /* Main Container */
+  .next-gen-chat-overlay {
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    border-radius: var(--border-radius-large);
+    overflow: hidden;
+    z-index: 10000;
+    pointer-events: auto;
+    transition: all var(--transition-normal);
+    font-family: var(--font-system);
+    backdrop-filter: var(--primary-blur);
+    -webkit-backdrop-filter: var(--primary-blur);
+    box-shadow: var(--shadow-large);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+  }
+
+  .glass-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: var(--primary-blur);
+    -webkit-backdrop-filter: var(--primary-blur);
+    z-index: -1;
+  }
+
+  /* Header Styling */
+  .chat-header {
+    padding: 16px 20px;
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: var(--secondary-blur);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+    cursor: grab;
+    user-select: none;
+    transition: all var(--transition-fast);
+  }
+
+  .chat-header:active {
+    cursor: grabbing;
+  }
+
+  .header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .status-section {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .status-indicator {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    transition: all var(--transition-normal);
+    box-shadow: 0 0 8px currentColor;
+  }
+
+  .title-section h3 {
+    margin: 0;
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    background: linear-gradient(135deg, #1d1d1f, #86868b);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .subtitle {
+    font-size: 12px;
+    color: rgba(0, 0, 0, 0.6);
+    font-weight: 500;
+    text-transform: capitalize;
+  }
+
+  .header-controls {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+  }
+
+  .control-btn {
+    width: 32px;
+    height: 32px;
+    border-radius: var(--border-radius-small);
+    border: none;
+    background: rgba(0, 0, 0, 0.05);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    font-size: 14px;
+    backdrop-filter: blur(5px);
+  }
+
+  .control-btn:hover {
+    background: rgba(0, 0, 0, 0.1);
+    transform: scale(1.05);
+  }
+
+  .control-btn:active {
+    transform: scale(0.95);
+  }
+
+  .control-btn.active {
+    background: rgba(0, 122, 255, 0.15);
+    color: #007AFF;
+  }
+
+  /* Mode Selector */
+  .mode-selector {
+    padding: 16px 20px;
+    background: rgba(255, 255, 255, 0.6);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+    transition: all var(--transition-normal);
+  }
+
+  .mode-selector.hidden {
+    max-height: 0;
+    padding: 0 20px;
+    opacity: 0;
+    overflow: hidden;
+  }
+
+  .mode-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+
+  .mode-card {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 16px;
+    border-radius: var(--border-radius-medium);
+    border: 1.5px solid rgba(255, 255, 255, 0.3);
+    background: rgba(255, 255, 255, 0.4);
+    cursor: pointer;
+    transition: all var(--transition-normal);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .mode-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: var(--mode-gradient);
+    opacity: 0;
+    transition: opacity var(--transition-normal);
+  }
+
+  .mode-card.active::before {
+    opacity: 0.15;
+  }
+
+  .mode-card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-medium);
+    border-color: rgba(255, 255, 255, 0.5);
+  }
+
+  .mode-card.active {
+    border-color: var(--mode-color);
+    background: rgba(255, 255, 255, 0.8);
+    box-shadow: var(--shadow-medium);
+  }
+
+  .mode-icon {
+    font-size: 24px;
+    z-index: 1;
+    position: relative;
+  }
+
+  .mode-info {
+    flex: 1;
+    z-index: 1;
+    position: relative;
+  }
+
+  .mode-name {
+    display: block;
+    font-weight: 600;
+    font-size: 14px;
+    margin-bottom: 2px;
+    color: rgba(0, 0, 0, 0.9);
+  }
+
+  .mode-desc {
+    display: block;
+    font-size: 11px;
+    color: rgba(0, 0, 0, 0.6);
+    line-height: 1.3;
+  }
+
+  .mode-indicator {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--mode-color);
+    opacity: 0;
+    transition: opacity var(--transition-normal);
+    z-index: 1;
+    position: relative;
+  }
+
+  .mode-card.active .mode-indicator {
+    opacity: 1;
+  }
+
+  /* Quick Actions */
+  .quick-actions-panel {
+    display: flex;
+    gap: 8px;
+    padding: 12px 20px;
+    background: rgba(255, 255, 255, 0.5);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+  }
+
+  .quick-action {
+    padding: 8px 12px;
+    border-radius: var(--border-radius-small);
+    border: none;
+    background: rgba(0, 0, 0, 0.05);
+    font-size: 12px;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    white-space: nowrap;
+  }
+
+  .quick-action:hover {
+    background: rgba(0, 0, 0, 0.1);
+    transform: translateY(-1px);
+  }
+
+  /* Messages Area */
+  .chat-messages {
+    flex: 1;
+    overflow-y: auto;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    min-height: 200px;
+    background: rgba(255, 255, 255, 0.3);
+    scroll-behavior: smooth;
+  }
+
+  .chat-messages::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  .chat-messages::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .chat-messages::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.1);
+    border-radius: 3px;
+  }
+
+  .chat-messages::-webkit-scrollbar-thumb:hover {
+    background: rgba(0, 0, 0, 0.2);
+  }
+
+  /* Message Bubbles */
+  .message {
+    display: flex;
+    gap: 12px;
+    max-width: 85%;
+    align-items: flex-start;
+  }
+
+  .message.user {
+    align-self: flex-end;
+    flex-direction: row-reverse;
+  }
+
+  .message.assistant, .message.error {
+    align-self: flex-start;
+  }
+
+  .message-avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    flex-shrink: 0;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .user-avatar {
+    background: linear-gradient(135deg, #007AFF, #5AC8FA);
+    color: white;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+  }
+
+  .ai-avatar {
+    background: linear-gradient(135deg, #f0f0f0, #e8e8e8);
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+
+  .ai-eye {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 30% 30%, #007AFF, #0051D5);
+    position: relative;
+  }
+
+  .ai-eye::after {
+    content: '';
+    position: absolute;
+    top: 25%;
+    left: 25%;
+    width: 50%;
+    height: 50%;
+    border-radius: 50%;
+    background: #000;
+  }
+
+  .ai-eye.pulsing {
+    animation: eyePulse 2s infinite;
+  }
+
+  @keyframes eyePulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+  }
+
+  .ai-glow {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(0, 122, 255, 0.2), transparent);
+    animation: glow 3s infinite;
+  }
+
+  @keyframes glow {
+    0%, 100% { opacity: 0.3; transform: scale(1); }
+    50% { opacity: 0.7; transform: scale(1.05); }
+  }
+
+  .system-avatar {
+    background: linear-gradient(135deg, #FF9500, #FFCC00);
+    color: white;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+  }
+  
+  .suggestion-avatar {
+    background: linear-gradient(135deg, #30D158, #32D74B);
+    color: white;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    animation: pulse 2s infinite;
+  }
+
+  .message-content-wrapper {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .message-content {
+    padding: 14px 18px;
+    border-radius: 20px;
+    line-height: 1.5;
+    font-size: 15px;
+    word-wrap: break-word;
+    position: relative;
+    backdrop-filter: blur(5px);
+  }
+
+  .message.user .message-content {
+    background: linear-gradient(135deg, #007AFF, #5AC8FA);
+    color: white;
+    border-bottom-right-radius: 6px;
+  }
+
+  .message.assistant .message-content {
+    background: rgba(255, 255, 255, 0.8);
+    color: rgba(0, 0, 0, 0.9);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-bottom-left-radius: 6px;
+  }
+
+  .message.error .message-content {
+    background: rgba(255, 59, 48, 0.1);
+    color: #FF3B30;
+    border: 1px solid rgba(255, 59, 48, 0.3);
+  }
+
+  .message.welcome .message-content {
+    background: linear-gradient(135deg, rgba(175, 82, 222, 0.1), rgba(191, 90, 242, 0.1));
+    border: 1px solid rgba(175, 82, 222, 0.2);
+  }
+  
+  .message.suggestion .message-content {
+    background: linear-gradient(135deg, rgba(48, 209, 88, 0.1), rgba(50, 215, 75, 0.1));
+    color: rgba(0, 0, 0, 0.9);
+    border: 1px solid rgba(48, 209, 88, 0.3);
+    border-bottom-left-radius: 6px;
+    box-shadow: 0 2px 10px rgba(48, 209, 88, 0.2);
+    animation: subtle-glow 2s infinite;
+  }
+  
+  @keyframes subtle-glow {
+    0%, 100% { box-shadow: 0 2px 10px rgba(48, 209, 88, 0.2); }
+    50% { box-shadow: 0 2px 15px rgba(48, 209, 88, 0.4); }
+  }
+
+  .message-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 6px;
+    font-size: 11px;
+    color: rgba(0, 0, 0, 0.5);
+    gap: 8px;
+  }
+
+  .timestamp {
+    font-weight: 500;
+  }
+
+  .confidence-indicator {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .confidence-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+  }
+
+  .confidence-text {
+    font-weight: 600;
+  }
+
+  .mode-badge {
+    padding: 2px 8px;
+    border-radius: 10px;
+    font-size: 10px;
+    font-weight: 600;
+    color: white;
+    background: var(--mode-gradient);
+    backdrop-filter: blur(5px);
+  }
+
+  /* Typing Indicator */
+  .typing-indicator {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    max-width: 200px;
+  }
+
+  .typing-avatar {
+    width: 36px;
+    height: 36px;
+  }
+
+  .typing-content {
+    flex: 1;
+    padding: 14px 18px;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 20px;
+    border-bottom-left-radius: 6px;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(5px);
+  }
+
+  .typing-dots {
+    display: flex;
+    gap: 4px;
+    margin-bottom: 4px;
+  }
+
+  .dot {
+    width: 8px;
+    height: 8px;
+    background: rgba(0, 0, 0, 0.4);
+    border-radius: 50%;
+    animation: bounce 1.4s infinite;
+  }
+
+  .dot:nth-child(2) { animation-delay: 0.2s; }
+  .dot:nth-child(3) { animation-delay: 0.4s; }
+
+  @keyframes bounce {
+    0%, 60%, 100% { transform: translateY(0); }
+    30% { transform: translateY(-8px); }
+  }
+
+  .typing-text {
+    font-size: 12px;
+    color: rgba(0, 0, 0, 0.6);
+    font-style: italic;
+  }
+
+  /* Smart Suggestions */
+  .smart-suggestions {
+    padding: 12px 20px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    background: rgba(255, 255, 255, 0.4);
+    border-top: 1px solid rgba(255, 255, 255, 0.3);
+  }
+
+  .suggestion-chip {
+    padding: 8px 14px;
+    background: rgba(255, 255, 255, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-radius: 16px;
+    font-size: 13px;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    backdrop-filter: blur(5px);
+    line-height: 1.2;
+  }
+
+  .suggestion-chip:hover {
+    background: rgba(255, 255, 255, 0.9);
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-small);
+  }
+
+  /* Input Area */
+  .input-area {
+    padding: 16px 20px 20px;
+    background: rgba(255, 255, 255, 0.8);
+    border-top: 1px solid rgba(255, 255, 255, 0.3);
+    backdrop-filter: var(--secondary-blur);
+    transition: all var(--transition-normal);
+  }
+
+  .input-area.focused {
+    background: rgba(255, 255, 255, 0.95);
+  }
+
+  .input-container {
+    display: flex;
+    gap: 12px;
+    align-items: flex-end;
+  }
+
+  .input-wrapper {
+    flex: 1;
+    position: relative;
+    background: rgba(255, 255, 255, 0.9);
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    border-radius: 20px;
+    transition: all var(--transition-normal);
+    backdrop-filter: blur(10px);
+  }
+
+  .input-area.focused .input-wrapper {
+    border-color: rgba(0, 122, 255, 0.5);
+    box-shadow: 0 0 0 4px rgba(0, 122, 255, 0.1);
+  }
+
+  .message-input {
+    width: 100%;
+    background: transparent;
+    border: none;
+    padding: 12px 16px 12px 16px;
+    font-size: 16px;
+    line-height: 1.4;
+    resize: none;
+    outline: none;
+    font-family: var(--font-system);
+    max-height: 120px;
+    min-height: 24px;
+  }
+
+  .message-input::placeholder {
+    color: rgba(0, 0, 0, 0.4);
+  }
+
+  .message-input:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  .input-accessories {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .mode-indicator-mini {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    color: white;
+    background: var(--mode-gradient);
+  }
+
+
+  .ios-mode-trigger {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 12px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .ios-mode-trigger:hover {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 255, 255, 0.25);
+    transform: scale(1.02);
+  }
+
+  .ios-mode-trigger:active {
+    transform: scale(0.98);
+  }
+
+  .ios-mode-trigger.active {
+    background: rgba(255, 255, 255, 0.2);
+    border-color: rgba(255, 255, 255, 0.3);
+    box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.1);
+  }
+
+  .mode-pill {
+    width: 28px;
+    height: 28px;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  }
+
+  .current-mode-emoji {
+    font-size: 16px;
+    filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.2));
+  }
+
+  .chevron-icon {
+    color: rgba(255, 255, 255, 0.7);
+    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+
+  .chevron-icon.rotated {
+    transform: rotate(180deg);
+    color: rgba(255, 255, 255, 0.9);
+  }
+
+  /* Floating iOS Mode Dropdown Overlay */
+  .ios-mode-dropdown-overlay {
+    position: absolute;
+    bottom: 80px;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    padding: 0 20px;
+  }
+
+  .ios-mode-dropdown {
+    background: rgba(255, 255, 255, 0.98);
+    backdrop-filter: blur(40px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 20px;
+    box-shadow: 
+      0 20px 60px rgba(0, 0, 0, 0.12),
+      0 8px 25px rgba(0, 0, 0, 0.08),
+      inset 0 1px 0 rgba(255, 255, 255, 0.8);
+    overflow: hidden;
+    padding: 12px;
+    width: 100%;
+    max-width: 320px;
+  }
+
+  .ios-mode-option {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 14px 16px;
+    background: transparent;
+    border: none;
+    border-radius: 16px;
+    cursor: pointer;
+    transition: all 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    text-align: left;
+    position: relative;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .ios-mode-option:hover {
+    background: rgba(0, 0, 0, 0.04);
+    transform: translateY(-1px);
+  }
+
+  .ios-mode-option:active {
+    transform: scale(0.98);
+    background: rgba(0, 0, 0, 0.06);
+  }
+
+  .ios-mode-option.selected {
+    background: rgba(0, 122, 255, 0.08);
+  }
+
+  .ios-mode-option.selected:hover {
+    background: rgba(0, 122, 255, 0.12);
+  }
+
+  .option-pill {
+    width: 40px;
+    height: 40px;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 
+      0 4px 12px rgba(0, 0, 0, 0.15),
+      inset 0 1px 0 rgba(255, 255, 255, 0.3);
+    flex-shrink: 0;
+  }
+
+  .option-emoji {
+    font-size: 20px;
+    filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.1));
+  }
+
+  .option-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .option-title {
+    font-size: 16px;
+    font-weight: 600;
+    color: rgba(0, 0, 0, 0.9);
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+  }
+
+  .option-subtitle {
+    font-size: 13px;
+    color: rgba(0, 0, 0, 0.6);
+    line-height: 1.3;
+    font-weight: 400;
+  }
+
+  .selection-indicator {
+    color: var(--mode-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    border-radius: 12px;
+    background: rgba(0, 122, 255, 0.1);
+  }
+
+  .send-btn {
+    width: 44px;
+    height: 44px;
+    border-radius: 22px;
+    border: none;
+    background: #8E8E93;
+    color: white;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all var(--transition-normal);
+    backdrop-filter: blur(5px);
+  }
+
+  .send-btn.active {
+    background: var(--mode-gradient);
+    transform: scale(1.05);
+    box-shadow: var(--shadow-medium);
+  }
+
+  .send-btn:hover:not(:disabled) {
+    transform: scale(1.1);
+  }
+
+  .send-btn:active {
+    transform: scale(0.95);
+  }
+
+  .send-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+  }
+
+  /* Responsive Design */
+  .next-gen-chat-overlay.compact {
+    --border-radius-large: 16px;
+    --border-radius-medium: 10px;
+  }
+
+  .next-gen-chat-overlay.compact .mode-grid {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+
+  .next-gen-chat-overlay.compact .mode-card {
+    padding: 10px 12px;
+  }
+
+  .next-gen-chat-overlay.minimal .mode-selector {
+    display: none;
+  }
+
+  .next-gen-chat-overlay.minimal .smart-suggestions {
+    display: none;
+  }
+
+  /* Dark mode support */
+  @media (prefers-color-scheme: dark) {
+    .next-gen-chat-overlay {
+      border-color: rgba(255, 255, 255, 0.1);
+    }
+    
+    .glass-background {
+      background: rgba(0, 0, 0, 0.3);
+    }
+    
+    .chat-header {
+      background: rgba(0, 0, 0, 0.6);
+      border-bottom-color: rgba(255, 255, 255, 0.1);
+    }
+    
+    .title-section h3 {
+      background: linear-gradient(135deg, #ffffff, #a0a0a0);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    
+    .subtitle {
+      color: rgba(255, 255, 255, 0.6);
+    }
+    
+    .control-btn {
+      background: rgba(255, 255, 255, 0.1);
+      color: rgba(255, 255, 255, 0.8);
+    }
+    
+    .control-btn:hover {
+      background: rgba(255, 255, 255, 0.2);
+    }
+    
+    .mode-selector,
+    .quick-actions-panel,
+    .input-area {
+      background: rgba(0, 0, 0, 0.4);
+      border-color: rgba(255, 255, 255, 0.1);
+    }
+    
+    .mode-card {
+      background: rgba(255, 255, 255, 0.1);
+      border-color: rgba(255, 255, 255, 0.2);
+    }
+    
+    .mode-name {
+      color: rgba(255, 255, 255, 0.9);
+    }
+    
+    .mode-desc {
+      color: rgba(255, 255, 255, 0.6);
+    }
+    
+    .chat-messages {
+      background: rgba(0, 0, 0, 0.2);
+    }
+    
+    .message.assistant .message-content {
+      background: rgba(255, 255, 255, 0.1);
+      color: rgba(255, 255, 255, 0.9);
+      border-color: rgba(255, 255, 255, 0.2);
+    }
+    
+    .typing-content {
+      background: rgba(255, 255, 255, 0.1);
+      color: rgba(255, 255, 255, 0.9);
+      border-color: rgba(255, 255, 255, 0.2);
+    }
+    
+    .suggestion-chip {
+      background: rgba(255, 255, 255, 0.1);
+      border-color: rgba(255, 255, 255, 0.2);
+      color: rgba(255, 255, 255, 0.8);
+    }
+    
+    .input-wrapper {
+      background: rgba(255, 255, 255, 0.1);
+      border-color: rgba(255, 255, 255, 0.2);
+    }
+    
+    .message-input {
+      color: rgba(255, 255, 255, 0.9);
+    }
+    
+    .message-input::placeholder {
+      color: rgba(255, 255, 255, 0.4);
+    }
+    
+    .message-meta {
+      color: rgba(255, 255, 255, 0.5);
+    }
+    
+    .typing-text {
+      color: rgba(255, 255, 255, 0.6);
+    }
+    
+    .input-mode-selector {
+      background: rgba(0, 0, 0, 0.6);
+      border-color: rgba(255, 255, 255, 0.2);
+    }
+    
+    .input-mode-tab.active {
+      background: rgba(255, 255, 255, 0.1);
+    }
+    
+    .input-mode-name {
+      text-shadow: 0 0.5px 1px rgba(0, 0, 0, 0.8);
+    }
+  }
+
+  /* Integrated Input Mode Selector */
+  .input-mode-selector {
+    display: flex;
+    gap: 2px;
+    margin-bottom: 8px;
+    padding: 4px;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  }
+
+  .input-mode-tab {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    padding: 6px 8px;
+    background: transparent;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .input-mode-tab::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: var(--mode-color);
+    opacity: 0;
+    transition: all 0.25s ease;
+    border-radius: 8px;
+  }
+
+  .input-mode-tab:hover {
+    transform: scale(1.02);
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+  }
+
+  .input-mode-tab:hover::before {
+    opacity: 0.08;
+  }
+
+  .input-mode-tab.active {
+    background: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
+    transform: scale(1.02);
+  }
+
+  .input-mode-tab.active::before {
+    opacity: 0.1;
+  }
+
+  .input-mode-emoji {
+    font-size: 14px;
+    filter: drop-shadow(0 0.5px 1px rgba(0, 0, 0, 0.1));
+    transition: all 0.25s ease;
+    animation: modeEmojiIdle 3s ease-in-out infinite;
+  }
+
+  /* Different idle animations for each mode */
+  .input-mode-tab:nth-child(1) .input-mode-emoji {
+    animation: askModeFloat 4s ease-in-out infinite;
+  }
+
+  .input-mode-tab:nth-child(2) .input-mode-emoji {
+    animation: agentModeRotate 3s ease-in-out infinite;
+  }
+
+  .input-mode-tab:nth-child(3) .input-mode-emoji {
+    animation: suggestModeSparkle 2.5s ease-in-out infinite;
+  }
+
+  .input-mode-tab:nth-child(4) .input-mode-emoji {
+    animation: creativeModeWave 3.5s ease-in-out infinite;
+  }
+
+  .input-mode-tab:hover .input-mode-emoji {
+    animation-play-state: paused;
+    transform: scale(1.2) rotate(10deg);
+  }
+
+  .input-mode-tab.active .input-mode-emoji {
+    animation: inputEmojiActiveBounce 0.6s ease-out;
+  }
+
+  .input-mode-name {
+    font-size: 11px;
+    font-weight: 600;
+    text-align: center;
+    line-height: 1;
+    transition: all 0.25s ease;
+    text-shadow: 0 0.5px 1px rgba(255, 255, 255, 0.8);
+  }
+
+  .input-mode-tab.active .input-mode-name {
+    font-weight: 700;
+    transform: scale(1.05);
+  }
+
+  /* Animations */
+  @keyframes shimmer {
+    0%, 100% { transform: translateX(-100%); }
+    50% { transform: translateX(100%); }
+  }
+
+  @keyframes pulse {
+    0%, 100% { 
+      transform: scale(1);
+      box-shadow: 0 0 0 0 rgba(52, 199, 89, 0.7);
+    }
+    50% { 
+      transform: scale(1.1);
+      box-shadow: 0 0 0 8px rgba(52, 199, 89, 0);
+    }
+  }
+
+  @keyframes tabEmojiFloat {
+    0%, 100% { 
+      transform: translateY(0px) rotate(0deg) scale(1); 
+    }
+    25% { 
+      transform: translateY(-1px) rotate(1deg) scale(1.02); 
+    }
+    50% { 
+      transform: translateY(-2px) rotate(0deg) scale(1.05); 
+    }
+    75% { 
+      transform: translateY(-1px) rotate(-1deg) scale(1.02); 
+    }
+  }
+
+  @keyframes tabEmojiBounce {
+    0% { 
+      transform: scale(1) rotate(0deg); 
+    }
+    30% { 
+      transform: scale(1.2) rotate(10deg); 
+    }
+    60% { 
+      transform: scale(1.1) rotate(-5deg); 
+    }
+    100% { 
+      transform: scale(1) rotate(0deg); 
+    }
+  }
+
+  @keyframes inputEmojiPulse {
+    0% { 
+      transform: scale(1); 
+    }
+    50% { 
+      transform: scale(1.15); 
+    }
+    100% { 
+      transform: scale(1); 
+    }
+  }
+
+  /* Mode-specific animations */
+  @keyframes askModeFloat {
+    0%, 100% { 
+      transform: translateY(0px) scale(1) rotate(0deg); 
+    }
+    25% { 
+      transform: translateY(-2px) scale(1.02) rotate(-1deg); 
+    }
+    50% { 
+      transform: translateY(-3px) scale(1.05) rotate(0deg); 
+    }
+    75% { 
+      transform: translateY(-1px) scale(1.02) rotate(1deg); 
+    }
+  }
+
+  @keyframes agentModeRotate {
+    0%, 100% { 
+      transform: rotate(0deg) scale(1); 
+    }
+    25% { 
+      transform: rotate(5deg) scale(1.03); 
+    }
+    50% { 
+      transform: rotate(0deg) scale(1.06); 
+    }
+    75% { 
+      transform: rotate(-5deg) scale(1.03); 
+    }
+  }
+
+  @keyframes suggestModeSparkle {
+    0%, 100% { 
+      transform: scale(1) rotate(0deg);
+      filter: drop-shadow(0 0.5px 1px rgba(0, 0, 0, 0.1)) brightness(1);
+    }
+    20% { 
+      transform: scale(1.08) rotate(2deg);
+      filter: drop-shadow(0 0.5px 1px rgba(0, 0, 0, 0.1)) brightness(1.2);
+    }
+    40% { 
+      transform: scale(1.02) rotate(-1deg);
+      filter: drop-shadow(0 0.5px 1px rgba(0, 0, 0, 0.1)) brightness(1.1);
+    }
+    60% { 
+      transform: scale(1.05) rotate(1deg);
+      filter: drop-shadow(0 0.5px 1px rgba(0, 0, 0, 0.1)) brightness(1.15);
+    }
+    80% { 
+      transform: scale(1.01) rotate(-0.5deg);
+      filter: drop-shadow(0 0.5px 1px rgba(0, 0, 0, 0.1)) brightness(1.05);
+    }
+  }
+
+  @keyframes creativeModeWave {
+    0%, 100% { 
+      transform: scale(1) rotate(0deg) skewX(0deg); 
+    }
+    20% { 
+      transform: scale(1.03) rotate(2deg) skewX(1deg); 
+    }
+    40% { 
+      transform: scale(1.06) rotate(-1deg) skewX(-0.5deg); 
+    }
+    60% { 
+      transform: scale(1.04) rotate(3deg) skewX(1.5deg); 
+    }
+    80% { 
+      transform: scale(1.02) rotate(-0.5deg) skewX(-0.2deg); 
+    }
+  }
+
+  @keyframes inputEmojiActiveBounce {
+    0% { 
+      transform: scale(1) rotate(0deg); 
+    }
+    20% { 
+      transform: scale(1.3) rotate(15deg); 
+    }
+    40% { 
+      transform: scale(1.1) rotate(-5deg); 
+    }
+    60% { 
+      transform: scale(1.2) rotate(10deg); 
+    }
+    80% { 
+      transform: scale(1.05) rotate(-2deg); 
+    }
+    100% { 
+      transform: scale(1) rotate(0deg); 
+    }
+  }
+
+  @keyframes modeEmojiIdle {
+    0%, 100% { 
+      transform: scale(1); 
+    }
+    50% { 
+      transform: scale(1.02); 
+    }
+  }
+
+  /* Accessibility */
+  @media (prefers-reduced-motion: reduce) {
+    * {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+
+  /* High contrast mode */
+  @media (prefers-contrast: high) {
+    .next-gen-chat-overlay {
+      border: 2px solid;
+    }
+    
+    .mode-card {
+      border-width: 2px;
+    }
+    
+    .control-btn {
+      border: 1px solid;
+    }
+  }
+
+  /* Agent Mode Confirmation Buttons */
+  .confirmation-buttons {
+    margin-top: 12px;
+    padding: 16px;
+    background: rgba(255, 255, 255, 0.9);
+    border: 1px solid rgba(0, 122, 255, 0.2);
+    border-radius: 12px;
+    backdrop-filter: blur(10px);
+  }
+
+  .confirmation-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+    font-size: 12px;
+  }
+
+  .risk-indicator {
+    padding: 4px 8px;
+    border-radius: 8px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .risk-indicator.low {
+    background: rgba(48, 209, 88, 0.15);
+    color: #30D158;
+  }
+
+  .risk-indicator.medium {
+    background: rgba(255, 149, 0, 0.15);
+    color: #FF9500;
+  }
+
+  .risk-indicator.high {
+    background: rgba(255, 59, 48, 0.15);
+    color: #FF3B30;
+  }
+
+  .duration-estimate {
+    color: rgba(0, 0, 0, 0.6);
+    font-weight: 500;
+  }
+
+  .button-group {
+    display: flex;
+    gap: 8px;
+  }
+
+  .action-btn {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 12px 16px;
+    border: none;
+    border-radius: 10px;
+    font-weight: 600;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    backdrop-filter: blur(5px);
+  }
+
+  .execute-btn {
+    background: linear-gradient(135deg, #30D158, #32D74B);
+    color: white;
+    box-shadow: 0 2px 8px rgba(48, 209, 88, 0.3);
+  }
+
+  .execute-btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(48, 209, 88, 0.4);
+  }
+
+  .dismiss-btn {
+    background: linear-gradient(135deg, #FF3B30, #FF6B60);
+    color: white;
+    box-shadow: 0 2px 8px rgba(255, 59, 48, 0.3);
+  }
+
+  .dismiss-btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(255, 59, 48, 0.4);
+  }
+
+  .adjust-btn {
+    background: linear-gradient(135deg, #FF9500, #FFCC00);
+    color: white;
+    box-shadow: 0 2px 8px rgba(255, 149, 0, 0.3);
+  }
+
+  .adjust-btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(255, 149, 0, 0.4);
+  }
+
+  /* Interactive Automation Buttons (NEW FORMAT) */
+  .interactive-buttons, .suggestion-buttons {
+    margin-top: 12px;
+    padding: 16px;
+    background: rgba(255, 255, 255, 0.9);
+    border: 1px solid rgba(0, 122, 255, 0.2);
+    border-radius: 12px;
+    backdrop-filter: blur(10px);
+  }
+  
+  .suggestion-buttons {
+    background: rgba(255, 255, 255, 0.95);
+    border: 1px solid rgba(48, 209, 88, 0.3);
+    box-shadow: 0 4px 12px rgba(48, 209, 88, 0.2);
+  }
+
+  .automation-btn {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 12px 16px;
+    border: none;
+    border-radius: 10px;
+    font-weight: 600;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    backdrop-filter: blur(5px);
+  }
+
+  .automation-btn.success {
+    background: linear-gradient(135deg, #30D158, #32D74B);
+    color: white;
+    box-shadow: 0 2px 8px rgba(48, 209, 88, 0.3);
+  }
+
+  .automation-btn.success:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(48, 209, 88, 0.4);
+  }
+
+  .automation-btn.danger {
+    background: linear-gradient(135deg, #FF3B30, #FF6B60);
+    color: white;
+    box-shadow: 0 2px 8px rgba(255, 59, 48, 0.3);
+  }
+
+  .automation-btn.danger:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(255, 59, 48, 0.4);
+  }
+
+  .automation-btn.warning {
+    background: linear-gradient(135deg, #FF9500, #FFCC00);
+    color: white;
+    box-shadow: 0 2px 8px rgba(255, 149, 0, 0.3);
+  }
+
+  .automation-btn.warning:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(255, 149, 0, 0.4);
+  }
+  
+  .suggestion-btn {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 12px 16px;
+    border: none;
+    border-radius: 10px;
+    font-weight: 600;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    backdrop-filter: blur(5px);
+  }
+  
+  .suggestion-btn.success {
+    background: linear-gradient(135deg, #30D158, #32D74B);
+    color: white;
+    box-shadow: 0 2px 8px rgba(48, 209, 88, 0.3);
+  }
+  
+  .suggestion-btn.success:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(48, 209, 88, 0.4);
+  }
+  
+  .suggestion-btn:active {
+    transform: scale(0.95);
+  }
+
+  .action-btn:active {
+    transform: scale(0.95);
+  }
+
+  .btn-icon {
+    font-size: 16px;
+  }
+
+  .btn-text {
+    font-size: 14px;
+    font-weight: 600;
+  }
+
+  /* Progress Bar */
+  .progress-container {
+    margin: 20px;
+    padding: 16px;
+    background: rgba(255, 255, 255, 0.9);
+    border: 1px solid rgba(0, 122, 255, 0.2);
+    border-radius: 12px;
+    backdrop-filter: blur(10px);
+  }
+
+  .progress-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+  }
+
+  .progress-title {
+    font-weight: 600;
+    color: rgba(0, 0, 0, 0.9);
+  }
+
+  .progress-percentage {
+    font-weight: 700;
+    color: #007AFF;
+  }
+
+  .progress-bar {
+    height: 8px;
+    background: rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
+    overflow: hidden;
+    margin-bottom: 8px;
+  }
+
+  .progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #007AFF, #5AC8FA);
+    border-radius: 4px;
+    transition: width 0.3s ease;
+  }
+
+  .progress-details {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 12px;
+  }
+
+  .current-step {
+    color: rgba(0, 0, 0, 0.7);
+    font-weight: 500;
+  }
+
+  .step-counter {
+    color: rgba(0, 0, 0, 0.5);
+    font-weight: 500;
+  }
+
+  /* Screen Viewer Modal Styles */
+  .screen-viewer-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: var(--primary-blur);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10000;
+  }
+
+  .screen-viewer-container {
+    position: relative;
+    max-width: 95vw;
+    max-height: 95vh;
+    border-radius: var(--border-radius-large);
+    overflow: hidden;
+    box-shadow: var(--shadow-large), 0 0 0 1px rgba(255, 255, 255, 0.1);
+  }
+
+  /* Screen share button styling */
+  .control-btn.screen-share-btn.active {
+    background: rgba(0, 122, 255, 0.2);
+    color: #007AFF;
+  }
+
+  .control-btn.screen-share-btn:hover {
+    background: rgba(0, 122, 255, 0.1);
+  }
+</style>

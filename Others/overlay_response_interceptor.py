@@ -98,7 +98,7 @@ async def forward_to_backend(message, target_port):
         logger.error(f"Unexpected error in forward_to_backend: {e}")
         return None
 
-async def handle_client(websocket):
+async def handle_client(websocket, path=None):
     """Handle WebSocket client connections."""
     client_id = id(websocket)
     connected_clients.add(websocket)
@@ -114,26 +114,32 @@ async def handle_client(websocket):
                 await websocket.send(response)
             else:
                 # Send our own connection message if backend is unavailable
+                connection_session_id = f"connection_{int(datetime.now().timestamp())}"
                 await websocket.send(json.dumps({
                     "type": "connection_established",
                     "payload": {
                         "client_id": client_id,
                         "timestamp": datetime.now().isoformat(),
                         "status": "connected",
-                        "message": "Connected to fallback service"
-                    }
+                        "message": "Connected to fallback service",
+                        "session_id": connection_session_id
+                    },
+                    "session_id": connection_session_id
                 }))
         except Exception as e:
             logger.error(f"Error during initial connection: {e}")
             # Send fallback connection message
+            connection_session_id = f"connection_{int(datetime.now().timestamp())}"
             await websocket.send(json.dumps({
                 "type": "connection_established",
                 "payload": {
                     "client_id": client_id,
                     "timestamp": datetime.now().isoformat(),
                     "status": "connected",
-                    "message": "Connected to fallback service"
-                }
+                    "message": "Connected to fallback service",
+                    "session_id": connection_session_id
+                },
+                "session_id": connection_session_id
             }))
         
         # Process incoming messages
@@ -150,12 +156,16 @@ async def handle_client(websocket):
                     query = payload.get('query', '')
                     
                     if not query:
+                        # Extract session_id from payload or data, or create fallback
+                        error_session_id = payload.get("session_id", data.get("session_id", f"error_{int(datetime.now().timestamp())}"))
                         await websocket.send(json.dumps({
                             "type": "error",
                             "payload": {
                                 "message": "Empty query",
-                                "timestamp": datetime.now().isoformat()
-                            }
+                                "timestamp": datetime.now().isoformat(),
+                                "session_id": error_session_id
+                            },
+                            "session_id": error_session_id
                         }))
                         continue
                     
@@ -173,14 +183,18 @@ async def handle_client(websocket):
                     
                     # If no response from backend, use fallback response
                     fallback_response = get_response_for_query(query)
+                    # Extract session_id from payload or data, or create fallback
+                    query_session_id = payload.get("session_id", data.get("session_id", f"query_{int(datetime.now().timestamp())}"))
                     await websocket.send(json.dumps({
                         "type": "query_response",
                         "payload": {
                             "query": query,
                             "response": fallback_response,
                             "timestamp": datetime.now().isoformat(),
-                            "source": "fallback"
-                        }
+                            "source": "fallback",
+                            "session_id": query_session_id
+                        },
+                        "session_id": query_session_id
                     }))
                 elif msg_type == 'register':
                     # Register the client
@@ -195,14 +209,18 @@ async def handle_client(websocket):
                     
                     # Send our response if backend unavailable
                     if not response:
+                        # Extract session_id from client_info or data, or create fallback
+                        reg_session_id = client_info.get("session_id", data.get("session_id", f"registration_{int(datetime.now().timestamp())}"))
                         response = json.dumps({
                             "type": "registration_successful",
                             "payload": {
                                 "client_id": client_id,
                                 "client_type": client_type,
                                 "timestamp": datetime.now().isoformat(),
-                                "message": "Registered with fallback service"
-                            }
+                                "message": "Registered with fallback service",
+                                "session_id": reg_session_id
+                            },
+                            "session_id": reg_session_id
                         })
                     
                     await websocket.send(response)
@@ -213,6 +231,8 @@ async def handle_client(websocket):
                     
                     # Send minimal context if backend unavailable
                     if not response:
+                        # Extract session_id from data or create fallback
+                        ctx_session_id = data.get("session_id", f"context_{int(datetime.now().timestamp())}")
                         response = json.dumps({
                             "type": "context_update",
                             "payload": {
@@ -222,19 +242,25 @@ async def handle_client(websocket):
                                     "screen_content": "",
                                     "timestamp": datetime.now().isoformat()
                                 },
-                                "timestamp": datetime.now().isoformat()
-                            }
+                                "timestamp": datetime.now().isoformat(),
+                                "session_id": ctx_session_id
+                            },
+                            "session_id": ctx_session_id
                         })
                     
                     await websocket.send(response)
                 
                 elif msg_type == 'ping':
                     # Just respond with pong
+                    # Extract session_id from data or create fallback
+                    ping_session_id = data.get("session_id", f"ping_{int(datetime.now().timestamp())}")
                     await websocket.send(json.dumps({
                         "type": "pong",
                         "payload": {
-                            "timestamp": datetime.now().isoformat()
-                        }
+                            "timestamp": datetime.now().isoformat(),
+                            "session_id": ping_session_id
+                        },
+                        "session_id": ping_session_id
                     }))
                 
                 elif msg_type == 'disconnect':
@@ -265,15 +291,18 @@ async def status_broadcaster():
     while True:
         if connected_clients:
             try:
-                # Create a status message
+                # Create a status message with a status-specific session_id
+                status_session_id = f"status_{int(datetime.now().timestamp())}"
                 message = json.dumps({
                     "type": "status_update",
                     "payload": {
                         "client_count": len(connected_clients),
                         "registered_clients": len(registered_clients),
                         "interceptor_active": True,
-                        "timestamp": datetime.now().isoformat()
-                    }
+                        "timestamp": datetime.now().isoformat(),
+                        "session_id": status_session_id
+                    },
+                    "session_id": status_session_id
                 })
                 
                 # Send to all clients

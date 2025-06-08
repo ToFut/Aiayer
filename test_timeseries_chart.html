@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Time Series Chart Test</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .container { max-width: 800px; margin: 0 auto; }
+        .chart-container { height: 300px; margin-bottom: 30px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Time Series Chart Test</h1>
+        <p>This page tests the time series chart rendering with data from the API.</p>
+        <div class="chart-container">
+            <canvas id="tasksChart"></canvas>
+        </div>
+        <div class="chart-container">
+            <canvas id="memoryChart"></canvas>
+        </div>
+        <div class="chart-container">
+            <canvas id="valueChart"></canvas>
+        </div>
+        <div>
+            <h3>API Response:</h3>
+            <pre id="apiResponse"></pre>
+        </div>
+    </div>
+
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+    <script>
+        // Global chart references
+        let tasksChart = null;
+        let memoryChart = null;
+        let valueChart = null;
+        
+        // Fetch and render data
+        async function loadTimeSeriesData() {
+            try {
+                const response = await fetch('http://localhost:8081/api/time-series');
+                const data = await response.json();
+                
+                // Display API response
+                document.getElementById('apiResponse').textContent = JSON.stringify(data, null, 2);
+                
+                // Check if data is valid
+                if (!data || !data.timestamps || data.timestamps.length === 0) {
+                    console.error('Invalid time series data');
+                    return;
+                }
+                
+                // Format timestamps as readable dates
+                const labels = data.timestamps.map(ts => {
+                    const date = new Date(ts * 1000);
+                    return date.toLocaleTimeString();
+                });
+                
+                // Create or update active tasks chart
+                const tasksCtx = document.getElementById('tasksChart').getContext('2d');
+                if (tasksChart) {
+                    tasksChart.data.labels = labels;
+                    tasksChart.data.datasets[0].data = data.active_tasks;
+                    tasksChart.update();
+                } else {
+                    tasksChart = new Chart(tasksCtx, {
+                        type: 'line',
+                        data: {
+                            labels: labels,
+                            datasets: [{
+                                label: 'Active Tasks',
+                                data: data.active_tasks,
+                                fill: false,
+                                borderColor: '#fd7e14',
+                                tension: 0.1
+                            }]
+                        },
+                        options: {
+                            responsive: true,
+                            maintainAspectRatio: false,
+                            plugins: {
+                                title: {
+                                    display: true,
+                                    text: 'Active Tasks Over Time'
+                                }
+                            },
+                            scales: {
+                                y: {
+                                    beginAtZero: true,
+                                    title: {
+                                        display: true,
+                                        text: 'Number of Tasks'
+                                    }
+                                }
+                            }
+                        }
+                    });
+                }
+                
+                // Create or update memory chart
+                const memoryCtx = document.getElementById('memoryChart').getContext('2d');
+                // Convert memory bytes to MB
+                const memoryDataMB = data.memory_usage.map(bytes => bytes / (1024 * 1024));
+                
+                if (memoryChart) {
+                    memoryChart.data.labels = labels;
+                    memoryChart.data.datasets[0].data = memoryDataMB;
+                    memoryChart.update();
+                } else {
+                    memoryChart = new Chart(memoryCtx, {
+                        type: 'line',
+                        data: {
+                            labels: labels,
+                            datasets: [{
+                                label: 'Memory Usage (MB)',
+                                data: memoryDataMB,
+                                fill: false,
+                                borderColor: '#6610f2',
+                                tension: 0.1
+                            }]
+                        },
+                        options: {
+                            responsive: true,
+                            maintainAspectRatio: false,
+                            plugins: {
+                                title: {
+                                    display: true,
+                                    text: 'Memory Usage Over Time'
+                                }
+                            },
+                            scales: {
+                                y: {
+                                    beginAtZero: true,
+                                    title: {
+                                        display: true,
+                                        text: 'Memory Usage (MB)'
+                                    }
+                                }
+                            }
+                        }
+                    });
+                }
+                
+                // Create or update value chart
+                const valueCtx = document.getElementById('valueChart').getContext('2d');
+                if (valueChart) {
+                    valueChart.data.labels = labels;
+                    valueChart.data.datasets[0].data = data.value_generated;
+                    valueChart.update();
+                } else {
+                    valueChart = new Chart(valueCtx, {
+                        type: 'line',
+                        data: {
+                            labels: labels,
+                            datasets: [{
+                                label: 'Value Generated ($)',
+                                data: data.value_generated,
+                                fill: false,
+                                borderColor: '#20c997',
+                                tension: 0.1
+                            }]
+                        },
+                        options: {
+                            responsive: true,
+                            maintainAspectRatio: false,
+                            plugins: {
+                                title: {
+                                    display: true,
+                                    text: 'Value Generated Over Time'
+                                }
+                            },
+                            scales: {
+                                y: {
+                                    beginAtZero: true,
+                                    title: {
+                                        display: true,
+                                        text: 'Value ($)'
+                                    }
+                                }
+                            }
+                        }
+                    });
+                }
+                
+                console.log('Charts updated successfully');
+                
+            } catch (error) {
+                console.error('Error loading time series data:', error);
+                document.getElementById('apiResponse').textContent = 'Error: ' + error.message;
+            }
+        }
+        
+        // Load data when page loads
+        window.addEventListener('DOMContentLoaded', loadTimeSeriesData);
+    </script>
+</body>
+</html>

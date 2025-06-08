@@ -1,0 +1,33 @@
+2025-06-01 15:24:26,808 - INFO - Starting WebSocket server on localhost:8765
+2025-06-01 15:24:26,873 - INFO - server listening on 127.0.0.1:8765
+2025-06-01 15:24:26,873 - INFO - server listening on [::1]:8765
+2025-06-01 15:24:26,874 - INFO - Server started on ws://localhost:8765
+2025-06-01 15:24:34,276 - INFO - connection open
+2025-06-01 15:24:34,276 - INFO - Client client_4389624128 connected
+2025-06-01 15:24:34,277 - INFO - Received from client_4389624128: {'success': True, 'response': '💡 Test Notification: This is a test notification from the memory trigger system.', 'mode': 'SUGGEST', 'processing_time': 0.5, 'enterprise_validated': True, 'buttons': [{'id': 'test_accept', 'text': 'This Works!', 'action': 'accept', 'style': 'success'}, {'id': 'test_dismiss', 'text': 'Dismiss Test', 'action': 'dismiss', 'style': 'danger'}], 'interactive': True}
+2025-06-01 15:24:34,278 - INFO - Client client_4389624128 disconnected
+2025-06-01 15:24:55,258 - INFO - connection open
+2025-06-01 15:24:55,258 - INFO - Client client_4383633680 connected
+2025-06-01 15:24:55,259 - INFO - Client client_4383633680 disconnected
+2025-06-01 15:24:55,261 - INFO - connection open
+2025-06-01 15:24:55,262 - INFO - Client client_4383636880 connected
+2025-06-01 15:24:55,775 - INFO - Connection closed with client_4383636880
+2025-06-01 15:24:55,775 - INFO - Client client_4383636880 disconnected
+2025-06-01 15:25:56,490 - INFO - connection open
+2025-06-01 15:25:56,490 - INFO - Client client_4389255504 connected
+2025-06-01 15:25:56,491 - INFO - Client client_4389255504 disconnected
+2025-06-01 15:25:56,492 - INFO - connection open
+2025-06-01 15:25:56,493 - INFO - Client client_4389914176 connected
+2025-06-01 15:25:56,925 - INFO - Connection closed with client_4389914176
+2025-06-01 15:25:56,925 - INFO - Client client_4389914176 disconnected
+2025-06-01 15:26:18,878 - INFO - connection open
+2025-06-01 15:26:18,879 - INFO - Client client_4389916608 connected
+2025-06-01 15:26:18,881 - INFO - connection open
+2025-06-01 15:26:18,881 - INFO - Client client_4389917216 connected
+2025-06-01 15:26:18,883 - INFO - Client client_4389916608 disconnected
+2025-06-01 15:26:18,884 - INFO - Received from client_4389917216: {'type': 'do_button', 'session_id': 'test_1748805978_do_button', 'timestamp': '2025-06-01T15:26:18.883168'}
+2025-06-01 15:26:18,885 - INFO - connection open
+2025-06-01 15:26:18,885 - INFO - Client client_4389917824 connected
+2025-06-01 15:26:20,890 - INFO - Client client_4389917216 disconnected
+2025-06-01 15:26:23,140 - INFO - Connection closed with client_4389917824
+2025-06-01 15:26:23,141 - INFO - Client client_4389917824 disconnected

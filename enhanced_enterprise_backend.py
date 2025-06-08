@@ -64,7 +64,7 @@ class EnhancedEnterpriseBackend:
         
         logger.info(f"Starting Enhanced Enterprise Backend on {self.host}:{self.port}")
         
-        async def handle_client(websocket):
+        async def handle_client(websocket, path=None):
             connection_id = f"conn_{int(time.time() * 1000)}"
             self.active_connections[connection_id] = websocket
             
@@ -126,12 +126,14 @@ class EnhancedEnterpriseBackend:
             elif message_type == "agent_confirmation":
                 await self.handle_agent_confirmation(connection_id, data)
             else:
+                logger.warning(f"Unknown message type: {message_type} from {connection_id}")
                 await self.send_error(connection_id, f"Unknown message type: {message_type}")
                 
-        except json.JSONDecodeError:
+        except json.JSONDecodeError as e:
+            logger.error(f"Invalid JSON format from {connection_id}: {str(e)}")
             await self.send_error(connection_id, "Invalid JSON format")
         except Exception as e:
-            logger.error(f"Error handling message from {connection_id}: {e}")
+            logger.error(f"Error handling message from {connection_id}: {str(e)}", exc_info=True)
             await self.send_error(connection_id, f"Internal error: {str(e)}")
     
     async def handle_register(self, connection_id: str, data: Dict[str, Any]):
@@ -705,11 +707,11 @@ class EnhancedEnterpriseBackend:
             system_prompt = self._get_system_prompt_for_mode(mode, context)
             
             # Optimized prompt format for better performance
-            optimized_prompt = f"{system_prompt}\n\nUser: {message}\nAssistant:"
+            prompt = f"{system_prompt}\n\nUser: {message}\nAssistant:"
             
             payload = {
                 "model": "llama3.2:latest",
-                "prompt": optimized_prompt,
+                "prompt": prompt,
                 "stream": False,
                 "options": {
                     "temperature": 0.7,

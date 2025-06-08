@@ -569,11 +569,34 @@ class ConsciousMemory:
             # Log the LLM response
             self.logger.info("[ConsciousMemory] Received LLM response:\n%s", response['response'])
             
-            # Create insight data
+            # Process the LLM response
+            llm_response = response['response']
+            
+            # Try to extract JSON from the response
+            cognitive_memory = None
+            try:
+                # Find JSON content - look for anything between curly braces
+                import re
+                json_match = re.search(r'({[\s\S]*})', llm_response)
+                if json_match:
+                    json_str = json_match.group(1)
+                    cognitive_memory = json.loads(json_str)
+                    self.logger.info("[ConsciousMemory] Successfully extracted structured cognitive memory")
+                else:
+                    self.logger.warning("[ConsciousMemory] Could not extract JSON from LLM response")
+            except Exception as json_error:
+                self.logger.error(f"[ConsciousMemory] Error parsing JSON from LLM response: {json_error}")
+                self.logger.debug(f"[ConsciousMemory] Raw response: {llm_response}")
+            
+            # Create enhanced insight data
             insight_data = {
                 'type': 'insight',
-                'content': response['response'],
                 'timestamp': time.time(),
+                # Include original response as fallback
+                'content': llm_response,
+                # Include the rich cognitive memory structure if available
+                'cognitive_memory': cognitive_memory,
+                # Original context that produced this insight
                 'context': {
                     'screen_data': context.get('screen_data', []),
                     'process_data': context.get('process_data', []),
@@ -581,18 +604,59 @@ class ConsciousMemory:
                 }
             }
             
-            # Store insights in both long-term and contextual memory
-            self.logger.info("[LongTermMemory] Storing LLM insights with context:")
-            self.logger.info("[LongTermMemory] - Screen data: %d entries", len(insight_data['context']['screen_data']))
-            self.logger.info("[LongTermMemory] - Process data: %d entries", len(insight_data['context']['process_data']))
-            self.logger.info("[LongTermMemory] - File data: %d entries", len(insight_data['context']['file_data']))
-            await self.memory_system.add_to_long_term_memory(insight_data)
+            # Determine memory distribution based on importance
+            memory_importance = "medium"  # Default
+            memory_type = "semantic"      # Default
             
-            self.logger.info("[ContextMemory] Storing LLM insights with context:")
-            self.logger.info("[ContextMemory] - Screen data: %d entries", len(insight_data['context']['screen_data']))
-            self.logger.info("[ContextMemory] - Process data: %d entries", len(insight_data['context']['process_data']))
-            self.logger.info("[ContextMemory] - File data: %d entries", len(insight_data['context']['file_data']))
-            await self.memory_system.add_to_context_memory(insight_data)
+            # Extract importance and type from cognitive memory if available
+            if cognitive_memory:
+                memory_importance = cognitive_memory.get("memory_importance", "medium")
+                memory_type = cognitive_memory.get("memory_type", "semantic")
+                
+                # Add extracted insights as separate field for easier searching
+                if "semantic_insights" in cognitive_memory and isinstance(cognitive_memory["semantic_insights"], list):
+                    insight_data["insights"] = cognitive_memory["semantic_insights"]
+                
+                # Add primary activity summary
+                if "primary_activity" in cognitive_memory:
+                    insight_data["activity_summary"] = cognitive_memory["primary_activity"]
+                
+                # Add related entities for knowledge graph building
+                if "relationships" in cognitive_memory and isinstance(cognitive_memory["relationships"], list):
+                    insight_data["relationships"] = cognitive_memory["relationships"]
+            
+            # Log the memory distribution plan
+            self.logger.info(f"[ConsciousMemory] Memory importance: {memory_importance}, type: {memory_type}")
+            
+            # Distribute memory based on importance and type
+            if memory_importance in ["high", "critical"]:
+                # High importance memories go to all stores
+                self.logger.info("[LongTermMemory] Storing high importance cognitive memory")
+                await self.memory_system.add_to_long_term_memory(insight_data)
+                
+                self.logger.info("[ContextMemory] Storing high importance cognitive memory")
+                await self.memory_system.add_to_context_memory(insight_data)
+                
+                self.logger.info("[ShortTermMemory] Storing high importance cognitive memory")
+                await self.memory_system.add_to_short_term_memory(insight_data)
+            
+            elif memory_type in ["episodic", "semantic"]:
+                # Episodic and semantic memories are worth preserving long-term
+                self.logger.info(f"[LongTermMemory] Storing {memory_type} memory")
+                await self.memory_system.add_to_long_term_memory(insight_data)
+                
+                self.logger.info("[ContextMemory] Storing semantic/episodic memory for context")
+                await self.memory_system.add_to_context_memory(insight_data)
+            
+            else:
+                # Standard procedural/declarative memories
+                self.logger.info("[ContextMemory] Storing standard cognitive memory")
+                await self.memory_system.add_to_context_memory(insight_data)
+                
+                # Only store in short-term if medium importance
+                if memory_importance == "medium":
+                    self.logger.info("[ShortTermMemory] Storing medium importance memory")
+                    await self.memory_system.add_to_short_term_memory(insight_data)
             
             self.logger.info("[ConsciousMemory] Successfully stored insights in both long-term and contextual memory")
             
@@ -639,11 +703,12 @@ class ConsciousMemory:
     def _generate_analysis_prompt(self, context: Dict[str, Any]) -> str:
         """
         Generate enhanced prompt for LLM analysis with application-specific context understanding.
-        This prompt provides much more detailed information about what the user is doing in specific applications.
+        This improved prompt extracts richer insights about user activities, workflows, and semantic meaning.
         """
         try:
-            prompt = "# System State Analysis - Application-Aware\n\n"
-            prompt += "You are an AI assistant that provides precise insights about the user's current activities with special focus on application-specific contexts.\n\n"
+            prompt = "# Cognitive Memory Analysis System\n\n"
+            prompt += "You are an advanced cognitive system that creates meaningful memories from sensor data, focusing on extracting deep insights about user activities, workflows, and semantic understanding.\n\n"
+            prompt += "Your job is to analyze the raw data and transform it into rich, semantic memories with deep contextual understanding that will be valuable for future reference.\n\n"
             
             # Add application-specific data with highest priority
             if context.get('screen_data'):
@@ -722,7 +787,7 @@ class ConsciousMemory:
                                     if data.get('llava_description') or data.get('visual_context')]
                 
                 if screen_with_llava:
-                    prompt += "\n## Visual Context (from LLaVA)\n"
+                    prompt += "\n## Visual Context (from Visual Analysis)\n"
                     
                     # Add visual contexts from LLaVA (more useful than raw descriptions)
                     visual_contexts = []
@@ -820,15 +885,47 @@ class ConsciousMemory:
                         prompt += f" and {len(files) - 3} more"
                     prompt += "\n"
             
-            # Enhanced analysis request
-            prompt += "\n## Analysis Request\n"
-            prompt += "Based on all the information above, please provide detailed insights about:\n\n"
-            prompt += "1. What the user is currently working on (be specific about project, task, and context)\n"
-            prompt += "2. What tools/applications they're using and how they're using them\n"
-            prompt += "3. Key content they're interacting with (documents, websites, applications, code)\n"
-            prompt += "4. Important context that should be remembered for future interactions\n"
-            prompt += "5. User's workflow patterns or preferences\n\n"
-            prompt += "Make your analysis detailed, insightful, and directly connected to the specific evidence provided above."
+            # Enhanced cognitive analysis request with structured JSON output
+            prompt += "\n## Cognitive Memory Analysis\n"
+            prompt += "Based on the data provided, create a semantic analysis of the user's activity in JSON format with the following structure:\n\n"
+            prompt += "```json\n"
+            prompt += "{\n"
+            prompt += '  "primary_activity": "Brief description of main user activity",\n'
+            prompt += '  "activity_details": {\n'
+            prompt += '    "task": "What specific task the user is working on",\n'
+            prompt += '    "goal": "User\'s likely goal or objective",\n'
+            prompt += '    "workflow_stage": "Current stage in their workflow",\n'
+            prompt += '    "domain": "Professional domain or context of the activity"\n'
+            prompt += '  },\n'
+            prompt += '  "cognitive_context": {\n'
+            prompt += '    "tools": ["List of key tools being used"],\n'
+            prompt += '    "content_type": "Type of content being worked with",\n'
+            prompt += '    "attention_focus": "What the user is focusing on",\n'
+            prompt += '    "cognitive_load": "low|medium|high based on complexity"\n'
+            prompt += '  },\n'
+            prompt += '  "semantic_insights": [\n'
+            prompt += '    "Key insight about user\'s activity with deeper meaning",\n'
+            prompt += '    "Another significant insight about context or intent"\n'
+            prompt += '  ],\n'
+            prompt += '  "memory_importance": "low|medium|high|critical",\n'
+            prompt += '  "memory_type": "procedural|declarative|episodic|semantic",\n'
+            prompt += '  "future_relevance": "How this memory might be relevant in future interactions",\n'
+            prompt += '  "relationships": [\n'
+            prompt += '    {"entity": "Related concept, tool or information", "relationship": "How it relates to current activity"}\n'
+            prompt += '  ]\n'
+            prompt += "}\n"
+            prompt += "```\n\n"
+            
+            prompt += "Guidelines for creating meaningful cognitive memories:\n\n"
+            prompt += "1. Focus on the semantic meaning, not just the raw data\n"
+            prompt += "2. Identify patterns that reveal user workflows and habits\n"
+            prompt += "3. Connect current activity to broader contexts and goals\n"
+            prompt += "4. Extract insights that would be valuable for future assistance\n"
+            prompt += "5. Determine the memory importance based on significance to user's goals\n"
+            prompt += "6. Categorize the type of memory to aid in future retrieval\n"
+            prompt += "7. Look for relationships between concepts, applications, and activities\n\n"
+            
+            prompt += "Ensure your analysis is detailed, insightful, and contains rich semantic understanding that goes beyond the surface data. Your output should be structured exactly as the JSON format above."
             
             return prompt
             

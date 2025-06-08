@@ -1,0 +1,70 @@
+2025-06-04 02:15:25,363 - memory.enhanced_semantic_search - INFO - Enhanced semantic search initialized with embedding dim: 384
+2025-06-04 02:15:25,364 - memory.enhanced_semantic_search - INFO - Hybrid retrieval enabled: True
+2025-06-04 02:15:25,811 - memory.semantic_search_agent - INFO - Loading 1770 existing documents from storage
+2025-06-04 02:15:25,952 - memory.semantic_search_agent - INFO - EnterpriseVectorStore initialized with enterprise-grade features
+2025-06-04 02:15:25,953 - memory.semantic_search_agent - INFO - SemanticSearchAgent initialized with enterprise-grade capabilities
+2025-06-04 02:15:25,958 - plan_persistence - INFO - No existing plan metadata found
+2025-06-04 02:15:25,958 - plan_persistence - INFO - Plan persistence manager initialized with 0 stored plans
+2025-06-04 02:15:25,958 - plan_persistence - INFO - Plan persistence system initialized
+2025-06-04 02:15:25,958 - real_agent_automation_handler - WARNING - ⚠️ Plan persistence not available, plans will not persist: cannot import name 'delete_plan' from 'plan_persistence' (/Users/segevbin/Desktop/SensAI/Aiayer/plan_persistence.py)
+2025-06-04 02:15:26,107 - agent_workflow.input_controller - INFO - Detected screen size: 1470x956
+2025-06-04 02:15:26,111 - agent_workflow.input_controller - INFO - Standard mouse listener started successfully
+2025-06-04 02:15:26,111 - agent_workflow.input_controller - INFO - Keyboard listener started successfully
+2025-06-04 02:15:26,111 - agent_workflow.input_controller - INFO - Input controller initialized (safe mode)
+2025-06-04 02:15:26,111 - agent_workflow.input_controller - INFO - 🚨 Emergency shutdown: Press Ctrl+1 to immediately stop agent
+2025-06-04 02:15:26,164 - llava_processor - INFO - Connected to Ollama API v0.6.8
+2025-06-04 02:15:26,164 - total_screen_analyzer - INFO - LLaVA visual processor initialized for total screen analysis
+2025-06-04 02:15:26,164 - total_screen_analyzer - INFO - Total Screen Analyzer initialized with 8s interval
+2025-06-04 02:15:26,164 - real_agent_automation_handler - INFO - 🤖 Real automation components loaded successfully
+2025-06-04 02:15:26,210 - agent_workflow.input_controller - INFO - Standard mouse listener started successfully
+2025-06-04 02:15:26,210 - agent_workflow.input_controller - INFO - Keyboard listener started successfully
+2025-06-04 02:15:26,211 - agent_workflow.input_controller - INFO - Input controller initialized (safe mode)
+2025-06-04 02:15:26,211 - agent_workflow.input_controller - INFO - 🚨 Emergency shutdown: Press Ctrl+1 to immediately stop agent
+2025-06-04 02:15:26,215 - llava_processor - INFO - Connected to Ollama API v0.6.8
+2025-06-04 02:15:26,216 - total_screen_analyzer - INFO - LLaVA visual processor initialized for total screen analysis
+2025-06-04 02:15:26,216 - total_screen_analyzer - INFO - Total Screen Analyzer initialized with 8s interval
+2025-06-04 02:15:26,216 - adaptive_retry_automation_handler - INFO - 🔄 Adaptive retry automation system loaded
+2025-06-04 02:15:26,216 - universal_intelligent_automation_handler - INFO - ✅ Adaptive retry automation handler loaded successfully
+2025-06-04 02:15:26,216 - universal_intelligent_automation_handler - WARNING - ⚠️ Plan persistence not available, plans will not persist: cannot import name 'delete_plan' from 'plan_persistence' (/Users/segevbin/Desktop/SensAI/Aiayer/plan_persistence.py)
+2025-06-04 02:15:26,218 - agent_workflow.input_controller - INFO - Standard mouse listener started successfully
+2025-06-04 02:15:26,218 - agent_workflow.input_controller - INFO - Keyboard listener started successfully
+2025-06-04 02:15:26,218 - agent_workflow.input_controller - INFO - Input controller initialized (safe mode)
+2025-06-04 02:15:26,219 - agent_workflow.input_controller - INFO - 🚨 Emergency shutdown: Press Ctrl+1 to immediately stop agent
+2025-06-04 02:15:26,221 - llava_processor - INFO - Connected to Ollama API v0.6.8
+2025-06-04 02:15:26,221 - total_screen_analyzer - INFO - LLaVA visual processor initialized for total screen analysis
+2025-06-04 02:15:26,221 - total_screen_analyzer - INFO - Total Screen Analyzer initialized with 8s interval
+2025-06-04 02:15:26,221 - universal_intelligent_automation_handler - INFO - 🤖 Universal automation components loaded successfully
+2025-06-04 02:15:26,222 - direct_plan_fix - INFO - ✅ Successfully imported backend module
+2025-06-04 02:15:26,222 - direct_plan_fix - INFO - ✅ Successfully patched handle_agent_confirmation method
+2025-06-04 02:15:26,222 - direct_plan_fix - INFO - ✅ Successfully patched __init__ method
+2025-06-04 02:15:26,223 - direct_plan_fix - INFO - === Direct Plan Backend Fix ===
+2025-06-04 02:15:26,223 - direct_plan_fix - INFO - This script directly modifies the backend module to fix plan storage
+2025-06-04 02:15:26,223 - direct_plan_fix - INFO - ✅ Created test plan test_plan_4a32223b-ddff-4e5c-bcd3-a99e8ed406dd in shared dictionary
+2025-06-04 02:15:26,267 - memory.semantic_search_agent - INFO - Loading 1770 existing documents from storage
+2025-06-04 02:15:26,443 - memory.semantic_search_agent - INFO - EnterpriseVectorStore initialized with enterprise-grade features
+2025-06-04 02:15:26,443 - memory.semantic_search_agent - INFO - SemanticSearchAgent initialized with enterprise-grade capabilities
+2025-06-04 02:15:26,444 - enhanced_enterprise_backend_with_context - INFO - ✅ Enhanced semantic search agent initialized with fixes for memory retrieval
+2025-06-04 02:15:26,444 - enhanced_enterprise_backend_with_context - INFO - ✅ Initialized pending_plans dictionary for DO button execution
+2025-06-04 02:15:26,444 - enhanced_enterprise_backend_with_context - INFO - ⚠️ System bridge disabled for startup fix
+2025-06-04 02:15:26,444 - enhanced_enterprise_backend_with_context - INFO - ⚠️ Fallback to screen capture - Available: True
+2025-06-04 02:15:26,444 - agent_workflow.input_controller - INFO - Standard mouse listener started successfully
+2025-06-04 02:15:26,445 - agent_workflow.input_controller - INFO - Keyboard listener started successfully
+2025-06-04 02:15:26,445 - agent_workflow.input_controller - INFO - Input controller initialized (safe mode)
+2025-06-04 02:15:26,445 - agent_workflow.input_controller - INFO - 🚨 Emergency shutdown: Press Ctrl+1 to immediately stop agent
+2025-06-04 02:15:26,448 - llava_processor - INFO - Connected to Ollama API v0.6.8
+2025-06-04 02:15:26,449 - total_screen_analyzer - INFO - LLaVA visual processor initialized for total screen analysis
+2025-06-04 02:15:26,449 - total_screen_analyzer - INFO - Total Screen Analyzer initialized with 8s interval
+2025-06-04 02:15:26,449 - real_agent_automation_handler - INFO - 🤖 Real automation components loaded successfully
+2025-06-04 02:15:26,449 - enhanced_enterprise_backend_with_context - INFO - ✅ Real Agent Automation handler initialized for Agent mode (FIXED)
+2025-06-04 02:15:26,449 - enhanced_enterprise_backend_with_context - INFO - Contextual AI Backend initialized - Ollama: True, Memory: Active
+2025-06-04 02:15:26,449 - direct_plan_fix - INFO - ✅ Initialized backend with shared_pending_plans (1 plans)
+2025-06-04 02:15:26,449 - direct_plan_fix - INFO - Backend instance has plans: ['test_plan_4a32223b-ddff-4e5c-bcd3-a99e8ed406dd']
+2025-06-04 02:15:26,449 - direct_plan_fix - INFO - Shared plans dictionary has: ['test_plan_4a32223b-ddff-4e5c-bcd3-a99e8ed406dd']
+2025-06-04 02:15:26,449 - direct_plan_fix - INFO - Backend's pending_plans is the same object as shared_pending_plans: True
+2025-06-04 02:15:26,450 - direct_plan_fix - INFO - Fix test result: ✅ SUCCESS
+2025-06-04 02:15:26,450 - direct_plan_fix - INFO - 
+✅ FIX SUCCESSFULLY APPLIED AND TESTED!
+2025-06-04 02:15:26,450 - direct_plan_fix - INFO - Plans will now be properly shared between all backend instances
+2025-06-04 02:15:26,450 - direct_plan_fix - INFO - This fixes the 'Available plans: None' issue when using DO button
+2025-06-04 02:15:26,451 - direct_plan_fix - INFO - 
+You can continue using the system without restarting!

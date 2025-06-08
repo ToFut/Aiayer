@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aiayer System Evaluation Report</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        h1, h2, h3 {
+            color: #1a73e8;
+        }
+        .header {
+            border-bottom: 2px solid #1a73e8;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+        .summary-box {
+            background-color: #f5f5f5;
+            border-radius: 5px;
+            padding: 15px;
+            margin-bottom: 20px;
+        }
+        .success {
+            color: #0f9d58;
+        }
+        .failure {
+            color: #db4437;
+        }
+        .warning {
+            color: #f4b400;
+        }
+        .metrics-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+        .metric-box {
+            flex: 1;
+            min-width: 200px;
+            background-color: #f5f5f5;
+            border-radius: 5px;
+            padding: 15px;
+            text-align: center;
+        }
+        .metric-value {
+            font-size: 24px;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+        .mode-section {
+            margin-bottom: 30px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        tr:hover {
+            background-color: #f5f5f5;
+        }
+        .response {
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            padding: 10px;
+            border-radius: 5px;
+            margin: 10px 0;
+            font-family: monospace;
+            white-space: pre-wrap;
+            max-height: 200px;
+            overflow-y: auto;
+        }
+        .suggestion {
+            background-color: #e8f0fe;
+            border-left: 4px solid #1a73e8;
+            padding: 10px 15px;
+            margin: 10px 0;
+        }
+        .patterns {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        .pattern-box {
+            flex: 1;
+            min-width: 150px;
+            background-color: #f0f7ff;
+            border-radius: 5px;
+            padding: 10px;
+            text-align: center;
+        }
+        .pattern-value {
+            font-size: 20px;
+            font-weight: bold;
+            margin: 5px 0;
+        }
+        .highlight {
+            background-color: yellow;
+            padding: 0 2px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Aiayer System Evaluation Report</h1>
+        <p>Test Session ID: enhanced_sim_1748527116 | Date: 2025-05-29 10:04:05</p>
+    </div>
+    
+    <div class="summary-box">
+        <h2>Executive Summary</h2>
+        <div class="metrics-container">
+            <div class="metric-box">
+                <p>System Score</p>
+                <p class="metric-value failure">0.43/1.0</p>
+                <p>Poor</p>
+            </div>
+            <div class="metric-box">
+                <p>Success Rate</p>
+                <p class="metric-value failure">33.3%</p>
+                <p>4/10 tests passed</p>
+            </div>
+            <div class="metric-box">
+                <p>Avg Response Time</p>
+                <p class="metric-value failure">30.16s</p>
+                <p>Slow</p>
+            </div>
+        </div>
+        
+        <h3>Average Scores</h3>
+        <div class="metrics-container">
+            <div class="metric-box">
+                <p>Quality</p>
+                <p class="metric-value warning">0.57/1.0</p>
+            </div>
+            <div class="metric-box">
+                <p>Memory Integration</p>
+                <p class="metric-value failure">0.33/1.0</p>
+            </div>
+            <div class="metric-box">
+                <p>Contextual Understanding</p>
+                <p class="metric-value failure">0.44/1.0</p>
+            </div>
+        </div>
+    </div>
+    
+    <h2>Mode Performance</h2>
+
+    <div class="mode-section">
+        <h3>Agent Mode</h3>
+        <div class="metrics-container">
+            <div class="metric-box">
+                <p>Success Rate</p>
+                <p class="metric-value warning">66.7%</p>
+                <p>2/3 tests passed</p>
+            </div>
+            <div class="metric-box">
+                <p>Avg Response Time</p>
+                <p class="metric-value failure">23.19s</p>
+            </div>
+            <div class="metric-box">
+                <p>Quality Score</p>
+                <p class="metric-value warning">0.64/1.0</p>
+            </div>
+            <div class="metric-box">
+                <p>Memory Score</p>
+                <p class="metric-value failure">0.33/1.0</p>
+            </div>
+            <div class="metric-box">
+                <p>Context Score</p>
+                <p class="metric-value failure">0.22/1.0</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="mode-section">
+        <h3>Ask Mode</h3>
+        <div class="metrics-container">
+            <div class="metric-box">
+                <p>Success Rate</p>
+                <p class="metric-value failure">25.0%</p>
+                <p>1/4 tests passed</p>
+            </div>
+            <div class="metric-box">
+                <p>Avg Response Time</p>
+                <p class="metric-value failure">37.44s</p>
+            </div>
+            <div class="metric-box">
+                <p>Quality Score</p>
+                <p class="metric-value failure">0.45/1.0</p>
+            </div>
+            <div class="metric-box">
+                <p>Memory Score</p>
+                <p class="metric-value failure">0.42/1.0</p>
+            </div>
+            <div class="metric-box">
+                <p>Context Score</p>
+                <p class="metric-value failure">0.25/1.0</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="mode-section">
+        <h3>Suggest Mode</h3>
+        <div class="metrics-container">
+            <div class="metric-box">
+                <p>Success Rate</p>
+                <p class="metric-value failure">33.3%</p>
+                <p>1/3 tests passed</p>
+            </div>
+            <div class="metric-box">
+                <p>Avg Response Time</p>
+                <p class="metric-value failure">27.42s</p>
+            </div>
+            <div class="metric-box">
+                <p>Quality Score</p>
+                <p class="metric-value warning">0.57/1.0</p>
+            </div>
+            <div class="metric-box">
+                <p>Memory Score</p>
+                <p class="metric-value failure">0.33/1.0</p>
+            </div>
+            <div class="metric-box">
+                <p>Context Score</p>
+                <p class="metric-value failure">0.44/1.0</p>
+            </div>
+        </div>
+    </div>
+
+    <h2>Response Patterns</h2>
+    <div class="patterns">
+        <div class="pattern-box">
+            <p>Responses with Emoji</p>
+            <p class="pattern-value">10/10</p>
+        </div>
+        <div class="pattern-box">
+            <p>Starting with "Screen State"</p>
+            <p class="pattern-value">7/10</p>
+        </div>
+        <div class="pattern-box">
+            <p>Mentioning Email</p>
+            <p class="pattern-value">5/10</p>
+        </div>
+        <div class="pattern-box">
+            <p>Mentioning File Manager</p>
+            <p class="pattern-value">5/10</p>
+        </div>
+    </div>
+    
+    <p><strong>Processing Methods:</strong> agnostic_deep_data</p>
+    <p><strong>Data Sources:</strong> screen_analysis, memory_context</p>
+    
+    <h2>Improvement Suggestions</h2>
+
+    <div class="suggestion">
+        <p>Overall system performance needs significant improvement. Consider reviewing the core architecture.</p>
+    </div>
+
+    <div class="suggestion">
+        <p>Agent mode has a low success rate (0.67). Review error handling and response generation.</p>
+    </div>
+
+    <div class="suggestion">
+        <p>Agent mode response time is high (23.19s). Consider optimizing planning algorithms and adding warmup procedures.</p>
+    </div>
+
+    <div class="suggestion">
+        <p>Agent mode shows weak memory integration (0.33). Improve memory retrieval relevance and integration.</p>
+    </div>
+
+    <div class="suggestion">
+        <p>Agent mode shows weak contextual understanding (0.22). Enhance context processing and relevance algorithms.</p>
+    </div>
+
+    <div class="suggestion">
+        <p>Ask mode has a low success rate (0.25). Review error handling and response generation.</p>
+    </div>
+
+    <div class="suggestion">
+        <p>Ask mode response time is high (37.44s). Review query optimization and response generation.</p>
+    </div>
+
+    <div class="suggestion">
+        <p>Ask mode shows weak memory integration (0.42). Improve memory retrieval relevance and integration.</p>
+    </div>
+
+    <div class="suggestion">
+        <p>Ask mode shows weak contextual understanding (0.25). Enhance context processing and relevance algorithms.</p>
+    </div>
+
+    <div class="suggestion">
+        <p>Suggest mode has a low success rate (0.33). Review error handling and response generation.</p>
+    </div>
+
+    <div class="suggestion">
+        <p>Suggest mode response time is high (27.42s). Review query optimization and response generation.</p>
+    </div>
+
+    <div class="suggestion">
+        <p>Suggest mode shows weak memory integration (0.33). Improve memory retrieval relevance and integration.</p>
+    </div>
+
+    <div class="suggestion">
+        <p>Suggest mode shows weak contextual understanding (0.44). Enhance context processing and relevance algorithms.</p>
+    </div>
+
+    <h2>Detailed Test Results</h2>
+    <table>
+        <tr>
+            <th>Test ID</th>
+            <th>Mode</th>
+            <th>Message</th>
+            <th>Result</th>
+            <th>Time</th>
+            <th>Quality</th>
+            <th>Details</th>
+        </tr>
+
+        <tr>
+            <td>agent_ui_interaction</td>
+            <td>agent</td>
+            <td>search for flights to Miami on Google</td>
+            <td class="failure">❌ FAIL</td>
+            <td>28.60s</td>
+            <td class="warning">0.50/1.0</td>
+            <td>Found 4/4 keywords, 0/3 memory indicators, 0/3 context indicators. Overall quality: 0.50/1.0</td>
+        </tr>
+
+        <tr>
+            <td>agent_app_launch</td>
+            <td>agent</td>
+            <td>open Safari and go to YouTube</td>
+            <td class="success">✅ PASS</td>
+            <td>20.61s</td>
+            <td class="warning">0.67/1.0</td>
+            <td>Found 4/4 keywords, 2/3 memory indicators, 0/3 context indicators. Overall quality: 0.67/1.0</td>
+        </tr>
+
+        <tr>
+            <td>agent_complex_task</td>
+            <td>agent</td>
+            <td>search for Omer Adam on Spotify and play his music</td>
+            <td class="success">✅ PASS</td>
+            <td>20.37s</td>
+            <td class="success">0.75/1.0</td>
+            <td>Found 5/5 keywords, 1/3 memory indicators, 2/3 context indicators. Overall quality: 0.75/1.0</td>
+        </tr>
+
+        <tr>
+            <td>ask_system_status</td>
+            <td>ask</td>
+            <td>what applications are currently running on my system?</td>
+            <td class="failure">❌ FAIL</td>
+            <td>38.19s</td>
+            <td class="failure">0.00/1.0</td>
+            <td>Found 0/4 keywords, 0/3 memory indicators, 0/3 context indicators. Overall quality: 0.00/1.0</td>
+        </tr>
+
+        <tr>
+            <td>ask_memory_retrieval</td>
+            <td>ask</td>
+            <td>what websites have I visited recently?</td>
+            <td class="success">✅ PASS</td>
+            <td>47.01s</td>
+            <td class="success">0.83/1.0</td>
+            <td>Found 4/4 keywords, 2/3 memory indicators, 2/3 context indicators. Overall quality: 0.83/1.0</td>
+        </tr>
+
+        <tr>
+            <td>ask_context_understanding</td>
+            <td>ask</td>
+            <td>what&#x27;s currently visible on my screen?</td>
+            <td class="failure">❌ FAIL</td>
+            <td>28.41s</td>
+            <td class="failure">0.50/1.0</td>
+            <td>Found 2/4 keywords, 2/3 memory indicators, 1/3 context indicators. Overall quality: 0.50/1.0</td>
+        </tr>
+
+        <tr>
+            <td>ask_memory_integration</td>
+            <td>ask</td>
+            <td>how has my system usage changed in the last hour?</td>
+            <td class="failure">❌ FAIL</td>
+            <td>36.13s</td>
+            <td class="failure">0.46/1.0</td>
+            <td>Found 3/4 keywords, 1/3 memory indicators, 0/3 context indicators. Overall quality: 0.46/1.0</td>
+        </tr>
+
+        <tr>
+            <td>suggest_productivity</td>
+            <td>suggest</td>
+            <td>I need to organize my work better</td>
+            <td class="failure">❌ FAIL</td>
+            <td>25.19s</td>
+            <td class="warning">0.54/1.0</td>
+            <td>Found 3/4 keywords, 0/3 memory indicators, 2/3 context indicators. Overall quality: 0.54/1.0</td>
+        </tr>
+
+        <tr>
+            <td>suggest_application</td>
+            <td>suggest</td>
+            <td>I want to edit some photos</td>
+            <td class="success">✅ PASS</td>
+            <td>28.90s</td>
+            <td class="warning">0.62/1.0</td>
+            <td>Found 3/4 keywords, 2/3 memory indicators, 1/3 context indicators. Overall quality: 0.62/1.0</td>
+        </tr>
+
+        <tr>
+            <td>suggest_content</td>
+            <td>suggest</td>
+            <td>I&#x27;m bored and want to watch something interesting</td>
+            <td class="failure">❌ FAIL</td>
+            <td>28.16s</td>
+            <td class="warning">0.54/1.0</td>
+            <td>Found 3/4 keywords, 1/3 memory indicators, 1/3 context indicators. Overall quality: 0.54/1.0</td>
+        </tr>
+
+    </table>
+    
+    <h2>Test Responses</h2>
+
+    <div>
+        <h3>Test: agent_ui_interaction (agent mode)</h3>
+        <p><strong>Message:</strong> search for flights to Miami on Google</p>
+        <p><strong>Result:</strong> <span class="failure">❌ FAIL</span> (Quality: 0.50/1.0, Time: 28.60s)</p>
+        
+        <div class="response">🤖 Based on your current screen state and recent context, here are a few options for responding to the user&#x27;s query:
+
+**Option 1: Showing flight search results**
+You see the Google homepage with a search bar at the top. The search bar is surrounded by a white border with some subtle animations.
+
+Your screen resolution: 2940x1912
+
+Recent Context &amp; Memory:
+- Email app (Google Mail)
+- File manager (Google Files)
+- System information: Windows 10 Pro, 64-bit, 8 GB RAM
+
+You click on the search bar to start searching for flights to Miami. You see a list of flight results with details like departure city, arrival city, airline, and price.
+
+**Option 2: Showing available flight options**
+Your screen shows an image of an airplane taking off, with some basic flight information overlaid on top:
+
+Your screen resolution: 2940x1912
+
+Recent Context &amp; Memory:
+- Email app (Google Mail)
+- File manager (Google Files)
+- System information: Windows 10 Pro, 64-bit, 8 GB RAM
+- Google Maps (for flight directions)
+
+You click on the airplane image to view more details about flights available to Miami. You see a list of flights with options like departure and arrival airports, airlines, and prices.
+
+**Option 3: Showing flight search results without displaying entire content**
+You notice that the search bar has some relevant information displayed in the form of a small icon next to it</div>
+        
+        <p><strong>Keyword Matches:</strong> Google, search, flight, Miami</p>
+        <p><strong>Memory Indicators:</strong> None</p>
+        <p><strong>Context Indicators:</strong> None</p>
+    </div>
+
+    <div>
+        <h3>Test: agent_app_launch (agent mode)</h3>
+        <p><strong>Message:</strong> open Safari and go to YouTube</p>
+        <p><strong>Result:</strong> <span class="failure">✅ PASS</span> (Quality: 0.67/1.0, Time: 20.61s)</p>
+        
+        <div class="response">🤖 Given your current screen state of 2940x1912 resolution with a mixed interface, I&#x27;m assuming you&#x27;re using Safari as your web browser. Based on this, here&#x27;s what I can see:
+
+1. **Safari is open**: You&#x27;ve opened the Safari browser.
+2. **YouTube is loaded in Safari**: The YouTube website has been launched and appears to be loading properly.
+
+However, there are a few additional details you might want to consider before proceeding with your query:
+
+* Are you using a cellular or Wi-Fi connection?
+* Is this screen showing any other web pages or apps besides Safari and YouTube?
+
+Without further information about the recent context and memory, I can only provide general advice. However, here&#x27;s what you might need to do next:
+
+1. Check if you have an internet connection (check your cellular or Wi-Fi signal strength).
+2. If not, try restarting your device or checking for any network connectivity issues.
+3. Once connected, attempt to navigate to YouTube again in Safari.
+
+If none of these steps resolve the issue, it might be helpful to consider using a different web browser or app that supports the YouTube video playback feature.</div>
+        
+        <p><strong>Keyword Matches:</strong> Safari, YouTube, browser, navigate</p>
+        <p><strong>Memory Indicators:</strong> browser, video</p>
+        <p><strong>Context Indicators:</strong> None</p>
+    </div>
+
+    <div>
+        <h3>Test: agent_complex_task (agent mode)</h3>
+        <p><strong>Message:</strong> search for Omer Adam on Spotify and play his music</p>
+        <p><strong>Result:</strong> <span class="failure">✅ PASS</span> (Quality: 0.75/1.0, Time: 20.37s)</p>
+        
+        <div class="response">🤖 Based on the current screen state and available context, I can infer the following:
+
+* The user is using a Spotify app on a device with a 2940x1912 resolution display (which appears to be a high-end smartphone or tablet).
+* The user&#x27;s recent context and memory suggests that they have recently listened to music from an artist named Omer Adam.
+
+With this information, I can search for Omer Adam on Spotify and play his music. Here are the steps:
+
+1. Open the Spotify app.
+2. Tap on the &quot;Search&quot; tab at the top of the screen.
+3. Type in &quot;Omer Adam&quot; in the search bar.
+4. Tap the magnifying glass icon to perform an instant search.
+5. From the search results, select Omer Adam&#x27;s music.
+
+The result should be a list of his latest releases and popular tracks. If he has any albums or playlists available on Spotify, they will also appear in the search results. Once you&#x27;ve selected his music, the Spotify app will start playing it, and you&#x27;ll be able to enjoy his songs on your device.
+
+Let me know if this is what you were looking for!</div>
+        
+        <p><strong>Keyword Matches:</strong> Spotify, search, Omer Adam, music, play</p>
+        <p><strong>Memory Indicators:</strong> music</p>
+        <p><strong>Context Indicators:</strong> playing, artist</p>
+    </div>
+
+    <div>
+        <h3>Test: ask_system_status (ask mode)</h3>
+        <p><strong>Message:</strong> what applications are currently running on my system?</p>
+        <p><strong>Result:</strong> <span class="failure">❌ FAIL</span> (Quality: 0.00/1.0, Time: 38.19s)</p>
+        
+        <div class="response">🤖 Error: </div>
+        
+        <p><strong>Keyword Matches:</strong> None</p>
+        <p><strong>Memory Indicators:</strong> None</p>
+        <p><strong>Context Indicators:</strong> None</p>
+    </div>
+
+    <div>
+        <h3>Test: ask_memory_retrieval (ask mode)</h3>
+        <p><strong>Message:</strong> what websites have I visited recently?</p>
+        <p><strong>Result:</strong> <span class="failure">✅ PASS</span> (Quality: 0.83/1.0, Time: 47.01s)</p>
+        
+        <div class="response">🤖 Based on your current screen state, I&#x27;m going to take a guess that you&#x27;ve visited the following websites recently:
+
+
+* Email app: You might be checking your emails or composing a new message.
+* File manager: It&#x27;s possible you&#x27;re browsing through files or moving them around.
+* Social media platforms: You may have viewed something on Facebook, Twitter, Instagram, or another platform.
+
+
+As for other websites that might not be immediately apparent, I&#x27;ve noticed that:
+
+
+* Your browser is open to &quot;Google&quot; (a common search engine).
+
+
+If we dig a bit deeper, you also seem to have visited the following online services recently:
+
+
+* A weather app: You might have checked the current weather forecast or saved it for later.
+* An e-commerce platform: It&#x27;s possible you&#x27;ve browsed through products or added something to your cart.
+
+Keep in mind that this is just an educated guess based on your screen state and available context. I don&#x27;t have any specific information about your recent activities, so I&#x27;m basing my response on the data I can see on your screen.</div>
+        
+        <p><strong>Keyword Matches:</strong> websites, visited, browser, recently</p>
+        <p><strong>Memory Indicators:</strong> visited, website</p>
+        <p><strong>Context Indicators:</strong> recently, browser</p>
+    </div>
+
+    <div>
+        <h3>Test: ask_context_understanding (ask mode)</h3>
+        <p><strong>Message:</strong> what&#x27;s currently visible on my screen?</p>
+        <p><strong>Result:</strong> <span class="failure">❌ FAIL</span> (Quality: 0.50/1.0, Time: 28.41s)</p>
+        
+        <div class="response">🤖 Based on your current screen state and recent context, I can provide the following response:
+
+You are currently viewing a rich visual content-rich interface. Your screen is displaying various applications such as email apps (e.g., Gmail), file managers (e.g., File Explorer or Finder), and system information (e.g., System Information). You also have the option to view your email inbox, which might be open in one of these apps.
+
+Additionally, you may have recently viewed a video or image that is currently playing in the background. It&#x27;s possible that you are viewing it through an app like YouTube or Google Photos, but without more context, I wouldn&#x27;t know for sure.
+
+To get the most accurate information, I recommend checking your email inbox directly to see if you&#x27;ve opened any new emails recently. You can also try closing and reopening some of these apps to see if they update their UI and display new content.
+
+Keep in mind that system information might include details about your device&#x27;s performance, memory usage, or other system-related data. However, it won&#x27;t provide specific information about what you&#x27;re currently viewing on your screen unless you have a particular app open that provides this type of data.</div>
+        
+        <p><strong>Keyword Matches:</strong> screen, display</p>
+        <p><strong>Memory Indicators:</strong> visual, ui</p>
+        <p><strong>Context Indicators:</strong> currently</p>
+    </div>
+
+    <div>
+        <h3>Test: ask_memory_integration (ask mode)</h3>
+        <p><strong>Message:</strong> how has my system usage changed in the last hour?</p>
+        <p><strong>Result:</strong> <span class="failure">❌ FAIL</span> (Quality: 0.46/1.0, Time: 36.13s)</p>
+        
+        <div class="response">🤖 Based on your current screen state, here are some observations:
+
+1. **Your active display**: The resolution is 2940x1912 pixels, which is a relatively high-resolution display. This suggests that you have a powerful device with a good screen-to-device ratio.
+
+2. **Light interface and rich visual content**: As mentioned in your current screen information, the light interface indicates that it&#x27;s likely an LED-backlit LCD or OLED display.
+
+3. **Recent context &amp; memory**: You&#x27;re currently running on Gmail (or another email app) as your default application. This is because you&#x27;ve recently opened a new message, and Gmail has been displaying it prominently in its standard layout with images, videos, and other visual content.
+
+4. **System information not available**: Unfortunately, I don&#x27;t have direct access to system information such as CPU usage, memory usage, or disk space utilization. However, my observation of the screen state suggests that your device is likely using a moderate amount of resources for running Gmail and possibly some background processes related to other apps you&#x27;ve opened.
+
+5. **No recent crashes or errors**: Based on this data, there don&#x27;t appear to be any significant system-related issues such as crashes or error messages.
+
+Given these observations, here&#x27;s what I can infer about your system usage in the last hour:
+
+* You&#x27;re likely using Gmail extensively during the past hour.
+* Your device is running some background processes related to other apps you&#x27;ve opened, but not to an extreme degree that</div>
+        
+        <p><strong>Keyword Matches:</strong> system, usage, hour</p>
+        <p><strong>Memory Indicators:</strong> memory</p>
+        <p><strong>Context Indicators:</strong> None</p>
+    </div>
+
+    <div>
+        <h3>Test: suggest_productivity (suggest mode)</h3>
+        <p><strong>Message:</strong> I need to organize my work better</p>
+        <p><strong>Result:</strong> <span class="failure">❌ FAIL</span> (Quality: 0.54/1.0, Time: 25.19s)</p>
+        
+        <div class="response">🤖 Based on your current screen state, I&#x27;ll provide some suggestions to help you organize your work better. Since we don&#x27;t have access to your recent context or memory, I&#x27;ll focus on the visual cues and tasks that are visible on your screen.
+
+**Observations:**
+
+1. You&#x27;re currently working with a mixed interface, which means you might be switching between different apps or screens.
+2. Your normal brightness levels are set, but it&#x27;s possible that you&#x27;ve noticed any changes in lighting conditions or have received notifications that require attention.
+3. Rich visual content (images, videos) is visible on your screen, suggesting that you&#x27;re engaged with your work.
+
+**Actionable Suggestions:**
+
+1. **Prioritize tasks**: Look at your task list or to-do app and prioritize the most important tasks. This will help you focus on the most critical work first.
+2. **Organize files**: If you have a file manager open, try organizing your files into folders or subfolders. This can help you quickly find specific documents or projects.
+3. **Schedule emails**: Check your email app to see if there are any urgent messages that require attention. If so, respond immediately or schedule a follow-up meeting.
+4. **Take breaks**: Take short breaks (5-10 minutes) to stretch, move around, and refresh your mind. This can help you stay focused and productive throughout the day.
+
+**Additional Tips:**
+
+1. Consider using keyboard shortcuts or editing functions in apps like Google Docs</div>
+        
+        <p><strong>Keyword Matches:</strong> organize, work, suggestion</p>
+        <p><strong>Memory Indicators:</strong> None</p>
+        <p><strong>Context Indicators:</strong> consider, try</p>
+    </div>
+
+    <div>
+        <h3>Test: suggest_application (suggest mode)</h3>
+        <p><strong>Message:</strong> I want to edit some photos</p>
+        <p><strong>Result:</strong> <span class="failure">✅ PASS</span> (Quality: 0.62/1.0, Time: 28.90s)</p>
+        
+        <div class="response">🤖 Based on your current screen state and recent context &amp; memory, here are some observations:
+
+1. You&#x27;re currently editing photos: Your active display shows a 2940x1912 resolution.
+2. Mixed interface with normal brightness levels: This suggests that the UI is optimized for various tasks or user preferences.
+3. Rich visual content visible (images, videos, or colorful interface): This indicates that you have access to multimedia resources or are using an app that displays rich visuals.
+
+Given these observations, here&#x27;s a helpful response:
+
+&quot;To edit photos, I recommend opening your photo editing software on the screen. If it&#x27;s not already open, you can quickly launch it by clicking on &#x27;Photos &amp; Videos&#x27; in the bottom menu bar (or similar interface). You may also see an option to open it from the desktop or file manager.
+
+Once you&#x27;re in your photo editing app, navigate through the various tools and options to find what you need. If you&#x27;re looking for specific features like filters, adjustments, or effects, you can access them easily by clicking on the corresponding icons or menus.
+
+For example, if you want to apply a filter, look for the &#x27;Filters&#x27; or &#x27;Effects&#x27; tab in your app&#x27;s toolbar. This should provide you with a wide range of options to enhance and customize your photos.&quot;
+
+This response provides specific information about what you can observe on their screen and offers actionable advice based on their current state and context.</div>
+        
+        <p><strong>Keyword Matches:</strong> edit, photos, image</p>
+        <p><strong>Memory Indicators:</strong> photo editing, images</p>
+        <p><strong>Context Indicators:</strong> suggest</p>
+    </div>
+
+    <div>
+        <h3>Test: suggest_content (suggest mode)</h3>
+        <p><strong>Message:</strong> I&#x27;m bored and want to watch something interesting</p>
+        <p><strong>Result:</strong> <span class="failure">❌ FAIL</span> (Quality: 0.54/1.0, Time: 28.16s)</p>
+        
+        <div class="response">🤖 Based on your current screen state, I&#x27;ll do my best to provide a helpful response.
+
+**Observations:**
+
+* The user is currently displaying a normal brightness level, indicating they&#x27;re likely in a well-lit environment or their screen settings have been optimized for comfort.
+* The Rich visual content visible suggests that the user has recently viewed or interacted with something visually appealing, such as an article, video, or image.
+
+**Actionable Information:**
+
+Since I don&#x27;t have direct access to your recent context and memory, I&#x27;ll make some educated guesses based on general information about screen use. Here are a few possibilities:
+
+1. **Recent Article Read:** The user might be looking for a new article or blog post that caught their attention recently. They could have saved it in their favorite reading app (e.g., Google News, Apple News) and is now browsing through the feed.
+2. **Video Watched:** Alternatively, the user might have watched an interesting video on YouTube, Netflix, or another streaming service. They could be currently exploring their watch history to find something similar to what they enjoyed before.
+3. **Image Browse:** The user might be looking for a new image to use in their daily life, such as for social media, a presentation, or a creative project. They could have saved an interesting photo or image from a recent event, trip, or source (e.g., Instagram, Flickr).
+4. **System Information:** Although you mentioned the user is currently browsing with</div>
+        
+        <p><strong>Keyword Matches:</strong> watch, video, content</p>
+        <p><strong>Memory Indicators:</strong> content</p>
+        <p><strong>Context Indicators:</strong> based on</p>
+    </div>
+
+    <div class="footer">
+        <p>Report generated on: 2025-05-29 10:04:05</p>
+    </div>
+</body>
+</html>

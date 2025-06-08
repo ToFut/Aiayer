@@ -51,7 +51,7 @@ class EnhancedEnterpriseBackend:
         self.enhanced_suggest_handler = create_enhanced_suggest_mode_handler()
         logger.info("Enhanced handlers initialized")
 
-    async def handle_websocket(self, websocket):
+    async def handle_websocket(self, websocket, path=None):
         """Handle WebSocket connections"""
         client_id = f"client_{int(time.time() * 1000)}"
         client_ip = websocket.remote_address[0] if websocket.remote_address else "unknown"
@@ -116,7 +116,41 @@ class EnhancedEnterpriseBackend:
         logger.info(f"Processing {message_type} from {client_id}")
         
         try:
-            if message_type == "chat_request":
+            # Handle messages with success/response format
+            if "success" in data and "response" in data:
+                return {
+                    "type": "chat_response",
+                    "success": data["success"],
+                    "response": data["response"],
+                    "client_id": client_id,
+                    "timestamp": timestamp
+                }
+            
+            # Handle standard message types
+            if message_type == "connection_established":
+                # Handle connection establishment
+                payload = data.get("payload", {})
+                client_type = payload.get("client", "unknown")
+                version = payload.get("version", "unknown")
+                
+                # Store client info
+                self.sessions[client_id] = {
+                    "client_type": client_type,
+                    "version": version,
+                    "connected_at": timestamp,
+                    "last_activity": timestamp
+                }
+                
+                return {
+                    "type": "server_ready",
+                    "payload": {
+                        "status": "connected",
+                        "server_version": "1.0.0",
+                        "client_id": client_id,
+                        "timestamp": timestamp
+                    }
+                }
+            elif message_type == "chat_request":
                 return await self.handle_chat_request(data, client_id)
             elif message_type == "system_status":
                 return await self.handle_system_status(data, client_id)
@@ -235,7 +269,10 @@ async def run_enhanced_backend():
     
     logger.info(f"Starting Enhanced Enterprise Backend on {host}:{port}")
     
-    async with websockets.serve(backend.handle_websocket, host, port):
+    # Create a bound method for the WebSocket handler
+    handler = backend.handle_websocket
+    
+    async with websockets.serve(handler, host, port):
         logger.info(f"Enhanced Enterprise Backend listening on ws://{host}:{port}")
         print(f"🚀 Enhanced Backend Ready!")
         print(f"   • Visual queries: 'what am I seeing?' → Contextual responses")

@@ -1,0 +1,235 @@
+<\!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minimal UI Detector Test</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            margin: 20px;
+            line-height: 1.5;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            margin: 5px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        pre {
+            background-color: #f5f5f5;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            padding: 10px;
+            white-space: pre-wrap;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+        .status {
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 4px;
+        }
+        .connected {
+            background-color: #d4edda;
+            border: 1px solid #c3e6cb;
+            color: #155724;
+        }
+        .disconnected {
+            background-color: #f8d7da;
+            border: 1px solid #f5c6cb;
+            color: #721c24;
+        }
+        .connecting {
+            background-color: #fff3cd;
+            border: 1px solid #ffeeba;
+            color: #856404;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Minimal UI Detector Test</h1>
+        
+        <div id="status" class="status connecting">Connecting to WebSocket server...</div>
+        
+        <div>
+            <button id="testConnection">Test Connection</button>
+            <button id="detectElements">Detect UI Elements</button>
+            <button id="findButton">Find Button</button>
+        </div>
+        
+        <h2>Log:</h2>
+        <pre id="log"></pre>
+        
+        <h2>Response:</h2>
+        <pre id="response">No response yet</pre>
+    </div>
+
+    <script>
+        // Get DOM elements
+        const statusEl = document.getElementById('status');
+        const logEl = document.getElementById('log');
+        const responseEl = document.getElementById('response');
+        const testConnectionBtn = document.getElementById('testConnection');
+        const detectElementsBtn = document.getElementById('detectElements');
+        const findButtonBtn = document.getElementById('findButton');
+        
+        // WebSocket connection
+        let ws = null;
+        
+        // Log a message
+        function log(message) {
+            const now = new Date().toLocaleTimeString();
+            logEl.textContent = `[${now}] ${message}\n${logEl.textContent}`;
+        }
+        
+        // Set status
+        function setStatus(message, type) {
+            statusEl.textContent = message;
+            statusEl.className = 'status ' + type;
+        }
+        
+        // Connect to WebSocket server
+        function connect() {
+            setStatus('Connecting to WebSocket server...', 'connecting');
+            
+            // Close existing connection if any
+            if (ws) {
+                ws.close();
+            }
+            
+            try {
+                ws = new WebSocket('ws://localhost:8765');
+                
+                ws.onopen = function() {
+                    setStatus('Connected to WebSocket server', 'connected');
+                    log('Connected to WebSocket server');
+                    enableButtons(true);
+                };
+                
+                ws.onclose = function(event) {
+                    setStatus(`Disconnected from server (Code: ${event.code})`, 'disconnected');
+                    log(`WebSocket closed. Code: ${event.code}, Reason: ${event.reason || 'No reason provided'}`);
+                    enableButtons(false);
+                    
+                    // Try to reconnect after 5 seconds
+                    setTimeout(connect, 5000);
+                };
+                
+                ws.onerror = function(error) {
+                    setStatus('Connection error', 'disconnected');
+                    log('WebSocket error: ' + JSON.stringify(error));
+                    console.error('WebSocket error:', error);
+                };
+                
+                ws.onmessage = function(event) {
+                    log('Received message from server');
+                    
+                    try {
+                        const data = JSON.parse(event.data);
+                        responseEl.textContent = JSON.stringify(data, null, 2);
+                    } catch (e) {
+                        responseEl.textContent = 'Error parsing response: ' + e.message + '\n\nRaw data: ' + event.data;
+                    }
+                };
+            } catch (error) {
+                setStatus('Failed to create WebSocket connection', 'disconnected');
+                log('Failed to create WebSocket: ' + error.message);
+                console.error('Failed to create WebSocket:', error);
+                enableButtons(false);
+            }
+        }
+        
+        // Enable/disable buttons
+        function enableButtons(enabled) {
+            testConnectionBtn.disabled = \!enabled;
+            detectElementsBtn.disabled = \!enabled;
+            findButtonBtn.disabled = \!enabled;
+        }
+        
+        // Initialize
+        enableButtons(false);
+        connect();
+        
+        // Button event listeners
+        testConnectionBtn.addEventListener('click', function() {
+            if (\!ws || ws.readyState \!== WebSocket.OPEN) {
+                log('Not connected to server. Cannot send message.');
+                return;
+            }
+            
+            const message = {
+                type: 'test',
+                message: 'Test connection',
+                timestamp: new Date().toISOString()
+            };
+            
+            try {
+                ws.send(JSON.stringify(message));
+                log('Sent test message: ' + JSON.stringify(message));
+            } catch (error) {
+                log('Error sending message: ' + error.message);
+            }
+        });
+        
+        detectElementsBtn.addEventListener('click', function() {
+            if (\!ws || ws.readyState \!== WebSocket.OPEN) {
+                log('Not connected to server. Cannot send message.');
+                return;
+            }
+            
+            const message = {
+                action: 'detect',
+                timestamp: new Date().toISOString()
+            };
+            
+            try {
+                ws.send(JSON.stringify(message));
+                log('Sent detect message: ' + JSON.stringify(message));
+            } catch (error) {
+                log('Error sending message: ' + error.message);
+            }
+        });
+        
+        findButtonBtn.addEventListener('click', function() {
+            if (\!ws || ws.readyState \!== WebSocket.OPEN) {
+                log('Not connected to server. Cannot send message.');
+                return;
+            }
+            
+            const message = {
+                action: 'find',
+                description: 'button',
+                element_type: 'button',
+                timestamp: new Date().toISOString()
+            };
+            
+            try {
+                ws.send(JSON.stringify(message));
+                log('Sent find button message: ' + JSON.stringify(message));
+            } catch (error) {
+                log('Error sending message: ' + error.message);
+            }
+        });
+    </script>
+</body>
+</html>

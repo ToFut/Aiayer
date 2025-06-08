@@ -1,0 +1,57 @@
+{
+  "scenario": {
+    "id": "suggest_productivity",
+    "mode": "suggest",
+    "message": "I need to organize my work better",
+    "expected_keywords": [
+      "organize",
+      "work",
+      "productivity",
+      "suggestion"
+    ],
+    "memory_indicators": [
+      "applications",
+      "tools",
+      "workflow"
+    ],
+    "context_indicators": [
+      "might help",
+      "consider",
+      "try"
+    ],
+    "description": "Tests suggest mode's ability to provide contextual productivity recommendations"
+  },
+  "final_response": {
+    "type": "final_response",
+    "mode": "suggest",
+    "response": "\ud83e\udd16 Based on your current screen state, I'll provide some suggestions to help you organize your work better. Since we don't have access to your recent context or memory, I'll focus on the visual cues and tasks that are visible on your screen.\n\n**Observations:**\n\n1. You're currently working with a mixed interface, which means you might be switching between different apps or screens.\n2. Your normal brightness levels are set, but it's possible that you've noticed any changes in lighting conditions or have received notifications that require attention.\n3. Rich visual content (images, videos) is visible on your screen, suggesting that you're engaged with your work.\n\n**Actionable Suggestions:**\n\n1. **Prioritize tasks**: Look at your task list or to-do app and prioritize the most important tasks. This will help you focus on the most critical work first.\n2. **Organize files**: If you have a file manager open, try organizing your files into folders or subfolders. This can help you quickly find specific documents or projects.\n3. **Schedule emails**: Check your email app to see if there are any urgent messages that require attention. If so, respond immediately or schedule a follow-up meeting.\n4. **Take breaks**: Take short breaks (5-10 minutes) to stretch, move around, and refresh your mind. This can help you stay focused and productive throughout the day.\n\n**Additional Tips:**\n\n1. Consider using keyboard shortcuts or editing functions in apps like Google Docs",
+    "client_id": "client_1748527116279",
+    "timestamp": "2025-05-29T10:03:01.956668",
+    "processing_method": "agnostic_deep_data",
+    "data_sources": [
+      "screen_analysis",
+      "memory_context"
+    ],
+    "success": true
+  },
+  "combined_response": "\ud83e\udd16 Based on your current screen state, I'll provide some suggestions to help you organize your work better. Since we don't have access to your recent context or memory, I'll focus on the visual cues and tasks that are visible on your screen.\n\n**Observations:**\n\n1. You're currently working with a mixed interface, which means you might be switching between different apps or screens.\n2. Your normal brightness levels are set, but it's possible that you've noticed any changes in lighting conditions or have received notifications that require attention.\n3. Rich visual content (images, videos) is visible on your screen, suggesting that you're engaged with your work.\n\n**Actionable Suggestions:**\n\n1. **Prioritize tasks**: Look at your task list or to-do app and prioritize the most important tasks. This will help you focus on the most critical work first.\n2. **Organize files**: If you have a file manager open, try organizing your files into folders or subfolders. This can help you quickly find specific documents or projects.\n3. **Schedule emails**: Check your email app to see if there are any urgent messages that require attention. If so, respond immediately or schedule a follow-up meeting.\n4. **Take breaks**: Take short breaks (5-10 minutes) to stretch, move around, and refresh your mind. This can help you stay focused and productive throughout the day.\n\n**Additional Tips:**\n\n1. Consider using keyboard shortcuts or editing functions in apps like Google Docs",
+  "progress_updates": [],
+  "response_time": 25.19182300567627,
+  "evaluation": {
+    "success": false,
+    "quality_score": 0.5416666666666666,
+    "memory_score": 0.0,
+    "context_score": 0.6666666666666666,
+    "explanation": "Found 3/4 keywords, 0/3 memory indicators, 2/3 context indicators. Overall quality: 0.54/1.0",
+    "keyword_matches": [
+      "organize",
+      "work",
+      "suggestion"
+    ],
+    "memory_matches": [],
+    "context_matches": [
+      "consider",
+      "try"
+    ]
+  }
+}

@@ -1,0 +1,8 @@
+2025-06-01 15:43:10,745 - INFO - 🚀 Starting DO button notification test
+2025-06-01 15:43:10,746 - INFO - Connecting to DO button server at ws://localhost:8765
+2025-06-01 15:43:10,863 - INFO - Connected to WebSocket server
+2025-06-01 15:43:10,863 - INFO - Received welcome: {"type": "welcome", "message": "Connected to ultimate DO button server on port 8765", "server_time": "2025-06-01T15:43:10.863287", "server_name": "Ultimate DO Button Server", "supported_actions": ["DO", "EXECUTE", "DISMISS", "ADJUST"]}
+2025-06-01 15:43:10,864 - INFO - ✅ Sent DO button notification
+2025-06-01 15:43:10,864 - INFO - Waiting for response...
+2025-06-01 15:43:10,865 - INFO - Received response: {"type": "agent_progress", "session_id": "memory_trigger_1748806990", "step": 1, "progress": 25, "message": "\ud83d\ude80 Starting execution: Processing click..."}
+2025-06-01 15:43:10,865 - INFO - ✅ Test completed successfully

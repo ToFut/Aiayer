@@ -1,0 +1,59 @@
+2025-05-29 09:50:23,648 - INFO - Connecting to backend at ws://localhost:8767
+2025-05-29 09:50:23,712 - INFO - Successfully connected to backend with client ID: client_1748526623712
+2025-05-29 09:50:23,713 - INFO - ============================================================
+2025-05-29 09:50:23,713 - INFO - STARTING COMPREHENSIVE SYSTEM SIMULATION
+2025-05-29 09:50:23,713 - INFO - ============================================================
+2025-05-29 09:50:23,713 - INFO - Testing 10 scenarios across all modes
+2025-05-29 09:50:23,713 - INFO - ------------------------------------------------------------
+2025-05-29 09:50:23,713 - INFO - Running test 1/10: agent_ui_interaction (agent mode)
+2025-05-29 09:50:23,713 - INFO - Sending message in agent mode: 'search for flights to Miami on Google'
+2025-05-29 09:50:56,359 - INFO - Received final_response type message
+2025-05-29 09:50:56,364 - INFO - Test 1: ❌ FAILED - Quality: 0.58/1.0 - Time: 32.65s
+2025-05-29 09:50:58,367 - INFO - ------------------------------------------------------------
+2025-05-29 09:50:58,368 - INFO - Running test 2/10: agent_app_launch (agent mode)
+2025-05-29 09:50:58,368 - INFO - Sending message in agent mode: 'open Safari and go to YouTube'
+2025-05-29 09:51:26,623 - INFO - Received final_response type message
+2025-05-29 09:51:26,624 - INFO - Test 2: ❌ FAILED - Quality: 0.46/1.0 - Time: 28.26s
+2025-05-29 09:51:28,626 - INFO - ------------------------------------------------------------
+2025-05-29 09:51:28,627 - INFO - Running test 3/10: agent_complex_task (agent mode)
+2025-05-29 09:51:28,627 - INFO - Sending message in agent mode: 'search for Omer Adam on Spotify and play his music'
+2025-05-29 09:51:52,709 - INFO - Received final_response type message
+2025-05-29 09:51:52,720 - INFO - Test 3: ✅ PASSED - Quality: 0.67/1.0 - Time: 24.09s
+2025-05-29 09:51:54,722 - INFO - ------------------------------------------------------------
+2025-05-29 09:51:54,723 - INFO - Running test 4/10: ask_system_status (ask mode)
+2025-05-29 09:51:54,723 - INFO - Sending message in ask mode: 'what applications are currently running on my system?'
+2025-05-29 09:52:17,122 - INFO - Received final_response type message
+2025-05-29 09:52:17,167 - INFO - Test 4: ✅ PASSED - Quality: 0.75/1.0 - Time: 22.44s
+2025-05-29 09:52:19,170 - INFO - ------------------------------------------------------------
+2025-05-29 09:52:19,171 - INFO - Running test 5/10: ask_memory_retrieval (ask mode)
+2025-05-29 09:52:19,171 - INFO - Sending message in ask mode: 'what websites have I visited recently?'
+2025-05-29 09:52:31,972 - INFO - Received final_response type message
+2025-05-29 09:52:31,974 - INFO - Test 5: ✅ PASSED - Quality: 0.62/1.0 - Time: 12.80s
+2025-05-29 09:52:33,975 - INFO - ------------------------------------------------------------
+2025-05-29 09:52:33,975 - INFO - Running test 6/10: ask_context_understanding (ask mode)
+2025-05-29 09:52:33,975 - INFO - Sending message in ask mode: 'what's currently visible on my screen?'
+2025-05-29 09:52:56,844 - INFO - Received final_response type message
+2025-05-29 09:52:56,845 - INFO - Test 6: ✅ PASSED - Quality: 0.75/1.0 - Time: 22.87s
+2025-05-29 09:52:58,848 - INFO - ------------------------------------------------------------
+2025-05-29 09:52:58,849 - INFO - Running test 7/10: ask_memory_integration (ask mode)
+2025-05-29 09:52:58,849 - INFO - Sending message in ask mode: 'how has my system usage changed in the last hour?'
+2025-05-29 09:53:19,961 - INFO - Received final_response type message
+2025-05-29 09:53:19,963 - INFO - Test 7: ❌ FAILED - Quality: 0.46/1.0 - Time: 21.11s
+2025-05-29 09:53:21,966 - INFO - ------------------------------------------------------------
+2025-05-29 09:53:21,967 - INFO - Running test 8/10: suggest_productivity (suggest mode)
+2025-05-29 09:53:21,967 - INFO - Sending message in suggest mode: 'I need to organize my work better'
+2025-05-29 09:53:42,784 - INFO - Received final_response type message
+2025-05-29 09:53:42,785 - INFO - Test 8: ❌ FAILED - Quality: 0.58/1.0 - Time: 20.82s
+2025-05-29 09:53:44,787 - INFO - ------------------------------------------------------------
+2025-05-29 09:53:44,787 - INFO - Running test 9/10: suggest_application (suggest mode)
+2025-05-29 09:53:44,787 - INFO - Sending message in suggest mode: 'I want to edit some photos'
+2025-05-29 09:54:09,566 - INFO - Received final_response type message
+2025-05-29 09:54:09,569 - INFO - Test 9: ✅ PASSED - Quality: 0.71/1.0 - Time: 24.78s
+2025-05-29 09:54:11,572 - INFO - ------------------------------------------------------------
+2025-05-29 09:54:11,573 - INFO - Running test 10/10: suggest_content (suggest mode)
+2025-05-29 09:54:11,573 - INFO - Sending message in suggest mode: 'I'm bored and want to watch something interesting'
+2025-05-29 09:54:43,800 - INFO - Received final_response type message
+2025-05-29 09:54:43,803 - INFO - Test 10: ✅ PASSED - Quality: 0.62/1.0 - Time: 32.23s
+2025-05-29 09:54:43,821 - INFO - ============================================================
+2025-05-29 09:54:43,821 - INFO - Simulation complete. Report saved to reports/simulation_results_1748526623.json
+2025-05-29 09:54:43,822 - INFO - ============================================================

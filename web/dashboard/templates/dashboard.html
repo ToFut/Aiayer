@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Memory Dashboard</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/static/css/dashboard.css">
+</head>
+<body>
+    <header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
+        <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="#">Task Memory Dashboard</a>
+        <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="navbar-nav">
+            <div class="nav-item text-nowrap">
+                <a class="nav-link px-3" href="#" id="refresh-btn">Refresh Data</a>
+            </div>
+        </div>
+    </header>
+    
+    <div class="container-fluid">
+        <div class="row">
+            <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
+                <div class="position-sticky pt-3">
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="#overview">
+                                <span data-feather="home"></span>
+                                Overview
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#tasks">
+                                <span data-feather="file"></span>
+                                Tasks
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#performance">
+                                <span data-feather="bar-chart-2"></span>
+                                Performance
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#memory">
+                                <span data-feather="layers"></span>
+                                Memory Usage
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#value">
+                                <span data-feather="dollar-sign"></span>
+                                Value Metrics
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#reports">
+                                <span data-feather="file-text"></span>
+                                Reports
+                            </a>
+                        </li>
+                    </ul>
+                    
+                    <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+                        <span>Actions</span>
+                    </h6>
+                    <ul class="nav flex-column mb-2">
+                        <li class="nav-item">
+                            <a class="nav-link" href="#" id="generate-report-btn">
+                                <span data-feather="file-text"></span>
+                                Generate Report
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#" id="update-metrics-btn">
+                                <span data-feather="refresh-cw"></span>
+                                Update Metrics
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+            
+            <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+                <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                    <h1 class="h2">Task Memory Dashboard</h1>
+                    <div class="btn-toolbar mb-2 mb-md-0">
+                        <div class="btn-group me-2">
+                            <span class="badge bg-secondary p-2" id="last-updated">Last Updated: Never</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Overview Section -->
+                <section id="overview">
+                    <h2>Overview</h2>
+                    
+                    <!-- Key Metrics Cards -->
+                    <div class="row row-cols-1 row-cols-md-4 g-4 mb-4">
+                        <div class="col">
+                            <div class="card h-100 text-white bg-primary">
+                                <div class="card-body">
+                                    <h5 class="card-title">Total Tasks</h5>
+                                    <p class="card-text display-6" id="total-tasks">0</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="card h-100 text-white bg-success">
+                                <div class="card-body">
+                                    <h5 class="card-title">Completed Tasks</h5>
+                                    <p class="card-text display-6" id="completed-tasks">0</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="card h-100 text-white bg-warning">
+                                <div class="card-body">
+                                    <h5 class="card-title">Active Tasks</h5>
+                                    <p class="card-text display-6" id="active-tasks">0</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="card h-100 text-white bg-danger">
+                                <div class="card-body">
+                                    <h5 class="card-title">Failed Tasks</h5>
+                                    <p class="card-text display-6" id="failed-tasks">0</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Time Series Chart -->
+                    <div class="card mb-4">
+                        <div class="card-header">
+                            Active Tasks Over Time
+                        </div>
+                        <div class="card-body">
+                            <canvas id="tasks-chart" height="300"></canvas>
+                        </div>
+                    </div>
+                    
+                    <!-- Metrics Summary Table -->
+                    <div class="card mb-4">
+                        <div class="card-header">
+                            System Health Metrics
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-striped table-sm">
+                                    <thead>
+                                        <tr>
+                                            <th>Metric</th>
+                                            <th>Value</th>
+                                            <th>Status</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="system-metrics">
+                                        <tr>
+                                            <td>Task Success Rate</td>
+                                            <td id="success-rate">0%</td>
+                                            <td><span class="badge bg-secondary">Unknown</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Avg. Completion Time</td>
+                                            <td id="avg-completion-time">0s</td>
+                                            <td><span class="badge bg-secondary">Unknown</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Memory Usage</td>
+                                            <td id="memory-usage">0 MB</td>
+                                            <td><span class="badge bg-secondary">Unknown</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Value Generated</td>
+                                            <td id="value-generated">$0.00</td>
+                                            <td><span class="badge bg-secondary">Unknown</span></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                
+                <!-- Tasks Section -->
+                <section id="tasks" class="d-none">
+                    <h2>Tasks</h2>
+                    
+                    <!-- Task Filter Controls -->
+                    <div class="row mb-3">
+                        <div class="col">
+                            <div class="btn-group" role="group" aria-label="Task filters">
+                                <button type="button" class="btn btn-outline-primary active" data-status="all">All</button>
+                                <button type="button" class="btn btn-outline-primary" data-status="pending">Active</button>
+                                <button type="button" class="btn btn-outline-primary" data-status="completed">Completed</button>
+                                <button type="button" class="btn btn-outline-primary" data-status="failed">Failed</button>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <input type="text" class="form-control" id="task-search" placeholder="Search tasks...">
+                        </div>
+                    </div>
+                    
+                    <!-- Tasks Table -->
+                    <div class="card mb-4">
+                        <div class="card-header">
+                            Task List
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-striped table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>Description</th>
+                                            <th>Status</th>
+                                            <th>Progress</th>
+                                            <th>Created</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="tasks-table">
+                                        <tr>
+                                            <td colspan="6" class="text-center">Loading tasks...</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <nav aria-label="Task pagination">
+                                <ul class="pagination justify-content-center mb-0">
+                                    <li class="page-item disabled">
+                                        <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
+                                    </li>
+                                    <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                                    <li class="page-item disabled">
+                                        <a class="page-link" href="#">Next</a>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                    
+                    <!-- Task Details Modal -->
+                    <div class="modal fade" id="task-details-modal" tabindex="-1" aria-labelledby="task-details-title" aria-hidden="true">
+                        <div class="modal-dialog modal-lg">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="task-details-title">Task Details</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body" id="task-details-body">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <h6>Basic Information</h6>
+                                            <table class="table table-sm">
+                                                <tr>
+                                                    <th>ID</th>
+                                                    <td id="detail-id"></td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Description</th>
+                                                    <td id="detail-description"></td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Status</th>
+                                                    <td id="detail-status"></td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Created</th>
+                                                    <td id="detail-created"></td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Updated</th>
+                                                    <td id="detail-updated"></td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <h6>Progress & Metrics</h6>
+                                            <table class="table table-sm">
+                                                <tr>
+                                                    <th>Current Step</th>
+                                                    <td id="detail-current-step"></td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Total Steps</th>
+                                                    <td id="detail-total-steps"></td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Time Saved</th>
+                                                    <td id="detail-time-saved"></td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Value</th>
+                                                    <td id="detail-value"></td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    
+                                    <h6>Execution History</h6>
+                                    <div class="execution-history" id="detail-history">
+                                        <p class="text-muted">No execution history available</p>
+                                    </div>
+                                    
+                                    <h6>Context</h6>
+                                    <div class="execution-context" id="detail-context">
+                                        <p class="text-muted">No context information available</p>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                
+                <!-- Performance Section -->
+                <section id="performance" class="d-none">
+                    <h2>Performance Metrics</h2>
+                    
+                    <div class="row row-cols-1 row-cols-md-3 g-4 mb-4">
+                        <div class="col">
+                            <div class="card h-100">
+                                <div class="card-body">
+                                    <h5 class="card-title">Avg Update Time</h5>
+                                    <p class="card-text display-6" id="avg-update-time">0 ms</p>
+                                </div>
+                                <div class="card-footer text-muted">
+                                    <span id="update-count">0</span> updates
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="card h-100">
+                                <div class="card-body">
+                                    <h5 class="card-title">Avg Search Time</h5>
+                                    <p class="card-text display-6" id="avg-search-time">0 ms</p>
+                                </div>
+                                <div class="card-footer text-muted">
+                                    <span id="search-count">0</span> searches
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="card h-100">
+                                <div class="card-body">
+                                    <h5 class="card-title">Last Update</h5>
+                                    <p class="card-text" id="last-update-time">Never</p>
+                                </div>
+                                <div class="card-footer text-muted">
+                                    <span id="last-update-ago">N/A</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="card mb-4">
+                        <div class="card-header">
+                            Performance Over Time
+                        </div>
+                        <div class="card-body">
+                            <canvas id="performance-chart" height="300"></canvas>
+                        </div>
+                    </div>
+                </section>
+                
+                <!-- Memory Usage Section -->
+                <section id="memory" class="d-none">
+                    <h2>Memory Usage</h2>
+                    
+                    <div class="row row-cols-1 row-cols-md-4 g-4 mb-4">
+                        <div class="col">
+                            <div class="card h-100">
+                                <div class="card-body">
+                                    <h5 class="card-title">Total Size</h5>
+                                    <p class="card-text display-6" id="total-memory-size">0 MB</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="card h-100">
+                                <div class="card-body">
+                                    <h5 class="card-title">Avg Task Size</h5>
+                                    <p class="card-text display-6" id="avg-task-size">0 KB</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="card h-100">
+                                <div class="card-body">
+                                    <h5 class="card-title">History Entries</h5>
+                                    <p class="card-text display-6" id="history-entries">0</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="card h-100">
+                                <div class="card-body">
+                                    <h5 class="card-title">Memory Growth</h5>
+                                    <p class="card-text display-6" id="memory-growth">0 KB/day</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                
+                <!-- Value Metrics Section -->
+                <section id="value" class="d-none">
+                    <h2>Value Metrics</h2>
+                    
+                    <div class="row row-cols-1 row-cols-md-4 g-4 mb-4">
+                        <div class="col">
+                            <div class="card h-100 text-white bg-success">
+                                <div class="card-body">
+                                    <h5 class="card-title">Total Value</h5>
+                                    <p class="card-text display-6" id="total-value">$0.00</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="card h-100">
+                                <div class="card-body">
+                                    <h5 class="card-title">Total Time Saved</h5>
+                                    <p class="card-text display-6" id="total-time-saved">0 hrs</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="card h-100">
+                                <div class="card-body">
+                                    <h5 class="card-title">Avg Value/Task</h5>
+                                    <p class="card-text display-6" id="avg-value-task">$0.00</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="card h-100 text-white bg-primary">
+                                <div class="card-body">
+                                    <h5 class="card-title">ROI</h5>
+                                    <p class="card-text display-6" id="roi-value">0%</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="card mb-4">
+                        <div class="card-header">
+                            Value Generated Over Time
+                        </div>
+                        <div class="card-body">
+                            <canvas id="value-chart" height="300"></canvas>
+                        </div>
+                    </div>
+                </section>
+                
+                <!-- Reports Section -->
+                <section id="reports" class="d-none">
+                    <h2>Reports</h2>
+                    
+                    <div class="card mb-4">
+                        <div class="card-header">
+                            Available Reports
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-striped table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>Timestamp</th>
+                                            <th>File</th>
+                                            <th>Size</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="reports-table">
+                                        <tr>
+                                            <td colspan="4" class="text-center">Loading reports...</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Report Details Modal -->
+                    <div class="modal fade" id="report-details-modal" tabindex="-1" aria-labelledby="report-details-title" aria-hidden="true">
+                        <div class="modal-dialog modal-xl">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="report-details-title">Report Details</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body" id="report-details-body">
+                                    <pre id="report-content" class="p-3 bg-light"></pre>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </main>
+        </div>
+    </div>
+    
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Feather Icons -->
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    
+    <!-- Custom JS -->
+    <script src="/static/js/dashboard.js?v=1"></script>
+</body>
+</html>

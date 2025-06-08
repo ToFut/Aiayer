@@ -72,11 +72,21 @@ async def get_llm_response(query, context=None):
             "processing_time": 0
         }
 
-# IMPORTANT: The handler MUST accept both websocket AND path parameters
-async def handler(websocket, path):
-    """WebSocket connection handler with the correct signature including path parameter"""
+# IMPORTANT: In websockets 15.0.1, the handler only needs to accept the websocket parameter
+async def handler(websocket, path=None):
+    """WebSocket connection handler supporting both websockets 10.x and 15.x
+    In 10.x, both websocket and path parameters are provided
+    In 15.x, only websocket parameter is provided and path is an attribute of websocket
+    """
     client_id = f"client_{id(websocket)}"
     connected_clients.add(websocket)
+    
+    # Handle both websockets 10.x and 15.x
+    if path is None and hasattr(websocket, 'path'):
+        path = websocket.path
+    elif path is None:
+        path = "/"
+        
     logger.info(f"Client {client_id} connected at path: {path}")
     
     try:
@@ -175,6 +185,94 @@ async def handler(websocket, path):
                         "timestamp": datetime.now().isoformat()
                     }))
                     
+                elif msg_type == 'agent_confirmation':
+                    # Handle agent confirmation message (DO button)
+                    logger.info(f"⚡ Agent confirmation received: {data}")
+                    
+                    # Extract session_id and action
+                    session_id = data.get('session_id', '')
+                    action = data.get('action', '').upper()
+                    
+                    # FIXED: Forward to ultimate_do_button_server for real automation
+                    try:
+                        # The DO button server runs on localhost:8765, so we need to connect to another port
+                        # Use port 8768 for the ultimate_do_button_server that has automation capabilities
+                        logger.info(f"⚡ Forwarding DO button request to automation server")
+                        
+                        # Forward the exact same message to the automation server
+                        async with websockets.connect('ws://localhost:8765') as do_ws:
+                            # First message will be welcome message
+                            welcome = await do_ws.recv()
+                            logger.info(f"Connected to automation server: {welcome[:100]}...")
+                            
+                            # Forward the original DO button message
+                            await do_ws.send(json.dumps(data))
+                            logger.info(f"Forwarded DO button request to automation server")
+                            
+                            # Listen for responses from automation server and forward them to client
+                            while True:
+                                try:
+                                    # Set a timeout to avoid waiting forever
+                                    automation_response = await asyncio.wait_for(do_ws.recv(), timeout=30.0)
+                                    logger.info(f"Received from automation server: {automation_response[:100]}...")
+                                    
+                                    # Forward the response to the client
+                                    await websocket.send(automation_response)
+                                    
+                                    # Parse the response to check if it's the final success message
+                                    try:
+                                        response_data = json.loads(automation_response)
+                                        if response_data.get('type') == 'agent_execution_success':
+                                            logger.info("Received final success message, closing connection to automation server")
+                                            break
+                                    except json.JSONDecodeError:
+                                        logger.error(f"Invalid JSON from automation server: {automation_response[:100]}...")
+                                
+                                except asyncio.TimeoutError:
+                                    logger.warning("Timeout waiting for automation server response")
+                                    break
+                                    
+                    except Exception as e:
+                        logger.error(f"Error forwarding to automation server: {e}")
+                        
+                        # Fallback: send mock response if automation server is unavailable
+                        logger.warning("Using fallback mock response for DO button")
+                        
+                        # Send immediate progress update
+                        await websocket.send(json.dumps({
+                            "type": "agent_progress",
+                            "session_id": session_id,
+                            "step": 1,
+                            "progress": 20,
+                            "message": "🚀 Execution started: Analyzing screen..."
+                        }))
+                        
+                        await asyncio.sleep(1)
+                        
+                        # Send another progress update
+                        await websocket.send(json.dumps({
+                            "type": "agent_progress",
+                            "session_id": session_id,
+                            "step": 2,
+                            "progress": 60,
+                            "message": "⚡ Executing automation steps..."
+                        }))
+                        
+                        await asyncio.sleep(1.5)
+                        
+                        # Send completion message
+                        await websocket.send(json.dumps({
+                            "type": "agent_execution_success",
+                            "session_id": session_id,
+                            "result": {
+                                "success": True,
+                                "steps_executed": 3,
+                                "execution_time": 2.5
+                            },
+                            "summary": "⚠️ MOCK EXECUTION (automation server unavailable)",
+                            "execution_completed": True
+                        }))
+                    
                 else:
                     # Default echo response
                     response = {
@@ -227,15 +325,29 @@ async def heartbeat():
         await asyncio.sleep(30)  # Heartbeat every 30 seconds
 
 async def main():
-    # Bind to localhost on port 8765 (for overlay connections)
-    port = 8765
+    # Bind to localhost on port 8768 (for overlay connections)
+    # CHANGED FROM 8765 to avoid conflict with ultimate_do_button_server.py
+    port = 8768
     host = "localhost"
     
     # Start server
     logger.info(f"Starting WebSocket bridge server on {host}:{port}")
     
-    # VERY IMPORTANT: The handler must have 2 parameters (websocket, path)
-    server = await websockets.serve(handler, host, port)
+    # Create a server that works with both websockets 10.x and 15.x versions
+    try:
+        # Try the 10.x style (specific import, handler with both parameters)
+        server = await websockets.serve(handler, host, port)
+        logger.info(f"WebSocket server created with websockets 10.x style")
+    except Exception as e:
+        logger.warning(f"Could not create server with default style: {e}")
+        # Try the 15.x style (different import path)
+        try:
+            from websockets.server import serve
+            server = await serve(handler, host, port)
+            logger.info(f"WebSocket server created with websockets 15.x style")
+        except Exception as e2:
+            logger.error(f"Could not create server with either style: {e2}")
+            raise
     
     # Save PID
     with open('pids/bridge_server.pid', 'w') as f:

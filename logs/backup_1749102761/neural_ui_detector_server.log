@@ -1,0 +1,57 @@
+2025-06-03 19:45:00,771 - neural_ui_detector - INFO - PyTorch 2.7.0 available
+2025-06-03 19:45:00,845 - neural_ui_detector - INFO - Ultralytics 8.3.148 available
+2025-06-03 19:45:01,039 - neural_ui_detector - INFO - Transformers 4.51.3 available
+2025-06-03 19:45:01,068 - neural_ui_detector - INFO - ONNX Runtime 1.22.0 available
+2025-06-03 19:45:01,068 - neural_ui_detector - INFO - OpenCV 4.11.0 available
+2025-06-03 19:45:01,117 - neural_ui_detector - INFO - Selenium available for browser automation
+2025-06-03 19:45:01,117 - neural_ui_detector - INFO - Neural UI Detector available components:
+2025-06-03 19:45:01,117 - neural_ui_detector - INFO - - YOLO Object Detection: ✅
+2025-06-03 19:45:01,117 - neural_ui_detector - INFO - - LayoutLM Document Understanding: ✅
+2025-06-03 19:45:01,117 - neural_ui_detector - INFO - - ONNX Model Acceleration: ✅
+2025-06-03 19:45:01,117 - neural_ui_detector - INFO - - Computer Vision Support: ✅
+2025-06-03 19:45:01,117 - neural_ui_detector - INFO - - Browser Automation: ✅
+2025-06-03 19:45:01,159 - neural_ui_detector - INFO - Loaded pre-trained YOLOv8n model
+2025-06-03 19:45:04,054 - neural_ui_detector - INFO - LayoutLM imports available (old API)
+2025-06-03 19:46:06,997 - neural_ui_detector - INFO - Started new Chrome instance in headless mode
+2025-06-03 19:46:12,500 - neural_ui_detector - INFO - Using EasyOCR for text recognition
+2025-06-03 19:46:12,530 - neural_ui_detector - INFO - Loaded 3 templates for matching
+2025-06-03 19:46:12,531 - neural_ui_detector - INFO - UI Detector Ensemble initialized
+2025-06-03 19:46:12,593 - neural_ui_detector_server - INFO - Killing existing process on port 8768: PID 76183
+2025-06-03 19:46:13,597 - neural_ui_detector_server - INFO - Starting Neural UI Detector WebSocket Server on port 8768
+2025-06-03 19:46:13,625 - websockets.server - INFO - server listening on 127.0.0.1:8768
+2025-06-03 19:46:13,626 - websockets.server - INFO - server listening on [::1]:8768
+t):
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/http11.py", line 138, in parse
+    request_line = yield from parse_line(read_line)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/http11.py", line 309, in parse_line
+    line = yield from read_line(MAX_LINE_LENGTH)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/streams.py", line 46, in read_line
+    raise EOFError(f"stream ends after {p} bytes, before end of line")
+EOFError: stream ends after 0 bytes, before end of line
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/server.py", line 545, in parse
+    request = yield from Request.parse(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^
+        self.reader.read_line,
+        ^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/http11.py", line 140, in parse
+    raise EOFError("connection closed while reading HTTP request line") from exc
+EOFError: connection closed while reading HTTP request line
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/asyncio/server.py", line 356, in conn_handler
+    await connection.handshake(
+    ...<3 lines>...
+    )
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/asyncio/server.py", line 207, in handshake
+    raise self.protocol.handshake_exc
+websockets.exceptions.InvalidMessage: did not receive a valid HTTP request

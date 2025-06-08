@@ -1,0 +1,72 @@
+2025-05-29 09:58:36,223 - INFO - Connecting to backend at ws://localhost:8767
+2025-05-29 09:58:36,280 - INFO - Successfully connected to backend with client ID: client_1748527116279
+2025-05-29 09:58:36,280 - INFO - ============================================================
+2025-05-29 09:58:36,280 - INFO - STARTING ENHANCED SYSTEM SIMULATION
+2025-05-29 09:58:36,280 - INFO - ============================================================
+2025-05-29 09:58:36,280 - INFO - Testing 10 scenarios across all modes
+2025-05-29 09:58:36,280 - INFO - ------------------------------------------------------------
+2025-05-29 09:58:36,280 - INFO - Running test 1/10: agent_ui_interaction (agent mode)
+2025-05-29 09:58:36,280 - INFO - Sending message in agent mode: 'search for flights to Miami on Google'
+2025-05-29 09:59:04,880 - INFO - Received message type: final_response
+2025-05-29 09:59:04,881 - INFO - Received final_response type message
+2025-05-29 09:59:04,882 - INFO - Test 1: ❌ FAILED - Quality: 0.50/1.0 - Time: 28.60s
+2025-05-29 09:59:07,883 - INFO - ------------------------------------------------------------
+2025-05-29 09:59:07,883 - INFO - Running test 2/10: agent_app_launch (agent mode)
+2025-05-29 09:59:07,883 - INFO - Sending message in agent mode: 'open Safari and go to YouTube'
+2025-05-29 09:59:28,487 - INFO - Received message type: final_response
+2025-05-29 09:59:28,488 - INFO - Received final_response type message
+2025-05-29 09:59:28,490 - INFO - Test 2: ✅ PASSED - Quality: 0.67/1.0 - Time: 20.61s
+2025-05-29 09:59:31,492 - INFO - ------------------------------------------------------------
+2025-05-29 09:59:31,492 - INFO - Running test 3/10: agent_complex_task (agent mode)
+2025-05-29 09:59:31,492 - INFO - Sending message in agent mode: 'search for Omer Adam on Spotify and play his music'
+2025-05-29 09:59:51,862 - INFO - Received message type: final_response
+2025-05-29 09:59:51,864 - INFO - Received final_response type message
+2025-05-29 09:59:51,866 - INFO - Test 3: ✅ PASSED - Quality: 0.75/1.0 - Time: 20.37s
+2025-05-29 09:59:54,868 - INFO - ------------------------------------------------------------
+2025-05-29 09:59:54,868 - INFO - Running test 4/10: ask_system_status (ask mode)
+2025-05-29 09:59:54,869 - INFO - Sending message in ask mode: 'what applications are currently running on my system?'
+2025-05-29 10:00:33,044 - INFO - Received message type: final_response
+2025-05-29 10:00:33,057 - INFO - Received final_response type message
+2025-05-29 10:00:33,070 - INFO - Test 4: ❌ FAILED - Quality: 0.00/1.0 - Time: 38.19s
+2025-05-29 10:00:36,131 - INFO - ------------------------------------------------------------
+2025-05-29 10:00:36,147 - INFO - Running test 5/10: ask_memory_retrieval (ask mode)
+2025-05-29 10:00:36,148 - INFO - Sending message in ask mode: 'what websites have I visited recently?'
+2025-05-29 10:01:23,158 - INFO - Received message type: final_response
+2025-05-29 10:01:23,162 - INFO - Received final_response type message
+2025-05-29 10:01:23,167 - INFO - Test 5: ✅ PASSED - Quality: 0.83/1.0 - Time: 47.01s
+2025-05-29 10:01:26,169 - INFO - ------------------------------------------------------------
+2025-05-29 10:01:26,169 - INFO - Running test 6/10: ask_context_understanding (ask mode)
+2025-05-29 10:01:26,169 - INFO - Sending message in ask mode: 'what's currently visible on my screen?'
+2025-05-29 10:01:54,553 - INFO - Received message type: final_response
+2025-05-29 10:01:54,580 - INFO - Received final_response type message
+2025-05-29 10:01:54,584 - INFO - Test 6: ❌ FAILED - Quality: 0.50/1.0 - Time: 28.41s
+2025-05-29 10:01:57,594 - INFO - ------------------------------------------------------------
+2025-05-29 10:01:57,607 - INFO - Running test 7/10: ask_memory_integration (ask mode)
+2025-05-29 10:01:57,608 - INFO - Sending message in ask mode: 'how has my system usage changed in the last hour?'
+2025-05-29 10:02:33,734 - INFO - Received message type: final_response
+2025-05-29 10:02:33,735 - INFO - Received final_response type message
+2025-05-29 10:02:33,742 - INFO - Test 7: ❌ FAILED - Quality: 0.46/1.0 - Time: 36.13s
+2025-05-29 10:02:36,751 - INFO - ------------------------------------------------------------
+2025-05-29 10:02:36,761 - INFO - Running test 8/10: suggest_productivity (suggest mode)
+2025-05-29 10:02:36,769 - INFO - Sending message in suggest mode: 'I need to organize my work better'
+2025-05-29 10:03:01,960 - INFO - Received message type: final_response
+2025-05-29 10:03:01,961 - INFO - Received final_response type message
+2025-05-29 10:03:01,963 - INFO - Test 8: ❌ FAILED - Quality: 0.54/1.0 - Time: 25.19s
+2025-05-29 10:03:04,965 - INFO - ------------------------------------------------------------
+2025-05-29 10:03:04,966 - INFO - Running test 9/10: suggest_application (suggest mode)
+2025-05-29 10:03:04,966 - INFO - Sending message in suggest mode: 'I want to edit some photos'
+2025-05-29 10:03:33,864 - INFO - Received message type: final_response
+2025-05-29 10:03:33,865 - INFO - Received final_response type message
+2025-05-29 10:03:33,866 - INFO - Test 9: ✅ PASSED - Quality: 0.62/1.0 - Time: 28.90s
+2025-05-29 10:03:36,867 - INFO - ------------------------------------------------------------
+2025-05-29 10:03:36,868 - INFO - Running test 10/10: suggest_content (suggest mode)
+2025-05-29 10:03:36,868 - INFO - Sending message in suggest mode: 'I'm bored and want to watch something interesting'
+2025-05-29 10:04:05,028 - INFO - Received message type: final_response
+2025-05-29 10:04:05,030 - INFO - Received final_response type message
+2025-05-29 10:04:05,032 - INFO - Test 10: ❌ FAILED - Quality: 0.54/1.0 - Time: 28.16s
+2025-05-29 10:04:05,060 - INFO - ============================================================
+2025-05-29 10:04:05,064 - INFO - Simulation complete. Reports saved to:
+2025-05-29 10:04:05,064 - INFO - - JSON: reports/enhanced_simulation_1748527116.json
+2025-05-29 10:04:05,064 - INFO - - HTML: reports/enhanced_simulation_1748527116.html
+2025-05-29 10:04:05,064 - INFO - - Raw responses: responses/enhanced_simulation_1748527116_raw.json
+2025-05-29 10:04:05,064 - INFO - ============================================================

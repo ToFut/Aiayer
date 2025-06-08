@@ -1,0 +1,1609 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fixed Agent DO Button Exam Framework</title>
+    <style>
+        :root {
+            --primary-color: #3f51b5;
+            --primary-dark: #303f9f;
+            --primary-light: #c5cae9;
+            --secondary-color: #ff4081;
+            --secondary-dark: #f50057;
+            --danger-color: #f44336;
+            --warning-color: #ff9800;
+            --success-color: #4caf50;
+            --dark-text: #333333;
+            --light-text: #ffffff;
+            --border-radius: 8px;
+            --box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f7fa;
+            color: var(--dark-text);
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            background-color: var(--primary-color);
+            color: var(--light-text);
+            padding: 20px 0;
+            text-align: center;
+            margin-bottom: 30px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+        }
+        
+        h1, h2, h3, h4 {
+            margin-top: 0;
+        }
+        
+        .grid {
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 20px;
+        }
+        
+        .card {
+            background-color: #fff;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .card-header {
+            border-bottom: 1px solid #eee;
+            padding-bottom: 10px;
+            margin-bottom: 15px;
+            font-weight: bold;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .exam-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 15px;
+        }
+        
+        .exam-card {
+            background-color: #fff;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            padding: 15px;
+            transition: transform 0.2s, box-shadow 0.2s;
+            cursor: pointer;
+            position: relative;
+        }
+        
+        .exam-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+        }
+        
+        .exam-card.active {
+            border: 2px solid var(--primary-color);
+        }
+        
+        .badge {
+            display: inline-block;
+            padding: 3px 8px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: bold;
+            margin-right: 5px;
+        }
+        
+        .badge-easy {
+            background-color: #C8E6C9;
+            color: #2E7D32;
+        }
+        
+        .badge-medium {
+            background-color: #FFE0B2;
+            color: #E65100;
+        }
+        
+        .badge-hard {
+            background-color: #FFCDD2;
+            color: #C62828;
+        }
+        
+        .badge-expert {
+            background-color: #D1C4E9;
+            color: #4527A0;
+        }
+        
+        .stats-tag {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            background-color: #e0e0e0;
+            color: #333;
+            font-size: 10px;
+            padding: 2px 6px;
+            border-radius: 10px;
+        }
+        
+        button {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 10px 16px;
+            font-size: 14px;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            transition: background-color 0.2s;
+            font-weight: bold;
+        }
+        
+        button:hover {
+            background-color: var(--primary-dark);
+        }
+        
+        button:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
+        
+        button.secondary {
+            background-color: var(--secondary-color);
+        }
+        
+        button.secondary:hover {
+            background-color: var(--secondary-dark);
+        }
+        
+        button.danger {
+            background-color: var(--danger-color);
+        }
+        
+        button.danger:hover {
+            background-color: #D32F2F;
+        }
+        
+        .btn-do {
+            background-color: var(--success-color);
+            padding: 12px 24px;
+            font-size: 16px;
+        }
+        
+        .btn-do:hover {
+            background-color: #388E3C;
+        }
+        
+        .btn-dismiss {
+            background-color: var(--danger-color);
+            padding: 12px 24px;
+            font-size: 16px;
+        }
+        
+        .btn-dismiss:hover {
+            background-color: #D32F2F;
+        }
+        
+        .test-area {
+            position: relative;
+            width: 100%;
+            height: 400px;
+            background-color: #fff;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            margin-bottom: 20px;
+            overflow: hidden;
+            text-align: center;
+        }
+        
+        .test-element {
+            position: absolute;
+            background-color: #f5f5f5;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            transition: all 0.2s;
+        }
+        
+        .test-element:hover {
+            background-color: #e0e0e0;
+        }
+        
+        .test-element.button {
+            background-color: var(--secondary-color);
+            color: white;
+            padding: 8px 12px;
+            cursor: pointer;
+        }
+        
+        .test-element.input {
+            background-color: white;
+            padding: 8px;
+            cursor: text;
+        }
+        
+        .test-element.target {
+            border: 2px dashed var(--success-color);
+        }
+        
+        .text-input {
+            width: 100%;
+            padding: 12px;
+            font-size: 16px;
+            border: 1px solid #ddd;
+            border-radius: var(--border-radius);
+            margin-bottom: 20px;
+            box-sizing: border-box;
+        }
+        
+        .plan-display {
+            background-color: #f8f9fa;
+            border-radius: var(--border-radius);
+            padding: 15px;
+            font-family: monospace;
+            white-space: pre-wrap;
+            max-height: 300px;
+            overflow-y: auto;
+            border-left: 4px solid var(--primary-color);
+            margin-bottom: 20px;
+        }
+        
+        .log-display {
+            background-color: #f8f9fa;
+            border-radius: var(--border-radius);
+            padding: 15px;
+            font-family: monospace;
+            white-space: pre-wrap;
+            height: 200px;
+            overflow-y: auto;
+            border-left: 4px solid var(--secondary-color);
+            margin-bottom: 20px;
+            font-size: 13px;
+        }
+        
+        .progress-container {
+            margin: 20px 0;
+        }
+        
+        .progress-bar {
+            height: 10px;
+            background-color: #e0e0e0;
+            border-radius: 5px;
+            overflow: hidden;
+            margin-bottom: 10px;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary-color) 0%, var(--primary-light) 100%);
+            width: 0%;
+            transition: width 0.5s ease;
+        }
+        
+        .progress-text {
+            text-align: center;
+            font-size: 14px;
+            color: #555;
+        }
+        
+        .score-display {
+            font-size: 20px;
+            font-weight: bold;
+            text-align: center;
+            margin: 20px 0;
+            padding: 15px;
+            background-color: #f8f9fa;
+            border-radius: var(--border-radius);
+        }
+        
+        .score-100 {
+            color: var(--success-color);
+        }
+        
+        .score-70 {
+            color: var(--warning-color);
+        }
+        
+        .score-low {
+            color: var(--danger-color);
+        }
+        
+        .connection-status {
+            padding: 10px;
+            border-radius: var(--border-radius);
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .connection-status.connected {
+            background-color: #E8F5E9;
+            color: #2E7D32;
+        }
+        
+        .connection-status.disconnected {
+            background-color: #FFEBEE;
+            color: #C62828;
+        }
+        
+        .connection-status.connecting {
+            background-color: #FFF8E1;
+            color: #F57F17;
+        }
+        
+        .tab-container {
+            display: flex;
+            margin-bottom: 20px;
+        }
+        
+        .tab {
+            padding: 10px 20px;
+            cursor: pointer;
+            background-color: #f5f5f5;
+            border: 1px solid #ddd;
+            border-bottom: none;
+            border-radius: 4px 4px 0 0;
+            margin-right: 5px;
+        }
+        
+        .tab.active {
+            background-color: #fff;
+            border-bottom: 2px solid var(--primary-color);
+            font-weight: bold;
+        }
+        
+        .tab-content {
+            display: none;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 0 0 var(--border-radius) var(--border-radius);
+            box-shadow: var(--box-shadow);
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        .screenshot-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+        }
+        
+        .screenshot {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+        
+        .screenshot-placeholder {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            color: #999;
+            font-style: italic;
+        }
+        
+        /* Modal styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .modal-content {
+            background-color: #fff;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            padding: 20px;
+            width: 80%;
+            max-width: 600px;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+        
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 10px;
+            margin-bottom: 15px;
+        }
+        
+        .modal-close {
+            font-size: 24px;
+            cursor: pointer;
+            color: #999;
+        }
+        
+        .modal-close:hover {
+            color: #333;
+        }
+        
+        /* Results table */
+        .results-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        
+        .results-table th, .results-table td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .results-table th {
+            background-color: #f5f5f5;
+            font-weight: bold;
+        }
+        
+        .results-table tr:hover {
+            background-color: #f9f9f9;
+        }
+        
+        /* Statistics dashboard */
+        .stats-dashboard {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .stat-card {
+            background-color: #fff;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            padding: 15px;
+            text-align: center;
+        }
+        
+        .stat-value {
+            font-size: 24px;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+        
+        .stat-label {
+            font-size: 14px;
+            color: #666;
+        }
+        
+        /* Chart container */
+        .chart-container {
+            height: 300px;
+            margin-bottom: 20px;
+        }
+    </style>
+    
+    <!-- Add Chart.js for visualizations -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.1/dist/chart.min.js"></script>
+</head>
+<body>
+    <header>
+        <h1>Fixed Agent DO Button Comprehensive Exam</h1>
+        <p>Test the agent's ability to understand real-world interfaces, create accurate plans, and execute them correctly</p>
+    </header>
+    
+    <div class="container">
+        <div class="connection-status" id="connectionStatus">
+            Initializing connection...
+        </div>
+        
+        <div class="grid">
+            <div>
+                <!-- Exam selection panel -->
+                <div class="card">
+                    <div class="card-header">
+                        <h3>Advanced Exams</h3>
+                        <button id="refreshExamsBtn">Refresh</button>
+                    </div>
+                    <div class="exam-grid" id="examGrid">
+                        <!-- Exam cards will be generated here -->
+                    </div>
+                </div>
+                
+                <!-- Statistics panel -->
+                <div class="card">
+                    <div class="card-header">
+                        <h3>Performance Stats</h3>
+                        <button id="refreshStatsBtn">Refresh</button>
+                    </div>
+                    <div class="stats-dashboard" id="statsDashboard">
+                        <!-- Stats will be generated here -->
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="performanceChart"></canvas>
+                    </div>
+                </div>
+                
+                <!-- Agent message panel -->
+                <div class="card">
+                    <div class="card-header">
+                        <h3>Agent Message</h3>
+                        <div>
+                            <button id="sendMessageBtn" disabled>Send to Agent</button>
+                        </div>
+                    </div>
+                    <textarea id="agentMessage" class="text-input" rows="4" placeholder="Enter a message to send to the agent..."></textarea>
+                    <div class="progress-container" id="progressContainer" style="display: none;">
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="progressFill"></div>
+                        </div>
+                        <div class="progress-text" id="progressText">0% - Waiting for agent...</div>
+                    </div>
+                </div>
+                
+                <!-- Execution controls -->
+                <div class="card">
+                    <div class="card-header">
+                        <h3>Execution Controls</h3>
+                    </div>
+                    <div style="display: flex; gap: 10px; margin-bottom: 15px;">
+                        <button id="doButton" class="btn-do" disabled>🟢 DO</button>
+                        <button id="dismissButton" class="btn-dismiss" disabled>🔴 DISMISS</button>
+                    </div>
+                    <div class="score-display" id="scoreDisplay">
+                        Score: --
+                    </div>
+                </div>
+            </div>
+            
+            <div>
+                <!-- Main content area -->
+                <div class="card">
+                    <div class="card-header">
+                        <h3>Exam: <span id="currentExamTitle">None Selected</span></h3>
+                        <div>
+                            <button id="resetExamBtn" disabled>Reset Exam</button>
+                        </div>
+                    </div>
+                    
+                    <div class="tab-container" id="tabContainer">
+                        <div class="tab active" data-tab="testArea">Screenshot</div>
+                        <div class="tab" data-tab="planView">Plan View</div>
+                        <div class="tab" data-tab="resultsView">Results</div>
+                        <div class="tab" data-tab="logsView">Logs</div>
+                    </div>
+                    
+                    <div class="tab-content active" id="testArea">
+                        <div class="test-area" id="testAreaContainer">
+                            <div class="screenshot-container" id="screenshotContainer">
+                                <div class="screenshot-placeholder">
+                                    Select an exam to view the screenshot
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="tab-content" id="planView">
+                        <div class="plan-display" id="planDisplay">
+                            No plan available. Send a message to the agent first.
+                        </div>
+                    </div>
+                    
+                    <div class="tab-content" id="resultsView">
+                        <table class="results-table" id="resultsTable">
+                            <thead>
+                                <tr>
+                                    <th>Test</th>
+                                    <th>Expected Action</th>
+                                    <th>Actual Action</th>
+                                    <th>Score</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- Results will be filled by JavaScript -->
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <div class="tab-content" id="logsView">
+                        <div class="log-display" id="logDisplay">
+                            Waiting for test execution...
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Message log -->
+                <div class="card">
+                    <div class="card-header">
+                        <h3>WebSocket Messages</h3>
+                        <button id="clearLogBtn">Clear</button>
+                    </div>
+                    <div class="log-display" id="messageLog">
+                        Waiting for WebSocket connection...
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Results Modal -->
+    <div class="modal" id="resultsModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Exam Results</h2>
+                <span class="modal-close" id="closeResultsModal">&times;</span>
+            </div>
+            <div id="modalContent">
+                <!-- Results content will be filled by JavaScript -->
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // DOM Elements
+            const connectionStatus = document.getElementById('connectionStatus');
+            const messageLog = document.getElementById('messageLog');
+            const logDisplay = document.getElementById('logDisplay');
+            const agentMessage = document.getElementById('agentMessage');
+            const sendMessageBtn = document.getElementById('sendMessageBtn');
+            const doButton = document.getElementById('doButton');
+            const dismissButton = document.getElementById('dismissButton');
+            const progressContainer = document.getElementById('progressContainer');
+            const progressFill = document.getElementById('progressFill');
+            const progressText = document.getElementById('progressText');
+            const scoreDisplay = document.getElementById('scoreDisplay');
+            const planDisplay = document.getElementById('planDisplay');
+            const examGrid = document.getElementById('examGrid');
+            const refreshExamsBtn = document.getElementById('refreshExamsBtn');
+            const refreshStatsBtn = document.getElementById('refreshStatsBtn');
+            const resetExamBtn = document.getElementById('resetExamBtn');
+            const currentExamTitle = document.getElementById('currentExamTitle');
+            const testAreaContainer = document.getElementById('testAreaContainer');
+            const screenshotContainer = document.getElementById('screenshotContainer');
+            const resultsTable = document.getElementById('resultsTable').querySelector('tbody');
+            const clearLogBtn = document.getElementById('clearLogBtn');
+            const resultsModal = document.getElementById('resultsModal');
+            const closeResultsModal = document.getElementById('closeResultsModal');
+            const modalContent = document.getElementById('modalContent');
+            const statsDashboard = document.getElementById('statsDashboard');
+            
+            // Chart data
+            let performanceChart = null;
+            
+            // Tab functionality
+            const tabs = document.querySelectorAll('.tab');
+            const tabContents = document.querySelectorAll('.tab-content');
+            
+            tabs.forEach(tab => {
+                tab.addEventListener('click', function() {
+                    const tabId = this.getAttribute('data-tab');
+                    
+                    // Remove active class from all tabs and contents
+                    tabs.forEach(t => t.classList.remove('active'));
+                    tabContents.forEach(c => c.classList.remove('active'));
+                    
+                    // Add active class to current tab and content
+                    this.classList.add('active');
+                    document.getElementById(tabId).classList.add('active');
+                });
+            });
+            
+            // WebSocket connection
+            let ws = null;
+            let currentExam = null;
+            let sessionId = 'exam_session_' + Date.now();
+            let currentPlan = null;
+            let currentResults = [];
+            let executionInProgress = false;
+            let examStats = {};
+            
+            // Connect to WebSocket server
+            function connect() {
+                connectionStatus.className = 'connection-status connecting';
+                connectionStatus.textContent = 'Connecting to WebSocket server...';
+                
+                try {
+                    ws = new WebSocket('ws://localhost:8767');
+                    
+                    ws.onopen = function() {
+                        connectionStatus.className = 'connection-status connected';
+                        connectionStatus.textContent = '✅ Connected to WebSocket server';
+                        addToLog('Connected to WebSocket server', 'server');
+                        
+                        // Enable buttons based on exam selection
+                        updateButtonStates();
+                        
+                        // Load available exams
+                        ws.send(JSON.stringify({type: 'get_all_exams'}));
+                        
+                        // Load stats
+                        ws.send(JSON.stringify({type: 'get_stats'}));
+                    };
+                    
+                    ws.onmessage = function(event) {
+                        try {
+                            const data = JSON.parse(event.data);
+                            addToLog('Received: ' + JSON.stringify(data, null, 2), 'server');
+                            
+                            // Handle different message types
+                            handleServerMessage(data);
+                        } catch (e) {
+                            addToLog('Error parsing message: ' + e, 'error');
+                            addToLog('Raw message: ' + event.data, 'error');
+                        }
+                    };
+                    
+                    ws.onclose = function(event) {
+                        connectionStatus.className = 'connection-status disconnected';
+                        connectionStatus.textContent = '❌ Disconnected from WebSocket server';
+                        addToLog('WebSocket connection closed: ' + (event.reason || 'Connection closed'), 'error');
+                        
+                        // Disable buttons
+                        sendMessageBtn.disabled = true;
+                        doButton.disabled = true;
+                        dismissButton.disabled = true;
+                        
+                        // Try to reconnect after 3 seconds
+                        setTimeout(connect, 3000);
+                    };
+                    
+                    ws.onerror = function(error) {
+                        connectionStatus.className = 'connection-status disconnected';
+                        connectionStatus.textContent = '❌ WebSocket error';
+                        addToLog('WebSocket error: ' + error, 'error');
+                    };
+                } catch (e) {
+                    connectionStatus.className = 'connection-status disconnected';
+                    connectionStatus.textContent = '❌ Connection error: ' + e.message;
+                    addToLog('Connection error: ' + e.message, 'error');
+                    
+                    // Try to reconnect after 3 seconds
+                    setTimeout(connect, 3000);
+                }
+            }
+            
+            // Handle server messages based on type
+            function handleServerMessage(data) {
+                const msgType = data.type;
+                
+                if (msgType === 'welcome') {
+                    // Welcome message, no special handling needed
+                } 
+                else if (msgType === 'all_exams') {
+                    // Display exams
+                    displayExams(data.exams);
+                }
+                else if (msgType === 'exam_stats') {
+                    // Update stats
+                    examStats = data.stats;
+                    updateStats();
+                }
+                else if (msgType === 'exam_details') {
+                    // Update exam details
+                    const examId = data.exam_id;
+                    const details = data.details;
+                    
+                    // If this is the current exam, update display
+                    if (currentExam && currentExam.id === examId) {
+                        currentExam = {...currentExam, ...details};
+                        updateExamDisplay();
+                    }
+                }
+                else if (msgType === 'agent_progress') {
+                    // Update progress bar
+                    progressContainer.style.display = 'block';
+                    progressFill.style.width = data.progress + '%';
+                    progressText.textContent = data.progress + '% - ' + data.message;
+                    
+                    // Log to execution log
+                    addToExecutionLog('Progress: ' + data.progress + '% - ' + data.message);
+                } 
+                else if (msgType === 'agent_execution_success') {
+                    // Execution completed successfully
+                    progressContainer.style.display = 'block';
+                    progressFill.style.width = '100%';
+                    progressText.textContent = '100% - ' + data.summary;
+                    
+                    // Log completion
+                    addToExecutionLog('✅ Execution completed: ' + data.summary);
+                    
+                    // Calculate score if an exam is active
+                    if (currentExam && !executionInProgress) {
+                        calculateScore(data);
+                    }
+                    
+                    executionInProgress = false;
+                } 
+                else if (msgType === 'agent_execution_error') {
+                    // Execution failed
+                    addToExecutionLog('❌ Execution failed: ' + data.error);
+                    executionInProgress = false;
+                } 
+                else if (msgType === 'agent_execution_warning') {
+                    // Execution warning
+                    addToExecutionLog('⚠️ Warning: ' + data.message);
+                }
+                else if (msgType === 'agent_dismissed') {
+                    // Plan dismissed
+                    addToExecutionLog('❌ Plan dismissed: ' + data.message);
+                    executionInProgress = false;
+                } 
+                else if (msgType === 'plan_created') {
+                    // Update plan display
+                    if (data.plan) {
+                        currentPlan = data.plan;
+                        updatePlanDisplay(data.plan);
+                        
+                        // Enable DO and DISMISS buttons
+                        doButton.disabled = false;
+                        dismissButton.disabled = false;
+                    }
+                }
+            }
+            
+            // Display exams in the grid
+            function displayExams(exams) {
+                examGrid.innerHTML = '';
+                
+                for (const [examId, exam] of Object.entries(exams)) {
+                    const card = document.createElement('div');
+                    card.className = 'exam-card';
+                    card.dataset.examId = examId;
+                    
+                    const difficulty = document.createElement('div');
+                    difficulty.className = 'badge badge-' + exam.difficulty;
+                    difficulty.textContent = exam.difficulty.charAt(0).toUpperCase() + exam.difficulty.slice(1);
+                    
+                    const title = document.createElement('h3');
+                    title.textContent = exam.title;
+                    
+                    const description = document.createElement('p');
+                    description.textContent = exam.description;
+                    
+                    // Add stats if available
+                    if (exam.stats) {
+                        const stats = exam.stats;
+                        const successRate = stats.attempts > 0 ? Math.round((stats.successful / stats.attempts) * 100) : 0;
+                        
+                        const statsTag = document.createElement('div');
+                        statsTag.className = 'stats-tag';
+                        statsTag.textContent = `${successRate}% Success`;
+                        card.appendChild(statsTag);
+                    }
+                    
+                    card.appendChild(difficulty);
+                    card.appendChild(title);
+                    card.appendChild(description);
+                    
+                    card.addEventListener('click', function() {
+                        loadExam(examId, exam);
+                    });
+                    
+                    examGrid.appendChild(card);
+                }
+            }
+            
+            // Update statistics display
+            function updateStats() {
+                statsDashboard.innerHTML = '';
+                
+                // Calculate overall statistics
+                let totalAttempts = 0;
+                let totalSuccessful = 0;
+                let totalPartial = 0;
+                let totalFailed = 0;
+                let avgTime = 0;
+                let totalExamTime = 0;
+                let examCount = 0;
+                
+                for (const [examId, stats] of Object.entries(examStats)) {
+                    totalAttempts += stats.attempts || 0;
+                    totalSuccessful += stats.successful || 0;
+                    totalPartial += stats.partial || 0;
+                    totalFailed += stats.failed || 0;
+                    
+                    if (stats.avg_time) {
+                        totalExamTime += stats.avg_time;
+                        examCount++;
+                    }
+                }
+                
+                avgTime = examCount > 0 ? totalExamTime / examCount : 0;
+                
+                // Create stat cards
+                const stats = [
+                    { label: 'Total Attempts', value: totalAttempts },
+                    { label: 'Success Rate', value: totalAttempts > 0 ? Math.round((totalSuccessful / totalAttempts) * 100) + '%' : '0%' },
+                    { label: 'Avg. Time', value: avgTime.toFixed(1) + 's' },
+                    { label: 'Successes', value: totalSuccessful }
+                ];
+                
+                stats.forEach(stat => {
+                    const card = document.createElement('div');
+                    card.className = 'stat-card';
+                    
+                    const value = document.createElement('div');
+                    value.className = 'stat-value';
+                    value.textContent = stat.value;
+                    
+                    const label = document.createElement('div');
+                    label.className = 'stat-label';
+                    label.textContent = stat.label;
+                    
+                    card.appendChild(value);
+                    card.appendChild(label);
+                    
+                    statsDashboard.appendChild(card);
+                });
+                
+                // Update chart
+                updatePerformanceChart();
+            }
+            
+            // Update performance chart
+            function updatePerformanceChart() {
+                const ctx = document.getElementById('performanceChart').getContext('2d');
+                
+                // Prepare data for chart
+                const labels = [];
+                const successRates = [];
+                const avgTimes = [];
+                
+                for (const [examId, stats] of Object.entries(examStats)) {
+                    if (stats.attempts > 0) {
+                        // Get exam title if available
+                        let title = examId;
+                        const examCards = document.querySelectorAll('.exam-card');
+                        for (const card of examCards) {
+                            if (card.dataset.examId === examId) {
+                                const titleElement = card.querySelector('h3');
+                                if (titleElement) {
+                                    title = titleElement.textContent;
+                                }
+                                break;
+                            }
+                        }
+                        
+                        labels.push(title);
+                        successRates.push(Math.round((stats.successful / stats.attempts) * 100));
+                        avgTimes.push(stats.avg_time || 0);
+                    }
+                }
+                
+                // Create or update chart
+                if (performanceChart) {
+                    performanceChart.data.labels = labels;
+                    performanceChart.data.datasets[0].data = successRates;
+                    performanceChart.data.datasets[1].data = avgTimes;
+                    performanceChart.update();
+                } else {
+                    performanceChart = new Chart(ctx, {
+                        type: 'bar',
+                        data: {
+                            labels: labels,
+                            datasets: [
+                                {
+                                    label: 'Success Rate (%)',
+                                    data: successRates,
+                                    backgroundColor: 'rgba(75, 192, 192, 0.6)',
+                                    borderColor: 'rgba(75, 192, 192, 1)',
+                                    borderWidth: 1,
+                                    yAxisID: 'y'
+                                },
+                                {
+                                    label: 'Avg. Time (s)',
+                                    data: avgTimes,
+                                    backgroundColor: 'rgba(153, 102, 255, 0.6)',
+                                    borderColor: 'rgba(153, 102, 255, 1)',
+                                    borderWidth: 1,
+                                    yAxisID: 'y1'
+                                }
+                            ]
+                        },
+                        options: {
+                            responsive: true,
+                            maintainAspectRatio: false,
+                            scales: {
+                                y: {
+                                    beginAtZero: true,
+                                    title: {
+                                        display: true,
+                                        text: 'Success Rate (%)'
+                                    },
+                                    max: 100
+                                },
+                                y1: {
+                                    beginAtZero: true,
+                                    position: 'right',
+                                    grid: {
+                                        drawOnChartArea: false
+                                    },
+                                    title: {
+                                        display: true,
+                                        text: 'Avg. Time (s)'
+                                    }
+                                }
+                            }
+                        }
+                    });
+                }
+            }
+            
+            // Load a specific exam
+            function loadExam(examId, examData) {
+                // Clear any previous exam
+                resetExam();
+                
+                // Set current exam
+                currentExam = { id: examId, ...examData };
+                currentExamTitle.textContent = examData.title;
+                
+                // Update button states
+                updateButtonStates();
+                
+                // Set pre-filled message if available
+                agentMessage.value = examData.instructions || '';
+                
+                // Update exam display
+                updateExamDisplay();
+                
+                // Highlight the selected exam card
+                const examCards = document.querySelectorAll('.exam-card');
+                examCards.forEach(card => {
+                    card.classList.remove('active');
+                    if (card.dataset.examId === examId) {
+                        card.classList.add('active');
+                    }
+                });
+                
+                // Enable reset button
+                resetExamBtn.disabled = false;
+                
+                // Get more detailed exam information if available
+                if (ws && ws.readyState === WebSocket.OPEN) {
+                    ws.send(JSON.stringify({
+                        type: 'get_exam_details',
+                        exam_id: examId
+                    }));
+                }
+            }
+            
+            // Update the exam display
+            function updateExamDisplay() {
+                if (!currentExam) return;
+                
+                // Update screenshot
+                updateScreenshot();
+            }
+            
+            // Update the screenshot display
+            function updateScreenshot() {
+                screenshotContainer.innerHTML = '';
+                
+                if (currentExam && currentExam.screenshot) {
+                    const img = document.createElement('img');
+                    img.className = 'screenshot';
+                    img.src = currentExam.screenshot;
+                    img.alt = currentExam.title;
+                    
+                    screenshotContainer.appendChild(img);
+                } else {
+                    const placeholder = document.createElement('div');
+                    placeholder.className = 'screenshot-placeholder';
+                    placeholder.textContent = 'No screenshot available for this exam';
+                    
+                    screenshotContainer.appendChild(placeholder);
+                }
+            }
+            
+            // Add message to the WebSocket log
+            function addToLog(message, type = 'info') {
+                const now = new Date().toLocaleTimeString();
+                const logEntry = document.createElement('div');
+                logEntry.className = type;
+                logEntry.textContent = `[${now}] ${message}`;
+                
+                // Add to the top of the log
+                messageLog.insertBefore(logEntry, messageLog.firstChild);
+                
+                // Limit log entries to 100
+                if (messageLog.childNodes.length > 100) {
+                    messageLog.removeChild(messageLog.lastChild);
+                }
+            }
+            
+            // Add message to the execution log
+            function addToExecutionLog(message) {
+                const now = new Date().toLocaleTimeString();
+                logDisplay.textContent += `[${now}] ${message}\n`;
+                
+                // Auto-scroll to bottom
+                logDisplay.scrollTop = logDisplay.scrollHeight;
+            }
+            
+            // Update the plan display
+            function updatePlanDisplay(plan) {
+                if (typeof plan === 'string') {
+                    planDisplay.textContent = plan;
+                } else {
+                    planDisplay.textContent = JSON.stringify(plan, null, 2);
+                }
+                
+                // Switch to plan view tab
+                document.querySelector('.tab[data-tab="planView"]').click();
+            }
+            
+            // Reset the current exam
+            function resetExam() {
+                // Clear screenshot
+                screenshotContainer.innerHTML = '<div class="screenshot-placeholder">Select an exam to view the screenshot</div>';
+                
+                // Reset plan display
+                planDisplay.textContent = 'No plan available. Send a message to the agent first.';
+                
+                // Reset results
+                currentResults = [];
+                resultsTable.innerHTML = '';
+                
+                // Reset score
+                scoreDisplay.textContent = 'Score: --';
+                scoreDisplay.className = 'score-display';
+                
+                // Reset progress
+                progressContainer.style.display = 'none';
+                progressFill.style.width = '0%';
+                progressText.textContent = '0% - Waiting for agent...';
+                
+                // Clear execution log
+                logDisplay.textContent = 'Waiting for test execution...\n';
+                
+                // Update button states
+                updateButtonStates();
+            }
+            
+            // Update button states based on current exam and connection
+            function updateButtonStates() {
+                const wsConnected = ws && ws.readyState === WebSocket.OPEN;
+                
+                // Send message button
+                sendMessageBtn.disabled = !wsConnected || !currentExam;
+                
+                // DO and DISMISS buttons - only enabled when a plan is available
+                doButton.disabled = !wsConnected || !currentPlan;
+                dismissButton.disabled = !wsConnected || !currentPlan;
+                
+                // Reset button
+                resetExamBtn.disabled = !currentExam;
+            }
+            
+            // Calculate and display score
+            function calculateScore(executionData) {
+                if (!currentExam || !currentExam.expected_actions) {
+                    return;
+                }
+                
+                // Clear results table
+                resultsTable.innerHTML = '';
+                
+                const expectedActions = currentExam.expected_actions;
+                let totalScore = 0;
+                let maxScore = expectedActions.length * 100;
+                
+                // Analyze each expected action
+                expectedActions.forEach((expected, index) => {
+                    // Try to find a matching actual action
+                    const actual = currentResults.find(result => {
+                        return result.type === expected.type && result.target === expected.target;
+                    });
+                    
+                    let actionScore = 0;
+                    let actionResult = 'Failed';
+                    
+                    if (actual) {
+                        // Action was performed on the correct target
+                        actionScore = 70;
+                        actionResult = 'Partial';
+                        
+                        // For text input, check if the text matches
+                        if (expected.type === 'text' && actual.value === expected.text) {
+                            actionScore = 100;
+                            actionResult = 'Success';
+                        } else if (expected.type === 'click') {
+                            // For clicks, full score
+                            actionScore = 100;
+                            actionResult = 'Success';
+                        }
+                    }
+                    
+                    // Add to total score
+                    totalScore += actionScore;
+                    
+                    // Add to results table
+                    const row = document.createElement('tr');
+                    
+                    const testCell = document.createElement('td');
+                    testCell.textContent = `Test ${index + 1}`;
+                    
+                    const expectedCell = document.createElement('td');
+                    expectedCell.textContent = expected.description;
+                    
+                    const actualCell = document.createElement('td');
+                    if (actual) {
+                        actualCell.textContent = `${actual.type} on ${actual.target}${actual.value ? ': ' + actual.value : ''}`;
+                    } else {
+                        actualCell.textContent = 'Not performed';
+                    }
+                    
+                    const scoreCell = document.createElement('td');
+                    scoreCell.textContent = `${actionScore}% - ${actionResult}`;
+                    if (actionScore === 100) {
+                        scoreCell.style.color = 'var(--success-color)';
+                    } else if (actionScore > 0) {
+                        scoreCell.style.color = 'var(--warning-color)';
+                    } else {
+                        scoreCell.style.color = 'var(--danger-color)';
+                    }
+                    
+                    row.appendChild(testCell);
+                    row.appendChild(expectedCell);
+                    row.appendChild(actualCell);
+                    row.appendChild(scoreCell);
+                    
+                    resultsTable.appendChild(row);
+                });
+                
+                // Calculate final score percentage
+                const finalScore = Math.round((totalScore / maxScore) * 100);
+                
+                // Update score display
+                scoreDisplay.textContent = `Score: ${finalScore}%`;
+                
+                // Set score class for styling
+                if (finalScore >= 90) {
+                    scoreDisplay.className = 'score-display score-100';
+                } else if (finalScore >= 70) {
+                    scoreDisplay.className = 'score-display score-70';
+                } else {
+                    scoreDisplay.className = 'score-display score-low';
+                }
+                
+                // Switch to results tab
+                document.querySelector('.tab[data-tab="resultsView"]').click();
+                
+                // Save results to log
+                const logEntry = {
+                    timestamp: new Date().toISOString(),
+                    exam: currentExam.id,
+                    score: finalScore,
+                    expectedActions: expectedActions,
+                    actualActions: currentResults,
+                    plan: currentPlan
+                };
+                
+                // In a real implementation, you would send this to a server
+                addToExecutionLog('Test completed with score: ' + finalScore + '%');
+                addToExecutionLog('Results logged: ' + JSON.stringify(logEntry, null, 2));
+                
+                // Show results modal
+                showResultsModal(finalScore, expectedActions, currentResults);
+                
+                // Refresh stats
+                if (ws && ws.readyState === WebSocket.OPEN) {
+                    ws.send(JSON.stringify({type: 'get_stats'}));
+                }
+            }
+            
+            // Show results modal
+            function showResultsModal(score, expected, actual) {
+                modalContent.innerHTML = '';
+                
+                // Create score header
+                const scoreHeader = document.createElement('div');
+                scoreHeader.className = score >= 90 ? 'score-display score-100' : score >= 70 ? 'score-display score-70' : 'score-display score-low';
+                scoreHeader.textContent = `Final Score: ${score}%`;
+                modalContent.appendChild(scoreHeader);
+                
+                // Create results summary
+                const summary = document.createElement('p');
+                summary.textContent = `Completed ${actual.length} of ${expected.length} expected actions.`;
+                modalContent.appendChild(summary);
+                
+                // Create detailed results table
+                const table = document.createElement('table');
+                table.className = 'results-table';
+                
+                const thead = document.createElement('thead');
+                const headerRow = document.createElement('tr');
+                
+                const headers = ['Action', 'Expected', 'Actual', 'Result'];
+                headers.forEach(headerText => {
+                    const th = document.createElement('th');
+                    th.textContent = headerText;
+                    headerRow.appendChild(th);
+                });
+                
+                thead.appendChild(headerRow);
+                table.appendChild(thead);
+                
+                const tbody = document.createElement('tbody');
+                
+                expected.forEach((exp, index) => {
+                    const act = actual.find(a => a.type === exp.type && a.target === exp.target);
+                    
+                    const row = document.createElement('tr');
+                    
+                    const actionCell = document.createElement('td');
+                    actionCell.textContent = `Action ${index + 1}`;
+                    
+                    const expectedCell = document.createElement('td');
+                    expectedCell.textContent = exp.description;
+                    
+                    const actualCell = document.createElement('td');
+                    if (act) {
+                        actualCell.textContent = `${act.type} on ${act.target}${act.value ? ': ' + act.value : ''}`;
+                    } else {
+                        actualCell.textContent = 'Not performed';
+                    }
+                    
+                    const resultCell = document.createElement('td');
+                    if (!act) {
+                        resultCell.textContent = 'Failed';
+                        resultCell.style.color = 'var(--danger-color)';
+                    } else if (exp.type === 'text' && act.value !== exp.text) {
+                        resultCell.textContent = 'Partial - Text mismatch';
+                        resultCell.style.color = 'var(--warning-color)';
+                    } else {
+                        resultCell.textContent = 'Success';
+                        resultCell.style.color = 'var(--success-color)';
+                    }
+                    
+                    row.appendChild(actionCell);
+                    row.appendChild(expectedCell);
+                    row.appendChild(actualCell);
+                    row.appendChild(resultCell);
+                    
+                    tbody.appendChild(row);
+                });
+                
+                table.appendChild(tbody);
+                modalContent.appendChild(table);
+                
+                // Add recommendations
+                if (score < 100) {
+                    const recommendations = document.createElement('div');
+                    recommendations.innerHTML = '<h3>Recommendations for Improvement</h3>';
+                    
+                    const recList = document.createElement('ul');
+                    
+                    // Generate recommendations based on what went wrong
+                    const missedActions = expected.filter(exp => !actual.some(act => act.type === exp.type && act.target === exp.target));
+                    if (missedActions.length > 0) {
+                        const item = document.createElement('li');
+                        item.textContent = `Missed actions: The agent failed to perform ${missedActions.length} expected actions. Check if the plan includes all necessary steps.`;
+                        recList.appendChild(item);
+                    }
+                    
+                    // Check for text mismatches
+                    const textMismatches = expected.filter(exp => 
+                        exp.type === 'text' && 
+                        actual.some(act => act.type === exp.type && act.target === exp.target && act.value !== exp.text)
+                    );
+                    
+                    if (textMismatches.length > 0) {
+                        const item = document.createElement('li');
+                        item.textContent = `Text input errors: The agent entered incorrect text. Check if the instructions were clear about what text to enter.`;
+                        recList.appendChild(item);
+                    }
+                    
+                    recommendations.appendChild(recList);
+                    modalContent.appendChild(recommendations);
+                }
+                
+                // Show the modal
+                resultsModal.style.display = 'flex';
+            }
+            
+            // Event Listeners
+            
+            // Send message button
+            sendMessageBtn.addEventListener('click', function() {
+                if (!ws || ws.readyState !== WebSocket.OPEN) {
+                    addToLog('Not connected to WebSocket server', 'error');
+                    return;
+                }
+                
+                const message = agentMessage.value.trim();
+                if (!message) {
+                    addToLog('Please enter a message', 'error');
+                    return;
+                }
+                
+                // Generate a session ID if not already set
+                if (!sessionId) {
+                    sessionId = 'exam_session_' + Date.now();
+                }
+                
+                // Create message for agent mode
+                const agentRequest = {
+                    type: 'agent_request',
+                    mode: 'AGENT',
+                    message: message,
+                    session_id: sessionId,
+                    exam_id: currentExam ? currentExam.id : 'unknown',
+                    timestamp: new Date().toISOString()
+                };
+                
+                // Reset results for new test
+                currentResults = [];
+                
+                // Send message
+                ws.send(JSON.stringify(agentRequest));
+                addToLog('Sent message to agent: ' + message, 'client');
+                
+                // Show progress
+                progressContainer.style.display = 'block';
+                progressFill.style.width = '10%';
+                progressText.textContent = '10% - Sending to agent...';
+            });
+            
+            // DO button
+            doButton.addEventListener('click', function() {
+                if (!ws || ws.readyState !== WebSocket.OPEN) {
+                    addToLog('Not connected to WebSocket server', 'error');
+                    return;
+                }
+                
+                if (!currentPlan) {
+                    addToLog('No plan available', 'error');
+                    return;
+                }
+                
+                // Debug - log plan details
+                addToLog('Current plan details: ' + JSON.stringify(currentPlan, null, 2), 'debug');
+                
+                // Create DO message
+                const doMessage = {
+                    type: 'button_action',
+                    action: 'EXECUTE_PLAN',
+                    plan_id: sessionId,
+                    session_id: sessionId,
+                    timestamp: new Date().toISOString(),
+                    plan: currentPlan
+                };
+                
+                // Send message
+                try {
+                    ws.send(JSON.stringify(doMessage));
+                    addToLog('Sent DO button click: ' + JSON.stringify(doMessage, null, 2), 'client');
+                } catch (error) {
+                    addToLog('Error sending DO button message: ' + error.message, 'error');
+                }
+                
+                // Update progress
+                progressContainer.style.display = 'block';
+                progressFill.style.width = '60%';
+                progressText.textContent = '60% - Starting execution...';
+                
+                // Set execution in progress
+                executionInProgress = true;
+                
+                // Clear previous results
+                currentResults = [];
+                
+                // Simulate element interactions for each expected action
+                if (currentExam && currentExam.expected_actions) {
+                    simulateElementInteractions(currentExam.expected_actions);
+                }
+            });
+            
+            // DISMISS button
+            dismissButton.addEventListener('click', function() {
+                if (!ws || ws.readyState !== WebSocket.OPEN) {
+                    addToLog('Not connected to WebSocket server', 'error');
+                    return;
+                }
+                
+                // Create DISMISS message
+                const dismissMessage = {
+                    type: 'agent_confirmation',
+                    action: 'DISMISS',
+                    session_id: sessionId,
+                    timestamp: new Date().toISOString()
+                };
+                
+                // Send message
+                ws.send(JSON.stringify(dismissMessage));
+                addToLog('Sent DISMISS button click: ' + JSON.stringify(dismissMessage, null, 2), 'client');
+                
+                // Reset plan and disable buttons
+                currentPlan = null;
+                doButton.disabled = true;
+                dismissButton.disabled = true;
+                
+                // Hide progress
+                progressContainer.style.display = 'none';
+            });
+            
+            // Reset exam button
+            resetExamBtn.addEventListener('click', function() {
+                resetExam();
+                
+                // If an exam is selected, reload it
+                if (currentExam) {
+                    const examId = currentExam.id;
+                    const examData = {...currentExam};
+                    loadExam(examId, examData);
+                }
+            });
+            
+            // Clear log button
+            clearLogBtn.addEventListener('click', function() {
+                messageLog.textContent = '';
+            });
+            
+            // Close modal button
+            closeResultsModal.addEventListener('click', function() {
+                resultsModal.style.display = 'none';
+            });
+            
+            // Click outside modal to close
+            window.addEventListener('click', function(event) {
+                if (event.target === resultsModal) {
+                    resultsModal.style.display = 'none';
+                }
+            });
+            
+            // Refresh exams button
+            refreshExamsBtn.addEventListener('click', function() {
+                if (ws && ws.readyState === WebSocket.OPEN) {
+                    ws.send(JSON.stringify({type: 'get_all_exams'}));
+                }
+            });
+            
+            // Refresh stats button
+            refreshStatsBtn.addEventListener('click', function() {
+                if (ws && ws.readyState === WebSocket.OPEN) {
+                    ws.send(JSON.stringify({type: 'get_stats'}));
+                }
+            });
+            
+            // Simulate element interactions for testing
+            function simulateElementInteractions(expectedActions) {
+                // For each expected action, record it in the results
+                expectedActions.forEach((action, index) => {
+                    setTimeout(() => {
+                        // Add to results for scoring
+                        currentResults.push({
+                            type: action.type,
+                            target: action.target,
+                            value: action.type === 'text' ? action.text : undefined
+                        });
+                        
+                        addToExecutionLog(`Element interaction: ${action.type} on ${action.target}${action.text ? ' with value: ' + action.text : ''}`);
+                    }, index * 1000); // 1 second delay between actions
+                });
+            }
+            
+            // Start connection
+            connect();
+        });
+    </script>
+</body>
+</html>

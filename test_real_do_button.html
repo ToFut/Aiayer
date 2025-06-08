@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Real DO Button Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        h1 {
+            color: #333;
+        }
+        button {
+            padding: 10px 15px;
+            margin: 5px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        button#doButton {
+            background-color: #2196F3;
+            font-weight: bold;
+            font-size: 18px;
+            padding: 15px 30px;
+        }
+        button#doButton:hover {
+            background-color: #0b7dda;
+        }
+        #logContainer {
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            background-color: #f9f9f9;
+            height: 300px;
+            overflow-y: auto;
+        }
+        .log {
+            margin: 5px 0;
+            padding: 5px;
+            border-bottom: 1px solid #eee;
+        }
+        .client {
+            color: #2196F3;
+        }
+        .server {
+            color: #4CAF50;
+        }
+        .error {
+            color: #f44336;
+        }
+        .plan {
+            background-color: #e8f5e9;
+            padding: 10px;
+            border-radius: 4px;
+            margin: 10px 0;
+            white-space: pre-wrap;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Real DO Button Test</h1>
+        <p>This page tests the real DO button execution with physical mouse and keyboard automation.</p>
+        
+        <div>
+            <h2>Connection</h2>
+            <button id="connectButton">Connect to WebSocket</button>
+            <span id="connectionStatus">Not connected</span>
+        </div>
+        
+        <div>
+            <h2>Test Plans</h2>
+            <button id="doButton">DO!</button>
+            <button id="testBrowserSearchButton">Test Browser Search</button>
+            <button id="testSimpleClickButton">Test Simple Click</button>
+            <button id="testTypeTextButton">Test Text Input</button>
+        </div>
+        
+        <div id="logContainer">
+            <div class="log">Logs will appear here...</div>
+        </div>
+    </div>
+
+    <script>
+        // Globals
+        let ws = null;
+        let sessionId = "test_" + Math.floor(Math.random() * 1000000);
+        let connected = false;
+        
+        // Elements
+        const connectButton = document.getElementById('connectButton');
+        const connectionStatus = document.getElementById('connectionStatus');
+        const doButton = document.getElementById('doButton');
+        const testBrowserSearchButton = document.getElementById('testBrowserSearchButton');
+        const testSimpleClickButton = document.getElementById('testSimpleClickButton');
+        const testTypeTextButton = document.getElementById('testTypeTextButton');
+        const logContainer = document.getElementById('logContainer');
+        
+        // Event listeners
+        connectButton.addEventListener('click', connect);
+        doButton.addEventListener('click', sendDoButtonClick);
+        testBrowserSearchButton.addEventListener('click', sendBrowserSearchPlan);
+        testSimpleClickButton.addEventListener('click', sendSimpleClickPlan);
+        testTypeTextButton.addEventListener('click', sendTypeTextPlan);
+        
+        // Initialize
+        function initialize() {
+            doButton.disabled = true;
+            testBrowserSearchButton.disabled = true;
+            testSimpleClickButton.disabled = true;
+            testTypeTextButton.disabled = true;
+        }
+        
+        // Connect to WebSocket server
+        function connect() {
+            if (ws) {
+                ws.close();
+            }
+            
+            addToLog('Connecting to WebSocket server...', 'client');
+            connectionStatus.textContent = 'Connecting...';
+            
+            try {
+                ws = new WebSocket('ws://localhost:8765');
+                
+                ws.onopen = function() {
+                    connected = true;
+                    connectionStatus.textContent = 'Connected';
+                    connectButton.textContent = 'Disconnect';
+                    doButton.disabled = false;
+                    testBrowserSearchButton.disabled = false;
+                    testSimpleClickButton.disabled = false;
+                    testTypeTextButton.disabled = false;
+                    addToLog('Connected to WebSocket server', 'client');
+                };
+                
+                ws.onmessage = function(event) {
+                    const data = JSON.parse(event.data);
+                    addToLog('Received: ' + JSON.stringify(data, null, 2), 'server');
+                    
+                    // Handle different message types
+                    if (data.type === 'agent_progress') {
+                        addToLog(`Progress: ${data.progress}% - ${data.message}`, 'server');
+                    } else if (data.type === 'agent_execution_success') {
+                        addToLog('Execution completed: ' + (data.result.success ? 'SUCCESS' : 'FAILURE'), 'server');
+                        addToLog('Summary: ' + data.summary, 'server');
+                    }
+                };
+                
+                ws.onclose = function() {
+                    connected = false;
+                    connectionStatus.textContent = 'Disconnected';
+                    connectButton.textContent = 'Connect to WebSocket';
+                    doButton.disabled = true;
+                    testBrowserSearchButton.disabled = true;
+                    testSimpleClickButton.disabled = true;
+                    testTypeTextButton.disabled = true;
+                    addToLog('Disconnected from WebSocket server', 'client');
+                };
+                
+                ws.onerror = function(error) {
+                    addToLog('WebSocket error: ' + error.message, 'error');
+                    connectionStatus.textContent = 'Error';
+                };
+                
+            } catch (error) {
+                addToLog('Error connecting to WebSocket: ' + error.message, 'error');
+                connectionStatus.textContent = 'Error';
+            }
+        }
+        
+        // Send DO button click
+        function sendDoButtonClick() {
+            if (!connected) {
+                addToLog('Not connected to WebSocket server', 'error');
+                return;
+            }
+            
+            const doMessage = {
+                type: 'agent_confirmation',
+                session_id: sessionId,
+                action: 'DO'
+            };
+            
+            // Send message
+            try {
+                ws.send(JSON.stringify(doMessage));
+                addToLog('Sent DO button click: ' + JSON.stringify(doMessage, null, 2), 'client');
+            } catch (error) {
+                addToLog('Error sending DO button message: ' + error.message, 'error');
+            }
+        }
+        
+        // Send browser search plan
+        function sendBrowserSearchPlan() {
+            if (!connected) {
+                addToLog('Not connected to WebSocket server', 'error');
+                return;
+            }
+            
+            // Create a simple browser search plan
+            const plan = {
+                type: 'plan_created',
+                session_id: sessionId,
+                plan: {
+                    title: 'Browser Search Test',
+                    description: 'A test plan to search in a browser',
+                    steps: [
+                        {
+                            type: 'click',
+                            target: 'search_box',
+                            description: 'Click on search box'
+                        },
+                        {
+                            type: 'text',
+                            target: 'search_box',
+                            text: 'automated testing with real input',
+                            description: 'Enter search query'
+                        },
+                        {
+                            type: 'press',
+                            key: 'enter',
+                            description: 'Press Enter to search'
+                        }
+                    ]
+                }
+            };
+            
+            // Send plan and log
+            try {
+                ws.send(JSON.stringify(plan));
+                addToLog('Sent browser search plan', 'client');
+                addToLog('Plan: ' + JSON.stringify(plan.plan, null, 2), 'plan');
+                
+                // Now send DO button click
+                setTimeout(sendDoButtonClick, 1000);
+            } catch (error) {
+                addToLog('Error sending browser search plan: ' + error.message, 'error');
+            }
+        }
+        
+        // Send simple click plan
+        function sendSimpleClickPlan() {
+            if (!connected) {
+                addToLog('Not connected to WebSocket server', 'error');
+                return;
+            }
+            
+            // Create a simple click plan
+            const plan = {
+                type: 'plan_created',
+                session_id: sessionId,
+                plan: {
+                    title: 'Simple Click Test',
+                    description: 'A test plan to perform a simple click',
+                    steps: [
+                        {
+                            type: 'click',
+                            target: 'default_button',
+                            description: 'Click on center of screen'
+                        }
+                    ]
+                }
+            };
+            
+            // Send plan and log
+            try {
+                ws.send(JSON.stringify(plan));
+                addToLog('Sent simple click plan', 'client');
+                addToLog('Plan: ' + JSON.stringify(plan.plan, null, 2), 'plan');
+                
+                // Now send DO button click
+                setTimeout(sendDoButtonClick, 1000);
+            } catch (error) {
+                addToLog('Error sending simple click plan: ' + error.message, 'error');
+            }
+        }
+        
+        // Send type text plan
+        function sendTypeTextPlan() {
+            if (!connected) {
+                addToLog('Not connected to WebSocket server', 'error');
+                return;
+            }
+            
+            // Create a text typing plan
+            const plan = {
+                type: 'plan_created',
+                session_id: sessionId,
+                plan: {
+                    title: 'Text Input Test',
+                    description: 'A test plan to type text',
+                    steps: [
+                        {
+                            type: 'click',
+                            target: 'default_field',
+                            description: 'Click on text field'
+                        },
+                        {
+                            type: 'text',
+                            target: 'default_field',
+                            text: 'This is a real automation test with physical input',
+                            description: 'Type test message'
+                        }
+                    ]
+                }
+            };
+            
+            // Send plan and log
+            try {
+                ws.send(JSON.stringify(plan));
+                addToLog('Sent text input plan', 'client');
+                addToLog('Plan: ' + JSON.stringify(plan.plan, null, 2), 'plan');
+                
+                // Now send DO button click
+                setTimeout(sendDoButtonClick, 1000);
+            } catch (error) {
+                addToLog('Error sending text input plan: ' + error.message, 'error');
+            }
+        }
+        
+        // Add log message
+        function addToLog(message, type) {
+            const logEntry = document.createElement('div');
+            logEntry.className = 'log ' + (type || '');
+            
+            // Format timestamp
+            const timestamp = new Date().toLocaleTimeString();
+            
+            // Format message based on type
+            if (type === 'plan') {
+                logEntry.innerHTML = `<strong>${timestamp}</strong>: Plan created:`;
+                logEntry.className = 'log plan';
+                
+                const planPre = document.createElement('pre');
+                planPre.textContent = message;
+                logEntry.appendChild(planPre);
+            } else {
+                logEntry.textContent = `${timestamp}: ${message}`;
+            }
+            
+            logContainer.appendChild(logEntry);
+            logContainer.scrollTop = logContainer.scrollHeight;
+        }
+        
+        // Initialize on load
+        window.onload = initialize;
+    </script>
+</body>
+</html>

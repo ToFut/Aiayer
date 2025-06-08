@@ -1,0 +1,4 @@
+    async def _try_agnostic_deep_data_access(self, message: str, mode: str, client_id: str, websocket) -> Dict[str, Any]:
+        """Try to handle universal agnostic deep data access for any query"""
+        return {"handled": False}  # Default to not handled
+            

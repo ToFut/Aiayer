@@ -424,6 +424,59 @@ class UniversalScreenDetector:
         # Step 2: Take and analyze current screen
         screen_analysis = self.take_screen_analysis()
         
+        # Add simple special case handling for Google search elements
+        step_lower = step_description.lower()
+        
+        # Simple optimization for Google search elements
+        if "google" in step_lower and "search" in step_lower:
+            # Google search box is usually in a predictable location
+            if "box" in step_lower or "input" in step_lower or "field" in step_lower:
+                google_search_box_coords = (self.screen_width // 2, 160)
+                logger.info(f"Using standard position for Google search box: {google_search_box_coords}")
+                
+                # Create verification element
+                element = DetectedElement(
+                    element_type="search_input",
+                    coordinates=google_search_box_coords,
+                    confidence=0.7,
+                    description="Google search box (standard position)",
+                    bounds=(0, 0, 0, 0),
+                    detection_method="common_position"
+                )
+                self._create_universal_verification(element, step_description, screen_analysis, requirements)
+                return google_search_box_coords
+            
+            # Google search results follow a predictable pattern
+            elif "result" in step_lower:
+                result_number = 1  # Default to first result
+                
+                if "first" in step_lower or "1st" in step_lower or "1" in step_lower:
+                    result_number = 1
+                elif "second" in step_lower or "2nd" in step_lower or "2" in step_lower:
+                    result_number = 2
+                elif "third" in step_lower or "3rd" in step_lower or "3" in step_lower:
+                    result_number = 3
+                elif "fourth" in step_lower or "4th" in step_lower or "4" in step_lower:
+                    result_number = 4
+                
+                # Calculate y-position based on result number
+                result_y = 270 + (result_number - 1) * 60
+                result_coords = (self.screen_width // 2, result_y)
+                
+                logger.info(f"Using standard position for Google search result #{result_number}: {result_coords}")
+                
+                # Create verification element
+                element = DetectedElement(
+                    element_type="search_result",
+                    coordinates=result_coords,
+                    confidence=0.7,
+                    description=f"Google search result #{result_number} (standard position)",
+                    bounds=(0, 0, 0, 0),
+                    detection_method="common_position"
+                )
+                self._create_universal_verification(element, step_description, screen_analysis, requirements)
+                return result_coords
+        
         # Step 3: Detect relevant UI elements
         detected_elements = []
         
@@ -468,12 +521,42 @@ class UniversalScreenDetector:
             
             return fallback_coords
     
-    def _get_intelligent_fallback(self, requirements: Dict) -> Tuple[int, int]:
-        """Get intelligent fallback coordinates based on step requirements"""
+    def _get_intelligent_fallback(self, requirements: Dict, step_description: str = "") -> Tuple[int, int]:
+        """Get intelligent fallback coordinates based on step requirements and description"""
         
         target_element = requirements.get("target_element", "")
         action_type = requirements.get("action_type", "")
+        step_lower = step_description.lower() if step_description else ""
         
+        # ENHANCED: Special handling for Google-related steps
+        if step_lower:
+            # Google search box
+            if "google" in step_lower and "search" in step_lower:
+                if "box" in step_lower or "input" in step_lower or "field" in step_lower:
+                    logger.info("🎯 Using fallback for Google search box")
+                    return (self.screen_width // 2, 160)
+            
+            # Google search results
+            if "google" in step_lower and "result" in step_lower:
+                # Parse result number if specified
+                result_num = 1  # Default to first result
+                if "second" in step_lower or "2nd" in step_lower:
+                    result_num = 2
+                elif "third" in step_lower or "3rd" in step_lower:
+                    result_num = 3
+                elif "fourth" in step_lower or "4th" in step_lower:
+                    result_num = 4
+                
+                y_position = 270 + (result_num - 1) * 60
+                logger.info(f"🎯 Using fallback for Google search result #{result_num}")
+                return (self.screen_width // 2, y_position)
+            
+            # Google search button
+            if "google" in step_lower and "button" in step_lower and "search" in step_lower:
+                logger.info("🎯 Using fallback for Google search button")
+                return (self.screen_width // 2 + 200, 160)
+        
+        # Standard fallbacks (unchanged)
         if target_element in ["search_input", "text_input"]:
             # Input fields typically in upper-center area
             return (self.screen_width // 2, self.screen_height // 3)

@@ -1,0 +1,62 @@
+2025-06-04 12:13:32,955 - TestDoButtonRealExecution - INFO - 🚀 Starting DO Button Real Execution Test
+2025-06-04 12:13:32,955 - TestDoButtonRealExecution - INFO - Test 1: Testing DO button with real execution...
+2025-06-04 12:13:32,996 - TestDoButtonRealExecution - INFO - ✅ Connected to DO button server at ws://localhost:8765
+2025-06-04 12:13:32,997 - TestDoButtonRealExecution - INFO - ✅ Received welcome message: {"type": "connection_established", "server_version": "1.0.0", "capabilities": ["agent_confirmation",...
+2025-06-04 12:13:33,016 - TestDoButtonRealExecution - INFO - ✅ Connected to backend server at ws://localhost:8767/ws
+2025-06-04 12:13:33,017 - TestDoButtonRealExecution - INFO - ✅ Received welcome message with client_id: client_1749053613016
+2025-06-04 12:13:33,017 - TestDoButtonRealExecution - INFO - ✅ Sent message to save plan test_plan_1749053612
+2025-06-04 12:13:33,017 - TestDoButtonRealExecution - INFO - ✅ Received response after saving plan: {"type": "error", "error": "Unknown message type: llm_request", "client_id": "client_1749053613016",...
+2025-06-04 12:13:33,018 - TestDoButtonRealExecution - INFO - ✅ Sent agent confirmation message with plan ID: test_plan_1749053612
+2025-06-04 12:13:33,021 - TestDoButtonRealExecution - INFO - ✅ Received response: {'type': 'agent_progress', 'progress': 10, 'message': 'Starting execution...', 'timestamp': '2025-06-04T12:13:33.020547'}
+2025-06-04 12:13:33,022 - TestDoButtonRealExecution - INFO - ✅ Received response: {'type': 'agent_progress', 'progress': 100, 'message': 'Execution complete!', 'timestamp': '2025-06-04T12:13:33.021360'}
+2025-06-04 12:13:33,022 - TestDoButtonRealExecution - INFO - ✅ Received response: {'type': 'agent_execution_error', 'error': '❌ Plan not found. It may have expired or been cancelled.', 'session_id': 'test_plan_1749053612', 'timestamp': '2025-06-04T12:13:33.021834'}
+2025-06-04 12:13:34,024 - TestDoButtonRealExecution - INFO - ✅ Received 2 progress messages
+2025-06-04 12:13:34,025 - TestDoButtonRealExecution - INFO - ✅ DO button real execution test completed successfully
+2025-06-04 12:13:34,032 - TestDoButtonRealExecution - INFO - ✅ Test 1 passed: DO button real execution is working correctly
+2025-06-04 12:13:34,033 - TestDoButtonRealExecution - INFO - Test 2: Testing direct DO button...
+2025-06-04 12:13:34,056 - TestDoButtonRealExecution - INFO - ✅ Connected to DO button server at ws://localhost:8765
+2025-06-04 12:13:34,057 - TestDoButtonRealExecution - INFO - ✅ Received welcome message: {"type": "connection_established", "server_version": "1.0.0", "capabilities": ["agent_confirmation",...
+2025-06-04 12:13:34,057 - TestDoButtonRealExecution - INFO - ✅ Sent direct DO button message with plan ID: test_plan_1749053614
+2025-06-04 12:13:34,059 - TestDoButtonRealExecution - INFO - ✅ Received response: {'type': 'agent_progress', 'progress': 10, 'message': 'Starting execution...', 'timestamp': '2025-06-04T12:13:34.058219'}
+2025-06-04 12:13:34,060 - TestDoButtonRealExecution - INFO - ✅ Direct DO button test successful
+2025-06-04 12:13:34,061 - TestDoButtonRealExecution - INFO - ✅ Test 2 passed: Direct DO button is working correctly
+2025-06-04 12:13:34,061 - TestDoButtonRealExecution - INFO - Test 3: Testing button action...
+2025-06-04 12:13:34,065 - TestDoButtonRealExecution - INFO - ✅ Connected to DO button server at ws://localhost:8765
+2025-06-04 12:13:34,065 - TestDoButtonRealExecution - INFO - ✅ Received welcome message: {"type": "connection_established", "server_version": "1.0.0", "capabilities": ["agent_confirmation",...
+2025-06-04 12:13:34,065 - TestDoButtonRealExecution - INFO - ✅ Sent button_action message with plan ID: test_plan_1749053614
+2025-06-04 12:13:34,067 - TestDoButtonRealExecution - INFO - ✅ Received response: {'type': 'agent_progress', 'progress': 10, 'message': 'Starting execution...', 'timestamp': '2025-06-04T12:13:34.066784'}
+2025-06-04 12:13:34,067 - TestDoButtonRealExecution - INFO - ✅ Button action test successful
+2025-06-04 12:13:34,067 - TestDoButtonRealExecution - INFO - ✅ Test 3 passed: Button action is working correctly
+2025-06-04 12:13:34,067 - TestDoButtonRealExecution - INFO - 🎉 All tests passed! The DO button system is fully operational
+2025-06-04 12:13:34,067 - TestDoButtonRealExecution - INFO - Tests completed.
+2025-06-04 12:16:05,491 - TestDoButtonRealExecution - INFO - 🚀 Starting DO Button Real Execution Test
+2025-06-04 12:16:05,492 - TestDoButtonRealExecution - INFO - Test 1: Testing DO button with real execution...
+2025-06-04 12:16:05,539 - TestDoButtonRealExecution - INFO - ✅ Connected to DO button server at ws://localhost:8765
+2025-06-04 12:16:05,539 - TestDoButtonRealExecution - INFO - ✅ Received welcome message: {"type": "connection_established", "server_version": "1.0.0", "capabilities": ["agent_confirmation",...
+2025-06-04 12:16:05,545 - TestDoButtonRealExecution - INFO - ✅ Connected to backend server at ws://localhost:8767/ws
+2025-06-04 12:16:05,545 - TestDoButtonRealExecution - INFO - ✅ Received welcome message with client_id: client_1749053765545
+2025-06-04 12:16:05,546 - TestDoButtonRealExecution - INFO - ✅ Sent message to save plan test_plan_1749053765
+2025-06-04 12:16:05,546 - TestDoButtonRealExecution - INFO - ✅ Received response after saving plan: {"type": "error", "error": "Unknown message type: llm_request", "client_id": "client_1749053765545",...
+2025-06-04 12:16:05,546 - TestDoButtonRealExecution - INFO - ✅ Sent agent confirmation message with plan ID: test_plan_1749053765
+2025-06-04 12:16:05,548 - TestDoButtonRealExecution - INFO - ✅ Received response: {'type': 'agent_progress', 'progress': 10, 'message': 'Starting execution...', 'timestamp': '2025-06-04T12:16:05.547890'}
+2025-06-04 12:16:05,548 - TestDoButtonRealExecution - INFO - ✅ Received response: {'type': 'agent_progress', 'progress': 100, 'message': 'Execution complete!', 'timestamp': '2025-06-04T12:16:05.548582'}
+2025-06-04 12:16:05,548 - TestDoButtonRealExecution - INFO - ✅ Received response: {'type': 'agent_execution_error', 'error': '❌ Plan not found. It may have expired or been cancelled.', 'session_id': 'test_plan_1749053765', 'timestamp': '2025-06-04T12:16:05.548620'}
+2025-06-04 12:16:06,552 - TestDoButtonRealExecution - INFO - ✅ Received 2 progress messages
+2025-06-04 12:16:06,555 - TestDoButtonRealExecution - INFO - ✅ DO button real execution test completed successfully
+2025-06-04 12:16:06,558 - TestDoButtonRealExecution - INFO - ✅ Test 1 passed: DO button real execution is working correctly
+2025-06-04 12:16:06,558 - TestDoButtonRealExecution - INFO - Test 2: Testing direct DO button...
+2025-06-04 12:16:06,564 - TestDoButtonRealExecution - INFO - ✅ Connected to DO button server at ws://localhost:8765
+2025-06-04 12:16:06,565 - TestDoButtonRealExecution - INFO - ✅ Received welcome message: {"type": "connection_established", "server_version": "1.0.0", "capabilities": ["agent_confirmation",...
+2025-06-04 12:16:06,565 - TestDoButtonRealExecution - INFO - ✅ Sent direct DO button message with plan ID: test_plan_1749053766
+2025-06-04 12:16:06,566 - TestDoButtonRealExecution - INFO - ✅ Received response: {'type': 'agent_progress', 'progress': 10, 'message': 'Starting execution...', 'timestamp': '2025-06-04T12:16:06.566238'}
+2025-06-04 12:16:06,566 - TestDoButtonRealExecution - INFO - ✅ Direct DO button test successful
+2025-06-04 12:16:06,567 - TestDoButtonRealExecution - INFO - ✅ Test 2 passed: Direct DO button is working correctly
+2025-06-04 12:16:06,567 - TestDoButtonRealExecution - INFO - Test 3: Testing button action...
+2025-06-04 12:16:06,569 - TestDoButtonRealExecution - INFO - ✅ Connected to DO button server at ws://localhost:8765
+2025-06-04 12:16:06,569 - TestDoButtonRealExecution - INFO - ✅ Received welcome message: {"type": "connection_established", "server_version": "1.0.0", "capabilities": ["agent_confirmation",...
+2025-06-04 12:16:06,570 - TestDoButtonRealExecution - INFO - ✅ Sent button_action message with plan ID: test_plan_1749053766
+2025-06-04 12:16:06,571 - TestDoButtonRealExecution - INFO - ✅ Received response: {'type': 'agent_progress', 'progress': 10, 'message': 'Starting execution...', 'timestamp': '2025-06-04T12:16:06.570459'}
+2025-06-04 12:16:06,571 - TestDoButtonRealExecution - INFO - ✅ Button action test successful
+2025-06-04 12:16:06,571 - TestDoButtonRealExecution - INFO - ✅ Test 3 passed: Button action is working correctly
+2025-06-04 12:16:06,571 - TestDoButtonRealExecution - INFO - 🎉 All tests passed! The DO button system is fully operational
+2025-06-04 12:16:06,571 - TestDoButtonRealExecution - INFO - Tests completed.

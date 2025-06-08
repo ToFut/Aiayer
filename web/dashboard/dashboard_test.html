@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Test Page</title>
+    <script>
+        function testDashboard() {
+            const result = document.getElementById('result');
+            result.innerHTML = '<div style="color: blue;">Testing dashboard API...</div>';
+            
+            fetch('http://localhost:8081/api/metrics')
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! Status: ${response.status}`);
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    result.innerHTML += `<div style="color: green;">✅ Metrics API working! Received data with ${Object.keys(data).length} keys</div>`;
+                    result.innerHTML += `<pre style="background: #f5f5f5; padding: 10px; max-height: 200px; overflow: auto;">${JSON.stringify(data, null, 2)}</pre>`;
+                })
+                .catch(error => {
+                    result.innerHTML += `<div style="color: red;">❌ Error fetching metrics: ${error.message}</div>`;
+                });
+                
+            fetch('http://localhost:8081/api/time-series')
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! Status: ${response.status}`);
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    result.innerHTML += `<div style="color: green;">✅ Time-series API working! Received ${data.timestamps ? data.timestamps.length : 0} data points</div>`;
+                    result.innerHTML += `<pre style="background: #f5f5f5; padding: 10px; max-height: 200px; overflow: auto;">${JSON.stringify(data, null, 2)}</pre>`;
+                })
+                .catch(error => {
+                    result.innerHTML += `<div style="color: red;">❌ Error fetching time-series: ${error.message}</div>`;
+                });
+        }
+    </script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 20px;
+        }
+        h1 {
+            color: #333;
+        }
+        button {
+            background-color: #4CAF50;
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 10px 0;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+        #result {
+            margin-top: 20px;
+            border: 1px solid #ddd;
+            padding: 15px;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Dashboard API Test</h1>
+    <p>This page tests the dashboard API endpoints to verify they are working correctly.</p>
+    <button onclick="testDashboard()">Test Dashboard API</button>
+    <div id="result">Click the button above to test the dashboard API.</div>
+    <h2>Instructions</h2>
+    <ul>
+        <li>Click the "Test Dashboard API" button to test both API endpoints</li>
+        <li>If both endpoints return data, the dashboard should load correctly</li>
+        <li>If you see errors, the dashboard may not load properly</li>
+    </ul>
+    <p><a href="http://localhost:8081/" target="_blank">Open Dashboard</a></p>
+</body>
+</html>

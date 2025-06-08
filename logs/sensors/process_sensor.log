@@ -1,57 +1,117 @@
 /Users/segevbin/Desktop/SensAI/Aiayer/sensors/enhanced_fixed_process_sensor.py:16: DeprecationWarning: websockets.client.WebSocketClientProtocol is deprecated
   from websockets.client import WebSocketClientProtocol
-2025-05-27 17:45:22,756 - __main__ - INFO - Connected to bridge server
-2025-05-27 17:45:22,757 - __main__ - INFO - Received welcome: connection_established
-2025-05-27 17:45:22,757 - __main__ - INFO - Sent registration message
-2025-05-27 17:45:22,757 - __main__ - INFO - Registration successful: Successfully registered with Enhanced Enterprise Backend
-2025-05-27 17:45:23,011 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
-2025-05-27 17:45:23,012 - __main__ - ERROR - Received error: None
-2025-05-27 17:45:23,012 - __main__ - ERROR - Received error: None
-2025-05-27 17:45:28,229 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
-2025-05-27 17:45:28,230 - __main__ - ERROR - Received error: None
-2025-05-27 17:45:28,230 - __main__ - ERROR - Received error: None
-2025-05-27 17:45:33,402 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
-2025-05-27 17:45:33,402 - __main__ - ERROR - Received error: None
-2025-05-27 17:45:33,402 - __main__ - ERROR - Received error: None
-2025-05-27 17:45:38,619 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
-2025-05-27 17:45:38,619 - __main__ - ERROR - Received error: None
-2025-05-27 17:45:38,620 - __main__ - ERROR - Received error: None
-2025-05-27 17:45:43,797 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
-2025-05-27 17:45:43,797 - __main__ - ERROR - Received error: None
-2025-05-27 17:45:43,797 - __main__ - ERROR - Received error: None
-2025-05-27 17:45:48,986 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
-2025-05-27 17:45:48,986 - __main__ - ERROR - Received error: None
-2025-05-27 17:45:48,986 - __main__ - ERROR - Received error: None
-2025-05-27 17:45:54,166 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
-2025-05-27 17:45:54,166 - __main__ - ERROR - Received error: None
-2025-05-27 17:45:54,166 - __main__ - ERROR - Received error: None
-2025-05-27 17:45:59,353 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
-2025-05-27 17:45:59,353 - __main__ - ERROR - Received error: None
-2025-05-27 17:45:59,353 - __main__ - ERROR - Received error: None
-2025-05-27 17:46:04,577 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
-2025-05-27 17:46:04,577 - __main__ - ERROR - Received error: None
-2025-05-27 17:46:04,577 - __main__ - ERROR - Received error: None
-2025-05-27 17:46:09,751 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
-2025-05-27 17:46:09,752 - __main__ - ERROR - Received error: None
-2025-05-27 17:46:09,752 - __main__ - ERROR - Received error: None
-2025-05-27 17:46:14,924 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
-2025-05-27 17:46:14,925 - __main__ - ERROR - Received error: None
-2025-05-27 17:46:14,925 - __main__ - ERROR - Received error: None
-2025-05-27 17:46:20,104 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
-2025-05-27 17:46:20,104 - __main__ - ERROR - Received error: None
-2025-05-27 17:46:20,104 - __main__ - ERROR - Received error: None
-2025-05-27 17:46:25,310 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
-2025-05-27 17:46:25,310 - __main__ - ERROR - Received error: None
-2025-05-27 17:46:25,310 - __main__ - ERROR - Received error: None
-2025-05-27 17:46:30,537 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
-2025-05-27 17:46:30,540 - __main__ - ERROR - Received error: None
-2025-05-27 17:46:30,540 - __main__ - ERROR - Received error: None
-2025-05-27 17:46:35,849 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
-2025-05-27 17:46:35,853 - __main__ - ERROR - Received error: None
-2025-05-27 17:46:35,853 - __main__ - ERROR - Received error: None
-2025-05-27 17:46:41,177 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
-2025-05-27 17:46:41,180 - __main__ - ERROR - Received error: None
-2025-05-27 17:46:41,181 - __main__ - ERROR - Received error: None
-2025-05-27 17:46:46,484 - __main__ - INFO - Sent enhanced process data: 20 apps, active: Unknown
-2025-05-27 17:46:46,486 - __main__ - ERROR - Received error: None
-2025-05-27 17:46:46,487 - __main__ - ERROR - Received error: None
+2025-06-08 13:29:11,487 - __main__ - INFO - Connected to bridge server
+2025-06-08 13:29:11,487 - __main__ - INFO - Received welcome: connection_established
+2025-06-08 13:29:11,487 - __main__ - INFO - Sent registration message
+2025-06-08 13:29:11,488 - __main__ - ERROR - Unexpected response to registration: {'type': 'response', 'message': 'Received register message', 'timestamp': '2025-06-08T13:29:11.488080'}
+2025-06-08 13:29:11,488 - __main__ - ERROR - Failed to register with bridge server
+2025-06-08 13:29:16,492 - __main__ - INFO - Connected to bridge server
+2025-06-08 13:29:16,492 - __main__ - INFO - Received welcome: connection_established
+2025-06-08 13:29:16,492 - __main__ - INFO - Sent registration message
+2025-06-08 13:29:16,492 - __main__ - ERROR - Unexpected response to registration: {'type': 'response', 'message': 'Received register message', 'timestamp': '2025-06-08T13:29:16.492359'}
+2025-06-08 13:29:16,492 - __main__ - ERROR - Failed to register with bridge server
+2025-06-08 13:29:21,496 - __main__ - INFO - Connected to bridge server
+2025-06-08 13:29:21,497 - __main__ - INFO - Received welcome: connection_established
+2025-06-08 13:29:21,497 - __main__ - INFO - Sent registration message
+2025-06-08 13:29:21,497 - __main__ - ERROR - Unexpected response to registration: {'type': 'response', 'message': 'Received register message', 'timestamp': '2025-06-08T13:29:21.497311'}
+2025-06-08 13:29:21,497 - __main__ - ERROR - Failed to register with bridge server
+2025-06-08 13:29:26,502 - __main__ - INFO - Connected to bridge server
+2025-06-08 13:29:26,502 - __main__ - INFO - Received welcome: connection_established
+2025-06-08 13:29:26,502 - __main__ - INFO - Sent registration message
+2025-06-08 13:29:26,502 - __main__ - ERROR - Unexpected response to registration: {'type': 'response', 'message': 'Received register message', 'timestamp': '2025-06-08T13:29:26.502683'}
+2025-06-08 13:29:26,502 - __main__ - ERROR - Failed to register with bridge server
+2025-06-08 13:29:31,509 - __main__ - INFO - Connected to bridge server
+2025-06-08 13:29:31,509 - __main__ - INFO - Received welcome: connection_established
+2025-06-08 13:29:31,509 - __main__ - INFO - Sent registration message
+2025-06-08 13:29:31,510 - __main__ - ERROR - Unexpected response to registration: {'type': 'response', 'message': 'Received register message', 'timestamp': '2025-06-08T13:29:31.510113'}
+2025-06-08 13:29:31,510 - __main__ - ERROR - Failed to register with bridge server
+2025-06-08 13:29:36,514 - __main__ - INFO - Connected to bridge server
+2025-06-08 13:29:36,515 - __main__ - INFO - Received welcome: connection_established
+2025-06-08 13:29:36,515 - __main__ - INFO - Sent registration message
+2025-06-08 13:29:36,515 - __main__ - ERROR - Unexpected response to registration: {'type': 'response', 'message': 'Received register message', 'timestamp': '2025-06-08T13:29:36.515374'}
+2025-06-08 13:29:36,515 - __main__ - ERROR - Failed to register with bridge server
+2025-06-08 13:29:41,519 - __main__ - INFO - Connected to bridge server
+2025-06-08 13:29:41,519 - __main__ - INFO - Received welcome: connection_established
+2025-06-08 13:29:41,519 - __main__ - INFO - Sent registration message
+2025-06-08 13:29:41,520 - __main__ - ERROR - Unexpected response to registration: {'type': 'response', 'message': 'Received register message', 'timestamp': '2025-06-08T13:29:41.520080'}
+2025-06-08 13:29:41,520 - __main__ - ERROR - Failed to register with bridge server
+2025-06-08 13:29:46,529 - __main__ - INFO - Connected to bridge server
+2025-06-08 13:29:46,530 - __main__ - INFO - Received welcome: connection_established
+2025-06-08 13:29:46,530 - __main__ - INFO - Sent registration message
+2025-06-08 13:29:46,530 - __main__ - ERROR - Unexpected response to registration: {'type': 'response', 'message': 'Received register message', 'timestamp': '2025-06-08T13:29:46.530484'}
+2025-06-08 13:29:46,530 - __main__ - ERROR - Failed to register with bridge server
+2025-06-08 13:29:51,588 - __main__ - INFO - Connected to bridge server
+2025-06-08 13:29:51,589 - __main__ - INFO - Received welcome: connection_established
+2025-06-08 13:29:51,591 - __main__ - INFO - Sent registration message
+2025-06-08 13:29:51,594 - __main__ - ERROR - Unexpected response to registration: {'type': 'response', 'message': 'Received register message', 'timestamp': '2025-06-08T13:29:51.593127'}
+2025-06-08 13:29:51,594 - __main__ - ERROR - Failed to register with bridge server
+2025-06-08 13:29:56,604 - __main__ - INFO - Connected to bridge server
+2025-06-08 13:29:56,605 - __main__ - INFO - Received welcome: connection_established
+2025-06-08 13:29:56,605 - __main__ - INFO - Sent registration message
+2025-06-08 13:29:56,605 - __main__ - ERROR - Unexpected response to registration: {'type': 'response', 'message': 'Received register message', 'timestamp': '2025-06-08T13:29:56.605328'}
+2025-06-08 13:29:56,605 - __main__ - ERROR - Failed to register with bridge server
+2025-06-08 13:30:02,030 - __main__ - INFO - Connected to bridge server
+2025-06-08 13:30:02,032 - __main__ - INFO - Received welcome: connection_established
+2025-06-08 13:30:02,033 - __main__ - INFO - Sent registration message
+2025-06-08 13:30:02,034 - __main__ - ERROR - Unexpected response to registration: {'type': 'response', 'message': 'Received register message', 'timestamp': '2025-06-08T13:30:02.033956'}
+2025-06-08 13:30:02,034 - __main__ - ERROR - Failed to register with bridge server
+2025-06-08 13:30:07,070 - __main__ - INFO - Connected to bridge server
+2025-06-08 13:30:07,071 - __main__ - INFO - Received welcome: connection_established
+2025-06-08 13:30:07,071 - __main__ - INFO - Sent registration message
+2025-06-08 13:30:07,072 - __main__ - ERROR - Unexpected response to registration: {'type': 'response', 'message': 'Received register message', 'timestamp': '2025-06-08T13:30:07.072124'}
+2025-06-08 13:30:07,072 - __main__ - ERROR - Failed to register with bridge server
+2025-06-08 13:30:12,094 - __main__ - INFO - Connected to bridge server
+2025-06-08 13:30:12,095 - __main__ - INFO - Received welcome: connection_established
+2025-06-08 13:30:12,095 - __main__ - INFO - Sent registration message
+2025-06-08 13:30:12,095 - __main__ - ERROR - Unexpected response to registration: {'type': 'response', 'message': 'Received register message', 'timestamp': '2025-06-08T13:30:12.095313'}
+2025-06-08 13:30:12,095 - __main__ - ERROR - Failed to register with bridge server
+2025-06-08 13:30:17,097 - __main__ - INFO - Connected to bridge server
+2025-06-08 13:30:17,098 - __main__ - INFO - Received welcome: connection_established
+2025-06-08 13:30:17,098 - __main__ - INFO - Sent registration message
+2025-06-08 13:30:17,098 - __main__ - ERROR - Unexpected response to registration: {'type': 'response', 'message': 'Received register message', 'timestamp': '2025-06-08T13:30:17.098363'}
+2025-06-08 13:30:17,098 - __main__ - ERROR - Failed to register with bridge server
+2025-06-08 13:30:22,101 - __main__ - INFO - Connected to bridge server
+2025-06-08 13:30:22,101 - __main__ - INFO - Received welcome: connection_established
+2025-06-08 13:30:22,102 - __main__ - INFO - Sent registration message
+2025-06-08 13:30:22,102 - __main__ - ERROR - Unexpected response to registration: {'type': 'response', 'message': 'Received register message', 'timestamp': '2025-06-08T13:30:22.102152'}
+2025-06-08 13:30:22,102 - __main__ - ERROR - Failed to register with bridge server
+2025-06-08 13:30:27,112 - __main__ - INFO - Connected to bridge server
+2025-06-08 13:30:27,112 - __main__ - INFO - Received welcome: connection_established
+2025-06-08 13:30:27,112 - __main__ - INFO - Sent registration message
+2025-06-08 13:30:27,113 - __main__ - ERROR - Unexpected response to registration: {'type': 'response', 'message': 'Received register message', 'timestamp': '2025-06-08T13:30:27.113172'}
+2025-06-08 13:30:27,113 - __main__ - ERROR - Failed to register with bridge server
+2025-06-08 13:30:32,117 - __main__ - INFO - Connected to bridge server
+2025-06-08 13:30:32,117 - __main__ - INFO - Received welcome: connection_established
+2025-06-08 13:30:32,117 - __main__ - INFO - Sent registration message
+2025-06-08 13:30:32,118 - __main__ - ERROR - Unexpected response to registration: {'type': 'response', 'message': 'Received register message', 'timestamp': '2025-06-08T13:30:32.117990'}
+2025-06-08 13:30:32,118 - __main__ - ERROR - Failed to register with bridge server
+2025-06-08 13:30:37,122 - __main__ - INFO - Connected to bridge server
+2025-06-08 13:30:37,122 - __main__ - INFO - Received welcome: connection_established
+2025-06-08 13:30:37,122 - __main__ - INFO - Sent registration message
+2025-06-08 13:30:37,123 - __main__ - ERROR - Unexpected response to registration: {'type': 'response', 'message': 'Received register message', 'timestamp': '2025-06-08T13:30:37.122998'}
+2025-06-08 13:30:37,123 - __main__ - ERROR - Failed to register with bridge server
+2025-06-08 13:30:42,127 - __main__ - INFO - Connected to bridge server
+2025-06-08 13:30:42,127 - __main__ - INFO - Received welcome: connection_established
+2025-06-08 13:30:42,127 - __main__ - INFO - Sent registration message
+2025-06-08 13:30:42,128 - __main__ - ERROR - Unexpected response to registration: {'type': 'response', 'message': 'Received register message', 'timestamp': '2025-06-08T13:30:42.128365'}
+2025-06-08 13:30:42,128 - __main__ - ERROR - Failed to register with bridge server
+2025-06-08 13:30:47,131 - __main__ - INFO - Connected to bridge server
+2025-06-08 13:30:47,131 - __main__ - INFO - Received welcome: connection_established
+2025-06-08 13:30:47,132 - __main__ - INFO - Sent registration message
+2025-06-08 13:30:47,132 - __main__ - ERROR - Unexpected response to registration: {'type': 'response', 'message': 'Received register message', 'timestamp': '2025-06-08T13:30:47.132176'}
+2025-06-08 13:30:47,132 - __main__ - ERROR - Failed to register with bridge server
+2025-06-08 13:30:52,139 - __main__ - INFO - Connected to bridge server
+2025-06-08 13:30:52,139 - __main__ - INFO - Received welcome: connection_established
+2025-06-08 13:30:52,140 - __main__ - INFO - Sent registration message
+2025-06-08 13:30:52,143 - __main__ - ERROR - Unexpected response to registration: {'type': 'response', 'message': 'Received register message', 'timestamp': '2025-06-08T13:30:52.142845'}
+2025-06-08 13:30:52,143 - __main__ - ERROR - Failed to register with bridge server
+2025-06-08 13:30:57,148 - __main__ - INFO - Connected to bridge server
+2025-06-08 13:30:57,148 - __main__ - INFO - Received welcome: connection_established
+2025-06-08 13:30:57,148 - __main__ - INFO - Sent registration message
+2025-06-08 13:30:57,148 - __main__ - ERROR - Unexpected response to registration: {'type': 'response', 'message': 'Received register message', 'timestamp': '2025-06-08T13:30:57.148398'}
+2025-06-08 13:30:57,148 - __main__ - ERROR - Failed to register with bridge server
+2025-06-08 13:31:02,152 - __main__ - INFO - Connected to bridge server
+2025-06-08 13:31:02,152 - __main__ - INFO - Received welcome: connection_established
+2025-06-08 13:31:02,153 - __main__ - INFO - Sent registration message
+2025-06-08 13:31:02,153 - __main__ - ERROR - Unexpected response to registration: {'type': 'response', 'message': 'Received register message', 'timestamp': '2025-06-08T13:31:02.153205'}
+2025-06-08 13:31:02,153 - __main__ - ERROR - Failed to register with bridge server

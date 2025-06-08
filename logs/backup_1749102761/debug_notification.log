@@ -1,0 +1,8 @@
+2025-06-01 15:42:15,092 - INFO - 🚀 Starting overlay notification debug test
+2025-06-01 15:42:15,092 - INFO - Connecting to overlay WebSocket server at ws://localhost:8765
+2025-06-01 15:42:15,205 - INFO - Connected to WebSocket server
+2025-06-01 15:42:15,205 - INFO - Received welcome: {"type": "welcome", "message": "Connected to ultimate DO button server on port 8765", "server_time": "2025-06-01T15:42:15.204751", "server_name": "Ultimate DO Button Server", "supported_actions": ["DO", "EXECUTE", "DISMISS", "ADJUST"]}
+2025-06-01 15:42:15,205 - INFO - ✅ Sent direct test notification
+2025-06-01 15:42:15,205 - INFO - Waiting for response...
+2025-06-01 15:42:15,206 - INFO - Received response: {"type": "response", "original_type": "unknown", "message": "Received unknown message", "timestamp": "2025-06-01T15:42:15.206307"}
+2025-06-01 15:42:15,207 - INFO - ✅ Test completed successfully

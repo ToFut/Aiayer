@@ -1,0 +1,59 @@
+{
+  "timestamp": 1748807704.594984,
+  "element_count": 18,
+  "detection_methods": [
+    "browser_api"
+  ],
+  "element_types": {
+    "button": 6,
+    "link": 1,
+    "checkbox": 1,
+    "unknown": 4,
+    "textfield": 4,
+    "dropdown": 1,
+    "form": 1
+  },
+  "detection_time": 65.60402917861938,
+  "top_elements": [
+    {
+      "id": "dom_12",
+      "type": "textfield",
+      "text": "Search for anything...",
+      "confidence": 0.95,
+      "can_click": false,
+      "can_type": true
+    },
+    {
+      "id": "dom_13",
+      "type": "textfield",
+      "text": "Enter your full name",
+      "confidence": 0.95,
+      "can_click": false,
+      "can_type": true
+    },
+    {
+      "id": "dom_14",
+      "type": "textfield",
+      "text": "Enter your email",
+      "confidence": 0.95,
+      "can_click": false,
+      "can_type": true
+    },
+    {
+      "id": "dom_15",
+      "type": "textfield",
+      "text": "Enter your message",
+      "confidence": 0.95,
+      "can_click": false,
+      "can_type": true
+    },
+    {
+      "id": "dom_16",
+      "type": "dropdown",
+      "text": "Select a subject\n                        General I...",
+      "confidence": 0.95,
+      "can_click": false,
+      "can_type": false
+    }
+  ]
+}

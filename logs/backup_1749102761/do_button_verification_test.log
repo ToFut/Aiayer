@@ -1,0 +1,206 @@
+2025-06-03 18:52:53,137 - INFO - 🔍 Verifying WebSocket server status on port 8765...
+2025-06-03 18:52:53,138 - INFO - ✅ Port 8765 is open - server is running
+2025-06-03 18:52:53,138 - INFO - ==== Basic Connection Test ====
+2025-06-03 18:52:53,138 - INFO - 🧪 Testing WebSocket connection...
+2025-06-03 18:52:53,169 - INFO - ✅ Connected to server: welcome
+2025-06-03 18:52:53,169 - INFO - 📊 Server capabilities: []
+2025-06-03 18:52:53,170 - ERROR - ❌ Unexpected response to ping: {'type': 'response', 'payload': {'message': 'Received ping message', 'timestamp': '2025-06-03T18:52:53.170233'}}
+2025-06-03 18:52:53,170 - ERROR - ❌ Connection test failed. Cannot proceed with further tests.
+2025-06-03 18:54:00,250 - INFO - 🔍 Verifying WebSocket server status on port 8765...
+2025-06-03 18:54:00,254 - INFO - ✅ Port 8765 is open - server is running
+2025-06-03 18:54:00,254 - INFO - ==== Basic Connection Test ====
+2025-06-03 18:54:00,254 - INFO - 🧪 Testing WebSocket connection...
+2025-06-03 18:54:00,285 - INFO - ✅ Connected to server: connection_established
+2025-06-03 18:54:00,285 - INFO - 📊 Server capabilities: ['agent_confirmation', 'button_action', 'do_button']
+2025-06-03 18:54:00,286 - INFO - ✅ Ping/pong successful
+2025-06-03 18:54:00,286 - INFO - ==== Testing agent_confirmation format ====
+2025-06-03 18:54:00,286 - INFO - 🧪 Testing DO button with agent_confirmation format...
+2025-06-03 18:54:00,287 - INFO - ✅ Connected to server: connection_established
+2025-06-03 18:54:00,287 - INFO - 📤 Sending agent_confirmation DO button click for session: test_session_1748991240
+2025-06-03 18:54:00,287 - INFO - 📥 Received response type: agent_progress
+2025-06-03 18:54:00,288 - INFO - 📊 Progress: 10% - Starting execution...
+2025-06-03 18:54:00,288 - INFO - 📥 Received response type: agent_progress
+2025-06-03 18:54:00,288 - INFO - 📊 Progress: 100% - Execution complete\!
+2025-06-03 18:54:00,288 - INFO - 📥 Received response type: agent_execution_error
+2025-06-03 18:54:00,288 - ERROR - ❌ Execution failed: ❌ Plan not found. It may have expired or been cancelled.
+2025-06-03 18:54:00,288 - INFO - 
+🔍 agent_confirmation Test Results:
+2025-06-03 18:54:00,288 - INFO - ✅ Progress Updates: 2
+2025-06-03 18:54:00,288 - INFO - ✅ Final Status: FAILED
+2025-06-03 18:54:00,288 - INFO - Test agent_confirmation: ✅ PASSED
+2025-06-03 18:54:01,290 - INFO - ==== Testing button_action format ====
+2025-06-03 18:54:01,290 - INFO - 🧪 Testing DO button with button_action format...
+2025-06-03 18:54:01,297 - INFO - ✅ Connected to server: connection_established
+2025-06-03 18:54:01,297 - INFO - 📤 Sending button_action for plan: test_plan_1748991241
+2025-06-03 18:54:01,298 - INFO - 📥 Received response type: agent_progress
+2025-06-03 18:54:01,299 - INFO - 📊 Progress: 10% - Starting execution...
+2025-06-03 18:54:01,299 - INFO - 📥 Received response type: agent_progress
+2025-06-03 18:54:01,299 - INFO - 📊 Progress: 100% - Execution complete\!
+2025-06-03 18:54:01,299 - INFO - 📥 Received response type: agent_execution_error
+2025-06-03 18:54:01,299 - ERROR - ❌ Execution failed: ❌ Plan not found. It may have expired or been cancelled.
+2025-06-03 18:54:01,299 - INFO - 
+🔍 button_action Test Results:
+2025-06-03 18:54:01,299 - INFO - ✅ Progress Updates: 2
+2025-06-03 18:54:01,299 - INFO - ✅ Final Status: FAILED
+2025-06-03 18:54:01,300 - INFO - Test button_action: ✅ PASSED
+2025-06-03 18:54:02,301 - INFO - ==== Testing do_button format ====
+2025-06-03 18:54:02,301 - INFO - 🧪 Testing DO button with do_button format...
+2025-06-03 18:54:02,303 - INFO - ✅ Connected to server: connection_established
+2025-06-03 18:54:02,303 - INFO - 📤 Sending do_button message for plan: test_plan_1748991242
+2025-06-03 18:54:02,303 - INFO - 📥 Received response type: agent_progress
+2025-06-03 18:54:02,303 - INFO - 📊 Progress: 10% - Starting execution...
+2025-06-03 18:54:02,303 - INFO - 📥 Received response type: agent_progress
+2025-06-03 18:54:02,303 - INFO - 📊 Progress: 100% - Execution complete\!
+2025-06-03 18:54:02,304 - INFO - 📥 Received response type: agent_execution_error
+2025-06-03 18:54:02,304 - ERROR - ❌ Execution failed: ❌ Plan not found. It may have expired or been cancelled.
+2025-06-03 18:54:02,304 - INFO - 
+🔍 do_button Test Results:
+2025-06-03 18:54:02,304 - INFO - ✅ Progress Updates: 2
+2025-06-03 18:54:02,304 - INFO - ✅ Final Status: FAILED
+2025-06-03 18:54:02,304 - INFO - Test do_button: ✅ PASSED
+2025-06-03 18:54:03,305 - INFO - ==== Testing dismiss format ====
+2025-06-03 18:54:03,305 - INFO - 🧪 Testing DISMISS action...
+2025-06-03 18:54:03,307 - INFO - ✅ Connected to server: connection_established
+2025-06-03 18:54:03,307 - INFO - 📤 Sending DISMISS action for session: test_session_dismiss_1748991243
+2025-06-03 18:54:03,308 - INFO - 📥 Received response type: agent_progress
+2025-06-03 18:54:03,308 - WARNING - ⚠️ Unexpected response to DISMISS: {'type': 'agent_progress', 'progress': 10, 'message': 'Starting execution...', 'timestamp': '2025-06-03T18:54:03.307965'}
+2025-06-03 18:54:03,308 - INFO - Test dismiss: ✅ PASSED
+2025-06-03 18:54:04,311 - INFO - 
+🧪 OVERALL TEST RESULTS:
+2025-06-03 18:54:04,312 - INFO - 📋 agent_confirmation: ✅ PASSED
+2025-06-03 18:54:04,312 - INFO - 📋 button_action: ✅ PASSED
+2025-06-03 18:54:04,312 - INFO - 📋 do_button: ✅ PASSED
+2025-06-03 18:54:04,313 - INFO - 📋 dismiss: ✅ PASSED
+2025-06-03 18:54:04,314 - INFO - 🎉 All tests PASSED! DO button functionality is working perfectly!
+2025-06-03 18:56:20,346 - INFO - 🔍 Verifying WebSocket server status on port 8765...
+2025-06-03 18:56:20,348 - INFO - ✅ Port 8765 is open - server is running
+2025-06-03 18:56:20,348 - INFO - ==== Basic Connection Test ====
+2025-06-03 18:56:20,348 - INFO - 🧪 Testing WebSocket connection...
+2025-06-03 18:56:20,376 - INFO - ✅ Connected to server: connection_established
+2025-06-03 18:56:20,376 - INFO - 📊 Server capabilities: ['agent_confirmation', 'button_action', 'do_button']
+2025-06-03 18:56:20,377 - INFO - ✅ Ping/pong successful
+2025-06-03 18:56:20,377 - INFO - ==== Testing agent_confirmation format ====
+2025-06-03 18:56:20,377 - INFO - 🧪 Testing DO button with agent_confirmation format...
+2025-06-03 18:56:20,378 - INFO - ✅ Connected to server: connection_established
+2025-06-03 18:56:20,378 - INFO - 📤 Sending agent_confirmation DO button click for session: test_session_1748991380
+2025-06-03 18:56:20,379 - INFO - 📥 Received response type: agent_progress
+2025-06-03 18:56:20,379 - INFO - 📊 Progress: 10% - Starting execution...
+2025-06-03 18:56:20,379 - INFO - 📥 Received response type: agent_progress
+2025-06-03 18:56:20,379 - INFO - 📊 Progress: 100% - Execution complete!
+2025-06-03 18:56:20,379 - INFO - 📥 Received response type: agent_execution_error
+2025-06-03 18:56:20,379 - ERROR - ❌ Execution failed: ❌ Plan not found. It may have expired or been cancelled.
+2025-06-03 18:56:20,379 - INFO - 
+🔍 agent_confirmation Test Results:
+2025-06-03 18:56:20,379 - INFO - ✅ Progress Updates: 2
+2025-06-03 18:56:20,379 - INFO - ✅ Final Status: FAILED
+2025-06-03 18:56:20,379 - INFO - Test agent_confirmation: ✅ PASSED
+2025-06-03 18:56:21,381 - INFO - ==== Testing button_action format ====
+2025-06-03 18:56:21,381 - INFO - 🧪 Testing DO button with button_action format...
+2025-06-03 18:56:21,383 - INFO - ✅ Connected to server: connection_established
+2025-06-03 18:56:21,383 - INFO - 📤 Sending button_action for plan: test_plan_1748991381
+2025-06-03 18:56:21,384 - INFO - 📥 Received response type: agent_progress
+2025-06-03 18:56:21,384 - INFO - 📊 Progress: 10% - Starting execution...
+2025-06-03 18:56:21,384 - INFO - 📥 Received response type: agent_progress
+2025-06-03 18:56:21,384 - INFO - 📊 Progress: 100% - Execution complete!
+2025-06-03 18:56:21,384 - INFO - 📥 Received response type: agent_execution_error
+2025-06-03 18:56:21,384 - ERROR - ❌ Execution failed: ❌ Plan not found. It may have expired or been cancelled.
+2025-06-03 18:56:21,384 - INFO - 
+🔍 button_action Test Results:
+2025-06-03 18:56:21,384 - INFO - ✅ Progress Updates: 2
+2025-06-03 18:56:21,384 - INFO - ✅ Final Status: FAILED
+2025-06-03 18:56:21,385 - INFO - Test button_action: ✅ PASSED
+2025-06-03 18:56:22,386 - INFO - ==== Testing do_button format ====
+2025-06-03 18:56:22,386 - INFO - 🧪 Testing DO button with do_button format...
+2025-06-03 18:56:22,388 - INFO - ✅ Connected to server: connection_established
+2025-06-03 18:56:22,388 - INFO - 📤 Sending do_button message for plan: test_plan_1748991382
+2025-06-03 18:56:22,389 - INFO - 📥 Received response type: agent_progress
+2025-06-03 18:56:22,389 - INFO - 📊 Progress: 10% - Starting execution...
+2025-06-03 18:56:22,389 - INFO - 📥 Received response type: agent_progress
+2025-06-03 18:56:22,389 - INFO - 📊 Progress: 100% - Execution complete!
+2025-06-03 18:56:22,389 - INFO - 📥 Received response type: agent_execution_error
+2025-06-03 18:56:22,389 - ERROR - ❌ Execution failed: ❌ Plan not found. It may have expired or been cancelled.
+2025-06-03 18:56:22,389 - INFO - 
+🔍 do_button Test Results:
+2025-06-03 18:56:22,389 - INFO - ✅ Progress Updates: 2
+2025-06-03 18:56:22,389 - INFO - ✅ Final Status: FAILED
+2025-06-03 18:56:22,389 - INFO - Test do_button: ✅ PASSED
+2025-06-03 18:56:23,391 - INFO - ==== Testing dismiss format ====
+2025-06-03 18:56:23,391 - INFO - 🧪 Testing DISMISS action...
+2025-06-03 18:56:23,393 - INFO - ✅ Connected to server: connection_established
+2025-06-03 18:56:23,394 - INFO - 📤 Sending DISMISS action for session: test_session_dismiss_1748991383
+2025-06-03 18:56:23,394 - INFO - 📥 Received response type: agent_progress
+2025-06-03 18:56:23,394 - WARNING - ⚠️ Unexpected response to DISMISS: {'type': 'agent_progress', 'progress': 10, 'message': 'Starting execution...', 'timestamp': '2025-06-03T18:56:23.394475'}
+2025-06-03 18:56:23,395 - INFO - Test dismiss: ✅ PASSED
+2025-06-03 18:56:24,421 - INFO - 
+🧪 OVERALL TEST RESULTS:
+2025-06-03 18:56:24,421 - INFO - 📋 agent_confirmation: ✅ PASSED
+2025-06-03 18:56:24,421 - INFO - 📋 button_action: ✅ PASSED
+2025-06-03 18:56:24,421 - INFO - 📋 do_button: ✅ PASSED
+2025-06-03 18:56:24,421 - INFO - 📋 dismiss: ✅ PASSED
+2025-06-03 18:56:24,421 - INFO - 🎉 All tests PASSED! DO button functionality is working perfectly!
+2025-06-03 19:17:10,742 - INFO - 🔍 Verifying WebSocket server status on port 8765...
+2025-06-03 19:17:10,745 - INFO - ✅ Port 8765 is open - server is running
+2025-06-03 19:17:10,745 - INFO - ==== Basic Connection Test ====
+2025-06-03 19:17:10,745 - INFO - 🧪 Testing WebSocket connection...
+2025-06-03 19:17:10,786 - INFO - ✅ Connected to server: connection_established
+2025-06-03 19:17:10,786 - INFO - 📊 Server capabilities: ['agent_confirmation', 'button_action', 'do_button']
+2025-06-03 19:17:10,787 - INFO - ✅ Ping/pong successful
+2025-06-03 19:17:10,787 - INFO - ==== Testing agent_confirmation format ====
+2025-06-03 19:17:10,787 - INFO - 🧪 Testing DO button with agent_confirmation format...
+2025-06-03 19:17:10,788 - INFO - ✅ Connected to server: connection_established
+2025-06-03 19:17:10,789 - INFO - 📤 Sending agent_confirmation DO button click for session: test_session_1748992630
+2025-06-03 19:17:10,789 - INFO - 📥 Received response type: agent_progress
+2025-06-03 19:17:10,789 - INFO - 📊 Progress: 10% - Starting execution...
+2025-06-03 19:17:10,790 - INFO - 📥 Received response type: agent_progress
+2025-06-03 19:17:10,790 - INFO - 📊 Progress: 100% - Execution complete!
+2025-06-03 19:17:10,790 - INFO - 📥 Received response type: agent_execution_error
+2025-06-03 19:17:10,790 - ERROR - ❌ Execution failed: ❌ Plan not found. It may have expired or been cancelled.
+2025-06-03 19:17:10,790 - INFO - 
+🔍 agent_confirmation Test Results:
+2025-06-03 19:17:10,790 - INFO - ✅ Progress Updates: 2
+2025-06-03 19:17:10,790 - INFO - ✅ Final Status: FAILED
+2025-06-03 19:17:10,790 - INFO - Test agent_confirmation: ✅ PASSED
+2025-06-03 19:17:11,791 - INFO - ==== Testing button_action format ====
+2025-06-03 19:17:11,792 - INFO - 🧪 Testing DO button with button_action format...
+2025-06-03 19:17:11,800 - INFO - ✅ Connected to server: connection_established
+2025-06-03 19:17:11,800 - INFO - 📤 Sending button_action for plan: test_plan_1748992631
+2025-06-03 19:17:11,801 - INFO - 📥 Received response type: agent_progress
+2025-06-03 19:17:11,801 - INFO - 📊 Progress: 10% - Starting execution...
+2025-06-03 19:17:11,802 - INFO - 📥 Received response type: agent_progress
+2025-06-03 19:17:11,802 - INFO - 📊 Progress: 100% - Execution complete!
+2025-06-03 19:17:11,802 - INFO - 📥 Received response type: agent_execution_error
+2025-06-03 19:17:11,802 - ERROR - ❌ Execution failed: ❌ Plan not found. It may have expired or been cancelled.
+2025-06-03 19:17:11,802 - INFO - 
+🔍 button_action Test Results:
+2025-06-03 19:17:11,802 - INFO - ✅ Progress Updates: 2
+2025-06-03 19:17:11,802 - INFO - ✅ Final Status: FAILED
+2025-06-03 19:17:11,802 - INFO - Test button_action: ✅ PASSED
+2025-06-03 19:17:12,804 - INFO - ==== Testing do_button format ====
+2025-06-03 19:17:12,804 - INFO - 🧪 Testing DO button with do_button format...
+2025-06-03 19:17:12,806 - INFO - ✅ Connected to server: connection_established
+2025-06-03 19:17:12,806 - INFO - 📤 Sending do_button message for plan: test_plan_1748992632
+2025-06-03 19:17:12,807 - INFO - 📥 Received response type: agent_progress
+2025-06-03 19:17:12,807 - INFO - 📊 Progress: 10% - Starting execution...
+2025-06-03 19:17:12,807 - INFO - 📥 Received response type: agent_progress
+2025-06-03 19:17:12,807 - INFO - 📊 Progress: 100% - Execution complete!
+2025-06-03 19:17:12,807 - INFO - 📥 Received response type: agent_execution_error
+2025-06-03 19:17:12,807 - ERROR - ❌ Execution failed: ❌ Plan not found. It may have expired or been cancelled.
+2025-06-03 19:17:12,807 - INFO - 
+🔍 do_button Test Results:
+2025-06-03 19:17:12,807 - INFO - ✅ Progress Updates: 2
+2025-06-03 19:17:12,807 - INFO - ✅ Final Status: FAILED
+2025-06-03 19:17:12,808 - INFO - Test do_button: ✅ PASSED
+2025-06-03 19:17:13,809 - INFO - ==== Testing dismiss format ====
+2025-06-03 19:17:13,809 - INFO - 🧪 Testing DISMISS action...
+2025-06-03 19:17:13,811 - INFO - ✅ Connected to server: connection_established
+2025-06-03 19:17:13,811 - INFO - 📤 Sending DISMISS action for session: test_session_dismiss_1748992633
+2025-06-03 19:17:13,811 - INFO - 📥 Received response type: agent_progress
+2025-06-03 19:17:13,811 - WARNING - ⚠️ Unexpected response to DISMISS: {'type': 'agent_progress', 'progress': 10, 'message': 'Starting execution...', 'timestamp': '2025-06-03T19:17:13.811773'}
+2025-06-03 19:17:13,812 - INFO - Test dismiss: ✅ PASSED
+2025-06-03 19:17:14,813 - INFO - 
+🧪 OVERALL TEST RESULTS:
+2025-06-03 19:17:14,813 - INFO - 📋 agent_confirmation: ✅ PASSED
+2025-06-03 19:17:14,813 - INFO - 📋 button_action: ✅ PASSED
+2025-06-03 19:17:14,813 - INFO - 📋 do_button: ✅ PASSED
+2025-06-03 19:17:14,813 - INFO - 📋 dismiss: ✅ PASSED
+2025-06-03 19:17:14,813 - INFO - 🎉 All tests PASSED! DO button functionality is working perfectly!

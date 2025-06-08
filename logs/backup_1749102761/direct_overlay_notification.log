@@ -1,0 +1,48 @@
+2025-06-04 13:37:56,319 - __main__ - INFO - Trying to connect to ws://localhost:8765...
+2025-06-04 13:37:56,425 - __main__ - INFO - Connected to ws://localhost:8765! Welcome message received.
+2025-06-04 13:37:56,425 - __main__ - INFO - Sending notification to port 8765: 🚨 URGENT NOTIFICATION: This is a direct message to the overlay UI
+2025-06-04 13:37:56,425 - __main__ - INFO - Modern format sent to port 8765
+2025-06-04 13:37:56,934 - __main__ - INFO - Legacy format sent to port 8765
+2025-06-04 13:37:56,934 - __main__ - INFO - NextGen format sent to port 8765
+2025-06-04 13:37:56,935 - __main__ - INFO - Response received from port 8765
+2025-06-04 13:37:56,937 - __main__ - INFO - Trying to connect to ws://localhost:8766...
+2025-06-04 13:37:56,985 - __main__ - INFO - Connected to ws://localhost:8766! Welcome message received.
+2025-06-04 13:37:56,986 - __main__ - INFO - Sending notification to port 8766: 🚨 URGENT NOTIFICATION: This is a direct message to the overlay UI
+2025-06-04 13:37:56,986 - __main__ - INFO - Modern format sent to port 8766
+2025-06-04 13:37:57,486 - __main__ - INFO - Legacy format sent to port 8766
+2025-06-04 13:37:57,487 - __main__ - INFO - NextGen format sent to port 8766
+2025-06-04 13:37:57,487 - __main__ - INFO - Response received from port 8766
+2025-06-04 13:37:57,488 - __main__ - INFO - Trying to connect to ws://localhost:8767/ws...
+2025-06-04 13:37:57,530 - __main__ - INFO - Connected to ws://localhost:8767/ws! Welcome message received.
+2025-06-04 13:37:57,530 - __main__ - INFO - Sending notification to port 8767: 🚨 URGENT NOTIFICATION: This is a direct message to the overlay UI
+2025-06-04 13:37:57,530 - __main__ - INFO - Modern format sent to port 8767
+2025-06-04 13:37:58,031 - __main__ - INFO - Legacy format sent to port 8767
+2025-06-04 13:37:58,031 - __main__ - INFO - NextGen format sent to port 8767
+2025-06-04 13:37:58,031 - __main__ - INFO - Response received from port 8767
+2025-06-04 13:37:58,033 - __main__ - INFO - Trying to connect to ws://localhost:8768...
+2025-06-04 13:37:58,126 - __main__ - INFO - Connected to ws://localhost:8768! Welcome message received.
+2025-06-04 13:37:58,126 - __main__ - INFO - Sending notification to port 8768: 🚨 URGENT NOTIFICATION: This is a direct message to the overlay UI
+2025-06-04 13:37:58,127 - __main__ - INFO - Modern format sent to port 8768
+2025-06-04 13:37:58,627 - __main__ - INFO - Legacy format sent to port 8768
+2025-06-04 13:37:58,628 - __main__ - INFO - NextGen format sent to port 8768
+2025-06-04 13:37:58,628 - __main__ - INFO - Response received from port 8768
+2025-06-04 18:32:57,456 - __main__ - WARNING - Port 8765 not active, skipping
+2025-06-04 18:32:57,457 - __main__ - INFO - Trying to connect to ws://localhost:8766...
+2025-06-04 18:32:57,613 - __main__ - INFO - Connected to ws://localhost:8766! Welcome message received.
+2025-06-04 18:32:57,613 - __main__ - INFO - Sending notification to port 8766: Test notification from Claude
+2025-06-04 18:32:57,613 - __main__ - INFO - Modern format sent to port 8766
+2025-06-04 18:32:58,116 - __main__ - INFO - Legacy format sent to port 8766
+2025-06-04 18:32:58,117 - __main__ - INFO - NextGen format sent to port 8766
+2025-06-04 18:32:58,117 - __main__ - INFO - Response received from port 8766
+2025-06-04 18:32:58,122 - __main__ - INFO - Trying to connect to ws://localhost:8767/ws...
+2025-06-04 18:32:58,145 - __main__ - INFO - Connected to ws://localhost:8767/ws! Welcome message received.
+2025-06-04 18:33:00,146 - __main__ - WARNING - No welcome message from ws://localhost:8767/ws, skipping
+2025-06-04 18:33:00,162 - __main__ - INFO - Trying to connect to ws://localhost:8768...
+2025-06-04 18:33:00,239 - __main__ - INFO - Connected to ws://localhost:8768! Welcome message received.
+2025-06-04 18:33:00,239 - __main__ - INFO - Sending notification to port 8768: Test notification from Claude
+2025-06-04 18:33:00,240 - __main__ - INFO - Modern format sent to port 8768
+2025-06-04 18:33:00,751 - __main__ - INFO - Legacy format sent to port 8768
+2025-06-04 18:33:00,753 - __main__ - INFO - NextGen format sent to port 8768
+2025-06-04 18:33:00,754 - __main__ - INFO - Response received from port 8768
+2025-06-04 19:20:04,352 - __main__ - INFO - Connecting directly to overlay UI at ws://localhost:8765...
+2025-06-04 19:20:04,398 - __main__ - ERROR - Error connecting to ws://localhost:8765: Multiple exceptions: [Errno 61] Connect call failed ('::1', 8765, 0, 0), [Errno 61] Connect call failed ('127.0.0.1', 8765)

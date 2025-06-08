@@ -1,0 +1,27 @@
+[SIMPLE-FIX] INFO: Starting Simple DO Button Fix
+[SIMPLE-FIX] INFO: Starting WebSocket server on port 8766
+[SIMPLE-FIX] INFO: server listening on 127.0.0.1:8766
+[SIMPLE-FIX] INFO: server listening on [::1]:8766
+[SIMPLE-FIX] INFO: ✅ Simple DO Button Fix running on ws://localhost:8766
+[SIMPLE-FIX] INFO: Found 20 existing plan files in cache/plans
+[SIMPLE-FIX] INFO: connection open
+[SIMPLE-FIX] ERROR: connection handler failed
+Traceback (most recent call last):
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/asyncio/server.py", line 376, in conn_handler
+    await self.handler(connection)
+          ~~~~~~~~~~~~^^^^^^^^^^^^
+TypeError: main.<locals>.ws_handler() missing 1 required positional argument: 'path'
+[SIMPLE-FIX] INFO: connection open
+[SIMPLE-FIX] ERROR: connection handler failed
+Traceback (most recent call last):
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/asyncio/server.py", line 376, in conn_handler
+    await self.handler(connection)
+          ~~~~~~~~~~~~^^^^^^^^^^^^
+TypeError: main.<locals>.ws_handler() missing 1 required positional argument: 'path'
+[SIMPLE-FIX] INFO: connection open
+[SIMPLE-FIX] ERROR: connection handler failed
+Traceback (most recent call last):
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/asyncio/server.py", line 376, in conn_handler
+    await self.handler(connection)
+          ~~~~~~~~~~~~^^^^^^^^^^^^
+TypeError: main.<locals>.ws_handler() missing 1 required positional argument: 'path'

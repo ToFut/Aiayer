@@ -290,8 +290,22 @@ class SmartMemoryFeeder:
             # Load existing memory
             memory_data = {"short_term": [], "long_term": [], "version": "1.0"}
             if os.path.exists(self.memory_file):
-                with open(self.memory_file, 'r') as f:
-                    memory_data = json.load(f)
+                try:
+                    with open(self.memory_file, 'r') as f:
+                        memory_data = json.load(f)
+                except json.JSONDecodeError as e:
+                    logger.warning(f"JSON error in memory file: {e}. Creating backup and starting fresh.")
+                    # Create backup of corrupted file
+                    backup_path = f"{self.memory_file}.bak.{int(time.time())}"
+                    try:
+                        import shutil
+                        shutil.copy2(self.memory_file, backup_path)
+                        logger.info(f"Created backup at {backup_path}")
+                    except Exception as backup_err:
+                        logger.error(f"Failed to create backup: {backup_err}")
+                    
+                    # Start with empty memory
+                    memory_data = {"short_term": [], "long_term": [], "version": "1.0"}
             
             # Add new entry at the beginning
             memory_data['short_term'].insert(0, memory_entry)
@@ -302,12 +316,29 @@ class SmartMemoryFeeder:
             
             # Write back to file
             os.makedirs(os.path.dirname(self.memory_file), exist_ok=True)
-            with open(self.memory_file, 'w') as f:
-                json.dump(memory_data, f, indent=2)
             
-            self.update_count += 1
-            logger.info(f"Memory updated with smart entry (confidence: {memory_entry['user_activity']['confidence_level']:.2f})")
-            return True
+            # Safely write to file (write to temp file first, then rename)
+            temp_file = f"{self.memory_file}.tmp"
+            try:
+                with open(temp_file, 'w') as f:
+                    json.dump(memory_data, f, indent=2)
+                
+                # Check if the JSON is valid before replacing the actual file
+                with open(temp_file, 'r') as f:
+                    json.load(f)  # This will throw if JSON is invalid
+                
+                # Replace the actual file
+                import shutil
+                shutil.move(temp_file, self.memory_file)
+                
+                self.update_count += 1
+                logger.info(f"Memory updated with smart entry (confidence: {memory_entry['user_activity']['confidence_level']:.2f})")
+                return True
+            except Exception as write_err:
+                logger.error(f"Error writing memory file: {write_err}")
+                if os.path.exists(temp_file):
+                    os.remove(temp_file)
+                return False
             
         except Exception as e:
             logger.error(f"Error updating memory: {e}")

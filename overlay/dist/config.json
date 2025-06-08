@@ -1,0 +1,18 @@
+{
+  "websocket": {
+    "endpoint": "ws://localhost:8766",
+    "proxy_enabled": true,
+    "notification_support": true
+  },
+  "ui": {
+    "theme": "system",
+    "sound_enabled": true,
+    "compact_mode": false,
+    "animation_enabled": true
+  },
+  "features": {
+    "do_button_enabled": true,
+    "neural_ui_detection": true,
+    "plan_persistence": true
+  }
+}

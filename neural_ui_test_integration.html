@@ -1,0 +1,944 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Neural UI Detector Integration Test</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background-color: #f9fafb;
+            color: #111827;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        h1, h2, h3 {
+            color: #1f2937;
+        }
+        
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #4f46e5;
+            padding-bottom: 10px;
+        }
+        
+        .container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        
+        .panel {
+            background-color: white;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+        
+        .full-width {
+            grid-column: 1 / span 2;
+        }
+        
+        .control-panel {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        
+        .status {
+            background-color: #f3f4f6;
+            padding: 12px;
+            border-radius: 6px;
+            border-left: 4px solid #9ca3af;
+            margin-bottom: 10px;
+            font-family: monospace;
+            white-space: pre-wrap;
+        }
+        
+        .success {
+            border-left-color: #10b981;
+            background-color: #ecfdf5;
+        }
+        
+        .error {
+            border-left-color: #ef4444;
+            background-color: #fee2e2;
+        }
+        
+        .warning {
+            border-left-color: #f59e0b;
+            background-color: #fef3c7;
+        }
+        
+        .info {
+            border-left-color: #3b82f6;
+            background-color: #eff6ff;
+        }
+        
+        button {
+            background-color: #4f46e5;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: background-color 0.2s;
+        }
+        
+        button:hover {
+            background-color: #4338ca;
+        }
+        
+        button:disabled {
+            background-color: #9ca3af;
+            cursor: not-allowed;
+        }
+        
+        .button-group {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+        
+        .button-secondary {
+            background-color: #6b7280;
+        }
+        
+        .button-success {
+            background-color: #10b981;
+        }
+        
+        .button-warning {
+            background-color: #f59e0b;
+        }
+        
+        .button-danger {
+            background-color: #ef4444;
+        }
+        
+        .button-secondary:hover {
+            background-color: #4b5563;
+        }
+        
+        .button-success:hover {
+            background-color: #059669;
+        }
+        
+        .button-warning:hover {
+            background-color: #d97706;
+        }
+        
+        .button-danger:hover {
+            background-color: #dc2626;
+        }
+        
+        input, select {
+            padding: 8px 12px;
+            border: 1px solid #d1d5db;
+            border-radius: 6px;
+            font-size: 1rem;
+            width: 100%;
+            margin-bottom: 10px;
+        }
+        
+        label {
+            font-weight: 500;
+            margin-bottom: 5px;
+            display: block;
+        }
+        
+        .form-group {
+            margin-bottom: 15px;
+        }
+        
+        .log-container {
+            max-height: 300px;
+            overflow-y: auto;
+            font-family: monospace;
+            font-size: 0.9rem;
+        }
+        
+        .log-entry {
+            padding: 5px 8px;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        
+        .log-time {
+            color: #6b7280;
+            margin-right: 5px;
+        }
+        
+        .log-sent {
+            color: #2563eb;
+        }
+        
+        .log-received {
+            color: #059669;
+        }
+        
+        .log-error {
+            color: #dc2626;
+        }
+        
+        .visualization {
+            max-width: 100%;
+            max-height: 300px;
+            margin-top: 10px;
+            border: 1px solid #d1d5db;
+            border-radius: 6px;
+        }
+        
+        .progress-container {
+            width: 100%;
+            height: 6px;
+            background-color: #e5e7eb;
+            border-radius: 3px;
+            margin-bottom: 10px;
+            overflow: hidden;
+        }
+        
+        .progress-bar {
+            height: 100%;
+            background-color: #4f46e5;
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+        
+        .result-card {
+            border: 1px solid #e5e7eb;
+            border-radius: 6px;
+            padding: 10px;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .result-icon {
+            margin-right: 10px;
+            font-size: 1.5rem;
+        }
+        
+        .result-success {
+            color: #10b981;
+        }
+        
+        .result-failure {
+            color: #ef4444;
+        }
+        
+        .element-list {
+            max-height: 200px;
+            overflow-y: auto;
+            border: 1px solid #e5e7eb;
+            border-radius: 6px;
+            padding: 10px;
+        }
+        
+        .element-item {
+            padding: 6px 10px;
+            border-bottom: 1px solid #e5e7eb;
+            cursor: pointer;
+        }
+        
+        .element-item:hover {
+            background-color: #f3f4f6;
+        }
+        
+        .element-item:last-child {
+            border-bottom: none;
+        }
+    </style>
+</head>
+<body>
+    <h1>Neural UI Detector Integration Test</h1>
+    
+    <div class="panel full-width">
+        <h2>WebSocket Connection</h2>
+        <div class="control-panel">
+            <div class="form-group">
+                <label for="wsPort">WebSocket Port:</label>
+                <input type="number" id="wsPort" value="8768" min="1000" max="65535">
+            </div>
+            <div class="button-group">
+                <button id="connectBtn">Connect</button>
+                <button id="disconnectBtn" disabled>Disconnect</button>
+            </div>
+            <div class="status" id="connectionStatus">Not connected</div>
+        </div>
+    </div>
+    
+    <div class="container">
+        <div class="panel">
+            <h2>UI Detection</h2>
+            <div class="control-panel">
+                <button id="detectBtn" disabled>Detect UI Elements</button>
+                <div class="form-group" style="margin-top: 15px;">
+                    <label for="testPageUrl">UI Test Page URL:</label>
+                    <input type="text" id="testPageUrl" value="ui_test_elements.html">
+                </div>
+                <button id="openTestPageBtn" class="button-secondary">Open Test Page</button>
+                <div class="progress-container" id="detectionProgress" style="display: none;">
+                    <div class="progress-bar" id="detectionProgressBar"></div>
+                </div>
+                <div class="status" id="detectionStatus">No detection performed</div>
+            </div>
+            
+            <div id="visualizationContainer" style="margin-top: 20px; display: none;">
+                <h3>Detection Visualization</h3>
+                <img id="visualization" class="visualization" alt="Detection visualization">
+            </div>
+        </div>
+        
+        <div class="panel">
+            <h2>Detected Elements</h2>
+            <div class="form-group">
+                <label for="elementFilter">Filter:</label>
+                <input type="text" id="elementFilter" placeholder="Filter by type or text...">
+            </div>
+            <div class="element-list" id="elementList">
+                <div class="element-item">No elements detected yet</div>
+            </div>
+            
+            <div style="margin-top: 15px;">
+                <h3>Selected Element</h3>
+                <div class="status" id="selectedElementInfo">No element selected</div>
+                <div class="button-group">
+                    <button id="findElementBtn" disabled>Find Element</button>
+                    <button id="clickElementBtn" disabled>Click Element</button>
+                    <button id="typeElementBtn" disabled>Type Text</button>
+                </div>
+                <div class="form-group" id="typeTextContainer" style="display: none;">
+                    <label for="typeText">Text to Type:</label>
+                    <input type="text" id="typeText" value="Test input">
+                    <button id="submitTypeBtn" class="button-success">Submit</button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="panel full-width">
+            <h2>Test Suite</h2>
+            <div class="button-group">
+                <button id="runTestSuiteBtn" disabled>Run Automated Test Suite</button>
+                <button id="stopTestSuiteBtn" disabled class="button-danger">Stop Tests</button>
+            </div>
+            <div class="progress-container" id="testProgress" style="display: none;">
+                <div class="progress-bar" id="testProgressBar"></div>
+            </div>
+            <div class="status" id="testStatus">No tests running</div>
+            <div id="testResults" style="margin-top: 15px;"></div>
+        </div>
+        
+        <div class="panel full-width">
+            <h2>Communication Log</h2>
+            <button id="clearLogBtn" class="button-secondary">Clear Log</button>
+            <div class="log-container" id="logContainer"></div>
+        </div>
+    </div>
+    
+    <script>
+        // UI Elements
+        const connectBtn = document.getElementById('connectBtn');
+        const disconnectBtn = document.getElementById('disconnectBtn');
+        const detectBtn = document.getElementById('detectBtn');
+        const openTestPageBtn = document.getElementById('openTestPageBtn');
+        const findElementBtn = document.getElementById('findElementBtn');
+        const clickElementBtn = document.getElementById('clickElementBtn');
+        const typeElementBtn = document.getElementById('typeElementBtn');
+        const runTestSuiteBtn = document.getElementById('runTestSuiteBtn');
+        const stopTestSuiteBtn = document.getElementById('stopTestSuiteBtn');
+        const clearLogBtn = document.getElementById('clearLogBtn');
+        const submitTypeBtn = document.getElementById('submitTypeBtn');
+        
+        const connectionStatus = document.getElementById('connectionStatus');
+        const detectionStatus = document.getElementById('detectionStatus');
+        const selectedElementInfo = document.getElementById('selectedElementInfo');
+        const testStatus = document.getElementById('testStatus');
+        const logContainer = document.getElementById('logContainer');
+        const elementList = document.getElementById('elementList');
+        const elementFilter = document.getElementById('elementFilter');
+        const visualization = document.getElementById('visualization');
+        const visualizationContainer = document.getElementById('visualizationContainer');
+        const wsPortInput = document.getElementById('wsPort');
+        const testPageUrlInput = document.getElementById('testPageUrl');
+        const typeTextInput = document.getElementById('typeText');
+        const typeTextContainer = document.getElementById('typeTextContainer');
+        const detectionProgress = document.getElementById('detectionProgress');
+        const detectionProgressBar = document.getElementById('detectionProgressBar');
+        const testProgress = document.getElementById('testProgress');
+        const testProgressBar = document.getElementById('testProgressBar');
+        const testResults = document.getElementById('testResults');
+        
+        // WebSocket connection
+        let ws = null;
+        
+        // UI elements data
+        let detectedElements = [];
+        let selectedElement = null;
+        let testSuiteRunning = false;
+        
+        // Test elements that match those in ui_test_elements.html
+        const testElements = [
+            // Buttons
+            { id: "btnPrimary", type: "button", name: "Primary Button", category: "Button" },
+            { id: "btnOutline", type: "button", name: "Outline Button", category: "Button" },
+            { id: "btnSuccess", type: "button", name: "Success Button", category: "Button" },
+            { id: "btnWarning", type: "button", name: "Warning Button", category: "Button" },
+            { id: "btnError", type: "button", name: "Error Button", category: "Button" },
+            { id: "btnLarge", type: "button", name: "Large Button", category: "Button" },
+            { id: "btnSmall", type: "button", name: "Small Button", category: "Button" },
+            
+            // Form Elements
+            { id: "textInput", type: "text_input", name: "Text Input", value: "Sample text", category: "Form Input" },
+            { id: "emailInput", type: "text_input", name: "Email Input", value: "test@example.com", category: "Form Input" },
+            { id: "passwordInput", type: "text_input", name: "Password Input", value: "Password123", category: "Form Input" },
+            
+            // Links
+            { id: "link1", type: "link", name: "Standard Link", category: "Link" },
+            { id: "link2", type: "link", name: "Documentation Link", category: "Link" }
+        ];
+        
+        // Connect to WebSocket server
+        connectBtn.addEventListener('click', () => {
+            const port = wsPortInput.value;
+            connectionStatus.textContent = `Connecting to WebSocket server on port ${port}...`;
+            connectionStatus.className = 'status info';
+            
+            // Close existing connection
+            if (ws) {
+                ws.close();
+            }
+            
+            // Create new WebSocket connection
+            ws = new WebSocket(`ws://localhost:${port}`);
+            
+            ws.onopen = () => {
+                connectionStatus.textContent = `Connected to WebSocket server on port ${port}`;
+                connectionStatus.className = 'status success';
+                
+                // Enable controls
+                connectBtn.disabled = true;
+                disconnectBtn.disabled = false;
+                detectBtn.disabled = false;
+                runTestSuiteBtn.disabled = false;
+                
+                addLogEntry('Connected to WebSocket server', 'info');
+            };
+            
+            ws.onmessage = (event) => {
+                try {
+                    const data = JSON.parse(event.data);
+                    addLogEntry(`Received: ${JSON.stringify(data, null, 2)}`, 'received');
+                    
+                    // Handle welcome message
+                    if (data.type === 'welcome') {
+                        connectionStatus.textContent = `Connected to Neural UI Detector v${data.version} - Capabilities: ${data.capabilities.join(', ')}`;
+                    }
+                    
+                    // Handle detection results
+                    if (data.type === 'detection_result') {
+                        hideProgress(detectionProgress);
+                        
+                        // Update detection status
+                        detectionStatus.textContent = `Detected ${data.count} UI elements in ${data.execution_time.toFixed(2)}s`;
+                        detectionStatus.className = 'status success';
+                        
+                        // Store detected elements
+                        detectedElements = data.elements || [];
+                        
+                        // Update element list
+                        updateElementList();
+                        
+                        // Show visualization if available
+                        if (data.visualization) {
+                            visualization.src = `data:image/png;base64,${data.visualization}`;
+                            visualizationContainer.style.display = 'block';
+                        }
+                    }
+                    
+                    // Handle ui_detection_result for find operations
+                    if (data.type === 'ui_detection_result') {
+                        if (data.found) {
+                            selectedElementInfo.textContent = `Found element: ${JSON.stringify(data.element, null, 2)}`;
+                            selectedElementInfo.className = 'status success';
+                            selectedElement = data.element;
+                            
+                            // Enable appropriate buttons based on element type
+                            clickElementBtn.disabled = false;
+                            typeElementBtn.disabled = data.element.element_type !== 'text_input';
+                        } else {
+                            selectedElementInfo.textContent = `Element not found: ${data.message || 'No matching element detected'}`;
+                            selectedElementInfo.className = 'status error';
+                            selectedElement = null;
+                            
+                            // Disable action buttons
+                            clickElementBtn.disabled = true;
+                            typeElementBtn.disabled = true;
+                        }
+                    }
+                    
+                    // Handle click/type results
+                    if (data.type === 'click_result' || data.type === 'type_result') {
+                        // Update test status if running test suite
+                        if (testSuiteRunning) {
+                            if (data.success) {
+                                updateTestStatus(`Operation successful: ${data.message}`);
+                            } else {
+                                updateTestStatus(`Operation failed: ${data.message}`, 'error');
+                            }
+                            
+                            // Continue with next test
+                            setTimeout(runNextTest, 1000);
+                        } else {
+                            // Just update the status
+                            if (data.success) {
+                                selectedElementInfo.textContent = `Success: ${data.message}`;
+                                selectedElementInfo.className = 'status success';
+                            } else {
+                                selectedElementInfo.textContent = `Failed: ${data.message}`;
+                                selectedElementInfo.className = 'status error';
+                            }
+                        }
+                    }
+                    
+                    // Handle execute_result for test suite
+                    if (data.type === 'execute_result') {
+                        if (testSuiteRunning) {
+                            updateTestStatus(`Execution complete: ${data.success_count}/${data.total_steps} steps successful`);
+                            setTimeout(runNextTest, 1000);
+                        }
+                    }
+                    
+                    // Handle errors
+                    if (data.type === 'error') {
+                        // Hide progress indicators
+                        hideProgress(detectionProgress);
+                        
+                        // Update status based on context
+                        if (testSuiteRunning) {
+                            updateTestStatus(`Error: ${data.error}`, 'error');
+                            setTimeout(runNextTest, 1000);
+                        } else {
+                            detectionStatus.textContent = `Error: ${data.error}`;
+                            detectionStatus.className = 'status error';
+                            selectedElementInfo.textContent = `Error: ${data.error}`;
+                            selectedElementInfo.className = 'status error';
+                        }
+                    }
+                } catch (e) {
+                    addLogEntry(`Error parsing message: ${e}`, 'error');
+                }
+            };
+            
+            ws.onclose = (event) => {
+                connectionStatus.textContent = `Disconnected from WebSocket server (Code: ${event.code})`;
+                connectionStatus.className = 'status error';
+                
+                // Disable controls
+                connectBtn.disabled = false;
+                disconnectBtn.disabled = true;
+                detectBtn.disabled = true;
+                findElementBtn.disabled = true;
+                clickElementBtn.disabled = true;
+                typeElementBtn.disabled = true;
+                runTestSuiteBtn.disabled = true;
+                stopTestSuiteBtn.disabled = true;
+                
+                // Reset WebSocket
+                ws = null;
+                
+                addLogEntry(`Disconnected from WebSocket server. Code: ${event.code}, Reason: ${event.reason || 'No reason provided'}`, 'error');
+            };
+            
+            ws.onerror = (error) => {
+                connectionStatus.textContent = 'WebSocket error';
+                connectionStatus.className = 'status error';
+                
+                addLogEntry('WebSocket error: Connection failed or was interrupted', 'error');
+            };
+        });
+        
+        // Disconnect from WebSocket server
+        disconnectBtn.addEventListener('click', () => {
+            if (ws) {
+                ws.close();
+            }
+        });
+        
+        // Open UI test page
+        openTestPageBtn.addEventListener('click', () => {
+            const testPageUrl = testPageUrlInput.value;
+            window.open(testPageUrl, '_blank');
+        });
+        
+        // Detect UI elements
+        detectBtn.addEventListener('click', () => {
+            if (!ws || ws.readyState !== WebSocket.OPEN) {
+                detectionStatus.textContent = 'Not connected to WebSocket server';
+                detectionStatus.className = 'status error';
+                return;
+            }
+            
+            // Clear previous results
+            clearElementSelection();
+            detectedElements = [];
+            updateElementList();
+            
+            // Show progress indicator
+            showProgress(detectionProgress);
+            
+            detectionStatus.textContent = 'Detecting UI elements...';
+            detectionStatus.className = 'status info';
+            
+            // Send detect request
+            const message = {
+                action: 'detect'
+            };
+            
+            ws.send(JSON.stringify(message));
+            addLogEntry(`Sent: ${JSON.stringify(message, null, 2)}`, 'sent');
+        });
+        
+        // Find specific element
+        findElementBtn.addEventListener('click', () => {
+            if (!ws || ws.readyState !== WebSocket.OPEN || !selectedElement) {
+                return;
+            }
+            
+            const element = selectedElement;
+            
+            // Send find request
+            const message = {
+                action: 'find',
+                description: element.text || element.id,
+                element_type: element.element_type
+            };
+            
+            ws.send(JSON.stringify(message));
+            addLogEntry(`Sent: ${JSON.stringify(message, null, 2)}`, 'sent');
+            
+            selectedElementInfo.textContent = 'Finding element...';
+            selectedElementInfo.className = 'status info';
+        });
+        
+        // Click on element
+        clickElementBtn.addEventListener('click', () => {
+            if (!ws || ws.readyState !== WebSocket.OPEN || !selectedElement) {
+                return;
+            }
+            
+            const element = selectedElement;
+            
+            // Send click request
+            const message = {
+                action: 'click',
+                description: element.text || element.id,
+                element_type: element.element_type
+            };
+            
+            ws.send(JSON.stringify(message));
+            addLogEntry(`Sent: ${JSON.stringify(message, null, 2)}`, 'sent');
+            
+            selectedElementInfo.textContent = 'Clicking element...';
+            selectedElementInfo.className = 'status info';
+        });
+        
+        // Type into element
+        typeElementBtn.addEventListener('click', () => {
+            if (!ws || ws.readyState !== WebSocket.OPEN || !selectedElement) {
+                return;
+            }
+            
+            // Show text input
+            typeTextContainer.style.display = 'block';
+        });
+        
+        // Submit type action
+        submitTypeBtn.addEventListener('click', () => {
+            if (!ws || ws.readyState !== WebSocket.OPEN || !selectedElement) {
+                return;
+            }
+            
+            const element = selectedElement;
+            const text = typeTextInput.value;
+            
+            // Send type request
+            const message = {
+                action: 'type',
+                description: element.text || element.id,
+                text: text,
+                element_type: element.element_type
+            };
+            
+            ws.send(JSON.stringify(message));
+            addLogEntry(`Sent: ${JSON.stringify(message, null, 2)}`, 'sent');
+            
+            selectedElementInfo.textContent = 'Typing text...';
+            selectedElementInfo.className = 'status info';
+            
+            // Hide text input
+            typeTextContainer.style.display = 'none';
+        });
+        
+        // Run automated test suite
+        let currentTestIndex = 0;
+        
+        runTestSuiteBtn.addEventListener('click', () => {
+            if (!ws || ws.readyState !== WebSocket.OPEN) {
+                testStatus.textContent = 'Not connected to WebSocket server';
+                testStatus.className = 'status error';
+                return;
+            }
+            
+            // Reset test results
+            testResults.innerHTML = '';
+            currentTestIndex = 0;
+            testSuiteRunning = true;
+            
+            // Enable stop button, disable run button
+            runTestSuiteBtn.disabled = true;
+            stopTestSuiteBtn.disabled = false;
+            
+            // Show progress
+            testProgress.style.display = 'block';
+            updateTestProgress(0);
+            
+            // Start tests
+            updateTestStatus('Starting automated test suite...');
+            runNextTest();
+        });
+        
+        // Stop test suite
+        stopTestSuiteBtn.addEventListener('click', () => {
+            testSuiteRunning = false;
+            stopTestSuiteBtn.disabled = true;
+            runTestSuiteBtn.disabled = false;
+            updateTestStatus('Test suite stopped by user', 'warning');
+        });
+        
+        // Clear log
+        clearLogBtn.addEventListener('click', () => {
+            logContainer.innerHTML = '';
+        });
+        
+        // Filter elements
+        elementFilter.addEventListener('input', () => {
+            updateElementList();
+        });
+        
+        // Helper functions
+        function addLogEntry(message, type = 'info') {
+            const entry = document.createElement('div');
+            entry.className = 'log-entry';
+            
+            const time = document.createElement('span');
+            time.className = 'log-time';
+            time.textContent = new Date().toLocaleTimeString();
+            
+            const content = document.createElement('span');
+            content.className = `log-${type}`;
+            content.textContent = ' ' + message;
+            
+            entry.appendChild(time);
+            entry.appendChild(content);
+            
+            logContainer.insertBefore(entry, logContainer.firstChild);
+        }
+        
+        function updateElementList() {
+            elementList.innerHTML = '';
+            
+            if (detectedElements.length === 0) {
+                const noElements = document.createElement('div');
+                noElements.className = 'element-item';
+                noElements.textContent = 'No elements detected yet';
+                elementList.appendChild(noElements);
+                return;
+            }
+            
+            const filterText = elementFilter.value.toLowerCase();
+            
+            detectedElements.forEach((element, index) => {
+                // Apply filter
+                const text = (element.text || '').toLowerCase();
+                const type = (element.element_type || '').toLowerCase();
+                
+                if (filterText && !text.includes(filterText) && !type.includes(filterText)) {
+                    return;
+                }
+                
+                const item = document.createElement('div');
+                item.className = 'element-item';
+                item.textContent = `${element.element_type}: ${element.text || 'No text'} (${element.id})`;
+                item.dataset.index = index;
+                
+                item.addEventListener('click', () => {
+                    // Select this element
+                    selectedElement = element;
+                    selectedElementInfo.textContent = JSON.stringify(element, null, 2);
+                    selectedElementInfo.className = 'status';
+                    
+                    // Update buttons
+                    findElementBtn.disabled = false;
+                    clickElementBtn.disabled = false;
+                    typeElementBtn.disabled = element.element_type !== 'text_input';
+                    
+                    // Highlight selected item
+                    document.querySelectorAll('.element-item.selected').forEach(el => {
+                        el.classList.remove('selected');
+                    });
+                    item.classList.add('selected');
+                });
+                
+                elementList.appendChild(item);
+            });
+        }
+        
+        function clearElementSelection() {
+            selectedElement = null;
+            selectedElementInfo.textContent = 'No element selected';
+            selectedElementInfo.className = 'status';
+            findElementBtn.disabled = true;
+            clickElementBtn.disabled = true;
+            typeElementBtn.disabled = true;
+            typeTextContainer.style.display = 'none';
+        }
+        
+        function showProgress(progressElement) {
+            progressElement.style.display = 'block';
+            const progressBar = progressElement.querySelector('.progress-bar');
+            progressBar.style.width = '0%';
+            
+            // Start animation
+            let progress = 0;
+            const interval = setInterval(() => {
+                progress += 1;
+                if (progress > 95) {
+                    clearInterval(interval);
+                }
+                progressBar.style.width = `${progress}%`;
+            }, 100);
+            
+            // Store interval ID to clear it later
+            progressElement.dataset.intervalId = interval;
+        }
+        
+        function hideProgress(progressElement) {
+            // Clear interval if exists
+            if (progressElement.dataset.intervalId) {
+                clearInterval(parseInt(progressElement.dataset.intervalId));
+            }
+            
+            // Set to 100% then hide
+            const progressBar = progressElement.querySelector('.progress-bar');
+            progressBar.style.width = '100%';
+            
+            // Hide after brief delay
+            setTimeout(() => {
+                progressElement.style.display = 'none';
+            }, 300);
+        }
+        
+        function updateTestProgress(percent) {
+            testProgressBar.style.width = `${percent}%`;
+        }
+        
+        function updateTestStatus(message, type = 'info') {
+            testStatus.textContent = message;
+            testStatus.className = `status ${type}`;
+        }
+        
+        function addTestResult(element, success, details) {
+            const resultCard = document.createElement('div');
+            resultCard.className = 'result-card';
+            
+            const icon = document.createElement('div');
+            icon.className = `result-icon ${success ? 'result-success' : 'result-failure'}`;
+            icon.textContent = success ? '✓' : '✗';
+            
+            const content = document.createElement('div');
+            content.innerHTML = `<strong>${element.category}:</strong> ${element.name} - ${success ? 'Success' : 'Failed'}`;
+            
+            if (details) {
+                const detailsElem = document.createElement('div');
+                detailsElem.style.fontSize = '0.9em';
+                detailsElem.style.marginTop = '5px';
+                detailsElem.textContent = details;
+                content.appendChild(detailsElem);
+            }
+            
+            resultCard.appendChild(icon);
+            resultCard.appendChild(content);
+            
+            testResults.appendChild(resultCard);
+        }
+        
+        function runNextTest() {
+            if (!testSuiteRunning || !ws || ws.readyState !== WebSocket.OPEN) {
+                testSuiteRunning = false;
+                stopTestSuiteBtn.disabled = true;
+                runTestSuiteBtn.disabled = false;
+                return;
+            }
+            
+            if (currentTestIndex >= testElements.length) {
+                // Tests complete
+                updateTestStatus('Test suite completed!', 'success');
+                updateTestProgress(100);
+                testSuiteRunning = false;
+                stopTestSuiteBtn.disabled = true;
+                runTestSuiteBtn.disabled = false;
+                return;
+            }
+            
+            // Update progress
+            const percent = Math.floor((currentTestIndex / testElements.length) * 100);
+            updateTestProgress(percent);
+            
+            // Get current test element
+            const element = testElements[currentTestIndex];
+            updateTestStatus(`Testing ${element.name} (${currentTestIndex + 1}/${testElements.length})`);
+            
+            // Execute test based on element type
+            if (element.type === 'button' || element.type === 'link') {
+                // Send click request
+                const message = {
+                    action: 'click',
+                    description: element.name,
+                    element_type: element.type
+                };
+                
+                ws.send(JSON.stringify(message));
+                addLogEntry(`Sent: ${JSON.stringify(message, null, 2)}`, 'sent');
+                addTestResult(element, true);
+            } 
+            else if (element.type === 'text_input') {
+                // Send type request
+                const message = {
+                    action: 'type',
+                    description: element.name,
+                    text: element.value || 'Test input',
+                    element_type: element.type
+                };
+                
+                ws.send(JSON.stringify(message));
+                addLogEntry(`Sent: ${JSON.stringify(message, null, 2)}`, 'sent');
+                addTestResult(element, true);
+            }
+            else {
+                // Skip unsupported element types
+                addTestResult(element, false, 'Unsupported element type');
+                setTimeout(runNextTest, 500);
+            }
+            
+            // Move to next test
+            currentTestIndex++;
+        }
+    </script>
+</body>
+</html>

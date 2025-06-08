@@ -1,0 +1,279 @@
+{
+  "pending_suggestions": {
+    "sugg_cafe7663": {
+      "id": "sugg_cafe7663",
+      "title": "Create calendar event",
+      "description": "I noticed you're reading about a team meeting on Thursday at 3pm",
+      "confidence": 0.87,
+      "action_items": [
+        {
+          "type": "open_app",
+          "target": "Calendar"
+        },
+        {
+          "type": "input_text",
+          "target": "event_title",
+          "value": "Team Meeting"
+        },
+        {
+          "type": "input_text",
+          "target": "date",
+          "value": "Thursday 3pm"
+        },
+        {
+          "type": "input_text",
+          "target": "description",
+          "value": "Discuss new project timeline"
+        }
+      ],
+      "context": {
+        "source": "screen_analysis",
+        "timestamp": "2025-06-06T23:02:51.893420"
+      },
+      "timestamp": "2025-06-06T23:02:51.893912",
+      "status": "pending",
+      "quality_score": 0.97
+    }
+  },
+  "accepted_suggestions": {
+    "sugg_c8a3332f": {
+      "id": "sugg_c8a3332f",
+      "title": "Create calendar event",
+      "description": "I noticed you're reading about a team meeting on Thursday at 3pm",
+      "confidence": 0.87,
+      "action_items": [
+        {
+          "type": "open_app",
+          "target": "Calendar"
+        },
+        {
+          "type": "input_text",
+          "target": "event_title",
+          "value": "Team Meeting"
+        },
+        {
+          "type": "input_text",
+          "target": "date",
+          "value": "Thursday 3pm"
+        },
+        {
+          "type": "input_text",
+          "target": "description",
+          "value": "Discuss new project timeline"
+        }
+      ],
+      "context": {
+        "source": "screen_analysis",
+        "timestamp": "2025-06-06T23:05:23.339908"
+      },
+      "timestamp": "2025-06-06T23:05:23.343183",
+      "status": "accepted",
+      "original_confidence": 0.87,
+      "enhanced_confidence": 0.87,
+      "rejected_at": "2025-06-06T23:05:23.347152",
+      "accepted_at": "2025-06-06T23:05:23.347286"
+    },
+    "sugg_c22852f3": {
+      "id": "sugg_c22852f3",
+      "title": "Create calendar event",
+      "description": "I noticed you're reading about a team meeting on Thursday at 3pm",
+      "confidence": 0.87,
+      "action_items": [
+        {
+          "type": "open_app",
+          "target": "Calendar"
+        },
+        {
+          "type": "input_text",
+          "target": "event_title",
+          "value": "Team Meeting"
+        },
+        {
+          "type": "input_text",
+          "target": "date",
+          "value": "Thursday 3pm"
+        },
+        {
+          "type": "input_text",
+          "target": "description",
+          "value": "Discuss new project timeline"
+        }
+      ],
+      "context": {
+        "source": "screen_analysis",
+        "timestamp": "2025-06-06T23:07:23.898201"
+      },
+      "timestamp": "2025-06-06T23:07:23.898690",
+      "status": "accepted",
+      "original_confidence": 0.87,
+      "enhanced_confidence": 0.87,
+      "rejected_at": "2025-06-06T23:07:23.899269",
+      "accepted_at": "2025-06-06T23:07:23.899393"
+    }
+  },
+  "rejected_suggestions": {
+    "sugg_c8a3332f": {
+      "id": "sugg_c8a3332f",
+      "title": "Create calendar event",
+      "description": "I noticed you're reading about a team meeting on Thursday at 3pm",
+      "confidence": 0.87,
+      "action_items": [
+        {
+          "type": "open_app",
+          "target": "Calendar"
+        },
+        {
+          "type": "input_text",
+          "target": "event_title",
+          "value": "Team Meeting"
+        },
+        {
+          "type": "input_text",
+          "target": "date",
+          "value": "Thursday 3pm"
+        },
+        {
+          "type": "input_text",
+          "target": "description",
+          "value": "Discuss new project timeline"
+        }
+      ],
+      "context": {
+        "source": "screen_analysis",
+        "timestamp": "2025-06-06T23:05:23.339908"
+      },
+      "timestamp": "2025-06-06T23:05:23.343183",
+      "status": "accepted",
+      "original_confidence": 0.87,
+      "enhanced_confidence": 0.87,
+      "rejected_at": "2025-06-06T23:05:23.347152",
+      "accepted_at": "2025-06-06T23:05:23.347286"
+    },
+    "sugg_03a6011d": {
+      "id": "sugg_03a6011d",
+      "title": "Create calendar event",
+      "description": "I noticed you're reading about a team meeting on Thursday at 3pm",
+      "confidence": 0.87,
+      "action_items": [
+        {
+          "type": "open_app",
+          "target": "Calendar"
+        },
+        {
+          "type": "input_text",
+          "target": "event_title",
+          "value": "Team Meeting"
+        },
+        {
+          "type": "input_text",
+          "target": "date",
+          "value": "Thursday 3pm"
+        },
+        {
+          "type": "input_text",
+          "target": "description",
+          "value": "Discuss new project timeline"
+        }
+      ],
+      "context": {
+        "source": "screen_analysis",
+        "timestamp": "2025-06-06T23:05:23.348215"
+      },
+      "timestamp": "2025-06-06T23:05:23.348242",
+      "status": "rejected",
+      "original_confidence": 0.87,
+      "enhanced_confidence": 0.87,
+      "rejected_at": "2025-06-06T23:05:23.348414",
+      "rejection_reason": "Already handled this meeting"
+    },
+    "sugg_c22852f3": {
+      "id": "sugg_c22852f3",
+      "title": "Create calendar event",
+      "description": "I noticed you're reading about a team meeting on Thursday at 3pm",
+      "confidence": 0.87,
+      "action_items": [
+        {
+          "type": "open_app",
+          "target": "Calendar"
+        },
+        {
+          "type": "input_text",
+          "target": "event_title",
+          "value": "Team Meeting"
+        },
+        {
+          "type": "input_text",
+          "target": "date",
+          "value": "Thursday 3pm"
+        },
+        {
+          "type": "input_text",
+          "target": "description",
+          "value": "Discuss new project timeline"
+        }
+      ],
+      "context": {
+        "source": "screen_analysis",
+        "timestamp": "2025-06-06T23:07:23.898201"
+      },
+      "timestamp": "2025-06-06T23:07:23.898690",
+      "status": "accepted",
+      "original_confidence": 0.87,
+      "enhanced_confidence": 0.87,
+      "rejected_at": "2025-06-06T23:07:23.899269",
+      "accepted_at": "2025-06-06T23:07:23.899393"
+    },
+    "sugg_05e0d3db": {
+      "id": "sugg_05e0d3db",
+      "title": "Create calendar event",
+      "description": "I noticed you're reading about a team meeting on Thursday at 3pm",
+      "confidence": 0.8999999999999999,
+      "action_items": [
+        {
+          "type": "open_app",
+          "target": "Calendar"
+        },
+        {
+          "type": "input_text",
+          "target": "event_title",
+          "value": "Team Meeting"
+        },
+        {
+          "type": "input_text",
+          "target": "date",
+          "value": "Thursday 3pm"
+        },
+        {
+          "type": "input_text",
+          "target": "description",
+          "value": "Discuss new project timeline"
+        }
+      ],
+      "context": {
+        "source": "screen_analysis",
+        "timestamp": "2025-06-06T23:07:23.900344"
+      },
+      "timestamp": "2025-06-06T23:07:23.900369",
+      "status": "rejected",
+      "original_confidence": 0.87,
+      "enhanced_confidence": 0.8999999999999999,
+      "rejected_at": "2025-06-06T23:07:23.900532",
+      "rejection_reason": "Already handled this meeting"
+    }
+  },
+  "suggestion_history": [],
+  "metrics": {
+    "total_suggestions": 9,
+    "accepted_suggestions": 2,
+    "rejected_suggestions": 6,
+    "executed_suggestions": 0,
+    "avg_confidence": 0.8733333333333333
+  },
+  "user_preferences": {
+    "accepted_apps": [],
+    "rejected_apps": [],
+    "preferred_times": {},
+    "suggestion_types": {}
+  },
+  "last_updated": "2025-06-06T23:07:23.907731"
+}

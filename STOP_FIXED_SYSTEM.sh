@@ -1,41 +1,43 @@
 #!/bin/bash
-# Stop Fixed AI System
 
-echo "🛑 Stopping Fixed AI System..."
+# ANSI Color codes
+GREEN='\033[0;32m'
+BLUE='\033[0;34m'
+YELLOW='\033[1;33m'
+RED='\033[0;31m'
+BOLD='\033[1m'
+RESET='\033[0m'
 
-# Read and kill PIDs
-if [ -f "pids/smart_memory_feeder.pid" ]; then
-    PID=$(cat pids/smart_memory_feeder.pid)
-    echo "Stopping Smart Memory Feeder (PID: $PID)..."
-    kill $PID 2>/dev/null
-fi
+printf "${BOLD}${RED}⚠️ STOPPING SENSAI SYSTEM...${RESET}\n"
 
-if [ -f "pids/real_llm_backend_8767.pid" ]; then
-    PID=$(cat pids/real_llm_backend_8767.pid)
-    echo "Stopping Real LLM Backend (PID: $PID)..."
-    kill $PID 2>/dev/null
-fi
+# Read PIDs and stop processes
+for pidfile in pids/*.pid; do
+    if [ -f "$pidfile" ]; then
+        PID=$(cat "$pidfile")
+        COMPONENT=$(basename "$pidfile" .pid)
+        if ps -p $PID > /dev/null; then
+            printf "${YELLOW}→ Stopping %s (PID: %d)${RESET}\n" "$COMPONENT" "$PID"
+            kill -TERM $PID 2>/dev/null || kill -9 $PID 2>/dev/null
+        fi
+        rm -f "$pidfile"
+    fi
+done
 
-if [ -f "pids/process_sensor.pid" ]; then
-    PID=$(cat pids/process_sensor.pid)
-    echo "Stopping Process Sensor (PID: $PID)..."
-    kill $PID 2>/dev/null
-fi
+# Cleanup any remaining processes
+printf "→ Cleaning up remaining processes...${RESET}\n"
+pkill -f "neural_ui_detector" 2>/dev/null || true
+pkill -f "direct_coordinate_automation" 2>/dev/null || true
+pkill -f "enhanced_enterprise_backend" 2>/dev/null || true
+pkill -f "smart_memory_feeder" 2>/dev/null || true
+pkill -f "process_sensor" 2>/dev/null || true
+pkill -f "total_screen_analyzer" 2>/dev/null || true
+pkill -f "llava_visual_processor" 2>/dev/null || true
+pkill -f "python3 -m http.server 8000" 2>/dev/null || true
 
-if [ -f "pids/total_screen_analyzer.pid" ]; then
-    PID=$(cat pids/total_screen_analyzer.pid)
-    echo "Stopping Screen Analyzer (PID: $PID)..."
-    kill $PID 2>/dev/null
-fi
+# Clean up ports
+printf "→ Freeing used ports...${RESET}\n"
+for PORT in 8000 8765 8766 8767 8768; do
+    lsof -ti:$PORT | xargs kill -9 2>/dev/null || true
+done
 
-# Force kill any remaining processes
-echo "Force killing any remaining processes..."
-pkill -f "real_llm_backend_8767.py"
-pkill -f "enhanced_fixed_process_sensor.py" 
-pkill -f "total_screen_analyzer.py"
-pkill -f "smart_memory_feeder.py"
-
-# Clean up PID files
-rm -f pids/*.pid
-
-echo "✅ Fixed AI System stopped successfully!"
+printf "${GREEN}✅ SENSAI SYSTEM STOPPED${RESET}\n"

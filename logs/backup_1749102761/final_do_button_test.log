@@ -1,0 +1,42 @@
+2025-06-04 12:47:31,496 - FinalDoButtonTest - INFO - 🚀 Starting Final DO Button Test
+2025-06-04 12:47:31,563 - FinalDoButtonTest - INFO - ✅ Connected to DO button server at ws://localhost:8765
+2025-06-04 12:47:31,563 - FinalDoButtonTest - INFO - ✅ Received welcome message: {"type": "connection_established", "server_version": "1.0.0", "capabilities": ["agent_confirmation",...
+2025-06-04 12:47:31,564 - FinalDoButtonTest - INFO - ✅ Sent DO button message with plan ID: final_test_plan_1749055651
+2025-06-04 12:47:31,565 - FinalDoButtonTest - INFO - ✅ Received response: {'type': 'agent_progress', 'progress': 10, 'message': 'Starting execution...', 'timestamp': '2025-06-04T12:47:31.565442'}
+2025-06-04 12:47:31,565 - FinalDoButtonTest - INFO - ✅ Received agent_progress message
+2025-06-04 12:47:31,566 - FinalDoButtonTest - INFO - ✅ Received response: {'type': 'agent_progress', 'progress': 100, 'message': 'Execution complete!', 'timestamp': '2025-06-04T12:47:31.566006'}
+2025-06-04 12:47:31,566 - FinalDoButtonTest - INFO - ✅ Received agent_progress message
+2025-06-04 12:47:31,566 - FinalDoButtonTest - INFO - ✅ Received response: {'type': 'agent_execution_error', 'error': '❌ Plan not found. It may have expired or been cancelled.', 'session_id': 'final_test_plan_1749055651', 'timestamp': '2025-06-04T12:47:31.566053'}
+2025-06-04 12:47:32,067 - FinalDoButtonTest - INFO - ✅ Test passed! Received 2 progress messages.
+2025-06-04 12:47:32,068 - FinalDoButtonTest - INFO - ✅ Final DO Button Test PASSED!
+2025-06-04 12:47:32,068 - FinalDoButtonTest - INFO - 🎉 The DO button system is fully operational
+2025-06-04 12:47:32,068 - FinalDoButtonTest - INFO - Test completed.
+2025-06-04 17:45:24,041 - FinalDoButtonTest - INFO - 🚀 Starting Final DO Button Test
+2025-06-04 17:45:24,076 - FinalDoButtonTest - INFO - ✅ Connected to DO button server at ws://localhost:8766
+2025-06-04 17:45:24,076 - FinalDoButtonTest - ERROR - ❌ Error testing DO button: received 1011 (internal error); then sent 1011 (internal error)
+2025-06-04 17:45:24,076 - FinalDoButtonTest - ERROR - ❌ Final DO Button Test FAILED!
+2025-06-04 17:45:24,076 - FinalDoButtonTest - INFO - Test completed.
+2025-06-04 17:46:03,801 - FinalDoButtonTest - INFO - 🚀 Starting Final DO Button Test
+2025-06-04 17:46:03,833 - FinalDoButtonTest - INFO - ✅ Connected to DO button server at ws://localhost:8766
+2025-06-04 17:46:03,837 - FinalDoButtonTest - ERROR - ❌ Error testing DO button: received 1011 (internal error); then sent 1011 (internal error)
+2025-06-04 17:46:03,837 - FinalDoButtonTest - ERROR - ❌ Final DO Button Test FAILED!
+2025-06-04 17:46:03,838 - FinalDoButtonTest - INFO - Test completed.
+2025-06-04 17:48:02,894 - FinalDoButtonTest - INFO - 🚀 Starting Final DO Button Test
+2025-06-04 17:48:02,923 - FinalDoButtonTest - INFO - ✅ Connected to DO button server at ws://localhost:8766
+2025-06-04 17:48:02,932 - FinalDoButtonTest - ERROR - ❌ Error testing DO button: received 1011 (internal error); then sent 1011 (internal error)
+2025-06-04 17:48:02,932 - FinalDoButtonTest - ERROR - ❌ Final DO Button Test FAILED!
+2025-06-04 17:48:02,932 - FinalDoButtonTest - INFO - Test completed.
+2025-06-04 17:49:45,945 - FinalDoButtonTest - INFO - 🚀 Starting Final DO Button Test
+2025-06-04 17:49:45,980 - FinalDoButtonTest - INFO - ✅ Connected to DO button server at ws://localhost:8766
+2025-06-04 17:49:45,983 - FinalDoButtonTest - ERROR - ❌ Error testing DO button: received 1011 (internal error); then sent 1011 (internal error)
+2025-06-04 17:49:45,983 - FinalDoButtonTest - ERROR - ❌ Final DO Button Test FAILED!
+2025-06-04 17:49:45,983 - FinalDoButtonTest - INFO - Test completed.
+2025-06-04 17:50:33,767 - FinalDoButtonTest - INFO - 🚀 Starting Final DO Button Test
+2025-06-04 17:50:33,807 - FinalDoButtonTest - INFO - ✅ Connected to DO button server at ws://localhost:8766
+2025-06-04 17:50:33,807 - FinalDoButtonTest - INFO - ✅ Received welcome message: {"type": "welcome", "message": "Connected to Fixed DO Button Proxy", "timestamp": 1749073833.8068402...
+2025-06-04 17:50:33,807 - FinalDoButtonTest - INFO - ✅ Sent DO button message with plan ID: test_plan_1749073833
+2025-06-04 17:50:33,820 - FinalDoButtonTest - INFO - ✅ Received response: {'type': 'agent_progress', 'progress': 10, 'message': 'Starting execution...', 'timestamp': '2025-06-04T17:50:33.820305'}
+2025-06-04 17:50:33,820 - FinalDoButtonTest - INFO - ✅ Received agent_progress message
+2025-06-04 17:50:33,821 - FinalDoButtonTest - INFO - ✅ Final DO Button Test PASSED!
+2025-06-04 17:50:33,821 - FinalDoButtonTest - INFO - 🎉 The DO button system is fully operational
+2025-06-04 17:50:33,821 - FinalDoButtonTest - INFO - Test completed.

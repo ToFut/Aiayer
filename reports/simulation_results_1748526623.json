@@ -1,0 +1,302 @@
+{
+  "timestamp": "2025-05-29T09:54:43.806145",
+  "test_session_id": "sim_1748526623",
+  "backend_url": "ws://localhost:8767",
+  "total_time": 260.09106612205505,
+  "total_tests": 10,
+  "successful_tests": 6,
+  "overall_success_rate": 0.6666666666666666,
+  "system_score": 0.5252083333333333,
+  "performance_rating": "Needs Improvement",
+  "average_scores": {
+    "quality": 0.6388888888888888,
+    "memory_integration": 0.3333333333333333,
+    "contextual_understanding": 0.5555555555555555,
+    "response_time": 24.205001735687254
+  },
+  "mode_performance": {
+    "agent": {
+      "success_rate": 0.3333333333333333,
+      "total_tests": 3,
+      "successful_tests": 1,
+      "average_response_time": 28.331154823303223,
+      "average_quality_score": 0.5694444444444445,
+      "average_memory_score": 0.3333333333333333,
+      "average_context_score": 0.1111111111111111
+    },
+    "ask": {
+      "success_rate": 0.75,
+      "total_tests": 4,
+      "successful_tests": 3,
+      "average_response_time": 19.806871950626373,
+      "average_quality_score": 0.6458333333333334,
+      "average_memory_score": 0.5,
+      "average_context_score": 0.3333333333333333
+    },
+    "suggest": {
+      "success_rate": 0.6666666666666666,
+      "total_tests": 3,
+      "successful_tests": 2,
+      "average_response_time": 25.943021694819134,
+      "average_quality_score": 0.6388888888888888,
+      "average_memory_score": 0.3333333333333333,
+      "average_context_score": 0.5555555555555555
+    }
+  },
+  "test_results": [
+    {
+      "test_id": "agent_ui_interaction",
+      "mode": "agent",
+      "message": "search for flights to Miami on Google",
+      "response": {
+        "type": "final_response",
+        "mode": "agent",
+        "response": "\ud83e\udd16 Based on your current screen state, I can tell that:\n\n1. You have a web browser open (e.g., Google Chrome) with the latest version installed.\n2. The URL bar is highlighted in blue color due to the active tab.\n3. You are searching for flights to Miami using the \"Search\" function in your browser.\n\nNow, let's get back to your query:\n\nTo search for flights to Miami on Google, you can simply copy and paste the following URL into your web browser: `www.google.com/flights`\nThen, type `miami` (or the destination city code `MIA`) in the search bar, and press Enter.\n\nYou will see a list of flight options from various airlines. You can select one or more destinations to compare prices and schedules.\n\nAdditionally, if you have recently opened an email app like Gmail or Outlook, you might be able to access your email inbox to find the flight itinerary or book it directly through the email service.\n\nIf you're using Google Maps on your browser, you may also see a map view of Miami with flight options marked. You can zoom in and out to explore different areas of the city while searching for flights.\n\nPlease note that these suggestions assume you have a stable internet connection and are not blocked from accessing Google search results on your device.",
+        "client_id": "client_1748526623712",
+        "timestamp": "2025-05-29T09:50:56.350362",
+        "processing_method": "agnostic_deep_data",
+        "data_sources": [
+          "screen_analysis",
+          "memory_context"
+        ],
+        "success": true
+      },
+      "response_time": 32.65071415901184,
+      "success": false,
+      "quality_score": 0.5833333333333334,
+      "memory_score": 0.3333333333333333,
+      "context_score": 0.0,
+      "explanation": "Found 4/4 keywords, 1/3 memory indicators, 0/3 context indicators. Overall quality: 0.58/1.0"
+    },
+    {
+      "test_id": "agent_app_launch",
+      "mode": "agent",
+      "message": "open Safari and go to YouTube",
+      "response": {
+        "type": "final_response",
+        "mode": "agent",
+        "response": "\ud83e\udd16 Given your description of the current screen state and recent context/memory, I'd be happy to help. Here's a step-by-step approach:\n\n1. **Check for existing Safari app**: Since the user has recently opened Safari, there should be an instance of the Safari app on their screen.\n\n2. **Verify YouTube app presence**: When you say \"open Safari and go to YouTube,\" it implies that you want to navigate from within Safari to YouTube. In this case:\n   - You can observe the YouTube icon directly on your screen.\n   - The YouTube app should be visible, but not necessarily minimized or closed.\n\n3. **Accessing YouTube through Safari**: To access YouTube, simply tap the YouTube icon (a green \"Y\" with a white background) located in the top-right corner of the screen.\n\n4. **Safari settings and notification presence**: Since you mentioned that your system information is visible, I'd like to remind you that Safari has several features available on your current screen:\n   - You can check your email using Mail app.\n   - File Manager might be open or nearby (depending on how you interacted with files).\n   - System Information could be accessible.\n\n5. **Actionable steps**: \n\n    a. To access YouTube directly from within Safari, tap the \"Y\" icon to go to the YouTube website.\n\n    b. If you want to search for specific videos or playlists in YouTube, you can type your search query into the search bar at the top of the",
+        "client_id": "client_1748526623712",
+        "timestamp": "2025-05-29T09:51:26.617800",
+        "processing_method": "agnostic_deep_data",
+        "data_sources": [
+          "screen_analysis",
+          "memory_context"
+        ],
+        "success": true
+      },
+      "response_time": 28.255816221237183,
+      "success": false,
+      "quality_score": 0.4583333333333333,
+      "memory_score": 0.3333333333333333,
+      "context_score": 0.0,
+      "explanation": "Found 3/4 keywords, 1/3 memory indicators, 0/3 context indicators. Overall quality: 0.46/1.0"
+    },
+    {
+      "test_id": "agent_complex_task",
+      "mode": "agent",
+      "message": "search for Omer Adam on Spotify and play his music",
+      "response": {
+        "type": "final_response",
+        "mode": "agent",
+        "response": "\ud83e\udd16 Based on your current screen state, I can observe that you are using Spotify as the music streaming service. You also have a few tabs open, including:\n\n1. A normal display of your email account.\n2. A file manager to manage files on your computer.\n3. System Information (a detailed overview of your system's configuration).\n\nGiven this context, I can help you search for Omer Adam on Spotify and play his music.\n\nOmer Adam is a popular Israeli singer-songwriter, and he has an official Spotify profile with his discography available. You can try searching for his name in the \"Search\" bar at the top of your screen to find him. If you want to listen to one of his songs, you can click on it to open his page, where you'll be able to play his music directly from there.\n\nSince I'm a large language model, I don't have direct access to your file manager or system information, but based on the content you've provided, I can infer that you're looking for music-related resources.",
+        "client_id": "client_1748526623712",
+        "timestamp": "2025-05-29T09:51:52.687486",
+        "processing_method": "agnostic_deep_data",
+        "data_sources": [
+          "screen_analysis",
+          "memory_context"
+        ],
+        "success": true
+      },
+      "response_time": 24.086934089660645,
+      "success": true,
+      "quality_score": 0.6666666666666667,
+      "memory_score": 0.3333333333333333,
+      "context_score": 0.3333333333333333,
+      "explanation": "Found 5/5 keywords, 1/3 memory indicators, 1/3 context indicators. Overall quality: 0.67/1.0"
+    },
+    {
+      "test_id": "ask_system_status",
+      "mode": "ask",
+      "message": "what applications are currently running on my system?",
+      "response": {
+        "type": "final_response",
+        "mode": "ask",
+        "response": "\ud83e\udd16 Based on your current screen state and available context, here are some applications that appear to be running:\n\n1. **Email Client:** A popular email client such as Gmail, Outlook, or Yahoo Mail is likely active in the top-right corner of the screen. The window is partially visible, with a few emails open.\n2. **File Manager (e.g., File Explorer):** The Windows File Explorer app is probably running and showing your desktop's file system structure, possibly with some folders and files being displayed.\n3. **Web Browser:** A web browser such as Google Chrome or Mozilla Firefox might be active in the bottom-left corner of the screen, displaying a homepage or a few tabs.\n4. **Task Manager (if installed):** If Task Manager is installed on your system, it may appear in the System Tray (bottom-right corner) and show information about running processes, memory usage, and other system-related details.\n\nTo confirm which application is running, you can try right-clicking on any of these icons and selecting \"View Details\" or \"Open File/Window.\" This will provide more detailed information about each application.",
+        "client_id": "client_1748526623712",
+        "timestamp": "2025-05-29T09:52:17.099893",
+        "processing_method": "agnostic_deep_data",
+        "data_sources": [
+          "screen_analysis",
+          "memory_context"
+        ],
+        "success": true
+      },
+      "response_time": 22.44147801399231,
+      "success": true,
+      "quality_score": 0.75,
+      "memory_score": 0.6666666666666666,
+      "context_score": 0.3333333333333333,
+      "explanation": "Found 4/4 keywords, 2/3 memory indicators, 1/3 context indicators. Overall quality: 0.75/1.0"
+    },
+    {
+      "test_id": "ask_memory_retrieval",
+      "mode": "ask",
+      "message": "what websites have I visited recently?",
+      "response": {
+        "type": "final_response",
+        "mode": "ask",
+        "response": "\ud83e\udd16 Based on your current screen state, I can infer that you have recently visited the following websites:\n\n1. **Email App**: You may be currently browsing or checking your email in a web-based email client such as Gmail, Outlook, or Yahoo Mail.\n2. **File Manager**: It's possible that you're exploring and managing files in your computer's file manager, which can be accessed through the File Explorer (Windows) or Finder (Mac).\n3. **Social Media Platform**: You might be browsing a social media platform like Facebook, Twitter, or LinkedIn to stay updated on your online activities.\n\nThese are my best guesses based on the information available on your screen.",
+        "client_id": "client_1748526623712",
+        "timestamp": "2025-05-29T09:52:31.968465",
+        "processing_method": "agnostic_deep_data",
+        "data_sources": [
+          "screen_analysis",
+          "memory_context"
+        ],
+        "success": true
+      },
+      "response_time": 12.80238389968872,
+      "success": true,
+      "quality_score": 0.625,
+      "memory_score": 0.6666666666666666,
+      "context_score": 0.3333333333333333,
+      "explanation": "Found 3/4 keywords, 2/3 memory indicators, 1/3 context indicators. Overall quality: 0.62/1.0"
+    },
+    {
+      "test_id": "ask_context_understanding",
+      "mode": "ask",
+      "message": "what's currently visible on my screen?",
+      "response": {
+        "type": "final_response",
+        "mode": "ask",
+        "response": "\ud83e\udd16 Based on your current screen state, I'm able to see that:\n\n* Your active display is set to a 2940x1912 resolution, which indicates that the display is running at its native settings for high-quality visuals.\n* The interface has normal brightness levels, suggesting that the display is operating within typical operating system settings.\n\nRegarding Rich visual content visible on your screen, I can observe:\n\n* Your email app (likely Gmail or Outlook) is currently open and showing a prominent inbox with unread emails. This implies that you have an active email conversation.\n* A few recent videos from YouTube are playing in the background, which indicates that you've been watching something online recently.\n\nAs for system information, I can see:\n\n* Your computer's name and your account's email address in the system tray (the bottom-right corner of the screen).\n* The taskbar at the top of the screen displays various icons for popular applications like Microsoft Office, Chrome, and Windows Services.\n\nSince you mentioned that rich visual content is visible on your screen, I can infer that:\n\n* You have an active internet connection, as you're able to view online resources such as videos.\n* Your computer's processor (CPU) is running at a high speed, which suggests that it's capable of handling demanding tasks like video playback.\n\nBased on this information, the most relevant and actionable response would be: \"You currently have open email conversations, recent YouTube videos playing in the background, and system tray icons indicating your active account and",
+        "client_id": "client_1748526623712",
+        "timestamp": "2025-05-29T09:52:56.840248",
+        "processing_method": "agnostic_deep_data",
+        "data_sources": [
+          "screen_analysis",
+          "memory_context"
+        ],
+        "success": true
+      },
+      "response_time": 22.870103120803833,
+      "success": true,
+      "quality_score": 0.75,
+      "memory_score": 0.3333333333333333,
+      "context_score": 0.6666666666666666,
+      "explanation": "Found 4/4 keywords, 1/3 memory indicators, 2/3 context indicators. Overall quality: 0.75/1.0"
+    },
+    {
+      "test_id": "ask_memory_integration",
+      "mode": "ask",
+      "message": "how has my system usage changed in the last hour?",
+      "response": {
+        "type": "final_response",
+        "mode": "ask",
+        "response": "\ud83e\udd16 Based on your current screen state and available context, I have gathered some relevant data to provide a helpful response to your query. Since there's no visible email app or file manager on your screen, let's focus on the system usage data.\n\n**System Usage Data:**\n\n* CPU Utilization: 20%\n* Memory Utilization (RAM): 60%\n* Disk Space Used: approximately 700 MB\n* Network Bandwidth: moderate to high (due to potential background tasks)\n\n**Recent Context & System Information:**\n\nYou have a few applications open in the background, including:\n\n1. **Email Client**: visible on your screen with an active conversation.\n2. **File Manager**: partially hidden behind other windows and widgets, but still visible as it's running in the background.\n\n**Actionable Insights:**\n\nTo provide more detailed information, I'd like to ask a few questions:\n\n* Can you please confirm if there are any recent emails or notifications that require your attention?\n* Are there any other applications or services running on your system that might be contributing to your current CPU usage?\n\nPlease respond with the following details:\n\n* Email Client activity (e.g., open tabs, sent/received messages)\n* File Manager status (e.g., files accessed, modified, or deleted)\n\nOnce I have this information, I can provide a more accurate and actionable response regarding your system usage in the last hour.",
+        "client_id": "client_1748526623712",
+        "timestamp": "2025-05-29T09:53:19.957815",
+        "processing_method": "agnostic_deep_data",
+        "data_sources": [
+          "screen_analysis",
+          "memory_context"
+        ],
+        "success": true
+      },
+      "response_time": 21.11352276802063,
+      "success": false,
+      "quality_score": 0.4583333333333333,
+      "memory_score": 0.3333333333333333,
+      "context_score": 0.0,
+      "explanation": "Found 3/4 keywords, 1/3 memory indicators, 0/3 context indicators. Overall quality: 0.46/1.0"
+    },
+    {
+      "test_id": "suggest_productivity",
+      "mode": "suggest",
+      "message": "I need to organize my work better",
+      "response": {
+        "type": "final_response",
+        "mode": "suggest",
+        "response": "\ud83e\udd16 Based on your current screen state, I've observed that you're actively working on your computer. Here's a helpful response to your query:\n\n\"I can see the email app on your taskbar, with several unread messages waiting for your attention. The file manager is also visible, showing a list of files and folders on your desktop. Additionally, the system information window (e.g., CPU usage, memory info) suggests that you're running a resource-intensive process or program in the background.\"\n\nRegarding your work organization query, I can suggest some actionable steps:\n\n1. **Prioritize tasks**: Take a glance at your email app to see if there are any urgent messages that require your attention.\n2. **Organize files**: If you're working on a specific project, consider organizing related files and folders in the file manager. This will help you quickly find what you need and avoid cluttering your desktop.\n3. **Set reminders**: Check your email app for any scheduled tasks or deadlines to ensure you don't miss important notifications.\n4. **Take breaks**: Consider taking a short break to clear your mind, stretch, and recharge before diving back into your work.\n\nBy addressing these immediate needs and suggestions, you can improve your overall productivity and organization on your computer.",
+        "client_id": "client_1748526623712",
+        "timestamp": "2025-05-29T09:53:42.779909",
+        "processing_method": "agnostic_deep_data",
+        "data_sources": [
+          "screen_analysis",
+          "memory_context"
+        ],
+        "success": true
+      },
+      "response_time": 20.817731857299805,
+      "success": false,
+      "quality_score": 0.5833333333333334,
+      "memory_score": 0.0,
+      "context_score": 0.3333333333333333,
+      "explanation": "Found 4/4 keywords, 0/3 memory indicators, 1/3 context indicators. Overall quality: 0.58/1.0"
+    },
+    {
+      "test_id": "suggest_application",
+      "mode": "suggest",
+      "message": "I want to edit some photos",
+      "response": {
+        "type": "final_response",
+        "mode": "suggest",
+        "response": "\ud83e\udd16 Based on your current display settings, I notice you have a 2940x1912 resolution screen. Here are some observations and potential actions:\n\n1. **Normal brightness levels**: Your screen appears to be set to normal brightness levels, which means the colors might appear slightly muted compared to other displays.\n2. **Rich visual content visible**: You've mentioned that your interface is rich with visuals (images, videos, or colorful design). This suggests you're likely using a mobile device with a good camera and display capabilities.\n\nGiven these observations, here are some potential actions you can take:\n\n* If you have a recent photo edited on your screen, it might be displaying the edited version. You could go to Photos, select the photo, and edit it directly from there.\n* If you're trying to save or export photos, you may need to use an app like iPhoto, GarageBand, or a third-party file manager (e.g., Google Drive, Dropbox) that supports photo editing on your device.\n\nTo help me provide more tailored guidance, could you please share:\n\n1. Which specific action are you trying to accomplish (e.g., saving edited photos, exporting them in a certain format)?\n2. Are there any particular apps or features you're using for photo editing and management?\n\nBy providing more context and details about your current situation, I can provide a more accurate and helpful response.",
+        "client_id": "client_1748526623712",
+        "timestamp": "2025-05-29T09:54:09.547032",
+        "processing_method": "agnostic_deep_data",
+        "data_sources": [
+          "screen_analysis",
+          "memory_context"
+        ],
+        "success": true
+      },
+      "response_time": 24.78183603286743,
+      "success": true,
+      "quality_score": 0.7083333333333333,
+      "memory_score": 0.6666666666666666,
+      "context_score": 0.6666666666666666,
+      "explanation": "Found 3/4 keywords, 2/3 memory indicators, 2/3 context indicators. Overall quality: 0.71/1.0"
+    },
+    {
+      "test_id": "suggest_content",
+      "mode": "suggest",
+      "message": "I'm bored and want to watch something interesting",
+      "response": {
+        "type": "final_response",
+        "mode": "suggest",
+        "response": "\ud83e\udd16 Based on your current screen state, here are some suggestions for interesting content:\n\n1. **Web-based video platforms**: Since you're using a light interface with a rich visual content visible, I'd recommend checking out popular web-based video platforms like YouTube, Vimeo, or Twitch. You can browse through different categories, watch videos on various topics, and even discover new ones.\n2. **Documentary series**: With the document app open, you might be able to see some interesting articles, research papers, or academic journals from reputable sources. Look for documentary series or in-depth reports on topics like science, history, or culture.\n3. **Infographics**: Since your screen is rich with visual content, I'd suggest checking out infographics related to your current topic of interest. You can search for them online using a web browser, and they often provide engaging visuals and easy-to-understand information.\n4. **Podcasts**: If you have access to the podcast app, you can browse through different categories or listen to podcasts on various topics. This could be an interesting way to learn something new or explore new interests.\n\nTo make these suggestions more actionable, I'd like to ask a few questions:\n\n* What are your current interests or hobbies?\n* Are there any specific topics or subjects that you're curious about?\n* Would you prefer watching videos or listening to podcasts?\n\nPlease respond with one of the above options, and I'll provide more tailored recommendations for interesting content.",
+        "client_id": "client_1748526623712",
+        "timestamp": "2025-05-29T09:54:43.743596",
+        "processing_method": "agnostic_deep_data",
+        "data_sources": [
+          "screen_analysis",
+          "memory_context"
+        ],
+        "success": true
+      },
+      "response_time": 32.22949719429016,
+      "success": true,
+      "quality_score": 0.625,
+      "memory_score": 0.3333333333333333,
+      "context_score": 0.6666666666666666,
+      "explanation": "Found 3/4 keywords, 1/3 memory indicators, 2/3 context indicators. Overall quality: 0.62/1.0"
+    }
+  ],
+  "improvement_suggestions": [
+    "Overall system performance needs significant improvement. Consider reviewing the core architecture.",
+    "Agent mode has a low success rate (0.33). Review error handling and response generation.",
+    "Agent mode response time is high (28.33s). Consider optimizing planning algorithms and adding warmup procedures.",
+    "Agent mode shows weak memory integration (0.33). Improve memory retrieval relevance and integration.",
+    "Agent mode shows weak contextual understanding (0.11). Enhance context processing and relevance algorithms.",
+    "Ask mode response time is high (19.81s). Review query optimization and response generation.",
+    "Ask mode shows weak memory integration (0.50). Improve memory retrieval relevance and integration.",
+    "Ask mode shows weak contextual understanding (0.33). Enhance context processing and relevance algorithms.",
+    "Suggest mode has a low success rate (0.67). Review error handling and response generation.",
+    "Suggest mode response time is high (25.94s). Review query optimization and response generation.",
+    "Suggest mode shows weak memory integration (0.33). Improve memory retrieval relevance and integration.",
+    "Suggest mode shows weak contextual understanding (0.56). Enhance context processing and relevance algorithms."
+  ]
+}

@@ -1,0 +1,26 @@
+2025-06-04 13:31:16,884 - memory.enhanced_semantic_search - INFO - Enhanced semantic search initialized with embedding dim: 384
+2025-06-04 13:31:16,884 - memory.enhanced_semantic_search - INFO - Hybrid retrieval enabled: True
+2025-06-04 13:31:17,424 - memory.semantic_search_agent - INFO - Loading 1822 existing documents from storage
+2025-06-04 13:31:17,575 - memory.semantic_search_agent - INFO - EnterpriseVectorStore initialized with enterprise-grade features
+2025-06-04 13:31:17,576 - memory.semantic_search_agent - INFO - SemanticSearchAgent initialized with enterprise-grade capabilities
+2025-06-04 13:31:17,576 - memory_test - INFO - Memory system modules imported successfully
+2025-06-04 13:31:17,577 - memory_test - INFO - Starting WebSocket server on ws://localhost:8769
+2025-06-04 13:31:17,587 - websockets.server - INFO - server listening on [::1]:8769
+2025-06-04 13:31:17,587 - websockets.server - INFO - server listening on 127.0.0.1:8769
+2025-06-04 13:33:20,701 - websockets.server - INFO - connection open
+2025-06-04 13:33:20,701 - memory_test - INFO - Client connected: 56d4f840-a269-480d-8598-eb1e94dde207 from ::1
+2025-06-04 13:33:23,355 - memory_test - INFO - Received message: ping
+2025-06-04 13:33:26,602 - memory_test - INFO - Received message: get_system_stats
+2025-06-04 13:33:26,606 - memory_test - INFO - Memory counts - Total: 20, Short-term: 20, Long-term: 0
+2025-06-04 13:33:29,059 - memory_test - INFO - Received message: search_memory
+2025-06-04 13:33:29,122 - memory.semantic_search_agent - INFO - Similarity search completed in 0.0061s, found 5 results
+2025-06-04 13:33:29,129 - memory.semantic_search_agent - INFO - Search completed successfully in 0.0195s, found 5 results
+2025-06-04 13:33:29,150 - memory_test - INFO - Memory search: 'development productivity' found 5 results in 90.1ms
+2025-06-04 13:33:41,188 - memory_test - INFO - Received message: add_memory
+2025-06-04 13:33:41,199 - memory.semantic_search_agent - INFO - Document 76ee7bf450a721a8c04f9a908672700fd9456b9f580ddf3a9946cac350fbd202 added to enterprise vector store
+2025-06-04 13:33:41,199 - memory.semantic_search_agent - INFO - Memory added successfully: 76ee7bf450a721a8c04f9a908672700fd9456b9f580ddf3a9946cac350fbd202
+2025-06-04 13:33:41,200 - memory_test - INFO - Memory added: True in 10.06ms
+2025-06-04 13:33:46,110 - memory_test - INFO - Received message: add_memory
+2025-06-04 13:33:46,116 - memory.semantic_search_agent - INFO - Document f9a86dfbcba3d4997382a8322a73ec5513c730cd3202ce4bca41839d69f7d460 added to enterprise vector store
+2025-06-04 13:33:46,117 - memory.semantic_search_agent - INFO - Memory added successfully: f9a86dfbcba3d4997382a8322a73ec5513c730cd3202ce4bca41839d69f7d460
+2025-06-04 13:33:46,118 - memory_test - INFO - Memory added: True in 3.83ms

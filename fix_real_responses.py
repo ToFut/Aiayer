@@ -101,7 +101,7 @@ class RealLLMBackend8767:
         
         logger.info("Real LLM Backend 8767 initialized")
 
-    async def handle_websocket(self, websocket):
+    async def handle_websocket(websocket, path=None):
         """Handle WebSocket connections on port 8767"""
         client_id = f"client_{int(time.time() * 1000)}"
         try:

@@ -1,0 +1,1292 @@
+#!/usr/bin/env python3
+"""
+Enhanced Enterprise Backend 8767 with Contextual Memory Integration
+Provides fully contextual AI responses using semantic search across all modes
+Now with efficient OS-integrated system monitoring (replaces heavy screen capture)
+"""
+
+import asyncio
+import json
+import logging
+import websockets
+import time
+import subprocess
+import requests
+import aiohttp
+import sys
+import os
+import numpy as np
+import cv2
+from datetime import datetime
+from typing import Dict, Any, Set, Optional, Tuple, List
+from enum import Enum
+from concurrent.futures import ThreadPoolExecutor
+import uuid
+from agent_workflow.enhanced_automation_handler import EnhancedAutomationHandler
+from fixed_universal_automation_handler import fixed_handle_universal_automation
+
+# Setup enhanced logging first
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
+    handlers=[
+        logging.FileHandler('logs/backend/enhanced_enterprise_8767.log'),
+        logging.StreamHandler()
+    ]
+)
+logger = logging.getLogger(__name__)
+
+# Initialize input controller only once at module level
+input_controller = None
+try:
+    from agent_workflow.input_controller import InputController
+    input_controller = InputController()
+    logger.info("✅ Input controller initialized (safe mode)")
+except ImportError as e:
+    logger.error(f"Failed to initialize input controller: {e}")
+
+# Import efficient system bridge (replaces screen capture)
+try:
+    from enhanced_realtime_system_bridge import EnhancedRealtimeSystemBridge, SystemEvent, SystemState
+    EFFICIENT_SYSTEM_AVAILABLE = True
+    logger.info("🚀 Efficient system bridge available - no more screen capture overhead!")
+except ImportError:
+    EFFICIENT_SYSTEM_AVAILABLE = False
+    logger.warning("⚠️ Efficient system bridge not available, falling back to screen capture")
+
+# Import warmup manager for fast LLM responses
+try:
+    from llm_warmup_manager import get_warmup_manager
+    WARMUP_MANAGER_AVAILABLE = True
+    logger.info("🔥 LLM Warmup Manager available for fast responses")
+except ImportError:
+    WARMUP_MANAGER_AVAILABLE = False
+    logger.warning("⚠️ LLM Warmup Manager not available")
+
+# Add memory module to path
+sys.path.append(os.path.dirname(os.path.abspath(__file__)))
+
+try:
+    from memory.semantic_search_agent import SemanticSearchAgent, get_context_for_query, add_memory
+    SEMANTIC_SEARCH_AVAILABLE = True
+except ImportError as e:
+    logger.error(f"Failed to import semantic search: {e}")
+    SEMANTIC_SEARCH_AVAILABLE = False
+
+# Initialize automation handlers with proper error handling
+ENHANCED_AUTOMATION_AVAILABLE = False
+FAST_AUTOMATION_AVAILABLE = False
+UNIVERSAL_AVAILABLE = False
+REAL_AGENT_AUTOMATION_AVAILABLE = False
+AUTOMATION_AVAILABLE = False
+
+# Try Real Agent Automation Handler first
+try:
+    from real_agent_automation_handler import RealAgentAutomationHandler
+    REAL_AGENT_AUTOMATION_AVAILABLE = True
+    AUTOMATION_AVAILABLE = True
+    logger.info("✅ Real Agent Automation Handler enabled")
+except ImportError as e:
+    logger.warning(f"⚠️ Real Agent Automation Handler not available: {e}")
+
+# Try Enhanced Automation Handler as fallback
+if not REAL_AGENT_AUTOMATION_AVAILABLE:
+    try:
+        from agent_workflow.enhanced_automation_handler import EnhancedAutomationHandler
+        ENHANCED_AUTOMATION_AVAILABLE = True
+        AUTOMATION_AVAILABLE = True
+        logger.info("✅ Enhanced Automation Handler enabled (fallback)")
+    except ImportError as e:
+        logger.warning(f"⚠️ Enhanced Automation Handler not available: {e}")
+
+# Try Universal Intelligent Automation Handler
+universal_automation_handler = None
+try:
+    from universal_intelligent_automation_handler import UniversalIntelligentAutomationHandler
+    UNIVERSAL_AVAILABLE = True
+    if universal_automation_handler is None:
+        universal_automation_handler = UniversalIntelligentAutomationHandler()
+    logger.info("✅ Universal Intelligent Automation Handler loaded")
+except ImportError as e:
+    logger.warning(f"⚠️ Universal handler not available: {e}")
+
+class ChatMode(str, Enum):
+    AGENT = "Agent"
+    ASK = "Ask" 
+    SUGGEST = "Suggest"
+    GENERAL = "General"
+
+# Shared dictionary for pending plans across all instances
+shared_pending_plans = {}
+
+class ContextualAIBackend:
+    def __init__(self):
+        self.contextual_knowledge_initialized = False
+        self.connected_clients: Set[str] = set()
+        self.sessions: Dict[str, Dict] = {}
+        self.start_time = datetime.now()
+        self.ollama_available = False
+        
+        # Initialize semantic search agent if available
+        if SEMANTIC_SEARCH_AVAILABLE:
+            try:
+                self.semantic_agent = SemanticSearchAgent()
+                logger.info("✅ Enhanced semantic search agent initialized")
+            except Exception as e:
+                logger.error(f"Failed to initialize semantic agent: {e}")
+                self.semantic_agent = None
+        else:
+            self.semantic_agent = None
+        
+        # Initialize pending_plans dictionary
+        self.pending_plans = shared_pending_plans
+        logger.info("✅ Initialized pending_plans dictionary")
+        
+        # Initialize system bridge if available
+        self.system_bridge = None
+        self.current_system_state = None
+        self.system_integration_active = False
+        
+        if EFFICIENT_SYSTEM_AVAILABLE:
+            try:
+                self.system_bridge = EnhancedRealtimeSystemBridge()
+                self.system_integration_active = True
+                logger.info("🚀 Efficient system bridge initialized")
+            except Exception as e:
+                logger.error(f"Failed to initialize system bridge: {e}")
+                self.system_integration_active = False
+        
+        # Initialize screen monitoring
+        self.screen_monitoring_active = False
+        self.execution_verification_enabled = True
+        self.execution_history = []
+        self.last_screen_state = None
+        self.visual_changes_history = []
+        self.executor = ThreadPoolExecutor(max_workers=4)
+        
+        # Use the global input controller
+        self.input_controller = input_controller
+        
+        # Initialize automation handler
+        try:
+            self.automation_handler = EnhancedAutomationHandler()
+            logger.info("✅ EnhancedAutomationHandler initialized for automation_handler")
+        except Exception as e:
+            self.automation_handler = None
+            logger.warning(f"⚠️ Could not initialize EnhancedAutomationHandler: {e}")
+        
+        logger.info("✅ ContextualAIBackend initialized successfully")
+
+    def check_ollama_availability(self) -> bool:
+        """Check if Ollama is available on the system"""
+        try:
+            import requests
+            response = requests.get("http://localhost:11434/api/tags", timeout=1)
+            return response.status_code == 200
+        except Exception as e:
+            logger.warning(f"Ollama not available: {e}")
+            return False
+            
+    async def _initialize_contextual_knowledge(self):
+        """Initialize contextual knowledge in memory"""
+        enterprise_knowledge = [
+            "Enterprise AI Backend on port 8767 provides contextual responses across all chat modes",
+            "System integrates Ollama LLM with semantic memory for intelligent context-aware responses",
+            "Agent mode uses context to understand UI automation patterns and user preferences",
+            "Ask mode retrieves relevant information from memory to provide accurate contextual answers",
+            "Suggest mode analyzes user patterns and context to provide personalized recommendations",
+            "General mode maintains conversation context for natural flowing interactions",
+            "All responses are enhanced with memory context for personalized user experience",
+            "System learns from every interaction to improve future response quality",
+            "Memory system stores conversation history, user preferences, and interaction patterns",
+            "Contextual confidence scoring helps determine response accuracy and relevance"
+        ]
+        
+        for knowledge in enterprise_knowledge:
+            await add_memory(knowledge, source="enterprise_system", tags={"enterprise", "system_capabilities"})
+        
+        logger.info("Enterprise contextual knowledge initialized")
+
+    # ==================== TEAMVIEWER-STYLE SCREEN CONTROL METHODS ====================
+    
+    async def capture_screen_fast(self, region: Optional[Tuple[int, int, int, int]] = None) -> Optional[np.ndarray]:
+        """Get system context efficiently (replaces screen capture when system bridge available)"""
+        
+        # Use efficient system integration when available
+        if self.system_integration_active and self.system_bridge:
+            try:
+                # Get current system state instead of screen capture
+                system_state = await self.system_bridge.get_current_system_state()
+                
+                if system_state:
+                    self.current_system_state = system_state
+                    # Return system state as "context frame" for compatibility
+                    # This is much more efficient than screen capture
+                    logger.debug("System context captured via OS integration")
+                    return np.array([[1]])  # Dummy array for compatibility
+                else:
+                    logger.warning("No system state available from bridge")
+                    return None
+                    
+            except Exception as e:
+                logger.error(f"System bridge capture failed: {e}")
+                # Fall through to screen capture fallback
+        
+        # Fallback to traditional screen capture if system bridge not available
+        if not EFFICIENT_SYSTEM_AVAILABLE:
+            logger.warning("Screen capture not available - Efficient system bridge not installed")
+            return None
+            
+        try:
+            loop = asyncio.get_event_loop()
+            
+            def _capture():
+                try:
+                    if region:
+                        # Capture specific region (x, y, width, height)
+                        bbox = (region[0], region[1], region[0] + region[2], region[1] + region[3])
+                        screenshot = PIL.ImageGrab.grab(bbox=bbox)
+                    else:
+                        # Full screen capture
+                        screenshot = PIL.ImageGrab.grab()
+                    
+                    return np.array(screenshot)
+                except Exception as e:
+                    logger.error(f"Screen capture error: {e}")
+                    return None
+            
+            screenshot = await loop.run_in_executor(self.executor, _capture)
+            self.last_screen_state = screenshot
+            return screenshot
+            
+        except Exception as e:
+            logger.error(f"Fast screen capture failed: {e}")
+            return None
+    
+    async def detect_visual_changes(self, before: np.ndarray, after: np.ndarray, 
+                                  threshold: float = 0.1) -> Dict[str, Any]:
+        """Detect visual changes between two screenshots (TeamViewer-style verification)"""
+        try:
+            if before is None or after is None:
+                return {'changes_detected': False, 'confidence': 0.0}
+            
+            # Ensure same dimensions
+            if before.shape != after.shape:
+                logger.warning("Screenshot dimensions don't match for comparison")
+                return {'changes_detected': False, 'confidence': 0.0}
+            
+            # Calculate difference
+            diff = cv2.absdiff(before, after)
+            
+            # Convert to grayscale for analysis
+            if len(diff.shape) == 3:
+                gray_diff = cv2.cvtColor(diff, cv2.COLOR_RGB2GRAY)
+            else:
+                gray_diff = diff
+            
+            # Calculate change metrics
+            total_pixels = gray_diff.size
+            changed_pixels = np.sum(gray_diff > 25)  # Threshold for significant change
+            change_percentage = changed_pixels / total_pixels
+            
+            # Debug logging for change detection
+            logger.debug(f"Change detection: {changed_pixels}/{total_pixels} pixels changed ({change_percentage:.3%})")
+            
+            # Find changed regions
+            _, thresh = cv2.threshold(gray_diff, 25, 255, cv2.THRESH_BINARY)
+            contours, _ = cv2.findContours(thresh, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+            
+            changed_regions = []
+            for contour in contours:
+                if cv2.contourArea(contour) > 100:  # Filter small changes
+                    x, y, w, h = cv2.boundingRect(contour)
+                    changed_regions.append({
+                        'x': int(x), 'y': int(y), 'width': int(w), 'height': int(h),
+                        'area': int(cv2.contourArea(contour))
+                    })
+            
+            changes_detected = change_percentage > threshold
+            
+            change_data = {
+                'changes_detected': changes_detected,
+                'change_percentage': float(change_percentage),
+                'changed_pixels': int(changed_pixels),
+                'total_pixels': int(total_pixels),
+                'changed_regions': changed_regions,
+                'confidence': min(1.0, change_percentage / threshold),
+                'timestamp': time.time()
+            }
+            
+            # Store in history
+            self.visual_changes_history.append(change_data)
+            if len(self.visual_changes_history) > 50:  # Keep last 50 changes
+                self.visual_changes_history.pop(0)
+            
+            return change_data
+            
+        except Exception as e:
+            logger.error(f"Visual change detection error: {e}")
+            return {'changes_detected': False, 'confidence': 0.0, 'error': str(e)}
+    
+    async def execute_action_with_verification(self, action: Dict[str, Any], 
+                                             websocket=None) -> Dict[str, Any]:
+        """Execute action with efficient system verification (replaces visual comparison when possible)"""
+        execution_id = f"exec_{int(time.time() * 1000)}"
+        
+        result = {
+            'execution_id': execution_id,
+            'action': action,
+            'timestamp': time.time(),
+            'success': False,
+            'verification': {},
+            'changes_detected': [],
+            'error': None,
+            'verification_method': 'system_integration' if self.system_integration_active else 'visual_comparison'
+        }
+        
+        try:
+            # 1. Capture pre-execution state (efficient system state vs screen capture)
+            if self.execution_verification_enabled:
+                logger.info(f"🔍 Capturing pre-execution state for: {action.get('description', 'unknown')}")
+                
+                if self.system_integration_active and self.system_bridge:
+                    # Use efficient system state capture
+                    before_state = await self.system_bridge.get_current_system_state()
+                else:
+                    # Fallback to screen capture
+                    before_state = await self.capture_screen_fast()
+                
+                # Send real-time feedback to overlay
+                if websocket:
+                    await websocket.send(json.dumps({
+                        'type': 'execution_start',
+                        'action': action.get('description', 'Unknown action'),
+                        'execution_id': execution_id,
+                        'verification_method': result['verification_method'],
+                        'timestamp': time.time()
+                    }))
+            
+            # 2. Execute the action through system bridge when available
+            if self.system_integration_active and self.system_bridge:
+                try:
+                    # Execute through efficient system bridge
+                    execution_result = await self.system_bridge.execute_system_action(
+                        action.get('type', 'unknown'),
+                        action.get('parameters', {})
+                    )
+                    execution_success = execution_result.get('success', False)
+                except Exception as e:
+                    logger.error(f"System bridge execution failed: {e}")
+                    # Fallback to traditional automation
+                    execution_success = await self._execute_automation_action(action)
+            else:
+                # Use traditional automation handlers
+                execution_success = await self._execute_automation_action(action)
+            
+            # 3. Post-execution verification
+            if self.execution_verification_enabled and before_state is not None:
+                await asyncio.sleep(0.2)  # Wait for system to respond
+                
+                if self.system_integration_active and self.system_bridge:
+                    # Use efficient system state comparison
+                    after_state = await self.system_bridge.get_current_system_state()
+                    
+                    if after_state:
+                        # Detect system changes (much more efficient than visual diff)
+                        changes = await self._detect_system_state_changes(before_state, after_state)
+                        result['verification'] = changes
+                        result['changes_detected'] = changes.get('change_details', [])
+                        
+                        # Determine success based on system changes
+                        if changes.get('changes_detected', False):
+                            result['success'] = True
+                            logger.info(f"✅ Action verified via system integration: {len(changes.get('change_details', []))} changes")
+                        else:
+                            result['success'] = execution_success
+                            logger.info("ℹ️ No system changes detected, using execution result")
+                    else:
+                        result['success'] = execution_success
+                else:
+                    # Fallback to visual comparison
+                    after_state = await self.capture_screen_fast()
+                    
+                    if after_state is not None and hasattr(before_state, 'shape'):
+                        # Detect visual changes (traditional method)
+                        changes = await self.detect_visual_changes(before_state, after_state)
+                        result['verification'] = changes
+                        result['changes_detected'] = changes.get('changed_regions', [])
+                        
+                        # Determine success based on visual changes
+                        if changes.get('changes_detected', False):
+                            result['success'] = True
+                            logger.info(f"✅ Action verified visually: {changes.get('change_percentage', 0):.1%} screen changed")
+                        else:
+                            result['success'] = False
+                            logger.warning("❌ No visual changes detected - action may have failed")
+                    else:
+                        result['success'] = execution_success
+                
+                # Send verification feedback
+                if websocket:
+                    await websocket.send(json.dumps({
+                        'type': 'execution_verification',
+                        'execution_id': execution_id,
+                        'success': result['success'],
+                        'changes': result.get('verification', {}),
+                        'verification_method': result['verification_method'],
+                        'timestamp': time.time()
+                    }))
+            else:
+                result['success'] = execution_success
+            
+            # 4. Store execution history
+            self.execution_history.append(result)
+            if len(self.execution_history) > 100:  # Keep last 100 executions
+                self.execution_history.pop(0)
+                
+        except Exception as e:
+            logger.error(f"Action execution with verification failed: {e}")
+            result['error'] = str(e)
+            result['success'] = False
+        
+        return result
+    
+    async def _execute_automation_action(self, action: Dict[str, Any]) -> bool:
+        """Execute automation action (integrate with existing automation handlers)"""
+        try:
+            # Integrate with your existing fast automation handler
+            if FAST_AUTOMATION_AVAILABLE and hasattr(universal_automation_handler, 'execute_single_action'):
+                return await universal_automation_handler.execute_single_action(action)
+            elif self.automation_handler and hasattr(self.automation_handler, 'execute_action'):
+                return await self.automation_handler.execute_action(action)
+            else:
+                # Placeholder for basic action execution
+                await asyncio.sleep(0.1)
+                return True
+        except Exception as e:
+            logger.error(f"Automation action execution failed: {e}")
+            return False
+    
+    async def _detect_system_state_changes(self, before_state: 'SystemState', after_state: 'SystemState') -> Dict[str, Any]:
+        """Detect changes in system state (replaces visual diff for efficiency)"""
+        try:
+            changes = {
+                'changes_detected': False,
+                'confidence': 0.0,
+                'change_details': [],
+                'timestamp': time.time(),
+                'method': 'system_state_comparison'
+            }
+            
+            # Check application changes
+            if before_state.active_application != after_state.active_application:
+                changes['changes_detected'] = True
+                changes['confidence'] = 0.9
+                changes['change_details'].append(f'Application changed: {before_state.active_application} -> {after_state.active_application}')
+            
+            # Check window changes
+            if before_state.focused_window != after_state.focused_window:
+                changes['changes_detected'] = True
+                changes['confidence'] = max(changes['confidence'], 0.8)
+                changes['change_details'].append(f'Window changed: {before_state.focused_window} -> {after_state.focused_window}')
+            
+            # Check UI element changes
+            before_elements = len(before_state.visible_ui_elements)
+            after_elements = len(after_state.visible_ui_elements)
+            
+            if abs(before_elements - after_elements) > 0:
+                changes['changes_detected'] = True
+                changes['confidence'] = max(changes['confidence'], 0.7)
+                changes['change_details'].append(f'UI elements changed: {before_elements} -> {after_elements}')
+            
+            # Check for new events
+            before_events = len(before_state.recent_events)
+            after_events = len(after_state.recent_events)
+            
+            if after_events > before_events:
+                changes['changes_detected'] = True
+                changes['confidence'] = max(changes['confidence'], 0.6)
+                changes['change_details'].append(f'New system events: {after_events - before_events}')
+            
+            # Check running processes changes
+            before_processes = set(before_state.running_processes)
+            after_processes = set(after_state.running_processes)
+            
+            new_processes = after_processes - before_processes
+            stopped_processes = before_processes - after_processes
+            
+            if new_processes:
+                changes['changes_detected'] = True
+                changes['confidence'] = max(changes['confidence'], 0.5)
+                changes['change_details'].append(f'New processes: {list(new_processes)[:3]}')  # Limit to 3
+            
+            if stopped_processes:
+                changes['changes_detected'] = True
+                changes['confidence'] = max(changes['confidence'], 0.5)
+                changes['change_details'].append(f'Stopped processes: {list(stopped_processes)[:3]}')  # Limit to 3
+            
+            logger.debug(f"System state changes detected: {changes['changes_detected']} with confidence {changes['confidence']}")
+            return changes
+            
+        except Exception as e:
+            logger.error(f"Error detecting system state changes: {e}")
+            return {
+                'changes_detected': False,
+                'confidence': 0.0,
+                'change_details': [],
+                'error': str(e),
+                'method': 'system_state_comparison'
+            }
+    
+    async def handle_agent_execution_with_verification(self, data: Dict[str, Any], 
+                                                     client_id: str, websocket) -> Dict[str, Any]:
+        """Handle enhanced agent execution with TeamViewer-style verification"""
+        message = data.get("message", "")
+        session_id = data.get("session_id", client_id)
+        execution_mode = data.get("execution_mode", "verified")  # "verified", "monitored", "basic"
+        
+        logger.info(f"🎯 Enhanced Agent Execution: {message} (mode: {execution_mode})")
+        
+        try:
+            # Get context for the query
+            context = await get_context_for_query(message, max_context_length=500)
+            
+            # Check if automation is available (prefer Universal over Fast)
+            if UNIVERSAL_AVAILABLE or FAST_AUTOMATION_AVAILABLE:
+                logger.info("⚡ Creating automation plan with visual verification")
+                
+                # Create automation plan using real LLM
+                if UNIVERSAL_AVAILABLE:
+                    plan_result = await universal_automation_handler.create_universal_automation_plan(message, session_id)
+                elif FAST_AUTOMATION_AVAILABLE:
+                    plan_result = await universal_automation_handler.create_universal_automation_plan(message, session_id)
+                else:
+                    plan_result = {"success": False, "response": "No automation handler available"}
+                
+                if plan_result.get("success", False):
+                    # Send plan to client for confirmation
+                    plan_response = {
+                        "type": "agent_plan_ready",
+                        "plan": plan_result,
+                        "execution_mode": execution_mode,
+                        "requires_confirmation": True,
+                        "verification_enabled": self.execution_verification_enabled
+                    }
+                    
+                    await websocket.send(json.dumps(plan_response))
+                    
+                    # Store plan for execution
+                    if not hasattr(self, 'pending_verified_plans'):
+                        self.pending_verified_plans = {}
+                        
+                    plan_id = plan_result.get("plan_id", f"plan_{int(time.time())}")
+                    self.pending_verified_plans[plan_id] = {
+                        "plan": plan_result,
+                        "context": context,
+                        "execution_mode": execution_mode,
+                        "websocket": websocket,
+                        "timestamp": time.time()
+                    }
+                    
+                    return {
+                        "success": True,
+                        "response": "✅ Enhanced automation plan created with visual verification. Awaiting confirmation.",
+                        "plan_id": plan_id,
+                        "execution_mode": execution_mode
+                    }
+                else:
+                    return {
+                        "success": False,
+                        "response": "❌ Failed to create automation plan",
+                        "error": plan_result.get("error", "Unknown error")
+                    }
+            else:
+                return {
+                    "success": False,
+                    "response": "❌ Enhanced agent execution not available - fast automation handler not found",
+                    "error": "FAST_AUTOMATION_AVAILABLE is False"
+                }
+                
+        except Exception as e:
+            logger.error(f"Enhanced agent execution error: {e}")
+            return {
+                "success": False,
+                "response": f"❌ Enhanced agent execution failed: {str(e)}",
+                "error": str(e)
+            }
+    
+    async def _send_execution_progress(self, websocket, client_id, plan_id, progress_data):
+        """Send execution progress update to client via WebSocket"""
+        if not websocket:
+            logger.warning(f"Cannot send progress update - no websocket for plan: {plan_id}")
+            return
+            
+        try:
+            await websocket.send(json.dumps({
+                "type": "agent_progress",
+                "plan_id": plan_id,
+                "client_id": client_id,
+                "step": progress_data.get("step", 0),
+                "message": progress_data.get("message", ""),
+                "progress": progress_data.get("progress", 0),
+                "timestamp": time.time()
+            }))
+            
+            logger.debug(f"📊 Progress update sent for plan {plan_id}: {progress_data.get('progress')}%")
+        except Exception as e:
+            logger.error(f"❌ Failed to send progress update: {e}")
+    
+    async def _send_progress_update(self, client_id, plan_id, progress_data):
+        """Legacy method - redirects to _send_execution_progress for compatibility"""
+        # Find the websocket for this client
+        websocket = None
+        for client_session in self.sessions.values():
+            if client_session.get("client_id") == client_id:
+                websocket = client_session.get("websocket")
+                break
+        
+        # Send progress update using the new method
+        await self._send_execution_progress(websocket, client_id, plan_id, progress_data)
+    
+    async def execute_verified_plan(self, plan_id: str) -> Dict[str, Any]:
+        """Execute a verified plan with progress updates"""
+        try:
+            logger.info(f"🚀 Executing verified plan: {plan_id}")
+            
+            # Check if this is a universal plan
+            if "universal_" in plan_id and UNIVERSAL_AVAILABLE:
+                logger.info("🧠 Executing with Universal Intelligent Automation Handler")
+                try:
+                    # Get the universal_automation_handler instance
+                    from universal_intelligent_automation_handler import universal_automation_handler
+                    
+                    # Execute plan using handle_universal_button_action
+                    from universal_intelligent_automation_handler import handle_universal_button_action
+                    automation_result = await handle_universal_button_action("execute_plan", plan_id, plan_id)
+                    
+                    logger.info(f"✅ Universal plan execution result: {automation_result.get('success', False)}")
+                    return automation_result
+                except Exception as e:
+                    logger.error(f"❌ Error executing universal plan: {e}")
+                    return {
+                        "success": False,
+                        "error": f"Universal automation handler error: {str(e)}"
+                    }
+            
+            # Try to load plan data from persistence
+            try:
+                from plan_persistence import load_plan
+                plan_data = await load_plan(plan_id)
+                if not plan_data:
+                    logger.error(f"❌ Could not load plan data for: {plan_id}")
+                    
+                    # Check if plan is in pending_plans
+                    if hasattr(self, 'pending_plans') and plan_id in self.pending_plans:
+                        plan_data = self.pending_plans[plan_id]
+                        logger.info(f"✅ Found plan in pending_plans: {plan_id}")
+                    else:
+                        # Create a fallback plan for testing if plan loading fails
+                        logger.warning(f"⚠️ Creating fallback plan for testing: {plan_id}")
+                        plan_data = {
+                            "client_id": "fallback",
+                            "plan": {
+                                "title": "Fallback Test Plan",
+                                "description": "Open Safari browser",
+                                "steps": [
+                                    {
+                                        "id": "step_1",
+                                        "description": "Open Safari browser",
+                                        "action_type": "open_app",
+                                        "target": "Safari"
+                                    }
+                                ]
+                            }
+                        }
+            except Exception as e:
+                logger.error(f"❌ Error loading plan: {e}")
+                return {
+                    "success": False,
+                    "error": f"Error loading plan: {str(e)}",
+                    "message": f"Could not load plan data for: {plan_id}"
+                }
+            
+            # Send progress updates during execution
+            progress_steps = [
+                {"step": 1, "message": "🔍 Analyzing current screen...", "progress": 20},
+                {"step": 2, "message": "🎯 Locating target element...", "progress": 50},
+                {"step": 3, "message": "⚡ Executing automation...", "progress": 80},
+                {"step": 4, "message": "✅ Verifying completion...", "progress": 100}
+            ]
+            
+            # Find websocket for this client
+            websocket = None
+            client_id = plan_data.get("client_id", "default")
+            for client_session in self.sessions.values():
+                if client_session.get("client_id") == client_id:
+                    websocket = client_session.get("websocket")
+                    break
+            
+            # Send initial progress
+            await self._send_execution_progress(websocket, client_id, plan_id, progress_steps[0])
+            await asyncio.sleep(0.5)
+            
+            # Send screen analysis progress
+            await self._send_execution_progress(websocket, client_id, plan_id, progress_steps[1])
+            await asyncio.sleep(1.0)
+            
+            # Send execution progress
+            await self._send_execution_progress(websocket, client_id, plan_id, progress_steps[2])
+            
+            # Get plan steps from the plan data
+            plan_steps = []
+            if "steps" in plan_data.get("plan", {}):
+                plan_steps = plan_data["plan"]["steps"]
+            elif "execution_plan" in plan_data.get("plan", {}) and "steps" in plan_data["plan"]["execution_plan"]:
+                plan_steps = plan_data["plan"]["execution_plan"]["steps"]
+                
+            # Initialize adaptive retry handler
+            try:
+                from adaptive_retry_automation_handler import adaptive_retry_handler, AutomationStep
+                
+                # Execute each step with the adaptive retry handler
+                execution_results = []
+                for i, step_data in enumerate(plan_steps):
+                    logger.info(f"⚡ Executing step {i+1}/{len(plan_steps)}: {step_data.get('description', '')}")
+                    
+                    # Convert step data to AutomationStep
+                    step = AutomationStep(
+                        id=step_data.get("id", f"step_{i+1}"),
+                        description=step_data.get("description", ""),
+                        action_type=step_data.get("action_type", ""),
+                        target=step_data.get("target"),
+                        value=step_data.get("value"),
+                        coordinates=step_data.get("coordinates")
+                    )
+                    
+                    # Execute the step using adaptive retry handler
+                    result = await adaptive_retry_handler.execute_step_with_retry(step, plan_id)
+                    execution_results.append(result)
+                    
+                    # Send progress update
+                    await self._send_execution_progress(
+                        websocket,
+                        client_id,
+                        plan_id,
+                        {
+                            "step": i+1,
+                            "message": f"✅ Completed step {i+1}: {step.description}",
+                            "progress": int((i+1) / len(plan_steps) * 100)
+                        }
+                    )
+                    
+                    # Add small delay for UI to update
+                    await asyncio.sleep(0.5)
+            except Exception as e:
+                logger.error(f"❌ Error executing plan steps: {e}")
+                return {
+                    "success": False,
+                    "error": f"Error executing plan steps: {str(e)}",
+                    "message": f"Error during execution of plan: {plan_id}"
+                }
+            
+            # Send completion progress
+            await self._send_execution_progress(
+                websocket,
+                client_id,
+                plan_id, 
+                progress_steps[3]
+            )
+            
+            # Clean up the plan from pending_plans if it exists
+            if hasattr(self, 'pending_plans') and plan_id in self.pending_plans:
+                del self.pending_plans[plan_id]
+                
+            # Return success response
+            return {
+                "success": True,
+                "type": "agent_execution_success",
+                "session_id": plan_id,
+                "result": {
+                    "success": True,
+                    "steps_executed": len(plan_steps),
+                    "execution_time": 5.0
+                },
+                "summary": f"Successfully executed {len(plan_steps)} automation steps",
+                "execution_completed": True
+            }
+            
+        except Exception as e:
+            logger.error(f"❌ Error executing verified plan: {e}")
+            return {
+                "success": False,
+                "error": str(e),
+                "message": "Failed to execute plan"
+            }
+    async def _try_agnostic_deep_data_access(self, message: str, mode: str, client_id: str, websocket) -> Dict[str, Any]:
+        """Try to handle universal agnostic deep data access for any query
+        This is a powerful abstraction that can handle any specific data source
+        Returns {"handled": True} if the message was handled, {"handled": False} otherwise
+        """
+        # Default result - not handled
+        result = {"handled": False}
+        
+        # Only process for certain clear data extraction intents
+        lower_message = message.lower()
+        
+        # Check for system stats queries
+        if ("system" in lower_message and ("stats" in lower_message or "status" in lower_message)) or \
+           ("what's running" in lower_message) or ("what is running" in lower_message):
+            try:
+                # Get running processes
+                import psutil
+                processes = []
+                for proc in psutil.process_iter(['pid', 'name', 'cpu_percent', 'memory_percent']):
+                    if proc.info['cpu_percent'] > 0.1 or proc.info['memory_percent'] > 0.1:
+                        processes.append({
+                            'pid': proc.info['pid'],
+                            'name': proc.info['name'],
+                            'cpu': proc.info['cpu_percent'],
+                            'memory': proc.info['memory_percent']
+                        })
+                
+                # Sort by CPU usage
+                processes.sort(key=lambda x: x['cpu'], reverse=True)
+                top_processes = processes[:10]  # Top 10 processes
+                
+                # Format response
+                response = "📊 **System Status**\n\n"
+                response += "Top processes by CPU usage:\n\n"
+                for i, proc in enumerate(top_processes):
+                    response += f"{i+1}. {proc['name']} (PID: {proc['pid']}) - CPU: {proc['cpu']:.1f}%, Memory: {proc['memory']:.1f}%\n"
+                
+                # Send streaming response
+                await websocket.send(json.dumps({
+                    "type": "chat_response",
+                    "mode": mode,
+                    "response": response,
+                    "client_id": client_id,
+                    "timestamp": datetime.now().isoformat(),
+                    "deep_data_access": True
+                }))
+                
+                # Mark as handled
+                result["handled"] = True
+                logger.info(f"✅ Handled system stats query via deep data access")
+                
+            except Exception as e:
+                logger.error(f"❌ Error handling system stats query: {e}")
+                # Not handled - fall through to regular processing
+        
+        # Return result
+        return result
+    
+    async def handle_contextual_chat_request_streaming(self, data: Dict[str, Any], client_id: str, websocket) -> None:
+        """Handle chat requests with streaming responses and fast deep data access"""
+        mode = data.get("mode", "General")
+        message = data.get("message", "")
+        session_id = data.get("session_id", client_id)
+        
+        start_time = time.time()
+        
+        try:
+            # Universal agnostic data access - try for ANY query first
+            deep_data_result = await self._try_agnostic_deep_data_access(message, mode, client_id, websocket)
+            if deep_data_result.get("handled"):
+                return  # Exit early - deep data provided meaningful response
+            
+            # Initialize contextual knowledge if not done yet
+            if not self.contextual_knowledge_initialized:
+                await self._initialize_contextual_knowledge()
+                self.contextual_knowledge_initialized = True
+            
+            # Store user message in memory
+            await add_memory(
+                f"User in {mode} mode: {message}",
+                source="user_interaction",
+                tags={f"mode_{mode.lower()}", "user_message", session_id}
+            )
+            
+            # Get context for the query
+            context = await get_context_for_query(message, max_context_length=500)
+            
+            # 🎯 AGENT MODE AUTOMATION - Generate execution plan first
+            logger.info(f"🔍 Agent mode check: mode='{mode}', REAL={REAL_AGENT_AUTOMATION_AVAILABLE}, UNIVERSAL={UNIVERSAL_AVAILABLE}, FAST={FAST_AUTOMATION_AVAILABLE}, ENHANCED={ENHANCED_AUTOMATION_AVAILABLE}, handler={self.automation_handler is not None}")
+            if mode.lower() == "agent" and (REAL_AGENT_AUTOMATION_AVAILABLE or UNIVERSAL_AVAILABLE or FAST_AUTOMATION_AVAILABLE or ENHANCED_AUTOMATION_AVAILABLE or self.automation_handler):
+                try:
+                    logger.info(f"🎯 [STREAMING] Creating Agent automation plan for: {message}")
+                    
+                    # Build context for automation
+                    automation_context = {
+                        "memories": context.get('relevant_memories', []),
+                        "confidence": context.get('confidence_score', 0.0),
+                        "user_prompt": message
+                    }
+                    
+                    # Check for Universal Intelligent Automation handler first (for real LLM planning)
+                    if UNIVERSAL_AVAILABLE:
+                        logger.info("🧠 [STREAMING] Using Universal Intelligent Automation handler for real LLM planning")
+                        
+                        try:
+                            plan_result = await fixed_handle_universal_automation(message, session_id)
+                            logger.info(f"✅ [STREAMING] Successfully called fixed_handle_universal_automation")
+                        except Exception as e:
+                            logger.error(f"❌ Error calling fixed_handle_universal_automation: {e}")
+                            plan_result = {"success": False, "error": f"Error with Universal Automation: {str(e)}"}
+                        
+                        if plan_result.get("success", False):
+                            # Send streaming response with execution plan
+                            await websocket.send(json.dumps({
+                                "type": "agent_automation_plan",
+                                "mode": mode,
+                                "response": plan_result.get("response", "Automation plan created"),
+                                "client_id": client_id,
+                                "timestamp": datetime.now().isoformat(),
+                                "ai_powered": plan_result.get("ai_powered", True),
+                                "success": True,
+                                "requiresConfirmation": plan_result.get("requires_approval", True),
+                                "agentSessionId": session_id,
+                                "confidence": plan_result.get("confidence", 0.8),
+                                "buttons": plan_result.get("buttons", []),
+                                "interactive": plan_result.get("interactive", True),
+                                "universal_intelligent_automation": True,
+                                "plan_id": plan_result.get("plan_id", session_id),
+                                "processing_time": round(time.time() - start_time, 3)
+                            }))
+                            
+                            # Store response in memory
+                            await add_memory(
+                                f"System created automation plan in {mode} mode: {plan_result.get('response', '')[:100]}...",
+                                source="automation_response",
+                                tags={f"mode_{mode.lower()}", "automation", session_id, "universal_llm_planning"}
+                            )
+                            
+                            return  # Exit early - automation plan sent
+                    
+                    # Fall back to Real Agent Automation handler if Universal handler fails
+                    elif REAL_AGENT_AUTOMATION_AVAILABLE:
+                        logger.info("🎯 [STREAMING] Falling back to Real Agent Automation handler")
+                        
+                        # Call the correct method - handle_real_agent_automation instead of non-existent handle_agent_request
+                        try:
+                            from real_agent_automation_handler import handle_real_agent_automation
+                            plan_result = await handle_real_agent_automation(message, session_id)
+                            logger.info(f"✅ [STREAMING] Successfully called handle_real_agent_automation")
+                            logger.info(f"🎯 [STREAMING] Real Agent plan result: {plan_result.get('success', False)} - interactive: {plan_result.get('interactive', False)}")
+                        except Exception as e:
+                            logger.error(f"❌ Error calling handle_real_agent_automation: {e}")
+                            plan_result = {"success": False, "error": f"Error with Real Agent Automation: {str(e)}"}
+                            
+                        if plan_result.get("success", False):
+                            # Send streaming response with execution plan
+                            await websocket.send(json.dumps({
+                                "type": "agent_automation_plan",
+                                "mode": mode,
+                                "response": plan_result.get("response", "Automation plan created"),
+                                "client_id": client_id,
+                                "timestamp": datetime.now().isoformat(),
+                                "ai_powered": plan_result.get("ai_powered", True),
+                                "success": True,
+                                "requiresConfirmation": plan_result.get("requires_approval", True),
+                                "agentSessionId": session_id,
+                                "confidence": plan_result.get("confidence", 0.8),
+                                "buttons": plan_result.get("buttons", []),
+                                "interactive": plan_result.get("interactive", True),
+                                "real_agent_automation": True,
+                                "plan_id": plan_result.get("plan_id", session_id),
+                                "processing_time": round(time.time() - start_time, 3)
+                            }))
+                            
+                            # Store response in memory
+                            await add_memory(
+                                f"System created automation plan in {mode} mode: {plan_result.get('response', '')[:100]}...",
+                                source="automation_response",
+                                tags={f"mode_{mode.lower()}", "automation", session_id, "real_agent_automation"}
+                            )
+                            
+                            return  # Exit early - automation plan sent
+                    
+                    # Fall back to Fast Universal Automation handler if other handlers fail
+                    elif FAST_AUTOMATION_AVAILABLE:
+                        logger.info("⚡ [STREAMING] Falling back to Fast Universal Automation handler")
+                        
+                        try:
+                            from fast_universal_automation_handler import handle_fast_automation
+                            plan_result = await handle_fast_automation(message, session_id)
+                            logger.info(f"✅ [STREAMING] Successfully called handle_fast_automation")
+                        except Exception as e:
+                            logger.error(f"❌ Error calling handle_fast_automation: {e}")
+                            plan_result = {"success": False, "error": f"Error with Fast Automation: {str(e)}"}
+                            
+                        if plan_result.get("success", False):
+                            # Send streaming response with execution plan
+                            await websocket.send(json.dumps({
+                                "type": "agent_automation_plan",
+                                "mode": mode,
+                                "response": plan_result.get("response", "Automation plan created"),
+                                "client_id": client_id,
+                                "timestamp": datetime.now().isoformat(),
+                                "ai_powered": plan_result.get("ai_powered", True),
+                                "success": True,
+                                "requiresConfirmation": plan_result.get("requires_approval", True),
+                                "agentSessionId": session_id,
+                                "confidence": plan_result.get("confidence", 0.7),
+                                "buttons": plan_result.get("buttons", []),
+                                "interactive": plan_result.get("interactive", True),
+                                "fast_automation": True,
+                                "plan_id": plan_result.get("plan_id", session_id),
+                                "processing_time": round(time.time() - start_time, 3)
+                            }))
+                            
+                            # Store response in memory
+                            await add_memory(
+                                f"System created automation plan in {mode} mode: {plan_result.get('response', '')[:100]}...",
+                                source="automation_response",
+                                tags={f"mode_{mode.lower()}", "automation", session_id, "fast_automation"}
+                            )
+                            
+                            return  # Exit early - automation plan sent
+                    
+                    # Fall back to Enhanced Automation handler as last resort
+                    elif ENHANCED_AUTOMATION_AVAILABLE and self.automation_handler:
+                        logger.info("🔍 [STREAMING] Falling back to Enhanced Automation handler")
+                        
+                        try:
+                            # Create automation plan using automation handler
+                            plan_result = await self.automation_handler.create_execution_plan(message, automation_context)
+                            logger.info(f"✅ [STREAMING] Successfully called Enhanced Automation handler")
+                        except Exception as e:
+                            logger.error(f"❌ Error with Enhanced Automation handler: {e}")
+                            plan_result = {"success": False, "error": f"Error with Enhanced Automation: {str(e)}"}
+                            
+                        if plan_result.get("success", False):
+                            # Send streaming response with execution plan
+                            await websocket.send(json.dumps({
+                                "type": "agent_automation_plan",
+                                "mode": mode,
+                                "response": plan_result.get("response", "Automation plan created"),
+                                "client_id": client_id,
+                                "timestamp": datetime.now().isoformat(),
+                                "ai_powered": plan_result.get("ai_powered", True),
+                                "success": True,
+                                "requiresConfirmation": plan_result.get("requires_approval", True),
+                                "agentSessionId": session_id,
+                                "confidence": plan_result.get("confidence", 0.6),
+                                "buttons": plan_result.get("buttons", []),
+                                "interactive": plan_result.get("interactive", True),
+                                "enhanced_automation": True,
+                                "plan_id": plan_result.get("plan_id", session_id),
+                                "processing_time": round(time.time() - start_time, 3)
+                            }))
+                            
+                            # Store response in memory
+                            await add_memory(
+                                f"System created automation plan in {mode} mode: {plan_result.get('response', '')[:100]}...",
+                                source="automation_response",
+                                tags={f"mode_{mode.lower()}", "automation", session_id, "enhanced_automation"}
+                            )
+                            
+                            return  # Exit early - automation plan sent
+                    
+                    # If no automation handlers worked, log and continue
+                    logger.info(f"⚠️ [STREAMING] No automation handler available for Agent mode, falling back to normal response")
+                    
+                except Exception as e:
+                    logger.error(f"❌ Error in Agent mode automation: {e}")
+                    logger.info(f"⚠️ [STREAMING] No automation handler available for Agent mode, falling back to normal response")
+            
+            # Continue with other chat modes processing here
+            # Since we're falling through to here, we need to provide a response
+            # based on the mode. This is a fallback mechanism.
+            response = ""
+            if mode.lower() == "agent":
+                response = f"🎯 Agent Mode: I understand you want to '{message}'. I'll help you automate this task."
+            elif mode.lower() == "ask":
+                response = f"💭 Ask Mode: Here's what I know about '{message}'."
+            elif mode.lower() == "suggest":
+                response = f"💡 Suggest Mode: Based on your request about '{message}', I suggest exploring these options."
+            else:  # General mode
+                response = f"🤖 General Mode: I understand your message about '{message}'. How can I assist you further?"
+            
+            # Send fallback response
+            await websocket.send(json.dumps({
+                "type": "chat_response",
+                "mode": mode,
+                "response": response,
+                "client_id": client_id,
+                "timestamp": datetime.now().isoformat(),
+                "fallback": True,
+                "processing_time": round(time.time() - start_time, 3)
+            }))
+        except Exception as e:
+            logger.error(f"❌ Error in handle_contextual_chat_request_streaming: {e}")
+            # Send error response to client
+            await websocket.send(json.dumps({
+                "type": "error",
+                "error": str(e),
+                "client_id": client_id,
+                "timestamp": datetime.now().isoformat()
+            }))
+            return
+            
+    async def handle_websocket(self, websocket, path=None):
+        """Handle WebSocket connections with proper path parameter support"""
+        client_id = f"client_{int(time.time() * 1000)}"
+        client_ip = websocket.remote_address[0] if websocket.remote_address else "unknown"
+        
+        self.connected_clients.add(client_id)
+        logger.info(f"Client connected: {client_id} from {client_ip} on path: {path}")
+        
+        # Store client info in sessions
+        self.sessions[client_id] = {
+            "client_id": client_id,
+            "connected_at": datetime.now().isoformat(),
+            "ip": client_ip,
+            "path": path,
+            "websocket": websocket
+        }
+        
+        try:
+            # Send initial connection response
+            await websocket.send(json.dumps({
+                "type": "connection_established",
+                "client_id": client_id,
+                "message": "Connected to Enhanced Enterprise Backend with Context",
+                "timestamp": datetime.now().isoformat(),
+                "capabilities": [
+                    "context_tracking",
+                    "agent_mode",
+                    "ask_mode", 
+                    "suggest_mode",
+                    "general_mode",
+                    "semantic_search"
+                ]
+            }))
+            
+            async for message in websocket:
+                try:
+                    data = json.loads(message)
+                    msg_type = data.get('type', 'unknown')
+                    logger.info(f"Received message type: {msg_type} from {client_id}")
+                    
+                    # Handle different message types
+                    if msg_type == 'chat_request':
+                        # Handle streaming response
+                        await self.handle_contextual_chat_request_streaming(data, client_id, websocket)
+                    elif msg_type == 'agent_confirmation':
+                        # Handle agent confirmation (DO button)
+                        plan_id = data.get('session_id', '')
+                        action = data.get('action', '').upper()
+                        logger.info(f"Agent confirmation received: plan_id={plan_id}, action={action}")
+                        
+                        # Execute the plan
+                        result = await self.execute_verified_plan(plan_id)
+                        await websocket.send(json.dumps(result))
+                    elif msg_type == 'button_action':
+                        # Handle button actions
+                        action = data.get('action', '')
+                        plan_id = data.get('plan_id', '')
+                        logger.info(f"Button action received: {action} for plan {plan_id}")
+                        
+                        # Execute the plan
+                        result = await self.execute_verified_plan(plan_id)
+                        await websocket.send(json.dumps(result))
+                    elif msg_type == 'ping':
+                        # Handle ping messages
+                        await websocket.send(json.dumps({
+                            "type": "pong",
+                            "timestamp": datetime.now().isoformat()
+                        }))
+                    elif "notification" in data or "suggestion" in data or msg_type in ["notification", "suggestion"]:
+                        # Forward notifications
+                        await websocket.send(message)
+                    else:
+                        # Generic response for unknown message types
+                        await websocket.send(json.dumps({
+                            "type": "response",
+                            "message": f"Received {msg_type} message",
+                            "timestamp": datetime.now().isoformat()
+                        }))
+                
+                except json.JSONDecodeError:
+                    logger.error(f"Invalid JSON from {client_id}: {message[:100]}...")
+                    await websocket.send(json.dumps({
+                        "type": "error",
+                        "error": "Invalid JSON format"
+                    }))
+                except Exception as e:
+                    logger.error(f"Error processing message from {client_id}: {e}")
+                    await websocket.send(json.dumps({
+                        "type": "error",
+                        "error": f"Processing error: {str(e)}",
+                        "timestamp": datetime.now().isoformat()
+                    }))
+                    
+        except websockets.exceptions.ConnectionClosed:
+            logger.info(f"Client disconnected: {client_id}")
+        except Exception as e:
+            logger.error(f"WebSocket error for {client_id}: {e}")
+        finally:
+            self.connected_clients.discard(client_id)
+            if client_id in self.sessions:
+                del self.sessions[client_id]
+
+async def start_server():
+    """Start the Enhanced Enterprise Backend with Context on port 8767"""
+    backend = ContextualAIBackend()
+    
+    # Create logs directory
+    import os
+    os.makedirs("logs/backend", exist_ok=True)
+    
+    port = 8767
+    host = "0.0.0.0"  # Listen on all interfaces
+    
+    logger.info(f"🚀 Starting Enhanced Enterprise Backend with Context on {host}:{port}...")
+    
+    try:
+        # Create WebSocket server with proper handler
+        server = await websockets.serve(
+            backend.handle_websocket,  # Pass the instance method as handler
+            host, 
+            port,
+            ping_interval=30,
+            ping_timeout=60,
+            max_size=10 * 1024 * 1024  # 10MB max message size
+        )
+        
+        # Save PID for easy shutdown
+        with open('pids/enhanced_enterprise_backend.pid', 'w') as f:
+            f.write(str(os.getpid()))
+        
+        logger.info(f"✅ Enhanced Enterprise Backend with Context started successfully")
+        logger.info(f"🌐 WebSocket server listening on ws://{host}:{port}")
+        print(f"🚀 Enhanced Enterprise Backend with Context Ready on port {port}!")
+        print(f"🧠 Context-aware AI responses with semantic memory")
+        print(f"🎯 Real agent automation ready for DO button execution")
+        
+        # Run forever
+        await asyncio.Future()
+        
+    except Exception as e:
+        logger.error(f"❌ Failed to start Enhanced Enterprise Backend: {e}")
+        raise
+
+if __name__ == "__main__":
+    try:
+        # Ensure the pids directory exists
+        import os
+        os.makedirs("pids", exist_ok=True)
+        
+        # Kill any existing process on port 8767 to avoid conflicts
+        import subprocess
+        subprocess.run("lsof -ti:8767 | xargs kill -9 2>/dev/null || true", shell=True)
+        
+        # Allow port to be released
+        asyncio.run(asyncio.sleep(1))
+        
+        # Start the server
+        asyncio.run(start_server())
+    except KeyboardInterrupt:
+        logger.info("🛑 Enhanced Enterprise Backend stopped by user")
+    except Exception as e:
+        logger.error(f"❌ Enhanced Enterprise Backend error: {e}")

@@ -1,0 +1,23 @@
+2025-06-05 01:05:14,564 - neural_ui_detector - INFO - PyTorch 2.7.0 available
+2025-06-05 01:05:14,632 - neural_ui_detector - INFO - Ultralytics 8.3.148 available
+2025-06-05 01:05:14,738 - neural_ui_detector - INFO - Transformers 4.51.3 available
+2025-06-05 01:05:14,783 - neural_ui_detector - INFO - ONNX Runtime 1.22.0 available
+2025-06-05 01:05:14,783 - neural_ui_detector - INFO - OpenCV 4.11.0 available
+2025-06-05 01:05:14,809 - neural_ui_detector - INFO - Selenium available for browser automation
+2025-06-05 01:05:14,809 - neural_ui_detector - INFO - Neural UI Detector available components:
+2025-06-05 01:05:14,809 - neural_ui_detector - INFO - - YOLO Object Detection: ✅
+2025-06-05 01:05:14,809 - neural_ui_detector - INFO - - LayoutLM Document Understanding: ✅
+2025-06-05 01:05:14,809 - neural_ui_detector - INFO - - ONNX Model Acceleration: ✅
+2025-06-05 01:05:14,809 - neural_ui_detector - INFO - - Computer Vision Support: ✅
+2025-06-05 01:05:14,809 - neural_ui_detector - INFO - - Browser Automation: ✅
+2025-06-05 01:05:14,837 - neural_ui_detector - INFO - Loaded pre-trained YOLOv8n model
+2025-06-05 01:05:17,104 - neural_ui_detector - INFO - LayoutLM imports available (old API)
+2025-06-05 01:06:18,880 - neural_ui_detector - INFO - Started new Chrome instance in headless mode
+2025-06-05 01:06:21,401 - neural_ui_detector - INFO - Using EasyOCR for text recognition
+2025-06-05 01:06:21,405 - neural_ui_detector - INFO - Loaded 3 templates for matching
+2025-06-05 01:06:21,405 - neural_ui_detector - INFO - UI Detector Ensemble initialized
+2025-06-05 01:06:21,405 - neural_ui_detector - INFO - Loaded interaction memory with 6 entries
+2025-06-05 01:06:21,437 - neural_ui_detector_server - INFO - Killing existing process on port 8768: PID 29799
+2025-06-05 01:06:22,438 - neural_ui_detector_server - INFO - Starting Neural UI Detector WebSocket Server on port 8768
+2025-06-05 01:06:22,452 - websockets.server - INFO - server listening on 127.0.0.1:8768
+2025-06-05 01:06:22,453 - websockets.server - INFO - server listening on [::1]:8768

@@ -1,0 +1,368 @@
+{
+  "version": "1.0",
+  "last_updated": 1748804809.226495,
+  "rules": [
+    {
+      "id": "app_browser_search",
+      "name": "Browser Search Detection",
+      "description": "Detects when user is searching in a browser",
+      "trigger_type": "application_pattern",
+      "priority": "medium",
+      "pattern": {
+        "applications": [
+          "Chrome",
+          "Safari",
+          "Firefox",
+          "Edge"
+        ]
+      },
+      "confidence_threshold": 0.7,
+      "cooldown_seconds": 3600,
+      "enabled": true,
+      "action_template": {
+        "type": "search_assistance",
+        "description": "Help with search optimization"
+      },
+      "contexts": [],
+      "max_triggers_per_day": 5
+    },
+    {
+      "id": "repetitive_action",
+      "name": "Repetitive Action Detection",
+      "description": "Detects when user is performing repetitive actions",
+      "trigger_type": "user_behavior",
+      "priority": "high",
+      "pattern": {
+        "repetitive_action": true,
+        "min_repetitions": 3
+      },
+      "confidence_threshold": 0.7,
+      "cooldown_seconds": 3600,
+      "enabled": true,
+      "action_template": {
+        "type": "automation_suggestion",
+        "description": "Suggest automation for repetitive task"
+      },
+      "contexts": [],
+      "max_triggers_per_day": 5
+    },
+    {
+      "id": "code_review_suggestion",
+      "name": "Code Review Suggestion",
+      "description": "Suggests code review after coding session",
+      "trigger_type": "content_based",
+      "priority": "medium",
+      "pattern": {
+        "keywords": [
+          "function",
+          "class",
+          "def",
+          "var",
+          "const",
+          "if",
+          "for",
+          "while"
+        ],
+        "min_matches": 3
+      },
+      "confidence_threshold": 0.7,
+      "cooldown_seconds": 3600,
+      "enabled": true,
+      "action_template": {
+        "type": "code_review",
+        "description": "Offer to review code changes"
+      },
+      "contexts": [],
+      "max_triggers_per_day": 5
+    },
+    {
+      "id": "long_session_break",
+      "name": "Long Session Break Reminder",
+      "description": "Reminds user to take a break after long session",
+      "trigger_type": "time_based",
+      "priority": "medium",
+      "pattern": {
+        "duration": 60
+      },
+      "confidence_threshold": 0.7,
+      "cooldown_seconds": 3600,
+      "enabled": true,
+      "action_template": {
+        "type": "wellness_suggestion",
+        "description": "Suggest taking a break"
+      },
+      "contexts": [],
+      "max_triggers_per_day": 5
+    },
+    {
+      "id": "task_completed_summary",
+      "name": "Task Completion Summary",
+      "description": "Offers summary when task is completed",
+      "trigger_type": "task_completion",
+      "priority": "medium",
+      "pattern": {
+        "task_status": "completed"
+      },
+      "confidence_threshold": 0.7,
+      "cooldown_seconds": 3600,
+      "enabled": true,
+      "action_template": {
+        "type": "task_summary",
+        "description": "Generate summary of completed task"
+      },
+      "contexts": [],
+      "max_triggers_per_day": 5
+    },
+    {
+      "id": "web_page_content_action",
+      "name": "Web Page Content Action",
+      "description": "Detects web page content and suggests relevant actions",
+      "trigger_type": "content_based",
+      "priority": "high",
+      "pattern": {
+        "keywords": [
+          "article",
+          "blog",
+          "tutorial",
+          "documentation",
+          "guide",
+          "purchase",
+          "sign up",
+          "login",
+          "register",
+          "download",
+          "form",
+          "checkout",
+          "payment",
+          "subscribe",
+          "fill out"
+        ],
+        "min_matches": 2
+      },
+      "confidence_threshold": 0.7,
+      "cooldown_seconds": 3600,
+      "enabled": true,
+      "action_template": {
+        "type": "web_content_action",
+        "description": "Offer to perform action based on web content"
+      },
+      "contexts": [],
+      "max_triggers_per_day": 5
+    },
+    {
+      "id": "shopping_detection",
+      "name": "Shopping Detection",
+      "description": "Detects when user is shopping online",
+      "trigger_type": "content_based",
+      "priority": "medium",
+      "pattern": {
+        "keywords": [
+          "add to cart",
+          "checkout",
+          "purchase",
+          "buy",
+          "price",
+          "sale",
+          "discount",
+          "product",
+          "item",
+          "order",
+          "shipping",
+          "payment"
+        ],
+        "min_matches": 3
+      },
+      "confidence_threshold": 0.7,
+      "cooldown_seconds": 3600,
+      "enabled": true,
+      "action_template": {
+        "type": "shopping_assistance",
+        "description": "Offer to help with online shopping"
+      },
+      "contexts": [],
+      "max_triggers_per_day": 5
+    },
+    {
+      "id": "form_filling_detection",
+      "name": "Form Filling Detection",
+      "description": "Detects when user is filling out forms",
+      "trigger_type": "content_based",
+      "priority": "high",
+      "pattern": {
+        "keywords": [
+          "form",
+          "input",
+          "field",
+          "required",
+          "submit",
+          "name",
+          "email",
+          "address",
+          "phone",
+          "registration",
+          "sign up",
+          "create account"
+        ],
+        "min_matches": 3
+      },
+      "confidence_threshold": 0.7,
+      "cooldown_seconds": 3600,
+      "enabled": true,
+      "action_template": {
+        "type": "form_automation",
+        "description": "Offer to help fill out the form"
+      },
+      "contexts": [],
+      "max_triggers_per_day": 5
+    },
+    {
+      "id": "test_rule_1748632360",
+      "name": "Test Browser Detection",
+      "description": "Detects when user is using a browser",
+      "trigger_type": "application_pattern",
+      "priority": "medium",
+      "pattern": {
+        "applications": [
+          "Chrome",
+          "Safari",
+          "Firefox",
+          "Edge"
+        ]
+      },
+      "confidence_threshold": 0.7,
+      "cooldown_seconds": 3600,
+      "enabled": true,
+      "action_template": {
+        "type": "search_assistance",
+        "description": "Help with search optimization"
+      },
+      "contexts": [],
+      "max_triggers_per_day": 5
+    },
+    {
+      "id": "web_content_rule",
+      "name": "Web Content Detection",
+      "description": "Detects when user is viewing web content",
+      "trigger_type": "content_based",
+      "priority": "medium",
+      "pattern": {
+        "keywords": [
+          "tutorial",
+          "article",
+          "guide"
+        ]
+      },
+      "confidence_threshold": 0.6,
+      "cooldown_seconds": 60,
+      "enabled": true,
+      "action_template": {
+        "type": "web_content_action",
+        "suggestion": "I can help you understand this content better."
+      },
+      "contexts": [],
+      "max_triggers_per_day": 5
+    },
+    {
+      "id": "application_rule",
+      "name": "Application Detection",
+      "description": "Detects when user is using specific applications",
+      "trigger_type": "application_pattern",
+      "priority": "medium",
+      "pattern": {
+        "applications": [
+          "Chrome",
+          "Firefox",
+          "Safari"
+        ]
+      },
+      "confidence_threshold": 0.7,
+      "cooldown_seconds": 60,
+      "enabled": true,
+      "action_template": {
+        "type": "application_assistance",
+        "suggestion": "I can help you with this application."
+      },
+      "contexts": [],
+      "max_triggers_per_day": 5
+    }
+  ],
+  "stats": {
+    "app_browser_search": {
+      "trigger_count": 0,
+      "last_triggered": null,
+      "success_rate": 0.0,
+      "accepted_count": 0,
+      "dismissed_count": 0
+    },
+    "repetitive_action": {
+      "trigger_count": 0,
+      "last_triggered": null,
+      "success_rate": 0.0,
+      "accepted_count": 0,
+      "dismissed_count": 0
+    },
+    "code_review_suggestion": {
+      "trigger_count": 0,
+      "last_triggered": null,
+      "success_rate": 0.0,
+      "accepted_count": 0,
+      "dismissed_count": 0
+    },
+    "long_session_break": {
+      "trigger_count": 0,
+      "last_triggered": null,
+      "success_rate": 0.0,
+      "accepted_count": 0,
+      "dismissed_count": 0
+    },
+    "task_completed_summary": {
+      "trigger_count": 0,
+      "last_triggered": null,
+      "success_rate": 0.0,
+      "accepted_count": 0,
+      "dismissed_count": 0
+    },
+    "web_page_content_action": {
+      "trigger_count": 0,
+      "last_triggered": null,
+      "success_rate": 0.0,
+      "accepted_count": 0,
+      "dismissed_count": 0
+    },
+    "shopping_detection": {
+      "trigger_count": 0,
+      "last_triggered": null,
+      "success_rate": 0.0,
+      "accepted_count": 0,
+      "dismissed_count": 0
+    },
+    "form_filling_detection": {
+      "trigger_count": 0,
+      "last_triggered": null,
+      "success_rate": 0.0,
+      "accepted_count": 0,
+      "dismissed_count": 0
+    },
+    "test_rule_1748632360": {
+      "trigger_count": 0,
+      "last_triggered": null,
+      "success_rate": 0.0,
+      "accepted_count": 0,
+      "dismissed_count": 0
+    },
+    "web_content_rule": {
+      "trigger_count": 0,
+      "last_triggered": null,
+      "success_rate": 0.0,
+      "accepted_count": 0,
+      "dismissed_count": 0
+    },
+    "application_rule": {
+      "trigger_count": 0,
+      "last_triggered": null,
+      "success_rate": 0.0,
+      "accepted_count": 0,
+      "dismissed_count": 0
+    }
+  }
+}

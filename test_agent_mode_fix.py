@@ -1,170 +1,274 @@
 #!/usr/bin/env python3
 """
-Test Agent Mode Fix
-Verifies that Agent Mode now uses Real Agent Automation Handler
-and generates proper execution plans instead of conversational responses
+Test script for verifying Agent Mode is working correctly
+
+This script tests the fixes applied to:
+1. universal_intelligent_automation_handler.py
+2. brain_router.py 
+3. WebSocket interface
+
+It directly tests the Agent Mode functionality through:
+- Direct handler invocation to test fixes without system restart
+- WebSocket interface to test end-to-end functionality
 """
 
 import asyncio
 import json
+import websockets
 import time
 import logging
+import sys
+import traceback
+from datetime import datetime
+from typing import Dict, Any, Optional
 
-logging.basicConfig(level=logging.INFO)
+# Configure logging
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
+)
 logger = logging.getLogger(__name__)
 
-async def test_import_status():
-    """Test if Real Agent Automation Handler is properly imported"""
-    
-    print("🔍 Testing Import Status...")
-    
-    try:
-        from real_agent_automation_handler import RealAgentAutomationHandler
-        print("✅ Real Agent Automation Handler imported successfully")
-        
-        # Test instantiation
-        handler = RealAgentAutomationHandler()
-        print("✅ Real Agent Automation Handler instantiated")
-        
-        # Test method availability
-        if hasattr(handler, 'handle_agent_request'):
-            print("✅ handle_agent_request method available")
-        else:
-            print("❌ handle_agent_request method missing")
-        
-        return True
-        
-    except ImportError as e:
-        print(f"❌ Import failed: {e}")
-        return False
-    except Exception as e:
-        print(f"❌ Handler error: {e}")
-        return False
-
-async def test_backend_flags():
-    """Test backend automation flags"""
-    
-    print("\n🏁 Testing Backend Flags...")
+async def test_universal_automation_handler():
+    """Test the universal_intelligent_automation_handler directly"""
+    logger.info("🧪 Testing universal_intelligent_automation_handler directly...")
     
     try:
-        from enhanced_enterprise_backend_with_context import (
-            REAL_AGENT_AUTOMATION_AVAILABLE,
-            ENHANCED_AUTOMATION_AVAILABLE,
-            UNIVERSAL_AVAILABLE,
-            FAST_AUTOMATION_AVAILABLE,
-            AUTOMATION_AVAILABLE
-        )
+        # Import the handler we fixed
+        from universal_intelligent_automation_handler import handle_universal_automation
         
-        print(f"🎯 REAL_AGENT_AUTOMATION_AVAILABLE: {REAL_AGENT_AUTOMATION_AVAILABLE}")
-        print(f"🔧 ENHANCED_AUTOMATION_AVAILABLE: {ENHANCED_AUTOMATION_AVAILABLE}")
-        print(f"🌍 UNIVERSAL_AVAILABLE: {UNIVERSAL_AVAILABLE}")
-        print(f"⚡ FAST_AUTOMATION_AVAILABLE: {FAST_AUTOMATION_AVAILABLE}")
-        print(f"✅ AUTOMATION_AVAILABLE: {AUTOMATION_AVAILABLE}")
+        # Test with a simple query
+        simple_query = "How can I automate searching for images of cats on Google?"
+        logger.info(f"🔍 Testing with query: {simple_query}")
         
-        if REAL_AGENT_AUTOMATION_AVAILABLE:
-            print("✅ Real Agent Automation is properly enabled")
-            return True
+        # Call the handler
+        session_id = f"test_session_{int(time.time())}"
+        result = await handle_universal_automation(simple_query, session_id)
+        
+        # Log the result
+        logger.info(f"✅ Result success: {result.get('success', False)}")
+        logger.info(f"📋 Has execution plan: {'Yes' if result.get('execution_plan') else 'No'}")
+        
+        # Check if the response looks like a template or real LLM response
+        response_text = result.get('response', '')
+        is_template = "🎯 AUTOMATION EXECUTION PLAN" in response_text and "Step 1:" in response_text
+        
+        if is_template:
+            logger.warning("⚠️ Response appears to be a template rather than real LLM content")
         else:
-            print("❌ Real Agent Automation is NOT enabled")
-            return False
+            logger.info("✨ Response appears to be real LLM-generated content")
             
-    except ImportError as e:
-        print(f"❌ Backend import failed: {e}")
-        return False
-
-async def test_handler_directly():
-    """Test the Real Agent Automation Handler directly"""
+        logger.info(f"💬 Response preview: {response_text[:100]}...")
+        
+        return result
     
-    print("\n🧪 Testing Handler Directly...")
+    except Exception as e:
+        logger.error(f"❌ Error testing universal_automation_handler: {e}")
+        logger.error(traceback.format_exc())
+        return {"success": False, "error": str(e)}
+
+async def test_brain_router():
+    """Test the brain_router with Agent Mode"""
+    logger.info("🧪 Testing brain_router with Agent Mode...")
     
     try:
-        from real_agent_automation_handler import RealAgentAutomationHandler
+        # Import the brain router
+        from brain.core.brain_router import BrainRouter, BrainRequest
         
-        handler = RealAgentAutomationHandler()
-        test_message = "search Omer Adam in Spotify"
-        session_id = "test_session"
+        # Create a brain router instance
+        router = BrainRouter()
         
-        print(f"📝 Testing with message: '{test_message}'")
-        
-        result = await handler.handle_agent_request(test_message, session_id)
-        
-        print(f"📊 Handler Result:")
-        print(f"   ✅ Success: {result.get('success', False)}")
-        print(f"   🎮 Interactive: {result.get('interactive', False)}")
-        print(f"   🔘 Has Buttons: {bool(result.get('buttons', []))}")
-        print(f"   🆔 Plan ID: {result.get('plan_id', 'None')}")
-        print(f"   🤖 AI Powered: {result.get('ai_powered', False)}")
-        
-        response_preview = result.get('response', '')[:100] + "..." if len(result.get('response', '')) > 100 else result.get('response', '')
-        print(f"   💬 Response: '{response_preview}'")
-        
-        # Check if it's a proper execution plan
-        is_execution_plan = result.get('success', False) and (
-            result.get('interactive', False) or 
-            bool(result.get('buttons', [])) or 
-            result.get('plan_id', '')
+        # Create a test request
+        test_request = BrainRequest(
+            query="How do I automate searching for vacation destinations?",
+            mode="agent",
+            session_id=f"test_session_{int(time.time())}",
+            metadata={"test": True}
         )
         
-        if is_execution_plan:
-            print("✅ Handler generates proper execution plans!")
-            return True
-        else:
-            print("❌ Handler not generating proper execution plans")
-            return False
+        logger.info(f"📤 Sending request to brain router: {test_request.query}")
         
+        # Process the request
+        response = await router.process_request(test_request)
+        
+        # Log the result
+        logger.info(f"✅ Response success: {response.success}")
+        logger.info(f"🔠 Mode used: {response.mode_used}")
+        logger.info(f"⏱️ Processing time: {response.processing_time:.2f} seconds")
+        logger.info(f"🔧 Resources used: {response.resources_used}")
+        
+        # Check if the response has an execution plan
+        if hasattr(response, 'execution_plan') and response.execution_plan:
+            logger.info("📝 Response includes an execution plan")
+            if isinstance(response.execution_plan, dict):
+                logger.info(f"🔢 Plan has {len(response.execution_plan.get('steps', []))} steps")
+        else:
+            logger.warning("⚠️ Response does not include an execution plan")
+        
+        # Check if the response looks like a template
+        is_template = "🎯 AUTOMATION EXECUTION PLAN" in response.response and "Step 1:" in response.response
+        
+        if is_template:
+            logger.warning("⚠️ Response appears to be a template rather than real LLM content")
+        else:
+            logger.info("✨ Response appears to be real LLM-generated content")
+            
+        logger.info(f"💬 Response preview: {response.response[:100]}...")
+        
+        return response
+    
     except Exception as e:
-        print(f"❌ Handler test failed: {e}")
+        logger.error(f"❌ Error testing brain_router: {e}")
+        logger.error(traceback.format_exc())
+        return None
+
+async def test_with_different_queries():
+    """Test with different types of queries to ensure robustness"""
+    logger.info("🧪 Testing with different query types...")
+    
+    queries = [
+        "How do I automate opening my email and sending a message?",
+        "Can you help me automate checking the weather?",
+        "I want to automate searching for recipes",
+        "Help me automate a Google search for local restaurants",
+        "Create a plan to automate checking my calendar"
+    ]
+    
+    try:
+        # Import the handler we fixed
+        from universal_intelligent_automation_handler import handle_universal_automation
+        
+        results = []
+        for query in queries:
+            logger.info(f"🔍 Testing with query: {query}")
+            
+            # Call the handler
+            result = await handle_universal_automation(query, f"test_session_{int(time.time())}")
+            
+            # Log basic info
+            success = result.get('success', False)
+            has_plan = bool(result.get('execution_plan'))
+            logger.info(f"✓ Query: '{query}' - Success: {success}, Has Plan: {has_plan}")
+            
+            results.append({
+                "query": query,
+                "success": success,
+                "has_plan": has_plan
+            })
+        
+        # Summarize results
+        success_count = sum(1 for r in results if r["success"])
+        plan_count = sum(1 for r in results if r["has_plan"])
+        
+        logger.info(f"📊 Test summary: {success_count}/{len(results)} successful, {plan_count}/{len(results)} have plans")
+        return results
+    
+    except Exception as e:
+        logger.error(f"❌ Error in multi-query test: {e}")
+        logger.error(traceback.format_exc())
+        return []
+
+async def test_agent_mode_websocket():
+    """Test Agent mode functionality via WebSocket"""
+    logger.info("🧪 Starting Agent mode WebSocket test...")
+    
+    try:
+        # Connect to the backend server
+        uri = "ws://localhost:8767"
+        logger.info(f"🔌 Connecting to {uri}...")
+        
+        async with websockets.connect(uri) as websocket:
+            logger.info("✅ Connected to backend server")
+            
+            # Wait for connection established message
+            initial_response = await websocket.recv()
+            logger.info(f"👋 Received connection message: {initial_response[:100]}...")
+            
+            # Generate a unique session ID
+            session_id = f"test_{int(time.time())}"
+            
+            # Send Agent mode request
+            test_message = "Open Safari and search for 'python websockets library'"
+            
+            request = {
+                "type": "chat_request",
+                "mode": "Agent",  # Important: this is the Agent mode
+                "message": test_message,
+                "session_id": session_id,
+                "timestamp": datetime.now().isoformat()
+            }
+            
+            logger.info(f"📤 Sending Agent mode request: {test_message}")
+            await websocket.send(json.dumps(request))
+            
+            # Wait for response
+            response = await websocket.recv()
+            response_data = json.loads(response)
+            
+            logger.info(f"📥 Received response: {response[:200]}...")
+            
+            # Analyze response
+            if response_data.get("type") == "agent_automation_plan":
+                logger.info("✅ SUCCESS! Received proper Agent mode automation plan!")
+                logger.info(f"🎯 Plan details: {json.dumps(response_data, indent=2)}")
+                
+                # Check if it looks like a template
+                plan_text = response_data.get("payload", {}).get("plan_text", "")
+                is_template = "🎯 AUTOMATION EXECUTION PLAN" in plan_text and "Step 1:" in plan_text
+                
+                if is_template:
+                    logger.warning("⚠️ Plan appears to be a template rather than real LLM content")
+                else:
+                    logger.info("✨ Plan appears to be real LLM-generated content")
+                
+                return True
+            else:
+                logger.error(f"❌ ERROR! Did not receive an agent_automation_plan message")
+                logger.error(f"📋 Response type: {response_data.get('type')}")
+                logger.error(f"📋 Response payload: {response_data.get('payload')}")
+                return False
+            
+    except Exception as e:
+        logger.error(f"❌ Error testing Agent mode: {e}")
+        logger.error(traceback.format_exc())
         return False
 
 async def main():
-    """Main test function"""
+    """Run all tests"""
+    logger.info("🚀 Starting Agent Mode fix tests")
     
-    print("🚀 Agent Mode Fix Verification")
-    print("=" * 60)
+    test_results = {}
     
-    # Test import status
-    import_ok = await test_import_status()
+    # Test the universal automation handler directly
+    logger.info("\n==== 🧪 TESTING UNIVERSAL AUTOMATION HANDLER ====")
+    handler_result = await test_universal_automation_handler()
+    test_results["universal_handler"] = handler_result.get("success", False) if handler_result else False
     
-    # Test backend flags
-    flags_ok = await test_backend_flags()
+    # Test the brain router with Agent Mode
+    logger.info("\n==== 🧪 TESTING BRAIN ROUTER ====")
+    router_result = await test_brain_router()
+    test_results["brain_router"] = router_result.success if router_result else False
     
-    # Test handler directly
-    handler_ok = await test_handler_directly()
+    # Test with different queries
+    logger.info("\n==== 🧪 TESTING WITH DIFFERENT QUERIES ====")
+    query_results = await test_with_different_queries()
+    test_results["different_queries"] = sum(1 for r in query_results if r["success"]) > 0
     
-    # Final summary
-    print("\n" + "=" * 60)
-    print("📋 FINAL RESULTS:")
-    print(f"   📦 Import Status: {'✅ OK' if import_ok else '❌ FAILED'}")
-    print(f"   🏁 Backend Flags: {'✅ OK' if flags_ok else '❌ FAILED'}")
-    print(f"   🎯 Handler Test: {'✅ OK' if handler_ok else '❌ FAILED'}")
+    # Test via WebSocket interface
+    logger.info("\n==== 🧪 TESTING WEBSOCKET INTERFACE ====")
+    websocket_result = await test_agent_mode_websocket()
+    test_results["websocket"] = websocket_result
     
-    all_ok = import_ok and flags_ok and handler_ok
+    # Print summary
+    logger.info("\n==== 📊 TEST SUMMARY ====")
+    for test_name, result in test_results.items():
+        logger.info(f"{'✅' if result else '❌'} {test_name}: {'PASS' if result else 'FAIL'}")
     
-    if all_ok:
-        print("\n🎉 SUCCESS! Agent Mode fix is complete!")
-        print("🔄 The backend should now generate execution plans")
-        print("🎯 Test with: 'search Omer Adam in Spotify' in Agent Mode")
-        print("🔘 Should show DO/DISMISS/ADJUST buttons instead of conversational response")
-    else:
-        print("\n🚨 FAILURE! Agent Mode still has issues!")
-        print("🔧 Check the import errors and backend configuration")
-        
-        if not import_ok:
-            print("💡 Fix: Check if real_agent_automation_handler.py exists and has correct syntax")
-        if not flags_ok:
-            print("💡 Fix: Check backend import configuration")
-        if not handler_ok:
-            print("💡 Fix: Check handler logic and LLM availability")
+    overall_success = all(test_results.values())
+    logger.info(f"\n{'🎉 ALL TESTS PASSED!' if overall_success else '⚠️ SOME TESTS FAILED!'}")
     
-    return all_ok
+    return overall_success
 
 if __name__ == "__main__":
-    try:
-        result = asyncio.run(main())
-        exit(0 if result else 1)
-    except KeyboardInterrupt:
-        print("\n🛑 Test interrupted by user")
-        exit(1)
-    except Exception as e:
-        print(f"\n💥 Test failed: {e}")
-        exit(1)
+    success = asyncio.run(main())
+    sys.exit(0 if success else 1)

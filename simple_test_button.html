@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Simple Test Button</title>
+    <style>
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 10px;
+        }
+        
+        .btn:hover {
+            background-color: #45a049;
+        }
+        
+        #testPanel {
+            display: none;
+            background-color: #f1f1f1;
+            padding: 20px;
+            border-radius: 5px;
+            margin-top: 20px;
+            border: 1px solid #ddd;
+        }
+    </style>
+</head>
+<body>
+    <h1>Simple Test Button Demo</h1>
+    
+    <p>This is a simplified test page to demonstrate the button functionality.</p>
+    
+    <button id="runTestButton" class="btn" onclick="runTests()">Run Automated Test Suite</button>
+    
+    <div id="testPanel">
+        <h2>Test Panel</h2>
+        <p>The test panel is now visible. Test suite is running...</p>
+        <div id="testStatus">Running tests...</div>
+        <div id="testProgress">
+            <div id="progressBar" style="background-color: #4CAF50; height: 20px; width: 0%;"></div>
+        </div>
+        <button class="btn" onclick="document.getElementById('testPanel').style.display='none';">Close</button>
+    </div>
+    
+    <script>
+        function runTests() {
+            console.log('Run button clicked');
+            
+            // Show the test panel
+            document.getElementById('testPanel').style.display = 'block';
+            
+            // Update status
+            document.getElementById('testStatus').textContent = 'Running automated tests...';
+            
+            // Simulate test progress
+            let progress = 0;
+            const interval = setInterval(function() {
+                progress += 10;
+                document.getElementById('progressBar').style.width = progress + '%';
+                
+                if (progress >= 100) {
+                    clearInterval(interval);
+                    document.getElementById('testStatus').textContent = 'All tests completed successfully!';
+                }
+            }, 500);
+        }
+    </script>
+</body>
+</html>

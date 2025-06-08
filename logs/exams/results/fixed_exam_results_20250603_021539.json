@@ -1,0 +1,40 @@
+{
+  "timestamp": "2025-06-03T02:15:39.266618",
+  "results_count": 1,
+  "results": [
+    {
+      "timestamp": "2025-06-03T02:10:54.563725",
+      "session_id": "exam_session_1748931040720",
+      "exam_id": "browser_search",
+      "message": "Ask the agent to search for \"artificial intelligence news\" in the search bar and click the search button.",
+      "plan": {
+        "steps": [
+          {
+            "type": "text",
+            "target": "search_box",
+            "text": "artificial intelligence news",
+            "description": "Type \"artificial intelligence news\" in the search box"
+          },
+          {
+            "type": "click",
+            "target": "search_button",
+            "description": "Click the search button"
+          }
+        ]
+      },
+      "success": true,
+      "execution_time": 6.540351867675781,
+      "difficulty": "medium"
+    }
+  ],
+  "exam_stats": {
+    "browser_search": {
+      "attempts": 1,
+      "successful": 1,
+      "partial": 0,
+      "failed": 0,
+      "avg_time": 6.540351867675781,
+      "total_time": 6.540351867675781
+    }
+  }
+}

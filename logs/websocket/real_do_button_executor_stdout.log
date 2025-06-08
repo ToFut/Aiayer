@@ -1,0 +1,53 @@
+2025-06-03 01:47:34,004 - plan_persistence - INFO - Plan persistence manager initialized with 30 stored plans
+2025-06-03 01:47:34,005 - plan_persistence - INFO - Plan persistence service initialized
+2025-06-03 01:47:34,005 - real_do_button_executor - INFO - ✅ Plan persistence module loaded
+2025-06-03 01:47:36,201 - agent_workflow.input_controller - INFO - Detected screen size: 1470x956
+2025-06-03 01:47:36,556 - agent_workflow.input_controller - INFO - Standard mouse listener started successfully
+2025-06-03 01:47:36,562 - agent_workflow.input_controller - INFO - Keyboard listener started successfully
+2025-06-03 01:47:36,563 - agent_workflow.input_controller - INFO - Input controller initialized (safe mode)
+2025-06-03 01:47:36,563 - agent_workflow.input_controller - INFO - 🚨 Emergency shutdown: Press Ctrl+1 to immediately stop agent
+2025-06-03 01:47:36,771 - llava_processor - INFO - Connected to Ollama API v0.6.8
+2025-06-03 01:47:36,772 - total_screen_analyzer - INFO - LLaVA visual processor initialized for total screen analysis
+2025-06-03 01:47:36,772 - total_screen_analyzer - INFO - Total Screen Analyzer initialized with 8s interval
+2025-06-03 01:47:36,772 - adaptive_retry_automation_handler - INFO - 🔄 Adaptive retry automation system loaded
+2025-06-03 01:47:36,772 - universal_intelligent_automation_handler - INFO - ✅ Adaptive retry automation handler loaded successfully
+2025-06-03 01:47:36,772 - universal_intelligent_automation_handler - INFO - ✅ Plan persistence module loaded successfully
+2025-06-03 01:47:36,783 - agent_workflow.input_controller - INFO - Standard mouse listener started successfully
+2025-06-03 01:47:36,827 - agent_workflow.input_controller - INFO - Keyboard listener started successfully
+2025-06-03 01:47:36,837 - agent_workflow.input_controller - INFO - Input controller initialized (safe mode)
+2025-06-03 01:47:36,837 - agent_workflow.input_controller - INFO - 🚨 Emergency shutdown: Press Ctrl+1 to immediately stop agent
+2025-06-03 01:47:36,865 - llava_processor - INFO - Connected to Ollama API v0.6.8
+2025-06-03 01:47:36,866 - total_screen_analyzer - INFO - LLaVA visual processor initialized for total screen analysis
+2025-06-03 01:47:36,866 - total_screen_analyzer - INFO - Total Screen Analyzer initialized with 8s interval
+2025-06-03 01:47:36,866 - universal_intelligent_automation_handler - INFO - 🤖 Universal automation components loaded successfully
+2025-06-03 01:47:36,866 - real_do_button_executor - INFO - ✅ Universal automation handler loaded
+2025-06-03 01:47:36,869 - real_agent_automation_handler - INFO - ✅ Plan persistence module loaded successfully
+2025-06-03 01:47:36,872 - agent_workflow.input_controller - INFO - Standard mouse listener started successfully
+2025-06-03 01:47:36,873 - agent_workflow.input_controller - INFO - Keyboard listener started successfully
+2025-06-03 01:47:36,873 - agent_workflow.input_controller - INFO - Input controller initialized (safe mode)
+2025-06-03 01:47:36,873 - agent_workflow.input_controller - INFO - 🚨 Emergency shutdown: Press Ctrl+1 to immediately stop agent
+2025-06-03 01:47:36,898 - llava_processor - INFO - Connected to Ollama API v0.6.8
+2025-06-03 01:47:36,899 - total_screen_analyzer - INFO - LLaVA visual processor initialized for total screen analysis
+2025-06-03 01:47:36,899 - total_screen_analyzer - INFO - Total Screen Analyzer initialized with 8s interval
+2025-06-03 01:47:36,899 - real_agent_automation_handler - INFO - 🤖 Real automation components loaded successfully
+2025-06-03 01:47:36,899 - real_do_button_executor - WARNING - ⚠️ Real agent automation handler not available: cannot import name 'real_agent_automation_handler' from 'real_agent_automation_handler' (/Users/segevbin/Desktop/SensAI/Aiayer/real_agent_automation_handler.py)
+2025-06-03 01:47:36,900 - real_do_button_executor - INFO - Starting Real DO Button Executor (version 1.0)
+2025-06-03 01:47:36,900 - real_do_button_executor - INFO - Python version: 3.13.3 (main, Apr  8 2025, 13:54:08) [Clang 16.0.0 (clang-1600.0.26.6)]
+2025-06-03 01:47:36,900 - real_do_button_executor - INFO - Websockets version: 15.0.1
+2025-06-03 01:47:38,012 - real_do_button_executor - INFO - Port 8765 is available
+2025-06-03 01:47:38,013 - real_do_button_executor - INFO - 🚀 Starting Real DO Button Executor on 0.0.0.0:8765
+2025-06-03 01:47:38,074 - websockets.server - INFO - server listening on 0.0.0.0:8765
+2025-06-03 01:47:38,075 - real_do_button_executor - INFO - ✅ WebSocket server initialized successfully
+2025-06-03 01:47:38,076 - real_do_button_executor - INFO - ✅ Real DO Button Executor running on ws://0.0.0.0:8765
+2025-06-03 01:47:38,076 - real_do_button_executor - INFO - 🎯 Ready to handle DO button clicks with REAL AUTOMATION
+2025-06-03 01:47:38,076 - real_do_button_executor - INFO - 🤖 Universal automation handler available for real step execution
+2025-06-03 01:47:38,076 - real_do_button_executor - INFO - 📂 Plan persistence available for loading plans
+2025-06-03 01:47:38,076 - real_do_button_executor - INFO - Server status: 0 clients connected, 0 executions completed
+2025-06-03 01:47:46,793 - websockets.server - INFO - connection open
+2025-06-03 01:47:46,794 - websockets.server - ERROR - connection handler failed
+Traceback (most recent call last):
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/asyncio/server.py", line 376, in conn_handler
+    await self.handler(connection)
+          ~~~~~~~~~~~~^^^^^^^^^^^^
+TypeError: handler() missing 1 required positional argument: 'path'
+2025-06-03 01:48:38,079 - real_do_button_executor - INFO - Server status: 0 clients connected, 0 executions completed

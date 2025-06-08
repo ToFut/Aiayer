@@ -1,0 +1,14 @@
+2025-06-01 15:17:38,655 - memory_trigger_test - INFO - 🚀 Testing Memory Trigger System
+2025-06-01 15:17:38,655 - memory_trigger_test - INFO - 
+----- Test 1: WebSocket Connection -----
+2025-06-01 15:17:38,655 - memory_trigger_test - INFO - Testing connection to WebSocket server at ws://localhost:8765
+2025-06-01 15:17:38,723 - memory_trigger_test - ERROR - ❌ Error connecting to WebSocket server: did not receive a valid HTTP response
+2025-06-01 15:17:38,724 - memory_trigger_test - ERROR - ❌ WebSocket connection test failed
+2025-06-01 15:17:38,724 - memory_trigger_test - ERROR - Please start the WebSocket server with: python overlay/minimal_ws_server.py
+2025-06-01 15:19:16,784 - memory_trigger_test - INFO - 🚀 Testing Memory Trigger System
+2025-06-01 15:19:16,785 - memory_trigger_test - INFO - 
+----- Test 1: WebSocket Connection -----
+2025-06-01 15:19:16,785 - memory_trigger_test - INFO - Testing connection to WebSocket server at ws://localhost:8765
+2025-06-01 15:19:16,829 - memory_trigger_test - ERROR - ❌ Error connecting to WebSocket server: did not receive a valid HTTP response
+2025-06-01 15:19:16,829 - memory_trigger_test - ERROR - ❌ WebSocket connection test failed
+2025-06-01 15:19:16,829 - memory_trigger_test - ERROR - Please start the WebSocket server with: python overlay/minimal_ws_server.py

@@ -1,0 +1,39 @@
+2025-06-05 00:54:04,311 - enhanced_memory_dashboard - INFO - Enhanced memory dashboard initialized
+2025-06-05 00:54:04,314 - memory_dashboard_server - INFO - Started background metrics update thread
+2025-06-05 00:54:04,314 - enhanced_memory_dashboard - INFO - Started enhanced memory dashboard background task
+ * Serving Flask app 'memory_dashboard_server'
+ * Debug mode: off
+2025-06-05 00:54:04,538 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:8082
+ * Running on http://192.168.1.102:8082
+2025-06-05 00:54:04,539 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-06-05 00:54:06,462 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 00:54:06] "GET /memory HTTP/1.1" 200 -
+2025-06-05 00:54:06,576 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 00:54:06] "[36mGET /static/js/memory_dashboard.js HTTP/1.1[0m" 304 -
+2025-06-05 00:56:09,268 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 00:56:09] "HEAD /memory HTTP/1.1" 200 -
+2025-06-05 00:56:13,919 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 00:56:13] "GET /api/memory/metrics HTTP/1.1" 200 -
+2025-06-05 00:56:52,809 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 00:56:52] "GET /memory HTTP/1.1" 200 -
+2025-06-05 00:56:52,841 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 00:56:52] "[36mGET /static/js/memory_dashboard.js HTTP/1.1[0m" 304 -
+2025-06-05 00:57:00,182 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 00:57:00] "GET /memory HTTP/1.1" 200 -
+2025-06-05 00:57:00,261 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 00:57:00] "[36mGET /static/js/memory_dashboard.js HTTP/1.1[0m" 304 -
+2025-06-05 01:08:30,921 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 01:08:30] "GET /memory HTTP/1.1" 200 -
+2025-06-05 01:08:31,193 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 01:08:31] "[36mGET /static/js/memory_dashboard.js HTTP/1.1[0m" 304 -
+2025-06-05 01:20:11,842 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 01:20:11] "GET /memory HTTP/1.1" 200 -
+2025-06-05 01:20:11,943 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 01:20:11] "GET /static/js/memory_dashboard.js HTTP/1.1" 200 -
+2025-06-05 01:21:46,767 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 01:21:46] "GET /memory HTTP/1.1" 200 -
+2025-06-05 01:21:46,867 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 01:21:46] "GET /static/js/memory_dashboard.js HTTP/1.1" 200 -
+2025-06-05 01:23:58,411 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 01:23:58] "GET /memory HTTP/1.1" 200 -
+2025-06-05 01:23:58,471 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 01:23:58] "GET /static/js/memory_dashboard.js HTTP/1.1" 200 -
+2025-06-05 01:24:24,145 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 01:24:24] "GET /memory HTTP/1.1" 200 -
+2025-06-05 01:26:09,439 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 01:26:09] "GET /memory HTTP/1.1" 200 -
+2025-06-05 01:26:09,481 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 01:26:09] "GET /static/js/memory_dashboard.js HTTP/1.1" 200 -
+2025-06-05 01:26:09,737 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 01:26:09] "GET /api/memory/metrics HTTP/1.1" 200 -
+2025-06-05 01:26:39,742 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 01:26:39] "GET /api/memory/metrics HTTP/1.1" 200 -
+2025-06-05 01:27:09,829 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 01:27:09] "GET /api/memory/metrics HTTP/1.1" 200 -
+2025-06-05 01:27:30,771 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 01:27:30] "GET /memory HTTP/1.1" 200 -
+2025-06-05 01:27:30,803 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 01:27:30] "GET /static/js/memory_dashboard.js HTTP/1.1" 200 -
+2025-06-05 01:27:30,948 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 01:27:30] "GET /api/memory/metrics HTTP/1.1" 200 -
+2025-06-05 01:28:01,043 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 01:28:01] "GET /api/memory/metrics HTTP/1.1" 200 -
+2025-06-05 01:28:31,146 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 01:28:31] "GET /api/memory/metrics HTTP/1.1" 200 -
+2025-06-05 01:29:01,238 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 01:29:01] "GET /api/memory/metrics HTTP/1.1" 200 -
+2025-06-05 01:29:31,268 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 01:29:31] "GET /api/memory/metrics HTTP/1.1" 200 -

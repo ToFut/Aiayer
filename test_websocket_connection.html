@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WebSocket Connection Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+        }
+        #log {
+            border: 1px solid #ccc;
+            padding: 10px;
+            height: 300px;
+            overflow-y: auto;
+            margin-bottom: 10px;
+            background-color: #f9f9f9;
+        }
+        button {
+            padding: 8px 16px;
+            margin-right: 10px;
+            cursor: pointer;
+        }
+        .success {
+            color: green;
+        }
+        .error {
+            color: red;
+        }
+        .info {
+            color: blue;
+        }
+    </style>
+</head>
+<body>
+    <h1>WebSocket Connection Test</h1>
+    <div>
+        <label for="ws-url">WebSocket URL:</label>
+        <input type="text" id="ws-url" value="ws://localhost:8769" style="width: 300px;">
+        <button id="connect-btn">Connect</button>
+        <button id="disconnect-btn" disabled>Disconnect</button>
+    </div>
+    <div style="margin-top: 10px;">
+        <button id="ping-btn" disabled>Send Ping</button>
+        <button id="stats-btn" disabled>Get System Stats</button>
+        <button id="search-btn" disabled>Test Search</button>
+        <button id="add-memory-btn" disabled>Add Test Memory</button>
+    </div>
+    <h3>Log:</h3>
+    <div id="log"></div>
+
+    <script>
+        let socket = null;
+        const logElement = document.getElementById('log');
+        const connectBtn = document.getElementById('connect-btn');
+        const disconnectBtn = document.getElementById('disconnect-btn');
+        const pingBtn = document.getElementById('ping-btn');
+        const statsBtn = document.getElementById('stats-btn');
+        const searchBtn = document.getElementById('search-btn');
+        const addMemoryBtn = document.getElementById('add-memory-btn');
+        const wsUrlInput = document.getElementById('ws-url');
+
+        function log(message, type = 'info') {
+            const entry = document.createElement('div');
+            entry.classList.add(type);
+            entry.innerHTML = `<strong>[${new Date().toLocaleTimeString()}]</strong> ${message}`;
+            logElement.appendChild(entry);
+            logElement.scrollTop = logElement.scrollHeight;
+        }
+
+        connectBtn.addEventListener('click', () => {
+            if (socket) {
+                log('Already connected. Disconnect first.', 'error');
+                return;
+            }
+
+            const wsUrl = wsUrlInput.value;
+            try {
+                log(`Connecting to ${wsUrl}...`);
+                socket = new WebSocket(wsUrl);
+
+                socket.onopen = () => {
+                    log('Connection established', 'success');
+                    connectBtn.disabled = true;
+                    disconnectBtn.disabled = false;
+                    pingBtn.disabled = false;
+                    statsBtn.disabled = false;
+                    searchBtn.disabled = false;
+                    addMemoryBtn.disabled = false;
+                };
+
+                socket.onmessage = (event) => {
+                    try {
+                        const data = JSON.parse(event.data);
+                        log(`Received: ${JSON.stringify(data, null, 2)}`, 'success');
+                    } catch (e) {
+                        log(`Received non-JSON message: ${event.data}`, 'info');
+                    }
+                };
+
+                socket.onclose = (event) => {
+                    log(`Connection closed. Code: ${event.code}, Reason: ${event.reason}`, 'info');
+                    resetButtons();
+                    socket = null;
+                };
+
+                socket.onerror = (error) => {
+                    log(`WebSocket error: ${error}`, 'error');
+                };
+            } catch (e) {
+                log(`Failed to create WebSocket: ${e.message}`, 'error');
+            }
+        });
+
+        disconnectBtn.addEventListener('click', () => {
+            if (socket) {
+                socket.close();
+                log('Disconnecting...', 'info');
+                resetButtons();
+            }
+        });
+
+        pingBtn.addEventListener('click', () => {
+            if (!socket || socket.readyState !== WebSocket.OPEN) {
+                log('Not connected.', 'error');
+                return;
+            }
+
+            const pingMessage = {
+                type: 'ping',
+                timestamp: new Date().toISOString()
+            };
+            
+            log(`Sending ping: ${JSON.stringify(pingMessage)}`);
+            socket.send(JSON.stringify(pingMessage));
+        });
+
+        statsBtn.addEventListener('click', () => {
+            if (!socket || socket.readyState !== WebSocket.OPEN) {
+                log('Not connected.', 'error');
+                return;
+            }
+
+            const statsMessage = {
+                type: 'get_system_stats'
+            };
+            
+            log(`Requesting system stats: ${JSON.stringify(statsMessage)}`);
+            socket.send(JSON.stringify(statsMessage));
+        });
+
+        searchBtn.addEventListener('click', () => {
+            if (!socket || socket.readyState !== WebSocket.OPEN) {
+                log('Not connected.', 'error');
+                return;
+            }
+
+            const searchMessage = {
+                type: 'search_memory',
+                query: 'development productivity',
+                top_k: 5,
+                min_similarity: 0.1
+            };
+            
+            log(`Sending search query: ${JSON.stringify(searchMessage)}`);
+            socket.send(JSON.stringify(searchMessage));
+        });
+
+        addMemoryBtn.addEventListener('click', () => {
+            if (!socket || socket.readyState !== WebSocket.OPEN) {
+                log('Not connected.', 'error');
+                return;
+            }
+
+            const testMemory = {
+                type: 'add_memory',
+                content: 'Test memory created from WebSocket connection test at ' + new Date().toISOString(),
+                source: 'test_tool',
+                tags: ['test', 'websocket']
+            };
+            
+            log(`Adding test memory: ${JSON.stringify(testMemory)}`);
+            socket.send(JSON.stringify(testMemory));
+        });
+
+        function resetButtons() {
+            connectBtn.disabled = false;
+            disconnectBtn.disabled = true;
+            pingBtn.disabled = true;
+            statsBtn.disabled = true;
+            searchBtn.disabled = true;
+            addMemoryBtn.disabled = true;
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,50 @@
+{
+  "scenario": {
+    "id": "ask_system_status",
+    "mode": "ask",
+    "message": "what applications are currently running on my system?",
+    "expected_keywords": [
+      "applications",
+      "running",
+      "system",
+      "active"
+    ],
+    "memory_indicators": [
+      "process",
+      "memory",
+      "sensor"
+    ],
+    "context_indicators": [
+      "currently",
+      "active",
+      "detected"
+    ],
+    "description": "Tests ask mode's ability to report on system status from memory"
+  },
+  "final_response": {
+    "type": "final_response",
+    "mode": "ask",
+    "response": "\ud83e\udd16 Error: ",
+    "client_id": "client_1748527116279",
+    "timestamp": "2025-05-29T10:00:32.962336",
+    "processing_method": "agnostic_deep_data",
+    "data_sources": [
+      "screen_analysis",
+      "memory_context"
+    ],
+    "success": true
+  },
+  "combined_response": "\ud83e\udd16 Error: ",
+  "progress_updates": [],
+  "response_time": 38.1884868144989,
+  "evaluation": {
+    "success": false,
+    "quality_score": 0.0,
+    "memory_score": 0.0,
+    "context_score": 0.0,
+    "explanation": "Found 0/4 keywords, 0/3 memory indicators, 0/3 context indicators. Overall quality: 0.00/1.0",
+    "keyword_matches": [],
+    "memory_matches": [],
+    "context_matches": []
+  }
+}

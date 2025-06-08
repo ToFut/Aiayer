@@ -1,0 +1,11 @@
+2025-06-04 14:44:35,829 - memory.enhanced_semantic_search - INFO - Enhanced semantic search initialized with embedding dim: 384
+2025-06-04 14:44:35,829 - memory.enhanced_semantic_search - INFO - Hybrid retrieval enabled: True
+Traceback (most recent call last):
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/enable_context_memory_promotion.py", line 32, in <module>
+    from memory.memory_system_extension import extend_memory_system
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/memory/memory_system_extension.py", line 13, in <module>
+    from memory.context_memory_promotion import ContextMemoryPromotion
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/memory/context_memory_promotion.py", line 369
+    ```
+    ^
+SyntaxError: invalid syntax

@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Test Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        h1 {
+            color: #333;
+        }
+        button {
+            padding: 10px 15px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+            margin-right: 10px;
+            margin-bottom: 10px;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        pre {
+            background-color: #f4f4f4;
+            padding: 15px;
+            border-radius: 5px;
+            overflow: auto;
+        }
+        .result {
+            margin-top: 20px;
+        }
+        .log {
+            height: 200px;
+            overflow-y: auto;
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin-top: 20px;
+            background-color: #f9f9f9;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Dashboard API Test</h1>
+        
+        <div>
+            <button id="testMetrics">Test Metrics API</button>
+            <button id="testTimeSeries">Test Time Series API</button>
+            <button id="testDashboard">Test Dashboard Loading</button>
+            <button id="clearLog">Clear Log</button>
+        </div>
+        
+        <div class="log" id="log"></div>
+        
+        <div class="result">
+            <h2>API Response:</h2>
+            <pre id="result">No API call made yet.</pre>
+        </div>
+    </div>
+
+    <script>
+        // Log function
+        function log(message) {
+            const logElement = document.getElementById('log');
+            const timestamp = new Date().toLocaleTimeString();
+            logElement.innerHTML += `<div>[${timestamp}] ${message}</div>`;
+            logElement.scrollTop = logElement.scrollHeight;
+        }
+        
+        // Clear log
+        document.getElementById('clearLog').addEventListener('click', function() {
+            document.getElementById('log').innerHTML = '';
+            document.getElementById('result').textContent = 'Log cleared.';
+        });
+        
+        // Test Metrics API
+        document.getElementById('testMetrics').addEventListener('click', function() {
+            log('Testing Metrics API...');
+            fetch('/api/metrics')
+                .then(response => {
+                    log(`Response status: ${response.status}`);
+                    return response.json();
+                })
+                .then(data => {
+                    log('Metrics API call successful');
+                    document.getElementById('result').textContent = JSON.stringify(data, null, 2);
+                })
+                .catch(error => {
+                    log(`Error: ${error.message}`);
+                    document.getElementById('result').textContent = `Error: ${error.message}`;
+                });
+        });
+        
+        // Test Time Series API
+        document.getElementById('testTimeSeries').addEventListener('click', function() {
+            log('Testing Time Series API...');
+            fetch('/api/time-series')
+                .then(response => {
+                    log(`Response status: ${response.status}`);
+                    return response.json();
+                })
+                .then(data => {
+                    log('Time Series API call successful');
+                    log(`Received ${data.timestamps.length} data points`);
+                    document.getElementById('result').textContent = JSON.stringify(data, null, 2);
+                })
+                .catch(error => {
+                    log(`Error: ${error.message}`);
+                    document.getElementById('result').textContent = `Error: ${error.message}`;
+                });
+        });
+        
+        // Test Dashboard Loading
+        document.getElementById('testDashboard').addEventListener('click', function() {
+            log('Testing Dashboard Loading...');
+            
+            // Create promises for both API calls
+            const metricsPromise = fetch('/api/metrics')
+                .then(response => {
+                    log(`Metrics Response status: ${response.status}`);
+                    return response.json();
+                })
+                .then(data => {
+                    log('Metrics API call successful');
+                    return data;
+                })
+                .catch(error => {
+                    log(`Metrics Error: ${error.message}`);
+                    throw error;
+                });
+            
+            const timeSeriesPromise = fetch('/api/time-series')
+                .then(response => {
+                    log(`Time Series Response status: ${response.status}`);
+                    return response.json();
+                })
+                .then(data => {
+                    log('Time Series API call successful');
+                    log(`Received ${data.timestamps.length} data points`);
+                    return data;
+                })
+                .catch(error => {
+                    log(`Time Series Error: ${error.message}`);
+                    throw error;
+                });
+            
+            // Wait for both promises to complete
+            Promise.all([metricsPromise, timeSeriesPromise])
+                .then(([metricsData, timeSeriesData]) => {
+                    log('All API calls completed successfully');
+                    document.getElementById('result').textContent = 
+                        `Metrics and Time Series data loaded successfully.\n` +
+                        `Metrics timestamp: ${new Date(metricsData.timestamp * 1000).toLocaleString()}\n` +
+                        `Time Series points: ${timeSeriesData.timestamps.length}`;
+                })
+                .catch(error => {
+                    log(`Error in Promise.all: ${error.message}`);
+                    document.getElementById('result').textContent = `Error: ${error.message}`;
+                });
+        });
+    </script>
+</body>
+</html>

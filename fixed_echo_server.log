@@ -1,0 +1,125 @@
+2025-06-03 18:27:52,052 - INFO - server listening on 0.0.0.0:8766
+2025-06-03 18:27:52,053 - INFO - WebSocket Echo Server running on ws://0.0.0.0:8766
+2025-06-03 18:27:52,053 - INFO - Connect locally using:
+2025-06-03 18:27:52,053 - INFO - - ws://localhost:8766
+2025-06-03 18:27:52,053 - INFO - - ws://127.0.0.1:8766
+2025-06-03 19:39:59,483 - ERROR - opening handshake failed
+Traceback (most recent call last):
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/http11.py", line 138, in parse
+    request_line = yield from parse_line(read_line)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/http11.py", line 309, in parse_line
+    line = yield from read_line(MAX_LINE_LENGTH)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/streams.py", line 46, in read_line
+    raise EOFError(f"stream ends after {p} bytes, before end of line")
+EOFError: stream ends after 0 bytes, before end of line
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/server.py", line 545, in parse
+    request = yield from Request.parse(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^
+        self.reader.read_line,
+        ^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/http11.py", line 140, in parse
+    raise EOFError("connection closed while reading HTTP request line") from exc
+EOFError: connection closed while reading HTTP request line
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/asyncio/server.py", line 356, in conn_handler
+    await connection.handshake(
+    ...<3 lines>...
+    )
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/asyncio/server.py", line 207, in handshake
+    raise self.protocol.handshake_exc
+websockets.exceptions.InvalidMessage: did not receive a valid HTTP request
+2025-06-03 19:39:59,513 - INFO - connection open
+2025-06-03 19:39:59,513 - INFO - Client connected: 127.0.0.1:56671 (ID: 4395181520)
+2025-06-03 19:39:59,513 - INFO - Sent welcome message to client 4395181520
+2025-06-03 19:39:59,514 - INFO - Received from 4395181520: {"type": "suggestion", "response": "This is a test notification (Format 1: suggestion type)", "buttons": [{"id": "confirm", "text": "Confirm", "type": "primary"}, {"id": "dismiss", "text": "Dismiss", "type": "secondary"}], "importance": "high", "play_sound": true}
+2025-06-03 19:39:59,514 - INFO - Echoed JSON to 4395181520
+2025-06-03 19:40:01,515 - INFO - Received from 4395181520: {"type": "do_button", "action": "display", "plan_id": "test_plan_1748994001", "content": {"title": "Test DO Button", "message": "This is a test notification (Format 2: do_button type)", "buttons": [{"id": "execute", "text": "Execute", "type": "primary"}, {"id": "cancel", "text": "Cancel", "type": "secondary"}]}, "notification": true, "play_sound": true}
+2025-06-03 19:40:01,516 - INFO - Echoed JSON to 4395181520
+2025-06-03 19:40:04,517 - INFO - Connection with client 4395181520 closed
+2025-06-03 19:41:52,513 - ERROR - opening handshake failed
+Traceback (most recent call last):
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/http11.py", line 138, in parse
+    request_line = yield from parse_line(read_line)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/http11.py", line 309, in parse_line
+    line = yield from read_line(MAX_LINE_LENGTH)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/streams.py", line 46, in read_line
+    raise EOFError(f"stream ends after {p} bytes, before end of line")
+EOFError: stream ends after 0 bytes, before end of line
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/server.py", line 545, in parse
+    request = yield from Request.parse(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^
+        self.reader.read_line,
+        ^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/http11.py", line 140, in parse
+    raise EOFError("connection closed while reading HTTP request line") from exc
+EOFError: connection closed while reading HTTP request line
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/asyncio/server.py", line 356, in conn_handler
+    await connection.handshake(
+    ...<3 lines>...
+    )
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/asyncio/server.py", line 207, in handshake
+    raise self.protocol.handshake_exc
+websockets.exceptions.InvalidMessage: did not receive a valid HTTP request
+2025-06-03 19:41:52,565 - INFO - connection open
+2025-06-03 19:41:52,566 - INFO - Client connected: 127.0.0.1:57403 (ID: 4395366432)
+2025-06-03 19:41:52,566 - INFO - Sent welcome message to client 4395366432
+2025-06-03 19:41:52,567 - INFO - Received from 4395366432: {"type": "suggestion", "response": "This is a test notification (Format 1: suggestion type)", "buttons": [{"id": "confirm", "text": "Confirm", "type": "primary"}, {"id": "dismiss", "text": "Dismiss", "type": "secondary"}], "importance": "high", "play_sound": true}
+2025-06-03 19:41:52,567 - INFO - Echoed JSON to 4395366432
+2025-06-03 19:41:54,568 - INFO - Received from 4395366432: {"type": "do_button", "action": "display", "plan_id": "test_plan_1748994114", "content": {"title": "Test DO Button", "message": "This is a test notification (Format 2: do_button type)", "buttons": [{"id": "execute", "text": "Execute", "type": "primary"}, {"id": "cancel", "text": "Cancel", "type": "secondary"}]}, "notification": true, "play_sound": true}
+2025-06-03 19:41:54,569 - INFO - Echoed JSON to 4395366432
+2025-06-03 19:41:57,571 - INFO - Connection with client 4395366432 closed
+2025-06-03 19:45:24,385 - INFO - connection open
+2025-06-03 19:45:24,387 - INFO - Client connected: 127.0.0.1:60041 (ID: 4396024192)
+2025-06-03 19:45:24,388 - INFO - Sent welcome message to client 4396024192
+2025-06-03 19:45:24,391 - INFO - Received from 4396024192: {"type": "suggestion", "response": "This is a direct notification test. Please click a button to verify notifications are displaying correctly.", "buttons": [{"id": "confirm", "text": "Yes, I See It", "type": "primary"}, {"id": "dismiss", "text": "Not Visible", "type": "secondary"}], "importance": "high", "play_sound": true, "plan_id": "notification_1748994324"}
+2025-06-03 19:45:24,392 - INFO - Echoed JSON to 4396024192
+2025-06-03 19:45:24,394 - INFO - Received from 4396024192: {"type": "suggestion", "mode": "SUGGEST", "notification": true, "response": "This is a second test notification with extra fields.", "data": {"importance": "high", "buttons": [{"id": "confirm", "text": "Confirm Format 2", "type": "primary"}]}, "play_sound": true}
+2025-06-03 19:45:24,395 - INFO - Echoed JSON to 4396024192
+2025-06-03 19:45:24,399 - INFO - Connection with client 4396024192 closed
+2025-06-03 19:53:24,266 - INFO - connection open
+2025-06-03 19:53:24,268 - INFO - Client connected: 127.0.0.1:49860 (ID: 4396026016)
+2025-06-03 19:53:24,268 - INFO - Sent welcome message to client 4396026016
+2025-06-03 19:53:24,270 - INFO - Received from 4396026016: {"type": "do_button_notification", "content": {"message": "\ud83d\udd14 This is a test notification from the fixed proxy! Click a button to confirm it's working.", "buttons": [{"text": "It works! \ud83d\udc4d", "value": "success"}, {"text": "Not working \ud83d\udc4e", "value": "failure"}]}, "importance": "high", "plan_id": "test_notification_1748994804.268811", "timestamp": "2025-06-03T19:53:24.268818"}
+2025-06-03 19:53:24,271 - INFO - Echoed JSON to 4396026016
+2025-06-03 19:53:29,276 - INFO - Connection with client 4396026016 closed
+2025-06-03 19:59:47,229 - INFO - connection open
+2025-06-03 19:59:47,229 - INFO - Client connected: 127.0.0.1:53289 (ID: 4396027536)
+2025-06-03 19:59:47,230 - INFO - Sent welcome message to client 4396027536
+2025-06-03 19:59:47,230 - INFO - Received from 4396027536: {"type": "suggestion", "response": "\ud83d\udd14 DIRECT TEST: This notification should appear in the overlay. Please click a button if you see this message.", "buttons": [{"text": "\u2705 I see it!", "value": "success"}, {"text": "\u274c Not working", "value": "failure"}], "importance": "high", "play_sound": true, "plan_id": "direct_test_1748995187.230277"}
+2025-06-03 19:59:47,230 - INFO - Echoed JSON to 4396027536
+2025-06-03 19:59:47,231 - INFO - Connection with client 4396027536 closed
+2025-06-03 20:01:42,816 - INFO - connection open
+2025-06-03 20:01:42,817 - INFO - Client connected: 127.0.0.1:53976 (ID: 4396029360)
+2025-06-03 20:01:42,818 - INFO - Sent welcome message to client 4396029360
+2025-06-03 20:01:42,818 - INFO - Received from 4396029360: {"type": "suggestion", "response": "\ud83d\udd34 IMPORTANT NOTIFICATION TEST [1748995302.818238]\n\nThis is a test notification sent directly to the overlay.\n\nIf you can see this message, it means the notification system is working correctly!\n\nPlease click one of the buttons below to confirm:", "buttons": [{"text": "\u2705 I can see this notification", "value": "success"}, {"text": "\u274c Still not working", "value": "failure"}], "importance": "high", "play_sound": true, "plan_id": "overlay_test_1748995302.818238"}
+2025-06-03 20:01:42,818 - INFO - Echoed JSON to 4396029360
+2025-06-03 20:01:42,819 - INFO - Connection with client 4396029360 closed
+2025-06-03 20:02:37,335 - INFO - connection open
+2025-06-03 20:02:37,336 - INFO - Client connected: 127.0.0.1:54327 (ID: 4396029968)
+2025-06-03 20:02:37,336 - INFO - Sent welcome message to client 4396029968
+2025-06-03 20:02:37,336 - INFO - Received from 4396029968: {"type": "do_button_notification", "content": {"message": "\ud83d\ude80 DO BUTTON TEST: This is a simulated DO button notification. Can you see this?", "buttons": [{"text": "\u2705 Yes, I can see it!", "value": "do_it"}, {"text": "\u274c No, not visible", "value": "cancel"}]}, "importance": "high", "plan_id": "do_button_test_1748995357", "timestamp": "2025-06-03T20:02:37.336502"}
+2025-06-03 20:02:37,336 - INFO - Echoed JSON to 4396029968
+2025-06-03 20:02:37,337 - INFO - Connection with client 4396029968 closed

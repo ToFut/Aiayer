@@ -1,0 +1,94 @@
+2025-06-03 02:36:52,448 - agent_workflow.input_controller - INFO - Detected screen size: 1470x956
+2025-06-03 02:36:52,451 - agent_workflow.input_controller - INFO - Standard mouse listener started successfully
+2025-06-03 02:36:52,452 - agent_workflow.input_controller - INFO - Keyboard listener started successfully
+2025-06-03 02:36:52,452 - agent_workflow.input_controller - INFO - Input controller initialized (safe mode)
+2025-06-03 02:36:52,452 - agent_workflow.input_controller - INFO - 🚨 Emergency shutdown: Press Ctrl+1 to immediately stop agent
+2025-06-03 02:36:53,504 - fixed_do_button_server - INFO - Starting Fixed DO Button Server on 0.0.0.0:8765
+2025-06-03 02:36:53,538 - websockets.server - INFO - server listening on 0.0.0.0:8765
+2025-06-03 02:36:53,538 - fixed_do_button_server - INFO - ✅ Fixed DO Button Server running on ws://0.0.0.0:8765
+2025-06-03 02:36:53,538 - fixed_do_button_server - INFO - 🎮 Physical automation ready - REAL mouse and keyboard actions enabled
+2025-06-03 02:36:53,538 - fixed_do_button_server - INFO - Server status: 0 clients connected, 0 executions completed
+2025-06-03 02:36:56,891 - websockets.server - INFO - connection open
+2025-06-03 02:36:56,892 - fixed_do_button_server - INFO - Client client_5283058016 connected from 127.0.0.1
+2025-06-03 02:36:56,892 - fixed_do_button_server - INFO - Client client_5283058016 disconnected
+2025-06-03 02:37:04,151 - websockets.server - INFO - connection open
+2025-06-03 02:37:04,152 - fixed_do_button_server - INFO - Client client_5275624272 connected from 127.0.0.1
+2025-06-03 02:37:24,158 - websockets.server - INFO - connection open
+2025-06-03 02:37:24,158 - fixed_do_button_server - INFO - Client client_5275627472 connected from 127.0.0.1
+2025-06-03 02:37:44,166 - websockets.server - INFO - connection open
+2025-06-03 02:37:44,166 - fixed_do_button_server - INFO - Client client_5283010880 connected from 127.0.0.1
+2025-06-03 02:37:53,539 - fixed_do_button_server - INFO - Server status: 3 clients connected, 0 executions completed
+2025-06-03 02:38:04,220 - websockets.server - INFO - connection open
+2025-06-03 02:38:04,221 - fixed_do_button_server - INFO - Client client_5283013616 connected from 127.0.0.1
+2025-06-03 02:38:24,278 - websockets.server - INFO - connection open
+2025-06-03 02:38:24,288 - fixed_do_button_server - INFO - Client client_5283015744 connected from 127.0.0.1
+2025-06-03 02:38:30,684 - websockets.server - INFO - connection open
+2025-06-03 02:38:30,687 - fixed_do_button_server - INFO - Client client_5283016048 connected from 127.0.0.1
+2025-06-03 02:38:30,995 - fixed_do_button_server - INFO - Received message type: ping
+2025-06-03 02:38:31,014 - fixed_do_button_server - INFO - Received message type: get_system_stats
+2025-06-03 02:38:34,644 - fixed_do_button_server - INFO - Client client_5283016048 disconnected
+2025-06-03 02:38:34,889 - websockets.server - INFO - connection open
+2025-06-03 02:38:34,890 - fixed_do_button_server - INFO - Client client_5283016656 connected from 127.0.0.1
+2025-06-03 02:38:34,902 - fixed_do_button_server - INFO - Received message type: ping
+2025-06-03 02:38:34,903 - fixed_do_button_server - INFO - Received message type: get_system_stats
+2025-06-03 02:38:44,343 - websockets.server - INFO - connection open
+2025-06-03 02:38:44,345 - fixed_do_button_server - INFO - Client client_5283016960 connected from 127.0.0.1
+2025-06-03 02:38:45,369 - fixed_do_button_server - INFO - Received message type: add_memory
+2025-06-03 02:38:53,190 - fixed_do_button_server - INFO - Received message type: get_system_stats
+2025-06-03 02:38:53,544 - fixed_do_button_server - INFO - Server status: 7 clients connected, 0 executions completed
+2025-06-03 02:38:55,180 - fixed_do_button_server - INFO - Received message type: get_system_stats
+2025-06-03 02:39:04,558 - websockets.server - INFO - connection open
+2025-06-03 02:39:04,563 - fixed_do_button_server - INFO - Client client_5283017264 connected from 127.0.0.1
+2025-06-03 02:39:07,742 - fixed_do_button_server - INFO - Received message type: search_memory
+2025-06-03 02:39:10,948 - fixed_do_button_server - INFO - Received message type: search_memory
+2025-06-03 02:39:14,754 - fixed_do_button_server - INFO - Received message type: search_memory
+2025-06-03 02:39:16,712 - fixed_do_button_server - INFO - Received message type: search_memory
+2025-06-03 02:39:18,753 - fixed_do_button_server - INFO - Received message type: search_memory
+2025-06-03 02:39:24,615 - websockets.server - INFO - connection open
+2025-06-03 02:39:24,616 - fixed_do_button_server - INFO - Client client_5283017568 connected from 127.0.0.1
+2025-06-03 02:39:44,830 - websockets.server - INFO - connection open
+2025-06-03 02:39:44,831 - fixed_do_button_server - INFO - Client client_5283017872 connected from 127.0.0.1
+2025-06-03 02:39:53,549 - fixed_do_button_server - INFO - Server status: 10 clients connected, 0 executions completed
+2025-06-03 02:39:56,237 - fixed_do_button_server - INFO - Received message type: search_memory
+2025-06-03 02:40:05,067 - websockets.server - INFO - connection open
+2025-06-03 02:40:05,073 - fixed_do_button_server - INFO - Client client_5283016048 connected from 127.0.0.1
+2025-06-03 02:40:08,762 - fixed_do_button_server - INFO - Client client_5283016656 disconnected
+2025-06-03 02:40:08,768 - websockets.server - INFO - connection open
+2025-06-03 02:40:08,769 - fixed_do_button_server - INFO - Client client_5283016352 connected from 127.0.0.1
+2025-06-03 02:40:08,789 - fixed_do_button_server - INFO - Received message type: ping
+2025-06-03 02:40:08,789 - fixed_do_button_server - INFO - Received message type: get_system_stats
+2025-06-03 02:40:12,921 - fixed_do_button_server - INFO - Received message type: get_system_stats
+2025-06-03 02:40:25,539 - websockets.server - INFO - connection open
+2025-06-03 02:40:25,540 - fixed_do_button_server - INFO - Client client_5283018176 connected from 127.0.0.1
+2025-06-03 02:40:45,655 - websockets.server - INFO - connection open
+2025-06-03 02:40:45,655 - fixed_do_button_server - INFO - Client client_5283018480 connected from 127.0.0.1
+2025-06-03 02:40:53,551 - fixed_do_button_server - INFO - Server status: 13 clients connected, 0 executions completed
+2025-06-03 02:40:54,676 - fixed_do_button_server - INFO - Client client_5283016352 disconnected
+2025-06-03 02:41:06,674 - websockets.server - INFO - connection open
+2025-06-03 02:41:06,682 - fixed_do_button_server - INFO - Client client_5283019392 connected from 127.0.0.1
+2025-06-03 02:41:26,850 - websockets.server - INFO - connection open
+2025-06-03 02:41:26,861 - fixed_do_button_server - INFO - Client client_5283019696 connected from 127.0.0.1
+2025-06-03 02:41:46,892 - websockets.server - INFO - connection open
+2025-06-03 02:41:46,893 - fixed_do_button_server - INFO - Client client_5283020000 connected from 127.0.0.1
+2025-06-03 02:41:53,556 - fixed_do_button_server - INFO - Server status: 15 clients connected, 0 executions completed
+2025-06-03 02:42:06,952 - websockets.server - INFO - connection open
+2025-06-03 02:42:07,034 - fixed_do_button_server - INFO - Client client_5283020304 connected from 127.0.0.1
+2025-06-03 02:42:27,352 - websockets.server - INFO - connection open
+2025-06-03 02:42:27,358 - fixed_do_button_server - INFO - Client client_5283561552 connected from 127.0.0.1
+2025-06-03 02:42:47,414 - websockets.server - INFO - connection open
+2025-06-03 02:42:47,415 - fixed_do_button_server - INFO - Client client_5283561856 connected from 127.0.0.1
+2025-06-03 02:42:53,572 - fixed_do_button_server - INFO - Server status: 18 clients connected, 0 executions completed
+2025-06-03 02:43:07,449 - websockets.server - INFO - connection open
+2025-06-03 02:43:07,450 - fixed_do_button_server - INFO - Client client_5283562160 connected from 127.0.0.1
+2025-06-03 02:43:27,458 - websockets.server - INFO - connection open
+2025-06-03 02:43:27,458 - fixed_do_button_server - INFO - Client client_5283562464 connected from 127.0.0.1
+2025-06-03 02:43:47,465 - websockets.server - INFO - connection open
+2025-06-03 02:43:47,466 - fixed_do_button_server - INFO - Client client_5283562768 connected from 127.0.0.1
+2025-06-03 02:43:53,598 - fixed_do_button_server - INFO - Server status: 21 clients connected, 0 executions completed
+2025-06-03 02:44:07,471 - websockets.server - INFO - connection open
+2025-06-03 02:44:07,472 - fixed_do_button_server - INFO - Client client_5283563072 connected from 127.0.0.1
+2025-06-03 02:44:27,500 - websockets.server - INFO - connection open
+2025-06-03 02:44:27,500 - fixed_do_button_server - INFO - Client client_5283563376 connected from 127.0.0.1
+2025-06-03 02:44:48,323 - websockets.server - INFO - connection open
+2025-06-03 02:44:48,327 - fixed_do_button_server - INFO - Client client_5283563680 connected from 127.0.0.1
+2025-06-03 02:44:53,646 - fixed_do_button_server - INFO - Server status: 24 clients connected, 0 executions completed

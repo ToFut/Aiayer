@@ -1,0 +1,27 @@
+2025-06-03 20:10:27,035 - INFO - Testing button_action message format with plan_id: test_plan_1748995827
+2025-06-03 20:10:27,036 - INFO - Connecting to ws://localhost:8766
+2025-06-03 20:10:27,097 - ERROR - ❌ button_action test failed: received 1011 (internal error); then sent 1011 (internal error)
+2025-06-03 20:10:27,097 - INFO - Testing agent_confirmation message format with sessionId: test_plan_1748995827
+2025-06-03 20:10:27,097 - INFO - Connecting to ws://localhost:8766
+2025-06-03 20:10:27,099 - ERROR - ❌ agent_confirmation test failed: received 1011 (internal error); then sent 1011 (internal error)
+2025-06-03 20:10:27,099 - INFO - Testing do_button message format with plan_id: test_plan_1748995827
+2025-06-03 20:10:27,099 - INFO - Connecting to ws://localhost:8766
+2025-06-03 20:10:27,100 - ERROR - ❌ do_button test failed: received 1011 (internal error); then sent 1011 (internal error)
+2025-06-03 20:11:37,300 - INFO - Testing button_action message format with plan_id: test_plan_1748995897
+2025-06-03 20:11:37,300 - INFO - Connecting to ws://localhost:8766
+2025-06-03 20:11:37,331 - INFO - Received welcome message: {"type": "connection_established", "server_version": "1.0.0", "capabilities": ["agent_confirmation", "button_action", "do_button", "neural_ui"], "timestamp": "2025-06-03T20:11:37.331098"}
+2025-06-03 20:11:37,331 - INFO - Sending button_action message: {"type": "button_action", "action": "DO", "plan_id": "test_plan_1748995897", "timestamp": "2025-06-03T20:11:37.331466"}
+2025-06-03 20:11:37,346 - INFO - Received response: {"type": "welcome", "message": "Connected to direct coordinate automation server on port 8765", "server_time": "2025-06-03T20:11:37.345009", "server_name": "Direct Coordinate Automation Server", "real_input": true}
+2025-06-03 20:11:37,346 - WARNING - ⚠️ button_action test received unexpected response type: welcome
+2025-06-03 20:11:37,347 - INFO - Testing agent_confirmation message format with sessionId: test_plan_1748995897
+2025-06-03 20:11:37,347 - INFO - Connecting to ws://localhost:8766
+2025-06-03 20:11:37,348 - INFO - Received welcome message: {"type": "connection_established", "server_version": "1.0.0", "capabilities": ["agent_confirmation", "button_action", "do_button", "neural_ui"], "timestamp": "2025-06-03T20:11:37.348621"}
+2025-06-03 20:11:37,348 - INFO - Sending agent_confirmation message: {"type": "agent_confirmation", "action": "DO", "sessionId": "test_plan_1748995897", "timestamp": "2025-06-03T20:11:37.348780"}
+2025-06-03 20:11:37,349 - INFO - Received response: {"type": "error", "error": "'ClientConnection' object has no attribute 'closed'", "timestamp": "2025-06-03T20:11:37.349017"}
+2025-06-03 20:11:37,349 - WARNING - ⚠️ agent_confirmation test received unexpected response type: error
+2025-06-03 20:11:37,349 - INFO - Testing do_button message format with plan_id: test_plan_1748995897
+2025-06-03 20:11:37,349 - INFO - Connecting to ws://localhost:8766
+2025-06-03 20:11:37,350 - INFO - Received welcome message: {"type": "connection_established", "server_version": "1.0.0", "capabilities": ["agent_confirmation", "button_action", "do_button", "neural_ui"], "timestamp": "2025-06-03T20:11:37.350436"}
+2025-06-03 20:11:37,350 - INFO - Sending do_button message: {"type": "do_button", "button": "DO", "plan_id": "test_plan_1748995897", "timestamp": "2025-06-03T20:11:37.350641"}
+2025-06-03 20:11:37,350 - INFO - Received response: {"type": "error", "error": "'ClientConnection' object has no attribute 'closed'", "timestamp": "2025-06-03T20:11:37.350880"}
+2025-06-03 20:11:37,350 - WARNING - ⚠️ do_button test received unexpected response type: error

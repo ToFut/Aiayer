@@ -89,7 +89,7 @@ class ComplexTaskEnhancedBackend(EnhancedEnterpriseBackend):
             # Fallback to original agent mode
             return await super().handle_agent_mode(message, context)
     
-    async def handle_websocket(self, websocket):
+    async def handle_websocket(websocket, path=None):
         """Enhanced websocket handler with complex task support"""
         client_id = f"client_{id(websocket)}"
         self.active_connections[client_id] = {

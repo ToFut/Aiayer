@@ -1,0 +1,8 @@
+2025-06-03 19:59:47,183 - overlay_notification_direct - INFO - Starting direct overlay notification test
+2025-06-03 19:59:47,183 - overlay_notification_direct - INFO - Connecting to proxy at ws://localhost:8766
+2025-06-03 19:59:47,230 - overlay_notification_direct - INFO - Connected to proxy
+2025-06-03 19:59:47,230 - overlay_notification_direct - INFO - Received welcome: {"type": "welcome", "message": "Connected to Echo WebSocket Server", "client_id": 4396027536, "client_address": "127.0.0.1:53289"}
+2025-06-03 19:59:47,230 - overlay_notification_direct - INFO - Sent direct notification: {'type': 'suggestion', 'response': '🔔 DIRECT TEST: This notification should appear in the overlay. Please click a button if you see this message.', 'buttons': [{'text': '✅ I see it!', 'value': 'success'}, {'text': '❌ Not working', 'value': 'failure'}], 'importance': 'high', 'play_sound': True, 'plan_id': 'direct_test_1748995187.230277'}
+2025-06-03 19:59:47,230 - overlay_notification_direct - INFO - Received response: {"type": "suggestion", "response": "\ud83d\udd14 DIRECT TEST: This notification should appear in the overlay. Please click a button if you see this message.", "buttons": [{"text": "\u2705 I see it!", "value": "success"}, {"text": "\u274c Not working", "value": "failure"}], "importance": "high", "play_sound": true, "plan_id": "direct_test_1748995187.230277", "echo": true, "server_timestamp": 299294.673872541}
+2025-06-03 19:59:47,231 - overlay_notification_direct - INFO - ✅ SUCCESS: Overlay received and responded to notification!
+2025-06-03 19:59:47,231 - overlay_notification_direct - INFO - ✅ Test completed - Check if notification appeared in overlay

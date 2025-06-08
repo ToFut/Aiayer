@@ -1,0 +1,22 @@
+2025-06-04 20:24:14,291 - neural_ui_detector - INFO - PyTorch 2.7.0 available
+2025-06-04 20:24:14,341 - neural_ui_detector - INFO - Ultralytics 8.3.148 available
+2025-06-04 20:24:14,465 - neural_ui_detector - INFO - Transformers 4.51.3 available
+2025-06-04 20:24:14,480 - neural_ui_detector - INFO - ONNX Runtime 1.22.0 available
+2025-06-04 20:24:14,480 - neural_ui_detector - INFO - OpenCV 4.11.0 available
+2025-06-04 20:24:14,502 - neural_ui_detector - INFO - Selenium available for browser automation
+2025-06-04 20:24:14,503 - neural_ui_detector - INFO - Neural UI Detector available components:
+2025-06-04 20:24:14,503 - neural_ui_detector - INFO - - YOLO Object Detection: ✅
+2025-06-04 20:24:14,503 - neural_ui_detector - INFO - - LayoutLM Document Understanding: ✅
+2025-06-04 20:24:14,503 - neural_ui_detector - INFO - - ONNX Model Acceleration: ✅
+2025-06-04 20:24:14,503 - neural_ui_detector - INFO - - Computer Vision Support: ✅
+2025-06-04 20:24:14,503 - neural_ui_detector - INFO - - Browser Automation: ✅
+2025-06-04 20:24:14,526 - neural_ui_detector - INFO - Loaded pre-trained YOLOv8n model
+2025-06-04 20:24:16,954 - neural_ui_detector - INFO - LayoutLM imports available (old API)
+2025-06-04 20:24:59,258 - neural_ui_detector - INFO - Started new Chrome instance in headless mode
+2025-06-04 20:25:02,814 - neural_ui_detector - INFO - Using EasyOCR for text recognition
+2025-06-04 20:25:02,835 - neural_ui_detector - INFO - Loaded 3 templates for matching
+2025-06-04 20:25:02,835 - neural_ui_detector - INFO - UI Detector Ensemble initialized
+2025-06-04 20:25:02,836 - neural_ui_detector - INFO - Loaded interaction memory with 6 entries
+2025-06-04 20:25:04,218 - neural_ui_detector_server - INFO - Starting Neural UI Detector WebSocket Server on port 8768
+2025-06-04 20:25:04,463 - websockets.server - INFO - server listening on [::1]:8768
+2025-06-04 20:25:04,464 - websockets.server - INFO - server listening on 127.0.0.1:8768

@@ -1,0 +1,4444 @@
+{
+  "total_analyzer": {
+    "timestamp": "2025-06-01T15:32:24.114789",
+    "image_hash": "220cf98a1ecdc1dc62322e2144b1c56b",
+    "resolution": "2940x1912",
+    "analysis_duration": 5.853115797042847,
+    "layers": {
+      "window_context": {
+        "platform": "Darwin",
+        "active_window": "Main Window",
+        "application_name": "Safari",
+        "window_state": "viewing"
+      },
+      "text_analysis": {
+        "all_text": "ee\n\nf(D -\n\nlocalhost\n\n@\n\nOo +\n\nAa\n\na\n\naA\n\nA\n\nAa\n\n)\n\n1)\n\n\u00a9\n\n&\n\n\u00a9\n\nr\n\nvu\n\n&\n\no\n\nu\n\nAgent...\n\n\u00ab# AgentMode Real Automation Test Page\n\n@ Search & Navigation\n\nSearch for anything...\n\nSearch results will appear here...\n\n@ Contact Form\n\nFull Name:\n\nEnter your full name\n\nEmail Address:\n\nEnter your email\n\nPhone Number:",
+        "confidence": 84.48076923076923,
+        "meaningful_lines": [
+          "f(D -",
+          "localhost",
+          "Oo +",
+          "Agent...",
+          "\u00ab# AgentMode Real Automation Test Page",
+          "@ Search & Navigation",
+          "Search for anything...",
+          "Search results will appear here...",
+          "@ Contact Form",
+          "Full Name:",
+          "Enter your full name",
+          "Email Address:",
+          "Enter your email",
+          "Phone Number:"
+        ],
+        "text_elements": [
+          {
+            "text": "f(D",
+            "confidence": 44,
+            "position": {
+              "x": 42,
+              "y": 108,
+              "width": 81,
+              "height": 30
+            },
+            "level": 5,
+            "block_num": 2,
+            "par_num": 1,
+            "line_num": 1,
+            "word_num": 1
+          },
+          {
+            "text": "localhost",
+            "confidence": 96,
+            "position": {
+              "x": 1419,
+              "y": 114,
+              "width": 106,
+              "height": 20
+            },
+            "level": 5,
+            "block_num": 3,
+            "par_num": 1,
+            "line_num": 1,
+            "word_num": 1
+          },
+          {
+            "text": "@",
+            "confidence": 64,
+            "position": {
+              "x": 2029,
+              "y": 111,
+              "width": 22,
+              "height": 27
+            },
+            "level": 5,
+            "block_num": 4,
+            "par_num": 1,
+            "line_num": 1,
+            "word_num": 1
+          },
+          {
+            "text": "Oo",
+            "confidence": 55,
+            "position": {
+              "x": 2720,
+              "y": 98,
+              "width": 37,
+              "height": 61
+            },
+            "level": 5,
+            "block_num": 5,
+            "par_num": 1,
+            "line_num": 1,
+            "word_num": 1
+          },
+          {
+            "text": "+",
+            "confidence": 92,
+            "position": {
+              "x": 2794,
+              "y": 109,
+              "width": 27,
+              "height": 27
+            },
+            "level": 5,
+            "block_num": 5,
+            "par_num": 1,
+            "line_num": 1,
+            "word_num": 2
+          },
+          {
+            "text": "Aa",
+            "confidence": 68,
+            "position": {
+              "x": 485,
+              "y": 190,
+              "width": 30,
+              "height": 29
+            },
+            "level": 5,
+            "block_num": 6,
+            "par_num": 1,
+            "line_num": 1,
+            "word_num": 1
+          },
+          {
+            "text": "a",
+            "confidence": 77,
+            "position": {
+              "x": 627,
+              "y": 190,
+              "width": 30,
+              "height": 29
+            },
+            "level": 5,
+            "block_num": 7,
+            "par_num": 1,
+            "line_num": 1,
+            "word_num": 1
+          },
+          {
+            "text": "aA",
+            "confidence": 73,
+            "position": {
+              "x": 769,
+              "y": 190,
+              "width": 30,
+              "height": 29
+            },
+            "level": 5,
+            "block_num": 8,
+            "par_num": 1,
+            "line_num": 1,
+            "word_num": 1
+          },
+          {
+            "text": "A",
+            "confidence": 72,
+            "position": {
+              "x": 911,
+              "y": 190,
+              "width": 30,
+              "height": 29
+            },
+            "level": 5,
+            "block_num": 9,
+            "par_num": 1,
+            "line_num": 1,
+            "word_num": 1
+          },
+          {
+            "text": "Aa",
+            "confidence": 69,
+            "position": {
+              "x": 1053,
+              "y": 190,
+              "width": 30,
+              "height": 29
+            },
+            "level": 5,
+            "block_num": 10,
+            "par_num": 1,
+            "line_num": 1,
+            "word_num": 1
+          },
+          {
+            "text": "\u00a9",
+            "confidence": 91,
+            "position": {
+              "x": 1479,
+              "y": 192,
+              "width": 30,
+              "height": 26
+            },
+            "level": 5,
+            "block_num": 13,
+            "par_num": 1,
+            "line_num": 1,
+            "word_num": 1
+          },
+          {
+            "text": "&",
+            "confidence": 43,
+            "position": {
+              "x": 1620,
+              "y": 191,
+              "width": 32,
+              "height": 28
+            },
+            "level": 5,
+            "block_num": 14,
+            "par_num": 1,
+            "line_num": 1,
+            "word_num": 1
+          },
+          {
+            "text": "\u00a9",
+            "confidence": 93,
+            "position": {
+              "x": 1763,
+              "y": 192,
+              "width": 30,
+              "height": 26
+            },
+            "level": 5,
+            "block_num": 15,
+            "par_num": 1,
+            "line_num": 1,
+            "word_num": 1
+          },
+          {
+            "text": "r",
+            "confidence": 54,
+            "position": {
+              "x": 1910,
+              "y": 193,
+              "width": 17,
+              "height": 9
+            },
+            "level": 5,
+            "block_num": 16,
+            "par_num": 1,
+            "line_num": 1,
+            "word_num": 1
+          },
+          {
+            "text": "&",
+            "confidence": 84,
+            "position": {
+              "x": 2047,
+              "y": 190,
+              "width": 27,
+              "height": 30
+            },
+            "level": 5,
+            "block_num": 18,
+            "par_num": 1,
+            "line_num": 1,
+            "word_num": 1
+          },
+          {
+            "text": "o",
+            "confidence": 62,
+            "position": {
+              "x": 2188,
+              "y": 194,
+              "width": 32,
+              "height": 22
+            },
+            "level": 5,
+            "block_num": 19,
+            "par_num": 1,
+            "line_num": 1,
+            "word_num": 1
+          },
+          {
+            "text": "u",
+            "confidence": 65,
+            "position": {
+              "x": 2622,
+              "y": 200,
+              "width": 16,
+              "height": 17
+            },
+            "level": 5,
+            "block_num": 20,
+            "par_num": 1,
+            "line_num": 1,
+            "word_num": 1
+          },
+          {
+            "text": "AgentMode",
+            "confidence": 91,
+            "position": {
+              "x": 738,
+              "y": 405,
+              "width": 454,
+              "height": 78
+            },
+            "level": 5,
+            "block_num": 22,
+            "par_num": 1,
+            "line_num": 1,
+            "word_num": 2
+          },
+          {
+            "text": "Real",
+            "confidence": 96,
+            "position": {
+              "x": 1223,
+              "y": 405,
+              "width": 166,
+              "height": 62
+            },
+            "level": 5,
+            "block_num": 22,
+            "par_num": 1,
+            "line_num": 1,
+            "word_num": 3
+          },
+          {
+            "text": "Automation",
+            "confidence": 96,
+            "position": {
+              "x": 1418,
+              "y": 405,
+              "width": 466,
+              "height": 62
+            },
+            "level": 5,
+            "block_num": 22,
+            "par_num": 1,
+            "line_num": 1,
+            "word_num": 4
+          },
+          {
+            "text": "Test",
+            "confidence": 96,
+            "position": {
+              "x": 1912,
+              "y": 407,
+              "width": 171,
+              "height": 60
+            },
+            "level": 5,
+            "block_num": 22,
+            "par_num": 1,
+            "line_num": 1,
+            "word_num": 5
+          },
+          {
+            "text": "Page",
+            "confidence": 96,
+            "position": {
+              "x": 2112,
+              "y": 407,
+              "width": 191,
+              "height": 76
+            },
+            "level": 5,
+            "block_num": 22,
+            "par_num": 1,
+            "line_num": 1,
+            "word_num": 6
+          },
+          {
+            "text": "@",
+            "confidence": 83,
+            "position": {
+              "x": 391,
+              "y": 655,
+              "width": 48,
+              "height": 40
+            },
+            "level": 5,
+            "block_num": 23,
+            "par_num": 1,
+            "line_num": 1,
+            "word_num": 1
+          },
+          {
+            "text": "Search",
+            "confidence": 93,
+            "position": {
+              "x": 461,
+              "y": 655,
+              "width": 160,
+              "height": 38
+            },
+            "level": 5,
+            "block_num": 23,
+            "par_num": 1,
+            "line_num": 1,
+            "word_num": 2
+          },
+          {
+            "text": "&",
+            "confidence": 93,
+            "position": {
+              "x": 640,
+              "y": 656,
+              "width": 37,
+              "height": 37
+            },
+            "level": 5,
+            "block_num": 23,
+            "par_num": 1,
+            "line_num": 1,
+            "word_num": 3
+          },
+          {
+            "text": "Navigation",
+            "confidence": 96,
+            "position": {
+              "x": 693,
+              "y": 655,
+              "width": 256,
+              "height": 47
+            },
+            "level": 5,
+            "block_num": 23,
+            "par_num": 1,
+            "line_num": 1,
+            "word_num": 4
+          },
+          {
+            "text": "Search",
+            "confidence": 96,
+            "position": {
+              "x": 431,
+              "y": 780,
+              "width": 96,
+              "height": 23
+            },
+            "level": 5,
+            "block_num": 24,
+            "par_num": 1,
+            "line_num": 1,
+            "word_num": 1
+          },
+          {
+            "text": "for",
+            "confidence": 95,
+            "position": {
+              "x": 539,
+              "y": 779,
+              "width": 37,
+              "height": 24
+            },
+            "level": 5,
+            "block_num": 24,
+            "par_num": 1,
+            "line_num": 1,
+            "word_num": 2
+          },
+          {
+            "text": "anything...",
+            "confidence": 95,
+            "position": {
+              "x": 587,
+              "y": 780,
+              "width": 147,
+              "height": 28
+            },
+            "level": 5,
+            "block_num": 24,
+            "par_num": 1,
+            "line_num": 1,
+            "word_num": 3
+          },
+          {
+            "text": "Search",
+            "confidence": 96,
+            "position": {
+              "x": 435,
+              "y": 938,
+              "width": 93,
+              "height": 26
+            },
+            "level": 5,
+            "block_num": 25,
+            "par_num": 1,
+            "line_num": 1,
+            "word_num": 1
+          },
+          {
+            "text": "results",
+            "confidence": 96,
+            "position": {
+              "x": 541,
+              "y": 938,
+              "width": 90,
+              "height": 26
+            },
+            "level": 5,
+            "block_num": 25,
+            "par_num": 1,
+            "line_num": 1,
+            "word_num": 2
+          },
+          {
+            "text": "will",
+            "confidence": 96,
+            "position": {
+              "x": 642,
+              "y": 938,
+              "width": 44,
+              "height": 25
+            },
+            "level": 5,
+            "block_num": 25,
+            "par_num": 1,
+            "line_num": 1,
+            "word_num": 3
+          },
+          {
+            "text": "appear",
+            "confidence": 96,
+            "position": {
+              "x": 699,
+              "y": 945,
+              "width": 96,
+              "height": 25
+            },
+            "level": 5,
+            "block_num": 25,
+            "par_num": 1,
+            "line_num": 1,
+            "word_num": 4
+          },
+          {
+            "text": "here...",
+            "confidence": 95,
+            "position": {
+              "x": 807,
+              "y": 938,
+              "width": 88,
+              "height": 26
+            },
+            "level": 5,
+            "block_num": 25,
+            "par_num": 1,
+            "line_num": 1,
+            "word_num": 5
+          },
+          {
+            "text": "@",
+            "confidence": 91,
+            "position": {
+              "x": 391,
+              "y": 1369,
+              "width": 48,
+              "height": 40
+            },
+            "level": 5,
+            "block_num": 26,
+            "par_num": 1,
+            "line_num": 1,
+            "word_num": 1
+          },
+          {
+            "text": "Contact",
+            "confidence": 96,
+            "position": {
+              "x": 461,
+              "y": 1370,
+              "width": 185,
+              "height": 37
+            },
+            "level": 5,
+            "block_num": 26,
+            "par_num": 1,
+            "line_num": 1,
+            "word_num": 2
+          },
+          {
+            "text": "Form",
+            "confidence": 96,
+            "position": {
+              "x": 663,
+              "y": 1370,
+              "width": 118,
+              "height": 37
+            },
+            "level": 5,
+            "block_num": 26,
+            "par_num": 1,
+            "line_num": 1,
+            "word_num": 3
+          },
+          {
+            "text": "Full",
+            "confidence": 96,
+            "position": {
+              "x": 392,
+              "y": 1456,
+              "width": 54,
+              "height": 25
+            },
+            "level": 5,
+            "block_num": 27,
+            "par_num": 1,
+            "line_num": 1,
+            "word_num": 1
+          },
+          {
+            "text": "Name:",
+            "confidence": 96,
+            "position": {
+              "x": 460,
+              "y": 1457,
+              "width": 100,
+              "height": 24
+            },
+            "level": 5,
+            "block_num": 27,
+            "par_num": 1,
+            "line_num": 1,
+            "word_num": 2
+          },
+          {
+            "text": "Enter",
+            "confidence": 96,
+            "position": {
+              "x": 431,
+              "y": 1542,
+              "width": 72,
+              "height": 23
+            },
+            "level": 5,
+            "block_num": 28,
+            "par_num": 1,
+            "line_num": 1,
+            "word_num": 1
+          },
+          {
+            "text": "your",
+            "confidence": 96,
+            "position": {
+              "x": 515,
+              "y": 1548,
+              "width": 61,
+              "height": 22
+            },
+            "level": 5,
+            "block_num": 28,
+            "par_num": 1,
+            "line_num": 1,
+            "word_num": 2
+          },
+          {
+            "text": "full",
+            "confidence": 96,
+            "position": {
+              "x": 587,
+              "y": 1541,
+              "width": 40,
+              "height": 24
+            },
+            "level": 5,
+            "block_num": 28,
+            "par_num": 1,
+            "line_num": 1,
+            "word_num": 3
+          },
+          {
+            "text": "name",
+            "confidence": 96,
+            "position": {
+              "x": 640,
+              "y": 1548,
+              "width": 76,
+              "height": 17
+            },
+            "level": 5,
+            "block_num": 28,
+            "par_num": 1,
+            "line_num": 1,
+            "word_num": 4
+          },
+          {
+            "text": "Email",
+            "confidence": 96,
+            "position": {
+              "x": 392,
+              "y": 1646,
+              "width": 85,
+              "height": 25
+            },
+            "level": 5,
+            "block_num": 29,
+            "par_num": 1,
+            "line_num": 1,
+            "word_num": 1
+          },
+          {
+            "text": "Address:",
+            "confidence": 96,
+            "position": {
+              "x": 488,
+              "y": 1646,
+              "width": 137,
+              "height": 26
+            },
+            "level": 5,
+            "block_num": 29,
+            "par_num": 1,
+            "line_num": 1,
+            "word_num": 2
+          },
+          {
+            "text": "Enter",
+            "confidence": 96,
+            "position": {
+              "x": 431,
+              "y": 1732,
+              "width": 72,
+              "height": 23
+            },
+            "level": 5,
+            "block_num": 30,
+            "par_num": 1,
+            "line_num": 1,
+            "word_num": 1
+          },
+          {
+            "text": "your",
+            "confidence": 96,
+            "position": {
+              "x": 515,
+              "y": 1738,
+              "width": 61,
+              "height": 22
+            },
+            "level": 5,
+            "block_num": 30,
+            "par_num": 1,
+            "line_num": 1,
+            "word_num": 2
+          },
+          {
+            "text": "email",
+            "confidence": 96,
+            "position": {
+              "x": 587,
+              "y": 1732,
+              "width": 72,
+              "height": 23
+            },
+            "level": 5,
+            "block_num": 30,
+            "par_num": 1,
+            "line_num": 1,
+            "word_num": 3
+          },
+          {
+            "text": "Phone",
+            "confidence": 96,
+            "position": {
+              "x": 392,
+              "y": 1836,
+              "width": 98,
+              "height": 26
+            },
+            "level": 5,
+            "block_num": 31,
+            "par_num": 1,
+            "line_num": 1,
+            "word_num": 1
+          },
+          {
+            "text": "Number:",
+            "confidence": 96,
+            "position": {
+              "x": 502,
+              "y": 1836,
+              "width": 135,
+              "height": 25
+            },
+            "level": 5,
+            "block_num": 31,
+            "par_num": 1,
+            "line_num": 1,
+            "word_num": 2
+          }
+        ],
+        "text_regions": [
+          {
+            "elements": [
+              {
+                "text": "f(D",
+                "confidence": 44,
+                "position": {
+                  "x": 42,
+                  "y": 108,
+                  "width": 81,
+                  "height": 30
+                },
+                "level": 5,
+                "block_num": 2,
+                "par_num": 1,
+                "line_num": 1,
+                "word_num": 1
+              }
+            ],
+            "bounding_box": {
+              "x": 42,
+              "y": 108,
+              "width": 81,
+              "height": 30
+            },
+            "text": "f(D",
+            "confidence": 44
+          },
+          {
+            "elements": [
+              {
+                "text": "localhost",
+                "confidence": 96,
+                "position": {
+                  "x": 1419,
+                  "y": 114,
+                  "width": 106,
+                  "height": 20
+                },
+                "level": 5,
+                "block_num": 3,
+                "par_num": 1,
+                "line_num": 1,
+                "word_num": 1
+              }
+            ],
+            "bounding_box": {
+              "x": 1419,
+              "y": 114,
+              "width": 106,
+              "height": 20
+            },
+            "text": "localhost",
+            "confidence": 96
+          },
+          {
+            "elements": [
+              {
+                "text": "@",
+                "confidence": 64,
+                "position": {
+                  "x": 2029,
+                  "y": 111,
+                  "width": 22,
+                  "height": 27
+                },
+                "level": 5,
+                "block_num": 4,
+                "par_num": 1,
+                "line_num": 1,
+                "word_num": 1
+              }
+            ],
+            "bounding_box": {
+              "x": 2029,
+              "y": 111,
+              "width": 22,
+              "height": 27
+            },
+            "text": "@",
+            "confidence": 64
+          },
+          {
+            "elements": [
+              {
+                "text": "Oo",
+                "confidence": 55,
+                "position": {
+                  "x": 2720,
+                  "y": 98,
+                  "width": 37,
+                  "height": 61
+                },
+                "level": 5,
+                "block_num": 5,
+                "par_num": 1,
+                "line_num": 1,
+                "word_num": 1
+              }
+            ],
+            "bounding_box": {
+              "x": 2720,
+              "y": 98,
+              "width": 37,
+              "height": 61
+            },
+            "text": "Oo",
+            "confidence": 55
+          },
+          {
+            "elements": [
+              {
+                "text": "+",
+                "confidence": 92,
+                "position": {
+                  "x": 2794,
+                  "y": 109,
+                  "width": 27,
+                  "height": 27
+                },
+                "level": 5,
+                "block_num": 5,
+                "par_num": 1,
+                "line_num": 1,
+                "word_num": 2
+              }
+            ],
+            "bounding_box": {
+              "x": 2794,
+              "y": 109,
+              "width": 27,
+              "height": 27
+            },
+            "text": "+",
+            "confidence": 92
+          },
+          {
+            "elements": [
+              {
+                "text": "Aa",
+                "confidence": 68,
+                "position": {
+                  "x": 485,
+                  "y": 190,
+                  "width": 30,
+                  "height": 29
+                },
+                "level": 5,
+                "block_num": 6,
+                "par_num": 1,
+                "line_num": 1,
+                "word_num": 1
+              }
+            ],
+            "bounding_box": {
+              "x": 485,
+              "y": 190,
+              "width": 30,
+              "height": 29
+            },
+            "text": "Aa",
+            "confidence": 68
+          },
+          {
+            "elements": [
+              {
+                "text": "a",
+                "confidence": 77,
+                "position": {
+                  "x": 627,
+                  "y": 190,
+                  "width": 30,
+                  "height": 29
+                },
+                "level": 5,
+                "block_num": 7,
+                "par_num": 1,
+                "line_num": 1,
+                "word_num": 1
+              }
+            ],
+            "bounding_box": {
+              "x": 627,
+              "y": 190,
+              "width": 30,
+              "height": 29
+            },
+            "text": "a",
+            "confidence": 77
+          },
+          {
+            "elements": [
+              {
+                "text": "aA",
+                "confidence": 73,
+                "position": {
+                  "x": 769,
+                  "y": 190,
+                  "width": 30,
+                  "height": 29
+                },
+                "level": 5,
+                "block_num": 8,
+                "par_num": 1,
+                "line_num": 1,
+                "word_num": 1
+              }
+            ],
+            "bounding_box": {
+              "x": 769,
+              "y": 190,
+              "width": 30,
+              "height": 29
+            },
+            "text": "aA",
+            "confidence": 73
+          },
+          {
+            "elements": [
+              {
+                "text": "A",
+                "confidence": 72,
+                "position": {
+                  "x": 911,
+                  "y": 190,
+                  "width": 30,
+                  "height": 29
+                },
+                "level": 5,
+                "block_num": 9,
+                "par_num": 1,
+                "line_num": 1,
+                "word_num": 1
+              }
+            ],
+            "bounding_box": {
+              "x": 911,
+              "y": 190,
+              "width": 30,
+              "height": 29
+            },
+            "text": "A",
+            "confidence": 72
+          },
+          {
+            "elements": [
+              {
+                "text": "Aa",
+                "confidence": 69,
+                "position": {
+                  "x": 1053,
+                  "y": 190,
+                  "width": 30,
+                  "height": 29
+                },
+                "level": 5,
+                "block_num": 10,
+                "par_num": 1,
+                "line_num": 1,
+                "word_num": 1
+              }
+            ],
+            "bounding_box": {
+              "x": 1053,
+              "y": 190,
+              "width": 30,
+              "height": 29
+            },
+            "text": "Aa",
+            "confidence": 69
+          },
+          {
+            "elements": [
+              {
+                "text": "\u00a9",
+                "confidence": 91,
+                "position": {
+                  "x": 1479,
+                  "y": 192,
+                  "width": 30,
+                  "height": 26
+                },
+                "level": 5,
+                "block_num": 13,
+                "par_num": 1,
+                "line_num": 1,
+                "word_num": 1
+              }
+            ],
+            "bounding_box": {
+              "x": 1479,
+              "y": 192,
+              "width": 30,
+              "height": 26
+            },
+            "text": "\u00a9",
+            "confidence": 91
+          },
+          {
+            "elements": [
+              {
+                "text": "&",
+                "confidence": 43,
+                "position": {
+                  "x": 1620,
+                  "y": 191,
+                  "width": 32,
+                  "height": 28
+                },
+                "level": 5,
+                "block_num": 14,
+                "par_num": 1,
+                "line_num": 1,
+                "word_num": 1
+              }
+            ],
+            "bounding_box": {
+              "x": 1620,
+              "y": 191,
+              "width": 32,
+              "height": 28
+            },
+            "text": "&",
+            "confidence": 43
+          },
+          {
+            "elements": [
+              {
+                "text": "\u00a9",
+                "confidence": 93,
+                "position": {
+                  "x": 1763,
+                  "y": 192,
+                  "width": 30,
+                  "height": 26
+                },
+                "level": 5,
+                "block_num": 15,
+                "par_num": 1,
+                "line_num": 1,
+                "word_num": 1
+              }
+            ],
+            "bounding_box": {
+              "x": 1763,
+              "y": 192,
+              "width": 30,
+              "height": 26
+            },
+            "text": "\u00a9",
+            "confidence": 93
+          },
+          {
+            "elements": [
+              {
+                "text": "r",
+                "confidence": 54,
+                "position": {
+                  "x": 1910,
+                  "y": 193,
+                  "width": 17,
+                  "height": 9
+                },
+                "level": 5,
+                "block_num": 16,
+                "par_num": 1,
+                "line_num": 1,
+                "word_num": 1
+              }
+            ],
+            "bounding_box": {
+              "x": 1910,
+              "y": 193,
+              "width": 17,
+              "height": 9
+            },
+            "text": "r",
+            "confidence": 54
+          },
+          {
+            "elements": [
+              {
+                "text": "&",
+                "confidence": 84,
+                "position": {
+                  "x": 2047,
+                  "y": 190,
+                  "width": 27,
+                  "height": 30
+                },
+                "level": 5,
+                "block_num": 18,
+                "par_num": 1,
+                "line_num": 1,
+                "word_num": 1
+              }
+            ],
+            "bounding_box": {
+              "x": 2047,
+              "y": 190,
+              "width": 27,
+              "height": 30
+            },
+            "text": "&",
+            "confidence": 84
+          },
+          {
+            "elements": [
+              {
+                "text": "o",
+                "confidence": 62,
+                "position": {
+                  "x": 2188,
+                  "y": 194,
+                  "width": 32,
+                  "height": 22
+                },
+                "level": 5,
+                "block_num": 19,
+                "par_num": 1,
+                "line_num": 1,
+                "word_num": 1
+              }
+            ],
+            "bounding_box": {
+              "x": 2188,
+              "y": 194,
+              "width": 32,
+              "height": 22
+            },
+            "text": "o",
+            "confidence": 62
+          },
+          {
+            "elements": [
+              {
+                "text": "u",
+                "confidence": 65,
+                "position": {
+                  "x": 2622,
+                  "y": 200,
+                  "width": 16,
+                  "height": 17
+                },
+                "level": 5,
+                "block_num": 20,
+                "par_num": 1,
+                "line_num": 1,
+                "word_num": 1
+              }
+            ],
+            "bounding_box": {
+              "x": 2622,
+              "y": 200,
+              "width": 16,
+              "height": 17
+            },
+            "text": "u",
+            "confidence": 65
+          },
+          {
+            "elements": [
+              {
+                "text": "AgentMode",
+                "confidence": 91,
+                "position": {
+                  "x": 738,
+                  "y": 405,
+                  "width": 454,
+                  "height": 78
+                },
+                "level": 5,
+                "block_num": 22,
+                "par_num": 1,
+                "line_num": 1,
+                "word_num": 2
+              }
+            ],
+            "bounding_box": {
+              "x": 738,
+              "y": 405,
+              "width": 454,
+              "height": 78
+            },
+            "text": "AgentMode",
+            "confidence": 91
+          },
+          {
+            "elements": [
+              {
+                "text": "Real",
+                "confidence": 96,
+                "position": {
+                  "x": 1223,
+                  "y": 405,
+                  "width": 166,
+                  "height": 62
+                },
+                "level": 5,
+                "block_num": 22,
+                "par_num": 1,
+                "line_num": 1,
+                "word_num": 3
+              }
+            ],
+            "bounding_box": {
+              "x": 1223,
+              "y": 405,
+              "width": 166,
+              "height": 62
+            },
+            "text": "Real",
+            "confidence": 96
+          },
+          {
+            "elements": [
+              {
+                "text": "Automation",
+                "confidence": 96,
+                "position": {
+                  "x": 1418,
+                  "y": 405,
+                  "width": 466,
+                  "height": 62
+                },
+                "level": 5,
+                "block_num": 22,
+                "par_num": 1,
+                "line_num": 1,
+                "word_num": 4
+              }
+            ],
+            "bounding_box": {
+              "x": 1418,
+              "y": 405,
+              "width": 466,
+              "height": 62
+            },
+            "text": "Automation",
+            "confidence": 96
+          },
+          {
+            "elements": [
+              {
+                "text": "Test",
+                "confidence": 96,
+                "position": {
+                  "x": 1912,
+                  "y": 407,
+                  "width": 171,
+                  "height": 60
+                },
+                "level": 5,
+                "block_num": 22,
+                "par_num": 1,
+                "line_num": 1,
+                "word_num": 5
+              }
+            ],
+            "bounding_box": {
+              "x": 1912,
+              "y": 407,
+              "width": 171,
+              "height": 60
+            },
+            "text": "Test",
+            "confidence": 96
+          },
+          {
+            "elements": [
+              {
+                "text": "Page",
+                "confidence": 96,
+                "position": {
+                  "x": 2112,
+                  "y": 407,
+                  "width": 191,
+                  "height": 76
+                },
+                "level": 5,
+                "block_num": 22,
+                "par_num": 1,
+                "line_num": 1,
+                "word_num": 6
+              }
+            ],
+            "bounding_box": {
+              "x": 2112,
+              "y": 407,
+              "width": 191,
+              "height": 76
+            },
+            "text": "Page",
+            "confidence": 96
+          },
+          {
+            "elements": [
+              {
+                "text": "@",
+                "confidence": 83,
+                "position": {
+                  "x": 391,
+                  "y": 655,
+                  "width": 48,
+                  "height": 40
+                },
+                "level": 5,
+                "block_num": 23,
+                "par_num": 1,
+                "line_num": 1,
+                "word_num": 1
+              }
+            ],
+            "bounding_box": {
+              "x": 391,
+              "y": 655,
+              "width": 48,
+              "height": 40
+            },
+            "text": "@",
+            "confidence": 83
+          },
+          {
+            "elements": [
+              {
+                "text": "Search",
+                "confidence": 93,
+                "position": {
+                  "x": 461,
+                  "y": 655,
+                  "width": 160,
+                  "height": 38
+                },
+                "level": 5,
+                "block_num": 23,
+                "par_num": 1,
+                "line_num": 1,
+                "word_num": 2
+              }
+            ],
+            "bounding_box": {
+              "x": 461,
+              "y": 655,
+              "width": 160,
+              "height": 38
+            },
+            "text": "Search",
+            "confidence": 93
+          },
+          {
+            "elements": [
+              {
+                "text": "&",
+                "confidence": 93,
+                "position": {
+                  "x": 640,
+                  "y": 656,
+                  "width": 37,
+                  "height": 37
+                },
+                "level": 5,
+                "block_num": 23,
+                "par_num": 1,
+                "line_num": 1,
+                "word_num": 3
+              }
+            ],
+            "bounding_box": {
+              "x": 640,
+              "y": 656,
+              "width": 37,
+              "height": 37
+            },
+            "text": "&",
+            "confidence": 93
+          },
+          {
+            "elements": [
+              {
+                "text": "Navigation",
+                "confidence": 96,
+                "position": {
+                  "x": 693,
+                  "y": 655,
+                  "width": 256,
+                  "height": 47
+                },
+                "level": 5,
+                "block_num": 23,
+                "par_num": 1,
+                "line_num": 1,
+                "word_num": 4
+              }
+            ],
+            "bounding_box": {
+              "x": 693,
+              "y": 655,
+              "width": 256,
+              "height": 47
+            },
+            "text": "Navigation",
+            "confidence": 96
+          },
+          {
+            "elements": [
+              {
+                "text": "Search",
+                "confidence": 96,
+                "position": {
+                  "x": 431,
+                  "y": 780,
+                  "width": 96,
+                  "height": 23
+                },
+                "level": 5,
+                "block_num": 24,
+                "par_num": 1,
+                "line_num": 1,
+                "word_num": 1
+              }
+            ],
+            "bounding_box": {
+              "x": 431,
+              "y": 780,
+              "width": 96,
+              "height": 23
+            },
+            "text": "Search",
+            "confidence": 96
+          },
+          {
+            "elements": [
+              {
+                "text": "for",
+                "confidence": 95,
+                "position": {
+                  "x": 539,
+                  "y": 779,
+                  "width": 37,
+                  "height": 24
+                },
+                "level": 5,
+                "block_num": 24,
+                "par_num": 1,
+                "line_num": 1,
+                "word_num": 2
+              }
+            ],
+            "bounding_box": {
+              "x": 539,
+              "y": 779,
+              "width": 37,
+              "height": 24
+            },
+            "text": "for",
+            "confidence": 95
+          },
+          {
+            "elements": [
+              {
+                "text": "anything...",
+                "confidence": 95,
+                "position": {
+                  "x": 587,
+                  "y": 780,
+                  "width": 147,
+                  "height": 28
+                },
+                "level": 5,
+                "block_num": 24,
+                "par_num": 1,
+                "line_num": 1,
+                "word_num": 3
+              }
+            ],
+            "bounding_box": {
+              "x": 587,
+              "y": 780,
+              "width": 147,
+              "height": 28
+            },
+            "text": "anything...",
+            "confidence": 95
+          },
+          {
+            "elements": [
+              {
+                "text": "Search",
+                "confidence": 96,
+                "position": {
+                  "x": 435,
+                  "y": 938,
+                  "width": 93,
+                  "height": 26
+                },
+                "level": 5,
+                "block_num": 25,
+                "par_num": 1,
+                "line_num": 1,
+                "word_num": 1
+              }
+            ],
+            "bounding_box": {
+              "x": 435,
+              "y": 938,
+              "width": 93,
+              "height": 26
+            },
+            "text": "Search",
+            "confidence": 96
+          },
+          {
+            "elements": [
+              {
+                "text": "results",
+                "confidence": 96,
+                "position": {
+                  "x": 541,
+                  "y": 938,
+                  "width": 90,
+                  "height": 26
+                },
+                "level": 5,
+                "block_num": 25,
+                "par_num": 1,
+                "line_num": 1,
+                "word_num": 2
+              }
+            ],
+            "bounding_box": {
+              "x": 541,
+              "y": 938,
+              "width": 90,
+              "height": 26
+            },
+            "text": "results",
+            "confidence": 96
+          },
+          {
+            "elements": [
+              {
+                "text": "will",
+                "confidence": 96,
+                "position": {
+                  "x": 642,
+                  "y": 938,
+                  "width": 44,
+                  "height": 25
+                },
+                "level": 5,
+                "block_num": 25,
+                "par_num": 1,
+                "line_num": 1,
+                "word_num": 3
+              }
+            ],
+            "bounding_box": {
+              "x": 642,
+              "y": 938,
+              "width": 44,
+              "height": 25
+            },
+            "text": "will",
+            "confidence": 96
+          },
+          {
+            "elements": [
+              {
+                "text": "appear",
+                "confidence": 96,
+                "position": {
+                  "x": 699,
+                  "y": 945,
+                  "width": 96,
+                  "height": 25
+                },
+                "level": 5,
+                "block_num": 25,
+                "par_num": 1,
+                "line_num": 1,
+                "word_num": 4
+              }
+            ],
+            "bounding_box": {
+              "x": 699,
+              "y": 945,
+              "width": 96,
+              "height": 25
+            },
+            "text": "appear",
+            "confidence": 96
+          },
+          {
+            "elements": [
+              {
+                "text": "here...",
+                "confidence": 95,
+                "position": {
+                  "x": 807,
+                  "y": 938,
+                  "width": 88,
+                  "height": 26
+                },
+                "level": 5,
+                "block_num": 25,
+                "par_num": 1,
+                "line_num": 1,
+                "word_num": 5
+              }
+            ],
+            "bounding_box": {
+              "x": 807,
+              "y": 938,
+              "width": 88,
+              "height": 26
+            },
+            "text": "here...",
+            "confidence": 95
+          },
+          {
+            "elements": [
+              {
+                "text": "@",
+                "confidence": 91,
+                "position": {
+                  "x": 391,
+                  "y": 1369,
+                  "width": 48,
+                  "height": 40
+                },
+                "level": 5,
+                "block_num": 26,
+                "par_num": 1,
+                "line_num": 1,
+                "word_num": 1
+              }
+            ],
+            "bounding_box": {
+              "x": 391,
+              "y": 1369,
+              "width": 48,
+              "height": 40
+            },
+            "text": "@",
+            "confidence": 91
+          },
+          {
+            "elements": [
+              {
+                "text": "Contact",
+                "confidence": 96,
+                "position": {
+                  "x": 461,
+                  "y": 1370,
+                  "width": 185,
+                  "height": 37
+                },
+                "level": 5,
+                "block_num": 26,
+                "par_num": 1,
+                "line_num": 1,
+                "word_num": 2
+              }
+            ],
+            "bounding_box": {
+              "x": 461,
+              "y": 1370,
+              "width": 185,
+              "height": 37
+            },
+            "text": "Contact",
+            "confidence": 96
+          },
+          {
+            "elements": [
+              {
+                "text": "Form",
+                "confidence": 96,
+                "position": {
+                  "x": 663,
+                  "y": 1370,
+                  "width": 118,
+                  "height": 37
+                },
+                "level": 5,
+                "block_num": 26,
+                "par_num": 1,
+                "line_num": 1,
+                "word_num": 3
+              }
+            ],
+            "bounding_box": {
+              "x": 663,
+              "y": 1370,
+              "width": 118,
+              "height": 37
+            },
+            "text": "Form",
+            "confidence": 96
+          },
+          {
+            "elements": [
+              {
+                "text": "Full",
+                "confidence": 96,
+                "position": {
+                  "x": 392,
+                  "y": 1456,
+                  "width": 54,
+                  "height": 25
+                },
+                "level": 5,
+                "block_num": 27,
+                "par_num": 1,
+                "line_num": 1,
+                "word_num": 1
+              }
+            ],
+            "bounding_box": {
+              "x": 392,
+              "y": 1456,
+              "width": 54,
+              "height": 25
+            },
+            "text": "Full",
+            "confidence": 96
+          },
+          {
+            "elements": [
+              {
+                "text": "Name:",
+                "confidence": 96,
+                "position": {
+                  "x": 460,
+                  "y": 1457,
+                  "width": 100,
+                  "height": 24
+                },
+                "level": 5,
+                "block_num": 27,
+                "par_num": 1,
+                "line_num": 1,
+                "word_num": 2
+              }
+            ],
+            "bounding_box": {
+              "x": 460,
+              "y": 1457,
+              "width": 100,
+              "height": 24
+            },
+            "text": "Name:",
+            "confidence": 96
+          },
+          {
+            "elements": [
+              {
+                "text": "Enter",
+                "confidence": 96,
+                "position": {
+                  "x": 431,
+                  "y": 1542,
+                  "width": 72,
+                  "height": 23
+                },
+                "level": 5,
+                "block_num": 28,
+                "par_num": 1,
+                "line_num": 1,
+                "word_num": 1
+              }
+            ],
+            "bounding_box": {
+              "x": 431,
+              "y": 1542,
+              "width": 72,
+              "height": 23
+            },
+            "text": "Enter",
+            "confidence": 96
+          },
+          {
+            "elements": [
+              {
+                "text": "your",
+                "confidence": 96,
+                "position": {
+                  "x": 515,
+                  "y": 1548,
+                  "width": 61,
+                  "height": 22
+                },
+                "level": 5,
+                "block_num": 28,
+                "par_num": 1,
+                "line_num": 1,
+                "word_num": 2
+              }
+            ],
+            "bounding_box": {
+              "x": 515,
+              "y": 1548,
+              "width": 61,
+              "height": 22
+            },
+            "text": "your",
+            "confidence": 96
+          },
+          {
+            "elements": [
+              {
+                "text": "full",
+                "confidence": 96,
+                "position": {
+                  "x": 587,
+                  "y": 1541,
+                  "width": 40,
+                  "height": 24
+                },
+                "level": 5,
+                "block_num": 28,
+                "par_num": 1,
+                "line_num": 1,
+                "word_num": 3
+              }
+            ],
+            "bounding_box": {
+              "x": 587,
+              "y": 1541,
+              "width": 40,
+              "height": 24
+            },
+            "text": "full",
+            "confidence": 96
+          },
+          {
+            "elements": [
+              {
+                "text": "name",
+                "confidence": 96,
+                "position": {
+                  "x": 640,
+                  "y": 1548,
+                  "width": 76,
+                  "height": 17
+                },
+                "level": 5,
+                "block_num": 28,
+                "par_num": 1,
+                "line_num": 1,
+                "word_num": 4
+              }
+            ],
+            "bounding_box": {
+              "x": 640,
+              "y": 1548,
+              "width": 76,
+              "height": 17
+            },
+            "text": "name",
+            "confidence": 96
+          },
+          {
+            "elements": [
+              {
+                "text": "Email",
+                "confidence": 96,
+                "position": {
+                  "x": 392,
+                  "y": 1646,
+                  "width": 85,
+                  "height": 25
+                },
+                "level": 5,
+                "block_num": 29,
+                "par_num": 1,
+                "line_num": 1,
+                "word_num": 1
+              }
+            ],
+            "bounding_box": {
+              "x": 392,
+              "y": 1646,
+              "width": 85,
+              "height": 25
+            },
+            "text": "Email",
+            "confidence": 96
+          },
+          {
+            "elements": [
+              {
+                "text": "Address:",
+                "confidence": 96,
+                "position": {
+                  "x": 488,
+                  "y": 1646,
+                  "width": 137,
+                  "height": 26
+                },
+                "level": 5,
+                "block_num": 29,
+                "par_num": 1,
+                "line_num": 1,
+                "word_num": 2
+              }
+            ],
+            "bounding_box": {
+              "x": 488,
+              "y": 1646,
+              "width": 137,
+              "height": 26
+            },
+            "text": "Address:",
+            "confidence": 96
+          },
+          {
+            "elements": [
+              {
+                "text": "Enter",
+                "confidence": 96,
+                "position": {
+                  "x": 431,
+                  "y": 1732,
+                  "width": 72,
+                  "height": 23
+                },
+                "level": 5,
+                "block_num": 30,
+                "par_num": 1,
+                "line_num": 1,
+                "word_num": 1
+              }
+            ],
+            "bounding_box": {
+              "x": 431,
+              "y": 1732,
+              "width": 72,
+              "height": 23
+            },
+            "text": "Enter",
+            "confidence": 96
+          },
+          {
+            "elements": [
+              {
+                "text": "your",
+                "confidence": 96,
+                "position": {
+                  "x": 515,
+                  "y": 1738,
+                  "width": 61,
+                  "height": 22
+                },
+                "level": 5,
+                "block_num": 30,
+                "par_num": 1,
+                "line_num": 1,
+                "word_num": 2
+              }
+            ],
+            "bounding_box": {
+              "x": 515,
+              "y": 1738,
+              "width": 61,
+              "height": 22
+            },
+            "text": "your",
+            "confidence": 96
+          },
+          {
+            "elements": [
+              {
+                "text": "email",
+                "confidence": 96,
+                "position": {
+                  "x": 587,
+                  "y": 1732,
+                  "width": 72,
+                  "height": 23
+                },
+                "level": 5,
+                "block_num": 30,
+                "par_num": 1,
+                "line_num": 1,
+                "word_num": 3
+              }
+            ],
+            "bounding_box": {
+              "x": 587,
+              "y": 1732,
+              "width": 72,
+              "height": 23
+            },
+            "text": "email",
+            "confidence": 96
+          },
+          {
+            "elements": [
+              {
+                "text": "Phone",
+                "confidence": 96,
+                "position": {
+                  "x": 392,
+                  "y": 1836,
+                  "width": 98,
+                  "height": 26
+                },
+                "level": 5,
+                "block_num": 31,
+                "par_num": 1,
+                "line_num": 1,
+                "word_num": 1
+              }
+            ],
+            "bounding_box": {
+              "x": 392,
+              "y": 1836,
+              "width": 98,
+              "height": 26
+            },
+            "text": "Phone",
+            "confidence": 96
+          },
+          {
+            "elements": [
+              {
+                "text": "Number:",
+                "confidence": 96,
+                "position": {
+                  "x": 502,
+                  "y": 1836,
+                  "width": 135,
+                  "height": 25
+                },
+                "level": 5,
+                "block_num": 31,
+                "par_num": 1,
+                "line_num": 1,
+                "word_num": 2
+              }
+            ],
+            "bounding_box": {
+              "x": 502,
+              "y": 1836,
+              "width": 135,
+              "height": 25
+            },
+            "text": "Number:",
+            "confidence": 96
+          }
+        ],
+        "text_categories": {
+          "urls": [],
+          "emails": [],
+          "dates": [],
+          "numbers": [],
+          "file_paths": [],
+          "code_snippets": [],
+          "ui_labels": [],
+          "headings": [
+            "Oo +",
+            "Aa",
+            "A",
+            "Aa",
+            "Agent...",
+            "@ Search & Navigation",
+            "@ Contact Form",
+            "Full Name:",
+            "Email Address:",
+            "Phone Number:"
+          ],
+          "body_text": [
+            "ee",
+            "f(D -",
+            "localhost",
+            "@",
+            "a",
+            "aA",
+            ")",
+            "1)",
+            "\u00a9",
+            "&",
+            "\u00a9",
+            "r",
+            "vu",
+            "&",
+            "o",
+            "u",
+            "\u00ab# AgentMode Real Automation Test Page",
+            "Search for anything...",
+            "Search results will appear here...",
+            "Enter your full name",
+            "Enter your email"
+          ]
+        },
+        "word_count": 57,
+        "character_count": 311,
+        "line_count": 14,
+        "has_meaningful_content": true
+      },
+      "ui_analysis": {
+        "elements": [
+          {
+            "type": "interactive_element",
+            "position": {
+              "x": 0,
+              "y": 232,
+              "width": 2940,
+              "height": 1680
+            },
+            "area": 4939200,
+            "detection_method": "color_blue",
+            "color_category": "interactive"
+          },
+          {
+            "type": "horizontal_line",
+            "position": {
+              "x": 0,
+              "y": 175,
+              "width": 2940,
+              "height": 57
+            },
+            "area": 167580,
+            "aspect_ratio": 51.578947368421055,
+            "detection_method": "canny_edges"
+          },
+          {
+            "type": "horizontal_line",
+            "position": {
+              "x": 874,
+              "y": 95,
+              "width": 1191,
+              "height": 57
+            },
+            "area": 67887,
+            "aspect_ratio": 20.894736842105264,
+            "detection_method": "canny_edges"
+          },
+          {
+            "type": "button",
+            "position": {
+              "x": 2865,
+              "y": 105,
+              "width": 37,
+              "height": 35
+            },
+            "area": 1295,
+            "aspect_ratio": 1.0571428571428572,
+            "detection_method": "canny_edges"
+          },
+          {
+            "type": "widget",
+            "position": {
+              "x": 41,
+              "y": 107,
+              "width": 40,
+              "height": 31
+            },
+            "area": 1240,
+            "aspect_ratio": 1.2903225806451613,
+            "detection_method": "canny_edges"
+          },
+          {
+            "type": "widget",
+            "position": {
+              "x": 818,
+              "y": 105,
+              "width": 26,
+              "height": 38
+            },
+            "area": 988,
+            "aspect_ratio": 0.6842105263157895,
+            "detection_method": "canny_edges"
+          },
+          {
+            "type": "button",
+            "position": {
+              "x": 2719,
+              "y": 113,
+              "width": 31,
+              "height": 27
+            },
+            "area": 837,
+            "aspect_ratio": 1.1481481481481481,
+            "detection_method": "canny_edges"
+          },
+          {
+            "type": "button",
+            "position": {
+              "x": 2794,
+              "y": 109,
+              "width": 27,
+              "height": 27
+            },
+            "area": 729,
+            "aspect_ratio": 1.0,
+            "detection_method": "canny_edges"
+          },
+          {
+            "type": "widget",
+            "position": {
+              "x": 247,
+              "y": 108,
+              "width": 16,
+              "height": 29
+            },
+            "area": 464,
+            "aspect_ratio": 0.5517241379310345,
+            "detection_method": "canny_edges"
+          },
+          {
+            "type": "widget",
+            "position": {
+              "x": 175,
+              "y": 108,
+              "width": 16,
+              "height": 29
+            },
+            "area": 464,
+            "aspect_ratio": 0.5517241379310345,
+            "detection_method": "canny_edges"
+          },
+          {
+            "type": "button",
+            "position": {
+              "x": 845,
+              "y": 92,
+              "width": 19,
+              "height": 18
+            },
+            "area": 342,
+            "aspect_ratio": 1.0555555555555556,
+            "detection_method": "canny_edges"
+          }
+        ],
+        "total_count": 11,
+        "element_types": {
+          "interactive_element": 1,
+          "horizontal_line": 2,
+          "button": 4,
+          "widget": 4
+        },
+        "layout_structure": {
+          "layout_type": "custom",
+          "region_distribution": {
+            "top": 11,
+            "middle": 0,
+            "bottom": 0,
+            "left": 5,
+            "center": 3,
+            "right": 3
+          },
+          "has_navigation": true,
+          "has_sidebar": false,
+          "content_focused": false
+        },
+        "screen_density": 1.956849685480887
+      },
+      "application_analysis": {
+        "detected_app": "terminals",
+        "confidence": 0.1111111111111111,
+        "app_category": "terminals",
+        "specific_context": {
+          "shell_type": "unknown",
+          "current_directory": "",
+          "last_command": "AgentMode Real Automation Test Page",
+          "command_history": [],
+          "is_running_command": false
+        },
+        "detection_evidence": [
+          "text_indicator: #"
+        ]
+      },
+      "content_analysis": {
+        "content_type": "communication",
+        "primary_purpose": "messaging",
+        "user_intent": "searching",
+        "content_categories": [],
+        "interaction_level": "active",
+        "complexity_level": "moderate"
+      },
+      "layout_analysis": {
+        "layout_pattern": "top_heavy",
+        "visual_weight_distribution": {
+          "ui_elements_ratio": 0.9216808271425725,
+          "whitespace_ratio": 0.07831917285742751,
+          "element_density": 1.956849685480887
+        },
+        "color_scheme": {
+          "average_brightness": 217.1724901920322,
+          "is_dark_theme": false
+        },
+        "spacing_analysis": {},
+        "visual_hierarchy": []
+      },
+      "llava_analysis": {
+        "visual_context": "Lightweight visual analysis",
+        "application": {
+          "name": "detected_via_cv",
+          "view": "light_interface",
+          "workflow_stage": "ready"
+        },
+        "ui_elements": [
+          {
+            "type": "ui_element",
+            "position": {
+              "x": 546,
+              "y": 1842,
+              "width": 28,
+              "height": 19
+            },
+            "confidence": 0.6
+          },
+          {
+            "type": "button",
+            "position": {
+              "x": 502,
+              "y": 1837,
+              "width": 21,
+              "height": 24
+            },
+            "confidence": 0.6
+          },
+          {
+            "type": "ui_element",
+            "position": {
+              "x": 604,
+              "y": 1737,
+              "width": 25,
+              "height": 18
+            },
+            "confidence": 0.6
+          },
+          {
+            "type": "input_field",
+            "position": {
+              "x": 551,
+              "y": 1652,
+              "width": 65,
+              "height": 20
+            },
+            "confidence": 0.6
+          },
+          {
+            "type": "ui_element",
+            "position": {
+              "x": 411,
+              "y": 1652,
+              "width": 28,
+              "height": 19
+            },
+            "confidence": 0.6
+          },
+          {
+            "type": "ui_element",
+            "position": {
+              "x": 488,
+              "y": 1646,
+              "width": 40,
+              "height": 26
+            },
+            "confidence": 0.6
+          },
+          {
+            "type": "ui_element",
+            "position": {
+              "x": 674,
+              "y": 1547,
+              "width": 25,
+              "height": 18
+            },
+            "confidence": 0.6
+          },
+          {
+            "type": "ui_element",
+            "position": {
+              "x": 503,
+              "y": 1462,
+              "width": 28,
+              "height": 19
+            },
+            "confidence": 0.6
+          },
+          {
+            "type": "button",
+            "position": {
+              "x": 459,
+              "y": 1457,
+              "width": 22,
+              "height": 24
+            },
+            "confidence": 0.6
+          },
+          {
+            "type": "ui_element",
+            "position": {
+              "x": 719,
+              "y": 1378,
+              "width": 63,
+              "height": 28
+            },
+            "confidence": 0.6
+          },
+          {
+            "type": "button",
+            "position": {
+              "x": 688,
+              "y": 1378,
+              "width": 29,
+              "height": 29
+            },
+            "confidence": 0.6
+          },
+          {
+            "type": "button",
+            "position": {
+              "x": 523,
+              "y": 1378,
+              "width": 27,
+              "height": 28
+            },
+            "confidence": 0.6
+          },
+          {
+            "type": "button",
+            "position": {
+              "x": 492,
+              "y": 1378,
+              "width": 29,
+              "height": 29
+            },
+            "confidence": 0.6
+          },
+          {
+            "type": "button",
+            "position": {
+              "x": 397,
+              "y": 1378,
+              "width": 25,
+              "height": 25
+            },
+            "confidence": 0.6
+          },
+          {
+            "type": "ui_element",
+            "position": {
+              "x": 391,
+              "y": 1374,
+              "width": 48,
+              "height": 35
+            },
+            "confidence": 0.6
+          },
+          {
+            "type": "ui_element",
+            "position": {
+              "x": 601,
+              "y": 1371,
+              "width": 46,
+              "height": 36
+            },
+            "confidence": 0.6
+          },
+          {
+            "type": "ui_element",
+            "position": {
+              "x": 552,
+              "y": 1371,
+              "width": 47,
+              "height": 36
+            },
+            "confidence": 0.6
+          },
+          {
+            "type": "ui_element",
+            "position": {
+              "x": 663,
+              "y": 1370,
+              "width": 25,
+              "height": 36
+            },
+            "confidence": 0.6
+          },
+          {
+            "type": "ui_element",
+            "position": {
+              "x": 461,
+              "y": 1369,
+              "width": 30,
+              "height": 38
+            },
+            "confidence": 0.6
+          },
+          {
+            "type": "ui_element",
+            "position": {
+              "x": 329,
+              "y": 1264,
+              "width": 21,
+              "height": 648
+            },
+            "confidence": 0.6
+          },
+          {
+            "type": "button",
+            "position": {
+              "x": 607,
+              "y": 940,
+              "width": 25,
+              "height": 24
+            },
+            "confidence": 0.6
+          },
+          {
+            "type": "button",
+            "position": {
+              "x": 621,
+              "y": 781,
+              "width": 27,
+              "height": 28
+            },
+            "confidence": 0.6
+          },
+          {
+            "type": "ui_element",
+            "position": {
+              "x": 973,
+              "y": 767,
+              "width": 197,
+              "height": 68
+            },
+            "confidence": 0.6
+          },
+          {
+            "type": "button",
+            "position": {
+              "x": 755,
+              "y": 665,
+              "width": 28,
+              "height": 27
+            },
+            "confidence": 0.6
+          },
+          {
+            "type": "button",
+            "position": {
+              "x": 923,
+              "y": 664,
+              "width": 27,
+              "height": 28
+            },
+            "confidence": 0.6
+          },
+          {
+            "type": "button",
+            "position": {
+              "x": 891,
+              "y": 664,
+              "width": 29,
+              "height": 29
+            },
+            "confidence": 0.6
+          },
+          {
+            "type": "button",
+            "position": {
+              "x": 828,
+              "y": 664,
+              "width": 27,
+              "height": 29
+            },
+            "confidence": 0.6
+          },
+          {
+            "type": "ui_element",
+            "position": {
+              "x": 799,
+              "y": 664,
+              "width": 27,
+              "height": 38
+            },
+            "confidence": 0.6
+          },
+          {
+            "type": "button",
+            "position": {
+              "x": 727,
+              "y": 664,
+              "width": 27,
+              "height": 29
+            },
+            "confidence": 0.6
+          },
+          {
+            "type": "button",
+            "position": {
+              "x": 568,
+              "y": 664,
+              "width": 25,
+              "height": 29
+            },
+            "confidence": 0.6
+          },
+          {
+            "type": "button",
+            "position": {
+              "x": 519,
+              "y": 664,
+              "width": 26,
+              "height": 29
+            },
+            "confidence": 0.6
+          },
+          {
+            "type": "button",
+            "position": {
+              "x": 397,
+              "y": 664,
+              "width": 25,
+              "height": 25
+            },
+            "confidence": 0.6
+          },
+          {
+            "type": "ui_element",
+            "position": {
+              "x": 391,
+              "y": 660,
+              "width": 48,
+              "height": 35
+            },
+            "confidence": 0.6
+          },
+          {
+            "type": "button",
+            "position": {
+              "x": 693,
+              "y": 656,
+              "width": 31,
+              "height": 36
+            },
+            "confidence": 0.6
+          },
+          {
+            "type": "button",
+            "position": {
+              "x": 639,
+              "y": 655,
+              "width": 38,
+              "height": 38
+            },
+            "confidence": 0.6
+          },
+          {
+            "type": "ui_element",
+            "position": {
+              "x": 461,
+              "y": 655,
+              "width": 57,
+              "height": 38
+            },
+            "confidence": 0.6
+          },
+          {
+            "type": "ui_element",
+            "position": {
+              "x": 595,
+              "y": 654,
+              "width": 27,
+              "height": 38
+            },
+            "confidence": 0.6
+          },
+          {
+            "type": "ui_element",
+            "position": {
+              "x": 329,
+              "y": 551,
+              "width": 21,
+              "height": 675
+            },
+            "confidence": 0.6
+          },
+          {
+            "type": "button",
+            "position": {
+              "x": 1477,
+              "y": 421,
+              "width": 43,
+              "height": 47
+            },
+            "confidence": 0.6
+          },
+          {
+            "type": "button",
+            "position": {
+              "x": 2258,
+              "y": 420,
+              "width": 45,
+              "height": 48
+            },
+            "confidence": 0.6
+          },
+          {
+            "type": "ui_element",
+            "position": {
+              "x": 2208,
+              "y": 420,
+              "width": 45,
+              "height": 63
+            },
+            "confidence": 0.6
+          },
+          {
+            "type": "button",
+            "position": {
+              "x": 2160,
+              "y": 420,
+              "width": 43,
+              "height": 48
+            },
+            "confidence": 0.6
+          },
+          {
+            "type": "button",
+            "position": {
+              "x": 2011,
+              "y": 420,
+              "width": 39,
+              "height": 48
+            },
+            "confidence": 0.6
+          },
+          {
+            "type": "button",
+            "position": {
+              "x": 1962,
+              "y": 420,
+              "width": 45,
+              "height": 48
+            },
+            "confidence": 0.6
+          },
+          {
+            "type": "button",
+            "position": {
+              "x": 1841,
+              "y": 420,
+              "width": 43,
+              "height": 46
+            },
+            "confidence": 0.6
+          },
+          {
+            "type": "button",
+            "position": {
+              "x": 1789,
+              "y": 420,
+              "width": 47,
+              "height": 48
+            },
+            "confidence": 0.6
+          },
+          {
+            "type": "button",
+            "position": {
+              "x": 1684,
+              "y": 420,
+              "width": 43,
+              "height": 48
+            },
+            "confidence": 0.6
+          },
+          {
+            "type": "ui_element",
+            "position": {
+              "x": 1611,
+              "y": 420,
+              "width": 68,
+              "height": 46
+            },
+            "confidence": 0.6
+          },
+          {
+            "type": "button",
+            "position": {
+              "x": 1558,
+              "y": 420,
+              "width": 47,
+              "height": 48
+            },
+            "confidence": 0.6
+          },
+          {
+            "type": "button",
+            "position": {
+              "x": 1323,
+              "y": 420,
+              "width": 43,
+              "height": 48
+            },
+            "confidence": 0.6
+          },
+          {
+            "type": "button",
+            "position": {
+              "x": 1276,
+              "y": 420,
+              "width": 45,
+              "height": 48
+            },
+            "confidence": 0.6
+          },
+          {
+            "type": "button",
+            "position": {
+              "x": 1147,
+              "y": 420,
+              "width": 45,
+              "height": 48
+            },
+            "confidence": 0.6
+          },
+          {
+            "type": "button",
+            "position": {
+              "x": 1047,
+              "y": 420,
+              "width": 47,
+              "height": 48
+            },
+            "confidence": 0.6
+          },
+          {
+            "type": "button",
+            "position": {
+              "x": 894,
+              "y": 420,
+              "width": 43,
+              "height": 46
+            },
+            "confidence": 0.6
+          },
+          {
+            "type": "button",
+            "position": {
+              "x": 844,
+              "y": 420,
+              "width": 45,
+              "height": 48
+            },
+            "confidence": 0.6
+          },
+          {
+            "type": "ui_element",
+            "position": {
+              "x": 793,
+              "y": 420,
+              "width": 45,
+              "height": 63
+            },
+            "confidence": 0.6
+          },
+          {
+            "type": "ui_element",
+            "position": {
+              "x": 2050,
+              "y": 408,
+              "width": 34,
+              "height": 59
+            },
+            "confidence": 0.6
+          },
+          {
+            "type": "ui_element",
+            "position": {
+              "x": 1731,
+              "y": 408,
+              "width": 34,
+              "height": 59
+            },
+            "confidence": 0.6
+          },
+          {
+            "type": "ui_element",
+            "position": {
+              "x": 1524,
+              "y": 408,
+              "width": 34,
+              "height": 59
+            },
+            "confidence": 0.6
+          },
+          {
+            "type": "ui_element",
+            "position": {
+              "x": 942,
+              "y": 408,
+              "width": 34,
+              "height": 59
+            },
+            "confidence": 0.6
+          },
+          {
+            "type": "ui_element",
+            "position": {
+              "x": 2111,
+              "y": 407,
+              "width": 47,
+              "height": 59
+            },
+            "confidence": 0.6
+          },
+          {
+            "type": "button",
+            "position": {
+              "x": 1911,
+              "y": 407,
+              "width": 51,
+              "height": 59
+            },
+            "confidence": 0.6
+          },
+          {
+            "type": "button",
+            "position": {
+              "x": 1417,
+              "y": 407,
+              "width": 56,
+              "height": 59
+            },
+            "confidence": 0.6
+          },
+          {
+            "type": "button",
+            "position": {
+              "x": 1222,
+              "y": 407,
+              "width": 55,
+              "height": 59
+            },
+            "confidence": 0.6
+          },
+          {
+            "type": "ui_element",
+            "position": {
+              "x": 996,
+              "y": 407,
+              "width": 45,
+              "height": 59
+            },
+            "confidence": 0.6
+          },
+          {
+            "type": "ui_element",
+            "position": {
+              "x": 980,
+              "y": 407,
+              "width": 30,
+              "height": 59
+            },
+            "confidence": 0.6
+          },
+          {
+            "type": "button",
+            "position": {
+              "x": 737,
+              "y": 407,
+              "width": 56,
+              "height": 59
+            },
+            "confidence": 0.6
+          },
+          {
+            "type": "ui_element",
+            "position": {
+              "x": 1097,
+              "y": 404,
+              "width": 45,
+              "height": 64
+            },
+            "confidence": 0.6
+          },
+          {
+            "type": "ui_element",
+            "position": {
+              "x": 639,
+              "y": 396,
+              "width": 72,
+              "height": 75
+            },
+            "confidence": 0.6
+          },
+          {
+            "type": "ui_element",
+            "position": {
+              "x": 2187,
+              "y": 193,
+              "width": 33,
+              "height": 23
+            },
+            "confidence": 0.6
+          },
+          {
+            "type": "button",
+            "position": {
+              "x": 1908,
+              "y": 193,
+              "width": 24,
+              "height": 24
+            },
+            "confidence": 0.6
+          },
+          {
+            "type": "button",
+            "position": {
+              "x": 1339,
+              "y": 193,
+              "width": 26,
+              "height": 25
+            },
+            "confidence": 0.6
+          },
+          {
+            "type": "button",
+            "position": {
+              "x": 1762,
+              "y": 191,
+              "width": 32,
+              "height": 28
+            },
+            "confidence": 0.6
+          },
+          {
+            "type": "button",
+            "position": {
+              "x": 1478,
+              "y": 191,
+              "width": 32,
+              "height": 28
+            },
+            "confidence": 0.6
+          },
+          {
+            "type": "button",
+            "position": {
+              "x": 1619,
+              "y": 190,
+              "width": 34,
+              "height": 30
+            },
+            "confidence": 0.6
+          },
+          {
+            "type": "button",
+            "position": {
+              "x": 1053,
+              "y": 190,
+              "width": 30,
+              "height": 30
+            },
+            "confidence": 0.6
+          },
+          {
+            "type": "button",
+            "position": {
+              "x": 911,
+              "y": 190,
+              "width": 30,
+              "height": 30
+            },
+            "confidence": 0.6
+          },
+          {
+            "type": "button",
+            "position": {
+              "x": 769,
+              "y": 190,
+              "width": 30,
+              "height": 30
+            },
+            "confidence": 0.6
+          },
+          {
+            "type": "button",
+            "position": {
+              "x": 627,
+              "y": 190,
+              "width": 30,
+              "height": 30
+            },
+            "confidence": 0.6
+          },
+          {
+            "type": "button",
+            "position": {
+              "x": 485,
+              "y": 190,
+              "width": 30,
+              "height": 30
+            },
+            "confidence": 0.6
+          },
+          {
+            "type": "button",
+            "position": {
+              "x": 56,
+              "y": 190,
+              "width": 30,
+              "height": 30
+            },
+            "confidence": 0.6
+          },
+          {
+            "type": "button",
+            "position": {
+              "x": 2046,
+              "y": 189,
+              "width": 29,
+              "height": 31
+            },
+            "confidence": 0.6
+          },
+          {
+            "type": "button",
+            "position": {
+              "x": 1194,
+              "y": 189,
+              "width": 32,
+              "height": 32
+            },
+            "confidence": 0.6
+          },
+          {
+            "type": "button",
+            "position": {
+              "x": 341,
+              "y": 189,
+              "width": 33,
+              "height": 32
+            },
+            "confidence": 0.6
+          },
+          {
+            "type": "button",
+            "position": {
+              "x": 198,
+              "y": 189,
+              "width": 33,
+              "height": 32
+            },
+            "confidence": 0.6
+          },
+          {
+            "type": "button",
+            "position": {
+              "x": 2749,
+              "y": 188,
+              "width": 33,
+              "height": 33
+            },
+            "confidence": 0.6
+          },
+          {
+            "type": "button",
+            "position": {
+              "x": 2471,
+              "y": 188,
+              "width": 33,
+              "height": 33
+            },
+            "confidence": 0.6
+          },
+          {
+            "type": "button",
+            "position": {
+              "x": 2329,
+              "y": 188,
+              "width": 34,
+              "height": 33
+            },
+            "confidence": 0.6
+          },
+          {
+            "type": "ui_element",
+            "position": {
+              "x": 0,
+              "y": 175,
+              "width": 2940,
+              "height": 57
+            },
+            "confidence": 0.6
+          },
+          {
+            "type": "button",
+            "position": {
+              "x": 2029,
+              "y": 115,
+              "width": 23,
+              "height": 23
+            },
+            "confidence": 0.6
+          },
+          {
+            "type": "button",
+            "position": {
+              "x": 2719,
+              "y": 113,
+              "width": 31,
+              "height": 27
+            },
+            "confidence": 0.6
+          },
+          {
+            "type": "button",
+            "position": {
+              "x": 2794,
+              "y": 109,
+              "width": 27,
+              "height": 27
+            },
+            "confidence": 0.6
+          },
+          {
+            "type": "ui_element",
+            "position": {
+              "x": 41,
+              "y": 107,
+              "width": 40,
+              "height": 31
+            },
+            "confidence": 0.6
+          },
+          {
+            "type": "button",
+            "position": {
+              "x": 2865,
+              "y": 105,
+              "width": 37,
+              "height": 35
+            },
+            "confidence": 0.6
+          },
+          {
+            "type": "ui_element",
+            "position": {
+              "x": 818,
+              "y": 105,
+              "width": 26,
+              "height": 38
+            },
+            "confidence": 0.6
+          },
+          {
+            "type": "ui_element",
+            "position": {
+              "x": 877,
+              "y": 98,
+              "width": 1186,
+              "height": 52
+            },
+            "confidence": 0.6
+          },
+          {
+            "type": "ui_element",
+            "position": {
+              "x": 874,
+              "y": 95,
+              "width": 1191,
+              "height": 57
+            },
+            "confidence": 0.6
+          }
+        ],
+        "user_activity": {
+          "current_task": "interface_interaction",
+          "workflow_stage": "ready",
+          "interaction_points": [
+            {
+              "x": 560,
+              "y": 1851,
+              "type": "ui_element",
+              "confidence": 0.6
+            },
+            {
+              "x": 512,
+              "y": 1849,
+              "type": "button",
+              "confidence": 0.6
+            },
+            {
+              "x": 616,
+              "y": 1746,
+              "type": "ui_element",
+              "confidence": 0.6
+            },
+            {
+              "x": 583,
+              "y": 1662,
+              "type": "input_field",
+              "confidence": 0.6
+            },
+            {
+              "x": 425,
+              "y": 1661,
+              "type": "ui_element",
+              "confidence": 0.6
+            },
+            {
+              "x": 508,
+              "y": 1659,
+              "type": "ui_element",
+              "confidence": 0.6
+            },
+            {
+              "x": 686,
+              "y": 1556,
+              "type": "ui_element",
+              "confidence": 0.6
+            },
+            {
+              "x": 517,
+              "y": 1471,
+              "type": "ui_element",
+              "confidence": 0.6
+            },
+            {
+              "x": 470,
+              "y": 1469,
+              "type": "button",
+              "confidence": 0.6
+            },
+            {
+              "x": 750,
+              "y": 1392,
+              "type": "ui_element",
+              "confidence": 0.6
+            },
+            {
+              "x": 702,
+              "y": 1392,
+              "type": "button",
+              "confidence": 0.6
+            },
+            {
+              "x": 536,
+              "y": 1392,
+              "type": "button",
+              "confidence": 0.6
+            },
+            {
+              "x": 506,
+              "y": 1392,
+              "type": "button",
+              "confidence": 0.6
+            },
+            {
+              "x": 409,
+              "y": 1390,
+              "type": "button",
+              "confidence": 0.6
+            },
+            {
+              "x": 415,
+              "y": 1391,
+              "type": "ui_element",
+              "confidence": 0.6
+            },
+            {
+              "x": 624,
+              "y": 1389,
+              "type": "ui_element",
+              "confidence": 0.6
+            },
+            {
+              "x": 575,
+              "y": 1389,
+              "type": "ui_element",
+              "confidence": 0.6
+            },
+            {
+              "x": 675,
+              "y": 1388,
+              "type": "ui_element",
+              "confidence": 0.6
+            },
+            {
+              "x": 476,
+              "y": 1388,
+              "type": "ui_element",
+              "confidence": 0.6
+            },
+            {
+              "x": 339,
+              "y": 1588,
+              "type": "ui_element",
+              "confidence": 0.6
+            },
+            {
+              "x": 619,
+              "y": 952,
+              "type": "button",
+              "confidence": 0.6
+            },
+            {
+              "x": 634,
+              "y": 795,
+              "type": "button",
+              "confidence": 0.6
+            },
+            {
+              "x": 1071,
+              "y": 801,
+              "type": "ui_element",
+              "confidence": 0.6
+            },
+            {
+              "x": 769,
+              "y": 678,
+              "type": "button",
+              "confidence": 0.6
+            },
+            {
+              "x": 936,
+              "y": 678,
+              "type": "button",
+              "confidence": 0.6
+            },
+            {
+              "x": 905,
+              "y": 678,
+              "type": "button",
+              "confidence": 0.6
+            },
+            {
+              "x": 841,
+              "y": 678,
+              "type": "button",
+              "confidence": 0.6
+            },
+            {
+              "x": 812,
+              "y": 683,
+              "type": "ui_element",
+              "confidence": 0.6
+            },
+            {
+              "x": 740,
+              "y": 678,
+              "type": "button",
+              "confidence": 0.6
+            },
+            {
+              "x": 580,
+              "y": 678,
+              "type": "button",
+              "confidence": 0.6
+            },
+            {
+              "x": 532,
+              "y": 678,
+              "type": "button",
+              "confidence": 0.6
+            },
+            {
+              "x": 409,
+              "y": 676,
+              "type": "button",
+              "confidence": 0.6
+            },
+            {
+              "x": 415,
+              "y": 677,
+              "type": "ui_element",
+              "confidence": 0.6
+            },
+            {
+              "x": 708,
+              "y": 674,
+              "type": "button",
+              "confidence": 0.6
+            },
+            {
+              "x": 658,
+              "y": 674,
+              "type": "button",
+              "confidence": 0.6
+            },
+            {
+              "x": 489,
+              "y": 674,
+              "type": "ui_element",
+              "confidence": 0.6
+            },
+            {
+              "x": 608,
+              "y": 673,
+              "type": "ui_element",
+              "confidence": 0.6
+            },
+            {
+              "x": 339,
+              "y": 888,
+              "type": "ui_element",
+              "confidence": 0.6
+            },
+            {
+              "x": 1498,
+              "y": 444,
+              "type": "button",
+              "confidence": 0.6
+            },
+            {
+              "x": 2280,
+              "y": 444,
+              "type": "button",
+              "confidence": 0.6
+            },
+            {
+              "x": 2230,
+              "y": 451,
+              "type": "ui_element",
+              "confidence": 0.6
+            },
+            {
+              "x": 2181,
+              "y": 444,
+              "type": "button",
+              "confidence": 0.6
+            },
+            {
+              "x": 2030,
+              "y": 444,
+              "type": "button",
+              "confidence": 0.6
+            },
+            {
+              "x": 1984,
+              "y": 444,
+              "type": "button",
+              "confidence": 0.6
+            },
+            {
+              "x": 1862,
+              "y": 443,
+              "type": "button",
+              "confidence": 0.6
+            },
+            {
+              "x": 1812,
+              "y": 444,
+              "type": "button",
+              "confidence": 0.6
+            },
+            {
+              "x": 1705,
+              "y": 444,
+              "type": "button",
+              "confidence": 0.6
+            },
+            {
+              "x": 1645,
+              "y": 443,
+              "type": "ui_element",
+              "confidence": 0.6
+            },
+            {
+              "x": 1581,
+              "y": 444,
+              "type": "button",
+              "confidence": 0.6
+            },
+            {
+              "x": 1344,
+              "y": 444,
+              "type": "button",
+              "confidence": 0.6
+            },
+            {
+              "x": 1298,
+              "y": 444,
+              "type": "button",
+              "confidence": 0.6
+            },
+            {
+              "x": 1169,
+              "y": 444,
+              "type": "button",
+              "confidence": 0.6
+            },
+            {
+              "x": 1070,
+              "y": 444,
+              "type": "button",
+              "confidence": 0.6
+            },
+            {
+              "x": 915,
+              "y": 443,
+              "type": "button",
+              "confidence": 0.6
+            },
+            {
+              "x": 866,
+              "y": 444,
+              "type": "button",
+              "confidence": 0.6
+            },
+            {
+              "x": 815,
+              "y": 451,
+              "type": "ui_element",
+              "confidence": 0.6
+            },
+            {
+              "x": 2067,
+              "y": 437,
+              "type": "ui_element",
+              "confidence": 0.6
+            },
+            {
+              "x": 1748,
+              "y": 437,
+              "type": "ui_element",
+              "confidence": 0.6
+            },
+            {
+              "x": 1541,
+              "y": 437,
+              "type": "ui_element",
+              "confidence": 0.6
+            },
+            {
+              "x": 959,
+              "y": 437,
+              "type": "ui_element",
+              "confidence": 0.6
+            },
+            {
+              "x": 2134,
+              "y": 436,
+              "type": "ui_element",
+              "confidence": 0.6
+            },
+            {
+              "x": 1936,
+              "y": 436,
+              "type": "button",
+              "confidence": 0.6
+            },
+            {
+              "x": 1445,
+              "y": 436,
+              "type": "button",
+              "confidence": 0.6
+            },
+            {
+              "x": 1249,
+              "y": 436,
+              "type": "button",
+              "confidence": 0.6
+            },
+            {
+              "x": 1018,
+              "y": 436,
+              "type": "ui_element",
+              "confidence": 0.6
+            },
+            {
+              "x": 995,
+              "y": 436,
+              "type": "ui_element",
+              "confidence": 0.6
+            },
+            {
+              "x": 765,
+              "y": 436,
+              "type": "button",
+              "confidence": 0.6
+            },
+            {
+              "x": 1119,
+              "y": 436,
+              "type": "ui_element",
+              "confidence": 0.6
+            },
+            {
+              "x": 675,
+              "y": 433,
+              "type": "ui_element",
+              "confidence": 0.6
+            },
+            {
+              "x": 2203,
+              "y": 204,
+              "type": "ui_element",
+              "confidence": 0.6
+            },
+            {
+              "x": 1920,
+              "y": 205,
+              "type": "button",
+              "confidence": 0.6
+            },
+            {
+              "x": 1352,
+              "y": 205,
+              "type": "button",
+              "confidence": 0.6
+            },
+            {
+              "x": 1778,
+              "y": 205,
+              "type": "button",
+              "confidence": 0.6
+            },
+            {
+              "x": 1494,
+              "y": 205,
+              "type": "button",
+              "confidence": 0.6
+            },
+            {
+              "x": 1636,
+              "y": 205,
+              "type": "button",
+              "confidence": 0.6
+            },
+            {
+              "x": 1068,
+              "y": 205,
+              "type": "button",
+              "confidence": 0.6
+            },
+            {
+              "x": 926,
+              "y": 205,
+              "type": "button",
+              "confidence": 0.6
+            },
+            {
+              "x": 784,
+              "y": 205,
+              "type": "button",
+              "confidence": 0.6
+            },
+            {
+              "x": 642,
+              "y": 205,
+              "type": "button",
+              "confidence": 0.6
+            },
+            {
+              "x": 500,
+              "y": 205,
+              "type": "button",
+              "confidence": 0.6
+            },
+            {
+              "x": 71,
+              "y": 205,
+              "type": "button",
+              "confidence": 0.6
+            },
+            {
+              "x": 2060,
+              "y": 204,
+              "type": "button",
+              "confidence": 0.6
+            },
+            {
+              "x": 1210,
+              "y": 205,
+              "type": "button",
+              "confidence": 0.6
+            },
+            {
+              "x": 357,
+              "y": 205,
+              "type": "button",
+              "confidence": 0.6
+            },
+            {
+              "x": 214,
+              "y": 205,
+              "type": "button",
+              "confidence": 0.6
+            },
+            {
+              "x": 2765,
+              "y": 204,
+              "type": "button",
+              "confidence": 0.6
+            },
+            {
+              "x": 2487,
+              "y": 204,
+              "type": "button",
+              "confidence": 0.6
+            },
+            {
+              "x": 2346,
+              "y": 204,
+              "type": "button",
+              "confidence": 0.6
+            },
+            {
+              "x": 1470,
+              "y": 203,
+              "type": "ui_element",
+              "confidence": 0.6
+            },
+            {
+              "x": 2040,
+              "y": 126,
+              "type": "button",
+              "confidence": 0.6
+            },
+            {
+              "x": 2734,
+              "y": 126,
+              "type": "button",
+              "confidence": 0.6
+            },
+            {
+              "x": 2807,
+              "y": 122,
+              "type": "button",
+              "confidence": 0.6
+            },
+            {
+              "x": 61,
+              "y": 122,
+              "type": "ui_element",
+              "confidence": 0.6
+            },
+            {
+              "x": 2883,
+              "y": 122,
+              "type": "button",
+              "confidence": 0.6
+            },
+            {
+              "x": 831,
+              "y": 124,
+              "type": "ui_element",
+              "confidence": 0.6
+            },
+            {
+              "x": 1470,
+              "y": 124,
+              "type": "ui_element",
+              "confidence": 0.6
+            },
+            {
+              "x": 1469,
+              "y": 123,
+              "type": "ui_element",
+              "confidence": 0.6
+            }
+          ]
+        },
+        "visual_content": {
+          "main_content": "bright_ui_ready_for_interaction",
+          "text_content": [],
+          "images": []
+        },
+        "screen_elements": [
+          {
+            "type": "interactive_elements",
+            "count": 97,
+            "confidence": 0.7
+          }
+        ],
+        "confidence": 0.8,
+        "analysis_method": "lightweight_cv_ocr",
+        "timestamp": "2025-06-01T15:32:29.924219"
+      },
+      "workflow_analysis": {
+        "current_activity": "general_computing",
+        "workflow_stage": "research",
+        "productivity_context": "general_usage",
+        "focus_indicators": [
+          "active_engagement"
+        ],
+        "multitasking_level": "low"
+      },
+      "synthesis_analysis": {
+        "overall_context": "general_unknown",
+        "confidence": 0.3,
+        "key_insights": [],
+        "semantic_summary": "in unknown stage",
+        "activity_classification": "general_usage",
+        "memory_priority": "normal"
+      }
+    },
+    "synthesized_context": {
+      "overall_context": "terminals_general_computing",
+      "confidence": 0.1111111111111111,
+      "key_insights": [
+        "Content-rich screen with 57 words",
+        "User engaged in general_usage",
+        "Active user interaction detected"
+      ],
+      "semantic_summary": "Using Safari for general_computing in research stage",
+      "activity_classification": "general_usage",
+      "memory_priority": "normal"
+    },
+    "memory_summary": {
+      "timestamp": "2025-06-01T15:32:24.114789",
+      "image_hash": "220cf98a1ecdc1dc62322e2144b1c56b",
+      "overall_context": "terminals_general_computing",
+      "semantic_summary": "Using Safari for general_computing in research stage",
+      "activity_classification": "general_usage",
+      "memory_priority": "normal",
+      "application": {
+        "name": "Safari",
+        "detected_type": "terminals",
+        "confidence": 0.1111111111111111
+      },
+      "content": {
+        "type": "communication",
+        "word_count": 57,
+        "has_meaningful_text": true,
+        "primary_purpose": "messaging",
+        "interaction_level": "active"
+      },
+      "user_activity": {
+        "current_activity": "general_computing",
+        "workflow_stage": "research",
+        "user_intent": "searching",
+        "productivity_context": "general_usage"
+      },
+      "key_insights": [
+        "Content-rich screen with 57 words",
+        "User engaged in general_usage",
+        "Active user interaction detected"
+      ],
+      "analysis_confidence": 0.1111111111111111,
+      "text_sample": "ee\n\nf(D -\n\nlocalhost\n\n@\n\nOo +\n\nAa\n\na\n\naA\n\nA\n\nAa\n\n)\n\n1)\n\n\u00a9\n\n&\n\n\u00a9\n\nr\n\nvu\n\n&\n\no\n\nu\n\nAgent...\n\n\u00ab# AgentMode Real Automation Test Page\n\n@ Search & Navigation\n\nSearch for anything...\n\nSearch results will appear here...\n\n@ Contact Form\n\nFull Name:\n\nEnter your full name\n\nEmail Address:\n\nEnter your email\n\nPhone Number:",
+      "llava_insights": {
+        "visual_context": "Lightweight visual analysis",
+        "application_detected": "detected_via_cv",
+        "workflow_stage": "ready"
+      }
+    }
+  },
+  "hybrid_detector": {
+    "coordinates": [
+      735,
+      250
+    ],
+    "action": "Analyze webpage UI elements",
+    "elements": []
+  },
+  "enhanced_detector": {
+    "elements": [
+      {
+        "element_id": "ocr_6",
+        "element_type": "button",
+        "element_text": "Search",
+        "bounding_box": [
+          1046,
+          784,
+          1146,
+          820
+        ],
+        "center_point": null,
+        "state": "",
+        "role": "textfield",
+        "action": "",
+        "confidence": 0.9999977126509447,
+        "parent_component": "",
+        "interaction_hints": [],
+        "detected_by": [
+          "OCR",
+          "NLP"
+        ],
+        "accessibility_info": {},
+        "ml_confidence": 0.44,
+        "ocr_text": "Search",
+        "nlp_intent": "search",
+        "dom_attributes": {},
+        "app_specific": {}
+      },
+      {
+        "element_id": "ocr_0",
+        "element_type": "button",
+        "element_text": "localhost",
+        "bounding_box": [
+          1412,
+          110,
+          1529,
+          139
+        ],
+        "center_point": null,
+        "state": "",
+        "role": "textfield",
+        "action": "",
+        "confidence": 0.9996454401428455,
+        "parent_component": "",
+        "interaction_hints": [],
+        "detected_by": [
+          "OCR",
+          "NLP"
+        ],
+        "accessibility_info": {},
+        "ml_confidence": 0.42,
+        "ocr_text": "localhost",
+        "nlp_intent": "search",
+        "dom_attributes": {},
+        "app_specific": {}
+      },
+      {
+        "element_id": "ocr_4",
+        "element_type": "button",
+        "element_text": "Search & Navigation",
+        "bounding_box": [
+          452,
+          645,
+          960,
+          710
+        ],
+        "center_point": null,
+        "state": "",
+        "role": "textfield",
+        "action": "",
+        "confidence": 0.9974459624145595,
+        "parent_component": "",
+        "interaction_hints": [],
+        "detected_by": [
+          "OCR",
+          "NLP"
+        ],
+        "accessibility_info": {},
+        "ml_confidence": 0.44,
+        "ocr_text": "Search & Navigation",
+        "nlp_intent": "search",
+        "dom_attributes": {},
+        "app_specific": {}
+      },
+      {
+        "element_id": "ocr_9",
+        "element_type": "button",
+        "element_text": "Full Name:",
+        "bounding_box": [
+          387,
+          1449,
+          569,
+          1492
+        ],
+        "center_point": null,
+        "state": "",
+        "role": "textfield",
+        "action": "",
+        "confidence": 0.9810058822703509,
+        "parent_component": "",
+        "interaction_hints": [],
+        "detected_by": [
+          "OCR",
+          "NLP"
+        ],
+        "accessibility_info": {},
+        "ml_confidence": 0.42,
+        "ocr_text": "Full Name:",
+        "nlp_intent": "search",
+        "dom_attributes": {},
+        "app_specific": {}
+      },
+      {
+        "element_id": "ocr_12",
+        "element_type": "textfield",
+        "element_text": "Enter your email",
+        "bounding_box": [
+          426,
+          1724,
+          666,
+          1765
+        ],
+        "center_point": null,
+        "state": "",
+        "role": "textfield",
+        "action": "",
+        "confidence": 0.9743502972763226,
+        "parent_component": "",
+        "interaction_hints": [],
+        "detected_by": [
+          "OCR",
+          "NLP"
+        ],
+        "accessibility_info": {},
+        "ml_confidence": 0.82,
+        "ocr_text": "Enter your email",
+        "nlp_intent": "search",
+        "dom_attributes": {},
+        "app_specific": {}
+      },
+      {
+        "element_id": "ocr_1",
+        "element_type": "button",
+        "element_text": "+",
+        "bounding_box": [
+          2790,
+          104,
+          2848,
+          140
+        ],
+        "center_point": null,
+        "state": "",
+        "role": "textfield",
+        "action": "",
+        "confidence": 0.889317047062832,
+        "parent_component": "",
+        "interaction_hints": [],
+        "detected_by": [
+          "OCR",
+          "NLP"
+        ],
+        "accessibility_info": {},
+        "ml_confidence": 0.42,
+        "ocr_text": "+",
+        "nlp_intent": "search",
+        "dom_attributes": {},
+        "app_specific": {}
+      },
+      {
+        "element_id": "ocr_13",
+        "element_type": "button",
+        "element_text": "Phone Number:",
+        "bounding_box": [
+          387,
+          1829,
+          646,
+          1868
+        ],
+        "center_point": null,
+        "state": "",
+        "role": "textfield",
+        "action": "",
+        "confidence": 0.8677461875937138,
+        "parent_component": "",
+        "interaction_hints": [],
+        "detected_by": [
+          "OCR",
+          "NLP"
+        ],
+        "accessibility_info": {},
+        "ml_confidence": 0.42,
+        "ocr_text": "Phone Number:",
+        "nlp_intent": "search",
+        "dom_attributes": {},
+        "app_specific": {}
+      },
+      {
+        "element_id": "ocr_5",
+        "element_type": "button",
+        "element_text": "Search for anything",
+        "bounding_box": [
+          424,
+          773,
+          717,
+          813
+        ],
+        "center_point": null,
+        "state": "",
+        "role": "textfield",
+        "action": "",
+        "confidence": 0.8644328584478613,
+        "parent_component": "",
+        "interaction_hints": [],
+        "detected_by": [
+          "OCR",
+          "NLP"
+        ],
+        "accessibility_info": {},
+        "ml_confidence": 0.44,
+        "ocr_text": "Search for anything",
+        "nlp_intent": "search",
+        "dom_attributes": {},
+        "app_specific": {}
+      },
+      {
+        "element_id": "ocr_11",
+        "element_type": "textfield",
+        "element_text": "Email Address:",
+        "bounding_box": [
+          387,
+          1639,
+          632,
+          1677
+        ],
+        "center_point": null,
+        "state": "",
+        "role": "textfield",
+        "action": "",
+        "confidence": 0.8637689792077095,
+        "parent_component": "",
+        "interaction_hints": [],
+        "detected_by": [
+          "OCR",
+          "NLP"
+        ],
+        "accessibility_info": {},
+        "ml_confidence": 0.45,
+        "ocr_text": "Email Address:",
+        "nlp_intent": "search",
+        "dom_attributes": {},
+        "app_specific": {}
+      },
+      {
+        "element_id": "ocr_3",
+        "element_type": "link",
+        "element_text": "AgentMode Real Automation Test Page",
+        "bounding_box": [
+          729,
+          387,
+          2321,
+          500
+        ],
+        "center_point": null,
+        "state": "",
+        "role": "textfield",
+        "action": "",
+        "confidence": 0.8588893615004188,
+        "parent_component": "",
+        "interaction_hints": [],
+        "detected_by": [
+          "OCR",
+          "NLP"
+        ],
+        "accessibility_info": {},
+        "ml_confidence": 0.4,
+        "ocr_text": "AgentMode Real Automation Test Page",
+        "nlp_intent": "search",
+        "dom_attributes": {},
+        "app_specific": {}
+      },
+      {
+        "element_id": "ocr_2",
+        "element_type": "button",
+        "element_text": "AgentM_",
+        "bounding_box": [
+          2788,
+          190,
+          2886,
+          220
+        ],
+        "center_point": null,
+        "state": "",
+        "role": "textfield",
+        "action": "",
+        "confidence": 0.8519994852299708,
+        "parent_component": "",
+        "interaction_hints": [],
+        "detected_by": [
+          "OCR",
+          "NLP"
+        ],
+        "accessibility_info": {},
+        "ml_confidence": 0.42,
+        "ocr_text": "AgentM_",
+        "nlp_intent": "search",
+        "dom_attributes": {},
+        "app_specific": {}
+      },
+      {
+        "element_id": "ocr_8",
+        "element_type": "button",
+        "element_text": "Contact Form",
+        "bounding_box": [
+          453,
+          1360,
+          787,
+          1414
+        ],
+        "center_point": null,
+        "state": "",
+        "role": "textfield",
+        "action": "",
+        "confidence": 0.828834091885051,
+        "parent_component": "",
+        "interaction_hints": [],
+        "detected_by": [
+          "OCR",
+          "NLP"
+        ],
+        "accessibility_info": {},
+        "ml_confidence": 0.47,
+        "ocr_text": "Contact Form",
+        "nlp_intent": "search",
+        "dom_attributes": {},
+        "app_specific": {}
+      },
+      {
+        "element_id": "ocr_7",
+        "element_type": "button",
+        "element_text": "Search results will appear here_",
+        "bounding_box": [
+          428,
+          931,
+          875,
+          976
+        ],
+        "center_point": null,
+        "state": "",
+        "role": "textfield",
+        "action": "",
+        "confidence": 0.7225668867921595,
+        "parent_component": "",
+        "interaction_hints": [],
+        "detected_by": [
+          "OCR",
+          "NLP"
+        ],
+        "accessibility_info": {},
+        "ml_confidence": 0.44,
+        "ocr_text": "Search results will appear here_",
+        "nlp_intent": "search",
+        "dom_attributes": {},
+        "app_specific": {}
+      },
+      {
+        "element_id": "ocr_10",
+        "element_type": "textfield",
+        "element_text": "Enter your full name",
+        "bounding_box": [
+          426,
+          1533,
+          721,
+          1577
+        ],
+        "center_point": null,
+        "state": "",
+        "role": "textfield",
+        "action": "",
+        "confidence": 0.625234962574516,
+        "parent_component": "",
+        "interaction_hints": [],
+        "detected_by": [
+          "OCR",
+          "NLP"
+        ],
+        "accessibility_info": {},
+        "ml_confidence": 0.76,
+        "ocr_text": "Enter your full name",
+        "nlp_intent": "search",
+        "dom_attributes": {},
+        "app_specific": {}
+      }
+    ],
+    "detection_methods_used": [
+      "Accessibility APIs",
+      "OCR + NLP",
+      "Browser APIs",
+      "Machine Learning"
+    ],
+    "timestamp": 1748806352.201903
+  }
+}

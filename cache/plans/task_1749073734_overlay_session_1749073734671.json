@@ -1,0 +1,32 @@
+{
+  "id": "task_1749073734_overlay_session_1749073734671",
+  "task_id": "task_1749073734_overlay_session_1749073734671",
+  "name": "Backup Plan for task_1749073734_overlay_session_1749073734671",
+  "description": "Automated backup plan",
+  "timestamp": 1749073734.671948,
+  "created": 1749073734.671948,
+  "status": "awaiting_approval",
+  "backup_plan": true,
+  "steps": [
+    {
+      "step_id": "step_1",
+      "id": "step_1",
+      "name": "Analyze screen",
+      "description": "Analyze current screen",
+      "action": "analyze_screen",
+      "action_type": "analyze_screen",
+      "status": "pending"
+    }
+  ],
+  "automation_steps": [
+    {
+      "step_id": "step_1",
+      "id": "step_1",
+      "name": "Analyze screen",
+      "description": "Analyze current screen",
+      "action": "analyze_screen",
+      "action_type": "analyze_screen",
+      "status": "pending"
+    }
+  ]
+}

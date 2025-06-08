@@ -13,6 +13,13 @@ from datetime import datetime
 from typing import Dict, Any, Optional
 import aiohttp
 import traceback
+from contextlib import asynccontextmanager
+import time
+import websockets
+from websockets.exceptions import ConnectionClosed
+
+# Import the prompt logger
+from llm.llm_prompt_logger import prompt_logger
 
 # Import the warmup manager for fast responses
 try:
@@ -47,58 +54,78 @@ logging.basicConfig(
 )
 logger = logging.getLogger(__name__)
 
+class SessionManager:
+    """Manages aiohttp ClientSession instances to prevent unclosed sessions"""
+    def __init__(self):
+        self._session = None
+        self._lock = asyncio.Lock()
+    
+    async def get_session(self):
+        """Get or create a ClientSession instance"""
+        async with self._lock:
+            if self._session is None or self._session.closed:
+                self._session = aiohttp.ClientSession(
+                    timeout=aiohttp.ClientTimeout(total=30),
+                    connector=aiohttp.TCPConnector(
+                        limit=10,
+                        ttl_dns_cache=300,
+                        use_dns_cache=True
+                    )
+                )
+            return self._session
+    
+    async def close(self):
+        """Close the current session"""
+        async with self._lock:
+            if self._session and not self._session.closed:
+                await self._session.close()
+                self._session = None
+
+# Create global session manager
+session_manager = SessionManager()
+
+@asynccontextmanager
+async def get_http_session():
+    """Context manager for getting an HTTP session"""
+    session = await session_manager.get_session()
+    try:
+        yield session
+    except Exception as e:
+        logger.error(f"Error in HTTP session: {e}")
+        raise
+
 class LLMService:
     """LLM service that handles language model operations and WebSocket communication."""
     
-    def __init__(self, model_name="llama3.2:1b", host="localhost", port=11434):
+    def __init__(self, model_name="llama3.2:1b", host="localhost", port=11434, ws_port=8765):
         """
         Initialize the LLM interface.
         
         Args:
-            model_name (str): Name of the Ollama model to use (llama3.2:1b for fast responses)
+            model_name (str): Name of the Ollama model to use
             host (str): Hostname where Ollama API is running
             port (int): Port for Ollama API
+            ws_port (int): Port for WebSocket server
         """
-        # Use fastest model by default
-        if model_name == "llama3.2:latest":
-            model_name = "llama3.2:1b"  # Force 1b for speed
-            
         self.model_name = model_name
         self.host = host
         self.port = port
+        self.ws_port = ws_port
         self.base_url = f"http://{host}:{port}"
         self.logger = logging.getLogger(__name__)
         self.running = False
+        self.clients = set()
         self.last_request_time = 0
-        self.min_request_interval = 0.1  # Very fast interval for warmup manager
-        self.timeout = 20  # Consistent timeout value across system components
-        self.max_retries = 2  # Increased retries for better reliability
-        
-        # Warmup manager for fast responses
-        self.warmup_manager = None
-        
-        # Initialize aiohttp session with connection pooling
-        self.session = None
-        self._init_session()
-        
-        # Configure model-specific settings
-        if model_name == "llava":
-            self.is_vision_model = True
-            self.temperature = 0.7
-            self.max_tokens = 1024
-        else:  # llama3.2:latest
-            self.is_vision_model = False
-            self.temperature = 0.8
-            self.max_tokens = 2048
-        
-        self.client_id = str(uuid.uuid4())
-        self.reconnect_delay = 3
-        self.reconnect_attempts = 0
-        self.max_reconnect_attempts = 5
+        self.min_request_interval = 0.1
+        self.timeout = 30
+        self.max_retries = 2
         
         # Initialize LLM client
         self.llm_client = None
         self._initialize_llm()
+        
+        # Initialize WebSocket server
+        self.ws_server = None
     
     def _initialize_llm(self):
         """Initialize the LLM client with warmup manager."""
@@ -126,247 +153,90 @@ class LLMService:
             self.running = False
     
     async def start(self):
-        """Start the LLM service."""
+        """Start the LLM service and WebSocket server."""
         try:
-            # Initialize warmup manager if using it
-            if WARMUP_MANAGER_AVAILABLE and self.use_warmup_manager:
-                logger.info("🔥 Starting LLM Warmup Manager...")
-                self.warmup_manager = await get_warmup_manager()
-                if self.warmup_manager.is_model_warm():
-                    logger.info("✅ LLM model is warm and ready for fast responses")
-                else:
-                    logger.warning("⚠️ LLM model warmup in progress...")
-            elif not self.llm_client:
-                logger.error("LLM client not initialized")
-                return False
+            # Start WebSocket server
+            self.ws_server = await websockets.serve(
+                self._handle_websocket,
+                "localhost",
+                self.ws_port,
+                ping_interval=30,
+                ping_timeout=10,
+                close_timeout=10
+            )
             
-            # Start HTTP connection
+            logger.info(f"WebSocket server started on ws://localhost:{self.ws_port}")
             self.running = True
-            await self._connect()
-            return True
+            
+            # Keep the server running
+            await self.ws_server.wait_closed()
+            
         except Exception as e:
             logger.error(f"Error starting LLM service: {e}")
             return False
     
     async def stop(self):
-        """Stop the LLM service."""
+        """Stop the LLM service and WebSocket server."""
         self.running = False
-        if self.session:
-            await self.session.close()
+        if self.ws_server:
+            self.ws_server.close()
+            await self.ws_server.wait_closed()
+        logger.info("LLM service stopped")
     
-    async def _connect(self):
-        """Connect to the Ollama API."""
-        while self.running and self.reconnect_attempts < self.max_reconnect_attempts:
-            try:
-                logger.info(f"Connecting to {self.base_url}")
-                # Test connection with a simple HTTP request
-                async with aiohttp.ClientSession() as session:
-                    async with session.get(f"{self.base_url}/api/tags") as response:
-                        if response.status == 200:
-                            self.reconnect_attempts = 0
-                            logger.info("Successfully connected to Ollama API")
-                            # Keep the connection alive
-                            while self.running:
-                                await asyncio.sleep(30)  # Check connection every 30 seconds
-                                try:
-                                    async with session.get(f"{self.base_url}/api/tags") as check_response:
-                                        if check_response.status != 200:
-                                            raise ConnectionError("Ollama API not responding")
-                                except Exception as e:
-                                    logger.error(f"Connection check failed: {e}")
-                                    break
-                        else:
-                            raise ConnectionError(f"Ollama API returned status {response.status}")
-                    
-            except Exception as e:
-                logger.error(f"Connection error: {e}")
+    async def _handle_websocket(self, websocket, path):
+        """Handle WebSocket connections."""
+        client_id = str(uuid.uuid4())
+        self.clients.add(websocket)
+        
+        try:
+            logger.info(f"New client connected: {client_id}")
             
-            if self.running:
-                self.reconnect_attempts += 1
-                await asyncio.sleep(self.reconnect_delay * self.reconnect_attempts)
-    
-    async def _send_connection_message(self):
-        """Send initial connection message to server."""
-        try:
-            await self.ws.send(json.dumps({
+            # Send connection confirmation
+            await websocket.send(json.dumps({
                 "type": "connection_established",
-                "payload": {
-                    "client_type": "llm",
-                    "client_id": self.client_id,
-                    "version": "1.0.0",
-                    "capabilities": ["text_generation", "completion"],
-                    "timestamp": datetime.now().isoformat()
-                }
+                "client_id": client_id,
+                "timestamp": datetime.now().isoformat()
             }))
-            logger.info("Sent connection message")
-        except Exception as e:
-            logger.error(f"Error sending connection message: {e}")
-    
-    async def _handle_messages(self):
-        """Handle incoming WebSocket messages."""
-        try:
-            async for message in self.ws:
+            
+            # Handle messages
+            async for message in websocket:
                 try:
                     data = json.loads(message)
-                    await self._process_message(data)
+                    await self._process_message(websocket, data)
                 except json.JSONDecodeError:
-                    logger.error("Invalid JSON message received")
+                    logger.error(f"Invalid JSON message from client {client_id}")
                 except Exception as e:
-                    logger.error(f"Error processing message: {e}")
-        except websockets.exceptions.ConnectionClosed:
-            logger.info("Connection closed")
+                    logger.error(f"Error processing message from client {client_id}: {e}")
+                    await self._send_error(websocket, "Error processing message", str(e))
+                    
+        except websockets.exceptions.ConnectionClosed as e:
+            logger.info(f"Client disconnected: {client_id}")
         except Exception as e:
-            logger.error(f"Error in message handler: {e}")
+            logger.error(f"WebSocket error for client {client_id}: {e}")
+        finally:
+            self.clients.remove(websocket)
+            logger.info(f"Client {client_id} removed from active connections")
     
-    async def _process_message(self, data: Dict[str, Any]):
-        """Process incoming message."""
+    async def _process_message(self, websocket, data: Dict[str, Any]):
+        """Process incoming WebSocket message."""
         try:
             msg_type = data.get('type')
             
-            if msg_type == 'llm_request':
-                # Extract query and context
-                payload = data.get('payload', {})
-                query = payload.get('query', '')
-                context = payload.get('context', {})
+            if msg_type == 'text_generation':
+                response = await self._handle_text_generation(data)
+                await websocket.send(json.dumps(response))
                 
-                # Log context details
-                logger.info(f"Processing LLM request with context:")
-                if context:
-                    logger.info(f"Context keys: {list(context.keys())}")
-                    if 'screen' in context:
-                        logger.info(f"Screen data: {context['screen'].get('active_app', 'unknown')}")
-                    if 'processes' in context:
-                        logger.info(f"Process count: {len(context['processes'])}")
+            elif msg_type == 'text_completion':
+                response = await self._handle_text_completion(data)
+                await websocket.send(json.dumps(response))
                 
-                # Generate response
-                response = await self.generate_response(query, context)
-                
-                # Log response
-                logger.info(f"Generated response: {response[:100]}...")
-                
-            elif msg_type == 'sensor_data':
-                # Update context data from sensors
-                self.context_data = data.get('payload', {})
-                logger.debug("Context data updated")
-                
-            elif msg_type == 'ping':
-                # Handle ping - send pong
-                await self.ws.send(json.dumps({
-                    "type": "pong",
-                    "timestamp": datetime.now().isoformat()
-                }))
+            else:
+                logger.warning(f"Unknown message type: {msg_type}")
+                await self._send_error(websocket, "Unknown message type", msg_type)
                 
         except Exception as e:
             logger.error(f"Error processing message: {e}")
-            await self._send_error("Error processing message", str(e))
-            
-    async def generate_response(self, query: str, context: Dict[str, Any] = None) -> str:
-        """Generate a response using the LLM with context."""
-        try:
-            # Check if we have a pre-built system message from enhanced handlers
-            if context and context.get("system_message"):
-                system_message = context["system_message"]
-                logger.info(f"Using pre-built system message with context: {len(system_message)} chars")
-            else:
-                # Build system message with context
-                system_message = "You are a helpful assistant with access to the user's environment context.\n\n"
-                
-                # Try to load context from last_context.json if not provided
-                if not context:
-                    try:
-                        context_file = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'memory', 'last_context.json')
-                        if os.path.exists(context_file):
-                            with open(context_file, 'r') as f:
-                                loaded_context = json.load(f)
-                                if loaded_context:
-                                    context = loaded_context
-                                    logger.info(f"Loaded context from {context_file}")
-                    except Exception as e:
-                        logger.warning(f"Could not load context from file: {e}")
-                
-                # Enhanced context integration (only if no pre-built system message)
-                if context:
-                    # Add active window and application context
-                    active_window = context.get('active_window')
-                    active_app = context.get('active_app')
-                    if active_window:
-                        system_message += f"Active Window: {active_window}\n"
-                    if active_app:
-                        system_message += f"Active Application: {active_app}\n"
-                    
-                    # Add running applications
-                    active_apps = context.get('active_apps', [])
-                    if active_apps:
-                        system_message += "Running Applications:\n"
-                        for app in active_apps[:5]:  # Show top 5 apps
-                            system_message += f"- {app}\n"
-                    
-                    # Add screen content
-                    screen_text = context.get('screen_text', '')
-                    if screen_text:
-                        # Truncate very long text
-                        if len(screen_text) > 1000:
-                            truncated_text = screen_text[:1000] + "...(truncated)"
-                        else:
-                            truncated_text = screen_text
-                        system_message += f"\nScreen Content:\n{truncated_text}\n"
-                    
-                    # Add window history if available
-                    window_history = context.get('window_history', [])
-                    if window_history:
-                        system_message += "\nRecent Window History:\n"
-                        for window in window_history[:3]:  # Show last 3 windows
-                            system_message += f"- {window}\n"
-                    
-                    # Add LLaVA visual description if available
-                    visual_context = context.get('visual_context', '')
-                    if visual_context:
-                        system_message += f"\nVisual Content Description:\n{visual_context}\n"
-                        
-                    # Add timestamp information
-                    ts = context.get('timestamp')
-                    if ts:
-                        from datetime import datetime
-                        date_str = datetime.fromtimestamp(ts).strftime('%Y-%m-%d %H:%M:%S')
-                        system_message += f"\nContext Timestamp: {date_str}\n"
-                
-            # Add instructions for special queries
-            if "what am i seeing" in query.lower() or "what's on my screen" in query.lower():
-                system_message += "\nThe user is asking about what they're seeing on their screen. " 
-                system_message += "Provide a detailed and helpful summary of their screen content and visual context.\n"
-            
-            logger.info(f"Generated system message with context: {len(system_message)} chars")
-            
-            # Prepare messages for LLM
-            messages = [
-                {"role": "system", "content": system_message},
-                {"role": "user", "content": query}
-            ]
-            
-            # Use warmup manager if available for fast responses
-            if WARMUP_MANAGER_AVAILABLE and self.use_warmup_manager and self.warmup_manager:
-                logger.info("⚡ Using warmup manager for fast response...")
-                response = await self.warmup_manager.fast_generate_response(
-                    messages, 
-                    max_tokens=self.max_tokens, 
-                    temperature=self.temperature
-                )
-                return response
-            else:
-                # Fallback to standard LLM client
-                logger.info("🐌 Using standard LLM client...")
-                # Ensure LLM client is started
-                if not self.llm_client.running:
-                    logger.info("Starting LLM client...")
-                    await self.llm_client.start()
-                
-                # Generate response
-                response = await self.llm_client.generate_response(messages)
-                return response
-            
-        except Exception as e:
-            logger.error(f"Error generating response: {e}")
-            return "I apologize, but I encountered an error while processing your request."
+            await self._send_error(websocket, "Error processing message", str(e))
     
     async def _handle_text_generation(self, data: Dict[str, Any]):
         """Handle text generation request."""
@@ -375,62 +245,119 @@ class LLMService:
             if not prompt:
                 raise ValueError("No prompt provided")
             
-            # Log the final prompt being sent to the LLM
+            # Start timing
+            start_time = time.time()
+            
+            # Log the prompt being sent
             logger.info(f"🤖 SENDING PROMPT TO LLM:")
             logger.info(f"  - Prompt: {prompt[:200]}...")
             if len(prompt) > 200:
                 logger.info(f"  - Full prompt length: {len(prompt)} chars")
             
-            # Log any additional context or parameters
-            if 'context' in data:
-                logger.info(f"  - Context keys: {list(data['context'].keys())}")
-                logger.info(f"  - Context size: {len(str(data['context']))} chars")
+            # Set a timeout for the LLM request to prevent hanging
+            try:
+                # Create an asyncio task with timeout
+                generate_task = asyncio.create_task(self.llm_client.generate_text(prompt))
+                response = await asyncio.wait_for(generate_task, timeout=20.0)  # 20 second timeout
+                
+                if response and not response.startswith("Error:") and len(response) > 10:
+                    # Valid response received
+                    pass
+                else:
+                    logger.warning(f"LLM returned invalid response: {response}")
+                    response = self._get_fallback_response(prompt)
+                    
+            except asyncio.TimeoutError:
+                logger.error("Ollama request timed out - likely processing a large request")
+                # Cancel the task to prevent it from continuing in the background
+                if not generate_task.done():
+                    generate_task.cancel()
+                    try:
+                        await generate_task
+                    except asyncio.CancelledError:
+                        pass
+                response = self._get_fallback_response(prompt)
+                
+            except Exception as llm_error:
+                logger.error(f"All Ollama attempts failed: {llm_error}. Using fallback response.")
+                response = self._get_fallback_response(prompt)
             
-            # Generate text using LLM
-            response = await self.llm_client.generate_text(prompt)
+            # End timing
+            end_time = time.time()
             
             # Log the response
             logger.info(f"✅ LLM RESPONSE RECEIVED:")
             logger.info(f"  - Response length: {len(response)} chars")
             logger.info(f"  - Response preview: {response[:200]}...")
             
-            # Check if response is a suggestion
-            response_type = "llm_response"
-            response_data = {
-                "text": response,
-                "prompt": prompt,
-                "timestamp": datetime.now().isoformat()
+            # Log the interaction using the prompt logger
+            prompt_logger.log_interaction(
+                prompt=prompt,
+                response=response,
+                model=self.model_name,
+                mode=data.get('mode', 'general'),
+                context=data.get('context', {}),
+                metadata={
+                    'request_id': str(uuid.uuid4()),
+                    'temperature': data.get('temperature', 0.7),
+                    'max_tokens': data.get('max_tokens', 1024)
+                },
+                start_time=start_time,
+                end_time=end_time
+            )
+            
+            return {
+                "type": "llm_response",
+                "data": {
+                    "text": response,
+                    "prompt": prompt,
+                    "timestamp": datetime.now().isoformat()
+                }
             }
             
-            # Use suggestion detector if available
-            if SUGGESTION_DETECTOR_AVAILABLE:
-                detector = SuggestionDetector()
-                is_suggestion, confidence, suggestion_data = detector.detect_suggestion(response)
-                
-                if is_suggestion:
-                    logger.info(f"Detected suggestion with confidence {confidence:.2f}")
-                    response_type = "suggestion"
-                    response_data = {
-                        "content": response,
-                        "title": suggestion_data.get('title', 'Suggestion'),
-                        "confidence": confidence,
-                        "isSuggestion": True,
-                        "buttons": suggestion_data.get('buttons', [
-                            {'id': 'do', 'label': 'Yes', 'primary': True},
-                            {'id': 'adjust', 'label': 'Adjust', 'primary': False},
-                            {'id': 'dismiss', 'label': 'No', 'primary': False}
-                        ])
-                    }
-            
-            # Send response
-            await self.ws.send(json.dumps({
-                "type": response_type,
-                "data": response_data
-            }))
-            logger.info(f"Sent {response_type}")
         except Exception as e:
-            logger.error(f"Error generating text: {e}")
-            await self._send_error("Error generating text", str(e))
+            error_msg = f"Error generating text: {str(e)}"
+            logger.error(error_msg)
+            logger.error(traceback.format_exc())
+            
+            # Log the error using the prompt logger
+            prompt_logger.log_error(
+                error_type="text_generation_error",
+                error_message=error_msg,
+                context={
+                    'prompt_length': len(prompt) if 'prompt' in locals() else 0,
+                    'model': self.model_name,
+                    'mode': data.get('mode', 'general')
+                }
+            )
+            
+            # Return fallback response instead of raising exception
+            fallback_response = self._get_fallback_response(prompt)
+            return {
+                "type": "llm_response",
+                "data": {
+                    "text": fallback_response,
+                    "prompt": prompt,
+                    "timestamp": datetime.now().isoformat()
+                }
+            }
+    
+    def _get_fallback_response(self, prompt: str) -> str:
+        """Generate a fallback response when LLM fails."""
+        # Generate different types of fallback responses based on prompt type
+        prompt_lower = prompt.lower()
+        
+        if "what am i seeing" in prompt_lower or "what's on my screen" in prompt_lower:
+            return "I'm having trouble analyzing your screen right now. Please try again in a moment or describe what you're looking at."
+            
+        elif "how do i" in prompt_lower or "how to" in prompt_lower:
+            return "I'm having trouble processing your how-to question right now. Could you try rephrasing it or asking again in a moment?"
+            
+        elif "?" in prompt:
+            return "I apologize, but I'm experiencing a temporary issue accessing my knowledge. Please try your question again in a moment."
+            
+        else:
+            return "I apologize, but I encountered a temporary issue while processing your request. Please try again in a moment."
     
     async def _handle_text_completion(self, data: Dict[str, Any]):
         """Handle text completion request."""
@@ -442,21 +369,26 @@ class LLMService:
             # Complete text using LLM
             completion = await self.llm_client.complete_text(text)
             
-            # Send response
-            await self.ws.send(json.dumps({
+            return {
                 "type": "llm_response",
                 "data": {
                     "completion": completion,
                     "original_text": text,
                     "timestamp": datetime.now().isoformat()
                 }
-            }))
-            logger.info("Sent text completion response")
+            }
         except Exception as e:
             logger.error(f"Error completing text: {e}")
-            await self._send_error("Error completing text", str(e))
+            return {
+                "type": "error",
+                "payload": {
+                    "message": "Error completing text",
+                    "details": str(e),
+                    "timestamp": datetime.now().isoformat()
+                }
+            }
     
-    async def _send_error(self, message: str, details: str = ""):
+    async def _send_error(self, websocket, message: str, details: str = ""):
         """Send error message to the client."""
         try:
             error_data = {
@@ -467,94 +399,18 @@ class LLMService:
                     "timestamp": datetime.now().isoformat()
                 }
             }
+            await websocket.send(json.dumps(error_data))
             logger.error(f"Error: {message} - {details}")
         except Exception as e:
             logger.error(f"Error sending error message: {e}")
-    
-    def _init_session(self):
-        """Initialize aiohttp session with connection pooling"""
-        if self.session is None:
-            self.session = aiohttp.ClientSession(
-                timeout=aiohttp.ClientTimeout(total=self.timeout),
-                connector=aiohttp.TCPConnector(
-                    limit=10,  # Max concurrent connections
-                    ttl_dns_cache=300,  # DNS cache TTL
-                    use_dns_cache=True
-                )
-            )
-
-    async def initialize(self):
-        """Initialize the LLM service."""
-        try:
-            # Initialize the LLM client
-            self._initialize_llm()
-            
-            # Initialize the HTTP session
-            self._init_session()
-            
-            # Start the LLM client if using standard client
-            if self.llm_client and hasattr(self.llm_client, 'start'):
-                await self.llm_client.start()
-                logger.info("LocalLLM client started successfully")
-            
-            # Test connection to Ollama
-            async with self.session.get(f"{self.base_url}/api/tags") as response:
-                if response.status != 200:
-                    raise ConnectionError(f"Failed to connect to Ollama API: {response.status}")
-            
-            logger.info("LLM service initialized successfully")
-            return True
-            
-        except Exception as e:
-            logger.error(f"Error initializing LLM service: {e}")
-            return False
-
-    async def cleanup(self):
-        """Clean up resources used by the LLM service."""
-        try:
-            # Close the HTTP session
-            if self.session:
-                await self.session.close()
-                self.session = None
-            
-            # Stop the LLM client if it exists
-            if self.llm_client:
-                await self.llm_client.stop()
-                self.llm_client = None
-            
-            logger.info("LLM service cleaned up successfully")
-            
-        except Exception as e:
-            logger.error(f"Error cleaning up LLM service: {e}")
-
-class MockLLMClient:
-    """Mock LLM client for testing."""
-    
-    async def generate_text(self, prompt: str) -> str:
-        """Generate text from prompt."""
-        return f"Generated response for: {prompt}"
-    
-    async def complete_text(self, text: str) -> str:
-        """Complete text."""
-        return f"{text} [completed]"
 
 async def main():
     """Main function to run the LLM service."""
     try:
         # Initialize and start the LLM service
         llm_service = LLMService()
-        success = await llm_service.start()
+        await llm_service.start()
         
-        if success:
-            logger.info("LLM service started successfully")
-            
-            # Keep the service running
-            while llm_service.running:
-                await asyncio.sleep(1)
-                
-        else:
-            logger.error("Failed to start LLM service")
-            
     except KeyboardInterrupt:
         logger.info("LLM service stopped by user")
     except Exception as e:

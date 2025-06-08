@@ -1,0 +1,128 @@
+2025-06-03 01:34:55,930 - nextgen_suggestion_fix - INFO - 🚀 Starting NextGen Overlay Suggestion Fix
+2025-06-03 01:34:55,930 - nextgen_suggestion_fix - INFO - Testing connection to WebSocket server...
+2025-06-03 01:34:56,002 - nextgen_suggestion_fix - INFO - ✅ Successfully connected to WebSocket server
+2025-06-03 01:34:56,003 - nextgen_suggestion_fix - INFO - Received response: {"type": "welcome", "message": "Connected to ultimate DO button server on port 8765", "server_time":
+2025-06-03 01:34:56,003 - nextgen_suggestion_fix - INFO - ✅ WebSocket server is responsive
+2025-06-03 01:34:56,004 - nextgen_suggestion_fix - INFO - Created backup of server file: /Users/segevbin/Desktop/SensAI/Aiayer/ultimate_do_button_server.py.bak
+2025-06-03 01:34:56,005 - nextgen_suggestion_fix - INFO - ✅ Successfully added suggestion handler to server file
+2025-06-03 01:34:56,005 - nextgen_suggestion_fix - INFO - ✅ Created test script: /Users/segevbin/Desktop/SensAI/Aiayer/test_nextgen_suggestion.py
+2025-06-03 01:34:56,006 - nextgen_suggestion_fix - INFO - ✅ Created restart script: /Users/segevbin/Desktop/SensAI/Aiayer/restart_do_button_fix.sh
+2025-06-03 01:34:56,006 - nextgen_suggestion_fix - INFO - Connecting to WebSocket server at ws://localhost:8765
+2025-06-03 01:34:56,008 - nextgen_suggestion_fix - INFO - Connected to WebSocket server
+2025-06-03 01:34:56,008 - nextgen_suggestion_fix - INFO - Received welcome: {"type": "welcome", "message": "Connected to ultimate DO button server on port 8765", "server_time":
+2025-06-03 01:34:56,009 - nextgen_suggestion_fix - INFO - ✅ Sent properly formatted suggestion to overlay
+2025-06-03 01:34:56,009 - nextgen_suggestion_fix - INFO - Received response: {"type": "response", "original_type": "unknown", "message": "Received unknown message", "timestamp":
+2025-06-03 01:34:56,009 - nextgen_suggestion_fix - INFO - ✅ Successfully sent suggestion to overlay
+2025-06-03 01:34:56,009 - nextgen_suggestion_fix - INFO - ✅ NextGen Overlay Suggestion Fix completed
+2025-06-03 01:34:56,009 - nextgen_suggestion_fix - INFO - To apply the fix, run: bash restart_do_button_fix.sh
+2025-06-03 01:35:19,547 - nextgen_suggestion_fix - INFO - 🚀 Starting NextGen Overlay Suggestion Fix
+2025-06-03 01:35:19,547 - nextgen_suggestion_fix - INFO - Testing connection to WebSocket server...
+2025-06-03 01:35:19,601 - nextgen_suggestion_fix - ERROR - ❌ Failed to connect to WebSocket server: Multiple exceptions: [Errno 61] Connect call failed ('::1', 8765, 0, 0), [Errno 61] Connect call failed ('127.0.0.1', 8765)
+2025-06-03 01:35:19,602 - nextgen_suggestion_fix - WARNING - ⚠️ Could not connect to WebSocket server - make sure it's running
+2025-06-03 01:35:19,602 - nextgen_suggestion_fix - INFO - Will continue with the fix, but you'll need to restart the server afterward
+2025-06-03 01:35:19,603 - nextgen_suggestion_fix - INFO - Created backup of server file: /Users/segevbin/Desktop/SensAI/Aiayer/ultimate_do_button_server.py.bak
+2025-06-03 01:35:19,603 - nextgen_suggestion_fix - INFO - Suggestion handler already present in server file
+2025-06-03 01:35:19,604 - nextgen_suggestion_fix - INFO - ✅ Created test script: /Users/segevbin/Desktop/SensAI/Aiayer/test_nextgen_suggestion.py
+2025-06-03 01:35:19,604 - nextgen_suggestion_fix - INFO - ✅ Created restart script: /Users/segevbin/Desktop/SensAI/Aiayer/restart_do_button_fix.sh
+2025-06-03 01:35:19,604 - nextgen_suggestion_fix - INFO - ✅ NextGen Overlay Suggestion Fix completed
+2025-06-03 01:35:19,604 - nextgen_suggestion_fix - INFO - To apply the fix, run: bash restart_do_button_fix.sh
+2025-06-04 02:07:09,321 - INFO - Sending suggestion (new format): {
+  "type": "suggestion",
+  "response": "\ud83d\udce3 This is a simple notification",
+  "buttons": [
+    {
+      "text": "OK",
+      "value": "ok",
+      "style": "success"
+    }
+  ],
+  "importance": "medium",
+  "play_sound": true,
+  "plan_id": "suggestion_20c666ad-9fd4-495f-afb8-c0804cf1b561",
+  "timestamp": "2025-06-04T02:07:09.321758"
+}
+2025-06-04 02:07:09,362 - INFO - Connected to proxy on port 8766
+2025-06-04 02:07:09,362 - INFO - Received welcome: {"type": "connection_established", "server_version": "1.0.0", "capabilities": ["agent_confirmation", "button_action", "do_button", "neural_ui", "suggestion"], "timestamp": "2025-06-04T02:07:09.361926"}
+2025-06-04 02:07:09,362 - INFO - Suggestion sent to proxy (new format)
+2025-06-04 02:07:10,364 - INFO - Suggestion sent to proxy (legacy format)
+2025-06-04 02:07:10,364 - INFO - Received response: {"type": "suggestion", "response": "\ud83d\udce3 This is a simple notification", "buttons": [{"text": "OK", "value": "ok", "style": "success"}], "importance": "medium", "play_sound": true, "plan_id": "suggestion_20c666ad-9fd4-495f-afb8-c0804cf1b561", "timestamp": "2025-06-04T02:07:09.362725"}
+2025-06-04 02:07:10,365 - INFO - Simple notification sent: True
+2025-06-04 02:07:12,366 - INFO - Sending suggestion (new format): {
+  "type": "suggestion",
+  "response": "\ud83d\udd34 HIGH PRIORITY TEST\n\nThis is a test of the suggestion notification system with high importance.",
+  "buttons": [
+    {
+      "text": "\u2705 It works!",
+      "value": "success",
+      "style": "success"
+    },
+    {
+      "text": "\u274c Not working",
+      "value": "failure",
+      "style": "danger"
+    }
+  ],
+  "importance": "high",
+  "play_sound": true,
+  "plan_id": "suggestion_2fa5b242-d195-4f2a-a722-bb81f64345e9",
+  "timestamp": "2025-06-04T02:07:12.366644"
+}
+2025-06-04 02:07:12,370 - INFO - Connected to proxy on port 8766
+2025-06-04 02:07:12,371 - INFO - Received welcome: {"type": "connection_established", "server_version": "1.0.0", "capabilities": ["agent_confirmation", "button_action", "do_button", "neural_ui", "suggestion"], "timestamp": "2025-06-04T02:07:12.370820"}
+2025-06-04 02:07:12,371 - INFO - Suggestion sent to proxy (new format)
+2025-06-04 02:07:13,372 - INFO - Suggestion sent to proxy (legacy format)
+2025-06-04 02:07:13,373 - INFO - Received response: {"type": "suggestion", "response": "\ud83d\udd34 HIGH PRIORITY TEST\n\nThis is a test of the suggestion notification system with high importance.", "buttons": [{"text": "\u2705 It works!", "value": "success", "style": "success"}, {"text": "\u274c Not working", "value": "failure", "style": "danger"}], "importance": "high", "play_sound": true, "plan_id": "suggestion_2fa5b242-d195-4f2a-a722-bb81f64345e9", "timestamp": "2025-06-04T02:07:12.371563"}
+2025-06-04 02:07:13,375 - INFO - High priority notification sent: True
+2025-06-04 02:07:15,376 - INFO - Sending suggestion (new format): {
+  "type": "suggestion",
+  "response": "\ud83d\udca1 OPTIMIZATION SUGGESTION\n\nBased on your recent activities, you might want to consider refactoring the `processData` function to improve performance.\n\nWould you like to see a suggested implementation?",
+  "buttons": [
+    {
+      "text": "\ud83d\udc4d Show me",
+      "value": "show",
+      "style": "success"
+    },
+    {
+      "text": "\u23f1\ufe0f Later",
+      "value": "later",
+      "style": "warning"
+    },
+    {
+      "text": "\u274c Dismiss",
+      "value": "dismiss",
+      "style": "danger"
+    }
+  ],
+  "importance": "medium",
+  "play_sound": true,
+  "plan_id": "suggestion_eb21366a-b075-4771-a7a6-08e4e9e196b2",
+  "timestamp": "2025-06-04T02:07:15.376083"
+}
+2025-06-04 02:07:15,380 - INFO - Connected to proxy on port 8766
+2025-06-04 02:07:15,380 - INFO - Received welcome: {"type": "connection_established", "server_version": "1.0.0", "capabilities": ["agent_confirmation", "button_action", "do_button", "neural_ui", "suggestion"], "timestamp": "2025-06-04T02:07:15.380149"}
+2025-06-04 02:07:15,380 - INFO - Suggestion sent to proxy (new format)
+2025-06-04 02:07:16,382 - INFO - Suggestion sent to proxy (legacy format)
+2025-06-04 02:07:16,383 - INFO - Received response: {"type": "suggestion", "response": "\ud83d\udca1 OPTIMIZATION SUGGESTION\n\nBased on your recent activities, you might want to consider refactoring the `processData` function to improve performance.\n\nWould you like to see a suggested implementation?", "buttons": [{"text": "\ud83d\udc4d Show me", "value": "show", "style": "success"}, {"text": "\u23f1\ufe0f Later", "value": "later", "style": "warning"}, {"text": "\u274c Dismiss", "value": "dismiss", "style": "danger"}], "importance": "medium", "play_sound": true, "plan_id": "suggestion_eb21366a-b075-4771-a7a6-08e4e9e196b2", "timestamp": "2025-06-04T02:07:15.381435"}
+2025-06-04 02:07:16,384 - INFO - Technical suggestion sent: True
+2025-06-04 02:48:24,312 - nextgen_suggestion_fix - INFO - 🚀 Starting NextGen Overlay Suggestion Fix
+2025-06-04 02:48:24,312 - nextgen_suggestion_fix - INFO - Testing connection to WebSocket server...
+2025-06-04 02:48:24,431 - nextgen_suggestion_fix - ERROR - ❌ Failed to connect to WebSocket server: Multiple exceptions: [Errno 61] Connect call failed ('::1', 8765, 0, 0), [Errno 61] Connect call failed ('127.0.0.1', 8765)
+2025-06-04 02:48:24,432 - nextgen_suggestion_fix - WARNING - ⚠️ Could not connect to WebSocket server - make sure it's running
+2025-06-04 02:48:24,432 - nextgen_suggestion_fix - INFO - Will continue with the fix, but you'll need to restart the server afterward
+2025-06-04 02:48:24,438 - nextgen_suggestion_fix - INFO - Created backup of server file: /Users/segevbin/Desktop/SensAI/Aiayer/ultimate_do_button_server.py.bak
+2025-06-04 02:48:24,442 - nextgen_suggestion_fix - INFO - ✅ Successfully added suggestion handler to server file
+2025-06-04 02:48:24,444 - nextgen_suggestion_fix - INFO - ✅ Created test script: /Users/segevbin/Desktop/SensAI/Aiayer/test_nextgen_suggestion.py
+2025-06-04 02:48:24,445 - nextgen_suggestion_fix - INFO - ✅ Created restart script: /Users/segevbin/Desktop/SensAI/Aiayer/restart_do_button_fix.sh
+2025-06-04 02:48:24,445 - nextgen_suggestion_fix - INFO - ✅ NextGen Overlay Suggestion Fix completed
+2025-06-04 02:48:24,445 - nextgen_suggestion_fix - INFO - To apply the fix, run: bash restart_do_button_fix.sh
+2025-06-04 02:53:21,415 - nextgen_suggestion_fix - INFO - 🚀 Starting NextGen Overlay Suggestion Fix
+2025-06-04 02:53:21,416 - nextgen_suggestion_fix - INFO - Testing connection to WebSocket server...
+2025-06-04 02:53:21,611 - nextgen_suggestion_fix - ERROR - ❌ Failed to connect to WebSocket server: Multiple exceptions: [Errno 61] Connect call failed ('::1', 8765, 0, 0), [Errno 61] Connect call failed ('127.0.0.1', 8765)
+2025-06-04 02:53:21,611 - nextgen_suggestion_fix - WARNING - ⚠️ Could not connect to WebSocket server - make sure it's running
+2025-06-04 02:53:21,611 - nextgen_suggestion_fix - INFO - Will continue with the fix, but you'll need to restart the server afterward
+2025-06-04 02:53:21,612 - nextgen_suggestion_fix - INFO - Created backup of server file: /Users/segevbin/Desktop/SensAI/Aiayer/ultimate_do_button_server.py.bak
+2025-06-04 02:53:21,612 - nextgen_suggestion_fix - INFO - Suggestion handler already present in server file
+2025-06-04 02:53:21,614 - nextgen_suggestion_fix - INFO - ✅ Created test script: /Users/segevbin/Desktop/SensAI/Aiayer/test_nextgen_suggestion.py
+2025-06-04 02:53:21,615 - nextgen_suggestion_fix - INFO - ✅ Created restart script: /Users/segevbin/Desktop/SensAI/Aiayer/restart_do_button_fix.sh
+2025-06-04 02:53:21,615 - nextgen_suggestion_fix - INFO - ✅ NextGen Overlay Suggestion Fix completed
+2025-06-04 02:53:21,615 - nextgen_suggestion_fix - INFO - To apply the fix, run: bash restart_do_button_fix.sh

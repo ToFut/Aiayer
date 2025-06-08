@@ -126,7 +126,7 @@ class SimpleBrainRouter:
         
         return f"🤖 General Mode: I understand you're asking about '{message}'. How can I help you further?"
 
-    async def handle_websocket(self, websocket):
+    async def handle_websocket(websocket, path=None):
         """Handle WebSocket connections"""
         client_id = f"client_{int(time.time() * 1000)}"
         self.connected_clients.add(client_id)

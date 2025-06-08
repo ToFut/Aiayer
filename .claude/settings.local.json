@@ -37,7 +37,14 @@
       "Bash(kill:*)",
       "Bash(python test_fixed_agent_mode.py:*)",
       "Bash(./START_ENHANCED_SYSTEM.sh)",
-      "Bash(python test:*)"
+      "Bash(python test:*)",
+      "Bash(mkdir:*)",
+      "Bash(./start_with_ws.sh:*)",
+      "Bash(touch:*)",
+      "Bash(./STOP_ENHANCED_SYSTEM.sh)",
+      "Bash(./start_do_button_server.sh:*)",
+      "Bash(python:*)",
+      "Bash(cp:*)"
     ],
     "deny": []
   }

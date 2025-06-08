@@ -1,0 +1,34 @@
+2025-06-06 20:35:28,775 - TestDashboard - INFO - Starting dashboard server on http://localhost:8080
+2025-06-06 20:39:19,977 - TestDashboard - INFO - Discovering tests...
+2025-06-06 20:39:20,441 - TestDashboard - INFO - Found 722 tests in 9 components
+2025-06-06 20:41:56,589 - TestDashboard - WARNING - Port 8080 is already in use, trying next port
+2025-06-06 20:41:56,609 - TestDashboard - INFO - Starting dashboard server on http://localhost:8081
+2025-06-06 20:42:04,228 - TestDashboard - INFO - Discovering tests...
+2025-06-06 20:42:10,982 - TestDashboard - INFO - Discovering tests...
+2025-06-06 20:42:11,028 - TestDashboard - INFO - Found 722 tests in 9 components
+2025-06-06 20:42:13,362 - TestDashboard - INFO - Found 722 tests in 9 components
+2025-06-06 20:42:13,366 - TestDashboard - INFO - Running 722 tests...
+2025-06-06 20:42:13,367 - TestDashboard - INFO - Running test: test_spotify_agent_fix.py
+2025-06-06 20:42:15,394 - TestDashboard - INFO - Test test_spotify_agent_fix.py passed in 2.02s
+2025-06-06 20:42:15,398 - TestDashboard - INFO - Running test: test_fixed_do_button.py
+2025-06-06 20:42:16,953 - TestDashboard - INFO - Test test_fixed_do_button.py passed in 1.55s
+2025-06-06 20:42:16,963 - TestDashboard - INFO - Running test: test_fixed_youtube_automation.py
+2025-06-06 20:43:03,000 - TestDashboard - INFO - Test test_fixed_youtube_automation.py passed in 46.04s
+2025-06-06 20:43:03,002 - TestDashboard - INFO - Running test: test_automation_do_button.py
+2025-06-06 20:43:16,029 - TestDashboard - INFO - Discovering tests...
+2025-06-06 20:43:16,848 - TestDashboard - INFO - Found 722 tests in 9 components
+2025-06-06 20:43:21,527 - TestDashboard - INFO - Running 1 tests...
+2025-06-06 20:43:21,529 - TestDashboard - INFO - Running test: test_spotify_agent_fix.py
+2025-06-06 20:43:21,859 - TestDashboard - INFO - Test test_spotify_agent_fix.py passed in 0.33s
+2025-06-06 20:43:21,869 - TestDashboard - INFO - HTML report generated: test_results/test_results_20250606_204321.html
+2025-06-06 20:43:21,869 - TestDashboard - INFO - Test results saved to test_results/test_results_20250606_204321.json
+2025-06-06 20:45:45,290 - TestDashboard - WARNING - Port 8080 is already in use, trying next port
+2025-06-06 20:45:45,294 - TestDashboard - INFO - Starting dashboard server on http://localhost:8081
+2025-06-06 20:45:46,812 - TestDashboard - INFO - Discovering tests...
+2025-06-06 20:45:47,687 - TestDashboard - INFO - Found 722 tests in 9 components
+2025-06-06 20:45:52,194 - TestDashboard - INFO - Running 1 tests...
+2025-06-06 20:45:52,194 - TestDashboard - INFO - Running test: test_json_parsing.py
+2025-06-06 20:45:53,573 - TestDashboard - INFO - Test test_json_parsing.py passed in 1.38s
+2025-06-06 20:45:53,574 - TestDashboard - INFO - HTML report generated: test_results/test_results_20250606_204553.html
+2025-06-06 20:45:53,574 - TestDashboard - INFO - Test results saved to test_results/test_results_20250606_204553.json
+2025-06-06 21:11:29,428 - TestDashboard - INFO - Server stopped by user

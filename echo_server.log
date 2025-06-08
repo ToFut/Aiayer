@@ -1,0 +1,26 @@
+2025-06-03 18:17:03,321 - INFO - server listening on 0.0.0.0:8766
+2025-06-03 18:17:03,321 - INFO - WebSocket Echo Server running on ws://0.0.0.0:8766
+2025-06-03 18:17:03,321 - INFO - Connect locally using:
+2025-06-03 18:17:03,321 - INFO - - ws://localhost:8766
+2025-06-03 18:17:03,321 - INFO - - ws://127.0.0.1:8766
+2025-06-03 18:26:45,222 - INFO - connection open
+2025-06-03 18:26:45,223 - ERROR - connection handler failed
+Traceback (most recent call last):
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/asyncio/server.py", line 376, in conn_handler
+    await self.handler(connection)
+          ~~~~~~~~~~~~^^^^^^^^^^^^
+TypeError: echo() missing 1 required positional argument: 'path'
+2025-06-03 18:26:45,986 - INFO - connection open
+2025-06-03 18:26:45,986 - ERROR - connection handler failed
+Traceback (most recent call last):
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/asyncio/server.py", line 376, in conn_handler
+    await self.handler(connection)
+          ~~~~~~~~~~~~^^^^^^^^^^^^
+TypeError: echo() missing 1 required positional argument: 'path'
+2025-06-03 18:26:47,486 - INFO - connection open
+2025-06-03 18:26:47,486 - ERROR - connection handler failed
+Traceback (most recent call last):
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/asyncio/server.py", line 376, in conn_handler
+    await self.handler(connection)
+          ~~~~~~~~~~~~^^^^^^^^^^^^
+TypeError: echo() missing 1 required positional argument: 'path'

@@ -1,0 +1,2285 @@
+{
+  "last_updated": 1748807031.103824,
+  "active": [
+    {
+      "id": "15898911-ebed-48ba-ac98-cd2432ca238b",
+      "rule_id": "web_page_content_action",
+      "created_at": 1748802869.737112,
+      "updated_at": 1748802869.739779,
+      "status": "delivered",
+      "priority": "high",
+      "confidence": 0.8999999999999999,
+      "title": "Web Page Content Action",
+      "description": "Keyword pattern match: tutorial, form",
+      "suggestion": "I see you're viewing content about tutorial, form. Would you like me to summarize this information or find related resources?",
+      "context": {
+        "matched_keywords": [
+          "tutorial",
+          "form"
+        ],
+        "content_type": "web_content",
+        "memory_id": ""
+      },
+      "memory_references": [],
+      "action_plan": {
+        "type": "web_content_action",
+        "description": "Offer to perform action based on web content"
+      },
+      "expiration_time": 1748889269.73708
+    },
+    {
+      "id": "30aa57da-5f63-48f2-b784-31c6627a8371",
+      "rule_id": "web_content_rule",
+      "created_at": 1748802869.7376661,
+      "updated_at": 1748802869.7400908,
+      "status": "delivered",
+      "priority": "medium",
+      "confidence": 0.7999999999999999,
+      "title": "Web Content Detection",
+      "description": "Keyword pattern match: tutorial",
+      "suggestion": "I see you're viewing content about tutorial. Would you like me to summarize this information or find related resources?",
+      "context": {
+        "matched_keywords": [
+          "tutorial"
+        ],
+        "content_type": "application",
+        "memory_id": ""
+      },
+      "memory_references": [],
+      "action_plan": {
+        "type": "web_content_action",
+        "suggestion": "I can help you understand this content better."
+      },
+      "expiration_time": 1748889269.7376509
+    },
+    {
+      "id": "45ed991c-5d4d-412e-afab-03f8a861e77b",
+      "rule_id": "web_content_rule",
+      "created_at": 1748802869.738177,
+      "updated_at": 1748802869.740362,
+      "status": "delivered",
+      "priority": "medium",
+      "confidence": 0.7999999999999999,
+      "title": "Web Content Detection",
+      "description": "Keyword pattern match: tutorial",
+      "suggestion": "I see you're viewing content about tutorial. Would you like me to summarize this information or find related resources?",
+      "context": {
+        "matched_keywords": [
+          "tutorial"
+        ],
+        "content_type": "web_content",
+        "memory_id": ""
+      },
+      "memory_references": [],
+      "action_plan": {
+        "type": "web_content_action",
+        "suggestion": "I can help you understand this content better."
+      },
+      "expiration_time": 1748889269.738168
+    },
+    {
+      "id": "acb7b5f7-8f25-45e4-90ba-ab0aee437156",
+      "rule_id": "web_content_rule",
+      "created_at": 1748802869.738703,
+      "updated_at": 1748802929.7596009,
+      "status": "delivered",
+      "priority": "medium",
+      "confidence": 0.7999999999999999,
+      "title": "Web Content Detection",
+      "description": "Keyword pattern match: tutorial",
+      "suggestion": "I see you're viewing content about tutorial. Would you like me to summarize this information or find related resources?",
+      "context": {
+        "matched_keywords": [
+          "tutorial"
+        ],
+        "content_type": "application",
+        "memory_id": ""
+      },
+      "memory_references": [],
+      "action_plan": {
+        "type": "web_content_action",
+        "suggestion": "I can help you understand this content better."
+      },
+      "expiration_time": 1748889269.738695
+    },
+    {
+      "id": "a169b274-b41c-46bc-ad10-e7759d5f1a8f",
+      "rule_id": "web_content_1748802869_2367441989930298657",
+      "created_at": 1748802869.7393541,
+      "updated_at": 1748802929.7602618,
+      "status": "delivered",
+      "priority": "medium",
+      "confidence": 0.8,
+      "title": "Web Content Suggestion",
+      "description": "I noticed you're reading an article about python, learning, tutorial, programming, used. Would you like me to help you with this content?",
+      "suggestion": "",
+      "context": {
+        "url": "https://example.com/test-article",
+        "title": "Test Article About Python Programming",
+        "content_type": "article",
+        "matched_keywords": [
+          "python",
+          "learning",
+          "tutorial",
+          "programming",
+          "used"
+        ]
+      },
+      "memory_references": [],
+      "action_plan": {
+        "type": "web_content_action",
+        "url": "https://example.com/test-article",
+        "content_type": "article"
+      },
+      "expiration_time": 1748889269.739346
+    },
+    {
+      "id": "39b8b8f8-b92b-4353-b2ce-04e281fd025d",
+      "rule_id": "repetitive_action",
+      "created_at": 1748802929.7463691,
+      "updated_at": 1748802929.76086,
+      "status": "delivered",
+      "priority": "high",
+      "confidence": 0.85,
+      "title": "Repetitive Action Detection",
+      "description": "Repetitive action pattern detected",
+      "suggestion": "You seem to be repeatedly doing browser window showing python programming tutorial. Would you like me to automate this task for you?",
+      "context": {
+        "repetitions": 4,
+        "recent_activity": "browser window showing python programming tutorial"
+      },
+      "memory_references": [],
+      "action_plan": {
+        "type": "automation_suggestion",
+        "description": "Suggest automation for repetitive task"
+      },
+      "expiration_time": 1748889329.746154
+    },
+    {
+      "id": "25d6ba24-26c1-4cf8-a72e-fe84a892cc90",
+      "rule_id": "web_page_content_action",
+      "created_at": 1748802929.7491698,
+      "updated_at": 1748803802.838613,
+      "status": "delivered",
+      "priority": "high",
+      "confidence": 0.8999999999999999,
+      "title": "Web Page Content Action",
+      "description": "Keyword pattern match: tutorial, form",
+      "suggestion": "I see you're viewing content about tutorial, form. Would you like me to summarize this information or find related resources?",
+      "context": {
+        "matched_keywords": [
+          "tutorial",
+          "form"
+        ],
+        "content_type": "web_content",
+        "memory_id": ""
+      },
+      "memory_references": [],
+      "action_plan": {
+        "type": "web_content_action",
+        "description": "Offer to perform action based on web content"
+      },
+      "expiration_time": 1748889329.7491431
+    },
+    {
+      "id": "b7b16795-e5e0-4d2a-916f-cdc22b6a6ae8",
+      "rule_id": "web_content_rule",
+      "created_at": 1748802929.751942,
+      "updated_at": 1748803802.8391879,
+      "status": "delivered",
+      "priority": "medium",
+      "confidence": 0.7999999999999999,
+      "title": "Web Content Detection",
+      "description": "Keyword pattern match: tutorial",
+      "suggestion": "I see you're viewing content about tutorial. Would you like me to summarize this information or find related resources?",
+      "context": {
+        "matched_keywords": [
+          "tutorial"
+        ],
+        "content_type": "application",
+        "memory_id": ""
+      },
+      "memory_references": [],
+      "action_plan": {
+        "type": "web_content_action",
+        "suggestion": "I can help you understand this content better."
+      },
+      "expiration_time": 1748889329.751924
+    },
+    {
+      "id": "55f46d1f-9ee8-4d6d-b25f-8f18f387d5da",
+      "rule_id": "web_content_rule",
+      "created_at": 1748802929.753172,
+      "updated_at": 1748803802.839863,
+      "status": "delivered",
+      "priority": "medium",
+      "confidence": 0.7999999999999999,
+      "title": "Web Content Detection",
+      "description": "Keyword pattern match: tutorial",
+      "suggestion": "I see you're viewing content about tutorial. Would you like me to summarize this information or find related resources?",
+      "context": {
+        "matched_keywords": [
+          "tutorial"
+        ],
+        "content_type": "web_content",
+        "memory_id": ""
+      },
+      "memory_references": [],
+      "action_plan": {
+        "type": "web_content_action",
+        "suggestion": "I can help you understand this content better."
+      },
+      "expiration_time": 1748889329.7531579
+    },
+    {
+      "id": "659a47bc-1ef7-470a-9dce-2dd54d6e6cc3",
+      "rule_id": "web_content_rule",
+      "created_at": 1748802929.755274,
+      "updated_at": 1748803863.828692,
+      "status": "delivered",
+      "priority": "medium",
+      "confidence": 0.7999999999999999,
+      "title": "Web Content Detection",
+      "description": "Keyword pattern match: tutorial",
+      "suggestion": "I see you're viewing content about tutorial. Would you like me to summarize this information or find related resources?",
+      "context": {
+        "matched_keywords": [
+          "tutorial"
+        ],
+        "content_type": "application",
+        "memory_id": ""
+      },
+      "memory_references": [],
+      "action_plan": {
+        "type": "web_content_action",
+        "suggestion": "I can help you understand this content better."
+      },
+      "expiration_time": 1748889329.7552562
+    },
+    {
+      "id": "32d040f2-aaab-40c7-bef5-cc7abf9d6d1a",
+      "rule_id": "web_content_1748802929_2367441989930298657",
+      "created_at": 1748802929.7582731,
+      "updated_at": 1748803863.8294258,
+      "status": "delivered",
+      "priority": "medium",
+      "confidence": 0.8,
+      "title": "Web Content Suggestion",
+      "description": "I noticed you're reading an article about python, learning, tutorial, programming, used. Would you like me to help you with this content?",
+      "suggestion": "",
+      "context": {
+        "url": "https://example.com/test-article",
+        "title": "Test Article About Python Programming",
+        "content_type": "article",
+        "matched_keywords": [
+          "python",
+          "learning",
+          "tutorial",
+          "programming",
+          "used"
+        ]
+      },
+      "memory_references": [],
+      "action_plan": {
+        "type": "web_content_action",
+        "url": "https://example.com/test-article",
+        "content_type": "article"
+      },
+      "expiration_time": 1748889329.758254
+    },
+    {
+      "id": "aa47866f-3dfe-4c3c-8091-4e7378cea7e8",
+      "rule_id": "shopping_detection",
+      "created_at": 1748803802.834234,
+      "updated_at": 1748803863.830202,
+      "status": "delivered",
+      "priority": "medium",
+      "confidence": 0.95,
+      "title": "Shopping Detection",
+      "description": "Keyword pattern match: add to cart, buy, price",
+      "suggestion": "I notice you're shopping online. Would you like me to help compare prices, find reviews, or check for discount codes?",
+      "context": {
+        "matched_keywords": [
+          "add to cart",
+          "buy",
+          "price",
+          "product",
+          "shipping"
+        ],
+        "content_type": "web_content",
+        "memory_id": ""
+      },
+      "memory_references": [],
+      "action_plan": {
+        "type": "shopping_assistance",
+        "description": "Offer to help with online shopping"
+      },
+      "expiration_time": 1748890202.834201
+    },
+    {
+      "id": "7a5ecff7-a6c6-4969-bbb6-2e66e76c2e69",
+      "rule_id": "web_content_1748803802_8076386693638630692",
+      "created_at": 1748803802.836162,
+      "updated_at": 1748804013.076277,
+      "status": "delivered",
+      "priority": "medium",
+      "confidence": 0.8,
+      "title": "Web Content Suggestion",
+      "description": "I noticed you're filling out a form. Would you like me to help you complete it?",
+      "suggestion": "",
+      "context": {
+        "url": "https://accounts.google.com/signup",
+        "title": "Create your Google Account",
+        "content_type": "form",
+        "matched_keywords": [
+          "your",
+          "account",
+          "name",
+          "password",
+          "create"
+        ]
+      },
+      "memory_references": [],
+      "action_plan": {
+        "type": "web_content_action",
+        "url": "https://accounts.google.com/signup",
+        "content_type": "form"
+      },
+      "expiration_time": 1748890202.836145
+    },
+    {
+      "id": "589b658b-61dc-49eb-9f71-4a501fda4450",
+      "rule_id": "web_content_1748803802_-8641375286657231377",
+      "created_at": 1748803802.836826,
+      "updated_at": 1748804013.0773802,
+      "status": "delivered",
+      "priority": "medium",
+      "confidence": 0.8,
+      "title": "Web Content Suggestion",
+      "description": "I noticed you're browsing content about fetch, data, error, provides, javascript. Would you like assistance with this page?",
+      "suggestion": "",
+      "context": {
+        "url": "https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch",
+        "title": "Using the Fetch API - Web APIs | MDN",
+        "content_type": "general",
+        "matched_keywords": [
+          "fetch",
+          "data",
+          "error",
+          "provides",
+          "javascript"
+        ]
+      },
+      "memory_references": [],
+      "action_plan": {
+        "type": "web_content_action",
+        "url": "https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch",
+        "content_type": "general"
+      },
+      "expiration_time": 1748890202.8368142
+    },
+    {
+      "id": "048fcee9-9c5b-48ae-9aa9-a11cb1a29818",
+      "rule_id": "web_content_1748803802_-217786982156677534",
+      "created_at": 1748803802.837944,
+      "updated_at": 1748804013.0783942,
+      "status": "delivered",
+      "priority": "medium",
+      "confidence": 0.8,
+      "title": "Web Content Suggestion",
+      "description": "I noticed you're shopping for camera, smartphone, 108mp, premium, price. Would you like me to help you find the best deals or reviews?",
+      "suggestion": "",
+      "context": {
+        "url": "https://www.amazon.com/products/smartphone",
+        "title": "Premium Smartphone XYZ - Amazon.com",
+        "content_type": "shopping",
+        "matched_keywords": [
+          "camera",
+          "smartphone",
+          "108mp",
+          "premium",
+          "price"
+        ]
+      },
+      "memory_references": [],
+      "action_plan": {
+        "type": "web_content_action",
+        "url": "https://www.amazon.com/products/smartphone",
+        "content_type": "shopping"
+      },
+      "expiration_time": 1748890202.8379362
+    },
+    {
+      "id": "e7409ac6-b2de-4428-8225-d0dee397bac2",
+      "rule_id": "repetitive_action",
+      "created_at": 1748803863.820657,
+      "updated_at": 1748804809.286261,
+      "status": "delivered",
+      "priority": "high",
+      "confidence": 0.85,
+      "title": "Repetitive Action Detection",
+      "description": "Repetitive action pattern detected",
+      "suggestion": "You seem to be repeatedly doing browser window showing amazon product page. Would you like me to automate this task for you?",
+      "context": {
+        "repetitions": 4,
+        "recent_activity": "browser window showing amazon product page"
+      },
+      "memory_references": [],
+      "action_plan": {
+        "type": "automation_suggestion",
+        "description": "Suggest automation for repetitive task"
+      },
+      "expiration_time": 1748890263.820533
+    },
+    {
+      "id": "3a63eaed-44ff-435a-b08a-19730b2c9c30",
+      "rule_id": "shopping_detection",
+      "created_at": 1748803863.824115,
+      "updated_at": 1748804809.289182,
+      "status": "delivered",
+      "priority": "medium",
+      "confidence": 0.95,
+      "title": "Shopping Detection",
+      "description": "Keyword pattern match: add to cart, buy, price",
+      "suggestion": "I notice you're shopping online. Would you like me to help compare prices, find reviews, or check for discount codes?",
+      "context": {
+        "matched_keywords": [
+          "add to cart",
+          "buy",
+          "price",
+          "product",
+          "shipping"
+        ],
+        "content_type": "web_content",
+        "memory_id": ""
+      },
+      "memory_references": [],
+      "action_plan": {
+        "type": "shopping_assistance",
+        "description": "Offer to help with online shopping"
+      },
+      "expiration_time": 1748890263.824095
+    },
+    {
+      "id": "8a532e9e-d082-4439-94bd-d3715da8707a",
+      "rule_id": "web_content_1748803863_8076386693638630692",
+      "created_at": 1748803863.82589,
+      "updated_at": 1748804809.2941911,
+      "status": "delivered",
+      "priority": "medium",
+      "confidence": 0.8,
+      "title": "Web Content Suggestion",
+      "description": "I noticed you're filling out a form. Would you like me to help you complete it?",
+      "suggestion": "",
+      "context": {
+        "url": "https://accounts.google.com/signup",
+        "title": "Create your Google Account",
+        "content_type": "form",
+        "matched_keywords": [
+          "your",
+          "account",
+          "name",
+          "password",
+          "create"
+        ]
+      },
+      "memory_references": [],
+      "action_plan": {
+        "type": "web_content_action",
+        "url": "https://accounts.google.com/signup",
+        "content_type": "form"
+      },
+      "expiration_time": 1748890263.825878
+    },
+    {
+      "id": "fc428ee6-a28b-4bdf-839c-a987ff8dc2ce",
+      "rule_id": "web_content_1748803863_-8641375286657231377",
+      "created_at": 1748803863.826935,
+      "updated_at": 1748804869.333069,
+      "status": "delivered",
+      "priority": "medium",
+      "confidence": 0.8,
+      "title": "Web Content Suggestion",
+      "description": "I noticed you're browsing content about fetch, data, error, provides, javascript. Would you like assistance with this page?",
+      "suggestion": "",
+      "context": {
+        "url": "https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch",
+        "title": "Using the Fetch API - Web APIs | MDN",
+        "content_type": "general",
+        "matched_keywords": [
+          "fetch",
+          "data",
+          "error",
+          "provides",
+          "javascript"
+        ]
+      },
+      "memory_references": [],
+      "action_plan": {
+        "type": "web_content_action",
+        "url": "https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch",
+        "content_type": "general"
+      },
+      "expiration_time": 1748890263.826918
+    },
+    {
+      "id": "e368c720-5b06-4b3d-beac-544216c0f771",
+      "rule_id": "web_content_1748803863_-217786982156677534",
+      "created_at": 1748803863.827811,
+      "updated_at": 1748804869.334801,
+      "status": "delivered",
+      "priority": "medium",
+      "confidence": 0.8,
+      "title": "Web Content Suggestion",
+      "description": "I noticed you're shopping for camera, smartphone, 108mp, premium, price. Would you like me to help you find the best deals or reviews?",
+      "suggestion": "",
+      "context": {
+        "url": "https://www.amazon.com/products/smartphone",
+        "title": "Premium Smartphone XYZ - Amazon.com",
+        "content_type": "shopping",
+        "matched_keywords": [
+          "camera",
+          "smartphone",
+          "108mp",
+          "premium",
+          "price"
+        ]
+      },
+      "memory_references": [],
+      "action_plan": {
+        "type": "web_content_action",
+        "url": "https://www.amazon.com/products/smartphone",
+        "content_type": "shopping"
+      },
+      "expiration_time": 1748890263.8278
+    },
+    {
+      "id": "2746b09e-08f5-4cd9-849b-912aaf8a41da",
+      "rule_id": "repetitive_action",
+      "created_at": 1748804013.063104,
+      "updated_at": 1748804869.336465,
+      "status": "delivered",
+      "priority": "high",
+      "confidence": 0.7999999999999999,
+      "title": "Repetitive Action Detection",
+      "description": "Repetitive action pattern detected",
+      "suggestion": "You seem to be repeatedly doing \n                create your google account\n                \n                first name:\n                last name:\n                \n                username: @gmail.com\n                \n                password:\n                confirm password:\n                \n                next | sign in instead\n                \n                by creating an account, you agree to our terms of service and acknowledge \n                that you have read our privacy policy to learn how we collect and use your data.\n                . Would you like me to automate this task for you?",
+      "context": {
+        "repetitions": 3,
+        "recent_activity": "\n                create your google account\n                \n                first name:\n                last name:\n                \n                username: @gmail.com\n                \n                password:\n                confirm password:\n                \n                next | sign in instead\n                \n                by creating an account, you agree to our terms of service and acknowledge \n                that you have read our privacy policy to learn how we collect and use your data.\n                "
+      },
+      "memory_references": [],
+      "action_plan": {
+        "type": "automation_suggestion",
+        "description": "Suggest automation for repetitive task"
+      },
+      "expiration_time": 1748890413.063076
+    },
+    {
+      "id": "4139b958-72da-465e-b779-6806f180d1cd",
+      "rule_id": "shopping_detection",
+      "created_at": 1748804013.0673048,
+      "updated_at": 1748805982.847827,
+      "status": "delivered",
+      "priority": "medium",
+      "confidence": 0.95,
+      "title": "Shopping Detection",
+      "description": "Keyword pattern match: add to cart, buy, price",
+      "suggestion": "I notice you're shopping online. Would you like me to help compare prices, find reviews, or check for discount codes?",
+      "context": {
+        "matched_keywords": [
+          "add to cart",
+          "buy",
+          "price",
+          "product",
+          "shipping"
+        ],
+        "content_type": "web_content",
+        "memory_id": ""
+      },
+      "memory_references": [],
+      "action_plan": {
+        "type": "shopping_assistance",
+        "description": "Offer to help with online shopping"
+      },
+      "expiration_time": 1748890413.0672882
+    },
+    {
+      "id": "3627ae48-99a6-45d4-937a-0d38705386df",
+      "rule_id": "shopping_detection",
+      "created_at": 1748804013.069115,
+      "updated_at": 1748805982.855358,
+      "status": "delivered",
+      "priority": "medium",
+      "confidence": 0.95,
+      "title": "Shopping Detection",
+      "description": "Keyword pattern match: add to cart, buy, price",
+      "suggestion": "I notice you're shopping online. Would you like me to help compare prices, find reviews, or check for discount codes?",
+      "context": {
+        "matched_keywords": [
+          "add to cart",
+          "buy",
+          "price",
+          "product",
+          "shipping"
+        ],
+        "content_type": "web_content",
+        "memory_id": ""
+      },
+      "memory_references": [],
+      "action_plan": {
+        "type": "shopping_assistance",
+        "description": "Offer to help with online shopping"
+      },
+      "expiration_time": 1748890413.069101
+    },
+    {
+      "id": "9c457891-cf19-4806-932f-6b6c12df9144",
+      "rule_id": "web_content_1748804013_-6219402079219558517",
+      "created_at": 1748804013.071143,
+      "updated_at": 1748805982.864222,
+      "status": "delivered",
+      "priority": "medium",
+      "confidence": 0.8,
+      "title": "Web Content Suggestion",
+      "description": "I noticed you're filling out a form. Would you like me to help you complete it?",
+      "suggestion": "",
+      "context": {
+        "url": "https://accounts.google.com/signup",
+        "title": "Create your Google Account",
+        "content_type": "form",
+        "matched_keywords": [
+          "your",
+          "account",
+          "name",
+          "password",
+          "create"
+        ]
+      },
+      "memory_references": [],
+      "action_plan": {
+        "type": "web_content_action",
+        "url": "https://accounts.google.com/signup",
+        "content_type": "form"
+      },
+      "expiration_time": 1748890413.071132
+    },
+    {
+      "id": "c1289d35-2a32-4b8c-85fe-efc91d3feeb1",
+      "rule_id": "web_content_1748804013_5812619147545016362",
+      "created_at": 1748804013.0721111,
+      "updated_at": 1748806079.332331,
+      "status": "delivered",
+      "priority": "medium",
+      "confidence": 0.8,
+      "title": "Web Content Suggestion",
+      "description": "I noticed you're shopping for camera, smartphone, 108mp, premium, price. Would you like me to help you find the best deals or reviews?",
+      "suggestion": "",
+      "context": {
+        "url": "https://www.amazon.com/products/smartphone",
+        "title": "Premium Smartphone XYZ - Amazon.com",
+        "content_type": "shopping",
+        "matched_keywords": [
+          "camera",
+          "smartphone",
+          "108mp",
+          "premium",
+          "price"
+        ]
+      },
+      "memory_references": [],
+      "action_plan": {
+        "type": "web_content_action",
+        "url": "https://www.amazon.com/products/smartphone",
+        "content_type": "shopping"
+      },
+      "expiration_time": 1748890413.072098
+    },
+    {
+      "id": "5cec9cbb-511c-4d99-a5e3-1241c4752080",
+      "rule_id": "web_content_1748804013_-6219402079219558517",
+      "created_at": 1748804013.073067,
+      "updated_at": 1748806079.336694,
+      "status": "delivered",
+      "priority": "medium",
+      "confidence": 0.8,
+      "title": "Web Content Suggestion",
+      "description": "I noticed you're filling out a form. Would you like me to help you complete it?",
+      "suggestion": "",
+      "context": {
+        "url": "https://accounts.google.com/signup",
+        "title": "Create your Google Account",
+        "content_type": "form",
+        "matched_keywords": [
+          "your",
+          "account",
+          "name",
+          "password",
+          "create"
+        ]
+      },
+      "memory_references": [],
+      "action_plan": {
+        "type": "web_content_action",
+        "url": "https://accounts.google.com/signup",
+        "content_type": "form"
+      },
+      "expiration_time": 1748890413.073057
+    },
+    {
+      "id": "d3af48e0-3197-4ab4-9105-d8cd3c4bbe45",
+      "rule_id": "web_content_1748804013_5017128044172574210",
+      "created_at": 1748804013.0740302,
+      "updated_at": 1748806079.341133,
+      "status": "delivered",
+      "priority": "medium",
+      "confidence": 0.8,
+      "title": "Web Content Suggestion",
+      "description": "I noticed you're browsing content about fetch, data, error, provides, javascript. Would you like assistance with this page?",
+      "suggestion": "",
+      "context": {
+        "url": "https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch",
+        "title": "Using the Fetch API - Web APIs | MDN",
+        "content_type": "general",
+        "matched_keywords": [
+          "fetch",
+          "data",
+          "error",
+          "provides",
+          "javascript"
+        ]
+      },
+      "memory_references": [],
+      "action_plan": {
+        "type": "web_content_action",
+        "url": "https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch",
+        "content_type": "general"
+      },
+      "expiration_time": 1748890413.074023
+    },
+    {
+      "id": "f097f48f-1a48-4514-a3e5-7b291ae4de62",
+      "rule_id": "web_content_1748804013_5812619147545016362",
+      "created_at": 1748804013.075022,
+      "updated_at": 1748806139.3995142,
+      "status": "delivered",
+      "priority": "medium",
+      "confidence": 0.8,
+      "title": "Web Content Suggestion",
+      "description": "I noticed you're shopping for camera, smartphone, 108mp, premium, price. Would you like me to help you find the best deals or reviews?",
+      "suggestion": "",
+      "context": {
+        "url": "https://www.amazon.com/products/smartphone",
+        "title": "Premium Smartphone XYZ - Amazon.com",
+        "content_type": "shopping",
+        "matched_keywords": [
+          "camera",
+          "smartphone",
+          "108mp",
+          "premium",
+          "price"
+        ]
+      },
+      "memory_references": [],
+      "action_plan": {
+        "type": "web_content_action",
+        "url": "https://www.amazon.com/products/smartphone",
+        "content_type": "shopping"
+      },
+      "expiration_time": 1748890413.0750148
+    },
+    {
+      "id": "e3f28407-e71e-484c-9d01-260b688456de",
+      "rule_id": "repetitive_action",
+      "created_at": 1748804809.228993,
+      "updated_at": 1748806139.4042308,
+      "status": "delivered",
+      "priority": "high",
+      "confidence": 0.7999999999999999,
+      "title": "Repetitive Action Detection",
+      "description": "Repetitive action pattern detected",
+      "suggestion": "You seem to be repeatedly doing browser window showing python programming tutorial. Would you like me to automate this task for you?",
+      "context": {
+        "repetitions": 3,
+        "recent_activity": "browser window showing python programming tutorial"
+      },
+      "memory_references": [],
+      "action_plan": {
+        "type": "automation_suggestion",
+        "description": "Suggest automation for repetitive task"
+      },
+      "expiration_time": 1748891209.2289548
+    },
+    {
+      "id": "ce31b95c-1f69-47ba-8c02-d20bb7ac8e0d",
+      "rule_id": "web_page_content_action",
+      "created_at": 1748804809.23473,
+      "updated_at": 1748806139.408967,
+      "status": "delivered",
+      "priority": "high",
+      "confidence": 0.8999999999999999,
+      "title": "Web Page Content Action",
+      "description": "Keyword pattern match: tutorial, form",
+      "suggestion": "I see you're viewing content about tutorial, form. Would you like me to summarize this information or find related resources?",
+      "context": {
+        "matched_keywords": [
+          "tutorial",
+          "form"
+        ],
+        "content_type": "web_content",
+        "memory_id": ""
+      },
+      "memory_references": [],
+      "action_plan": {
+        "type": "web_content_action",
+        "description": "Offer to perform action based on web content"
+      },
+      "expiration_time": 1748891209.234682
+    },
+    {
+      "id": "3ace77d4-b6c3-4562-a5a6-3743f7120da8",
+      "rule_id": "shopping_detection",
+      "created_at": 1748804809.2399518,
+      "updated_at": 1748807031.0682628,
+      "status": "delivered",
+      "priority": "medium",
+      "confidence": 0.95,
+      "title": "Shopping Detection",
+      "description": "Keyword pattern match: add to cart, buy, price",
+      "suggestion": "I notice you're shopping online. Would you like me to help compare prices, find reviews, or check for discount codes?",
+      "context": {
+        "matched_keywords": [
+          "add to cart",
+          "buy",
+          "price",
+          "product",
+          "shipping"
+        ],
+        "content_type": "web_content",
+        "memory_id": ""
+      },
+      "memory_references": [],
+      "action_plan": {
+        "type": "shopping_assistance",
+        "description": "Offer to help with online shopping"
+      },
+      "expiration_time": 1748891209.239916
+    },
+    {
+      "id": "e73d49f7-b15b-4dd9-9a21-ff7a30c8d37d",
+      "rule_id": "web_content_rule",
+      "created_at": 1748804809.244881,
+      "updated_at": 1748807031.081803,
+      "status": "delivered",
+      "priority": "medium",
+      "confidence": 0.7999999999999999,
+      "title": "Web Content Detection",
+      "description": "Keyword pattern match: tutorial",
+      "suggestion": "I see you're viewing content about tutorial. Would you like me to summarize this information or find related resources?",
+      "context": {
+        "matched_keywords": [
+          "tutorial"
+        ],
+        "content_type": "application",
+        "memory_id": ""
+      },
+      "memory_references": [],
+      "action_plan": {
+        "type": "web_content_action",
+        "suggestion": "I can help you understand this content better."
+      },
+      "expiration_time": 1748891209.244858
+    },
+    {
+      "id": "c1468fdd-093d-4672-becd-db32d8c0c8e8",
+      "rule_id": "web_content_rule",
+      "created_at": 1748804809.2500072,
+      "updated_at": 1748807031.103783,
+      "status": "delivered",
+      "priority": "medium",
+      "confidence": 0.7999999999999999,
+      "title": "Web Content Detection",
+      "description": "Keyword pattern match: tutorial",
+      "suggestion": "I see you're viewing content about tutorial. Would you like me to summarize this information or find related resources?",
+      "context": {
+        "matched_keywords": [
+          "tutorial"
+        ],
+        "content_type": "web_content",
+        "memory_id": ""
+      },
+      "memory_references": [],
+      "action_plan": {
+        "type": "web_content_action",
+        "suggestion": "I can help you understand this content better."
+      },
+      "expiration_time": 1748891209.249983
+    },
+    {
+      "id": "b0392d04-7e71-4f1c-95f8-149b121e84f8",
+      "rule_id": "web_content_rule",
+      "created_at": 1748804809.258931,
+      "updated_at": 1748804809.2642019,
+      "status": "pending",
+      "priority": "medium",
+      "confidence": 0.7999999999999999,
+      "title": "Web Content Detection",
+      "description": "Keyword pattern match: tutorial",
+      "suggestion": "I see you're viewing content about tutorial. Would you like me to summarize this information or find related resources?",
+      "context": {
+        "matched_keywords": [
+          "tutorial"
+        ],
+        "content_type": "application",
+        "memory_id": ""
+      },
+      "memory_references": [],
+      "action_plan": {
+        "type": "web_content_action",
+        "suggestion": "I can help you understand this content better."
+      },
+      "expiration_time": 1748891209.258402
+    },
+    {
+      "id": "6f4265df-fd84-4653-b74a-2e4cd595b789",
+      "rule_id": "web_content_1748804809_-3479517467981597459",
+      "created_at": 1748804809.26963,
+      "updated_at": 1748804809.26963,
+      "status": "pending",
+      "priority": "medium",
+      "confidence": 0.8,
+      "title": "Web Content Suggestion",
+      "description": "I noticed you're reading an article about python, learning, tutorial, programming, used. Would you like me to help you with this content?",
+      "suggestion": "",
+      "context": {
+        "url": "https://example.com/test-article",
+        "title": "Test Article About Python Programming",
+        "content_type": "article",
+        "matched_keywords": [
+          "python",
+          "learning",
+          "tutorial",
+          "programming",
+          "used"
+        ]
+      },
+      "memory_references": [],
+      "action_plan": {
+        "type": "web_content_action",
+        "url": "https://example.com/test-article",
+        "content_type": "article"
+      },
+      "expiration_time": 1748891209.26955
+    },
+    {
+      "id": "48ed49c5-d63e-44b1-9b30-d16d92d51bdd",
+      "rule_id": "web_content_1748804809_-7744967145329933544",
+      "created_at": 1748804809.272216,
+      "updated_at": 1748804809.272216,
+      "status": "pending",
+      "priority": "medium",
+      "confidence": 0.8,
+      "title": "Web Content Suggestion",
+      "description": "I noticed you're filling out a form. Would you like me to help you complete it?",
+      "suggestion": "",
+      "context": {
+        "url": "https://accounts.google.com/signup",
+        "title": "Create your Google Account",
+        "content_type": "form",
+        "matched_keywords": [
+          "your",
+          "account",
+          "name",
+          "password",
+          "create"
+        ]
+      },
+      "memory_references": [],
+      "action_plan": {
+        "type": "web_content_action",
+        "url": "https://accounts.google.com/signup",
+        "content_type": "form"
+      },
+      "expiration_time": 1748891209.2721941
+    },
+    {
+      "id": "2c711d53-5af0-4279-97e7-105da1a99f7b",
+      "rule_id": "web_content_1748804809_-527493658705726993",
+      "created_at": 1748804809.275885,
+      "updated_at": 1748804809.275885,
+      "status": "pending",
+      "priority": "medium",
+      "confidence": 0.8,
+      "title": "Web Content Suggestion",
+      "description": "I noticed you're browsing content about fetch, data, error, provides, javascript. Would you like assistance with this page?",
+      "suggestion": "",
+      "context": {
+        "url": "https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch",
+        "title": "Using the Fetch API - Web APIs | MDN",
+        "content_type": "general",
+        "matched_keywords": [
+          "fetch",
+          "data",
+          "error",
+          "provides",
+          "javascript"
+        ]
+      },
+      "memory_references": [],
+      "action_plan": {
+        "type": "web_content_action",
+        "url": "https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch",
+        "content_type": "general"
+      },
+      "expiration_time": 1748891209.2758641
+    },
+    {
+      "id": "fdf868c3-f05c-4e95-b2d1-b8100632d893",
+      "rule_id": "web_content_1748804809_-5432381680042294965",
+      "created_at": 1748804809.2790558,
+      "updated_at": 1748804809.2790558,
+      "status": "pending",
+      "priority": "medium",
+      "confidence": 0.8,
+      "title": "Web Content Suggestion",
+      "description": "I noticed you're shopping for camera, smartphone, 108mp, premium, price. Would you like me to help you find the best deals or reviews?",
+      "suggestion": "",
+      "context": {
+        "url": "https://www.amazon.com/products/smartphone",
+        "title": "Premium Smartphone XYZ - Amazon.com",
+        "content_type": "shopping",
+        "matched_keywords": [
+          "camera",
+          "smartphone",
+          "108mp",
+          "premium",
+          "price"
+        ]
+      },
+      "memory_references": [],
+      "action_plan": {
+        "type": "web_content_action",
+        "url": "https://www.amazon.com/products/smartphone",
+        "content_type": "shopping"
+      },
+      "expiration_time": 1748891209.2790358
+    },
+    {
+      "id": "99ce82ad-b243-4687-b108-c49f8749a85d",
+      "rule_id": "repetitive_action",
+      "created_at": 1748804869.303138,
+      "updated_at": 1748804869.306153,
+      "status": "pending",
+      "priority": "high",
+      "confidence": 0.85,
+      "title": "Repetitive Action Detection",
+      "description": "Repetitive action pattern detected",
+      "suggestion": "You seem to be repeatedly doing browser window showing python programming tutorial. Would you like me to automate this task for you?",
+      "context": {
+        "repetitions": 4,
+        "recent_activity": "browser window showing python programming tutorial"
+      },
+      "memory_references": [],
+      "action_plan": {
+        "type": "automation_suggestion",
+        "description": "Suggest automation for repetitive task"
+      },
+      "expiration_time": 1748891269.3030279
+    },
+    {
+      "id": "03c809ec-77f4-4aa3-8e6a-5f9de1740c39",
+      "rule_id": "web_page_content_action",
+      "created_at": 1748804869.307589,
+      "updated_at": 1748804869.309064,
+      "status": "pending",
+      "priority": "high",
+      "confidence": 0.8999999999999999,
+      "title": "Web Page Content Action",
+      "description": "Keyword pattern match: tutorial, form",
+      "suggestion": "I see you're viewing content about tutorial, form. Would you like me to summarize this information or find related resources?",
+      "context": {
+        "matched_keywords": [
+          "tutorial",
+          "form"
+        ],
+        "content_type": "web_content",
+        "memory_id": ""
+      },
+      "memory_references": [],
+      "action_plan": {
+        "type": "web_content_action",
+        "description": "Offer to perform action based on web content"
+      },
+      "expiration_time": 1748891269.30757
+    },
+    {
+      "id": "0e81d216-da95-4307-ac9d-946735703557",
+      "rule_id": "shopping_detection",
+      "created_at": 1748804869.3104131,
+      "updated_at": 1748804869.3118029,
+      "status": "pending",
+      "priority": "medium",
+      "confidence": 0.95,
+      "title": "Shopping Detection",
+      "description": "Keyword pattern match: add to cart, buy, price",
+      "suggestion": "I notice you're shopping online. Would you like me to help compare prices, find reviews, or check for discount codes?",
+      "context": {
+        "matched_keywords": [
+          "add to cart",
+          "buy",
+          "price",
+          "product",
+          "shipping"
+        ],
+        "content_type": "web_content",
+        "memory_id": ""
+      },
+      "memory_references": [],
+      "action_plan": {
+        "type": "shopping_assistance",
+        "description": "Offer to help with online shopping"
+      },
+      "expiration_time": 1748891269.3103979
+    },
+    {
+      "id": "7348f78a-23a8-4008-99c6-2925187363e1",
+      "rule_id": "web_content_rule",
+      "created_at": 1748804869.3131342,
+      "updated_at": 1748804869.314708,
+      "status": "pending",
+      "priority": "medium",
+      "confidence": 0.7999999999999999,
+      "title": "Web Content Detection",
+      "description": "Keyword pattern match: tutorial",
+      "suggestion": "I see you're viewing content about tutorial. Would you like me to summarize this information or find related resources?",
+      "context": {
+        "matched_keywords": [
+          "tutorial"
+        ],
+        "content_type": "application",
+        "memory_id": ""
+      },
+      "memory_references": [],
+      "action_plan": {
+        "type": "web_content_action",
+        "suggestion": "I can help you understand this content better."
+      },
+      "expiration_time": 1748891269.313123
+    },
+    {
+      "id": "b447d60c-21db-4228-8c5c-32c8fa1b7c0f",
+      "rule_id": "web_content_rule",
+      "created_at": 1748804869.316137,
+      "updated_at": 1748804869.3178291,
+      "status": "pending",
+      "priority": "medium",
+      "confidence": 0.7999999999999999,
+      "title": "Web Content Detection",
+      "description": "Keyword pattern match: tutorial",
+      "suggestion": "I see you're viewing content about tutorial. Would you like me to summarize this information or find related resources?",
+      "context": {
+        "matched_keywords": [
+          "tutorial"
+        ],
+        "content_type": "web_content",
+        "memory_id": ""
+      },
+      "memory_references": [],
+      "action_plan": {
+        "type": "web_content_action",
+        "suggestion": "I can help you understand this content better."
+      },
+      "expiration_time": 1748891269.3161259
+    },
+    {
+      "id": "f853b46a-c77c-4f1f-a6d0-e73da83a49ca",
+      "rule_id": "web_content_rule",
+      "created_at": 1748804869.3193622,
+      "updated_at": 1748804869.320829,
+      "status": "pending",
+      "priority": "medium",
+      "confidence": 0.7999999999999999,
+      "title": "Web Content Detection",
+      "description": "Keyword pattern match: tutorial",
+      "suggestion": "I see you're viewing content about tutorial. Would you like me to summarize this information or find related resources?",
+      "context": {
+        "matched_keywords": [
+          "tutorial"
+        ],
+        "content_type": "application",
+        "memory_id": ""
+      },
+      "memory_references": [],
+      "action_plan": {
+        "type": "web_content_action",
+        "suggestion": "I can help you understand this content better."
+      },
+      "expiration_time": 1748891269.319351
+    },
+    {
+      "id": "e595834f-c96f-4108-ae28-a4e83df0278b",
+      "rule_id": "web_content_1748804869_-3479517467981597459",
+      "created_at": 1748804869.322575,
+      "updated_at": 1748804869.322575,
+      "status": "pending",
+      "priority": "medium",
+      "confidence": 0.8,
+      "title": "Web Content Suggestion",
+      "description": "I noticed you're reading an article about python, learning, tutorial, programming, used. Would you like me to help you with this content?",
+      "suggestion": "",
+      "context": {
+        "url": "https://example.com/test-article",
+        "title": "Test Article About Python Programming",
+        "content_type": "article",
+        "matched_keywords": [
+          "python",
+          "learning",
+          "tutorial",
+          "programming",
+          "used"
+        ]
+      },
+      "memory_references": [],
+      "action_plan": {
+        "type": "web_content_action",
+        "url": "https://example.com/test-article",
+        "content_type": "article"
+      },
+      "expiration_time": 1748891269.322562
+    },
+    {
+      "id": "4defeafe-2dc2-409e-8383-45f42bbdb8b2",
+      "rule_id": "web_content_1748804869_-7744967145329933544",
+      "created_at": 1748804869.32412,
+      "updated_at": 1748804869.32412,
+      "status": "pending",
+      "priority": "medium",
+      "confidence": 0.8,
+      "title": "Web Content Suggestion",
+      "description": "I noticed you're filling out a form. Would you like me to help you complete it?",
+      "suggestion": "",
+      "context": {
+        "url": "https://accounts.google.com/signup",
+        "title": "Create your Google Account",
+        "content_type": "form",
+        "matched_keywords": [
+          "your",
+          "account",
+          "name",
+          "password",
+          "create"
+        ]
+      },
+      "memory_references": [],
+      "action_plan": {
+        "type": "web_content_action",
+        "url": "https://accounts.google.com/signup",
+        "content_type": "form"
+      },
+      "expiration_time": 1748891269.32411
+    },
+    {
+      "id": "58605b7a-18a8-4157-9ba0-32855c6dfec4",
+      "rule_id": "web_content_1748804869_-527493658705726993",
+      "created_at": 1748804869.32573,
+      "updated_at": 1748804869.32573,
+      "status": "pending",
+      "priority": "medium",
+      "confidence": 0.8,
+      "title": "Web Content Suggestion",
+      "description": "I noticed you're browsing content about fetch, data, error, provides, javascript. Would you like assistance with this page?",
+      "suggestion": "",
+      "context": {
+        "url": "https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch",
+        "title": "Using the Fetch API - Web APIs | MDN",
+        "content_type": "general",
+        "matched_keywords": [
+          "fetch",
+          "data",
+          "error",
+          "provides",
+          "javascript"
+        ]
+      },
+      "memory_references": [],
+      "action_plan": {
+        "type": "web_content_action",
+        "url": "https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch",
+        "content_type": "general"
+      },
+      "expiration_time": 1748891269.325713
+    },
+    {
+      "id": "613d6d16-0dbc-4001-ba36-fd0250dc8b28",
+      "rule_id": "web_content_1748804869_-5432381680042294965",
+      "created_at": 1748804869.3281002,
+      "updated_at": 1748804869.3281012,
+      "status": "pending",
+      "priority": "medium",
+      "confidence": 0.8,
+      "title": "Web Content Suggestion",
+      "description": "I noticed you're shopping for camera, smartphone, 108mp, premium, price. Would you like me to help you find the best deals or reviews?",
+      "suggestion": "",
+      "context": {
+        "url": "https://www.amazon.com/products/smartphone",
+        "title": "Premium Smartphone XYZ - Amazon.com",
+        "content_type": "shopping",
+        "matched_keywords": [
+          "camera",
+          "smartphone",
+          "108mp",
+          "premium",
+          "price"
+        ]
+      },
+      "memory_references": [],
+      "action_plan": {
+        "type": "web_content_action",
+        "url": "https://www.amazon.com/products/smartphone",
+        "content_type": "shopping"
+      },
+      "expiration_time": 1748891269.328084
+    },
+    {
+      "id": "67c89757-5bfc-41b4-8b24-7d7d857c01cc",
+      "rule_id": "repetitive_action",
+      "created_at": 1748805982.8038552,
+      "updated_at": 1748805982.807182,
+      "status": "pending",
+      "priority": "high",
+      "confidence": 0.7999999999999999,
+      "title": "Repetitive Action Detection",
+      "description": "Repetitive action pattern detected",
+      "suggestion": "You seem to be repeatedly doing \n                create your google account\n                \n                first name:\n                last name:\n                \n                username: @gmail.com\n                \n                password:\n                confirm password:\n                \n                next | sign in instead\n                \n                by creating an account, you agree to our terms of service and acknowledge \n                that you have read our privacy policy to learn how we collect and use your data.\n                . Would you like me to automate this task for you?",
+      "context": {
+        "repetitions": 3,
+        "recent_activity": "\n                create your google account\n                \n                first name:\n                last name:\n                \n                username: @gmail.com\n                \n                password:\n                confirm password:\n                \n                next | sign in instead\n                \n                by creating an account, you agree to our terms of service and acknowledge \n                that you have read our privacy policy to learn how we collect and use your data.\n                "
+      },
+      "memory_references": [],
+      "action_plan": {
+        "type": "automation_suggestion",
+        "description": "Suggest automation for repetitive task"
+      },
+      "expiration_time": 1748892382.8037848
+    },
+    {
+      "id": "ea784ba4-0412-4d47-869a-2e4ec9b4c0a3",
+      "rule_id": "shopping_detection",
+      "created_at": 1748805982.8100271,
+      "updated_at": 1748805982.813403,
+      "status": "pending",
+      "priority": "medium",
+      "confidence": 0.95,
+      "title": "Shopping Detection",
+      "description": "Keyword pattern match: add to cart, buy, price",
+      "suggestion": "I notice you're shopping online. Would you like me to help compare prices, find reviews, or check for discount codes?",
+      "context": {
+        "matched_keywords": [
+          "add to cart",
+          "buy",
+          "price",
+          "product",
+          "shipping"
+        ],
+        "content_type": "web_content",
+        "memory_id": ""
+      },
+      "memory_references": [],
+      "action_plan": {
+        "type": "shopping_assistance",
+        "description": "Offer to help with online shopping"
+      },
+      "expiration_time": 1748892382.810003
+    },
+    {
+      "id": "822552d8-1fb8-4bde-b681-fe4afa15238f",
+      "rule_id": "shopping_detection",
+      "created_at": 1748805982.816468,
+      "updated_at": 1748805982.8194509,
+      "status": "pending",
+      "priority": "medium",
+      "confidence": 0.95,
+      "title": "Shopping Detection",
+      "description": "Keyword pattern match: add to cart, buy, price",
+      "suggestion": "I notice you're shopping online. Would you like me to help compare prices, find reviews, or check for discount codes?",
+      "context": {
+        "matched_keywords": [
+          "add to cart",
+          "buy",
+          "price",
+          "product",
+          "shipping"
+        ],
+        "content_type": "web_content",
+        "memory_id": ""
+      },
+      "memory_references": [],
+      "action_plan": {
+        "type": "shopping_assistance",
+        "description": "Offer to help with online shopping"
+      },
+      "expiration_time": 1748892382.8164108
+    },
+    {
+      "id": "21d8e46a-309a-45b9-8542-e30bb3967de8",
+      "rule_id": "web_content_1748805982_-1207653457810791386",
+      "created_at": 1748805982.8230138,
+      "updated_at": 1748805982.823015,
+      "status": "pending",
+      "priority": "medium",
+      "confidence": 0.8,
+      "title": "Web Content Suggestion",
+      "description": "I noticed you're filling out a form. Would you like me to help you complete it?",
+      "suggestion": "",
+      "context": {
+        "url": "https://accounts.google.com/signup",
+        "title": "Create your Google Account",
+        "content_type": "form",
+        "matched_keywords": [
+          "your",
+          "account",
+          "name",
+          "password",
+          "create"
+        ]
+      },
+      "memory_references": [],
+      "action_plan": {
+        "type": "web_content_action",
+        "url": "https://accounts.google.com/signup",
+        "content_type": "form"
+      },
+      "expiration_time": 1748892382.822994
+    },
+    {
+      "id": "1cfd4b49-86b8-4d86-b385-c4a89880a654",
+      "rule_id": "web_content_1748805982_6982491421519899805",
+      "created_at": 1748805982.826248,
+      "updated_at": 1748805982.826248,
+      "status": "pending",
+      "priority": "medium",
+      "confidence": 0.8,
+      "title": "Web Content Suggestion",
+      "description": "I noticed you're shopping for camera, smartphone, 108mp, premium, price. Would you like me to help you find the best deals or reviews?",
+      "suggestion": "",
+      "context": {
+        "url": "https://www.amazon.com/products/smartphone",
+        "title": "Premium Smartphone XYZ - Amazon.com",
+        "content_type": "shopping",
+        "matched_keywords": [
+          "camera",
+          "smartphone",
+          "108mp",
+          "premium",
+          "price"
+        ]
+      },
+      "memory_references": [],
+      "action_plan": {
+        "type": "web_content_action",
+        "url": "https://www.amazon.com/products/smartphone",
+        "content_type": "shopping"
+      },
+      "expiration_time": 1748892382.826228
+    },
+    {
+      "id": "aa8f3138-96ba-46fd-a4f6-b86eca07cf60",
+      "rule_id": "web_content_1748805982_-1207653457810791386",
+      "created_at": 1748805982.829581,
+      "updated_at": 1748805982.829581,
+      "status": "pending",
+      "priority": "medium",
+      "confidence": 0.8,
+      "title": "Web Content Suggestion",
+      "description": "I noticed you're filling out a form. Would you like me to help you complete it?",
+      "suggestion": "",
+      "context": {
+        "url": "https://accounts.google.com/signup",
+        "title": "Create your Google Account",
+        "content_type": "form",
+        "matched_keywords": [
+          "your",
+          "account",
+          "name",
+          "password",
+          "create"
+        ]
+      },
+      "memory_references": [],
+      "action_plan": {
+        "type": "web_content_action",
+        "url": "https://accounts.google.com/signup",
+        "content_type": "form"
+      },
+      "expiration_time": 1748892382.829557
+    },
+    {
+      "id": "fe7743c4-13be-4fe6-b3f6-9e50642e7123",
+      "rule_id": "web_content_1748805982_8971376006674355862",
+      "created_at": 1748805982.832994,
+      "updated_at": 1748805982.832994,
+      "status": "pending",
+      "priority": "medium",
+      "confidence": 0.8,
+      "title": "Web Content Suggestion",
+      "description": "I noticed you're browsing content about fetch, data, error, provides, javascript. Would you like assistance with this page?",
+      "suggestion": "",
+      "context": {
+        "url": "https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch",
+        "title": "Using the Fetch API - Web APIs | MDN",
+        "content_type": "general",
+        "matched_keywords": [
+          "fetch",
+          "data",
+          "error",
+          "provides",
+          "javascript"
+        ]
+      },
+      "memory_references": [],
+      "action_plan": {
+        "type": "web_content_action",
+        "url": "https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch",
+        "content_type": "general"
+      },
+      "expiration_time": 1748892382.8329768
+    },
+    {
+      "id": "46448359-7c0b-4544-b2e8-d50f1b567a41",
+      "rule_id": "web_content_1748805982_6982491421519899805",
+      "created_at": 1748805982.836364,
+      "updated_at": 1748805982.836364,
+      "status": "pending",
+      "priority": "medium",
+      "confidence": 0.8,
+      "title": "Web Content Suggestion",
+      "description": "I noticed you're shopping for camera, smartphone, 108mp, premium, price. Would you like me to help you find the best deals or reviews?",
+      "suggestion": "",
+      "context": {
+        "url": "https://www.amazon.com/products/smartphone",
+        "title": "Premium Smartphone XYZ - Amazon.com",
+        "content_type": "shopping",
+        "matched_keywords": [
+          "camera",
+          "smartphone",
+          "108mp",
+          "premium",
+          "price"
+        ]
+      },
+      "memory_references": [],
+      "action_plan": {
+        "type": "web_content_action",
+        "url": "https://www.amazon.com/products/smartphone",
+        "content_type": "shopping"
+      },
+      "expiration_time": 1748892382.836349
+    },
+    {
+      "id": "29d9dd9d-c874-4be4-a860-91dfd0886e6f",
+      "rule_id": "repetitive_action",
+      "created_at": 1748806079.2992141,
+      "updated_at": 1748806079.301461,
+      "status": "pending",
+      "priority": "high",
+      "confidence": 0.7999999999999999,
+      "title": "Repetitive Action Detection",
+      "description": "Repetitive action pattern detected",
+      "suggestion": "You seem to be repeatedly doing \n                create your google account\n                \n                first name:\n                last name:\n                \n                username: @gmail.com\n                \n                password:\n                confirm password:\n                \n                next | sign in instead\n                \n                by creating an account, you agree to our terms of service and acknowledge \n                that you have read our privacy policy to learn how we collect and use your data.\n                . Would you like me to automate this task for you?",
+      "context": {
+        "repetitions": 3,
+        "recent_activity": "\n                create your google account\n                \n                first name:\n                last name:\n                \n                username: @gmail.com\n                \n                password:\n                confirm password:\n                \n                next | sign in instead\n                \n                by creating an account, you agree to our terms of service and acknowledge \n                that you have read our privacy policy to learn how we collect and use your data.\n                "
+      },
+      "memory_references": [],
+      "action_plan": {
+        "type": "automation_suggestion",
+        "description": "Suggest automation for repetitive task"
+      },
+      "expiration_time": 1748892479.299196
+    },
+    {
+      "id": "0368c249-979b-44f4-a592-fb8e591a35da",
+      "rule_id": "shopping_detection",
+      "created_at": 1748806079.3033001,
+      "updated_at": 1748806079.305165,
+      "status": "pending",
+      "priority": "medium",
+      "confidence": 0.95,
+      "title": "Shopping Detection",
+      "description": "Keyword pattern match: add to cart, buy, price",
+      "suggestion": "I notice you're shopping online. Would you like me to help compare prices, find reviews, or check for discount codes?",
+      "context": {
+        "matched_keywords": [
+          "add to cart",
+          "buy",
+          "price",
+          "product",
+          "shipping"
+        ],
+        "content_type": "web_content",
+        "memory_id": ""
+      },
+      "memory_references": [],
+      "action_plan": {
+        "type": "shopping_assistance",
+        "description": "Offer to help with online shopping"
+      },
+      "expiration_time": 1748892479.303284
+    },
+    {
+      "id": "46a045da-1aba-490e-a091-90ccd5cddabd",
+      "rule_id": "shopping_detection",
+      "created_at": 1748806079.306987,
+      "updated_at": 1748806079.308855,
+      "status": "pending",
+      "priority": "medium",
+      "confidence": 0.95,
+      "title": "Shopping Detection",
+      "description": "Keyword pattern match: add to cart, buy, price",
+      "suggestion": "I notice you're shopping online. Would you like me to help compare prices, find reviews, or check for discount codes?",
+      "context": {
+        "matched_keywords": [
+          "add to cart",
+          "buy",
+          "price",
+          "product",
+          "shipping"
+        ],
+        "content_type": "web_content",
+        "memory_id": ""
+      },
+      "memory_references": [],
+      "action_plan": {
+        "type": "shopping_assistance",
+        "description": "Offer to help with online shopping"
+      },
+      "expiration_time": 1748892479.306977
+    },
+    {
+      "id": "56f7d819-0a9c-48c3-965f-b21bc9729119",
+      "rule_id": "web_content_1748806079_-7910103392979225946",
+      "created_at": 1748806079.311041,
+      "updated_at": 1748806079.311041,
+      "status": "pending",
+      "priority": "medium",
+      "confidence": 0.8,
+      "title": "Web Content Suggestion",
+      "description": "I noticed you're filling out a form. Would you like me to help you complete it?",
+      "suggestion": "",
+      "context": {
+        "url": "https://accounts.google.com/signup",
+        "title": "Create your Google Account",
+        "content_type": "form",
+        "matched_keywords": [
+          "your",
+          "account",
+          "name",
+          "password",
+          "create"
+        ]
+      },
+      "memory_references": [],
+      "action_plan": {
+        "type": "web_content_action",
+        "url": "https://accounts.google.com/signup",
+        "content_type": "form"
+      },
+      "expiration_time": 1748892479.311032
+    },
+    {
+      "id": "6e7327bb-f886-4728-86ef-d4d39ed6ee50",
+      "rule_id": "web_content_1748806079_1810125703983714528",
+      "created_at": 1748806079.313143,
+      "updated_at": 1748806079.313143,
+      "status": "pending",
+      "priority": "medium",
+      "confidence": 0.8,
+      "title": "Web Content Suggestion",
+      "description": "I noticed you're shopping for camera, smartphone, 108mp, premium, price. Would you like me to help you find the best deals or reviews?",
+      "suggestion": "",
+      "context": {
+        "url": "https://www.amazon.com/products/smartphone",
+        "title": "Premium Smartphone XYZ - Amazon.com",
+        "content_type": "shopping",
+        "matched_keywords": [
+          "camera",
+          "smartphone",
+          "108mp",
+          "premium",
+          "price"
+        ]
+      },
+      "memory_references": [],
+      "action_plan": {
+        "type": "web_content_action",
+        "url": "https://www.amazon.com/products/smartphone",
+        "content_type": "shopping"
+      },
+      "expiration_time": 1748892479.3131351
+    },
+    {
+      "id": "ebe84e56-5006-4093-a8f1-22c8d9cf9aa2",
+      "rule_id": "web_content_1748806079_-7910103392979225946",
+      "created_at": 1748806079.315125,
+      "updated_at": 1748806079.315125,
+      "status": "pending",
+      "priority": "medium",
+      "confidence": 0.8,
+      "title": "Web Content Suggestion",
+      "description": "I noticed you're filling out a form. Would you like me to help you complete it?",
+      "suggestion": "",
+      "context": {
+        "url": "https://accounts.google.com/signup",
+        "title": "Create your Google Account",
+        "content_type": "form",
+        "matched_keywords": [
+          "your",
+          "account",
+          "name",
+          "password",
+          "create"
+        ]
+      },
+      "memory_references": [],
+      "action_plan": {
+        "type": "web_content_action",
+        "url": "https://accounts.google.com/signup",
+        "content_type": "form"
+      },
+      "expiration_time": 1748892479.315116
+    },
+    {
+      "id": "a5f36e7f-023e-40e4-b818-a45347eaa4a0",
+      "rule_id": "web_content_1748806079_-2561867203632021789",
+      "created_at": 1748806079.317127,
+      "updated_at": 1748806079.317127,
+      "status": "pending",
+      "priority": "medium",
+      "confidence": 0.8,
+      "title": "Web Content Suggestion",
+      "description": "I noticed you're browsing content about fetch, data, error, provides, javascript. Would you like assistance with this page?",
+      "suggestion": "",
+      "context": {
+        "url": "https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch",
+        "title": "Using the Fetch API - Web APIs | MDN",
+        "content_type": "general",
+        "matched_keywords": [
+          "fetch",
+          "data",
+          "error",
+          "provides",
+          "javascript"
+        ]
+      },
+      "memory_references": [],
+      "action_plan": {
+        "type": "web_content_action",
+        "url": "https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch",
+        "content_type": "general"
+      },
+      "expiration_time": 1748892479.31712
+    },
+    {
+      "id": "3c75ba60-2408-48a2-ae44-da8296e3705e",
+      "rule_id": "web_content_1748806079_1810125703983714528",
+      "created_at": 1748806079.3191721,
+      "updated_at": 1748806079.3191721,
+      "status": "pending",
+      "priority": "medium",
+      "confidence": 0.8,
+      "title": "Web Content Suggestion",
+      "description": "I noticed you're shopping for camera, smartphone, 108mp, premium, price. Would you like me to help you find the best deals or reviews?",
+      "suggestion": "",
+      "context": {
+        "url": "https://www.amazon.com/products/smartphone",
+        "title": "Premium Smartphone XYZ - Amazon.com",
+        "content_type": "shopping",
+        "matched_keywords": [
+          "camera",
+          "smartphone",
+          "108mp",
+          "premium",
+          "price"
+        ]
+      },
+      "memory_references": [],
+      "action_plan": {
+        "type": "web_content_action",
+        "url": "https://www.amazon.com/products/smartphone",
+        "content_type": "shopping"
+      },
+      "expiration_time": 1748892479.319166
+    },
+    {
+      "id": "24279aa5-a216-4842-8382-178f5f5c5ee6",
+      "rule_id": "repetitive_action",
+      "created_at": 1748806139.369288,
+      "updated_at": 1748806139.372389,
+      "status": "pending",
+      "priority": "high",
+      "confidence": 0.85,
+      "title": "Repetitive Action Detection",
+      "description": "Repetitive action pattern detected",
+      "suggestion": "You seem to be repeatedly doing \n                create your google account\n                \n                first name:\n                last name:\n                \n                username: @gmail.com\n                \n                password:\n                confirm password:\n                \n                next | sign in instead\n                \n                by creating an account, you agree to our terms of service and acknowledge \n                that you have read our privacy policy to learn how we collect and use your data.\n                . Would you like me to automate this task for you?",
+      "context": {
+        "repetitions": 4,
+        "recent_activity": "\n                create your google account\n                \n                first name:\n                last name:\n                \n                username: @gmail.com\n                \n                password:\n                confirm password:\n                \n                next | sign in instead\n                \n                by creating an account, you agree to our terms of service and acknowledge \n                that you have read our privacy policy to learn how we collect and use your data.\n                "
+      },
+      "memory_references": [],
+      "action_plan": {
+        "type": "automation_suggestion",
+        "description": "Suggest automation for repetitive task"
+      },
+      "expiration_time": 1748892539.369249
+    },
+    {
+      "id": "20c5a82c-99d5-4d06-a993-b3a34a7023bb",
+      "rule_id": "shopping_detection",
+      "created_at": 1748806139.375017,
+      "updated_at": 1748806139.377514,
+      "status": "pending",
+      "priority": "medium",
+      "confidence": 0.95,
+      "title": "Shopping Detection",
+      "description": "Keyword pattern match: add to cart, buy, price",
+      "suggestion": "I notice you're shopping online. Would you like me to help compare prices, find reviews, or check for discount codes?",
+      "context": {
+        "matched_keywords": [
+          "add to cart",
+          "buy",
+          "price",
+          "product",
+          "shipping"
+        ],
+        "content_type": "web_content",
+        "memory_id": ""
+      },
+      "memory_references": [],
+      "action_plan": {
+        "type": "shopping_assistance",
+        "description": "Offer to help with online shopping"
+      },
+      "expiration_time": 1748892539.3750029
+    },
+    {
+      "id": "b6f31825-a580-4c32-8f54-eb75e7733f2c",
+      "rule_id": "shopping_detection",
+      "created_at": 1748806139.379998,
+      "updated_at": 1748806139.382175,
+      "status": "pending",
+      "priority": "medium",
+      "confidence": 0.95,
+      "title": "Shopping Detection",
+      "description": "Keyword pattern match: add to cart, buy, price",
+      "suggestion": "I notice you're shopping online. Would you like me to help compare prices, find reviews, or check for discount codes?",
+      "context": {
+        "matched_keywords": [
+          "add to cart",
+          "buy",
+          "price",
+          "product",
+          "shipping"
+        ],
+        "content_type": "web_content",
+        "memory_id": ""
+      },
+      "memory_references": [],
+      "action_plan": {
+        "type": "shopping_assistance",
+        "description": "Offer to help with online shopping"
+      },
+      "expiration_time": 1748892539.379987
+    },
+    {
+      "id": "0af0f745-c77e-442b-97a5-784352b2c5fa",
+      "rule_id": "web_content_1748806139_-7910103392979225946",
+      "created_at": 1748806139.384678,
+      "updated_at": 1748806139.384678,
+      "status": "pending",
+      "priority": "medium",
+      "confidence": 0.8,
+      "title": "Web Content Suggestion",
+      "description": "I noticed you're filling out a form. Would you like me to help you complete it?",
+      "suggestion": "",
+      "context": {
+        "url": "https://accounts.google.com/signup",
+        "title": "Create your Google Account",
+        "content_type": "form",
+        "matched_keywords": [
+          "your",
+          "account",
+          "name",
+          "password",
+          "create"
+        ]
+      },
+      "memory_references": [],
+      "action_plan": {
+        "type": "web_content_action",
+        "url": "https://accounts.google.com/signup",
+        "content_type": "form"
+      },
+      "expiration_time": 1748892539.384663
+    },
+    {
+      "id": "fe25da85-f1d4-4005-a6bf-fa44d7db99f9",
+      "rule_id": "web_content_1748806139_1810125703983714528",
+      "created_at": 1748806139.387518,
+      "updated_at": 1748806139.387518,
+      "status": "pending",
+      "priority": "medium",
+      "confidence": 0.8,
+      "title": "Web Content Suggestion",
+      "description": "I noticed you're shopping for camera, smartphone, 108mp, premium, price. Would you like me to help you find the best deals or reviews?",
+      "suggestion": "",
+      "context": {
+        "url": "https://www.amazon.com/products/smartphone",
+        "title": "Premium Smartphone XYZ - Amazon.com",
+        "content_type": "shopping",
+        "matched_keywords": [
+          "camera",
+          "smartphone",
+          "108mp",
+          "premium",
+          "price"
+        ]
+      },
+      "memory_references": [],
+      "action_plan": {
+        "type": "web_content_action",
+        "url": "https://www.amazon.com/products/smartphone",
+        "content_type": "shopping"
+      },
+      "expiration_time": 1748892539.387509
+    },
+    {
+      "id": "6002149e-0c92-4280-a6d8-dc6b996f0633",
+      "rule_id": "web_content_1748806139_-7910103392979225946",
+      "created_at": 1748806139.3899012,
+      "updated_at": 1748806139.3899012,
+      "status": "pending",
+      "priority": "medium",
+      "confidence": 0.8,
+      "title": "Web Content Suggestion",
+      "description": "I noticed you're filling out a form. Would you like me to help you complete it?",
+      "suggestion": "",
+      "context": {
+        "url": "https://accounts.google.com/signup",
+        "title": "Create your Google Account",
+        "content_type": "form",
+        "matched_keywords": [
+          "your",
+          "account",
+          "name",
+          "password",
+          "create"
+        ]
+      },
+      "memory_references": [],
+      "action_plan": {
+        "type": "web_content_action",
+        "url": "https://accounts.google.com/signup",
+        "content_type": "form"
+      },
+      "expiration_time": 1748892539.3898938
+    },
+    {
+      "id": "6463eff5-6a14-400b-9ad9-317c24743b04",
+      "rule_id": "web_content_1748806139_-2561867203632021789",
+      "created_at": 1748806139.3922,
+      "updated_at": 1748806139.3922,
+      "status": "pending",
+      "priority": "medium",
+      "confidence": 0.8,
+      "title": "Web Content Suggestion",
+      "description": "I noticed you're browsing content about fetch, data, error, provides, javascript. Would you like assistance with this page?",
+      "suggestion": "",
+      "context": {
+        "url": "https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch",
+        "title": "Using the Fetch API - Web APIs | MDN",
+        "content_type": "general",
+        "matched_keywords": [
+          "fetch",
+          "data",
+          "error",
+          "provides",
+          "javascript"
+        ]
+      },
+      "memory_references": [],
+      "action_plan": {
+        "type": "web_content_action",
+        "url": "https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch",
+        "content_type": "general"
+      },
+      "expiration_time": 1748892539.3921869
+    },
+    {
+      "id": "00db183c-7e15-4695-8dba-8d7a2b60c802",
+      "rule_id": "web_content_1748806139_1810125703983714528",
+      "created_at": 1748806139.3945038,
+      "updated_at": 1748806139.3945038,
+      "status": "pending",
+      "priority": "medium",
+      "confidence": 0.8,
+      "title": "Web Content Suggestion",
+      "description": "I noticed you're shopping for camera, smartphone, 108mp, premium, price. Would you like me to help you find the best deals or reviews?",
+      "suggestion": "",
+      "context": {
+        "url": "https://www.amazon.com/products/smartphone",
+        "title": "Premium Smartphone XYZ - Amazon.com",
+        "content_type": "shopping",
+        "matched_keywords": [
+          "camera",
+          "smartphone",
+          "108mp",
+          "premium",
+          "price"
+        ]
+      },
+      "memory_references": [],
+      "action_plan": {
+        "type": "web_content_action",
+        "url": "https://www.amazon.com/products/smartphone",
+        "content_type": "shopping"
+      },
+      "expiration_time": 1748892539.394494
+    },
+    {
+      "id": "63e8f723-fe34-42c9-b64f-20f85ad9d3c0",
+      "rule_id": "repetitive_action",
+      "created_at": 1748807030.985804,
+      "updated_at": 1748807030.9921322,
+      "status": "pending",
+      "priority": "high",
+      "confidence": 0.7999999999999999,
+      "title": "Repetitive Action Detection",
+      "description": "Repetitive action pattern detected",
+      "suggestion": "You seem to be repeatedly doing \n                create your google account\n                \n                first name:\n                last name:\n                \n                username: @gmail.com\n                \n                password:\n                confirm password:\n                \n                next | sign in instead\n                \n                by creating an account, you agree to our terms of service and acknowledge \n                that you have read our privacy policy to learn how we collect and use your data.\n                . Would you like me to automate this task for you?",
+      "context": {
+        "repetitions": 3,
+        "recent_activity": "\n                create your google account\n                \n                first name:\n                last name:\n                \n                username: @gmail.com\n                \n                password:\n                confirm password:\n                \n                next | sign in instead\n                \n                by creating an account, you agree to our terms of service and acknowledge \n                that you have read our privacy policy to learn how we collect and use your data.\n                "
+      },
+      "memory_references": [],
+      "action_plan": {
+        "type": "automation_suggestion",
+        "description": "Suggest automation for repetitive task"
+      },
+      "expiration_time": 1748893430.985766
+    },
+    {
+      "id": "fb93ac6c-819e-4574-ab39-c10d3fe67713",
+      "rule_id": "shopping_detection",
+      "created_at": 1748807030.997953,
+      "updated_at": 1748807031.0037608,
+      "status": "pending",
+      "priority": "medium",
+      "confidence": 0.95,
+      "title": "Shopping Detection",
+      "description": "Keyword pattern match: add to cart, buy, price",
+      "suggestion": "I notice you're shopping online. Would you like me to help compare prices, find reviews, or check for discount codes?",
+      "context": {
+        "matched_keywords": [
+          "add to cart",
+          "buy",
+          "price",
+          "product",
+          "shipping"
+        ],
+        "content_type": "web_content",
+        "memory_id": ""
+      },
+      "memory_references": [],
+      "action_plan": {
+        "type": "shopping_assistance",
+        "description": "Offer to help with online shopping"
+      },
+      "expiration_time": 1748893430.997919
+    },
+    {
+      "id": "48c050cd-4298-4c41-9144-987dfcc6a11b",
+      "rule_id": "shopping_detection",
+      "created_at": 1748807031.009086,
+      "updated_at": 1748807031.0141811,
+      "status": "pending",
+      "priority": "medium",
+      "confidence": 0.95,
+      "title": "Shopping Detection",
+      "description": "Keyword pattern match: add to cart, buy, price",
+      "suggestion": "I notice you're shopping online. Would you like me to help compare prices, find reviews, or check for discount codes?",
+      "context": {
+        "matched_keywords": [
+          "add to cart",
+          "buy",
+          "price",
+          "product",
+          "shipping"
+        ],
+        "content_type": "web_content",
+        "memory_id": ""
+      },
+      "memory_references": [],
+      "action_plan": {
+        "type": "shopping_assistance",
+        "description": "Offer to help with online shopping"
+      },
+      "expiration_time": 1748893431.009053
+    },
+    {
+      "id": "c4bbde44-49a2-416e-9aca-b39aead79d2a",
+      "rule_id": "web_content_1748807031_6497443986001946930",
+      "created_at": 1748807031.019613,
+      "updated_at": 1748807031.019613,
+      "status": "pending",
+      "priority": "medium",
+      "confidence": 0.8,
+      "title": "Web Content Suggestion",
+      "description": "I noticed you're filling out a form. Would you like me to help you complete it?",
+      "suggestion": "",
+      "context": {
+        "url": "https://accounts.google.com/signup",
+        "title": "Create your Google Account",
+        "content_type": "form",
+        "matched_keywords": [
+          "your",
+          "account",
+          "name",
+          "password",
+          "create"
+        ]
+      },
+      "memory_references": [],
+      "action_plan": {
+        "type": "web_content_action",
+        "url": "https://accounts.google.com/signup",
+        "content_type": "form"
+      },
+      "expiration_time": 1748893431.0195851
+    },
+    {
+      "id": "2974a29e-5bd1-4687-8aae-51df2172713d",
+      "rule_id": "web_content_1748807031_5462174687712309648",
+      "created_at": 1748807031.024457,
+      "updated_at": 1748807031.024457,
+      "status": "pending",
+      "priority": "medium",
+      "confidence": 0.8,
+      "title": "Web Content Suggestion",
+      "description": "I noticed you're shopping for camera, smartphone, 108mp, premium, price. Would you like me to help you find the best deals or reviews?",
+      "suggestion": "",
+      "context": {
+        "url": "https://www.amazon.com/products/smartphone",
+        "title": "Premium Smartphone XYZ - Amazon.com",
+        "content_type": "shopping",
+        "matched_keywords": [
+          "camera",
+          "smartphone",
+          "108mp",
+          "premium",
+          "price"
+        ]
+      },
+      "memory_references": [],
+      "action_plan": {
+        "type": "web_content_action",
+        "url": "https://www.amazon.com/products/smartphone",
+        "content_type": "shopping"
+      },
+      "expiration_time": 1748893431.024436
+    },
+    {
+      "id": "05786904-2398-4a20-afc8-950c4c180440",
+      "rule_id": "web_content_1748807031_6497443986001946930",
+      "created_at": 1748807031.029402,
+      "updated_at": 1748807031.029402,
+      "status": "pending",
+      "priority": "medium",
+      "confidence": 0.8,
+      "title": "Web Content Suggestion",
+      "description": "I noticed you're filling out a form. Would you like me to help you complete it?",
+      "suggestion": "",
+      "context": {
+        "url": "https://accounts.google.com/signup",
+        "title": "Create your Google Account",
+        "content_type": "form",
+        "matched_keywords": [
+          "your",
+          "account",
+          "name",
+          "password",
+          "create"
+        ]
+      },
+      "memory_references": [],
+      "action_plan": {
+        "type": "web_content_action",
+        "url": "https://accounts.google.com/signup",
+        "content_type": "form"
+      },
+      "expiration_time": 1748893431.029377
+    },
+    {
+      "id": "88593eba-b92d-42db-9cbf-ca756c169747",
+      "rule_id": "web_content_1748807031_1403187245425676325",
+      "created_at": 1748807031.034199,
+      "updated_at": 1748807031.034199,
+      "status": "pending",
+      "priority": "medium",
+      "confidence": 0.8,
+      "title": "Web Content Suggestion",
+      "description": "I noticed you're browsing content about fetch, data, error, provides, javascript. Would you like assistance with this page?",
+      "suggestion": "",
+      "context": {
+        "url": "https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch",
+        "title": "Using the Fetch API - Web APIs | MDN",
+        "content_type": "general",
+        "matched_keywords": [
+          "fetch",
+          "data",
+          "error",
+          "provides",
+          "javascript"
+        ]
+      },
+      "memory_references": [],
+      "action_plan": {
+        "type": "web_content_action",
+        "url": "https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch",
+        "content_type": "general"
+      },
+      "expiration_time": 1748893431.034173
+    },
+    {
+      "id": "f89d00f4-18ff-4cf8-8470-946e2cf37eba",
+      "rule_id": "web_content_1748807031_5462174687712309648",
+      "created_at": 1748807031.0410008,
+      "updated_at": 1748807031.0410008,
+      "status": "pending",
+      "priority": "medium",
+      "confidence": 0.8,
+      "title": "Web Content Suggestion",
+      "description": "I noticed you're shopping for camera, smartphone, 108mp, premium, price. Would you like me to help you find the best deals or reviews?",
+      "suggestion": "",
+      "context": {
+        "url": "https://www.amazon.com/products/smartphone",
+        "title": "Premium Smartphone XYZ - Amazon.com",
+        "content_type": "shopping",
+        "matched_keywords": [
+          "camera",
+          "smartphone",
+          "108mp",
+          "premium",
+          "price"
+        ]
+      },
+      "memory_references": [],
+      "action_plan": {
+        "type": "web_content_action",
+        "url": "https://www.amazon.com/products/smartphone",
+        "content_type": "shopping"
+      },
+      "expiration_time": 1748893431.0409799
+    }
+  ],
+  "completed": []
+}

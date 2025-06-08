@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ultimate DO Button Automation Tester</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        h1, h2, h3 {
+            color: #333;
+        }
+        .container {
+            display: flex;
+            gap: 20px;
+        }
+        .panel {
+            flex: 1;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 15px;
+            margin-bottom: 20px;
+        }
+        .controls {
+            background-color: #f9f9f9;
+        }
+        .logs {
+            background-color: #f5f5f5;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            margin: 5px 0;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        button.secondary {
+            background-color: #2196F3;
+        }
+        button.secondary:hover {
+            background-color: #0b7dda;
+        }
+        button.danger {
+            background-color: #f44336;
+        }
+        button.danger:hover {
+            background-color: #d32f2f;
+        }
+        input, select, textarea {
+            width: 100%;
+            padding: 8px;
+            margin: 5px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        textarea {
+            height: 100px;
+            font-family: monospace;
+        }
+        label {
+            font-weight: bold;
+        }
+        .log-entry {
+            border-bottom: 1px solid #ddd;
+            padding: 5px 0;
+        }
+        .log-entry.sent {
+            color: #4CAF50;
+        }
+        .log-entry.received {
+            color: #2196F3;
+        }
+        .log-entry.error {
+            color: #f44336;
+        }
+        .log-entry.info {
+            color: #9E9E9E;
+        }
+        .log-content {
+            margin-top: 5px;
+            white-space: pre-wrap;
+            word-break: break-word;
+            font-family: monospace;
+            font-size: 12px;
+        }
+        .connection-status {
+            font-weight: bold;
+            padding: 5px 10px;
+            border-radius: 4px;
+            display: inline-block;
+        }
+        .connected {
+            background-color: #4CAF50;
+            color: white;
+        }
+        .disconnected {
+            background-color: #f44336;
+            color: white;
+        }
+        .connecting {
+            background-color: #FF9800;
+            color: white;
+        }
+        .error {
+            background-color: #f44336;
+            color: white;
+        }
+        #presetActions {
+            margin-bottom: 15px;
+        }
+        .action-form {
+            margin-top: 10px;
+            padding-top: 10px;
+            border-top: 1px solid #ddd;
+        }
+        .form-row {
+            margin-bottom: 10px;
+        }
+        .collapsible {
+            background-color: #f1f1f1;
+            cursor: pointer;
+            padding: 10px;
+            width: 100%;
+            border: none;
+            text-align: left;
+            outline: none;
+            margin-bottom: 5px;
+        }
+        .collapsible:after {
+            content: '+';
+            float: right;
+            margin-left: 5px;
+        }
+        .active:after {
+            content: '-';
+        }
+        .collapsible-content {
+            padding: 0 10px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.2s ease-out;
+            background-color: #f9f9f9;
+        }
+    </style>
+</head>
+<body>
+    <h1>Ultimate DO Button Automation Tester</h1>
+    <p>This tool allows you to test the automation capabilities of the DO button WebSocket server.</p>
+    
+    <div class="connection-container">
+        <div class="form-row">
+            <label for="wsUrl">WebSocket URL:</label>
+            <input type="text" id="wsUrl" value="ws://localhost:8765" />
+        </div>
+        <div class="form-row">
+            <button id="connectBtn">Connect</button>
+            <button id="disconnectBtn" disabled>Disconnect</button>
+            <span id="connectionStatus" class="connection-status disconnected">Disconnected</span>
+        </div>
+    </div>
+    
+    <div class="container">
+        <div class="panel controls">
+            <h2>Automation Controls</h2>
+            
+            <div class="form-row">
+                <label for="messageType">Message Type:</label>
+                <select id="messageType">
+                    <option value="agent_confirmation">agent_confirmation (DO)</option>
+                    <option value="button_action">button_action (EXECUTE_PLAN)</option>
+                    <option value="do_button">do_button (Direct)</option>
+                </select>
+            </div>
+            
+            <h3>Preset Actions</h3>
+            <div id="presetActions">
+                <button class="action-preset" data-action="center-click">Click Center of Screen</button>
+                <button class="action-preset" data-action="type-hello">Type "Hello World"</button>
+                <button class="action-preset" data-action="press-enter">Press Enter Key</button>
+                <button class="action-preset" data-action="press-escape">Press Escape Key</button>
+                <button class="action-preset" data-action="copy-hotkey">Copy (Ctrl+C)</button>
+            </div>
+            
+            <button class="collapsible">Custom Mouse Click</button>
+            <div class="collapsible-content">
+                <div class="action-form">
+                    <div class="form-row">
+                        <label for="clickX">X Coordinate:</label>
+                        <input type="number" id="clickX" value="500" />
+                    </div>
+                    <div class="form-row">
+                        <label for="clickY">Y Coordinate:</label>
+                        <input type="number" id="clickY" value="500" />
+                    </div>
+                    <div class="form-row">
+                        <label for="clickButton">Mouse Button:</label>
+                        <select id="clickButton">
+                            <option value="left">Left</option>
+                            <option value="right">Right</option>
+                            <option value="middle">Middle</option>
+                        </select>
+                    </div>
+                    <div class="form-row">
+                        <label for="clickCount">Click Count:</label>
+                        <input type="number" id="clickCount" value="1" min="1" max="3" />
+                    </div>
+                    <button id="sendClickBtn">Send Click Action</button>
+                </div>
+            </div>
+            
+            <button class="collapsible">Custom Keyboard Input</button>
+            <div class="collapsible-content">
+                <div class="action-form">
+                    <div class="form-row">
+                        <label for="inputText">Text to Type:</label>
+                        <input type="text" id="inputText" value="Hello from DO button" />
+                    </div>
+                    <button id="sendTypeBtn">Send Type Action</button>
+                </div>
+            </div>
+            
+            <button class="collapsible">Custom Key Press</button>
+            <div class="collapsible-content">
+                <div class="action-form">
+                    <div class="form-row">
+                        <label for="keyPress">Key to Press:</label>
+                        <select id="keyPress">
+                            <option value="enter">Enter</option>
+                            <option value="tab">Tab</option>
+                            <option value="space">Space</option>
+                            <option value="escape">Escape</option>
+                            <option value="backspace">Backspace</option>
+                            <option value="delete">Delete</option>
+                            <option value="up">Up Arrow</option>
+                            <option value="down">Down Arrow</option>
+                            <option value="left">Left Arrow</option>
+                            <option value="right">Right Arrow</option>
+                        </select>
+                    </div>
+                    <button id="sendKeyBtn">Send Key Press Action</button>
+                </div>
+            </div>
+            
+            <button class="collapsible">Custom Hotkey</button>
+            <div class="collapsible-content">
+                <div class="action-form">
+                    <div class="form-row">
+                        <label for="hotkeyKeys">Hotkey Keys (comma-separated):</label>
+                        <input type="text" id="hotkeyKeys" value="ctrl,c" />
+                        <small>Examples: ctrl,c (copy), ctrl,v (paste), alt,tab (switch window)</small>
+                    </div>
+                    <button id="sendHotkeyBtn">Send Hotkey Action</button>
+                </div>
+            </div>
+            
+            <button class="collapsible">Advanced: Custom Action Sequence</button>
+            <div class="collapsible-content">
+                <div class="action-form">
+                    <div class="form-row">
+                        <label for="customAction">Custom Action JSON:</label>
+                        <textarea id="customAction">{
+  "type": "sequence",
+  "actions": [
+    {"type": "click", "x": 500, "y": 500},
+    {"type": "text", "value": "Hello world"},
+    {"type": "key", "key": "enter"}
+  ]
+}</textarea>
+                    </div>
+                    <button id="sendCustomBtn">Send Custom Action</button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="panel logs">
+            <h2>WebSocket Logs</h2>
+            <button id="clearLogsBtn">Clear Logs</button>
+            <div id="logContainer"></div>
+        </div>
+    </div>
+    
+    <script>
+        let socket = null;
+        let sessionId = null;
+        
+        // UI Elements
+        const connectBtn = document.getElementById('connectBtn');
+        const disconnectBtn = document.getElementById('disconnectBtn');
+        const wsUrlInput = document.getElementById('wsUrl');
+        const connectionStatus = document.getElementById('connectionStatus');
+        const logContainer = document.getElementById('logContainer');
+        const clearLogsBtn = document.getElementById('clearLogsBtn');
+        const messageTypeSelect = document.getElementById('messageType');
+        
+        // Action Buttons
+        const sendClickBtn = document.getElementById('sendClickBtn');
+        const sendTypeBtn = document.getElementById('sendTypeBtn');
+        const sendKeyBtn = document.getElementById('sendKeyBtn');
+        const sendHotkeyBtn = document.getElementById('sendHotkeyBtn');
+        const sendCustomBtn = document.getElementById('sendCustomBtn');
+        const presetButtons = document.querySelectorAll('.action-preset');
+        
+        // Generate a session ID
+        sessionId = `test_session_${Date.now()}`;
+        
+        // Connect to WebSocket
+        connectBtn.addEventListener('click', () => {
+            connectWebSocket();
+        });
+        
+        // Disconnect from WebSocket
+        disconnectBtn.addEventListener('click', () => {
+            if (socket) {
+                socket.close();
+                updateConnectionStatus('disconnected', 'Disconnected');
+                connectBtn.disabled = false;
+                disconnectBtn.disabled = true;
+            }
+        });
+        
+        // Clear logs
+        clearLogsBtn.addEventListener('click', () => {
+            logContainer.innerHTML = '';
+            addLogEntry('info', 'Logs cleared');
+        });
+        
+        // Action Preset Buttons
+        presetButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const actionType = button.getAttribute('data-action');
+                sendPresetAction(actionType);
+            });
+        });
+        
+        // Custom Action Buttons
+        sendClickBtn.addEventListener('click', () => {
+            sendClickAction();
+        });
+        
+        sendTypeBtn.addEventListener('click', () => {
+            sendTypeAction();
+        });
+        
+        sendKeyBtn.addEventListener('click', () => {
+            sendKeyAction();
+        });
+        
+        sendHotkeyBtn.addEventListener('click', () => {
+            sendHotkeyAction();
+        });
+        
+        sendCustomBtn.addEventListener('click', () => {
+            sendCustomAction();
+        });
+        
+        // Collapsible sections
+        const collapsibles = document.querySelectorAll(".collapsible");
+        collapsibles.forEach(coll => {
+            coll.addEventListener("click", function() {
+                this.classList.toggle("active");
+                const content = this.nextElementSibling;
+                if (content.style.maxHeight) {
+                    content.style.maxHeight = null;
+                } else {
+                    content.style.maxHeight = content.scrollHeight + "px";
+                }
+            });
+        });
+        
+        // Connect to WebSocket
+        function connectWebSocket() {
+            try {
+                const url = wsUrlInput.value;
+                updateConnectionStatus('connecting', 'Connecting...');
+                
+                socket = new WebSocket(url);
+                
+                socket.onopen = (event) => {
+                    updateConnectionStatus('connected', 'Connected');
+                    connectBtn.disabled = true;
+                    disconnectBtn.disabled = false;
+                    addLogEntry('info', `Connected to ${url}`);
+                };
+                
+                socket.onmessage = (event) => {
+                    const data = event.data;
+                    addLogEntry('received', data);
+                    
+                    try {
+                        const parsedData = JSON.parse(data);
+                        if (parsedData.type === 'welcome') {
+                            addLogEntry('info', `Server welcome: ${parsedData.message}`);
+                        }
+                    } catch (error) {
+                        console.error('Error parsing message:', error);
+                    }
+                };
+                
+                socket.onclose = (event) => {
+                    updateConnectionStatus('disconnected', 'Disconnected');
+                    connectBtn.disabled = false;
+                    disconnectBtn.disabled = true;
+                    addLogEntry('info', `Connection closed, code: ${event.code}, reason: ${event.reason}`);
+                };
+                
+                socket.onerror = (error) => {
+                    updateConnectionStatus('error', 'Error');
+                    addLogEntry('error', `WebSocket error: ${error.message || 'Unknown error'}`);
+                };
+            } catch (error) {
+                updateConnectionStatus('error', 'Error');
+                addLogEntry('error', `Failed to connect: ${error.message}`);
+            }
+        }
+        
+        // Update Connection Status
+        function updateConnectionStatus(state, text) {
+            connectionStatus.className = 'connection-status ' + state;
+            connectionStatus.textContent = text;
+        }
+        
+        // Add Log Entry
+        function addLogEntry(type, content) {
+            const entry = document.createElement('div');
+            entry.className = `log-entry ${type}`;
+            
+            const timestamp = new Date().toLocaleTimeString();
+            const header = document.createElement('div');
+            header.textContent = `[${timestamp}] ${type.toUpperCase()}`;
+            
+            const contentElem = document.createElement('div');
+            contentElem.className = 'log-content';
+            
+            try {
+                // Try to format JSON
+                if (typeof content === 'string' && (content.startsWith('{') || content.startsWith('['))) {
+                    const parsed = JSON.parse(content);
+                    contentElem.textContent = JSON.stringify(parsed, null, 2);
+                } else {
+                    contentElem.textContent = content;
+                }
+            } catch (e) {
+                contentElem.textContent = content;
+            }
+            
+            entry.appendChild(header);
+            entry.appendChild(contentElem);
+            
+            logContainer.prepend(entry);
+        }
+        
+        // Send Message
+        function sendMessage(message) {
+            if (!socket || socket.readyState !== WebSocket.OPEN) {
+                addLogEntry('error', 'Not connected to WebSocket server');
+                return;
+            }
+            
+            const messageStr = JSON.stringify(message);
+            socket.send(messageStr);
+            addLogEntry('sent', messageStr);
+        }
+        
+        // Send Preset Action
+        function sendPresetAction(actionType) {
+            if (!socket || socket.readyState !== WebSocket.OPEN) {
+                addLogEntry('error', 'Not connected to WebSocket server');
+                return;
+            }
+            
+            let actionData;
+            switch (actionType) {
+                case 'center-click':
+                    // Get screen dimensions
+                    const screenWidth = window.screen.width;
+                    const screenHeight = window.screen.height;
+                    actionData = {
+                        type: "click",
+                        x: Math.floor(screenWidth / 2),
+                        y: Math.floor(screenHeight / 2)
+                    };
+                    break;
+                case 'type-hello':
+                    actionData = {
+                        type: "text",
+                        value: "Hello World"
+                    };
+                    break;
+                case 'press-enter':
+                    actionData = {
+                        type: "key",
+                        key: "enter"
+                    };
+                    break;
+                case 'press-escape':
+                    actionData = {
+                        type: "key",
+                        key: "escape"
+                    };
+                    break;
+                case 'copy-hotkey':
+                    actionData = {
+                        type: "hotkey",
+                        keys: ["ctrl", "c"]
+                    };
+                    break;
+                default:
+                    addLogEntry('error', `Unknown preset action: ${actionType}`);
+                    return;
+            }
+            
+            sendActionMessage(actionData);
+        }
+        
+        // Send Click Action
+        function sendClickAction() {
+            const x = parseInt(document.getElementById('clickX').value);
+            const y = parseInt(document.getElementById('clickY').value);
+            const button = document.getElementById('clickButton').value;
+            const clicks = parseInt(document.getElementById('clickCount').value);
+            
+            const actionData = {
+                type: "click",
+                x: x,
+                y: y,
+                button: button,
+                clicks: clicks
+            };
+            
+            sendActionMessage(actionData);
+        }
+        
+        // Send Type Action
+        function sendTypeAction() {
+            const text = document.getElementById('inputText').value;
+            
+            const actionData = {
+                type: "text",
+                value: text
+            };
+            
+            sendActionMessage(actionData);
+        }
+        
+        // Send Key Action
+        function sendKeyAction() {
+            const key = document.getElementById('keyPress').value;
+            
+            const actionData = {
+                type: "key",
+                key: key
+            };
+            
+            sendActionMessage(actionData);
+        }
+        
+        // Send Hotkey Action
+        function sendHotkeyAction() {
+            const keysStr = document.getElementById('hotkeyKeys').value;
+            const keys = keysStr.split(',').map(k => k.trim());
+            
+            const actionData = {
+                type: "hotkey",
+                keys: keys
+            };
+            
+            sendActionMessage(actionData);
+        }
+        
+        // Send Custom Action
+        function sendCustomAction() {
+            try {
+                const customActionStr = document.getElementById('customAction').value;
+                const actionData = JSON.parse(customActionStr);
+                
+                sendActionMessage(actionData);
+            } catch (error) {
+                addLogEntry('error', `Invalid JSON: ${error.message}`);
+            }
+        }
+        
+        // Send Action Message based on selected message type
+        function sendActionMessage(actionData) {
+            const messageType = messageTypeSelect.value;
+            let message;
+            
+            switch (messageType) {
+                case 'agent_confirmation':
+                    message = {
+                        type: "agent_confirmation",
+                        session_id: sessionId,
+                        action: "DO",
+                        action_plan: actionData
+                    };
+                    break;
+                case 'button_action':
+                    message = {
+                        type: "button_action",
+                        plan_id: sessionId,
+                        action: "EXECUTE_PLAN",
+                        actions: actionData
+                    };
+                    break;
+                case 'do_button':
+                    message = {
+                        type: "do_button",
+                        session_id: sessionId,
+                        action_data: actionData
+                    };
+                    break;
+                default:
+                    addLogEntry('error', `Unknown message type: ${messageType}`);
+                    return;
+            }
+            
+            sendMessage(message);
+        }
+    </script>
+</body>
+</html>

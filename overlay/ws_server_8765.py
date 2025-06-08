@@ -198,6 +198,47 @@ async def handler(websocket):
                                 "type": "error",
                                 "payload": {"message": "Failed to get response from LLM service"}
                             }))
+                elif data.get('type') == 'agent_confirmation':
+                    # Forward agent confirmation to LLM service for execution
+                    logger.info(f"⚡ Forwarding agent confirmation to LLM service: {data}")
+                    
+                    # Preserve all the original data for proper routing
+                    llm_response = await forward_to_llm(json.dumps(data))
+                    
+                    if llm_response and websocket.open:
+                        logger.info(f"✅ Received agent execution response: {llm_response}")
+                        await websocket.send(llm_response)
+                        
+                        # Send execution started notification to keep UI updated
+                        await websocket.send(json.dumps({
+                            "type": "agent_progress",
+                            "session_id": data.get("session_id"),
+                            "step": 1,
+                            "progress": 20,
+                            "message": "🚀 Execution started: Processing your request..."
+                        }))
+                    else:
+                        logger.error("❌ No response from LLM service for agent confirmation")
+                        if websocket.open:
+                            await websocket.send(json.dumps({
+                                "type": "error",
+                                "payload": {"message": "Failed to execute automation plan"}
+                            }))
+                elif data.get('type') == 'button_action':
+                    # Forward button action to LLM service
+                    logger.info(f"🔘 Forwarding button action to LLM service: {data}")
+                    llm_response = await forward_to_llm(json.dumps(data))
+                    
+                    if llm_response and websocket.open:
+                        logger.info(f"🔘 Received button action response: {llm_response}")
+                        await websocket.send(llm_response)
+                    else:
+                        logger.error("❌ No response from LLM service for button action")
+                        if websocket.open:
+                            await websocket.send(json.dumps({
+                                "type": "error",
+                                "payload": {"message": "Failed to process button action"}
+                            }))
                 else:
                     # Default echo response
                     if websocket.open:

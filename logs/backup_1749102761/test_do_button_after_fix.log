@@ -1,0 +1,78 @@
+2025-06-04 11:37:44,872 - TestDoButtonAfterFix - INFO - 🚀 Starting DO Button Test After Fix
+2025-06-04 11:37:44,872 - TestDoButtonAfterFix - INFO - Test 1: Testing DO button via direct WebSocket connection...
+2025-06-04 11:37:45,153 - TestDoButtonAfterFix - INFO - ✅ Connected to DO button server at ws://localhost:8765
+2025-06-04 11:37:45,160 - TestDoButtonAfterFix - INFO - ✅ Received welcome message: {"type": "connection_established", "server_version": "1.0.0", "capabilities": ["agent_confirmation",...
+2025-06-04 11:37:45,161 - TestDoButtonAfterFix - INFO - ✅ Sent agent confirmation message with plan ID: test_plan_1749051465
+2025-06-04 11:37:45,181 - TestDoButtonAfterFix - INFO - ✅ Received response: {'type': 'agent_progress', 'progress': 10, 'message': 'Starting execution...', 'timestamp': '2025-06-04T11:37:45.180974'}
+2025-06-04 11:37:45,182 - TestDoButtonAfterFix - INFO - ✅ DO button action executed successfully
+2025-06-04 11:37:45,185 - TestDoButtonAfterFix - INFO - ✅ Test 1 passed: DO button is working correctly
+2025-06-04 11:37:45,185 - TestDoButtonAfterFix - INFO - Test 2: Testing plan execution via backend...
+2025-06-04 11:37:45,252 - TestDoButtonAfterFix - INFO - ✅ Connected to backend server at ws://localhost:8767/ws
+2025-06-04 11:37:45,264 - TestDoButtonAfterFix - INFO - ✅ Received welcome message with client_id: client_1749051465253
+2025-06-04 11:37:45,265 - TestDoButtonAfterFix - INFO - ✅ Sent register_plan message with plan ID: test_plan_1749051465
+2025-06-04 11:37:45,271 - TestDoButtonAfterFix - INFO - ✅ Received register response: {'type': 'error', 'error': 'Unknown message type: register_plan', 'client_id': 'client_1749051465253', 'timestamp': '2025-06-04T11:37:45.267626'}
+2025-06-04 11:37:45,271 - TestDoButtonAfterFix - INFO - ✅ Sent execute_plan message with plan ID: test_plan_1749051465
+2025-06-04 11:37:45,277 - TestDoButtonAfterFix - INFO - ✅ Received execution response: {'type': 'error', 'error': 'Unknown message type: execute_plan', 'client_id': 'client_1749051465253', 'timestamp': '2025-06-04T11:37:45.276589'}
+2025-06-04 11:37:45,277 - TestDoButtonAfterFix - ERROR - ❌ Error response: Unknown message type: execute_plan
+2025-06-04 11:37:45,286 - TestDoButtonAfterFix - ERROR - ❌ Test 2 failed: Backend execution is not working correctly
+2025-06-04 11:37:45,286 - TestDoButtonAfterFix - INFO - Test 3: Testing agent confirmation via backend...
+2025-06-04 11:37:45,323 - TestDoButtonAfterFix - INFO - ✅ Connected to backend server at ws://localhost:8767/ws
+2025-06-04 11:37:45,324 - TestDoButtonAfterFix - INFO - ✅ Received welcome message with client_id: client_1749051465323
+2025-06-04 11:37:45,324 - TestDoButtonAfterFix - INFO - ✅ Sent agent_confirmation message with plan ID: test_plan_1749051465
+2025-06-04 11:37:45,343 - TestDoButtonAfterFix - INFO - ✅ Received agent confirmation response: {'type': 'agent_confirmation_error', 'error': 'Plan not found or expired'}
+2025-06-04 11:37:45,343 - TestDoButtonAfterFix - INFO - ✅ Agent confirmation handled successfully
+2025-06-04 11:37:45,344 - TestDoButtonAfterFix - INFO - ✅ Test 3 passed: Agent confirmation is working correctly
+2025-06-04 11:37:45,344 - TestDoButtonAfterFix - ERROR - ❌ Some tests failed. The DO button fix may not be completely working
+2025-06-04 11:37:45,344 - TestDoButtonAfterFix - INFO - Tests completed.
+2025-06-04 11:55:12,138 - TestDoButtonAfterFix - INFO - 🚀 Starting DO Button Test After Fix
+2025-06-04 11:55:12,138 - TestDoButtonAfterFix - INFO - Test 1: Testing DO button via direct WebSocket connection...
+2025-06-04 11:55:12,173 - TestDoButtonAfterFix - INFO - ✅ Connected to DO button server at ws://localhost:8765
+2025-06-04 11:55:12,173 - TestDoButtonAfterFix - INFO - ✅ Received welcome message: {"type": "connection_established", "server_version": "1.0.0", "capabilities": ["agent_confirmation",...
+2025-06-04 11:55:12,173 - TestDoButtonAfterFix - INFO - ✅ Sent agent confirmation message with plan ID: test_plan_1749052512
+2025-06-04 11:55:12,175 - TestDoButtonAfterFix - INFO - ✅ Received response: {'type': 'agent_progress', 'progress': 10, 'message': 'Starting execution...', 'timestamp': '2025-06-04T11:55:12.174900'}
+2025-06-04 11:55:12,175 - TestDoButtonAfterFix - INFO - ✅ DO button action executed successfully
+2025-06-04 11:55:12,175 - TestDoButtonAfterFix - INFO - ✅ Test 1 passed: DO button is working correctly
+2025-06-04 11:55:12,175 - TestDoButtonAfterFix - INFO - Test 2: Testing plan execution via backend...
+2025-06-04 11:55:12,179 - TestDoButtonAfterFix - INFO - ✅ Connected to backend server at ws://localhost:8767/ws
+2025-06-04 11:55:12,179 - TestDoButtonAfterFix - INFO - ✅ Received welcome message with client_id: client_1749052512179
+2025-06-04 11:55:12,179 - TestDoButtonAfterFix - INFO - ✅ Sent register_plan message with plan ID: test_plan_1749052512
+2025-06-04 11:55:12,180 - TestDoButtonAfterFix - INFO - ✅ Received register response: {'type': 'error', 'error': 'Unknown message type: register_plan', 'client_id': 'client_1749052512179', 'timestamp': '2025-06-04T11:55:12.180013'}
+2025-06-04 11:55:12,180 - TestDoButtonAfterFix - INFO - ✅ Sent execute_plan message with plan ID: test_plan_1749052512
+2025-06-04 11:55:12,180 - TestDoButtonAfterFix - INFO - ✅ Received execution response: {'type': 'error', 'error': 'Unknown message type: execute_plan', 'client_id': 'client_1749052512179', 'timestamp': '2025-06-04T11:55:12.180294'}
+2025-06-04 11:55:12,180 - TestDoButtonAfterFix - ERROR - ❌ Error response: Unknown message type: execute_plan
+2025-06-04 11:55:12,180 - TestDoButtonAfterFix - ERROR - ❌ Test 2 failed: Backend execution is not working correctly
+2025-06-04 11:55:12,180 - TestDoButtonAfterFix - INFO - Test 3: Testing agent confirmation via backend...
+2025-06-04 11:55:12,181 - TestDoButtonAfterFix - INFO - ✅ Connected to backend server at ws://localhost:8767/ws
+2025-06-04 11:55:12,181 - TestDoButtonAfterFix - INFO - ✅ Received welcome message with client_id: client_1749052512181
+2025-06-04 11:55:12,181 - TestDoButtonAfterFix - INFO - ✅ Sent agent_confirmation message with plan ID: test_plan_1749052512
+2025-06-04 11:55:12,183 - TestDoButtonAfterFix - INFO - ✅ Received agent confirmation response: {'type': 'agent_confirmation_error', 'error': 'Plan not found or expired'}
+2025-06-04 11:55:12,183 - TestDoButtonAfterFix - INFO - ✅ Agent confirmation handled successfully
+2025-06-04 11:55:12,184 - TestDoButtonAfterFix - INFO - ✅ Test 3 passed: Agent confirmation is working correctly
+2025-06-04 11:55:12,184 - TestDoButtonAfterFix - ERROR - ❌ Some tests failed. The DO button fix may not be completely working
+2025-06-04 11:55:12,184 - TestDoButtonAfterFix - INFO - Tests completed.
+2025-06-04 11:59:35,961 - TestDoButtonAfterFix - INFO - 🚀 Starting DO Button Test After Fix
+2025-06-04 11:59:35,962 - TestDoButtonAfterFix - INFO - Test 1: Testing DO button via direct WebSocket connection...
+2025-06-04 11:59:36,029 - TestDoButtonAfterFix - INFO - ✅ Connected to DO button server at ws://localhost:8765
+2025-06-04 11:59:36,030 - TestDoButtonAfterFix - INFO - ✅ Received welcome message: {"type": "connection_established", "server_version": "1.0.0", "capabilities": ["agent_confirmation",...
+2025-06-04 11:59:36,031 - TestDoButtonAfterFix - INFO - ✅ Sent agent confirmation message with plan ID: test_plan_1749052776
+2025-06-04 11:59:36,034 - TestDoButtonAfterFix - INFO - ✅ Received response: {'type': 'agent_progress', 'progress': 10, 'message': 'Starting execution...', 'timestamp': '2025-06-04T11:59:36.034059'}
+2025-06-04 11:59:36,034 - TestDoButtonAfterFix - INFO - ✅ DO button action executed successfully
+2025-06-04 11:59:36,035 - TestDoButtonAfterFix - INFO - ✅ Test 1 passed: DO button is working correctly
+2025-06-04 11:59:36,035 - TestDoButtonAfterFix - INFO - Test 2: Testing plan execution via backend...
+2025-06-04 11:59:36,047 - TestDoButtonAfterFix - INFO - ✅ Connected to backend server at ws://localhost:8767/ws
+2025-06-04 11:59:36,048 - TestDoButtonAfterFix - INFO - ✅ Received welcome message with client_id: client_1749052776046
+2025-06-04 11:59:36,048 - TestDoButtonAfterFix - INFO - ✅ Sent register_plan message with plan ID: test_plan_1749052776
+2025-06-04 11:59:36,048 - TestDoButtonAfterFix - INFO - ✅ Received register response: {'type': 'error', 'error': 'Unknown message type: register_plan', 'client_id': 'client_1749052776046', 'timestamp': '2025-06-04T11:59:36.048344'}
+2025-06-04 11:59:36,048 - TestDoButtonAfterFix - INFO - ✅ Sent execute_plan message with plan ID: test_plan_1749052776
+2025-06-04 11:59:36,048 - TestDoButtonAfterFix - INFO - ✅ Received execution response: {'type': 'error', 'error': 'Unknown message type: execute_plan', 'client_id': 'client_1749052776046', 'timestamp': '2025-06-04T11:59:36.048680'}
+2025-06-04 11:59:36,048 - TestDoButtonAfterFix - ERROR - ❌ Error response: Unknown message type: execute_plan
+2025-06-04 11:59:36,049 - TestDoButtonAfterFix - ERROR - ❌ Test 2 failed: Backend execution is not working correctly
+2025-06-04 11:59:36,049 - TestDoButtonAfterFix - INFO - Test 3: Testing agent confirmation via backend...
+2025-06-04 11:59:36,050 - TestDoButtonAfterFix - INFO - ✅ Connected to backend server at ws://localhost:8767/ws
+2025-06-04 11:59:36,050 - TestDoButtonAfterFix - INFO - ✅ Received welcome message with client_id: client_1749052776050
+2025-06-04 11:59:36,051 - TestDoButtonAfterFix - INFO - ✅ Sent agent_confirmation message with plan ID: test_plan_1749052776
+2025-06-04 11:59:36,052 - TestDoButtonAfterFix - INFO - ✅ Received agent confirmation response: {'type': 'agent_confirmation_error', 'error': 'Plan not found or expired'}
+2025-06-04 11:59:36,052 - TestDoButtonAfterFix - INFO - ✅ Agent confirmation handled successfully
+2025-06-04 11:59:36,052 - TestDoButtonAfterFix - INFO - ✅ Test 3 passed: Agent confirmation is working correctly
+2025-06-04 11:59:36,052 - TestDoButtonAfterFix - ERROR - ❌ Some tests failed. The DO button fix may not be completely working
+2025-06-04 11:59:36,052 - TestDoButtonAfterFix - INFO - Tests completed.

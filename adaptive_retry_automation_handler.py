@@ -150,8 +150,19 @@ class AdaptiveRetryAutomationHandler:
         
         try:
             # Map action types for compatibility with different planners
-            action_type = step.action_type.lower()
+            # FIXED: Handle pipe-separated action types by taking the first one
+            raw_action_type = step.action_type.lower()
             
+            # Handle pipe-separated action types from LLM (e.g., "open_app|navigate_url")
+            if "|" in raw_action_type:
+                logger.info(f"🔧 Detected pipe-separated action types: {raw_action_type}")
+                action_types = raw_action_type.split("|")
+                action_type = action_types[0].strip()  # Take the first action type
+                logger.info(f"🔧 Using first action type: {action_type}")
+            else:
+                action_type = raw_action_type
+            
+            # Now match on the cleaned action type
             if action_type in ["open_app", "open"]:
                 return await self._execute_open_app(step)
             elif action_type in ["navigate_url", "navigate"]:

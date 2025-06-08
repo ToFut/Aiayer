@@ -1,0 +1,59 @@
+#!/bin/bash
+#
+# restart_ws_8765.sh
+#
+# This script restarts the WebSocket server on port 8765
+# to fix the Epiphany mode notification issue
+#
+
+echo "Restarting WebSocket server on port 8765..."
+
+# First, kill any existing processes on port 8765
+if lsof -ti:8765 >/dev/null; then
+  echo "Stopping existing WebSocket server on port 8765..."
+  lsof -ti:8765 | xargs kill -9
+  sleep 2
+fi
+
+# Create required directories
+mkdir -p logs
+mkdir -p pids
+
+# Make the script executable
+chmod +x fixed_ws_server_8765.py
+
+# Start the server
+python3 fixed_ws_server_8765.py > logs/ws_server_8765.log 2>&1 &
+
+# Save PID
+PID=$!
+echo $PID > pids/ws_server_8765.pid
+echo "WebSocket server restarted with PID: $PID"
+
+# Wait a moment and check if it is running
+sleep 3
+if ps -p $PID > /dev/null; then
+  echo "✅ WebSocket server is running on port 8765"
+  
+  # Verify WebSocket is listening
+  if lsof -i :8765 | grep LISTEN; then
+    echo "✅ WebSocket server is listening on port 8765"
+  else
+    echo "❌ WebSocket server is not listening on port 8765"
+    echo "Check logs/ws_server_8765.log for errors"
+    tail -n 20 logs/ws_server_8765.log
+  fi
+else
+  echo "❌ WebSocket server failed to start"
+  echo "Check logs/ws_server_8765.log for errors"
+  tail -n 20 logs/ws_server_8765.log
+fi
+
+echo "Done."
+
+# Notify user
+echo ""
+echo "The WebSocket server has been restarted with Epiphany mode notification fix."
+echo "You can now test it by running:"
+echo "    python3 send_test_epiphany.py"
+echo ""

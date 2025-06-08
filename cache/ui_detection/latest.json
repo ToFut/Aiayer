@@ -1,0 +1,663 @@
+{
+  "timestamp": 1748807704.594984,
+  "elements": [
+    {
+      "element_id": "dom_0",
+      "element_type": "button",
+      "text": "\ud83d\udd0d Search",
+      "bounding_box": [
+        378,
+        267,
+        470,
+        302
+      ],
+      "center_point": [
+        424,
+        284
+      ],
+      "confidence": 0.85,
+      "role": "button",
+      "state": "enabled",
+      "properties": {
+        "id": "search-btn",
+        "class": "search-btn",
+        "type": "submit",
+        "role": "",
+        "name": "",
+        "placeholder": "",
+        "value": "",
+        "href": ""
+      },
+      "children": [],
+      "parent_id": "",
+      "detection_method": "browser_api",
+      "detection_time": 1748807769.340234,
+      "can_click": true,
+      "can_type": false,
+      "can_scroll": false,
+      "placeholder": ""
+    },
+    {
+      "element_id": "dom_1",
+      "element_type": "button",
+      "text": "\ud83d\udce7 Send Message",
+      "bounding_box": [
+        85,
+        1155,
+        260,
+        1200
+      ],
+      "center_point": [
+        172,
+        1177
+      ],
+      "confidence": 0.7,
+      "role": "button",
+      "state": "enabled",
+      "properties": {
+        "id": "submit-btn",
+        "class": "",
+        "type": "submit",
+        "role": "",
+        "name": "",
+        "placeholder": "",
+        "value": "",
+        "href": ""
+      },
+      "children": [],
+      "parent_id": "",
+      "detection_method": "browser_api",
+      "detection_time": 1748807769.382497,
+      "can_click": true,
+      "can_type": false,
+      "can_scroll": false,
+      "placeholder": ""
+    },
+    {
+      "element_id": "dom_2",
+      "element_type": "button",
+      "text": "\ud83d\uded2 Add to Cart",
+      "bounding_box": [
+        956,
+        1527,
+        1104,
+        1572
+      ],
+      "center_point": [
+        1030,
+        1549
+      ],
+      "confidence": 0.85,
+      "role": "button",
+      "state": "enabled",
+      "properties": {
+        "id": "add-laptop",
+        "class": "cart-btn",
+        "type": "submit",
+        "role": "",
+        "name": "",
+        "placeholder": "",
+        "value": "",
+        "href": ""
+      },
+      "children": [],
+      "parent_id": "",
+      "detection_method": "browser_api",
+      "detection_time": 1748807769.456202,
+      "can_click": true,
+      "can_type": false,
+      "can_scroll": false,
+      "placeholder": ""
+    },
+    {
+      "element_id": "dom_3",
+      "element_type": "button",
+      "text": "\ud83d\uded2 Add to Cart",
+      "bounding_box": [
+        956,
+        1624,
+        1104,
+        1669
+      ],
+      "center_point": [
+        1030,
+        1646
+      ],
+      "confidence": 0.85,
+      "role": "button",
+      "state": "enabled",
+      "properties": {
+        "id": "add-headphones",
+        "class": "cart-btn",
+        "type": "submit",
+        "role": "",
+        "name": "",
+        "placeholder": "",
+        "value": "",
+        "href": ""
+      },
+      "children": [],
+      "parent_id": "",
+      "detection_method": "browser_api",
+      "detection_time": 1748807769.517493,
+      "can_click": true,
+      "can_type": false,
+      "can_scroll": false,
+      "placeholder": ""
+    },
+    {
+      "element_id": "dom_4",
+      "element_type": "button",
+      "text": "\ud83d\uded2 Add to Cart",
+      "bounding_box": [
+        956,
+        1721,
+        1104,
+        1766
+      ],
+      "center_point": [
+        1030,
+        1743
+      ],
+      "confidence": 0.85,
+      "role": "button",
+      "state": "enabled",
+      "properties": {
+        "id": "add-watch",
+        "class": "cart-btn",
+        "type": "submit",
+        "role": "",
+        "name": "",
+        "placeholder": "",
+        "value": "",
+        "href": ""
+      },
+      "children": [],
+      "parent_id": "",
+      "detection_method": "browser_api",
+      "detection_time": 1748807769.558846,
+      "can_click": true,
+      "can_type": false,
+      "can_scroll": false,
+      "placeholder": ""
+    },
+    {
+      "element_id": "dom_5",
+      "element_type": "link",
+      "text": "\ud83d\udecd\ufe0f View Cart 0",
+      "bounding_box": [
+        394,
+        1812,
+        574,
+        1857
+      ],
+      "center_point": [
+        484,
+        1834
+      ],
+      "confidence": 0.7,
+      "role": "button",
+      "state": "enabled",
+      "properties": {
+        "id": "view-cart",
+        "class": "",
+        "type": "submit",
+        "role": "",
+        "name": "",
+        "placeholder": "",
+        "value": "",
+        "href": ""
+      },
+      "children": [],
+      "parent_id": "",
+      "detection_method": "browser_api",
+      "detection_time": 1748807769.5996711,
+      "can_click": true,
+      "can_type": false,
+      "can_scroll": false,
+      "placeholder": ""
+    },
+    {
+      "element_id": "dom_6",
+      "element_type": "checkbox",
+      "text": "\ud83d\udcb3 Proceed to Checkout",
+      "bounding_box": [
+        593,
+        1812,
+        811,
+        1857
+      ],
+      "center_point": [
+        702,
+        1834
+      ],
+      "confidence": 0.7,
+      "role": "button",
+      "state": "enabled",
+      "properties": {
+        "id": "checkout-btn",
+        "class": "",
+        "type": "submit",
+        "role": "",
+        "name": "",
+        "placeholder": "",
+        "value": "",
+        "href": ""
+      },
+      "children": [],
+      "parent_id": "",
+      "detection_method": "browser_api",
+      "detection_time": 1748807769.64716,
+      "can_click": true,
+      "can_type": false,
+      "can_scroll": false,
+      "placeholder": ""
+    },
+    {
+      "element_id": "dom_7",
+      "element_type": "button",
+      "text": "\ud83d\udcbe Save Settings",
+      "bounding_box": [
+        85,
+        2414,
+        252,
+        2459
+      ],
+      "center_point": [
+        168,
+        2436
+      ],
+      "confidence": 0.7,
+      "role": "button",
+      "state": "enabled",
+      "properties": {
+        "id": "save-settings",
+        "class": "",
+        "type": "submit",
+        "role": "",
+        "name": "",
+        "placeholder": "",
+        "value": "",
+        "href": ""
+      },
+      "children": [],
+      "parent_id": "",
+      "detection_method": "browser_api",
+      "detection_time": 1748807769.687776,
+      "can_click": true,
+      "can_type": false,
+      "can_scroll": false,
+      "placeholder": ""
+    },
+    {
+      "element_id": "dom_8",
+      "element_type": "unknown",
+      "text": "\ud83c\udfaf Demo Action 1",
+      "bounding_box": [
+        85,
+        2769,
+        258,
+        2814
+      ],
+      "center_point": [
+        171,
+        2791
+      ],
+      "confidence": 0.5,
+      "role": "button",
+      "state": "enabled",
+      "properties": {
+        "id": "demo-btn1",
+        "class": "",
+        "type": "submit",
+        "role": "",
+        "name": "",
+        "placeholder": "",
+        "value": "",
+        "href": ""
+      },
+      "children": [],
+      "parent_id": "",
+      "detection_method": "browser_api",
+      "detection_time": 1748807769.7315369,
+      "can_click": false,
+      "can_type": false,
+      "can_scroll": false,
+      "placeholder": ""
+    },
+    {
+      "element_id": "dom_9",
+      "element_type": "unknown",
+      "text": "\u26a1 Demo Action 2",
+      "bounding_box": [
+        272,
+        2769,
+        445,
+        2814
+      ],
+      "center_point": [
+        358,
+        2791
+      ],
+      "confidence": 0.5,
+      "role": "button",
+      "state": "enabled",
+      "properties": {
+        "id": "demo-btn2",
+        "class": "",
+        "type": "submit",
+        "role": "",
+        "name": "",
+        "placeholder": "",
+        "value": "",
+        "href": ""
+      },
+      "children": [],
+      "parent_id": "",
+      "detection_method": "browser_api",
+      "detection_time": 1748807769.7754052,
+      "can_click": false,
+      "can_type": false,
+      "can_scroll": false,
+      "placeholder": ""
+    },
+    {
+      "element_id": "dom_10",
+      "element_type": "unknown",
+      "text": "\ud83d\ude80 Demo Action 3",
+      "bounding_box": [
+        460,
+        2769,
+        633,
+        2814
+      ],
+      "center_point": [
+        546,
+        2791
+      ],
+      "confidence": 0.5,
+      "role": "button",
+      "state": "enabled",
+      "properties": {
+        "id": "demo-btn3",
+        "class": "",
+        "type": "submit",
+        "role": "",
+        "name": "",
+        "placeholder": "",
+        "value": "",
+        "href": ""
+      },
+      "children": [],
+      "parent_id": "",
+      "detection_method": "browser_api",
+      "detection_time": 1748807769.817473,
+      "can_click": false,
+      "can_type": false,
+      "can_scroll": false,
+      "placeholder": ""
+    },
+    {
+      "element_id": "dom_11",
+      "element_type": "unknown",
+      "text": "\ud83d\udd04 Reset Page",
+      "bounding_box": [
+        648,
+        2769,
+        800,
+        2814
+      ],
+      "center_point": [
+        724,
+        2791
+      ],
+      "confidence": 0.5,
+      "role": "button",
+      "state": "enabled",
+      "properties": {
+        "id": "reset-page",
+        "class": "",
+        "type": "submit",
+        "role": "",
+        "name": "",
+        "placeholder": "",
+        "value": "",
+        "href": ""
+      },
+      "children": [],
+      "parent_id": "",
+      "detection_method": "browser_api",
+      "detection_time": 1748807769.859168,
+      "can_click": false,
+      "can_type": false,
+      "can_scroll": false,
+      "placeholder": ""
+    },
+    {
+      "element_id": "dom_12",
+      "element_type": "textfield",
+      "text": "Search for anything...",
+      "bounding_box": [
+        85,
+        256,
+        551,
+        303
+      ],
+      "center_point": [
+        318,
+        279
+      ],
+      "confidence": 0.95,
+      "role": "input",
+      "state": "enabled",
+      "properties": {
+        "id": "search-input",
+        "class": "search-input",
+        "type": "text",
+        "role": "",
+        "name": "",
+        "placeholder": "Search for anything...",
+        "value": "",
+        "href": ""
+      },
+      "children": [],
+      "parent_id": "",
+      "detection_method": "browser_api",
+      "detection_time": 1748807769.9224179,
+      "can_click": false,
+      "can_type": true,
+      "can_scroll": false,
+      "placeholder": "Search for anything..."
+    },
+    {
+      "element_id": "dom_13",
+      "element_type": "textfield",
+      "text": "Enter your full name",
+      "bounding_box": [
+        85,
+        637,
+        280,
+        684
+      ],
+      "center_point": [
+        182,
+        660
+      ],
+      "confidence": 0.95,
+      "role": "input",
+      "state": "enabled",
+      "properties": {
+        "id": "name",
+        "class": "",
+        "type": "text",
+        "role": "",
+        "name": "name",
+        "placeholder": "Enter your full name",
+        "value": "",
+        "href": ""
+      },
+      "children": [],
+      "parent_id": "",
+      "detection_method": "browser_api",
+      "detection_time": 1748807769.962424,
+      "can_click": false,
+      "can_type": true,
+      "can_scroll": false,
+      "placeholder": "Enter your full name"
+    },
+    {
+      "element_id": "dom_14",
+      "element_type": "textfield",
+      "text": "Enter your email",
+      "bounding_box": [
+        85,
+        733,
+        280,
+        780
+      ],
+      "center_point": [
+        182,
+        756
+      ],
+      "confidence": 0.95,
+      "role": "input",
+      "state": "enabled",
+      "properties": {
+        "id": "email",
+        "class": "",
+        "type": "email",
+        "role": "",
+        "name": "email",
+        "placeholder": "Enter your email",
+        "value": "",
+        "href": ""
+      },
+      "children": [],
+      "parent_id": "",
+      "detection_method": "browser_api",
+      "detection_time": 1748807770.011383,
+      "can_click": false,
+      "can_type": true,
+      "can_scroll": false,
+      "placeholder": "Enter your email"
+    },
+    {
+      "element_id": "dom_15",
+      "element_type": "textfield",
+      "text": "Enter your message",
+      "bounding_box": [
+        85,
+        1023,
+        322,
+        1127
+      ],
+      "center_point": [
+        203,
+        1075
+      ],
+      "confidence": 0.95,
+      "role": "textarea",
+      "state": "enabled",
+      "properties": {
+        "id": "message",
+        "class": "",
+        "type": "textarea",
+        "role": "",
+        "name": "message",
+        "placeholder": "Enter your message",
+        "value": "",
+        "href": ""
+      },
+      "children": [],
+      "parent_id": "",
+      "detection_method": "browser_api",
+      "detection_time": 1748807770.079679,
+      "can_click": false,
+      "can_type": true,
+      "can_scroll": false,
+      "placeholder": "Enter your message"
+    },
+    {
+      "element_id": "dom_16",
+      "element_type": "dropdown",
+      "text": "Select a subject\n                        General Inquiry\n                        Technical Support\n                        Sales Question\n                        Feedback",
+      "bounding_box": [
+        85,
+        925,
+        261,
+        973
+      ],
+      "center_point": [
+        173,
+        949
+      ],
+      "confidence": 0.95,
+      "role": "select",
+      "state": "enabled",
+      "properties": {
+        "id": "subject",
+        "class": "",
+        "type": "select-one",
+        "role": "",
+        "name": "subject",
+        "placeholder": "",
+        "value": "",
+        "href": ""
+      },
+      "children": [],
+      "parent_id": "",
+      "detection_method": "browser_api",
+      "detection_time": 1748807770.1279428,
+      "can_click": false,
+      "can_type": false,
+      "can_scroll": false,
+      "placeholder": ""
+    },
+    {
+      "element_id": "dom_17",
+      "element_type": "form",
+      "text": "Full Name:\nEmail Address:\nPhone Number:\nSubject:\n                        Select a subject\n                        General Inquiry\n                        Technical Support\n                        Sales Question\n                        Feedback\n                     Message:\n\ud83d\udce7 Send Message",
+      "bounding_box": [
+        80,
+        608,
+        1125,
+        1206
+      ],
+      "center_point": [
+        602,
+        907
+      ],
+      "confidence": 0.95,
+      "role": "form",
+      "state": "enabled",
+      "properties": {
+        "id": "contact-form",
+        "class": "",
+        "type": "",
+        "role": "",
+        "name": "",
+        "placeholder": "",
+        "value": "",
+        "href": ""
+      },
+      "children": [],
+      "parent_id": "",
+      "detection_method": "browser_api",
+      "detection_time": 1748807770.1844869,
+      "can_click": false,
+      "can_type": false,
+      "can_scroll": false,
+      "placeholder": ""
+    }
+  ],
+  "screenshot_hash": "",
+  "detection_methods": [
+    "browser_api"
+  ],
+  "detection_time": 65.60402917861938,
+  "context": {
+    "test_name": "web_page_test",
+    "browser": "Safari",
+    "mode": "fast"
+  }
+}

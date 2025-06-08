@@ -1,519 +1,624 @@
 #!/usr/bin/env python3
 """
-Accessibility-First UI Detection
-Direct access to UI elements without screen capture
+Accessibility UI Detector - A specialized detector that uses accessibility APIs
+to identify UI elements with high precision.
+
+This module leverages system accessibility features to detect UI elements
+accurately across different applications.
 """
 
-import asyncio
+import json
 import logging
+import os
 import time
-from typing import Dict, Any, List, Optional, Tuple
-from dataclasses import dataclass
-from enum import Enum
-import sys
+import traceback
+from datetime import datetime
 
-# Platform-specific accessibility imports
-if sys.platform == "darwin":
-    try:
-        import ApplicationServices
-        import Quartz.CoreGraphics as CG
-        from AppKit import NSWorkspace, NSAccessibilityElement
-        from PyObjCTools import AppHelper
-        MACOS_ACCESSIBILITY_AVAILABLE = True
-    except ImportError:
-        MACOS_ACCESSIBILITY_AVAILABLE = False
-elif sys.platform == "win32":
-    try:
-        import comtypes
-        import comtypes.client
-        from comtypes.gen import UIAutomationCore
-        WINDOWS_UIAUTOMATION_AVAILABLE = True
-    except ImportError:
-        WINDOWS_UIAUTOMATION_AVAILABLE = False
-else:
-    try:
-        import pyatspi
-        LINUX_ATSPI_AVAILABLE = True
-    except ImportError:
-        LINUX_ATSPI_AVAILABLE = False
+# Set up logging
+os.makedirs('logs', exist_ok=True)
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
+    handlers=[
+        logging.FileHandler('logs/accessibility_detector.log'),
+        logging.StreamHandler()
+    ]
+)
+logger = logging.getLogger('accessibility_detector')
 
-# Setup logging
-logging.basicConfig(level=logging.INFO)
-logger = logging.getLogger(__name__)
+# Platform detection
+IS_MACOS = False
+IS_WINDOWS = False
+IS_LINUX = False
 
-class UIElementType(Enum):
-    BUTTON = "button"
-    TEXT_FIELD = "text_field"
-    LABEL = "label"
-    MENU = "menu"
-    MENU_ITEM = "menu_item"
-    WINDOW = "window"
-    TAB = "tab"
-    CHECKBOX = "checkbox"
-    RADIO_BUTTON = "radio_button"
-    SLIDER = "slider"
-    SCROLL_BAR = "scroll_bar"
-    TABLE = "table"
-    LIST = "list"
-    TREE = "tree"
-    IMAGE = "image"
-    LINK = "link"
-    UNKNOWN = "unknown"
+try:
+    # macOS specific imports
+    import Quartz
+    import AppKit
+    from PyObjCTools import AppHelper
+    IS_MACOS = True
+except ImportError:
+    logger.warning("macOS accessibility APIs not available")
 
-@dataclass
-class UIElement:
-    """Accessible UI element - no visual data needed"""
-    id: str
-    element_type: UIElementType
-    role: str
-    title: str
-    value: Optional[str]
-    bounds: Tuple[int, int, int, int]  # x, y, width, height
-    is_enabled: bool
-    is_visible: bool
-    is_focusable: bool
-    parent_id: Optional[str]
-    children_ids: List[str]
-    app_name: str
-    window_title: str
-    actions: List[str]  # Available actions (click, type, etc.)
-    properties: Dict[str, Any]
-    timestamp: float
+try:
+    # Windows specific imports
+    import ctypes
+    import comtypes.client
+    from comtypes.automation import VARIANT
+    IS_WINDOWS = True
+except ImportError:
+    logger.warning("Windows accessibility APIs not available")
 
-class MacOSAccessibilityDetector:
-    """macOS Accessibility API integration"""
-    
-    def __init__(self):
-        self.accessibility_enabled = False
-        
-    async def initialize(self) -> bool:
-        """Initialize macOS accessibility"""
-        if not MACOS_ACCESSIBILITY_AVAILABLE:
-            return False
-        
-        try:
-            # Check accessibility permissions
-            trusted = ApplicationServices.AXIsProcessTrusted()
-            if not trusted:
-                logger.warning("⚠️  Accessibility permissions required")
-                logger.info("Enable in: System Preferences > Security & Privacy > Accessibility")
-                return False
-            
-            self.accessibility_enabled = True
-            logger.info("✅ macOS Accessibility API enabled")
-            return True
-            
-        except Exception as e:
-            logger.error(f"macOS accessibility initialization failed: {e}")
-            return False
-    
-    async def get_ui_elements(self) -> List[UIElement]:
-        """Get UI elements from active application"""
-        if not self.accessibility_enabled:
-            return []
-        
-        elements = []
-        
-        try:
-            # Get frontmost application
-            workspace = NSWorkspace.sharedWorkspace()
-            frontmost_app = workspace.activeApplication()
-            
-            if not frontmost_app:
-                return elements
-            
-            app_name = frontmost_app.get('NSApplicationName', 'Unknown')
-            app_pid = frontmost_app.get('NSApplicationProcessIdentifier')
-            
-            if app_pid:
-                # Get accessibility element for app
-                app_element = NSAccessibilityElement.accessibilityElementWithProcessIdentifier_(app_pid)
-                
-                if app_element:
-                    # Get windows
-                    windows = app_element.accessibilityAttributeValue_("AXWindows")
-                    
-                    if windows:
-                        for window in windows:
-                            window_elements = await self._process_window(window, app_name)
-                            elements.extend(window_elements)
-            
-        except Exception as e:
-            logger.error(f"Error getting macOS UI elements: {e}")
-        
-        return elements
-    
-    async def _process_window(self, window, app_name: str) -> List[UIElement]:
-        """Process accessibility window and extract elements"""
-        elements = []
-        
-        try:
-            window_title = window.accessibilityAttributeValue_("AXTitle") or ""
-            window_size = window.accessibilityAttributeValue_("AXSize")
-            window_position = window.accessibilityAttributeValue_("AXPosition")
-            
-            # Process window itself
-            window_element = UIElement(
-                id=f"window_{id(window)}",
-                element_type=UIElementType.WINDOW,
-                role="window",
-                title=window_title,
-                value=None,
-                bounds=(
-                    int(window_position.x) if window_position else 0,
-                    int(window_position.y) if window_position else 0,
-                    int(window_size.width) if window_size else 0,
-                    int(window_size.height) if window_size else 0
-                ),
-                is_enabled=True,
-                is_visible=True,
-                is_focusable=True,
-                parent_id=None,
-                children_ids=[],
-                app_name=app_name,
-                window_title=window_title,
-                actions=["focus", "close", "minimize"],
-                properties={},
-                timestamp=time.time()
-            )
-            elements.append(window_element)
-            
-            # Get child elements recursively
-            children = window.accessibilityAttributeValue_("AXChildren")
-            if children:
-                for child in children:
-                    child_elements = await self._process_element_recursive(
-                        child, app_name, window_title, window_element.id
-                    )
-                    elements.extend(child_elements)
-                    window_element.children_ids.extend([e.id for e in child_elements])
-            
-        except Exception as e:
-            logger.error(f"Error processing window: {e}")
-        
-        return elements
-    
-    async def _process_element_recursive(self, element, app_name: str, 
-                                       window_title: str, parent_id: str) -> List[UIElement]:
-        """Recursively process accessibility elements"""
-        elements = []
-        
-        try:
-            role = element.accessibilityAttributeValue_("AXRole") or "unknown"
-            title = element.accessibilityAttributeValue_("AXTitle") or ""
-            value = element.accessibilityAttributeValue_("AXValue") or ""
-            
-            # Get element bounds
-            position = element.accessibilityAttributeValue_("AXPosition")
-            size = element.accessibilityAttributeValue_("AXSize")
-            
-            # Map accessibility role to our enum
-            element_type = self._map_role_to_type(role)
-            
-            # Get available actions
-            actions = element.accessibilityAttributeValue_("AXActions") or []
-            action_names = [str(action) for action in actions]
-            
-            ui_element = UIElement(
-                id=f"element_{id(element)}",
-                element_type=element_type,
-                role=role,
-                title=title,
-                value=str(value) if value else None,
-                bounds=(
-                    int(position.x) if position else 0,
-                    int(position.y) if position else 0,
-                    int(size.width) if size else 0,
-                    int(size.height) if size else 0
-                ),
-                is_enabled=element.accessibilityAttributeValue_("AXEnabled") or False,
-                is_visible=not (element.accessibilityAttributeValue_("AXHidden") or False),
-                is_focusable=element.accessibilityAttributeValue_("AXFocusable") or False,
-                parent_id=parent_id,
-                children_ids=[],
-                app_name=app_name,
-                window_title=window_title,
-                actions=action_names,
-                properties={
-                    'role_description': element.accessibilityAttributeValue_("AXRoleDescription") or "",
-                    'help': element.accessibilityAttributeValue_("AXHelp") or "",
-                    'description': element.accessibilityAttributeValue_("AXDescription") or ""
-                },
-                timestamp=time.time()
-            )
-            
-            elements.append(ui_element)
-            
-            # Process children
-            children = element.accessibilityAttributeValue_("AXChildren")
-            if children:
-                for child in children:
-                    child_elements = await self._process_element_recursive(
-                        child, app_name, window_title, ui_element.id
-                    )
-                    elements.extend(child_elements)
-                    ui_element.children_ids.extend([e.id for e in child_elements])
-            
-        except Exception as e:
-            logger.debug(f"Error processing element: {e}")
-        
-        return elements
-    
-    def _map_role_to_type(self, role: str) -> UIElementType:
-        """Map accessibility role to UI element type"""
-        role_mapping = {
-            "AXButton": UIElementType.BUTTON,
-            "AXTextField": UIElementType.TEXT_FIELD,
-            "AXStaticText": UIElementType.LABEL,
-            "AXMenu": UIElementType.MENU,
-            "AXMenuItem": UIElementType.MENU_ITEM,
-            "AXWindow": UIElementType.WINDOW,
-            "AXTab": UIElementType.TAB,
-            "AXCheckBox": UIElementType.CHECKBOX,
-            "AXRadioButton": UIElementType.RADIO_BUTTON,
-            "AXSlider": UIElementType.SLIDER,
-            "AXScrollBar": UIElementType.SCROLL_BAR,
-            "AXTable": UIElementType.TABLE,
-            "AXList": UIElementType.LIST,
-            "AXOutline": UIElementType.TREE,
-            "AXImage": UIElementType.IMAGE,
-            "AXLink": UIElementType.LINK
-        }
-        
-        return role_mapping.get(role, UIElementType.UNKNOWN)
-
-class WindowsUIAutomationDetector:
-    """Windows UI Automation integration"""
-    
-    def __init__(self):
-        self.automation = None
-        self.root_element = None
-        
-    async def initialize(self) -> bool:
-        """Initialize Windows UI Automation"""
-        if not WINDOWS_UIAUTOMATION_AVAILABLE:
-            return False
-        
-        try:
-            # Initialize COM
-            comtypes.CoInitialize()
-            
-            # Get UI Automation
-            self.automation = comtypes.client.CreateObject(
-                "{ff48dba4-60ef-4201-aa87-54103eef594e}",
-                interface=UIAutomationCore.IUIAutomation
-            )
-            
-            self.root_element = self.automation.GetRootElement()
-            
-            logger.info("✅ Windows UI Automation enabled")
-            return True
-            
-        except Exception as e:
-            logger.error(f"Windows UI Automation initialization failed: {e}")
-            return False
-    
-    async def get_ui_elements(self) -> List[UIElement]:
-        """Get UI elements from active window"""
-        if not self.automation or not self.root_element:
-            return []
-        
-        elements = []
-        
-        try:
-            # Get foreground window
-            foreground_element = self.automation.GetForegroundElement()
-            
-            if foreground_element:
-                window_elements = await self._process_element_recursive(
-                    foreground_element, None
-                )
-                elements.extend(window_elements)
-            
-        except Exception as e:
-            logger.error(f"Error getting Windows UI elements: {e}")
-        
-        return elements
-    
-    async def _process_element_recursive(self, element, parent_id: Optional[str]) -> List[UIElement]:
-        """Recursively process UI Automation elements"""
-        elements = []
-        
-        try:
-            # Get element properties
-            control_type = element.CurrentControlType
-            name = element.CurrentName or ""
-            automation_id = element.CurrentAutomationId or ""
-            
-            # Get bounding rectangle
-            rect = element.CurrentBoundingRectangle
-            
-            ui_element = UIElement(
-                id=f"element_{automation_id}_{id(element)}",
-                element_type=self._map_control_type_to_type(control_type),
-                role=f"UIA_{control_type}",
-                title=name,
-                value=getattr(element, 'CurrentValue', None),
-                bounds=(int(rect.left), int(rect.top), 
-                       int(rect.right - rect.left), int(rect.bottom - rect.top)),
-                is_enabled=element.CurrentIsEnabled,
-                is_visible=not element.CurrentIsOffscreen,
-                is_focusable=element.CurrentIsKeyboardFocusable,
-                parent_id=parent_id,
-                children_ids=[],
-                app_name=element.CurrentProcessId,
-                window_title=name if control_type == 50032 else "",  # Window control type
-                actions=self._get_available_patterns(element),
-                properties={
-                    'automation_id': automation_id,
-                    'control_type': control_type,
-                    'class_name': element.CurrentClassName or "",
-                    'framework_id': element.CurrentFrameworkId or ""
-                },
-                timestamp=time.time()
-            )
-            
-            elements.append(ui_element)
-            
-            # Get children
-            children = element.FindAll(1, self.automation.CreateTrueCondition())  # TreeScope_Children
-            if children:
-                for i in range(children.Length):
-                    child = children.GetElement(i)
-                    child_elements = await self._process_element_recursive(child, ui_element.id)
-                    elements.extend(child_elements)
-                    ui_element.children_ids.extend([e.id for e in child_elements])
-            
-        except Exception as e:
-            logger.debug(f"Error processing Windows element: {e}")
-        
-        return elements
-    
-    def _map_control_type_to_type(self, control_type: int) -> UIElementType:
-        """Map Windows control type to UI element type"""
-        type_mapping = {
-            50000: UIElementType.BUTTON,      # Button
-            50004: UIElementType.TEXT_FIELD,  # Edit
-            50020: UIElementType.LABEL,       # Text
-            50009: UIElementType.MENU,        # Menu
-            50011: UIElementType.MENU_ITEM,   # MenuItem
-            50032: UIElementType.WINDOW,      # Window
-            50018: UIElementType.TAB,         # TabItem
-            50002: UIElementType.CHECKBOX,    # CheckBox
-            50003: UIElementType.RADIO_BUTTON, # RadioButton
-            50033: UIElementType.SLIDER,      # Slider
-            50001: UIElementType.SCROLL_BAR,  # ScrollBar
-            50026: UIElementType.TABLE,       # Table
-            50008: UIElementType.LIST,        # List
-            50023: UIElementType.TREE,        # Tree
-            50005: UIElementType.IMAGE,       # Image
-            50005: UIElementType.LINK         # Hyperlink
-        }
-        
-        return type_mapping.get(control_type, UIElementType.UNKNOWN)
-    
-    def _get_available_patterns(self, element) -> List[str]:
-        """Get available interaction patterns for element"""
-        patterns = []
-        
-        # Check common patterns
-        pattern_checks = [
-            ("Invoke", "click"),
-            ("Value", "set_value"),
-            ("Text", "set_text"),
-            ("Toggle", "toggle"),
-            ("Selection", "select"),
-            ("ScrollItem", "scroll_into_view")
-        ]
-        
-        for pattern_name, action_name in pattern_checks:
-            try:
-                pattern_id = getattr(UIAutomationCore, f"UIA_{pattern_name}PatternId", None)
-                if pattern_id and element.GetCurrentPattern(pattern_id):
-                    patterns.append(action_name)
-            except:
-                continue
-        
-        return patterns
+try:
+    # Linux specific imports (using AT-SPI)
+    import gi
+    gi.require_version('Atspi', '2.0')
+    from gi.repository import Atspi
+    IS_LINUX = True
+except (ImportError, ValueError):
+    logger.warning("Linux accessibility APIs (AT-SPI) not available")
 
 class AccessibilityUIDetector:
-    """Cross-platform accessibility-based UI detection"""
+    """
+    A class that detects UI elements using platform-specific accessibility APIs.
+    """
     
     def __init__(self):
-        self.platform_detector = None
-        self.initialized = False
+        """Initialize the detector based on the platform."""
+        self.platform = self._detect_platform()
+        logger.info(f"Initialized AccessibilityUIDetector on {self.platform} platform")
         
-    async def initialize(self) -> bool:
-        """Initialize platform-specific accessibility detector"""
-        if sys.platform == "darwin":
-            self.platform_detector = MacOSAccessibilityDetector()
-        elif sys.platform == "win32":
-            self.platform_detector = WindowsUIAutomationDetector()
+    def _detect_platform(self):
+        """Detect the current platform."""
+        if IS_MACOS:
+            return "macos"
+        elif IS_WINDOWS:
+            return "windows"
+        elif IS_LINUX:
+            return "linux"
         else:
-            logger.warning("Linux accessibility support limited")
-            return False
-        
-        if self.platform_detector:
-            self.initialized = await self.platform_detector.initialize()
-            
-        return self.initialized
+            return "unsupported"
     
-    async def get_current_ui_elements(self) -> List[UIElement]:
-        """Get current UI elements without screen capture"""
-        if not self.initialized or not self.platform_detector:
+    def scan_screen(self):
+        """
+        Scan the screen for UI elements using accessibility APIs.
+        
+        Returns:
+            dict: JSON-serializable dictionary of detected UI elements
+        """
+        start_time = time.time()
+        try:
+            if self.platform == "macos":
+                elements = self._scan_macos()
+            elif self.platform == "windows":
+                elements = self._scan_windows()
+            elif self.platform == "linux":
+                elements = self._scan_linux()
+            else:
+                logger.error("Unsupported platform for UI detection")
+                return {"error": "Unsupported platform", "elements": []}
+            
+            duration = time.time() - start_time
+            result = {
+                "timestamp": datetime.now().isoformat(),
+                "platform": self.platform,
+                "scan_duration_ms": int(duration * 1000),
+                "element_count": len(elements),
+                "elements": elements
+            }
+            
+            # Save results to cache for dashboard
+            self._save_latest_scan(result)
+            
+            return result
+        except Exception as e:
+            logger.error(f"Error scanning screen: {str(e)}")
+            logger.error(traceback.format_exc())
+            return {"error": str(e), "elements": []}
+    
+    def _scan_macos(self):
+        """
+        Scan for UI elements using macOS accessibility API.
+        
+        Returns:
+            list: List of detected UI elements with properties
+        """
+        if not IS_MACOS:
             return []
         
-        return await self.platform_detector.get_ui_elements()
-    
-    async def find_elements_by_type(self, element_type: UIElementType) -> List[UIElement]:
-        """Find elements by type"""
-        all_elements = await self.get_current_ui_elements()
-        return [element for element in all_elements if element.element_type == element_type]
-    
-    async def find_elements_by_text(self, text: str) -> List[UIElement]:
-        """Find elements containing specific text"""
-        all_elements = await self.get_current_ui_elements()
-        matching_elements = []
+        elements = []
         
-        for element in all_elements:
-            if (text.lower() in element.title.lower() or 
-                (element.value and text.lower() in element.value.lower())):
-                matching_elements.append(element)
+        try:
+            # Get system-wide accessibility element
+            system_wide_element = Quartz.AXUIElementCreateSystemWide()
+            
+            # Get the focused application
+            focused_app_ref = ctypes.c_void_p()
+            Quartz.AXUIElementCopyAttributeValue(
+                system_wide_element,
+                Quartz.kAXFocusedApplicationAttribute,
+                ctypes.byref(focused_app_ref)
+            )
+            
+            if focused_app_ref.value:
+                # Get application name
+                app_name = self._get_attribute(focused_app_ref.value, Quartz.kAXTitleAttribute)
+                
+                # Get all windows
+                windows_ref = self._get_attribute_array(focused_app_ref.value, Quartz.kAXWindowsAttribute)
+                
+                if windows_ref:
+                    for window in windows_ref:
+                        # Process each window
+                        window_elements = self._process_macos_element(window, app_name)
+                        elements.extend(window_elements)
+        except Exception as e:
+            logger.error(f"Error in macOS accessibility scanning: {str(e)}")
+            logger.error(traceback.format_exc())
         
-        return matching_elements
+        return elements
     
-    async def get_clickable_elements(self) -> List[UIElement]:
-        """Get all clickable elements"""
-        all_elements = await self.get_current_ui_elements()
-        return [element for element in all_elements 
-                if element.is_enabled and "click" in element.actions]
+    def _process_macos_element(self, element, app_name, depth=0, max_depth=10):
+        """
+        Process a macOS accessibility element recursively.
+        
+        Args:
+            element: The accessibility element to process
+            app_name: The name of the application
+            depth: Current recursion depth
+            max_depth: Maximum recursion depth
+            
+        Returns:
+            list: UI elements found
+        """
+        if depth > max_depth:
+            return []
+        
+        elements = []
+        
+        try:
+            # Get element role
+            role = self._get_attribute(element, Quartz.kAXRoleAttribute) or "unknown"
+            
+            # Get element position and size
+            position = self._get_attribute(element, Quartz.kAXPositionAttribute)
+            size = self._get_attribute(element, Quartz.kAXSizeAttribute)
+            
+            if position and size:
+                x, y = position.x, position.y
+                width, height = size.width, size.height
+                
+                # Get other useful attributes
+                title = self._get_attribute(element, Quartz.kAXTitleAttribute) or ""
+                value = self._get_attribute(element, Quartz.kAXValueAttribute)
+                
+                if isinstance(value, (str, int, float, bool)):
+                    value_str = str(value)
+                else:
+                    value_str = ""
+                
+                description = self._get_attribute(element, Quartz.kAXDescriptionAttribute) or ""
+                
+                # Create element dict
+                element_dict = {
+                    "type": role,
+                    "app": app_name,
+                    "bounds": {
+                        "x": int(x),
+                        "y": int(y),
+                        "width": int(width),
+                        "height": int(height)
+                    },
+                    "properties": {
+                        "title": title,
+                        "value": value_str,
+                        "description": description
+                    }
+                }
+                
+                elements.append(element_dict)
+            
+            # Process children
+            children = self._get_attribute_array(element, Quartz.kAXChildrenAttribute)
+            if children:
+                for child in children:
+                    child_elements = self._process_macos_element(child, app_name, depth + 1, max_depth)
+                    elements.extend(child_elements)
+        except Exception as e:
+            pass  # Skip elements that cause errors
+        
+        return elements
+    
+    def _get_attribute(self, element, attribute):
+        """Get an attribute value from a macOS accessibility element."""
+        if not element:
+            return None
+            
+        value_ref = ctypes.c_void_p()
+        result = Quartz.AXUIElementCopyAttributeValue(
+            element, 
+            attribute, 
+            ctypes.byref(value_ref)
+        )
+        
+        if result == Quartz.kAXErrorSuccess and value_ref.value:
+            return value_ref.value
+        return None
+    
+    def _get_attribute_array(self, element, attribute):
+        """Get an array attribute from a macOS accessibility element."""
+        attr_value = self._get_attribute(element, attribute)
+        if not attr_value:
+            return []
+            
+        count = Quartz.CFArrayGetCount(attr_value)
+        return [Quartz.CFArrayGetValueAtIndex(attr_value, i) for i in range(count)]
+    
+    def _scan_windows(self):
+        """
+        Scan for UI elements using Windows UI Automation API.
+        
+        Returns:
+            list: List of detected UI elements with properties
+        """
+        if not IS_WINDOWS:
+            return []
+            
+        elements = []
+        
+        try:
+            # Initialize UI Automation
+            UIAutomation = comtypes.client.GetModule("UIAutomationCore.dll")
+            IUIAutomation = comtypes.client.CreateObject(
+                "{ff48dba4-60ef-4201-aa87-54103eef594e}", 
+                interface=UIAutomation.IUIAutomation
+            )
+            
+            # Get root element
+            root = IUIAutomation.GetRootElement()
+            
+            # Get focused element
+            focused = IUIAutomation.GetFocusedElement()
+            
+            # Get window containing focused element
+            current_window = None
+            element = focused
+            
+            while element:
+                pattern = element.GetCurrentPattern(UIAutomation.UIA_WindowPatternId)
+                if pattern:
+                    current_window = element
+                    break
+                parent = IUIAutomation.TreeWalkerControlViewWalker.GetParentElement(element)
+                if not parent:
+                    break
+                element = parent
+            
+            if current_window:
+                # Process the window and its descendants
+                app_name = current_window.GetCurrentPropertyValue(UIAutomation.UIA_NamePropertyId) or "Unknown"
+                elements = self._process_windows_element(IUIAutomation, current_window, app_name)
+        except Exception as e:
+            logger.error(f"Error in Windows UI Automation: {str(e)}")
+            logger.error(traceback.format_exc())
+            
+        return elements
+    
+    def _process_windows_element(self, automation, element, app_name, depth=0, max_depth=10):
+        """
+        Process a Windows UI Automation element recursively.
+        
+        Args:
+            automation: The UI Automation interface
+            element: The element to process
+            app_name: The name of the application
+            depth: Current recursion depth
+            max_depth: Maximum recursion depth
+            
+        Returns:
+            list: UI elements found
+        """
+        if depth > max_depth:
+            return []
+        
+        elements = []
+        
+        try:
+            # Get control type
+            control_type_id = element.GetCurrentPropertyValue(automation.UIA_ControlTypePropertyId)
+            control_type = "unknown"
+            
+            # Get element bounds
+            bounds_rect = element.GetCurrentPropertyValue(automation.UIA_BoundingRectanglePropertyId)
+            if bounds_rect:
+                left, top, width, height = bounds_rect
+                
+                # Get name and value
+                name = element.GetCurrentPropertyValue(automation.UIA_NamePropertyId) or ""
+                value = element.GetCurrentPropertyValue(automation.UIA_ValuePropertyId) or ""
+                
+                # Create element dict
+                element_dict = {
+                    "type": control_type,
+                    "app": app_name,
+                    "bounds": {
+                        "x": int(left),
+                        "y": int(top),
+                        "width": int(width),
+                        "height": int(height)
+                    },
+                    "properties": {
+                        "name": name,
+                        "value": value
+                    }
+                }
+                
+                elements.append(element_dict)
+            
+            # Process children
+            walker = automation.TreeWalkerControlViewWalker
+            child = walker.GetFirstChildElement(element)
+            while child:
+                child_elements = self._process_windows_element(automation, child, app_name, depth + 1, max_depth)
+                elements.extend(child_elements)
+                child = walker.GetNextSiblingElement(child)
+        except Exception as e:
+            pass  # Skip elements that cause errors
+        
+        return elements
+    
+    def _scan_linux(self):
+        """
+        Scan for UI elements using Linux AT-SPI accessibility framework.
+        
+        Returns:
+            list: List of detected UI elements with properties
+        """
+        if not IS_LINUX:
+            return []
+            
+        elements = []
+        
+        try:
+            # Initialize AT-SPI
+            Atspi.init()
+            
+            # Get desktop
+            desktop = Atspi.Registry.get_desktop(0)
+            
+            # Find the active application
+            active_app = None
+            for i in range(desktop.get_child_count()):
+                app = desktop.get_child_at_index(i)
+                if app and app.get_name() and app.get_state_set().contains(Atspi.StateType.ACTIVE):
+                    active_app = app
+                    break
+            
+            if active_app:
+                app_name = active_app.get_name()
+                
+                # Process each window in the active application
+                for i in range(active_app.get_child_count()):
+                    window = active_app.get_child_at_index(i)
+                    window_elements = self._process_atspi_element(window, app_name)
+                    elements.extend(window_elements)
+        except Exception as e:
+            logger.error(f"Error in AT-SPI scanning: {str(e)}")
+            logger.error(traceback.format_exc())
+            Atspi.exit()
+        
+        Atspi.exit()
+        return elements
+    
+    def _process_atspi_element(self, element, app_name, depth=0, max_depth=10):
+        """
+        Process an AT-SPI element recursively.
+        
+        Args:
+            element: The AT-SPI element to process
+            app_name: The name of the application
+            depth: Current recursion depth
+            max_depth: Maximum recursion depth
+            
+        Returns:
+            list: UI elements found
+        """
+        if depth > max_depth or not element:
+            return []
+        
+        elements = []
+        
+        try:
+            # Get element role
+            role = element.get_role_name()
+            
+            # Get element geometry
+            component = element.get_component_iface()
+            if component:
+                x, y, width, height = component.get_extents(Atspi.CoordType.SCREEN)
+                
+                # Get text if available
+                text = ""
+                text_iface = element.get_text_iface()
+                if text_iface:
+                    text = text_iface.get_text(0, text_iface.get_character_count())
+                
+                # Get name
+                name = element.get_name() or ""
+                
+                # Create element dict
+                element_dict = {
+                    "type": role,
+                    "app": app_name,
+                    "bounds": {
+                        "x": x,
+                        "y": y,
+                        "width": width,
+                        "height": height
+                    },
+                    "properties": {
+                        "name": name,
+                        "text": text
+                    }
+                }
+                
+                elements.append(element_dict)
+            
+            # Process children
+            for i in range(element.get_child_count()):
+                child = element.get_child_at_index(i)
+                if child:
+                    child_elements = self._process_atspi_element(child, app_name, depth + 1, max_depth)
+                    elements.extend(child_elements)
+        except Exception as e:
+            pass  # Skip elements that cause errors
+        
+        return elements
+    
+    def _save_latest_scan(self, scan_result):
+        """Save the latest scan result for the dashboard."""
+        cache_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'cache', 'accessibility')
+        os.makedirs(cache_dir, exist_ok=True)
+        
+        cache_file = os.path.join(cache_dir, 'latest_scan.json')
+        try:
+            with open(cache_file, 'w') as f:
+                json.dump(scan_result, f, indent=2)
+        except Exception as e:
+            logger.error(f"Failed to save scan to cache: {str(e)}")
 
-# Example usage
-async def main():
-    """Test accessibility UI detection"""
+# API for the detector
+class AccessibilityAPI:
+    """
+    API for the Accessibility UI Detector with simple HTTP endpoints.
+    """
+    
+    def __init__(self):
+        self.detector = AccessibilityUIDetector()
+        
+    def detect_ui_elements(self):
+        """
+        Detect UI elements on screen and return as JSON.
+        
+        Returns:
+            dict: JSON-serializable dictionary of detected elements
+        """
+        return self.detector.scan_screen()
+    
+    def get_latest_scan(self):
+        """
+        Get the results of the latest scan from cache.
+        
+        Returns:
+            dict: Latest scan results or empty dict if not available
+        """
+        cache_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'cache', 'accessibility')
+        cache_file = os.path.join(cache_dir, 'latest_scan.json')
+        
+        if os.path.exists(cache_file):
+            try:
+                with open(cache_file, 'r') as f:
+                    return json.load(f)
+            except Exception as e:
+                logger.error(f"Failed to load latest scan: {str(e)}")
+                return {"error": "Failed to load latest scan", "elements": []}
+        else:
+            return {"error": "No scan available", "elements": []}
+    
+    def calculate_accuracy(self, ground_truth_file=None):
+        """
+        Calculate accuracy metrics if ground truth data is available.
+        
+        Args:
+            ground_truth_file: Path to ground truth data file
+            
+        Returns:
+            dict: Accuracy metrics
+        """
+        latest_scan = self.get_latest_scan()
+        elements = latest_scan.get("elements", [])
+        
+        # If no ground truth provided, return basic statistics
+        if not ground_truth_file or not os.path.exists(ground_truth_file):
+            return {
+                "timestamp": datetime.now().isoformat(),
+                "elements_detected": len(elements),
+                "element_types": {role: sum(1 for e in elements if e.get("type") == role) 
+                                 for role in set(e.get("type", "unknown") for e in elements)},
+                "by_application": {app: sum(1 for e in elements if e.get("app") == app)
+                                 for app in set(e.get("app", "unknown") for e in elements)}
+            }
+        
+        # Compare with ground truth if available
+        try:
+            with open(ground_truth_file, 'r') as f:
+                ground_truth = json.load(f)
+                
+            gt_elements = ground_truth.get("elements", [])
+            
+            # Simple matching based on position and type
+            matches = 0
+            for gt_elem in gt_elements:
+                gt_bounds = gt_elem.get("bounds", {})
+                gt_type = gt_elem.get("type", "")
+                
+                for detected_elem in elements:
+                    detected_bounds = detected_elem.get("bounds", {})
+                    detected_type = detected_elem.get("type", "")
+                    
+                    # Check if bounds overlap and types match
+                    if (self._bounds_overlap(gt_bounds, detected_bounds) and
+                            gt_type.lower() == detected_type.lower()):
+                        matches += 1
+                        break
+            
+            precision = matches / len(elements) if elements else 0
+            recall = matches / len(gt_elements) if gt_elements else 0
+            f1 = 2 * precision * recall / (precision + recall) if (precision + recall) > 0 else 0
+            
+            return {
+                "timestamp": datetime.now().isoformat(),
+                "ground_truth_elements": len(gt_elements),
+                "detected_elements": len(elements),
+                "matches": matches,
+                "precision": precision,
+                "recall": recall,
+                "f1_score": f1
+            }
+            
+        except Exception as e:
+            logger.error(f"Error calculating accuracy: {str(e)}")
+            return {"error": str(e), "accuracy_metrics": None}
+    
+    def _bounds_overlap(self, bounds1, bounds2, threshold=0.5):
+        """Check if two bounding boxes overlap with given threshold."""
+        # Extract coordinates
+        x1, y1 = bounds1.get("x", 0), bounds1.get("y", 0)
+        w1, h1 = bounds1.get("width", 0), bounds1.get("height", 0)
+        x2, y2 = bounds2.get("x", 0), bounds2.get("y", 0)
+        w2, h2 = bounds2.get("width", 0), bounds2.get("height", 0)
+        
+        # Calculate intersection area
+        x_overlap = max(0, min(x1 + w1, x2 + w2) - max(x1, x2))
+        y_overlap = max(0, min(y1 + h1, y2 + h2) - max(y1, y2))
+        intersection = x_overlap * y_overlap
+        
+        # Calculate union area
+        area1 = w1 * h1
+        area2 = w2 * h2
+        union = area1 + area2 - intersection
+        
+        # Calculate IoU (Intersection over Union)
+        iou = intersection / union if union > 0 else 0
+        
+        return iou >= threshold
+
+# Main function to run as a standalone script
+def main():
+    """Run the accessibility detector once and print results."""
     detector = AccessibilityUIDetector()
-    
-    success = await detector.initialize()
-    if not success:
-        logger.error("❌ Failed to initialize accessibility detector")
-        return
-    
-    logger.info("✅ Accessibility detector initialized")
-    
-    # Get current UI elements
-    elements = await detector.get_current_ui_elements()
-    logger.info(f"📱 Found {len(elements)} UI elements")
-    
-    # Show buttons
-    buttons = await detector.find_elements_by_type(UIElementType.BUTTON)
-    logger.info(f"🔘 Found {len(buttons)} buttons")
-    
-    for button in buttons[:5]:  # Show first 5
-        logger.info(f"  Button: '{button.title}' at {button.bounds}")
-    
-    # Show text fields
-    text_fields = await detector.find_elements_by_type(UIElementType.TEXT_FIELD)
-    logger.info(f"📝 Found {len(text_fields)} text fields")
+    results = detector.scan_screen()
+    print(json.dumps(results, indent=2))
 
 if __name__ == "__main__":
-    asyncio.run(main())
+    main()

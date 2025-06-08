@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WebSocket DO Button Test</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background-color: #f5f5f7;
+            margin: 0;
+            padding: 20px;
+            line-height: 1.5;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
+        
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+        }
+        
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        
+        .card {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .card-header {
+            font-weight: bold;
+            margin-bottom: 10px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        button {
+            background-color: #0071e3;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            padding: 8px 16px;
+            font-size: 14px;
+            cursor: pointer;
+            margin-right: 8px;
+            margin-bottom: 8px;
+            transition: background-color 0.2s;
+        }
+        
+        button:hover {
+            background-color: #0058b0;
+        }
+        
+        button.do-button {
+            background-color: #34c759;
+        }
+        
+        button.do-button:hover {
+            background-color: #2aa84b;
+        }
+        
+        button.dismiss-button {
+            background-color: #ff3b30;
+        }
+        
+        button.dismiss-button:hover {
+            background-color: #d92e25;
+        }
+        
+        button:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
+        
+        .log {
+            background-color: #f5f5f7;
+            border-radius: 6px;
+            padding: 10px;
+            font-family: monospace;
+            height: 200px;
+            overflow-y: auto;
+            white-space: pre-wrap;
+            font-size: 12px;
+        }
+        
+        .message-log {
+            height: 500px;
+        }
+        
+        .status {
+            margin-top: 10px;
+            padding: 10px;
+            border-radius: 6px;
+            background-color: #f5f5f7;
+            font-size: 14px;
+        }
+        
+        .connected {
+            background-color: #e8f5e9;
+            border-left: 4px solid #4caf50;
+        }
+        
+        .disconnected {
+            background-color: #ffebee;
+            border-left: 4px solid #f44336;
+        }
+        
+        .connecting {
+            background-color: #fff8e1;
+            border-left: 4px solid #ffc107;
+        }
+        
+        .progress-container {
+            margin-top: 20px;
+        }
+        
+        .progress-bar {
+            height: 8px;
+            background-color: #f5f5f7;
+            border-radius: 4px;
+            overflow: hidden;
+            margin-bottom: 8px;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background-color: #0071e3;
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+        
+        .progress-text {
+            font-size: 12px;
+            color: #666;
+        }
+        
+        .input-group {
+            margin-bottom: 15px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            font-size: 14px;
+        }
+        
+        input, select {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+            box-sizing: border-box;
+        }
+        
+        .server-message {
+            color: blue;
+        }
+        
+        .client-message {
+            color: green;
+        }
+        
+        .error-message {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>WebSocket DO Button Tester</h1>
+        
+        <div class="grid">
+            <div>
+                <div class="card">
+                    <div class="card-header">WebSocket Connection</div>
+                    <div class="input-group">
+                        <label for="wsUrl">WebSocket URL:</label>
+                        <input type="text" id="wsUrl" value="ws://localhost:8765" />
+                    </div>
+                    <button id="connectButton">Connect</button>
+                    <button id="disconnectButton" disabled>Disconnect</button>
+                    <div id="connectionStatus" class="status disconnected">Not connected</div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-header">Test Message Types</div>
+                    <div class="input-group">
+                        <label for="sessionId">Session ID:</label>
+                        <input type="text" id="sessionId" value="" placeholder="Auto-generated if empty" />
+                    </div>
+                    
+                    <h4>Test All Message Formats</h4>
+                    <button id="testAllFormatsButton" class="do-button" disabled>Test All Formats</button>
+                    
+                    <h4>agent_confirmation</h4>
+                    <button id="doButton" class="do-button" disabled>DO</button>
+                    <button id="dismissButton" class="dismiss-button" disabled>DISMISS</button>
+                    <button id="adjustButton" disabled>ADJUST</button>
+                    
+                    <h4>button_action</h4>
+                    <button id="executePlanButton" class="do-button" disabled>EXECUTE_PLAN</button>
+                    
+                    <h4>do_button</h4>
+                    <button id="doButtonClickButton" class="do-button" disabled>DO Button Click</button>
+                    
+                    <div class="progress-container" id="progressContainer" style="display: none;">
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="progressFill"></div>
+                        </div>
+                        <div class="progress-text" id="progressText">0% - Waiting to start...</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div>
+                <div class="card">
+                    <div class="card-header">Message Log</div>
+                    <button id="clearLogButton">Clear Log</button>
+                    <div id="messageLog" class="log message-log"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // DOM Elements
+            const wsUrlInput = document.getElementById('wsUrl');
+            const sessionIdInput = document.getElementById('sessionId');
+            const connectButton = document.getElementById('connectButton');
+            const disconnectButton = document.getElementById('disconnectButton');
+            const connectionStatus = document.getElementById('connectionStatus');
+            const messageLog = document.getElementById('messageLog');
+            const clearLogButton = document.getElementById('clearLogButton');
+            const doButton = document.getElementById('doButton');
+            const dismissButton = document.getElementById('dismissButton');
+            const adjustButton = document.getElementById('adjustButton');
+            const executePlanButton = document.getElementById('executePlanButton');
+            const doButtonClickButton = document.getElementById('doButtonClickButton');
+            const testAllFormatsButton = document.getElementById('testAllFormatsButton');
+            const progressContainer = document.getElementById('progressContainer');
+            const progressFill = document.getElementById('progressFill');
+            const progressText = document.getElementById('progressText');
+            
+            // WebSocket connection
+            let ws = null;
+            let sessionId = 'test_session_' + Date.now();
+            sessionIdInput.value = sessionId;
+            
+            // Update session ID when changed
+            sessionIdInput.addEventListener('change', function() {
+                if (sessionIdInput.value.trim() === '') {
+                    sessionId = 'test_session_' + Date.now();
+                    sessionIdInput.value = sessionId;
+                } else {
+                    sessionId = sessionIdInput.value.trim();
+                }
+                logMessage('Session ID updated: ' + sessionId, 'info');
+            });
+            
+            // Connect to WebSocket
+            connectButton.addEventListener('click', function() {
+                if (ws && ws.readyState === WebSocket.OPEN) {
+                    logMessage('Already connected', 'error');
+                    return;
+                }
+                
+                const wsUrl = wsUrlInput.value.trim();
+                if (!wsUrl) {
+                    logMessage('Please enter a WebSocket URL', 'error');
+                    return;
+                }
+                
+                connectionStatus.className = 'status connecting';
+                connectionStatus.textContent = 'Connecting...';
+                
+                try {
+                    ws = new WebSocket(wsUrl);
+                    
+                    ws.onopen = function() {
+                        connectionStatus.className = 'status connected';
+                        connectionStatus.textContent = 'Connected to ' + wsUrl;
+                        logMessage('Connected to WebSocket server', 'server');
+                        
+                        // Enable buttons
+                        disconnectButton.disabled = false;
+                        doButton.disabled = false;
+                        dismissButton.disabled = false;
+                        adjustButton.disabled = false;
+                        executePlanButton.disabled = false;
+                        doButtonClickButton.disabled = false;
+                        testAllFormatsButton.disabled = false;
+                        connectButton.disabled = true;
+                    };
+                    
+                    ws.onmessage = function(event) {
+                        let data;
+                        try {
+                            data = JSON.parse(event.data);
+                            logMessage('Received: ' + JSON.stringify(data, null, 2), 'server');
+                            
+                            // Handle progress updates
+                            if (data.type === 'agent_progress') {
+                                progressContainer.style.display = 'block';
+                                progressFill.style.width = data.progress + '%';
+                                progressText.textContent = data.progress + '% - ' + data.message;
+                            }
+                            
+                            // Handle success
+                            if (data.type === 'agent_execution_success') {
+                                progressContainer.style.display = 'block';
+                                progressFill.style.width = '100%';
+                                progressText.textContent = '100% - ' + data.summary;
+                            }
+                        } catch (e) {
+                            logMessage('Error parsing message: ' + e, 'error');
+                            logMessage('Raw message: ' + event.data, 'error');
+                        }
+                    };
+                    
+                    ws.onclose = function(event) {
+                        connectionStatus.className = 'status disconnected';
+                        connectionStatus.textContent = 'Disconnected: ' + (event.reason || 'Connection closed');
+                        logMessage('WebSocket connection closed: ' + (event.reason || 'No reason provided'), 'error');
+                        
+                        // Disable buttons
+                        disconnectButton.disabled = true;
+                        doButton.disabled = true;
+                        dismissButton.disabled = true;
+                        adjustButton.disabled = true;
+                        executePlanButton.disabled = true;
+                        doButtonClickButton.disabled = true;
+                        testAllFormatsButton.disabled = true;
+                        connectButton.disabled = false;
+                        
+                        ws = null;
+                    };
+                    
+                    ws.onerror = function(error) {
+                        connectionStatus.className = 'status disconnected';
+                        connectionStatus.textContent = 'Error: Failed to connect';
+                        logMessage('WebSocket error: ' + error, 'error');
+                    };
+                    
+                } catch (e) {
+                    connectionStatus.className = 'status disconnected';
+                    connectionStatus.textContent = 'Error: ' + e.message;
+                    logMessage('Connection error: ' + e.message, 'error');
+                }
+            });
+            
+            // Disconnect from WebSocket
+            disconnectButton.addEventListener('click', function() {
+                if (!ws) {
+                    logMessage('Not connected', 'error');
+                    return;
+                }
+                
+                ws.close();
+                // Buttons will be disabled in the onclose handler
+            });
+            
+            // Clear log
+            clearLogButton.addEventListener('click', function() {
+                messageLog.textContent = '';
+            });
+            
+            // Send agent_confirmation with DO action
+            doButton.addEventListener('click', function() {
+                if (!ws || ws.readyState !== WebSocket.OPEN) {
+                    logMessage('Not connected to WebSocket server', 'error');
+                    return;
+                }
+                
+                // Reset progress
+                resetProgress();
+                
+                // Get session ID
+                const sid = sessionIdInput.value.trim() || 'test_session_' + Date.now();
+                
+                const message = {
+                    type: 'agent_confirmation',
+                    session_id: sid,
+                    action: 'DO',
+                    timestamp: new Date().toISOString()
+                };
+                
+                ws.send(JSON.stringify(message));
+                logMessage('Sent DO confirmation: ' + JSON.stringify(message, null, 2), 'client');
+            });
+            
+            // Send agent_confirmation with DISMISS action
+            dismissButton.addEventListener('click', function() {
+                if (!ws || ws.readyState !== WebSocket.OPEN) {
+                    logMessage('Not connected to WebSocket server', 'error');
+                    return;
+                }
+                
+                // Get session ID
+                const sid = sessionIdInput.value.trim() || 'test_session_' + Date.now();
+                
+                const message = {
+                    type: 'agent_confirmation',
+                    session_id: sid,
+                    action: 'DISMISS',
+                    timestamp: new Date().toISOString()
+                };
+                
+                ws.send(JSON.stringify(message));
+                logMessage('Sent DISMISS confirmation: ' + JSON.stringify(message, null, 2), 'client');
+            });
+            
+            // Send agent_confirmation with ADJUST action
+            adjustButton.addEventListener('click', function() {
+                if (!ws || ws.readyState !== WebSocket.OPEN) {
+                    logMessage('Not connected to WebSocket server', 'error');
+                    return;
+                }
+                
+                // Get session ID
+                const sid = sessionIdInput.value.trim() || 'test_session_' + Date.now();
+                
+                const message = {
+                    type: 'agent_confirmation',
+                    session_id: sid,
+                    action: 'ADJUST',
+                    timestamp: new Date().toISOString()
+                };
+                
+                ws.send(JSON.stringify(message));
+                logMessage('Sent ADJUST confirmation: ' + JSON.stringify(message, null, 2), 'client');
+            });
+            
+            // Send button_action with EXECUTE_PLAN action
+            executePlanButton.addEventListener('click', function() {
+                if (!ws || ws.readyState !== WebSocket.OPEN) {
+                    logMessage('Not connected to WebSocket server', 'error');
+                    return;
+                }
+                
+                // Reset progress
+                resetProgress();
+                
+                // Get session ID
+                const sid = sessionIdInput.value.trim() || 'test_session_' + Date.now();
+                
+                const message = {
+                    type: 'button_action',
+                    plan_id: sid,
+                    action: 'EXECUTE_PLAN',
+                    timestamp: new Date().toISOString()
+                };
+                
+                ws.send(JSON.stringify(message));
+                logMessage('Sent button_action: ' + JSON.stringify(message, null, 2), 'client');
+            });
+            
+            // Send do_button click
+            doButtonClickButton.addEventListener('click', function() {
+                if (!ws || ws.readyState !== WebSocket.OPEN) {
+                    logMessage('Not connected to WebSocket server', 'error');
+                    return;
+                }
+                
+                // Reset progress
+                resetProgress();
+                
+                // Get session ID
+                const sid = sessionIdInput.value.trim() || 'test_session_' + Date.now();
+                
+                const message = {
+                    type: 'do_button',
+                    session_id: sid,
+                    timestamp: new Date().toISOString()
+                };
+                
+                ws.send(JSON.stringify(message));
+                logMessage('Sent do_button click: ' + JSON.stringify(message, null, 2), 'client');
+            });
+            
+            // Test all formats
+            testAllFormatsButton.addEventListener('click', function() {
+                if (!ws || ws.readyState !== WebSocket.OPEN) {
+                    logMessage('Not connected to WebSocket server', 'error');
+                    return;
+                }
+                
+                // Reset progress
+                resetProgress();
+                
+                // Get or generate a session ID
+                let sid = sessionIdInput.value.trim();
+                if (!sid) {
+                    sid = 'test_session_' + Date.now();
+                    sessionIdInput.value = sid;
+                }
+                
+                // Test all three formats with a delay between them
+                logMessage('Testing all three message formats', 'info');
+                
+                // Format 1: agent_confirmation
+                const msg1 = {
+                    type: 'agent_confirmation',
+                    session_id: sid + '_format1',
+                    action: 'DO',
+                    timestamp: new Date().toISOString()
+                };
+                
+                ws.send(JSON.stringify(msg1));
+                logMessage('Sent Format 1 (agent_confirmation): ' + JSON.stringify(msg1, null, 2), 'client');
+                
+                // Schedule the next two formats with delays
+                setTimeout(() => {
+                    // Format 2: button_action
+                    const msg2 = {
+                        type: 'button_action',
+                        plan_id: sid + '_format2',
+                        action: 'EXECUTE_PLAN',
+                        timestamp: new Date().toISOString()
+                    };
+                    
+                    ws.send(JSON.stringify(msg2));
+                    logMessage('Sent Format 2 (button_action): ' + JSON.stringify(msg2, null, 2), 'client');
+                    
+                    setTimeout(() => {
+                        // Format 3: do_button
+                        const msg3 = {
+                            type: 'do_button',
+                            session_id: sid + '_format3',
+                            timestamp: new Date().toISOString()
+                        };
+                        
+                        ws.send(JSON.stringify(msg3));
+                        logMessage('Sent Format 3 (do_button): ' + JSON.stringify(msg3, null, 2), 'client');
+                    }, 3000);
+                }, 3000);
+            });
+            
+            // Helper: Log message to the message log
+            function logMessage(message, type) {
+                const now = new Date().toLocaleTimeString();
+                const logEntry = document.createElement('div');
+                logEntry.className = type + '-message';
+                logEntry.textContent = `[${now}] ${message}`;
+                
+                // Add to the top of the log
+                messageLog.insertBefore(logEntry, messageLog.firstChild);
+            }
+            
+            // Helper: Reset progress display
+            function resetProgress() {
+                progressContainer.style.display = 'block';
+                progressFill.style.width = '0%';
+                progressText.textContent = '0% - Waiting to start...';
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,536 @@
+#!/usr/bin/env python3
+"""
+Dashboard Server
+
+Flask-based server for the task memory metrics dashboard.
+Provides API endpoints and serves the web dashboard UI.
+"""
+
+import os
+import json
+import time
+import logging
+import asyncio
+from typing import Dict, Any
+from datetime import datetime, timedelta
+
+from flask import Flask, jsonify, render_template, request, send_from_directory
+from flask_cors import CORS
+
+# Import task memory dashboard
+try:
+    from memory.task_memory_dashboard import (
+        update_metrics,
+        report_metrics,
+        generate_report,
+        task_memory_dashboard
+    )
+    DASHBOARD_AVAILABLE = True
+except ImportError as e:
+    print(f"Warning: Task memory dashboard not available: {e}")
+    DASHBOARD_AVAILABLE = False
+
+# Import task memory manager
+try:
+    from memory.task_memory_manager import (
+        task_memory_manager,
+        search_task_records
+    )
+    MEMORY_MANAGER_AVAILABLE = True
+except ImportError as e:
+    print(f"Warning: Task memory manager not available: {e}")
+    MEMORY_MANAGER_AVAILABLE = False
+    
+    # Create dummy functions to avoid errors
+    async def search_task_records(query=None, limit=50):
+        """Dummy search function when real manager not available"""
+        return []
+        
+    # Create minimal task memory manager with empty collections
+    class DummyTaskManager:
+        def __init__(self):
+            self.task_index = {"active_tasks": {}, "completed_tasks": {}, "failed_tasks": {}}
+            self.active_task_records = {}
+            self.storage_path = "logs/dashboard"
+            
+    # Create dummy task memory manager instance
+    task_memory_manager = DummyTaskManager()
+
+# Configure logging
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
+    handlers=[
+        logging.FileHandler('logs/memory/dashboard_server.log'),
+        logging.StreamHandler()
+    ]
+)
+logger = logging.getLogger("dashboard_server")
+
+# Create Flask app
+app = Flask(__name__,
+            static_folder='../web/dashboard/static',
+            template_folder='../web/dashboard/templates')
+
+# Enable CORS for API endpoints
+CORS(app)
+
+# Ensure dashboard directories exist
+os.makedirs('logs/dashboard', exist_ok=True)
+os.makedirs('../web/dashboard/static', exist_ok=True)
+os.makedirs('../web/dashboard/templates', exist_ok=True)
+
+# Global settings
+UPDATE_INTERVAL = 30  # seconds
+
+@app.route('/')
+def home():
+    """Render dashboard home page"""
+    return render_template('dashboard.html')
+
+@app.route('/api/metrics')
+def get_metrics():
+    """Get current metrics"""
+    try:
+        # Check if metrics file exists
+        metrics_file = os.path.join('logs/dashboard', 'task_memory_metrics.json')
+        if os.path.exists(metrics_file):
+            with open(metrics_file, 'r') as f:
+                metrics = json.load(f)
+                
+            # Add last update time
+            metrics['server_timestamp'] = time.time()
+            
+            return jsonify(metrics)
+        else:
+            # Return default metrics if file doesn't exist
+            return jsonify({
+                "timestamp": time.time(),
+                "memory_metrics": {
+                    "records_count": 0,
+                    "active_records_count": 0,
+                    "completed_records_count": 0,
+                    "failed_records_count": 0,
+                    "avg_task_size_bytes": 0,
+                    "total_memory_size_bytes": 0,
+                    "task_history_entries": 0
+                },
+                "performance_metrics": {
+                    "avg_update_time_ms": 0,
+                    "avg_search_time_ms": 0,
+                    "last_update_timestamp": time.time(),
+                    "update_count": 0,
+                    "search_count": 0
+                },
+                "value_metrics": {
+                    "total_tasks": 0,
+                    "total_time_saved_sec": 0,
+                    "total_monetary_value": 0,
+                    "avg_time_saved_sec": 0,
+                    "avg_monetary_value": 0,
+                    "hourly_value_rate": 0
+                },
+                "task_completion_metrics": {
+                    "completion_rate": 0,
+                    "avg_completion_time_sec": 0,
+                    "success_rate": 0,
+                    "task_types": {}
+                },
+                "server_timestamp": time.time()
+            })
+            
+    except Exception as e:
+        logger.error(f"Error getting metrics: {e}")
+        return jsonify({
+            "error": str(e),
+            "server_timestamp": time.time()
+        })
+
+@app.route('/api/time-series')
+def get_time_series():
+    """Get time series data for charts"""
+    try:
+        # Check if time series file exists
+        time_series_file = os.path.join('logs/dashboard', 'task_memory_time_series.json')
+        if os.path.exists(time_series_file):
+            with open(time_series_file, 'r') as f:
+                time_series = json.load(f)
+                
+            return jsonify(time_series)
+        else:
+            # Return default time series if file doesn't exist
+            current_time = time.time()
+            return jsonify({
+                "timestamps": [current_time - 3600, current_time - 2400, current_time - 1200, current_time],
+                "active_tasks": [0, 0, 0, 0],
+                "memory_usage": [0, 0, 0, 0],
+                "value_generated": [0, 0, 0, 0]
+            })
+            
+    except Exception as e:
+        logger.error(f"Error getting time series: {e}")
+        # Return default time series data even when error occurs
+        current_time = time.time()
+        return jsonify({
+            "timestamps": [current_time - 3600, current_time - 2400, current_time - 1200, current_time],
+            "active_tasks": [0, 0, 0, 0],
+            "memory_usage": [0, 0, 0, 0],
+            "value_generated": [0, 0, 0, 0],
+            "warning": f"Error retrieving time series data: {e}"
+        })
+
+@app.route('/api/reports')
+def get_reports():
+    """Get list of available reports"""
+    try:
+        # List all report files
+        report_files = []
+        reports_dir = os.path.join('logs/dashboard')
+        
+        # Ensure directory exists
+        os.makedirs(reports_dir, exist_ok=True)
+        
+        for filename in os.listdir(reports_dir):
+            if filename.startswith('task_memory_report_') and filename.endswith('.json'):
+                file_path = os.path.join(reports_dir, filename)
+                
+                # Get file stats
+                file_stats = os.stat(file_path)
+                
+                report_files.append({
+                    "filename": filename,
+                    "path": file_path,
+                    "size": file_stats.st_size,
+                    "created_at": file_stats.st_mtime,
+                    "timestamp": int(filename.replace('task_memory_report_', '').replace('.json', ''))
+                })
+        
+        # Sort by timestamp, newest first
+        report_files.sort(key=lambda x: x["timestamp"], reverse=True)
+        
+        return jsonify({
+            "count": len(report_files),
+            "reports": report_files
+        })
+            
+    except Exception as e:
+        logger.error(f"Error getting reports list: {e}")
+        return jsonify({
+            "error": str(e),
+            "count": 0,
+            "reports": []
+        })
+
+@app.route('/api/reports/<report_id>')
+def get_report(report_id):
+    """Get a specific report"""
+    try:
+        # Check if report file exists
+        report_file = os.path.join('logs/dashboard', f'task_memory_report_{report_id}.json')
+        if os.path.exists(report_file):
+            with open(report_file, 'r') as f:
+                report = json.load(f)
+                
+            return jsonify(report)
+        else:
+            return jsonify({
+                "error": "Report not found"
+            }), 404
+            
+    except Exception as e:
+        logger.error(f"Error getting report: {e}")
+        return jsonify({
+            "error": str(e)
+        }), 500
+
+@app.route('/api/tasks')
+def get_tasks():
+    """Get list of tasks"""
+    try:
+        # Get query parameters
+        status = request.args.get('status', None)
+        limit = int(request.args.get('limit', 50))
+        
+        # Construct query based on status
+        query = ""
+        if status:
+            query = f"status:{status}"
+        
+        # Use dummy tasks if memory manager not available
+        if not MEMORY_MANAGER_AVAILABLE:
+            logger.warning("Task memory manager not available, returning empty task list")
+            return jsonify({
+                "count": 0,
+                "tasks": [],
+                "warning": "Task memory manager not available"
+            })
+            
+        try:
+            # Run in event loop
+            loop = asyncio.new_event_loop()
+            asyncio.set_event_loop(loop)
+            
+            # Search task records
+            results = loop.run_until_complete(search_task_records(query, limit))
+            
+            return jsonify({
+                "count": len(results),
+                "tasks": results
+            })
+        except Exception as inner_e:
+            logger.error(f"Error searching task records: {inner_e}")
+            # Return empty list with warning if search fails
+            return jsonify({
+                "count": 0,
+                "tasks": [],
+                "warning": f"Error searching tasks: {inner_e}"
+            })
+            
+    except Exception as e:
+        logger.error(f"Error getting tasks: {e}")
+        return jsonify({
+            "error": str(e),
+            "tasks": []
+        })
+
+@app.route('/api/tasks/<task_id>')
+def get_task(task_id):
+    """Get a specific task"""
+    try:
+        # Use dummy task if memory manager not available
+        if not MEMORY_MANAGER_AVAILABLE:
+            logger.warning(f"Task memory manager not available, returning dummy task for {task_id}")
+            # Return a dummy task for UI testing
+            dummy_task = {
+                "task_id": task_id,
+                "description": "Example task (memory manager not available)",
+                "status": "pending",
+                "created_at": time.time(),
+                "updated_at": time.time(),
+                "current_step": 0,
+                "total_steps": 0,
+                "execution_history": [],
+                "execution_context": {},
+                "metrics": {
+                    "time_saved": 0,
+                    "monetary_value": 0
+                }
+            }
+            return jsonify(dummy_task)
+            
+        try:
+            # Run in event loop
+            loop = asyncio.new_event_loop()
+            asyncio.set_event_loop(loop)
+            
+            # Load task record - this import may fail if module is not available
+            try:
+                from task_memory_manager import load_task_record
+                record = loop.run_until_complete(load_task_record(task_id))
+                
+                if record:
+                    return jsonify(record.to_dict())
+                else:
+                    return jsonify({
+                        "error": "Task not found",
+                        "task_id": task_id
+                    }), 404
+            except ImportError as ie:
+                logger.warning(f"Could not import load_task_record: {ie}")
+                # Return a dummy task for UI testing
+                dummy_task = {
+                    "task_id": task_id,
+                    "description": "Example task (import error)",
+                    "status": "pending",
+                    "created_at": time.time(),
+                    "updated_at": time.time(),
+                    "current_step": 0,
+                    "total_steps": 0,
+                    "execution_history": [],
+                    "execution_context": {},
+                    "metrics": {
+                        "time_saved": 0,
+                        "monetary_value": 0
+                    }
+                }
+                return jsonify(dummy_task)
+        except Exception as inner_e:
+            logger.error(f"Error loading task record: {inner_e}")
+            return jsonify({
+                "error": f"Error loading task: {inner_e}",
+                "task_id": task_id
+            })
+            
+    except Exception as e:
+        logger.error(f"Error getting task: {e}")
+        return jsonify({
+            "error": str(e),
+            "task_id": task_id
+        })
+
+@app.route('/api/generate-report', methods=['POST'])
+def generate_report_api():
+    """Generate a new report"""
+    try:
+        if not DASHBOARD_AVAILABLE:
+            return jsonify({
+                "error": "Dashboard not available"
+            }), 500
+        
+        # Run in event loop
+        loop = asyncio.new_event_loop()
+        asyncio.set_event_loop(loop)
+        
+        # Generate report
+        report = loop.run_until_complete(generate_report())
+        
+        return jsonify({
+            "success": True,
+            "report": report
+        })
+            
+    except Exception as e:
+        logger.error(f"Error generating report: {e}")
+        return jsonify({
+            "error": str(e)
+        }), 500
+
+@app.route('/api/update-metrics', methods=['POST'])
+def update_metrics_api():
+    """Manually update metrics"""
+    try:
+        if not DASHBOARD_AVAILABLE:
+            return jsonify({
+                "error": "Dashboard not available",
+                "success": False
+            }), 500
+        
+        # Create default metrics in case the update fails
+        default_metrics = {
+            "timestamp": time.time(),
+            "memory_metrics": {
+                "records_count": 0,
+                "active_records_count": 0,
+                "completed_records_count": 0,
+                "failed_records_count": 0,
+                "avg_task_size_bytes": 0,
+                "total_memory_size_bytes": 0,
+                "task_history_entries": 0
+            },
+            "performance_metrics": {
+                "avg_update_time_ms": 0,
+                "avg_search_time_ms": 0,
+                "last_update_timestamp": time.time(),
+                "update_count": 0,
+                "search_count": 0
+            },
+            "value_metrics": {
+                "total_tasks": 0,
+                "total_time_saved_sec": 0,
+                "total_monetary_value": 0,
+                "avg_time_saved_sec": 0,
+                "avg_monetary_value": 0,
+                "hourly_value_rate": 0
+            },
+            "task_completion_metrics": {
+                "completion_rate": 0,
+                "avg_completion_time_sec": 0,
+                "success_rate": 0,
+                "task_types": {}
+            }
+        }
+        
+        try:
+            # Run in event loop
+            loop = asyncio.new_event_loop()
+            asyncio.set_event_loop(loop)
+            
+            # Update metrics if memory manager is available
+            if MEMORY_MANAGER_AVAILABLE:
+                loop.run_until_complete(update_metrics(task_memory_manager))
+            
+            # Report metrics
+            metrics = loop.run_until_complete(report_metrics())
+            
+            if not metrics:
+                # Use default metrics if report_metrics returns None
+                metrics = default_metrics
+                
+            return jsonify({
+                "success": True,
+                "metrics": metrics
+            })
+        except Exception as inner_e:
+            logger.warning(f"Error in metrics update, using defaults: {inner_e}")
+            # Save default metrics to file if update fails
+            metrics_file = os.path.join('logs/dashboard', 'task_memory_metrics.json')
+            os.makedirs(os.path.dirname(metrics_file), exist_ok=True)
+            with open(metrics_file, 'w') as f:
+                json.dump(default_metrics, f, indent=2)
+            
+            return jsonify({
+                "success": True,
+                "metrics": default_metrics,
+                "warning": f"Used default metrics due to error: {inner_e}"
+            })
+            
+    except Exception as e:
+        logger.error(f"Error updating metrics: {e}")
+        return jsonify({
+            "error": str(e),
+            "success": False
+        }), 500
+
+def run_background_update(app_context):
+    """Run background metrics update"""
+    if not DASHBOARD_AVAILABLE or not MEMORY_MANAGER_AVAILABLE:
+        return
+        
+    with app_context:
+        try:
+            # Setup asyncio loop
+            loop = asyncio.new_event_loop()
+            asyncio.set_event_loop(loop)
+            
+            # Create update task
+            async def update_loop():
+                while True:
+                    try:
+                        # Update metrics
+                        await update_metrics(task_memory_manager)
+                        
+                        # Check if it's time to report
+                        if time.time() - task_memory_dashboard.last_report_time >= task_memory_dashboard.report_interval:
+                            await report_metrics()
+                            
+                    except Exception as e:
+                        logger.error(f"Error in background update: {e}")
+                        
+                    await asyncio.sleep(UPDATE_INTERVAL)
+            
+            # Run update loop
+            loop.run_until_complete(update_loop())
+            
+        except Exception as e:
+            logger.error(f"Error in background update thread: {e}")
+
+def start_background_update():
+    """Start background metrics update in a separate thread"""
+    import threading
+    thread = threading.Thread(target=run_background_update, args=(app.app_context(),))
+    thread.daemon = True
+    thread.start()
+    logger.info("Started background metrics update thread")
+
+# Run server
+if __name__ == '__main__':
+    try:
+        # Start background update thread
+        start_background_update()
+        
+        # Run Flask app
+        app.run(host='0.0.0.0', port=8081, debug=False)
+    except KeyboardInterrupt:
+        print("Dashboard server stopped by user")
+    except Exception as e:
+        logger.error(f"Error running dashboard server: {e}")

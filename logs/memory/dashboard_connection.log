@@ -1,0 +1,79 @@
+2025-06-05 01:28:57,419 - connect_memory_dashboard - INFO - Connecting memory dashboard to memory system...
+2025-06-05 01:28:57,582 - connect_memory_dashboard - ERROR - Error importing module memory_system from /Users/segevbin/Desktop/SensAI/Aiayer/memory/memory_system.py: No module named 'memory_logger'
+2025-06-05 01:28:57,583 - enhanced_memory_dashboard - INFO - Enhanced memory dashboard initialized
+2025-06-05 01:28:57,583 - connect_memory_dashboard - ERROR - Failed to import required modules
+2025-06-05 01:28:57,583 - connect_memory_dashboard - ERROR - Failed to connect memory dashboard to memory system
+2025-06-07 23:51:19,804 - connect_memory_dashboard - INFO - Connecting memory dashboard to memory system...
+2025-06-07 23:51:20,125 - memory.enhanced_semantic_search - INFO - Enhanced semantic search initialized with embedding dim: 384
+2025-06-07 23:51:20,126 - memory.enhanced_semantic_search - INFO - Hybrid retrieval enabled: True
+2025-06-07 23:51:20,754 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-06-07 23:51:20,755 - memory_diagnostics - INFO - MEMORY EVENT: logger_initialized - {"timestamp": "2025-06-07T23:51:20.755164"}
+2025-06-07 23:51:20,755 - memory.conscious_memory - INFO - [ConsciousMemory] Initialized as middle layer for memory system
+2025-06-07 23:51:20,755 - memory.enhanced_semantic_search - INFO - Enhanced semantic search initialized with embedding dim: 384
+2025-06-07 23:51:20,755 - memory.enhanced_semantic_search - INFO - Hybrid retrieval enabled: True
+2025-06-07 23:51:20,756 - memory_system - INFO - 🔄 Loading memory state from /Users/segevbin/Desktop/SensAI/Aiayer/memory/memory/memory_state.json
+2025-06-07 23:51:20,756 - memory_system - INFO -   - Found 16 short-term memory items
+2025-06-07 23:51:20,756 - memory_system - INFO -   - No long-term memory found, initializing empty
+2025-06-07 23:51:20,756 - memory_system - INFO -   - Found context memory with 6 items
+2025-06-07 23:51:20,756 - memory_system - INFO -   - Initialized new sensor data storage
+2025-06-07 23:51:20,756 - memory_system - INFO - ✅ Successfully loaded memory state
+2025-06-07 23:51:20,756 - memory_diagnostics - INFO - MEMORY EVENT: memory_state_loaded - {"short_term_count": 16, "long_term_count": 0, "context_count": 6, "timestamp": "2025-06-07T23:51:20.756782"}
+2025-06-07 23:51:20,756 - memory_system - INFO - Memory system initialized
+2025-06-07 23:51:20,757 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-06-07 23:51:20,757 - memory_diagnostics - INFO - MEMORY EVENT: logger_initialized - {"timestamp": "2025-06-07T23:51:20.757186"}
+2025-06-07 23:51:20,757 - memory.conscious_memory - INFO - [ConsciousMemory] Initialized as middle layer for memory system
+2025-06-07 23:51:20,757 - memory.enhanced_semantic_search - INFO - Enhanced semantic search initialized with embedding dim: 384
+2025-06-07 23:51:20,757 - memory.enhanced_semantic_search - INFO - Hybrid retrieval enabled: True
+2025-06-07 23:51:20,757 - memory_system - INFO - 🔄 Loading memory state from /Users/segevbin/Desktop/SensAI/Aiayer/memory/memory/memory_state.json
+2025-06-07 23:51:20,757 - memory_system - INFO -   - Found 16 short-term memory items
+2025-06-07 23:51:20,757 - memory_system - INFO -   - No long-term memory found, initializing empty
+2025-06-07 23:51:20,757 - memory_system - INFO -   - Found context memory with 6 items
+2025-06-07 23:51:20,757 - memory_system - INFO -   - Initialized new sensor data storage
+2025-06-07 23:51:20,757 - memory_system - INFO - ✅ Successfully loaded memory state
+2025-06-07 23:51:20,757 - memory_diagnostics - INFO - MEMORY EVENT: memory_state_loaded - {"short_term_count": 16, "long_term_count": 0, "context_count": 6, "timestamp": "2025-06-07T23:51:20.757893"}
+2025-06-07 23:51:20,757 - memory_system - INFO - Memory system initialized
+2025-06-07 23:51:20,758 - enhanced_memory_dashboard - INFO - Enhanced memory dashboard initialized
+2025-06-07 23:51:20,758 - enhanced_memory_dashboard - INFO - Memory system reference set
+2025-06-07 23:51:20,758 - connect_memory_dashboard - INFO - Connected memory system to dashboard
+2025-06-07 23:51:20,758 - enhanced_memory_dashboard - INFO - Conscious memory reference set
+2025-06-07 23:51:20,758 - connect_memory_dashboard - INFO - Connected conscious memory from memory system to dashboard
+2025-06-07 23:51:20,758 - connect_memory_dashboard - INFO - Adding sample long-term memories
+2025-06-07 23:51:20,759 - connect_memory_dashboard - INFO - Updated dashboard metrics with test data
+2025-06-07 23:51:20,759 - connect_memory_dashboard - INFO - Successfully connected memory dashboard to memory system
+2025-06-07 23:51:44,430 - connect_memory_dashboard - INFO - Connecting memory dashboard to memory system...
+2025-06-07 23:51:44,802 - memory.enhanced_semantic_search - INFO - Enhanced semantic search initialized with embedding dim: 384
+2025-06-07 23:51:44,803 - memory.enhanced_semantic_search - INFO - Hybrid retrieval enabled: True
+2025-06-07 23:51:45,425 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-06-07 23:51:45,426 - memory_diagnostics - INFO - MEMORY EVENT: logger_initialized - {"timestamp": "2025-06-07T23:51:45.426024"}
+2025-06-07 23:51:45,426 - memory.conscious_memory - INFO - [ConsciousMemory] Initialized as middle layer for memory system
+2025-06-07 23:51:45,426 - memory.enhanced_semantic_search - INFO - Enhanced semantic search initialized with embedding dim: 384
+2025-06-07 23:51:45,426 - memory.enhanced_semantic_search - INFO - Hybrid retrieval enabled: True
+2025-06-07 23:51:45,426 - memory_system - INFO - 🔄 Loading memory state from /Users/segevbin/Desktop/SensAI/Aiayer/memory/memory/memory_state.json
+2025-06-07 23:51:45,426 - memory_system - INFO -   - Found 16 short-term memory items
+2025-06-07 23:51:45,426 - memory_system - INFO -   - No long-term memory found, initializing empty
+2025-06-07 23:51:45,426 - memory_system - INFO -   - Found context memory with 6 items
+2025-06-07 23:51:45,426 - memory_system - INFO -   - Initialized new sensor data storage
+2025-06-07 23:51:45,426 - memory_system - INFO - ✅ Successfully loaded memory state
+2025-06-07 23:51:45,426 - memory_diagnostics - INFO - MEMORY EVENT: memory_state_loaded - {"short_term_count": 16, "long_term_count": 0, "context_count": 6, "timestamp": "2025-06-07T23:51:45.426695"}
+2025-06-07 23:51:45,426 - memory_system - INFO - Memory system initialized
+2025-06-07 23:51:45,426 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-06-07 23:51:45,427 - memory_diagnostics - INFO - MEMORY EVENT: logger_initialized - {"timestamp": "2025-06-07T23:51:45.427045"}
+2025-06-07 23:51:45,427 - memory.conscious_memory - INFO - [ConsciousMemory] Initialized as middle layer for memory system
+2025-06-07 23:51:45,427 - memory.enhanced_semantic_search - INFO - Enhanced semantic search initialized with embedding dim: 384
+2025-06-07 23:51:45,427 - memory.enhanced_semantic_search - INFO - Hybrid retrieval enabled: True
+2025-06-07 23:51:45,427 - memory_system - INFO - 🔄 Loading memory state from /Users/segevbin/Desktop/SensAI/Aiayer/memory/memory/memory_state.json
+2025-06-07 23:51:45,427 - memory_system - INFO -   - Found 16 short-term memory items
+2025-06-07 23:51:45,427 - memory_system - INFO -   - No long-term memory found, initializing empty
+2025-06-07 23:51:45,427 - memory_system - INFO -   - Found context memory with 6 items
+2025-06-07 23:51:45,427 - memory_system - INFO -   - Initialized new sensor data storage
+2025-06-07 23:51:45,427 - memory_system - INFO - ✅ Successfully loaded memory state
+2025-06-07 23:51:45,427 - memory_diagnostics - INFO - MEMORY EVENT: memory_state_loaded - {"short_term_count": 16, "long_term_count": 0, "context_count": 6, "timestamp": "2025-06-07T23:51:45.427602"}
+2025-06-07 23:51:45,427 - memory_system - INFO - Memory system initialized
+2025-06-07 23:51:45,428 - enhanced_memory_dashboard - INFO - Enhanced memory dashboard initialized
+2025-06-07 23:51:45,428 - enhanced_memory_dashboard - INFO - Memory system reference set
+2025-06-07 23:51:45,428 - connect_memory_dashboard - INFO - Connected memory system to dashboard
+2025-06-07 23:51:45,428 - enhanced_memory_dashboard - INFO - Conscious memory reference set
+2025-06-07 23:51:45,428 - connect_memory_dashboard - INFO - Connected conscious memory from memory system to dashboard
+2025-06-07 23:51:45,428 - connect_memory_dashboard - INFO - Adding sample long-term memories
+2025-06-07 23:51:45,429 - connect_memory_dashboard - INFO - Updated dashboard metrics with test data
+2025-06-07 23:51:45,429 - connect_memory_dashboard - INFO - Successfully connected memory dashboard to memory system

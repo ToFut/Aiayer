@@ -1,0 +1,28 @@
+2025-06-04 19:33:32,414 - neural_ui_detector - INFO - PyTorch 2.7.0 available
+2025-06-04 19:33:32,985 - neural_ui_detector - INFO - Ultralytics 8.3.148 available
+2025-06-04 19:33:33,635 - neural_ui_detector - INFO - Transformers 4.51.3 available
+2025-06-04 19:33:33,906 - neural_ui_detector - INFO - ONNX Runtime 1.22.0 available
+2025-06-04 19:33:33,906 - neural_ui_detector - INFO - OpenCV 4.11.0 available
+2025-06-04 19:33:34,003 - neural_ui_detector - INFO - Selenium available for browser automation
+2025-06-04 19:33:34,004 - neural_ui_detector - INFO - Neural UI Detector available components:
+2025-06-04 19:33:34,004 - neural_ui_detector - INFO - - YOLO Object Detection: ✅
+2025-06-04 19:33:34,004 - neural_ui_detector - INFO - - LayoutLM Document Understanding: ✅
+2025-06-04 19:33:34,004 - neural_ui_detector - INFO - - ONNX Model Acceleration: ✅
+2025-06-04 19:33:34,004 - neural_ui_detector - INFO - - Computer Vision Support: ✅
+2025-06-04 19:33:34,004 - neural_ui_detector - INFO - - Browser Automation: ✅
+2025-06-04 19:33:34,169 - neural_ui_detector - INFO - Loaded pre-trained YOLOv8n model
+2025-06-04 19:33:41,561 - neural_ui_detector - INFO - LayoutLM imports available (old API)
+2025-06-04 19:34:56,096 - neural_ui_detector - INFO - Started new Chrome instance in headless mode
+2025-06-04 19:35:03,528 - neural_ui_detector - INFO - Using EasyOCR for text recognition
+2025-06-04 19:35:03,586 - neural_ui_detector - INFO - Loaded 3 templates for matching
+2025-06-04 19:35:03,587 - neural_ui_detector - INFO - UI Detector Ensemble initialized
+2025-06-04 19:35:03,594 - neural_ui_detector - INFO - Loaded interaction memory with 4 entries
+2025-06-04 19:35:06,600 - neural_ui_detector_server - INFO - Starting Neural UI Detector WebSocket Server on port 8768
+2025-06-04 19:35:06,724 - websockets.server - INFO - server listening on [::1]:8768
+2025-06-04 19:35:06,725 - websockets.server - INFO - server listening on 127.0.0.1:8768
+2025-06-04 19:38:00,088 - websockets.server - INFO - connection open
+2025-06-04 19:38:00,110 - neural_ui_detector_server - INFO - Client 6180159904 connected
+2025-06-04 19:38:00,694 - neural_ui_detector_server - INFO - Received message from client 6180159904: unknown
+2025-06-04 19:39:13,379 - websockets.server - INFO - connection open
+2025-06-04 19:39:13,405 - neural_ui_detector_server - INFO - Client 6179759568 connected
+2025-06-04 19:39:13,429 - neural_ui_detector_server - INFO - Received message from client 6179759568: unknown

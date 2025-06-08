@@ -1,83 +1,90 @@
-INFO:memory.enhanced_semantic_search:Enhanced semantic search initialized with embedding dim: 384
-INFO:memory.enhanced_semantic_search:Hybrid retrieval enabled: True
-INFO:memory.semantic_search_agent:Loading 1118 existing documents from storage
-INFO:memory.semantic_search_agent:EnterpriseVectorStore initialized with enterprise-grade features
-INFO:memory.semantic_search_agent:SemanticSearchAgent initialized with enterprise-grade capabilities
-INFO:agent_workflow.input_controller:Detected screen size: 1470x956
-INFO:__main__:⚠️ Semantic search temporarily disabled for startup fix
-INFO:__main__:⚠️ System bridge disabled for startup fix
-INFO:__main__:⚠️ Fallback to screen capture - Available: True
-INFO:agent_workflow.input_controller:Input listeners started successfully
-INFO:agent_workflow.input_controller:🚨 Emergency shutdown: Press Ctrl+1 to immediately stop agent
-INFO:llava_processor:Connected to Ollama API v0.6.8
-INFO:total_screen_analyzer:LLaVA visual processor initialized for total screen analysis
-INFO:total_screen_analyzer:Total Screen Analyzer initialized with 1s interval
-INFO:enhanced_agent_automation:Enhanced Agent Automation initialized with Total Screen Analyzer
-INFO:enhanced_automation_handler:Enhanced Automation Handler initialized
-INFO:__main__:✅ Enhanced Automation handler initialized for Agent mode
-INFO:__main__:Contextual AI Backend initialized - Ollama: True, Memory: Active
-INFO:__main__:🚀 Starting Enhanced Enterprise Backend 8767 with Efficient System Integration...
-INFO:__main__:🧠 Contextual AI responses enabled
-INFO:__main__:🔍 Semantic memory integration active
-INFO:__main__:🎯 Modes: Agent, Ask, Suggest, General (all contextual)
-INFO:__main__:✅ Enhanced Enterprise Backend 8767 started successfully
-INFO:__main__:🌐 WebSocket server listening on ws://localhost:8767
-INFO:__main__:🤖 Ollama integration: ✅ Active
-INFO:__main__:🧠 Contextual memory system ready
-INFO:__main__:⚠️ Using fallback screen capture mode
-INFO:websockets.server:server listening on 127.0.0.1:8767
-INFO:websockets.server:server listening on [::1]:8767
-INFO:websockets.server:connection open
-INFO:__main__:Client connected: client_1748382320145 from ::1
-INFO:websockets.server:connection open
-INFO:__main__:Client connected: client_1748382320145 from ::1
-INFO:__main__:Processing contextual register from client_1748382320145
-INFO:__main__:Client registration: client_1748382320145 (ui v1.0.0)
-INFO:websockets.server:connection open
-INFO:__main__:Client connected: client_1748382322665 from ::1
-INFO:websockets.server:connection open
-INFO:__main__:Client connected: client_1748382322756 from ::1
-INFO:__main__:Processing contextual register from client_1748382322756
-INFO:__main__:Client registration: client_1748382322756 (process_sensor v1.0.0)
-INFO:websockets.server:connection open
-INFO:__main__:Client connected: client_1748382322926 from ::1
-INFO:__main__:Processing contextual register from client_1748382322926
-INFO:__main__:Client registration: client_1748382322926 (total_screen_analyzer v2.0.0)
-INFO:__main__:Processing contextual sensor_data from client_1748382322756
-INFO:__main__:Processing contextual heartbeat from client_1748382322756
-INFO:__main__:Processing contextual sensor_data from client_1748382322756
-INFO:__main__:Processing contextual heartbeat from client_1748382322756
-INFO:__main__:Processing contextual sensor_data from client_1748382322756
-INFO:__main__:Processing contextual heartbeat from client_1748382322756
-INFO:__main__:Processing contextual sensor_data from client_1748382322926
-INFO:__main__:Processing contextual sensor_data from client_1748382322756
-INFO:__main__:Processing contextual heartbeat from client_1748382322756
-INFO:__main__:Processing contextual sensor_data from client_1748382322756
-INFO:__main__:Processing contextual heartbeat from client_1748382322756
-INFO:__main__:Processing contextual sensor_data from client_1748382322756
-INFO:__main__:Processing contextual heartbeat from client_1748382322756
-INFO:__main__:Processing contextual sensor_data from client_1748382322756
-INFO:__main__:Processing contextual heartbeat from client_1748382322756
-INFO:__main__:Processing contextual sensor_data from client_1748382322756
-INFO:__main__:Processing contextual heartbeat from client_1748382322756
-INFO:__main__:Processing contextual sensor_data from client_1748382322926
-INFO:__main__:Processing contextual sensor_data from client_1748382322756
-INFO:__main__:Processing contextual heartbeat from client_1748382322756
-INFO:__main__:Processing contextual sensor_data from client_1748382322756
-INFO:__main__:Processing contextual heartbeat from client_1748382322756
-INFO:__main__:Processing contextual sensor_data from client_1748382322756
-INFO:__main__:Processing contextual heartbeat from client_1748382322756
-INFO:__main__:Processing contextual sensor_data from client_1748382322756
-INFO:__main__:Processing contextual heartbeat from client_1748382322756
-INFO:__main__:Processing contextual sensor_data from client_1748382322926
-INFO:__main__:Processing contextual sensor_data from client_1748382322756
-INFO:__main__:Processing contextual heartbeat from client_1748382322756
-INFO:__main__:Processing contextual sensor_data from client_1748382322756
-INFO:__main__:Processing contextual heartbeat from client_1748382322756
-INFO:__main__:Processing contextual sensor_data from client_1748382322756
-INFO:__main__:Processing contextual heartbeat from client_1748382322756
-INFO:__main__:Processing contextual sensor_data from client_1748382322926
-INFO:__main__:Processing contextual sensor_data from client_1748382322756
-INFO:__main__:Processing contextual heartbeat from client_1748382322756
-INFO:__main__:Processing contextual sensor_data from client_1748382322756
-INFO:__main__:Processing contextual heartbeat from client_1748382322756
+2025-06-08 00:10:11,365 - agent_workflow.input_controller - INFO - Detected screen size: 1470x956
+2025-06-08 00:10:12,321 - agent_workflow.input_controller - INFO - Standard mouse listener started successfully
+2025-06-08 00:10:12,321 - agent_workflow.input_controller - INFO - Keyboard listener started successfully
+2025-06-08 00:10:12,321 - agent_workflow.input_controller - INFO - Input controller initialized (safe mode)
+2025-06-08 00:10:12,321 - agent_workflow.input_controller - INFO - 🚨 Emergency shutdown: Press Ctrl+1 to immediately stop agent
+2025-06-08 00:10:12,339 - llava_processor - INFO - Connected to Ollama API v0.6.8
+2025-06-08 00:10:12,339 - total_screen_analyzer - INFO - LLaVA visual processor initialized for total screen analysis
+2025-06-08 00:10:12,339 - total_screen_analyzer - INFO - Total Screen Analyzer initialized with 8s interval
+2025-06-08 00:10:12,339 - adaptive_retry_automation_handler - INFO - 🔄 Adaptive retry automation system loaded
+2025-06-08 00:10:12,339 - universal_intelligent_automation_handler - INFO - ✅ Adaptive retry automation handler loaded successfully
+2025-06-08 00:10:12,342 - plan_persistence - INFO - Loaded 17 plans from metadata
+2025-06-08 00:10:12,342 - plan_persistence - INFO - Plan persistence system initialized
+2025-06-08 00:10:12,342 - universal_intelligent_automation_handler - INFO - ✅ Plan persistence module loaded successfully
+2025-06-08 00:10:12,344 - agent_workflow.input_controller - INFO - Standard mouse listener started successfully
+2025-06-08 00:10:12,344 - agent_workflow.input_controller - INFO - Keyboard listener started successfully
+2025-06-08 00:10:12,344 - agent_workflow.input_controller - INFO - Input controller initialized (safe mode)
+2025-06-08 00:10:12,344 - agent_workflow.input_controller - INFO - 🚨 Emergency shutdown: Press Ctrl+1 to immediately stop agent
+2025-06-08 00:10:12,373 - llava_processor - INFO - Connected to Ollama API v0.6.8
+2025-06-08 00:10:12,373 - total_screen_analyzer - INFO - LLaVA visual processor initialized for total screen analysis
+2025-06-08 00:10:12,374 - total_screen_analyzer - INFO - Total Screen Analyzer initialized with 8s interval
+2025-06-08 00:10:12,374 - universal_intelligent_automation_handler - INFO - 🤖 Universal automation components loaded successfully
+2025-06-08 00:10:12,374 - fixed_universal_automation_handler - INFO - ✅ Adaptive retry automation handler loaded successfully
+2025-06-08 00:10:12,374 - fixed_universal_automation_handler - INFO - ✅ Plan persistence module loaded successfully
+2025-06-08 00:10:12,377 - agent_workflow.input_controller - INFO - Standard mouse listener started successfully
+2025-06-08 00:10:12,377 - agent_workflow.input_controller - INFO - Keyboard listener started successfully
+2025-06-08 00:10:12,377 - agent_workflow.input_controller - INFO - Input controller initialized (safe mode)
+2025-06-08 00:10:12,377 - agent_workflow.input_controller - INFO - 🚨 Emergency shutdown: Press Ctrl+1 to immediately stop agent
+2025-06-08 00:10:12,377 - __main__ - INFO - ✅ Input controller initialized (safe mode)
+2025-06-08 00:10:12,398 - accessibility_detector - WARNING - Windows accessibility APIs not available
+2025-06-08 00:10:12,398 - accessibility_detector - WARNING - Linux accessibility APIs (AT-SPI) not available
+2025-06-08 00:10:12,459 - __main__ - WARNING - ⚠️ Efficient system bridge not available, falling back to screen capture
+2025-06-08 00:10:12,460 - __main__ - INFO - 🔥 LLM Warmup Manager available for fast responses
+2025-06-08 00:10:12,463 - memory.enhanced_semantic_search - INFO - Enhanced semantic search initialized with embedding dim: 384
+2025-06-08 00:10:12,463 - memory.enhanced_semantic_search - INFO - Hybrid retrieval enabled: True
+2025-06-08 00:10:12,463 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-06-08 00:10:12,463 - memory_diagnostics - INFO - MEMORY EVENT: logger_initialized - {"timestamp": "2025-06-08T00:10:12.463684"}
+2025-06-08 00:10:12,463 - INFO - [ConsciousMemory] Initialized as middle layer for memory system
+2025-06-08 00:10:12,463 - memory.conscious_memory - INFO - [ConsciousMemory] Initialized as middle layer for memory system
+2025-06-08 00:10:12,463 - memory.enhanced_semantic_search - INFO - Enhanced semantic search initialized with embedding dim: 384
+2025-06-08 00:10:12,464 - memory.enhanced_semantic_search - INFO - Hybrid retrieval enabled: True
+2025-06-08 00:10:12,464 - memory_system - INFO - 🔄 Loading memory state from /Users/segevbin/Desktop/SensAI/Aiayer/memory/memory/memory_state.json
+2025-06-08 00:10:12,464 - memory_system - INFO -   - Found 16 short-term memory items
+2025-06-08 00:10:12,464 - memory_system - INFO -   - No long-term memory found, initializing empty
+2025-06-08 00:10:12,464 - memory_system - INFO -   - Found context memory with 6 items
+2025-06-08 00:10:12,464 - memory_system - INFO -   - Initialized new sensor data storage
+2025-06-08 00:10:12,464 - memory_system - INFO - ✅ Successfully loaded memory state
+2025-06-08 00:10:12,464 - memory_diagnostics - INFO - MEMORY EVENT: memory_state_loaded - {"short_term_count": 16, "long_term_count": 0, "context_count": 6, "timestamp": "2025-06-08T00:10:12.464548"}
+2025-06-08 00:10:12,464 - memory_system - INFO - Memory system initialized
+2025-06-08 00:10:12,485 - memory.semantic_search_agent - INFO - Loading 4460 existing documents from storage
+2025-06-08 00:10:13,216 - memory.semantic_search_agent - INFO - EnterpriseVectorStore initialized with enterprise-grade features
+2025-06-08 00:10:13,220 - memory.semantic_search_agent - INFO - SemanticSearchAgent initialized with enterprise-grade capabilities
+2025-06-08 00:10:13,223 - real_agent_automation_handler - INFO - ✅ Plan persistence module loaded successfully
+2025-06-08 00:10:13,226 - real_agent_automation_handler - INFO - 🤖 Basic automation handler initialized
+2025-06-08 00:10:13,226 - __main__ - INFO - ✅ Real Agent Automation Handler enabled
+2025-06-08 00:10:13,229 - agent_workflow.input_controller - INFO - Standard mouse listener started successfully
+2025-06-08 00:10:13,230 - agent_workflow.input_controller - INFO - Keyboard listener started successfully
+2025-06-08 00:10:13,230 - agent_workflow.input_controller - INFO - Input controller initialized (safe mode)
+2025-06-08 00:10:13,230 - agent_workflow.input_controller - INFO - 🚨 Emergency shutdown: Press Ctrl+1 to immediately stop agent
+2025-06-08 00:10:13,238 - llava_processor - INFO - Connected to Ollama API v0.6.8
+2025-06-08 00:10:13,238 - total_screen_analyzer - INFO - LLaVA visual processor initialized for total screen analysis
+2025-06-08 00:10:13,239 - total_screen_analyzer - INFO - Total Screen Analyzer initialized with 8s interval
+2025-06-08 00:10:13,239 - universal_intelligent_automation_handler - INFO - 🤖 Universal automation components loaded successfully
+2025-06-08 00:10:13,239 - __main__ - INFO - ✅ Universal Intelligent Automation Handler loaded
+2025-06-08 00:10:13,241 - brain.core.brain_router - INFO - ✅ Plan persistence module loaded in brain router
+2025-06-08 00:10:13,245 - __main__ - INFO - 🧠 Brain Router available for intelligent mode handling
+2025-06-08 00:10:14,317 - memory.semantic_search_agent - INFO - Loading 4460 existing documents from storage
+2025-06-08 00:10:14,847 - memory.semantic_search_agent - INFO - EnterpriseVectorStore initialized with enterprise-grade features
+2025-06-08 00:10:14,849 - memory.semantic_search_agent - INFO - SemanticSearchAgent initialized with enterprise-grade capabilities
+2025-06-08 00:10:14,849 - __main__ - INFO - ✅ Enhanced semantic search agent initialized
+2025-06-08 00:10:14,849 - __main__ - INFO - ✅ Initialized pending_plans dictionary
+2025-06-08 00:10:14,852 - agent_workflow.input_controller - INFO - Standard mouse listener started successfully
+2025-06-08 00:10:14,853 - agent_workflow.input_controller - INFO - Keyboard listener started successfully
+2025-06-08 00:10:14,853 - agent_workflow.input_controller - INFO - Input controller initialized (safe mode)
+2025-06-08 00:10:14,853 - agent_workflow.input_controller - INFO - 🚨 Emergency shutdown: Press Ctrl+1 to immediately stop agent
+2025-06-08 00:10:15,004 - llava_processor - INFO - Connected to Ollama API v0.6.8
+2025-06-08 00:10:15,004 - total_screen_analyzer - INFO - LLaVA visual processor initialized for total screen analysis
+2025-06-08 00:10:15,004 - total_screen_analyzer - INFO - Total Screen Analyzer initialized with 1s interval
+2025-06-08 00:10:15,005 - enhanced_agent_automation - INFO - Enhanced Agent Automation initialized with Total Screen Analyzer
+2025-06-08 00:10:15,005 - enhanced_automation_handler - INFO - Enhanced Automation Handler initialized
+2025-06-08 00:10:15,005 - __main__ - INFO - ✅ EnhancedAutomationHandler initialized for automation_handler
+2025-06-08 00:10:15,005 - __main__ - INFO - ✅ ContextualAIBackend initialized successfully
+2025-06-08 00:10:15,005 - __main__ - INFO - 🚀 Starting Enhanced Enterprise Backend with Context on 0.0.0.0:8767...
+2025-06-08 00:10:15,005 - brain.core.brain_router - INFO - BrainRouter initialized - The Central Intelligence Hub is online
+2025-06-08 00:10:15,025 - llm.model - INFO - ✅ LLM service started successfully with model llama3.2:1b
+2025-06-08 00:10:15,025 - brain.core.brain_router - INFO - ✅ LLM service initialized successfully
+2025-06-08 00:10:15,025 - __main__ - INFO - ✅ Brain Router initialized asynchronously
+2025-06-08 00:10:15,025 - __main__ - INFO - ✅ Brain Router initialized asynchronously
+2025-06-08 00:10:15,029 - websockets.server - INFO - server listening on 0.0.0.0:8767
+2025-06-08 00:10:15,029 - __main__ - INFO - ✅ Enhanced Enterprise Backend with Context started successfully
+2025-06-08 00:10:15,029 - __main__ - INFO - 🌐 WebSocket server listening on ws://0.0.0.0:8767

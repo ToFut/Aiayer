@@ -1,0 +1,77 @@
+2025-06-04 02:11:55,645 - memory.enhanced_semantic_search - INFO - Enhanced semantic search initialized with embedding dim: 384
+2025-06-04 02:11:55,646 - memory.enhanced_semantic_search - INFO - Hybrid retrieval enabled: True
+2025-06-04 02:11:59,222 - llm.llm_service - INFO - 🔥 LLM Warmup Manager available
+2025-06-04 02:11:59,224 - llm_suggestion_detector - INFO - LLM Suggestion Detector initialized
+2025-06-04 02:11:59,226 - __main__ - INFO - Starting cognitive memory test
+2025-06-04 02:11:59,227 - __main__ - INFO - Running all cognitive memory tests
+2025-06-04 02:11:59,227 - __main__ - INFO - Setting up test environment
+2025-06-04 02:11:59,227 - sensors.process_sensor - INFO - Process sensor initialized with config: {'interval_sec': 5, 'max_memory_mb': 50, 'cleanup_threshold_mb': 25, 'max_errors': 3, 'exclude_patterns': ['system', 'kernel'], 'max_processes': 100}
+2025-06-04 02:11:59,227 - memory.memory_system - INFO - Memory logger initialized
+2025-06-04 02:11:59,228 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-06-04 02:11:59,228 - memory_diagnostics - INFO - MEMORY EVENT: logger_initialized - {"timestamp": "2025-06-04T02:11:59.228430"}
+2025-06-04 02:11:59,228 - memory.memory_system - INFO - Diagnostic logger initialized
+2025-06-04 02:11:59,228 - memory.conscious_memory - INFO - [ConsciousMemory] Initialized as middle layer for memory system
+2025-06-04 02:11:59,229 - memory.memory_system - INFO - Conscious memory initialized
+2025-06-04 02:11:59,229 - memory.enhanced_semantic_search - INFO - Enhanced semantic search initialized with embedding dim: 384
+2025-06-04 02:11:59,229 - memory.enhanced_semantic_search - INFO - Hybrid retrieval enabled: True
+2025-06-04 02:11:59,229 - memory.memory_system - INFO - Enhanced semantic search initialized
+2025-06-04 02:11:59,229 - memory.memory_system - INFO - 🔄 Loading memory state from /Users/segevbin/Desktop/SensAI/Aiayer/memory/memory/memory_state.json
+2025-06-04 02:11:59,230 - memory.memory_system - INFO -   - Found 16 short-term memory items
+2025-06-04 02:11:59,230 - memory.memory_system - INFO -   - No long-term memory found, initializing empty
+2025-06-04 02:11:59,230 - memory.memory_system - INFO -   - Found context memory with 6 items
+2025-06-04 02:11:59,230 - memory.memory_system - INFO -   - Initialized new sensor data storage
+2025-06-04 02:11:59,230 - memory.memory_system - INFO - ✅ Successfully loaded memory state
+2025-06-04 02:11:59,230 - memory_diagnostics - INFO - MEMORY EVENT: memory_state_loaded - {"short_term_count": 16, "long_term_count": 0, "context_count": 6, "timestamp": "2025-06-04T02:11:59.230710"}
+2025-06-04 02:11:59,230 - memory.memory_system - INFO - Memory system initialized
+2025-06-04 02:11:59,230 - __main__ - INFO - Initialized Mock LLM Service
+2025-06-04 02:11:59,230 - __main__ - INFO - Using mock LLM service
+2025-06-04 02:11:59,231 - memory.conscious_memory - INFO - [ConsciousMemory] Initialized as middle layer for memory system
+2025-06-04 02:11:59,231 - __main__ - INFO - Test environment set up successfully
+2025-06-04 02:11:59,231 - __main__ - INFO - Testing prompt generation
+2025-06-04 02:11:59,231 - __main__ - INFO - ✅ Successfully generated analysis prompt
+2025-06-04 02:11:59,231 - __main__ - INFO - Prompt length: 3721 characters
+2025-06-04 02:11:59,231 - __main__ - INFO - ✅ All required prompt sections present
+2025-06-04 02:11:59,231 - __main__ - INFO - ✅ Saved prompt to logs/test_cognitive_prompt.txt
+2025-06-04 02:11:59,232 - __main__ - INFO - Testing LLM response parsing
+2025-06-04 02:11:59,232 - __main__ - INFO - ✅ Successfully extracted structured cognitive memory
+2025-06-04 02:11:59,233 - __main__ - INFO - ✅ All required cognitive memory fields present
+2025-06-04 02:11:59,233 - __main__ - INFO - Memory importance: high, type: semantic
+2025-06-04 02:11:59,233 - __main__ - INFO - ✅ Successfully extracted memory importance and type
+2025-06-04 02:11:59,233 - __main__ - INFO - Starting cognitive memory processing test
+2025-06-04 02:11:59,233 - memory.conscious_memory - INFO - [ConsciousMemory] Adding screen sensor data
+2025-06-04 02:11:59,233 - memory.conscious_memory - INFO - [ConsciousMemory] Added screen data to buffer. Buffer size: 1
+2025-06-04 02:11:59,233 - memory.conscious_memory - INFO - [ConsciousMemory] Starting _process_sensor_data for screen
+2025-06-04 02:11:59,233 - memory.conscious_memory - INFO - Adding enhanced application context to conscious memory
+2025-06-04 02:11:59,234 - memory.conscious_memory - INFO - Adding enhanced LLaVA analysis to conscious memory
+2025-06-04 02:11:59,234 - memory.conscious_memory - INFO - Created unified context understanding: Using VS Code in Editor view Coding | Interactive elements: Run (button), Debug (button)
+2025-06-04 02:11:59,234 - memory.conscious_memory - INFO - Generated 5 insights from screen data
+2025-06-04 02:11:59,234 - memory.conscious_memory - INFO - [ConsciousMemory] Completed processing screen sensor data
+2025-06-04 02:11:59,234 - memory.conscious_memory - INFO - [ConsciousMemory] Feeding data to memory system
+2025-06-04 02:11:59,240 - memory.memory_system - INFO - Added data to context memory: memory_id=ctx_1749017519234 | total timestamps: 1
+2025-06-04 02:11:59,240 - memory.conscious_memory - INFO - [ConsciousMemory] Added to context memory
+2025-06-04 02:11:59,240 - memory.conscious_memory - INFO - [ConsciousMemory] Successfully processed and stored screen data
+2025-06-04 02:11:59,240 - __main__ - INFO - Added mock screen data to conscious memory
+2025-06-04 02:11:59,240 - memory.conscious_memory - INFO - [ConsciousMemory] Adding process sensor data
+2025-06-04 02:11:59,240 - memory.conscious_memory - INFO - [ConsciousMemory] Added process data to buffer. Buffer size: 1
+2025-06-04 02:11:59,240 - memory.conscious_memory - INFO - [ConsciousMemory] Starting _process_sensor_data for process
+2025-06-04 02:11:59,240 - memory.conscious_memory - INFO - Generated 1 insights from process data
+2025-06-04 02:11:59,241 - memory.conscious_memory - INFO - [ConsciousMemory] Completed processing process sensor data
+2025-06-04 02:11:59,241 - memory.conscious_memory - INFO - [ConsciousMemory] Feeding data to memory system
+2025-06-04 02:11:59,241 - memory.memory_system - INFO - Added data to context memory: memory_id=ctx_1749017519241 | total timestamps: 2
+2025-06-04 02:11:59,241 - memory.conscious_memory - INFO - [ConsciousMemory] Added to context memory
+2025-06-04 02:11:59,241 - memory.conscious_memory - INFO - [ConsciousMemory] Successfully processed and stored process data
+2025-06-04 02:11:59,242 - __main__ - INFO - Added mock process data to conscious memory
+2025-06-04 02:11:59,242 - memory.conscious_memory - INFO - [ConsciousMemory] Adding file sensor data
+2025-06-04 02:11:59,242 - memory.conscious_memory - INFO - [ConsciousMemory] Added file data to buffer. Buffer size: 1
+2025-06-04 02:11:59,242 - memory.conscious_memory - INFO - [ConsciousMemory] Starting _process_sensor_data for file
+2025-06-04 02:11:59,242 - memory.conscious_memory - INFO - Generated 0 insights from file data
+2025-06-04 02:11:59,242 - memory.conscious_memory - INFO - [ConsciousMemory] Completed processing file sensor data
+2025-06-04 02:11:59,242 - memory.conscious_memory - INFO - [ConsciousMemory] Feeding data to memory system
+2025-06-04 02:11:59,243 - memory.memory_system - INFO - Added data to short-term memory: 17 entries, id=stm_1749017519242
+2025-06-04 02:11:59,243 - memory.conscious_memory - INFO - [ConsciousMemory] Added to short-term memory
+2025-06-04 02:11:59,243 - memory.conscious_memory - INFO - [ConsciousMemory] Successfully processed and stored file data
+2025-06-04 02:11:59,243 - __main__ - INFO - Added mock file data to conscious memory
+2025-06-04 02:11:59,243 - __main__ - INFO - Processing data with conscious memory...
+2025-06-04 02:11:59,243 - __main__ - ERROR - ❌ Cognitive memory processing failed
+2025-06-04 02:11:59,243 - __main__ - WARNING - ⚠️ Some cognitive memory tests failed
+2025-06-04 02:11:59,243 - __main__ - WARNING - ⚠️ Cognitive memory test completed with issues

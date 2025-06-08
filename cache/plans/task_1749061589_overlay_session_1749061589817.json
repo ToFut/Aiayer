@@ -1,0 +1,30 @@
+{
+  "type": "automation_plan",
+  "name": "Test Plan 485f9691-b35d-40c5-b5dc-e88eb138f61a",
+  "task_id": "task_1749061589_overlay_session_1749061589817",
+  "description": "This is a test plan for the simple DO button fix",
+  "target_app": "Browser",
+  "steps": [
+    {
+      "step_id": "step_1",
+      "name": "Open browser",
+      "action": "open_app",
+      "status": "pending"
+    }
+  ],
+  "plan_type": "automation",
+  "priority": "medium",
+  "status": "awaiting_approval",
+  "approval_status": "approved",
+  "automation_status": "pending",
+  "risk_level": "low",
+  "created": 1749061589.8172941,
+  "automation_steps": [
+    {
+      "step_id": "step_1",
+      "name": "Open browser",
+      "action": "open_app",
+      "status": "pending"
+    }
+  ]
+}

@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Direct Coordinate Automation Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        h1 {
+            color: #333;
+        }
+        button {
+            padding: 10px 15px;
+            margin: 5px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        button#doButton {
+            background-color: #2196F3;
+            font-weight: bold;
+            font-size: 18px;
+            padding: 15px 30px;
+        }
+        button#doButton:hover {
+            background-color: #0b7dda;
+        }
+        button.direct {
+            background-color: #9C27B0;
+        }
+        button.direct:hover {
+            background-color: #7B1FA2;
+        }
+        #logContainer {
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            background-color: #f9f9f9;
+            height: 300px;
+            overflow-y: auto;
+        }
+        .log {
+            margin: 5px 0;
+            padding: 5px;
+            border-bottom: 1px solid #eee;
+        }
+        .client {
+            color: #2196F3;
+        }
+        .server {
+            color: #4CAF50;
+        }
+        .error {
+            color: #f44336;
+        }
+        .plan {
+            background-color: #e8f5e9;
+            padding: 10px;
+            border-radius: 4px;
+            margin: 10px 0;
+            white-space: pre-wrap;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 10px 0;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        .preview {
+            position: relative;
+            margin-top: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            overflow: hidden;
+            background-color: #f0f0f0;
+            width: 100%;
+            height: 300px;
+        }
+        .coordinate-marker {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background-color: red;
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+        }
+        .coordinate-input {
+            display: flex;
+            margin: 10px 0;
+            align-items: center;
+        }
+        .coordinate-input input {
+            width: 80px;
+            padding: 8px;
+            margin-right: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        .coordinate-input label {
+            margin-right: 10px;
+            font-weight: bold;
+        }
+        #typingInput {
+            width: 100%;
+            padding: 8px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Direct Coordinate Automation Test</h1>
+        <p>This page tests direct coordinate automation with physical mouse and keyboard control.</p>
+        
+        <div>
+            <h2>Connection</h2>
+            <button id="connectButton">Connect to WebSocket</button>
+            <span id="connectionStatus">Not connected</span>
+        </div>
+        
+        <div>
+            <h2>Direct Coordinates</h2>
+            <div class="coordinate-input">
+                <label for="xCoord">X:</label>
+                <input id="xCoord" type="number" placeholder="X coordinate">
+                <label for="yCoord">Y:</label>
+                <input id="yCoord" type="number" placeholder="Y coordinate">
+                <button id="directClickButton" class="direct">Direct Click</button>
+            </div>
+            <div class="coordinate-input">
+                <label for="typingInput">Text to Type:</label>
+                <input id="typingInput" type="text" placeholder="Enter text to type directly">
+                <button id="directTypeButton" class="direct">Direct Type</button>
+            </div>
+            <div class="preview" id="previewContainer">
+                <!-- Click here to set coordinates -->
+            </div>
+        </div>
+        
+        <div>
+            <h2>Test Plans</h2>
+            <button id="doButton">DO!</button>
+            <button id="testClickPlanButton">Test Click Plan</button>
+            <button id="testTypePlanButton">Test Type Plan</button>
+            <button id="testHotkeyPlanButton">Test Hotkey Plan</button>
+            <button id="testAppLaunchPlanButton">Test App Launch</button>
+        </div>
+        
+        <div id="logContainer">
+            <div class="log">Logs will appear here...</div>
+        </div>
+    </div>
+
+    <script>
+        // Globals
+        let ws = null;
+        let sessionId = "test_" + Math.floor(Math.random() * 1000000);
+        let connected = false;
+        let screenWidth = 1920;  // Default screen width
+        let screenHeight = 1080; // Default screen height
+        let currentPlan = null;
+        
+        // Elements
+        const connectButton = document.getElementById('connectButton');
+        const connectionStatus = document.getElementById('connectionStatus');
+        const xCoord = document.getElementById('xCoord');
+        const yCoord = document.getElementById('yCoord');
+        const directClickButton = document.getElementById('directClickButton');
+        const typingInput = document.getElementById('typingInput');
+        const directTypeButton = document.getElementById('directTypeButton');
+        const previewContainer = document.getElementById('previewContainer');
+        const doButton = document.getElementById('doButton');
+        const testClickPlanButton = document.getElementById('testClickPlanButton');
+        const testTypePlanButton = document.getElementById('testTypePlanButton');
+        const testHotkeyPlanButton = document.getElementById('testHotkeyPlanButton');
+        const testAppLaunchPlanButton = document.getElementById('testAppLaunchPlanButton');
+        const logContainer = document.getElementById('logContainer');
+        
+        // Event listeners
+        connectButton.addEventListener('click', connect);
+        directClickButton.addEventListener('click', sendDirectClick);
+        directTypeButton.addEventListener('click', sendDirectType);
+        previewContainer.addEventListener('click', setCoordinatesFromClick);
+        doButton.addEventListener('click', sendDoButtonClick);
+        testClickPlanButton.addEventListener('click', sendClickPlan);
+        testTypePlanButton.addEventListener('click', sendTypePlan);
+        testHotkeyPlanButton.addEventListener('click', sendHotkeyPlan);
+        testAppLaunchPlanButton.addEventListener('click', sendAppLaunchPlan);
+        
+        // Initialize
+        function initialize() {
+            doButton.disabled = true;
+            testClickPlanButton.disabled = true;
+            testTypePlanButton.disabled = true;
+            testHotkeyPlanButton.disabled = true;
+            testAppLaunchPlanButton.disabled = true;
+            directClickButton.disabled = true;
+            directTypeButton.disabled = true;
+            xCoord.disabled = true;
+            yCoord.disabled = true;
+            typingInput.disabled = true;
+        }
+        
+        // Connect to WebSocket server
+        function connect() {
+            if (ws) {
+                ws.close();
+            }
+            
+            addToLog('Connecting to WebSocket server...', 'client');
+            connectionStatus.textContent = 'Connecting...';
+            
+            try {
+                ws = new WebSocket('ws://localhost:8765');
+                
+                ws.onopen = function() {
+                    connected = true;
+                    connectionStatus.textContent = 'Connected';
+                    connectButton.textContent = 'Disconnect';
+                    doButton.disabled = false;
+                    testClickPlanButton.disabled = false;
+                    testTypePlanButton.disabled = false;
+                    testHotkeyPlanButton.disabled = false;
+                    testAppLaunchPlanButton.disabled = false;
+                    directClickButton.disabled = false;
+                    directTypeButton.disabled = false;
+                    xCoord.disabled = false;
+                    yCoord.disabled = false;
+                    typingInput.disabled = false;
+                    
+                    addToLog('Connected to WebSocket server', 'client');
+                    
+                    // Request screen size
+                    sendMessage({
+                        type: 'get_screen_size'
+                    });
+                };
+                
+                ws.onmessage = function(event) {
+                    const data = JSON.parse(event.data);
+                    addToLog('Received: ' + JSON.stringify(data, null, 2), 'server');
+                    
+                    // Handle different message types
+                    if (data.type === 'screen_size') {
+                        screenWidth = data.width;
+                        screenHeight = data.height;
+                        addToLog(`Screen size: ${screenWidth}x${screenHeight}`, 'server');
+                    } else if (data.type === 'agent_progress') {
+                        addToLog(`Progress: ${data.progress}% - ${data.message}`, 'server');
+                    } else if (data.type === 'agent_execution_success') {
+                        addToLog('Execution completed: ' + (data.result.success ? 'SUCCESS' : 'FAILURE'), 'server');
+                        addToLog('Summary: ' + data.summary, 'server');
+                    }
+                };
+                
+                ws.onclose = function() {
+                    connected = false;
+                    connectionStatus.textContent = 'Disconnected';
+                    connectButton.textContent = 'Connect to WebSocket';
+                    doButton.disabled = true;
+                    testClickPlanButton.disabled = true;
+                    testTypePlanButton.disabled = true;
+                    testHotkeyPlanButton.disabled = true;
+                    testAppLaunchPlanButton.disabled = true;
+                    directClickButton.disabled = true;
+                    directTypeButton.disabled = true;
+                    xCoord.disabled = true;
+                    yCoord.disabled = true;
+                    typingInput.disabled = true;
+                    
+                    addToLog('Disconnected from WebSocket server', 'client');
+                };
+                
+                ws.onerror = function(error) {
+                    addToLog('WebSocket error: ' + error.message, 'error');
+                    connectionStatus.textContent = 'Error';
+                };
+                
+            } catch (error) {
+                addToLog('Error connecting to WebSocket: ' + error.message, 'error');
+                connectionStatus.textContent = 'Error';
+            }
+        }
+        
+        // Set coordinates from preview click
+        function setCoordinatesFromClick(event) {
+            const rect = previewContainer.getBoundingClientRect();
+            const x = event.clientX - rect.left;
+            const y = event.clientY - rect.top;
+            
+            // Scale to real screen coordinates
+            const scaleX = screenWidth / previewContainer.clientWidth;
+            const scaleY = screenHeight / previewContainer.clientHeight;
+            
+            const realX = Math.round(x * scaleX);
+            const realY = Math.round(y * scaleY);
+            
+            // Set input fields
+            xCoord.value = realX;
+            yCoord.value = realY;
+            
+            // Clear existing markers
+            clearMarkers();
+            
+            // Add marker at click point
+            const marker = document.createElement('div');
+            marker.className = 'coordinate-marker';
+            marker.style.left = x + 'px';
+            marker.style.top = y + 'px';
+            previewContainer.appendChild(marker);
+            
+            addToLog(`Set coordinates to (${realX}, ${realY})`, 'client');
+        }
+        
+        // Clear coordinate markers
+        function clearMarkers() {
+            const markers = previewContainer.querySelectorAll('.coordinate-marker');
+            markers.forEach(marker => marker.remove());
+        }
+        
+        // Send direct click
+        function sendDirectClick() {
+            if (!connected) {
+                addToLog('Not connected to WebSocket server', 'error');
+                return;
+            }
+            
+            const x = parseInt(xCoord.value);
+            const y = parseInt(yCoord.value);
+            
+            if (isNaN(x) || isNaN(y)) {
+                addToLog('Please enter valid coordinates', 'error');
+                return;
+            }
+            
+            const message = {
+                type: 'direct_click',
+                session_id: sessionId,
+                x: x,
+                y: y
+            };
+            
+            sendMessage(message);
+            addToLog(`Sending direct click at (${x}, ${y})`, 'client');
+        }
+        
+        // Send direct type
+        function sendDirectType() {
+            if (!connected) {
+                addToLog('Not connected to WebSocket server', 'error');
+                return;
+            }
+            
+            const text = typingInput.value;
+            
+            if (!text) {
+                addToLog('Please enter text to type', 'error');
+                return;
+            }
+            
+            const message = {
+                type: 'direct_type',
+                session_id: sessionId,
+                text: text
+            };
+            
+            sendMessage(message);
+            addToLog(`Sending direct type: "${text}"`, 'client');
+        }
+        
+        // Send DO button click
+        function sendDoButtonClick() {
+            if (!connected) {
+                addToLog('Not connected to WebSocket server', 'error');
+                return;
+            }
+            
+            if (!currentPlan) {
+                addToLog('No plan to execute. Create a plan first.', 'error');
+                return;
+            }
+            
+            const doMessage = {
+                type: 'agent_confirmation',
+                session_id: sessionId,
+                action: 'DO'
+            };
+            
+            sendMessage(doMessage);
+            addToLog('Sent DO button click', 'client');
+        }
+        
+        // Send click plan
+        function sendClickPlan() {
+            if (!connected) {
+                addToLog('Not connected to WebSocket server', 'error');
+                return;
+            }
+            
+            const x = parseInt(xCoord.value) || Math.floor(screenWidth / 2);
+            const y = parseInt(yCoord.value) || Math.floor(screenHeight / 2);
+            
+            const plan = {
+                type: 'plan_created',
+                session_id: sessionId,
+                plan: {
+                    title: `Click at (${x}, ${y})`,
+                    description: `A plan to click at coordinates (${x}, ${y})`,
+                    steps: [
+                        {
+                            type: 'click',
+                            x: x,
+                            y: y,
+                            description: `Click at (${x}, ${y})`
+                        }
+                    ]
+                }
+            };
+            
+            currentPlan = plan.plan;
+            sendMessage(plan);
+            addToLog(`Created plan to click at (${x}, ${y})`, 'client');
+            addToLog('Plan: ' + JSON.stringify(plan.plan, null, 2), 'plan');
+        }
+        
+        // Send type plan
+        function sendTypePlan() {
+            if (!connected) {
+                addToLog('Not connected to WebSocket server', 'error');
+                return;
+            }
+            
+            const text = typingInput.value || 'Test text from direct coordinate automation';
+            
+            const plan = {
+                type: 'plan_created',
+                session_id: sessionId,
+                plan: {
+                    title: 'Type Text Plan',
+                    description: `A plan to type text: "${text}"`,
+                    steps: [
+                        {
+                            type: 'text',
+                            text: text,
+                            description: `Type text: "${text}"`
+                        }
+                    ]
+                }
+            };
+            
+            currentPlan = plan.plan;
+            sendMessage(plan);
+            addToLog(`Created plan to type text: "${text}"`, 'client');
+            addToLog('Plan: ' + JSON.stringify(plan.plan, null, 2), 'plan');
+        }
+        
+        // Send hotkey plan
+        function sendHotkeyPlan() {
+            if (!connected) {
+                addToLog('Not connected to WebSocket server', 'error');
+                return;
+            }
+            
+            const plan = {
+                type: 'plan_created',
+                session_id: sessionId,
+                plan: {
+                    title: 'Hotkey Test Plan',
+                    description: 'A plan to test hotkey combinations',
+                    steps: [
+                        {
+                            type: 'hotkey',
+                            keys: ['command', 'a'],
+                            description: 'Select all (Command+A)'
+                        },
+                        {
+                            type: 'wait',
+                            duration: 1,
+                            description: 'Wait 1 second'
+                        },
+                        {
+                            type: 'press',
+                            key: 'escape',
+                            description: 'Press Escape key'
+                        }
+                    ]
+                }
+            };
+            
+            currentPlan = plan.plan;
+            sendMessage(plan);
+            addToLog('Created hotkey test plan', 'client');
+            addToLog('Plan: ' + JSON.stringify(plan.plan, null, 2), 'plan');
+        }
+        
+        // Send app launch plan
+        function sendAppLaunchPlan() {
+            if (!connected) {
+                addToLog('Not connected to WebSocket server', 'error');
+                return;
+            }
+            
+            const plan = {
+                type: 'plan_created',
+                session_id: sessionId,
+                plan: {
+                    title: 'App Launch Test',
+                    description: 'A plan to launch an application',
+                    steps: [
+                        {
+                            type: 'open_app',
+                            target: 'Safari',
+                            description: 'Open Safari browser'
+                        },
+                        {
+                            type: 'wait',
+                            duration: 2,
+                            description: 'Wait for app to launch'
+                        }
+                    ]
+                }
+            };
+            
+            currentPlan = plan.plan;
+            sendMessage(plan);
+            addToLog('Created app launch plan', 'client');
+            addToLog('Plan: ' + JSON.stringify(plan.plan, null, 2), 'plan');
+        }
+        
+        // Helper to send WebSocket message
+        function sendMessage(message) {
+            try {
+                ws.send(JSON.stringify(message));
+            } catch (error) {
+                addToLog('Error sending message: ' + error.message, 'error');
+            }
+        }
+        
+        // Add log message
+        function addToLog(message, type) {
+            const logEntry = document.createElement('div');
+            logEntry.className = 'log ' + (type || '');
+            
+            // Format timestamp
+            const timestamp = new Date().toLocaleTimeString();
+            
+            // Format message based on type
+            if (type === 'plan') {
+                logEntry.innerHTML = `<strong>${timestamp}</strong>: Plan created:`;
+                logEntry.className = 'log plan';
+                
+                const planPre = document.createElement('pre');
+                planPre.textContent = message;
+                logEntry.appendChild(planPre);
+            } else {
+                logEntry.textContent = `${timestamp}: ${message}`;
+            }
+            
+            logContainer.appendChild(logEntry);
+            logContainer.scrollTop = logContainer.scrollHeight;
+        }
+        
+        // Initialize on load
+        window.onload = initialize;
+    </script>
+</body>
+</html>

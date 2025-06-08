@@ -1,5 +1,5 @@
 #!/bin/bash
-echo "🛑 Stopping Complete Enhanced System (All Components)..."
+echo " Stopping Complete Enhanced System (All Components)..."
 
 # Read PIDs and stop processes
 for pidfile in pids/*.pid; do
@@ -26,6 +26,14 @@ pkill -f memory_integration_service 2>/dev/null || true
 pkill -f smart_memory_feeder 2>/dev/null || true
 pkill -f conscious_memory 2>/dev/null || true
 pkill -f semantic_search 2>/dev/null || true
+pkill -f guaranteed_ws_server_8765 2>/dev/null || true
+pkill -f fix_do_button_standalone 2>/dev/null || true
+pkill -f ultimate_do_button_server 2>/dev/null || true
+pkill -f memory_aware_suggestion_monitor 2>/dev/null || true
 
-echo "✅ Complete Enhanced System stopped"
-echo "🔥 All performance optimizations and TeamViewer capabilities stopped"
+# Clean up ports to ensure they're available next time
+lsof -ti:8765 | xargs kill -9 2>/dev/null || true
+lsof -ti:8767 | xargs kill -9 2>/dev/null || true
+
+echo " Complete Enhanced System stopped"
+echo " All performance optimizations, TeamViewer capabilities, and DO button fix stopped"

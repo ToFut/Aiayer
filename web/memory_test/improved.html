@@ -1,0 +1,852 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Improved Memory Test Interface</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+    <style>
+        body {
+            padding: 20px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f8f9fa;
+        }
+        .card {
+            margin-bottom: 20px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        #log-container {
+            height: 200px;
+            overflow-y: auto;
+            background-color: #343a40;
+            color: #f8f9fa;
+            padding: 10px;
+            border-radius: 5px;
+            font-family: monospace;
+        }
+        .log-entry {
+            margin: 5px 0;
+            padding: 5px;
+            border-radius: 3px;
+        }
+        .log-system {
+            color: #8be9fd;
+        }
+        .log-success {
+            color: #50fa7b;
+        }
+        .log-error {
+            color: #ff5555;
+        }
+        .log-warning {
+            color: #ffb86c;
+        }
+        .log-info {
+            color: #8be9fd;
+        }
+        .visualization-container {
+            height: 400px;
+            border: 1px solid #dee2e6;
+            border-radius: 5px;
+            padding: 10px;
+            background-color: white;
+        }
+        .memory-item {
+            border: 1px solid #dee2e6;
+            border-radius: 5px;
+            padding: 10px;
+            margin-bottom: 10px;
+            background-color: white;
+        }
+        .memory-content {
+            font-weight: bold;
+        }
+        .memory-metadata {
+            font-size: 0.8em;
+            color: #6c757d;
+        }
+        .similarity-score {
+            font-weight: bold;
+            color: #198754;
+        }
+        #ws-status {
+            font-weight: bold;
+        }
+        .ws-connected {
+            color: #198754;
+        }
+        .ws-disconnected {
+            color: #dc3545;
+        }
+        #stats-container {
+            background-color: #e9ecef;
+            border-radius: 5px;
+            padding: 15px;
+        }
+        #memory-type-filter {
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row mb-4">
+            <div class="col-12">
+                <h1 class="display-5">Improved Memory Test Interface</h1>
+                <p class="lead">Test and visualize the memory system components</p>
+                <div class="d-flex align-items-center mb-3">
+                    <span class="me-2">WebSocket Status:</span>
+                    <span id="ws-status" class="ws-disconnected">Disconnected</span>
+                </div>
+                <div class="input-group mb-3" style="max-width: 500px;">
+                    <span class="input-group-text">WebSocket URL</span>
+                    <input type="text" id="ws-url" class="form-control" value="ws://localhost:8769">
+                    <button class="btn btn-primary" id="connect-btn">Connect</button>
+                    <button class="btn btn-outline-secondary" id="disconnect-btn">Disconnect</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <!-- Left column: Controls -->
+            <div class="col-md-5">
+                <!-- Add Memory Form -->
+                <div class="card">
+                    <div class="card-header bg-primary text-white">
+                        <h5 class="mb-0">Add Memory</h5>
+                    </div>
+                    <div class="card-body">
+                        <form id="add-memory-form">
+                            <div class="mb-3">
+                                <label for="memory-content" class="form-label">Memory Content</label>
+                                <textarea class="form-control" id="memory-content" rows="3" required></textarea>
+                            </div>
+                            <div class="row mb-3">
+                                <div class="col">
+                                    <label for="memory-type" class="form-label">Memory Type</label>
+                                    <select class="form-select" id="memory-type">
+                                        <option value="observation">Observation</option>
+                                        <option value="thought">Thought</option>
+                                        <option value="reflection">Reflection</option>
+                                        <option value="action">Action</option>
+                                        <option value="system">System</option>
+                                    </select>
+                                </div>
+                                <div class="col">
+                                    <label for="memory-source" class="form-label">Source</label>
+                                    <input type="text" class="form-control" id="memory-source" value="manual">
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="memory-metadata" class="form-label">Metadata (JSON)</label>
+                                <textarea class="form-control" id="memory-metadata" rows="2">{}</textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Add Memory</button>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Search Memory Form -->
+                <div class="card mt-4">
+                    <div class="card-header bg-success text-white">
+                        <h5 class="mb-0">Search Memory</h5>
+                    </div>
+                    <div class="card-body">
+                        <form id="search-memory-form">
+                            <div class="mb-3">
+                                <label for="search-query" class="form-label">Search Query</label>
+                                <input type="text" class="form-control" id="search-query" required>
+                            </div>
+                            <div class="row mb-3">
+                                <div class="col">
+                                    <label for="limit" class="form-label">Result Limit</label>
+                                    <input type="number" class="form-control" id="limit" value="10" min="1" max="100">
+                                </div>
+                                <div class="col">
+                                    <label for="threshold" class="form-label">Similarity Threshold</label>
+                                    <input type="number" class="form-control" id="threshold" value="0.2" min="0" max="1" step="0.01">
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="memory-type-filter" class="form-label">Memory Type Filter</label>
+                                <div id="memory-type-filter">
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="checkbox" id="filter-observation" value="observation" checked>
+                                        <label class="form-check-label" for="filter-observation">Observation</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="checkbox" id="filter-thought" value="thought" checked>
+                                        <label class="form-check-label" for="filter-thought">Thought</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="checkbox" id="filter-reflection" value="reflection" checked>
+                                        <label class="form-check-label" for="filter-reflection">Reflection</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="checkbox" id="filter-action" value="action" checked>
+                                        <label class="form-check-label" for="filter-action">Action</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="checkbox" id="filter-system" value="system" checked>
+                                        <label class="form-check-label" for="filter-system">System</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-success">Search Memory</button>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- System Stats -->
+                <div class="card mt-4">
+                    <div class="card-header bg-info text-white">
+                        <h5 class="mb-0">System Stats</h5>
+                    </div>
+                    <div class="card-body">
+                        <button id="get-stats-btn" class="btn btn-info mb-3">Get System Stats</button>
+                        <div id="stats-container">
+                            <p>No stats available. Click the button to fetch stats.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right column: Results and Visualization -->
+            <div class="col-md-7">
+                <!-- Results Area -->
+                <div class="card">
+                    <div class="card-header bg-secondary text-white">
+                        <h5 class="mb-0">Results</h5>
+                    </div>
+                    <div class="card-body">
+                        <ul class="nav nav-tabs" id="resultsTabs" role="tablist">
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link active" id="search-results-tab" data-bs-toggle="tab" data-bs-target="#search-results" type="button" role="tab" aria-controls="search-results" aria-selected="true">Search Results</button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" id="visualization-tab" data-bs-toggle="tab" data-bs-target="#visualization" type="button" role="tab" aria-controls="visualization" aria-selected="false">Visualization</button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" id="log-tab" data-bs-toggle="tab" data-bs-target="#log" type="button" role="tab" aria-controls="log" aria-selected="false">Log</button>
+                            </li>
+                        </ul>
+                        <div class="tab-content" id="resultsTabsContent">
+                            <div class="tab-pane fade show active" id="search-results" role="tabpanel" aria-labelledby="search-results-tab">
+                                <div id="search-results-container" class="mt-3">
+                                    <p>No search results yet. Try searching for memories.</p>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade" id="visualization" role="tabpanel" aria-labelledby="visualization-tab">
+                                <div class="visualization-container mt-3" id="visualization-container">
+                                    <div class="text-center py-5">
+                                        <p>Visualization will appear here after search</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade" id="log" role="tabpanel" aria-labelledby="log-tab">
+                                <div id="log-container" class="mt-3">
+                                    <div class="log-entry log-system">System log initialized.</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap & Dependencies -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+
+    <!-- Application Scripts -->
+    <script>
+        // WebSocket Client Class
+        class WebSocketClient {
+            constructor(url = 'ws://localhost:8769') {
+                this.socket = null;
+                this.isConnected = false;
+                this.url = url;
+                this.reconnectAttempts = 0;
+                this.maxReconnectAttempts = 5;
+                this.reconnectDelay = 2000;
+                this.messageHandlers = {};
+                this.connectionListeners = [];
+                this.messageQueue = [];
+            }
+
+            init() {
+                this.connect();
+            }
+
+            connect() {
+                if (this.socket && (this.socket.readyState === WebSocket.OPEN || this.socket.readyState === WebSocket.CONNECTING)) {
+                    console.log('WebSocket already connected or connecting');
+                    return;
+                }
+
+                try {
+                    this.socket = new WebSocket(this.url);
+
+                    this.socket.onopen = () => {
+                        console.log('WebSocket connection established');
+                        this.isConnected = true;
+                        this.reconnectAttempts = 0;
+                        this._notifyConnectionListeners(true);
+                        
+                        // Send any queued messages
+                        while (this.messageQueue.length > 0) {
+                            const message = this.messageQueue.shift();
+                            this.send(message.type, message.data);
+                        }
+                    };
+
+                    this.socket.onmessage = (event) => {
+                        try {
+                            const message = JSON.parse(event.data);
+                            console.log('Received message:', message);
+                            
+                            if (message.type && this.messageHandlers[message.type]) {
+                                this.messageHandlers[message.type](message);
+                            } else {
+                                console.warn('No handler for message type:', message.type);
+                            }
+                        } catch (error) {
+                            console.error('Error processing message:', error);
+                        }
+                    };
+
+                    this.socket.onclose = (event) => {
+                        console.log('WebSocket connection closed', event);
+                        this.isConnected = false;
+                        this._notifyConnectionListeners(false);
+                        
+                        if (this.reconnectAttempts < this.maxReconnectAttempts) {
+                            this.reconnectAttempts++;
+                            console.log(`Attempting to reconnect (${this.reconnectAttempts}/${this.maxReconnectAttempts})...`);
+                            setTimeout(() => this.connect(), this.reconnectDelay);
+                        } else {
+                            console.error('Max reconnect attempts reached');
+                        }
+                    };
+
+                    this.socket.onerror = (error) => {
+                        console.error('WebSocket error:', error);
+                    };
+                } catch (error) {
+                    console.error('Failed to create WebSocket:', error);
+                }
+            }
+
+            disconnect() {
+                if (this.socket) {
+                    this.socket.close();
+                    this.socket = null;
+                }
+            }
+
+            send(type, data = {}) {
+                const message = { type, ...data };
+                
+                if (!this.isConnected) {
+                    console.log('Not connected, queueing message:', message);
+                    this.messageQueue.push({ type, data });
+                    return false;
+                }
+                
+                try {
+                    this.socket.send(JSON.stringify(message));
+                    return true;
+                } catch (error) {
+                    console.error('Error sending message:', error);
+                    return false;
+                }
+            }
+
+            onMessage(type, callback) {
+                this.messageHandlers[type] = callback;
+            }
+
+            onConnectionChange(callback) {
+                this.connectionListeners.push(callback);
+                // Immediately notify with current state
+                callback(this.isConnected);
+            }
+
+            _notifyConnectionListeners(isConnected) {
+                this.connectionListeners.forEach(listener => listener(isConnected));
+            }
+        }
+
+        // Memory Utils
+        const MemoryUtils = {
+            formatDateTime(timestamp) {
+                if (!timestamp) return 'Unknown';
+                
+                const date = new Date(timestamp);
+                return date.toLocaleString();
+            },
+            
+            formatSimilarityScore(score) {
+                if (score === undefined || score === null) return 'N/A';
+                return (score * 100).toFixed(2) + '%';
+            },
+            
+            createMemoryFromForm() {
+                const content = document.getElementById('memory-content').value.trim();
+                const type = document.getElementById('memory-type').value;
+                const source = document.getElementById('memory-source').value;
+                let metadata = {};
+                
+                try {
+                    const metadataText = document.getElementById('memory-metadata').value;
+                    if (metadataText && metadataText !== '{}') {
+                        metadata = JSON.parse(metadataText);
+                    }
+                } catch (error) {
+                    console.error('Invalid metadata JSON:', error);
+                    addLogEntry('error', 'Invalid metadata JSON. Using empty object instead.');
+                }
+                
+                return {
+                    content,
+                    type,
+                    source,
+                    metadata,
+                    timestamp: new Date().toISOString()
+                };
+            },
+            
+            createSearchQueryFromForm() {
+                const query = document.getElementById('search-query').value.trim();
+                const limit = parseInt(document.getElementById('limit').value, 10);
+                const threshold = parseFloat(document.getElementById('threshold').value);
+                
+                // Get selected memory types
+                const types = [];
+                document.querySelectorAll('#memory-type-filter input[type="checkbox"]:checked').forEach(checkbox => {
+                    types.push(checkbox.value);
+                });
+                
+                return {
+                    query,
+                    limit: isNaN(limit) ? 10 : limit,
+                    threshold: isNaN(threshold) ? 0.2 : threshold,
+                    types: types.length > 0 ? types : null
+                };
+            },
+            
+            renderSearchResults(results) {
+                const container = document.getElementById('search-results-container');
+                
+                if (!results || results.length === 0) {
+                    container.innerHTML = '<p>No results found matching your query.</p>';
+                    return;
+                }
+                
+                let html = '<div class="list-group">';
+                
+                results.forEach((result, index) => {
+                    const memory = result.memory;
+                    const score = result.similarity;
+                    
+                    html += `
+                        <div class="memory-item">
+                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                <span class="badge bg-${this.getTypeColor(memory.type)}">${memory.type}</span>
+                                <span class="similarity-score">Similarity: ${this.formatSimilarityScore(score)}</span>
+                            </div>
+                            <div class="memory-content mb-2">${memory.content}</div>
+                            <div class="memory-metadata">
+                                <div>Source: ${memory.source || 'N/A'}</div>
+                                <div>Created: ${this.formatDateTime(memory.timestamp)}</div>
+                                <div>ID: ${memory.id || 'N/A'}</div>
+                            </div>
+                        </div>
+                    `;
+                });
+                
+                html += '</div>';
+                container.innerHTML = html;
+                
+                // Also update visualization with these results
+                updateVisualization(results);
+            },
+            
+            getTypeColor(type) {
+                const typeColors = {
+                    'observation': 'primary',
+                    'thought': 'info',
+                    'reflection': 'warning',
+                    'action': 'success',
+                    'system': 'secondary'
+                };
+                
+                return typeColors[type] || 'secondary';
+            },
+            
+            renderSystemStats(stats) {
+                const container = document.getElementById('stats-container');
+                
+                if (!stats) {
+                    container.innerHTML = '<p>No system stats available.</p>';
+                    return;
+                }
+                
+                let html = '<div class="table-responsive"><table class="table table-sm">';
+                
+                // Memory Count by Type
+                html += '<thead><tr><th colspan="2">Memory Count by Type</th></tr></thead><tbody>';
+                if (stats.memory_counts) {
+                    Object.entries(stats.memory_counts).forEach(([type, count]) => {
+                        html += `<tr><td>${type}</td><td>${count}</td></tr>`;
+                    });
+                } else {
+                    html += '<tr><td colspan="2">No memory count data available</td></tr>';
+                }
+                html += '</tbody>';
+                
+                // System Performance
+                if (stats.performance) {
+                    html += '<thead class="mt-3"><tr><th colspan="2">System Performance</th></tr></thead><tbody>';
+                    Object.entries(stats.performance).forEach(([metric, value]) => {
+                        html += `<tr><td>${metric}</td><td>${value}</td></tr>`;
+                    });
+                    html += '</tbody>';
+                }
+                
+                // Database Stats
+                if (stats.database) {
+                    html += '<thead class="mt-3"><tr><th colspan="2">Database Stats</th></tr></thead><tbody>';
+                    Object.entries(stats.database).forEach(([key, value]) => {
+                        html += `<tr><td>${key}</td><td>${value}</td></tr>`;
+                    });
+                    html += '</tbody>';
+                }
+                
+                html += '</table></div>';
+                container.innerHTML = html;
+            }
+        };
+
+        // Visualization Functions
+        function updateVisualization(results) {
+            const container = document.getElementById('visualization-container');
+            
+            if (!results || results.length === 0) {
+                container.innerHTML = '<div class="text-center py-5"><p>No data to visualize</p></div>';
+                return;
+            }
+            
+            // Clear previous visualization
+            container.innerHTML = '';
+            
+            // Create a simple force-directed graph using D3
+            const width = container.clientWidth;
+            const height = container.clientHeight;
+            
+            const svg = d3.select(container)
+                .append('svg')
+                .attr('width', width)
+                .attr('height', height);
+                
+            // Prepare data for visualization
+            const nodes = [];
+            const links = [];
+            
+            // Add query node
+            nodes.push({
+                id: 'query',
+                type: 'query',
+                label: document.getElementById('search-query').value
+            });
+            
+            // Add memory nodes and links to query
+            results.forEach((result, index) => {
+                const memory = result.memory;
+                const score = result.similarity;
+                
+                nodes.push({
+                    id: memory.id || `memory-${index}`,
+                    type: memory.type,
+                    label: memory.content.length > 30 ? memory.content.substring(0, 30) + '...' : memory.content,
+                    fullContent: memory.content,
+                    score: score
+                });
+                
+                links.push({
+                    source: 'query',
+                    target: memory.id || `memory-${index}`,
+                    value: score
+                });
+            });
+            
+            // Create force simulation
+            const simulation = d3.forceSimulation(nodes)
+                .force('link', d3.forceLink(links).id(d => d.id).distance(d => 200 * (1 - d.value)))
+                .force('charge', d3.forceManyBody().strength(-200))
+                .force('center', d3.forceCenter(width / 2, height / 2))
+                .force('collision', d3.forceCollide().radius(50));
+            
+            // Draw links
+            const link = svg.append('g')
+                .selectAll('line')
+                .data(links)
+                .enter().append('line')
+                .attr('stroke-width', d => 2 * d.value)
+                .attr('stroke', '#999')
+                .attr('stroke-opacity', 0.6);
+            
+            // Draw nodes
+            const node = svg.append('g')
+                .selectAll('g')
+                .data(nodes)
+                .enter().append('g')
+                .call(d3.drag()
+                    .on('start', dragstarted)
+                    .on('drag', dragged)
+                    .on('end', dragended));
+            
+            const getNodeColor = (type) => {
+                const colors = {
+                    'query': '#9c27b0',
+                    'observation': '#2196f3',
+                    'thought': '#03a9f4',
+                    'reflection': '#ff9800',
+                    'action': '#4caf50',
+                    'system': '#607d8b'
+                };
+                return colors[type] || '#999';
+            };
+            
+            // Add circles for each node
+            node.append('circle')
+                .attr('r', d => d.type === 'query' ? 20 : 15)
+                .attr('fill', d => getNodeColor(d.type))
+                .attr('stroke', '#fff')
+                .attr('stroke-width', 2);
+            
+            // Add labels for each node
+            node.append('text')
+                .attr('dx', 20)
+                .attr('dy', 4)
+                .text(d => d.label)
+                .style('font-size', '12px')
+                .style('fill', '#333');
+            
+            // Add title (tooltip) for each node
+            node.append('title')
+                .text(d => d.fullContent || d.label);
+            
+            // Update positions during simulation
+            simulation.on('tick', () => {
+                link
+                    .attr('x1', d => d.source.x)
+                    .attr('y1', d => d.source.y)
+                    .attr('x2', d => d.target.x)
+                    .attr('y2', d => d.target.y);
+                
+                node.attr('transform', d => `translate(${d.x},${d.y})`);
+            });
+            
+            // Drag functions
+            function dragstarted(event, d) {
+                if (!event.active) simulation.alphaTarget(0.3).restart();
+                d.fx = d.x;
+                d.fy = d.y;
+            }
+            
+            function dragged(event, d) {
+                d.fx = event.x;
+                d.fy = event.y;
+            }
+            
+            function dragended(event, d) {
+                if (!event.active) simulation.alphaTarget(0);
+                d.fx = null;
+                d.fy = null;
+            }
+        }
+
+        // Logging
+        function addLogEntry(type, message) {
+            const container = document.getElementById('log-container');
+            const entry = document.createElement('div');
+            entry.classList.add('log-entry', `log-${type}`);
+            
+            const timestamp = new Date().toLocaleTimeString();
+            entry.textContent = `[${timestamp}] ${message}`;
+            
+            container.appendChild(entry);
+            container.scrollTop = container.scrollHeight;
+        }
+
+        // Main App
+        document.addEventListener('DOMContentLoaded', () => {
+            let wsClient = null;
+            
+            // Initialize UI
+            function initUI() {
+                document.getElementById('connect-btn').addEventListener('click', connectWebSocket);
+                document.getElementById('disconnect-btn').addEventListener('click', disconnectWebSocket);
+                document.getElementById('add-memory-form').addEventListener('submit', handleAddMemory);
+                document.getElementById('search-memory-form').addEventListener('submit', handleSearchMemory);
+                document.getElementById('get-stats-btn').addEventListener('click', handleGetStats);
+                
+                // Initialize WebSocket if URL is in localStorage
+                const savedUrl = localStorage.getItem('wsUrl');
+                if (savedUrl) {
+                    document.getElementById('ws-url').value = savedUrl;
+                }
+                
+                addLogEntry('system', 'Interface initialized. Connect to WebSocket server to begin.');
+            }
+            
+            // WebSocket Connection
+            function connectWebSocket() {
+                const url = document.getElementById('ws-url').value.trim();
+                
+                if (!url) {
+                    addLogEntry('error', 'WebSocket URL cannot be empty');
+                    return;
+                }
+                
+                // Save URL to localStorage
+                localStorage.setItem('wsUrl', url);
+                
+                try {
+                    wsClient = new WebSocketClient(url);
+                    
+                    // Set up message handlers
+                    wsClient.onMessage('pong', handlePong);
+                    wsClient.onMessage('memory_added', handleMemoryAdded);
+                    wsClient.onMessage('search_results', handleSearchResults);
+                    wsClient.onMessage('system_stats', handleSystemStats);
+                    wsClient.onMessage('error', handleError);
+                    
+                    // Set up connection listener
+                    wsClient.onConnectionChange(updateConnectionStatus);
+                    
+                    // Initialize connection
+                    wsClient.init();
+                    addLogEntry('system', `Connecting to WebSocket at ${url}...`);
+                } catch (error) {
+                    addLogEntry('error', `Failed to create WebSocket: ${error.message}`);
+                }
+            }
+            
+            function disconnectWebSocket() {
+                if (wsClient) {
+                    wsClient.disconnect();
+                    wsClient = null;
+                    updateConnectionStatus(false);
+                    addLogEntry('system', 'WebSocket disconnected');
+                }
+            }
+            
+            function updateConnectionStatus(isConnected) {
+                const statusEl = document.getElementById('ws-status');
+                
+                if (isConnected) {
+                    statusEl.textContent = 'Connected';
+                    statusEl.className = 'ws-connected';
+                    // Send a ping to verify connection is working
+                    wsClient.send('ping');
+                } else {
+                    statusEl.textContent = 'Disconnected';
+                    statusEl.className = 'ws-disconnected';
+                }
+            }
+            
+            // Message Handlers
+            function handlePong(message) {
+                addLogEntry('success', 'Received pong from server');
+            }
+            
+            function handleMemoryAdded(message) {
+                addLogEntry('success', `Memory added with ID: ${message.memory_id}`);
+            }
+            
+            function handleSearchResults(message) {
+                addLogEntry('info', `Received ${message.results.length} search results`);
+                MemoryUtils.renderSearchResults(message.results);
+            }
+            
+            function handleSystemStats(message) {
+                addLogEntry('info', 'Received system stats');
+                MemoryUtils.renderSystemStats(message.stats);
+            }
+            
+            function handleError(message) {
+                addLogEntry('error', `Server error: ${message.error}`);
+            }
+            
+            // Form Handlers
+            function handleAddMemory(event) {
+                event.preventDefault();
+                
+                if (!wsClient || !wsClient.isConnected) {
+                    addLogEntry('error', 'WebSocket not connected');
+                    return;
+                }
+                
+                try {
+                    const memory = MemoryUtils.createMemoryFromForm();
+                    
+                    if (!memory.content) {
+                        addLogEntry('error', 'Memory content cannot be empty');
+                        return;
+                    }
+                    
+                    wsClient.send('add_memory', { memory });
+                    addLogEntry('info', `Sending memory: ${memory.content.substring(0, 30)}...`);
+                    
+                    // Clear the form
+                    document.getElementById('memory-content').value = '';
+                    document.getElementById('memory-metadata').value = '{}';
+                } catch (error) {
+                    addLogEntry('error', `Error adding memory: ${error.message}`);
+                }
+            }
+            
+            function handleSearchMemory(event) {
+                event.preventDefault();
+                
+                if (!wsClient || !wsClient.isConnected) {
+                    addLogEntry('error', 'WebSocket not connected');
+                    return;
+                }
+                
+                try {
+                    const searchParams = MemoryUtils.createSearchQueryFromForm();
+                    
+                    if (!searchParams.query) {
+                        addLogEntry('error', 'Search query cannot be empty');
+                        return;
+                    }
+                    
+                    wsClient.send('search_memory', searchParams);
+                    addLogEntry('info', `Searching for: ${searchParams.query}`);
+                } catch (error) {
+                    addLogEntry('error', `Error searching memory: ${error.message}`);
+                }
+            }
+            
+            function handleGetStats() {
+                if (!wsClient || !wsClient.isConnected) {
+                    addLogEntry('error', 'WebSocket not connected');
+                    return;
+                }
+                
+                wsClient.send('get_system_stats');
+                addLogEntry('info', 'Requesting system stats...');
+            }
+            
+            // Initialize the app
+            initUI();
+        });
+    </script>
+</body>
+</html>

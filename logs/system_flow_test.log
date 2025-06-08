@@ -1,0 +1,26 @@
+2025-06-08 00:02:37,808 - __main__ - INFO - === STARTING SYSTEM FLOW TEST ===
+2025-06-08 00:02:37,809 - __main__ - INFO - STEP 1: Importing required modules
+2025-06-08 00:02:37,809 - __main__ - ERROR - Error importing memory/memory_system.py: [Errno 2] No such file or directory: '/Users/segevbin/Desktop/SensAI/Aiayer/Others/memory/memory_system.py'
+2025-06-08 00:02:37,810 - __main__ - ERROR - Traceback (most recent call last):
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/Others/test_system_flow.py", line 49, in import_module
+    spec.loader.exec_module(module)
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "<frozen importlib._bootstrap_external>", line 1022, in exec_module
+  File "<frozen importlib._bootstrap_external>", line 1159, in get_code
+  File "<frozen importlib._bootstrap_external>", line 1217, in get_data
+FileNotFoundError: [Errno 2] No such file or directory: '/Users/segevbin/Desktop/SensAI/Aiayer/Others/memory/memory_system.py'
+
+2025-06-08 00:02:37,810 - __main__ - ERROR - Failed to import memory_system module. Exiting test.
+2025-06-08 00:08:15,680 - __main__ - INFO - === STARTING SYSTEM FLOW TEST ===
+2025-06-08 00:08:15,681 - __main__ - INFO - STEP 1: Importing required modules
+2025-06-08 00:08:15,681 - __main__ - ERROR - Error importing memory/memory_system.py: [Errno 2] No such file or directory: '/Users/segevbin/Desktop/SensAI/Aiayer/Others/memory/memory_system.py'
+2025-06-08 00:08:15,683 - __main__ - ERROR - Traceback (most recent call last):
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/Others/test_system_flow.py", line 49, in import_module
+    spec.loader.exec_module(module)
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "<frozen importlib._bootstrap_external>", line 1022, in exec_module
+  File "<frozen importlib._bootstrap_external>", line 1159, in get_code
+  File "<frozen importlib._bootstrap_external>", line 1217, in get_data
+FileNotFoundError: [Errno 2] No such file or directory: '/Users/segevbin/Desktop/SensAI/Aiayer/Others/memory/memory_system.py'
+
+2025-06-08 00:08:15,683 - __main__ - ERROR - Failed to import memory_system module. Exiting test.

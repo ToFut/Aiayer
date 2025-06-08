@@ -1,0 +1,24 @@
+2025-05-29 02:43:01,373 - INFO - Connecting to backend at ws://localhost:8767
+2025-05-29 02:43:02,153 - INFO - Successfully connected to backend with client ID: client_1748500982067
+2025-05-29 02:43:02,159 - INFO - ============================================================
+2025-05-29 02:43:02,160 - INFO - STARTING COMPREHENSIVE SYSTEM SIMULATION
+2025-05-29 02:43:02,161 - INFO - ============================================================
+2025-05-29 02:43:02,162 - INFO - Testing 10 scenarios across all modes
+2025-05-29 02:43:02,162 - INFO - ------------------------------------------------------------
+2025-05-29 02:43:02,162 - INFO - Running test 1/10: agent_ui_interaction (agent mode)
+2025-05-29 02:43:02,162 - INFO - Sending message in agent mode: 'search for flights to Miami on Google'
+2025-05-29 02:46:02,167 - ERROR - Response timeout after 180 seconds
+2025-05-29 02:46:02,167 - INFO - Test 1: ❌ FAILED - Quality: 0.00/1.0 - Time: 180.00s
+2025-05-29 02:46:04,169 - INFO - ------------------------------------------------------------
+2025-05-29 02:46:04,169 - INFO - Running test 2/10: agent_app_launch (agent mode)
+2025-05-29 02:46:04,169 - INFO - Sending message in agent mode: 'open Safari and go to YouTube'
+2025-05-29 02:49:04,181 - ERROR - Response timeout after 180 seconds
+2025-05-29 02:49:04,183 - INFO - Test 2: ❌ FAILED - Quality: 0.00/1.0 - Time: 180.00s
+2025-05-29 02:49:06,184 - INFO - ------------------------------------------------------------
+2025-05-29 02:49:06,184 - INFO - Running test 3/10: agent_complex_task (agent mode)
+2025-05-29 02:49:06,185 - INFO - Sending message in agent mode: 'search for Omer Adam on Spotify and play his music'
+2025-05-29 02:52:06,188 - ERROR - Response timeout after 180 seconds
+2025-05-29 02:52:06,189 - INFO - Test 3: ❌ FAILED - Quality: 0.00/1.0 - Time: 180.00s
+2025-05-29 02:52:08,190 - INFO - ------------------------------------------------------------
+2025-05-29 02:52:08,190 - INFO - Running test 4/10: ask_system_status (ask mode)
+2025-05-29 02:52:08,190 - INFO - Sending message in ask mode: 'what applications are currently running on my system?'

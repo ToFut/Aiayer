@@ -1,0 +1,47 @@
+2025-06-04 10:55:10,664 - ComprehensiveDoButtonFix - INFO - 🚀 Starting Comprehensive DO Button Fix
+2025-06-04 10:55:10,666 - ComprehensiveDoButtonFix - INFO - Step 1: Fixing plan_persistence module...
+2025-06-04 10:55:10,686 - plan_persistence - INFO - Plan persistence system initialized
+2025-06-04 10:55:10,686 - ComprehensiveDoButtonFix - INFO - ✅ delete_plan function already exists in plan_persistence module
+2025-06-04 10:55:10,686 - ComprehensiveDoButtonFix - INFO - ✅ Added generate_plan_id function to plan_persistence module
+2025-06-04 10:55:10,687 - ComprehensiveDoButtonFix - INFO - ✅ Fixed plan_persistence module successfully
+2025-06-04 10:55:10,687 - ComprehensiveDoButtonFix - INFO - ✅ Step 1 completed successfully
+2025-06-04 10:55:10,687 - ComprehensiveDoButtonFix - INFO - Step 2: Fixing enterprise backend module...
+2025-06-04 10:55:12,137 - memory.enhanced_semantic_search - INFO - Enhanced semantic search initialized with embedding dim: 384
+2025-06-04 10:55:12,137 - memory.enhanced_semantic_search - INFO - Hybrid retrieval enabled: True
+2025-06-04 10:55:13,829 - memory.semantic_search_agent - INFO - Loading 1791 existing documents from storage
+2025-06-04 10:55:14,328 - memory.semantic_search_agent - INFO - EnterpriseVectorStore initialized with enterprise-grade features
+2025-06-04 10:55:14,340 - memory.semantic_search_agent - INFO - SemanticSearchAgent initialized with enterprise-grade capabilities
+2025-06-04 10:55:14,350 - real_agent_automation_handler - INFO - ✅ Plan persistence module loaded successfully
+2025-06-04 10:55:14,894 - agent_workflow.input_controller - INFO - Detected screen size: 1470x956
+2025-06-04 10:55:14,908 - agent_workflow.input_controller - INFO - Standard mouse listener started successfully
+2025-06-04 10:55:14,911 - agent_workflow.input_controller - INFO - Keyboard listener started successfully
+2025-06-04 10:55:14,911 - agent_workflow.input_controller - INFO - Input controller initialized (safe mode)
+2025-06-04 10:55:14,911 - agent_workflow.input_controller - INFO - 🚨 Emergency shutdown: Press Ctrl+1 to immediately stop agent
+2025-06-04 10:55:15,098 - llava_processor - INFO - Connected to Ollama API v0.6.8
+2025-06-04 10:55:15,099 - total_screen_analyzer - INFO - LLaVA visual processor initialized for total screen analysis
+2025-06-04 10:55:15,099 - total_screen_analyzer - INFO - Total Screen Analyzer initialized with 8s interval
+2025-06-04 10:55:15,099 - real_agent_automation_handler - INFO - 🤖 Real automation components loaded successfully
+2025-06-04 10:55:15,168 - agent_workflow.input_controller - INFO - Standard mouse listener started successfully
+2025-06-04 10:55:15,169 - agent_workflow.input_controller - INFO - Keyboard listener started successfully
+2025-06-04 10:55:15,169 - agent_workflow.input_controller - INFO - Input controller initialized (safe mode)
+2025-06-04 10:55:15,169 - agent_workflow.input_controller - INFO - 🚨 Emergency shutdown: Press Ctrl+1 to immediately stop agent
+2025-06-04 10:55:15,175 - llava_processor - INFO - Connected to Ollama API v0.6.8
+2025-06-04 10:55:15,175 - total_screen_analyzer - INFO - LLaVA visual processor initialized for total screen analysis
+2025-06-04 10:55:15,175 - total_screen_analyzer - INFO - Total Screen Analyzer initialized with 8s interval
+2025-06-04 10:55:15,175 - adaptive_retry_automation_handler - INFO - 🔄 Adaptive retry automation system loaded
+2025-06-04 10:55:15,175 - universal_intelligent_automation_handler - INFO - ✅ Adaptive retry automation handler loaded successfully
+2025-06-04 10:55:15,175 - universal_intelligent_automation_handler - INFO - ✅ Plan persistence module loaded successfully
+2025-06-04 10:55:15,178 - agent_workflow.input_controller - INFO - Standard mouse listener started successfully
+2025-06-04 10:55:15,178 - agent_workflow.input_controller - INFO - Keyboard listener started successfully
+2025-06-04 10:55:15,178 - agent_workflow.input_controller - INFO - Input controller initialized (safe mode)
+2025-06-04 10:55:15,178 - agent_workflow.input_controller - INFO - 🚨 Emergency shutdown: Press Ctrl+1 to immediately stop agent
+2025-06-04 10:55:15,181 - llava_processor - INFO - Connected to Ollama API v0.6.8
+2025-06-04 10:55:15,182 - total_screen_analyzer - INFO - LLaVA visual processor initialized for total screen analysis
+2025-06-04 10:55:15,182 - total_screen_analyzer - INFO - Total Screen Analyzer initialized with 8s interval
+2025-06-04 10:55:15,182 - universal_intelligent_automation_handler - INFO - 🤖 Universal automation components loaded successfully
+2025-06-04 10:55:15,183 - ComprehensiveDoButtonFix - INFO - ✅ Updated shared_pending_plans in backend module to use global dictionary
+2025-06-04 10:55:15,184 - ComprehensiveDoButtonFix - INFO - ✅ Patched handle_agent_confirmation method in ContextualAIBackend
+2025-06-04 10:55:15,186 - ComprehensiveDoButtonFix - WARNING - ⚠️ Could not find execute_automation_plan method to patch
+2025-06-04 10:55:15,186 - ComprehensiveDoButtonFix - INFO - ✅ Fixed enterprise backend module successfully
+2025-06-04 10:55:15,186 - ComprehensiveDoButtonFix - INFO - ✅ Step 2 completed successfully
+2025-06-04 10:55:15,186 - ComprehensiveDoButtonFix - INFO - Step 3: Fixing neural_ui_do_button_handler module...

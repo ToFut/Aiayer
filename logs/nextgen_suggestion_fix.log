@@ -1,0 +1,167 @@
+2025-06-08 12:46:43,454 - INFO - Sending suggestion (new format): {
+  "type": "suggestion",
+  "response": "Test Suggestion This is a test of the \n  Epiphany mode suggestion system.",
+  "buttons": [
+    {
+      "text": "\u2705 OK",
+      "value": "ok",
+      "style": "success"
+    },
+    {
+      "text": "\u274c Dismiss",
+      "value": "dismiss",
+      "style": "danger"
+    }
+  ],
+  "importance": "high",
+  "play_sound": true,
+  "plan_id": "suggestion_35cc1054-4ada-415b-9d30-b0b3e3f1a2e3",
+  "timestamp": "2025-06-08T12:46:43.454845"
+}
+2025-06-08 12:46:43,483 - ERROR - Error sending suggestion: Multiple exceptions: [Errno 61] Connect call failed ('::1', 8766, 0, 0), [Errno 61] Connect call failed ('127.0.0.1', 8766)
+2025-06-08 12:46:43,485 - ERROR - Traceback (most recent call last):
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/fixed_nextgen_suggestion_handler.py", line 86, in send_suggestion
+    async with websockets.connect(f"ws://localhost:{PROXY_PORT}") as ws:
+               ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/asyncio/client.py", line 587, in __aenter__
+    return await self
+           ^^^^^^^^^^
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/asyncio/client.py", line 541, in __await_impl__
+    self.connection = await self.create_connection()
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/asyncio/client.py", line 467, in create_connection
+    _, connection = await loop.create_connection(factory, **kwargs)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.13/3.13.3/Frameworks/Python.framework/Versions/3.13/lib/python3.13/asyncio/base_events.py", line 1168, in create_connection
+    raise OSError('Multiple exceptions: {}'.format(
+        ', '.join(str(exc) for exc in exceptions)))
+OSError: Multiple exceptions: [Errno 61] Connect call failed ('::1', 8766, 0, 0), [Errno 61] Connect call failed ('127.0.0.1', 8766)
+
+2025-06-08 12:49:56,940 - INFO - Sending suggestion (new format): {
+  "type": "suggestion",
+  "response": "Epiphany Mode Test This is a test suggestion for the Epiphany mode feature. If you see this, the feature is working!",
+  "buttons": [
+    {
+      "text": "\u2705 OK",
+      "value": "ok",
+      "style": "success"
+    },
+    {
+      "text": "\u274c Dismiss",
+      "value": "dismiss",
+      "style": "danger"
+    }
+  ],
+  "importance": "high",
+  "play_sound": true,
+  "plan_id": "suggestion_583ec7a1-ea83-4418-b09c-61a35fe6b03c",
+  "timestamp": "2025-06-08T12:49:56.940162"
+}
+2025-06-08 12:49:56,968 - ERROR - Error sending suggestion: Multiple exceptions: [Errno 61] Connect call failed ('::1', 8766, 0, 0), [Errno 61] Connect call failed ('127.0.0.1', 8766)
+2025-06-08 12:49:56,970 - ERROR - Traceback (most recent call last):
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/fixed_nextgen_suggestion_handler.py", line 86, in send_suggestion
+    async with websockets.connect(f"ws://localhost:{PROXY_PORT}") as ws:
+               ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/asyncio/client.py", line 587, in __aenter__
+    return await self
+           ^^^^^^^^^^
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/asyncio/client.py", line 541, in __await_impl__
+    self.connection = await self.create_connection()
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/asyncio/client.py", line 467, in create_connection
+    _, connection = await loop.create_connection(factory, **kwargs)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.13/3.13.3/Frameworks/Python.framework/Versions/3.13/lib/python3.13/asyncio/base_events.py", line 1168, in create_connection
+    raise OSError('Multiple exceptions: {}'.format(
+        ', '.join(str(exc) for exc in exceptions)))
+OSError: Multiple exceptions: [Errno 61] Connect call failed ('::1', 8766, 0, 0), [Errno 61] Connect call failed ('127.0.0.1', 8766)
+
+2025-06-08 12:52:09,897 - INFO - Sending suggestion (new format): {
+  "type": "suggestion",
+  "response": "Epiphany Mode Test This is a test suggestion for the Epiphany mode feature. If you see this, the feature is working!",
+  "buttons": [
+    {
+      "text": "\u2705 OK",
+      "value": "ok",
+      "style": "success"
+    },
+    {
+      "text": "\u274c Dismiss",
+      "value": "dismiss",
+      "style": "danger"
+    }
+  ],
+  "importance": "high",
+  "play_sound": true,
+  "plan_id": "suggestion_db87c0d8-6d08-44e7-a0b3-d327a8ef9232",
+  "timestamp": "2025-06-08T12:52:09.897093"
+}
+2025-06-08 12:52:09,927 - ERROR - Error sending suggestion: Multiple exceptions: [Errno 61] Connect call failed ('::1', 8765, 0, 0), [Errno 61] Connect call failed ('127.0.0.1', 8765)
+2025-06-08 12:52:09,930 - ERROR - Traceback (most recent call last):
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/fixed_nextgen_suggestion_handler.py", line 86, in send_suggestion
+    async with websockets.connect(f"ws://localhost:{PROXY_PORT}") as ws:
+               ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/asyncio/client.py", line 587, in __aenter__
+    return await self
+           ^^^^^^^^^^
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/asyncio/client.py", line 541, in __await_impl__
+    self.connection = await self.create_connection()
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/asyncio/client.py", line 467, in create_connection
+    _, connection = await loop.create_connection(factory, **kwargs)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.13/3.13.3/Frameworks/Python.framework/Versions/3.13/lib/python3.13/asyncio/base_events.py", line 1168, in create_connection
+    raise OSError('Multiple exceptions: {}'.format(
+        ', '.join(str(exc) for exc in exceptions)))
+OSError: Multiple exceptions: [Errno 61] Connect call failed ('::1', 8765, 0, 0), [Errno 61] Connect call failed ('127.0.0.1', 8765)
+
+2025-06-08 12:52:39,009 - INFO - Sending suggestion (new format): {
+  "type": "suggestion",
+  "response": "Epiphany Mode Test This is a test suggestion for the Epiphany mode feature. If you see this, the feature is working!",
+  "buttons": [
+    {
+      "text": "\u2705 OK",
+      "value": "ok",
+      "style": "success"
+    },
+    {
+      "text": "\u274c Dismiss",
+      "value": "dismiss",
+      "style": "danger"
+    }
+  ],
+  "importance": "high",
+  "play_sound": true,
+  "plan_id": "suggestion_91b668ab-0bbe-4310-a194-709bf1093183",
+  "timestamp": "2025-06-08T12:52:39.009656"
+}
+2025-06-08 12:52:39,036 - INFO - Connected to proxy on port 8765
+2025-06-08 12:52:39,036 - INFO - Received welcome: {"type": "welcome", "message": "Connected to direct coordinate automation server on port 8765", "server_time": "2025-06-08T12:52:39.036693", "server_name": "Direct Coordinate Automation Server", "real_input": true, "screen_sharing_supported": true}
+2025-06-08 12:52:39,037 - INFO - Suggestion sent to proxy (new format)
+2025-06-08 12:52:40,038 - INFO - Suggestion sent to proxy (legacy format)
+2025-06-08 12:52:40,038 - INFO - Received response: {"type": "echo", "original_type": "suggestion", "message": "Received suggestion message", "timestamp": "2025-06-08T12:52:39.037151"}
+2025-06-08 12:53:16,625 - INFO - Sending suggestion (new format): {
+  "type": "suggestion",
+  "response": "Productivity Tip I've noticed you're working on a development project. Would you like me to help optimize your workflow by creating automated tests?",
+  "buttons": [
+    {
+      "text": "\u2705 OK",
+      "value": "ok",
+      "style": "success"
+    },
+    {
+      "text": "\u274c Dismiss",
+      "value": "dismiss",
+      "style": "danger"
+    }
+  ],
+  "importance": "high",
+  "play_sound": true,
+  "plan_id": "suggestion_9bab59de-ba12-4c9a-91f6-5729563dfa1e",
+  "timestamp": "2025-06-08T12:53:16.625105"
+}
+2025-06-08 12:53:16,654 - INFO - Connected to proxy on port 8765
+2025-06-08 12:53:16,654 - INFO - Received welcome: {"type": "welcome", "message": "Connected to direct coordinate automation server on port 8765", "server_time": "2025-06-08T12:53:16.653982", "server_name": "Direct Coordinate Automation Server", "real_input": true, "screen_sharing_supported": true}
+2025-06-08 12:53:16,654 - INFO - Suggestion sent to proxy (new format)
+2025-06-08 12:53:17,655 - INFO - Suggestion sent to proxy (legacy format)
+2025-06-08 12:53:17,655 - INFO - Received response: {"type": "echo", "original_type": "suggestion", "message": "Received suggestion message", "timestamp": "2025-06-08T12:53:16.654491"}

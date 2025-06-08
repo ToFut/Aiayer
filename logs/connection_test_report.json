@@ -1,15 +1,15 @@
 {
-  "timestamp": "2025-05-21T21:03:24.371583",
+  "timestamp": "2025-06-08T00:03:24.016819",
   "test_results": {
     "port_availability": {
-      "websocket": true,
-      "bridge": true,
-      "backend": true,
+      "websocket": false,
+      "bridge": false,
+      "backend": false,
       "tauri_dev": false,
       "vite_dev": false
     },
     "websocket_connections": {
-      "websocket_server": true,
+      "websocket_server": false,
       "backend": false
     },
     "http_endpoints": {
@@ -19,30 +19,42 @@
       "http://localhost:8765/health": false
     },
     "file_permissions": {
-      "fixed_ws_8765.py": true,
-      "fixed_bridge_server_enhanced.py": true,
-      "simple_ws_server_8767.py": true,
+      "fixed_ws_8765.py": false,
+      "fixed_bridge_server_enhanced.py": false,
+      "simple_ws_server_8767.py": false,
       "sensors/enhanced_fixed_process_sensor.py": true,
       "sensors/enhanced_fixed_screen_sensor.py": true,
-      "direct_sensor_to_memory.py": true,
-      "llm_context_connector.py": true,
+      "direct_sensor_to_memory.py": false,
+      "llm_context_connector.py": false,
       "memory/memory_state.json": true,
       "memory/last_context.json": true
     },
     "process_status": {
-      "fixed_ws_8765.py": true,
-      "fixed_bridge_server_enhanced.py": true,
+      "fixed_ws_8765.py": false,
+      "fixed_bridge_server_enhanced.py": false,
       "simple_ws_server_8767.py": false,
-      "enhanced_fixed_process_sensor.py": true,
-      "enhanced_fixed_screen_sensor.py": true,
-      "direct_sensor_to_memory.py": true,
-      "llm_context_connector.py": true
+      "enhanced_fixed_process_sensor.py": false,
+      "enhanced_fixed_screen_sensor.py": false,
+      "direct_sensor_to_memory.py": false,
+      "llm_context_connector.py": false
     },
-    "configuration_issues": [],
+    "configuration_issues": [
+      "WebSocket server file missing",
+      "Bridge server file missing",
+      "Backend server file missing"
+    ],
     "memory_issues": [],
-    "llm_issues": []
+    "llm_issues": [
+      "LLM context log missing"
+    ]
   },
   "recommendations": [
-    "Start backend server process"
+    "Start WebSocket server on port 8765",
+    "Start backend server on port 8767",
+    "Start bridge server on port 8766",
+    "Start WebSocket server process",
+    "Start backend server process",
+    "Fix configuration issues listed in the report",
+    "Fix LLM integration issues"
   ]
 }

@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Intelligent DO Button Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        h1 {
+            color: #333;
+        }
+        button {
+            padding: 10px 15px;
+            margin: 5px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        button#doButton {
+            background-color: #2196F3;
+            font-weight: bold;
+            font-size: 18px;
+            padding: 15px 30px;
+        }
+        button#doButton:hover {
+            background-color: #0b7dda;
+        }
+        button.analysis {
+            background-color: #9C27B0;
+        }
+        button.analysis:hover {
+            background-color: #7B1FA2;
+        }
+        #logContainer {
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            background-color: #f9f9f9;
+            height: 300px;
+            overflow-y: auto;
+        }
+        .log {
+            margin: 5px 0;
+            padding: 5px;
+            border-bottom: 1px solid #eee;
+        }
+        .client {
+            color: #2196F3;
+        }
+        .server {
+            color: #4CAF50;
+        }
+        .error {
+            color: #f44336;
+        }
+        .plan {
+            background-color: #e8f5e9;
+            padding: 10px;
+            border-radius: 4px;
+            margin: 10px 0;
+            white-space: pre-wrap;
+        }
+        .ui-elements {
+            background-color: #e3f2fd;
+            padding: 10px;
+            border-radius: 4px;
+            margin: 10px 0;
+        }
+        .element-item {
+            margin: 5px 0;
+            padding: 5px;
+            border-bottom: 1px dashed #bbb;
+        }
+        .findElement {
+            display: flex;
+            margin: 10px 0;
+        }
+        .findElement input {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            margin-right: 10px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 10px 0;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        .preview {
+            position: relative;
+            margin-top: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            overflow: hidden;
+            background-color: #f0f0f0;
+            width: 100%;
+            height: 300px;
+        }
+        .ui-element-marker {
+            position: absolute;
+            border: 2px solid red;
+            background-color: rgba(255, 0, 0, 0.1);
+            pointer-events: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 12px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.8);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Intelligent DO Button Test</h1>
+        <p>This page tests the intelligent DO button execution with screen element detection and physical automation.</p>
+        
+        <div>
+            <h2>Connection</h2>
+            <button id="connectButton">Connect to WebSocket</button>
+            <span id="connectionStatus">Not connected</span>
+        </div>
+        
+        <div>
+            <h2>UI Detection</h2>
+            <button id="analyzeScreenButton" class="analysis">Analyze Screen</button>
+            <div class="findElement">
+                <input id="elementNameInput" type="text" placeholder="Enter element name to find">
+                <button id="findElementButton" class="analysis">Find Element</button>
+            </div>
+            <div id="elementsContainer"></div>
+            <div class="preview" id="previewContainer">
+                <!-- UI element markers will be displayed here -->
+            </div>
+        </div>
+        
+        <div>
+            <h2>Test Plans</h2>
+            <button id="doButton">DO!</button>
+            <button id="testBrowserSearchButton">Test Browser Search</button>
+            <button id="testSimpleClickButton">Test Simple Click</button>
+            <button id="testTypeTextButton">Test Text Input</button>
+        </div>
+        
+        <div id="logContainer">
+            <div class="log">Logs will appear here...</div>
+        </div>
+    </div>
+
+    <script>
+        // Globals
+        let ws = null;
+        let sessionId = "test_" + Math.floor(Math.random() * 1000000);
+        let connected = false;
+        let detectedElements = [];
+        
+        // Elements
+        const connectButton = document.getElementById('connectButton');
+        const connectionStatus = document.getElementById('connectionStatus');
+        const analyzeScreenButton = document.getElementById('analyzeScreenButton');
+        const elementNameInput = document.getElementById('elementNameInput');
+        const findElementButton = document.getElementById('findElementButton');
+        const elementsContainer = document.getElementById('elementsContainer');
+        const previewContainer = document.getElementById('previewContainer');
+        const doButton = document.getElementById('doButton');
+        const testBrowserSearchButton = document.getElementById('testBrowserSearchButton');
+        const testSimpleClickButton = document.getElementById('testSimpleClickButton');
+        const testTypeTextButton = document.getElementById('testTypeTextButton');
+        const logContainer = document.getElementById('logContainer');
+        
+        // Event listeners
+        connectButton.addEventListener('click', connect);
+        analyzeScreenButton.addEventListener('click', analyzeScreen);
+        findElementButton.addEventListener('click', findElement);
+        doButton.addEventListener('click', sendDoButtonClick);
+        testBrowserSearchButton.addEventListener('click', sendBrowserSearchPlan);
+        testSimpleClickButton.addEventListener('click', sendSimpleClickPlan);
+        testTypeTextButton.addEventListener('click', sendTypeTextPlan);
+        
+        // Initialize
+        function initialize() {
+            doButton.disabled = true;
+            testBrowserSearchButton.disabled = true;
+            testSimpleClickButton.disabled = true;
+            testTypeTextButton.disabled = true;
+            analyzeScreenButton.disabled = true;
+            findElementButton.disabled = true;
+            elementNameInput.disabled = true;
+        }
+        
+        // Connect to WebSocket server
+        function connect() {
+            if (ws) {
+                ws.close();
+            }
+            
+            addToLog('Connecting to WebSocket server...', 'client');
+            connectionStatus.textContent = 'Connecting...';
+            
+            try {
+                ws = new WebSocket('ws://localhost:8765');
+                
+                ws.onopen = function() {
+                    connected = true;
+                    connectionStatus.textContent = 'Connected';
+                    connectButton.textContent = 'Disconnect';
+                    doButton.disabled = false;
+                    testBrowserSearchButton.disabled = false;
+                    testSimpleClickButton.disabled = false;
+                    testTypeTextButton.disabled = false;
+                    analyzeScreenButton.disabled = false;
+                    findElementButton.disabled = false;
+                    elementNameInput.disabled = false;
+                    addToLog('Connected to WebSocket server', 'client');
+                };
+                
+                ws.onmessage = function(event) {
+                    const data = JSON.parse(event.data);
+                    addToLog('Received: ' + JSON.stringify(data, null, 2), 'server');
+                    
+                    // Handle different message types
+                    if (data.type === 'agent_progress') {
+                        addToLog(`Progress: ${data.progress}% - ${data.message}`, 'server');
+                    } else if (data.type === 'agent_execution_success') {
+                        addToLog('Execution completed: ' + (data.result.success ? 'SUCCESS' : 'FAILURE'), 'server');
+                        addToLog('Summary: ' + data.summary, 'server');
+                    } else if (data.type === 'screen_analysis') {
+                        detectedElements = data.elements || [];
+                        displayElements(detectedElements);
+                    } else if (data.type === 'element_found') {
+                        if (data.success) {
+                            addToLog(`Found element "${data.element_name}": ${JSON.stringify(data.element)}`, 'server');
+                            displayFoundElement(data.element);
+                        } else {
+                            addToLog(`Element "${data.element_name}" not found`, 'error');
+                        }
+                    }
+                };
+                
+                ws.onclose = function() {
+                    connected = false;
+                    connectionStatus.textContent = 'Disconnected';
+                    connectButton.textContent = 'Connect to WebSocket';
+                    doButton.disabled = true;
+                    testBrowserSearchButton.disabled = true;
+                    testSimpleClickButton.disabled = true;
+                    testTypeTextButton.disabled = true;
+                    analyzeScreenButton.disabled = true;
+                    findElementButton.disabled = true;
+                    elementNameInput.disabled = true;
+                    addToLog('Disconnected from WebSocket server', 'client');
+                };
+                
+                ws.onerror = function(error) {
+                    addToLog('WebSocket error: ' + error.message, 'error');
+                    connectionStatus.textContent = 'Error';
+                };
+                
+            } catch (error) {
+                addToLog('Error connecting to WebSocket: ' + error.message, 'error');
+                connectionStatus.textContent = 'Error';
+            }
+        }
+        
+        // Analyze screen for UI elements
+        function analyzeScreen() {
+            if (!connected) {
+                addToLog('Not connected to WebSocket server', 'error');
+                return;
+            }
+            
+            const message = {
+                type: 'analyze_screen'
+            };
+            
+            try {
+                ws.send(JSON.stringify(message));
+                addToLog('Sent screen analysis request', 'client');
+            } catch (error) {
+                addToLog('Error sending screen analysis request: ' + error.message, 'error');
+            }
+        }
+        
+        // Find element by name
+        function findElement() {
+            if (!connected) {
+                addToLog('Not connected to WebSocket server', 'error');
+                return;
+            }
+            
+            const elementName = elementNameInput.value.trim();
+            if (!elementName) {
+                addToLog('Please enter an element name', 'error');
+                return;
+            }
+            
+            const message = {
+                type: 'find_element',
+                element_name: elementName,
+                fuzzy_match: true
+            };
+            
+            try {
+                ws.send(JSON.stringify(message));
+                addToLog(`Sent request to find element: "${elementName}"`, 'client');
+            } catch (error) {
+                addToLog('Error sending find element request: ' + error.message, 'error');
+            }
+        }
+        
+        // Display detected elements
+        function displayElements(elements) {
+            elementsContainer.innerHTML = '';
+            
+            if (!elements || elements.length === 0) {
+                elementsContainer.innerHTML = '<p>No UI elements detected</p>';
+                return;
+            }
+            
+            const table = document.createElement('table');
+            const headerRow = document.createElement('tr');
+            
+            // Add table headers
+            ['Type', 'Text', 'Position', 'Size', 'Confidence', 'Actions'].forEach(header => {
+                const th = document.createElement('th');
+                th.textContent = header;
+                headerRow.appendChild(th);
+            });
+            
+            table.appendChild(headerRow);
+            
+            // Add element rows
+            elements.forEach(element => {
+                const row = document.createElement('tr');
+                
+                // Type
+                const typeCell = document.createElement('td');
+                typeCell.textContent = element.type || 'unknown';
+                row.appendChild(typeCell);
+                
+                // Text
+                const textCell = document.createElement('td');
+                textCell.textContent = element.text || '';
+                row.appendChild(textCell);
+                
+                // Position
+                const positionCell = document.createElement('td');
+                positionCell.textContent = `(${element.center_x}, ${element.center_y})`;
+                row.appendChild(positionCell);
+                
+                // Size
+                const sizeCell = document.createElement('td');
+                sizeCell.textContent = `${element.width}x${element.height}`;
+                row.appendChild(sizeCell);
+                
+                // Confidence
+                const confidenceCell = document.createElement('td');
+                confidenceCell.textContent = element.confidence ? (element.confidence * 100).toFixed(1) + '%' : 'N/A';
+                row.appendChild(confidenceCell);
+                
+                // Actions
+                const actionsCell = document.createElement('td');
+                const clickButton = document.createElement('button');
+                clickButton.textContent = 'Click';
+                clickButton.style.padding = '5px 10px';
+                clickButton.style.fontSize = '12px';
+                clickButton.onclick = function() {
+                    createSimpleClickPlan(element.center_x, element.center_y, element.type);
+                };
+                actionsCell.appendChild(clickButton);
+                row.appendChild(actionsCell);
+                
+                table.appendChild(row);
+            });
+            
+            elementsContainer.appendChild(table);
+            
+            // Update preview with element markers
+            updatePreview(elements);
+        }
+        
+        // Display a found element
+        function displayFoundElement(element) {
+            // Clear existing markers
+            previewContainer.innerHTML = '';
+            
+            // Create a marker for the found element
+            createElementMarker(element, '#ff0000', 1);
+            
+            // Update the elements list with just this element
+            displayElements([element]);
+        }
+        
+        // Update the preview with element markers
+        function updatePreview(elements) {
+            // Clear existing markers
+            previewContainer.innerHTML = '';
+            
+            // Create a mock screen
+            const mockScreenWidth = previewContainer.clientWidth;
+            const mockScreenHeight = previewContainer.clientHeight;
+            
+            // Get screen dimensions from elements if available
+            let maxX = 0;
+            let maxY = 0;
+            elements.forEach(element => {
+                maxX = Math.max(maxX, element.x + element.width);
+                maxY = Math.max(maxY, element.y + element.height);
+            });
+            
+            // Real screen dimensions
+            const realScreenWidth = Math.max(maxX, 1920);  // Default to 1920 if screen seems smaller
+            const realScreenHeight = Math.max(maxY, 1080); // Default to 1080 if screen seems smaller
+            
+            // Create markers for each element
+            elements.forEach((element, index) => {
+                // Scale positions to fit the preview
+                const scaleX = mockScreenWidth / realScreenWidth;
+                const scaleY = mockScreenHeight / realScreenHeight;
+                
+                const scaledX = element.x * scaleX;
+                const scaledY = element.y * scaleY;
+                const scaledWidth = element.width * scaleX;
+                const scaledHeight = element.height * scaleY;
+                
+                // Create the marker with a color based on the element type
+                let color;
+                switch (element.type) {
+                    case 'button': color = '#e91e63'; break;
+                    case 'text_field': case 'input': color = '#2196f3'; break;
+                    case 'link': color = '#009688'; break;
+                    case 'text': color = '#ff9800'; break;
+                    default: color = '#9c27b0';
+                }
+                
+                createScaledElementMarker(
+                    scaledX, 
+                    scaledY, 
+                    scaledWidth, 
+                    scaledHeight, 
+                    color, 
+                    index + 1, 
+                    element.type, 
+                    element.text
+                );
+            });
+        }
+        
+        // Create a marker for an element
+        function createElementMarker(element, color, index) {
+            createScaledElementMarker(
+                element.x, 
+                element.y, 
+                element.width, 
+                element.height, 
+                color, 
+                index, 
+                element.type, 
+                element.text
+            );
+        }
+        
+        // Create a scaled marker for the preview
+        function createScaledElementMarker(x, y, width, height, color, index, type, text) {
+            const marker = document.createElement('div');
+            marker.className = 'ui-element-marker';
+            marker.style.left = `${x}px`;
+            marker.style.top = `${y}px`;
+            marker.style.width = `${width}px`;
+            marker.style.height = `${height}px`;
+            marker.style.borderColor = color;
+            marker.style.backgroundColor = color.replace(')', ', 0.2)').replace('rgb', 'rgba');
+            marker.textContent = `${index}: ${type || 'element'}`;
+            marker.title = text || type || 'UI Element';
+            
+            previewContainer.appendChild(marker);
+        }
+        
+        // Send DO button click
+        function sendDoButtonClick() {
+            if (!connected) {
+                addToLog('Not connected to WebSocket server', 'error');
+                return;
+            }
+            
+            const doMessage = {
+                type: 'agent_confirmation',
+                session_id: sessionId,
+                action: 'DO'
+            };
+            
+            // Send message
+            try {
+                ws.send(JSON.stringify(doMessage));
+                addToLog('Sent DO button click: ' + JSON.stringify(doMessage, null, 2), 'client');
+            } catch (error) {
+                addToLog('Error sending DO button message: ' + error.message, 'error');
+            }
+        }
+        
+        // Create a simple click plan with specific coordinates
+        function createSimpleClickPlan(x, y, targetName) {
+            if (!connected) {
+                addToLog('Not connected to WebSocket server', 'error');
+                return;
+            }
+            
+            targetName = targetName || 'element';
+            
+            // Create a simple click plan
+            const plan = {
+                type: 'plan_created',
+                session_id: sessionId,
+                plan: {
+                    title: `Click ${targetName} at (${x}, ${y})`,
+                    description: `A plan to click on ${targetName} at coordinates (${x}, ${y})`,
+                    steps: [
+                        {
+                            type: 'click',
+                            coordinates: [x, y],
+                            description: `Click ${targetName} at (${x}, ${y})`
+                        }
+                    ]
+                }
+            };
+            
+            // Send plan and log
+            try {
+                ws.send(JSON.stringify(plan));
+                addToLog(`Created plan to click at (${x}, ${y})`, 'client');
+                addToLog('Plan: ' + JSON.stringify(plan.plan, null, 2), 'plan');
+                
+                // Now send DO button click
+                setTimeout(sendDoButtonClick, 500);
+            } catch (error) {
+                addToLog('Error sending click plan: ' + error.message, 'error');
+            }
+        }
+        
+        // Send browser search plan
+        function sendBrowserSearchPlan() {
+            if (!connected) {
+                addToLog('Not connected to WebSocket server', 'error');
+                return;
+            }
+            
+            // Create a browser search plan
+            const plan = {
+                type: 'plan_created',
+                session_id: sessionId,
+                plan: {
+                    title: 'Browser Search Test',
+                    description: 'A test plan to search in a browser',
+                    steps: [
+                        {
+                            type: 'analyze_screen',
+                            description: 'Analyze screen for UI elements'
+                        },
+                        {
+                            type: 'click',
+                            target: 'search_box',
+                            description: 'Click on search box'
+                        },
+                        {
+                            type: 'type_text',
+                            value: 'intelligent UI detection test',
+                            description: 'Enter search query'
+                        },
+                        {
+                            type: 'press',
+                            key: 'enter',
+                            description: 'Press Enter to search'
+                        }
+                    ]
+                }
+            };
+            
+            // Send plan and log
+            try {
+                ws.send(JSON.stringify(plan));
+                addToLog('Sent browser search plan', 'client');
+                addToLog('Plan: ' + JSON.stringify(plan.plan, null, 2), 'plan');
+                
+                // Now send DO button click
+                setTimeout(sendDoButtonClick, 500);
+            } catch (error) {
+                addToLog('Error sending browser search plan: ' + error.message, 'error');
+            }
+        }
+        
+        // Send simple click plan
+        function sendSimpleClickPlan() {
+            if (!connected) {
+                addToLog('Not connected to WebSocket server', 'error');
+                return;
+            }
+            
+            // Create a simple click plan
+            const plan = {
+                type: 'plan_created',
+                session_id: sessionId,
+                plan: {
+                    title: 'Simple Click Test',
+                    description: 'A test plan to perform a simple click',
+                    steps: [
+                        {
+                            type: 'analyze_screen',
+                            description: 'Analyze screen for UI elements'
+                        },
+                        {
+                            type: 'click',
+                            target: 'button',
+                            description: 'Click on the first button found'
+                        }
+                    ]
+                }
+            };
+            
+            // Send plan and log
+            try {
+                ws.send(JSON.stringify(plan));
+                addToLog('Sent simple click plan', 'client');
+                addToLog('Plan: ' + JSON.stringify(plan.plan, null, 2), 'plan');
+                
+                // Now send DO button click
+                setTimeout(sendDoButtonClick, 500);
+            } catch (error) {
+                addToLog('Error sending simple click plan: ' + error.message, 'error');
+            }
+        }
+        
+        // Send type text plan
+        function sendTypeTextPlan() {
+            if (!connected) {
+                addToLog('Not connected to WebSocket server', 'error');
+                return;
+            }
+            
+            // Create a text typing plan
+            const plan = {
+                type: 'plan_created',
+                session_id: sessionId,
+                plan: {
+                    title: 'Text Input Test',
+                    description: 'A test plan to type text',
+                    steps: [
+                        {
+                            type: 'analyze_screen',
+                            description: 'Analyze screen for UI elements'
+                        },
+                        {
+                            type: 'click',
+                            target: 'text_field',
+                            description: 'Click on text field'
+                        },
+                        {
+                            type: 'type_text',
+                            value: 'This is a test with intelligent UI detection',
+                            description: 'Type test message'
+                        }
+                    ]
+                }
+            };
+            
+            // Send plan and log
+            try {
+                ws.send(JSON.stringify(plan));
+                addToLog('Sent text input plan', 'client');
+                addToLog('Plan: ' + JSON.stringify(plan.plan, null, 2), 'plan');
+                
+                // Now send DO button click
+                setTimeout(sendDoButtonClick, 500);
+            } catch (error) {
+                addToLog('Error sending text input plan: ' + error.message, 'error');
+            }
+        }
+        
+        // Add log message
+        function addToLog(message, type) {
+            const logEntry = document.createElement('div');
+            logEntry.className = 'log ' + (type || '');
+            
+            // Format timestamp
+            const timestamp = new Date().toLocaleTimeString();
+            
+            // Format message based on type
+            if (type === 'plan') {
+                logEntry.innerHTML = `<strong>${timestamp}</strong>: Plan created:`;
+                logEntry.className = 'log plan';
+                
+                const planPre = document.createElement('pre');
+                planPre.textContent = message;
+                logEntry.appendChild(planPre);
+            } else {
+                logEntry.textContent = `${timestamp}: ${message}`;
+            }
+            
+            logContainer.appendChild(logEntry);
+            logContainer.scrollTop = logContainer.scrollHeight;
+        }
+        
+        // Initialize on load
+        window.onload = initialize;
+    </script>
+</body>
+</html>

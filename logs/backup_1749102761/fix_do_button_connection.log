@@ -1,0 +1,598 @@
+2025-06-03 20:06:57,081 - INFO - Plan persistence manager initialized with 50 stored plans
+2025-06-03 20:06:57,081 - INFO - Plan persistence service initialized
+2025-06-03 20:06:57,081 - INFO - ✅ Plan persistence module loaded successfully
+2025-06-03 20:06:57,082 - WARNING - Port 8766 is already in use. Killing existing process...
+2025-06-03 20:06:57,105 - INFO - Killed process on port 8766
+2025-06-03 20:06:59,107 - INFO - Starting DO Button Connection Fix proxy on localhost:8766
+2025-06-03 20:06:59,123 - INFO - server listening on [::1]:8766
+2025-06-03 20:06:59,123 - INFO - server listening on 127.0.0.1:8766
+2025-06-03 20:06:59,123 - INFO - ✅ DO Button Connection Fix proxy running on ws://localhost:8766
+2025-06-03 20:06:59,123 - INFO - 📋 Proxy forwards to DO button server (8765) and Neural UI server (8768)
+2025-06-03 20:07:09,323 - INFO - Plan persistence manager initialized with 50 stored plans
+2025-06-03 20:07:09,324 - INFO - Plan persistence service initialized
+2025-06-03 20:07:09,324 - INFO - ✅ Plan persistence module loaded successfully
+2025-06-03 20:07:09,325 - INFO - Port 8766 is available
+2025-06-03 20:07:09,325 - INFO - Starting DO Button Connection Fix proxy on localhost:8766
+2025-06-03 20:07:09,337 - INFO - server listening on [::1]:8766
+2025-06-03 20:07:09,337 - INFO - server listening on 127.0.0.1:8766
+2025-06-03 20:07:09,337 - INFO - ✅ DO Button Connection Fix proxy running on ws://localhost:8766
+2025-06-03 20:07:09,337 - INFO - 📋 Proxy forwards to DO button server (8765) and Neural UI server (8768)
+2025-06-03 20:10:27,093 - INFO - connection open
+2025-06-03 20:10:27,094 - ERROR - connection handler failed
+Traceback (most recent call last):
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/asyncio/server.py", line 376, in conn_handler
+    await self.handler(connection)
+          ~~~~~~~~~~~~^^^^^^^^^^^^
+TypeError: handle_client() missing 1 required positional argument: 'path'
+2025-06-03 20:10:27,098 - INFO - connection open
+2025-06-03 20:10:27,098 - ERROR - connection handler failed
+Traceback (most recent call last):
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/asyncio/server.py", line 376, in conn_handler
+    await self.handler(connection)
+          ~~~~~~~~~~~~^^^^^^^^^^^^
+TypeError: handle_client() missing 1 required positional argument: 'path'
+2025-06-03 20:10:27,100 - INFO - connection open
+2025-06-03 20:10:27,100 - ERROR - connection handler failed
+Traceback (most recent call last):
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/asyncio/server.py", line 376, in conn_handler
+    await self.handler(connection)
+          ~~~~~~~~~~~~^^^^^^^^^^^^
+TypeError: handle_client() missing 1 required positional argument: 'path'
+2025-06-03 20:11:24,149 - INFO - Plan persistence manager initialized with 51 stored plans
+2025-06-03 20:11:24,149 - INFO - Plan persistence service initialized
+2025-06-03 20:11:24,149 - INFO - ✅ Plan persistence module loaded successfully
+2025-06-03 20:11:24,151 - INFO - Port 8766 is available
+2025-06-03 20:11:24,151 - INFO - Starting DO Button Connection Fix proxy on localhost:8766
+2025-06-03 20:11:24,181 - INFO - server listening on 127.0.0.1:8766
+2025-06-03 20:11:24,181 - INFO - server listening on [::1]:8766
+2025-06-03 20:11:24,181 - INFO - ✅ DO Button Connection Fix proxy running on ws://localhost:8766
+2025-06-03 20:11:24,181 - INFO - 📋 Proxy forwards to DO button server (8765) and Neural UI server (8768)
+2025-06-03 20:11:37,330 - INFO - connection open
+2025-06-03 20:11:37,331 - INFO - Client 25150bcc-4166-48b2-ba58-886ff2265411 connected
+2025-06-03 20:11:37,331 - INFO - Received message type: button_action from client 25150bcc-4166-48b2-ba58-886ff2265411
+2025-06-03 20:11:37,345 - INFO - Connected to DO button server
+2025-06-03 20:11:37,345 - WARNING - Plan test_plan_1748995897 not found in metadata
+2025-06-03 20:11:37,346 - INFO - Plan test_plan_1748995897 saved successfully
+2025-06-03 20:11:37,346 - INFO - Created and saved dummy plan test_plan_1748995897
+2025-06-03 20:11:37,346 - INFO - Forwarded message to DO button server: button_action
+2025-06-03 20:11:37,346 - INFO - Received response from DO button server
+2025-06-03 20:11:37,348 - INFO - connection open
+2025-06-03 20:11:37,348 - INFO - Client 5f0745db-94e8-4eb8-a9de-bdad5efe15ca connected
+2025-06-03 20:11:37,348 - INFO - Received message type: agent_confirmation from client 5f0745db-94e8-4eb8-a9de-bdad5efe15ca
+2025-06-03 20:11:37,348 - ERROR - Error processing message: 'ClientConnection' object has no attribute 'closed'
+2025-06-03 20:11:37,350 - INFO - connection open
+2025-06-03 20:11:37,350 - INFO - Client 65d55479-c4f3-401c-a5f0-048d4bbdd06a connected
+2025-06-03 20:11:37,350 - INFO - Received message type: do_button from client 65d55479-c4f3-401c-a5f0-048d4bbdd06a
+2025-06-03 20:11:37,350 - ERROR - Error processing message: 'ClientConnection' object has no attribute 'closed'
+2025-06-03 20:16:09,098 - INFO - Plan persistence manager initialized with 52 stored plans
+2025-06-03 20:16:09,098 - INFO - Plan persistence service initialized
+2025-06-03 20:16:09,098 - INFO - ✅ Plan persistence module loaded successfully
+2025-06-03 20:16:09,103 - INFO - Port 8766 is available
+2025-06-03 20:16:09,103 - INFO - Starting DO Button Connection Fix proxy on localhost:8766
+2025-06-03 20:16:09,131 - INFO - server listening on 127.0.0.1:8766
+2025-06-03 20:16:09,131 - INFO - server listening on [::1]:8766
+2025-06-03 20:16:09,131 - INFO - ✅ DO Button Connection Fix proxy running on ws://localhost:8766
+2025-06-03 20:16:09,131 - INFO - 📋 Proxy forwards to DO button server (8765) and Neural UI server (8768)
+2025-06-03 20:22:34,596 - INFO - Loaded 53 plans from metadata
+2025-06-03 20:22:34,597 - INFO - Plan persistence manager initialized with 53 stored plans
+2025-06-03 20:22:34,597 - INFO - Plan persistence system initialized
+2025-06-03 20:22:34,597 - WARNING - ⚠️ Plan persistence module not available: cannot import name 'save_plan' from 'plan_persistence' (/Users/segevbin/Desktop/SensAI/Aiayer/plan_persistence.py)
+2025-06-03 20:22:34,598 - WARNING - Port 8766 is already in use. Killing existing process...
+2025-06-03 20:22:34,623 - INFO - Killed process on port 8766
+2025-06-03 20:22:36,625 - INFO - Starting DO Button Connection Fix proxy on localhost:8766
+2025-06-03 20:22:36,639 - INFO - server listening on [::1]:8766
+2025-06-03 20:22:36,639 - INFO - server listening on 127.0.0.1:8766
+2025-06-03 20:22:36,639 - INFO - ✅ DO Button Connection Fix proxy running on ws://localhost:8766
+2025-06-03 20:22:36,639 - INFO - 📋 Proxy forwards to DO button server (8765) and Neural UI server (8768)
+2025-06-03 20:22:46,775 - INFO - Loaded 53 plans from metadata
+2025-06-03 20:22:46,775 - INFO - Plan persistence manager initialized with 53 stored plans
+2025-06-03 20:22:46,776 - INFO - Plan persistence system initialized
+2025-06-03 20:22:46,776 - WARNING - ⚠️ Plan persistence module not available: cannot import name 'save_plan' from 'plan_persistence' (/Users/segevbin/Desktop/SensAI/Aiayer/plan_persistence.py)
+2025-06-03 20:22:46,777 - INFO - Port 8766 is available
+2025-06-03 20:22:46,777 - INFO - Starting DO Button Connection Fix proxy on localhost:8766
+2025-06-03 20:22:46,788 - INFO - server listening on 127.0.0.1:8766
+2025-06-03 20:22:46,788 - INFO - server listening on [::1]:8766
+2025-06-03 20:22:46,788 - INFO - ✅ DO Button Connection Fix proxy running on ws://localhost:8766
+2025-06-03 20:22:46,788 - INFO - 📋 Proxy forwards to DO button server (8765) and Neural UI server (8768)
+2025-06-03 20:29:11,523 - INFO - Loaded 53 plans from metadata
+2025-06-03 20:29:11,523 - INFO - Plan persistence manager initialized with 53 stored plans
+2025-06-03 20:29:11,524 - INFO - Plan persistence system initialized
+2025-06-03 20:29:11,524 - WARNING - ⚠️ Plan persistence module not available: cannot import name 'save_plan' from 'plan_persistence' (/Users/segevbin/Desktop/SensAI/Aiayer/plan_persistence.py)
+2025-06-03 20:29:11,525 - WARNING - Port 8766 is already in use. Killing existing process...
+2025-06-03 20:29:11,550 - INFO - Killed process on port 8766
+2025-06-03 20:29:13,552 - INFO - Starting DO Button Connection Fix proxy on localhost:8766
+2025-06-03 20:29:13,568 - INFO - server listening on 127.0.0.1:8766
+2025-06-03 20:29:13,568 - INFO - server listening on [::1]:8766
+2025-06-03 20:29:13,568 - INFO - ✅ DO Button Connection Fix proxy running on ws://localhost:8766
+2025-06-03 20:29:13,568 - INFO - 📋 Proxy forwards to DO button server (8765) and Neural UI server (8768)
+2025-06-03 20:29:23,706 - INFO - Loaded 53 plans from metadata
+2025-06-03 20:29:23,706 - INFO - Plan persistence manager initialized with 53 stored plans
+2025-06-03 20:29:23,706 - INFO - Plan persistence system initialized
+2025-06-03 20:29:23,706 - WARNING - ⚠️ Plan persistence module not available: cannot import name 'save_plan' from 'plan_persistence' (/Users/segevbin/Desktop/SensAI/Aiayer/plan_persistence.py)
+2025-06-03 20:29:23,707 - INFO - Port 8766 is available
+2025-06-03 20:29:23,708 - INFO - Starting DO Button Connection Fix proxy on localhost:8766
+2025-06-03 20:29:23,723 - INFO - server listening on 127.0.0.1:8766
+2025-06-03 20:29:23,723 - INFO - server listening on [::1]:8766
+2025-06-03 20:29:23,723 - INFO - ✅ DO Button Connection Fix proxy running on ws://localhost:8766
+2025-06-03 20:29:23,723 - INFO - 📋 Proxy forwards to DO button server (8765) and Neural UI server (8768)
+2025-06-03 20:46:48,589 - INFO - connection open
+2025-06-03 20:46:48,590 - INFO - Client 1c35a08c-4387-4f8c-8615-9e2b02a154b7 connected on path: None
+2025-06-03 20:51:12,491 - INFO - connection open
+2025-06-03 20:51:12,493 - INFO - Client 84c497e6-c280-40fa-bb86-ee80ae8b77a3 connected on path: None
+2025-06-03 20:51:13,178 - INFO - connection open
+2025-06-03 20:51:13,179 - INFO - Client d676d859-6b79-41f8-8997-ee36f08d327d connected on path: None
+2025-06-03 20:51:18,198 - INFO - connection open
+2025-06-03 20:51:18,199 - INFO - Client cb1f6923-656a-47cb-8c11-51ecbfcff828 connected on path: None
+2025-06-04 01:08:49,413 - INFO - Loaded 1 plans from metadata
+2025-06-04 01:08:49,414 - INFO - Plan persistence manager initialized with 1 stored plans
+2025-06-04 01:08:49,414 - INFO - Plan persistence system initialized
+2025-06-04 01:08:49,414 - INFO - ✅ Plan persistence module loaded successfully
+2025-06-04 01:08:49,416 - WARNING - Port 8766 is already in use. Killing existing process...
+2025-06-04 01:08:49,469 - INFO - Killed process on port 8766
+2025-06-04 01:08:51,470 - INFO - Starting DO Button Connection Fix proxy on localhost:8766
+2025-06-04 01:08:51,498 - INFO - server listening on 127.0.0.1:8766
+2025-06-04 01:08:51,498 - INFO - server listening on [::1]:8766
+2025-06-04 01:08:51,498 - INFO - ✅ DO Button Connection Fix proxy running on ws://localhost:8766
+2025-06-04 01:08:51,498 - INFO - 📋 Proxy forwards to DO button server (8765) and Neural UI server (8768)
+2025-06-04 01:14:06,982 - INFO - connection open
+2025-06-04 01:14:06,984 - INFO - Client b1c6b038-524e-4489-b340-9ab04d795a90 connected on path: None
+2025-06-04 01:14:06,995 - INFO - Received message type: suggestion from client b1c6b038-524e-4489-b340-9ab04d795a90
+2025-06-04 01:14:06,995 - WARNING - Unknown message type: suggestion
+2025-06-04 01:17:13,700 - INFO - No existing plan metadata found
+2025-06-04 01:17:13,700 - INFO - Plan persistence manager initialized with 0 stored plans
+2025-06-04 01:17:13,700 - INFO - Plan persistence system initialized
+2025-06-04 01:17:13,700 - INFO - ✅ Plan persistence module loaded successfully
+2025-06-04 01:17:13,716 - INFO - Port 8766 is available
+2025-06-04 01:17:13,716 - INFO - Starting DO Button Connection Fix proxy on localhost:8766
+2025-06-04 01:17:13,755 - INFO - server listening on [::1]:8766
+2025-06-04 01:17:13,755 - INFO - server listening on 127.0.0.1:8766
+2025-06-04 01:17:13,755 - INFO - ✅ DO Button Connection Fix proxy running on ws://localhost:8766
+2025-06-04 01:17:13,755 - INFO - 📋 Proxy forwards to DO button server (8765) and Neural UI server (8768)
+2025-06-04 01:19:18,929 - INFO - connection open
+2025-06-04 01:19:18,930 - INFO - Client 1fdee02b-747a-49da-93ac-d19ffe35769a connected on path: None
+2025-06-04 01:19:18,931 - INFO - Received message type: suggestion from client 1fdee02b-747a-49da-93ac-d19ffe35769a
+2025-06-04 01:19:18,932 - INFO - Handling suggestion message: 🔴 IMPORTANT NOTIFICATION TEST [1749014358.931293]
+...
+2025-06-04 01:19:18,932 - INFO - Suggestion forwarded to client
+2025-06-04 01:33:42,374 - INFO - No existing plan metadata found
+2025-06-04 01:33:42,375 - INFO - Plan persistence manager initialized with 0 stored plans
+2025-06-04 01:33:42,375 - INFO - Plan persistence system initialized
+2025-06-04 01:33:42,375 - INFO - ✅ Plan persistence module loaded successfully
+2025-06-04 01:33:42,378 - INFO - Port 8766 is available
+2025-06-04 01:33:42,378 - INFO - Starting DO Button Connection Fix proxy on localhost:8766
+2025-06-04 01:33:42,420 - INFO - server listening on 127.0.0.1:8766
+2025-06-04 01:33:42,420 - INFO - server listening on [::1]:8766
+2025-06-04 01:33:42,420 - INFO - ✅ DO Button Connection Fix proxy running on ws://localhost:8766
+2025-06-04 01:33:42,420 - INFO - 📋 Proxy forwards to DO button server (8765) and Neural UI server (8768)
+2025-06-04 01:37:36,750 - INFO - connection open
+2025-06-04 01:37:36,751 - INFO - Client fd06e3e2-6d5d-4519-85ac-065e14a79101 connected on path: None
+2025-06-04 01:37:36,755 - INFO - Received message type: suggestion from client fd06e3e2-6d5d-4519-85ac-065e14a79101
+2025-06-04 01:37:36,755 - INFO - Handling suggestion message: 🔴 IMPORTANT NOTIFICATION TEST [1749015456.754285]
+...
+2025-06-04 01:37:36,756 - INFO - Suggestion forwarded to client
+2025-06-04 01:37:53,568 - INFO - connection open
+2025-06-04 01:37:53,569 - INFO - Client 9f706657-60df-4c1d-aee7-d9f930a97f71 connected on path: None
+2025-06-04 01:37:53,570 - INFO - Received message type: suggestion from client 9f706657-60df-4c1d-aee7-d9f930a97f71
+2025-06-04 01:37:53,570 - INFO - Handling suggestion message: 🔴 IMPORTANT NOTIFICATION TEST [1749015473.569946]
+...
+2025-06-04 01:37:53,570 - INFO - Suggestion forwarded to client
+2025-06-04 01:38:04,207 - INFO - connection open
+2025-06-04 01:38:04,208 - INFO - Client 1c896c75-0387-4b03-8f9d-75cb98016b32 connected on path: None
+2025-06-04 01:38:04,210 - INFO - Received message type: suggestion from client 1c896c75-0387-4b03-8f9d-75cb98016b32
+2025-06-04 01:38:04,210 - INFO - Handling suggestion message: 🔴 IMPORTANT NOTIFICATION TEST [1749015484.20906]
+
+...
+2025-06-04 01:38:04,210 - INFO - Suggestion forwarded to client
+2025-06-04 01:39:21,060 - INFO - connection open
+2025-06-04 01:39:21,061 - INFO - Client 4d2583e5-dfc8-44ec-9167-bc944565971c connected on path: None
+2025-06-04 01:39:21,063 - INFO - Received message type: suggestion from client 4d2583e5-dfc8-44ec-9167-bc944565971c
+2025-06-04 01:39:21,063 - INFO - Handling suggestion message: 🔴 IMPORTANT NOTIFICATION TEST [1749015561.062568]
+...
+2025-06-04 01:39:21,064 - INFO - Suggestion forwarded to client
+2025-06-04 01:40:06,128 - INFO - connection open
+2025-06-04 01:40:06,134 - INFO - Client de4f3bd0-841a-4dea-83d5-97c679dd7418 connected on path: None
+2025-06-04 01:40:06,136 - INFO - Received message type: suggestion from client de4f3bd0-841a-4dea-83d5-97c679dd7418
+2025-06-04 01:40:06,137 - INFO - Handling suggestion message: 🔴 IMPORTANT NOTIFICATION TEST [1749015606.135728]
+...
+2025-06-04 01:40:06,137 - INFO - Suggestion forwarded to client
+2025-06-04 01:46:26,284 - INFO - connection open
+2025-06-04 01:46:26,287 - INFO - Client 0bd3ff1a-94e7-46b1-9f98-5a4db31faa93 connected on path: None
+2025-06-04 01:46:26,289 - INFO - Received message type: suggestion from client 0bd3ff1a-94e7-46b1-9f98-5a4db31faa93
+2025-06-04 01:46:26,289 - INFO - Handling suggestion message: 🔴 IMPORTANT NOTIFICATION TEST [1749015986.288653]
+...
+2025-06-04 01:46:26,289 - INFO - Suggestion forwarded to client
+2025-06-04 01:53:24,582 - INFO - connection open
+2025-06-04 01:53:24,583 - INFO - Client abfbf96b-c61e-4cd4-be2f-cd13850381e6 connected on path: None
+2025-06-04 02:00:41,633 - INFO - No existing plan metadata found
+2025-06-04 02:00:41,633 - INFO - Plan persistence manager initialized with 0 stored plans
+2025-06-04 02:00:41,634 - INFO - Plan persistence system initialized
+2025-06-04 02:00:41,634 - INFO - ✅ Plan persistence module loaded successfully
+2025-06-04 02:00:41,636 - INFO - Port 8766 is available
+2025-06-04 02:00:41,636 - INFO - Starting DO Button Connection Fix proxy on localhost:8766
+2025-06-04 02:00:41,654 - INFO - server listening on [::1]:8766
+2025-06-04 02:00:41,654 - INFO - server listening on 127.0.0.1:8766
+2025-06-04 02:00:41,654 - INFO - ✅ DO Button Connection Fix proxy running on ws://localhost:8766
+2025-06-04 02:00:41,654 - INFO - 📋 Proxy forwards to DO button server (8765) and Neural UI server (8768)
+2025-06-04 02:00:54,154 - INFO - No existing plan metadata found
+2025-06-04 02:00:54,155 - INFO - Plan persistence manager initialized with 0 stored plans
+2025-06-04 02:00:54,155 - INFO - Plan persistence system initialized
+2025-06-04 02:00:54,155 - INFO - ✅ Plan persistence module loaded successfully
+2025-06-04 02:00:54,157 - INFO - Port 8766 is available
+2025-06-04 02:00:54,157 - INFO - Starting DO Button Connection Fix proxy on localhost:8766
+2025-06-04 02:00:54,178 - INFO - server listening on [::1]:8766
+2025-06-04 02:00:54,178 - INFO - server listening on 127.0.0.1:8766
+2025-06-04 02:00:54,178 - INFO - ✅ DO Button Connection Fix proxy running on ws://localhost:8766
+2025-06-04 02:00:54,178 - INFO - 📋 Proxy forwards to DO button server (8765) and Neural UI server (8768)
+2025-06-04 02:02:04,089 - INFO - No existing plan metadata found
+2025-06-04 02:02:04,090 - INFO - Plan persistence manager initialized with 0 stored plans
+2025-06-04 02:02:04,090 - INFO - Plan persistence system initialized
+2025-06-04 02:02:04,090 - INFO - ✅ Plan persistence module loaded successfully
+2025-06-04 02:02:04,092 - INFO - Port 8766 is available
+2025-06-04 02:02:04,092 - INFO - Starting DO Button Connection Fix proxy on localhost:8766
+2025-06-04 02:02:04,109 - INFO - server listening on 127.0.0.1:8766
+2025-06-04 02:02:04,109 - INFO - server listening on [::1]:8766
+2025-06-04 02:02:04,109 - INFO - ✅ DO Button Connection Fix proxy running on ws://localhost:8766
+2025-06-04 02:02:04,109 - INFO - 📋 Proxy forwards to DO button server (8765) and Neural UI server (8768)
+2025-06-04 02:02:16,396 - INFO - No existing plan metadata found
+2025-06-04 02:02:16,397 - INFO - Plan persistence manager initialized with 0 stored plans
+2025-06-04 02:02:16,397 - INFO - Plan persistence system initialized
+2025-06-04 02:02:16,397 - INFO - ✅ Plan persistence module loaded successfully
+2025-06-04 02:02:16,399 - INFO - Port 8766 is available
+2025-06-04 02:02:16,399 - INFO - Starting DO Button Connection Fix proxy on localhost:8766
+2025-06-04 02:02:16,417 - INFO - server listening on 127.0.0.1:8766
+2025-06-04 02:02:16,417 - INFO - server listening on [::1]:8766
+2025-06-04 02:02:16,417 - INFO - ✅ DO Button Connection Fix proxy running on ws://localhost:8766
+2025-06-04 02:02:16,417 - INFO - 📋 Proxy forwards to DO button server (8765) and Neural UI server (8768)
+2025-06-04 02:05:56,891 - INFO - No existing plan metadata found
+2025-06-04 02:05:56,892 - INFO - Plan persistence manager initialized with 0 stored plans
+2025-06-04 02:05:56,893 - INFO - Plan persistence system initialized
+2025-06-04 02:05:56,893 - INFO - ✅ Plan persistence module loaded successfully
+2025-06-04 02:05:56,920 - INFO - Port 8766 is available
+2025-06-04 02:05:56,921 - INFO - Starting DO Button Connection Fix proxy on localhost:8766
+2025-06-04 02:05:57,032 - INFO - server listening on 127.0.0.1:8766
+2025-06-04 02:05:57,032 - INFO - server listening on [::1]:8766
+2025-06-04 02:05:57,032 - INFO - ✅ DO Button Connection Fix proxy running on ws://localhost:8766
+2025-06-04 02:05:57,032 - INFO - 📋 Proxy forwards to DO button server (8765) and Neural UI server (8768)
+2025-06-04 02:07:06,226 - INFO - No existing plan metadata found
+2025-06-04 02:07:06,226 - INFO - Plan persistence manager initialized with 0 stored plans
+2025-06-04 02:07:06,226 - INFO - Plan persistence system initialized
+2025-06-04 02:07:06,226 - INFO - ✅ Plan persistence module loaded successfully
+2025-06-04 02:07:06,228 - WARNING - Port 8766 is already in use. Killing existing process...
+2025-06-04 02:07:06,271 - INFO - Killed process on port 8766
+2025-06-04 02:07:08,272 - INFO - Starting DO Button Connection Fix proxy on localhost:8766
+2025-06-04 02:07:08,295 - INFO - server listening on [::1]:8766
+2025-06-04 02:07:08,296 - INFO - server listening on 127.0.0.1:8766
+2025-06-04 02:07:08,296 - INFO - ✅ DO Button Connection Fix proxy running on ws://localhost:8766
+2025-06-04 02:07:08,296 - INFO - 📋 Proxy forwards to DO button server (8765) and Neural UI server (8768)
+2025-06-04 02:07:09,361 - INFO - connection open
+2025-06-04 02:07:09,361 - INFO - Client ab36f663-77fc-4952-9df9-1efb2ad58e12 connected on path: None
+2025-06-04 02:07:09,362 - INFO - Received message type: suggestion from client ab36f663-77fc-4952-9df9-1efb2ad58e12
+2025-06-04 02:07:09,362 - INFO - Handling suggestion message: 📣 This is a simple notification...
+2025-06-04 02:07:09,362 - INFO - Suggestion forwarded to client
+2025-06-04 02:07:10,364 - INFO - Received message type: unknown from client ab36f663-77fc-4952-9df9-1efb2ad58e12
+2025-06-04 02:07:10,364 - WARNING - Unknown message type: unknown
+2025-06-04 02:07:12,370 - INFO - connection open
+2025-06-04 02:07:12,370 - INFO - Client a46ead2a-5ec0-4ca2-b971-855d34868f30 connected on path: None
+2025-06-04 02:07:12,371 - INFO - Received message type: suggestion from client a46ead2a-5ec0-4ca2-b971-855d34868f30
+2025-06-04 02:07:12,371 - INFO - Handling suggestion message: 🔴 HIGH PRIORITY TEST
+
+This is a test of the sugges...
+2025-06-04 02:07:12,371 - INFO - Suggestion forwarded to client
+2025-06-04 02:07:13,373 - INFO - Received message type: unknown from client a46ead2a-5ec0-4ca2-b971-855d34868f30
+2025-06-04 02:07:13,373 - WARNING - Unknown message type: unknown
+2025-06-04 02:07:15,379 - INFO - connection open
+2025-06-04 02:07:15,380 - INFO - Client c6d3fb69-5dde-4ede-a779-f6bcc6696f74 connected on path: None
+2025-06-04 02:07:15,381 - INFO - Received message type: suggestion from client c6d3fb69-5dde-4ede-a779-f6bcc6696f74
+2025-06-04 02:07:15,381 - INFO - Handling suggestion message: 💡 OPTIMIZATION SUGGESTION
+
+Based on your recent ac...
+2025-06-04 02:07:15,381 - INFO - Suggestion forwarded to client
+2025-06-04 02:07:16,383 - INFO - Received message type: unknown from client c6d3fb69-5dde-4ede-a779-f6bcc6696f74
+2025-06-04 02:07:16,383 - WARNING - Unknown message type: unknown
+2025-06-04 02:07:18,573 - INFO - No existing plan metadata found
+2025-06-04 02:07:18,574 - INFO - Plan persistence manager initialized with 0 stored plans
+2025-06-04 02:07:18,574 - INFO - Plan persistence system initialized
+2025-06-04 02:07:18,574 - INFO - ✅ Plan persistence module loaded successfully
+2025-06-04 02:07:18,576 - INFO - Port 8766 is available
+2025-06-04 02:07:18,576 - INFO - Starting DO Button Connection Fix proxy on localhost:8766
+2025-06-04 02:07:18,592 - INFO - server listening on [::1]:8766
+2025-06-04 02:07:18,593 - INFO - server listening on 127.0.0.1:8766
+2025-06-04 02:07:18,593 - INFO - ✅ DO Button Connection Fix proxy running on ws://localhost:8766
+2025-06-04 02:07:18,593 - INFO - 📋 Proxy forwards to DO button server (8765) and Neural UI server (8768)
+2025-06-04 02:13:45,948 - INFO - connection open
+2025-06-04 02:13:45,949 - INFO - Client 74591e5c-e1da-4cb0-9483-03aaf2647b37 connected on path: None
+2025-06-04 02:13:45,951 - INFO - Received message type: suggestion from client 74591e5c-e1da-4cb0-9483-03aaf2647b37
+2025-06-04 02:13:45,951 - INFO - Handling suggestion message: ⚠️ URGENT TEST NOTIFICATION ⚠️
+
+This is a high-vis...
+2025-06-04 02:13:45,951 - INFO - Suggestion forwarded to client
+2025-06-04 02:15:28,970 - INFO - connection open
+2025-06-04 02:15:28,985 - INFO - Client 5c1f2276-d02d-485f-aefe-083cb76bcfba connected on path: None
+2025-06-04 02:15:28,990 - INFO - Received message type: agent_confirmation from client 5c1f2276-d02d-485f-aefe-083cb76bcfba
+2025-06-04 02:16:06,958 - INFO - Loaded 1 plans from metadata
+2025-06-04 02:16:06,958 - INFO - Plan persistence manager initialized with 1 stored plans
+2025-06-04 02:16:06,959 - INFO - Plan persistence system initialized
+2025-06-04 02:16:06,959 - INFO - ✅ Plan persistence module loaded successfully
+2025-06-04 02:16:06,962 - INFO - Port 8766 is available
+2025-06-04 02:16:06,962 - INFO - Starting DO Button Connection Fix proxy on localhost:8766
+2025-06-04 02:16:06,997 - INFO - server listening on [::1]:8766
+2025-06-04 02:16:06,997 - INFO - server listening on 127.0.0.1:8766
+2025-06-04 02:16:06,997 - INFO - ✅ DO Button Connection Fix proxy running on ws://localhost:8766
+2025-06-04 02:16:06,997 - INFO - 📋 Proxy forwards to DO button server (8765) and Neural UI server (8768)
+2025-06-04 02:16:11,955 - INFO - Loaded 1 plans from metadata
+2025-06-04 02:16:11,955 - INFO - Plan persistence manager initialized with 1 stored plans
+2025-06-04 02:16:11,955 - INFO - Plan persistence system initialized
+2025-06-04 02:16:11,955 - INFO - ✅ Plan persistence module loaded successfully
+2025-06-04 02:16:11,957 - INFO - Port 8766 is available
+2025-06-04 02:16:11,957 - INFO - Starting DO Button Connection Fix proxy on localhost:8766
+2025-06-04 02:16:11,977 - INFO - server listening on 127.0.0.1:8766
+2025-06-04 02:16:11,977 - INFO - server listening on [::1]:8766
+2025-06-04 02:16:11,977 - INFO - ✅ DO Button Connection Fix proxy running on ws://localhost:8766
+2025-06-04 02:16:11,977 - INFO - 📋 Proxy forwards to DO button server (8765) and Neural UI server (8768)
+2025-06-04 02:26:29,367 - INFO - connection open
+2025-06-04 02:26:29,369 - INFO - Client bdaa9a4a-3e52-4314-8744-cabed452ae5d connected on path: None
+2025-06-04 02:26:29,370 - INFO - Received message type: unknown from client bdaa9a4a-3e52-4314-8744-cabed452ae5d
+2025-06-04 02:26:29,370 - WARNING - Unknown message type: unknown
+2025-06-04 02:28:07,069 - INFO - connection open
+2025-06-04 02:28:07,070 - INFO - Client 17d8d027-084b-4cef-b6e0-97dcd2785bc8 connected on path: None
+2025-06-04 02:29:20,756 - INFO - connection open
+2025-06-04 02:29:20,758 - INFO - Client e5ad0995-6584-491a-a30a-214203740bea connected on path: None
+2025-06-04 02:29:28,859 - INFO - connection open
+2025-06-04 02:29:28,861 - INFO - Client f2cfe7a1-29ff-47ac-8bfb-6bdd774ce5de connected on path: None
+2025-06-04 02:37:45,457 - INFO - connection open
+2025-06-04 02:37:45,464 - INFO - Client 0a57703f-c902-43a7-aec9-8889272fc7a6 connected on path: None
+2025-06-04 02:37:45,469 - INFO - Received message type: chat_message from client 0a57703f-c902-43a7-aec9-8889272fc7a6
+2025-06-04 02:37:45,469 - WARNING - Unknown message type: chat_message
+2025-06-04 02:37:46,476 - INFO - Received message type: suggestion from client 0a57703f-c902-43a7-aec9-8889272fc7a6
+2025-06-04 02:37:46,476 - INFO - Handling suggestion message: ⚠️ SUGGESTION TEST FORMAT ⚠️
+
+This is a test of th...
+2025-06-04 02:37:46,477 - INFO - Suggestion forwarded to client
+2025-06-04 02:37:47,483 - INFO - Received message type: notification from client 0a57703f-c902-43a7-aec9-8889272fc7a6
+2025-06-04 02:37:47,484 - WARNING - Unknown message type: notification
+2025-06-04 02:38:29,699 - INFO - connection open
+2025-06-04 02:38:29,701 - INFO - Client dee0726a-ebad-4f38-92b0-baf1db0536e1 connected on path: None
+2025-06-04 02:38:29,704 - INFO - Received message type: suggestion from client dee0726a-ebad-4f38-92b0-baf1db0536e1
+2025-06-04 02:38:29,704 - INFO - Handling suggestion message: 💡 FINAL NOTIFICATION TEST
+
+This is the final test ...
+2025-06-04 02:38:29,705 - INFO - Suggestion forwarded to client
+2025-06-04 02:40:19,129 - INFO - connection open
+2025-06-04 02:40:19,132 - INFO - Client 1aae975d-341f-4247-b131-fb80227b487b connected on path: None
+2025-06-04 02:40:19,134 - INFO - Received message type: suggestion from client 1aae975d-341f-4247-b131-fb80227b487b
+2025-06-04 02:40:19,134 - INFO - Handling suggestion message: 💡 FINAL NOTIFICATION TEST
+
+This is the final test ...
+2025-06-04 02:40:19,134 - INFO - Suggestion forwarded to client
+2025-06-04 02:44:28,598 - INFO - connection open
+2025-06-04 02:44:28,600 - INFO - Client d59ffa16-2107-497b-8919-f22cfdf2799f connected on path: None
+2025-06-04 02:44:28,603 - INFO - Received message type: chat_message from client d59ffa16-2107-497b-8919-f22cfdf2799f
+2025-06-04 02:44:28,603 - WARNING - Unknown message type: chat_message
+2025-06-04 02:44:29,107 - INFO - Received message type: suggestion from client d59ffa16-2107-497b-8919-f22cfdf2799f
+2025-06-04 02:44:29,107 - INFO - Handling suggestion message: 🔔 PORT 8766 TEST MESSAGE (suggestion format)...
+2025-06-04 02:44:29,108 - INFO - Suggestion forwarded to client
+2025-06-04 02:44:29,611 - INFO - Received message type: message from client d59ffa16-2107-497b-8919-f22cfdf2799f
+2025-06-04 02:44:29,611 - WARNING - Unknown message type: message
+2025-06-04 02:44:30,114 - INFO - Received message type: unknown from client d59ffa16-2107-497b-8919-f22cfdf2799f
+2025-06-04 02:44:30,115 - WARNING - Unknown message type: unknown
+2025-06-04 02:45:08,734 - INFO - connection open
+2025-06-04 02:45:08,735 - INFO - Client 8a55a01e-e0c1-4921-bd19-29fc60bafffd connected on path: None
+2025-06-04 02:45:08,736 - INFO - Received message type: suggestion from client 8a55a01e-e0c1-4921-bd19-29fc60bafffd
+2025-06-04 02:45:08,736 - INFO - Handling suggestion message: 🔔 IMPORTANT NOTIFICATION - This is a test of the s...
+2025-06-04 02:45:08,736 - INFO - Suggestion forwarded to client
+2025-06-04 02:49:46,402 - INFO - connection open
+2025-06-04 02:49:46,403 - INFO - Client 44ad839f-7667-45c5-8252-6db7439cf135 connected on path: None
+2025-06-04 02:49:46,407 - INFO - Received message type: suggestion from client 44ad839f-7667-45c5-8252-6db7439cf135
+2025-06-04 02:49:46,407 - INFO - Handling suggestion message: 🔔 SUCCESS! Direct notification channel is working....
+2025-06-04 02:49:46,408 - INFO - Suggestion forwarded to client
+2025-06-04 02:50:33,254 - INFO - connection open
+2025-06-04 02:50:33,254 - INFO - Client 087c6a4d-92c8-46be-9bc4-bf61385508b5 connected on path: None
+2025-06-04 02:50:33,255 - INFO - Received message type: suggestion from client 087c6a4d-92c8-46be-9bc4-bf61385508b5
+2025-06-04 02:50:33,255 - INFO - Handling suggestion message: [PORT 8766] COMPREHENSIVE TEST: This message is be...
+2025-06-04 02:50:33,255 - INFO - Suggestion forwarded to client
+2025-06-04 02:51:34,227 - INFO - connection open
+2025-06-04 02:51:34,229 - INFO - Client 3d0f1eae-689e-479d-943c-31b20129826b connected on path: None
+2025-06-04 02:51:34,230 - INFO - Received message type: suggestion from client 3d0f1eae-689e-479d-943c-31b20129826b
+2025-06-04 02:51:34,230 - INFO - Handling suggestion message: 🎉 SUCCESS! Notification system is now fully operat...
+2025-06-04 02:51:34,230 - INFO - Suggestion forwarded to client
+2025-06-04 02:51:48,276 - INFO - connection open
+2025-06-04 02:51:48,277 - INFO - Client f3c86c72-c18c-418f-8970-2900c085d5c5 connected on path: None
+2025-06-04 02:51:48,277 - INFO - Received message type: suggestion from client f3c86c72-c18c-418f-8970-2900c085d5c5
+2025-06-04 02:51:48,277 - INFO - Handling suggestion message: Your message here...
+2025-06-04 02:51:48,278 - INFO - Suggestion forwarded to client
+2025-06-04 02:52:29,630 - INFO - connection open
+2025-06-04 02:52:29,633 - INFO - Client 77867cd9-6343-49eb-94b7-62e305a59afd connected on path: None
+2025-06-04 02:52:29,635 - INFO - Received message type: do_button_action from client 77867cd9-6343-49eb-94b7-62e305a59afd
+2025-06-04 02:52:29,635 - WARNING - Unknown message type: do_button_action
+2025-06-04 10:58:15,423 - INFO - connection open
+2025-06-04 10:58:15,461 - INFO - Client 3a6faf97-6e4d-4d6f-bfa6-a67f0e694434 connected on path: None
+2025-06-04 11:36:13,538 - INFO - Client 3a6faf97-6e4d-4d6f-bfa6-a67f0e694434 disconnected
+2025-06-04 11:55:00,728 - INFO - connection open
+2025-06-04 11:55:00,737 - INFO - Client b7182a52-7ec2-489a-85e4-d8dfd22085b4 connected on path: None
+2025-06-04 11:57:48,327 - INFO - connection open
+2025-06-04 11:57:48,329 - INFO - Client 30d3256e-e24a-4966-aed1-b2615786ac67 connected on path: None
+2025-06-04 11:57:48,332 - INFO - Received message type: suggestion from client 30d3256e-e24a-4966-aed1-b2615786ac67
+2025-06-04 11:57:48,332 - INFO - Handling suggestion message: Your notification here...
+2025-06-04 11:57:48,332 - INFO - Suggestion forwarded to client
+2025-06-04 11:59:16,788 - INFO - Client b7182a52-7ec2-489a-85e4-d8dfd22085b4 disconnected
+2025-06-04 11:59:18,902 - INFO - connection open
+2025-06-04 11:59:18,904 - INFO - Client 6e30476b-f95d-48a1-a89e-2d383f6a1a78 connected on path: None
+2025-06-04 11:59:28,572 - INFO - connection open
+2025-06-04 11:59:28,576 - INFO - Client 15270aff-e332-4f46-9a69-2f8c36ff44a9 connected on path: None
+2025-06-04 11:59:28,579 - INFO - Received message type: suggestion from client 15270aff-e332-4f46-9a69-2f8c36ff44a9
+2025-06-04 11:59:28,579 - INFO - Handling suggestion message: Testing notification on port 8766...
+2025-06-04 11:59:28,579 - INFO - Suggestion forwarded to client
+2025-06-04 11:59:48,051 - INFO - connection open
+2025-06-04 11:59:48,052 - INFO - Client 30b25428-9760-48df-a61d-ccd90759421d connected on path: None
+2025-06-04 11:59:48,052 - INFO - Received message type: suggestion from client 30b25428-9760-48df-a61d-ccd90759421d
+2025-06-04 11:59:48,053 - INFO - Handling suggestion message: Test notification for port 8766 with sound...
+2025-06-04 11:59:48,053 - INFO - Suggestion forwarded to client
+2025-06-04 12:13:37,207 - INFO - connection open
+2025-06-04 12:13:37,211 - INFO - Client e83631cc-179e-4c44-9215-c2433316b152 connected on path: None
+2025-06-04 12:13:37,213 - INFO - Received message type: suggestion from client e83631cc-179e-4c44-9215-c2433316b152
+2025-06-04 12:13:37,213 - INFO - Handling suggestion message: 📣 URGENT: This is an emergency notification test 📣...
+2025-06-04 12:13:37,213 - INFO - Suggestion forwarded to client
+2025-06-04 12:13:37,719 - INFO - Received message type: notification from client e83631cc-179e-4c44-9215-c2433316b152
+2025-06-04 12:13:37,733 - WARNING - Unknown message type: notification
+2025-06-04 12:13:38,245 - INFO - Received message type: do_button from client e83631cc-179e-4c44-9215-c2433316b152
+2025-06-04 13:19:53,283 - INFO - Loaded 0 plans from metadata
+2025-06-04 13:19:53,284 - INFO - Plan persistence system initialized
+2025-06-04 13:19:53,284 - INFO - ✅ Plan persistence module loaded successfully
+2025-06-04 13:19:54,555 - INFO - Enhanced semantic search initialized with embedding dim: 384
+2025-06-04 13:19:54,556 - INFO - Hybrid retrieval enabled: True
+2025-06-04 13:19:55,203 - INFO - Loading 1808 existing documents from storage
+2025-06-04 13:19:55,380 - INFO - EnterpriseVectorStore initialized with enterprise-grade features
+2025-06-04 13:19:55,381 - INFO - SemanticSearchAgent initialized with enterprise-grade capabilities
+2025-06-04 13:19:55,382 - INFO - ✅ Plan persistence module loaded successfully
+2025-06-04 13:19:55,550 - INFO - Detected screen size: 1470x956
+2025-06-04 13:19:55,580 - INFO - Standard mouse listener started successfully
+2025-06-04 13:19:55,580 - INFO - Keyboard listener started successfully
+2025-06-04 13:19:55,580 - INFO - Input controller initialized (safe mode)
+2025-06-04 13:19:55,580 - INFO - 🚨 Emergency shutdown: Press Ctrl+1 to immediately stop agent
+2025-06-04 13:19:55,666 - INFO - Connected to Ollama API v0.6.8
+2025-06-04 13:19:55,666 - INFO - LLaVA visual processor initialized for total screen analysis
+2025-06-04 13:19:55,667 - INFO - Total Screen Analyzer initialized with 8s interval
+2025-06-04 13:19:55,667 - INFO - 🤖 Real automation components loaded successfully
+2025-06-04 13:19:55,733 - INFO - Standard mouse listener started successfully
+2025-06-04 13:19:55,734 - INFO - Keyboard listener started successfully
+2025-06-04 13:19:55,734 - INFO - Input controller initialized (safe mode)
+2025-06-04 13:19:55,734 - INFO - 🚨 Emergency shutdown: Press Ctrl+1 to immediately stop agent
+2025-06-04 13:19:55,791 - INFO - Connected to Ollama API v0.6.8
+2025-06-04 13:19:55,791 - INFO - LLaVA visual processor initialized for total screen analysis
+2025-06-04 13:19:55,791 - INFO - Total Screen Analyzer initialized with 8s interval
+2025-06-04 13:19:55,791 - INFO - 🔄 Adaptive retry automation system loaded
+2025-06-04 13:19:55,791 - INFO - ✅ Adaptive retry automation handler loaded successfully
+2025-06-04 13:19:55,791 - INFO - ✅ Plan persistence module loaded successfully
+2025-06-04 13:19:55,792 - INFO - Standard mouse listener started successfully
+2025-06-04 13:19:55,792 - INFO - Keyboard listener started successfully
+2025-06-04 13:19:55,792 - INFO - Input controller initialized (safe mode)
+2025-06-04 13:19:55,792 - INFO - 🚨 Emergency shutdown: Press Ctrl+1 to immediately stop agent
+2025-06-04 13:19:55,804 - INFO - Connected to Ollama API v0.6.8
+2025-06-04 13:19:55,805 - INFO - LLaVA visual processor initialized for total screen analysis
+2025-06-04 13:19:55,805 - INFO - Total Screen Analyzer initialized with 8s interval
+2025-06-04 13:19:55,805 - INFO - 🤖 Universal automation components loaded successfully
+2025-06-04 13:19:55,805 - INFO - ✅ Using backend's shared_pending_plans dictionary
+2025-06-04 13:19:55,806 - INFO - Port 8766 is available
+2025-06-04 13:19:55,806 - INFO - Starting DO Button Connection Fix proxy on localhost:8766
+2025-06-04 13:19:55,808 - INFO - server listening on [::1]:8766
+2025-06-04 13:19:55,808 - INFO - server listening on 127.0.0.1:8766
+2025-06-04 13:19:55,808 - INFO - ✅ DO Button Connection Fix proxy running on ws://localhost:8766
+2025-06-04 13:19:55,808 - INFO - 📋 Proxy forwards to DO button server (8765) and Neural UI server (8768)
+2025-06-04 13:19:59,043 - INFO - Loaded 0 plans from metadata
+2025-06-04 13:19:59,044 - INFO - Plan persistence system initialized
+2025-06-04 13:19:59,044 - INFO - ✅ Plan persistence module loaded successfully
+2025-06-04 13:20:00,006 - INFO - Enhanced semantic search initialized with embedding dim: 384
+2025-06-04 13:20:00,006 - INFO - Hybrid retrieval enabled: True
+2025-06-04 13:20:00,476 - INFO - Loading 1808 existing documents from storage
+2025-06-04 13:20:00,631 - INFO - EnterpriseVectorStore initialized with enterprise-grade features
+2025-06-04 13:20:00,659 - INFO - SemanticSearchAgent initialized with enterprise-grade capabilities
+2025-06-04 13:20:00,660 - INFO - ✅ Plan persistence module loaded successfully
+2025-06-04 13:20:00,898 - INFO - Detected screen size: 1470x956
+2025-06-04 13:20:00,908 - INFO - Standard mouse listener started successfully
+2025-06-04 13:20:00,909 - INFO - Keyboard listener started successfully
+2025-06-04 13:20:00,909 - INFO - Input controller initialized (safe mode)
+2025-06-04 13:20:00,909 - INFO - 🚨 Emergency shutdown: Press Ctrl+1 to immediately stop agent
+2025-06-04 13:20:02,922 - WARNING - Error checking LLaVA availability: HTTPConnectionPool(host='localhost', port=11434): Read timed out. (read timeout=2)
+2025-06-04 13:20:02,923 - INFO - LLaVA visual processor initialized for total screen analysis
+2025-06-04 13:20:02,923 - INFO - Total Screen Analyzer initialized with 8s interval
+2025-06-04 13:20:02,923 - INFO - 🤖 Real automation components loaded successfully
+2025-06-04 13:20:02,965 - INFO - Standard mouse listener started successfully
+2025-06-04 13:20:02,965 - INFO - Keyboard listener started successfully
+2025-06-04 13:20:02,965 - INFO - Input controller initialized (safe mode)
+2025-06-04 13:20:02,965 - INFO - 🚨 Emergency shutdown: Press Ctrl+1 to immediately stop agent
+2025-06-04 13:20:03,336 - INFO - Connected to Ollama API v0.6.8
+2025-06-04 13:20:03,336 - INFO - LLaVA visual processor initialized for total screen analysis
+2025-06-04 13:20:03,336 - INFO - Total Screen Analyzer initialized with 8s interval
+2025-06-04 13:20:03,336 - INFO - 🔄 Adaptive retry automation system loaded
+2025-06-04 13:20:03,336 - INFO - ✅ Adaptive retry automation handler loaded successfully
+2025-06-04 13:20:03,336 - INFO - ✅ Plan persistence module loaded successfully
+2025-06-04 13:20:03,337 - INFO - Standard mouse listener started successfully
+2025-06-04 13:20:03,338 - INFO - Keyboard listener started successfully
+2025-06-04 13:20:03,338 - INFO - Input controller initialized (safe mode)
+2025-06-04 13:20:03,338 - INFO - 🚨 Emergency shutdown: Press Ctrl+1 to immediately stop agent
+2025-06-04 13:20:03,364 - INFO - Connected to Ollama API v0.6.8
+2025-06-04 13:20:03,364 - INFO - LLaVA visual processor initialized for total screen analysis
+2025-06-04 13:20:03,364 - INFO - Total Screen Analyzer initialized with 8s interval
+2025-06-04 13:20:03,364 - INFO - 🤖 Universal automation components loaded successfully
+2025-06-04 13:20:03,364 - INFO - ✅ Using backend's shared_pending_plans dictionary
+2025-06-04 13:20:03,365 - INFO - Port 8766 is available
+2025-06-04 13:20:03,365 - INFO - Starting DO Button Connection Fix proxy on localhost:8766
+2025-06-04 13:20:03,368 - INFO - server listening on 127.0.0.1:8766
+2025-06-04 13:20:03,368 - INFO - server listening on [::1]:8766
+2025-06-04 13:20:03,368 - INFO - ✅ DO Button Connection Fix proxy running on ws://localhost:8766
+2025-06-04 13:20:03,368 - INFO - 📋 Proxy forwards to DO button server (8765) and Neural UI server (8768)
+2025-06-04 13:32:36,442 - INFO - connection open
+2025-06-04 13:32:36,452 - INFO - Client 1f033872-36ce-4471-97eb-cff3ca966707 connected on path: None
+2025-06-04 13:32:36,463 - INFO - Received message type: suggestion from client 1f033872-36ce-4471-97eb-cff3ca966707
+2025-06-04 13:32:36,464 - INFO - Handling suggestion message: ✅ ACTION SUGGESTION: The automatic suggestion syst...
+2025-06-04 13:32:36,466 - INFO - Suggestion forwarded to client
+2025-06-04 13:32:36,963 - INFO - Received message type: unknown from client 1f033872-36ce-4471-97eb-cff3ca966707
+2025-06-04 13:32:36,963 - WARNING - Unknown message type: unknown
+2025-06-04 13:32:36,967 - INFO - connection open
+2025-06-04 13:32:36,967 - INFO - Client 615da5e5-4736-4dca-b0e0-4d120f11b43d connected on path: None
+2025-06-04 13:32:36,968 - INFO - Received message type: suggestion from client 615da5e5-4736-4dca-b0e0-4d120f11b43d
+2025-06-04 13:32:36,968 - INFO - Handling suggestion message: 💡 UI SUGGESTION: Based on the current screen, cons...
+2025-06-04 13:32:36,969 - INFO - Suggestion forwarded to client
+2025-06-04 13:32:37,469 - INFO - Received message type: unknown from client 615da5e5-4736-4dca-b0e0-4d120f11b43d
+2025-06-04 13:32:37,469 - WARNING - Unknown message type: unknown
+2025-06-04 13:33:37,485 - INFO - connection open
+2025-06-04 13:33:37,486 - INFO - Client b51f52cb-bb5c-4d53-8e75-3bad915ebe3c connected on path: None
+2025-06-04 13:33:37,487 - INFO - Received message type: suggestion from client b51f52cb-bb5c-4d53-8e75-3bad915ebe3c
+2025-06-04 13:33:37,488 - INFO - Handling suggestion message: 🔍 ACTION SUGGESTION: I notice you're working on th...
+2025-06-04 13:33:37,488 - INFO - Suggestion forwarded to client
+2025-06-04 13:33:37,989 - INFO - Received message type: unknown from client b51f52cb-bb5c-4d53-8e75-3bad915ebe3c
+2025-06-04 13:33:37,990 - WARNING - Unknown message type: unknown
+2025-06-04 13:34:38,005 - INFO - connection open
+2025-06-04 13:34:38,007 - INFO - Client 0c51c3ed-89fe-4101-93c8-0ea55a06b2da connected on path: None
+2025-06-04 13:34:38,009 - INFO - Received message type: suggestion from client 0c51c3ed-89fe-4101-93c8-0ea55a06b2da
+2025-06-04 13:34:38,010 - INFO - Handling suggestion message: 🧩 AUTOMATION SUGGESTION: I can help you fix the pl...
+2025-06-04 13:34:38,010 - INFO - Suggestion forwarded to client
+2025-06-04 13:34:38,510 - INFO - Received message type: unknown from client 0c51c3ed-89fe-4101-93c8-0ea55a06b2da
+2025-06-04 13:34:38,510 - WARNING - Unknown message type: unknown
+2025-06-04 13:37:56,944 - ERROR - opening handshake failed
+Traceback (most recent call last):
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/http11.py", line 138, in parse
+    request_line = yield from parse_line(read_line)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/http11.py", line 309, in parse_line
+    line = yield from read_line(MAX_LINE_LENGTH)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/streams.py", line 46, in read_line
+    raise EOFError(f"stream ends after {p} bytes, before end of line")
+EOFError: stream ends after 0 bytes, before end of line
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/server.py", line 545, in parse
+    request = yield from Request.parse(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^
+        self.reader.read_line,
+        ^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/http11.py", line 140, in parse
+    raise EOFError("connection closed while reading HTTP request line") from exc
+EOFError: connection closed while reading HTTP request line
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/asyncio/server.py", line 356, in conn_handler
+    await connection.handshake(
+    ...<3 lines>...
+    )
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/asyncio/server.py", line 207, in handshake
+    raise self.protocol.handshake_exc
+websockets.exceptions.InvalidMessage: did not receive a valid HTTP request
+2025-06-04 13:37:56,985 - INFO - connection open
+2025-06-04 13:37:56,985 - INFO - Client bb1df45e-ac32-4b2d-9f3c-9b71aaabeb1f connected on path: None
+2025-06-04 13:37:56,986 - INFO - Received message type: suggestion from client bb1df45e-ac32-4b2d-9f3c-9b71aaabeb1f
+2025-06-04 13:37:56,986 - INFO - Handling suggestion message: 🚨 URGENT NOTIFICATION: This is a direct message to...
+2025-06-04 13:37:56,986 - INFO - Suggestion forwarded to client
+2025-06-04 13:37:57,487 - INFO - Received message type: unknown from client bb1df45e-ac32-4b2d-9f3c-9b71aaabeb1f
+2025-06-04 13:37:57,487 - WARNING - Unknown message type: unknown
+2025-06-04 13:37:57,487 - INFO - Received message type: message from client bb1df45e-ac32-4b2d-9f3c-9b71aaabeb1f
+2025-06-04 13:37:57,487 - WARNING - Unknown message type: message
+2025-06-04 13:37:57,487 - ERROR - Error processing message: received 1000 (OK); then sent 1000 (OK)
+2025-06-04 13:37:57,488 - INFO - Client bb1df45e-ac32-4b2d-9f3c-9b71aaabeb1f disconnected

@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Memory System Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns"></script>
+    <style>
+        .gradient-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        .card-hover {
+            transition: transform 0.2s;
+        }
+        .card-hover:hover {
+            transform: translateY(-2px);
+        }
+        .progress-ring {
+            transform: rotate(-90deg);
+        }
+        .progress-ring__circle {
+            transition: stroke-dashoffset 0.35s;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <div class="min-h-screen">
+        <!-- Welcome Message -->
+        <div class="gradient-bg text-white py-8">
+            <div class="container mx-auto px-4 text-center">
+                <h1 class="text-4xl font-bold mb-4">✨ Welcome to the Future of AI Interaction! ✨</h1>
+                <p class="text-xl mb-6">Your supercharged AI companion, ready to transform how you work, create, and communicate.</p>
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-4 max-w-4xl mx-auto">
+                    <div class="bg-white/10 rounded-lg p-4 backdrop-blur-sm">
+                        <span class="text-2xl mb-2 block">💭</span>
+                        <p class="text-sm">Ask me anything</p>
+                    </div>
+                    <div class="bg-white/10 rounded-lg p-4 backdrop-blur-sm">
+                        <span class="text-2xl mb-2 block">🤖</span>
+                        <p class="text-sm">Let me automate tasks</p>
+                    </div>
+                    <div class="bg-white/10 rounded-lg p-4 backdrop-blur-sm">
+                        <span class="text-2xl mb-2 block">✨</span>
+                        <p class="text-sm">Get smart suggestions</p>
+                    </div>
+                    <div class="bg-white/10 rounded-lg p-4 backdrop-blur-sm">
+                        <span class="text-2xl mb-2 block">🎨</span>
+                        <p class="text-sm">Boost your creativity</p>
+                    </div>
+                </div>
+                <div class="mt-6 bg-white/10 rounded-lg p-4 backdrop-blur-sm inline-block">
+                    <span class="text-2xl mb-2 block">🎤</span>
+                    <p class="text-sm font-semibold">NEW: Try voice recording and calls with the new buttons below!</p>
+                </div>
+                <p class="mt-6 text-lg font-medium">What amazing things shall we accomplish today?</p>
+            </div>
+        </div>
+
+        <!-- Header -->
+        <header class="gradient-bg text-white shadow-lg">
+            <div class="container mx-auto px-4 py-6">
+                <div class="flex justify-between items-center">
+                    <h1 class="text-3xl font-bold">Memory System Dashboard</h1>
+                    <div class="flex items-center space-x-4">
+                        <span class="text-sm" id="last-update">Last update: Never</span>
+                        <div class="w-3 h-3 rounded-full bg-green-400 animate-pulse" id="connection-status"></div>
+                </div>
+            </div>
+        </div>
+        </header>
+
+        <div class="container mx-auto px-4 py-8">
+            <!-- Memory Overview Cards -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                <div class="bg-white rounded-xl shadow-md p-6 card-hover">
+                    <div class="flex items-center justify-between mb-4">
+                        <h3 class="text-lg font-semibold text-gray-700">Short-term Memory</h3>
+                        <div class="w-12 h-12 relative">
+                            <svg class="progress-ring" width="48" height="48">
+                                <circle class="progress-ring__circle" stroke="#E5E7EB" stroke-width="4" fill="transparent" r="20" cx="24" cy="24"/>
+                                <circle class="progress-ring__circle" stroke="#3B82F6" stroke-width="4" fill="transparent" r="20" cx="24" cy="24" id="short-term-ring"/>
+                            </svg>
+                            <span class="absolute inset-0 flex items-center justify-center text-sm font-medium" id="short-term-count">0</span>
+                        </div>
+                    </div>
+                    <p class="text-sm text-gray-500">Active memory items</p>
+                    </div>
+                    
+                <div class="bg-white rounded-xl shadow-md p-6 card-hover">
+                    <div class="flex items-center justify-between mb-4">
+                        <h3 class="text-lg font-semibold text-gray-700">Long-term Memory</h3>
+                        <div class="w-12 h-12 relative">
+                            <svg class="progress-ring" width="48" height="48">
+                                <circle class="progress-ring__circle" stroke="#E5E7EB" stroke-width="4" fill="transparent" r="20" cx="24" cy="24"/>
+                                <circle class="progress-ring__circle" stroke="#10B981" stroke-width="4" fill="transparent" r="20" cx="24" cy="24" id="long-term-ring"/>
+                            </svg>
+                            <span class="absolute inset-0 flex items-center justify-center text-sm font-medium" id="long-term-count">0</span>
+                            </div>
+                            </div>
+                    <p class="text-sm text-gray-500">Persistent memory items</p>
+                            </div>
+                            
+                <div class="bg-white rounded-xl shadow-md p-6 card-hover">
+                    <div class="flex items-center justify-between mb-4">
+                        <h3 class="text-lg font-semibold text-gray-700">Active Tasks</h3>
+                        <div class="w-12 h-12 relative">
+                            <svg class="progress-ring" width="48" height="48">
+                                <circle class="progress-ring__circle" stroke="#E5E7EB" stroke-width="4" fill="transparent" r="20" cx="24" cy="24"/>
+                                <circle class="progress-ring__circle" stroke="#8B5CF6" stroke-width="4" fill="transparent" r="20" cx="24" cy="24" id="tasks-ring"/>
+                            </svg>
+                            <span class="absolute inset-0 flex items-center justify-center text-sm font-medium" id="active-tasks">0</span>
+                            </div>
+                        </div>
+                    <p class="text-sm text-gray-500">Current running tasks</p>
+                </div>
+            </div>
+            
+            <!-- System Metrics -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                <div class="bg-white rounded-xl shadow-md p-6">
+                    <h3 class="text-lg font-semibold text-gray-700 mb-4">System Resources</h3>
+                    <div class="space-y-4">
+                        <div>
+                            <div class="flex justify-between mb-1">
+                                <span class="text-sm font-medium text-gray-600">CPU Usage</span>
+                                <span class="text-sm font-medium text-gray-600" id="cpu-usage">0%</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-2">
+                                <div class="bg-blue-600 h-2 rounded-full transition-all duration-500" id="cpu-bar" style="width: 0%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-1">
+                                <span class="text-sm font-medium text-gray-600">Memory Usage</span>
+                                <span class="text-sm font-medium text-gray-600" id="memory-usage">0%</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-2">
+                                <div class="bg-green-600 h-2 rounded-full transition-all duration-500" id="memory-bar" style="width: 0%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-1">
+                                <span class="text-sm font-medium text-gray-600">Disk Usage</span>
+                                <span class="text-sm font-medium text-gray-600" id="disk-usage">0%</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-2">
+                                <div class="bg-purple-600 h-2 rounded-full transition-all duration-500" id="disk-bar" style="width: 0%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Activity Log -->
+            <div class="bg-white rounded-xl shadow-md p-6">
+                <div class="flex justify-between items-center mb-4">
+                    <h3 class="text-lg font-semibold text-gray-700">Recent Activity</h3>
+                    <span class="text-sm text-gray-500" id="activity-count">0 events</span>
+                                </div>
+                <div id="activity-log" class="space-y-2 max-h-96 overflow-y-auto">
+                    <!-- Activity items will be added here -->
+                            </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+            <!-- Memory Flow Visualization -->
+            <div class="bg-white rounded-xl shadow-md p-6 mb-8">
+                <h3 class="text-lg font-semibold text-gray-700 mb-4">Memory Flow</h3>
+                <div id="memory-flow" class="h-64"></div>
+            </div>
+            
+            <!-- Memory Distribution -->
+            <div class="bg-white rounded-xl shadow-md p-6 mb-8">
+                <h3 class="text-lg font-semibold text-gray-700 mb-4">Memory Distribution</h3>
+                <canvas id="memory-distribution-chart" class="h-64"></canvas>
+            </div>
+            
+            <!-- System Performance -->
+            <div class="bg-white rounded-xl shadow-md p-6">
+                <h3 class="text-lg font-semibold text-gray-700 mb-4">System Performance</h3>
+                <canvas id="system-performance-chart" class="h-64"></canvas>
+            </div>
+
+            <!-- Memory Types & Content Preview -->
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+                <div class="bg-blue-50 rounded-xl shadow-md p-4">
+                    <h4 class="font-semibold text-blue-700 mb-2 flex items-center">Short-term <span class="ml-2 text-xs text-gray-400" title="Temporary, fast-access memory">[?]</span></h4>
+                    <ul id="short-term-content" class="text-xs text-gray-700 space-y-1 max-h-32 overflow-y-auto"></ul>
+                </div>
+                <div class="bg-green-50 rounded-xl shadow-md p-4">
+                    <h4 class="font-semibold text-green-700 mb-2 flex items-center">Long-term <span class="ml-2 text-xs text-gray-400" title="Persistent, slow-changing memory">[?]</span></h4>
+                    <ul id="long-term-content" class="text-xs text-gray-700 space-y-1 max-h-32 overflow-y-auto"></ul>
+                </div>
+                <div class="bg-purple-50 rounded-xl shadow-md p-4">
+                    <h4 class="font-semibold text-purple-700 mb-2 flex items-center">Contextual <span class="ml-2 text-xs text-gray-400" title="Context-aware, situational memory">[?]</span></h4>
+                    <ul id="contextual-content" class="text-xs text-gray-700 space-y-1 max-h-32 overflow-y-auto"></ul>
+                </div>
+                <div class="bg-yellow-50 rounded-xl shadow-md p-4">
+                    <h4 class="font-semibold text-yellow-700 mb-2 flex items-center">Conscious <span class="ml-2 text-xs text-gray-400" title="Currently active, attended memory">[?]</span></h4>
+                    <ul id="conscious-content" class="text-xs text-gray-700 space-y-1 max-h-32 overflow-y-auto"></ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Initialize WebSocket connection
+        const ws = new WebSocket('ws://localhost:8082');
+        let isConnected = false;
+
+        // Initialize charts
+        const memoryDistributionChart = new Chart(document.getElementById('memory-distribution-chart'), {
+            type: 'doughnut',
+            data: {
+                labels: ['Short-term', 'Long-term', 'Contextual', 'Conscious'],
+                datasets: [{
+                    data: [0, 0, 0, 0],
+                    backgroundColor: ['#3B82F6', '#10B981', '#8B5CF6', '#F59E0B']
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'bottom'
+                    }
+                }
+            }
+        });
+
+        const systemPerformanceChart = new Chart(document.getElementById('system-performance-chart'), {
+            type: 'line',
+            data: {
+                labels: [],
+                datasets: [{
+                    label: 'CPU Usage',
+                    data: [],
+                    borderColor: '#3B82F6',
+                    tension: 0.4,
+                    fill: false
+                }, {
+                    label: 'Memory Usage',
+                    data: [],
+                    borderColor: '#10B981',
+                    tension: 0.4,
+                    fill: false
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'bottom'
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        max: 100,
+                        title: {
+                            display: true,
+                            text: 'Usage (%)'
+                        }
+                    }
+                }
+            }
+        });
+
+        // Update progress rings
+        function updateProgressRing(elementId, value, max = 100) {
+            const circle = document.getElementById(elementId);
+            const radius = circle.r.baseVal.value;
+            const circumference = radius * 2 * Math.PI;
+            const offset = circumference - (value / max) * circumference;
+            circle.style.strokeDasharray = `${circumference} ${circumference}`;
+            circle.style.strokeDashoffset = offset;
+        }
+
+        // Update metrics when receiving data
+        ws.onmessage = function(event) {
+            const data = JSON.parse(event.data);
+            console.log('Received data:', data);  // Debug log
+            
+            // Update connection status
+            if (!isConnected) {
+                isConnected = true;
+                document.getElementById('connection-status').classList.remove('bg-red-400');
+                document.getElementById('connection-status').classList.add('bg-green-400');
+            }
+            
+            // Update last update time
+            document.getElementById('last-update').textContent = `Last update: ${new Date().toLocaleTimeString()}`;
+            
+            // Update memory counts and rings
+            document.getElementById('short-term-count').textContent = data.short_term_count || 0;
+            document.getElementById('long-term-count').textContent = data.long_term_count || 0;
+            document.getElementById('active-tasks').textContent = data.active_tasks || 0;
+            
+            updateProgressRing('short-term-ring', data.short_term_count || 0, 100);
+            updateProgressRing('long-term-ring', data.long_term_count || 0, 100);
+            updateProgressRing('tasks-ring', data.active_tasks || 0, 10);
+            
+            // Update system metrics
+            document.getElementById('cpu-usage').textContent = `${data.cpu_usage || 0}%`;
+            document.getElementById('memory-usage').textContent = `${data.memory_usage_percent || 0}%`;
+            document.getElementById('disk-usage').textContent = `${data.disk_usage || 0}%`;
+            
+            document.getElementById('cpu-bar').style.width = `${data.cpu_usage || 0}%`;
+            document.getElementById('memory-bar').style.width = `${data.memory_usage_percent || 0}%`;
+            document.getElementById('disk-bar').style.width = `${data.disk_usage || 0}%`;
+            
+            // Update memory distribution chart
+            memoryDistributionChart.data.datasets[0].data = [
+                data.short_term_count || 0,
+                data.long_term_count || 0,
+                data.context_count || 0,
+                data.conscious_count || 0
+            ];
+            memoryDistributionChart.update();
+            
+            // Update system performance chart
+            const timestamp = new Date().toLocaleTimeString();
+            systemPerformanceChart.data.labels.push(timestamp);
+            systemPerformanceChart.data.datasets[0].data.push(data.cpu_usage || 0);
+            systemPerformanceChart.data.datasets[1].data.push(data.memory_usage_percent || 0);
+            
+            // Keep only last 20 points
+            if (systemPerformanceChart.data.labels.length > 20) {
+                systemPerformanceChart.data.labels.shift();
+                systemPerformanceChart.data.datasets[0].data.shift();
+                systemPerformanceChart.data.datasets[1].data.shift();
+            }
+            
+            systemPerformanceChart.update();
+            
+            // Add to activity log
+            const activityLog = document.getElementById('activity-log');
+            const activityItem = document.createElement('div');
+            activityItem.className = 'p-3 bg-gray-50 rounded-lg border border-gray-100';
+            activityItem.innerHTML = `
+                <div class="flex justify-between items-start">
+                    <div>
+                        <span class="text-sm font-medium text-gray-900">${data.details || 'System update'}</span>
+                        <p class="text-xs text-gray-500 mt-1">System metrics updated</p>
+                    </div>
+                    <span class="text-xs text-gray-500">${timestamp}</span>
+                </div>
+            `;
+            activityLog.insertBefore(activityItem, activityLog.firstChild);
+            
+            // Update activity count
+            const activityCount = activityLog.children.length;
+            document.getElementById('activity-count').textContent = `${activityCount} event${activityCount !== 1 ? 's' : ''}`;
+            
+            // Keep only last 10 activities
+            while (activityLog.children.length > 10) {
+                activityLog.removeChild(activityLog.lastChild);
+            }
+
+            // Update content previews
+            updateMemoryContent(data);
+        };
+
+        // Handle connection errors
+        ws.onerror = function(error) {
+            console.error('WebSocket error:', error);
+            document.getElementById('connection-status').classList.remove('bg-green-400');
+            document.getElementById('connection-status').classList.add('bg-red-400');
+            isConnected = false;
+        };
+
+        // Handle connection close
+        ws.onclose = function() {
+            console.log('WebSocket connection closed');
+            document.getElementById('connection-status').classList.remove('bg-green-400');
+            document.getElementById('connection-status').classList.add('bg-red-400');
+            isConnected = false;
+        };
+
+        // Update content previews
+        function updateMemoryContent(data) {
+            const shortList = document.getElementById('short-term-content');
+            const longList = document.getElementById('long-term-content');
+            const contextList = document.getElementById('contextual-content');
+            const consList = document.getElementById('conscious-content');
+            
+            shortList.innerHTML = (data.short_term_content || []).map(item => `<li title="${item}">${item.slice(0, 60)}${item.length > 60 ? '…' : ''}</li>`).join('');
+            longList.innerHTML = (data.long_term_content || []).map(item => `<li title="${item}">${item.slice(0, 60)}${item.length > 60 ? '…' : ''}</li>`).join('');
+            contextList.innerHTML = (data.contextual_content || []).map(item => `<li title="${item}">${item.slice(0, 60)}${item.length > 60 ? '…' : ''}</li>`).join('');
+            consList.innerHTML = (data.conscious_content || []).map(item => `<li title="${item}">${item.slice(0, 60)}${item.length > 60 ? '…' : ''}</li>`).join('');
+        }
+    </script>
+</body>
+</html>

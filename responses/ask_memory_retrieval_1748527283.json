@@ -1,0 +1,61 @@
+{
+  "scenario": {
+    "id": "ask_memory_retrieval",
+    "mode": "ask",
+    "message": "what websites have I visited recently?",
+    "expected_keywords": [
+      "websites",
+      "visited",
+      "browser",
+      "recently"
+    ],
+    "memory_indicators": [
+      "browsing history",
+      "visited",
+      "website"
+    ],
+    "context_indicators": [
+      "recently",
+      "detected",
+      "browser"
+    ],
+    "description": "Tests ask mode's ability to retrieve browsing history from memory"
+  },
+  "final_response": {
+    "type": "final_response",
+    "mode": "ask",
+    "response": "\ud83e\udd16 Based on your current screen state, I'm going to take a guess that you've visited the following websites recently:\n\n\n* Email app: You might be checking your emails or composing a new message.\n* File manager: It's possible you're browsing through files or moving them around.\n* Social media platforms: You may have viewed something on Facebook, Twitter, Instagram, or another platform.\n\n\nAs for other websites that might not be immediately apparent, I've noticed that:\n\n\n* Your browser is open to \"Google\" (a common search engine).\n\n\nIf we dig a bit deeper, you also seem to have visited the following online services recently:\n\n\n* A weather app: You might have checked the current weather forecast or saved it for later.\n* An e-commerce platform: It's possible you've browsed through products or added something to your cart.\n\nKeep in mind that this is just an educated guess based on your screen state and available context. I don't have any specific information about your recent activities, so I'm basing my response on the data I can see on your screen.",
+    "client_id": "client_1748527116279",
+    "timestamp": "2025-05-29T10:01:23.096467",
+    "processing_method": "agnostic_deep_data",
+    "data_sources": [
+      "screen_analysis",
+      "memory_context"
+    ],
+    "success": true
+  },
+  "combined_response": "\ud83e\udd16 Based on your current screen state, I'm going to take a guess that you've visited the following websites recently:\n\n\n* Email app: You might be checking your emails or composing a new message.\n* File manager: It's possible you're browsing through files or moving them around.\n* Social media platforms: You may have viewed something on Facebook, Twitter, Instagram, or another platform.\n\n\nAs for other websites that might not be immediately apparent, I've noticed that:\n\n\n* Your browser is open to \"Google\" (a common search engine).\n\n\nIf we dig a bit deeper, you also seem to have visited the following online services recently:\n\n\n* A weather app: You might have checked the current weather forecast or saved it for later.\n* An e-commerce platform: It's possible you've browsed through products or added something to your cart.\n\nKeep in mind that this is just an educated guess based on your screen state and available context. I don't have any specific information about your recent activities, so I'm basing my response on the data I can see on your screen.",
+  "progress_updates": [],
+  "response_time": 47.01482391357422,
+  "evaluation": {
+    "success": true,
+    "quality_score": 0.8333333333333333,
+    "memory_score": 0.6666666666666666,
+    "context_score": 0.6666666666666666,
+    "explanation": "Found 4/4 keywords, 2/3 memory indicators, 2/3 context indicators. Overall quality: 0.83/1.0",
+    "keyword_matches": [
+      "websites",
+      "visited",
+      "browser",
+      "recently"
+    ],
+    "memory_matches": [
+      "visited",
+      "website"
+    ],
+    "context_matches": [
+      "recently",
+      "browser"
+    ]
+  }
+}

@@ -1,0 +1,1724 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agent DO Button Comprehensive Exam Framework</title>
+    <style>
+        :root {
+            --primary-color: #4CAF50;
+            --primary-dark: #388E3C;
+            --primary-light: #A5D6A7;
+            --secondary-color: #2196F3;
+            --secondary-dark: #1976D2;
+            --danger-color: #F44336;
+            --warning-color: #FFC107;
+            --success-color: #4CAF50;
+            --dark-text: #333333;
+            --light-text: #FFFFFF;
+            --border-radius: 8px;
+            --box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f7fa;
+            color: var(--dark-text);
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            background-color: var(--primary-color);
+            color: var(--light-text);
+            padding: 20px 0;
+            text-align: center;
+            margin-bottom: 30px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+        }
+        
+        h1, h2, h3, h4 {
+            margin-top: 0;
+        }
+        
+        .grid {
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 20px;
+        }
+        
+        .card {
+            background-color: #fff;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .card-header {
+            border-bottom: 1px solid #eee;
+            padding-bottom: 10px;
+            margin-bottom: 15px;
+            font-weight: bold;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .exam-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 15px;
+        }
+        
+        .exam-card {
+            background-color: #fff;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            padding: 15px;
+            transition: transform 0.2s, box-shadow 0.2s;
+            cursor: pointer;
+        }
+        
+        .exam-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+        }
+        
+        .exam-card.active {
+            border: 2px solid var(--primary-color);
+        }
+        
+        .badge {
+            display: inline-block;
+            padding: 3px 8px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: bold;
+            margin-right: 5px;
+        }
+        
+        .badge-easy {
+            background-color: #C8E6C9;
+            color: #2E7D32;
+        }
+        
+        .badge-medium {
+            background-color: #FFE0B2;
+            color: #E65100;
+        }
+        
+        .badge-hard {
+            background-color: #FFCDD2;
+            color: #C62828;
+        }
+        
+        .badge-expert {
+            background-color: #D1C4E9;
+            color: #4527A0;
+        }
+        
+        button {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 10px 16px;
+            font-size: 14px;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            transition: background-color 0.2s;
+            font-weight: bold;
+        }
+        
+        button:hover {
+            background-color: var(--primary-dark);
+        }
+        
+        button:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
+        
+        button.secondary {
+            background-color: var(--secondary-color);
+        }
+        
+        button.secondary:hover {
+            background-color: var(--secondary-dark);
+        }
+        
+        button.danger {
+            background-color: var(--danger-color);
+        }
+        
+        button.danger:hover {
+            background-color: #D32F2F;
+        }
+        
+        .btn-do {
+            background-color: var(--success-color);
+            padding: 12px 24px;
+            font-size: 16px;
+        }
+        
+        .btn-do:hover {
+            background-color: #388E3C;
+        }
+        
+        .btn-dismiss {
+            background-color: var(--danger-color);
+            padding: 12px 24px;
+            font-size: 16px;
+        }
+        
+        .btn-dismiss:hover {
+            background-color: #D32F2F;
+        }
+        
+        .test-area {
+            position: relative;
+            width: 100%;
+            height: 400px;
+            background-color: #fff;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            margin-bottom: 20px;
+            overflow: hidden;
+        }
+        
+        .test-element {
+            position: absolute;
+            background-color: #f5f5f5;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            transition: all 0.2s;
+        }
+        
+        .test-element:hover {
+            background-color: #e0e0e0;
+        }
+        
+        .test-element.button {
+            background-color: var(--secondary-color);
+            color: white;
+            padding: 8px 12px;
+            cursor: pointer;
+        }
+        
+        .test-element.input {
+            background-color: white;
+            padding: 8px;
+            cursor: text;
+        }
+        
+        .test-element.target {
+            border: 2px dashed var(--success-color);
+        }
+        
+        .text-input {
+            width: 100%;
+            padding: 12px;
+            font-size: 16px;
+            border: 1px solid #ddd;
+            border-radius: var(--border-radius);
+            margin-bottom: 20px;
+            box-sizing: border-box;
+        }
+        
+        .plan-display {
+            background-color: #f8f9fa;
+            border-radius: var(--border-radius);
+            padding: 15px;
+            font-family: monospace;
+            white-space: pre-wrap;
+            max-height: 300px;
+            overflow-y: auto;
+            border-left: 4px solid var(--primary-color);
+            margin-bottom: 20px;
+        }
+        
+        .log-display {
+            background-color: #f8f9fa;
+            border-radius: var(--border-radius);
+            padding: 15px;
+            font-family: monospace;
+            white-space: pre-wrap;
+            height: 200px;
+            overflow-y: auto;
+            border-left: 4px solid var(--secondary-color);
+            margin-bottom: 20px;
+            font-size: 13px;
+        }
+        
+        .progress-container {
+            margin: 20px 0;
+        }
+        
+        .progress-bar {
+            height: 10px;
+            background-color: #e0e0e0;
+            border-radius: 5px;
+            overflow: hidden;
+            margin-bottom: 10px;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary-color) 0%, var(--primary-light) 100%);
+            width: 0%;
+            transition: width 0.5s ease;
+        }
+        
+        .progress-text {
+            text-align: center;
+            font-size: 14px;
+            color: #555;
+        }
+        
+        .score-display {
+            font-size: 20px;
+            font-weight: bold;
+            text-align: center;
+            margin: 20px 0;
+            padding: 15px;
+            background-color: #f8f9fa;
+            border-radius: var(--border-radius);
+        }
+        
+        .score-100 {
+            color: var(--success-color);
+        }
+        
+        .score-70 {
+            color: var(--warning-color);
+        }
+        
+        .score-low {
+            color: var(--danger-color);
+        }
+        
+        .connection-status {
+            padding: 10px;
+            border-radius: var(--border-radius);
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .connection-status.connected {
+            background-color: #E8F5E9;
+            color: #2E7D32;
+        }
+        
+        .connection-status.disconnected {
+            background-color: #FFEBEE;
+            color: #C62828;
+        }
+        
+        .connection-status.connecting {
+            background-color: #FFF8E1;
+            color: #F57F17;
+        }
+        
+        .tab-container {
+            display: flex;
+            margin-bottom: 20px;
+        }
+        
+        .tab {
+            padding: 10px 20px;
+            cursor: pointer;
+            background-color: #f5f5f5;
+            border: 1px solid #ddd;
+            border-bottom: none;
+            border-radius: 4px 4px 0 0;
+            margin-right: 5px;
+        }
+        
+        .tab.active {
+            background-color: #fff;
+            border-bottom: 2px solid var(--primary-color);
+            font-weight: bold;
+        }
+        
+        .tab-content {
+            display: none;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 0 0 var(--border-radius) var(--border-radius);
+            box-shadow: var(--box-shadow);
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        /* Modal styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .modal-content {
+            background-color: #fff;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            padding: 20px;
+            width: 80%;
+            max-width: 600px;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+        
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 10px;
+            margin-bottom: 15px;
+        }
+        
+        .modal-close {
+            font-size: 24px;
+            cursor: pointer;
+            color: #999;
+        }
+        
+        .modal-close:hover {
+            color: #333;
+        }
+        
+        /* Results table */
+        .results-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        
+        .results-table th, .results-table td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .results-table th {
+            background-color: #f5f5f5;
+            font-weight: bold;
+        }
+        
+        .results-table tr:hover {
+            background-color: #f9f9f9;
+        }
+        
+        /* Tooltip */
+        .tooltip {
+            position: relative;
+            display: inline-block;
+        }
+        
+        .tooltip .tooltip-text {
+            visibility: hidden;
+            width: 200px;
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            border-radius: 6px;
+            padding: 5px;
+            position: absolute;
+            z-index: 1;
+            bottom: 125%;
+            left: 50%;
+            margin-left: -100px;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        
+        .tooltip:hover .tooltip-text {
+            visibility: visible;
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Agent DO Button Comprehensive Exam Framework</h1>
+        <p>Test the agent's ability to understand screen elements, create accurate plans, and execute them correctly</p>
+    </header>
+    
+    <div class="container">
+        <div class="connection-status" id="connectionStatus">
+            Initializing connection...
+        </div>
+        
+        <div class="grid">
+            <div>
+                <!-- Exam selection panel -->
+                <div class="card">
+                    <div class="card-header">
+                        <h3>Exam Selection</h3>
+                        <button id="refreshExamsBtn">Refresh</button>
+                    </div>
+                    <div class="exam-grid" id="examGrid">
+                        <!-- Exam cards will be generated here -->
+                    </div>
+                </div>
+                
+                <!-- Agent message panel -->
+                <div class="card">
+                    <div class="card-header">
+                        <h3>Agent Message</h3>
+                        <div>
+                            <button id="sendMessageBtn" disabled>Send to Agent</button>
+                        </div>
+                    </div>
+                    <textarea id="agentMessage" class="text-input" rows="4" placeholder="Enter a message to send to the agent..."></textarea>
+                    <div class="progress-container" id="progressContainer" style="display: none;">
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="progressFill"></div>
+                        </div>
+                        <div class="progress-text" id="progressText">0% - Waiting for agent...</div>
+                    </div>
+                </div>
+                
+                <!-- Execution controls -->
+                <div class="card">
+                    <div class="card-header">
+                        <h3>Execution Controls</h3>
+                    </div>
+                    <div style="display: flex; gap: 10px; margin-bottom: 15px;">
+                        <button id="doButton" class="btn-do" disabled>🟢 DO</button>
+                        <button id="dismissButton" class="btn-dismiss" disabled>🔴 DISMISS</button>
+                    </div>
+                    <div class="score-display" id="scoreDisplay">
+                        Score: --
+                    </div>
+                </div>
+            </div>
+            
+            <div>
+                <!-- Main content area -->
+                <div class="card">
+                    <div class="card-header">
+                        <h3>Exam: <span id="currentExamTitle">None Selected</span></h3>
+                        <div>
+                            <button id="resetExamBtn" disabled>Reset Exam</button>
+                        </div>
+                    </div>
+                    
+                    <div class="tab-container" id="tabContainer">
+                        <div class="tab active" data-tab="testArea">Test Area</div>
+                        <div class="tab" data-tab="planView">Plan View</div>
+                        <div class="tab" data-tab="resultsView">Results</div>
+                        <div class="tab" data-tab="logsView">Logs</div>
+                    </div>
+                    
+                    <div class="tab-content active" id="testArea">
+                        <div class="test-area" id="testAreaContainer">
+                            <!-- Test elements will be placed here by JavaScript -->
+                        </div>
+                    </div>
+                    
+                    <div class="tab-content" id="planView">
+                        <div class="plan-display" id="planDisplay">
+                            No plan available. Send a message to the agent first.
+                        </div>
+                    </div>
+                    
+                    <div class="tab-content" id="resultsView">
+                        <table class="results-table" id="resultsTable">
+                            <thead>
+                                <tr>
+                                    <th>Test</th>
+                                    <th>Expected Action</th>
+                                    <th>Actual Action</th>
+                                    <th>Score</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- Results will be filled by JavaScript -->
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <div class="tab-content" id="logsView">
+                        <div class="log-display" id="logDisplay">
+                            Waiting for test execution...
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Message log -->
+                <div class="card">
+                    <div class="card-header">
+                        <h3>WebSocket Messages</h3>
+                        <button id="clearLogBtn">Clear</button>
+                    </div>
+                    <div class="log-display" id="messageLog">
+                        Waiting for WebSocket connection...
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Results Modal -->
+    <div class="modal" id="resultsModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Exam Results</h2>
+                <span class="modal-close" id="closeResultsModal">&times;</span>
+            </div>
+            <div id="modalContent">
+                <!-- Results content will be filled by JavaScript -->
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // DOM Elements
+            const connectionStatus = document.getElementById('connectionStatus');
+            const messageLog = document.getElementById('messageLog');
+            const logDisplay = document.getElementById('logDisplay');
+            const agentMessage = document.getElementById('agentMessage');
+            const sendMessageBtn = document.getElementById('sendMessageBtn');
+            const doButton = document.getElementById('doButton');
+            const dismissButton = document.getElementById('dismissButton');
+            const progressContainer = document.getElementById('progressContainer');
+            const progressFill = document.getElementById('progressFill');
+            const progressText = document.getElementById('progressText');
+            const scoreDisplay = document.getElementById('scoreDisplay');
+            const planDisplay = document.getElementById('planDisplay');
+            const examGrid = document.getElementById('examGrid');
+            const refreshExamsBtn = document.getElementById('refreshExamsBtn');
+            const resetExamBtn = document.getElementById('resetExamBtn');
+            const currentExamTitle = document.getElementById('currentExamTitle');
+            const testAreaContainer = document.getElementById('testAreaContainer');
+            const resultsTable = document.getElementById('resultsTable').querySelector('tbody');
+            const clearLogBtn = document.getElementById('clearLogBtn');
+            const resultsModal = document.getElementById('resultsModal');
+            const closeResultsModal = document.getElementById('closeResultsModal');
+            const modalContent = document.getElementById('modalContent');
+            
+            // Tab functionality
+            const tabs = document.querySelectorAll('.tab');
+            const tabContents = document.querySelectorAll('.tab-content');
+            
+            tabs.forEach(tab => {
+                tab.addEventListener('click', function() {
+                    const tabId = this.getAttribute('data-tab');
+                    
+                    // Remove active class from all tabs and contents
+                    tabs.forEach(t => t.classList.remove('active'));
+                    tabContents.forEach(c => c.classList.remove('active'));
+                    
+                    // Add active class to current tab and content
+                    this.classList.add('active');
+                    document.getElementById(tabId).classList.add('active');
+                });
+            });
+            
+            // WebSocket connection
+            let ws = null;
+            let currentExam = null;
+            let sessionId = 'exam_session_' + Date.now();
+            let currentPlan = null;
+            let currentResults = [];
+            let executionInProgress = false;
+            
+            // Connect to WebSocket server
+            function connect() {
+                connectionStatus.className = 'connection-status connecting';
+                connectionStatus.textContent = 'Connecting to WebSocket server...';
+                
+                try {
+                    ws = new WebSocket('ws://localhost:8765');
+                    
+                    ws.onopen = function() {
+                        connectionStatus.className = 'connection-status connected';
+                        connectionStatus.textContent = '✅ Connected to WebSocket server';
+                        addToLog('Connected to WebSocket server', 'server');
+                        
+                        // Enable buttons based on exam selection
+                        updateButtonStates();
+                        
+                        // Load available exams
+                        loadExams();
+                    };
+                    
+                    ws.onmessage = function(event) {
+                        try {
+                            const data = JSON.parse(event.data);
+                            addToLog('Received: ' + JSON.stringify(data, null, 2), 'server');
+                            
+                            // Handle different message types
+                            handleServerMessage(data);
+                        } catch (e) {
+                            addToLog('Error parsing message: ' + e, 'error');
+                            addToLog('Raw message: ' + event.data, 'error');
+                        }
+                    };
+                    
+                    ws.onclose = function(event) {
+                        connectionStatus.className = 'connection-status disconnected';
+                        connectionStatus.textContent = '❌ Disconnected from WebSocket server';
+                        addToLog('WebSocket connection closed: ' + (event.reason || 'Connection closed'), 'error');
+                        
+                        // Disable buttons
+                        sendMessageBtn.disabled = true;
+                        doButton.disabled = true;
+                        dismissButton.disabled = true;
+                        
+                        // Try to reconnect after 3 seconds
+                        setTimeout(connect, 3000);
+                    };
+                    
+                    ws.onerror = function(error) {
+                        connectionStatus.className = 'connection-status disconnected';
+                        connectionStatus.textContent = '❌ WebSocket error';
+                        addToLog('WebSocket error: ' + error, 'error');
+                    };
+                } catch (e) {
+                    connectionStatus.className = 'connection-status disconnected';
+                    connectionStatus.textContent = '❌ Connection error: ' + e.message;
+                    addToLog('Connection error: ' + e.message, 'error');
+                    
+                    // Try to reconnect after 3 seconds
+                    setTimeout(connect, 3000);
+                }
+            }
+            
+            // Handle server messages based on type
+            function handleServerMessage(data) {
+                const msgType = data.type;
+                
+                if (msgType === 'welcome') {
+                    // Welcome message, no special handling needed
+                } 
+                else if (msgType === 'agent_progress') {
+                    // Update progress bar
+                    progressContainer.style.display = 'block';
+                    progressFill.style.width = data.progress + '%';
+                    progressText.textContent = data.progress + '% - ' + data.message;
+                    
+                    // Log to execution log
+                    addToExecutionLog('Progress: ' + data.progress + '% - ' + data.message);
+                } 
+                else if (msgType === 'agent_execution_success') {
+                    // Execution completed successfully
+                    progressContainer.style.display = 'block';
+                    progressFill.style.width = '100%';
+                    progressText.textContent = '100% - ' + data.summary;
+                    
+                    // Log completion
+                    addToExecutionLog('✅ Execution completed: ' + data.summary);
+                    
+                    // Calculate score if an exam is active
+                    if (currentExam && !executionInProgress) {
+                        calculateScore(data);
+                    }
+                    
+                    executionInProgress = false;
+                } 
+                else if (msgType === 'agent_execution_error') {
+                    // Execution failed
+                    addToExecutionLog('❌ Execution failed: ' + data.error);
+                    executionInProgress = false;
+                } 
+                else if (msgType === 'agent_dismissed') {
+                    // Plan dismissed
+                    addToExecutionLog('❌ Plan dismissed: ' + data.message);
+                    executionInProgress = false;
+                } 
+                else if (msgType === 'plan_created') {
+                    // Update plan display
+                    if (data.plan) {
+                        currentPlan = data.plan;
+                        updatePlanDisplay(data.plan);
+                        
+                        // Enable DO and DISMISS buttons
+                        doButton.disabled = false;
+                        dismissButton.disabled = false;
+                    }
+                }
+            }
+            
+            // Add message to the WebSocket log
+            function addToLog(message, type = 'info') {
+                const now = new Date().toLocaleTimeString();
+                const logEntry = document.createElement('div');
+                logEntry.className = type;
+                logEntry.textContent = `[${now}] ${message}`;
+                
+                // Add to the top of the log
+                messageLog.insertBefore(logEntry, messageLog.firstChild);
+                
+                // Limit log entries to 100
+                if (messageLog.childNodes.length > 100) {
+                    messageLog.removeChild(messageLog.lastChild);
+                }
+            }
+            
+            // Add message to the execution log
+            function addToExecutionLog(message) {
+                const now = new Date().toLocaleTimeString();
+                logDisplay.textContent += `[${now}] ${message}\n`;
+                
+                // Auto-scroll to bottom
+                logDisplay.scrollTop = logDisplay.scrollHeight;
+            }
+            
+            // Update the plan display
+            function updatePlanDisplay(plan) {
+                if (typeof plan === 'string') {
+                    planDisplay.textContent = plan;
+                } else {
+                    planDisplay.textContent = JSON.stringify(plan, null, 2);
+                }
+                
+                // Switch to plan view tab
+                document.querySelector('.tab[data-tab="planView"]').click();
+            }
+            
+            // Load available exams
+            function loadExams() {
+                // Clear existing exams
+                examGrid.innerHTML = '';
+                
+                // Example exam data - in a real implementation, this could be loaded from a server
+                const exams = [
+                    {
+                        id: 'exam1',
+                        title: 'Basic Click Test',
+                        difficulty: 'easy',
+                        description: 'Test the agent\'s ability to click on a simple button target.',
+                        elements: [
+                            { type: 'button', x: 200, y: 150, width: 100, height: 40, text: 'Click Me', id: 'target1', isTarget: true }
+                        ],
+                        expectedActions: [
+                            { type: 'click', target: 'target1', description: 'Click on the "Click Me" button' }
+                        ],
+                        instructions: 'Tell the agent to click on the blue button.'
+                    },
+                    {
+                        id: 'exam2',
+                        title: 'Text Input Test',
+                        difficulty: 'medium',
+                        description: 'Test the agent\'s ability to type text into an input field.',
+                        elements: [
+                            { type: 'input', x: 150, y: 100, width: 200, height: 40, placeholder: 'Type here...', id: 'input1', isTarget: true },
+                            { type: 'button', x: 370, y: 100, width: 80, height: 40, text: 'Submit', id: 'submit1' }
+                        ],
+                        expectedActions: [
+                            { type: 'text', target: 'input1', text: 'Hello world', description: 'Type "Hello world" in the input field' }
+                        ],
+                        instructions: 'Ask the agent to type "Hello world" in the input field.'
+                    },
+                    {
+                        id: 'exam3',
+                        title: 'Multiple Target Test',
+                        difficulty: 'hard',
+                        description: 'Test the agent\'s ability to interact with multiple targets in sequence.',
+                        elements: [
+                            { type: 'input', x: 150, y: 80, width: 200, height: 40, placeholder: 'Your name...', id: 'name', isTarget: true },
+                            { type: 'input', x: 150, y: 140, width: 200, height: 40, placeholder: 'Your email...', id: 'email', isTarget: true },
+                            { type: 'button', x: 250, y: 200, width: 100, height: 40, text: 'Register', id: 'register', isTarget: true }
+                        ],
+                        expectedActions: [
+                            { type: 'text', target: 'name', text: 'John Doe', description: 'Type "John Doe" in the name field' },
+                            { type: 'text', target: 'email', text: 'john@example.com', description: 'Type "john@example.com" in the email field' },
+                            { type: 'click', target: 'register', description: 'Click the Register button' }
+                        ],
+                        instructions: 'Ask the agent to fill out the registration form with the name "John Doe" and email "john@example.com", then click Register.'
+                    },
+                    {
+                        id: 'exam4',
+                        title: 'Precise Coordinates Test',
+                        difficulty: 'hard',
+                        description: 'Test the agent\'s ability to click on a specific target among similar elements.',
+                        elements: [
+                            { type: 'button', x: 100, y: 100, width: 80, height: 40, text: 'Button 1', id: 'btn1' },
+                            { type: 'button', x: 200, y: 100, width: 80, height: 40, text: 'Button 2', id: 'btn2' },
+                            { type: 'button', x: 300, y: 100, width: 80, height: 40, text: 'Button 3', id: 'btn3', isTarget: true },
+                            { type: 'button', x: 150, y: 160, width: 80, height: 40, text: 'Button 4', id: 'btn4' },
+                            { type: 'button', x: 250, y: 160, width: 80, height: 40, text: 'Button 5', id: 'btn5' }
+                        ],
+                        expectedActions: [
+                            { type: 'click', target: 'btn3', description: 'Click specifically on Button 3' }
+                        ],
+                        instructions: 'Ask the agent to click specifically on Button 3.'
+                    },
+                    {
+                        id: 'exam5',
+                        title: 'Complex Form Test',
+                        difficulty: 'expert',
+                        description: 'Test the agent\'s ability to fill out a complex form with multiple fields and dropdowns.',
+                        elements: [
+                            { type: 'input', x: 150, y: 70, width: 200, height: 30, placeholder: 'First Name', id: 'firstName', isTarget: true },
+                            { type: 'input', x: 150, y: 110, width: 200, height: 30, placeholder: 'Last Name', id: 'lastName', isTarget: true },
+                            { type: 'input', x: 150, y: 150, width: 200, height: 30, placeholder: 'Email', id: 'email', isTarget: true },
+                            { type: 'select', x: 150, y: 190, width: 200, height: 30, placeholder: 'Country', id: 'country', isTarget: true },
+                            { type: 'checkbox', x: 150, y: 230, width: 20, height: 20, text: 'Subscribe to newsletter', id: 'subscribe', isTarget: true },
+                            { type: 'button', x: 200, y: 270, width: 100, height: 40, text: 'Submit Form', id: 'submitForm', isTarget: true }
+                        ],
+                        expectedActions: [
+                            { type: 'text', target: 'firstName', text: 'Jane', description: 'Type "Jane" in First Name field' },
+                            { type: 'text', target: 'lastName', text: 'Smith', description: 'Type "Smith" in Last Name field' },
+                            { type: 'text', target: 'email', text: 'jane.smith@example.com', description: 'Type "jane.smith@example.com" in Email field' },
+                            { type: 'click', target: 'country', description: 'Click on Country dropdown' },
+                            { type: 'click', target: 'subscribe', description: 'Click Subscribe checkbox' },
+                            { type: 'click', target: 'submitForm', description: 'Click Submit Form button' }
+                        ],
+                        instructions: 'Ask the agent to fill out the complete form with Jane Smith\'s information, select a country, check the subscribe box, and submit the form.'
+                    },
+                    {
+                        id: 'exam6',
+                        title: 'Spatial Understanding Test',
+                        difficulty: 'medium',
+                        description: 'Test the agent\'s ability to understand spatial relationships between elements.',
+                        elements: [
+                            { type: 'div', x: 100, y: 100, width: 300, height: 200, text: 'Container Box', id: 'container' },
+                            { type: 'button', x: 120, y: 150, width: 80, height: 30, text: 'Left', id: 'leftBtn' },
+                            { type: 'button', x: 310, y: 150, width: 80, height: 30, text: 'Right', id: 'rightBtn', isTarget: true },
+                            { type: 'button', x: 210, y: 120, width: 80, height: 30, text: 'Top', id: 'topBtn' },
+                            { type: 'button', x: 210, y: 250, width: 80, height: 30, text: 'Bottom', id: 'bottomBtn' }
+                        ],
+                        expectedActions: [
+                            { type: 'click', target: 'rightBtn', description: 'Click the button on the right side of the container' }
+                        ],
+                        instructions: 'Ask the agent to click the button positioned on the right side of the container box.'
+                    },
+                    {
+                        id: 'exam7',
+                        title: 'Semantic Understanding Test',
+                        difficulty: 'hard',
+                        description: 'Test the agent\'s ability to understand semantic descriptions of elements.',
+                        elements: [
+                            { type: 'div', x: 100, y: 50, width: 400, height: 300, text: 'Product Catalog', id: 'catalog' },
+                            { type: 'div', x: 120, y: 90, width: 150, height: 100, text: 'Premium Headphones\n$299.99', id: 'product1' },
+                            { type: 'button', x: 150, y: 170, width: 90, height: 30, text: 'Add to Cart', id: 'add1' },
+                            { type: 'div', x: 330, y: 90, width: 150, height: 100, text: 'Wireless Keyboard\n$129.99', id: 'product2' },
+                            { type: 'button', x: 360, y: 170, width: 90, height: 30, text: 'Add to Cart', id: 'add2', isTarget: true },
+                            { type: 'div', x: 120, y: 220, width: 150, height: 100, text: 'Smart Watch\n$199.99', id: 'product3' },
+                            { type: 'button', x: 150, y: 300, width: 90, height: 30, text: 'Add to Cart', id: 'add3' }
+                        ],
+                        expectedActions: [
+                            { type: 'click', target: 'add2', description: 'Add the Wireless Keyboard to cart' }
+                        ],
+                        instructions: 'Ask the agent to add the Wireless Keyboard to the shopping cart.'
+                    },
+                    {
+                        id: 'exam8',
+                        title: 'Dynamic Element Test',
+                        difficulty: 'expert',
+                        description: 'Test the agent\'s ability to interact with elements that appear dynamically.',
+                        elements: [
+                            { type: 'button', x: 200, y: 100, width: 120, height: 40, text: 'Show Options', id: 'showOptions' },
+                            // Dynamic elements will be added when the Show Options button is clicked
+                        ],
+                        expectedActions: [
+                            { type: 'click', target: 'showOptions', description: 'Click the Show Options button' },
+                            { type: 'click', target: 'option3', description: 'Click on Option 3 when it appears' }
+                        ],
+                        instructions: 'Ask the agent to click the Show Options button and then select Option 3 from the list that appears.',
+                        dynamic: true,
+                        dynamicElements: [
+                            { type: 'button', x: 180, y: 160, width: 100, height: 30, text: 'Option 1', id: 'option1' },
+                            { type: 'button', x: 180, y: 200, width: 100, height: 30, text: 'Option 2', id: 'option2' },
+                            { type: 'button', x: 180, y: 240, width: 100, height: 30, text: 'Option 3', id: 'option3', isTarget: true },
+                            { type: 'button', x: 180, y: 280, width: 100, height: 30, text: 'Option 4', id: 'option4' },
+                            { type: 'button', x: 180, y: 320, width: 100, height: 30, text: 'Option 5', id: 'option5' }
+                        ]
+                    },
+                    {
+                        id: 'exam9',
+                        title: 'Visual Priority Test',
+                        difficulty: 'hard',
+                        description: 'Test the agent\'s ability to prioritize visually prominent elements.',
+                        elements: [
+                            { type: 'div', x: 100, y: 50, width: 400, height: 300, text: 'Dashboard', id: 'dashboard' },
+                            { type: 'button', x: 120, y: 90, width: 90, height: 30, text: 'Settings', id: 'settings' },
+                            { type: 'button', x: 220, y: 90, width: 90, height: 30, text: 'Profile', id: 'profile' },
+                            { type: 'button', x: 390, y: 90, width: 90, height: 30, text: 'Logout', id: 'logout' },
+                            { type: 'button', x: 200, y: 180, width: 200, height: 60, text: 'START DEMO', id: 'startDemo', isTarget: true, style: 'prominent' },
+                            { type: 'button', x: 150, y: 260, width: 120, height: 30, text: 'Documentation', id: 'docs' },
+                            { type: 'button', x: 330, y: 260, width: 120, height: 30, text: 'Support', id: 'support' }
+                        ],
+                        expectedActions: [
+                            { type: 'click', target: 'startDemo', description: 'Click the prominent START DEMO button' }
+                        ],
+                        instructions: 'Ask the agent to start the demo on the dashboard page.'
+                    },
+                    {
+                        id: 'exam10',
+                        title: 'Comprehensive Navigation Test',
+                        difficulty: 'expert',
+                        description: 'Test the agent\'s ability to navigate through a multi-step process.',
+                        elements: [
+                            { type: 'div', x: 50, y: 50, width: 500, height: 300, text: 'Checkout Process', id: 'checkout' },
+                            { type: 'div', x: 70, y: 90, width: 460, height: 50, text: 'Step 1: Review Cart', id: 'step1', isActive: true },
+                            { type: 'button', x: 400, y: 100, width: 120, height: 30, text: 'Next Step', id: 'next1', isTarget: true }
+                        ],
+                        expectedActions: [
+                            { type: 'click', target: 'next1', description: 'Click Next Step button in Step 1' },
+                            { type: 'text', target: 'address', text: '123 Main St', description: 'Enter shipping address' },
+                            { type: 'text', target: 'city', text: 'New York', description: 'Enter city' },
+                            { type: 'click', target: 'next2', description: 'Click Next Step button in Step 2' },
+                            { type: 'text', target: 'cardNumber', text: '4111111111111111', description: 'Enter credit card number' },
+                            { type: 'click', target: 'placeOrder', description: 'Click Place Order button' }
+                        ],
+                        instructions: 'Ask the agent to complete the entire checkout process by navigating through all steps, filling in shipping information and payment details.',
+                        multiStage: true,
+                        stages: [
+                            {
+                                elements: [
+                                    { type: 'div', x: 70, y: 90, width: 460, height: 50, text: 'Step 1: Review Cart', id: 'step1', isActive: true },
+                                    { type: 'button', x: 400, y: 100, width: 120, height: 30, text: 'Next Step', id: 'next1', isTarget: true }
+                                ]
+                            },
+                            {
+                                elements: [
+                                    { type: 'div', x: 70, y: 90, width: 460, height: 50, text: 'Step 2: Shipping Information', id: 'step2', isActive: true },
+                                    { type: 'input', x: 100, y: 150, width: 240, height: 30, placeholder: 'Address', id: 'address', isTarget: true },
+                                    { type: 'input', x: 100, y: 190, width: 240, height: 30, placeholder: 'City', id: 'city', isTarget: true },
+                                    { type: 'button', x: 400, y: 170, width: 120, height: 30, text: 'Next Step', id: 'next2', isTarget: true }
+                                ]
+                            },
+                            {
+                                elements: [
+                                    { type: 'div', x: 70, y: 90, width: 460, height: 50, text: 'Step 3: Payment Information', id: 'step3', isActive: true },
+                                    { type: 'input', x: 100, y: 150, width: 240, height: 30, placeholder: 'Card Number', id: 'cardNumber', isTarget: true },
+                                    { type: 'button', x: 400, y: 170, width: 140, height: 40, text: 'Place Order', id: 'placeOrder', isTarget: true }
+                                ]
+                            }
+                        ]
+                    }
+                ];
+                
+                // Create exam cards
+                exams.forEach(exam => {
+                    const card = document.createElement('div');
+                    card.className = 'exam-card';
+                    card.dataset.examId = exam.id;
+                    
+                    const difficulty = document.createElement('div');
+                    difficulty.className = 'badge badge-' + exam.difficulty;
+                    difficulty.textContent = exam.difficulty.charAt(0).toUpperCase() + exam.difficulty.slice(1);
+                    
+                    const title = document.createElement('h3');
+                    title.textContent = exam.title;
+                    
+                    const description = document.createElement('p');
+                    description.textContent = exam.description;
+                    
+                    card.appendChild(difficulty);
+                    card.appendChild(title);
+                    card.appendChild(description);
+                    
+                    card.addEventListener('click', function() {
+                        loadExam(exam);
+                    });
+                    
+                    examGrid.appendChild(card);
+                });
+            }
+            
+            // Load a specific exam
+            function loadExam(exam) {
+                // Clear any previous exam
+                resetExam();
+                
+                // Set current exam
+                currentExam = exam;
+                currentExamTitle.textContent = exam.title;
+                
+                // Update button states
+                updateButtonStates();
+                
+                // Set pre-filled message if available
+                agentMessage.value = exam.instructions || '';
+                
+                // Create test elements
+                createTestElements(exam.elements);
+                
+                // Highlight the selected exam card
+                const examCards = document.querySelectorAll('.exam-card');
+                examCards.forEach(card => {
+                    card.classList.remove('active');
+                    if (card.dataset.examId === exam.id) {
+                        card.classList.add('active');
+                    }
+                });
+                
+                // Enable reset button
+                resetExamBtn.disabled = false;
+            }
+            
+            // Create test elements for the exam
+            function createTestElements(elements) {
+                // Clear any existing elements
+                testAreaContainer.innerHTML = '';
+                
+                // Create each element
+                elements.forEach(element => {
+                    const el = document.createElement('div');
+                    el.className = 'test-element ' + element.type;
+                    el.dataset.id = element.id;
+                    
+                    // Set position and size
+                    el.style.left = element.x + 'px';
+                    el.style.top = element.y + 'px';
+                    el.style.width = element.width + 'px';
+                    el.style.height = element.height + 'px';
+                    
+                    // Set content based on type
+                    if (element.type === 'button') {
+                        el.textContent = element.text || '';
+                        el.style.cursor = 'pointer';
+                    } else if (element.type === 'input') {
+                        el.innerHTML = `<input type="text" placeholder="${element.placeholder || ''}" style="width: 100%; height: 100%; box-sizing: border-box;">`;
+                    } else if (element.type === 'select') {
+                        el.innerHTML = `<select style="width: 100%; height: 100%;"><option disabled selected>${element.placeholder || 'Select...'}</option><option>Option 1</option><option>Option 2</option><option>Option 3</option></select>`;
+                    } else if (element.type === 'checkbox') {
+                        el.innerHTML = `<input type="checkbox" id="${element.id}_cb"><label for="${element.id}_cb">${element.text || ''}</label>`;
+                    } else {
+                        el.textContent = element.text || '';
+                    }
+                    
+                    // Add special styling for target elements
+                    if (element.isTarget) {
+                        el.classList.add('target');
+                    }
+                    
+                    // Add prominent styling if specified
+                    if (element.style === 'prominent') {
+                        el.style.backgroundColor = '#2196F3';
+                        el.style.color = 'white';
+                        el.style.fontWeight = 'bold';
+                        el.style.fontSize = '18px';
+                        el.style.boxShadow = '0 4px 8px rgba(0, 0, 0, 0.2)';
+                    }
+                    
+                    // Add event listeners based on type
+                    if (element.type === 'button') {
+                        el.addEventListener('click', function() {
+                            handleElementInteraction('click', element.id);
+                        });
+                    } else if (element.type === 'input') {
+                        const input = el.querySelector('input');
+                        input.addEventListener('input', function() {
+                            handleElementInteraction('text', element.id, input.value);
+                        });
+                    } else if (element.type === 'select') {
+                        const select = el.querySelector('select');
+                        select.addEventListener('change', function() {
+                            handleElementInteraction('select', element.id, select.value);
+                        });
+                    } else if (element.type === 'checkbox') {
+                        const checkbox = el.querySelector('input[type="checkbox"]');
+                        checkbox.addEventListener('change', function() {
+                            handleElementInteraction('checkbox', element.id, checkbox.checked);
+                        });
+                    }
+                    
+                    // Add to test area
+                    testAreaContainer.appendChild(el);
+                });
+            }
+            
+            // Handle interaction with test elements
+            function handleElementInteraction(interactionType, elementId, value) {
+                if (!currentExam || !executionInProgress) {
+                    // No exam is active or no execution in progress
+                    return;
+                }
+                
+                addToExecutionLog(`Element interaction: ${interactionType} on ${elementId}${value ? ' with value: ' + value : ''}`);
+                
+                // Add to results for scoring
+                currentResults.push({
+                    type: interactionType,
+                    target: elementId,
+                    value: value
+                });
+                
+                // Handle special cases for dynamic or multi-stage exams
+                if (currentExam.dynamic && elementId === 'showOptions') {
+                    // Add dynamic elements after clicking the show options button
+                    setTimeout(() => {
+                        createTestElements([
+                            ...currentExam.elements,
+                            ...currentExam.dynamicElements
+                        ]);
+                    }, 500);
+                } else if (currentExam.multiStage) {
+                    // Handle multi-stage exams
+                    const currentStage = currentExam.currentStage || 0;
+                    
+                    if (currentStage < currentExam.stages.length - 1) {
+                        if ((interactionType === 'click' && elementId === 'next1' && currentStage === 0) ||
+                            (interactionType === 'click' && elementId === 'next2' && currentStage === 1)) {
+                            // Move to next stage
+                            currentExam.currentStage = currentStage + 1;
+                            
+                            // Create elements for the next stage
+                            setTimeout(() => {
+                                createTestElements(currentExam.stages[currentExam.currentStage].elements);
+                            }, 500);
+                        }
+                    }
+                }
+            }
+            
+            // Reset the current exam
+            function resetExam() {
+                // Clear test area
+                testAreaContainer.innerHTML = '';
+                
+                // Reset plan display
+                planDisplay.textContent = 'No plan available. Send a message to the agent first.';
+                
+                // Reset results
+                currentResults = [];
+                resultsTable.innerHTML = '';
+                
+                // Reset score
+                scoreDisplay.textContent = 'Score: --';
+                scoreDisplay.className = 'score-display';
+                
+                // Reset progress
+                progressContainer.style.display = 'none';
+                progressFill.style.width = '0%';
+                progressText.textContent = '0% - Waiting for agent...';
+                
+                // Reset current exam if not null
+                if (currentExam && currentExam.multiStage) {
+                    currentExam.currentStage = 0;
+                }
+                
+                // Clear execution log
+                logDisplay.textContent = 'Waiting for test execution...\n';
+                
+                // Update button states
+                updateButtonStates();
+            }
+            
+            // Update button states based on current exam and connection
+            function updateButtonStates() {
+                const wsConnected = ws && ws.readyState === WebSocket.OPEN;
+                
+                // Send message button
+                sendMessageBtn.disabled = !wsConnected || !currentExam;
+                
+                // DO and DISMISS buttons - only enabled when a plan is available
+                doButton.disabled = !wsConnected || !currentPlan;
+                dismissButton.disabled = !wsConnected || !currentPlan;
+                
+                // Reset button
+                resetExamBtn.disabled = !currentExam;
+            }
+            
+            // Calculate and display score
+            function calculateScore(executionData) {
+                if (!currentExam || !currentExam.expectedActions) {
+                    return;
+                }
+                
+                // Clear results table
+                resultsTable.innerHTML = '';
+                
+                const expectedActions = currentExam.expectedActions;
+                let totalScore = 0;
+                let maxScore = expectedActions.length * 100;
+                
+                // Analyze each expected action
+                expectedActions.forEach((expected, index) => {
+                    // Try to find a matching actual action
+                    const actual = currentResults.find(result => {
+                        return result.type === expected.type && result.target === expected.target;
+                    });
+                    
+                    let actionScore = 0;
+                    let actionResult = 'Failed';
+                    
+                    if (actual) {
+                        // Action was performed on the correct target
+                        actionScore = 70;
+                        actionResult = 'Partial';
+                        
+                        // For text input, check if the text matches
+                        if (expected.type === 'text' && actual.value === expected.text) {
+                            actionScore = 100;
+                            actionResult = 'Success';
+                        } else if (expected.type === 'click') {
+                            // For clicks, full score
+                            actionScore = 100;
+                            actionResult = 'Success';
+                        }
+                    }
+                    
+                    // Add to total score
+                    totalScore += actionScore;
+                    
+                    // Add to results table
+                    const row = document.createElement('tr');
+                    
+                    const testCell = document.createElement('td');
+                    testCell.textContent = `Test ${index + 1}`;
+                    
+                    const expectedCell = document.createElement('td');
+                    expectedCell.textContent = expected.description;
+                    
+                    const actualCell = document.createElement('td');
+                    if (actual) {
+                        actualCell.textContent = `${actual.type} on ${actual.target}${actual.value ? ': ' + actual.value : ''}`;
+                    } else {
+                        actualCell.textContent = 'Not performed';
+                    }
+                    
+                    const scoreCell = document.createElement('td');
+                    scoreCell.textContent = `${actionScore}% - ${actionResult}`;
+                    if (actionScore === 100) {
+                        scoreCell.style.color = 'var(--success-color)';
+                    } else if (actionScore > 0) {
+                        scoreCell.style.color = 'var(--warning-color)';
+                    } else {
+                        scoreCell.style.color = 'var(--danger-color)';
+                    }
+                    
+                    row.appendChild(testCell);
+                    row.appendChild(expectedCell);
+                    row.appendChild(actualCell);
+                    row.appendChild(scoreCell);
+                    
+                    resultsTable.appendChild(row);
+                });
+                
+                // Calculate final score percentage
+                const finalScore = Math.round((totalScore / maxScore) * 100);
+                
+                // Update score display
+                scoreDisplay.textContent = `Score: ${finalScore}%`;
+                
+                // Set score class for styling
+                if (finalScore >= 90) {
+                    scoreDisplay.className = 'score-display score-100';
+                } else if (finalScore >= 70) {
+                    scoreDisplay.className = 'score-display score-70';
+                } else {
+                    scoreDisplay.className = 'score-display score-low';
+                }
+                
+                // Switch to results tab
+                document.querySelector('.tab[data-tab="resultsView"]').click();
+                
+                // Save results to log
+                const logEntry = {
+                    timestamp: new Date().toISOString(),
+                    exam: currentExam.id,
+                    score: finalScore,
+                    expectedActions: expectedActions,
+                    actualActions: currentResults,
+                    plan: currentPlan
+                };
+                
+                // In a real implementation, you would send this to a server
+                addToExecutionLog('Test completed with score: ' + finalScore + '%');
+                addToExecutionLog('Results logged: ' + JSON.stringify(logEntry, null, 2));
+                
+                // Show results modal
+                showResultsModal(finalScore, expectedActions, currentResults);
+            }
+            
+            // Show results modal
+            function showResultsModal(score, expected, actual) {
+                modalContent.innerHTML = '';
+                
+                // Create score header
+                const scoreHeader = document.createElement('div');
+                scoreHeader.className = score >= 90 ? 'score-display score-100' : score >= 70 ? 'score-display score-70' : 'score-display score-low';
+                scoreHeader.textContent = `Final Score: ${score}%`;
+                modalContent.appendChild(scoreHeader);
+                
+                // Create results summary
+                const summary = document.createElement('p');
+                summary.textContent = `Completed ${actual.length} of ${expected.length} expected actions.`;
+                modalContent.appendChild(summary);
+                
+                // Create detailed results table
+                const table = document.createElement('table');
+                table.className = 'results-table';
+                
+                const thead = document.createElement('thead');
+                const headerRow = document.createElement('tr');
+                
+                const headers = ['Action', 'Expected', 'Actual', 'Result'];
+                headers.forEach(headerText => {
+                    const th = document.createElement('th');
+                    th.textContent = headerText;
+                    headerRow.appendChild(th);
+                });
+                
+                thead.appendChild(headerRow);
+                table.appendChild(thead);
+                
+                const tbody = document.createElement('tbody');
+                
+                expected.forEach((exp, index) => {
+                    const act = actual.find(a => a.type === exp.type && a.target === exp.target);
+                    
+                    const row = document.createElement('tr');
+                    
+                    const actionCell = document.createElement('td');
+                    actionCell.textContent = `Action ${index + 1}`;
+                    
+                    const expectedCell = document.createElement('td');
+                    expectedCell.textContent = exp.description;
+                    
+                    const actualCell = document.createElement('td');
+                    if (act) {
+                        actualCell.textContent = `${act.type} on ${act.target}${act.value ? ': ' + act.value : ''}`;
+                    } else {
+                        actualCell.textContent = 'Not performed';
+                    }
+                    
+                    const resultCell = document.createElement('td');
+                    if (!act) {
+                        resultCell.textContent = 'Failed';
+                        resultCell.style.color = 'var(--danger-color)';
+                    } else if (exp.type === 'text' && act.value !== exp.text) {
+                        resultCell.textContent = 'Partial - Text mismatch';
+                        resultCell.style.color = 'var(--warning-color)';
+                    } else {
+                        resultCell.textContent = 'Success';
+                        resultCell.style.color = 'var(--success-color)';
+                    }
+                    
+                    row.appendChild(actionCell);
+                    row.appendChild(expectedCell);
+                    row.appendChild(actualCell);
+                    row.appendChild(resultCell);
+                    
+                    tbody.appendChild(row);
+                });
+                
+                table.appendChild(tbody);
+                modalContent.appendChild(table);
+                
+                // Add recommendations
+                if (score < 100) {
+                    const recommendations = document.createElement('div');
+                    recommendations.innerHTML = '<h3>Recommendations for Improvement</h3>';
+                    
+                    const recList = document.createElement('ul');
+                    
+                    // Generate recommendations based on what went wrong
+                    const missedActions = expected.filter(exp => !actual.some(act => act.type === exp.type && act.target === exp.target));
+                    if (missedActions.length > 0) {
+                        const item = document.createElement('li');
+                        item.textContent = `Missed actions: The agent failed to perform ${missedActions.length} expected actions. Check if the plan includes all necessary steps.`;
+                        recList.appendChild(item);
+                    }
+                    
+                    // Check for text mismatches
+                    const textMismatches = expected.filter(exp => 
+                        exp.type === 'text' && 
+                        actual.some(act => act.type === exp.type && act.target === exp.target && act.value !== exp.text)
+                    );
+                    
+                    if (textMismatches.length > 0) {
+                        const item = document.createElement('li');
+                        item.textContent = `Text input errors: The agent entered incorrect text. Check if the instructions were clear about what text to enter.`;
+                        recList.appendChild(item);
+                    }
+                    
+                    recommendations.appendChild(recList);
+                    modalContent.appendChild(recommendations);
+                }
+                
+                // Show the modal
+                resultsModal.style.display = 'flex';
+            }
+            
+            // Event Listeners
+            
+            // Send message button
+            sendMessageBtn.addEventListener('click', function() {
+                if (!ws || ws.readyState !== WebSocket.OPEN) {
+                    addToLog('Not connected to WebSocket server', 'error');
+                    return;
+                }
+                
+                const message = agentMessage.value.trim();
+                if (!message) {
+                    addToLog('Please enter a message', 'error');
+                    return;
+                }
+                
+                // Generate a session ID if not already set
+                if (!sessionId) {
+                    sessionId = 'exam_session_' + Date.now();
+                }
+                
+                // Create message for agent mode
+                const agentRequest = {
+                    type: 'agent_request',
+                    mode: 'AGENT',
+                    message: message,
+                    session_id: sessionId,
+                    exam_id: currentExam ? currentExam.id : 'unknown',
+                    timestamp: new Date().toISOString()
+                };
+                
+                // Reset results for new test
+                currentResults = [];
+                
+                // Send message
+                ws.send(JSON.stringify(agentRequest));
+                addToLog('Sent message to agent: ' + message, 'client');
+                
+                // Show progress
+                progressContainer.style.display = 'block';
+                progressFill.style.width = '10%';
+                progressText.textContent = '10% - Sending to agent...';
+                
+                // Mock a plan response for testing
+                // In a real implementation, this would come from the backend
+                setTimeout(() => {
+                    // Create mock plan based on current exam
+                    if (currentExam && currentExam.expectedActions) {
+                        const mockPlan = {
+                            steps: currentExam.expectedActions.map(action => {
+                                if (action.type === 'click') {
+                                    return {
+                                        type: 'click',
+                                        target: action.target,
+                                        description: action.description
+                                    };
+                                } else if (action.type === 'text') {
+                                    return {
+                                        type: 'text',
+                                        target: action.target,
+                                        text: action.text,
+                                        description: action.description
+                                    };
+                                }
+                                return action;
+                            })
+                        };
+                        
+                        // Update progress
+                        progressFill.style.width = '50%';
+                        progressText.textContent = '50% - Plan generated, ready for execution';
+                        
+                        // Update plan display
+                        currentPlan = mockPlan;
+                        updatePlanDisplay(mockPlan);
+                        
+                        // Enable DO and DISMISS buttons
+                        doButton.disabled = false;
+                        dismissButton.disabled = false;
+                    }
+                }, 1500);
+            });
+            
+            // DO button
+            doButton.addEventListener('click', function() {
+                if (!ws || ws.readyState !== WebSocket.OPEN) {
+                    addToLog('Not connected to WebSocket server', 'error');
+                    return;
+                }
+                
+                if (!currentPlan) {
+                    addToLog('No plan available', 'error');
+                    return;
+                }
+                
+                // Create DO message
+                const doMessage = {
+                    type: 'button_action',
+                    action: 'EXECUTE_PLAN',
+                    plan_id: sessionId,
+                    session_id: sessionId,
+                    timestamp: new Date().toISOString(),
+                    plan: currentPlan
+                };
+                
+                // Send message
+                ws.send(JSON.stringify(doMessage));
+                addToLog('Sent DO button click: ' + JSON.stringify(doMessage, null, 2), 'client');
+                
+                // Update progress
+                progressContainer.style.display = 'block';
+                progressFill.style.width = '60%';
+                progressText.textContent = '60% - Starting execution...';
+                
+                // Set execution in progress
+                executionInProgress = true;
+                
+                // Clear previous results
+                currentResults = [];
+                
+                // For the test implementation, simulate element interactions
+                simulateElementInteractions();
+            });
+            
+            // DISMISS button
+            dismissButton.addEventListener('click', function() {
+                if (!ws || ws.readyState !== WebSocket.OPEN) {
+                    addToLog('Not connected to WebSocket server', 'error');
+                    return;
+                }
+                
+                // Create DISMISS message
+                const dismissMessage = {
+                    type: 'agent_confirmation',
+                    action: 'DISMISS',
+                    session_id: sessionId,
+                    timestamp: new Date().toISOString()
+                };
+                
+                // Send message
+                ws.send(JSON.stringify(dismissMessage));
+                addToLog('Sent DISMISS button click: ' + JSON.stringify(dismissMessage, null, 2), 'client');
+                
+                // Reset plan and disable buttons
+                currentPlan = null;
+                doButton.disabled = true;
+                dismissButton.disabled = true;
+                
+                // Hide progress
+                progressContainer.style.display = 'none';
+            });
+            
+            // Reset exam button
+            resetExamBtn.addEventListener('click', function() {
+                resetExam();
+                
+                // If an exam is selected, reload it
+                if (currentExam) {
+                    loadExam(currentExam);
+                }
+            });
+            
+            // Clear log button
+            clearLogBtn.addEventListener('click', function() {
+                messageLog.textContent = '';
+            });
+            
+            // Close modal button
+            closeResultsModal.addEventListener('click', function() {
+                resultsModal.style.display = 'none';
+            });
+            
+            // Click outside modal to close
+            window.addEventListener('click', function(event) {
+                if (event.target === resultsModal) {
+                    resultsModal.style.display = 'none';
+                }
+            });
+            
+            // Refresh exams button
+            refreshExamsBtn.addEventListener('click', function() {
+                loadExams();
+            });
+            
+            // Simulate element interactions for testing
+            function simulateElementInteractions() {
+                if (!currentExam || !currentPlan || !currentPlan.steps) {
+                    return;
+                }
+                
+                const steps = currentPlan.steps;
+                
+                // Simulate each step with a delay
+                steps.forEach((step, index) => {
+                    setTimeout(() => {
+                        // Update progress
+                        const progress = 60 + Math.round((index + 1) / steps.length * 40);
+                        progressFill.style.width = progress + '%';
+                        progressText.textContent = `${progress}% - ${step.description || 'Executing step ' + (index + 1)}`;
+                        
+                        // Simulate the interaction
+                        if (step.type === 'click') {
+                            const targetEl = document.querySelector(`.test-element[data-id="${step.target}"]`);
+                            if (targetEl) {
+                                // Highlight the element
+                                targetEl.style.backgroundColor = 'rgba(76, 175, 80, 0.3)';
+                                setTimeout(() => {
+                                    targetEl.style.backgroundColor = '';
+                                }, 500);
+                                
+                                // Simulate click
+                                handleElementInteraction('click', step.target);
+                            }
+                        } else if (step.type === 'text') {
+                            const targetEl = document.querySelector(`.test-element[data-id="${step.target}"]`);
+                            if (targetEl) {
+                                const input = targetEl.querySelector('input');
+                                if (input) {
+                                    // Highlight the element
+                                    targetEl.style.backgroundColor = 'rgba(76, 175, 80, 0.3)';
+                                    setTimeout(() => {
+                                        targetEl.style.backgroundColor = '';
+                                    }, 500);
+                                    
+                                    // Set input value
+                                    input.value = step.text || '';
+                                    
+                                    // Simulate text input
+                                    handleElementInteraction('text', step.target, step.text || '');
+                                }
+                            }
+                        }
+                        
+                        // If this is the last step, finalize the test
+                        if (index === steps.length - 1) {
+                            setTimeout(() => {
+                                // Simulate completion message from server
+                                const completionMessage = {
+                                    type: 'agent_execution_success',
+                                    session_id: sessionId,
+                                    result: {
+                                        success: true,
+                                        steps_executed: steps.length,
+                                        execution_time: steps.length * 0.5
+                                    },
+                                    summary: 'Execution completed successfully',
+                                    execution_completed: true
+                                };
+                                
+                                // Process the completion
+                                handleServerMessage(completionMessage);
+                            }, 1000);
+                        }
+                    }, (index + 1) * 1000); // 1 second delay between steps
+                });
+            }
+            
+            // Start connection
+            connect();
+        });
+    </script>
+</body>
+</html>

@@ -1,17 +1,18 @@
-2025-05-22 13:38:43,281 - llava_processor - INFO - Connected to Ollama API v0.6.8
-2025-05-22 13:38:43,281 - total_screen_analyzer - INFO - LLaVA visual processor initialized for total screen analysis
-2025-05-22 13:38:43,281 - total_screen_analyzer - INFO - Total Screen Analyzer initialized with 1s interval
-2025-05-22 13:38:43,639 - total_screen_analyzer - INFO - Starting total screen analysis (hash: 7edf50b8)
-2025-05-22 13:39:15,086 - total_screen_analyzer - ERROR - Error synthesizing comprehensive context: 'workflow_stage'
-2025-05-22 13:39:15,105 - total_screen_analyzer - INFO - Completed total screen analysis in 31.46s
-2025-05-22 15:16:15,445 - llava_processor - INFO - Connected to Ollama API v0.6.8
-2025-05-22 15:16:15,446 - total_screen_analyzer - INFO - LLaVA visual processor initialized for total screen analysis
-2025-05-22 15:16:15,446 - total_screen_analyzer - INFO - Total Screen Analyzer initialized with 1s interval
-2025-05-22 15:16:15,770 - total_screen_analyzer - INFO - Starting total screen analysis (hash: 4e7e33d0)
-2025-05-22 15:16:41,891 - total_screen_analyzer - INFO - Completed total screen analysis in 26.12s
-2025-05-24 22:59:47,793 - llava_processor - INFO - Connected to Ollama API v0.6.8
-2025-05-24 22:59:47,794 - total_screen_analyzer - INFO - LLaVA visual processor initialized for total screen analysis
-2025-05-24 22:59:47,794 - total_screen_analyzer - INFO - Total Screen Analyzer initialized with 8s interval
-2025-05-24 22:59:48,186 - total_screen_analyzer - INFO - Starting total screen analysis (hash: 37b019be)
-2025-05-24 23:00:36,342 - total_screen_analyzer - INFO - Lightweight vision analysis completed: 34 UI elements detected
-2025-05-24 23:00:36,364 - total_screen_analyzer - INFO - Completed total screen analysis in 48.18s
+2025-06-08 13:29:11,967 - llava_processor - INFO - Connected to Ollama API v0.6.8
+Sample image not found: sample.png
+Process classification:
+{
+  "foreground": [
+    "Chrome"
+  ],
+  "supporting": [
+    "Chrome Helper",
+    "Chrome GPU Helper"
+  ],
+  "background": [
+    "Finder",
+    "SystemUIServer"
+  ],
+  "active_window": "",
+  "active_app": "Chrome"
+}

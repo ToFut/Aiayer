@@ -1,0 +1,394 @@
+2025-06-03 02:47:56,961 - agent_workflow.input_controller - INFO - Detected screen size: 1470x956
+2025-06-03 02:47:56,965 - agent_workflow.input_controller - INFO - Standard mouse listener started successfully
+2025-06-03 02:47:56,965 - agent_workflow.input_controller - INFO - Keyboard listener started successfully
+2025-06-03 02:47:56,966 - agent_workflow.input_controller - INFO - Input controller initialized (safe mode)
+2025-06-03 02:47:56,966 - agent_workflow.input_controller - INFO - 🚨 Emergency shutdown: Press Ctrl+1 to immediately stop agent
+2025-06-03 02:47:56,966 - intelligent_do_button_server - INFO - ✅ Input controller loaded successfully
+2025-06-03 02:47:56,966 - intelligent_do_button_server - WARNING - ⚠️ Universal UI element detector not available
+2025-06-03 02:47:56,988 - intelligent_ui_detector - INFO - Intelligent UI detector initialized for 1470x956
+2025-06-03 02:47:56,988 - intelligent_ui_detector - INFO - Intelligent UI detector initialized for 1470x956
+2025-06-03 02:47:56,988 - intelligent_do_button_server - INFO - ✅ Intelligent UI detector loaded
+2025-06-03 02:47:58,076 - intelligent_do_button_server - INFO - Starting Intelligent DO Button Server on 0.0.0.0:8765
+2025-06-03 02:47:58,100 - websockets.server - INFO - server listening on 0.0.0.0:8765
+2025-06-03 02:47:58,100 - intelligent_do_button_server - INFO - ✅ Intelligent DO Button Server running on ws://0.0.0.0:8765
+2025-06-03 02:47:58,101 - intelligent_do_button_server - INFO - 🎮 Physical automation ready - REAL mouse and keyboard actions enabled
+2025-06-03 02:47:58,101 - intelligent_do_button_server - INFO - 🔍 Intelligent UI detection active - automatic element recognition enabled
+2025-06-03 02:47:58,101 - intelligent_do_button_server - INFO - Server status: 0 clients connected, 0 executions completed
+2025-06-03 02:48:58,102 - intelligent_do_button_server - INFO - Server status: 0 clients connected, 0 executions completed
+2025-06-03 02:49:38,423 - websockets.server - INFO - connection open
+2025-06-03 02:49:38,448 - intelligent_do_button_server - INFO - Client client_4691944048 connected from 127.0.0.1
+2025-06-03 02:49:39,470 - intelligent_do_button_server - INFO - Received message type: analyze_screen
+2025-06-03 02:49:39,470 - intelligent_do_button_server - INFO - Analyzing screen on demand
+2025-06-03 02:49:40,525 - intelligent_do_button_server - INFO - Using intelligent UI detector
+2025-06-03 02:49:40,527 - intelligent_do_button_server - ERROR - Error using intelligent UI detector: 'IntelligentUIDetector' object has no attribute 'detect_elements'
+2025-06-03 02:49:40,527 - intelligent_do_button_server - INFO - Using basic PyAutoGUI element detection
+2025-06-03 02:49:40,697 - intelligent_do_button_server - INFO - Detected 2 UI elements on screen
+2025-06-03 02:49:45,214 - intelligent_do_button_server - INFO - Received message type: plan_created
+2025-06-03 02:49:45,216 - intelligent_do_button_server - INFO - Stored plan for session test_806629: Click button at (408, 337)
+2025-06-03 02:49:45,635 - intelligent_do_button_server - INFO - Received message type: agent_confirmation
+2025-06-03 02:49:45,636 - intelligent_do_button_server - INFO - Executing plan for session test_806629
+2025-06-03 02:49:45,636 - intelligent_do_button_server - INFO - Analyzing current screen before execution
+2025-06-03 02:49:45,636 - intelligent_do_button_server - INFO - Using cached UI elements
+2025-06-03 02:49:45,638 - intelligent_do_button_server - INFO - Executing step 1: click - Click button at (408, 337)
+2025-06-03 02:49:45,639 - intelligent_do_button_server - INFO - Clicking at (408, 337)
+2025-06-03 02:49:47,869 - agent_workflow.input_controller - INFO - Moved cursor to (408, 337)
+2025-06-03 02:49:48,068 - agent_workflow.input_controller - INFO - Clicked at (408, 337) with left button, 1 times
+2025-06-03 02:49:48,573 - intelligent_do_button_server - INFO - ✅ Step 1 executed successfully: Click button at (408, 337)
+2025-06-03 02:49:48,573 - intelligent_do_button_server - INFO - Refreshing UI element detection
+2025-06-03 02:49:48,573 - intelligent_do_button_server - INFO - Using cached UI elements
+2025-06-03 02:49:49,075 - intelligent_do_button_server - INFO - Plan execution completed: 1/1 steps, 3.44s
+2025-06-03 02:49:55,679 - intelligent_do_button_server - INFO - Received message type: plan_created
+2025-06-03 02:49:55,681 - intelligent_do_button_server - INFO - Stored plan for session test_806629: Click text_field at (408, 237)
+2025-06-03 02:49:56,207 - intelligent_do_button_server - INFO - Received message type: agent_confirmation
+2025-06-03 02:49:56,208 - intelligent_do_button_server - INFO - Executing plan for session test_806629
+2025-06-03 02:49:56,208 - intelligent_do_button_server - INFO - Analyzing current screen before execution
+2025-06-03 02:49:56,209 - intelligent_do_button_server - INFO - Using cached UI elements
+2025-06-03 02:49:56,212 - intelligent_do_button_server - INFO - Executing step 1: click - Click text_field at (408, 237)
+2025-06-03 02:49:56,212 - intelligent_do_button_server - INFO - Clicking at (408, 237)
+2025-06-03 02:49:58,447 - agent_workflow.input_controller - INFO - Moved cursor to (408, 237)
+2025-06-03 02:49:58,693 - agent_workflow.input_controller - INFO - Clicked at (408, 237) with left button, 1 times
+2025-06-03 02:49:58,696 - intelligent_do_button_server - INFO - Server status: 1 clients connected, 1 executions completed
+2025-06-03 02:49:59,196 - intelligent_do_button_server - INFO - ✅ Step 1 executed successfully: Click text_field at (408, 237)
+2025-06-03 02:49:59,197 - intelligent_do_button_server - INFO - Refreshing UI element detection
+2025-06-03 02:49:59,197 - intelligent_do_button_server - INFO - Using cached UI elements
+2025-06-03 02:49:59,699 - intelligent_do_button_server - INFO - Plan execution completed: 1/1 steps, 3.49s
+2025-06-03 02:50:24,052 - websockets.server - INFO - connection open
+2025-06-03 02:50:24,065 - intelligent_do_button_server - INFO - Client client_4691882576 connected from 127.0.0.1
+2025-06-03 02:50:24,088 - intelligent_do_button_server - INFO - Client client_4691882576 disconnected
+2025-06-03 02:50:24,092 - websockets.server - INFO - connection open
+2025-06-03 02:50:24,092 - intelligent_do_button_server - INFO - Client client_4691885136 connected from 127.0.0.1
+2025-06-03 02:50:24,093 - intelligent_do_button_server - INFO - Received message type: 
+2025-06-03 02:50:24,095 - intelligent_do_button_server - INFO - Client client_4691885136 disconnected
+2025-06-03 02:50:58,702 - intelligent_do_button_server - INFO - Server status: 1 clients connected, 2 executions completed
+2025-06-03 02:51:58,712 - intelligent_do_button_server - INFO - Server status: 1 clients connected, 2 executions completed
+2025-06-03 02:52:58,714 - intelligent_do_button_server - INFO - Server status: 1 clients connected, 2 executions completed
+2025-06-03 02:53:58,718 - intelligent_do_button_server - INFO - Server status: 1 clients connected, 2 executions completed
+2025-06-03 02:54:39,640 - websockets.server - INFO - connection open
+2025-06-03 02:54:39,647 - intelligent_do_button_server - INFO - Client client_4692078240 connected from 127.0.0.1
+2025-06-03 02:54:39,655 - intelligent_do_button_server - INFO - Received message type: 
+2025-06-03 02:54:39,661 - intelligent_do_button_server - INFO - Client client_4692078240 disconnected
+2025-06-03 02:54:42,381 - websockets.server - INFO - connection open
+2025-06-03 02:54:42,381 - intelligent_do_button_server - INFO - Client client_4692081280 connected from 127.0.0.1
+2025-06-03 02:54:42,385 - intelligent_do_button_server - INFO - Received message type: 
+2025-06-03 02:54:42,386 - intelligent_do_button_server - INFO - Client client_4692081280 disconnected
+2025-06-03 02:54:58,733 - intelligent_do_button_server - INFO - Server status: 1 clients connected, 2 executions completed
+2025-06-03 02:55:58,738 - intelligent_do_button_server - INFO - Server status: 1 clients connected, 2 executions completed
+2025-06-03 02:55:59,274 - websockets.server - INFO - connection open
+2025-06-03 02:55:59,274 - intelligent_do_button_server - INFO - Client client_4697097792 connected from 127.0.0.1
+2025-06-03 02:55:59,276 - intelligent_do_button_server - INFO - Client client_4697097792 disconnected
+2025-06-03 02:55:59,279 - websockets.server - INFO - connection open
+2025-06-03 02:55:59,279 - intelligent_do_button_server - INFO - Client client_4697098704 connected from 127.0.0.1
+2025-06-03 02:55:59,280 - intelligent_do_button_server - INFO - Received message type: 
+2025-06-03 02:55:59,281 - intelligent_do_button_server - INFO - Client client_4697098704 disconnected
+2025-06-03 02:56:17,996 - websockets.server - INFO - connection open
+2025-06-03 02:56:17,996 - intelligent_do_button_server - INFO - Client client_4697099312 connected from 127.0.0.1
+2025-06-03 02:56:17,997 - intelligent_do_button_server - INFO - Received message type: 
+2025-06-03 02:56:17,998 - intelligent_do_button_server - INFO - Client client_4697099312 disconnected
+2025-06-03 02:56:20,473 - websockets.server - INFO - connection open
+2025-06-03 02:56:20,473 - intelligent_do_button_server - INFO - Client client_4697099920 connected from 127.0.0.1
+2025-06-03 02:56:20,474 - intelligent_do_button_server - INFO - Received message type: button_action
+2025-06-03 02:56:20,475 - intelligent_do_button_server - INFO - Executing plan for suggestion_1748933759_4400
+2025-06-03 02:56:20,475 - intelligent_do_button_server - INFO - Analyzing current screen before execution
+2025-06-03 02:56:20,770 - intelligent_do_button_server - INFO - Using intelligent UI detector
+2025-06-03 02:56:20,771 - intelligent_do_button_server - ERROR - Error using intelligent UI detector: 'IntelligentUIDetector' object has no attribute 'detect_elements'
+2025-06-03 02:56:20,771 - intelligent_do_button_server - INFO - Using basic PyAutoGUI element detection
+2025-06-03 02:56:20,774 - intelligent_do_button_server - INFO - Detected 2 UI elements on screen
+2025-06-03 02:56:20,776 - intelligent_do_button_server - INFO - Executing step 1: click - Click text_field at (408, 237)
+2025-06-03 02:56:20,776 - intelligent_do_button_server - INFO - Clicking at (408, 237)
+2025-06-03 02:56:21,833 - agent_workflow.input_controller - INFO - Moved cursor to (408, 237)
+2025-06-03 02:56:22,011 - agent_workflow.input_controller - INFO - Clicked at (408, 237) with left button, 1 times
+2025-06-03 02:56:22,511 - intelligent_do_button_server - INFO - ✅ Step 1 executed successfully: Click text_field at (408, 237)
+2025-06-03 02:56:22,512 - intelligent_do_button_server - INFO - Refreshing UI element detection
+2025-06-03 02:56:22,512 - intelligent_do_button_server - INFO - Using cached UI elements
+2025-06-03 02:56:23,012 - intelligent_do_button_server - INFO - Plan execution completed: 1/1 steps, 2.54s
+2025-06-03 02:56:23,014 - intelligent_do_button_server - INFO - Client client_4697099920 disconnected
+2025-06-03 02:56:58,739 - intelligent_do_button_server - INFO - Server status: 1 clients connected, 3 executions completed
+2025-06-03 02:57:58,807 - intelligent_do_button_server - INFO - Server status: 1 clients connected, 3 executions completed
+2025-06-03 02:58:05,205 - websockets.server - INFO - connection open
+2025-06-03 02:58:05,206 - intelligent_do_button_server - INFO - Client client_4697100832 connected from 127.0.0.1
+2025-06-03 02:58:05,211 - intelligent_do_button_server - INFO - Received message type: ping
+2025-06-03 02:58:05,212 - intelligent_do_button_server - INFO - Received message type: get_system_stats
+2025-06-03 02:58:07,006 - intelligent_do_button_server - INFO - Received message type: get_system_stats
+2025-06-03 02:58:07,815 - intelligent_do_button_server - INFO - Received message type: get_system_stats
+2025-06-03 02:58:08,002 - intelligent_do_button_server - INFO - Received message type: get_system_stats
+2025-06-03 02:58:58,819 - intelligent_do_button_server - INFO - Server status: 2 clients connected, 3 executions completed
+2025-06-03 02:59:58,826 - intelligent_do_button_server - INFO - Server status: 2 clients connected, 3 executions completed
+2025-06-03 03:02:46,774 - intelligent_do_button_server - INFO - Server status: 2 clients connected, 3 executions completed
+2025-06-03 03:41:11,341 - intelligent_do_button_server - INFO - Server status: 2 clients connected, 3 executions completed
+2025-06-03 07:36:40,502 - intelligent_do_button_server - INFO - Server status: 2 clients connected, 3 executions completed
+2025-06-03 09:05:57,414 - intelligent_do_button_server - INFO - Server status: 2 clients connected, 3 executions completed
+2025-06-03 11:34:54,378 - intelligent_do_button_server - INFO - Server status: 2 clients connected, 3 executions completed
+2025-06-03 11:41:44,406 - intelligent_do_button_server - INFO - Server status: 2 clients connected, 3 executions completed
+2025-06-03 12:09:04,497 - intelligent_do_button_server - INFO - Server status: 2 clients connected, 3 executions completed
+2025-06-03 12:11:11,818 - intelligent_do_button_server - INFO - Server status: 2 clients connected, 3 executions completed
+2025-06-03 12:12:11,818 - intelligent_do_button_server - INFO - Server status: 2 clients connected, 3 executions completed
+2025-06-03 12:13:11,822 - intelligent_do_button_server - INFO - Server status: 2 clients connected, 3 executions completed
+2025-06-03 12:14:11,823 - intelligent_do_button_server - INFO - Server status: 2 clients connected, 3 executions completed
+2025-06-03 12:15:17,666 - intelligent_do_button_server - INFO - Server status: 2 clients connected, 3 executions completed
+2025-06-03 12:16:17,782 - intelligent_do_button_server - INFO - Server status: 2 clients connected, 3 executions completed
+2025-06-03 12:17:49,730 - intelligent_do_button_server - INFO - Server status: 2 clients connected, 3 executions completed
+2025-06-03 12:18:53,566 - intelligent_do_button_server - INFO - Server status: 2 clients connected, 3 executions completed
+2025-06-03 12:21:27,029 - intelligent_do_button_server - INFO - Server status: 2 clients connected, 3 executions completed
+2025-06-03 12:22:40,651 - intelligent_do_button_server - INFO - Server status: 2 clients connected, 3 executions completed
+2025-06-03 12:23:46,793 - intelligent_do_button_server - INFO - Server status: 2 clients connected, 3 executions completed
+2025-06-03 12:25:44,645 - intelligent_do_button_server - INFO - Server status: 2 clients connected, 3 executions completed
+2025-06-03 12:29:48,051 - intelligent_do_button_server - INFO - Server status: 2 clients connected, 3 executions completed
+2025-06-03 12:30:51,768 - intelligent_do_button_server - INFO - Server status: 2 clients connected, 3 executions completed
+2025-06-03 12:31:51,768 - intelligent_do_button_server - INFO - Server status: 2 clients connected, 3 executions completed
+2025-06-03 12:33:04,222 - intelligent_do_button_server - INFO - Server status: 2 clients connected, 3 executions completed
+2025-06-03 12:34:04,222 - intelligent_do_button_server - INFO - Server status: 2 clients connected, 3 executions completed
+2025-06-03 12:36:05,601 - intelligent_do_button_server - INFO - Server status: 2 clients connected, 3 executions completed
+2025-06-03 12:37:05,602 - intelligent_do_button_server - INFO - Server status: 2 clients connected, 3 executions completed
+2025-06-03 12:38:05,602 - intelligent_do_button_server - INFO - Server status: 2 clients connected, 3 executions completed
+2025-06-03 12:40:42,459 - intelligent_do_button_server - INFO - Server status: 2 clients connected, 3 executions completed
+2025-06-03 12:41:42,461 - intelligent_do_button_server - INFO - Server status: 2 clients connected, 3 executions completed
+2025-06-03 12:50:07,966 - intelligent_do_button_server - INFO - Server status: 2 clients connected, 3 executions completed
+2025-06-03 12:51:07,969 - intelligent_do_button_server - INFO - Server status: 2 clients connected, 3 executions completed
+2025-06-03 12:52:07,972 - intelligent_do_button_server - INFO - Server status: 2 clients connected, 3 executions completed
+2025-06-03 12:53:07,975 - intelligent_do_button_server - INFO - Server status: 2 clients connected, 3 executions completed
+2025-06-03 12:55:07,698 - intelligent_do_button_server - INFO - Server status: 2 clients connected, 3 executions completed
+2025-06-03 12:56:07,699 - intelligent_do_button_server - INFO - Server status: 2 clients connected, 3 executions completed
+2025-06-03 13:02:03,844 - intelligent_do_button_server - INFO - Server status: 2 clients connected, 3 executions completed
+2025-06-03 13:03:03,844 - intelligent_do_button_server - INFO - Server status: 2 clients connected, 3 executions completed
+2025-06-03 13:04:03,844 - intelligent_do_button_server - INFO - Server status: 2 clients connected, 3 executions completed
+2025-06-03 13:05:03,846 - intelligent_do_button_server - INFO - Server status: 2 clients connected, 3 executions completed
+2025-06-03 13:06:03,849 - intelligent_do_button_server - INFO - Server status: 2 clients connected, 3 executions completed
+2025-06-03 13:07:03,853 - intelligent_do_button_server - INFO - Server status: 2 clients connected, 3 executions completed
+2025-06-03 13:08:03,856 - intelligent_do_button_server - INFO - Server status: 2 clients connected, 3 executions completed
+2025-06-03 13:09:03,856 - intelligent_do_button_server - INFO - Server status: 2 clients connected, 3 executions completed
+2025-06-03 13:10:03,860 - intelligent_do_button_server - INFO - Server status: 2 clients connected, 3 executions completed
+2025-06-03 13:11:03,864 - intelligent_do_button_server - INFO - Server status: 2 clients connected, 3 executions completed
+2025-06-03 13:12:03,865 - intelligent_do_button_server - INFO - Server status: 2 clients connected, 3 executions completed
+2025-06-03 13:13:03,866 - intelligent_do_button_server - INFO - Server status: 2 clients connected, 3 executions completed
+2025-06-03 13:14:03,867 - intelligent_do_button_server - INFO - Server status: 2 clients connected, 3 executions completed
+2025-06-03 13:15:03,870 - intelligent_do_button_server - INFO - Server status: 2 clients connected, 3 executions completed
+2025-06-03 13:16:03,872 - intelligent_do_button_server - INFO - Server status: 2 clients connected, 3 executions completed
+2025-06-03 13:17:03,873 - intelligent_do_button_server - INFO - Server status: 2 clients connected, 3 executions completed
+2025-06-03 13:18:03,873 - intelligent_do_button_server - INFO - Server status: 2 clients connected, 3 executions completed
+2025-06-03 13:19:03,874 - intelligent_do_button_server - INFO - Server status: 2 clients connected, 3 executions completed
+2025-06-03 13:20:03,878 - intelligent_do_button_server - INFO - Server status: 2 clients connected, 3 executions completed
+2025-06-03 13:21:03,948 - intelligent_do_button_server - INFO - Server status: 2 clients connected, 3 executions completed
+2025-06-03 13:22:03,952 - intelligent_do_button_server - INFO - Server status: 2 clients connected, 3 executions completed
+2025-06-03 13:23:03,955 - intelligent_do_button_server - INFO - Server status: 2 clients connected, 3 executions completed
+2025-06-03 13:24:03,959 - intelligent_do_button_server - INFO - Server status: 2 clients connected, 3 executions completed
+2025-06-03 13:25:03,962 - intelligent_do_button_server - INFO - Server status: 2 clients connected, 3 executions completed
+2025-06-03 13:26:03,965 - intelligent_do_button_server - INFO - Server status: 2 clients connected, 3 executions completed
+2025-06-03 13:27:03,968 - intelligent_do_button_server - INFO - Server status: 2 clients connected, 3 executions completed
+2025-06-03 13:28:03,969 - intelligent_do_button_server - INFO - Server status: 2 clients connected, 3 executions completed
+2025-06-03 13:29:03,971 - intelligent_do_button_server - INFO - Server status: 2 clients connected, 3 executions completed
+2025-06-03 13:30:03,975 - intelligent_do_button_server - INFO - Server status: 2 clients connected, 3 executions completed
+2025-06-03 13:31:03,978 - intelligent_do_button_server - INFO - Server status: 2 clients connected, 3 executions completed
+2025-06-03 13:32:03,983 - intelligent_do_button_server - INFO - Server status: 2 clients connected, 3 executions completed
+2025-06-03 13:33:03,988 - intelligent_do_button_server - INFO - Server status: 2 clients connected, 3 executions completed
+2025-06-03 13:34:03,989 - intelligent_do_button_server - INFO - Server status: 2 clients connected, 3 executions completed
+2025-06-03 13:35:03,993 - intelligent_do_button_server - INFO - Server status: 2 clients connected, 3 executions completed
+2025-06-03 13:36:03,997 - intelligent_do_button_server - INFO - Server status: 2 clients connected, 3 executions completed
+2025-06-03 13:37:04,000 - intelligent_do_button_server - INFO - Server status: 2 clients connected, 3 executions completed
+2025-06-03 13:38:04,003 - intelligent_do_button_server - INFO - Server status: 2 clients connected, 3 executions completed
+2025-06-03 13:39:04,007 - intelligent_do_button_server - INFO - Server status: 2 clients connected, 3 executions completed
+2025-06-03 13:40:04,010 - intelligent_do_button_server - INFO - Server status: 2 clients connected, 3 executions completed
+2025-06-03 13:41:04,015 - intelligent_do_button_server - INFO - Server status: 2 clients connected, 3 executions completed
+2025-06-03 13:42:04,019 - intelligent_do_button_server - INFO - Server status: 2 clients connected, 3 executions completed
+2025-06-03 13:43:04,023 - intelligent_do_button_server - INFO - Server status: 2 clients connected, 3 executions completed
+2025-06-03 13:44:04,025 - intelligent_do_button_server - INFO - Server status: 2 clients connected, 3 executions completed
+2025-06-03 13:45:04,029 - intelligent_do_button_server - INFO - Server status: 2 clients connected, 3 executions completed
+2025-06-03 13:46:04,034 - intelligent_do_button_server - INFO - Server status: 2 clients connected, 3 executions completed
+2025-06-03 13:47:04,038 - intelligent_do_button_server - INFO - Server status: 2 clients connected, 3 executions completed
+2025-06-03 13:48:04,041 - intelligent_do_button_server - INFO - Server status: 2 clients connected, 3 executions completed
+2025-06-03 13:49:04,045 - intelligent_do_button_server - INFO - Server status: 2 clients connected, 3 executions completed
+2025-06-03 13:50:04,047 - intelligent_do_button_server - INFO - Server status: 2 clients connected, 3 executions completed
+2025-06-03 13:51:04,051 - intelligent_do_button_server - INFO - Server status: 2 clients connected, 3 executions completed
+2025-06-03 13:52:04,054 - intelligent_do_button_server - INFO - Server status: 2 clients connected, 3 executions completed
+2025-06-03 13:53:04,056 - intelligent_do_button_server - INFO - Server status: 2 clients connected, 3 executions completed
+2025-06-03 13:54:04,061 - intelligent_do_button_server - INFO - Server status: 2 clients connected, 3 executions completed
+2025-06-03 13:55:04,064 - intelligent_do_button_server - INFO - Server status: 2 clients connected, 3 executions completed
+2025-06-03 13:56:04,067 - intelligent_do_button_server - INFO - Server status: 2 clients connected, 3 executions completed
+2025-06-03 13:57:04,072 - intelligent_do_button_server - INFO - Server status: 2 clients connected, 3 executions completed
+2025-06-03 13:58:04,066 - intelligent_do_button_server - INFO - Server status: 2 clients connected, 3 executions completed
+2025-06-03 13:59:04,050 - intelligent_do_button_server - INFO - Server status: 2 clients connected, 3 executions completed
+2025-06-03 14:00:04,052 - intelligent_do_button_server - INFO - Server status: 2 clients connected, 3 executions completed
+2025-06-03 14:01:04,056 - intelligent_do_button_server - INFO - Server status: 2 clients connected, 3 executions completed
+2025-06-03 14:03:57,171 - intelligent_do_button_server - INFO - Server status: 2 clients connected, 3 executions completed
+2025-06-03 14:04:57,171 - intelligent_do_button_server - INFO - Server status: 2 clients connected, 3 executions completed
+2025-06-03 14:05:57,173 - intelligent_do_button_server - INFO - Server status: 2 clients connected, 3 executions completed
+2025-06-03 14:09:31,413 - intelligent_do_button_server - INFO - Server status: 2 clients connected, 3 executions completed
+2025-06-03 14:10:31,415 - intelligent_do_button_server - INFO - Server status: 2 clients connected, 3 executions completed
+2025-06-03 14:11:47,667 - intelligent_do_button_server - INFO - Server status: 2 clients connected, 3 executions completed
+2025-06-03 14:12:47,668 - intelligent_do_button_server - INFO - Server status: 2 clients connected, 3 executions completed
+2025-06-03 14:13:47,669 - intelligent_do_button_server - INFO - Server status: 2 clients connected, 3 executions completed
+2025-06-03 14:14:47,670 - intelligent_do_button_server - INFO - Server status: 2 clients connected, 3 executions completed
+2025-06-03 14:15:47,772 - intelligent_do_button_server - INFO - Server status: 2 clients connected, 3 executions completed
+2025-06-03 14:16:47,773 - intelligent_do_button_server - INFO - Server status: 2 clients connected, 3 executions completed
+2025-06-03 14:18:20,685 - intelligent_do_button_server - INFO - Server status: 2 clients connected, 3 executions completed
+2025-06-03 14:19:20,686 - intelligent_do_button_server - INFO - Server status: 2 clients connected, 3 executions completed
+2025-06-03 14:20:28,219 - intelligent_do_button_server - INFO - Server status: 2 clients connected, 3 executions completed
+2025-06-03 14:21:28,212 - intelligent_do_button_server - INFO - Server status: 2 clients connected, 3 executions completed
+2025-06-03 14:22:28,213 - intelligent_do_button_server - INFO - Server status: 2 clients connected, 3 executions completed
+2025-06-03 14:23:28,216 - intelligent_do_button_server - INFO - Server status: 2 clients connected, 3 executions completed
+2025-06-03 14:24:28,217 - intelligent_do_button_server - INFO - Server status: 2 clients connected, 3 executions completed
+2025-06-03 14:26:09,394 - intelligent_do_button_server - INFO - Server status: 2 clients connected, 3 executions completed
+2025-06-03 14:27:09,394 - intelligent_do_button_server - INFO - Server status: 2 clients connected, 3 executions completed
+2025-06-03 14:28:09,514 - intelligent_do_button_server - INFO - Server status: 2 clients connected, 3 executions completed
+2025-06-03 14:29:09,516 - intelligent_do_button_server - INFO - Server status: 2 clients connected, 3 executions completed
+2025-06-03 14:47:04,328 - intelligent_do_button_server - INFO - Server status: 2 clients connected, 3 executions completed
+2025-06-03 14:48:04,333 - intelligent_do_button_server - INFO - Server status: 2 clients connected, 3 executions completed
+2025-06-03 14:49:04,334 - intelligent_do_button_server - INFO - Server status: 2 clients connected, 3 executions completed
+2025-06-03 14:50:04,336 - intelligent_do_button_server - INFO - Server status: 2 clients connected, 3 executions completed
+2025-06-03 14:51:04,338 - intelligent_do_button_server - INFO - Server status: 2 clients connected, 3 executions completed
+2025-06-03 14:54:26,272 - intelligent_do_button_server - INFO - Server status: 2 clients connected, 3 executions completed
+2025-06-03 14:55:26,273 - intelligent_do_button_server - INFO - Server status: 2 clients connected, 3 executions completed
+2025-06-03 15:10:35,721 - intelligent_do_button_server - INFO - Server status: 2 clients connected, 3 executions completed
+2025-06-03 15:11:35,720 - intelligent_do_button_server - INFO - Server status: 2 clients connected, 3 executions completed
+2025-06-03 15:12:35,724 - intelligent_do_button_server - INFO - Server status: 2 clients connected, 3 executions completed
+2025-06-03 15:13:35,724 - intelligent_do_button_server - INFO - Server status: 2 clients connected, 3 executions completed
+2025-06-03 15:17:40,085 - intelligent_do_button_server - INFO - Server status: 2 clients connected, 3 executions completed
+2025-06-03 15:18:40,088 - intelligent_do_button_server - INFO - Server status: 2 clients connected, 3 executions completed
+2025-06-03 15:19:40,186 - intelligent_do_button_server - INFO - Server status: 2 clients connected, 3 executions completed
+2025-06-03 15:20:40,187 - intelligent_do_button_server - INFO - Server status: 2 clients connected, 3 executions completed
+2025-06-03 15:21:40,187 - intelligent_do_button_server - INFO - Server status: 2 clients connected, 3 executions completed
+2025-06-03 15:37:40,218 - intelligent_do_button_server - INFO - Server status: 2 clients connected, 3 executions completed
+2025-06-03 15:38:40,223 - intelligent_do_button_server - INFO - Server status: 2 clients connected, 3 executions completed
+2025-06-03 15:55:13,042 - intelligent_do_button_server - INFO - Server status: 2 clients connected, 3 executions completed
+2025-06-03 15:56:13,043 - intelligent_do_button_server - INFO - Server status: 2 clients connected, 3 executions completed
+2025-06-03 15:57:13,043 - intelligent_do_button_server - INFO - Server status: 2 clients connected, 3 executions completed
+2025-06-03 15:58:13,046 - intelligent_do_button_server - INFO - Server status: 2 clients connected, 3 executions completed
+2025-06-03 15:59:13,048 - intelligent_do_button_server - INFO - Server status: 2 clients connected, 3 executions completed
+2025-06-03 16:00:13,051 - intelligent_do_button_server - INFO - Server status: 2 clients connected, 3 executions completed
+2025-06-03 16:01:13,052 - intelligent_do_button_server - INFO - Server status: 2 clients connected, 3 executions completed
+2025-06-03 16:02:13,052 - intelligent_do_button_server - INFO - Server status: 2 clients connected, 3 executions completed
+2025-06-03 16:03:13,054 - intelligent_do_button_server - INFO - Server status: 2 clients connected, 3 executions completed
+2025-06-03 16:04:13,057 - intelligent_do_button_server - INFO - Server status: 2 clients connected, 3 executions completed
+2025-06-03 16:05:13,060 - intelligent_do_button_server - INFO - Server status: 2 clients connected, 3 executions completed
+2025-06-03 16:06:13,063 - intelligent_do_button_server - INFO - Server status: 2 clients connected, 3 executions completed
+2025-06-03 16:07:13,066 - intelligent_do_button_server - INFO - Server status: 2 clients connected, 3 executions completed
+2025-06-03 16:08:13,067 - intelligent_do_button_server - INFO - Server status: 2 clients connected, 3 executions completed
+2025-06-03 16:09:13,069 - intelligent_do_button_server - INFO - Server status: 2 clients connected, 3 executions completed
+2025-06-03 16:10:13,071 - intelligent_do_button_server - INFO - Server status: 2 clients connected, 3 executions completed
+2025-06-03 16:11:13,073 - intelligent_do_button_server - INFO - Server status: 2 clients connected, 3 executions completed
+2025-06-03 16:12:13,073 - intelligent_do_button_server - INFO - Server status: 2 clients connected, 3 executions completed
+2025-06-03 16:13:13,085 - intelligent_do_button_server - INFO - Server status: 2 clients connected, 3 executions completed
+2025-06-03 16:14:13,112 - intelligent_do_button_server - INFO - Server status: 2 clients connected, 3 executions completed
+2025-06-03 16:15:13,134 - intelligent_do_button_server - INFO - Server status: 2 clients connected, 3 executions completed
+2025-06-03 16:16:13,142 - intelligent_do_button_server - INFO - Server status: 2 clients connected, 3 executions completed
+2025-06-03 16:17:13,148 - intelligent_do_button_server - INFO - Server status: 2 clients connected, 3 executions completed
+2025-06-03 16:18:13,149 - intelligent_do_button_server - INFO - Server status: 2 clients connected, 3 executions completed
+2025-06-03 16:18:20,169 - intelligent_do_button_server - INFO - Received message type: analyze_screen
+2025-06-03 16:18:20,171 - intelligent_do_button_server - INFO - Analyzing screen on demand
+2025-06-03 16:18:20,637 - intelligent_do_button_server - INFO - Using intelligent UI detector
+2025-06-03 16:18:20,638 - intelligent_do_button_server - ERROR - Error using intelligent UI detector: 'IntelligentUIDetector' object has no attribute 'detect_elements'
+2025-06-03 16:18:20,638 - intelligent_do_button_server - INFO - Using basic PyAutoGUI element detection
+2025-06-03 16:18:20,643 - intelligent_do_button_server - INFO - Detected 2 UI elements on screen
+2025-06-03 16:18:22,815 - intelligent_do_button_server - INFO - Client client_4691944048 disconnected
+2025-06-03 16:18:27,364 - websockets.server - INFO - connection open
+2025-06-03 16:18:27,365 - intelligent_do_button_server - INFO - Client client_4692082192 connected from 127.0.0.1
+2025-06-03 16:18:28,412 - intelligent_do_button_server - INFO - Received message type: analyze_screen
+2025-06-03 16:18:28,413 - intelligent_do_button_server - INFO - Analyzing screen on demand
+2025-06-03 16:18:28,413 - intelligent_do_button_server - INFO - Using cached UI elements
+2025-06-03 16:18:30,413 - intelligent_do_button_server - INFO - Received message type: plan_created
+2025-06-03 16:18:30,416 - intelligent_do_button_server - INFO - Stored plan for session test_219055: Click button at (446, 472)
+2025-06-03 16:18:30,921 - intelligent_do_button_server - INFO - Received message type: agent_confirmation
+2025-06-03 16:18:30,922 - intelligent_do_button_server - INFO - Executing plan for session test_219055
+2025-06-03 16:18:30,922 - intelligent_do_button_server - INFO - Analyzing current screen before execution
+2025-06-03 16:18:30,922 - intelligent_do_button_server - INFO - Using cached UI elements
+2025-06-03 16:18:30,923 - intelligent_do_button_server - INFO - Executing step 1: click - Click button at (446, 472)
+2025-06-03 16:18:30,923 - intelligent_do_button_server - INFO - Clicking at (446, 472)
+2025-06-03 16:18:33,044 - agent_workflow.input_controller - INFO - Moved cursor to (446, 472)
+2025-06-03 16:18:33,224 - agent_workflow.input_controller - INFO - Clicked at (446, 472) with left button, 1 times
+2025-06-03 16:18:33,726 - intelligent_do_button_server - INFO - ✅ Step 1 executed successfully: Click button at (446, 472)
+2025-06-03 16:18:33,726 - intelligent_do_button_server - INFO - Refreshing UI element detection
+2025-06-03 16:18:33,727 - intelligent_do_button_server - INFO - Using cached UI elements
+2025-06-03 16:18:34,230 - intelligent_do_button_server - INFO - Plan execution completed: 1/1 steps, 3.31s
+2025-06-03 16:18:36,937 - intelligent_do_button_server - INFO - Received message type: plan_created
+2025-06-03 16:18:36,938 - intelligent_do_button_server - INFO - Stored plan for session test_219055: Click text_field at (446, 372)
+2025-06-03 16:18:37,441 - intelligent_do_button_server - INFO - Received message type: agent_confirmation
+2025-06-03 16:18:37,442 - intelligent_do_button_server - INFO - Executing plan for session test_219055
+2025-06-03 16:18:37,442 - intelligent_do_button_server - INFO - Analyzing current screen before execution
+2025-06-03 16:18:37,442 - intelligent_do_button_server - INFO - Using cached UI elements
+2025-06-03 16:18:37,443 - intelligent_do_button_server - INFO - Executing step 1: click - Click text_field at (446, 372)
+2025-06-03 16:18:37,443 - intelligent_do_button_server - INFO - Clicking at (446, 372)
+2025-06-03 16:18:39,140 - agent_workflow.input_controller - INFO - Moved cursor to (446, 372)
+2025-06-03 16:18:39,367 - agent_workflow.input_controller - INFO - Clicked at (446, 372) with left button, 1 times
+2025-06-03 16:18:39,868 - intelligent_do_button_server - INFO - ✅ Step 1 executed successfully: Click text_field at (446, 372)
+2025-06-03 16:18:39,868 - intelligent_do_button_server - INFO - Refreshing UI element detection
+2025-06-03 16:18:39,868 - intelligent_do_button_server - INFO - Using cached UI elements
+2025-06-03 16:18:40,371 - intelligent_do_button_server - INFO - Plan execution completed: 1/1 steps, 2.93s
+2025-06-03 16:19:13,151 - intelligent_do_button_server - INFO - Server status: 2 clients connected, 5 executions completed
+2025-06-03 16:20:02,800 - intelligent_do_button_server - INFO - Received message type: analyze_screen
+2025-06-03 16:20:02,803 - intelligent_do_button_server - INFO - Analyzing screen on demand
+2025-06-03 16:20:03,445 - intelligent_do_button_server - INFO - Using intelligent UI detector
+2025-06-03 16:20:03,446 - intelligent_do_button_server - ERROR - Error using intelligent UI detector: 'IntelligentUIDetector' object has no attribute 'detect_elements'
+2025-06-03 16:20:03,446 - intelligent_do_button_server - INFO - Using basic PyAutoGUI element detection
+2025-06-03 16:20:03,448 - intelligent_do_button_server - INFO - Detected 2 UI elements on screen
+2025-06-03 16:20:05,115 - intelligent_do_button_server - INFO - Received message type: plan_created
+2025-06-03 16:20:05,115 - intelligent_do_button_server - INFO - Stored plan for session test_219055: Click button at (387, 470)
+2025-06-03 16:20:05,621 - intelligent_do_button_server - INFO - Received message type: agent_confirmation
+2025-06-03 16:20:05,621 - intelligent_do_button_server - INFO - Executing plan for session test_219055
+2025-06-03 16:20:05,621 - intelligent_do_button_server - INFO - Analyzing current screen before execution
+2025-06-03 16:20:05,621 - intelligent_do_button_server - INFO - Using cached UI elements
+2025-06-03 16:20:05,622 - intelligent_do_button_server - INFO - Executing step 1: click - Click button at (387, 470)
+2025-06-03 16:20:05,622 - intelligent_do_button_server - INFO - Clicking at (387, 470)
+2025-06-03 16:20:07,613 - agent_workflow.input_controller - INFO - Moved cursor to (387, 470)
+2025-06-03 16:20:07,817 - agent_workflow.input_controller - INFO - Clicked at (387, 470) with left button, 1 times
+2025-06-03 16:20:08,318 - intelligent_do_button_server - INFO - ✅ Step 1 executed successfully: Click button at (387, 470)
+2025-06-03 16:20:08,318 - intelligent_do_button_server - INFO - Refreshing UI element detection
+2025-06-03 16:20:08,319 - intelligent_do_button_server - INFO - Using cached UI elements
+2025-06-03 16:20:08,820 - intelligent_do_button_server - INFO - Plan execution completed: 1/1 steps, 3.20s
+2025-06-03 16:20:10,962 - intelligent_do_button_server - INFO - Received message type: plan_created
+2025-06-03 16:20:10,963 - intelligent_do_button_server - INFO - Stored plan for session test_219055: Browser Search Test
+2025-06-03 16:20:11,464 - intelligent_do_button_server - INFO - Received message type: agent_confirmation
+2025-06-03 16:20:11,464 - intelligent_do_button_server - INFO - Executing plan for session test_219055
+2025-06-03 16:20:11,465 - intelligent_do_button_server - INFO - Analyzing current screen before execution
+2025-06-03 16:20:11,465 - intelligent_do_button_server - INFO - Using cached UI elements
+2025-06-03 16:20:11,465 - intelligent_do_button_server - INFO - Executing step 1: analyze_screen - Analyze screen for UI elements
+2025-06-03 16:20:11,465 - intelligent_do_button_server - INFO - Analyzing screen for UI elements
+2025-06-03 16:20:11,465 - intelligent_do_button_server - INFO - Using cached UI elements
+2025-06-03 16:20:11,465 - intelligent_do_button_server - INFO - Found 2 UI elements
+2025-06-03 16:20:11,966 - intelligent_do_button_server - INFO - ✅ Step 1 executed successfully: Analyze screen for UI elements
+2025-06-03 16:20:11,967 - intelligent_do_button_server - INFO - Refreshing UI element detection
+2025-06-03 16:20:11,967 - intelligent_do_button_server - INFO - Using cached UI elements
+2025-06-03 16:20:12,467 - intelligent_do_button_server - INFO - Executing step 2: click - Click on search box
+2025-06-03 16:20:12,468 - intelligent_do_button_server - INFO - Using cached UI elements
+2025-06-03 16:20:12,468 - intelligent_do_button_server - WARNING - No matching element found for 'search_box'
+2025-06-03 16:20:12,468 - intelligent_do_button_server - INFO - Clicking at (400, 200)
+2025-06-03 16:20:13,937 - agent_workflow.input_controller - INFO - Moved cursor to (400, 200)
+2025-06-03 16:20:14,113 - agent_workflow.input_controller - INFO - Clicked at (400, 200) with left button, 1 times
+2025-06-03 16:20:14,113 - intelligent_do_button_server - INFO - Server status: 2 clients connected, 6 executions completed
+2025-06-03 16:20:14,614 - intelligent_do_button_server - INFO - ✅ Step 2 executed successfully: Click on search box
+2025-06-03 16:20:15,115 - intelligent_do_button_server - INFO - Executing step 3: type_text - Enter search query
+2025-06-03 16:20:15,115 - intelligent_do_button_server - INFO - Typing text: 'intelligent UI detection test'
+2025-06-03 16:20:24,224 - agent_workflow.input_controller - INFO - Typed text: 'intelligent UI detection test'
+2025-06-03 16:20:24,725 - intelligent_do_button_server - INFO - ✅ Step 3 executed successfully: Enter search query
+2025-06-03 16:20:24,725 - intelligent_do_button_server - INFO - Refreshing UI element detection
+2025-06-03 16:20:24,725 - intelligent_do_button_server - INFO - Using cached UI elements
+2025-06-03 16:20:25,225 - intelligent_do_button_server - INFO - Executing step 4: press - Press Enter to search
+2025-06-03 16:20:25,226 - intelligent_do_button_server - INFO - Pressing key: enter
+2025-06-03 16:20:25,350 - agent_workflow.input_controller - INFO - Pressed key: enter
+2025-06-03 16:20:25,851 - intelligent_do_button_server - INFO - ✅ Step 4 executed successfully: Press Enter to search
+2025-06-03 16:20:26,352 - intelligent_do_button_server - INFO - Plan execution completed: 4/4 steps, 14.89s
+2025-06-03 16:21:14,116 - intelligent_do_button_server - INFO - Server status: 2 clients connected, 7 executions completed
+2025-06-03 16:22:14,119 - intelligent_do_button_server - INFO - Server status: 2 clients connected, 7 executions completed
+2025-06-03 16:22:37,342 - intelligent_do_button_server - INFO - Received message type: get_system_stats
+2025-06-03 16:22:38,772 - intelligent_do_button_server - INFO - Received message type: get_system_stats
+2025-06-03 16:23:14,121 - intelligent_do_button_server - INFO - Server status: 2 clients connected, 7 executions completed
+2025-06-03 16:24:14,130 - intelligent_do_button_server - INFO - Server status: 2 clients connected, 7 executions completed
+2025-06-03 16:25:14,138 - intelligent_do_button_server - INFO - Server status: 2 clients connected, 7 executions completed
+2025-06-03 16:26:14,157 - intelligent_do_button_server - INFO - Server status: 2 clients connected, 7 executions completed
+2025-06-03 16:27:14,171 - intelligent_do_button_server - INFO - Server status: 2 clients connected, 7 executions completed
+2025-06-03 16:28:14,196 - intelligent_do_button_server - INFO - Server status: 2 clients connected, 7 executions completed
+2025-06-03 16:29:14,203 - intelligent_do_button_server - INFO - Server status: 2 clients connected, 7 executions completed
+2025-06-03 16:30:14,315 - intelligent_do_button_server - INFO - Server status: 2 clients connected, 7 executions completed
+2025-06-03 16:31:14,320 - intelligent_do_button_server - INFO - Server status: 2 clients connected, 7 executions completed
+2025-06-03 16:32:14,328 - intelligent_do_button_server - INFO - Server status: 2 clients connected, 7 executions completed
+2025-06-03 16:33:14,334 - intelligent_do_button_server - INFO - Server status: 2 clients connected, 7 executions completed
+2025-06-03 16:34:14,340 - intelligent_do_button_server - INFO - Server status: 2 clients connected, 7 executions completed
+2025-06-03 16:35:14,374 - intelligent_do_button_server - INFO - Server status: 2 clients connected, 7 executions completed
+2025-06-03 16:36:14,377 - intelligent_do_button_server - INFO - Server status: 2 clients connected, 7 executions completed
+2025-06-03 16:37:14,380 - intelligent_do_button_server - INFO - Server status: 2 clients connected, 7 executions completed
+2025-06-03 16:38:14,384 - intelligent_do_button_server - INFO - Server status: 2 clients connected, 7 executions completed
+2025-06-03 16:39:14,389 - intelligent_do_button_server - INFO - Server status: 2 clients connected, 7 executions completed
+2025-06-03 16:39:20,239 - websockets.server - INFO - connection open
+2025-06-03 16:39:20,239 - intelligent_do_button_server - INFO - Client client_4692080672 connected from 127.0.0.1
+2025-06-03 16:39:20,241 - intelligent_do_button_server - INFO - Received message type: 
+2025-06-03 16:39:20,243 - intelligent_do_button_server - INFO - Client client_4692080672 disconnected
+2025-06-03 16:40:14,393 - intelligent_do_button_server - INFO - Server status: 2 clients connected, 7 executions completed
+2025-06-03 16:41:14,398 - intelligent_do_button_server - INFO - Server status: 2 clients connected, 7 executions completed

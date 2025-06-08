@@ -1,0 +1,131 @@
+2025-06-01 15:54:03,849 - fixed_bridge - INFO - Starting WebSocket bridge server on localhost:8768
+2025-06-01 15:54:03,863 - websockets.server - INFO - server listening on [::1]:8768
+2025-06-01 15:54:03,863 - websockets.server - INFO - server listening on 127.0.0.1:8768
+2025-06-01 15:54:03,864 - fixed_bridge - INFO - WebSocket bridge server started on ws://localhost:8768
+2025-06-01 15:54:03,864 - fixed_bridge - INFO - Heartbeat system active
+2025-06-01 15:56:06,355 - websockets.server - INFO - connection open
+2025-06-01 15:56:06,357 - websockets.server - ERROR - connection handler failed
+Traceback (most recent call last):
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/asyncio/server.py", line 376, in conn_handler
+    await self.handler(connection)
+          ~~~~~~~~~~~~^^^^^^^^^^^^
+TypeError: handler() missing 1 required positional argument: 'path'
+2025-06-01 15:56:17,433 - websockets.server - INFO - connection open
+2025-06-01 15:56:17,434 - websockets.server - ERROR - connection handler failed
+Traceback (most recent call last):
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/asyncio/server.py", line 376, in conn_handler
+    await self.handler(connection)
+          ~~~~~~~~~~~~^^^^^^^^^^^^
+TypeError: handler() missing 1 required positional argument: 'path'
+2025-06-01 17:49:38,541 - websockets.server - INFO - connection open
+2025-06-01 17:49:38,545 - websockets.server - ERROR - connection handler failed
+Traceback (most recent call last):
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/asyncio/server.py", line 376, in conn_handler
+    await self.handler(connection)
+          ~~~~~~~~~~~~^^^^^^^^^^^^
+TypeError: handler() missing 1 required positional argument: 'path'
+2025-06-01 17:49:41,662 - websockets.server - INFO - connection open
+2025-06-01 17:49:41,662 - websockets.server - ERROR - connection handler failed
+Traceback (most recent call last):
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/asyncio/server.py", line 376, in conn_handler
+    await self.handler(connection)
+          ~~~~~~~~~~~~^^^^^^^^^^^^
+TypeError: handler() missing 1 required positional argument: 'path'
+2025-06-01 17:49:44,667 - websockets.server - INFO - connection open
+2025-06-01 17:49:44,667 - websockets.server - ERROR - connection handler failed
+Traceback (most recent call last):
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/asyncio/server.py", line 376, in conn_handler
+    await self.handler(connection)
+          ~~~~~~~~~~~~^^^^^^^^^^^^
+TypeError: handler() missing 1 required positional argument: 'path'
+2025-06-01 17:49:47,673 - websockets.server - INFO - connection open
+2025-06-01 17:49:47,673 - websockets.server - ERROR - connection handler failed
+Traceback (most recent call last):
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/asyncio/server.py", line 376, in conn_handler
+    await self.handler(connection)
+          ~~~~~~~~~~~~^^^^^^^^^^^^
+TypeError: handler() missing 1 required positional argument: 'path'
+2025-06-01 17:49:50,909 - websockets.server - INFO - connection open
+2025-06-01 17:49:50,909 - websockets.server - ERROR - connection handler failed
+Traceback (most recent call last):
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/asyncio/server.py", line 376, in conn_handler
+    await self.handler(connection)
+          ~~~~~~~~~~~~^^^^^^^^^^^^
+TypeError: handler() missing 1 required positional argument: 'path'
+2025-06-01 17:49:54,911 - websockets.server - INFO - connection open
+2025-06-01 17:49:54,911 - websockets.server - ERROR - connection handler failed
+Traceback (most recent call last):
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/asyncio/server.py", line 376, in conn_handler
+    await self.handler(connection)
+          ~~~~~~~~~~~~^^^^^^^^^^^^
+TypeError: handler() missing 1 required positional argument: 'path'
+2025-06-01 17:49:58,906 - websockets.server - INFO - connection open
+2025-06-01 17:49:58,906 - websockets.server - ERROR - connection handler failed
+Traceback (most recent call last):
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/asyncio/server.py", line 376, in conn_handler
+    await self.handler(connection)
+          ~~~~~~~~~~~~^^^^^^^^^^^^
+TypeError: handler() missing 1 required positional argument: 'path'
+2025-06-01 17:50:02,907 - websockets.server - INFO - connection open
+2025-06-01 17:50:02,907 - websockets.server - ERROR - connection handler failed
+Traceback (most recent call last):
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/asyncio/server.py", line 376, in conn_handler
+    await self.handler(connection)
+          ~~~~~~~~~~~~^^^^^^^^^^^^
+TypeError: handler() missing 1 required positional argument: 'path'
+2025-06-01 17:50:06,906 - websockets.server - INFO - connection open
+2025-06-01 17:50:06,906 - websockets.server - ERROR - connection handler failed
+Traceback (most recent call last):
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/asyncio/server.py", line 376, in conn_handler
+    await self.handler(connection)
+          ~~~~~~~~~~~~^^^^^^^^^^^^
+TypeError: handler() missing 1 required positional argument: 'path'
+2025-06-01 17:50:10,906 - websockets.server - INFO - connection open
+2025-06-01 17:50:10,906 - websockets.server - ERROR - connection handler failed
+Traceback (most recent call last):
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/asyncio/server.py", line 376, in conn_handler
+    await self.handler(connection)
+          ~~~~~~~~~~~~^^^^^^^^^^^^
+TypeError: handler() missing 1 required positional argument: 'path'
+2025-06-01 17:50:14,921 - websockets.server - INFO - connection open
+2025-06-01 17:50:14,924 - websockets.server - ERROR - connection handler failed
+Traceback (most recent call last):
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/asyncio/server.py", line 376, in conn_handler
+    await self.handler(connection)
+          ~~~~~~~~~~~~^^^^^^^^^^^^
+TypeError: handler() missing 1 required positional argument: 'path'
+2025-06-01 17:50:18,911 - websockets.server - INFO - connection open
+2025-06-01 17:50:18,911 - websockets.server - ERROR - connection handler failed
+Traceback (most recent call last):
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/asyncio/server.py", line 376, in conn_handler
+    await self.handler(connection)
+          ~~~~~~~~~~~~^^^^^^^^^^^^
+TypeError: handler() missing 1 required positional argument: 'path'
+2025-06-01 17:50:22,908 - websockets.server - INFO - connection open
+2025-06-01 17:50:22,908 - websockets.server - ERROR - connection handler failed
+Traceback (most recent call last):
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/asyncio/server.py", line 376, in conn_handler
+    await self.handler(connection)
+          ~~~~~~~~~~~~^^^^^^^^^^^^
+TypeError: handler() missing 1 required positional argument: 'path'
+2025-06-01 17:50:26,907 - websockets.server - INFO - connection open
+2025-06-01 17:50:26,908 - websockets.server - ERROR - connection handler failed
+Traceback (most recent call last):
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/asyncio/server.py", line 376, in conn_handler
+    await self.handler(connection)
+          ~~~~~~~~~~~~^^^^^^^^^^^^
+TypeError: handler() missing 1 required positional argument: 'path'
+2025-06-01 17:50:30,905 - websockets.server - INFO - connection open
+2025-06-01 17:50:30,906 - websockets.server - ERROR - connection handler failed
+Traceback (most recent call last):
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/asyncio/server.py", line 376, in conn_handler
+    await self.handler(connection)
+          ~~~~~~~~~~~~^^^^^^^^^^^^
+TypeError: handler() missing 1 required positional argument: 'path'
+2025-06-01 17:50:34,911 - websockets.server - INFO - connection open
+2025-06-01 17:50:34,911 - websockets.server - ERROR - connection handler failed
+Traceback (most recent call last):
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/asyncio/server.py", line 376, in conn_handler
+    await self.handler(connection)
+          ~~~~~~~~~~~~^^^^^^^^^^^^
+TypeError: handler() missing 1 required positional argument: 'path'

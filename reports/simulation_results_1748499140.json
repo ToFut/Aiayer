@@ -1,0 +1,230 @@
+{
+  "timestamp": "2025-05-29T02:12:39.073031",
+  "test_session_id": "sim_1748499140",
+  "backend_url": "ws://localhost:8767",
+  "total_time": 18.12076497077942,
+  "total_tests": 10,
+  "successful_tests": 0,
+  "overall_success_rate": 0.0,
+  "system_score": 0.0,
+  "performance_rating": "Poor",
+  "average_scores": {
+    "quality": 0.0,
+    "memory_integration": 0.0,
+    "contextual_understanding": 0.0,
+    "response_time": 0.009259986877441406
+  },
+  "mode_performance": {
+    "agent": {
+      "success_rate": 0.0,
+      "total_tests": 3,
+      "successful_tests": 0,
+      "average_response_time": 0.026848316192626953,
+      "average_quality_score": 0.0,
+      "average_memory_score": 0.0,
+      "average_context_score": 0.0
+    },
+    "ask": {
+      "success_rate": 0.0,
+      "total_tests": 4,
+      "successful_tests": 0,
+      "average_response_time": 0.001806020736694336,
+      "average_quality_score": 0.0,
+      "average_memory_score": 0.0,
+      "average_context_score": 0.0
+    },
+    "suggest": {
+      "success_rate": 0.0,
+      "total_tests": 3,
+      "successful_tests": 0,
+      "average_response_time": 0.0016102790832519531,
+      "average_quality_score": 0.0,
+      "average_memory_score": 0.0,
+      "average_context_score": 0.0
+    }
+  },
+  "test_results": [
+    {
+      "test_id": "agent_ui_interaction",
+      "mode": "agent",
+      "message": "search for flights to Miami on Google",
+      "response": {
+        "type": "error",
+        "error": "Unknown message type: request",
+        "client_id": "client_1748499140951",
+        "timestamp": "2025-05-29T02:12:20.953063"
+      },
+      "response_time": 0.0012979507446289062,
+      "success": false,
+      "quality_score": 0.0,
+      "memory_score": 0.0,
+      "context_score": 0.0,
+      "explanation": "Found 0/4 keywords, 0/3 memory indicators, 0/3 context indicators. Overall quality: 0.00/1.0"
+    },
+    {
+      "test_id": "agent_app_launch",
+      "mode": "agent",
+      "message": "open Safari and go to YouTube",
+      "response": {
+        "type": "error",
+        "error": "Unknown message type: request",
+        "client_id": "client_1748499140951",
+        "timestamp": "2025-05-29T02:12:22.995751"
+      },
+      "response_time": 0.07805299758911133,
+      "success": false,
+      "quality_score": 0.0,
+      "memory_score": 0.0,
+      "context_score": 0.0,
+      "explanation": "Found 0/4 keywords, 0/3 memory indicators, 0/3 context indicators. Overall quality: 0.00/1.0"
+    },
+    {
+      "test_id": "agent_complex_task",
+      "mode": "agent",
+      "message": "search for Omer Adam on Spotify and play his music",
+      "response": {
+        "type": "error",
+        "error": "Unknown message type: request",
+        "client_id": "client_1748499140951",
+        "timestamp": "2025-05-29T02:12:25.047078"
+      },
+      "response_time": 0.001194000244140625,
+      "success": false,
+      "quality_score": 0.0,
+      "memory_score": 0.0,
+      "context_score": 0.0,
+      "explanation": "Found 0/5 keywords, 0/3 memory indicators, 0/3 context indicators. Overall quality: 0.00/1.0"
+    },
+    {
+      "test_id": "ask_system_status",
+      "mode": "ask",
+      "message": "what applications are currently running on my system?",
+      "response": {
+        "type": "error",
+        "error": "Unknown message type: request",
+        "client_id": "client_1748499140951",
+        "timestamp": "2025-05-29T02:12:27.051404"
+      },
+      "response_time": 0.003320932388305664,
+      "success": false,
+      "quality_score": 0.0,
+      "memory_score": 0.0,
+      "context_score": 0.0,
+      "explanation": "Found 0/4 keywords, 0/3 memory indicators, 0/3 context indicators. Overall quality: 0.00/1.0"
+    },
+    {
+      "test_id": "ask_memory_retrieval",
+      "mode": "ask",
+      "message": "what websites have I visited recently?",
+      "response": {
+        "type": "error",
+        "error": "Unknown message type: request",
+        "client_id": "client_1748499140951",
+        "timestamp": "2025-05-29T02:12:29.056534"
+      },
+      "response_time": 0.0012850761413574219,
+      "success": false,
+      "quality_score": 0.0,
+      "memory_score": 0.0,
+      "context_score": 0.0,
+      "explanation": "Found 0/4 keywords, 0/3 memory indicators, 0/3 context indicators. Overall quality: 0.00/1.0"
+    },
+    {
+      "test_id": "ask_context_understanding",
+      "mode": "ask",
+      "message": "what's currently visible on my screen?",
+      "response": {
+        "type": "error",
+        "error": "Unknown message type: request",
+        "client_id": "client_1748499140951",
+        "timestamp": "2025-05-29T02:12:31.060185"
+      },
+      "response_time": 0.002031087875366211,
+      "success": false,
+      "quality_score": 0.0,
+      "memory_score": 0.0,
+      "context_score": 0.0,
+      "explanation": "Found 0/4 keywords, 0/3 memory indicators, 0/3 context indicators. Overall quality: 0.00/1.0"
+    },
+    {
+      "test_id": "ask_memory_integration",
+      "mode": "ask",
+      "message": "how has my system usage changed in the last hour?",
+      "response": {
+        "type": "error",
+        "error": "Unknown message type: request",
+        "client_id": "client_1748499140951",
+        "timestamp": "2025-05-29T02:12:33.063199"
+      },
+      "response_time": 0.0005869865417480469,
+      "success": false,
+      "quality_score": 0.0,
+      "memory_score": 0.0,
+      "context_score": 0.0,
+      "explanation": "Found 0/4 keywords, 0/3 memory indicators, 0/3 context indicators. Overall quality: 0.00/1.0"
+    },
+    {
+      "test_id": "suggest_productivity",
+      "mode": "suggest",
+      "message": "I need to organize my work better",
+      "response": {
+        "type": "error",
+        "error": "Unknown message type: request",
+        "client_id": "client_1748499140951",
+        "timestamp": "2025-05-29T02:12:35.064918"
+      },
+      "response_time": 0.0016410350799560547,
+      "success": false,
+      "quality_score": 0.0,
+      "memory_score": 0.0,
+      "context_score": 0.0,
+      "explanation": "Found 0/4 keywords, 0/3 memory indicators, 0/3 context indicators. Overall quality: 0.00/1.0"
+    },
+    {
+      "test_id": "suggest_application",
+      "mode": "suggest",
+      "message": "I want to edit some photos",
+      "response": {
+        "type": "error",
+        "error": "Unknown message type: request",
+        "client_id": "client_1748499140951",
+        "timestamp": "2025-05-29T02:12:37.068285"
+      },
+      "response_time": 0.0017578601837158203,
+      "success": false,
+      "quality_score": 0.0,
+      "memory_score": 0.0,
+      "context_score": 0.0,
+      "explanation": "Found 0/4 keywords, 0/3 memory indicators, 0/3 context indicators. Overall quality: 0.00/1.0"
+    },
+    {
+      "test_id": "suggest_content",
+      "mode": "suggest",
+      "message": "I'm bored and want to watch something interesting",
+      "response": {
+        "type": "error",
+        "error": "Unknown message type: request",
+        "client_id": "client_1748499140951",
+        "timestamp": "2025-05-29T02:12:39.072058"
+      },
+      "response_time": 0.0014319419860839844,
+      "success": false,
+      "quality_score": 0.0,
+      "memory_score": 0.0,
+      "context_score": 0.0,
+      "explanation": "Found 0/4 keywords, 0/3 memory indicators, 0/3 context indicators. Overall quality: 0.00/1.0"
+    }
+  ],
+  "improvement_suggestions": [
+    "Overall system performance needs significant improvement. Consider reviewing the core architecture.",
+    "Agent mode has a low success rate (0.00). Review error handling and response generation.",
+    "Agent mode shows weak memory integration (0.00). Improve memory retrieval relevance and integration.",
+    "Agent mode shows weak contextual understanding (0.00). Enhance context processing and relevance algorithms.",
+    "Ask mode has a low success rate (0.00). Review error handling and response generation.",
+    "Ask mode shows weak memory integration (0.00). Improve memory retrieval relevance and integration.",
+    "Ask mode shows weak contextual understanding (0.00). Enhance context processing and relevance algorithms.",
+    "Suggest mode has a low success rate (0.00). Review error handling and response generation.",
+    "Suggest mode shows weak memory integration (0.00). Improve memory retrieval relevance and integration.",
+    "Suggest mode shows weak contextual understanding (0.00). Enhance context processing and relevance algorithms."
+  ]
+}

@@ -1,0 +1,10 @@
+    def check_ollama_availability(self) -> bool:
+        """Check if Ollama is available on the system"""
+        try:
+            import requests
+            response = requests.get("http://localhost:11434/api/tags", timeout=1)
+            return response.status_code == 200
+        except Exception as e:
+            logger.warning(f"Ollama not available: {e}")
+            return False
+            

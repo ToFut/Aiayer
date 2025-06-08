@@ -238,6 +238,10 @@ async def handle_messages(websocket: WebSocketClientProtocol):
                 
                 if msg_type == "heartbeat_ack":
                     logger.debug("Received heartbeat acknowledgment")
+                elif msg_type == "heartbeat_response":
+                    logger.debug("Received heartbeat response")
+                elif msg_type == "sensor_data_response":
+                    logger.debug("Received sensor data response")
                 elif msg_type == "error":
                     logger.error(f"Received error: {data.get('payload', {}).get('message')}")
                 else:

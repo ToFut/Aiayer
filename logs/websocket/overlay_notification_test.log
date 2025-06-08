@@ -1,0 +1,9 @@
+2025-06-03 19:53:24,201 - overlay_notification_test - INFO - Starting overlay notification test
+2025-06-03 19:53:24,202 - overlay_notification_test - INFO - Connecting to proxy at ws://localhost:8766
+2025-06-03 19:53:24,267 - overlay_notification_test - INFO - Connected to proxy
+2025-06-03 19:53:24,268 - overlay_notification_test - INFO - Received welcome: {"type": "welcome", "message": "Connected to Echo WebSocket Server", "client_id": 4396026016, "client_address": "127.0.0.1:49860"}
+2025-06-03 19:53:24,268 - overlay_notification_test - INFO - Sent notification: {'type': 'do_button_notification', 'content': {'message': "🔔 This is a test notification from the fixed proxy! Click a button to confirm it's working.", 'buttons': [{'text': 'It works! 👍', 'value': 'success'}, {'text': 'Not working 👎', 'value': 'failure'}]}, 'importance': 'high', 'plan_id': 'test_notification_1748994804.268811', 'timestamp': '2025-06-03T19:53:24.268818'}
+2025-06-03 19:53:24,271 - overlay_notification_test - INFO - Received response: {"type": "do_button_notification", "content": {"message": "\ud83d\udd14 This is a test notification from the fixed proxy! Click a button to confirm it's working.", "buttons": [{"text": "It works! \ud83d\udc4d", "value": "success"}, {"text": "Not working \ud83d\udc4e", "value": "failure"}]}, "importance": "high", "plan_id": "test_notification_1748994804.268811", "timestamp": "2025-06-03T19:53:24.268818", "echo": true, "server_timestamp": 298911.713061625}
+2025-06-03 19:53:29,272 - overlay_notification_test - WARNING - No response received within timeout
+2025-06-03 19:53:29,272 - overlay_notification_test - INFO - Notification test completed
+2025-06-03 19:53:29,277 - overlay_notification_test - INFO - ✅ Test completed - Check if notification appeared in overlay

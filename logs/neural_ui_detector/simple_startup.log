@@ -1,0 +1,5 @@
+2025-06-04 19:53:34,489 - simple_neural_ui_detector - INFO - Initializing Simple UI Detector
+2025-06-04 19:53:34,503 - simple_neural_ui_detector - INFO - Starting Simple Neural UI Detector WebSocket Server on port 8768
+2025-06-04 19:53:34,542 - simple_neural_ui_detector - ERROR - Server error: [Errno 48] error while attempting to bind on address ('::1', 8768, 0, 0): [errno 48] address already in use
+
+Error: [Errno 48] error while attempting to bind on address ('::1', 8768, 0, 0): [errno 48] address already in use

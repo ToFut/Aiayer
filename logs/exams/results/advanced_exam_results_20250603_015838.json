@@ -1,0 +1,109 @@
+{
+  "timestamp": "2025-06-03T01:58:38.260026",
+  "results_count": 2,
+  "results": [
+    {
+      "timestamp": "2025-06-03T01:55:03.996477",
+      "session_id": "exam_session_1748930018594",
+      "exam_id": "browser_search",
+      "message": "Ask the agent to search for \"artificial intelligence news\" in the search bar and click the search button.",
+      "plan": {
+        "steps": [
+          {
+            "type": "text",
+            "target": "search_box",
+            "text": "artificial intelligence news",
+            "description": "Type \"artificial intelligence news\" in the search box"
+          },
+          {
+            "type": "click",
+            "target": "search_button",
+            "description": "Click the search button"
+          }
+        ]
+      },
+      "success": true,
+      "execution_time": 71.24832510948181,
+      "difficulty": "medium"
+    },
+    {
+      "timestamp": "2025-06-03T01:56:25.931665",
+      "session_id": "exam_session_1748930018594",
+      "exam_id": "calendar_event",
+      "message": "Ask the agent to create a new meeting event titled \"Team Sync\" for next Monday at 2:00 PM with a duration of 1 hour.",
+      "plan": {
+        "steps": [
+          {
+            "type": "click",
+            "target": "new_event_button",
+            "description": "Click the new event button"
+          },
+          {
+            "type": "text",
+            "target": "event_title",
+            "text": "Team Sync",
+            "description": "Enter event title"
+          },
+          {
+            "type": "click",
+            "target": "date_field",
+            "description": "Click on date field"
+          },
+          {
+            "type": "click",
+            "target": "next_monday",
+            "description": "Select next Monday"
+          },
+          {
+            "type": "click",
+            "target": "time_field",
+            "description": "Click on time field"
+          },
+          {
+            "type": "text",
+            "target": "time_field",
+            "text": "2:00 PM",
+            "description": "Enter start time"
+          },
+          {
+            "type": "click",
+            "target": "duration_field",
+            "description": "Click duration field"
+          },
+          {
+            "type": "text",
+            "target": "duration_field",
+            "text": "1:00",
+            "description": "Set duration to 1 hour"
+          },
+          {
+            "type": "click",
+            "target": "save_button",
+            "description": "Click save button"
+          }
+        ]
+      },
+      "success": true,
+      "execution_time": 22.568304777145386,
+      "difficulty": "hard"
+    }
+  ],
+  "exam_stats": {
+    "browser_search": {
+      "attempts": 1,
+      "successful": 1,
+      "partial": 0,
+      "failed": 0,
+      "avg_time": 71.24832510948181,
+      "total_time": 71.24832510948181
+    },
+    "calendar_event": {
+      "attempts": 1,
+      "successful": 1,
+      "partial": 0,
+      "failed": 0,
+      "avg_time": 22.568304777145386,
+      "total_time": 22.568304777145386
+    }
+  }
+}

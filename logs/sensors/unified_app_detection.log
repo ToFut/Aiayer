@@ -1,0 +1,46 @@
+2025-06-08 00:01:34,337 - app_aware_memory - INFO - Successfully imported application detection modules
+2025-06-08 00:01:34,407 - memory.enhanced_semantic_search - INFO - Enhanced semantic search initialized with embedding dim: 384
+2025-06-08 00:01:34,407 - memory.enhanced_semantic_search - INFO - Hybrid retrieval enabled: True
+2025-06-08 00:01:34,815 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-06-08 00:01:34,815 - memory_diagnostics - INFO - MEMORY EVENT: logger_initialized - {"timestamp": "2025-06-08T00:01:34.815600"}
+2025-06-08 00:01:34,815 - memory.conscious_memory - INFO - [ConsciousMemory] Initialized as middle layer for memory system
+2025-06-08 00:01:34,816 - memory.enhanced_semantic_search - INFO - Enhanced semantic search initialized with embedding dim: 384
+2025-06-08 00:01:34,816 - memory.enhanced_semantic_search - INFO - Hybrid retrieval enabled: True
+2025-06-08 00:01:34,816 - memory_system - INFO - 🔄 Loading memory state from /Users/segevbin/Desktop/SensAI/Aiayer/memory/memory/memory_state.json
+2025-06-08 00:01:34,816 - memory_system - INFO -   - Found 16 short-term memory items
+2025-06-08 00:01:34,816 - memory_system - INFO -   - No long-term memory found, initializing empty
+2025-06-08 00:01:34,816 - memory_system - INFO -   - Found context memory with 6 items
+2025-06-08 00:01:34,816 - memory_system - INFO -   - Initialized new sensor data storage
+2025-06-08 00:01:34,816 - memory_system - INFO - ✅ Successfully loaded memory state
+2025-06-08 00:01:34,816 - memory_diagnostics - INFO - MEMORY EVENT: memory_state_loaded - {"short_term_count": 16, "long_term_count": 0, "context_count": 6, "timestamp": "2025-06-08T00:01:34.816915"}
+2025-06-08 00:01:34,816 - memory_system - INFO - Memory system initialized
+2025-06-08 00:01:34,817 - app_aware_memory - INFO - Successfully imported memory system modules
+2025-06-08 00:01:35,850 - unified_app_detection - INFO - Screen capture initialized successfully
+2025-06-08 00:01:35,925 - unified_app_detection - INFO - Successfully connected to Ollama API at http://localhost:11434
+2025-06-08 00:01:35,927 - unified_app_detection - ERROR - Could not import EnhancedAppDetector, falling back to basic detection
+2025-06-08 00:01:35,927 - unified_app_detection - INFO - Running manual detection on image: results/app_detection/screenshot_20250608_000135.png
+2025-06-08 00:01:36,075 - unified_app_detection - INFO - Sending request to LLaVA API for basic application detection...
+2025-06-08 00:02:36,945 - unified_app_detection - ERROR - LLaVA request timed out after 60s
+2025-06-08 00:07:06,548 - app_aware_memory - INFO - Successfully imported application detection modules
+2025-06-08 00:07:06,872 - memory.enhanced_semantic_search - INFO - Enhanced semantic search initialized with embedding dim: 384
+2025-06-08 00:07:06,872 - memory.enhanced_semantic_search - INFO - Hybrid retrieval enabled: True
+2025-06-08 00:07:09,344 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-06-08 00:07:09,344 - memory_diagnostics - INFO - MEMORY EVENT: logger_initialized - {"timestamp": "2025-06-08T00:07:09.344689"}
+2025-06-08 00:07:09,345 - memory.conscious_memory - INFO - [ConsciousMemory] Initialized as middle layer for memory system
+2025-06-08 00:07:09,345 - memory.enhanced_semantic_search - INFO - Enhanced semantic search initialized with embedding dim: 384
+2025-06-08 00:07:09,345 - memory.enhanced_semantic_search - INFO - Hybrid retrieval enabled: True
+2025-06-08 00:07:09,345 - memory_system - INFO - 🔄 Loading memory state from /Users/segevbin/Desktop/SensAI/Aiayer/memory/memory/memory_state.json
+2025-06-08 00:07:09,346 - memory_system - INFO -   - Found 16 short-term memory items
+2025-06-08 00:07:09,346 - memory_system - INFO -   - No long-term memory found, initializing empty
+2025-06-08 00:07:09,346 - memory_system - INFO -   - Found context memory with 6 items
+2025-06-08 00:07:09,346 - memory_system - INFO -   - Initialized new sensor data storage
+2025-06-08 00:07:09,346 - memory_system - INFO - ✅ Successfully loaded memory state
+2025-06-08 00:07:09,346 - memory_diagnostics - INFO - MEMORY EVENT: memory_state_loaded - {"short_term_count": 16, "long_term_count": 0, "context_count": 6, "timestamp": "2025-06-08T00:07:09.346804"}
+2025-06-08 00:07:09,346 - memory_system - INFO - Memory system initialized
+2025-06-08 00:07:09,347 - app_aware_memory - INFO - Successfully imported memory system modules
+2025-06-08 00:07:10,254 - unified_app_detection - INFO - Screen capture initialized successfully
+2025-06-08 00:07:10,486 - unified_app_detection - INFO - Successfully connected to Ollama API at http://localhost:11434
+2025-06-08 00:07:10,488 - unified_app_detection - ERROR - Could not import EnhancedAppDetector, falling back to basic detection
+2025-06-08 00:07:10,488 - unified_app_detection - INFO - Running manual detection on image: results/app_detection/screenshot_20250608_000709.png
+2025-06-08 00:07:10,688 - unified_app_detection - INFO - Sending request to LLaVA API for basic application detection...
+2025-06-08 00:08:10,948 - unified_app_detection - ERROR - LLaVA request timed out after 60s

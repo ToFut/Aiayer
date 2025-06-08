@@ -1,0 +1,80 @@
+2025-06-06 23:35:10,981 - __main__ - INFO - ==================================================
+2025-06-06 23:35:10,981 - __main__ - INFO - MESSAGE FLOW FIX DIAGNOSTIC TOOL
+2025-06-06 23:35:10,981 - __main__ - INFO - ==================================================
+2025-06-06 23:35:10,981 - __main__ - INFO - Verifying port 8767 is accessible...
+2025-06-06 23:35:11,015 - __main__ - INFO - ✅ Successfully connected to port 8767
+2025-06-06 23:35:11,016 - __main__ - INFO - 
+Testing direct Ollama API...
+2025-06-06 23:35:11,016 - __main__ - INFO - Testing direct Ollama API connection
+2025-06-06 23:35:11,016 - __main__ - INFO - Sending test request to Ollama API...
+2025-06-06 23:35:16,669 - __main__ - INFO - Response status: 200
+2025-06-06 23:35:16,670 - __main__ - INFO - Response headers: <CIMultiDictProxy('Content-Type': 'application/json; charset=utf-8', 'Date': 'Sat, 07 Jun 2025 03:35:16 GMT', 'Content-Length': '369')>
+2025-06-06 23:35:16,670 - __main__ - INFO - Content-Type: application/json; charset=utf-8
+2025-06-06 23:35:16,671 - __main__ - INFO - JSON response data keys: ['model', 'created_at', 'message', 'done_reason', 'done', 'total_duration', 'load_duration', 'prompt_eval_count', 'prompt_eval_duration', 'eval_count', 'eval_duration']
+2025-06-06 23:35:16,671 - __main__ - INFO - Response content: I'll do my best to provide a brief response. How can I assist you today?...
+2025-06-06 23:35:16,671 - __main__ - INFO - ✅ Successfully processed JSON response
+2025-06-06 23:35:16,696 - __main__ - INFO - ✅ Direct Ollama API test passed
+2025-06-06 23:35:16,697 - __main__ - INFO - 
+Testing backend message flow...
+2025-06-06 23:35:16,706 - __main__ - INFO - ✅ Connected to backend WebSocket
+2025-06-06 23:35:16,706 - __main__ - INFO - Received initial response: {"type": "connection_established", "message": "Real LLM Backend 8767 with Enhanced Ask/Suggest Handl...
+2025-06-06 23:35:16,706 - __main__ - INFO - Sending test message to backend: {'type': 'chat_request', 'mode': 'General', 'message': 'Hello, this is a test message. Please respond.', 'session_id': 'test_session', 'client_id': 'test_client'}
+2025-06-06 23:35:18,460 - __main__ - INFO - Received response type: final_response
+2025-06-06 23:35:18,461 - __main__ - INFO - Other response: {"type": "final_response", "mode": "General", "response": "\ud83e\udde0 AI Assistant: Hello! I'm her...
+2025-06-06 23:35:18,461 - __main__ - INFO - ✅ Backend message flow test passed
+2025-06-06 23:35:18,461 - __main__ - INFO - 
+Analyzing issues and recommending fixes...
+2025-06-06 23:35:18,461 - __main__ - INFO - LLM model available - testing and fixing directly
+2025-06-06 23:35:18,495 - llm.model - INFO - Connected to Ollama version: 0.6.8
+2025-06-06 23:35:18,504 - __main__ - INFO - Testing response generation...
+2025-06-06 23:35:19,689 - __main__ - INFO - Generated response: I'll do my best to provide a quick and easy response. How can I assist you today?...
+2025-06-06 23:35:19,689 - __main__ - INFO - ✅ LLM response generation working correctly
+2025-06-06 23:35:19,690 - __main__ - INFO - Testing direct Ollama API
+2025-06-06 23:35:19,690 - __main__ - INFO - Testing direct Ollama API connection
+2025-06-06 23:35:19,690 - __main__ - INFO - Sending test request to Ollama API...
+2025-06-06 23:35:20,706 - __main__ - INFO - Response status: 200
+2025-06-06 23:35:20,707 - __main__ - INFO - Response headers: <CIMultiDictProxy('Content-Type': 'application/json; charset=utf-8', 'Date': 'Sat, 07 Jun 2025 03:35:20 GMT', 'Content-Length': '377')>
+2025-06-06 23:35:20,707 - __main__ - INFO - Content-Type: application/json; charset=utf-8
+2025-06-06 23:35:20,707 - __main__ - INFO - JSON response data keys: ['model', 'created_at', 'message', 'done_reason', 'done', 'total_duration', 'load_duration', 'prompt_eval_count', 'prompt_eval_duration', 'eval_count', 'eval_duration']
+2025-06-06 23:35:20,707 - __main__ - INFO - Response content: I'll do my best to provide quick and accurate responses. How can I assist you today?...
+2025-06-06 23:35:20,708 - __main__ - INFO - ✅ Successfully processed JSON response
+2025-06-06 23:35:20,709 - __main__ - INFO - Fix recommendation for enhanced_enterprise_backend_with_context.py:
+2025-06-06 23:35:20,709 - __main__ - INFO - 
+        In handle_contextual_chat_request_streaming method, we need to ensure:
+        
+        1. The LLM responses are properly processed regardless of ContentType errors
+        2. Implement fallback handling for chat_request messages if LLM fails
+        3. Add better error handling around LLM calls
+        
+        Key issues:
+        
+        1. No direct call to LLM from chat_request handler - only automation handlers
+        2. No fallback response mechanism for General mode
+        3. The backend does fallback to a mock response but it's not executing LLM calls
+        
+        The fix is to ensure real LLM calls are made from handle_contextual_chat_request_streaming
+        for all modes, especially General mode.
+        
+2025-06-06 23:35:20,709 - __main__ - INFO - 
+==================================================
+2025-06-06 23:35:20,709 - __main__ - INFO - DIAGNOSTIC SUMMARY
+2025-06-06 23:35:20,709 - __main__ - INFO - ==================================================
+2025-06-06 23:35:20,709 - __main__ - INFO - Backend WebSocket (Port 8767): ✅ WORKING
+2025-06-06 23:35:20,709 - __main__ - INFO - Direct Ollama API: ✅ WORKING
+2025-06-06 23:35:20,709 - __main__ - INFO - Backend Message Flow: ✅ WORKING
+2025-06-06 23:35:20,709 - __main__ - INFO - 
+==================================================
+2025-06-06 23:35:20,710 - __main__ - INFO - RECOMMENDATIONS
+2025-06-06 23:35:20,710 - __main__ - INFO - ==================================================
+2025-06-06 23:35:20,710 - __main__ - INFO - 
+All tests passed! If you're still having issues, consider:
+
+1. Checking log files for specific error patterns
+2. Restarting the Ollama service
+3. Verifying WebSocket connections from the client side
+        
+2025-06-06 23:35:20,842 - asyncio - ERROR - Unclosed client session
+client_session: <aiohttp.client.ClientSession object at 0x102a4b4d0>
+2025-06-06 23:35:20,843 - asyncio - ERROR - Unclosed connector
+connections: ['deque([(<aiohttp.client_proto.ResponseHandler object at 0x102a865d0>, 98271.50136425)])']
+connector: <aiohttp.connector.TCPConnector object at 0x102a49810>

@@ -1,0 +1,59 @@
+{
+  "task_id": "task_1749060665_overlay_session_1749060665147",
+  "plan_id": "task_1749060665_overlay_session_1749060665147",
+  "title": "Test Plan for DO Button Fix",
+  "description": "This plan tests the DO button fix",
+  "steps": [
+    {
+      "id": "step_1",
+      "description": "Open Google Chrome",
+      "action_type": "open_app",
+      "target": "Google Chrome",
+      "estimated_duration": 1.0,
+      "status": "pending"
+    },
+    {
+      "id": "step_2",
+      "description": "Click search box",
+      "action_type": "click",
+      "coordinates": {
+        "x": 500,
+        "y": 300
+      },
+      "estimated_duration": 1.0,
+      "status": "pending"
+    }
+  ],
+  "estimated_duration": 2.0,
+  "status": "awaiting_approval",
+  "creation_time": 1749060665.147636,
+  "timestamp": 1749060665.147636,
+  "created": 1749060665.147636,
+  "type": "automation_plan",
+  "name": "Test Plan for DO Button Fix",
+  "target_app": "Google Chrome",
+  "plan_type": "automation",
+  "priority": "medium",
+  "approval_status": "approved",
+  "automation_status": "pending",
+  "risk_level": "low",
+  "automation_steps": [
+    {
+      "step_id": "step_1",
+      "name": "Open Google Chrome",
+      "action": "open_app",
+      "target": "Google Chrome",
+      "status": "pending"
+    },
+    {
+      "step_id": "step_2",
+      "name": "Click search box",
+      "action": "click",
+      "coordinates": {
+        "x": 500,
+        "y": 300
+      },
+      "status": "pending"
+    }
+  ]
+}

@@ -326,9 +326,9 @@
       <div class="messages" bind:this={chatContainer}>
         {#if messages.length === 0}
           <div class="welcome-message">
-            <div class="welcome-icon">👋</div>
-            <h3>Welcome to the Future</h3>
-            <p>How can I assist you today?</p>
+            <div class="welcome-icon">🌟</div>
+            <h3>Welcome to SensAI</h3>
+            <p>Your intelligent AI companion for seamless automation and assistance.</p>
             <div class="quick-questions">
               {#each quickQuestions as question}
                 <button 
@@ -358,7 +358,12 @@
                 {/if}
               </div>
               <div class="message-content">
-                <div class="message-text">{msg.content}</div>
+                <svelte:component this={MessageRenderer} message={msg} isUser={msg.role === 'user'} 
+                  on:executeplan={(e) => sendMessage(`/execute ${e.detail.planId}`)}
+                  on:cancelplan={(e) => sendMessage(`/cancel ${e.detail.planId}`)}
+                  on:modifyplan={(e) => sendMessage(`/modify ${e.detail.planId}`)}
+                  on:simulateplan={(e) => sendMessage(`/simulate ${e.detail.planId}`)}
+                />
                 {#if msg.isSuggestion === true}
                   <div class="suggestion-actions">
                     <button class="suggestion-btn" on:click={() => sendMessage("/dismiss")}>Dismiss</button>

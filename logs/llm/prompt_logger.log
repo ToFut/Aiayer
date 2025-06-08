@@ -1,0 +1,25 @@
+2025-06-08 00:27:04,220 - llm.llm_prompt_logger - INFO - LLM Prompt Logger initialized
+2025-06-08 00:27:04,226 - __main__ - INFO - 🔥 LLM Warmup Manager available
+2025-06-08 00:27:04,228 - llm_suggestion_detector - INFO - LLM Suggestion Detector initialized
+2025-06-08 00:27:04,339 - __main__ - INFO - 🔥 Initializing with LLM Warmup Manager for fast responses
+2025-06-08 00:27:04,339 - __main__ - INFO - 📋 Standard LLM client created as fallback
+2025-06-08 00:27:04,339 - __main__ - INFO - LLM client initialized
+2025-06-08 00:27:04,339 - __main__ - INFO - 🔥 Starting LLM Warmup Manager...
+2025-06-08 00:27:04,340 - llm_warmup_manager - INFO - 🔥 LLM Warmup Manager initialized
+2025-06-08 00:27:04,340 - llm_warmup_manager - INFO - 🔥 Warming up model...
+2025-06-08 00:27:04,384 - llm_warmup_manager - INFO - ✅ Using fast model: llama3.2:1b
+2025-06-08 00:27:05,511 - llm_warmup_manager - INFO - ✅ Model llama3.2:1b successfully warmed up in 1.13s
+2025-06-08 00:27:05,512 - llm_warmup_manager - INFO - ✅ Response: LLM is warm and ready (test 1). How can I assist y
+2025-06-08 00:27:05,513 - llm_warmup_manager - INFO - 🔥 LLM Warmup Manager started successfully
+2025-06-08 00:27:05,514 - __main__ - INFO - ✅ LLM model is warm and ready for fast responses
+2025-06-08 00:27:05,514 - __main__ - INFO - Connecting to http://localhost:11434
+2025-06-08 00:27:05,666 - __main__ - INFO - Successfully connected to Ollama API
+2025-06-08 00:29:18,006 - llm.llm_prompt_logger - INFO - LLM Prompt Logger initialized
+2025-06-08 00:29:18,007 - __main__ - INFO - 🔥 LLM Warmup Manager available
+2025-06-08 00:29:18,007 - llm_suggestion_detector - INFO - LLM Suggestion Detector initialized
+2025-06-08 00:29:18,087 - __main__ - INFO - 🔥 Initializing with LLM Warmup Manager for fast responses
+2025-06-08 00:29:18,087 - __main__ - INFO - 📋 Standard LLM client created as fallback
+2025-06-08 00:29:18,087 - __main__ - INFO - LLM client initialized
+2025-06-08 00:29:18,095 - websockets.server - INFO - server listening on 127.0.0.1:8765
+2025-06-08 00:29:18,095 - websockets.server - INFO - server listening on [::1]:8765
+2025-06-08 00:29:18,095 - __main__ - INFO - WebSocket server started on ws://localhost:8765

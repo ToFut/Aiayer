@@ -1,0 +1,186 @@
+2025-06-08 00:37:19,522 - memory_dashboard - INFO - Memory dashboard server initialized
+2025-06-08 00:37:19,557 - websockets.server - INFO - server listening on 0.0.0.0:8082
+2025-06-08 00:37:19,557 - memory_dashboard - INFO - Memory dashboard server started on ws://0.0.0.0:8082
+2025-06-08 00:37:19,583 - memory_dashboard - INFO - Connected to memory system
+2025-06-08 00:37:36,742 - websockets.server - INFO - connection rejected (426 Upgrade Required)
+2025-06-08 00:37:36,743 - websockets.server - ERROR - opening handshake failed
+Traceback (most recent call last):
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/asyncio/server.py", line 356, in conn_handler
+    await connection.handshake(
+    ...<3 lines>...
+    )
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/asyncio/server.py", line 207, in handshake
+    raise self.protocol.handshake_exc
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/server.py", line 138, in accept
+    ) = self.process_request(request)
+        ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/server.py", line 233, in process_request
+    raise InvalidUpgrade(
+        "Connection", ", ".join(connection) if connection else None
+    )
+websockets.exceptions.InvalidUpgrade: invalid Connection header: keep-alive
+2025-06-08 00:37:38,211 - websockets.server - INFO - connection rejected (426 Upgrade Required)
+2025-06-08 00:37:38,211 - websockets.server - ERROR - opening handshake failed
+Traceback (most recent call last):
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/asyncio/server.py", line 356, in conn_handler
+    await connection.handshake(
+    ...<3 lines>...
+    )
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/asyncio/server.py", line 207, in handshake
+    raise self.protocol.handshake_exc
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/server.py", line 138, in accept
+    ) = self.process_request(request)
+        ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/server.py", line 233, in process_request
+    raise InvalidUpgrade(
+        "Connection", ", ".join(connection) if connection else None
+    )
+websockets.exceptions.InvalidUpgrade: invalid Connection header: keep-alive
+2025-06-08 00:37:46,676 - websockets.server - INFO - connection rejected (426 Upgrade Required)
+2025-06-08 00:37:46,678 - websockets.server - ERROR - opening handshake failed
+Traceback (most recent call last):
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/asyncio/server.py", line 356, in conn_handler
+    await connection.handshake(
+    ...<3 lines>...
+    )
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/asyncio/server.py", line 207, in handshake
+    raise self.protocol.handshake_exc
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/server.py", line 138, in accept
+    ) = self.process_request(request)
+        ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/server.py", line 233, in process_request
+    raise InvalidUpgrade(
+        "Connection", ", ".join(connection) if connection else None
+    )
+websockets.exceptions.InvalidUpgrade: invalid Connection header: keep-alive
+2025-06-08 00:38:40,934 - memory_dashboard - INFO - Memory dashboard server stopped
+2025-06-08 00:38:41,844 - memory_dashboard - INFO - Memory dashboard server initialized
+2025-06-08 00:38:41,875 - websockets.server - INFO - server listening on 0.0.0.0:8082
+2025-06-08 00:38:41,875 - memory_dashboard - INFO - Memory dashboard server started on ws://0.0.0.0:8082
+2025-06-08 00:38:41,900 - memory_dashboard - INFO - Connected to memory system
+2025-06-08 00:38:45,378 - websockets.server - INFO - connection rejected (426 Upgrade Required)
+2025-06-08 00:38:45,378 - websockets.server - ERROR - opening handshake failed
+Traceback (most recent call last):
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/asyncio/server.py", line 356, in conn_handler
+    await connection.handshake(
+    ...<3 lines>...
+    )
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/asyncio/server.py", line 207, in handshake
+    raise self.protocol.handshake_exc
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/server.py", line 138, in accept
+    ) = self.process_request(request)
+        ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/server.py", line 233, in process_request
+    raise InvalidUpgrade(
+        "Connection", ", ".join(connection) if connection else None
+    )
+websockets.exceptions.InvalidUpgrade: invalid Connection header: keep-alive
+2025-06-08 00:40:05,365 - websockets.server - INFO - connection rejected (426 Upgrade Required)
+2025-06-08 00:40:05,366 - websockets.server - ERROR - opening handshake failed
+Traceback (most recent call last):
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/asyncio/server.py", line 356, in conn_handler
+    await connection.handshake(
+    ...<3 lines>...
+    )
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/asyncio/server.py", line 207, in handshake
+    raise self.protocol.handshake_exc
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/server.py", line 138, in accept
+    ) = self.process_request(request)
+        ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/server.py", line 233, in process_request
+    raise InvalidUpgrade(
+        "Connection", ", ".join(connection) if connection else None
+    )
+websockets.exceptions.InvalidUpgrade: invalid Connection header: keep-alive
+2025-06-08 00:40:11,938 - memory_dashboard - INFO - Memory dashboard server stopped
+2025-06-08 00:40:12,709 - memory_dashboard - INFO - Memory dashboard server initialized
+2025-06-08 00:40:12,730 - websockets.server - INFO - server listening on 0.0.0.0:8082
+2025-06-08 00:40:12,730 - memory_dashboard - INFO - Memory dashboard server started on ws://0.0.0.0:8082
+2025-06-08 00:40:12,752 - memory_dashboard - INFO - Connected to memory system
+2025-06-08 00:42:48,206 - memory_dashboard - INFO - Memory dashboard server initialized
+2025-06-08 00:42:48,250 - websockets.server - INFO - server listening on 0.0.0.0:8082
+2025-06-08 00:42:48,251 - memory_dashboard - INFO - Memory dashboard server started on ws://0.0.0.0:8082
+2025-06-08 00:42:48,283 - memory_dashboard - ERROR - Error connecting to memory system: Multiple exceptions: [Errno 61] Connect call failed ('::1', 8765, 0, 0), [Errno 61] Connect call failed ('127.0.0.1', 8765)
+2025-06-08 00:42:48,288 - memory_dashboard - ERROR - Traceback (most recent call last):
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/memory/memory_dashboard_server.py", line 71, in _connect_to_memory_system
+    async with websockets.connect(self.memory_system_uri) as websocket:
+               ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/asyncio/client.py", line 587, in __aenter__
+    return await self
+           ^^^^^^^^^^
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/asyncio/client.py", line 541, in __await_impl__
+    self.connection = await self.create_connection()
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/asyncio/client.py", line 467, in create_connection
+    _, connection = await loop.create_connection(factory, **kwargs)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.13/3.13.3/Frameworks/Python.framework/Versions/3.13/lib/python3.13/asyncio/base_events.py", line 1168, in create_connection
+    raise OSError('Multiple exceptions: {}'.format(
+        ', '.join(str(exc) for exc in exceptions)))
+OSError: Multiple exceptions: [Errno 61] Connect call failed ('::1', 8765, 0, 0), [Errno 61] Connect call failed ('127.0.0.1', 8765)
+
+2025-06-08 00:42:53,309 - memory_dashboard - INFO - Connected to memory system
+2025-06-08 00:42:56,636 - memory_dashboard - INFO - Memory dashboard server stopped
+2025-06-08 01:21:25,268 - memory_dashboard - INFO - Memory dashboard server initialized
+2025-06-08 01:21:25,302 - websockets.server - INFO - server listening on 0.0.0.0:8082
+2025-06-08 01:21:25,302 - memory_dashboard - INFO - Memory dashboard server started on ws://0.0.0.0:8082
+2025-06-08 01:21:25,335 - memory_dashboard - INFO - Connected to memory system
+2025-06-08 01:21:48,124 - websockets.server - INFO - connection rejected (426 Upgrade Required)
+2025-06-08 01:21:48,125 - websockets.server - ERROR - opening handshake failed
+Traceback (most recent call last):
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/asyncio/server.py", line 356, in conn_handler
+    await connection.handshake(
+    ...<3 lines>...
+    )
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/asyncio/server.py", line 207, in handshake
+    raise self.protocol.handshake_exc
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/server.py", line 138, in accept
+    ) = self.process_request(request)
+        ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/server.py", line 233, in process_request
+    raise InvalidUpgrade(
+        "Connection", ", ".join(connection) if connection else None
+    )
+websockets.exceptions.InvalidUpgrade: invalid Connection header: keep-alive
+2025-06-08 01:23:24,378 - websockets.server - INFO - connection open
+2025-06-08 01:23:24,379 - websockets.server - ERROR - connection handler failed
+Traceback (most recent call last):
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/asyncio/server.py", line 376, in conn_handler
+    await self.handler(connection)
+          ~~~~~~~~~~~~^^^^^^^^^^^^
+TypeError: MemoryDashboardServer._handle_client() missing 1 required positional argument: 'path'
+2025-06-08 01:24:47,625 - memory_dashboard - INFO - Memory dashboard server initialized
+2025-06-08 01:24:47,660 - websockets.server - INFO - server listening on 0.0.0.0:8082
+2025-06-08 01:24:47,661 - memory_dashboard - INFO - Memory dashboard server started on ws://0.0.0.0:8082
+2025-06-08 01:24:47,684 - memory_dashboard - INFO - Connected to memory system
+2025-06-08 01:24:57,478 - websockets.server - INFO - connection open
+2025-06-08 01:24:57,479 - memory_dashboard - INFO - New client connected. Total clients: 1
+2025-06-08 01:24:59,720 - memory_dashboard - INFO - Client disconnected. Total clients: 0
+2025-06-08 01:24:59,825 - websockets.server - INFO - connection open
+2025-06-08 01:24:59,825 - memory_dashboard - INFO - New client connected. Total clients: 1
+2025-06-08 01:25:21,641 - memory_dashboard - WARNING - Connection to memory system closed
+2025-06-08 01:25:21,644 - memory_dashboard - ERROR - Error connecting to memory system: Multiple exceptions: [Errno 61] Connect call failed ('::1', 8765, 0, 0), [Errno 61] Connect call failed ('127.0.0.1', 8765)
+2025-06-08 01:25:21,648 - memory_dashboard - ERROR - Traceback (most recent call last):
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/memory/memory_dashboard_server.py", line 71, in _connect_to_memory_system
+    async with websockets.connect(self.memory_system_uri) as websocket:
+               ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/asyncio/client.py", line 587, in __aenter__
+    return await self
+           ^^^^^^^^^^
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/asyncio/client.py", line 541, in __await_impl__
+    self.connection = await self.create_connection()
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/asyncio/client.py", line 467, in create_connection
+    _, connection = await loop.create_connection(factory, **kwargs)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.13/3.13.3/Frameworks/Python.framework/Versions/3.13/lib/python3.13/asyncio/base_events.py", line 1168, in create_connection
+    raise OSError('Multiple exceptions: {}'.format(
+        ', '.join(str(exc) for exc in exceptions)))
+OSError: Multiple exceptions: [Errno 61] Connect call failed ('::1', 8765, 0, 0), [Errno 61] Connect call failed ('127.0.0.1', 8765)
+
+2025-06-08 01:25:26,138 - memory_dashboard - INFO - Memory dashboard server stopped
+2025-06-08 01:25:26,138 - memory_dashboard - INFO - Client disconnected. Total clients: 0
+2025-06-08 01:31:54,707 - memory_dashboard - INFO - Memory dashboard server initialized
+2025-06-08 01:31:54,743 - websockets.server - INFO - server listening on 0.0.0.0:8082
+2025-06-08 01:31:54,743 - memory_dashboard - INFO - Memory dashboard server started on ws://0.0.0.0:8082
+2025-06-08 01:31:54,772 - memory_dashboard - INFO - Connected to memory system

@@ -1,0 +1,38 @@
+{
+  "timestamp": 1748546467.288557,
+  "memory_metrics": {
+    "records_count": 24,
+    "active_records_count": 5,
+    "completed_records_count": 15,
+    "failed_records_count": 4,
+    "avg_task_size_bytes": 2048,
+    "total_memory_size_bytes": 49152,
+    "task_history_entries": 87
+  },
+  "performance_metrics": {
+    "avg_update_time_ms": 12.5,
+    "avg_search_time_ms": 8.3,
+    "last_update_timestamp": 1748546167.288557,
+    "update_count": 42,
+    "search_count": 19
+  },
+  "value_metrics": {
+    "total_tasks": 24,
+    "total_time_saved_sec": 7200,
+    "total_monetary_value": 100.0,
+    "avg_time_saved_sec": 300,
+    "avg_monetary_value": 4.17,
+    "hourly_value_rate": 0.85
+  },
+  "task_completion_metrics": {
+    "completion_rate": 0.79,
+    "avg_completion_time_sec": 180,
+    "success_rate": 0.75,
+    "task_types": {
+      "file_operation": 8,
+      "data_analysis": 6,
+      "code_generation": 10
+    }
+  },
+  "server_timestamp": 1748546467.288557
+}

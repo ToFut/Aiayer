@@ -1,0 +1,133 @@
+/Users/segevbin/Desktop/SensAI/Aiayer/ultimate_do_button_server.py:214: SyntaxWarning: invalid escape sequence '\!'
+  "message": "Execution complete\!",
+2025-06-03 18:53:51,089 - INFO - Detected screen size: 1470x956
+2025-06-03 18:53:51,090 - INFO - Standard mouse listener started successfully
+2025-06-03 18:53:51,090 - INFO - Keyboard listener started successfully
+2025-06-03 18:53:51,090 - INFO - Input controller initialized (safe mode)
+2025-06-03 18:53:51,090 - INFO - 🚨 Emergency shutdown: Press Ctrl+1 to immediately stop agent
+2025-06-03 18:53:51,090 - INFO - ✅ Input controller loaded successfully
+2025-06-03 18:53:51,095 - INFO - Plan persistence manager initialized with 44 stored plans
+2025-06-03 18:53:51,095 - INFO - Plan persistence service initialized
+2025-06-03 18:53:51,095 - INFO - ✅ Plan persistence module loaded successfully
+2025-06-03 18:53:51,485 - INFO - Standard mouse listener started successfully
+2025-06-03 18:53:51,485 - INFO - Keyboard listener started successfully
+2025-06-03 18:53:51,486 - INFO - Input controller initialized (safe mode)
+2025-06-03 18:53:51,486 - INFO - 🚨 Emergency shutdown: Press Ctrl+1 to immediately stop agent
+2025-06-03 18:53:51,541 - INFO - Connected to Ollama API v0.6.8
+2025-06-03 18:53:51,541 - INFO - LLaVA visual processor initialized for total screen analysis
+2025-06-03 18:53:51,541 - INFO - Total Screen Analyzer initialized with 8s interval
+2025-06-03 18:53:51,541 - INFO - 🤖 Real automation components loaded successfully
+2025-06-03 18:53:51,542 - INFO - Standard mouse listener started successfully
+2025-06-03 18:53:51,542 - INFO - Keyboard listener started successfully
+2025-06-03 18:53:51,542 - INFO - Input controller initialized (safe mode)
+2025-06-03 18:53:51,542 - INFO - 🚨 Emergency shutdown: Press Ctrl+1 to immediately stop agent
+2025-06-03 18:53:51,544 - INFO - Connected to Ollama API v0.6.8
+2025-06-03 18:53:51,544 - INFO - LLaVA visual processor initialized for total screen analysis
+2025-06-03 18:53:51,544 - INFO - Total Screen Analyzer initialized with 8s interval
+2025-06-03 18:53:51,544 - INFO - 🤖 Real automation components loaded successfully
+2025-06-03 18:53:51,544 - INFO - ✅ Real agent automation handler loaded successfully
+2025-06-03 18:53:51,546 - INFO - Standard mouse listener started successfully
+2025-06-03 18:53:51,546 - INFO - Keyboard listener started successfully
+2025-06-03 18:53:51,546 - INFO - Input controller initialized (safe mode)
+2025-06-03 18:53:51,546 - INFO - 🚨 Emergency shutdown: Press Ctrl+1 to immediately stop agent
+2025-06-03 18:53:51,549 - INFO - Connected to Ollama API v0.6.8
+2025-06-03 18:53:51,549 - INFO - LLaVA visual processor initialized for total screen analysis
+2025-06-03 18:53:51,549 - INFO - Total Screen Analyzer initialized with 8s interval
+2025-06-03 18:53:51,549 - INFO - 🔄 Adaptive retry automation system loaded
+2025-06-03 18:53:51,549 - INFO - ✅ Adaptive retry automation handler loaded successfully
+2025-06-03 18:53:51,549 - INFO - ✅ Plan persistence module loaded successfully
+2025-06-03 18:53:51,550 - INFO - Standard mouse listener started successfully
+2025-06-03 18:53:51,551 - INFO - Keyboard listener started successfully
+2025-06-03 18:53:51,551 - INFO - Input controller initialized (safe mode)
+2025-06-03 18:53:51,551 - INFO - 🚨 Emergency shutdown: Press Ctrl+1 to immediately stop agent
+2025-06-03 18:53:51,552 - INFO - Connected to Ollama API v0.6.8
+2025-06-03 18:53:51,552 - INFO - LLaVA visual processor initialized for total screen analysis
+2025-06-03 18:53:51,552 - INFO - Total Screen Analyzer initialized with 8s interval
+2025-06-03 18:53:51,552 - INFO - 🤖 Universal automation components loaded successfully
+2025-06-03 18:53:51,552 - INFO - ✅ Universal automation handler loaded successfully
+2025-06-03 18:53:51,553 - WARNING - Port 8765 is already in use. Killing existing process...
+2025-06-03 18:53:51,577 - INFO - Killed process on port 8765
+2025-06-03 18:53:53,578 - INFO - Starting ultimate DO button server on localhost:8765
+2025-06-03 18:53:53,589 - INFO - server listening on 127.0.0.1:8765
+2025-06-03 18:53:53,589 - INFO - server listening on [::1]:8765
+2025-06-03 18:53:53,589 - INFO - ✅ Ultimate DO Button Server running on ws://localhost:8765
+2025-06-03 18:53:53,589 - INFO - 📋 Server supports all three message formats: agent_confirmation, button_action, and do_button
+2025-06-03 18:54:00,256 - ERROR - opening handshake failed
+Traceback (most recent call last):
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/http11.py", line 138, in parse
+    request_line = yield from parse_line(read_line)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/http11.py", line 309, in parse_line
+    line = yield from read_line(MAX_LINE_LENGTH)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/streams.py", line 46, in read_line
+    raise EOFError(f"stream ends after {p} bytes, before end of line")
+EOFError: stream ends after 0 bytes, before end of line
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/server.py", line 545, in parse
+    request = yield from Request.parse(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^
+        self.reader.read_line,
+        ^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/http11.py", line 140, in parse
+    raise EOFError("connection closed while reading HTTP request line") from exc
+EOFError: connection closed while reading HTTP request line
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/asyncio/server.py", line 356, in conn_handler
+    await connection.handshake(
+    ...<3 lines>...
+    )
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/asyncio/server.py", line 207, in handshake
+    raise self.protocol.handshake_exc
+websockets.exceptions.InvalidMessage: did not receive a valid HTTP request
+2025-06-03 18:54:00,285 - INFO - connection open
+2025-06-03 18:54:00,285 - INFO - Client client_4806151696 connected
+2025-06-03 18:54:00,285 - INFO - Received message type: ping
+2025-06-03 18:54:00,287 - INFO - connection open
+2025-06-03 18:54:00,287 - INFO - Client client_4806152976 connected
+2025-06-03 18:54:00,287 - INFO - Received message type: agent_confirmation
+2025-06-03 18:54:00,287 - INFO - Agent confirmation received: {'type': 'agent_confirmation', 'action': 'DO', 'session_id': 'test_session_1748991240'}
+2025-06-03 18:54:00,287 - INFO - Using universal automation handler for execute_plan on plan test_session_1748991240
+2025-06-03 18:54:00,287 - INFO - 🔘 Handling button action: execute_plan for plan: test_session_1748991240
+2025-06-03 18:54:00,287 - WARNING - Plan test_session_1748991240 not found in metadata
+2025-06-03 18:54:00,288 - WARNING - ❌ Plan not found for button action: test_session_1748991240
+2025-06-03 18:54:00,288 - INFO - Universal handler result: {'success': False, 'response': '❌ Plan not found. It may have expired or been cancelled.', 'interactive': False}
+2025-06-03 18:54:01,296 - INFO - connection open
+2025-06-03 18:54:01,296 - INFO - Client client_4805962512 connected
+2025-06-03 18:54:01,298 - INFO - Received message type: button_action
+2025-06-03 18:54:01,298 - INFO - Button action received: {'type': 'button_action', 'action': 'EXECUTE_PLAN', 'plan_id': 'test_plan_1748991241'}
+2025-06-03 18:54:01,298 - INFO - Using universal automation handler for execute_plan on plan test_plan_1748991241
+2025-06-03 18:54:01,298 - INFO - 🔘 Handling button action: execute_plan for plan: test_plan_1748991241
+2025-06-03 18:54:01,298 - WARNING - Plan test_plan_1748991241 not found in metadata
+2025-06-03 18:54:01,299 - WARNING - ❌ Plan not found for button action: test_plan_1748991241
+2025-06-03 18:54:01,299 - INFO - Universal handler result: {'success': False, 'response': '❌ Plan not found. It may have expired or been cancelled.', 'interactive': False}
+2025-06-03 18:54:02,303 - INFO - connection open
+2025-06-03 18:54:02,303 - INFO - Client client_4805964640 connected
+2025-06-03 18:54:02,303 - INFO - Received message type: do_button
+2025-06-03 18:54:02,303 - INFO - DO button message received: {'type': 'do_button', 'button': 'DO', 'plan_id': 'test_plan_1748991242'}
+2025-06-03 18:54:02,303 - INFO - Using universal automation handler for execute_plan on plan test_plan_1748991242
+2025-06-03 18:54:02,303 - INFO - 🔘 Handling button action: execute_plan for plan: test_plan_1748991242
+2025-06-03 18:54:02,303 - WARNING - Plan test_plan_1748991242 not found in metadata
+2025-06-03 18:54:02,303 - WARNING - ❌ Plan not found for button action: test_plan_1748991242
+2025-06-03 18:54:02,303 - INFO - Universal handler result: {'success': False, 'response': '❌ Plan not found. It may have expired or been cancelled.', 'interactive': False}
+2025-06-03 18:54:03,307 - INFO - connection open
+2025-06-03 18:54:03,307 - INFO - Client client_4805967376 connected
+2025-06-03 18:54:03,307 - INFO - Received message type: agent_confirmation
+2025-06-03 18:54:03,307 - INFO - Agent confirmation received: {'type': 'agent_confirmation', 'action': 'DISMISS', 'session_id': 'test_session_dismiss_1748991243'}
+2025-06-03 18:54:03,308 - INFO - Using universal automation handler for cancel_plan on plan test_session_dismiss_1748991243
+2025-06-03 18:54:03,308 - INFO - 🔘 Handling button action: cancel_plan for plan: test_session_dismiss_1748991243
+2025-06-03 18:54:03,308 - WARNING - Plan test_session_dismiss_1748991243 not found in metadata
+2025-06-03 18:54:03,308 - WARNING - ❌ Plan not found for button action: test_session_dismiss_1748991243
+2025-06-03 18:54:03,308 - INFO - Universal handler result: {'success': False, 'response': '❌ Plan not found. It may have expired or been cancelled.', 'interactive': False}
+2025-06-03 18:54:19,429 - INFO - connection open
+2025-06-03 18:54:19,429 - INFO - Client client_4807771712 connected
+2025-06-03 18:54:19,430 - INFO - Received message type: unknown
+2025-06-03 18:54:19,430 - WARNING - Unknown message type: unknown

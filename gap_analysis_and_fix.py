@@ -339,7 +339,7 @@ class FixedCoordinationTestServer:
         logger.info(f"🔌 Fixed WebSocket server started on ws://localhost:{self.ws_port}")
         await ws_server.wait_closed()
     
-    async def handle_websocket(self, websocket):
+    async def handle_websocket(websocket, path=None):
         """Fixed WebSocket handler - removed path parameter"""
         self.connected_clients.add(websocket)
         client_addr = websocket.remote_address

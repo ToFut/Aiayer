@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Test Results 20250606_204321</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        h1 { color: #333; }
+        .summary { 
+            background-color: #f5f5f5; 
+            padding: 15px; 
+            border-radius: 5px; 
+            margin-bottom: 20px; 
+        }
+        .passed { color: green; }
+        .failed { color: red; }
+        .test { 
+            margin-bottom: 15px; 
+            padding: 10px; 
+            border: 1px solid #ddd; 
+            border-radius: 3px; 
+        }
+        .test.passed { border-left: 5px solid green; }
+        .test.failed, .test.error, .test.timeout { border-left: 5px solid red; }
+        .output { 
+            background-color: #f9f9f9; 
+            padding: 10px; 
+            border-radius: 3px; 
+            white-space: pre-wrap; 
+            max-height: 300px; 
+            overflow: auto; 
+        }
+        .error-output { 
+            background-color: #fff0f0; 
+            padding: 10px; 
+            border-radius: 3px; 
+            white-space: pre-wrap; 
+            max-height: 300px; 
+            overflow: auto; 
+        }
+    </style>
+</head>
+<body>
+    <h1>Test Results: 20250606_204321</h1>
+    
+    <div class="summary">
+        <p><strong>Tests Run:</strong> 1</p>
+        <p><strong>Tests Passed:</strong> <span class="passed">1</span></p>
+        <p><strong>Tests Failed:</strong> <span class="failed">0</span></p>
+        <p><strong>Total Duration:</strong> 0.33s</p>
+    </div>
+    
+    <h2>Test Details</h2>
+
+    <h3>Misc (1/1 passed)</h3>
+
+    <div class="test passed">
+        <h4>test_spotify_agent_fix.py - <span class="passed">PASSED</span> (0.33s)</h4>
+
+        <h5>Error:</h5>
+        <div class="error-output">INFO:test_spotify_agent:🧪 Testing Spotify Agent Mode Fix
+INFO:test_spotify_agent:==================================================
+INFO:test_spotify_agent:Original issue: 'search Spotify omer adam' was returning
+INFO:test_spotify_agent:mock 'FAST AUTOMATION PLAN' instead of real LLM planning
+INFO:test_spotify_agent:==================================================
+INFO:test_spotify_agent:Connecting to ws://localhost:8767
+INFO:test_spotify_agent:Connected: {"type": "connection_established", "message": "Real LLM Backend 8767 with Enhanced Ask/Suggest Handlers", "client_id": "client_1749257001832", "features": {"enhanced_ask_mode": true, "enhanced_suggest_mode": true, "semantic_search": true, "visual_context": true, "streaming_responses": true, "all_chat_modes": ["ask", "agent", "suggest", "general"]}, "timestamp": "2025-06-06T20:43:21.832874"}
+INFO:test_spotify_agent:🎵 Testing original failing query: 'search Spotify omer adam'
+INFO:test_spotify_agent:✅ Received response type: final_response
+INFO:test_spotify_agent:🎯 SUCCESS: Response contains Spotify-specific content!
+INFO:test_spotify_agent:   This suggests real LLM planning is working
+INFO:test_spotify_agent:   Response: 🎯 **Process Request**
+
+Handle request: search Spotify omer adam
+
+**Steps:**
+1. Analyze request
+
+Estimated duration: 1.0 seconds...
+INFO:test_spotify_agent:
+==================================================
+INFO:test_spotify_agent:🔍 TEST RESULTS:
+INFO:test_spotify_agent:🎉 SUCCESS: Agent Mode is now using real LLM planning!
+INFO:test_spotify_agent:   The Spotify query generated context-aware automation
+</div>
+
+    </div>
+
+</body>
+</html>

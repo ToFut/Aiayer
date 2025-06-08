@@ -1,0 +1,80 @@
+2025-05-29 15:47:12,881 - asyncio - DEBUG - Using selector: KqueueSelector
+2025-05-29 15:47:12,883 - enhanced_ws_8765 - INFO - ✅ Port 8765 is available
+2025-05-29 15:47:12,883 - enhanced_ws_8765 - INFO - 🚀 Starting enhanced WebSocket server on localhost:8765
+2025-05-29 15:47:12,918 - websockets.server - INFO - server listening on 127.0.0.1:8765
+2025-05-29 15:47:12,918 - websockets.server - INFO - server listening on [::1]:8765
+2025-05-29 15:47:12,918 - enhanced_ws_8765 - INFO - ✅ Enhanced WebSocket server running on ws://localhost:8765
+2025-05-29 15:47:12,918 - enhanced_ws_8765 - INFO - 🎯 Ready to handle agent_confirmation messages with verbose logging
+2025-05-29 15:47:56,259 - websockets.server - DEBUG - = connection is CONNECTING
+2025-05-29 15:47:56,268 - websockets.server - DEBUG - < GET / HTTP/1.1
+2025-05-29 15:47:56,268 - websockets.server - DEBUG - < Host: localhost:8765
+2025-05-29 15:47:56,268 - websockets.server - DEBUG - < Pragma: no-cache
+2025-05-29 15:47:56,268 - websockets.server - DEBUG - < Accept: */*
+2025-05-29 15:47:56,268 - websockets.server - DEBUG - < Sec-WebSocket-Key: 7ihdeKY5nG+cVf5MsEWkwQ==
+2025-05-29 15:47:56,268 - websockets.server - DEBUG - < Sec-Fetch-Site: same-site
+2025-05-29 15:47:56,268 - websockets.server - DEBUG - < Sec-WebSocket-Version: 13
+2025-05-29 15:47:56,268 - websockets.server - DEBUG - < Sec-WebSocket-Extensions: permessage-deflate
+2025-05-29 15:47:56,268 - websockets.server - DEBUG - < Cache-Control: no-cache
+2025-05-29 15:47:56,268 - websockets.server - DEBUG - < Sec-Fetch-Mode: websocket
+2025-05-29 15:47:56,268 - websockets.server - DEBUG - < Accept-Language: en-GB,en-US;q=0.9,en;q=0.8
+2025-05-29 15:47:56,268 - websockets.server - DEBUG - < Origin: http://localhost:8080
+2025-05-29 15:47:56,269 - websockets.server - DEBUG - < User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.1 Safari/605.1.15
+2025-05-29 15:47:56,269 - websockets.server - DEBUG - < Connection: Upgrade
+2025-05-29 15:47:56,269 - websockets.server - DEBUG - < Accept-Encoding: gzip, deflate
+2025-05-29 15:47:56,269 - websockets.server - DEBUG - < Upgrade: websocket
+2025-05-29 15:47:56,269 - websockets.server - DEBUG - < Sec-Fetch-Dest: websocket
+2025-05-29 15:47:56,269 - websockets.server - DEBUG - < Cookie: __stripe_mid=c4adc70c-2490-4504-88b6-73a4c43a4c57fcce3c; G_ENABLED_IDPS=google
+2025-05-29 15:47:56,273 - websockets.server - DEBUG - > HTTP/1.1 101 Switching Protocols
+2025-05-29 15:47:56,273 - websockets.server - DEBUG - > Date: Thu, 29 May 2025 19:47:56 GMT
+2025-05-29 15:47:56,273 - websockets.server - DEBUG - > Upgrade: websocket
+2025-05-29 15:47:56,273 - websockets.server - DEBUG - > Connection: Upgrade
+2025-05-29 15:47:56,273 - websockets.server - DEBUG - > Sec-WebSocket-Accept: vCFTOyoMObsvWQBtt8ZJyJecsaI=
+2025-05-29 15:47:56,274 - websockets.server - DEBUG - > Sec-WebSocket-Extensions: permessage-deflate; server_max_window_bits=12
+2025-05-29 15:47:56,274 - websockets.server - DEBUG - > Server: Python/3.13 websockets/15.0.1
+2025-05-29 15:47:56,274 - websockets.server - DEBUG - = connection is OPEN
+2025-05-29 15:47:56,274 - websockets.server - INFO - connection open
+2025-05-29 15:47:56,274 - enhanced_ws_8765 - INFO - 🟢 Client client_4322795808 connected from ::1:61104
+2025-05-29 15:47:56,274 - websockets.server - DEBUG - > TEXT '{"type": "welcome", "message": "Connected to en... "execution_success"]}}' [247 bytes]
+2025-05-29 15:47:56,275 - enhanced_ws_8765 - INFO - 📤 Sent welcome message to client_4322795808
+2025-05-29 15:48:12,918 - enhanced_ws_8765 - INFO - 🔍 Status: 1 client(s) connected
+2025-05-29 15:48:12,921 - enhanced_ws_8765 - INFO -    - client_4322795808 from ::1:61104: up 16.65s, last activity 16.65s ago, msgs in/out: 0/1
+2025-05-29 15:48:26,277 - websockets.server - DEBUG - > PING 62 b1 7e d5 [binary, 4 bytes]
+2025-05-29 15:48:26,278 - websockets.server - DEBUG - % sent keepalive ping
+2025-05-29 15:48:26,280 - websockets.server - DEBUG - < PONG 62 b1 7e d5 [binary, 4 bytes]
+2025-05-29 15:48:26,280 - websockets.server - DEBUG - % received keepalive pong
+2025-05-29 15:48:42,922 - enhanced_ws_8765 - INFO - 🔍 Status: 1 client(s) connected
+2025-05-29 15:48:42,924 - enhanced_ws_8765 - INFO -    - client_4322795808 from ::1:61104: up 46.65s, last activity 46.65s ago, msgs in/out: 0/1
+2025-05-29 15:48:56,278 - websockets.server - DEBUG - > PING 2f 95 44 2e [binary, 4 bytes]
+2025-05-29 15:48:56,281 - websockets.server - DEBUG - % sent keepalive ping
+2025-05-29 15:48:56,281 - websockets.server - DEBUG - < PONG 2f 95 44 2e [binary, 4 bytes]
+2025-05-29 15:48:56,281 - websockets.server - DEBUG - % received keepalive pong
+2025-05-29 15:49:12,926 - enhanced_ws_8765 - INFO - 🔍 Status: 1 client(s) connected
+2025-05-29 15:49:12,928 - enhanced_ws_8765 - INFO -    - client_4322795808 from ::1:61104: up 76.65s, last activity 76.65s ago, msgs in/out: 0/1
+2025-05-29 15:49:26,280 - websockets.server - DEBUG - > PING 31 cf cc 8d [binary, 4 bytes]
+2025-05-29 15:49:26,282 - websockets.server - DEBUG - % sent keepalive ping
+2025-05-29 15:49:26,283 - websockets.server - DEBUG - < PONG 31 cf cc 8d [binary, 4 bytes]
+2025-05-29 15:49:26,283 - websockets.server - DEBUG - % received keepalive pong
+2025-05-29 15:49:42,929 - enhanced_ws_8765 - INFO - 🔍 Status: 1 client(s) connected
+2025-05-29 15:49:42,931 - enhanced_ws_8765 - INFO -    - client_4322795808 from ::1:61104: up 106.66s, last activity 106.66s ago, msgs in/out: 0/1
+2025-05-29 15:49:56,281 - websockets.server - DEBUG - > PING 60 16 c8 5b [binary, 4 bytes]
+2025-05-29 15:49:56,283 - websockets.server - DEBUG - % sent keepalive ping
+2025-05-29 15:49:56,284 - websockets.server - DEBUG - < PONG 60 16 c8 5b [binary, 4 bytes]
+2025-05-29 15:49:56,284 - websockets.server - DEBUG - % received keepalive pong
+2025-05-29 15:50:12,934 - enhanced_ws_8765 - INFO - 🔍 Status: 1 client(s) connected
+2025-05-29 15:50:12,935 - enhanced_ws_8765 - INFO -    - client_4322795808 from ::1:61104: up 136.66s, last activity 136.66s ago, msgs in/out: 0/1
+2025-05-29 15:50:26,284 - websockets.server - DEBUG - > PING 2b ce 19 b9 [binary, 4 bytes]
+2025-05-29 15:50:26,285 - websockets.server - DEBUG - % sent keepalive ping
+2025-05-29 15:50:26,286 - websockets.server - DEBUG - < PONG 2b ce 19 b9 [binary, 4 bytes]
+2025-05-29 15:50:26,286 - websockets.server - DEBUG - % received keepalive pong
+2025-05-29 15:50:42,937 - enhanced_ws_8765 - INFO - 🔍 Status: 1 client(s) connected
+2025-05-29 15:50:42,938 - enhanced_ws_8765 - INFO -    - client_4322795808 from ::1:61104: up 166.66s, last activity 166.66s ago, msgs in/out: 0/1
+2025-05-29 15:50:56,288 - websockets.server - DEBUG - > PING 2d 4c 03 ce [binary, 4 bytes]
+2025-05-29 15:50:56,291 - websockets.server - DEBUG - % sent keepalive ping
+2025-05-29 15:50:56,294 - websockets.server - DEBUG - < PONG 2d 4c 03 ce [binary, 4 bytes]
+2025-05-29 15:50:56,295 - websockets.server - DEBUG - % received keepalive pong
+2025-05-29 15:51:12,941 - enhanced_ws_8765 - INFO - 🔍 Status: 1 client(s) connected
+2025-05-29 15:51:12,943 - enhanced_ws_8765 - INFO -    - client_4322795808 from ::1:61104: up 196.67s, last activity 196.67s ago, msgs in/out: 0/1
+2025-05-29 15:51:26,290 - websockets.server - DEBUG - > PING 18 bc 53 0e [binary, 4 bytes]
+2025-05-29 15:51:26,291 - websockets.server - DEBUG - % sent keepalive ping
+2025-05-29 15:51:26,294 - websockets.server - DEBUG - < PONG 18 bc 53 0e [binary, 4 bytes]
+2025-05-29 15:51:26,294 - websockets.server - DEBUG - % received keepalive pong

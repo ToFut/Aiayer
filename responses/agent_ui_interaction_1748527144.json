@@ -1,0 +1,55 @@
+{
+  "scenario": {
+    "id": "agent_ui_interaction",
+    "mode": "agent",
+    "message": "search for flights to Miami on Google",
+    "expected_keywords": [
+      "Google",
+      "search",
+      "flight",
+      "Miami"
+    ],
+    "memory_indicators": [
+      "browser",
+      "navigation",
+      "search engine"
+    ],
+    "context_indicators": [
+      "opening browser",
+      "navigating to",
+      "typing"
+    ],
+    "description": "Tests agent mode's ability to interact with UI and execute complex tasks"
+  },
+  "final_response": {
+    "type": "final_response",
+    "mode": "agent",
+    "response": "\ud83e\udd16 Based on your current screen state and recent context, here are a few options for responding to the user's query:\n\n**Option 1: Showing flight search results**\nYou see the Google homepage with a search bar at the top. The search bar is surrounded by a white border with some subtle animations.\n\nYour screen resolution: 2940x1912\n\nRecent Context & Memory:\n- Email app (Google Mail)\n- File manager (Google Files)\n- System information: Windows 10 Pro, 64-bit, 8 GB RAM\n\nYou click on the search bar to start searching for flights to Miami. You see a list of flight results with details like departure city, arrival city, airline, and price.\n\n**Option 2: Showing available flight options**\nYour screen shows an image of an airplane taking off, with some basic flight information overlaid on top:\n\nYour screen resolution: 2940x1912\n\nRecent Context & Memory:\n- Email app (Google Mail)\n- File manager (Google Files)\n- System information: Windows 10 Pro, 64-bit, 8 GB RAM\n- Google Maps (for flight directions)\n\nYou click on the airplane image to view more details about flights available to Miami. You see a list of flights with options like departure and arrival airports, airlines, and prices.\n\n**Option 3: Showing flight search results without displaying entire content**\nYou notice that the search bar has some relevant information displayed in the form of a small icon next to it",
+    "client_id": "client_1748527116279",
+    "timestamp": "2025-05-29T09:59:04.876430",
+    "processing_method": "agnostic_deep_data",
+    "data_sources": [
+      "screen_analysis",
+      "memory_context"
+    ],
+    "success": true
+  },
+  "combined_response": "\ud83e\udd16 Based on your current screen state and recent context, here are a few options for responding to the user's query:\n\n**Option 1: Showing flight search results**\nYou see the Google homepage with a search bar at the top. The search bar is surrounded by a white border with some subtle animations.\n\nYour screen resolution: 2940x1912\n\nRecent Context & Memory:\n- Email app (Google Mail)\n- File manager (Google Files)\n- System information: Windows 10 Pro, 64-bit, 8 GB RAM\n\nYou click on the search bar to start searching for flights to Miami. You see a list of flight results with details like departure city, arrival city, airline, and price.\n\n**Option 2: Showing available flight options**\nYour screen shows an image of an airplane taking off, with some basic flight information overlaid on top:\n\nYour screen resolution: 2940x1912\n\nRecent Context & Memory:\n- Email app (Google Mail)\n- File manager (Google Files)\n- System information: Windows 10 Pro, 64-bit, 8 GB RAM\n- Google Maps (for flight directions)\n\nYou click on the airplane image to view more details about flights available to Miami. You see a list of flights with options like departure and arrival airports, airlines, and prices.\n\n**Option 3: Showing flight search results without displaying entire content**\nYou notice that the search bar has some relevant information displayed in the form of a small icon next to it",
+  "progress_updates": [],
+  "response_time": 28.60100293159485,
+  "evaluation": {
+    "success": false,
+    "quality_score": 0.5,
+    "memory_score": 0.0,
+    "context_score": 0.0,
+    "explanation": "Found 4/4 keywords, 0/3 memory indicators, 0/3 context indicators. Overall quality: 0.50/1.0",
+    "keyword_matches": [
+      "Google",
+      "search",
+      "flight",
+      "Miami"
+    ],
+    "memory_matches": [],
+    "context_matches": []
+  }
+}

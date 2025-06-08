@@ -1,0 +1,40 @@
+# Folder access permissions
+# This file defines which folders the assistant can access
+
+allowed_paths:
+  # System paths
+  - '~/Desktop'       # User's desktop
+  - '~/Documents'     # User's documents
+  - '~/Downloads'     # User's downloads
+  - './'              # Current working directory
+  
+  # Add more allowed paths as needed
+  # - '/path/to/allowed/directory'
+
+disallowed_paths:
+  # Sensitive system paths
+  - '/etc'            # System configuration
+  - '/var'            # Variable system data
+  - '~/.ssh'          # SSH keys
+  - '~/.config'       # User configuration
+  - '~/Library'       # macOS library
+  
+  # Add more disallowed paths as needed
+  # - '/path/to/sensitive/directory'
+
+settings:
+  max_file_size: 10485760      # 10MB maximum file size for content analysis
+  max_files_per_scan: 1000     # Maximum files to process in a single scan
+  scan_timeout: 60             # Maximum seconds for a folder scan
+  content_extensions:          # File extensions to analyze content for
+    - '.txt'
+    - '.md'
+    - '.py'
+    - '.js'
+    - '.html'
+    - '.css'
+    - '.json'
+    - '.yaml'
+    - '.yml'
+    - '.csv'
+    - '.log'

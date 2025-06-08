@@ -1,0 +1,1419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Memory System Test Interface</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="css/styles.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container-fluid">
+        <header class="mb-4 py-3">
+            <h1><i class="fas fa-brain"></i> Memory System Test Interface</h1>
+            <div class="status-indicator">
+                <span id="connection-status" class="badge bg-secondary"><i class="fas fa-plug"></i> Disconnected</span>
+                <span id="memory-status" class="badge bg-secondary"><i class="fas fa-database"></i> Unknown</span>
+                <button id="settings-button" class="btn btn-sm btn-outline-dark" data-bs-toggle="modal" data-bs-target="#settings-modal">
+                    <i class="fas fa-cog"></i>
+                </button>
+            </div>
+        </header>
+
+        <div class="row">
+            <!-- Memory Input Section -->
+            <div class="col-md-6 mb-4">
+                <div class="card h-100">
+                    <div class="card-header bg-primary text-white">
+                        <h3 class="card-title"><i class="fas fa-paper-plane"></i> Send Test Message</h3>
+                    </div>
+                    <div class="card-body">
+                        <form id="memory-form">
+                            <div class="mb-3">
+                                <label for="message-content" class="form-label">Message Content</label>
+                                <textarea id="message-content" class="form-control" rows="5" placeholder="Enter memory content here..."></textarea>
+                            </div>
+                            <div class="row mb-3">
+                                <div class="col-md-6">
+                                    <label for="message-source" class="form-label">Source</label>
+                                    <select id="message-source" class="form-select">
+                                        <option value="user">User</option>
+                                        <option value="system">System</option>
+                                        <option value="application">Application</option>
+                                        <option value="test">Test</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="message-tags" class="form-label">Tags (comma separated)</label>
+                                    <input type="text" id="message-tags" class="form-control" placeholder="memory,test,important">
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="message-metadata" class="form-label">Metadata (JSON)</label>
+                                <textarea id="message-metadata" class="form-control" rows="2" placeholder='{"importance": "high", "category": "test"}'></textarea>
+                            </div>
+                            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                                <button type="button" id="add-memory-btn" class="btn btn-primary"><i class="fas fa-plus"></i> Add Memory</button>
+                                <button type="reset" class="btn btn-secondary"><i class="fas fa-sync"></i> Reset</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Memory Search Section -->
+            <div class="col-md-6 mb-4">
+                <div class="card h-100">
+                    <div class="card-header bg-success text-white">
+                        <h3 class="card-title"><i class="fas fa-search"></i> Search Memory</h3>
+                    </div>
+                    <div class="card-body">
+                        <form id="search-form">
+                            <div class="mb-3">
+                                <label for="search-query" class="form-label">Search Query</label>
+                                <input type="text" id="search-query" class="form-control" placeholder="Enter search query...">
+                            </div>
+                            <div class="row mb-3">
+                                <div class="col-md-4">
+                                    <label for="search-top-k" class="form-label">Top K Results</label>
+                                    <input type="number" id="search-top-k" class="form-control" value="5" min="1" max="20">
+                                </div>
+                                <div class="col-md-4">
+                                    <label for="search-min-similarity" class="form-label">Min Similarity</label>
+                                    <input type="number" id="search-min-similarity" class="form-control" value="0.1" min="0" max="1" step="0.1">
+                                </div>
+                                <div class="col-md-4">
+                                    <label for="source-filter" class="form-label">Source Filter</label>
+                                    <select id="source-filter" class="form-select">
+                                        <option value="">All Sources</option>
+                                        <option value="user">User</option>
+                                        <option value="system">System</option>
+                                        <option value="application">Application</option>
+                                        <option value="test">Test</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="app-context" class="form-label">Application Context (optional)</label>
+                                <input type="text" id="app-context" class="form-control" placeholder="Current application context...">
+                            </div>
+                            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                                <button type="button" id="search-memory-btn" class="btn btn-success"><i class="fas fa-search"></i> Search</button>
+                                <button type="button" id="test-quick-queries-btn" class="btn btn-outline-info"><i class="fas fa-bolt"></i> Quick Tests</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Search Results & Visualization Section -->
+        <div class="row">
+            <div class="col-12 mb-4">
+                <div class="card">
+                    <div class="card-header bg-info text-white">
+                        <h3 class="card-title"><i class="fas fa-chart-network"></i> Search Results & Visualization</h3>
+                        <div class="tools">
+                            <button id="export-results" class="btn btn-sm btn-light"><i class="fas fa-download"></i> Export</button>
+                            <button id="clear-results" class="btn btn-sm btn-light"><i class="fas fa-trash"></i> Clear</button>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <!-- Search Results -->
+                            <div class="col-md-6">
+                                <h4>Search Results</h4>
+                                <div id="search-info" class="alert alert-info d-none">
+                                    <div id="search-stats"></div>
+                                </div>
+                                <div id="search-results" class="results-container">
+                                    <div class="placeholder-message">
+                                        <i class="fas fa-search fa-3x mb-3"></i>
+                                        <p>Search results will appear here</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Visualization -->
+                            <div class="col-md-6">
+                                <h4>Visualization</h4>
+                                <div class="viz-container">
+                                    <div class="viz-tabs">
+                                        <button class="viz-tab active" data-target="similarity-viz">Similarity</button>
+                                        <button class="viz-tab" data-target="relevance-viz">Relevance</button>
+                                        <button class="viz-tab" data-target="network-viz">Network</button>
+                                        <button class="viz-tab" data-target="process-viz">Search Process</button>
+                                    </div>
+                                    <div class="viz-content">
+                                        <div id="similarity-viz" class="viz-panel active">
+                                            <canvas id="similarity-chart"></canvas>
+                                        </div>
+                                        <div id="relevance-viz" class="viz-panel">
+                                            <div id="relevance-factors"></div>
+                                        </div>
+                                        <div id="network-viz" class="viz-panel">
+                                            <div id="memory-network"></div>
+                                        </div>
+                                        <div id="process-viz" class="viz-panel">
+                                            <div id="search-process">
+                                                <div class="process-step-container">
+                                                    <div class="process-timeline"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- System Stats & Logs -->
+        <div class="row">
+            <div class="col-md-6 mb-4">
+                <div class="card">
+                    <div class="card-header bg-dark text-white">
+                        <h3 class="card-title"><i class="fas fa-chart-line"></i> System Stats</h3>
+                        <button id="refresh-stats" class="btn btn-sm btn-light"><i class="fas fa-sync"></i></button>
+                    </div>
+                    <div class="card-body">
+                        <div id="memory-stats" class="stats-container">
+                            <div class="stats-row">
+                                <div class="stats-label">Total Memories:</div>
+                                <div class="stats-value" id="total-memories">-</div>
+                            </div>
+                            <div class="stats-row">
+                                <div class="stats-label">Short-term Memories:</div>
+                                <div class="stats-value" id="short-term-count">-</div>
+                            </div>
+                            <div class="stats-row">
+                                <div class="stats-label">Long-term Memories:</div>
+                                <div class="stats-value" id="long-term-count">-</div>
+                            </div>
+                            <div class="stats-row">
+                                <div class="stats-label">Average Search Time:</div>
+                                <div class="stats-value" id="avg-search-time">-</div>
+                            </div>
+                            <div class="stats-row">
+                                <div class="stats-label">Successful Searches:</div>
+                                <div class="stats-value" id="successful-searches">-</div>
+                            </div>
+                        </div>
+                        
+                        <h5 class="mt-4">Recent Searches</h5>
+                        <div id="search-history" class="search-history-container">
+                            <div class="placeholder-message">
+                                <p>No search history available</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 mb-4">
+                <div class="card">
+                    <div class="card-header bg-secondary text-white">
+                        <h3 class="card-title"><i class="fas fa-history"></i> Activity Log</h3>
+                        <button id="clear-log" class="btn btn-sm btn-light"><i class="fas fa-trash"></i></button>
+                    </div>
+                    <div class="card-body p-0">
+                        <div id="activity-log" class="log-container">
+                            <div class="log-entry system">
+                                <span class="timestamp">00:00:00</span>
+                                <span class="message">Memory testing interface initialized</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Connection Settings Modal -->
+    <div class="modal fade" id="settings-modal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header bg-dark text-white">
+                    <h5 class="modal-title"><i class="fas fa-cog"></i> Connection Settings</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="connection-form">
+                        <div class="mb-3">
+                            <label for="ws-url" class="form-label">WebSocket URL</label>
+                            <input type="text" class="form-control" id="ws-url" value="ws://localhost:8769">
+                        </div>
+                        <div class="mb-3">
+                            <label for="api-url" class="form-label">API Base URL</label>
+                            <input type="text" class="form-control" id="api-url" value="http://localhost:8769">
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="button" id="save-settings" class="btn btn-primary">Save & Connect</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Result Detail Modal -->
+    <div class="modal fade" id="result-detail-modal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header bg-info text-white">
+                    <h5 class="modal-title"><i class="fas fa-info-circle"></i> Memory Detail</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div id="memory-detail-content"></div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Quick Test Queries Modal -->
+    <div class="modal fade" id="quick-test-modal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header bg-info text-white">
+                    <h5 class="modal-title"><i class="fas fa-bolt"></i> Quick Test Queries</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Select test queries to run against the memory system:</p>
+                    
+                    <div class="mb-3">
+                        <h6>PC Information Queries</h6>
+                        <div class="quick-test-options">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="query-os" checked>
+                                <label class="form-check-label" for="query-os">What operating system is running on this computer?</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="query-apps" checked>
+                                <label class="form-check-label" for="query-apps">What applications are currently running?</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="query-browser">
+                                <label class="form-check-label" for="query-browser">What browser am I using?</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="query-dev">
+                                <label class="form-check-label" for="query-dev">What development environment am I using?</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="query-music">
+                                <label class="form-check-label" for="query-music">Am I listening to any music?</label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <h6>Activity Queries</h6>
+                        <div class="quick-test-options">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="query-recent" checked>
+                                <label class="form-check-label" for="query-recent">What was I working on recently?</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="query-productivity">
+                                <label class="form-check-label" for="query-productivity">What's my current productivity level?</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="query-languages">
+                                <label class="form-check-label" for="query-languages">What programming languages do I use?</label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <h6>Custom Queries</h6>
+                        <div class="input-group mb-2">
+                            <input type="text" class="form-control" id="custom-query-1" placeholder="Custom query 1">
+                        </div>
+                        <div class="input-group mb-2">
+                            <input type="text" class="form-control" id="custom-query-2" placeholder="Custom query 2">
+                        </div>
+                        <div class="input-group">
+                            <input type="text" class="form-control" id="custom-query-3" placeholder="Custom query 3">
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="button" id="run-quick-tests" class="btn btn-primary" data-bs-dismiss="modal">Run Tests</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Search Process Modal -->
+    <div class="modal fade" id="search-process-modal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header bg-primary text-white">
+                    <h5 class="modal-title"><i class="fas fa-code-branch"></i> Search Process Details</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div id="search-process-detail"></div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- D3.js for network visualization -->
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    
+    <!-- Application Scripts -->
+    <script src="js/memory-utils.js"></script>
+    <script src="js/websocket-client.js"></script>
+    <script src="js/visualizer.js"></script>
+    <script src="js/app.js"></script>
+    <script>
+        // Main app script
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add initial log entry
+            addLogEntry('system', 'Initializing Memory Testing Interface...');
+            
+            // Log localStorage settings
+            console.log('WebSocket URL from localStorage:', localStorage.getItem('wsUrl'));
+            console.log('API URL from localStorage:', localStorage.getItem('apiUrl'));
+            
+            // Initialize WebSocket connection
+            try {
+                addLogEntry('system', 'Initializing WebSocket connection...');
+                wsClient.init();
+            } catch (error) {
+                addLogEntry('error', `WebSocket initialization error: ${error.message}`);
+                console.error('WebSocket initialization error:', error);
+            }
+            
+            // Update UI elements based on connection status
+            wsClient.onConnectionChange(function(isConnected) {
+                const statusEl = document.getElementById('connection-status');
+                if (isConnected) {
+                    statusEl.className = 'badge bg-success';
+                    statusEl.innerHTML = '<i class="fas fa-plug"></i> Connected';
+                    
+                    // Get memory system status
+                    wsClient.sendMessage({
+                        type: 'ping'
+                    });
+                    
+                    // Get system stats
+                    wsClient.sendMessage({
+                        type: 'get_system_stats'
+                    });
+                } else {
+                    statusEl.className = 'badge bg-secondary';
+                    statusEl.innerHTML = '<i class="fas fa-plug"></i> Disconnected';
+                    
+                    // Update memory system status
+                    const memoryStatusEl = document.getElementById('memory-status');
+                    memoryStatusEl.className = 'badge bg-secondary';
+                    memoryStatusEl.innerHTML = '<i class="fas fa-database"></i> Unknown';
+                }
+            });
+            
+            // Handle pong messages
+            wsClient.onMessage('pong', function(data) {
+                const memoryStatusEl = document.getElementById('memory-status');
+                if (data.memory_system_available) {
+                    memoryStatusEl.className = 'badge bg-success';
+                    memoryStatusEl.innerHTML = '<i class="fas fa-database"></i> Available';
+                } else {
+                    memoryStatusEl.className = 'badge bg-danger';
+                    memoryStatusEl.innerHTML = '<i class="fas fa-database"></i> Unavailable';
+                }
+            });
+            
+            // Handle memory added responses
+            wsClient.onMessage('memory_added', function(data) {
+                if (data.success) {
+                    addLogEntry('success', `Memory added successfully in ${data.memory_processing.processing_time_ms}ms`);
+                    
+                    // Show memory processing details
+                    const memoryId = data.memory_id;
+                    const processingInfo = `
+                        <div class="memory-processing-info">
+                            <h5>Memory Processing Details</h5>
+                            <div class="mb-3">
+                                <div class="row mb-2">
+                                    <div class="col-4"><strong>Memory ID:</strong></div>
+                                    <div class="col-8">${memoryId}</div>
+                                </div>
+                                <div class="row mb-2">
+                                    <div class="col-4"><strong>Source:</strong></div>
+                                    <div class="col-8">${data.memory_processing.source}</div>
+                                </div>
+                                <div class="row mb-2">
+                                    <div class="col-4"><strong>Tags:</strong></div>
+                                    <div class="col-8">${data.memory_processing.tags.join(', ') || 'None'}</div>
+                                </div>
+                                <div class="row mb-2">
+                                    <div class="col-4"><strong>Processing Time:</strong></div>
+                                    <div class="col-8">${data.memory_processing.processing_time_ms}ms</div>
+                                </div>
+                            </div>
+                            <h6>Original Content</h6>
+                            <pre class="memory-content">${data.memory_processing.original_content}</pre>
+                        </div>
+                    `;
+                    
+                    showDetailModal('Memory Added Successfully', processingInfo);
+                    
+                    // Refresh system stats
+                    wsClient.sendMessage({
+                        type: 'get_system_stats'
+                    });
+                } else {
+                    addLogEntry('error', `Failed to add memory: ${data.error || 'Unknown error'}`);
+                }
+            });
+            
+            // Handle search results
+            wsClient.onMessage('search_results', function(data) {
+                const resultsContainer = document.getElementById('search-results');
+                const searchInfo = document.getElementById('search-info');
+                const searchStats = document.getElementById('search-stats');
+                
+                // Clear previous results
+                resultsContainer.innerHTML = '';
+                
+                // Update search info
+                searchInfo.classList.remove('d-none');
+                searchStats.innerHTML = `
+                    <div><strong>Query:</strong> "${data.query}"</div>
+                    <div><strong>Results:</strong> ${data.result_count} items found in ${data.search_process.total_search_time_ms}ms</div>
+                `;
+                
+                // Format results
+                const formattedResults = MemoryUtils.formatSearchResults(data.results);
+                
+                if (formattedResults.length === 0) {
+                    resultsContainer.innerHTML = '<div class="no-results">No results found</div>';
+                } else {
+                    // Create result elements
+                    formattedResults.forEach((result, index) => {
+                        const resultEl = document.createElement('div');
+                        resultEl.className = 'result-item';
+                        resultEl.innerHTML = `
+                            <div class="result-header">
+                                <span class="result-score" style="background-color: ${result.color}">${result.formattedScore}</span>
+                                <span class="result-source">${result.source}</span>
+                                <span class="result-date">${result.formattedDate}</span>
+                            </div>
+                            <div class="result-content">${result.truncatedContent}</div>
+                            <div class="result-tags">
+                                ${result.tags.map(tag => `<span class="result-tag">${tag}</span>`).join('')}
+                            </div>
+                        `;
+                        
+                        // Add click handler to show details
+                        resultEl.addEventListener('click', function() {
+                            showResultDetail(result, index, data.query);
+                        });
+                        
+                        resultsContainer.appendChild(resultEl);
+                    });
+                }
+                
+                // Update visualizations
+                updateVisualizations(data, formattedResults);
+                
+                addLogEntry('success', `Search completed: ${data.result_count} results for "${data.query}"`);
+                
+                // Refresh system stats
+                wsClient.sendMessage({
+                    type: 'get_system_stats'
+                });
+            });
+            
+            // Handle system stats
+            wsClient.onMessage('system_stats', function(data) {
+                if (!data.memory_system_available) {
+                    addLogEntry('warning', 'Memory system is not available');
+                    return;
+                }
+                
+                // Update stats display
+                document.getElementById('total-memories').textContent = data.stats.total_memories;
+                document.getElementById('short-term-count').textContent = data.stats.short_term_count;
+                document.getElementById('long-term-count').textContent = data.stats.long_term_count;
+                document.getElementById('avg-search-time').textContent = data.stats.search_stats.avg_search_time_ms + 'ms';
+                document.getElementById('successful-searches').textContent = data.stats.search_stats.successful_searches;
+                
+                // Update search history
+                updateSearchHistory(data.search_history);
+            });
+            
+            // Handle errors
+            wsClient.onMessage('error', function(data) {
+                addLogEntry('error', data.error || 'Unknown error');
+            });
+            
+            // Add Memory Form Handler
+            document.getElementById('add-memory-btn').addEventListener('click', function() {
+                const form = document.getElementById('memory-form');
+                
+                try {
+                    const memoryData = MemoryUtils.createMemoryFromForm(form);
+                    
+                    wsClient.sendMessage({
+                        type: 'add_memory',
+                        ...memoryData
+                    });
+                    
+                    addLogEntry('system', 'Sending memory: ' + memoryData.content.substring(0, 30) + '...');
+                } catch (error) {
+                    addLogEntry('error', error.message);
+                }
+            });
+            
+            // Search Form Handler
+            document.getElementById('search-memory-btn').addEventListener('click', function() {
+                const form = document.getElementById('search-form');
+                
+                try {
+                    const searchParams = MemoryUtils.createSearchQueryFromForm(form);
+                    
+                    wsClient.sendMessage({
+                        type: 'search_memory',
+                        ...searchParams
+                    });
+                    
+                    addLogEntry('system', 'Searching for: ' + searchParams.query);
+                } catch (error) {
+                    addLogEntry('error', error.message);
+                }
+            });
+            
+            // Quick Test Queries Button
+            document.getElementById('test-quick-queries-btn').addEventListener('click', function() {
+                const modal = new bootstrap.Modal(document.getElementById('quick-test-modal'));
+                modal.show();
+            });
+            
+            // Run Quick Tests Button
+            document.getElementById('run-quick-tests').addEventListener('click', function() {
+                const queries = [];
+                
+                // Gather selected predefined queries
+                if (document.getElementById('query-os').checked) {
+                    queries.push('What operating system is running on this computer?');
+                }
+                if (document.getElementById('query-apps').checked) {
+                    queries.push('What applications are currently running?');
+                }
+                if (document.getElementById('query-browser').checked) {
+                    queries.push('What browser am I using?');
+                }
+                if (document.getElementById('query-dev').checked) {
+                    queries.push('What development environment am I using?');
+                }
+                if (document.getElementById('query-music').checked) {
+                    queries.push('Am I listening to any music?');
+                }
+                if (document.getElementById('query-recent').checked) {
+                    queries.push('What was I working on recently?');
+                }
+                if (document.getElementById('query-productivity').checked) {
+                    queries.push('What\'s my current productivity level?');
+                }
+                if (document.getElementById('query-languages').checked) {
+                    queries.push('What programming languages do I use?');
+                }
+                
+                // Add custom queries
+                const customQuery1 = document.getElementById('custom-query-1').value.trim();
+                const customQuery2 = document.getElementById('custom-query-2').value.trim();
+                const customQuery3 = document.getElementById('custom-query-3').value.trim();
+                
+                if (customQuery1) queries.push(customQuery1);
+                if (customQuery2) queries.push(customQuery2);
+                if (customQuery3) queries.push(customQuery3);
+                
+                if (queries.length === 0) {
+                    addLogEntry('warning', 'No queries selected for quick tests');
+                    return;
+                }
+                
+                // Run the first query immediately
+                const firstQuery = queries.shift();
+                document.getElementById('search-query').value = firstQuery;
+                
+                wsClient.sendMessage({
+                    type: 'search_memory',
+                    query: firstQuery,
+                    top_k: parseInt(document.getElementById('search-top-k').value, 10),
+                    min_similarity: parseFloat(document.getElementById('search-min-similarity').value),
+                    source_filter: document.getElementById('source-filter').value,
+                    application_context: document.getElementById('app-context').value.trim()
+                });
+                
+                addLogEntry('system', `Running quick test: "${firstQuery}" (1/${queries.length + 1})`);
+                
+                // Schedule the rest with delays
+                if (queries.length > 0) {
+                    let index = 0;
+                    const runNextQuery = function() {
+                        if (index < queries.length) {
+                            const query = queries[index];
+                            document.getElementById('search-query').value = query;
+                            
+                            wsClient.sendMessage({
+                                type: 'search_memory',
+                                query: query,
+                                top_k: parseInt(document.getElementById('search-top-k').value, 10),
+                                min_similarity: parseFloat(document.getElementById('search-min-similarity').value),
+                                source_filter: document.getElementById('source-filter').value,
+                                application_context: document.getElementById('app-context').value.trim()
+                            });
+                            
+                            addLogEntry('system', `Running quick test: "${query}" (${index + 2}/${queries.length + 1})`);
+                            
+                            index++;
+                            setTimeout(runNextQuery, 2000);  // Run next query after 2 second delay
+                        }
+                    };
+                    
+                    // Start running queries after a delay
+                    setTimeout(runNextQuery, 2000);
+                }
+            });
+            
+            // Settings Form Handler
+            document.getElementById('save-settings').addEventListener('click', function() {
+                const wsUrl = document.getElementById('ws-url').value;
+                const apiUrl = document.getElementById('api-url').value;
+                
+                wsClient.updateSettings(wsUrl, apiUrl);
+                
+                // Close modal
+                const modal = bootstrap.Modal.getInstance(document.getElementById('settings-modal'));
+                modal.hide();
+            });
+            
+            // Visualization Tab Handling
+            document.querySelectorAll('.viz-tab').forEach(tab => {
+                tab.addEventListener('click', function() {
+                    // Remove active class from all tabs
+                    document.querySelectorAll('.viz-tab').forEach(t => {
+                        t.classList.remove('active');
+                    });
+                    
+                    // Add active class to clicked tab
+                    this.classList.add('active');
+                    
+                    // Hide all panels
+                    document.querySelectorAll('.viz-panel').forEach(panel => {
+                        panel.classList.remove('active');
+                    });
+                    
+                    // Show selected panel
+                    const target = this.dataset.target;
+                    document.getElementById(target).classList.add('active');
+                });
+            });
+            
+            // Clear Results Button
+            document.getElementById('clear-results').addEventListener('click', function() {
+                document.getElementById('search-results').innerHTML = `
+                    <div class="placeholder-message">
+                        <i class="fas fa-search fa-3x mb-3"></i>
+                        <p>Search results will appear here</p>
+                    </div>
+                `;
+                document.getElementById('search-info').classList.add('d-none');
+                
+                // Reset visualizations
+                resetVisualizations();
+            });
+            
+            // Refresh Stats Button
+            document.getElementById('refresh-stats').addEventListener('click', function() {
+                wsClient.sendMessage({
+                    type: 'get_system_stats'
+                });
+                addLogEntry('system', 'Refreshing system stats...');
+            });
+            
+            // Clear Log Button
+            document.getElementById('clear-log').addEventListener('click', function() {
+                const logContainer = document.getElementById('activity-log');
+                logContainer.innerHTML = `
+                    <div class="log-entry system">
+                        <span class="timestamp">${new Date().toLocaleTimeString()}</span>
+                        <span class="message">Log cleared</span>
+                    </div>
+                `;
+            });
+            
+            // Export Results Button
+            document.getElementById('export-results').addEventListener('click', function() {
+                // Get current results
+                const searchInfo = document.getElementById('search-info');
+                const searchStats = document.getElementById('search-stats');
+                
+                if (searchInfo.classList.contains('d-none')) {
+                    addLogEntry('warning', 'No results to export');
+                    return;
+                }
+                
+                // Create export data
+                const exportData = {
+                    query: document.getElementById('search-query').value,
+                    timestamp: new Date().toISOString(),
+                    results: lastResults || [],
+                    search_process: lastSearchProcess || {}
+                };
+                
+                // Create download link
+                const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(exportData, null, 2));
+                const downloadAnchorNode = document.createElement('a');
+                downloadAnchorNode.setAttribute("href", dataStr);
+                downloadAnchorNode.setAttribute("download", `memory-search-${Date.now()}.json`);
+                document.body.appendChild(downloadAnchorNode);
+                downloadAnchorNode.click();
+                downloadAnchorNode.remove();
+                
+                addLogEntry('success', 'Search results exported to JSON');
+            });
+            
+            // Handle log events
+            document.addEventListener('memory-log', function(event) {
+                const { timestamp, level, message } = event.detail;
+                addLogEntry(level, message, timestamp);
+            });
+            
+            // Attach event listener to search-query for Enter key
+            document.getElementById('search-query').addEventListener('keypress', function(event) {
+                if (event.key === 'Enter') {
+                    document.getElementById('search-memory-btn').click();
+                }
+            });
+        });
+        
+        // Variables to store last results for export
+        let lastResults = null;
+        let lastSearchProcess = null;
+        
+        // Add entry to activity log
+        function addLogEntry(level, message, timestamp = null) {
+            const logContainer = document.getElementById('activity-log');
+            const entry = document.createElement('div');
+            entry.className = `log-entry ${level}`;
+            
+            const time = timestamp || new Date().toLocaleTimeString();
+            
+            entry.innerHTML = `
+                <span class="timestamp">${time}</span>
+                <span class="message">${message}</span>
+            `;
+            
+            logContainer.appendChild(entry);
+            logContainer.scrollTop = logContainer.scrollHeight;
+        }
+        
+        // Show result detail modal
+        function showResultDetail(result, index, query) {
+            const detailContainer = document.getElementById('memory-detail-content');
+            
+            // Create content
+            let content = `
+                <div class="result-detail">
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <h5>Memory Content</h5>
+                            <pre class="memory-content">${result.content}</pre>
+                        </div>
+                        <div class="col-md-6">
+                            <h5>Details</h5>
+                            <div class="detail-item">
+                                <div class="detail-label">Similarity Score:</div>
+                                <div class="detail-value">
+                                    <span class="badge" style="background-color: ${result.color}">${result.formattedScore}</span>
+                                </div>
+                            </div>
+                            <div class="detail-item">
+                                <div class="detail-label">Source:</div>
+                                <div class="detail-value">${result.source}</div>
+                            </div>
+                            <div class="detail-item">
+                                <div class="detail-label">Created:</div>
+                                <div class="detail-value">${result.formattedDate}</div>
+                            </div>
+                            <div class="detail-item">
+                                <div class="detail-label">Tags:</div>
+                                <div class="detail-value">
+                                    ${result.tags.length > 0 
+                                        ? result.tags.map(tag => `<span class="result-tag">${tag}</span>`).join('') 
+                                        : '<em>None</em>'}
+                                </div>
+                            </div>
+                            
+                            ${result.relevanceFactors.length > 0 ? `
+                                <h6 class="mt-3">Relevance Factors</h6>
+                                <ul class="relevance-factors">
+                                    ${result.relevanceFactors.map(factor => 
+                                        `<li>${MemoryUtils.formatFactorName(factor)}</li>`).join('')}
+                                </ul>
+                            ` : ''}
+                        </div>
+                    </div>
+                    
+                    ${!MemoryUtils.isEmptyObject(result.metadata) ? `
+                        <div class="row mb-3">
+                            <div class="col-12">
+                                <h5>Metadata</h5>
+                                <pre class="metadata-json">${JSON.stringify(result.metadata, null, 2)}</pre>
+                            </div>
+                        </div>
+                    ` : ''}
+                    
+                    <div class="row">
+                        <div class="col-12">
+                            <h5>Memory-Query Relationship</h5>
+                            <p>The memory "${result.truncatedContent}" was found for query "${query}" with ${result.formattedScore} similarity.</p>
+                            
+                            <div class="query-memory-match">
+                                <div class="query-box">
+                                    <h6>Query</h6>
+                                    <div class="query-content">${query}</div>
+                                </div>
+                                <div class="match-arrow">
+                                    <i class="fas fa-arrow-right"></i>
+                                    <div class="match-score">${result.formattedScore}</div>
+                                </div>
+                                <div class="memory-box">
+                                    <h6>Memory</h6>
+                                    <div class="memory-snippet">${result.truncatedContent}</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            detailContainer.innerHTML = content;
+            
+            // Show modal
+            const modal = new bootstrap.Modal(document.getElementById('result-detail-modal'));
+            modal.show();
+        }
+        
+        // Show detail modal with custom content
+        function showDetailModal(title, content) {
+            // Set title
+            document.querySelector('#result-detail-modal .modal-title').innerHTML = 
+                `<i class="fas fa-info-circle"></i> ${title}`;
+            
+            // Set content
+            document.getElementById('memory-detail-content').innerHTML = content;
+            
+            // Show modal
+            const modal = new bootstrap.Modal(document.getElementById('result-detail-modal'));
+            modal.show();
+        }
+        
+        // Show search process modal
+        function showSearchProcessModal(processData) {
+            const detailContainer = document.getElementById('search-process-detail');
+            
+            // Create content
+            let content = `
+                <div class="search-process-detail">
+                    <h5>Search Process Overview</h5>
+                    <div class="process-overview">
+                        <div class="process-step">
+                            <div class="step-time">${processData.embedding_time_ms}ms</div>
+                            <div class="step-name">Query Embedding</div>
+                            <div class="step-desc">Converting query to vector representation</div>
+                        </div>
+                        <div class="process-arrow"><i class="fas fa-arrow-right"></i></div>
+                        <div class="process-step">
+                            <div class="step-time">${processData.retrieval_time_ms}ms</div>
+                            <div class="step-name">Vector Search</div>
+                            <div class="step-desc">Finding similar memories in vector space</div>
+                        </div>
+                        <div class="process-arrow"><i class="fas fa-arrow-right"></i></div>
+                        <div class="process-step">
+                            <div class="step-time">${processData.ranking_time_ms}ms</div>
+                            <div class="step-name">Result Ranking</div>
+                            <div class="step-desc">Sorting and filtering results</div>
+                        </div>
+                    </div>
+                    
+                    <h5 class="mt-4">Search Details</h5>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h6>Query Processing</h6>
+                            <div class="detail-item">
+                                <div class="detail-label">Original Query:</div>
+                                <div class="detail-value">"${processData.original_query}"</div>
+                            </div>
+                            <div class="detail-item">
+                                <div class="detail-label">Processed Query:</div>
+                                <div class="detail-value">"${processData.processed_query}"</div>
+                            </div>
+                            <div class="detail-item">
+                                <div class="detail-label">Search Strategy:</div>
+                                <div class="detail-value">${processData.search_strategy}</div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <h6>Performance Metrics</h6>
+                            <div class="detail-item">
+                                <div class="detail-label">Total Search Time:</div>
+                                <div class="detail-value">${processData.total_search_time_ms}ms</div>
+                            </div>
+                            <div class="detail-item">
+                                <div class="detail-label">Embedding Time:</div>
+                                <div class="detail-value">${processData.embedding_time_ms}ms</div>
+                            </div>
+                            <div class="detail-item">
+                                <div class="detail-label">Retrieval Time:</div>
+                                <div class="detail-value">${processData.retrieval_time_ms}ms</div>
+                            </div>
+                            <div class="detail-item">
+                                <div class="detail-label">Ranking Time:</div>
+                                <div class="detail-value">${processData.ranking_time_ms}ms</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <h5 class="mt-4">Search Parameters</h5>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="parameters-container">
+                                <div class="detail-item">
+                                    <div class="detail-label">Top K Results:</div>
+                                    <div class="detail-value">${processData.parameters.top_k}</div>
+                                </div>
+                                <div class="detail-item">
+                                    <div class="detail-label">Min Similarity:</div>
+                                    <div class="detail-value">${processData.parameters.min_similarity}</div>
+                                </div>
+                                ${processData.parameters.source_filter ? `
+                                    <div class="detail-item">
+                                        <div class="detail-label">Source Filter:</div>
+                                        <div class="detail-value">${processData.parameters.source_filter}</div>
+                                    </div>
+                                ` : ''}
+                                ${processData.parameters.application_context ? `
+                                    <div class="detail-item">
+                                        <div class="detail-label">Application Context:</div>
+                                        <div class="detail-value">${processData.parameters.application_context}</div>
+                                    </div>
+                                ` : ''}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            detailContainer.innerHTML = content;
+            
+            // Show modal
+            const modal = new bootstrap.Modal(document.getElementById('search-process-modal'));
+            modal.show();
+        }
+        
+        // Update search history display
+        function updateSearchHistory(history) {
+            const container = document.getElementById('search-history');
+            
+            if (!history || history.length === 0) {
+                container.innerHTML = `
+                    <div class="placeholder-message">
+                        <p>No search history available</p>
+                    </div>
+                `;
+                return;
+            }
+            
+            container.innerHTML = '';
+            
+            // Add history items
+            history.forEach(item => {
+                const historyItem = document.createElement('div');
+                historyItem.className = 'history-item';
+                historyItem.innerHTML = `
+                    <div class="history-query">${item.query}</div>
+                    <div class="history-meta">
+                        <span class="history-results">${item.result_count} results</span>
+                        <span class="history-time">${item.search_time_ms}ms</span>
+                    </div>
+                `;
+                
+                // Add click handler to run this search again
+                historyItem.addEventListener('click', function() {
+                    document.getElementById('search-query').value = item.query;
+                    document.getElementById('search-memory-btn').click();
+                });
+                
+                container.appendChild(historyItem);
+            });
+        }
+        
+        // Update visualizations
+        function updateVisualizations(data, formattedResults) {
+            // Store for export
+            lastResults = formattedResults;
+            lastSearchProcess = data.search_process;
+            
+            // Update similarity chart
+            updateSimilarityChart(formattedResults);
+            
+            // Update relevance factors
+            updateRelevanceFactors(formattedResults);
+            
+            // Update network visualization
+            updateNetworkVisualization(data.related_concepts);
+            
+            // Update search process visualization
+            updateSearchProcessVisualization(data.search_process);
+        }
+        
+        // Reset visualizations
+        function resetVisualizations() {
+            // Reset similarity chart
+            if (window.similarityChart) {
+                window.similarityChart.destroy();
+                window.similarityChart = null;
+            }
+            
+            // Reset relevance factors
+            document.getElementById('relevance-factors').innerHTML = `
+                <div class="placeholder-message">
+                    <p>No data to display</p>
+                </div>
+            `;
+            
+            // Reset network visualization
+            document.getElementById('memory-network').innerHTML = '';
+            
+            // Reset search process visualization
+            document.getElementById('search-process').innerHTML = `
+                <div class="process-step-container">
+                    <div class="process-timeline"></div>
+                </div>
+            `;
+            
+            // Reset stored results
+            lastResults = null;
+            lastSearchProcess = null;
+        }
+        
+        // Update similarity chart
+        function updateSimilarityChart(results) {
+            const ctx = document.getElementById('similarity-chart').getContext('2d');
+            
+            // Destroy previous chart if it exists
+            if (window.similarityChart) {
+                window.similarityChart.destroy();
+            }
+            
+            if (results.length === 0) {
+                document.getElementById('similarity-chart').parentNode.innerHTML = `
+                    <div class="placeholder-message">
+                        <p>No data to display</p>
+                    </div>
+                `;
+                return;
+            }
+            
+            // Prepare data
+            const labels = results.map((r, i) => `Result ${i+1}`);
+            const scores = results.map(r => r.score);
+            const colors = results.map(r => r.color);
+            
+            // Create chart
+            window.similarityChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'Similarity Score',
+                        data: scores,
+                        backgroundColor: colors,
+                        borderColor: colors,
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            max: 1,
+                            title: {
+                                display: true,
+                                text: 'Similarity Score'
+                            }
+                        }
+                    },
+                    plugins: {
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    const result = results[context.dataIndex];
+                                    return `Score: ${result.formattedScore}`;
+                                },
+                                afterLabel: function(context) {
+                                    const result = results[context.dataIndex];
+                                    return `"${result.truncatedContent}"`;
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        }
+        
+        // Update relevance factors visualization
+        function updateRelevanceFactors(results) {
+            const container = document.getElementById('relevance-factors');
+            
+            if (results.length === 0) {
+                container.innerHTML = `
+                    <div class="placeholder-message">
+                        <p>No data to display</p>
+                    </div>
+                `;
+                return;
+            }
+            
+            // Extract relevance factors
+            const groupedFactors = MemoryUtils.extractRelevanceFactors(results);
+            
+            if (Object.keys(groupedFactors).length === 0) {
+                container.innerHTML = `
+                    <div class="placeholder-message">
+                        <p>No relevance factors available</p>
+                    </div>
+                `;
+                return;
+            }
+            
+            // Build visualization
+            container.innerHTML = '';
+            
+            for (const [group, factors] of Object.entries(groupedFactors)) {
+                const groupEl = document.createElement('div');
+                groupEl.className = 'relevance-group';
+                
+                groupEl.innerHTML = `
+                    <h6>${group}</h6>
+                    <div class="factors-container"></div>
+                `;
+                
+                const factorsContainer = groupEl.querySelector('.factors-container');
+                
+                factors.forEach(factor => {
+                    const factorEl = document.createElement('div');
+                    factorEl.className = 'factor-item';
+                    
+                    const percentage = Math.round(factor.percentage * 100);
+                    
+                    factorEl.innerHTML = `
+                        <div class="factor-name">${factor.name}</div>
+                        <div class="factor-bar-container">
+                            <div class="factor-bar" style="width: ${percentage}%"></div>
+                            <span class="factor-percentage">${percentage}%</span>
+                        </div>
+                    `;
+                    
+                    factorsContainer.appendChild(factorEl);
+                });
+                
+                container.appendChild(groupEl);
+            }
+        }
+        
+        // Update network visualization
+        function updateNetworkVisualization(concepts) {
+            const container = document.getElementById('memory-network');
+            
+            if (!concepts || concepts.length === 0) {
+                container.innerHTML = `
+                    <div class="placeholder-message">
+                        <p>No network data available</p>
+                    </div>
+                `;
+                return;
+            }
+            
+            // Clear container
+            container.innerHTML = '';
+            
+            // Set up SVG
+            const width = container.clientWidth;
+            const height = 300;
+            
+            const svg = d3.select('#memory-network')
+                .append('svg')
+                .attr('width', width)
+                .attr('height', height);
+            
+            // Create nodes and links
+            const nodes = concepts.map(c => ({ 
+                id: c.name,
+                type: c.type,
+                weight: c.weight
+            }));
+            
+            const links = [];
+            concepts.forEach(concept => {
+                if (concept.connections) {
+                    concept.connections.forEach(target => {
+                        links.push({
+                            source: concept.name,
+                            target: target
+                        });
+                    });
+                }
+            });
+            
+            // Create a force simulation
+            const simulation = d3.forceSimulation(nodes)
+                .force('link', d3.forceLink(links).id(d => d.id).distance(100))
+                .force('charge', d3.forceManyBody().strength(-200))
+                .force('center', d3.forceCenter(width / 2, height / 2));
+            
+            // Draw links
+            const link = svg.append('g')
+                .selectAll('line')
+                .data(links)
+                .enter()
+                .append('line')
+                .attr('stroke', '#999')
+                .attr('stroke-opacity', 0.6)
+                .attr('stroke-width', 1.5);
+            
+            // Draw nodes
+            const node = svg.append('g')
+                .selectAll('circle')
+                .data(nodes)
+                .enter()
+                .append('circle')
+                .attr('r', d => 5 + (d.weight * 15))
+                .attr('fill', d => d.type === 'query' ? '#ff6b6b' : '#4ecdc4')
+                .call(d3.drag()
+                    .on('start', dragstarted)
+                    .on('drag', dragged)
+                    .on('end', dragended));
+            
+            // Add node labels
+            const text = svg.append('g')
+                .selectAll('text')
+                .data(nodes)
+                .enter()
+                .append('text')
+                .text(d => d.id)
+                .attr('font-size', 12)
+                .attr('dx', 12)
+                .attr('dy', 4);
+            
+            // Update positions on each tick
+            simulation.on('tick', () => {
+                link
+                    .attr('x1', d => d.source.x)
+                    .attr('y1', d => d.source.y)
+                    .attr('x2', d => d.target.x)
+                    .attr('y2', d => d.target.y);
+                
+                node
+                    .attr('cx', d => d.x)
+                    .attr('cy', d => d.y);
+                
+                text
+                    .attr('x', d => d.x)
+                    .attr('y', d => d.y);
+            });
+            
+            // Drag functions
+            function dragstarted(event, d) {
+                if (!event.active) simulation.alphaTarget(0.3).restart();
+                d.fx = d.x;
+                d.fy = d.y;
+            }
+            
+            function dragged(event, d) {
+                d.fx = event.x;
+                d.fy = event.y;
+            }
+            
+            function dragended(event, d) {
+                if (!event.active) simulation.alphaTarget(0);
+                d.fx = null;
+                d.fy = null;
+            }
+        }
+        
+        // Update search process visualization
+        function updateSearchProcessVisualization(process) {
+            const container = document.getElementById('search-process');
+            
+            if (!process) {
+                container.innerHTML = `
+                    <div class="placeholder-message">
+                        <p>No search process data available</p>
+                    </div>
+                `;
+                return;
+            }
+            
+            // Calculate percentages for visualization
+            const totalTime = process.total_search_time_ms;
+            const embedPct = (process.embedding_time_ms / totalTime * 100).toFixed(1);
+            const retrievalPct = (process.retrieval_time_ms / totalTime * 100).toFixed(1);
+            const rankingPct = (process.ranking_time_ms / totalTime * 100).toFixed(1);
+            
+            // Create content
+            container.innerHTML = `
+                <div class="process-timeline-container">
+                    <div class="process-timeline">
+                        <div class="process-step embedding" style="width: ${embedPct}%">
+                            <div class="step-label">Query Embedding</div>
+                            <div class="step-time">${process.embedding_time_ms}ms</div>
+                        </div>
+                        <div class="process-step retrieval" style="width: ${retrievalPct}%">
+                            <div class="step-label">Vector Search</div>
+                            <div class="step-time">${process.retrieval_time_ms}ms</div>
+                        </div>
+                        <div class="process-step ranking" style="width: ${rankingPct}%">
+                            <div class="step-label">Ranking</div>
+                            <div class="step-time">${process.ranking_time_ms}ms</div>
+                        </div>
+                    </div>
+                    <div class="total-time">Total: ${totalTime}ms</div>
+                </div>
+                
+                <button id="view-process-details" class="btn btn-sm btn-outline-primary mt-3">
+                    <i class="fas fa-microscope"></i> View Detailed Search Process
+                </button>
+            `;
+            
+            // Add click handler for detailed view
+            document.getElementById('view-process-details').addEventListener('click', function() {
+                showSearchProcessModal(process);
+            });
+        }
+    </script>
+</body>
+</html>

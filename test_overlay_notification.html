@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Overlay Notification</title>
+    <style>
+        body {
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        h1 {
+            color: #333;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 10px;
+        }
+        .card {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            background-color: #f9f9f9;
+        }
+        .button-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 15px;
+        }
+        button {
+            padding: 8px 16px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        .primary {
+            background-color: #4CAF50;
+            color: white;
+        }
+        .secondary {
+            background-color: #2196F3;
+            color: white;
+        }
+        .warning {
+            background-color: #FF9800;
+            color: white;
+        }
+        .danger {
+            background-color: #f44336;
+            color: white;
+        }
+        .panel {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+        .panel > div {
+            flex: 1;
+        }
+        textarea, input[type="text"] {
+            width: 100%;
+            padding: 8px;
+            margin: 5px 0;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        .log {
+            background-color: #222;
+            color: #fff;
+            padding: 10px;
+            border-radius: 5px;
+            height: 200px;
+            overflow-y: auto;
+            font-family: monospace;
+            margin-top: 20px;
+        }
+        .status {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            margin-right: 8px;
+        }
+        .connected {
+            background-color: #4CAF50;
+        }
+        .disconnected {
+            background-color: #f44336;
+        }
+    </style>
+</head>
+<body>
+    <h1>Test Overlay Notification System</h1>
+    <p>This page tests different methods to send notifications to the overlay.</p>
+    
+    <div class="card">
+        <h2>Connection Status</h2>
+        <div>
+            <p><span class="status" id="status8765"></span> Port 8765: <span id="status-text-8765">Disconnected</span></p>
+            <p><span class="status" id="status8766"></span> Port 8766: <span id="status-text-8766">Disconnected</span></p>
+            <p><span class="status" id="status8767"></span> Port 8767: <span id="status-text-8767">Disconnected</span></p>
+            <p><span class="status" id="status8768"></span> Port 8768: <span id="status-text-8768">Disconnected</span></p>
+        </div>
+    </div>
+    
+    <div class="panel">
+        <div>
+            <div class="card">
+                <h2>Send Notification</h2>
+                <div>
+                    <label for="port">WebSocket Port:</label>
+                    <select id="port">
+                        <option value="8765">8765 (DO Button Server)</option>
+                        <option value="8766" selected>8766 (Bridge/Proxy)</option>
+                        <option value="8767">8767 (Backend)</option>
+                        <option value="8768">8768 (Neural UI)</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="message">Notification Message:</label>
+                    <textarea id="message" rows="3">🔔 IMPORTANT: This is a test notification from the direct HTML page</textarea>
+                </div>
+                <div>
+                    <label for="importance">Importance:</label>
+                    <select id="importance">
+                        <option value="low">Low</option>
+                        <option value="medium">Medium</option>
+                        <option value="high" selected>High</option>
+                    </select>
+                    <input type="checkbox" id="sound" checked>
+                    <label for="sound">Play Sound</label>
+                </div>
+                <div class="button-row">
+                    <button onclick="sendNotification('suggestion')" class="primary">Send as Suggestion</button>
+                    <button onclick="sendNotification('message')" class="secondary">Send as Message</button>
+                    <button onclick="sendNotification('notification')" class="warning">Send as Notification</button>
+                    <button onclick="sendNotification('legacy')" class="danger">Send Legacy Format</button>
+                </div>
+            </div>
+        </div>
+        
+        <div>
+            <div class="card">
+                <h2>Button Options</h2>
+                <div>
+                    <label for="buttons">Custom Buttons (JSON):</label>
+                    <textarea id="buttons" rows="6">[
+  {"text": "✅ Got it", "value": "understood", "style": "success"},
+  {"text": "❓ More info", "value": "info", "style": "primary"},
+  {"text": "❌ Dismiss", "value": "dismiss", "style": "danger"}
+]</textarea>
+                </div>
+                <div class="button-row">
+                    <button onclick="testAllPorts()" class="warning">Test All Ports</button>
+                    <button onclick="clearLog()" class="danger">Clear Log</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="log" id="log"></div>
+    
+    <script>
+        // WebSocket connections
+        let connections = {
+            "8765": null,
+            "8766": null,
+            "8767": null,
+            "8768": null
+        };
+        
+        // Connect to all WebSocket servers
+        function connectToAllPorts() {
+            // Try to connect to all ports
+            connectToPort("8765");
+            connectToPort("8766");
+            connectToPort("8767");
+            connectToPort("8768");
+        }
+        
+        function connectToPort(port) {
+            let wsUrl = `ws://localhost:${port}`;
+            if (port === "8767") {
+                wsUrl += "/ws"; // Backend requires /ws path
+            }
+            
+            try {
+                log(`Connecting to ${wsUrl}...`);
+                
+                // Close existing connection if any
+                if (connections[port] && connections[port].readyState < 2) {
+                    connections[port].close();
+                }
+                
+                // Create new connection
+                const ws = new WebSocket(wsUrl);
+                
+                ws.onopen = function() {
+                    log(`Connected to port ${port}!`);
+                    updateStatus(port, true);
+                    connections[port] = ws;
+                    
+                    // Register with backend if needed
+                    if (port === "8767") {
+                        const register = {
+                            "type": "register",
+                            "client_type": "notification_test",
+                            "client_id": `test_page_${Date.now()}`
+                        };
+                        ws.send(JSON.stringify(register));
+                        log(`Registered with backend on port ${port}`);
+                    }
+                };
+                
+                ws.onmessage = function(event) {
+                    log(`Received from port ${port}: ${event.data.substring(0, 100)}${event.data.length > 100 ? '...' : ''}`);
+                };
+                
+                ws.onclose = function() {
+                    log(`Disconnected from port ${port}`);
+                    updateStatus(port, false);
+                    connections[port] = null;
+                    
+                    // Try to reconnect after a delay
+                    setTimeout(() => {
+                        if (!connections[port] || connections[port].readyState >= 2) {
+                            connectToPort(port);
+                        }
+                    }, 5000);
+                };
+                
+                ws.onerror = function(error) {
+                    log(`Error on port ${port}: ${error}`);
+                    updateStatus(port, false);
+                };
+                
+            } catch (e) {
+                log(`Failed to connect to port ${port}: ${e.message}`);
+                updateStatus(port, false);
+            }
+        }
+        
+        function updateStatus(port, connected) {
+            const statusEl = document.getElementById(`status${port}`);
+            const textEl = document.getElementById(`status-text-${port}`);
+            
+            if (connected) {
+                statusEl.className = "status connected";
+                textEl.textContent = "Connected";
+            } else {
+                statusEl.className = "status disconnected";
+                textEl.textContent = "Disconnected";
+            }
+        }
+        
+        function sendNotification(type) {
+            const port = document.getElementById("port").value;
+            const message = document.getElementById("message").value;
+            const importance = document.getElementById("importance").value;
+            const playSound = document.getElementById("sound").checked;
+            let buttons;
+            
+            try {
+                buttons = JSON.parse(document.getElementById("buttons").value);
+            } catch (e) {
+                log(`Error parsing buttons: ${e.message}`);
+                buttons = [
+                    {"text": "✅ Got it", "value": "understood", "style": "success"},
+                    {"text": "❌ Dismiss", "value": "dismiss", "style": "danger"}
+                ];
+            }
+            
+            // Check if connected to the selected port
+            if (!connections[port] || connections[port].readyState !== 1) {
+                log(`Not connected to port ${port}. Trying to connect...`);
+                connectToPort(port);
+                setTimeout(() => sendNotification(type), 1000); // Try again after 1 second
+                return;
+            }
+            
+            // Create notification based on type
+            let notification;
+            const notificationId = `notification_${Date.now()}_${Math.floor(Math.random() * 10000)}`;
+            
+            if (type === "suggestion") {
+                notification = {
+                    "type": "suggestion",
+                    "response": message,
+                    "buttons": buttons,
+                    "importance": importance,
+                    "play_sound": playSound,
+                    "notification": true,
+                    "plan_id": notificationId,
+                    "timestamp": new Date().toISOString()
+                };
+            } else if (type === "message") {
+                notification = {
+                    "type": "message",
+                    "message": message,
+                    "mode": "SUGGEST",
+                    "buttons": buttons,
+                    "importance": importance,
+                    "play_sound": playSound, 
+                    "notification": true,
+                    "timestamp": new Date().toISOString()
+                };
+            } else if (type === "notification") {
+                notification = {
+                    "type": "notification",
+                    "content": message,
+                    "buttons": buttons,
+                    "importance": importance,
+                    "play_sound": playSound,
+                    "notification_id": notificationId,
+                    "timestamp": new Date().toISOString()
+                };
+            } else if (type === "legacy") {
+                notification = {
+                    "success": true,
+                    "response": message,
+                    "mode": "SUGGEST",
+                    "notification": true,
+                    "play_sound": playSound,
+                    "importance": importance,
+                    "buttons": buttons,
+                    "interactive": true,
+                    "timestamp": new Date().toISOString()
+                };
+            }
+            
+            // Send notification
+            try {
+                connections[port].send(JSON.stringify(notification));
+                log(`Sent ${type} notification to port ${port}`);
+                log(`Content: ${JSON.stringify(notification, null, 2)}`);
+            } catch (e) {
+                log(`Error sending notification: ${e.message}`);
+            }
+        }
+        
+        function testAllPorts() {
+            const message = document.getElementById("message").value;
+            const allPorts = ["8765", "8766", "8767", "8768"];
+            
+            log("====== TESTING ALL PORTS ======");
+            
+            allPorts.forEach((port, index) => {
+                setTimeout(() => {
+                    document.getElementById("port").value = port;
+                    document.getElementById("message").value = `[PORT ${port}] ${message}`;
+                    sendNotification("suggestion");
+                    
+                    // Also try legacy format for each port
+                    setTimeout(() => {
+                        sendNotification("legacy");
+                    }, 500);
+                    
+                    // Reset the message if this is the last port
+                    if (index === allPorts.length - 1) {
+                        setTimeout(() => {
+                            document.getElementById("message").value = message;
+                        }, 1000);
+                    }
+                }, index * 2000); // Stagger by 2 seconds
+            });
+        }
+        
+        function log(message) {
+            const logEl = document.getElementById("log");
+            const timestamp = new Date().toLocaleTimeString();
+            logEl.innerHTML += `[${timestamp}] ${message}<br>`;
+            logEl.scrollTop = logEl.scrollHeight;
+        }
+        
+        function clearLog() {
+            document.getElementById("log").innerHTML = "";
+        }
+        
+        // Connect on page load
+        window.addEventListener("load", connectToAllPorts);
+    </script>
+</body>
+</html>

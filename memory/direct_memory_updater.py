@@ -15,36 +15,67 @@ logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(
 logger = logging.getLogger(__name__)
 
 class DirectMemoryUpdater:
-    """Directly updates memory files with fresh sensor data."""
+    """Directly updates memory files with fresh sensor data through conscious memory."""
     
-    def __init__(self):
+    def __init__(self, memory_system=None):
         self.cache_dir = "cache"
         self.memory_dir = "memory"
         self.memory_state_file = "memory/memory_state.json"
         self.conscious_file = "memory/conscious.json"
+        self.memory_system = memory_system  # Reference to the memory system for routing through conscious memory
         
     def update_memory_with_sensor_data(self):
-        """Update memory files with latest sensor data."""
+        """Update memory files with latest sensor data through conscious memory."""
         try:
             # Read latest sensor data
             screen_data = self._read_latest_screen_data()
             process_data = self._read_latest_process_data()
             
             if screen_data or process_data:
-                # Update memory state
-                self._update_memory_state(screen_data, process_data)
-                
-                # Update conscious memory
-                self._update_conscious_memory(screen_data, process_data)
-                
-                logger.info("✅ Memory updated with fresh sensor data")
-                return True
+                if self.memory_system and hasattr(self.memory_system, 'conscious_memory'):
+                    # Route data through conscious memory
+                    success = self._route_through_conscious_memory(screen_data, process_data)
+                    if success:
+                        logger.info("✅ Memory updated via conscious memory routing")
+                        return True
+                    else:
+                        logger.warning("⚠️ Failed to route through conscious memory, using fallback")
+                        # Fallback to direct update if routing fails
+                        self._update_memory_state_fallback(screen_data, process_data)
+                        self._update_conscious_memory_fallback(screen_data, process_data)
+                        return True
+                else:
+                    # No memory system reference or no conscious memory, use fallback
+                    logger.warning("⚠️ No conscious memory available, using direct memory update")
+                    self._update_memory_state_fallback(screen_data, process_data)
+                    self._update_conscious_memory_fallback(screen_data, process_data)
+                    return True
             else:
                 logger.warning("⚠️ No fresh sensor data found")
                 return False
                 
         except Exception as e:
             logger.error(f"❌ Error updating memory: {e}")
+            return False
+            
+    async def _route_through_conscious_memory(self, screen_data, process_data):
+        """Route sensor data through conscious memory for proper distribution."""
+        try:
+            # Route screen data if available
+            if screen_data:
+                screen_success = await self.memory_system.conscious_memory.add_sensor_data('screen', screen_data)
+                if not screen_success:
+                    logger.warning("⚠️ Failed to route screen data through conscious memory")
+            
+            # Route process data if available
+            if process_data:
+                process_success = await self.memory_system.conscious_memory.add_sensor_data('process', process_data)
+                if not process_success:
+                    logger.warning("⚠️ Failed to route process data through conscious memory")
+                    
+            return True
+        except Exception as e:
+            logger.error(f"❌ Error routing through conscious memory: {e}")
             return False
     
     def _read_latest_screen_data(self) -> Dict[str, Any]:
@@ -74,8 +105,10 @@ class DirectMemoryUpdater:
             logger.error(f"Error reading process data: {e}")
         return {}
     
-    def _update_memory_state(self, screen_data: Dict[str, Any], process_data: Dict[str, Any]):
-        """Update the main memory state file."""
+    def _update_memory_state_fallback(self, screen_data: Dict[str, Any], process_data: Dict[str, Any]):
+        """Update the main memory state file as a fallback when conscious memory is unavailable.
+        WARNING: This is a fallback method and should be avoided in favor of routing through conscious memory.
+        """
         try:
             # Load existing state
             memory_state = {}
@@ -87,6 +120,7 @@ class DirectMemoryUpdater:
             current_time = datetime.now().isoformat()
             memory_state["last_update"] = current_time
             memory_state["version"] = "1.0"
+            memory_state["update_method"] = "direct_fallback"  # Mark as fallback method
             
             # Initialize structure
             if "context" not in memory_state:
@@ -133,19 +167,23 @@ class DirectMemoryUpdater:
             with open(self.memory_state_file, 'w') as f:
                 json.dump(memory_state, f, indent=2)
                 
-            logger.info("📝 Memory state updated successfully")
+            logger.info("📝 Memory state updated successfully (FALLBACK METHOD)")
             
         except Exception as e:
             logger.error(f"Error updating memory state: {e}")
     
-    def _update_conscious_memory(self, screen_data: Dict[str, Any], process_data: Dict[str, Any]):
-        """Update conscious memory with sensor buffers."""
+    def _update_conscious_memory_fallback(self, screen_data: Dict[str, Any], process_data: Dict[str, Any]):
+        """Update conscious memory with sensor buffers as a fallback method.
+        WARNING: This is a legacy fallback method and should be avoided in favor of 
+        proper routing through the ConsciousMemory class.
+        """
         try:
             current_time = datetime.now().isoformat()
             
             # Create conscious memory structure
             conscious_memory = {
                 "timestamp": current_time,
+                "update_method": "direct_fallback",  # Mark as fallback method
                 "sensor_buffers": {
                     "screen": [],
                     "process": []
@@ -200,16 +238,49 @@ class DirectMemoryUpdater:
             with open(self.conscious_file, 'w') as f:
                 json.dump(conscious_memory, f, indent=2)
                 
-            logger.info("🧠 Conscious memory updated successfully")
+            logger.info("🧠 Conscious memory updated via FALLBACK method")
+            logger.warning("⚠️ Direct conscious memory update used instead of proper routing!")
             
         except Exception as e:
             logger.error(f"Error updating conscious memory: {e}")
 
 def main():
     """Main function to run the direct memory updater."""
-    updater = DirectMemoryUpdater()
+    # Try to import and get memory system
+    memory_system = None
+    try:
+        # Attempt to import memory system
+        import sys
+        sys.path.append('.')  # Add current directory to path
+        
+        try:
+            from memory.memory_system import MemorySystem
+            # Create memory system instance if possible
+            memory_system = MemorySystem()
+            logger.info("✅ Successfully imported MemorySystem")
+        except ImportError:
+            logger.warning("⚠️ Could not import MemorySystem from memory.memory_system")
+            
+            try:
+                from memory_system import MemorySystem
+                # Create memory system instance if possible
+                memory_system = MemorySystem()
+                logger.info("✅ Successfully imported MemorySystem from root module")
+            except ImportError:
+                logger.warning("⚠️ Could not import MemorySystem - will use fallback methods")
+                memory_system = None
+    except Exception as e:
+        logger.error(f"❌ Error importing memory system: {e}")
+        memory_system = None
+    
+    # Create updater with memory system reference if available
+    updater = DirectMemoryUpdater(memory_system=memory_system)
     
     logger.info("🚀 Starting Direct Memory Updater...")
+    if memory_system:
+        logger.info("✅ Using conscious memory routing for memory updates")
+    else:
+        logger.warning("⚠️ Using fallback methods for memory updates")
     
     while True:
         try:

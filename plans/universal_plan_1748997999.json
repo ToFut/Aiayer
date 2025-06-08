@@ -1,0 +1,51 @@
+{
+  "task_id": "test_plan_1748997999",
+  "title": "Test Automation Plan",
+  "description": "Test plan for persistence verification",
+  "request_type": "web_navigation",
+  "steps": [
+    {
+      "id": "step_1",
+      "description": "Open Safari browser",
+      "action_type": "open_app",
+      "target": "Safari",
+      "value": null,
+      "coordinates": null,
+      "confidence": 0.8,
+      "status": "pending",
+      "estimated_duration": 2.0,
+      "retry_count": 0,
+      "max_retries": 3,
+      "fallback_action": null,
+      "context_hints": null
+    },
+    {
+      "id": "step_2",
+      "description": "Navigate to example.com",
+      "action_type": "navigate_url",
+      "target": null,
+      "value": "https://example.com",
+      "coordinates": null,
+      "confidence": 0.8,
+      "status": "pending",
+      "estimated_duration": 3.0,
+      "retry_count": 0,
+      "max_retries": 3,
+      "fallback_action": null,
+      "context_hints": null
+    }
+  ],
+  "estimated_duration": 5.0,
+  "complexity_score": 0.5,
+  "requires_approval": true,
+  "status": "executing",
+  "success_probability": 0.9,
+  "fallback_strategies": null,
+  "user_guidance_needed": false,
+  "_metadata": {
+    "last_modified": 1748997999.885229,
+    "created_at": 1748997999.885229,
+    "original_id": "test_plan_1748997999",
+    "normalized_id": "universal_plan_1748997999"
+  }
+}

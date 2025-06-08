@@ -1,0 +1,21 @@
+2025-06-04 14:04:47,201 - memory_flow_test - INFO - Starting memory flow monitoring
+2025-06-04 14:04:47,201 - memory_flow_test - INFO - Connecting to backend at ws://localhost:8767...
+2025-06-04 14:04:47,322 - memory_flow_test - ERROR - Error monitoring memory flow: Multiple exceptions: [Errno 61] Connect call failed ('::1', 8767, 0, 0), [Errno 61] Connect call failed ('127.0.0.1', 8767)
+Traceback (most recent call last):
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/test_memory_flow_monitoring.py", line 71, in monitor_memory_flow
+    async with websockets.connect(backend_uri) as websocket:
+               ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/asyncio/client.py", line 587, in __aenter__
+    return await self
+           ^^^^^^^^^^
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/asyncio/client.py", line 541, in __await_impl__
+    self.connection = await self.create_connection()
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/asyncio/client.py", line 467, in create_connection
+    _, connection = await loop.create_connection(factory, **kwargs)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.13/3.13.3/Frameworks/Python.framework/Versions/3.13/lib/python3.13/asyncio/base_events.py", line 1168, in create_connection
+    raise OSError('Multiple exceptions: {}'.format(
+        ', '.join(str(exc) for exc in exceptions)))
+OSError: Multiple exceptions: [Errno 61] Connect call failed ('::1', 8767, 0, 0), [Errno 61] Connect call failed ('127.0.0.1', 8767)
+2025-06-04 14:04:47,325 - memory_flow_test - INFO - Memory flow monitoring completed

@@ -84,8 +84,27 @@ class MemoryIntegrationService:
         
         # Initialize conscious memory
         try:
-            self.conscious_memory = ConsciousMemory()
-            logger.info("Conscious memory initialized")
+            # Import LLM provider if available
+            try:
+                from llm.llm_service import LLMService
+                llm_provider = LLMService()
+                logger.info("LLM service initialized for conscious memory")
+            except ImportError:
+                logger.warning("LLM service not available, using None for conscious memory")
+                llm_provider = None
+            
+            # Import memory system if available
+            try:
+                from memory.memory_system import MemorySystem
+                memory_system = MemorySystem()
+                logger.info("Memory system initialized for conscious memory")
+            except ImportError:
+                logger.warning("Memory system not available, using None for conscious memory")
+                memory_system = None
+            
+            # Initialize conscious memory with required parameters
+            self.conscious_memory = ConsciousMemory(llm_provider=llm_provider, memory_system=memory_system)
+            logger.info("Conscious memory initialized with required parameters")
         except Exception as e:
             logger.error(f"Failed to initialize conscious memory: {e}")
             return False

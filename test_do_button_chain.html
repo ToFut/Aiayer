@@ -1,0 +1,281 @@
+<\!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DO Button Chain Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .test-section {
+            margin-bottom: 30px;
+            border: 1px solid #ccc;
+            padding: 20px;
+            border-radius: 8px;
+        }
+        button {
+            padding: 10px 15px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        #messages {
+            margin-top: 20px;
+            border: 1px solid #ddd;
+            padding: 10px;
+            height: 300px;
+            overflow-y: auto;
+            background-color: #f9f9f9;
+        }
+        .message {
+            margin-bottom: 5px;
+            padding: 5px;
+            border-bottom: 1px solid #eee;
+        }
+        .success { color: green; }
+        .error { color: red; }
+        .info { color: blue; }
+    </style>
+</head>
+<body>
+    <h1>DO Button Chain Test</h1>
+    <p>This page tests the entire DO button connection chain, from client to ultimate_do_button_server.py.</p>
+
+    <div class="test-section">
+        <h2>Test Direct Connection to DO Button Server</h2>
+        <p>Tests a direct WebSocket connection to the ultimate_do_button_server.py on port 8765.</p>
+        <button id="connectDirect">Connect to 8765</button>
+        <button id="testDoButtonDirect">Test DO Button Directly</button>
+        <button id="disconnectDirect">Disconnect</button>
+    </div>
+
+    <div class="test-section">
+        <h2>Test Connection through Bridge Server</h2>
+        <p>Tests a WebSocket connection to the fixed_bridge_server.py on port 8768, which should forward to the DO button server.</p>
+        <button id="connectBridge">Connect to 8768</button>
+        <button id="testDoButtonBridge">Test DO Button via Bridge</button>
+        <button id="disconnectBridge">Disconnect</button>
+    </div>
+
+    <div class="test-section">
+        <h2>Test Mouse Click Action</h2>
+        <p>Tests a specific mouse click action at the center of the screen (x: 500, y: 500).</p>
+        <button id="testMouseClick">Test Mouse Click (500, 500)</button>
+    </div>
+
+    <div class="test-section">
+        <h2>Test Keyboard Input</h2>
+        <p>Tests keyboard typing "Hello, World\!"</p>
+        <button id="testKeyboardInput">Test Keyboard Input</button>
+    </div>
+
+    <div id="messages">
+        <div class="message">Connection log will appear here...</div>
+    </div>
+
+    <script>
+        // Variables to store WebSocket connections
+        let directWs = null;
+        let bridgeWs = null;
+        let activeWs = null;
+
+        // Helper function to add messages to the log
+        function addMessage(message, type = 'info') {
+            const messagesDiv = document.getElementById('messages');
+            const messageElement = document.createElement('div');
+            messageElement.classList.add('message', type);
+            messageElement.textContent = message;
+            messagesDiv.appendChild(messageElement);
+            messagesDiv.scrollTop = messagesDiv.scrollHeight;
+        }
+
+        // Direct connection to DO button server
+        document.getElementById('connectDirect').addEventListener('click', () => {
+            if (directWs && directWs.readyState === WebSocket.OPEN) {
+                addMessage('Already connected to DO button server', 'info');
+                return;
+            }
+
+            try {
+                directWs = new WebSocket('ws://localhost:8765');
+                
+                directWs.onopen = () => {
+                    addMessage('Connected directly to DO button server (8765)', 'success');
+                    activeWs = directWs;
+                };
+
+                directWs.onmessage = (event) => {
+                    try {
+                        const data = JSON.parse(event.data);
+                        addMessage(`Direct received: ${JSON.stringify(data)}`, 'info');
+                    } catch (e) {
+                        addMessage(`Direct received non-JSON: ${event.data}`, 'info');
+                    }
+                };
+
+                directWs.onerror = (error) => {
+                    addMessage(`Direct connection error: ${error}`, 'error');
+                };
+
+                directWs.onclose = () => {
+                    addMessage('Direct connection closed', 'info');
+                    if (activeWs === directWs) {
+                        activeWs = null;
+                    }
+                    directWs = null;
+                };
+            } catch (error) {
+                addMessage(`Error creating direct connection: ${error}`, 'error');
+            }
+        });
+
+        // Connection through bridge server
+        document.getElementById('connectBridge').addEventListener('click', () => {
+            if (bridgeWs && bridgeWs.readyState === WebSocket.OPEN) {
+                addMessage('Already connected to bridge server', 'info');
+                return;
+            }
+
+            try {
+                bridgeWs = new WebSocket('ws://localhost:8768');
+                
+                bridgeWs.onopen = () => {
+                    addMessage('Connected to bridge server (8768)', 'success');
+                    activeWs = bridgeWs;
+                };
+
+                bridgeWs.onmessage = (event) => {
+                    try {
+                        const data = JSON.parse(event.data);
+                        addMessage(`Bridge received: ${JSON.stringify(data)}`, 'info');
+                    } catch (e) {
+                        addMessage(`Bridge received non-JSON: ${event.data}`, 'info');
+                    }
+                };
+
+                bridgeWs.onerror = (error) => {
+                    addMessage(`Bridge connection error: ${error}`, 'error');
+                };
+
+                bridgeWs.onclose = () => {
+                    addMessage('Bridge connection closed', 'info');
+                    if (activeWs === bridgeWs) {
+                        activeWs = null;
+                    }
+                    bridgeWs = null;
+                };
+            } catch (error) {
+                addMessage(`Error creating bridge connection: ${error}`, 'error');
+            }
+        });
+
+        // Disconnect functions
+        document.getElementById('disconnectDirect').addEventListener('click', () => {
+            if (directWs) {
+                directWs.close();
+                addMessage('Disconnected from DO button server', 'info');
+            } else {
+                addMessage('Not connected to DO button server', 'error');
+            }
+        });
+
+        document.getElementById('disconnectBridge').addEventListener('click', () => {
+            if (bridgeWs) {
+                bridgeWs.close();
+                addMessage('Disconnected from bridge server', 'info');
+            } else {
+                addMessage('Not connected to bridge server', 'error');
+            }
+        });
+
+        // Test DO button functions
+        document.getElementById('testDoButtonDirect').addEventListener('click', () => {
+            if (\!directWs || directWs.readyState \!== WebSocket.OPEN) {
+                addMessage('Not connected to DO button server. Click "Connect to 8765" first.', 'error');
+                return;
+            }
+
+            const doButtonMessage = {
+                type: 'agent_confirmation',
+                session_id: 'test_session_' + Date.now(),
+                action: 'DO',
+                timestamp: new Date().toISOString()
+            };
+
+            directWs.send(JSON.stringify(doButtonMessage));
+            addMessage(`Sent DO button test to direct server: ${JSON.stringify(doButtonMessage)}`, 'info');
+        });
+
+        document.getElementById('testDoButtonBridge').addEventListener('click', () => {
+            if (\!bridgeWs || bridgeWs.readyState \!== WebSocket.OPEN) {
+                addMessage('Not connected to bridge server. Click "Connect to 8768" first.', 'error');
+                return;
+            }
+
+            const doButtonMessage = {
+                type: 'agent_confirmation',
+                session_id: 'test_session_' + Date.now(),
+                action: 'DO',
+                timestamp: new Date().toISOString()
+            };
+
+            bridgeWs.send(JSON.stringify(doButtonMessage));
+            addMessage(`Sent DO button test via bridge: ${JSON.stringify(doButtonMessage)}`, 'info');
+        });
+
+        // Test mouse click
+        document.getElementById('testMouseClick').addEventListener('click', () => {
+            if (\!activeWs || activeWs.readyState \!== WebSocket.OPEN) {
+                addMessage('Not connected to any server. Connect to either server first.', 'error');
+                return;
+            }
+
+            const clickMessage = {
+                type: 'button_action',
+                action: 'click',
+                plan_id: 'test_plan_' + Date.now(),
+                client_id: 'test_client',
+                timestamp: Date.now(),
+                coordinates: {
+                    x: 500,
+                    y: 500
+                }
+            };
+
+            activeWs.send(JSON.stringify(clickMessage));
+            addMessage(`Sent mouse click test: ${JSON.stringify(clickMessage)}`, 'info');
+        });
+
+        // Test keyboard input
+        document.getElementById('testKeyboardInput').addEventListener('click', () => {
+            if (\!activeWs || activeWs.readyState \!== WebSocket.OPEN) {
+                addMessage('Not connected to any server. Connect to either server first.', 'error');
+                return;
+            }
+
+            const typeMessage = {
+                type: 'button_action',
+                action: 'type',
+                plan_id: 'test_plan_' + Date.now(),
+                client_id: 'test_client',
+                timestamp: Date.now(),
+                text: 'Hello, World\!'
+            };
+
+            activeWs.send(JSON.stringify(typeMessage));
+            addMessage(`Sent keyboard input test: ${JSON.stringify(typeMessage)}`, 'info');
+        });
+    </script>
+</body>
+</html>
+EOF < /dev/null

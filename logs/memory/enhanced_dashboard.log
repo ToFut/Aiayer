@@ -1,0 +1,160 @@
+2025-06-05 00:36:19,805 - enhanced_memory_dashboard - INFO - Enhanced memory dashboard initialized
+2025-06-05 00:36:19,807 - enhanced_memory_dashboard - ERROR - Error starting dashboard task: There is no current event loop in thread 'Thread-1 (run_background_update)'.
+2025-06-05 00:36:19,807 - memory_dashboard_server - INFO - Started background metrics update thread
+2025-06-05 00:36:19,814 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:8082
+ * Running on http://192.168.1.102:8082
+2025-06-05 00:36:19,814 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-06-05 00:36:22,120 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 00:36:22] "GET /memory HTTP/1.1" 200 -
+2025-06-05 00:36:22,124 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 00:36:22] "[36mGET /static/js/memory_dashboard.js HTTP/1.1[0m" 304 -
+2025-06-05 00:40:06,626 - enhanced_memory_dashboard - INFO - Enhanced memory dashboard initialized
+2025-06-05 00:40:06,629 - memory_dashboard_server - INFO - Started background metrics update thread
+2025-06-05 00:40:06,629 - enhanced_memory_dashboard - INFO - Started enhanced memory dashboard background task
+2025-06-05 00:40:06,778 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:8082
+ * Running on http://192.168.1.102:8082
+2025-06-05 00:40:06,779 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-06-05 00:40:08,744 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 00:40:08] "GET /memory HTTP/1.1" 200 -
+2025-06-05 00:40:08,863 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 00:40:08] "[36mGET /static/js/memory_dashboard.js HTTP/1.1[0m" 304 -
+2025-06-05 00:47:30,289 - enhanced_memory_dashboard - INFO - Enhanced memory dashboard initialized
+2025-06-05 00:47:30,291 - memory_dashboard_server - INFO - Started background metrics update thread
+2025-06-05 00:47:30,291 - enhanced_memory_dashboard - INFO - Started enhanced memory dashboard background task
+2025-06-05 00:47:30,300 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:8082
+ * Running on http://192.168.1.102:8082
+2025-06-05 00:47:30,300 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-06-05 00:47:32,458 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 00:47:32] "GET /memory HTTP/1.1" 200 -
+2025-06-05 00:47:32,500 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 00:47:32] "GET /static/js/memory_dashboard.js HTTP/1.1" 200 -
+2025-06-05 00:51:13,761 - enhanced_memory_dashboard - INFO - Enhanced memory dashboard initialized
+2025-06-05 00:51:13,764 - memory_dashboard_server - INFO - Started background metrics update thread
+2025-06-05 00:51:13,764 - enhanced_memory_dashboard - INFO - Started enhanced memory dashboard background task
+2025-06-05 00:51:13,772 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:8082
+ * Running on http://192.168.1.102:8082
+2025-06-05 00:51:13,772 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-06-05 00:51:15,948 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 00:51:15] "GET /memory HTTP/1.1" 200 -
+2025-06-05 00:51:16,089 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 00:51:16] "[36mGET /static/js/memory_dashboard.js HTTP/1.1[0m" 304 -
+2025-06-05 00:54:04,311 - enhanced_memory_dashboard - INFO - Enhanced memory dashboard initialized
+2025-06-05 00:54:04,314 - memory_dashboard_server - INFO - Started background metrics update thread
+2025-06-05 00:54:04,314 - enhanced_memory_dashboard - INFO - Started enhanced memory dashboard background task
+2025-06-05 00:54:04,538 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:8082
+ * Running on http://192.168.1.102:8082
+2025-06-05 00:54:04,539 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-06-05 00:54:06,462 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 00:54:06] "GET /memory HTTP/1.1" 200 -
+2025-06-05 00:54:06,576 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 00:54:06] "[36mGET /static/js/memory_dashboard.js HTTP/1.1[0m" 304 -
+2025-06-05 00:56:09,268 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 00:56:09] "HEAD /memory HTTP/1.1" 200 -
+2025-06-05 00:56:13,919 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 00:56:13] "GET /api/memory/metrics HTTP/1.1" 200 -
+2025-06-05 00:56:52,809 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 00:56:52] "GET /memory HTTP/1.1" 200 -
+2025-06-05 00:56:52,841 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 00:56:52] "[36mGET /static/js/memory_dashboard.js HTTP/1.1[0m" 304 -
+2025-06-05 00:57:00,182 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 00:57:00] "GET /memory HTTP/1.1" 200 -
+2025-06-05 00:57:00,261 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 00:57:00] "[36mGET /static/js/memory_dashboard.js HTTP/1.1[0m" 304 -
+2025-06-05 01:08:30,921 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 01:08:30] "GET /memory HTTP/1.1" 200 -
+2025-06-05 01:08:31,193 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 01:08:31] "[36mGET /static/js/memory_dashboard.js HTTP/1.1[0m" 304 -
+2025-06-05 01:20:11,842 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 01:20:11] "GET /memory HTTP/1.1" 200 -
+2025-06-05 01:20:11,943 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 01:20:11] "GET /static/js/memory_dashboard.js HTTP/1.1" 200 -
+2025-06-05 01:21:46,767 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 01:21:46] "GET /memory HTTP/1.1" 200 -
+2025-06-05 01:21:46,867 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 01:21:46] "GET /static/js/memory_dashboard.js HTTP/1.1" 200 -
+2025-06-05 01:23:58,411 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 01:23:58] "GET /memory HTTP/1.1" 200 -
+2025-06-05 01:23:58,471 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 01:23:58] "GET /static/js/memory_dashboard.js HTTP/1.1" 200 -
+2025-06-05 01:24:24,145 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 01:24:24] "GET /memory HTTP/1.1" 200 -
+2025-06-05 01:26:09,439 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 01:26:09] "GET /memory HTTP/1.1" 200 -
+2025-06-05 01:26:09,481 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 01:26:09] "GET /static/js/memory_dashboard.js HTTP/1.1" 200 -
+2025-06-05 01:26:09,737 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 01:26:09] "GET /api/memory/metrics HTTP/1.1" 200 -
+2025-06-05 01:26:39,742 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 01:26:39] "GET /api/memory/metrics HTTP/1.1" 200 -
+2025-06-05 01:27:09,829 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 01:27:09] "GET /api/memory/metrics HTTP/1.1" 200 -
+2025-06-05 01:27:30,771 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 01:27:30] "GET /memory HTTP/1.1" 200 -
+2025-06-05 01:27:30,803 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 01:27:30] "GET /static/js/memory_dashboard.js HTTP/1.1" 200 -
+2025-06-05 01:27:30,948 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 01:27:30] "GET /api/memory/metrics HTTP/1.1" 200 -
+2025-06-05 01:28:01,043 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 01:28:01] "GET /api/memory/metrics HTTP/1.1" 200 -
+2025-06-05 01:28:31,146 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 01:28:31] "GET /api/memory/metrics HTTP/1.1" 200 -
+2025-06-05 01:29:01,238 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 01:29:01] "GET /api/memory/metrics HTTP/1.1" 200 -
+2025-06-05 01:29:31,268 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 01:29:31] "GET /api/memory/metrics HTTP/1.1" 200 -
+2025-06-05 01:29:59,653 - enhanced_memory_dashboard - INFO - Enhanced memory dashboard initialized
+2025-06-05 01:29:59,655 - memory_dashboard_server - INFO - Started background metrics update thread
+2025-06-05 01:29:59,655 - enhanced_memory_dashboard - INFO - Started enhanced memory dashboard background task
+2025-06-05 01:29:59,727 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:8082
+ * Running on http://192.168.1.102:8082
+2025-06-05 01:29:59,727 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-06-05 01:30:01,396 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 01:30:01] "GET /api/memory/metrics HTTP/1.1" 200 -
+2025-06-05 01:30:31,478 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 01:30:31] "GET /api/memory/metrics HTTP/1.1" 200 -
+2025-06-05 01:31:01,556 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 01:31:01] "GET /api/memory/metrics HTTP/1.1" 200 -
+2025-06-05 01:31:32,265 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 01:31:32] "GET /api/memory/metrics HTTP/1.1" 200 -
+2025-06-05 01:32:02,389 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 01:32:02] "GET /api/memory/metrics HTTP/1.1" 200 -
+2025-06-05 01:32:36,632 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 01:32:36] "GET /api/memory/metrics HTTP/1.1" 200 -
+2025-06-05 01:33:10,946 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 01:33:10] "GET /api/memory/metrics HTTP/1.1" 200 -
+2025-06-05 01:33:41,047 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 01:33:41] "GET /api/memory/metrics HTTP/1.1" 200 -
+2025-06-05 01:33:59,809 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 01:33:59] "GET /api/memory/metrics HTTP/1.1" 200 -
+2025-06-05 01:34:13,587 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 01:34:13] "GET /api/memory/metrics HTTP/1.1" 200 -
+2025-06-05 01:35:11,776 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 01:35:11] "GET /api/memory/metrics HTTP/1.1" 200 -
+2025-06-06 20:16:07,542 - enhanced_memory_dashboard - INFO - Enhanced memory dashboard initialized
+2025-06-06 20:16:07,551 - memory_dashboard_server - INFO - Started background metrics update thread
+2025-06-06 20:16:07,553 - enhanced_memory_dashboard - INFO - Started enhanced memory dashboard background task
+2025-06-06 20:16:07,584 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:8082
+ * Running on http://192.168.10.0:8082
+2025-06-06 20:16:07,584 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-06-06 20:16:11,916 - werkzeug - INFO - 127.0.0.1 - - [06/Jun/2025 20:16:11] "GET /memory HTTP/1.1" 200 -
+2025-06-06 20:16:12,017 - werkzeug - INFO - 127.0.0.1 - - [06/Jun/2025 20:16:12] "[36mGET /static/js/memory_dashboard.js HTTP/1.1[0m" 304 -
+2025-06-06 20:18:18,240 - enhanced_memory_dashboard - INFO - Enhanced memory dashboard initialized
+2025-06-06 20:18:18,269 - memory_dashboard_server - INFO - Started background metrics update thread
+2025-06-06 20:18:18,284 - enhanced_memory_dashboard - INFO - Started enhanced memory dashboard background task
+2025-06-06 20:18:18,349 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:8082
+ * Running on http://192.168.10.0:8082
+2025-06-06 20:18:18,349 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-06-06 20:18:24,688 - werkzeug - INFO - 127.0.0.1 - - [06/Jun/2025 20:18:24] "HEAD /memory HTTP/1.1" 200 -
+2025-06-06 20:18:36,269 - werkzeug - INFO - 127.0.0.1 - - [06/Jun/2025 20:18:36] "GET /memory HTTP/1.1" 200 -
+2025-06-06 20:18:36,761 - werkzeug - INFO - 127.0.0.1 - - [06/Jun/2025 20:18:36] "[36mGET /static/js/memory_dashboard.js HTTP/1.1[0m" 304 -
+2025-06-06 20:18:54,051 - werkzeug - INFO - 127.0.0.1 - - [06/Jun/2025 20:18:54] "GET /api/memory/metrics HTTP/1.1" 200 -
+2025-06-06 20:30:04,485 - werkzeug - INFO - 127.0.0.1 - - [06/Jun/2025 20:30:04] "GET /api/memory/metrics HTTP/1.1" 200 -
+2025-06-06 20:39:12,519 - werkzeug - INFO - 127.0.0.1 - - [06/Jun/2025 20:39:12] "GET /api/memory/metrics HTTP/1.1" 200 -
+2025-06-06 20:39:27,744 - werkzeug - INFO - 127.0.0.1 - - [06/Jun/2025 20:39:27] "GET /api/memory/metrics HTTP/1.1" 200 -
+2025-06-06 20:45:30,647 - enhanced_memory_dashboard - INFO - Enhanced memory dashboard initialized
+2025-06-06 20:45:30,658 - memory_dashboard_server - INFO - Started background metrics update thread
+2025-06-06 20:45:30,660 - enhanced_memory_dashboard - INFO - Started enhanced memory dashboard background task
+2025-06-06 20:45:30,780 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:8082
+ * Running on http://192.168.10.0:8082
+2025-06-06 20:45:30,781 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-06-06 20:45:40,384 - werkzeug - INFO - 127.0.0.1 - - [06/Jun/2025 20:45:40] "HEAD /memory HTTP/1.1" 200 -
+2025-06-06 20:47:30,124 - werkzeug - INFO - 127.0.0.1 - - [06/Jun/2025 20:47:30] "GET /memory HTTP/1.1" 200 -
+2025-06-06 20:47:30,521 - werkzeug - INFO - 127.0.0.1 - - [06/Jun/2025 20:47:30] "GET /static/js/memory_dashboard.js HTTP/1.1" 200 -
+2025-06-06 23:02:28,800 - enhanced_memory_dashboard - INFO - Enhanced memory dashboard initialized
+2025-06-06 23:02:28,805 - memory_dashboard_server - INFO - Started background metrics update thread
+2025-06-06 23:02:28,807 - enhanced_memory_dashboard - INFO - Started enhanced memory dashboard background task
+2025-06-06 23:02:28,823 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:8082
+ * Running on http://192.168.10.0:8082
+2025-06-06 23:02:28,823 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-06-06 23:03:07,025 - werkzeug - INFO - 127.0.0.1 - - [06/Jun/2025 23:03:07] "GET /api/memory/metrics HTTP/1.1" 200 -
+2025-06-06 23:08:05,933 - werkzeug - INFO - 127.0.0.1 - - [06/Jun/2025 23:08:05] "[33mGET /test_dashboard HTTP/1.1[0m" 404 -
+2025-06-06 23:08:07,952 - werkzeug - INFO - 127.0.0.1 - - [06/Jun/2025 23:08:07] "[33mGET /test_dashboard HTTP/1.1[0m" 404 -
+2025-06-06 23:10:19,575 - werkzeug - INFO - 127.0.0.1 - - [06/Jun/2025 23:10:19] "[33mGET /test_dashboard.html HTTP/1.1[0m" 404 -
+2025-06-06 23:13:02,937 - werkzeug - INFO - 127.0.0.1 - - [06/Jun/2025 23:13:02] "HEAD /api/memory/metrics HTTP/1.1" 200 -
+2025-06-07 23:37:11,864 - werkzeug - INFO - 127.0.0.1 - - [07/Jun/2025 23:37:11] "GET / HTTP/1.1" 200 -
+2025-06-07 23:37:11,913 - werkzeug - INFO - 127.0.0.1 - - [07/Jun/2025 23:37:11] "GET /static/js/memory_dashboard.js HTTP/1.1" 200 -
+2025-06-07 23:37:40,956 - werkzeug - INFO - 127.0.0.1 - - [07/Jun/2025 23:37:40] "GET / HTTP/1.1" 200 -
+2025-06-07 23:37:40,991 - werkzeug - INFO - 127.0.0.1 - - [07/Jun/2025 23:37:40] "[36mGET /static/js/memory_dashboard.js HTTP/1.1[0m" 304 -
+2025-06-07 23:45:24,935 - werkzeug - INFO - 127.0.0.1 - - [07/Jun/2025 23:45:24] "GET / HTTP/1.1" 200 -
+2025-06-07 23:45:25,061 - werkzeug - INFO - 127.0.0.1 - - [07/Jun/2025 23:45:25] "GET /static/js/memory_dashboard.js HTTP/1.1" 200 -
+2025-06-07 23:45:25,374 - werkzeug - INFO - 127.0.0.1 - - [07/Jun/2025 23:45:25] "GET /api/memory/metrics HTTP/1.1" 200 -
+2025-06-07 23:45:30,648 - werkzeug - INFO - 127.0.0.1 - - [07/Jun/2025 23:45:30] "GET /api/memory/metrics HTTP/1.1" 200 -
+2025-06-07 23:45:35,625 - werkzeug - INFO - 127.0.0.1 - - [07/Jun/2025 23:45:35] "GET /api/memory/metrics HTTP/1.1" 200 -
+2025-06-07 23:45:40,710 - werkzeug - INFO - 127.0.0.1 - - [07/Jun/2025 23:45:40] "GET /api/memory/metrics HTTP/1.1" 200 -
+2025-06-07 23:45:45,808 - werkzeug - INFO - 127.0.0.1 - - [07/Jun/2025 23:45:45] "GET /api/memory/metrics HTTP/1.1" 200 -
+2025-06-07 23:45:50,915 - werkzeug - INFO - 127.0.0.1 - - [07/Jun/2025 23:45:50] "GET /api/memory/metrics HTTP/1.1" 200 -
+2025-06-07 23:45:56,116 - werkzeug - INFO - 127.0.0.1 - - [07/Jun/2025 23:45:56] "GET /api/memory/metrics HTTP/1.1" 200 -
+2025-06-07 23:46:11,804 - werkzeug - INFO - 127.0.0.1 - - [07/Jun/2025 23:46:11] "GET /api/memory/metrics HTTP/1.1" 200 -
+2025-06-07 23:46:48,586 - werkzeug - INFO - 127.0.0.1 - - [07/Jun/2025 23:46:48] "GET /api/memory/metrics HTTP/1.1" 200 -

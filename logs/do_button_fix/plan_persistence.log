@@ -1,0 +1,488 @@
+[PLAN-FIX] INFO:memory.enhanced_semantic_search:Enhanced semantic search initialized with embedding dim: 384
+[PLAN-FIX] INFO:memory.enhanced_semantic_search:Hybrid retrieval enabled: True
+[PLAN-FIX] INFO:memory.semantic_search_agent:Loading 1836 existing documents from storage
+[PLAN-FIX] INFO:memory.semantic_search_agent:EnterpriseVectorStore initialized with enterprise-grade features
+[PLAN-FIX] INFO:memory.semantic_search_agent:SemanticSearchAgent initialized with enterprise-grade capabilities
+[PLAN-FIX] INFO:plan_persistence:Loaded 0 plans from metadata
+[PLAN-FIX] INFO:plan_persistence:Plan persistence system initialized
+[PLAN-FIX] INFO:real_agent_automation_handler:✅ Plan persistence module loaded successfully
+[PLAN-FIX] INFO:agent_workflow.input_controller:Detected screen size: 1470x956
+[PLAN-FIX] INFO:agent_workflow.input_controller:Standard mouse listener started successfully
+[PLAN-FIX] INFO:agent_workflow.input_controller:Keyboard listener started successfully
+[PLAN-FIX] INFO:agent_workflow.input_controller:Input controller initialized (safe mode)
+[PLAN-FIX] INFO:agent_workflow.input_controller:🚨 Emergency shutdown: Press Ctrl+1 to immediately stop agent
+[PLAN-FIX] INFO:llava_processor:Connected to Ollama API v0.6.8
+[PLAN-FIX] INFO:total_screen_analyzer:LLaVA visual processor initialized for total screen analysis
+[PLAN-FIX] INFO:total_screen_analyzer:Total Screen Analyzer initialized with 8s interval
+[PLAN-FIX] INFO:real_agent_automation_handler:🤖 Real automation components loaded successfully
+[PLAN-FIX] INFO:agent_workflow.input_controller:Standard mouse listener started successfully
+[PLAN-FIX] INFO:agent_workflow.input_controller:Keyboard listener started successfully
+[PLAN-FIX] INFO:agent_workflow.input_controller:Input controller initialized (safe mode)
+[PLAN-FIX] INFO:agent_workflow.input_controller:🚨 Emergency shutdown: Press Ctrl+1 to immediately stop agent
+[PLAN-FIX] INFO:llava_processor:Connected to Ollama API v0.6.8
+[PLAN-FIX] INFO:total_screen_analyzer:LLaVA visual processor initialized for total screen analysis
+[PLAN-FIX] INFO:total_screen_analyzer:Total Screen Analyzer initialized with 8s interval
+[PLAN-FIX] INFO:adaptive_retry_automation_handler:🔄 Adaptive retry automation system loaded
+[PLAN-FIX] INFO:universal_intelligent_automation_handler:✅ Adaptive retry automation handler loaded successfully
+[PLAN-FIX] INFO:universal_intelligent_automation_handler:✅ Plan persistence module loaded successfully
+[PLAN-FIX] INFO:agent_workflow.input_controller:Standard mouse listener started successfully
+[PLAN-FIX] INFO:agent_workflow.input_controller:Keyboard listener started successfully
+[PLAN-FIX] INFO:agent_workflow.input_controller:Input controller initialized (safe mode)
+[PLAN-FIX] INFO:agent_workflow.input_controller:🚨 Emergency shutdown: Press Ctrl+1 to immediately stop agent
+[PLAN-FIX] INFO:llava_processor:Connected to Ollama API v0.6.8
+[PLAN-FIX] INFO:total_screen_analyzer:LLaVA visual processor initialized for total screen analysis
+[PLAN-FIX] INFO:total_screen_analyzer:Total Screen Analyzer initialized with 8s interval
+[PLAN-FIX] INFO:universal_intelligent_automation_handler:🤖 Universal automation components loaded successfully
+[PLAN-FIX] INFO:__main__:✅ Using backend's shared_pending_plans dictionary
+[PLAN-FIX] INFO:__main__:Starting DO Button Plan Persistence Fix
+[PLAN-FIX] INFO:__main__:Found 2 plan files in cache/plans
+[PLAN-FIX] INFO:__main__:✅ Updated plan file: test_plan_4ff0cd54-b578-4f67-b3d5-6b00a21839e4.json
+[PLAN-FIX] INFO:__main__:✅ Updated plan file: plan_metadata.json
+[PLAN-FIX] INFO:__main__:Creating test plan with session ID: task_1749059418_overlay_session_1749059418875
+[PLAN-FIX] INFO:__main__:Creating backup plan for: task_1749059418_overlay_session_1749059418875
+[PLAN-FIX] INFO:__main__:✅ Saved backup plan to cache/plans/task_1749059418_overlay_session_1749059418875.json
+[PLAN-FIX] INFO:__main__:✅ Added backup plan to shared dictionary: task_1749059418_overlay_session_1749059418875
+[PLAN-FIX] INFO:__main__:Starting WebSocket server on port 8766
+[PLAN-FIX] INFO:websockets.server:server listening on 127.0.0.1:8766
+[PLAN-FIX] INFO:websockets.server:server listening on [::1]:8766
+[PLAN-FIX] INFO:__main__:✅ DO Button Plan Persistence Proxy running on ws://localhost:8766
+[PLAN-FIX] ERROR:websockets.server:opening handshake failed
+Traceback (most recent call last):
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/http11.py", line 138, in parse
+    request_line = yield from parse_line(read_line)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/http11.py", line 309, in parse_line
+    line = yield from read_line(MAX_LINE_LENGTH)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/streams.py", line 46, in read_line
+    raise EOFError(f"stream ends after {p} bytes, before end of line")
+EOFError: stream ends after 0 bytes, before end of line
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/server.py", line 545, in parse
+    request = yield from Request.parse(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^
+        self.reader.read_line,
+        ^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/http11.py", line 140, in parse
+    raise EOFError("connection closed while reading HTTP request line") from exc
+EOFError: connection closed while reading HTTP request line
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/asyncio/server.py", line 356, in conn_handler
+    await connection.handshake(
+    ...<3 lines>...
+    )
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/asyncio/server.py", line 207, in handshake
+    raise self.protocol.handshake_exc
+websockets.exceptions.InvalidMessage: did not receive a valid HTTP request
+[PLAN-FIX] INFO:memory.enhanced_semantic_search:Enhanced semantic search initialized with embedding dim: 384
+[PLAN-FIX] INFO:memory.enhanced_semantic_search:Hybrid retrieval enabled: True
+[PLAN-FIX] INFO:memory.semantic_search_agent:Loading 1848 existing documents from storage
+[PLAN-FIX] INFO:memory.semantic_search_agent:EnterpriseVectorStore initialized with enterprise-grade features
+[PLAN-FIX] INFO:memory.semantic_search_agent:SemanticSearchAgent initialized with enterprise-grade capabilities
+[PLAN-FIX] INFO:plan_persistence:Loaded 0 plans from metadata
+[PLAN-FIX] INFO:plan_persistence:Plan persistence system initialized
+[PLAN-FIX] INFO:real_agent_automation_handler:✅ Plan persistence module loaded successfully
+[PLAN-FIX] INFO:agent_workflow.input_controller:Detected screen size: 1470x956
+[PLAN-FIX] INFO:agent_workflow.input_controller:Standard mouse listener started successfully
+[PLAN-FIX] INFO:agent_workflow.input_controller:Keyboard listener started successfully
+[PLAN-FIX] INFO:agent_workflow.input_controller:Input controller initialized (safe mode)
+[PLAN-FIX] INFO:agent_workflow.input_controller:🚨 Emergency shutdown: Press Ctrl+1 to immediately stop agent
+[PLAN-FIX] INFO:llava_processor:Connected to Ollama API v0.6.8
+[PLAN-FIX] INFO:total_screen_analyzer:LLaVA visual processor initialized for total screen analysis
+[PLAN-FIX] INFO:total_screen_analyzer:Total Screen Analyzer initialized with 8s interval
+[PLAN-FIX] INFO:real_agent_automation_handler:🤖 Real automation components loaded successfully
+[PLAN-FIX] INFO:agent_workflow.input_controller:Standard mouse listener started successfully
+[PLAN-FIX] INFO:agent_workflow.input_controller:Keyboard listener started successfully
+[PLAN-FIX] INFO:agent_workflow.input_controller:Input controller initialized (safe mode)
+[PLAN-FIX] INFO:agent_workflow.input_controller:🚨 Emergency shutdown: Press Ctrl+1 to immediately stop agent
+[PLAN-FIX] INFO:llava_processor:Connected to Ollama API v0.6.8
+[PLAN-FIX] INFO:total_screen_analyzer:LLaVA visual processor initialized for total screen analysis
+[PLAN-FIX] INFO:total_screen_analyzer:Total Screen Analyzer initialized with 8s interval
+[PLAN-FIX] INFO:adaptive_retry_automation_handler:🔄 Adaptive retry automation system loaded
+[PLAN-FIX] INFO:universal_intelligent_automation_handler:✅ Adaptive retry automation handler loaded successfully
+[PLAN-FIX] INFO:universal_intelligent_automation_handler:✅ Plan persistence module loaded successfully
+[PLAN-FIX] INFO:agent_workflow.input_controller:Standard mouse listener started successfully
+[PLAN-FIX] INFO:agent_workflow.input_controller:Keyboard listener started successfully
+[PLAN-FIX] INFO:agent_workflow.input_controller:Input controller initialized (safe mode)
+[PLAN-FIX] INFO:agent_workflow.input_controller:🚨 Emergency shutdown: Press Ctrl+1 to immediately stop agent
+[PLAN-FIX] INFO:llava_processor:Connected to Ollama API v0.6.8
+[PLAN-FIX] INFO:total_screen_analyzer:LLaVA visual processor initialized for total screen analysis
+[PLAN-FIX] INFO:total_screen_analyzer:Total Screen Analyzer initialized with 8s interval
+[PLAN-FIX] INFO:universal_intelligent_automation_handler:🤖 Universal automation components loaded successfully
+[PLAN-FIX] INFO:__main__:✅ Using backend's shared_pending_plans dictionary
+[PLAN-FIX] INFO:__main__:Starting DO Button Plan Persistence Fix
+[PLAN-FIX] INFO:__main__:Found 3 plan files in cache/plans
+[PLAN-FIX] INFO:__main__:Creating test plan with session ID: task_1749060064_overlay_session_1749060064422
+[PLAN-FIX] INFO:__main__:Creating backup plan for: task_1749060064_overlay_session_1749060064422
+[PLAN-FIX] INFO:__main__:✅ Saved backup plan to cache/plans/task_1749060064_overlay_session_1749060064422.json
+[PLAN-FIX] INFO:__main__:✅ Added backup plan to shared dictionary: task_1749060064_overlay_session_1749060064422
+[PLAN-FIX] INFO:__main__:Starting WebSocket server on port 8766
+[PLAN-FIX] INFO:websockets.server:server listening on [::1]:8766
+[PLAN-FIX] INFO:websockets.server:server listening on 127.0.0.1:8766
+[PLAN-FIX] INFO:__main__:✅ DO Button Plan Persistence Proxy running on ws://localhost:8766
+[PLAN-FIX] INFO:websockets.server:connection open
+[PLAN-FIX] ERROR:websockets.server:connection handler failed
+Traceback (most recent call last):
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/asyncio/server.py", line 376, in conn_handler
+    await self.handler(connection)
+          ~~~~~~~~~~~~^^^^^^^^^^^^
+TypeError: handle_websocket() missing 1 required positional argument: 'path'
+[PLAN-FIX] INFO:websockets.server:connection open
+[PLAN-FIX] ERROR:websockets.server:connection handler failed
+Traceback (most recent call last):
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/asyncio/server.py", line 376, in conn_handler
+    await self.handler(connection)
+          ~~~~~~~~~~~~^^^^^^^^^^^^
+TypeError: handle_websocket() missing 1 required positional argument: 'path'
+[PLAN-FIX] INFO:websockets.server:connection open
+[PLAN-FIX] ERROR:websockets.server:connection handler failed
+Traceback (most recent call last):
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/asyncio/server.py", line 376, in conn_handler
+    await self.handler(connection)
+          ~~~~~~~~~~~~^^^^^^^^^^^^
+TypeError: handle_websocket() missing 1 required positional argument: 'path'
+[PLAN-FIX] INFO:websockets.server:connection open
+[PLAN-FIX] ERROR:websockets.server:connection handler failed
+Traceback (most recent call last):
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/asyncio/server.py", line 376, in conn_handler
+    await self.handler(connection)
+          ~~~~~~~~~~~~^^^^^^^^^^^^
+TypeError: handle_websocket() missing 1 required positional argument: 'path'
+[PLAN-FIX] INFO:websockets.server:connection open
+[PLAN-FIX] ERROR:websockets.server:connection handler failed
+Traceback (most recent call last):
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/asyncio/server.py", line 376, in conn_handler
+    await self.handler(connection)
+          ~~~~~~~~~~~~^^^^^^^^^^^^
+TypeError: handle_websocket() missing 1 required positional argument: 'path'
+[PLAN-FIX] INFO:memory.enhanced_semantic_search:Enhanced semantic search initialized with embedding dim: 384
+[PLAN-FIX] INFO:memory.enhanced_semantic_search:Hybrid retrieval enabled: True
+[PLAN-FIX] INFO:memory.semantic_search_agent:Loading 1848 existing documents from storage
+[PLAN-FIX] INFO:memory.semantic_search_agent:EnterpriseVectorStore initialized with enterprise-grade features
+[PLAN-FIX] INFO:memory.semantic_search_agent:SemanticSearchAgent initialized with enterprise-grade capabilities
+[PLAN-FIX] INFO:plan_persistence:Loaded 0 plans from metadata
+[PLAN-FIX] INFO:plan_persistence:Plan persistence system initialized
+[PLAN-FIX] INFO:real_agent_automation_handler:✅ Plan persistence module loaded successfully
+[PLAN-FIX] INFO:agent_workflow.input_controller:Detected screen size: 1470x956
+[PLAN-FIX] INFO:agent_workflow.input_controller:Standard mouse listener started successfully
+[PLAN-FIX] INFO:agent_workflow.input_controller:Keyboard listener started successfully
+[PLAN-FIX] INFO:agent_workflow.input_controller:Input controller initialized (safe mode)
+[PLAN-FIX] INFO:agent_workflow.input_controller:🚨 Emergency shutdown: Press Ctrl+1 to immediately stop agent
+[PLAN-FIX] INFO:llava_processor:Connected to Ollama API v0.6.8
+[PLAN-FIX] INFO:total_screen_analyzer:LLaVA visual processor initialized for total screen analysis
+[PLAN-FIX] INFO:total_screen_analyzer:Total Screen Analyzer initialized with 8s interval
+[PLAN-FIX] INFO:real_agent_automation_handler:🤖 Real automation components loaded successfully
+[PLAN-FIX] INFO:agent_workflow.input_controller:Standard mouse listener started successfully
+[PLAN-FIX] INFO:agent_workflow.input_controller:Keyboard listener started successfully
+[PLAN-FIX] INFO:agent_workflow.input_controller:Input controller initialized (safe mode)
+[PLAN-FIX] INFO:agent_workflow.input_controller:🚨 Emergency shutdown: Press Ctrl+1 to immediately stop agent
+[PLAN-FIX] INFO:llava_processor:Connected to Ollama API v0.6.8
+[PLAN-FIX] INFO:total_screen_analyzer:LLaVA visual processor initialized for total screen analysis
+[PLAN-FIX] INFO:total_screen_analyzer:Total Screen Analyzer initialized with 8s interval
+[PLAN-FIX] INFO:adaptive_retry_automation_handler:🔄 Adaptive retry automation system loaded
+[PLAN-FIX] INFO:universal_intelligent_automation_handler:✅ Adaptive retry automation handler loaded successfully
+[PLAN-FIX] INFO:universal_intelligent_automation_handler:✅ Plan persistence module loaded successfully
+[PLAN-FIX] INFO:agent_workflow.input_controller:Standard mouse listener started successfully
+[PLAN-FIX] INFO:agent_workflow.input_controller:Keyboard listener started successfully
+[PLAN-FIX] INFO:agent_workflow.input_controller:Input controller initialized (safe mode)
+[PLAN-FIX] INFO:agent_workflow.input_controller:🚨 Emergency shutdown: Press Ctrl+1 to immediately stop agent
+[PLAN-FIX] INFO:llava_processor:Connected to Ollama API v0.6.8
+[PLAN-FIX] INFO:total_screen_analyzer:LLaVA visual processor initialized for total screen analysis
+[PLAN-FIX] INFO:total_screen_analyzer:Total Screen Analyzer initialized with 8s interval
+[PLAN-FIX] INFO:universal_intelligent_automation_handler:🤖 Universal automation components loaded successfully
+[PLAN-FIX] INFO:__main__:✅ Using backend's shared_pending_plans dictionary
+[PLAN-FIX] INFO:__main__:Starting DO Button Plan Persistence Fix
+[PLAN-FIX] INFO:__main__:Found 4 plan files in cache/plans
+[PLAN-FIX] INFO:__main__:Creating test plan with session ID: task_1749060190_overlay_session_1749060190477
+[PLAN-FIX] INFO:__main__:Creating backup plan for: task_1749060190_overlay_session_1749060190477
+[PLAN-FIX] INFO:__main__:✅ Saved backup plan to cache/plans/task_1749060190_overlay_session_1749060190477.json
+[PLAN-FIX] INFO:__main__:✅ Added backup plan to shared dictionary: task_1749060190_overlay_session_1749060190477
+[PLAN-FIX] INFO:__main__:Starting WebSocket server on port 8766
+[PLAN-FIX] INFO:websockets.server:server listening on [::1]:8766
+[PLAN-FIX] INFO:websockets.server:server listening on 127.0.0.1:8766
+[PLAN-FIX] INFO:__main__:✅ DO Button Plan Persistence Proxy running on ws://localhost:8766
+[PLAN-FIX] ERROR:websockets.server:opening handshake failed
+Traceback (most recent call last):
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/http11.py", line 138, in parse
+    request_line = yield from parse_line(read_line)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/http11.py", line 309, in parse_line
+    line = yield from read_line(MAX_LINE_LENGTH)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/streams.py", line 46, in read_line
+    raise EOFError(f"stream ends after {p} bytes, before end of line")
+EOFError: stream ends after 0 bytes, before end of line
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/server.py", line 545, in parse
+    request = yield from Request.parse(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^
+        self.reader.read_line,
+        ^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/http11.py", line 140, in parse
+    raise EOFError("connection closed while reading HTTP request line") from exc
+EOFError: connection closed while reading HTTP request line
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/asyncio/server.py", line 356, in conn_handler
+    await connection.handshake(
+    ...<3 lines>...
+    )
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/asyncio/server.py", line 207, in handshake
+    raise self.protocol.handshake_exc
+websockets.exceptions.InvalidMessage: did not receive a valid HTTP request
+[PLAN-FIX] INFO:websockets.server:connection open
+[PLAN-FIX] ERROR:websockets.server:connection handler failed
+Traceback (most recent call last):
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/asyncio/server.py", line 376, in conn_handler
+    await self.handler(connection)
+          ~~~~~~~~~~~~^^^^^^^^^^^^
+TypeError: handle_websocket() missing 1 required positional argument: 'path'
+[PLAN-FIX] INFO:memory.enhanced_semantic_search:Enhanced semantic search initialized with embedding dim: 384
+[PLAN-FIX] INFO:memory.enhanced_semantic_search:Hybrid retrieval enabled: True
+[PLAN-FIX] INFO:memory.semantic_search_agent:Loading 1859 existing documents from storage
+[PLAN-FIX] INFO:memory.semantic_search_agent:EnterpriseVectorStore initialized with enterprise-grade features
+[PLAN-FIX] INFO:memory.semantic_search_agent:SemanticSearchAgent initialized with enterprise-grade capabilities
+[PLAN-FIX] INFO:plan_persistence:Loaded 0 plans from metadata
+[PLAN-FIX] INFO:plan_persistence:Plan persistence system initialized
+[PLAN-FIX] INFO:real_agent_automation_handler:✅ Plan persistence module loaded successfully
+[PLAN-FIX] INFO:agent_workflow.input_controller:Detected screen size: 1470x956
+[PLAN-FIX] INFO:agent_workflow.input_controller:Standard mouse listener started successfully
+[PLAN-FIX] INFO:agent_workflow.input_controller:Keyboard listener started successfully
+[PLAN-FIX] INFO:agent_workflow.input_controller:Input controller initialized (safe mode)
+[PLAN-FIX] INFO:agent_workflow.input_controller:🚨 Emergency shutdown: Press Ctrl+1 to immediately stop agent
+[PLAN-FIX] INFO:llava_processor:Connected to Ollama API v0.6.8
+[PLAN-FIX] INFO:total_screen_analyzer:LLaVA visual processor initialized for total screen analysis
+[PLAN-FIX] INFO:total_screen_analyzer:Total Screen Analyzer initialized with 8s interval
+[PLAN-FIX] INFO:real_agent_automation_handler:🤖 Real automation components loaded successfully
+[PLAN-FIX] INFO:agent_workflow.input_controller:Standard mouse listener started successfully
+[PLAN-FIX] INFO:agent_workflow.input_controller:Keyboard listener started successfully
+[PLAN-FIX] INFO:agent_workflow.input_controller:Input controller initialized (safe mode)
+[PLAN-FIX] INFO:agent_workflow.input_controller:🚨 Emergency shutdown: Press Ctrl+1 to immediately stop agent
+[PLAN-FIX] INFO:llava_processor:Connected to Ollama API v0.6.8
+[PLAN-FIX] INFO:total_screen_analyzer:LLaVA visual processor initialized for total screen analysis
+[PLAN-FIX] INFO:total_screen_analyzer:Total Screen Analyzer initialized with 8s interval
+[PLAN-FIX] INFO:adaptive_retry_automation_handler:🔄 Adaptive retry automation system loaded
+[PLAN-FIX] INFO:universal_intelligent_automation_handler:✅ Adaptive retry automation handler loaded successfully
+[PLAN-FIX] INFO:universal_intelligent_automation_handler:✅ Plan persistence module loaded successfully
+[PLAN-FIX] INFO:agent_workflow.input_controller:Standard mouse listener started successfully
+[PLAN-FIX] INFO:agent_workflow.input_controller:Keyboard listener started successfully
+[PLAN-FIX] INFO:agent_workflow.input_controller:Input controller initialized (safe mode)
+[PLAN-FIX] INFO:agent_workflow.input_controller:🚨 Emergency shutdown: Press Ctrl+1 to immediately stop agent
+[PLAN-FIX] INFO:llava_processor:Connected to Ollama API v0.6.8
+[PLAN-FIX] INFO:total_screen_analyzer:LLaVA visual processor initialized for total screen analysis
+[PLAN-FIX] INFO:total_screen_analyzer:Total Screen Analyzer initialized with 8s interval
+[PLAN-FIX] INFO:universal_intelligent_automation_handler:🤖 Universal automation components loaded successfully
+[PLAN-FIX] INFO:__main__:✅ Using backend's shared_pending_plans dictionary
+[PLAN-FIX] INFO:__main__:Starting DO Button Plan Persistence Fix
+[PLAN-FIX] INFO:__main__:Found 5 plan files in cache/plans
+[PLAN-FIX] INFO:__main__:Creating test plan with session ID: task_1749060404_overlay_session_1749060404964
+[PLAN-FIX] INFO:__main__:Creating backup plan for: task_1749060404_overlay_session_1749060404964
+[PLAN-FIX] INFO:__main__:✅ Saved backup plan to cache/plans/task_1749060404_overlay_session_1749060404964.json
+[PLAN-FIX] INFO:__main__:✅ Added backup plan to shared dictionary: task_1749060404_overlay_session_1749060404964
+[PLAN-FIX] INFO:__main__:Starting WebSocket server on port 8766
+[PLAN-FIX] INFO:websockets.server:server listening on [::1]:8766
+[PLAN-FIX] INFO:websockets.server:server listening on 127.0.0.1:8766
+[PLAN-FIX] INFO:__main__:✅ DO Button Plan Persistence Proxy running on ws://localhost:8766
+[PLAN-FIX] ERROR:websockets.server:opening handshake failed
+Traceback (most recent call last):
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/http11.py", line 138, in parse
+    request_line = yield from parse_line(read_line)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/http11.py", line 309, in parse_line
+    line = yield from read_line(MAX_LINE_LENGTH)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/streams.py", line 46, in read_line
+    raise EOFError(f"stream ends after {p} bytes, before end of line")
+EOFError: stream ends after 0 bytes, before end of line
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/server.py", line 545, in parse
+    request = yield from Request.parse(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^
+        self.reader.read_line,
+        ^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/http11.py", line 140, in parse
+    raise EOFError("connection closed while reading HTTP request line") from exc
+EOFError: connection closed while reading HTTP request line
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/asyncio/server.py", line 356, in conn_handler
+    await connection.handshake(
+    ...<3 lines>...
+    )
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/asyncio/server.py", line 207, in handshake
+    raise self.protocol.handshake_exc
+websockets.exceptions.InvalidMessage: did not receive a valid HTTP request
+[PLAN-FIX] INFO:websockets.server:connection open
+[PLAN-FIX] ERROR:websockets.server:connection handler failed
+Traceback (most recent call last):
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/asyncio/server.py", line 376, in conn_handler
+    await self.handler(connection)
+          ~~~~~~~~~~~~^^^^^^^^^^^^
+TypeError: handle_websocket() missing 1 required positional argument: 'path'
+[PLAN-FIX] INFO:websockets.server:connection open
+[PLAN-FIX] ERROR:websockets.server:connection handler failed
+Traceback (most recent call last):
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/asyncio/server.py", line 376, in conn_handler
+    await self.handler(connection)
+          ~~~~~~~~~~~~^^^^^^^^^^^^
+TypeError: handle_websocket() missing 1 required positional argument: 'path'
+[PLAN-FIX] INFO:memory.enhanced_semantic_search:Enhanced semantic search initialized with embedding dim: 384
+[PLAN-FIX] INFO:memory.enhanced_semantic_search:Hybrid retrieval enabled: True
+[PLAN-FIX] INFO:memory.semantic_search_agent:Loading 1860 existing documents from storage
+[PLAN-FIX] INFO:memory.semantic_search_agent:EnterpriseVectorStore initialized with enterprise-grade features
+[PLAN-FIX] INFO:memory.semantic_search_agent:SemanticSearchAgent initialized with enterprise-grade capabilities
+[PLAN-FIX] INFO:plan_persistence:Loaded 0 plans from metadata
+[PLAN-FIX] INFO:plan_persistence:Plan persistence system initialized
+[PLAN-FIX] INFO:real_agent_automation_handler:✅ Plan persistence module loaded successfully
+[PLAN-FIX] INFO:agent_workflow.input_controller:Detected screen size: 1470x956
+[PLAN-FIX] INFO:agent_workflow.input_controller:Standard mouse listener started successfully
+[PLAN-FIX] INFO:agent_workflow.input_controller:Keyboard listener started successfully
+[PLAN-FIX] INFO:agent_workflow.input_controller:Input controller initialized (safe mode)
+[PLAN-FIX] INFO:agent_workflow.input_controller:🚨 Emergency shutdown: Press Ctrl+1 to immediately stop agent
+[PLAN-FIX] INFO:llava_processor:Connected to Ollama API v0.6.8
+[PLAN-FIX] INFO:total_screen_analyzer:LLaVA visual processor initialized for total screen analysis
+[PLAN-FIX] INFO:total_screen_analyzer:Total Screen Analyzer initialized with 8s interval
+[PLAN-FIX] INFO:real_agent_automation_handler:🤖 Real automation components loaded successfully
+[PLAN-FIX] INFO:agent_workflow.input_controller:Standard mouse listener started successfully
+[PLAN-FIX] INFO:agent_workflow.input_controller:Keyboard listener started successfully
+[PLAN-FIX] INFO:agent_workflow.input_controller:Input controller initialized (safe mode)
+[PLAN-FIX] INFO:agent_workflow.input_controller:🚨 Emergency shutdown: Press Ctrl+1 to immediately stop agent
+[PLAN-FIX] INFO:llava_processor:Connected to Ollama API v0.6.8
+[PLAN-FIX] INFO:total_screen_analyzer:LLaVA visual processor initialized for total screen analysis
+[PLAN-FIX] INFO:total_screen_analyzer:Total Screen Analyzer initialized with 8s interval
+[PLAN-FIX] INFO:adaptive_retry_automation_handler:🔄 Adaptive retry automation system loaded
+[PLAN-FIX] INFO:universal_intelligent_automation_handler:✅ Adaptive retry automation handler loaded successfully
+[PLAN-FIX] INFO:universal_intelligent_automation_handler:✅ Plan persistence module loaded successfully
+[PLAN-FIX] INFO:agent_workflow.input_controller:Standard mouse listener started successfully
+[PLAN-FIX] INFO:agent_workflow.input_controller:Keyboard listener started successfully
+[PLAN-FIX] INFO:agent_workflow.input_controller:Input controller initialized (safe mode)
+[PLAN-FIX] INFO:agent_workflow.input_controller:🚨 Emergency shutdown: Press Ctrl+1 to immediately stop agent
+[PLAN-FIX] INFO:llava_processor:Connected to Ollama API v0.6.8
+[PLAN-FIX] INFO:total_screen_analyzer:LLaVA visual processor initialized for total screen analysis
+[PLAN-FIX] INFO:total_screen_analyzer:Total Screen Analyzer initialized with 8s interval
+[PLAN-FIX] INFO:universal_intelligent_automation_handler:🤖 Universal automation components loaded successfully
+[PLAN-FIX] INFO:__main__:✅ Using backend's shared_pending_plans dictionary
+[PLAN-FIX] INFO:__main__:Starting DO Button Plan Persistence Fix
+[PLAN-FIX] INFO:__main__:Found 7 plan files in cache/plans
+[PLAN-FIX] INFO:__main__:✅ Updated plan file: task_1749060455_overlay_session_1749060455285.json
+[PLAN-FIX] INFO:__main__:Creating test plan with session ID: task_1749060663_overlay_session_1749060663301
+[PLAN-FIX] INFO:__main__:Creating backup plan for: task_1749060663_overlay_session_1749060663301
+[PLAN-FIX] INFO:__main__:✅ Saved backup plan to cache/plans/task_1749060663_overlay_session_1749060663301.json
+[PLAN-FIX] INFO:__main__:✅ Added backup plan to shared dictionary: task_1749060663_overlay_session_1749060663301
+[PLAN-FIX] INFO:__main__:Starting WebSocket server on port 8766
+[PLAN-FIX] INFO:websockets.server:server listening on 127.0.0.1:8766
+[PLAN-FIX] INFO:websockets.server:server listening on [::1]:8766
+[PLAN-FIX] INFO:__main__:✅ DO Button Plan Persistence Proxy running on ws://localhost:8766
+[PLAN-FIX] INFO:websockets.server:connection open
+[PLAN-FIX] ERROR:websockets.server:connection handler failed
+Traceback (most recent call last):
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/asyncio/server.py", line 376, in conn_handler
+    await self.handler(connection)
+          ~~~~~~~~~~~~^^^^^^^^^^^^
+TypeError: handle_websocket() missing 1 required positional argument: 'path'
+[PLAN-FIX] INFO:websockets.server:connection open
+[PLAN-FIX] ERROR:websockets.server:connection handler failed
+Traceback (most recent call last):
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/asyncio/server.py", line 376, in conn_handler
+    await self.handler(connection)
+          ~~~~~~~~~~~~^^^^^^^^^^^^
+TypeError: handle_websocket() missing 1 required positional argument: 'path'
+[PLAN-FIX] INFO:websockets.server:connection open
+[PLAN-FIX] ERROR:websockets.server:connection handler failed
+Traceback (most recent call last):
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/asyncio/server.py", line 376, in conn_handler
+    await self.handler(connection)
+          ~~~~~~~~~~~~^^^^^^^^^^^^
+TypeError: handle_websocket() missing 1 required positional argument: 'path'
+[PLAN-FIX] INFO:websockets.server:connection open
+[PLAN-FIX] ERROR:websockets.server:connection handler failed
+Traceback (most recent call last):
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/asyncio/server.py", line 376, in conn_handler
+    await self.handler(connection)
+          ~~~~~~~~~~~~^^^^^^^^^^^^
+TypeError: handle_websocket() missing 1 required positional argument: 'path'
+[PLAN-FIX] INFO:websockets.server:connection open
+[PLAN-FIX] ERROR:websockets.server:connection handler failed
+Traceback (most recent call last):
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/asyncio/server.py", line 376, in conn_handler
+    await self.handler(connection)
+          ~~~~~~~~~~~~^^^^^^^^^^^^
+TypeError: handle_websocket() missing 1 required positional argument: 'path'
+[PLAN-FIX] INFO:websockets.server:connection open
+[PLAN-FIX] ERROR:websockets.server:connection handler failed
+Traceback (most recent call last):
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/asyncio/server.py", line 376, in conn_handler
+    await self.handler(connection)
+          ~~~~~~~~~~~~^^^^^^^^^^^^
+TypeError: handle_websocket() missing 1 required positional argument: 'path'
+[PLAN-FIX] INFO:websockets.server:connection open
+[PLAN-FIX] ERROR:websockets.server:connection handler failed
+Traceback (most recent call last):
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/asyncio/server.py", line 376, in conn_handler
+    await self.handler(connection)
+          ~~~~~~~~~~~~^^^^^^^^^^^^
+TypeError: handle_websocket() missing 1 required positional argument: 'path'
+[PLAN-FIX] INFO:websockets.server:connection open
+[PLAN-FIX] ERROR:websockets.server:connection handler failed
+Traceback (most recent call last):
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/asyncio/server.py", line 376, in conn_handler
+    await self.handler(connection)
+          ~~~~~~~~~~~~^^^^^^^^^^^^
+TypeError: handle_websocket() missing 1 required positional argument: 'path'
+[PLAN-FIX] INFO:websockets.server:connection open
+[PLAN-FIX] ERROR:websockets.server:connection handler failed
+Traceback (most recent call last):
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/asyncio/server.py", line 376, in conn_handler
+    await self.handler(connection)
+          ~~~~~~~~~~~~^^^^^^^^^^^^
+TypeError: handle_websocket() missing 1 required positional argument: 'path'
+[PLAN-FIX] INFO:websockets.server:connection open
+[PLAN-FIX] ERROR:websockets.server:connection handler failed
+Traceback (most recent call last):
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/asyncio/server.py", line 376, in conn_handler
+    await self.handler(connection)
+          ~~~~~~~~~~~~^^^^^^^^^^^^
+TypeError: handle_websocket() missing 1 required positional argument: 'path'
+[PLAN-FIX] INFO:websockets.server:connection open
+[PLAN-FIX] ERROR:websockets.server:connection handler failed
+Traceback (most recent call last):
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/asyncio/server.py", line 376, in conn_handler
+    await self.handler(connection)
+          ~~~~~~~~~~~~^^^^^^^^^^^^
+TypeError: handle_websocket() missing 1 required positional argument: 'path'
+[PLAN-FIX] INFO:websockets.server:connection open
+[PLAN-FIX] ERROR:websockets.server:connection handler failed
+Traceback (most recent call last):
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/asyncio/server.py", line 376, in conn_handler
+    await self.handler(connection)
+          ~~~~~~~~~~~~^^^^^^^^^^^^
+TypeError: handle_websocket() missing 1 required positional argument: 'path'
+[PLAN-FIX] INFO:websockets.server:connection open
+[PLAN-FIX] ERROR:websockets.server:connection handler failed
+Traceback (most recent call last):
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/asyncio/server.py", line 376, in conn_handler
+    await self.handler(connection)
+          ~~~~~~~~~~~~^^^^^^^^^^^^
+TypeError: handle_websocket() missing 1 required positional argument: 'path'

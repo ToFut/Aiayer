@@ -1,0 +1,877 @@
+2025-05-29 15:07:22,649 - guaranteed_ws_8765 - INFO - Port 8765 is available
+2025-05-29 15:07:22,649 - guaranteed_ws_8765 - INFO - Starting guaranteed WebSocket server on localhost:8765
+2025-05-29 15:07:22,687 - websockets.server - INFO - server listening on [::1]:8765
+2025-05-29 15:07:22,687 - websockets.server - INFO - server listening on 127.0.0.1:8765
+2025-05-29 15:07:22,688 - guaranteed_ws_8765 - INFO - ✅ Guaranteed WebSocket server running on ws://localhost:8765
+2025-05-29 15:07:22,688 - guaranteed_ws_8765 - INFO - 🎯 Ready to handle agent_confirmation messages
+2025-05-29 15:07:22,727 - websockets.server - INFO - connection open
+2025-05-29 15:07:22,727 - websockets.server - ERROR - connection handler failed
+Traceback (most recent call last):
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/asyncio/server.py", line 376, in conn_handler
+    await self.handler(connection)
+          ~~~~~~~~~~~~^^^^^^^^^^^^
+TypeError: handler() missing 1 required positional argument: 'path'
+2025-05-29 15:07:23,526 - websockets.server - ERROR - opening handshake failed
+Traceback (most recent call last):
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/http11.py", line 138, in parse
+    request_line = yield from parse_line(read_line)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/http11.py", line 309, in parse_line
+    line = yield from read_line(MAX_LINE_LENGTH)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/streams.py", line 46, in read_line
+    raise EOFError(f"stream ends after {p} bytes, before end of line")
+EOFError: stream ends after 0 bytes, before end of line
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/server.py", line 545, in parse
+    request = yield from Request.parse(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^
+        self.reader.read_line,
+        ^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/http11.py", line 140, in parse
+    raise EOFError("connection closed while reading HTTP request line") from exc
+EOFError: connection closed while reading HTTP request line
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/asyncio/server.py", line 356, in conn_handler
+    await connection.handshake(
+    ...<3 lines>...
+    )
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/asyncio/server.py", line 207, in handshake
+    raise self.protocol.handshake_exc
+websockets.exceptions.InvalidMessage: did not receive a valid HTTP request
+2025-05-29 15:07:23,564 - websockets.server - INFO - connection open
+2025-05-29 15:07:23,564 - websockets.server - ERROR - connection handler failed
+Traceback (most recent call last):
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/asyncio/server.py", line 376, in conn_handler
+    await self.handler(connection)
+          ~~~~~~~~~~~~^^^^^^^^^^^^
+TypeError: handler() missing 1 required positional argument: 'path'
+2025-05-29 15:07:28,416 - websockets.server - INFO - connection open
+2025-05-29 15:07:28,416 - websockets.server - ERROR - connection handler failed
+Traceback (most recent call last):
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/asyncio/server.py", line 376, in conn_handler
+    await self.handler(connection)
+          ~~~~~~~~~~~~^^^^^^^^^^^^
+TypeError: handler() missing 1 required positional argument: 'path'
+2025-05-29 15:07:33,921 - websockets.server - INFO - connection open
+2025-05-29 15:07:33,921 - websockets.server - ERROR - connection handler failed
+Traceback (most recent call last):
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/asyncio/server.py", line 376, in conn_handler
+    await self.handler(connection)
+          ~~~~~~~~~~~~^^^^^^^^^^^^
+TypeError: handler() missing 1 required positional argument: 'path'
+2025-05-29 15:07:39,531 - websockets.server - INFO - connection open
+2025-05-29 15:07:39,532 - websockets.server - ERROR - connection handler failed
+Traceback (most recent call last):
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/asyncio/server.py", line 376, in conn_handler
+    await self.handler(connection)
+          ~~~~~~~~~~~~^^^^^^^^^^^^
+TypeError: handler() missing 1 required positional argument: 'path'
+2025-05-29 15:07:45,227 - websockets.server - INFO - connection open
+2025-05-29 15:07:45,228 - websockets.server - ERROR - connection handler failed
+Traceback (most recent call last):
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/asyncio/server.py", line 376, in conn_handler
+    await self.handler(connection)
+          ~~~~~~~~~~~~^^^^^^^^^^^^
+TypeError: handler() missing 1 required positional argument: 'path'
+2025-05-29 15:07:50,819 - websockets.server - INFO - connection open
+2025-05-29 15:07:50,820 - websockets.server - ERROR - connection handler failed
+Traceback (most recent call last):
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/asyncio/server.py", line 376, in conn_handler
+    await self.handler(connection)
+          ~~~~~~~~~~~~^^^^^^^^^^^^
+TypeError: handler() missing 1 required positional argument: 'path'
+2025-05-29 15:07:56,360 - websockets.server - INFO - connection open
+2025-05-29 15:07:56,360 - websockets.server - ERROR - connection handler failed
+Traceback (most recent call last):
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/asyncio/server.py", line 376, in conn_handler
+    await self.handler(connection)
+          ~~~~~~~~~~~~^^^^^^^^^^^^
+TypeError: handler() missing 1 required positional argument: 'path'
+2025-05-29 15:08:01,950 - websockets.server - INFO - connection open
+2025-05-29 15:08:01,951 - websockets.server - ERROR - connection handler failed
+Traceback (most recent call last):
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/asyncio/server.py", line 376, in conn_handler
+    await self.handler(connection)
+          ~~~~~~~~~~~~^^^^^^^^^^^^
+TypeError: handler() missing 1 required positional argument: 'path'
+2025-05-29 15:08:07,487 - websockets.server - INFO - connection open
+2025-05-29 15:08:07,488 - websockets.server - ERROR - connection handler failed
+Traceback (most recent call last):
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/asyncio/server.py", line 376, in conn_handler
+    await self.handler(connection)
+          ~~~~~~~~~~~~^^^^^^^^^^^^
+TypeError: handler() missing 1 required positional argument: 'path'
+2025-05-29 15:08:13,122 - websockets.server - INFO - connection open
+2025-05-29 15:08:13,122 - websockets.server - ERROR - connection handler failed
+Traceback (most recent call last):
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/asyncio/server.py", line 376, in conn_handler
+    await self.handler(connection)
+          ~~~~~~~~~~~~^^^^^^^^^^^^
+TypeError: handler() missing 1 required positional argument: 'path'
+2025-05-29 15:08:18,776 - websockets.server - INFO - connection open
+2025-05-29 15:08:18,777 - websockets.server - ERROR - connection handler failed
+Traceback (most recent call last):
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/asyncio/server.py", line 376, in conn_handler
+    await self.handler(connection)
+          ~~~~~~~~~~~~^^^^^^^^^^^^
+TypeError: handler() missing 1 required positional argument: 'path'
+2025-05-29 15:08:24,316 - websockets.server - INFO - connection open
+2025-05-29 15:08:24,316 - websockets.server - ERROR - connection handler failed
+Traceback (most recent call last):
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/asyncio/server.py", line 376, in conn_handler
+    await self.handler(connection)
+          ~~~~~~~~~~~~^^^^^^^^^^^^
+TypeError: handler() missing 1 required positional argument: 'path'
+2025-05-29 15:08:30,061 - websockets.server - INFO - connection open
+2025-05-29 15:08:30,062 - websockets.server - ERROR - connection handler failed
+Traceback (most recent call last):
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/asyncio/server.py", line 376, in conn_handler
+    await self.handler(connection)
+          ~~~~~~~~~~~~^^^^^^^^^^^^
+TypeError: handler() missing 1 required positional argument: 'path'
+2025-05-29 15:08:35,797 - websockets.server - INFO - connection open
+2025-05-29 15:08:35,798 - websockets.server - ERROR - connection handler failed
+Traceback (most recent call last):
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/asyncio/server.py", line 376, in conn_handler
+    await self.handler(connection)
+          ~~~~~~~~~~~~^^^^^^^^^^^^
+TypeError: handler() missing 1 required positional argument: 'path'
+2025-05-29 15:08:41,449 - websockets.server - INFO - connection open
+2025-05-29 15:08:41,449 - websockets.server - ERROR - connection handler failed
+Traceback (most recent call last):
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/asyncio/server.py", line 376, in conn_handler
+    await self.handler(connection)
+          ~~~~~~~~~~~~^^^^^^^^^^^^
+TypeError: handler() missing 1 required positional argument: 'path'
+2025-05-29 15:08:47,104 - websockets.server - INFO - connection open
+2025-05-29 15:08:47,105 - websockets.server - ERROR - connection handler failed
+Traceback (most recent call last):
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/asyncio/server.py", line 376, in conn_handler
+    await self.handler(connection)
+          ~~~~~~~~~~~~^^^^^^^^^^^^
+TypeError: handler() missing 1 required positional argument: 'path'
+2025-05-29 15:08:52,826 - websockets.server - INFO - connection open
+2025-05-29 15:08:52,827 - websockets.server - ERROR - connection handler failed
+Traceback (most recent call last):
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/asyncio/server.py", line 376, in conn_handler
+    await self.handler(connection)
+          ~~~~~~~~~~~~^^^^^^^^^^^^
+TypeError: handler() missing 1 required positional argument: 'path'
+2025-05-29 15:08:58,245 - websockets.server - INFO - connection open
+2025-05-29 15:08:58,245 - websockets.server - ERROR - connection handler failed
+Traceback (most recent call last):
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/asyncio/server.py", line 376, in conn_handler
+    await self.handler(connection)
+          ~~~~~~~~~~~~^^^^^^^^^^^^
+TypeError: handler() missing 1 required positional argument: 'path'
+2025-05-29 15:09:03,582 - websockets.server - INFO - connection open
+2025-05-29 15:09:03,582 - websockets.server - ERROR - connection handler failed
+Traceback (most recent call last):
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/asyncio/server.py", line 376, in conn_handler
+    await self.handler(connection)
+          ~~~~~~~~~~~~^^^^^^^^^^^^
+TypeError: handler() missing 1 required positional argument: 'path'
+2025-05-29 15:09:08,991 - websockets.server - INFO - connection open
+2025-05-29 15:09:08,991 - websockets.server - ERROR - connection handler failed
+Traceback (most recent call last):
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/asyncio/server.py", line 376, in conn_handler
+    await self.handler(connection)
+          ~~~~~~~~~~~~^^^^^^^^^^^^
+TypeError: handler() missing 1 required positional argument: 'path'
+2025-05-29 15:09:14,557 - websockets.server - INFO - connection open
+2025-05-29 15:09:14,558 - websockets.server - ERROR - connection handler failed
+Traceback (most recent call last):
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/asyncio/server.py", line 376, in conn_handler
+    await self.handler(connection)
+          ~~~~~~~~~~~~^^^^^^^^^^^^
+TypeError: handler() missing 1 required positional argument: 'path'
+2025-05-29 15:09:20,015 - websockets.server - INFO - connection open
+2025-05-29 15:09:20,015 - websockets.server - ERROR - connection handler failed
+Traceback (most recent call last):
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/asyncio/server.py", line 376, in conn_handler
+    await self.handler(connection)
+          ~~~~~~~~~~~~^^^^^^^^^^^^
+TypeError: handler() missing 1 required positional argument: 'path'
+2025-05-29 15:09:25,486 - websockets.server - INFO - connection open
+2025-05-29 15:09:25,487 - websockets.server - ERROR - connection handler failed
+Traceback (most recent call last):
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/asyncio/server.py", line 376, in conn_handler
+    await self.handler(connection)
+          ~~~~~~~~~~~~^^^^^^^^^^^^
+TypeError: handler() missing 1 required positional argument: 'path'
+2025-05-29 15:09:30,948 - websockets.server - INFO - connection open
+2025-05-29 15:09:30,950 - websockets.server - ERROR - connection handler failed
+Traceback (most recent call last):
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/asyncio/server.py", line 376, in conn_handler
+    await self.handler(connection)
+          ~~~~~~~~~~~~^^^^^^^^^^^^
+TypeError: handler() missing 1 required positional argument: 'path'
+2025-05-29 15:09:36,728 - websockets.server - INFO - connection open
+2025-05-29 15:09:36,728 - websockets.server - ERROR - connection handler failed
+Traceback (most recent call last):
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/asyncio/server.py", line 376, in conn_handler
+    await self.handler(connection)
+          ~~~~~~~~~~~~^^^^^^^^^^^^
+TypeError: handler() missing 1 required positional argument: 'path'
+2025-05-29 15:09:42,157 - websockets.server - INFO - connection open
+2025-05-29 15:09:42,158 - websockets.server - ERROR - connection handler failed
+Traceback (most recent call last):
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/asyncio/server.py", line 376, in conn_handler
+    await self.handler(connection)
+          ~~~~~~~~~~~~^^^^^^^^^^^^
+TypeError: handler() missing 1 required positional argument: 'path'
+2025-05-29 15:09:47,624 - websockets.server - INFO - connection open
+2025-05-29 15:09:47,624 - websockets.server - ERROR - connection handler failed
+Traceback (most recent call last):
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/asyncio/server.py", line 376, in conn_handler
+    await self.handler(connection)
+          ~~~~~~~~~~~~^^^^^^^^^^^^
+TypeError: handler() missing 1 required positional argument: 'path'
+2025-05-29 15:09:53,116 - websockets.server - INFO - connection open
+2025-05-29 15:09:53,116 - websockets.server - ERROR - connection handler failed
+Traceback (most recent call last):
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/asyncio/server.py", line 376, in conn_handler
+    await self.handler(connection)
+          ~~~~~~~~~~~~^^^^^^^^^^^^
+TypeError: handler() missing 1 required positional argument: 'path'
+2025-05-29 15:09:58,601 - websockets.server - INFO - connection open
+2025-05-29 15:09:58,602 - websockets.server - ERROR - connection handler failed
+Traceback (most recent call last):
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/asyncio/server.py", line 376, in conn_handler
+    await self.handler(connection)
+          ~~~~~~~~~~~~^^^^^^^^^^^^
+TypeError: handler() missing 1 required positional argument: 'path'
+2025-05-29 15:10:04,066 - websockets.server - INFO - connection open
+2025-05-29 15:10:04,067 - websockets.server - ERROR - connection handler failed
+Traceback (most recent call last):
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/asyncio/server.py", line 376, in conn_handler
+    await self.handler(connection)
+          ~~~~~~~~~~~~^^^^^^^^^^^^
+TypeError: handler() missing 1 required positional argument: 'path'
+2025-05-29 15:10:09,553 - websockets.server - INFO - connection open
+2025-05-29 15:10:09,553 - websockets.server - ERROR - connection handler failed
+Traceback (most recent call last):
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/asyncio/server.py", line 376, in conn_handler
+    await self.handler(connection)
+          ~~~~~~~~~~~~^^^^^^^^^^^^
+TypeError: handler() missing 1 required positional argument: 'path'
+2025-05-29 15:10:15,229 - websockets.server - INFO - connection open
+2025-05-29 15:10:15,230 - websockets.server - ERROR - connection handler failed
+Traceback (most recent call last):
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/asyncio/server.py", line 376, in conn_handler
+    await self.handler(connection)
+          ~~~~~~~~~~~~^^^^^^^^^^^^
+TypeError: handler() missing 1 required positional argument: 'path'
+2025-05-29 15:10:20,730 - websockets.server - INFO - connection open
+2025-05-29 15:10:20,730 - websockets.server - ERROR - connection handler failed
+Traceback (most recent call last):
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/asyncio/server.py", line 376, in conn_handler
+    await self.handler(connection)
+          ~~~~~~~~~~~~^^^^^^^^^^^^
+TypeError: handler() missing 1 required positional argument: 'path'
+2025-05-29 15:10:26,172 - websockets.server - INFO - connection open
+2025-05-29 15:10:26,172 - websockets.server - ERROR - connection handler failed
+Traceback (most recent call last):
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/asyncio/server.py", line 376, in conn_handler
+    await self.handler(connection)
+          ~~~~~~~~~~~~^^^^^^^^^^^^
+TypeError: handler() missing 1 required positional argument: 'path'
+2025-05-29 15:10:31,567 - websockets.server - INFO - connection open
+2025-05-29 15:10:31,567 - websockets.server - ERROR - connection handler failed
+Traceback (most recent call last):
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/asyncio/server.py", line 376, in conn_handler
+    await self.handler(connection)
+          ~~~~~~~~~~~~^^^^^^^^^^^^
+TypeError: handler() missing 1 required positional argument: 'path'
+2025-05-29 15:10:37,025 - websockets.server - INFO - connection open
+2025-05-29 15:10:37,025 - websockets.server - ERROR - connection handler failed
+Traceback (most recent call last):
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/asyncio/server.py", line 376, in conn_handler
+    await self.handler(connection)
+          ~~~~~~~~~~~~^^^^^^^^^^^^
+TypeError: handler() missing 1 required positional argument: 'path'
+2025-05-29 15:10:42,575 - websockets.server - INFO - connection open
+2025-05-29 15:10:42,575 - websockets.server - ERROR - connection handler failed
+Traceback (most recent call last):
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/asyncio/server.py", line 376, in conn_handler
+    await self.handler(connection)
+          ~~~~~~~~~~~~^^^^^^^^^^^^
+TypeError: handler() missing 1 required positional argument: 'path'
+2025-05-29 15:10:48,060 - websockets.server - INFO - connection open
+2025-05-29 15:10:48,061 - websockets.server - ERROR - connection handler failed
+Traceback (most recent call last):
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/asyncio/server.py", line 376, in conn_handler
+    await self.handler(connection)
+          ~~~~~~~~~~~~^^^^^^^^^^^^
+TypeError: handler() missing 1 required positional argument: 'path'
+2025-05-29 15:10:53,516 - websockets.server - INFO - connection open
+2025-05-29 15:10:53,517 - websockets.server - ERROR - connection handler failed
+Traceback (most recent call last):
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/asyncio/server.py", line 376, in conn_handler
+    await self.handler(connection)
+          ~~~~~~~~~~~~^^^^^^^^^^^^
+TypeError: handler() missing 1 required positional argument: 'path'
+2025-05-29 15:10:58,997 - websockets.server - INFO - connection open
+2025-05-29 15:10:58,997 - websockets.server - ERROR - connection handler failed
+Traceback (most recent call last):
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/asyncio/server.py", line 376, in conn_handler
+    await self.handler(connection)
+          ~~~~~~~~~~~~^^^^^^^^^^^^
+TypeError: handler() missing 1 required positional argument: 'path'
+2025-05-29 15:14:36,211 - guaranteed_ws_8765 - INFO - Port 8765 is available
+2025-05-29 15:14:36,211 - guaranteed_ws_8765 - INFO - Starting guaranteed WebSocket server on localhost:8765
+2025-05-29 15:14:36,237 - websockets.server - INFO - server listening on 127.0.0.1:8765
+2025-05-29 15:14:36,237 - websockets.server - INFO - server listening on [::1]:8765
+2025-05-29 15:14:36,238 - guaranteed_ws_8765 - INFO - ✅ Guaranteed WebSocket server running on ws://localhost:8765
+2025-05-29 15:14:36,238 - guaranteed_ws_8765 - INFO - 🎯 Ready to handle agent_confirmation messages
+2025-05-29 15:14:49,521 - guaranteed_ws_8765 - ERROR - Port 8765 is already in use. Please stop any existing WebSocket servers.
+2025-05-29 15:17:52,824 - websockets.server - INFO - connection open
+2025-05-29 15:17:52,825 - websockets.server - ERROR - connection handler failed
+Traceback (most recent call last):
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/asyncio/server.py", line 376, in conn_handler
+    await self.handler(connection)
+          ~~~~~~~~~~~~^^^^^^^^^^^^
+TypeError: handler() missing 1 required positional argument: 'path'
+2025-05-29 15:18:45,509 - guaranteed_ws_8765 - INFO - Port 8765 is available
+2025-05-29 15:18:45,509 - guaranteed_ws_8765 - INFO - Starting guaranteed WebSocket server on localhost:8765
+2025-05-29 15:18:45,588 - websockets.server - INFO - server listening on [::1]:8765
+2025-05-29 15:18:45,589 - websockets.server - INFO - server listening on 127.0.0.1:8765
+2025-05-29 15:18:45,589 - guaranteed_ws_8765 - INFO - ✅ Guaranteed WebSocket server running on ws://localhost:8765
+2025-05-29 15:18:45,590 - guaranteed_ws_8765 - INFO - 🎯 Ready to handle agent_confirmation messages
+2025-05-29 15:18:51,329 - websockets.server - INFO - connection open
+2025-05-29 15:18:51,329 - guaranteed_ws_8765 - INFO - Client client_4357314880 connected
+2025-05-29 15:18:51,330 - guaranteed_ws_8765 - INFO - Received from client_4357314880: agent_confirmation
+2025-05-29 15:18:51,330 - guaranteed_ws_8765 - INFO - 🎯 Agent confirmation received: {'type': 'agent_confirmation', 'session_id': 'test_session_1748546331', 'action': 'DO', 'modifications': {}, 'timestamp': '2025-05-29T15:18:51.329907'}
+2025-05-29 15:18:51,330 - guaranteed_ws_8765 - INFO - ⚡ Processing DO for session test_session_1748546331
+2025-05-29 15:18:54,369 - guaranteed_ws_8765 - INFO - ✅ Sending execution success for test_session_1748546331
+2025-05-29 15:18:54,373 - guaranteed_ws_8765 - INFO - Client client_4357314880 disconnected
+2025-05-29 15:22:51,997 - guaranteed_ws_8765 - INFO - Port 8765 is available
+2025-05-29 15:22:51,997 - guaranteed_ws_8765 - INFO - Starting guaranteed WebSocket server on localhost:8765
+2025-05-29 15:22:52,118 - websockets.server - INFO - server listening on 127.0.0.1:8765
+2025-05-29 15:22:52,118 - websockets.server - INFO - server listening on [::1]:8765
+2025-05-29 15:22:52,157 - guaranteed_ws_8765 - INFO - ✅ Guaranteed WebSocket server running on ws://localhost:8765
+2025-05-29 15:22:52,157 - guaranteed_ws_8765 - INFO - 🎯 Ready to handle agent_confirmation messages
+2025-05-29 15:22:57,222 - websockets.server - INFO - connection open
+2025-05-29 15:22:57,223 - guaranteed_ws_8765 - INFO - Client client_4362312000 connected
+2025-05-29 15:22:57,225 - guaranteed_ws_8765 - INFO - Received from client_4362312000: agent_confirmation
+2025-05-29 15:22:57,225 - guaranteed_ws_8765 - INFO - 🎯 Agent confirmation received: {'type': 'agent_confirmation', 'session_id': 'test_session_1748546577', 'action': 'DO', 'modifications': {}, 'timestamp': '2025-05-29T15:22:57.224328'}
+2025-05-29 15:22:57,225 - guaranteed_ws_8765 - INFO - ⚡ Processing DO for session test_session_1748546577
+2025-05-29 15:23:00,229 - guaranteed_ws_8765 - INFO - ✅ Sending execution success for test_session_1748546577
+2025-05-29 15:23:00,231 - guaranteed_ws_8765 - INFO - Client client_4362312000 disconnected
+2025-05-29 15:24:38,674 - guaranteed_ws_8765 - INFO - Port 8765 is available
+2025-05-29 15:24:38,675 - guaranteed_ws_8765 - INFO - Starting guaranteed WebSocket server on localhost:8765
+2025-05-29 15:24:38,694 - websockets.server - INFO - server listening on [::1]:8765
+2025-05-29 15:24:38,694 - websockets.server - INFO - server listening on 127.0.0.1:8765
+2025-05-29 15:24:38,694 - guaranteed_ws_8765 - INFO - ✅ Guaranteed WebSocket server running on ws://localhost:8765
+2025-05-29 15:24:38,694 - guaranteed_ws_8765 - INFO - 🎯 Ready to handle agent_confirmation messages
+2025-05-29 15:24:53,916 - guaranteed_ws_8765 - INFO - Port 8765 is available
+2025-05-29 15:24:53,916 - guaranteed_ws_8765 - INFO - Starting guaranteed WebSocket server on localhost:8765
+2025-05-29 15:24:53,934 - websockets.server - INFO - server listening on [::1]:8765
+2025-05-29 15:24:53,934 - websockets.server - INFO - server listening on 127.0.0.1:8765
+2025-05-29 15:24:53,935 - guaranteed_ws_8765 - INFO - ✅ Guaranteed WebSocket server running on ws://localhost:8765
+2025-05-29 15:24:53,935 - guaranteed_ws_8765 - INFO - 🎯 Ready to handle agent_confirmation messages
+2025-05-29 15:27:25,574 - guaranteed_ws_8765 - INFO - Port 8765 is available
+2025-05-29 15:27:25,574 - guaranteed_ws_8765 - INFO - Starting guaranteed WebSocket server on localhost:8765
+2025-05-29 15:27:25,594 - websockets.server - INFO - server listening on [::1]:8765
+2025-05-29 15:27:25,594 - websockets.server - INFO - server listening on 127.0.0.1:8765
+2025-05-29 15:27:25,594 - guaranteed_ws_8765 - INFO - ✅ Guaranteed WebSocket server running on ws://localhost:8765
+2025-05-29 15:27:25,594 - guaranteed_ws_8765 - INFO - 🎯 Ready to handle agent_confirmation messages
+2025-05-29 15:27:40,809 - guaranteed_ws_8765 - INFO - Port 8765 is available
+2025-05-29 15:27:40,809 - guaranteed_ws_8765 - INFO - Starting guaranteed WebSocket server on localhost:8765
+2025-05-29 15:27:40,829 - websockets.server - INFO - server listening on 127.0.0.1:8765
+2025-05-29 15:27:40,829 - websockets.server - INFO - server listening on [::1]:8765
+2025-05-29 15:27:40,829 - guaranteed_ws_8765 - INFO - ✅ Guaranteed WebSocket server running on ws://localhost:8765
+2025-05-29 15:27:40,829 - guaranteed_ws_8765 - INFO - 🎯 Ready to handle agent_confirmation messages
+2025-05-29 15:52:09,142 - guaranteed_ws_8765 - INFO - Port 8765 is available
+2025-05-29 15:52:09,143 - guaranteed_ws_8765 - INFO - Starting guaranteed WebSocket server on localhost:8765
+2025-05-29 15:52:09,155 - websockets.server - INFO - server listening on [::1]:8765
+2025-05-29 15:52:09,155 - websockets.server - INFO - server listening on 127.0.0.1:8765
+2025-05-29 15:52:09,155 - guaranteed_ws_8765 - INFO - ✅ Guaranteed WebSocket server running on ws://localhost:8765
+2025-05-29 15:52:09,155 - guaranteed_ws_8765 - INFO - 🎯 Ready to handle agent_confirmation messages
+2025-05-29 15:52:09,155 - guaranteed_ws_8765 - DEBUG - Heartbeat at 2025-05-29T15:52:09.155857
+2025-05-29 15:52:24,337 - guaranteed_ws_8765 - INFO - Port 8765 is available
+2025-05-29 15:52:24,337 - guaranteed_ws_8765 - INFO - Starting guaranteed WebSocket server on localhost:8765
+2025-05-29 15:52:24,349 - websockets.server - INFO - server listening on 127.0.0.1:8765
+2025-05-29 15:52:24,349 - websockets.server - INFO - server listening on [::1]:8765
+2025-05-29 15:52:24,349 - guaranteed_ws_8765 - INFO - ✅ Guaranteed WebSocket server running on ws://localhost:8765
+2025-05-29 15:52:24,349 - guaranteed_ws_8765 - INFO - 🎯 Ready to handle agent_confirmation messages
+2025-05-29 15:52:24,349 - guaranteed_ws_8765 - DEBUG - Heartbeat at 2025-05-29T15:52:24.349734
+2025-05-29 15:52:54,352 - guaranteed_ws_8765 - DEBUG - Heartbeat at 2025-05-29T15:52:54.352294
+2025-05-29 15:53:24,356 - guaranteed_ws_8765 - DEBUG - Heartbeat at 2025-05-29T15:53:24.356589
+2025-05-29 15:53:54,360 - guaranteed_ws_8765 - DEBUG - Heartbeat at 2025-05-29T15:53:54.360070
+2025-05-29 15:54:24,362 - guaranteed_ws_8765 - DEBUG - Heartbeat at 2025-05-29T15:54:24.362812
+2025-05-29 15:54:54,366 - guaranteed_ws_8765 - DEBUG - Heartbeat at 2025-05-29T15:54:54.366253
+2025-05-29 15:55:24,371 - guaranteed_ws_8765 - DEBUG - Heartbeat at 2025-05-29T15:55:24.370976
+2025-05-29 15:55:54,374 - guaranteed_ws_8765 - DEBUG - Heartbeat at 2025-05-29T15:55:54.374601
+2025-05-29 15:56:24,377 - guaranteed_ws_8765 - DEBUG - Heartbeat at 2025-05-29T15:56:24.377398
+2025-05-29 15:56:54,383 - guaranteed_ws_8765 - DEBUG - Heartbeat at 2025-05-29T15:56:54.383050
+2025-05-29 15:57:24,386 - guaranteed_ws_8765 - DEBUG - Heartbeat at 2025-05-29T15:57:24.386524
+2025-05-29 15:57:54,389 - guaranteed_ws_8765 - DEBUG - Heartbeat at 2025-05-29T15:57:54.389768
+2025-05-29 15:58:24,393 - guaranteed_ws_8765 - DEBUG - Heartbeat at 2025-05-29T15:58:24.392912
+2025-05-29 15:58:54,395 - guaranteed_ws_8765 - DEBUG - Heartbeat at 2025-05-29T15:58:54.394993
+2025-05-29 15:59:24,397 - guaranteed_ws_8765 - DEBUG - Heartbeat at 2025-05-29T15:59:24.397643
+2025-05-29 15:59:54,400 - guaranteed_ws_8765 - DEBUG - Heartbeat at 2025-05-29T15:59:54.400702
+2025-05-29 16:00:24,403 - guaranteed_ws_8765 - DEBUG - Heartbeat at 2025-05-29T16:00:24.403151
+2025-05-29 16:00:54,405 - guaranteed_ws_8765 - DEBUG - Heartbeat at 2025-05-29T16:00:54.405802
+2025-05-29 16:08:20,346 - guaranteed_ws_8765 - DEBUG - Heartbeat at 2025-05-29T16:08:20.346561
+2025-05-29 16:08:50,349 - guaranteed_ws_8765 - DEBUG - Heartbeat at 2025-05-29T16:08:50.349160
+2025-05-29 16:09:20,351 - guaranteed_ws_8765 - DEBUG - Heartbeat at 2025-05-29T16:09:20.351678
+2025-05-29 16:09:50,355 - guaranteed_ws_8765 - DEBUG - Heartbeat at 2025-05-29T16:09:50.354773
+2025-05-29 16:11:12,609 - asyncio - DEBUG - Using selector: KqueueSelector
+2025-05-29 16:11:12,657 - guaranteed_ws_8765 - INFO - Killed any existing processes on port 8765
+2025-05-29 16:11:13,659 - guaranteed_ws_8765 - INFO - Port 8765 is available
+2025-05-29 16:11:13,659 - guaranteed_ws_8765 - INFO - Starting guaranteed WebSocket server on localhost:8765
+2025-05-29 16:11:13,680 - websockets.server - INFO - server listening on 127.0.0.1:8765
+2025-05-29 16:11:13,680 - websockets.server - INFO - server listening on [::1]:8765
+2025-05-29 16:11:13,681 - guaranteed_ws_8765 - INFO - ✅ Guaranteed WebSocket server running on ws://localhost:8765
+2025-05-29 16:11:13,681 - guaranteed_ws_8765 - INFO - 🎯 Ready to handle agent_confirmation messages
+2025-05-29 16:11:13,681 - guaranteed_ws_8765 - DEBUG - Heartbeat at 2025-05-29T16:11:13.681217
+2025-05-29 16:11:27,851 - guaranteed_ws_8765 - INFO - Port 8765 is available
+2025-05-29 16:11:27,851 - guaranteed_ws_8765 - INFO - Starting guaranteed WebSocket server on localhost:8765
+2025-05-29 16:11:27,875 - websockets.server - INFO - server listening on [::1]:8765
+2025-05-29 16:11:27,875 - websockets.server - INFO - server listening on 127.0.0.1:8765
+2025-05-29 16:11:27,875 - guaranteed_ws_8765 - INFO - ✅ Guaranteed WebSocket server running on ws://localhost:8765
+2025-05-29 16:11:27,875 - guaranteed_ws_8765 - INFO - 🎯 Ready to handle agent_confirmation messages
+2025-05-29 16:11:27,875 - guaranteed_ws_8765 - DEBUG - Heartbeat at 2025-05-29T16:11:27.875595
+2025-05-29 16:11:57,879 - guaranteed_ws_8765 - DEBUG - Heartbeat at 2025-05-29T16:11:57.878708
+2025-05-29 16:12:27,883 - guaranteed_ws_8765 - DEBUG - Heartbeat at 2025-05-29T16:12:27.883390
+2025-05-29 16:12:57,887 - guaranteed_ws_8765 - DEBUG - Heartbeat at 2025-05-29T16:12:57.886947
+2025-05-29 16:13:27,890 - guaranteed_ws_8765 - DEBUG - Heartbeat at 2025-05-29T16:13:27.890620
+2025-05-29 16:13:57,893 - guaranteed_ws_8765 - DEBUG - Heartbeat at 2025-05-29T16:13:57.893348
+2025-05-29 16:14:27,895 - guaranteed_ws_8765 - DEBUG - Heartbeat at 2025-05-29T16:14:27.895171
+2025-05-29 16:14:57,896 - guaranteed_ws_8765 - DEBUG - Heartbeat at 2025-05-29T16:14:57.896242
+2025-05-29 16:15:27,897 - guaranteed_ws_8765 - DEBUG - Heartbeat at 2025-05-29T16:15:27.897797
+2025-05-29 16:15:57,900 - guaranteed_ws_8765 - DEBUG - Heartbeat at 2025-05-29T16:15:57.900673
+2025-05-29 16:16:27,903 - guaranteed_ws_8765 - DEBUG - Heartbeat at 2025-05-29T16:16:27.903277
+2025-05-29 16:16:57,904 - guaranteed_ws_8765 - DEBUG - Heartbeat at 2025-05-29T16:16:57.904477
+2025-05-29 16:17:27,906 - guaranteed_ws_8765 - DEBUG - Heartbeat at 2025-05-29T16:17:27.906506
+2025-05-29 16:17:57,909 - guaranteed_ws_8765 - DEBUG - Heartbeat at 2025-05-29T16:17:57.908906
+2025-05-29 16:18:28,571 - asyncio - DEBUG - Using selector: KqueueSelector
+2025-05-29 16:18:28,601 - guaranteed_ws_8765 - INFO - Killed any existing processes on port 8765
+2025-05-29 16:18:29,605 - guaranteed_ws_8765 - INFO - Port 8765 is available
+2025-05-29 16:18:29,605 - guaranteed_ws_8765 - INFO - Starting guaranteed WebSocket server on localhost:8765
+2025-05-29 16:18:29,648 - websockets.server - INFO - server listening on [::1]:8765
+2025-05-29 16:18:29,648 - websockets.server - INFO - server listening on 127.0.0.1:8765
+2025-05-29 16:18:29,649 - guaranteed_ws_8765 - INFO - ✅ Guaranteed WebSocket server running on ws://localhost:8765
+2025-05-29 16:18:29,649 - guaranteed_ws_8765 - INFO - 🎯 Ready to handle agent_confirmation messages
+2025-05-29 16:18:29,649 - guaranteed_ws_8765 - DEBUG - Heartbeat at 2025-05-29T16:18:29.649308
+2025-05-29 16:18:59,651 - guaranteed_ws_8765 - DEBUG - Heartbeat at 2025-05-29T16:18:59.651649
+2025-05-29 16:19:09,078 - websockets.server - DEBUG - = connection is CONNECTING
+2025-05-29 16:19:09,083 - websockets.server - DEBUG - < GET / HTTP/1.1
+2025-05-29 16:19:09,084 - websockets.server - DEBUG - < Host: localhost:8765
+2025-05-29 16:19:09,084 - websockets.server - DEBUG - < Upgrade: websocket
+2025-05-29 16:19:09,084 - websockets.server - DEBUG - < Connection: Upgrade
+2025-05-29 16:19:09,084 - websockets.server - DEBUG - < Sec-WebSocket-Key: Nea3VIfhzs8yPxuIMI1Sfg==
+2025-05-29 16:19:09,084 - websockets.server - DEBUG - < Sec-WebSocket-Version: 13
+2025-05-29 16:19:09,084 - websockets.server - DEBUG - < Sec-WebSocket-Extensions: permessage-deflate; client_max_window_bits
+2025-05-29 16:19:09,084 - websockets.server - DEBUG - < User-Agent: Python/3.13 websockets/15.0.1
+2025-05-29 16:19:09,087 - websockets.server - DEBUG - > HTTP/1.1 101 Switching Protocols
+2025-05-29 16:19:09,087 - websockets.server - DEBUG - > Date: Thu, 29 May 2025 20:19:09 GMT
+2025-05-29 16:19:09,087 - websockets.server - DEBUG - > Upgrade: websocket
+2025-05-29 16:19:09,087 - websockets.server - DEBUG - > Connection: Upgrade
+2025-05-29 16:19:09,087 - websockets.server - DEBUG - > Sec-WebSocket-Accept: WGI80FcYpnUdMiSSGBjNa8XTEBw=
+2025-05-29 16:19:09,087 - websockets.server - DEBUG - > Sec-WebSocket-Extensions: permessage-deflate; server_max_window_bits=12; client_max_window_bits=12
+2025-05-29 16:19:09,087 - websockets.server - DEBUG - > Server: Python/3.13 websockets/15.0.1
+2025-05-29 16:19:09,087 - websockets.server - DEBUG - = connection is OPEN
+2025-05-29 16:19:09,087 - websockets.server - INFO - connection open
+2025-05-29 16:19:09,088 - guaranteed_ws_8765 - INFO - Client client_4332902720 connected
+2025-05-29 16:19:09,088 - websockets.server - DEBUG - > TEXT '{"type": "connection_established", "server_vers...05-29T16:19:09.088237"}' [181 bytes]
+2025-05-29 16:19:09,089 - websockets.server - DEBUG - < TEXT '{"type": "agent_confirmation", "session_id": "t...: "2025-05-29T16:19:0"}' [143 bytes]
+2025-05-29 16:19:09,089 - guaranteed_ws_8765 - DEBUG - Raw message received: {"type": "agent_confirmation", "session_id": "test_session_1748549949", "action": "DO", "modifications": {}, "timestamp": "2025-05-29T16:19:0"}
+2025-05-29 16:19:09,089 - guaranteed_ws_8765 - INFO - Received message type: agent_confirmation
+2025-05-29 16:19:09,089 - guaranteed_ws_8765 - INFO - Agent confirmation received: {'type': 'agent_confirmation', 'session_id': 'test_session_1748549949', 'action': 'DO', 'modifications': {}, 'timestamp': '2025-05-29T16:19:0'}
+2025-05-29 16:19:09,089 - websockets.server - DEBUG - > TEXT '{"type": "agent_progress", "session_id": "test_...: Analyzing screen..."}' [161 bytes]
+2025-05-29 16:19:10,290 - websockets.server - DEBUG - > TEXT '{"type": "agent_progress", "session_id": "test_...cating UI elements..."}' [145 bytes]
+2025-05-29 16:19:11,491 - websockets.server - DEBUG - > TEXT '{"type": "agent_progress", "session_id": "test_...g automation steps..."}' [145 bytes]
+2025-05-29 16:19:12,693 - websockets.server - DEBUG - > TEXT '{"type": "agent_execution_success", "session_id...ution_completed": true}' [257 bytes]
+2025-05-29 16:19:12,693 - guaranteed_ws_8765 - INFO - Backend result: {'type': 'agent_execution_success', 'session_id': 'test_session_1748549949', 'result': {'success': True, 'steps_executed': 3, 'execution_time': 3.6}, 'summary': 'Task completed successfully! All steps were executed as planned.', 'execution_completed': True}
+2025-05-29 16:19:12,694 - websockets.server - DEBUG - < CLOSE 1000 (OK) [2 bytes]
+2025-05-29 16:19:12,694 - websockets.server - DEBUG - > CLOSE 1000 (OK) [2 bytes]
+2025-05-29 16:19:12,694 - websockets.server - DEBUG - = connection is CLOSING
+2025-05-29 16:19:12,694 - websockets.server - DEBUG - > EOF
+2025-05-29 16:19:12,694 - websockets.server - DEBUG - x half-closing TCP connection
+2025-05-29 16:19:12,695 - websockets.server - DEBUG - < EOF
+2025-05-29 16:19:12,695 - websockets.server - DEBUG - = connection is CLOSED
+2025-05-29 16:19:12,695 - guaranteed_ws_8765 - INFO - Client client_4332902720 disconnected
+2025-05-29 16:19:29,654 - guaranteed_ws_8765 - DEBUG - Heartbeat at 2025-05-29T16:19:29.654574
+2025-05-29 16:19:59,657 - guaranteed_ws_8765 - DEBUG - Heartbeat at 2025-05-29T16:19:59.657165
+2025-05-29 16:20:29,659 - guaranteed_ws_8765 - DEBUG - Heartbeat at 2025-05-29T16:20:29.659571
+2025-05-29 16:20:59,663 - guaranteed_ws_8765 - DEBUG - Heartbeat at 2025-05-29T16:20:59.663149
+2025-05-29 16:21:29,666 - guaranteed_ws_8765 - DEBUG - Heartbeat at 2025-05-29T16:21:29.666291
+2025-05-29 16:21:59,670 - guaranteed_ws_8765 - DEBUG - Heartbeat at 2025-05-29T16:21:59.669913
+2025-05-29 16:22:29,672 - guaranteed_ws_8765 - DEBUG - Heartbeat at 2025-05-29T16:22:29.672726
+2025-05-29 16:22:59,681 - guaranteed_ws_8765 - DEBUG - Heartbeat at 2025-05-29T16:22:59.681048
+2025-05-29 16:23:29,692 - guaranteed_ws_8765 - DEBUG - Heartbeat at 2025-05-29T16:23:29.691670
+2025-05-29 16:23:59,703 - guaranteed_ws_8765 - DEBUG - Heartbeat at 2025-05-29T16:23:59.702923
+2025-05-29 16:24:29,709 - guaranteed_ws_8765 - DEBUG - Heartbeat at 2025-05-29T16:24:29.709220
+2025-05-29 16:24:59,711 - guaranteed_ws_8765 - DEBUG - Heartbeat at 2025-05-29T16:24:59.711449
+2025-05-29 16:25:29,714 - guaranteed_ws_8765 - DEBUG - Heartbeat at 2025-05-29T16:25:29.713964
+2025-05-29 16:25:33,707 - asyncio - DEBUG - Using selector: KqueueSelector
+2025-05-29 16:25:33,750 - guaranteed_ws_8765 - INFO - Killed any existing processes on port 8765
+2025-05-29 16:25:34,771 - guaranteed_ws_8765 - INFO - Port 8765 is available
+2025-05-29 16:25:34,773 - guaranteed_ws_8765 - INFO - Starting guaranteed WebSocket server on localhost:8765
+2025-05-29 16:25:34,879 - websockets.server - INFO - server listening on [::1]:8765
+2025-05-29 16:25:34,879 - websockets.server - INFO - server listening on 127.0.0.1:8765
+2025-05-29 16:25:34,880 - guaranteed_ws_8765 - INFO - ✅ Guaranteed WebSocket server running on ws://localhost:8765
+2025-05-29 16:25:34,880 - guaranteed_ws_8765 - INFO - 🎯 Ready to handle agent_confirmation messages
+2025-05-29 16:25:34,881 - guaranteed_ws_8765 - DEBUG - Heartbeat at 2025-05-29T16:25:34.881012
+2025-05-29 16:25:38,721 - websockets.server - DEBUG - = connection is CONNECTING
+2025-05-29 16:25:38,722 - websockets.server - DEBUG - < GET / HTTP/1.1
+2025-05-29 16:25:38,722 - websockets.server - DEBUG - < Host: localhost:8765
+2025-05-29 16:25:38,722 - websockets.server - DEBUG - < Upgrade: websocket
+2025-05-29 16:25:38,722 - websockets.server - DEBUG - < Connection: Upgrade
+2025-05-29 16:25:38,722 - websockets.server - DEBUG - < Sec-WebSocket-Key: 7Yzz9d8wL8lfz1yAo6L09A==
+2025-05-29 16:25:38,722 - websockets.server - DEBUG - < Sec-WebSocket-Version: 13
+2025-05-29 16:25:38,722 - websockets.server - DEBUG - < Sec-WebSocket-Extensions: permessage-deflate; client_max_window_bits
+2025-05-29 16:25:38,722 - websockets.server - DEBUG - < User-Agent: Python/3.13 websockets/15.0.1
+2025-05-29 16:25:38,723 - websockets.server - DEBUG - > HTTP/1.1 101 Switching Protocols
+2025-05-29 16:25:38,723 - websockets.server - DEBUG - > Date: Thu, 29 May 2025 20:25:38 GMT
+2025-05-29 16:25:38,723 - websockets.server - DEBUG - > Upgrade: websocket
+2025-05-29 16:25:38,723 - websockets.server - DEBUG - > Connection: Upgrade
+2025-05-29 16:25:38,723 - websockets.server - DEBUG - > Sec-WebSocket-Accept: RHV4ZTT7kNT7AH5FK3D/7PQPisg=
+2025-05-29 16:25:38,723 - websockets.server - DEBUG - > Sec-WebSocket-Extensions: permessage-deflate; server_max_window_bits=12; client_max_window_bits=12
+2025-05-29 16:25:38,723 - websockets.server - DEBUG - > Server: Python/3.13 websockets/15.0.1
+2025-05-29 16:25:38,723 - websockets.server - DEBUG - = connection is OPEN
+2025-05-29 16:25:38,723 - websockets.server - INFO - connection open
+2025-05-29 16:25:38,723 - guaranteed_ws_8765 - INFO - Client client_4347910464 connected
+2025-05-29 16:25:38,723 - websockets.server - DEBUG - > TEXT '{"type": "connection_established", "server_vers...05-29T16:25:38.723776"}' [181 bytes]
+2025-05-29 16:25:38,724 - websockets.server - DEBUG - < TEXT '{"type": "agent_confirmation", "session_id": "t...: "2025-05-29T16:25:3"}' [143 bytes]
+2025-05-29 16:25:38,724 - guaranteed_ws_8765 - DEBUG - Raw message received: {"type": "agent_confirmation", "session_id": "test_session_1748550338", "action": "DO", "modifications": {}, "timestamp": "2025-05-29T16:25:3"}
+2025-05-29 16:25:38,724 - guaranteed_ws_8765 - INFO - Received message type: agent_confirmation
+2025-05-29 16:25:38,724 - guaranteed_ws_8765 - INFO - Agent confirmation received: {'type': 'agent_confirmation', 'session_id': 'test_session_1748550338', 'action': 'DO', 'modifications': {}, 'timestamp': '2025-05-29T16:25:3'}
+2025-05-29 16:25:38,724 - websockets.server - DEBUG - > TEXT '{"type": "agent_progress", "session_id": "test_...: Analyzing screen..."}' [161 bytes]
+2025-05-29 16:25:39,924 - websockets.server - DEBUG - > TEXT '{"type": "agent_progress", "session_id": "test_...cating UI elements..."}' [145 bytes]
+2025-05-29 16:25:41,126 - websockets.server - DEBUG - > TEXT '{"type": "agent_progress", "session_id": "test_...g automation steps..."}' [145 bytes]
+2025-05-29 16:25:42,327 - websockets.server - DEBUG - > TEXT '{"type": "agent_execution_success", "session_id...ution_completed": true}' [257 bytes]
+2025-05-29 16:25:42,327 - guaranteed_ws_8765 - INFO - Backend result: {'type': 'agent_execution_success', 'session_id': 'test_session_1748550338', 'result': {'success': True, 'steps_executed': 3, 'execution_time': 3.6}, 'summary': 'Task completed successfully! All steps were executed as planned.', 'execution_completed': True}
+2025-05-29 16:25:42,328 - websockets.server - DEBUG - < TEXT '{"type": "agent_confirmation", "session_id": "t...: "2025-05-29T16:25:4"}' [148 bytes]
+2025-05-29 16:25:42,328 - guaranteed_ws_8765 - DEBUG - Raw message received: {"type": "agent_confirmation", "session_id": "test_session_1748550342", "action": "DISMISS", "modifications": {}, "timestamp": "2025-05-29T16:25:4"}
+2025-05-29 16:25:42,328 - guaranteed_ws_8765 - INFO - Received message type: agent_confirmation
+2025-05-29 16:25:42,328 - guaranteed_ws_8765 - INFO - Agent confirmation received: {'type': 'agent_confirmation', 'session_id': 'test_session_1748550342', 'action': 'DISMISS', 'modifications': {}, 'timestamp': '2025-05-29T16:25:4'}
+2025-05-29 16:25:42,328 - websockets.server - DEBUG - > TEXT '{"type": "agent_dismissed", "session_id": "test...lan dismissed by user"}' [105 bytes]
+2025-05-29 16:25:42,328 - guaranteed_ws_8765 - INFO - Backend result: {'type': 'agent_dismissed', 'session_id': 'test_session_1748550342', 'message': 'Plan dismissed by user'}
+2025-05-29 16:25:42,328 - websockets.server - DEBUG - < TEXT '{"type": "agent_confirmation", "session_id": "t...: "2025-05-29T16:25:4"}' [147 bytes]
+2025-05-29 16:25:42,328 - guaranteed_ws_8765 - DEBUG - Raw message received: {"type": "agent_confirmation", "session_id": "test_session_1748550342", "action": "ADJUST", "modifications": {}, "timestamp": "2025-05-29T16:25:4"}
+2025-05-29 16:25:42,328 - guaranteed_ws_8765 - INFO - Received message type: agent_confirmation
+2025-05-29 16:25:42,328 - guaranteed_ws_8765 - INFO - Agent confirmation received: {'type': 'agent_confirmation', 'session_id': 'test_session_1748550342', 'action': 'ADJUST', 'modifications': {}, 'timestamp': '2025-05-29T16:25:4'}
+2025-05-29 16:25:42,328 - websockets.server - DEBUG - > TEXT '{"type": "agent_adjustment_request", "session_i...ou\'d like to adjust."}' [152 bytes]
+2025-05-29 16:25:42,329 - guaranteed_ws_8765 - INFO - Backend result: {'type': 'agent_adjustment_request', 'session_id': 'test_session_1748550342', 'message': "Please provide more details about what you'd like to adjust."}
+2025-05-29 16:25:42,329 - websockets.server - DEBUG - < CLOSE 1000 (OK) [2 bytes]
+2025-05-29 16:25:42,329 - websockets.server - DEBUG - > CLOSE 1000 (OK) [2 bytes]
+2025-05-29 16:25:42,329 - websockets.server - DEBUG - = connection is CLOSING
+2025-05-29 16:25:42,329 - websockets.server - DEBUG - > EOF
+2025-05-29 16:25:42,329 - websockets.server - DEBUG - x half-closing TCP connection
+2025-05-29 16:25:42,329 - websockets.server - DEBUG - < EOF
+2025-05-29 16:25:42,329 - websockets.server - DEBUG - = connection is CLOSED
+2025-05-29 16:25:42,329 - guaranteed_ws_8765 - INFO - Client client_4347910464 disconnected
+2025-05-30 14:22:52,046 - asyncio - DEBUG - Using selector: KqueueSelector
+2025-05-30 14:22:52,073 - guaranteed_ws_8765 - INFO - Killed any existing processes on port 8765
+2025-05-30 14:22:53,077 - guaranteed_ws_8765 - INFO - Port 8765 is available
+2025-05-30 14:22:53,078 - guaranteed_ws_8765 - INFO - Starting guaranteed WebSocket server on localhost:8765
+2025-05-30 14:22:53,101 - websockets.server - INFO - server listening on 127.0.0.1:8765
+2025-05-30 14:22:53,101 - websockets.server - INFO - server listening on [::1]:8765
+2025-05-30 14:22:53,102 - guaranteed_ws_8765 - INFO - ✅ Guaranteed WebSocket server running on ws://localhost:8765
+2025-05-30 14:22:53,102 - guaranteed_ws_8765 - INFO - 🎯 Ready to handle agent_confirmation messages
+2025-05-30 14:22:53,102 - guaranteed_ws_8765 - DEBUG - Heartbeat at 2025-05-30T14:22:53.102341
+2025-05-30 14:23:07,318 - guaranteed_ws_8765 - INFO - Port 8765 is available
+2025-05-30 14:23:07,318 - guaranteed_ws_8765 - INFO - Starting guaranteed WebSocket server on localhost:8765
+2025-05-30 14:23:07,343 - websockets.server - INFO - server listening on 127.0.0.1:8765
+2025-05-30 14:23:07,343 - websockets.server - INFO - server listening on [::1]:8765
+2025-05-30 14:23:07,343 - guaranteed_ws_8765 - INFO - ✅ Guaranteed WebSocket server running on ws://localhost:8765
+2025-05-30 14:23:07,343 - guaranteed_ws_8765 - INFO - 🎯 Ready to handle agent_confirmation messages
+2025-05-30 14:23:07,343 - guaranteed_ws_8765 - DEBUG - Heartbeat at 2025-05-30T14:23:07.343973
+2025-05-30 14:23:37,347 - guaranteed_ws_8765 - DEBUG - Heartbeat at 2025-05-30T14:23:37.346402
+2025-05-30 14:24:07,350 - guaranteed_ws_8765 - DEBUG - Heartbeat at 2025-05-30T14:24:07.350224
+2025-05-30 14:25:15,590 - asyncio - DEBUG - Using selector: KqueueSelector
+2025-05-30 14:25:15,614 - guaranteed_ws_8765 - INFO - Killed any existing processes on port 8765
+2025-05-30 14:25:16,618 - guaranteed_ws_8765 - INFO - Port 8765 is available
+2025-05-30 14:25:16,618 - guaranteed_ws_8765 - INFO - Starting guaranteed WebSocket server on localhost:8765
+2025-05-30 14:25:16,641 - websockets.server - INFO - server listening on 127.0.0.1:8765
+2025-05-30 14:25:16,641 - websockets.server - INFO - server listening on [::1]:8765
+2025-05-30 14:25:16,642 - guaranteed_ws_8765 - INFO - ✅ Guaranteed WebSocket server running on ws://localhost:8765
+2025-05-30 14:25:16,642 - guaranteed_ws_8765 - INFO - 🎯 Ready to handle agent_confirmation messages
+2025-05-30 14:25:16,642 - guaranteed_ws_8765 - DEBUG - Heartbeat at 2025-05-30T14:25:16.642456
+2025-05-30 14:25:30,826 - guaranteed_ws_8765 - INFO - Port 8765 is available
+2025-05-30 14:25:30,826 - guaranteed_ws_8765 - INFO - Starting guaranteed WebSocket server on localhost:8765
+2025-05-30 14:25:30,845 - websockets.server - INFO - server listening on [::1]:8765
+2025-05-30 14:25:30,845 - websockets.server - INFO - server listening on 127.0.0.1:8765
+2025-05-30 14:25:30,846 - guaranteed_ws_8765 - INFO - ✅ Guaranteed WebSocket server running on ws://localhost:8765
+2025-05-30 14:25:30,846 - guaranteed_ws_8765 - INFO - 🎯 Ready to handle agent_confirmation messages
+2025-05-30 14:25:30,846 - guaranteed_ws_8765 - DEBUG - Heartbeat at 2025-05-30T14:25:30.846227
+2025-05-30 14:26:00,847 - guaranteed_ws_8765 - DEBUG - Heartbeat at 2025-05-30T14:26:00.847675
+2025-05-30 14:26:30,850 - guaranteed_ws_8765 - DEBUG - Heartbeat at 2025-05-30T14:26:30.849811
+2025-05-30 14:27:00,872 - guaranteed_ws_8765 - DEBUG - Heartbeat at 2025-05-30T14:27:00.871571
+2025-05-30 14:27:30,873 - guaranteed_ws_8765 - DEBUG - Heartbeat at 2025-05-30T14:27:30.873864
+2025-05-30 14:30:35,169 - asyncio - DEBUG - Using selector: KqueueSelector
+2025-05-30 14:30:35,195 - guaranteed_ws_8765 - INFO - Killed any existing processes on port 8765
+2025-05-30 14:30:36,198 - guaranteed_ws_8765 - INFO - Port 8765 is available
+2025-05-30 14:30:36,198 - guaranteed_ws_8765 - INFO - Starting guaranteed WebSocket server on localhost:8765
+2025-05-30 14:30:36,219 - websockets.server - INFO - server listening on 127.0.0.1:8765
+2025-05-30 14:30:36,219 - websockets.server - INFO - server listening on [::1]:8765
+2025-05-30 14:30:36,220 - guaranteed_ws_8765 - INFO - ✅ Guaranteed WebSocket server running on ws://localhost:8765
+2025-05-30 14:30:36,220 - guaranteed_ws_8765 - INFO - 🎯 Ready to handle agent_confirmation messages
+2025-05-30 14:30:36,220 - guaranteed_ws_8765 - DEBUG - Heartbeat at 2025-05-30T14:30:36.220926
+2025-05-30 14:30:50,409 - guaranteed_ws_8765 - INFO - Port 8765 is available
+2025-05-30 14:30:50,409 - guaranteed_ws_8765 - INFO - Starting guaranteed WebSocket server on localhost:8765
+2025-05-30 14:30:50,428 - websockets.server - INFO - server listening on 127.0.0.1:8765
+2025-05-30 14:30:50,428 - websockets.server - INFO - server listening on [::1]:8765
+2025-05-30 14:30:50,428 - guaranteed_ws_8765 - INFO - ✅ Guaranteed WebSocket server running on ws://localhost:8765
+2025-05-30 14:30:50,428 - guaranteed_ws_8765 - INFO - 🎯 Ready to handle agent_confirmation messages
+2025-05-30 14:30:50,428 - guaranteed_ws_8765 - DEBUG - Heartbeat at 2025-05-30T14:30:50.428596
+2025-05-30 14:31:20,431 - guaranteed_ws_8765 - DEBUG - Heartbeat at 2025-05-30T14:31:20.431112
+2025-05-30 14:31:50,434 - guaranteed_ws_8765 - DEBUG - Heartbeat at 2025-05-30T14:31:50.434471
+2025-05-30 14:35:21,007 - asyncio - DEBUG - Using selector: KqueueSelector
+2025-05-30 14:35:21,035 - guaranteed_ws_8765 - INFO - Killed any existing processes on port 8765
+2025-05-30 14:35:22,039 - guaranteed_ws_8765 - INFO - Port 8765 is available
+2025-05-30 14:35:22,039 - guaranteed_ws_8765 - INFO - Starting guaranteed WebSocket server on localhost:8765
+2025-05-30 14:35:22,060 - websockets.server - INFO - server listening on [::1]:8765
+2025-05-30 14:35:22,060 - websockets.server - INFO - server listening on 127.0.0.1:8765
+2025-05-30 14:35:22,060 - guaranteed_ws_8765 - INFO - ✅ Guaranteed WebSocket server running on ws://localhost:8765
+2025-05-30 14:35:22,060 - guaranteed_ws_8765 - INFO - 🎯 Ready to handle agent_confirmation messages
+2025-05-30 14:35:22,060 - guaranteed_ws_8765 - DEBUG - Heartbeat at 2025-05-30T14:35:22.060866
+2025-05-30 14:35:36,240 - guaranteed_ws_8765 - INFO - Port 8765 is available
+2025-05-30 14:35:36,241 - guaranteed_ws_8765 - INFO - Starting guaranteed WebSocket server on localhost:8765
+2025-05-30 14:35:36,262 - websockets.server - INFO - server listening on [::1]:8765
+2025-05-30 14:35:36,262 - websockets.server - INFO - server listening on 127.0.0.1:8765
+2025-05-30 14:35:36,262 - guaranteed_ws_8765 - INFO - ✅ Guaranteed WebSocket server running on ws://localhost:8765
+2025-05-30 14:35:36,262 - guaranteed_ws_8765 - INFO - 🎯 Ready to handle agent_confirmation messages
+2025-05-30 14:35:36,263 - guaranteed_ws_8765 - DEBUG - Heartbeat at 2025-05-30T14:35:36.263064
+2025-05-30 14:36:06,264 - guaranteed_ws_8765 - DEBUG - Heartbeat at 2025-05-30T14:36:06.263960
+2025-05-30 14:36:36,288 - guaranteed_ws_8765 - DEBUG - Heartbeat at 2025-05-30T14:36:36.286492
+2025-05-30 14:38:09,982 - asyncio - DEBUG - Using selector: KqueueSelector
+2025-05-30 14:38:10,009 - guaranteed_ws_8765 - INFO - Killed any existing processes on port 8765
+2025-05-30 14:38:11,012 - guaranteed_ws_8765 - INFO - Port 8765 is available
+2025-05-30 14:38:11,012 - guaranteed_ws_8765 - INFO - Starting guaranteed WebSocket server on localhost:8765
+2025-05-30 14:38:11,033 - websockets.server - INFO - server listening on 127.0.0.1:8765
+2025-05-30 14:38:11,033 - websockets.server - INFO - server listening on [::1]:8765
+2025-05-30 14:38:11,034 - guaranteed_ws_8765 - INFO - ✅ Guaranteed WebSocket server running on ws://localhost:8765
+2025-05-30 14:38:11,034 - guaranteed_ws_8765 - INFO - 🎯 Ready to handle agent_confirmation messages
+2025-05-30 14:38:11,034 - guaranteed_ws_8765 - DEBUG - Heartbeat at 2025-05-30T14:38:11.034278
+2025-05-30 14:38:25,211 - guaranteed_ws_8765 - INFO - Port 8765 is available
+2025-05-30 14:38:25,211 - guaranteed_ws_8765 - INFO - Starting guaranteed WebSocket server on localhost:8765
+2025-05-30 14:38:25,230 - websockets.server - INFO - server listening on [::1]:8765
+2025-05-30 14:38:25,230 - websockets.server - INFO - server listening on 127.0.0.1:8765
+2025-05-30 14:38:25,230 - guaranteed_ws_8765 - INFO - ✅ Guaranteed WebSocket server running on ws://localhost:8765
+2025-05-30 14:38:25,230 - guaranteed_ws_8765 - INFO - 🎯 Ready to handle agent_confirmation messages
+2025-05-30 14:38:25,230 - guaranteed_ws_8765 - DEBUG - Heartbeat at 2025-05-30T14:38:25.230766
+2025-05-30 14:38:55,232 - guaranteed_ws_8765 - DEBUG - Heartbeat at 2025-05-30T14:38:55.231846
+2025-05-30 14:39:25,233 - guaranteed_ws_8765 - DEBUG - Heartbeat at 2025-05-30T14:39:25.233681
+2025-05-30 14:40:51,921 - asyncio - DEBUG - Using selector: KqueueSelector
+2025-05-30 14:40:51,949 - guaranteed_ws_8765 - INFO - Killed any existing processes on port 8765
+2025-05-30 14:40:52,953 - guaranteed_ws_8765 - INFO - Port 8765 is available
+2025-05-30 14:40:52,953 - guaranteed_ws_8765 - INFO - Starting guaranteed WebSocket server on localhost:8765
+2025-05-30 14:40:52,976 - websockets.server - INFO - server listening on 127.0.0.1:8765
+2025-05-30 14:40:52,976 - websockets.server - INFO - server listening on [::1]:8765
+2025-05-30 14:40:52,977 - guaranteed_ws_8765 - INFO - ✅ Guaranteed WebSocket server running on ws://localhost:8765
+2025-05-30 14:40:52,977 - guaranteed_ws_8765 - INFO - 🎯 Ready to handle agent_confirmation messages
+2025-05-30 14:40:52,977 - guaranteed_ws_8765 - DEBUG - Heartbeat at 2025-05-30T14:40:52.977874
+2025-05-30 14:41:07,152 - guaranteed_ws_8765 - INFO - Port 8765 is available
+2025-05-30 14:41:07,152 - guaranteed_ws_8765 - INFO - Starting guaranteed WebSocket server on localhost:8765
+2025-05-30 14:41:07,172 - websockets.server - INFO - server listening on 127.0.0.1:8765
+2025-05-30 14:41:07,172 - websockets.server - INFO - server listening on [::1]:8765
+2025-05-30 14:41:07,173 - guaranteed_ws_8765 - INFO - ✅ Guaranteed WebSocket server running on ws://localhost:8765
+2025-05-30 14:41:07,173 - guaranteed_ws_8765 - INFO - 🎯 Ready to handle agent_confirmation messages
+2025-05-30 14:41:07,173 - guaranteed_ws_8765 - DEBUG - Heartbeat at 2025-05-30T14:41:07.173321
+2025-05-30 14:41:37,174 - guaranteed_ws_8765 - DEBUG - Heartbeat at 2025-05-30T14:41:37.173993
+2025-05-30 14:42:07,179 - guaranteed_ws_8765 - DEBUG - Heartbeat at 2025-05-30T14:42:07.179285
+2025-05-30 14:42:37,194 - guaranteed_ws_8765 - DEBUG - Heartbeat at 2025-05-30T14:42:37.193962
+2025-05-30 14:43:07,198 - guaranteed_ws_8765 - DEBUG - Heartbeat at 2025-05-30T14:43:07.197905
+2025-05-30 14:44:20,855 - asyncio - DEBUG - Using selector: KqueueSelector
+2025-05-30 14:44:20,880 - guaranteed_ws_8765 - INFO - Killed any existing processes on port 8765
+2025-05-30 14:44:21,884 - guaranteed_ws_8765 - INFO - Port 8765 is available
+2025-05-30 14:44:21,884 - guaranteed_ws_8765 - INFO - Starting guaranteed WebSocket server on localhost:8765
+2025-05-30 14:44:21,907 - websockets.server - INFO - server listening on [::1]:8765
+2025-05-30 14:44:21,907 - websockets.server - INFO - server listening on 127.0.0.1:8765
+2025-05-30 14:44:21,907 - guaranteed_ws_8765 - INFO - ✅ Guaranteed WebSocket server running on ws://localhost:8765
+2025-05-30 14:44:21,907 - guaranteed_ws_8765 - INFO - 🎯 Ready to handle agent_confirmation messages
+2025-05-30 14:44:21,908 - guaranteed_ws_8765 - DEBUG - Heartbeat at 2025-05-30T14:44:21.908039
+2025-05-30 14:44:36,121 - guaranteed_ws_8765 - INFO - Port 8765 is available
+2025-05-30 14:44:36,121 - guaranteed_ws_8765 - INFO - Starting guaranteed WebSocket server on localhost:8765
+2025-05-30 14:44:36,144 - websockets.server - INFO - server listening on 127.0.0.1:8765
+2025-05-30 14:44:36,144 - websockets.server - INFO - server listening on [::1]:8765
+2025-05-30 14:44:36,145 - guaranteed_ws_8765 - INFO - ✅ Guaranteed WebSocket server running on ws://localhost:8765
+2025-05-30 14:44:36,145 - guaranteed_ws_8765 - INFO - 🎯 Ready to handle agent_confirmation messages
+2025-05-30 14:44:36,145 - guaranteed_ws_8765 - DEBUG - Heartbeat at 2025-05-30T14:44:36.145253
+2025-05-30 14:45:06,146 - guaranteed_ws_8765 - DEBUG - Heartbeat at 2025-05-30T14:45:06.145886
+2025-05-30 14:45:36,147 - guaranteed_ws_8765 - DEBUG - Heartbeat at 2025-05-30T14:45:36.147549
+2025-05-30 14:50:07,202 - guaranteed_ws_8765 - INFO - Port 8765 is available
+2025-05-30 14:50:07,203 - guaranteed_ws_8765 - INFO - Starting guaranteed WebSocket server on localhost:8765
+2025-05-30 14:50:07,222 - websockets.server - INFO - server listening on 127.0.0.1:8765
+2025-05-30 14:50:07,222 - websockets.server - INFO - server listening on [::1]:8765
+2025-05-30 14:50:07,222 - guaranteed_ws_8765 - INFO - ✅ Guaranteed WebSocket server running on ws://localhost:8765
+2025-05-30 14:50:07,222 - guaranteed_ws_8765 - INFO - 🎯 Ready to handle agent_confirmation messages
+2025-05-30 14:50:07,222 - guaranteed_ws_8765 - DEBUG - Heartbeat at 2025-05-30T14:50:07.222911
+2025-05-30 14:50:37,223 - guaranteed_ws_8765 - DEBUG - Heartbeat at 2025-05-30T14:50:37.223449
+2025-05-30 14:51:07,224 - guaranteed_ws_8765 - DEBUG - Heartbeat at 2025-05-30T14:51:07.224599
+2025-05-30 14:52:36,726 - guaranteed_ws_8765 - INFO - Port 8765 is available
+2025-05-30 14:52:36,727 - guaranteed_ws_8765 - INFO - Starting guaranteed WebSocket server on localhost:8765
+2025-05-30 14:52:36,746 - websockets.server - INFO - server listening on [::1]:8765
+2025-05-30 14:52:36,746 - websockets.server - INFO - server listening on 127.0.0.1:8765
+2025-05-30 14:52:36,746 - guaranteed_ws_8765 - INFO - ✅ Guaranteed WebSocket server running on ws://localhost:8765
+2025-05-30 14:52:36,746 - guaranteed_ws_8765 - INFO - 🎯 Ready to handle agent_confirmation messages
+2025-05-30 14:52:36,746 - guaranteed_ws_8765 - DEBUG - Heartbeat at 2025-05-30T14:52:36.746773
+2025-05-30 14:53:06,749 - guaranteed_ws_8765 - DEBUG - Heartbeat at 2025-05-30T14:53:06.748570
+2025-05-30 14:53:36,753 - guaranteed_ws_8765 - DEBUG - Heartbeat at 2025-05-30T14:53:36.753315
+2025-05-30 14:54:06,756 - guaranteed_ws_8765 - DEBUG - Heartbeat at 2025-05-30T14:54:06.756315
+2025-05-30 14:54:36,758 - guaranteed_ws_8765 - DEBUG - Heartbeat at 2025-05-30T14:54:36.758480
+2025-05-30 14:55:06,760 - guaranteed_ws_8765 - DEBUG - Heartbeat at 2025-05-30T14:55:06.760312
+2025-05-30 14:55:36,762 - guaranteed_ws_8765 - DEBUG - Heartbeat at 2025-05-30T14:55:36.762088
+2025-05-30 14:56:06,764 - guaranteed_ws_8765 - DEBUG - Heartbeat at 2025-05-30T14:56:06.763889
+2025-05-30 14:56:36,765 - guaranteed_ws_8765 - DEBUG - Heartbeat at 2025-05-30T14:56:36.765511
+2025-05-30 14:57:06,766 - guaranteed_ws_8765 - DEBUG - Heartbeat at 2025-05-30T14:57:06.766561
+2025-05-30 14:57:36,768 - guaranteed_ws_8765 - DEBUG - Heartbeat at 2025-05-30T14:57:36.768640
+2025-05-30 14:58:06,770 - guaranteed_ws_8765 - DEBUG - Heartbeat at 2025-05-30T14:58:06.770688
+2025-05-30 14:58:36,772 - guaranteed_ws_8765 - DEBUG - Heartbeat at 2025-05-30T14:58:36.772486
+2025-05-30 14:59:06,778 - guaranteed_ws_8765 - DEBUG - Heartbeat at 2025-05-30T14:59:06.777729
+2025-05-30 14:59:36,779 - guaranteed_ws_8765 - DEBUG - Heartbeat at 2025-05-30T14:59:36.779353
+2025-05-30 15:00:06,781 - guaranteed_ws_8765 - DEBUG - Heartbeat at 2025-05-30T15:00:06.780962
+2025-05-30 15:00:36,782 - guaranteed_ws_8765 - DEBUG - Heartbeat at 2025-05-30T15:00:36.782361
+2025-06-03 18:21:22,662 - guaranteed_ws_8765 - INFO - Port 8765 is available
+2025-06-03 18:21:22,663 - guaranteed_ws_8765 - INFO - Starting guaranteed WebSocket server on localhost:8765
+2025-06-03 18:21:22,703 - websockets.server - INFO - server listening on 127.0.0.1:8765
+2025-06-03 18:21:22,703 - websockets.server - INFO - server listening on [::1]:8765
+2025-06-03 18:21:22,703 - guaranteed_ws_8765 - INFO - ✅ Guaranteed WebSocket server running on ws://localhost:8765
+2025-06-03 18:21:22,703 - guaranteed_ws_8765 - INFO - 🎯 Ready to handle agent_confirmation messages
+2025-06-03 18:21:22,703 - guaranteed_ws_8765 - DEBUG - Heartbeat at 2025-06-03T18:21:22.703721
+2025-06-03 18:21:52,706 - guaranteed_ws_8765 - DEBUG - Heartbeat at 2025-06-03T18:21:52.705860
+2025-06-03 18:26:20,295 - guaranteed_ws_8765 - INFO - Port 8765 is available
+2025-06-03 18:26:20,296 - guaranteed_ws_8765 - INFO - Starting guaranteed WebSocket server on localhost:8765
+2025-06-03 18:26:20,332 - websockets.server - INFO - server listening on [::1]:8765
+2025-06-03 18:26:20,332 - websockets.server - INFO - server listening on 127.0.0.1:8765
+2025-06-03 18:26:20,332 - guaranteed_ws_8765 - INFO - ✅ Guaranteed WebSocket server running on ws://localhost:8765
+2025-06-03 18:26:20,332 - guaranteed_ws_8765 - INFO - 🎯 Ready to handle agent_confirmation messages
+2025-06-03 18:26:20,333 - guaranteed_ws_8765 - DEBUG - Heartbeat at 2025-06-03T18:26:20.333115
+2025-06-03 18:26:23,338 - websockets.server - INFO - connection open
+2025-06-03 18:26:23,339 - guaranteed_ws_8765 - INFO - Client client_4389443904 connected
+2025-06-03 18:26:23,340 - guaranteed_ws_8765 - INFO - Client client_4389443904 disconnected
+2025-06-03 18:26:45,187 - websockets.server - INFO - connection open
+2025-06-03 18:26:45,187 - guaranteed_ws_8765 - INFO - Client client_4384092432 connected
+2025-06-03 18:26:45,191 - guaranteed_ws_8765 - INFO - Client client_4384092432 disconnected
+2025-06-03 18:26:45,984 - websockets.server - INFO - connection open
+2025-06-03 18:26:45,984 - guaranteed_ws_8765 - INFO - Client client_4384095632 connected
+2025-06-03 18:26:45,986 - guaranteed_ws_8765 - INFO - Client client_4384095632 disconnected
+2025-06-03 18:26:47,484 - websockets.server - INFO - connection open
+2025-06-03 18:26:47,485 - guaranteed_ws_8765 - INFO - Client client_4389108352 connected
+2025-06-03 18:26:47,487 - guaranteed_ws_8765 - INFO - Client client_4389108352 disconnected
+2025-06-03 18:26:50,333 - guaranteed_ws_8765 - DEBUG - Heartbeat at 2025-06-03T18:26:50.333569
+2025-06-03 18:46:57,491 - guaranteed_ws_8765 - INFO - Port 8765 is available
+2025-06-03 18:46:57,492 - guaranteed_ws_8765 - INFO - Starting guaranteed WebSocket server on localhost:8765
+2025-06-03 18:46:57,509 - websockets.server - INFO - server listening on 127.0.0.1:8765
+2025-06-03 18:46:57,509 - websockets.server - INFO - server listening on [::1]:8765
+2025-06-03 18:46:57,509 - guaranteed_ws_8765 - INFO - ✅ Guaranteed WebSocket server running on ws://localhost:8765
+2025-06-03 18:46:57,510 - guaranteed_ws_8765 - INFO - 🎯 Ready to handle agent_confirmation messages
+2025-06-03 18:46:57,510 - guaranteed_ws_8765 - DEBUG - Heartbeat at 2025-06-03T18:46:57.510071
+2025-06-03 18:47:00,185 - websockets.server - INFO - connection open
+2025-06-03 18:47:00,185 - guaranteed_ws_8765 - INFO - Client client_4324645184 connected
+2025-06-03 18:47:00,186 - guaranteed_ws_8765 - INFO - Received from client_4324645184: unknown
+2025-06-03 18:47:00,186 - guaranteed_ws_8765 - DEBUG - Full message content: {"success": true, "response": "\ud83d\udca1 Test Title: Test Message", "mode": "SUGGEST", "processing_time": 0.5, "enterprise_validated": true, "notification": true, "play_sound": true, "sound_type": "notification", "importance": "high", "buttons": [{"id": "do_it", "text": "Yes, help me", "action": "accept", "style": "success"}, {"id": "dismiss", "text": "No thanks", "action": "dismiss", "style": "danger"}], "interactive": true, "timestamp": 1748990820.1860108}
+2025-06-03 18:47:00,186 - guaranteed_ws_8765 - INFO - Client client_4324645184 disconnected
+2025-06-03 18:47:27,510 - guaranteed_ws_8765 - DEBUG - Heartbeat at 2025-06-03T18:47:27.510273
+2025-06-03 18:47:57,512 - guaranteed_ws_8765 - DEBUG - Heartbeat at 2025-06-03T18:47:57.512268
+2025-06-03 18:48:27,515 - guaranteed_ws_8765 - DEBUG - Heartbeat at 2025-06-03T18:48:27.515152
+2025-06-03 18:48:57,515 - guaranteed_ws_8765 - DEBUG - Heartbeat at 2025-06-03T18:48:57.515928
+2025-06-03 18:49:00,779 - guaranteed_ws_8765 - INFO - Port 8765 is available
+2025-06-03 18:49:00,779 - guaranteed_ws_8765 - INFO - Starting guaranteed WebSocket server on localhost:8765
+2025-06-03 18:49:00,798 - websockets.server - INFO - server listening on 127.0.0.1:8765
+2025-06-03 18:49:00,798 - websockets.server - INFO - server listening on [::1]:8765
+2025-06-03 18:49:00,798 - guaranteed_ws_8765 - INFO - ✅ Guaranteed WebSocket server running on ws://localhost:8765
+2025-06-03 18:49:00,798 - guaranteed_ws_8765 - INFO - 🎯 Ready to handle agent_confirmation messages
+2025-06-03 18:49:00,798 - guaranteed_ws_8765 - DEBUG - Heartbeat at 2025-06-03T18:49:00.798785
+2025-06-03 18:49:28,295 - websockets.server - INFO - connection open
+2025-06-03 18:49:28,295 - guaranteed_ws_8765 - INFO - Client client_4364851520 connected
+2025-06-03 18:49:28,296 - guaranteed_ws_8765 - INFO - Received from client_4364851520: unknown
+2025-06-03 18:49:28,296 - guaranteed_ws_8765 - DEBUG - Full message content: {"success": true, "response": "\ud83d\udca1 Test Suggestion: This is a test suggestion to verify the overlay is working", "mode": "SUGGEST", "processing_time": 0.5, "enterprise_validated": true, "notification": true, "play_sound": true, "sound_type": "notification", "importance": "high", "buttons": [{"id": "do_it", "text": "Yes, help me", "action": "accept", "style": "success"}, {"id": "dismiss", "text": "No thanks", "action": "dismiss", "style": "danger"}], "interactive": true, "timestamp": 1748990968.296134}
+2025-06-03 18:49:28,296 - guaranteed_ws_8765 - INFO - 🎯 Suggestion received: {'success': True, 'response': '💡 Test Suggestion: This is a test suggestion to verify the overlay is working', 'mode': 'SUGGEST', 'processing_time': 0.5, 'enterprise_validated': True, 'notification': True, 'play_sound': True, 'sound_type': 'notification', 'importance': 'high', 'buttons': [{'id': 'do_it', 'text': 'Yes, help me', 'action': 'accept', 'style': 'success'}, {'id': 'dismiss', 'text': 'No thanks', 'action': 'dismiss', 'style': 'danger'}], 'interactive': True, 'timestamp': 1748990968.296134}
+2025-06-03 18:49:28,297 - guaranteed_ws_8765 - INFO - Client client_4364851520 disconnected
+2025-06-03 18:49:30,799 - guaranteed_ws_8765 - DEBUG - Heartbeat at 2025-06-03T18:49:30.799389
+2025-06-03 18:49:56,543 - websockets.server - INFO - connection open
+2025-06-03 18:49:56,544 - guaranteed_ws_8765 - INFO - Client client_4364333328 connected
+2025-06-03 18:49:56,545 - guaranteed_ws_8765 - INFO - Received from client_4364333328: unknown
+2025-06-03 18:49:56,545 - guaranteed_ws_8765 - DEBUG - Full message content: {"success": true, "response": "\ud83d\udca1 Test Suggestion: This is a test suggestion to verify the overlay is working", "mode": "SUGGEST", "processing_time": 0.5, "enterprise_validated": true, "notification": true, "play_sound": true, "sound_type": "notification", "importance": "high", "buttons": [{"id": "do_it", "text": "Yes, help me", "action": "accept", "style": "success"}, {"id": "dismiss", "text": "No thanks", "action": "dismiss", "style": "danger"}], "interactive": true, "timestamp": 1748990996.544682}
+2025-06-03 18:49:56,545 - guaranteed_ws_8765 - INFO - 🎯 Suggestion received: {'success': True, 'response': '💡 Test Suggestion: This is a test suggestion to verify the overlay is working', 'mode': 'SUGGEST', 'processing_time': 0.5, 'enterprise_validated': True, 'notification': True, 'play_sound': True, 'sound_type': 'notification', 'importance': 'high', 'buttons': [{'id': 'do_it', 'text': 'Yes, help me', 'action': 'accept', 'style': 'success'}, {'id': 'dismiss', 'text': 'No thanks', 'action': 'dismiss', 'style': 'danger'}], 'interactive': True, 'timestamp': 1748990996.544682}
+2025-06-03 18:49:56,545 - guaranteed_ws_8765 - INFO - Client client_4364333328 disconnected
+2025-06-03 18:50:00,800 - guaranteed_ws_8765 - DEBUG - Heartbeat at 2025-06-03T18:50:00.800141
+2025-06-03 18:50:30,801 - guaranteed_ws_8765 - DEBUG - Heartbeat at 2025-06-03T18:50:30.801259
+2025-06-03 18:51:00,803 - guaranteed_ws_8765 - DEBUG - Heartbeat at 2025-06-03T18:51:00.803778
+2025-06-03 18:51:30,806 - guaranteed_ws_8765 - DEBUG - Heartbeat at 2025-06-03T18:51:30.806195
+2025-06-03 18:51:42,045 - guaranteed_ws_8765 - INFO - Port 8765 is available
+2025-06-03 18:51:42,045 - guaranteed_ws_8765 - INFO - Starting guaranteed WebSocket server on localhost:8765
+2025-06-03 18:51:42,068 - websockets.server - INFO - server listening on 127.0.0.1:8765
+2025-06-03 18:51:42,068 - websockets.server - INFO - server listening on [::1]:8765
+2025-06-03 18:51:42,068 - guaranteed_ws_8765 - INFO - ✅ Guaranteed WebSocket server running on ws://localhost:8765
+2025-06-03 18:51:42,068 - guaranteed_ws_8765 - INFO - 🎯 Ready to handle agent_confirmation messages
+2025-06-03 18:51:42,068 - guaranteed_ws_8765 - DEBUG - Heartbeat at 2025-06-03T18:51:42.068816
+2025-06-03 18:52:12,069 - guaranteed_ws_8765 - DEBUG - Heartbeat at 2025-06-03T18:52:12.069424
+2025-06-03 18:52:42,071 - guaranteed_ws_8765 - DEBUG - Heartbeat at 2025-06-03T18:52:42.071342
+2025-06-03 18:52:53,140 - websockets.server - ERROR - opening handshake failed
+Traceback (most recent call last):
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/http11.py", line 138, in parse
+    request_line = yield from parse_line(read_line)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/http11.py", line 309, in parse_line
+    line = yield from read_line(MAX_LINE_LENGTH)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/streams.py", line 46, in read_line
+    raise EOFError(f"stream ends after {p} bytes, before end of line")
+EOFError: stream ends after 0 bytes, before end of line
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/server.py", line 545, in parse
+    request = yield from Request.parse(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^
+        self.reader.read_line,
+        ^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/http11.py", line 140, in parse
+    raise EOFError("connection closed while reading HTTP request line") from exc
+EOFError: connection closed while reading HTTP request line
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/asyncio/server.py", line 356, in conn_handler
+    await connection.handshake(
+    ...<3 lines>...
+    )
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/asyncio/server.py", line 207, in handshake
+    raise self.protocol.handshake_exc
+websockets.exceptions.InvalidMessage: did not receive a valid HTTP request
+2025-06-03 18:52:53,169 - websockets.server - INFO - connection open
+2025-06-03 18:52:53,169 - guaranteed_ws_8765 - INFO - Client client_4353159440 connected
+2025-06-03 18:52:53,170 - guaranteed_ws_8765 - INFO - Received from client_4353159440: ping
+2025-06-03 18:52:53,170 - guaranteed_ws_8765 - DEBUG - Full message content: {"type": "ping", "timestamp": "2025-06-03T18:52:53.169973"}
+2025-06-03 18:52:53,170 - guaranteed_ws_8765 - INFO - Client client_4353159440 disconnected
+2025-06-03 18:53:18,104 - guaranteed_ws_8765 - INFO - Port 8765 is available
+2025-06-03 18:53:18,105 - guaranteed_ws_8765 - INFO - Starting guaranteed WebSocket server on localhost:8765
+2025-06-03 18:53:18,120 - websockets.server - INFO - server listening on [::1]:8765
+2025-06-03 18:53:18,120 - websockets.server - INFO - server listening on 127.0.0.1:8765
+2025-06-03 18:53:18,121 - guaranteed_ws_8765 - INFO - ✅ Guaranteed WebSocket server running on ws://localhost:8765
+2025-06-03 18:53:18,121 - guaranteed_ws_8765 - INFO - 🎯 Ready to handle agent_confirmation messages
+2025-06-03 18:53:18,121 - guaranteed_ws_8765 - DEBUG - Heartbeat at 2025-06-03T18:53:18.121138
+2025-06-03 18:53:48,122 - guaranteed_ws_8765 - DEBUG - Heartbeat at 2025-06-03T18:53:48.121971
+2025-06-03 19:11:22,271 - guaranteed_ws_8765 - ERROR - Port 8765 is already in use. Please stop any existing WebSocket servers.
+2025-06-03 19:11:35,190 - guaranteed_ws_8765 - ERROR - Port 8765 is already in use. Please stop any existing WebSocket servers.
+2025-06-03 19:28:04,071 - guaranteed_ws_8765 - INFO - Port 8765 is available
+2025-06-03 19:28:04,071 - guaranteed_ws_8765 - INFO - Starting guaranteed WebSocket server on localhost:8765
+2025-06-03 19:28:04,097 - websockets.server - INFO - server listening on [::1]:8765
+2025-06-03 19:28:04,097 - websockets.server - INFO - server listening on 127.0.0.1:8765
+2025-06-03 19:28:04,098 - guaranteed_ws_8765 - INFO - ✅ Guaranteed WebSocket server running on ws://localhost:8765
+2025-06-03 19:28:04,098 - guaranteed_ws_8765 - INFO - 🎯 Ready to handle agent_confirmation messages
+2025-06-03 19:28:04,098 - guaranteed_ws_8765 - DEBUG - Heartbeat at 2025-06-03T19:28:04.098241
+2025-06-03 19:28:06,893 - guaranteed_ws_8765 - ERROR - Port 8765 is already in use. Please stop any existing WebSocket servers.
+2025-06-03 19:28:34,100 - guaranteed_ws_8765 - DEBUG - Heartbeat at 2025-06-03T19:28:34.100151
+2025-06-03 19:29:04,104 - guaranteed_ws_8765 - DEBUG - Heartbeat at 2025-06-03T19:29:04.104285
+2025-06-03 19:44:13,217 - guaranteed_ws_8765 - ERROR - Port 8765 is already in use. Please stop any existing WebSocket servers.
+2025-06-03 19:44:57,443 - guaranteed_ws_8765 - ERROR - Port 8765 is already in use. Please stop any existing WebSocket servers.

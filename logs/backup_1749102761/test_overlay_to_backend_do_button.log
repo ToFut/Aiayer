@@ -1,0 +1,13 @@
+2025-06-04 12:41:34,196 - TestOverlayToBackendDoButton - INFO - 🚀 Starting Overlay to Backend DO Button Test
+2025-06-04 12:41:34,197 - TestOverlayToBackendDoButton - INFO - Connecting to backend at ws://localhost:8767/ws
+2025-06-04 12:41:34,510 - TestOverlayToBackendDoButton - INFO - ✅ Connected to backend with client_id: client_1749055294508
+2025-06-04 12:41:34,510 - TestOverlayToBackendDoButton - INFO - Connecting to DO button server at ws://localhost:8765
+2025-06-04 12:41:34,577 - TestOverlayToBackendDoButton - INFO - ✅ Connected to DO button server
+2025-06-04 12:41:34,577 - TestOverlayToBackendDoButton - INFO - Connecting to proxy at ws://localhost:8766
+2025-06-04 12:41:34,579 - TestOverlayToBackendDoButton - ERROR - ❌ Error connecting to proxy: Multiple exceptions: [Errno 61] Connect call failed ('::1', 8766, 0, 0), [Errno 61] Connect call failed ('127.0.0.1', 8766)
+2025-06-04 12:41:34,579 - TestOverlayToBackendDoButton - INFO - Testing direct backend to DO button communication
+2025-06-04 12:41:34,579 - TestOverlayToBackendDoButton - INFO - ✅ Sent direct DO button message
+2025-06-04 12:41:34,584 - TestOverlayToBackendDoButton - INFO - ✅ Received direct response: {'type': 'agent_progress', 'progress': 10, 'message': 'Starting execution...', 'timestamp': '2025-06-04T12:41:34.584410'}
+2025-06-04 12:41:34,584 - TestOverlayToBackendDoButton - INFO - ✅ Direct backend to DO button communication successful
+2025-06-04 12:41:34,587 - TestOverlayToBackendDoButton - INFO - ✅ Overlay to Backend DO Button Test PASSED!
+2025-06-04 12:41:34,587 - TestOverlayToBackendDoButton - INFO - Test completed.

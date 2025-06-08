@@ -6,7 +6,7 @@
   
   export let show = false;
   export let initialPosition = { x: 20, y: 90 };
-  export let wsEndpoint = 'ws://localhost:8765';  // Enhanced enterprise backend port
+  export let wsEndpoint = 'ws://localhost:8768';  // Changed to use fixed_bridge_server.py port
   
   let messages = [];
   let input = '';
@@ -187,14 +187,16 @@
     const welcomeMessage = {
       id: Date.now(),
       type: 'assistant',
-      content: `👋 Welcome to Enterprise SensAI! I'm ready to help you with all 4 modes:
+      content: `🌟 Welcome to Enterprise SensAI! Your intelligent AI companion.
 
-**🤔 Ask** - Questions with memory context
-**🤖 Agent** - Task planning and execution  
-**💡 Suggest** - Proactive recommendations
-**💬 General** - Casual conversation
+I'm here to help you with:
 
-Choose a mode and start chatting!`,
+🤖 **Agent Mode** - Execute complex tasks with real UI automation
+🔍 **Ask Mode** - Get precise answers with memory context
+💡 **Suggest Mode** - Receive proactive recommendations
+💬 **General Mode** - Engage in natural conversations
+
+Choose your preferred mode and let's get started!`,
       timestamp: new Date(),
       confidence: 1.0,
       mode: 'System'
@@ -806,7 +808,13 @@ Choose a mode and start chatting!`,
   transition:scale={{ duration: 400, easing: elasticOut }}
 >
   <!-- Header -->
-  <div class="chat-header" on:mousedown={startDrag}>
+  <div class="chat-header" 
+    on:mousedown={startDrag}
+    on:keydown={(e) => e.key === 'Enter' && startDrag(e)}
+    role="button"
+    tabindex="0"
+    aria-label="Drag chat window"
+  >
     <div class="header-left">
       <div class="status-indicator" style="background-color: {getStatusColor()};"></div>
       <span class="title">Enterprise SensAI</span>
@@ -1102,28 +1110,111 @@ Choose a mode and start chatting!`,
 <style>
   /* CSS Custom Properties for Apple-inspired theming */
   .chat-overlay {
-    --primary-blur: saturate(180%) blur(20px);
-    --secondary-blur: blur(10px);
-    --border-radius-large: 20px;
-    --border-radius-medium: 12px;
-    --shadow-large: 0 20px 40px rgba(0, 0, 0, 0.2);
-    --transition-normal: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-    --font-system: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', Roboto, system-ui, sans-serif;
+    /* Cloud design variables */
+    --primary-blur: saturate(140%) blur(35px);
+    --secondary-blur: blur(18px);
+    --border-radius-cloud: 36px;
+    --border-radius-medium: 20px;
+    --border-radius-small: 12px;
+    --shadow-cloud: 0 30px 70px rgba(0, 0, 0, 0.12), 0 4px 25px rgba(0, 0, 0, 0.08), 0 0 0 1px rgba(255, 255, 255, 0.05);
+    --glow-subtle: 0 0 40px rgba(130, 170, 255, 0.15);
+    --transition-float: 0.75s cubic-bezier(0.2, 0.8, 0.2, 1);
+    --transition-smooth: 0.38s cubic-bezier(0.32, 0.08, 0.24, 1);
+    --font-system: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', system-ui, sans-serif;
+    --cloud-bg-light: linear-gradient(160deg, rgba(250, 250, 255, 0.40) 0%, rgba(242, 242, 250, 0.30) 60%, rgba(220, 225, 250, 0.25) 100%);
+    --cloud-bg-dark: linear-gradient(160deg, rgba(35, 40, 65, 0.70) 0%, rgba(30, 35, 60, 0.65) 60%, rgba(25, 30, 55, 0.60) 100%);
+    --cloud-bg: var(--cloud-bg-dark);
+    --cloud-border: linear-gradient(to bottom, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.04));
+    --text-primary: rgba(255, 255, 255, 0.95);
+    --text-secondary: rgba(255, 255, 255, 0.7);
+    --accent-blue: rgb(10, 132, 255);
+    --accent-purple: rgb(191, 90, 242);
+    --accent-glow: rgba(125, 145, 255, 0.5);
     
     position: fixed;
-    background: rgba(255, 255, 255, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: var(--border-radius-large);
+    background: var(--cloud-bg);
+    border-radius: var(--border-radius-cloud);
     backdrop-filter: var(--primary-blur);
     -webkit-backdrop-filter: var(--primary-blur);
-    box-shadow: var(--shadow-large);
+    box-shadow: var(--shadow-cloud), var(--glow-subtle);
     display: flex;
     flex-direction: column;
     z-index: 10000;
     pointer-events: auto;
-    transition: all var(--transition-normal);
+    transition: all var(--transition-float);
     overflow: hidden;
     font-family: var(--font-system);
+    letter-spacing: -0.011em;
+    transform-origin: center center;
+    animation: cloud-appear 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+    
+    /* Cloud border effect */
+    position: relative;
+    padding: 1px;
+  }
+  
+  .chat-overlay::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: var(--border-radius-cloud);
+    padding: 1px;
+    background: var(--cloud-border);
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+  }
+  
+  .chat-overlay::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: var(--border-radius-cloud);
+    background: 
+      radial-gradient(circle at 20% 10%, rgba(130, 170, 255, 0.12), transparent 55%),
+      radial-gradient(circle at 80% 90%, rgba(190, 140, 255, 0.08), transparent 60%);
+    opacity: 0.6;
+    pointer-events: none;
+    z-index: -1;
+  }
+  
+  @keyframes cloud-appear {
+    0% { 
+      opacity: 0;
+      transform: translateY(30px) scale(0.92);
+      filter: brightness(0.8);
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+    }
+    40% {
+      opacity: 0.7;
+      transform: translateY(12px) scale(0.96);
+    }
+    100% { 
+      opacity: 1;
+      transform: translateY(0) scale(1);
+      filter: brightness(1);
+      box-shadow: var(--shadow-cloud), var(--glow-subtle);
+    }
+  }
+  
+  /* Floating animation on the entire cloud */
+  @media (prefers-reduced-motion: no-preference) {
+    .chat-overlay {
+      animation: cloud-appear 1.2s cubic-bezier(0.16, 1, 0.3, 1), float 8s ease-in-out infinite;
+    }
+    
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-8px); }
+    }
   }
 
   .chat-overlay.minimized {
@@ -1131,16 +1222,34 @@ Choose a mode and start chatting!`,
   }
 
   .chat-header {
-    padding: 16px 20px;
-    background: rgba(255, 255, 255, 0.8);
+    padding: 15px 20px;
+    background: rgba(40, 45, 70, 0.2);
     backdrop-filter: var(--secondary-blur);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.04);
     display: flex;
     justify-content: space-between;
     align-items: center;
     cursor: grab;
     user-select: none;
-    transition: all var(--transition-normal);
+    transition: all var(--transition-smooth);
+    margin: 1px;
+    border-top-left-radius: calc(var(--border-radius-cloud) - 2px);
+    border-top-right-radius: calc(var(--border-radius-cloud) - 2px);
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .chat-header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 60px;
+    background: linear-gradient(to bottom, 
+      rgba(130, 170, 255, 0.04) 0%, 
+      rgba(130, 170, 255, 0) 100%);
+    pointer-events: none;
   }
 
   .chat-header:active {
@@ -1161,29 +1270,73 @@ Choose a mode and start chatting!`,
   }
 
   .title {
-    color: #fff;
-    font-size: 16px;
-    font-weight: 600;
+    color: var(--text-primary);
+    font-size: 15px;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    background: linear-gradient(90deg, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.85));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-fill-color: transparent;
+    position: relative;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
   }
 
   .header-controls {
     display: flex;
-    gap: 8px;
+    gap: 10px;
   }
 
   .control-btn {
-    background: rgba(255, 255, 255, 0.1);
-    border: none;
-    color: #fff;
-    padding: 6px 10px;
-    border-radius: 6px;
+    background: rgba(255, 255, 255, 0.07);
+    border: 1px solid rgba(255, 255, 255, 0.04);
+    color: var(--text-primary);
+    width: 30px;
+    height: 30px;
+    padding: 0;
+    border-radius: 15px;
     cursor: pointer;
-    transition: all 0.2s ease;
-    font-size: 14px;
+    transition: all 0.25s ease;
+    font-size: 13px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .control-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, 
+      rgba(255, 255, 255, 0.1) 0%, 
+      rgba(255, 255, 255, 0) 100%);
+    opacity: 0;
+    transition: opacity 0.25s ease;
   }
 
   .control-btn:hover {
-    background: rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateY(-1px);
+  }
+  
+  .control-btn:hover::before {
+    opacity: 1;
+  }
+  
+  .control-btn:active {
+    transform: translateY(0);
+  }
+  
+  .control-btn.active {
+    background: rgba(var(--accent-blue-rgb, 10, 132, 255), 0.15);
+    border-color: rgba(var(--accent-blue-rgb, 10, 132, 255), 0.3);
+    color: rgb(var(--accent-blue-rgb, 10, 132, 255));
   }
 
   /* Compact Cursor-Style Trigger Button in Input */
@@ -1472,27 +1625,86 @@ Choose a mode and start chatting!`,
   }
 
   .message-content {
-    padding: 12px 16px;
-    border-radius: 18px;
+    padding: 13px 18px;
+    border-radius: 22px;
     word-wrap: break-word;
-    line-height: 1.4;
+    line-height: 1.45;
+    position: relative;
+    transition: all 0.3s ease;
+    font-size: 14px;
+    letter-spacing: -0.01em;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    overflow: hidden;
   }
 
   .message.user .message-content {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    color: #fff;
+    background: linear-gradient(135deg, rgba(10, 132, 255, 0.7) 0%, rgba(94, 92, 230, 0.7) 100%);
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    margin-left: 40px;
+    max-width: calc(100% - 60px);
+  }
+  
+  .message.user .message-content::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, 
+      rgba(255, 255, 255, 0.15) 0%, 
+      rgba(255, 255, 255, 0.05) 100%);
+    pointer-events: none;
+    border-radius: 22px;
   }
 
   .message.assistant .message-content {
-    background: rgba(255, 255, 255, 0.1);
-    color: #fff;
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.07);
+    color: var(--text-primary);
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    margin-right: 40px;
+    max-width: calc(100% - 60px);
+    backdrop-filter: blur(5px);
+  }
+  
+  .message.assistant .message-content::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(to right, 
+      rgba(255, 255, 255, 0.12) 0%, 
+      rgba(255, 255, 255, 0.03) 100%);
+    pointer-events: none;
   }
 
   .message.error .message-content {
-    background: rgba(255, 68, 68, 0.2);
-    color: #ff6b6b;
-    border: 1px solid rgba(255, 68, 68, 0.3);
+    background: rgba(255, 68, 68, 0.08);
+    color: rgb(255, 140, 140);
+    border: 1px solid rgba(255, 68, 68, 0.15);
+    font-size: 13px;
+    padding: 10px 14px;
+    margin: 0 auto;
+    max-width: 85%;
+  }
+  
+  /* Add animation for messages */
+  .message {
+    animation: message-slide-in 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  
+  @keyframes message-slide-in {
+    0% {
+      opacity: 0;
+      transform: translateY(15px) scale(0.97);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
   }
 
   .message-meta {
@@ -1584,47 +1796,69 @@ Choose a mode and start chatting!`,
 
   .input-area {
     padding: 16px 20px 20px;
-    background: rgba(255, 255, 255, 0.8);
-    border-top: 1px solid rgba(255, 255, 255, 0.3);
+    background: rgba(35, 40, 65, 0.3);
+    border-top: 1px solid rgba(255, 255, 255, 0.04);
     backdrop-filter: var(--secondary-blur);
-    transition: all var(--transition-normal);
+    transition: all var(--transition-smooth);
+    position: relative;
+    margin: 0 1px 1px 1px;
+    border-bottom-left-radius: calc(var(--border-radius-cloud) - 2px);
+    border-bottom-right-radius: calc(var(--border-radius-cloud) - 2px);
+    overflow: hidden;
+  }
+  
+  .input-area::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 80px;
+    background: linear-gradient(to top, 
+      rgba(10, 132, 255, 0.03) 0%, 
+      rgba(10, 132, 255, 0) 100%);
+    pointer-events: none;
+    z-index: -1;
   }
   
   .input-area.focused {
-    background: rgba(255, 255, 255, 0.95);
+    background: rgba(40, 45, 70, 0.4);
   }
 
   .input-container {
     display: flex;
-    gap: 10px;
+    gap: 12px;
     align-items: flex-end;
   }
 
   .message-input {
     flex: 1;
-    background: transparent;
-    border: none;
-    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 24px;
     padding: 12px 16px 12px 110px;
-    color: rgba(0, 0, 0, 0.9);
-    font-size: 16px;
+    color: var(--text-primary);
+    font-size: 15px;
     font-family: var(--font-system);
     resize: none;
     max-height: 120px;
     min-height: 24px;
     line-height: 1.4;
     outline: none;
-    transition: all var(--transition-normal);
+    transition: all var(--transition-smooth);
     width: 100%;
+    backdrop-filter: blur(5px);
+    letter-spacing: -0.01em;
   }
 
   .message-input:focus {
-    border-color: rgba(0, 122, 255, 0.5);
-    box-shadow: 0 0 0 4px rgba(0, 122, 255, 0.1);
+    border-color: rgba(10, 132, 255, 0.3);
+    box-shadow: 0 0 0 4px rgba(10, 132, 255, 0.08), 0 0 15px rgba(10, 132, 255, 0.05);
+    background: rgba(255, 255, 255, 0.05);
   }
 
   .message-input::placeholder {
-    color: rgba(0, 0, 0, 0.4);
+    color: rgba(255, 255, 255, 0.35);
   }
 
   .message-input:disabled {
@@ -1633,37 +1867,66 @@ Choose a mode and start chatting!`,
   }
 
   .send-btn {
-    width: 44px;
-    height: 44px;
-    border-radius: 22px;
-    border: none;
-    background: #8E8E93;
-    color: white;
+    width: 40px;
+    height: 40px;
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    background: rgba(10, 132, 255, 0.1);
+    color: rgba(255, 255, 255, 0.8);
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: all var(--transition-normal);
+    transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
     backdrop-filter: blur(5px);
-    font-size: 18px;
+    font-size: 16px;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .send-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, 
+      rgba(10, 132, 255, 0.5) 0%, 
+      rgba(94, 92, 230, 0.5) 100%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 0;
+  }
+  
+  .send-btn svg {
+    position: relative;
+    z-index: 1;
   }
   
   .send-btn.active {
-    background: var(--mode-color);
-    transform: scale(1.05);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    border-color: rgba(10, 132, 255, 0.3);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15), 0 2px 5px rgba(10, 132, 255, 0.1);
+  }
+  
+  .send-btn.active::before {
+    opacity: 1;
   }
 
   .send-btn:hover:not(:disabled) {
-    transform: scale(1.1);
+    background: rgba(10, 132, 255, 0.2);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
   }
   
   .send-btn:active {
-    transform: scale(0.95);
+    transform: translateY(0);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   }
 
   .send-btn:disabled {
-    opacity: 0.5;
+    opacity: 0.4;
     cursor: not-allowed;
     transform: none;
   }
@@ -1761,12 +2024,42 @@ Choose a mode and start chatting!`,
 
   /* PROFESSIONAL AGENT CONFIRMATION INTERFACE */
   .agent-confirmation-panel {
-    margin: 12px 0;
+    margin: 14px 0;
     padding: 16px;
-    background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(255, 77, 77, 0.1) 100%);
-    border: 1px solid rgba(102, 126, 234, 0.3);
-    border-radius: 12px;
-    backdrop-filter: blur(10px);
+    background: rgba(40, 45, 70, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 20px;
+    backdrop-filter: blur(15px);
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  }
+  
+  .agent-confirmation-panel::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(to right, 
+      rgba(255, 255, 255, 0.15) 0%, 
+      rgba(255, 255, 255, 0.05) 100%);
+    pointer-events: none;
+  }
+  
+  .agent-confirmation-panel::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+      radial-gradient(circle at 15% 20%, rgba(130, 170, 255, 0.08), transparent 50%),
+      radial-gradient(circle at 85% 80%, rgba(190, 140, 255, 0.06), transparent 50%);
+    pointer-events: none;
+    z-index: -1;
   }
 
   .confirmation-header {
@@ -1811,25 +2104,31 @@ Choose a mode and start chatting!`,
   }
 
   .confirmation-actions {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    gap: 8px;
+    display: flex;
+    gap: 10px;
     margin-bottom: 12px;
   }
 
   .confirmation-btn {
-    padding: 12px 8px;
-    border: none;
-    border-radius: 8px;
+    padding: 8px 12px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
     font-size: 12px;
-    font-weight: 600;
+    font-weight: 500;
     cursor: pointer;
-    transition: all 0.2s ease;
+    transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
-    gap: 2px;
-    color: #fff;
+    justify-content: center;
+    gap: 6px;
+    color: rgba(255, 255, 255, 0.9);
+    flex: 1;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    position: relative;
+    overflow: hidden;
+    letter-spacing: -0.01em;
   }
 
   .btn-subtitle {
@@ -1839,23 +2138,23 @@ Choose a mode and start chatting!`,
   }
 
   .do-btn {
-    background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
-    box-shadow: 0 2px 8px rgba(76, 175, 80, 0.3);
+    background: rgba(76, 175, 80, 0.2);
+    border: 1px solid rgba(76, 175, 80, 0.3);
+    color: #88d48a;
   }
 
   .do-btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(76, 175, 80, 0.4);
+    background: rgba(76, 175, 80, 0.3);
   }
 
   .dismiss-btn {
-    background: linear-gradient(135deg, #f44336 0%, #d32f2f 100%);
-    box-shadow: 0 2px 8px rgba(244, 67, 54, 0.3);
+    background: rgba(244, 67, 54, 0.1);
+    border: 1px solid rgba(244, 67, 54, 0.2);
+    color: #ff867f;
   }
 
   .dismiss-btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(244, 67, 54, 0.4);
+    background: rgba(244, 67, 54, 0.2);
   }
 
   .adjust-btn {

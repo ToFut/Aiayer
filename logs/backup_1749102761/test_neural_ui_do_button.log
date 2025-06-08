@@ -1,0 +1,9 @@
+2025-06-04 12:46:44,069 - TestNeuralUIDoButton - INFO - 🚀 Starting Neural UI DO Button Test
+2025-06-04 12:46:44,069 - TestNeuralUIDoButton - INFO - Connecting to Neural UI detector at ws://localhost:8768
+2025-06-04 12:46:44,114 - TestNeuralUIDoButton - ERROR - ❌ Error in Neural UI DO button test: Multiple exceptions: [Errno 61] Connect call failed ('::1', 8768, 0, 0), [Errno 61] Connect call failed ('127.0.0.1', 8768)
+2025-06-04 12:46:44,114 - TestNeuralUIDoButton - ERROR - ❌ Neural UI DO Button Flow Test FAILED!
+2025-06-04 12:46:44,114 - TestNeuralUIDoButton - INFO - Connecting to neural_ui_do_button_handler at ws://localhost:8768/handler
+2025-06-04 12:46:44,115 - TestNeuralUIDoButton - ERROR - ❌ Error in handler test: Multiple exceptions: [Errno 61] Connect call failed ('::1', 8768, 0, 0), [Errno 61] Connect call failed ('127.0.0.1', 8768)
+2025-06-04 12:46:44,115 - TestNeuralUIDoButton - WARNING - ⚠️ Neural UI DO Button Handler Test FAILED - this is okay if the handler isn't running
+2025-06-04 12:46:44,115 - TestNeuralUIDoButton - ERROR - ❌ Neural UI DO Button Test FAILED OVERALL!
+2025-06-04 12:46:44,115 - TestNeuralUIDoButton - INFO - Test completed.

@@ -38,7 +38,7 @@ class EnterpriseBackend8767:
         self.start_time = datetime.now()
         logger.info("Enterprise Backend 8767 initialized")
 
-    async def handle_websocket(self, websocket):
+    async def handle_websocket(self, websocket, path=None):
         """Handle WebSocket connections on port 8767"""
         client_id = f"client_{int(time.time() * 1000)}"
         client_ip = websocket.remote_address[0] if websocket.remote_address else "unknown"

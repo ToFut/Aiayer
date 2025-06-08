@@ -1,0 +1,11 @@
+/Users/segevbin/Desktop/SensAI/Aiayer/overlay/target/release/deps/libxattr-0fe066197c53dcab.rmeta: /Users/segevbin/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/xattr-1.5.0/src/lib.rs /Users/segevbin/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/xattr-1.5.0/src/error.rs /Users/segevbin/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/xattr-1.5.0/src/sys/mod.rs /Users/segevbin/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/xattr-1.5.0/src/util.rs /Users/segevbin/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/xattr-1.5.0/src/sys/linux_macos.rs
+
+/Users/segevbin/Desktop/SensAI/Aiayer/overlay/target/release/deps/libxattr-0fe066197c53dcab.rlib: /Users/segevbin/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/xattr-1.5.0/src/lib.rs /Users/segevbin/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/xattr-1.5.0/src/error.rs /Users/segevbin/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/xattr-1.5.0/src/sys/mod.rs /Users/segevbin/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/xattr-1.5.0/src/util.rs /Users/segevbin/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/xattr-1.5.0/src/sys/linux_macos.rs
+
+/Users/segevbin/Desktop/SensAI/Aiayer/overlay/target/release/deps/xattr-0fe066197c53dcab.d: /Users/segevbin/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/xattr-1.5.0/src/lib.rs /Users/segevbin/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/xattr-1.5.0/src/error.rs /Users/segevbin/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/xattr-1.5.0/src/sys/mod.rs /Users/segevbin/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/xattr-1.5.0/src/util.rs /Users/segevbin/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/xattr-1.5.0/src/sys/linux_macos.rs
+
+/Users/segevbin/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/xattr-1.5.0/src/lib.rs:
+/Users/segevbin/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/xattr-1.5.0/src/error.rs:
+/Users/segevbin/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/xattr-1.5.0/src/sys/mod.rs:
+/Users/segevbin/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/xattr-1.5.0/src/util.rs:
+/Users/segevbin/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/xattr-1.5.0/src/sys/linux_macos.rs:

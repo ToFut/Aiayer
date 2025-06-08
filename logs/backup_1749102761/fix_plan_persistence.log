@@ -1,0 +1,56 @@
+2025-06-04 11:54:57,649 - FixPlanPersistence - INFO - 🚀 Starting Plan Persistence Fix
+2025-06-04 11:54:57,649 - FixPlanPersistence - INFO - Step 1: Adding generate_plan_id to plan_persistence...
+2025-06-04 11:54:57,703 - plan_persistence - INFO - Loaded 0 plans from metadata
+2025-06-04 11:54:57,704 - plan_persistence - INFO - Plan persistence system initialized
+2025-06-04 11:54:57,704 - FixPlanPersistence - INFO - ✅ Added generate_plan_id function to plan_persistence module
+2025-06-04 11:54:57,704 - FixPlanPersistence - INFO - ✅ Reloaded dependent modules
+2025-06-04 11:54:57,704 - FixPlanPersistence - INFO - ✅ Step 1 completed successfully
+2025-06-04 11:54:57,704 - FixPlanPersistence - INFO - Step 2: Fixing real_agent_automation_handler...
+2025-06-04 11:54:57,705 - real_agent_automation_handler - INFO - ✅ Plan persistence module loaded successfully
+2025-06-04 11:54:58,473 - agent_workflow.input_controller - INFO - Detected screen size: 1470x956
+2025-06-04 11:54:59,071 - agent_workflow.input_controller - INFO - Standard mouse listener started successfully
+2025-06-04 11:54:59,072 - agent_workflow.input_controller - INFO - Keyboard listener started successfully
+2025-06-04 11:54:59,072 - agent_workflow.input_controller - INFO - Input controller initialized (safe mode)
+2025-06-04 11:54:59,072 - agent_workflow.input_controller - INFO - 🚨 Emergency shutdown: Press Ctrl+1 to immediately stop agent
+2025-06-04 11:54:59,231 - llava_processor - INFO - Connected to Ollama API v0.6.8
+2025-06-04 11:54:59,231 - total_screen_analyzer - INFO - LLaVA visual processor initialized for total screen analysis
+2025-06-04 11:54:59,231 - total_screen_analyzer - INFO - Total Screen Analyzer initialized with 8s interval
+2025-06-04 11:54:59,231 - real_agent_automation_handler - INFO - 🤖 Real automation components loaded successfully
+2025-06-04 11:54:59,231 - FixPlanPersistence - WARNING - ⚠️ Could not find init_plan_persistence method in real_agent_automation_handler
+2025-06-04 11:54:59,231 - FixPlanPersistence - ERROR - ❌ Step 2 failed
+2025-06-04 11:54:59,231 - FixPlanPersistence - INFO - Step 3: Fixing universal_intelligent_automation_handler...
+2025-06-04 11:54:59,233 - agent_workflow.input_controller - INFO - Standard mouse listener started successfully
+2025-06-04 11:54:59,234 - agent_workflow.input_controller - INFO - Keyboard listener started successfully
+2025-06-04 11:54:59,234 - agent_workflow.input_controller - INFO - Input controller initialized (safe mode)
+2025-06-04 11:54:59,234 - agent_workflow.input_controller - INFO - 🚨 Emergency shutdown: Press Ctrl+1 to immediately stop agent
+2025-06-04 11:54:59,236 - llava_processor - INFO - Connected to Ollama API v0.6.8
+2025-06-04 11:54:59,236 - total_screen_analyzer - INFO - LLaVA visual processor initialized for total screen analysis
+2025-06-04 11:54:59,236 - total_screen_analyzer - INFO - Total Screen Analyzer initialized with 8s interval
+2025-06-04 11:54:59,237 - adaptive_retry_automation_handler - INFO - 🔄 Adaptive retry automation system loaded
+2025-06-04 11:54:59,237 - universal_intelligent_automation_handler - INFO - ✅ Adaptive retry automation handler loaded successfully
+2025-06-04 11:54:59,237 - universal_intelligent_automation_handler - INFO - ✅ Plan persistence module loaded successfully
+2025-06-04 11:54:59,237 - agent_workflow.input_controller - INFO - Standard mouse listener started successfully
+2025-06-04 11:54:59,238 - agent_workflow.input_controller - INFO - Keyboard listener started successfully
+2025-06-04 11:54:59,238 - agent_workflow.input_controller - INFO - Input controller initialized (safe mode)
+2025-06-04 11:54:59,238 - agent_workflow.input_controller - INFO - 🚨 Emergency shutdown: Press Ctrl+1 to immediately stop agent
+2025-06-04 11:54:59,239 - llava_processor - INFO - Connected to Ollama API v0.6.8
+2025-06-04 11:54:59,239 - total_screen_analyzer - INFO - LLaVA visual processor initialized for total screen analysis
+2025-06-04 11:54:59,240 - total_screen_analyzer - INFO - Total Screen Analyzer initialized with 8s interval
+2025-06-04 11:54:59,240 - universal_intelligent_automation_handler - INFO - 🤖 Universal automation components loaded successfully
+2025-06-04 11:54:59,240 - FixPlanPersistence - WARNING - ⚠️ Could not find load_plan_persistence method in universal_intelligent_automation_handler
+2025-06-04 11:54:59,240 - FixPlanPersistence - ERROR - ❌ Step 3 failed
+2025-06-04 11:54:59,240 - FixPlanPersistence - INFO - Step 4: Fixing adaptive_retry_automation_handler...
+2025-06-04 11:54:59,240 - FixPlanPersistence - WARNING - ⚠️ Could not find load_plan_persistence method in adaptive_retry_automation_handler
+2025-06-04 11:54:59,240 - FixPlanPersistence - ERROR - ❌ Step 4 failed
+2025-06-04 11:54:59,240 - FixPlanPersistence - INFO - Step 5: Verifying fixes...
+2025-06-04 11:54:59,240 - FixPlanPersistence - INFO - ✅ generate_plan_id function exists in plan_persistence module
+2025-06-04 11:54:59,240 - FixPlanPersistence - INFO - ✅ Generated test plan ID: test_1749052499
+2025-06-04 11:54:59,240 - FixPlanPersistence - INFO - ✅ Successfully imported real_agent_automation_handler module
+2025-06-04 11:54:59,240 - FixPlanPersistence - INFO - ✅ Successfully imported universal_intelligent_automation_handler module
+2025-06-04 11:54:59,240 - FixPlanPersistence - INFO - ✅ Successfully imported adaptive_retry_automation_handler module
+2025-06-04 11:54:59,240 - FixPlanPersistence - INFO - ✅ Step 5 completed successfully
+2025-06-04 11:54:59,240 - FixPlanPersistence - INFO - Step 6: Restarting fix_do_button_pending_plans.py...
+2025-06-04 11:54:59,269 - FixPlanPersistence - INFO - Started fix_do_button_pending_plans.py with PID 78671
+2025-06-04 11:54:59,270 - FixPlanPersistence - INFO - ✅ Step 6 completed successfully
+2025-06-04 11:54:59,270 - FixPlanPersistence - INFO - ✅ Plan Persistence Fix completed
+2025-06-04 11:54:59,270 - FixPlanPersistence - INFO - The DO button system should now have proper plan persistence

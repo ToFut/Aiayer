@@ -8,9 +8,17 @@
 export const CONFIG = {
     // WebSocket connections
     websockets: {
+
+        // DO button server for direct automation and notifications
+        doButton: {
+            url: 'ws://localhost:8765',
+            reconnectAttempts: 10,
+            reconnectDelay: 1000,
+            debug: true
+        },
         // LLM service with context awareness (main chat interface)
         llm: {
-            url: 'ws://localhost:8767', // Updated to use enhanced backend with real responses
+            url: 'ws://localhost:8767', // Fixed to use working backend server
             reconnectAttempts: 10,
             reconnectDelay: 1000,
             debug: false
@@ -18,7 +26,7 @@ export const CONFIG = {
         
         // Bridge server for sensor data and context integration
         bridge: {
-            url: 'ws://localhost:8767', // Updated to use the same enhanced backend as LLM service
+            url: 'ws://localhost:8767', // Fixed to use working backend server
             reconnectAttempts: 10,
             reconnectDelay: 1000,
             debug: false
@@ -26,7 +34,7 @@ export const CONFIG = {
         
         // Backend server for additional services
         backend: {
-            url: 'ws://localhost:8767',
+            url: 'ws://localhost:8767', // Fixed to use working backend server
             reconnectAttempts: 10,
             reconnectDelay: 1000,
             debug: false

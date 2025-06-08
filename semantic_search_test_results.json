@@ -1,0 +1,73 @@
+{
+  "total_tests": 6,
+  "successful_tests": 0,
+  "failed_tests": 6,
+  "query_results": [
+    {
+      "query": "development and coding",
+      "description": "Basic development query",
+      "expected_keywords": [
+        "coding",
+        "python",
+        "development"
+      ],
+      "result_count": 0,
+      "search_time_seconds": 0.008764982223510742,
+      "success": false
+    },
+    {
+      "query": "memory architecture and system design",
+      "description": "System architecture query",
+      "expected_keywords": [
+        "memory",
+        "architecture",
+        "system"
+      ],
+      "result_count": 0,
+      "search_time_seconds": 0.007396221160888672,
+      "success": false
+    },
+    {
+      "query": "debugging errors in logs",
+      "description": "Error debugging query",
+      "expected_keywords": [
+        "error",
+        "debug",
+        "log"
+      ],
+      "result_count": 0,
+      "search_time_seconds": 0.008015871047973633,
+      "success": false
+    },
+    {
+      "query": "testing search functionality",
+      "description": "Test validation query",
+      "expected_keywords": [
+        "test",
+        "search",
+        "valid"
+      ],
+      "result_count": 0,
+      "search_time_seconds": 0.007066011428833008,
+      "success": false
+    },
+    {
+      "query": "AI semantic vector embeddings",
+      "description": "Technical AI query",
+      "expected_keywords": [
+        "semantic",
+        "vector",
+        "ai"
+      ],
+      "result_count": 0,
+      "search_time_seconds": 0.0069730281829833984,
+      "success": false
+    }
+  ],
+  "memory_stats": {
+    "short_term_count": 12,
+    "long_term_count": 0,
+    "vector_store_size": 1248
+  },
+  "test_duration": 0.03836393356323242
+}

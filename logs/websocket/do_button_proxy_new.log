@@ -1,0 +1,18 @@
+2025-06-03 19:58:26,671 - do_button_neural_proxy - INFO - ============================================================
+2025-06-03 19:58:26,672 - do_button_neural_proxy - INFO -   DO Button Neural UI Proxy - Starting
+2025-06-03 19:58:26,672 - do_button_neural_proxy - INFO - ============================================================
+2025-06-03 19:58:26,672 - do_button_neural_proxy - INFO - This proxy bridges communication between:
+2025-06-03 19:58:26,672 - do_button_neural_proxy - INFO - - The Ultimate DO Button Server (port 8765)
+2025-06-03 19:58:26,672 - do_button_neural_proxy - INFO - - The Neural UI Detector Server (port 8768)
+2025-06-03 19:58:26,672 - do_button_neural_proxy - INFO - - Client applications like the overlay chat
+2025-06-03 19:58:26,672 - do_button_neural_proxy - INFO - ============================================================
+2025-06-03 19:58:26,674 - do_button_neural_proxy - INFO - Server status: DO Button (8765): True, Neural UI (8768): True, Backend (8767): True
+2025-06-03 19:58:26,675 - do_button_neural_proxy - INFO - Testing connectivity to required servers...
+2025-06-03 19:58:26,675 - do_button_neural_proxy - INFO - Testing DO Button Server connection...
+2025-06-03 19:58:26,739 - do_button_neural_proxy - INFO - ✅ DO Button Server welcome received: welcome
+2025-06-03 19:58:26,740 - do_button_neural_proxy - INFO - ✅ DO Button Server responded: echo
+2025-06-03 19:58:26,740 - do_button_neural_proxy - INFO - Testing Neural UI Detector Server connection...
+2025-06-03 19:58:26,746 - do_button_neural_proxy - INFO - ✅ Neural UI Detector Server welcome received: welcome
+2025-06-03 19:58:26,747 - do_button_neural_proxy - INFO - ✅ Neural UI Detector Server responded: error
+2025-06-03 19:58:26,747 - do_button_neural_proxy - INFO - ✅ All required servers are running and responding
+2025-06-03 19:58:26,747 - do_button_neural_proxy - ERROR - Failed to start proxy server: [Errno 48] Address already in use

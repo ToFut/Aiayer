@@ -358,7 +358,7 @@ class ContextualBrainRouter:
         
         return base_response
 
-    async def handle_websocket(self, websocket):
+    async def handle_websocket(websocket, path=None):
         """Handle WebSocket connections with contextual processing"""
         client_id = f"client_{int(time.time() * 1000)}"
         self.connected_clients.add(client_id)

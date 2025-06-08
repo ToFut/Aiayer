@@ -1,0 +1,25 @@
+2025-06-03 02:10:38,441 - fixed_do_button_exam - INFO - Generated sample screenshot for browser_search at /Users/segevbin/Desktop/SensAI/Aiayer/test_screenshots/browser_search.png
+2025-06-03 02:10:38,482 - fixed_do_button_exam - INFO - Generated sample screenshot for email_compose at /Users/segevbin/Desktop/SensAI/Aiayer/test_screenshots/email_compose.png
+2025-06-03 02:10:38,528 - fixed_do_button_exam - INFO - Generated sample screenshot for spreadsheet_data at /Users/segevbin/Desktop/SensAI/Aiayer/test_screenshots/spreadsheet_data.png
+2025-06-03 02:10:38,571 - fixed_do_button_exam - INFO - Generated sample screenshot for calendar_event at /Users/segevbin/Desktop/SensAI/Aiayer/test_screenshots/calendar_event.png
+2025-06-03 02:10:38,615 - fixed_do_button_exam - INFO - Generated sample screenshot for social_media_post at /Users/segevbin/Desktop/SensAI/Aiayer/test_screenshots/social_media_post.png
+2025-06-03 02:10:38,676 - fixed_do_button_exam - INFO - Generated sample screenshot for file_management at /Users/segevbin/Desktop/SensAI/Aiayer/test_screenshots/file_management.png
+2025-06-03 02:10:38,772 - fixed_do_button_exam - INFO - Generated sample screenshot for code_editing at /Users/segevbin/Desktop/SensAI/Aiayer/test_screenshots/code_editing.png
+2025-06-03 02:10:38,959 - fixed_do_button_exam - INFO - Generated sample screenshot for shopping_cart at /Users/segevbin/Desktop/SensAI/Aiayer/test_screenshots/shopping_cart.png
+2025-06-03 02:10:39,068 - fixed_do_button_exam - INFO - Generated sample screenshot for pdf_form at /Users/segevbin/Desktop/SensAI/Aiayer/test_screenshots/pdf_form.png
+2025-06-03 02:10:39,127 - fixed_do_button_exam - INFO - Generated sample screenshot for data_visualization at /Users/segevbin/Desktop/SensAI/Aiayer/test_screenshots/data_visualization.png
+2025-06-03 02:10:39,128 - fixed_do_button_exam - INFO - Starting Fixed WebSocket server on localhost:8767
+2025-06-03 02:10:39,283 - websockets.server - INFO - server listening on 127.0.0.1:8767
+2025-06-03 02:10:39,283 - websockets.server - INFO - server listening on [::1]:8767
+2025-06-03 02:10:39,284 - fixed_do_button_exam - INFO - Opening exam page in browser: file:///Users/segevbin/Desktop/SensAI/Aiayer/fixed_agent_do_button_exam.html
+2025-06-03 02:10:39,689 - fixed_do_button_exam - INFO - Fixed DO Button Exam Server running at ws://localhost:8767
+2025-06-03 02:10:39,690 - fixed_do_button_exam - INFO - Press Ctrl+C to stop the server
+2025-06-03 02:10:40,826 - websockets.server - INFO - connection open
+2025-06-03 02:10:40,827 - fixed_do_button_exam - INFO - Client client_4417339808 connected from ::1
+2025-06-03 02:10:47,021 - fixed_do_button_exam - INFO - Received agent request for session exam_session_1748931040720: Ask the agent to search for "artificial intelligence news" in the search bar and click the search button.
+2025-06-03 02:10:48,223 - fixed_do_button_exam - INFO - Generated plan for exam_session_1748931040720: {'steps': [{'type': 'text', 'target': 'search_box', 'text': 'artificial intelligence news', 'description': 'Type "artificial intelligence news" in the search box'}, {'type': 'click', 'target': 'search_button', 'description': 'Click the search button'}]}
+2025-06-03 02:10:52,147 - fixed_do_button_exam - INFO - Received button action: EXECUTE_PLAN for plan exam_session_1748931040720
+2025-06-03 02:10:54,563 - fixed_do_button_exam - INFO - Execution completed for session exam_session_1748931040720 in 6.54s
+2025-06-03 02:15:39,267 - fixed_do_button_exam - INFO - Saved 1 test results to logs/exams/results/fixed_exam_results_20250603_021539.json
+2025-06-03 02:15:49,384 - fixed_do_button_exam - INFO - Received button action: EXECUTE_PLAN for plan exam_session_1748931040720
+2025-06-03 02:15:51,543 - fixed_do_button_exam - INFO - Execution completed for session exam_session_1748931040720 in 303.52s

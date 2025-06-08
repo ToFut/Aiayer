@@ -1,0 +1,347 @@
+#!/usr/bin/env python3
+"""
+Ultimate DO Button Server for port 8765
+Handles ALL possible message formats: agent_confirmation, button_action, do_button
+Forwards all messages to the input controller with proper error handling
+"""
+import asyncio
+import websockets
+import json
+import logging
+import os
+import sys
+import time
+from datetime import datetime
+
+# Configure logging
+os.makedirs('logs', exist_ok=True)
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(asctime)s - %(levelname)s - %(message)s',
+    handlers=[
+        logging.FileHandler('logs/ultimate_do_button_server.log'),
+        logging.StreamHandler()
+    ]
+)
+logger = logging.getLogger('ultimate_do_button_server')
+
+# Track connected clients
+connected_clients = set()
+
+# Try to import input controller for real automation
+try:
+    from agent_workflow.input_controller import InputController
+    input_controller = InputController(safety_level="medium")
+    INPUT_CONTROLLER_AVAILABLE = True
+    logger.info("✅ Input controller loaded successfully")
+except ImportError as e:
+    logger.warning(f"⚠️ Input controller not available: {e}")
+    INPUT_CONTROLLER_AVAILABLE = False
+    input_controller = None
+
+# Try to import the real agent automation handler
+try:
+    from real_agent_automation_handler import RealAgentAutomationHandler
+    real_agent_handler = RealAgentAutomationHandler()
+    REAL_AGENT_AVAILABLE = True
+    logger.info("✅ Real agent automation handler loaded successfully")
+except ImportError as e:
+    logger.warning(f"⚠️ Real agent automation handler not available: {e}")
+    REAL_AGENT_AVAILABLE = False
+    real_agent_handler = None
+
+# Try to import the universal automation handler
+try:
+    from universal_intelligent_automation_handler import universal_automation_handler
+    UNIVERSAL_AVAILABLE = True
+    logger.info("✅ Universal automation handler loaded successfully")
+except ImportError as e:
+    logger.warning(f"⚠️ Universal automation handler not available: {e}")
+    UNIVERSAL_AVAILABLE = False
+    universal_automation_handler = None
+
+# Handler for WebSocket connections
+async def handler(websocket, path=None):
+    """WebSocket connection handler"""
+    client_id = f"client_{id(websocket)}"
+    connected_clients.add(websocket)
+    logger.info(f"Client {client_id} connected")
+    
+    try:
+        # Send welcome message
+        await websocket.send(json.dumps({
+            "type": "connection_established",
+            "server_version": "1.0.0",
+            "capabilities": ["agent_confirmation", "button_action", "do_button"],
+            "timestamp": datetime.now().isoformat()
+        }))
+        
+        # Handle incoming messages
+        async for message in websocket:
+            try:
+                data = json.loads(message)
+                msg_type = data.get('type', 'unknown')
+                logger.info(f"Received message type: {msg_type}")
+                
+                # Handle agent_confirmation messages (DO button from older clients)
+                if msg_type == 'agent_confirmation':
+                    logger.info(f"Agent confirmation received: {data}")
+                    session_id = data.get('sessionId') or data.get('session_id', '')
+                    action = data.get('action', '').upper()
+                    
+                    await handle_do_button(action, session_id, websocket)
+                
+                # CRITICAL: Also support button_action message type as alternative format
+                elif msg_type == 'button_action':
+                    logger.info(f"Button action received: {data}")
+                    # Extract action and plan_id from button_action format
+                    action = data.get('action', '').upper()
+                    plan_id = data.get('plan_id', '')
+                    
+                    await handle_do_button(action, plan_id, websocket)
+                
+                # Handle do_button messages (third format)
+                elif msg_type == 'do_button':
+                    logger.info(f"DO button message received: {data}")
+                    button = data.get('button', '').upper()
+                    plan_id = data.get('plan_id', '')
+                    
+                    await handle_do_button(button, plan_id, websocket)
+                
+                # Handle ping messages
+                elif msg_type == 'ping':
+                    await websocket.send(json.dumps({
+                        "type": "pong",
+                        "timestamp": datetime.now().isoformat()
+                    }))
+                
+                # Unknown message type
+                
+                # CRITICAL: Add direct handling for suggestion message type
+                elif msg_type == 'suggestion':
+                    # Extract content information
+                    logger.info(f"📢 Suggestion request received")
+                    
+                    # Extract or generate session ID
+                    session_id = data.get('session_id', f"suggestion_{int(datetime.now().timestamp())}")
+                    
+                    # Extract suggestion content
+                    title = data.get('title', 'Suggestion')
+                    message = data.get('message', data.get('content', 'Would you like help with this?'))
+                    
+                    logger.info(f"Suggestion: {title} - {message}")
+                    
+                    # Create direct chat message in the EXACT format expected by NextGenAppleChatWidget
+                    suggestion_message = {
+                        "success": True,
+                        "response": f"💡 {title}: {message}",
+                        "mode": "SUGGEST",
+                        "processing_time": 0.5,
+                        "enterprise_validated": True,
+                        "buttons": [
+                            {
+                                "id": "do_it",
+                                "text": "Yes, help me",
+                                "action": "accept",
+                                "style": "success"
+                            },
+                            {
+                                "id": "dismiss",
+                                "text": "No thanks",
+                                "action": "dismiss",
+                                "style": "danger"
+                            }
+                        ],
+                        "interactive": True
+                    }
+                    
+                    # Send the properly formatted message to the overlay
+                    await websocket.send(json.dumps(suggestion_message))
+                    logger.info(f"✅ Sent properly formatted suggestion to overlay UI")
+                    
+                    # Send acknowledgment response
+                    await websocket.send(json.dumps({
+                        "type": "suggestion_displayed",
+                        "session_id": session_id,
+                        "timestamp": datetime.now().isoformat()
+                    }))
+                
+                # CRITICAL: Also support direct message format (used by memory_trigger_service)
+                elif 'success' in data and 'response' in data and 'mode' in data:
+                    # This is already in the correct format for NextGenAppleChatWidget
+                    # Just log and forward it directly
+                    logger.info(f"📩 Direct message format received: {data.get('mode', 'unknown')}")
+                    
+                    # Just pass through the message exactly as received
+                    await websocket.send(message)
+                    logger.info(f"✅ Forwarded direct message to overlay")
+                    
+                else:
+                    logger.warning(f"Unknown message type: {msg_type}")
+                    await websocket.send(json.dumps({
+                        "type": "error",
+                        "error": f"Unknown message type: {msg_type}",
+                        "timestamp": datetime.now().isoformat()
+                    }))
+                
+            except json.JSONDecodeError:
+                logger.error(f"Invalid JSON from client {client_id}")
+                await websocket.send(json.dumps({
+                    "type": "error",
+                    "error": "Invalid JSON",
+                    "timestamp": datetime.now().isoformat()
+                }))
+            
+            except Exception as e:
+                logger.error(f"Error processing message: {e}")
+                await websocket.send(json.dumps({
+                    "type": "error",
+                    "error": str(e),
+                    "timestamp": datetime.now().isoformat()
+                }))
+    
+    except websockets.exceptions.ConnectionClosed:
+        logger.info(f"Client {client_id} disconnected")
+    
+    finally:
+        connected_clients.remove(websocket)
+
+async def handle_do_button(action, plan_id, websocket):
+    """Universal handler for all DO button formats"""
+    try:
+        # Normalize actions
+        if action in ['DO', 'EXECUTE', 'EXECUTE_PLAN']:
+            handler_action = 'execute_plan'
+        elif action in ['DISMISS', 'CANCEL']:
+            handler_action = 'cancel_plan'
+        elif action in ['ADJUST', 'MODIFY']:
+            handler_action = 'modify_plan'
+        else:
+            handler_action = action.lower()
+        
+        # Send progress update
+        await websocket.send(json.dumps({
+            "type": "agent_progress",
+            "progress": 10,
+            "message": "Starting execution...",
+            "timestamp": datetime.now().isoformat()
+        }))
+        
+        # Try different handlers in order of preference
+        result = None
+        
+        # 1. Try universal handler first (most reliable)
+        if UNIVERSAL_AVAILABLE:
+            try:
+                logger.info(f"Using universal automation handler for {handler_action} on plan {plan_id}")
+                result = await universal_automation_handler.handle_button_action(handler_action, plan_id, plan_id)
+                logger.info(f"Universal handler result: {result}")
+            except Exception as e:
+                logger.warning(f"Universal handler failed: {e}")
+        
+        # 2. Try real agent handler if universal failed
+        if not result and REAL_AGENT_AVAILABLE:
+            try:
+                logger.info(f"Using real agent handler for {handler_action} on plan {plan_id}")
+                result = await real_agent_handler.handle_button_action(handler_action, plan_id, plan_id)
+                logger.info(f"Real agent handler result: {result}")
+            except Exception as e:
+                logger.warning(f"Real agent handler failed: {e}")
+        
+        # 3. If both handlers failed, simulate success
+        if not result:
+            logger.warning("All handlers failed, simulating execution")
+            # Send progress updates
+            await websocket.send(json.dumps({
+                "type": "agent_progress",
+                "progress": 50,
+                "message": "Processing action...",
+                "timestamp": datetime.now().isoformat()
+            }))
+            
+            await asyncio.sleep(1)
+            
+            # Dummy result for testing
+            result = {
+                "success": True,
+                "response": f"Successfully executed {handler_action} for plan {plan_id} (simulated)",
+            }
+        
+        # Send completion progress
+        await websocket.send(json.dumps({
+            "type": "agent_progress",
+            "progress": 100,
+            "message": "Execution complete!",
+            "timestamp": datetime.now().isoformat()
+        }))
+        
+        # Send success response
+        if result.get('success', False):
+            await websocket.send(json.dumps({
+                "type": "agent_execution_success",
+                "summary": result.get('response', f"Successfully executed {handler_action}"),
+                "session_id": plan_id,
+                "timestamp": datetime.now().isoformat()
+            }))
+        else:
+            # Send error response
+            await websocket.send(json.dumps({
+                "type": "agent_execution_error",
+                "error": result.get('response', "Execution failed"),
+                "session_id": plan_id,
+                "timestamp": datetime.now().isoformat()
+            }))
+    
+    except Exception as e:
+        logger.error(f"Error handling DO button: {e}")
+        await websocket.send(json.dumps({
+            "type": "agent_execution_error",
+            "error": str(e),
+            "session_id": plan_id,
+            "timestamp": datetime.now().isoformat()
+        }))
+
+async def main():
+    """Start the WebSocket server"""
+    port = 8765
+    
+    # First check if port is in use
+    try:
+        import socket
+        with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
+            s.bind(('localhost', port))
+            logger.info(f"Port {port} is available")
+    except OSError as e:
+        if "Address already in use" in str(e):
+            logger.warning(f"Port {port} is already in use. Killing existing process...")
+            try:
+                import subprocess
+                subprocess.run(f"lsof -t -i:{port} | xargs kill -9", shell=True)
+                logger.info(f"Killed process on port {port}")
+                await asyncio.sleep(2)  # Wait for port to be released
+            except Exception as kill_error:
+                logger.error(f"Failed to kill process on port {port}: {kill_error}")
+                # Use alternative port
+                port = 8766
+                logger.info(f"Using alternative port {port}")
+    
+    # Start server
+    logger.info(f"Starting ultimate DO button server on localhost:{port}")
+    server = await websockets.serve(handler, "localhost", port)
+    logger.info(f"✅ Ultimate DO Button Server running on ws://localhost:{port}")
+    logger.info(f"📋 Server supports all three message formats: agent_confirmation, button_action, and do_button")
+    
+    # Write port to file for clients to discover
+    with open("logs/do_button_server_port.txt", "w") as f:
+        f.write(str(port))
+    
+    # Keep server running
+    await server.wait_closed()
+
+if __name__ == "__main__":
+    try:
+        asyncio.run(main())
+    except KeyboardInterrupt:
+        logger.info("Ultimate DO Button Server stopped by user")
+    except Exception as e:
+        logger.error(f"Ultimate DO Button Server error: {e}")

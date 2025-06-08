@@ -1,0 +1,20 @@
+2025-06-07 23:07:12,582 - INFO - Starting Direct Overlay Handler on port 8766
+2025-06-07 23:07:12,614 - INFO - server listening on 0.0.0.0:8766
+2025-06-07 23:07:12,839 - INFO - connection open
+2025-06-07 23:07:12,840 - INFO - Client client_1749352032840 connected
+2025-06-07 23:07:12,844 - INFO - Received message type: register from client client_1749352032840
+2025-06-07 23:07:14,569 - INFO - connection open
+2025-06-07 23:07:14,569 - INFO - Client client_1749352034569 connected
+2025-06-07 23:07:14,569 - INFO - Received message type: register from client client_1749352034569
+2025-06-07 23:07:14,570 - INFO - Received message type: llm_request from client client_1749352034569
+2025-06-07 23:07:14,570 - INFO - Processing query: Testing the direct overlay handler fix...
+2025-06-07 23:09:23,958 - INFO - connection open
+2025-06-07 23:09:23,958 - INFO - Client client_1749352163958 connected
+2025-06-07 23:09:23,959 - INFO - Received message type: register from client client_1749352163958
+2025-06-07 23:09:23,960 - INFO - Received message type: llm_request from client client_1749352163958
+2025-06-07 23:09:23,960 - INFO - Processing query: Testing overlay response after fix. This should ap...
+2025-06-07 23:10:25,972 - INFO - connection open
+2025-06-07 23:10:25,973 - INFO - Client client_1749352225973 connected
+2025-06-07 23:10:25,974 - INFO - Received message type: register from client client_1749352225973
+2025-06-07 23:10:27,428 - INFO - Received message type: llm_request from client client_1749352225973
+2025-06-07 23:10:27,428 - INFO - Processing query: Explain how machine learning algorithms work...

@@ -189,7 +189,7 @@ class RealAIBackend:
         return prefixes.get(mode, "🤖")
 
 
-    async def handle_websocket(self, websocket):
+    async def handle_websocket(websocket, path=None):
         """Handle WebSocket connections with real AI integration"""
         client_id = f"client_{int(time.time() * 1000)}"
         client_ip = websocket.remote_address[0] if websocket.remote_address else "unknown"

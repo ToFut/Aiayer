@@ -1,0 +1,22 @@
+2025-06-08 12:52:05,265 - suggestion_monitor - INFO - Starting memory-aware suggestion monitor
+2025-06-08 12:52:05,265 - suggestion_monitor - WARNING - Cannot find conscious memory prompt file
+2025-06-08 12:52:05,265 - suggestion_monitor - INFO - Connecting to WebSocket at ws://localhost:8765...
+2025-06-08 12:52:05,312 - suggestion_monitor - ERROR - Cannot send suggestion: WebSocket not connected
+2025-06-08 12:52:05,312 - suggestion_monitor - INFO - Processed suggestion: Verify Epiphany Mode (confidence: 0.9)
+2025-06-08 12:52:05,313 - suggestion_monitor - ERROR - WebSocket connection error: Multiple exceptions: [Errno 61] Connect call failed ('::1', 8765, 0, 0), [Errno 61] Connect call failed ('127.0.0.1', 8765)
+2025-06-08 12:52:15,314 - suggestion_monitor - INFO - Connecting to WebSocket at ws://localhost:8765...
+2025-06-08 12:52:15,318 - suggestion_monitor - ERROR - WebSocket connection error: Multiple exceptions: [Errno 61] Connect call failed ('::1', 8765, 0, 0), [Errno 61] Connect call failed ('127.0.0.1', 8765)
+2025-06-08 12:52:25,318 - suggestion_monitor - INFO - Connecting to WebSocket at ws://localhost:8765...
+2025-06-08 12:52:25,323 - suggestion_monitor - INFO - Connected to WebSocket server
+2025-06-08 12:52:25,323 - suggestion_monitor - INFO - Received message: welcome
+2025-06-08 12:52:55,079 - suggestion_monitor - INFO - Received message: heartbeat
+2025-06-08 12:53:25,079 - suggestion_monitor - INFO - Received message: heartbeat
+2025-06-08 12:53:55,084 - suggestion_monitor - INFO - Received message: heartbeat
+2025-06-08 12:54:25,087 - suggestion_monitor - INFO - Received message: heartbeat
+2025-06-08 12:54:55,087 - suggestion_monitor - INFO - Received message: heartbeat
+2025-06-08 12:55:25,108 - suggestion_monitor - INFO - Received message: heartbeat
+2025-06-08 12:59:58,872 - suggestion_monitor - INFO - Received message: heartbeat
+2025-06-08 13:00:28,872 - suggestion_monitor - INFO - Received message: heartbeat
+2025-06-08 13:00:58,874 - suggestion_monitor - INFO - Received message: heartbeat
+2025-06-08 13:01:28,876 - suggestion_monitor - INFO - Received message: heartbeat
+2025-06-08 13:01:58,876 - suggestion_monitor - INFO - Received message: heartbeat

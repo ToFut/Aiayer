@@ -1,0 +1,57 @@
+{
+  "timestamp": "2025-05-29T14:53:44.361658",
+  "query_results": [
+    {
+      "query": "python development",
+      "description": "Programming language",
+      "expected_match": "Python development workflow with VSCode for efficient coding",
+      "found_expected": true,
+      "result_count": 3,
+      "search_time": 0.0045697689056396484,
+      "top_result": "Python development workflow with VSCode for efficient coding",
+      "top_score": 0.5846391089802874
+    },
+    {
+      "query": "semantic vector search",
+      "description": "AI search technology",
+      "expected_match": "Semantic search using vector embeddings and cosine similarity",
+      "found_expected": true,
+      "result_count": 2,
+      "search_time": 0.003124237060546875,
+      "top_result": "Semantic search using vector embeddings and cosine similarity",
+      "top_score": 0.6123724356957946
+    },
+    {
+      "query": "memory architecture",
+      "description": "System design",
+      "expected_match": "Memory system architecture with short-term and long-term storage",
+      "found_expected": true,
+      "result_count": 2,
+      "search_time": 0.0032460689544677734,
+      "top_result": "Memory system architecture with short-term and long-term storage",
+      "top_score": 0.43036201039413546
+    },
+    {
+      "query": "debugging issues",
+      "description": "Problem solving",
+      "expected_match": "Debugging memory integration issues with detailed logging",
+      "found_expected": true,
+      "result_count": 2,
+      "search_time": 0.0026102066040039062,
+      "top_result": "Debugging memory integration issues with detailed logging",
+      "top_score": 0.6146974675985541
+    },
+    {
+      "query": "websocket port",
+      "description": "Network communication",
+      "expected_match": "WebSocket server running on port 8765 for real-time communication",
+      "found_expected": true,
+      "result_count": 1,
+      "search_time": 0.0020351409912109375,
+      "top_result": "WebSocket server running on port 8765 for real-time communication",
+      "top_score": 0.4630629931442642
+    }
+  ],
+  "success_rate": 100.0,
+  "context_test_improved": false
+}

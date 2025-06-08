@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WebSocket Debug for DO Button</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Segoe UI', Roboto, sans-serif;
+            background: #f2f2f7;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+            line-height: 1.5;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        
+        h1, h2 {
+            margin-top: 0;
+            margin-bottom: 10px;
+        }
+        
+        h1 {
+            color: #007aff;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .debug-panel {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+        
+        .logs-container {
+            display: flex;
+            gap: 20px;
+            flex: 1;
+        }
+        
+        .log-panel {
+            flex: 1;
+            background: #1e1e1e;
+            color: #dcdcdc;
+            border-radius: 8px;
+            padding: 12px;
+            font-family: monospace;
+            overflow-y: auto;
+            height: 400px;
+            position: relative;
+        }
+        
+        .log-title {
+            position: sticky;
+            top: 0;
+            background: #2d2d2d;
+            padding: 6px 10px;
+            margin: -12px -12px 10px -12px;
+            border-top-left-radius: 8px;
+            border-top-right-radius: 8px;
+            font-size: 14px;
+            font-weight: bold;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .clear-btn {
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            color: #dcdcdc;
+            padding: 2px 6px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 12px;
+        }
+        
+        .clear-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+        
+        .log-entry {
+            border-bottom: 1px solid #333;
+            padding-bottom: 8px;
+            margin-bottom: 8px;
+            word-wrap: break-word;
+        }
+        
+        .timestamp {
+            color: #777;
+            font-size: 12px;
+            margin-right: 5px;
+        }
+        
+        .type-sent {
+            color: #4caf50;
+        }
+        
+        .type-received {
+            color: #2196f3;
+        }
+        
+        .type-error {
+            color: #f44336;
+        }
+        
+        .type-info {
+            color: #ff9800;
+        }
+        
+        .controls {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .control-group {
+            background: white;
+            border-radius: 10px;
+            padding: 15px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .control-title {
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #007aff;
+        }
+        
+        .input-group {
+            margin-bottom: 10px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-size: 13px;
+        }
+        
+        input, select, textarea {
+            width: 100%;
+            padding: 8px 10px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 14px;
+            box-sizing: border-box;
+            font-family: inherit;
+        }
+        
+        textarea {
+            min-height: 80px;
+            resize: vertical;
+        }
+        
+        button {
+            background: #007aff;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 500;
+            font-size: 14px;
+            transition: all 0.2s;
+        }
+        
+        button:hover {
+            background: #0064d6;
+            transform: translateY(-1px);
+        }
+        
+        button:active {
+            transform: translateY(1px);
+        }
+        
+        .button-row {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
+        }
+        
+        .do-btn {
+            background: linear-gradient(to right, #4caf50, #45a049);
+        }
+        
+        .dismiss-btn {
+            background: linear-gradient(to right, #f44336, #d32f2f);
+        }
+        
+        .do-btn:hover {
+            background: linear-gradient(to right, #5cbe60, #55b059);
+        }
+        
+        .dismiss-btn:hover {
+            background: linear-gradient(to right, #ff5446, #e33f3f);
+        }
+        
+        .status {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+        
+        .status-indicator {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #f44336;
+        }
+        
+        .status-indicator.connected {
+            background: #4caf50;
+        }
+        
+        .status-text {
+            font-size: 14px;
+            font-weight: 500;
+        }
+        
+        .progress-panel {
+            background: white;
+            border-radius: 10px;
+            padding: 15px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+            display: none;
+        }
+        
+        .progress-bar {
+            height: 8px;
+            background: #e0e0e0;
+            border-radius: 4px;
+            margin: 10px 0;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(to right, #4caf50, #8bc34a);
+            width: 0%;
+            transition: width 0.5s ease;
+        }
+        
+        .progress-text {
+            font-size: 14px;
+            color: #333;
+        }
+        
+        .success-panel {
+            background: #e8f5e9;
+            border-radius: 10px;
+            padding: 15px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+            border-left: 4px solid #4caf50;
+            display: none;
+        }
+        
+        .success-title {
+            font-weight: bold;
+            color: #2e7d32;
+            margin-bottom: 5px;
+        }
+        
+        .success-message {
+            font-size: 14px;
+            color: #333;
+        }
+        
+        @media (max-width: 768px) {
+            .logs-container {
+                flex-direction: column;
+            }
+            
+            .log-panel {
+                height: 200px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>WebSocket Debug Tool for DO Button</h1>
+        
+        <div class="debug-panel">
+            <h2>Connection</h2>
+            <div class="status">
+                <div class="status-indicator" id="statusIndicator"></div>
+                <div class="status-text" id="statusText">Disconnected</div>
+            </div>
+            
+            <div class="input-group">
+                <label for="wsEndpoint">WebSocket Endpoint</label>
+                <input type="text" id="wsEndpoint" value="ws://localhost:8765" />
+            </div>
+            
+            <div class="button-row">
+                <button id="connectBtn">Connect</button>
+                <button id="disconnectBtn">Disconnect</button>
+            </div>
+        </div>
+        
+        <div class="controls">
+            <div class="control-group">
+                <div class="control-title">Agent Confirmation (DO Button)</div>
+                
+                <div class="input-group">
+                    <label for="sessionId">Session ID</label>
+                    <input type="text" id="sessionId" value="test_session_123" />
+                </div>
+                
+                <div class="input-group">
+                    <label for="action">Action</label>
+                    <select id="action">
+                        <option value="DO">DO</option>
+                        <option value="DISMISS">DISMISS</option>
+                        <option value="ADJUST">ADJUST</option>
+                    </select>
+                </div>
+                
+                <div class="input-group">
+                    <label for="modifications">Modifications (JSON)</label>
+                    <textarea id="modifications">{}</textarea>
+                </div>
+                
+                <div class="button-row">
+                    <button id="doBtn" class="do-btn">Send DO Button Message</button>
+                </div>
+            </div>
+            
+            <div class="control-group">
+                <div class="control-title">Raw Message</div>
+                
+                <div class="input-group">
+                    <label for="rawMessage">Message JSON</label>
+                    <textarea id="rawMessage">{
+    "type": "agent_confirmation",
+    "session_id": "test_session_123",
+    "action": "DO",
+    "modifications": {},
+    "timestamp": "2025-05-29T00:00:00.000Z"
+}</textarea>
+                </div>
+                
+                <div class="button-row">
+                    <button id="sendRawBtn">Send Raw Message</button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="progress-panel" id="progressPanel">
+            <div class="control-title">Execution Progress</div>
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill"></div>
+            </div>
+            <div class="progress-text" id="progressText">0% - Initializing</div>
+        </div>
+        
+        <div class="success-panel" id="successPanel">
+            <div class="success-title">Execution Completed</div>
+            <div class="success-message" id="successMessage"></div>
+        </div>
+        
+        <div class="logs-container">
+            <div class="log-panel" id="sentLog">
+                <div class="log-title">
+                    <span>Sent Messages</span>
+                    <button class="clear-btn" id="clearSentBtn">Clear</button>
+                </div>
+                <div id="sentLogContent"></div>
+            </div>
+            
+            <div class="log-panel" id="receivedLog">
+                <div class="log-title">
+                    <span>Received Messages</span>
+                    <button class="clear-btn" id="clearReceivedBtn">Clear</button>
+                </div>
+                <div id="receivedLogContent"></div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Elements
+            const statusIndicator = document.getElementById('statusIndicator');
+            const statusText = document.getElementById('statusText');
+            const wsEndpointInput = document.getElementById('wsEndpoint');
+            const connectBtn = document.getElementById('connectBtn');
+            const disconnectBtn = document.getElementById('disconnectBtn');
+            const sessionIdInput = document.getElementById('sessionId');
+            const actionSelect = document.getElementById('action');
+            const modificationsInput = document.getElementById('modifications');
+            const doBtn = document.getElementById('doBtn');
+            const rawMessageInput = document.getElementById('rawMessage');
+            const sendRawBtn = document.getElementById('sendRawBtn');
+            const sentLogContent = document.getElementById('sentLogContent');
+            const receivedLogContent = document.getElementById('receivedLogContent');
+            const clearSentBtn = document.getElementById('clearSentBtn');
+            const clearReceivedBtn = document.getElementById('clearReceivedBtn');
+            const progressPanel = document.getElementById('progressPanel');
+            const progressFill = document.getElementById('progressFill');
+            const progressText = document.getElementById('progressText');
+            const successPanel = document.getElementById('successPanel');
+            const successMessage = document.getElementById('successMessage');
+            
+            // WebSocket
+            let ws = null;
+            
+            // Set default session ID with timestamp
+            sessionIdInput.value = `test_session_${Date.now()}`;
+            
+            // Update raw message template with session ID and timestamp
+            updateRawMessageTemplate();
+            
+            // Connect to WebSocket
+            connectBtn.addEventListener('click', function() {
+                connectWebSocket();
+            });
+            
+            // Disconnect from WebSocket
+            disconnectBtn.addEventListener('click', function() {
+                disconnectWebSocket();
+            });
+            
+            // Send DO button message
+            doBtn.addEventListener('click', function() {
+                sendDOButtonMessage();
+            });
+            
+            // Send raw message
+            sendRawBtn.addEventListener('click', function() {
+                sendRawMessage();
+            });
+            
+            // Clear logs
+            clearSentBtn.addEventListener('click', function() {
+                sentLogContent.innerHTML = '';
+            });
+            
+            clearReceivedBtn.addEventListener('click', function() {
+                receivedLogContent.innerHTML = '';
+            });
+            
+            // Session ID change updates raw message
+            sessionIdInput.addEventListener('input', updateRawMessageTemplate);
+            
+            // Action change updates raw message
+            actionSelect.addEventListener('change', updateRawMessageTemplate);
+            
+            // Connect to WebSocket
+            function connectWebSocket() {
+                if (ws) {
+                    logMessage('Already connected, disconnecting first...', 'info');
+                    disconnectWebSocket();
+                }
+                
+                const endpoint = wsEndpointInput.value.trim();
+                if (!endpoint) {
+                    logMessage('Please enter a valid WebSocket endpoint', 'error');
+                    return;
+                }
+                
+                try {
+                    logMessage(`Connecting to ${endpoint}...`, 'info');
+                    ws = new WebSocket(endpoint);
+                    
+                    ws.onopen = function() {
+                        statusIndicator.classList.add('connected');
+                        statusText.textContent = 'Connected';
+                        logMessage(`Connected to ${endpoint}`, 'info');
+                    };
+                    
+                    ws.onmessage = function(event) {
+                        const data = event.data;
+                        logMessage(data, 'received');
+                        processResponse(data);
+                    };
+                    
+                    ws.onclose = function() {
+                        statusIndicator.classList.remove('connected');
+                        statusText.textContent = 'Disconnected';
+                        logMessage('Connection closed', 'info');
+                        ws = null;
+                    };
+                    
+                    ws.onerror = function(error) {
+                        statusIndicator.classList.remove('connected');
+                        statusText.textContent = 'Error';
+                        logMessage(`WebSocket error: ${error}`, 'error');
+                    };
+                } catch (error) {
+                    logMessage(`Failed to connect: ${error}`, 'error');
+                }
+            }
+            
+            // Disconnect from WebSocket
+            function disconnectWebSocket() {
+                if (ws) {
+                    ws.close();
+                    ws = null;
+                    statusIndicator.classList.remove('connected');
+                    statusText.textContent = 'Disconnected';
+                    logMessage('Disconnected from WebSocket', 'info');
+                }
+            }
+            
+            // Send DO button message
+            function sendDOButtonMessage() {
+                if (!ws || ws.readyState !== WebSocket.OPEN) {
+                    logMessage('Not connected to WebSocket server', 'error');
+                    return;
+                }
+                
+                // Reset progress display
+                resetProgress();
+                
+                // Get values
+                const sessionId = sessionIdInput.value.trim();
+                const action = actionSelect.value;
+                let modifications = {};
+                
+                try {
+                    modifications = JSON.parse(modificationsInput.value);
+                } catch (error) {
+                    logMessage(`Invalid JSON for modifications: ${error}`, 'error');
+                    return;
+                }
+                
+                // Create message
+                const message = {
+                    type: 'agent_confirmation',
+                    session_id: sessionId,
+                    action: action,
+                    modifications: modifications,
+                    timestamp: new Date().toISOString()
+                };
+                
+                // Send message
+                const messageString = JSON.stringify(message);
+                ws.send(messageString);
+                logMessage(messageString, 'sent');
+            }
+            
+            // Send raw message
+            function sendRawMessage() {
+                if (!ws || ws.readyState !== WebSocket.OPEN) {
+                    logMessage('Not connected to WebSocket server', 'error');
+                    return;
+                }
+                
+                // Reset progress display
+                resetProgress();
+                
+                try {
+                    // Parse to ensure valid JSON
+                    const message = JSON.parse(rawMessageInput.value);
+                    
+                    // Send message
+                    const messageString = JSON.stringify(message);
+                    ws.send(messageString);
+                    logMessage(messageString, 'sent');
+                } catch (error) {
+                    logMessage(`Invalid JSON: ${error}`, 'error');
+                }
+            }
+            
+            // Update raw message template
+            function updateRawMessageTemplate() {
+                const sessionId = sessionIdInput.value.trim();
+                const action = actionSelect.value;
+                
+                const template = {
+                    type: 'agent_confirmation',
+                    session_id: sessionId,
+                    action: action,
+                    modifications: {},
+                    timestamp: new Date().toISOString()
+                };
+                
+                rawMessageInput.value = JSON.stringify(template, null, 4);
+            }
+            
+            // Process WebSocket response
+            function processResponse(data) {
+                try {
+                    const response = JSON.parse(data);
+                    
+                    // Handle progress updates
+                    if (response.type === 'agent_progress') {
+                        progressPanel.style.display = 'block';
+                        progressFill.style.width = `${response.progress}%`;
+                        progressText.textContent = `${response.progress}% - ${response.message}`;
+                    }
+                    
+                    // Handle execution success
+                    if (response.type === 'agent_execution_success') {
+                        progressPanel.style.display = 'block';
+                        progressFill.style.width = '100%';
+                        
+                        successPanel.style.display = 'block';
+                        successMessage.textContent = response.summary;
+                    }
+                } catch (error) {
+                    logMessage(`Error processing response: ${error}`, 'error');
+                }
+            }
+            
+            // Reset progress display
+            function resetProgress() {
+                progressPanel.style.display = 'none';
+                progressFill.style.width = '0%';
+                progressText.textContent = '0% - Initializing';
+                
+                successPanel.style.display = 'none';
+                successMessage.textContent = '';
+            }
+            
+            // Log message
+            function logMessage(message, type) {
+                const logContent = type === 'sent' ? sentLogContent : receivedLogContent;
+                
+                // Create log entry
+                const logEntry = document.createElement('div');
+                logEntry.className = 'log-entry';
+                
+                // Create timestamp
+                const timestamp = document.createElement('span');
+                timestamp.className = 'timestamp';
+                timestamp.textContent = new Date().toLocaleTimeString();
+                
+                // Create message content
+                const content = document.createElement('div');
+                content.className = `type-${type}`;
+                
+                // Format message if JSON
+                if (typeof message === 'string' && (message.startsWith('{') || message.startsWith('['))) {
+                    try {
+                        const jsonObj = JSON.parse(message);
+                        content.textContent = JSON.stringify(jsonObj, null, 2);
+                    } catch (e) {
+                        content.textContent = message;
+                    }
+                } else {
+                    content.textContent = message;
+                }
+                
+                // Add to log entry
+                logEntry.appendChild(timestamp);
+                logEntry.appendChild(content);
+                
+                // Add to log content
+                logContent.insertBefore(logEntry, logContent.firstChild);
+            }
+        });
+    </script>
+</body>
+</html>

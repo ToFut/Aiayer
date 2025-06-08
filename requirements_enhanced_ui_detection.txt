@@ -10,6 +10,8 @@ asyncio-throttle>=1.0.0
 # Machine Learning dependencies
 scikit-learn>=1.0.0
 joblib>=1.0.0
+ultralytics>=8.0.0  # For YOLO object detection
+onnxruntime>=1.15.0  # For ONNX model acceleration
 
 # OCR dependencies
 easyocr>=1.6.0

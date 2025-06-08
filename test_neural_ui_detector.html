@@ -1,0 +1,484 @@
+<\!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Neural UI Detector Test</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background-color: #f5f5f7;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+        
+        .container {
+            background-color: white;
+            border-radius: 10px;
+            padding: 20px;
+            width: 90%;
+            max-width: 800px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        h1 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        
+        h2 {
+            color: #555;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            font-size: 18px;
+        }
+        
+        .button-panel {
+            display: flex;
+            gap: 10px;
+            margin: 20px 0;
+            justify-content: center;
+        }
+        
+        .do-btn {
+            background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            padding: 12px 24px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        
+        .do-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(76, 175, 80, 0.4);
+        }
+        
+        .dismiss-btn {
+            background: linear-gradient(135deg, #f44336 0%, #d32f2f 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            padding: 12px 24px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        
+        .dismiss-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(244, 67, 54, 0.4);
+        }
+        
+        .status {
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 20px 0;
+            border-left: 4px solid #4CAF50;
+            font-family: monospace;
+            white-space: pre-wrap;
+            max-height: 200px;
+            overflow-y: auto;
+        }
+        
+        .ui-elements {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .ui-element {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 15px;
+            width: calc(50% - 15px);
+            box-sizing: border-box;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+        
+        @media (max-width: 768px) {
+            .ui-element {
+                width: 100%;
+            }
+        }
+        
+        .ui-element h3 {
+            margin-top: 0;
+            color: #333;
+            font-size: 16px;
+        }
+        
+        .element-preview {
+            margin: 10px 0;
+            display: flex;
+            justify-content: center;
+        }
+        
+        .detection-results {
+            background-color: #f0f7ff;
+            border-radius: 6px;
+            padding: 10px;
+            font-family: monospace;
+            font-size: 13px;
+            white-space: pre-wrap;
+            margin-top: 10px;
+            display: none;
+        }
+        
+        .tabs {
+            display: flex;
+            border-bottom: 1px solid #ddd;
+            margin-bottom: 20px;
+        }
+        
+        .tab {
+            padding: 10px 20px;
+            cursor: pointer;
+            border-bottom: 3px solid transparent;
+        }
+        
+        .tab.active {
+            border-bottom-color: #4CAF50;
+            font-weight: bold;
+        }
+        
+        .tab-content {
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        .progress-container {
+            margin: 20px 0;
+            display: none;
+        }
+        
+        .progress-bar {
+            height: 10px;
+            background-color: #e0e0e0;
+            border-radius: 5px;
+            overflow: hidden;
+            margin-bottom: 10px;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #4CAF50 0%, #8BC34A 100%);
+            width: 0%;
+            transition: width 0.5s ease;
+        }
+        
+        .progress-text {
+            text-align: center;
+            font-size: 14px;
+            color: #555;
+        }
+        
+        input[type="text"], input[type="search"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            font-size: 14px;
+        }
+        
+        .search-btn {
+            background: linear-gradient(135deg, #2196F3 0%, #1976D2 100%);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 15px;
+            font-size: 14px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Neural UI Detector Test</h1>
+        
+        <div class="status" id="connectionStatus">Connecting to WebSocket server...</div>
+        
+        <div class="tabs">
+            <div class="tab active" data-tab="elements">UI Elements</div>
+            <div class="tab" data-tab="test">Test Cases</div>
+            <div class="tab" data-tab="log">Log</div>
+        </div>
+        
+        <div class="tab-content active" id="elements-tab">
+            <h2>Common UI Elements Detection</h2>
+            
+            <div class="ui-elements">
+                <div class="ui-element">
+                    <h3>Button</h3>
+                    <div class="element-preview">
+                        <button>Click Me</button>
+                    </div>
+                    <button class="do-btn detect-btn" data-element="button">Detect</button>
+                    <div class="detection-results" id="button-results"></div>
+                </div>
+                
+                <div class="ui-element">
+                    <h3>Text Input</h3>
+                    <div class="element-preview">
+                        <input type="text" placeholder="Enter text here">
+                    </div>
+                    <button class="do-btn detect-btn" data-element="text-input">Detect</button>
+                    <div class="detection-results" id="text-input-results"></div>
+                </div>
+                
+                <div class="ui-element">
+                    <h3>Search Box</h3>
+                    <div class="element-preview">
+                        <div style="display: flex;">
+                            <input type="search" placeholder="Search...">
+                            <button class="search-btn">🔍</button>
+                        </div>
+                    </div>
+                    <button class="do-btn detect-btn" data-element="search-box">Detect</button>
+                    <div class="detection-results" id="search-box-results"></div>
+                </div>
+                
+                <div class="ui-element">
+                    <h3>Checkbox</h3>
+                    <div class="element-preview">
+                        <input type="checkbox" id="checkbox">
+                        <label for="checkbox">Check me</label>
+                    </div>
+                    <button class="do-btn detect-btn" data-element="checkbox">Detect</button>
+                    <div class="detection-results" id="checkbox-results"></div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="tab-content" id="test-tab">
+            <h2>Intelligent UI Interaction Test</h2>
+            
+            <div class="button-panel">
+                <button class="do-btn" id="doButton">🟢 Execute Action</button>
+                <button class="dismiss-btn" id="dismissButton">🔴 Cancel</button>
+            </div>
+            
+            <div class="progress-container" id="progressContainer">
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressFill"></div>
+                </div>
+                <div class="progress-text" id="progressText">0% - Initializing...</div>
+            </div>
+            
+            <div class="status" id="testStatus">No active test</div>
+        </div>
+        
+        <div class="tab-content" id="log-tab">
+            <h2>Message Log</h2>
+            <div class="status" id="messageLog"></div>
+        </div>
+    </div>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Tab switching
+            const tabs = document.querySelectorAll('.tab');
+            const tabContents = document.querySelectorAll('.tab-content');
+            
+            tabs.forEach(tab => {
+                tab.addEventListener('click', function() {
+                    const tabId = this.getAttribute('data-tab');
+                    
+                    // Remove active class from all tabs and contents
+                    tabs.forEach(t => t.classList.remove('active'));
+                    tabContents.forEach(c => c.classList.remove('active'));
+                    
+                    // Add active class to clicked tab and corresponding content
+                    this.classList.add('active');
+                    document.getElementById(`${tabId}-tab`).classList.add('active');
+                });
+            });
+            
+            // WebSocket connection
+            const connectionStatus = document.getElementById('connectionStatus');
+            const messageLog = document.getElementById('messageLog');
+            const testStatus = document.getElementById('testStatus');
+            const doButton = document.getElementById('doButton');
+            const dismissButton = document.getElementById('dismissButton');
+            const progressContainer = document.getElementById('progressContainer');
+            const progressFill = document.getElementById('progressFill');
+            const progressText = document.getElementById('progressText');
+            const detectButtons = document.querySelectorAll('.detect-btn');
+            
+            let ws = null;
+            
+            // Connect to WebSocket server
+            function connect() {
+                connectionStatus.textContent = 'Connecting to WebSocket server...';
+                
+                ws = new WebSocket('ws://localhost:8765');
+                
+                ws.onopen = function() {
+                    connectionStatus.textContent = '✅ Connected to WebSocket server';
+                    addToLog('Connected to WebSocket server');
+                };
+                
+                ws.onmessage = function(event) {
+                    const data = JSON.parse(event.data);
+                    addToLog('Received: ' + JSON.stringify(data, null, 2));
+                    
+                    // Handle UI detection results
+                    if (data.type === 'ui_detection_result') {
+                        const resultElement = document.getElementById(`${data.element_type}-results`);
+                        if (resultElement) {
+                            resultElement.textContent = JSON.stringify(data.results, null, 2);
+                            resultElement.style.display = 'block';
+                        }
+                    }
+                    
+                    // Handle progress updates
+                    if (data.type === 'agent_progress') {
+                        progressContainer.style.display = 'block';
+                        progressFill.style.width = data.progress + '%';
+                        progressText.textContent = data.progress + '% - ' + data.message;
+                    }
+                    
+                    // Handle execution success
+                    if (data.type === 'agent_execution_success') {
+                        // Complete the progress bar
+                        progressFill.style.width = '100%';
+                        progressText.textContent = '100% - ' + data.summary;
+                        
+                        // Show success message
+                        testStatus.textContent = '✅ Execution completed successfully\!';
+                        testStatus.style.borderLeftColor = '#4CAF50';
+                    }
+                    
+                    // Handle errors
+                    if (data.type === 'error') {
+                        testStatus.textContent = '❌ Error: ' + data.error;
+                        testStatus.style.borderLeftColor = '#f44336';
+                    }
+                };
+                
+                ws.onclose = function() {
+                    connectionStatus.textContent = '❌ Disconnected from WebSocket server';
+                    connectionStatus.style.borderLeftColor = '#f44336';
+                    addToLog('Disconnected from WebSocket server');
+                    
+                    // Try to reconnect after 3 seconds
+                    setTimeout(connect, 3000);
+                };
+                
+                ws.onerror = function(error) {
+                    connectionStatus.textContent = '❌ WebSocket error';
+                    connectionStatus.style.borderLeftColor = '#f44336';
+                    addToLog('WebSocket error: ' + error);
+                };
+            }
+            
+            // Add message to log
+            function addToLog(message) {
+                const now = new Date().toLocaleTimeString();
+                messageLog.textContent = `[${now}] ${message}\n${messageLog.textContent}`;
+            }
+            
+            // Detect UI Element
+            detectButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    if (\!ws || ws.readyState \!== WebSocket.OPEN) {
+                        connectionStatus.textContent = '❌ Not connected to WebSocket server';
+                        return;
+                    }
+                    
+                    const elementType = this.getAttribute('data-element');
+                    const resultElement = document.getElementById(`${elementType}-results`);
+                    resultElement.textContent = 'Detecting...';
+                    resultElement.style.display = 'block';
+                    
+                    // Send detection request
+                    const message = {
+                        type: 'ui_detection_request',
+                        element_type: elementType,
+                        timestamp: new Date().toISOString()
+                    };
+                    
+                    ws.send(JSON.stringify(message));
+                    addToLog('Sent detection request: ' + JSON.stringify(message, null, 2));
+                });
+            });
+            
+            // Execute action button
+            doButton.addEventListener('click', function() {
+                if (\!ws || ws.readyState \!== WebSocket.OPEN) {
+                    testStatus.textContent = '❌ Not connected to WebSocket server';
+                    return;
+                }
+                
+                // Reset progress
+                progressContainer.style.display = 'none';
+                progressFill.style.width = '0%';
+                
+                // Send intelligent action execution message
+                const actionMessage = {
+                    type: 'button_action',
+                    action: 'EXECUTE_PLAN',
+                    plan_id: 'neural_detection_' + Date.now(),
+                    target: {
+                        type: 'auto_detect',
+                        description: 'Detect and interact with the most prominent UI element'
+                    },
+                    use_neural_detection: true,
+                    timestamp: new Date().toISOString()
+                };
+                
+                ws.send(JSON.stringify(actionMessage));
+                testStatus.textContent = '⏳ Executing intelligent UI detection...';
+                testStatus.style.borderLeftColor = '#2196F3';
+                addToLog('Sent execution request: ' + JSON.stringify(actionMessage, null, 2));
+            });
+            
+            // Dismiss button
+            dismissButton.addEventListener('click', function() {
+                if (\!ws || ws.readyState \!== WebSocket.OPEN) {
+                    testStatus.textContent = '❌ Not connected to WebSocket server';
+                    return;
+                }
+                
+                // Create dismissal message
+                const message = {
+                    type: 'button_action',
+                    action: 'DISMISS',
+                    timestamp: new Date().toISOString()
+                };
+                
+                // Send message
+                ws.send(JSON.stringify(message));
+                addToLog('Sent DISMISS action: ' + JSON.stringify(message, null, 2));
+                
+                // Hide progress
+                progressContainer.style.display = 'none';
+                
+                testStatus.textContent = '❌ Action dismissed';
+                testStatus.style.borderLeftColor = '#f44336';
+            });
+            
+            // Start connection
+            connect();
+        });
+    </script>
+</body>
+</html>
+EOF < /dev/null

@@ -1,0 +1,12 @@
+2025-06-08 00:03:23,343 - __main__ - INFO - === STARTING SIMPLIFIED MEMORY SYSTEM TEST ===
+2025-06-08 00:03:23,343 - __main__ - ERROR - Error importing memory system: [Errno 2] No such file or directory: '/Users/segevbin/Desktop/SensAI/Aiayer/Others/memory/memory_system.py'
+2025-06-08 00:03:23,344 - __main__ - ERROR - Traceback (most recent call last):
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/Others/simplified_system_test.py", line 43, in import_memory_system
+    spec.loader.exec_module(memory_module)
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap_external>", line 1022, in exec_module
+  File "<frozen importlib._bootstrap_external>", line 1159, in get_code
+  File "<frozen importlib._bootstrap_external>", line 1217, in get_data
+FileNotFoundError: [Errno 2] No such file or directory: '/Users/segevbin/Desktop/SensAI/Aiayer/Others/memory/memory_system.py'
+
+2025-06-08 00:03:23,344 - __main__ - ERROR - Failed to import memory system module

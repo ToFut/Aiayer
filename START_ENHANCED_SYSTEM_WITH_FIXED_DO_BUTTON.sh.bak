@@ -1,0 +1,141 @@
+#!/bin/bash
+
+# SensAI Enhanced Enterprise System Startup with Fixed DO Button
+# Including all optimizations from the original script plus fixed DO button execution
+
+echo "🚀 Starting Enhanced SensAI Enterprise System with FIXED DO BUTTON..."
+echo "🎯 PERFORMANCE-OPTIMIZED + TEAMVIEWER + FIXED DO BUTTON EXECUTION"
+echo ""
+
+# Source the original script but capture its output instead of displaying it
+source <(cat START_ENHANCED_SYSTEM.sh | sed '/^Press Ctrl+C to stop showing logs/,$ d')
+
+# At this point, the system should be running
+# Now we need to start our guaranteed WebSocket server for the DO button fix
+
+echo ""
+echo "🔧 ADDING DO BUTTON EXECUTION FIX..."
+
+# Check if the WebSocket server script exists
+if [ ! -f "guaranteed_ws_server_8765.py" ]; then
+    echo "❌ Cannot find guaranteed_ws_server_8765.py"
+    echo "Please make sure the file exists in the current directory"
+    exit 1
+fi
+
+# Stop any existing servers on port 8765
+echo "🛑 Stopping any existing WebSocket servers on port 8765..."
+lsof -ti:8765 | xargs kill -9 2>/dev/null || true
+sleep 2
+
+# Create necessary directories
+mkdir -p logs/websocket
+mkdir -p pids
+
+# Start the guaranteed WebSocket server
+echo "🚀 Starting guaranteed WebSocket server on port 8765..."
+python3 guaranteed_ws_server_8765.py > logs/websocket/guaranteed_ws_8765.log 2>&1 &
+WSSERVER_PID=$!
+echo $WSSERVER_PID > pids/guaranteed_ws_8765.pid
+
+# Wait for it to start
+echo "⏳ Waiting for WebSocket server to start..."
+sleep 3
+
+# Check if it's running
+if ps -p $WSSERVER_PID > /dev/null; then
+    echo "✅ Guaranteed WebSocket server successfully started (PID: $WSSERVER_PID)"
+    
+    # Test the server if python3 and websockets are available
+    echo "🧪 Testing WebSocket server..."
+    if python3 -c "import websockets" 2>/dev/null; then
+        python3 -c "
+import asyncio
+import websockets
+import json
+import sys
+
+async def test_ws_server():
+    try:
+        async with websockets.connect('ws://localhost:8765', ping_timeout=10) as ws:
+            # Get welcome message
+            msg = await asyncio.wait_for(ws.recv(), timeout=5)
+            data = json.loads(msg)
+            
+            if 'welcome' in data.get('type', ''):
+                print('✅ WebSocket server connected successfully')
+                return True
+            else:
+                print(f'❌ Unexpected welcome message: {data}')
+                return False
+                
+    except Exception as e:
+        print(f'❌ WebSocket server connection failed: {e}')
+        return False
+
+result = asyncio.run(test_ws_server())
+sys.exit(0 if result else 1)
+" 2>/dev/null
+        
+        if [ $? -eq 0 ]; then
+            echo "✅ WebSocket server is responding correctly"
+        else
+            echo "⚠️ WebSocket server test failed, but server is running"
+        fi
+    else
+        echo "⚠️ Cannot test WebSocket server (websockets module not available)"
+    fi
+else
+    echo "❌ WebSocket server failed to start"
+    echo "Check logs: logs/websocket/guaranteed_ws_8765.log"
+    cat logs/websocket/guaranteed_ws_8765.log 2>/dev/null
+fi
+
+# Modify the stop script to also stop our WebSocket server
+if [ -f "STOP_ENHANCED_SYSTEM.sh" ]; then
+    # Add our specific server to the stop script
+    sed -i.bak '/pkill -f semantic_search/a\\
+# Stop the guaranteed WebSocket server\
+if [ -f "pids/guaranteed_ws_8765.pid" ]; then\
+    WS_PID=$(cat pids/guaranteed_ws_8765.pid)\
+    if ps -p $WS_PID > /dev/null; then\
+        echo "Stopping guaranteed WebSocket server (PID: $WS_PID)"\
+        kill -TERM $WS_PID 2>/dev/null || kill -9 $WS_PID 2>/dev/null\
+    fi\
+    rm -f pids/guaranteed_ws_8765.pid\
+fi\
+' STOP_ENHANCED_SYSTEM.sh
+
+    echo "✅ Stop script updated to include WebSocket server"
+fi
+
+echo ""
+echo "🎉 COMPLETE ENHANCED SYSTEM WITH FIXED DO BUTTON READY!"
+echo "================================================================="
+echo "🏢 Enhanced Enterprise Backend: ws://localhost:8767"
+echo "🔧 FIXED DO BUTTON WebSocket Server: ws://localhost:8765"
+echo ""
+echo "📱 How to Test DO Button Fix:"
+echo "   1. Open the overlay chat interface"
+echo "   2. Use Agent mode to create a plan"
+echo "   3. Click the DO button - it should now execute properly!"
+echo ""
+echo "📊 Live System Status:"
+echo "   Enhanced Backend PID: $BACKEND_PID"
+echo "   WebSocket Server PID: $WSSERVER_PID"
+echo "   Process Sensor PID: $PROCESS_PID"
+echo "   Screen Sensor PID: $SCREEN_PID"
+echo ""
+echo "📊 Live Logs:"
+echo "   Backend: tail -f logs/backend/enhanced_enterprise_8767.log"
+echo "   WebSocket Server: tail -f logs/websocket/guaranteed_ws_8765.log"
+echo ""
+echo "🛑 Stop System: ./STOP_ENHANCED_SYSTEM.sh"
+echo ""
+echo "Press Ctrl+C to stop showing logs (system will keep running)"
+echo "----------------------------------------"
+
+# Show live logs from the WebSocket server
+tail -f logs/websocket/guaranteed_ws_8765.log 2>/dev/null | sed 's/^/[WEBSOCKET-SERVER] /' || {
+    echo "📊 System running in background..."
+}

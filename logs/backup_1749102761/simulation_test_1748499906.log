@@ -1,0 +1,14 @@
+2025-05-29 02:25:06,410 - INFO - Connecting to backend at ws://localhost:8767
+2025-05-29 02:25:06,478 - INFO - Successfully connected to backend with client ID: client_1748499906477
+2025-05-29 02:25:06,478 - INFO - ============================================================
+2025-05-29 02:25:06,478 - INFO - STARTING COMPREHENSIVE SYSTEM SIMULATION
+2025-05-29 02:25:06,478 - INFO - ============================================================
+2025-05-29 02:25:06,478 - INFO - Testing 10 scenarios across all modes
+2025-05-29 02:25:06,478 - INFO - ------------------------------------------------------------
+2025-05-29 02:25:06,478 - INFO - Running test 1/10: agent_ui_interaction (agent mode)
+2025-05-29 02:25:06,478 - INFO - Sending message in agent mode: 'search for flights to Miami on Google'
+2025-05-29 02:26:06,481 - ERROR - Response timeout after 60 seconds
+2025-05-29 02:26:06,482 - INFO - Test 1: ❌ FAILED - Quality: 0.00/1.0 - Time: 60.00s
+2025-05-29 02:26:08,483 - INFO - ------------------------------------------------------------
+2025-05-29 02:26:08,484 - INFO - Running test 2/10: agent_app_launch (agent mode)
+2025-05-29 02:26:08,485 - INFO - Sending message in agent mode: 'open Safari and go to YouTube'

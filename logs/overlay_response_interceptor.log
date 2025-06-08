@@ -1,0 +1,35 @@
+2025-06-07 23:02:10,590 - INFO - Initializing LLM interceptor with llama3.2:latest model
+2025-06-07 23:02:10,590 - INFO - LLM Interceptor initialized with model: llama3.2:latest
+2025-06-07 23:02:10,590 - INFO - Initializing LLM interceptor
+2025-06-07 23:02:10,635 - INFO - Successfully connected to Ollama
+2025-06-07 23:02:10,661 - INFO - Model llama3.2:latest is available
+2025-06-07 23:02:10,661 - INFO - LLM interceptor initialized successfully
+2025-06-07 23:02:10,661 - INFO - Starting interceptor server on port 8766
+Traceback (most recent call last):
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/Others/overlay_response_interceptor.py", line 356, in <module>
+    asyncio.run(main())
+    ~~~~~~~~~~~^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.13/3.13.3/Frameworks/Python.framework/Versions/3.13/lib/python3.13/asyncio/runners.py", line 195, in run
+    return runner.run(main)
+           ~~~~~~~~~~^^^^^^
+  File "/opt/homebrew/Cellar/python@3.13/3.13.3/Frameworks/Python.framework/Versions/3.13/lib/python3.13/asyncio/runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "/opt/homebrew/Cellar/python@3.13/3.13.3/Frameworks/Python.framework/Versions/3.13/lib/python3.13/asyncio/base_events.py", line 719, in run_until_complete
+    return future.result()
+           ~~~~~~~~~~~~~^^
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/Others/overlay_response_interceptor.py", line 346, in main
+    server = await start_server(8766)
+             ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/Others/overlay_response_interceptor.py", line 294, in start_server
+    server = await websockets.serve(
+             ^^^^^^^^^^^^^^^^^^^^^^^
+    ...<5 lines>...
+    )
+    ^
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/asyncio/server.py", line 831, in __await_impl__
+    server = await self.create_server
+             ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.13/3.13.3/Frameworks/Python.framework/Versions/3.13/lib/python3.13/asyncio/base_events.py", line 1616, in create_server
+    raise OSError(err.errno, msg) from None
+OSError: [Errno 48] error while attempting to bind on address ('0.0.0.0', 8766): [errno 48] address already in use

@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 """
 Local LLM Integration Module
 Provides interface to local language models via Ollama.
@@ -11,16 +12,71 @@ import base64
 import time
 import traceback
 from collections import deque
-from typing import List, Dict, Union
+from typing import List, Dict, Union, Any, Optional
 from PIL import Image
 import io
+from contextlib import asynccontextmanager
 
 import requests
+
+# Configure logging
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
+    handlers=[
+        logging.FileHandler('logs/aiayer.log'),
+        logging.StreamHandler()
+    ]
+)
+logger = logging.getLogger(__name__)
+
+class SessionManager:
+    """Manages aiohttp ClientSession instances to prevent unclosed sessions"""
+    def __init__(self):
+        self._session = None
+        self._lock = asyncio.Lock()
+    
+    async def get_session(self):
+        """Get or create a ClientSession instance"""
+        async with self._lock:
+            if self._session is None or self._session.closed:
+                self._session = aiohttp.ClientSession(
+                    timeout=aiohttp.ClientTimeout(total=30),
+                    connector=aiohttp.TCPConnector(
+                        limit=10,
+                        ttl_dns_cache=300,
+                        use_dns_cache=True
+                    )
+                )
+            return self._session
+    
+    async def close(self):
+        """Close the current session"""
+        async with self._lock:
+            if self._session and not self._session.closed:
+                await self._session.close()
+                self._session = None
+
+# Create global session manager
+session_manager = SessionManager()
+
+@asynccontextmanager
+async def get_http_session():
+    """Context manager for getting an HTTP session"""
+    session = await session_manager.get_session()
+    try:
+        yield session
+    except Exception as e:
+        logger.error(f"Error in HTTP session: {e}")
+        raise
 
 class LocalLLM:
     """
     Interface to a locally running language model via Ollama.
     Provides methods to ensure model availability and generate responses.
+    
+    This class implements both async context manager support and graceful cleanup
+    to handle client sessions properly.
     """
     
     def __init__(self, model_name="llama3.2:latest", host="localhost", port=11434):
@@ -40,7 +96,7 @@ class LocalLLM:
         self.running = False
         self.last_request_time = 0
         self.min_request_interval = 0.1  # 0.1 second between requests for faster throughput
-        self.timeout = 20  # Balanced timeout for fast models like llama3.2:1b
+        self.timeout = 45  # Increased timeout for llama3.2:1b to handle long queries  # Increased timeout for llama3.2:1b to handle long queries
         self.max_retries = 3  # Maximum number of retries
         
         # Configure model-specific settings
@@ -52,6 +108,49 @@ class LocalLLM:
             self.is_vision_model = False
             self.temperature = 0.8
             self.max_tokens = 2048
+    
+    # Async context manager support
+    async def __aenter__(self):
+        """Async context manager entry - initialize the LLM"""
+        await self.start()
+        return self
+    
+    async def __aexit__(self, exc_type, exc_val, exc_tb):
+        """Async context manager exit - clean up resources"""
+        await self.stop()
+        # Also close any sessions from session_manager
+        await session_manager.close()
+        return False  # Don't suppress exceptions
+    
+    async def start(self):
+        """Start the LLM service and verify it's working"""
+        try:
+            async with get_http_session() as session:
+                async with session.get(
+                    f"{self.base_url}/api/tags",
+                    timeout=aiohttp.ClientTimeout(total=10)
+                ) as response:
+                    if response.status != 200:
+                        raise Exception(f"Failed to connect to Ollama API: {response.status}")
+                    
+                    data = await response.json()
+                    models = [model['name'] for model in data.get('models', [])]
+                    
+                    if self.model_name not in models:
+                        raise Exception(f"Model {self.model_name} not found in available models: {models}")
+                    
+                    self.running = True
+                    self.logger.info(f"✅ LLM service started successfully with model {self.model_name}")
+                    return True
+        except Exception as e:
+            self.logger.error(f"❌ Failed to start LLM service: {e}")
+            self.running = False
+            raise
+    
+    async def stop(self):
+        """Stop the LLM service"""
+        self.running = False
+        self.logger.info("LLM service stopped")
     
     def _encode_image(self, image: Union[Image.Image, bytes, str]) -> str:
         """
@@ -77,437 +176,191 @@ class LocalLLM:
             
         return base64.b64encode(image_bytes).decode('utf-8')
     
-    async def generate_response_with_image(self, messages: List[Dict[str, str]], image: Union[Image.Image, bytes, str]) -> str:
+    async def generate_response(self, messages, stream=False, temperature=0.7, max_tokens=None):
         """
-        Generate a response from the model with image input.
+        Generate a response using Ollama API.
         
         Args:
-            messages (List[Dict[str, str]]): List of message dictionaries with 'role' and 'content'
-            image: PIL Image, bytes, or file path to the image
+            messages: List of message objects (each with role and content)
+            stream: Whether to stream the response
+            temperature: Sampling temperature
+            max_tokens: Maximum tokens to generate
             
         Returns:
-            str: Generated response text
+            Generated text response
         """
         if not self.running:
-            self.logger.error("LLM not running")
-            await self.start()  # Attempt to start the LLM automatically
-            if not self.running:
-                return "Error: LLM service unavailable. Please check if Ollama is running."
-            
-        if not messages:
-            self.logger.error("Empty messages list")
-            return "Error: Empty messages list"
-            
-        # Encode image with detailed error handling
-        try:
-            image_base64 = self._encode_image(image)
-        except FileNotFoundError as e:
-            self.logger.error(f"Image file not found: {e}")
-            return "Error: The image file could not be found. Please verify the file path."
-        except PermissionError as e:
-            self.logger.error(f"Permission error accessing image: {e}")
-            return "Error: Permission denied when trying to access the image file."
-        except ValueError as e:
-            self.logger.error(f"Invalid image format: {e}")
-            return "Error: The provided image is in an unsupported format."
-        except Exception as e:
-            self.logger.error(f"Error encoding image: {e}\n{traceback.format_exc()}")
-            return "Error: Failed to process the image for analysis."
-            
-        # Prepare request with image and optimized LLaVA prompt
-        prompt_messages = messages.copy()
-        
-        # Enhance system prompt for better image analysis if it exists
-        system_prompt_added = False
-        for i, msg in enumerate(prompt_messages):
-            if msg['role'] == 'system':
-                msg['content'] = f"""You are a visual analysis assistant powered by LLaVA, specialized in analyzing screen content.
-When analyzing images:
-1. First describe what you see in the image in detail
-2. Identify key UI elements such as buttons, text fields, and menus
-3. Recognize any text content visible in the image
-4. Understand the context of what the user is working on
-5. Provide relevant, helpful responses based on the visual context
-
-{msg['content']}"""
-                system_prompt_added = True
-                break
-        
-        # Add system prompt if none exists
-        if not system_prompt_added:
-            prompt_messages.insert(0, {
-                'role': 'system',
-                'content': """You are a visual analysis assistant powered by LLaVA, specialized in analyzing screen content.
-When analyzing images:
-1. First describe what you see in the image in detail
-2. Identify key UI elements such as buttons, text fields, and menus
-3. Recognize any text content visible in the image
-4. Understand the context of what the user is working on
-5. Provide relevant, helpful responses based on the visual context"""
-            })
-        
-        # Prepare the request with enhanced prompting
-        request_data = {
-            "model": self.model_name,
-            "messages": prompt_messages,
-            "images": [image_base64],
-            "temperature": 0.7,
-            "max_tokens": 1024
-        }
-        
-        # Retry logic with improved error handling
-        last_error = None
-        for attempt in range(self.max_retries):
+            self.logger.info("LLM not running, starting it now")
             try:
-                # Use optimized timeout settings for image requests
-                # Images take longer to process, so use longer timeout
-                timeout = aiohttp.ClientTimeout(
-                    connect=5,       # Connect timeout: 5 seconds
-                    total=self.timeout * 1.5  # 50% longer timeout for image processing
-                )
-                
-                async with aiohttp.ClientSession(timeout=timeout) as session:
-                    try:
-                        # Log attempt for debugging
-                        if attempt > 0:
-                            self.logger.info(f"Retry attempt {attempt+1}/{self.max_retries} for image request")
-                            
-                        start_time = time.time()
-                        response = await session.post(
-                            f"{self.base_url}/api/chat",
-                            json=request_data,
-                            headers={"Content-Type": "application/json"}
-                        )
-                        
-                        # Log response time for performance monitoring
-                        elapsed = time.time() - start_time
-                        self.logger.info(f"Ollama image response time: {elapsed:.2f}s (status: {response.status})")
-                        
-                        if response.status != 200:
-                            error_msg = f"Error generating image response: HTTP {response.status}"
-                            if attempt < self.max_retries - 1:
-                                self.logger.warning(f"{error_msg}, retrying ({attempt+1}/{self.max_retries})")
-                                await asyncio.sleep(1.0 * (attempt + 1))  # Longer backoff for image processing
-                                continue
-                            else:
-                                self.logger.error(error_msg)
-                                return f"Error: Failed to analyze image (status {response.status})"
-                        
-                        # Parse response with detailed error handling
-                        try:
-                            data = await response.json()
-                            if isinstance(data, dict) and 'message' in data:
-                                result = data['message']['content']
-                                # Log success for monitoring
-                                self.logger.info(f"Successfully generated image response ({len(result)} chars)")
-                                return result
-                            else:
-                                self.logger.error(f"Invalid image response format: {data}")
-                                return "Error: Received unexpected response format from image analysis"
-                        except json.JSONDecodeError as e:
-                            self.logger.error(f"Failed to parse JSON response for image: {e}")
-                            return "Error: Received invalid response from image analysis service"
-                            
-                    except asyncio.TimeoutError:
-                        error_msg = f"Image request timed out after {self.timeout * 1.5}s"
-                        last_error = error_msg
-                        if attempt < self.max_retries - 1:
-                            self.logger.warning(f"{error_msg}, retrying ({attempt+1}/{self.max_retries})")
-                            await asyncio.sleep(1.0 * (attempt + 1))
-                            continue
-                        else:
-                            self.logger.error(f"{error_msg} after all retries")
-                            return "Error: The image analysis is taking too long. The image may be too complex or the system is overloaded."
-                            
-            except aiohttp.ClientConnectorError as e:
-                error_msg = f"Connection error during image analysis: {str(e)}"
-                last_error = error_msg
-                if attempt < self.max_retries - 1:
-                    self.logger.warning(f"{error_msg}, retrying ({attempt+1}/{self.max_retries})")
-                    await asyncio.sleep(1.0 * (attempt + 1))
-                    continue
-                else:
-                    self.logger.error(f"{error_msg} after all retries")
-                    return "Error: Unable to connect to image analysis service. Please check if Ollama is running."
-                    
+                await self.start()
             except Exception as e:
-                error_msg = f"Unexpected error during image analysis: {str(e)}"
-                last_error = error_msg
-                self.logger.error(f"{error_msg}\n{traceback.format_exc()}")
-                if attempt < self.max_retries - 1:
-                    await asyncio.sleep(1.0 * (attempt + 1))
-                    continue
-                else:
-                    return f"Error: An unexpected problem occurred during image analysis."
+                self.logger.error(f"Failed to start LLM: {e}")
+                return "Error: LLM service not available"
         
-        self.logger.error(f"Failed to analyze image after {self.max_retries} retries. Last error: {last_error}")
-        return "Error: Failed to analyze the image after multiple attempts. The service may be overloaded or the image may be too complex."
-    
-    async def initialize(self):
-        """
-        Asynchronously initialize the LLM by checking Ollama version and model availability.
-        """
-        try:
-            async with aiohttp.ClientSession() as session:
-                # Check Ollama version
-                response = await session.get(f"{self.base_url}/api/version", timeout=2)
-                if response.status != 200:
-                    raise ConnectionError("Failed to connect to Ollama")
-                
-                # Check if model is available
-                response = await session.get(f"{self.base_url}/api/tags", timeout=2)
-                if response.status != 200:
-                    raise ConnectionError("Failed to get model list")
-                
-                # Get models list
-                response_data = await response.json()
-                models = [model['name'] for model in response_data.get('models', [])]
-                
-                if self.model_name not in models:
-                    self.logger.info(f"Model {self.model_name} not found, pulling...")
-                    response = await session.post(
-                        f"{self.base_url}/api/pull",
-                        json={"name": self.model_name},
-                        timeout=30  # Longer timeout for pull
-                    )
-                    if response.status != 200:
-                        raise ConnectionError("Failed to pull model")
-                    
-                    # Wait for model to be pulled
-                    async for line in response.content:
-                        if line:
-                            data = json.loads(line)
-                            if 'error' in data:
-                                raise ConnectionError(f"Error pulling model: {data['error']}")
-            
-            self.running = True
-            return self
-            
-        except Exception as e:
-            self.logger.error(f"Error during initialization: {e}")
-            self.running = False
-            raise
-    
-    async def ensure_model_available(self):
-        """
-        Ensure the model is available locally.
-        Returns True if model is available or successfully pulled, False otherwise.
-        """
-        try:
-            async with aiohttp.ClientSession() as session:
-                # Check if Ollama is running
-                response = await session.get(f"{self.base_url}/api/version", timeout=5)
-                if response.status != 200:
-                    self.logger.error("Failed to connect to Ollama")
-                    return False
-                
-                # Check if model is available
-                response = await session.get(f"{self.base_url}/api/tags")
-                if response.status != 200:
-                    self.logger.error("Failed to get model list")
-                    return False
-                
-                response_data = await response.json()
-                models = [model['name'] for model in response_data.get('models', [])]
-                
-                if self.model_name not in models:
-                    self.logger.info(f"Model {self.model_name} not found, pulling...")
-                    response = await session.post(
-                        f"{self.base_url}/api/pull",
-                        json={"name": self.model_name},
-                        timeout=30  # Longer timeout for pull
-                    )
-                    if response.status != 200:
-                        self.logger.error("Failed to pull model")
-                        return False
-                    
-                    # Wait for model to be pulled
-                    async for line in response.content:
-                        if line:
-                            data = json.loads(line)
-                            if 'error' in data:
-                                self.logger.error(f"Error pulling model: {data['error']}")
-                                return False
-                
-                self.running = True
-                return True
-            
-        except Exception as e:
-            self.logger.error(f"Error ensuring model availability: {e}")
-            return False
-    
-    async def start(self):
-        """Start the LLM model."""
-        try:
-            async with aiohttp.ClientSession() as session:
-                # Check if Ollama is running
-                response = await session.get(f"{self.base_url}/api/version", timeout=5)
-                if response.status != 200:
-                    self.logger.error("Failed to connect to Ollama")
-                    return False
-                version_data = await response.json()
-                self.logger.info(f"Connected to Ollama version: {version_data.get('version')}")
-                
-                # Check if model is available
-                response = await session.get(f"{self.base_url}/api/tags")
-                if response.status != 200:
-                    self.logger.error("Failed to get model list")
-                    return False
-                
-                response_data = await response.json()
-                models = [model['name'] for model in response_data.get('models', [])]
-                
-                if self.model_name not in models:
-                    self.logger.info(f"Model {self.model_name} not found, pulling...")
-                    response = await session.post(
-                        f"{self.base_url}/api/pull",
-                        json={"name": self.model_name},
-                        timeout=30  # Longer timeout for pull
-                    )
-                    if response.status != 200:
-                        self.logger.error("Failed to pull model")
-                        return False
-                    
-                    # Wait for model to be pulled
-                    async for line in response.content:
-                        if line:
-                            data = json.loads(line)
-                            if 'error' in data:
-                                self.logger.error(f"Error pulling model: {data['error']}")
-                                return False
-                
-                self.running = True
-                return True
-                
-        except Exception as e:
-            self.logger.error(f"Error starting LLM: {e}")
-            return False
-    
-    async def stop(self):
-        """Stop the LLM model and clean up resources."""
-        try:
-            self.running = False
-            
-            # Close any active sessions
-            if hasattr(self, 'session') and self.session:
-                await self.session.close()
-                self.session = None
-            
-            # Clear any cached data
-            if hasattr(self, 'last_request_time'):
-                self.last_request_time = 0
-                
-            self.logger.info("LLM model stopped and resources cleaned up")
-            
-        except Exception as e:
-            self.logger.error(f"Error stopping LLM model: {e}")
-
-    def is_healthy(self):
-        """Check if the LLM is healthy."""
-        if not self.running:
-            return False
-            
-        try:
-            response = requests.get(f"{self.base_url}/api/version", timeout=2)
-            return response.status_code == 200
-        except:
-            return False
-            
-    async def generate_response(self, messages: List[Dict[str, str]]) -> str:
-        """
-        Generate a response from the model.
-        
-        Args:
-            messages (List[Dict[str, str]]): List of message dictionaries with 'role' and 'content'
-            
-        Returns:
-            str: Generated response text
-        """
-        if not self.running:
-            self.logger.error("LLM not running")
-            await self.start()  # Attempt to start the LLM automatically
-            if not self.running:
-                return "Error: LLM service unavailable. Please check if Ollama is running."
-            
-        if not messages:
-            self.logger.error("Empty messages list")
-            return "Error: Empty messages list"
-            
-        # Optimize for fast model if using llama3.2:1b
+        # Rate limit requests but use faster interval for llama3.2:1b
         if self.model_name == "llama3.2:1b":
-            # Reduce tokens for faster response
-            self.max_tokens = min(self.max_tokens, 1024)
-            # Use higher temperature for more creativity when responses are short
-            self.temperature = 0.9
+            self.min_request_interval = 0.05  # Faster interval for small model
+        
+        current_time = time.time()
+        if current_time - self.last_request_time < self.min_request_interval:
+            await asyncio.sleep(self.min_request_interval - (current_time - self.last_request_time))
+        self.last_request_time = time.time()
+        
+        # Optimize messages to reduce unnecessary context for small models
+        if self.model_name == "llama3.2:1b" and len(messages) > 1:
+            # Keep system message but limit its size
+            if messages[0]["role"] == "system" and len(messages[0]["content"]) > 500:
+                # Truncate very long system messages for faster processing
+                messages[0]["content"] = messages[0]["content"][:500] + "..."
             
-        # Prepare the request with model-specific settings
+            # Limit number of context messages to 3 most recent for faster processing
+            if len(messages) > 4:
+                messages = [messages[0]] + messages[-3:]  # Keep system + 3 most recent
+        
         request_data = {
             "model": self.model_name,
             "messages": messages,
-            "temperature": self.temperature,
-            "max_tokens": self.max_tokens,
-            "stream": False  # Disable streaming for now
+            "stream": stream,
+            "temperature": temperature
         }
         
-        # Retry logic with improved error handling
-        last_error = None
+        if max_tokens is not None:
+            request_data["max_tokens"] = max_tokens
+            
+        # For 1b model, use slightly smaller max_tokens if not specified
+        elif self.model_name == "llama3.2:1b" and max_tokens is None:
+            request_data["max_tokens"] = 512  # Smaller context for faster responses
+        
+        start_time = time.time()
+        
+        # Implement retry logic
         for attempt in range(self.max_retries):
             try:
-                # Use short connection timeout but longer read timeout
-                timeout = aiohttp.ClientTimeout(
-                    connect=5,     # Connect timeout: 5 seconds
-                    total=self.timeout  # Total timeout (including read)
-                )
-                
-                async with aiohttp.ClientSession(timeout=timeout) as session:
+                async with get_http_session() as session:
                     try:
-                        # Log attempt for debugging
-                        if attempt > 0:
-                            self.logger.info(f"Retry attempt {attempt+1}/{self.max_retries} for Ollama request")
+                        self.logger.info(f"Sending Ollama request (attempt {attempt+1}/{self.max_retries})")
+                        
+                        # Set larger timeout for first attempt
+                        if attempt == 0:
+                            timeout = self.timeout * 1.5
+                        else:
+                            timeout = self.timeout
                             
-                        start_time = time.time()
-                        response = await session.post(
+                        # Use stream parameter for all requests to simplify handling
+                        request_data["stream"] = True
+                        
+                        async with session.post(
                             f"{self.base_url}/api/chat",
                             json=request_data,
-                            headers={"Content-Type": "application/json"}
-                        )
-                        
-                        # Log response time for performance monitoring
-                        elapsed = time.time() - start_time
-                        self.logger.info(f"Ollama response time: {elapsed:.2f}s (status: {response.status})")
-                        
-                        if response.status != 200:
-                            error_msg = f"Error generating response: HTTP {response.status}"
-                            if attempt < self.max_retries - 1:
-                                self.logger.warning(f"{error_msg}, retrying ({attempt+1}/{self.max_retries})")
-                                await asyncio.sleep(0.5 * (attempt + 1))  # Shorter backoff for fast model
-                                continue
-                            else:
-                                self.logger.error(error_msg)
-                                return f"Error: Failed to generate response (status {response.status})"
-                        
-                        # Parse response with detailed error handling
-                        try:
-                            data = await response.json()
-                            if isinstance(data, dict) and 'message' in data:
-                                return data['message']['content']
-                            else:
-                                self.logger.error(f"Invalid response format: {data}")
-                                return "Error: Received unexpected response format from LLM service"
-                        except json.JSONDecodeError as e:
-                            self.logger.error(f"Failed to parse JSON response: {e}")
-                            return "Error: Received invalid response from LLM service"
+                            timeout=aiohttp.ClientTimeout(total=timeout)
+                        ) as response:
+                            # Check for HTTP errors
+                            if response.status != 200:
+                                error_msg = f"HTTP error {response.status} on attempt {attempt+1}/{self.max_retries}"
+                                
+                                if attempt < self.max_retries - 1:
+                                    self.logger.warning(f"Request failed: {error_msg}, retrying...")
+                                    await asyncio.sleep(1)  # Wait before retry
+                                    continue
+                                else:
+                                    self.logger.error(error_msg)
+                                    return f"Error: Failed to generate response (status {response.status})"
                             
+                            # Always read as text, never as JSON - Ollama 0.6.8+ uses NDJSON format
+                            try:
+                                text = await response.text()
+                                self.logger.info(f"Ollama response time: {time.time() - start_time:.2f}s (status: {response.status})")
+                                
+                                if not text.strip():
+                                    self.logger.error("Empty response from Ollama")
+                                    if attempt < self.max_retries - 1:
+                                        continue
+                                    return "Error: Received empty response from Ollama"
+                                    
+                                # Process NDJSON format - always assume streaming
+                                full_response = ""
+                                lines = [line for line in text.split('\n') if line.strip()]
+                                
+                                if not lines:
+                                    self.logger.error("No valid lines in Ollama response")
+                                    if attempt < self.max_retries - 1:
+                                        continue
+                                    return "Error: Received invalid response from Ollama"
+                                
+                                # Process each line of the NDJSON stream
+                                valid_lines_count = 0
+                                for line in lines:
+                                    try:
+                                        data = json.loads(line)
+                                        if 'message' in data and 'content' in data['message']:
+                                            full_response += data['message']['content']
+                                            valid_lines_count += 1
+                                        elif 'response' in data:  # Older Ollama format
+                                            full_response += data['response']
+                                            valid_lines_count += 1
+                                    except json.JSONDecodeError:
+                                        # Skip invalid JSON
+                                        continue
+                                
+                                # Check if we got a valid response
+                                if valid_lines_count > 0:
+                                    self.logger.info(f"Successfully parsed NDJSON response: {len(full_response)} chars from {valid_lines_count} parts")
+                                    return full_response
+                                else:
+                                    # Try a fallback approach - parse the last line
+                                    self.logger.warning("No valid message content found in NDJSON response, trying fallback parsing")
+                                    try:
+                                        # Try to extract any text that looks reasonable
+                                        import re
+                                        text_parts = re.findall(r'"content":"([^"]+)"', text)
+                                        if text_parts:
+                                            combined = "".join(text_parts)
+                                            self.logger.info(f"Extracted content using regex: {len(combined)} chars")
+                                            return combined
+                                        
+                                        # Last resort - just return the text
+                                        self.logger.warning("Fallback to returning raw text")
+                                        # Remove JSON formatting and just get readable text
+                                        cleaned_text = re.sub(r'[{}\[\]"\\]', '', text)
+                                        cleaned_text = re.sub(r'response:|content:', ' ', cleaned_text)
+                                        return cleaned_text
+                                    except Exception as fallback_error:
+                                        self.logger.error(f"Fallback parsing failed: {fallback_error}")
+                                        if attempt < self.max_retries - 1:
+                                            continue
+                                        return "Error: Failed to parse Ollama response"
+                                
+                            except asyncio.TimeoutError:
+                                self.logger.error(f"Ollama request timed out after {timeout}s")
+                                if attempt < self.max_retries - 1:
+                                    await asyncio.sleep(0.5 * (attempt + 1))
+                                    continue
+                                return "Error: Request timed out. The model is taking too long to respond."
+                                
+                            except Exception as e:
+                                self.logger.error(f"Unexpected error processing response: {str(e)}")
+                                if attempt < self.max_retries - 1:
+                                    await asyncio.sleep(0.5 * (attempt + 1))
+                                    continue
+                                return f"Error: {str(e)}"
+                    
                     except asyncio.TimeoutError:
-                        error_msg = f"Request timed out after {self.timeout}s"
-                        last_error = error_msg
+                        self.logger.error(f"Ollama request timed out after {timeout}s")
                         if attempt < self.max_retries - 1:
-                            self.logger.warning(f"{error_msg}, retrying ({attempt+1}/{self.max_retries})")
                             await asyncio.sleep(0.5 * (attempt + 1))
                             continue
-                        else:
-                            self.logger.error(f"{error_msg} after all retries")
-                            return "Error: The model is taking too long to respond. Please try a simpler query."
+                        return "Error: Request timed out. The model is taking too long to respond."
+            
+            except asyncio.TimeoutError:
+                error_msg = f"Request timed out after {self.timeout}s"
+                last_error = error_msg
+                if attempt < self.max_retries - 1:
+                    self.logger.warning(f"{error_msg}, retrying ({attempt+1}/{self.max_retries})")
+                    await asyncio.sleep(0.5 * (attempt + 1))
+                    continue
+                else:
+                    self.logger.error(f"{error_msg} after all retries")
+                    return "Error: The model is taking too long to respond. Please try a simpler query."
                             
             except aiohttp.ClientConnectorError as e:
                 error_msg = f"Connection error: {str(e)}"
@@ -533,26 +386,9 @@ When analyzing images:
         self.logger.error(f"Failed to generate response after {self.max_retries} retries. Last error: {last_error}")
         return "Error: Failed to generate response after multiple attempts. The LLM service may be overloaded."
 
+# Create OllamaLLM as an alias for compatibility
+OllamaLLM = LocalLLM
+
 # For testing if run directly
 if __name__ == "__main__":
-    logging.basicConfig(level=logging.INFO)
-    llm = LocalLLM(model_name="llama3.2:latest")
-    
-    if llm.start():
-        print("LLM Model started successfully")
-        
-        # Test conversation
-        conversation = [
-            {"role": "system", "content": "You are a helpful AI assistant running entirely locally."},
-            {"role": "user", "content": "Hello, can you introduce yourself?"}
-        ]
-        
-        try:
-            response = llm.generate_response(conversation)
-            print(f"Response: {response}")
-        except Exception as e:
-            print(f"Error: {e}")
-        finally:
-            llm.stop()
-    else:
-        print("Failed to start LLM Model")
+    asyncio.run(main())

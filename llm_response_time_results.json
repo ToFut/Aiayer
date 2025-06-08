@@ -1,0 +1,37 @@
+{
+  "ollama_direct": [
+    {
+      "test_name": "Simple Greeting",
+      "prompt": "Hello, how are you?",
+      "model": "fast-llama:latest",
+      "response_time": 10.440282821655273,
+      "success": true,
+      "response_length": 0
+    },
+    {
+      "test_name": "Simple Plan",
+      "prompt": "Create a step-by-step plan to search for Python tutorials online",
+      "model": "fast-llama:latest",
+      "response_time": 60.0,
+      "success": false,
+      "error": "timeout"
+    },
+    {
+      "test_name": "Simple Question",
+      "prompt": "What is the capital of France?",
+      "model": "fast-llama:latest",
+      "response_time": 60.0,
+      "success": false,
+      "error": "timeout"
+    }
+  ],
+  "fast_model": [
+    {
+      "test_name": "Fast Model Generate",
+      "model": "llama3.2:1b",
+      "response_time": 60.0,
+      "success": false,
+      "error": "timeout"
+    }
+  ]
+}

@@ -1,0 +1,200 @@
+{
+  "version": "1.0.0",
+  "last_updated": "2025-06-06T23:07:23.908362",
+  "feedback_records": [
+    {
+      "suggestion_id": "sugg_c8a3332f",
+      "features": [
+        {
+          "name": "action_type",
+          "value": "open_app",
+          "weight": 1.2
+        },
+        {
+          "name": "complexity",
+          "value": "complex",
+          "weight": 0.7
+        },
+        {
+          "name": "time_of_day",
+          "value": "night",
+          "weight": 1.0
+        },
+        {
+          "name": "day_of_week",
+          "value": "Friday",
+          "weight": 0.8
+        },
+        {
+          "name": "suggestion_type",
+          "value": "creation",
+          "weight": 1.3
+        }
+      ],
+      "outcome": "accepted",
+      "timestamp": "2025-06-06T23:05:23.347330",
+      "execution_success": null,
+      "rejection_reason": null
+    },
+    {
+      "suggestion_id": "sugg_03a6011d",
+      "features": [
+        {
+          "name": "action_type",
+          "value": "open_app",
+          "weight": 1.2
+        },
+        {
+          "name": "complexity",
+          "value": "complex",
+          "weight": 0.7
+        },
+        {
+          "name": "time_of_day",
+          "value": "night",
+          "weight": 1.0
+        },
+        {
+          "name": "day_of_week",
+          "value": "Friday",
+          "weight": 0.8
+        },
+        {
+          "name": "suggestion_type",
+          "value": "creation",
+          "weight": 1.3
+        }
+      ],
+      "outcome": "rejected",
+      "timestamp": "2025-06-06T23:05:23.348452",
+      "execution_success": null,
+      "rejection_reason": "Already handled this meeting"
+    },
+    {
+      "suggestion_id": "sugg_c22852f3",
+      "features": [
+        {
+          "name": "action_type",
+          "value": "open_app",
+          "weight": 1.2
+        },
+        {
+          "name": "complexity",
+          "value": "complex",
+          "weight": 0.7
+        },
+        {
+          "name": "time_of_day",
+          "value": "night",
+          "weight": 1.0
+        },
+        {
+          "name": "day_of_week",
+          "value": "Friday",
+          "weight": 0.8
+        },
+        {
+          "name": "suggestion_type",
+          "value": "creation",
+          "weight": 1.3
+        }
+      ],
+      "outcome": "accepted",
+      "timestamp": "2025-06-06T23:07:23.899438",
+      "execution_success": null,
+      "rejection_reason": null
+    },
+    {
+      "suggestion_id": "sugg_05e0d3db",
+      "features": [
+        {
+          "name": "action_type",
+          "value": "open_app",
+          "weight": 1.2
+        },
+        {
+          "name": "complexity",
+          "value": "complex",
+          "weight": 0.7
+        },
+        {
+          "name": "time_of_day",
+          "value": "night",
+          "weight": 1.0
+        },
+        {
+          "name": "day_of_week",
+          "value": "Friday",
+          "weight": 0.8
+        },
+        {
+          "name": "suggestion_type",
+          "value": "creation",
+          "weight": 1.3
+        }
+      ],
+      "outcome": "rejected",
+      "timestamp": "2025-06-06T23:07:23.900565",
+      "execution_success": null,
+      "rejection_reason": "Already handled this meeting"
+    }
+  ],
+  "feature_weights": {
+    "app": 1.5,
+    "action_type": 1.2,
+    "time_of_day": 1.0,
+    "day_of_week": 0.8,
+    "complexity": 0.7,
+    "content_type": 1.1,
+    "suggestion_type": 1.3
+  },
+  "feature_success_rates": {
+    "action_type": {
+      "open_app": {
+        "count": 4,
+        "successes": 2,
+        "rate": 0.5
+      }
+    },
+    "complexity": {
+      "complex": {
+        "count": 4,
+        "successes": 2,
+        "rate": 0.5
+      }
+    },
+    "time_of_day": {
+      "night": {
+        "count": 4,
+        "successes": 2,
+        "rate": 0.5
+      }
+    },
+    "day_of_week": {
+      "Friday": {
+        "count": 4,
+        "successes": 2,
+        "rate": 0.5
+      }
+    },
+    "suggestion_type": {
+      "creation": {
+        "count": 4,
+        "successes": 2,
+        "rate": 0.5
+      }
+    }
+  },
+  "time_patterns": {
+    "hour": {
+      "23": 2
+    },
+    "day": {
+      "Friday": 2
+    },
+    "app_hour": {}
+  },
+  "rejection_reasons": {
+    "Already handled this meeting": 2
+  }
+}

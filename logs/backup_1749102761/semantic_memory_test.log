@@ -1,0 +1,136 @@
+2025-06-04 11:58:12,105 - semantic_test - INFO - Starting semantic memory capability test
+2025-06-04 11:58:12,105 - semantic_test - INFO - Connecting to ws://localhost:8769...
+2025-06-04 11:58:12,202 - semantic_test - INFO - Connected to WebSocket server
+2025-06-04 11:58:12,214 - semantic_test - INFO - Received welcome: connection_status
+2025-06-04 11:58:12,217 - semantic_test - INFO - Memory system is available. Adding test memories...
+2025-06-04 11:58:12,217 - semantic_test - INFO - Adding memory 1/9: I was working on a Python proj...
+2025-06-04 11:58:12,240 - semantic_test - INFO - Successfully added memory with ID: 66f9d402-2659-4b02-b87d-d755c1dac55a
+2025-06-04 11:58:12,741 - semantic_test - INFO - Adding memory 2/9: The JavaScript frontend is mak...
+2025-06-04 11:58:12,747 - semantic_test - INFO - Successfully added memory with ID: d7dacc1f-34b5-4c99-87de-1afdd87716ed
+2025-06-04 11:58:13,248 - semantic_test - INFO - Adding memory 3/9: Our cloud infrastructure needs...
+2025-06-04 11:58:13,251 - semantic_test - INFO - Successfully added memory with ID: 0d4a9476-91e3-4fc3-864b-a1825add3391
+2025-06-04 11:58:13,752 - semantic_test - INFO - Adding memory 4/9: The trip to Japan was amazing,...
+2025-06-04 11:58:13,755 - semantic_test - INFO - Successfully added memory with ID: c1205112-4600-4ad8-adba-64a9f26334ad
+2025-06-04 11:58:14,257 - semantic_test - INFO - Adding memory 5/9: Visiting the beaches in Hawaii...
+2025-06-04 11:58:14,291 - semantic_test - INFO - Successfully added memory with ID: 10a18fa7-2c24-4983-9c22-b0d0f8a9b6fd
+2025-06-04 11:58:14,795 - semantic_test - INFO - Adding memory 6/9: The architecture in Barcelona'...
+2025-06-04 11:58:14,810 - semantic_test - INFO - Successfully added memory with ID: dfb84dd2-ad6a-4240-8a2e-f7c9856b0b58
+2025-06-04 11:58:15,312 - semantic_test - INFO - Adding memory 7/9: The new Italian restaurant has...
+2025-06-04 11:58:15,318 - semantic_test - INFO - Successfully added memory with ID: 919a41ac-8ed5-44f8-affc-ac66dcf0daf7
+2025-06-04 11:58:15,819 - semantic_test - INFO - Adding memory 8/9: I learned how to make sushi at...
+2025-06-04 11:58:15,824 - semantic_test - INFO - Successfully added memory with ID: 4c439359-070f-46fe-b015-20cfaae2c1eb
+2025-06-04 11:58:16,326 - semantic_test - INFO - Adding memory 9/9: The spicy Thai curry at the lo...
+2025-06-04 11:58:16,349 - semantic_test - INFO - Successfully added memory with ID: 5d5ea549-29f4-484a-b8c0-ad788be25a62
+2025-06-04 11:58:16,862 - semantic_test - INFO - All test memories added. Running semantic search tests...
+2025-06-04 11:58:16,863 - semantic_test - INFO - Test 1/7: Should match programming-related memories
+2025-06-04 11:58:16,863 - semantic_test - INFO - Query: 'Software development projects'
+2025-06-04 11:58:17,091 - semantic_test - INFO - Found 5 results
+2025-06-04 11:58:17,091 - semantic_test - INFO - Result: 'User in Agent mode: Search SEGEV in google...' (Score: 0.425)
+2025-06-04 11:58:17,092 - semantic_test - INFO - Result: 'System created automation plan in Agent mode: 🤖 **...' (Score: 0.278)
+2025-06-04 11:58:17,092 - semantic_test - INFO - Result: 'WebSocket server implementation for real-time comm...' (Score: 0.244)
+2025-06-04 11:58:17,092 - semantic_test - INFO - Result: 'General mode maintains conversation context for na...' (Score: 0.242)
+2025-06-04 11:58:17,092 - semantic_test - INFO - Result: 'Contextual confidence scoring helps determine resp...' (Score: 0.227)
+2025-06-04 11:58:17,092 - semantic_test - WARNING - Missing expected categories: {'python', 'javascript', 'programming'}
+2025-06-04 11:58:17,092 - semantic_test - INFO - Test completed with 0.0% match rate
+2025-06-04 11:58:17,092 - semantic_test - INFO - --------------------------------------------------
+2025-06-04 11:58:18,098 - semantic_test - INFO - Test 2/7: Should match travel-related memories
+2025-06-04 11:58:18,100 - semantic_test - INFO - Query: 'International travel experiences'
+2025-06-04 11:58:18,215 - semantic_test - INFO - Found 5 results
+2025-06-04 11:58:18,215 - semantic_test - INFO - Result: 'Python development environment setup with VSCode f...' (Score: 0.364)
+2025-06-04 11:58:18,216 - semantic_test - INFO - Result: 'Test memory 0...' (Score: 0.360)
+2025-06-04 11:58:18,216 - semantic_test - INFO - Result: 'Test memory 0...' (Score: 0.360)
+2025-06-04 11:58:18,216 - semantic_test - INFO - Result: 'Test memory 1...' (Score: 0.296)
+2025-06-04 11:58:18,216 - semantic_test - INFO - Result: 'Test memory 1...' (Score: 0.296)
+2025-06-04 11:58:18,216 - semantic_test - WARNING - Missing expected categories: {'hawaii', 'japan', 'travel', 'spain'}
+2025-06-04 11:58:18,216 - semantic_test - INFO - Test completed with 0.0% match rate
+2025-06-04 11:58:18,216 - semantic_test - INFO - --------------------------------------------------
+2025-06-04 11:58:19,218 - semantic_test - INFO - Test 3/7: Should match food-related memories
+2025-06-04 11:58:19,219 - semantic_test - INFO - Query: 'Culinary experiences and dishes'
+2025-06-04 11:58:19,302 - semantic_test - INFO - Found 5 results
+2025-06-04 11:58:19,302 - semantic_test - INFO - Result: 'Test memory 0...' (Score: 0.331)
+2025-06-04 11:58:19,302 - semantic_test - INFO - Result: 'Test memory 0...' (Score: 0.331)
+2025-06-04 11:58:19,302 - semantic_test - INFO - Result: 'Test memory 1...' (Score: 0.272)
+2025-06-04 11:58:19,302 - semantic_test - INFO - Result: 'Test memory 1...' (Score: 0.272)
+2025-06-04 11:58:19,302 - semantic_test - INFO - Result: 'Test memory 2...' (Score: 0.234)
+2025-06-04 11:58:19,302 - semantic_test - WARNING - Missing expected categories: {'restaurant', 'food', 'cooking'}
+2025-06-04 11:58:19,302 - semantic_test - INFO - Test completed with 0.0% match rate
+2025-06-04 11:58:19,302 - semantic_test - INFO - --------------------------------------------------
+2025-06-04 11:58:20,340 - semantic_test - INFO - Test 4/7: Should match programming without using the word 'programming'
+2025-06-04 11:58:20,342 - semantic_test - INFO - Query: 'Computer code and software'
+2025-06-04 11:58:21,601 - semantic_test - INFO - Found 5 results
+2025-06-04 11:58:21,602 - semantic_test - INFO - Result: 'User in Agent mode: Search SEGEV in google...' (Score: 0.384)
+2025-06-04 11:58:21,602 - semantic_test - INFO - Result: 'WebSocket server implementation for real-time comm...' (Score: 0.299)
+2025-06-04 11:58:21,602 - semantic_test - INFO - Result: 'System created automation plan in Agent mode: 🤖 **...' (Score: 0.260)
+2025-06-04 11:58:21,602 - semantic_test - INFO - Result: 'User in Agent mode: open Google and search SEGEV...' (Score: 0.186)
+2025-06-04 11:58:21,602 - semantic_test - INFO - Result: 'General mode maintains conversation context for na...' (Score: 0.182)
+2025-06-04 11:58:21,602 - semantic_test - WARNING - Missing expected categories: {'python', 'javascript', 'programming'}
+2025-06-04 11:58:21,602 - semantic_test - INFO - Test completed with 0.0% match rate
+2025-06-04 11:58:21,602 - semantic_test - INFO - --------------------------------------------------
+2025-06-04 11:58:22,604 - semantic_test - INFO - Test 5/7: Should match travel memories using 'vacation' concept
+2025-06-04 11:58:22,604 - semantic_test - INFO - Query: 'Vacation destinations'
+2025-06-04 11:58:22,691 - semantic_test - INFO - Found 5 results
+2025-06-04 11:58:22,691 - semantic_test - INFO - Result: 'Memory system stores conversation history, user pr...' (Score: 0.381)
+2025-06-04 11:58:22,691 - semantic_test - INFO - Result: 'General mode maintains conversation context for na...' (Score: 0.315)
+2025-06-04 11:58:22,691 - semantic_test - INFO - Result: 'Default Browser: User primarily uses Google Chrome...' (Score: 0.295)
+2025-06-04 11:58:22,691 - semantic_test - INFO - Result: 'Memory system stores conversation history, user pr...' (Score: 0.284)
+2025-06-04 11:58:22,691 - semantic_test - INFO - Result: 'System learns from every interaction to improve fu...' (Score: 0.284)
+2025-06-04 11:58:22,691 - semantic_test - WARNING - Missing expected categories: {'hawaii', 'japan', 'travel', 'spain'}
+2025-06-04 11:58:22,691 - semantic_test - INFO - Test completed with 0.0% match rate
+2025-06-04 11:58:22,691 - semantic_test - INFO - --------------------------------------------------
+2025-06-04 11:58:23,693 - semantic_test - INFO - Test 6/7: Should match frontend development memories
+2025-06-04 11:58:23,701 - semantic_test - INFO - Query: 'Web development'
+2025-06-04 11:58:23,798 - semantic_test - INFO - Found 5 results
+2025-06-04 11:58:23,798 - semantic_test - INFO - Result: 'Memory system stores conversation history, user pr...' (Score: 0.336)
+2025-06-04 11:58:23,798 - semantic_test - INFO - Result: 'General mode maintains conversation context for na...' (Score: 0.278)
+2025-06-04 11:58:23,798 - semantic_test - INFO - Result: 'Contextual confidence scoring helps determine resp...' (Score: 0.269)
+2025-06-04 11:58:23,798 - semantic_test - INFO - Result: 'Contextual confidence scoring helps determine resp...' (Score: 0.269)
+2025-06-04 11:58:23,798 - semantic_test - INFO - Result: 'Contextual confidence scoring helps determine resp...' (Score: 0.269)
+2025-06-04 11:58:23,798 - semantic_test - WARNING - Missing expected categories: {'javascript', 'programming'}
+2025-06-04 11:58:23,798 - semantic_test - INFO - Test completed with 0.0% match rate
+2025-06-04 11:58:23,798 - semantic_test - INFO - --------------------------------------------------
+2025-06-04 11:58:24,800 - semantic_test - INFO - Test 7/7: Should match Asian food memories
+2025-06-04 11:58:24,800 - semantic_test - INFO - Query: 'Asian cuisine'
+2025-06-04 11:58:24,896 - semantic_test - INFO - Found 5 results
+2025-06-04 11:58:24,896 - semantic_test - INFO - Result: 'Agent mode uses context to understand UI automatio...' (Score: 0.424)
+2025-06-04 11:58:24,896 - semantic_test - INFO - Result: 'Suggest mode analyzes user patterns and context to...' (Score: 0.340)
+2025-06-04 11:58:24,896 - semantic_test - INFO - Result: 'Memory system stores conversation history, user pr...' (Score: 0.336)
+2025-06-04 11:58:24,896 - semantic_test - INFO - Result: 'User in Agent mode: open Word and write SEGEV...' (Score: 0.293)
+2025-06-04 11:58:24,896 - semantic_test - INFO - Result: 'Memory system stores conversation history, user pr...' (Score: 0.292)
+2025-06-04 11:58:24,896 - semantic_test - WARNING - Missing expected categories: {'food', 'japanese', 'thai'}
+2025-06-04 11:58:24,896 - semantic_test - INFO - Test completed with 0.0% match rate
+2025-06-04 11:58:24,896 - semantic_test - INFO - --------------------------------------------------
+2025-06-04 11:58:25,897 - semantic_test - INFO - Overall semantic search performance: 0.0%
+2025-06-04 11:58:25,898 - semantic_test - INFO - 
+===== SEMANTIC SEARCH TEST SUMMARY =====
+2025-06-04 11:58:25,898 - semantic_test - INFO - Test 1: Software development projects
+2025-06-04 11:58:25,898 - semantic_test - INFO -   - Success: 0.0%
+2025-06-04 11:58:25,898 - semantic_test - INFO -   - Matches: 
+2025-06-04 11:58:25,898 - semantic_test - INFO -   - Missing: python, javascript, programming
+2025-06-04 11:58:25,898 - semantic_test - INFO - Test 2: International travel experiences
+2025-06-04 11:58:25,898 - semantic_test - INFO -   - Success: 0.0%
+2025-06-04 11:58:25,898 - semantic_test - INFO -   - Matches: 
+2025-06-04 11:58:25,898 - semantic_test - INFO -   - Missing: hawaii, japan, travel, spain
+2025-06-04 11:58:25,898 - semantic_test - INFO - Test 3: Culinary experiences and dishes
+2025-06-04 11:58:25,898 - semantic_test - INFO -   - Success: 0.0%
+2025-06-04 11:58:25,898 - semantic_test - INFO -   - Matches: 
+2025-06-04 11:58:25,898 - semantic_test - INFO -   - Missing: restaurant, food, cooking
+2025-06-04 11:58:25,898 - semantic_test - INFO - Test 4: Computer code and software
+2025-06-04 11:58:25,898 - semantic_test - INFO -   - Success: 0.0%
+2025-06-04 11:58:25,898 - semantic_test - INFO -   - Matches: 
+2025-06-04 11:58:25,898 - semantic_test - INFO -   - Missing: python, javascript, programming
+2025-06-04 11:58:25,898 - semantic_test - INFO - Test 5: Vacation destinations
+2025-06-04 11:58:25,898 - semantic_test - INFO -   - Success: 0.0%
+2025-06-04 11:58:25,898 - semantic_test - INFO -   - Matches: 
+2025-06-04 11:58:25,898 - semantic_test - INFO -   - Missing: hawaii, japan, travel, spain
+2025-06-04 11:58:25,898 - semantic_test - INFO - Test 6: Web development
+2025-06-04 11:58:25,898 - semantic_test - INFO -   - Success: 0.0%
+2025-06-04 11:58:25,898 - semantic_test - INFO -   - Matches: 
+2025-06-04 11:58:25,898 - semantic_test - INFO -   - Missing: javascript, programming
+2025-06-04 11:58:25,898 - semantic_test - INFO - Test 7: Asian cuisine
+2025-06-04 11:58:25,898 - semantic_test - INFO -   - Success: 0.0%
+2025-06-04 11:58:25,898 - semantic_test - INFO -   - Matches: 
+2025-06-04 11:58:25,898 - semantic_test - INFO -   - Missing: food, japanese, thai
+2025-06-04 11:58:25,898 - semantic_test - INFO - 
+OVERALL PERFORMANCE: 0.0%
+2025-06-04 11:58:25,898 - semantic_test - INFO - ======================================
+2025-06-04 11:58:25,901 - semantic_test - INFO - Test completed

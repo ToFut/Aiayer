@@ -1,82 +1,211 @@
 #!/usr/bin/env python3
+"""
+Test Agent Mode LLM Planning and Execution
+This script tests if the Agent Mode now correctly creates real LLM plans and executes them.
+"""
 
 import asyncio
-import websockets
 import json
+import logging
 import time
+import websockets
+from typing import Dict, Any
 
-async def test_agent_mode_with_fast_handler():
-    """Test agent mode with the corrected Fast handler priority"""
+# Setup logging
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
+)
+logger = logging.getLogger(__name__)
+
+async def test_agent_mode_llm_planning():
+    """Test if Agent Mode now provides real LLM plans"""
+    logger.info("🧪 Testing Agent Mode LLM planning...")
     
-    try:
-        print("🧪 Testing Agent mode with Fast handler priority...")
-        uri = "ws://localhost:8767"
+    # Connect to the backend WebSocket
+    async with websockets.connect("ws://localhost:8767") as websocket:
+        # Wait for connection established message
+        response = await websocket.recv()
+        logger.info(f"Connected to backend, received: {json.loads(response)['type']}")
         
-        async with websockets.connect(uri) as websocket:
-            print("✅ Connected to WebSocket")
+        # Send an Agent Mode request
+        request = {
+            "type": "chat_request",
+            "mode": "Agent",
+            "message": "search for python tutorials on google",
+            "session_id": f"test_{int(time.time())}",
+            "client_id": f"test_client_{int(time.time())}"
+        }
+        
+        logger.info(f"📤 Sending Agent Mode request: {request['message']}")
+        await websocket.send(json.dumps(request))
+        
+        # Wait for response with plan
+        plan_received = False
+        real_llm_plan = False
+        plan_id = None
+        
+        while True:
+            response = await websocket.recv()
+            response_data = json.loads(response)
             
-            # Test the button_action message that was failing before
-            test_message = {
-                "type": "button_action",
-                "action": "EXECUTE_PLAN", 
-                "plan_id": "test_plan_001",
-                "button_data": {
-                    "user_request": "open Safari and search for best flights from Miami to NYC",
-                    "plan_type": "automation_execution"
-                },
-                "timestamp": time.time()
-            }
-            
-            print(f"📤 Sending button_action message...")
-            print(f"   Message: {test_message}")
-            
-            # Send message and measure response time
-            start_time = time.time()
-            await websocket.send(json.dumps(test_message))
-            
-            print("⏳ Waiting for response...")
-            
+            if response_data.get("type") == "agent_automation_plan":
+                logger.info("✅ Received agent_automation_plan response!")
+                plan_received = True
+                plan_id = response_data.get("plan_id")
+                
+                # Check if this is a real LLM plan
+                if "universal_intelligent_automation" in response_data:
+                    real_llm_plan = True
+                    logger.info("✅ Confirmed real LLM plan using universal_intelligent_automation")
+                elif "ai_powered" in response_data and response_data.get("ai_powered") == True:
+                    real_llm_plan = True
+                    logger.info("✅ Confirmed AI-powered plan")
+                
+                # Print plan details
+                logger.info(f"📋 Plan ID: {plan_id}")
+                logger.info(f"📋 Response: {response_data.get('response')[:200]}...")
+                
+                # Extract buttons
+                buttons = response_data.get("buttons", [])
+                if buttons:
+                    logger.info(f"🔘 Plan has {len(buttons)} buttons:")
+                    for button in buttons:
+                        logger.info(f"  - {button.get('text')}: {button.get('action')}")
+                
+                break
+                
+            elif response_data.get("type") == "final_response":
+                logger.info("✅ Received final_response!")
+                plan_received = True
+                
+                # Check for interactive buttons
+                if response_data.get("interactive", False) and response_data.get("buttons"):
+                    plan_id = response_data.get("plan_id")
+                    logger.info(f"📋 Plan ID: {plan_id}")
+                    logger.info(f"📋 Response: {response_data.get('response')[:200]}...")
+                    
+                    # Check if this is a real LLM plan
+                    if "universal_planning" in response_data or "ai_powered" in response_data:
+                        real_llm_plan = True
+                        logger.info("✅ Confirmed real LLM plan")
+                    
+                    # Extract buttons
+                    buttons = response_data.get("buttons", [])
+                    if buttons:
+                        logger.info(f"🔘 Plan has {len(buttons)} buttons:")
+                        for button in buttons:
+                            logger.info(f"  - {button.get('text')}: {button.get('action')}")
+                
+                break
+        
+        if not plan_received:
+            logger.error("❌ Did not receive a plan response!")
+            return False, None
+        
+        if not real_llm_plan:
+            logger.warning("⚠️ Received a plan, but it doesn't appear to be a real LLM plan")
+        
+        logger.info(f"✅ Successfully received Agent Mode plan with ID: {plan_id}")
+        return True, plan_id
+
+async def test_agent_mode_execution(plan_id: str):
+    """Test if Agent Mode properly executes plans"""
+    if not plan_id:
+        logger.error("❌ Cannot test execution without a plan ID")
+        return False
+    
+    logger.info(f"🧪 Testing Agent Mode execution for plan: {plan_id}")
+    
+    # Connect to the backend WebSocket
+    async with websockets.connect("ws://localhost:8767") as websocket:
+        # Wait for connection established message
+        response = await websocket.recv()
+        logger.info(f"Connected to backend, received: {json.loads(response)['type']}")
+        
+        # Send a button action request to execute the plan
+        request = {
+            "type": "button_action",
+            "action": "execute_plan",
+            "plan_id": plan_id,
+            "session_id": f"test_exec_{int(time.time())}",
+            "client_id": f"test_client_{int(time.time())}"
+        }
+        
+        logger.info(f"📤 Sending execute_plan request for plan: {plan_id}")
+        await websocket.send(json.dumps(request))
+        
+        # Wait for execution progress and result
+        execution_started = False
+        execution_completed = False
+        max_wait_time = 30  # seconds
+        start_time = time.time()
+        
+        while time.time() - start_time < max_wait_time:
             try:
-                response = await asyncio.wait_for(websocket.recv(), timeout=10.0)
-                end_time = time.time()
-                response_time = end_time - start_time
+                response = await asyncio.wait_for(websocket.recv(), timeout=5.0)
+                response_data = json.loads(response)
                 
-                print(f"✅ Received response in {response_time:.2f} seconds")
+                # Log all responses for debugging
+                logger.info(f"📥 Received response type: {response_data.get('type')}")
                 
-                try:
-                    response_data = json.loads(response)
-                    print(f"📥 Response type: {response_data.get('type', 'unknown')}")
-                    print(f"📥 Response status: {response_data.get('status', 'unknown')}")
+                if response_data.get("type") == "agent_progress":
+                    execution_started = True
+                    progress = response_data.get("progress", 0)
+                    step = response_data.get("step", 0)
+                    message = response_data.get("message", "")
+                    logger.info(f"📊 Execution progress: {progress}% - Step {step}: {message}")
+                
+                elif response_data.get("type") in ["agent_execution_success", "plan_execution_success"]:
+                    execution_completed = True
+                    logger.info("✅ Execution completed successfully!")
+                    logger.info(f"📋 Result: {response_data.get('summary', '')}")
+                    break
                     
-                    if response_time < 2.0:
-                        print("🚀 SUCCESS: Fast handler is working! (< 2 seconds)")
-                    elif response_time < 10.0:
-                        print("⚡ GOOD: Response within reasonable time (< 10 seconds)")
-                    else:
-                        print("⚠️ SLOW: Response took longer than expected")
-                        
-                    # Check if it's an automation plan response
-                    if 'plan' in response_data or 'automation_plan' in response_data:
-                        print("🎯 SUCCESS: Agent mode automation plan generated!")
-                        
-                    print(f"\n📋 Full response:")
-                    print(json.dumps(response_data, indent=2))
-                    
-                except json.JSONDecodeError:
-                    print(f"⚠️ Response is not valid JSON: {response}")
-                    
+                elif response_data.get("type") in ["agent_execution_error", "plan_execution_error"]:
+                    logger.error(f"❌ Execution failed: {response_data.get('error', 'Unknown error')}")
+                    return False
+            
             except asyncio.TimeoutError:
-                print("❌ TIMEOUT: No response received within 10 seconds")
-                print("   This suggests the WebSocket connection or handler is still slow")
-                
-    except Exception as e:
-        print(f"❌ Test failed: {e}")
+                logger.warning("⏳ Waiting for execution updates...")
+        
+        if not execution_started:
+            logger.error("❌ Execution never started!")
+            return False
+        
+        if not execution_completed:
+            logger.warning("⚠️ Execution started but may not have completed within timeout")
+            return False
+        
+        logger.info("✅ Agent Mode execution test passed!")
+        return True
+
+async def main():
+    """Main function to test Agent Mode LLM and Execution"""
+    logger.info("🧪 Starting Agent Mode LLM and Execution Test")
+    
+    # Test LLM planning
+    logger.info("🧪 Testing LLM planning...")
+    planning_success, plan_id = await test_agent_mode_llm_planning()
+    
+    # Test execution if planning succeeded
+    execution_success = False
+    if planning_success and plan_id:
+        logger.info("🧪 Testing execution...")
+        execution_success = await test_agent_mode_execution(plan_id)
+    
+    # Summary
+    logger.info("
+🔍 Test Summary:")
+    logger.info(f"LLM planning: {'✅' if planning_success else '❌'}")
+    logger.info(f"Plan execution: {'✅' if execution_success else '❌'}")
+    
+    if planning_success and execution_success:
+        logger.info("
+✅ Agent Mode LLM and Execution Test passed!")
+    else:
+        logger.info("
+❌ Agent Mode LLM and Execution Test failed!")
 
 if __name__ == "__main__":
-    print("🔧 Testing Agent mode button_action fix with Fast handler priority")
-    print("   This should now work in under 2 seconds instead of 29+ seconds")
-    print("   Previous issue: 'Unknown message type: button_action' - FIXED")
-    print("   Previous issue: 29s Universal handler timeout - SHOULD BE FIXED")
-    print()
-    
-    asyncio.run(test_agent_mode_with_fast_handler())
+    asyncio.run(main())

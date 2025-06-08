@@ -1,0 +1,7 @@
+2025-05-29 15:07:22,521 - INFO - === STARTING END-TO-END TEST OF GUARANTEED SOLUTION ===
+2025-05-29 15:07:22,523 - INFO - WebSocket server is not running, starting it...
+2025-05-29 15:07:23,526 - INFO - ✅ WebSocket server started successfully
+2025-05-29 15:07:23,526 - INFO - Connecting to WebSocket server: ws://localhost:8765
+2025-05-29 15:07:23,564 - INFO - ✅ Connected to WebSocket server
+2025-05-29 15:07:23,564 - ERROR - ❌ Test failed with error: received 1011 (internal error); then sent 1011 (internal error)
+2025-05-29 15:07:23,565 - ERROR - ❌ END-TO-END TEST FAILED!

@@ -403,6 +403,10 @@
     style="left: {widgetX}px; top: {widgetY}px; --eye-rotation: {eyeRotation}deg; --eye-scale: {eyeScale}; --glow-intensity: {glowIntensity};"
     on:mousedown={startDrag}
     on:click={handleWidgetClick}
+    on:keydown={(e) => e.key === 'Enter' && handleWidgetClick(e)}
+    role="button"
+    tabindex="0"
+    aria-label="AI Assistant Widget"
 >
     <div class="widget-content">
         <div class="eye-container">

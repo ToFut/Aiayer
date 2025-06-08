@@ -1,0 +1,124 @@
+2025-06-08 00:04:22,507 - memory.enhanced_semantic_search - INFO - Enhanced semantic search initialized with embedding dim: 384
+2025-06-08 00:04:22,507 - memory.enhanced_semantic_search - INFO - Hybrid retrieval enabled: True
+2025-06-08 00:04:22,536 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-06-08 00:04:22,537 - memory_diagnostics - INFO - MEMORY EVENT: logger_initialized - {"timestamp": "2025-06-08T00:04:22.537630"}
+2025-06-08 00:04:22,537 - INFO - [ConsciousMemory] Initialized as middle layer for memory system
+2025-06-08 00:04:22,537 - memory.conscious_memory - INFO - [ConsciousMemory] Initialized as middle layer for memory system
+2025-06-08 00:04:22,538 - memory.enhanced_semantic_search - INFO - Enhanced semantic search initialized with embedding dim: 384
+2025-06-08 00:04:22,538 - memory.enhanced_semantic_search - INFO - Hybrid retrieval enabled: True
+2025-06-08 00:04:22,538 - memory_system - INFO - 🔄 Loading memory state from /Users/segevbin/Desktop/SensAI/Aiayer/memory/memory/memory_state.json
+2025-06-08 00:04:22,538 - memory_system - INFO -   - Found 16 short-term memory items
+2025-06-08 00:04:22,538 - memory_system - INFO -   - No long-term memory found, initializing empty
+2025-06-08 00:04:22,539 - memory_system - INFO -   - Found context memory with 6 items
+2025-06-08 00:04:22,539 - memory_system - INFO -   - Initialized new sensor data storage
+2025-06-08 00:04:22,539 - memory_system - INFO - ✅ Successfully loaded memory state
+2025-06-08 00:04:22,539 - memory_diagnostics - INFO - MEMORY EVENT: memory_state_loaded - {"short_term_count": 16, "long_term_count": 0, "context_count": 6, "timestamp": "2025-06-08T00:04:22.539157"}
+2025-06-08 00:04:22,539 - memory_system - INFO - Memory system initialized
+ * Serving Flask app 'memory_dashboard_server'
+ * Debug mode: on
+2025-06-08 00:04:22,662 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:8082
+ * Running on http://192.168.10.0:8082
+2025-06-08 00:04:22,663 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-06-08 00:04:22,663 - werkzeug - INFO -  * Restarting with stat
+2025-06-08 00:04:22,952 - memory.enhanced_semantic_search - INFO - Enhanced semantic search initialized with embedding dim: 384
+2025-06-08 00:04:22,952 - memory.enhanced_semantic_search - INFO - Hybrid retrieval enabled: True
+2025-06-08 00:04:22,965 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-06-08 00:04:22,966 - memory_diagnostics - INFO - MEMORY EVENT: logger_initialized - {"timestamp": "2025-06-08T00:04:22.966051"}
+2025-06-08 00:04:22,966 - INFO - [ConsciousMemory] Initialized as middle layer for memory system
+2025-06-08 00:04:22,966 - memory.conscious_memory - INFO - [ConsciousMemory] Initialized as middle layer for memory system
+2025-06-08 00:04:22,966 - memory.enhanced_semantic_search - INFO - Enhanced semantic search initialized with embedding dim: 384
+2025-06-08 00:04:22,966 - memory.enhanced_semantic_search - INFO - Hybrid retrieval enabled: True
+2025-06-08 00:04:22,966 - memory_system - INFO - 🔄 Loading memory state from /Users/segevbin/Desktop/SensAI/Aiayer/memory/memory/memory_state.json
+2025-06-08 00:04:22,966 - memory_system - INFO -   - Found 16 short-term memory items
+2025-06-08 00:04:22,966 - memory_system - INFO -   - No long-term memory found, initializing empty
+2025-06-08 00:04:22,966 - memory_system - INFO -   - Found context memory with 6 items
+2025-06-08 00:04:22,966 - memory_system - INFO -   - Initialized new sensor data storage
+2025-06-08 00:04:22,966 - memory_system - INFO - ✅ Successfully loaded memory state
+2025-06-08 00:04:22,966 - memory_diagnostics - INFO - MEMORY EVENT: memory_state_loaded - {"short_term_count": 16, "long_term_count": 0, "context_count": 6, "timestamp": "2025-06-08T00:04:22.966817"}
+2025-06-08 00:04:22,966 - memory_system - INFO - Memory system initialized
+2025-06-08 00:04:22,990 - werkzeug - WARNING -  * Debugger is active!
+2025-06-08 00:04:22,999 - werkzeug - INFO -  * Debugger PIN: 853-474-554
+2025-06-08 00:04:26,400 - __main__ - WARNING - Memory system not available, using fallback metrics
+2025-06-08 00:04:26,404 - werkzeug - INFO - 127.0.0.1 - - [08/Jun/2025 00:04:26] "GET /api/memory/metrics HTTP/1.1" 200 -
+2025-06-08 00:04:27,199 - werkzeug - INFO - 127.0.0.1 - - [08/Jun/2025 00:04:27] "GET /memory HTTP/1.1" 200 -
+2025-06-08 00:04:27,512 - werkzeug - INFO - 127.0.0.1 - - [08/Jun/2025 00:04:27] "[36mGET /static/js/memory_dashboard.js HTTP/1.1[0m" 304 -
+2025-06-08 00:04:27,835 - __main__ - WARNING - Memory system not available, using fallback metrics
+2025-06-08 00:04:27,835 - werkzeug - INFO - 127.0.0.1 - - [08/Jun/2025 00:04:27] "GET /api/memory/metrics HTTP/1.1" 200 -
+2025-06-08 00:04:36,134 - __main__ - WARNING - Memory system not available, using fallback metrics
+2025-06-08 00:04:42,774 - __main__ - WARNING - Memory system not available, using fallback metrics
+2025-06-08 00:04:42,771 - werkzeug - INFO - 127.0.0.1 - - [08/Jun/2025 00:04:42] "GET /api/memory/metrics HTTP/1.1" 200 -
+2025-06-08 00:04:43,103 - werkzeug - INFO - 127.0.0.1 - - [08/Jun/2025 00:04:43] "GET /api/memory/metrics HTTP/1.1" 200 -
+2025-06-08 00:04:43,319 - __main__ - WARNING - Memory system not available, using fallback metrics
+2025-06-08 00:04:43,358 - werkzeug - INFO - 127.0.0.1 - - [08/Jun/2025 00:04:43] "GET /api/memory/metrics HTTP/1.1" 200 -
+2025-06-08 00:04:48,057 - __main__ - WARNING - Memory system not available, using fallback metrics
+2025-06-08 00:04:48,058 - werkzeug - INFO - 127.0.0.1 - - [08/Jun/2025 00:04:48] "GET /api/memory/metrics HTTP/1.1" 200 -
+2025-06-08 00:04:54,258 - __main__ - WARNING - Memory system not available, using fallback metrics
+2025-06-08 00:04:54,261 - werkzeug - INFO - 127.0.0.1 - - [08/Jun/2025 00:04:54] "GET /api/memory/metrics HTTP/1.1" 200 -
+2025-06-08 00:04:58,807 - __main__ - WARNING - Memory system not available, using fallback metrics
+2025-06-08 00:04:58,858 - werkzeug - INFO - 127.0.0.1 - - [08/Jun/2025 00:04:58] "GET /api/memory/metrics HTTP/1.1" 200 -
+2025-06-08 00:05:03,490 - __main__ - WARNING - Memory system not available, using fallback metrics
+2025-06-08 00:05:03,504 - werkzeug - INFO - 127.0.0.1 - - [08/Jun/2025 00:05:03] "GET /api/memory/metrics HTTP/1.1" 200 -
+2025-06-08 00:05:09,039 - __main__ - WARNING - Memory system not available, using fallback metrics
+2025-06-08 00:05:09,053 - werkzeug - INFO - 127.0.0.1 - - [08/Jun/2025 00:05:09] "GET /api/memory/metrics HTTP/1.1" 200 -
+2025-06-08 00:05:13,455 - __main__ - WARNING - Memory system not available, using fallback metrics
+2025-06-08 00:05:13,464 - werkzeug - INFO - 127.0.0.1 - - [08/Jun/2025 00:05:13] "GET /api/memory/metrics HTTP/1.1" 200 -
+2025-06-08 00:05:18,384 - __main__ - WARNING - Memory system not available, using fallback metrics
+2025-06-08 00:05:18,386 - werkzeug - INFO - 127.0.0.1 - - [08/Jun/2025 00:05:18] "GET /api/memory/metrics HTTP/1.1" 200 -
+2025-06-08 00:05:20,205 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/memory/connect_memory_dashboard.py', reloading
+2025-06-08 00:05:20,436 - werkzeug - INFO -  * Restarting with stat
+2025-06-08 00:05:21,329 - memory.enhanced_semantic_search - INFO - Enhanced semantic search initialized with embedding dim: 384
+2025-06-08 00:05:21,330 - memory.enhanced_semantic_search - INFO - Hybrid retrieval enabled: True
+2025-06-08 00:05:21,378 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-06-08 00:05:21,378 - memory_diagnostics - INFO - MEMORY EVENT: logger_initialized - {"timestamp": "2025-06-08T00:05:21.378809"}
+2025-06-08 00:05:21,379 - INFO - [ConsciousMemory] Initialized as middle layer for memory system
+2025-06-08 00:05:21,379 - memory.conscious_memory - INFO - [ConsciousMemory] Initialized as middle layer for memory system
+2025-06-08 00:05:21,379 - memory.enhanced_semantic_search - INFO - Enhanced semantic search initialized with embedding dim: 384
+2025-06-08 00:05:21,379 - memory.enhanced_semantic_search - INFO - Hybrid retrieval enabled: True
+2025-06-08 00:05:21,379 - memory_system - INFO - 🔄 Loading memory state from /Users/segevbin/Desktop/SensAI/Aiayer/memory/memory/memory_state.json
+2025-06-08 00:05:21,380 - memory_system - INFO -   - Found 16 short-term memory items
+2025-06-08 00:05:21,380 - memory_system - INFO -   - No long-term memory found, initializing empty
+2025-06-08 00:05:21,380 - memory_system - INFO -   - Found context memory with 6 items
+2025-06-08 00:05:21,381 - memory_system - INFO -   - Initialized new sensor data storage
+2025-06-08 00:05:21,381 - memory_system - INFO - ✅ Successfully loaded memory state
+2025-06-08 00:05:21,381 - memory_diagnostics - INFO - MEMORY EVENT: memory_state_loaded - {"short_term_count": 16, "long_term_count": 0, "context_count": 6, "timestamp": "2025-06-08T00:05:21.381189"}
+2025-06-08 00:05:21,381 - memory_system - INFO - Memory system initialized
+2025-06-08 00:05:21,495 - werkzeug - WARNING -  * Debugger is active!
+2025-06-08 00:05:21,560 - werkzeug - INFO -  * Debugger PIN: 853-474-554
+2025-06-08 00:05:29,093 - __main__ - WARNING - Memory system not available, using fallback metrics
+2025-06-08 00:05:29,130 - werkzeug - INFO - 127.0.0.1 - - [08/Jun/2025 00:05:29] "GET /api/memory/metrics HTTP/1.1" 200 -
+2025-06-08 00:05:33,972 - __main__ - WARNING - Memory system not available, using fallback metrics
+2025-06-08 00:05:33,973 - werkzeug - INFO - 127.0.0.1 - - [08/Jun/2025 00:05:33] "GET /api/memory/metrics HTTP/1.1" 200 -
+2025-06-08 00:05:46,036 - __main__ - WARNING - Memory system not available, using fallback metrics
+2025-06-08 00:05:46,037 - werkzeug - INFO - 127.0.0.1 - - [08/Jun/2025 00:05:46] "GET /api/memory/metrics HTTP/1.1" 200 -
+2025-06-08 00:05:51,136 - __main__ - WARNING - Memory system not available, using fallback metrics
+2025-06-08 00:05:51,136 - werkzeug - INFO - 127.0.0.1 - - [08/Jun/2025 00:05:51] "GET /api/memory/metrics HTTP/1.1" 200 -
+2025-06-08 00:05:51,235 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/memory/sensors.py', reloading
+2025-06-08 00:05:51,309 - werkzeug - INFO -  * Restarting with stat
+2025-06-08 00:05:51,930 - memory.enhanced_semantic_search - INFO - Enhanced semantic search initialized with embedding dim: 384
+2025-06-08 00:05:51,930 - memory.enhanced_semantic_search - INFO - Hybrid retrieval enabled: True
+2025-06-08 00:05:52,122 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-06-08 00:05:52,123 - memory_diagnostics - INFO - MEMORY EVENT: logger_initialized - {"timestamp": "2025-06-08T00:05:52.123109"}
+2025-06-08 00:05:52,123 - INFO - [ConsciousMemory] Initialized as middle layer for memory system
+2025-06-08 00:05:52,123 - memory.conscious_memory - INFO - [ConsciousMemory] Initialized as middle layer for memory system
+2025-06-08 00:05:52,124 - memory.enhanced_semantic_search - INFO - Enhanced semantic search initialized with embedding dim: 384
+2025-06-08 00:05:52,124 - memory.enhanced_semantic_search - INFO - Hybrid retrieval enabled: True
+2025-06-08 00:05:52,124 - memory_system - INFO - 🔄 Loading memory state from /Users/segevbin/Desktop/SensAI/Aiayer/memory/memory/memory_state.json
+2025-06-08 00:05:52,125 - memory_system - INFO -   - Found 16 short-term memory items
+2025-06-08 00:05:52,125 - memory_system - INFO -   - No long-term memory found, initializing empty
+2025-06-08 00:05:52,125 - memory_system - INFO -   - Found context memory with 6 items
+2025-06-08 00:05:52,126 - memory_system - INFO -   - Initialized new sensor data storage
+2025-06-08 00:05:52,126 - memory_system - INFO - ✅ Successfully loaded memory state
+2025-06-08 00:05:52,126 - memory_diagnostics - INFO - MEMORY EVENT: memory_state_loaded - {"short_term_count": 16, "long_term_count": 0, "context_count": 6, "timestamp": "2025-06-08T00:05:52.126657"}
+2025-06-08 00:05:52,126 - memory_system - INFO - Memory system initialized
+2025-06-08 00:05:52,192 - werkzeug - WARNING -  * Debugger is active!
+2025-06-08 00:05:52,254 - werkzeug - INFO -  * Debugger PIN: 853-474-554
+2025-06-08 00:05:58,304 - __main__ - WARNING - Memory system not available, using fallback metrics
+2025-06-08 00:05:58,307 - werkzeug - INFO - 127.0.0.1 - - [08/Jun/2025 00:05:58] "GET /api/memory/metrics HTTP/1.1" 200 -
+2025-06-08 00:06:03,455 - __main__ - WARNING - Memory system not available, using fallback metrics
+2025-06-08 00:06:03,459 - werkzeug - INFO - 127.0.0.1 - - [08/Jun/2025 00:06:03] "GET /api/memory/metrics HTTP/1.1" 200 -
+/opt/homebrew/Cellar/python@3.13/3.13.3/Frameworks/Python.framework/Versions/3.13/lib/python3.13/multiprocessing/resource_tracker.py:301: UserWarning: resource_tracker: There appear to be 1 leaked semaphore objects to clean up at shutdown: {'/mp-y5a5xyvo'}
+  warnings.warn(
+/opt/homebrew/Cellar/python@3.13/3.13.3/Frameworks/Python.framework/Versions/3.13/lib/python3.13/multiprocessing/resource_tracker.py:301: UserWarning: resource_tracker: There appear to be 1 leaked semaphore objects to clean up at shutdown: {'/mp-xto_it8r'}
+  warnings.warn(

@@ -1,0 +1,56 @@
+{
+  "scenario": {
+    "id": "ask_memory_integration",
+    "mode": "ask",
+    "message": "how has my system usage changed in the last hour?",
+    "expected_keywords": [
+      "system",
+      "usage",
+      "changed",
+      "hour"
+    ],
+    "memory_indicators": [
+      "memory",
+      "history",
+      "tracking"
+    ],
+    "context_indicators": [
+      "changed",
+      "compared",
+      "over time"
+    ],
+    "description": "Tests ask mode's ability to integrate memory over time for analysis"
+  },
+  "final_response": {
+    "type": "final_response",
+    "mode": "ask",
+    "response": "\ud83e\udd16 Based on your current screen state, here are some observations:\n\n1. **Your active display**: The resolution is 2940x1912 pixels, which is a relatively high-resolution display. This suggests that you have a powerful device with a good screen-to-device ratio.\n\n2. **Light interface and rich visual content**: As mentioned in your current screen information, the light interface indicates that it's likely an LED-backlit LCD or OLED display.\n\n3. **Recent context & memory**: You're currently running on Gmail (or another email app) as your default application. This is because you've recently opened a new message, and Gmail has been displaying it prominently in its standard layout with images, videos, and other visual content.\n\n4. **System information not available**: Unfortunately, I don't have direct access to system information such as CPU usage, memory usage, or disk space utilization. However, my observation of the screen state suggests that your device is likely using a moderate amount of resources for running Gmail and possibly some background processes related to other apps you've opened.\n\n5. **No recent crashes or errors**: Based on this data, there don't appear to be any significant system-related issues such as crashes or error messages.\n\nGiven these observations, here's what I can infer about your system usage in the last hour:\n\n* You're likely using Gmail extensively during the past hour.\n* Your device is running some background processes related to other apps you've opened, but not to an extreme degree that",
+    "client_id": "client_1748527116279",
+    "timestamp": "2025-05-29T10:02:33.730006",
+    "processing_method": "agnostic_deep_data",
+    "data_sources": [
+      "screen_analysis",
+      "memory_context"
+    ],
+    "success": true
+  },
+  "combined_response": "\ud83e\udd16 Based on your current screen state, here are some observations:\n\n1. **Your active display**: The resolution is 2940x1912 pixels, which is a relatively high-resolution display. This suggests that you have a powerful device with a good screen-to-device ratio.\n\n2. **Light interface and rich visual content**: As mentioned in your current screen information, the light interface indicates that it's likely an LED-backlit LCD or OLED display.\n\n3. **Recent context & memory**: You're currently running on Gmail (or another email app) as your default application. This is because you've recently opened a new message, and Gmail has been displaying it prominently in its standard layout with images, videos, and other visual content.\n\n4. **System information not available**: Unfortunately, I don't have direct access to system information such as CPU usage, memory usage, or disk space utilization. However, my observation of the screen state suggests that your device is likely using a moderate amount of resources for running Gmail and possibly some background processes related to other apps you've opened.\n\n5. **No recent crashes or errors**: Based on this data, there don't appear to be any significant system-related issues such as crashes or error messages.\n\nGiven these observations, here's what I can infer about your system usage in the last hour:\n\n* You're likely using Gmail extensively during the past hour.\n* Your device is running some background processes related to other apps you've opened, but not to an extreme degree that",
+  "progress_updates": [],
+  "response_time": 36.126919984817505,
+  "evaluation": {
+    "success": false,
+    "quality_score": 0.4583333333333333,
+    "memory_score": 0.3333333333333333,
+    "context_score": 0.0,
+    "explanation": "Found 3/4 keywords, 1/3 memory indicators, 0/3 context indicators. Overall quality: 0.46/1.0",
+    "keyword_matches": [
+      "system",
+      "usage",
+      "hour"
+    ],
+    "memory_matches": [
+      "memory"
+    ],
+    "context_matches": []
+  }
+}

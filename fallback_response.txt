@@ -1,0 +1,10 @@
+            # Provide a fallback response
+            response = f"I understand your message about '{message}'. How can I assist you further?"
+            await websocket.send(json.dumps({
+                "type": "chat_response",
+                "mode": mode,
+                "response": response,
+                "client_id": client_id,
+                "timestamp": datetime.now().isoformat(),
+                "fallback": True
+            }))

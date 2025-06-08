@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Neural UI Detector Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        h1 {
+            color: #333;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 10px;
+        }
+        button {
+            background-color: #4CAF50;
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 10px 5px;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        #status {
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 4px;
+            background-color: #f8f8f8;
+            border-left: 5px solid #ccc;
+        }
+        .connected {
+            border-left-color: #4CAF50 !important;
+            background-color: #e8f5e9 !important;
+        }
+        .error {
+            border-left-color: #f44336 !important;
+            background-color: #ffebee !important;
+        }
+        pre {
+            background-color: #f5f5f5;
+            padding: 10px;
+            border-radius: 4px;
+            overflow-x: auto;
+            white-space: pre-wrap;
+        }
+        .log-entry {
+            margin-bottom: 5px;
+            padding: 5px;
+            border-bottom: 1px solid #eee;
+        }
+        .time {
+            color: #777;
+            font-size: 0.8em;
+        }
+        .sent {
+            color: #2196F3;
+        }
+        .received {
+            color: #4CAF50;
+        }
+        .error-msg {
+            color: #f44336;
+        }
+    </style>
+</head>
+<body>
+    <h1>Neural UI Detector WebSocket Test</h1>
+    
+    <div id="status">Not connected</div>
+    
+    <div>
+        <button id="connectBtn">Connect</button>
+        <button id="disconnectBtn" disabled>Disconnect</button>
+        <button id="pingBtn" disabled>Send Ping</button>
+        <button id="detectBtn" disabled>Detect UI Elements</button>
+    </div>
+    
+    <h2>Communication Log</h2>
+    <div id="log"></div>
+    
+    <script>
+        // Elements
+        const statusEl = document.getElementById('status');
+        const logEl = document.getElementById('log');
+        const connectBtn = document.getElementById('connectBtn');
+        const disconnectBtn = document.getElementById('disconnectBtn');
+        const pingBtn = document.getElementById('pingBtn');
+        const detectBtn = document.getElementById('detectBtn');
+        
+        // WebSocket connection
+        let ws = null;
+        
+        // Connect to WebSocket server
+        connectBtn.addEventListener('click', () => {
+            // Close existing connection if any
+            if (ws) {
+                ws.close();
+            }
+            
+            try {
+                // Connect to WebSocket server
+                ws = new WebSocket('ws://localhost:8768');
+                
+                // Update UI
+                statusEl.textContent = 'Connecting...';
+                
+                // Connection opened
+                ws.addEventListener('open', (event) => {
+                    statusEl.textContent = 'Connected to Neural UI Detector WebSocket Server';
+                    statusEl.classList.add('connected');
+                    connectBtn.disabled = true;
+                    disconnectBtn.disabled = false;
+                    pingBtn.disabled = false;
+                    detectBtn.disabled = false;
+                    
+                    log('Connection established', 'info');
+                });
+                
+                // Listen for messages
+                ws.addEventListener('message', (event) => {
+                    log(`Received: ${event.data}`, 'received');
+                    
+                    try {
+                        const data = JSON.parse(event.data);
+                        
+                        // Handle welcome message
+                        if (data.type === 'welcome') {
+                            log(`Server version: ${data.version}`, 'info');
+                            log(`Capabilities: ${data.capabilities.join(', ')}`, 'info');
+                        }
+                        
+                        // Handle detection results
+                        if (data.type === 'detection_result') {
+                            log(`Detected ${data.count} UI elements`, 'info');
+                            
+                            // Display visualization if available
+                            if (data.visualization) {
+                                const img = document.createElement('img');
+                                img.src = `data:image/png;base64,${data.visualization}`;
+                                img.style.maxWidth = '100%';
+                                img.style.marginTop = '10px';
+                                logEl.appendChild(img);
+                            }
+                        }
+                    } catch (e) {
+                        log(`Error parsing message: ${e.message}`, 'error');
+                    }
+                });
+                
+                // Connection closed
+                ws.addEventListener('close', (event) => {
+                    statusEl.textContent = 'Disconnected from server';
+                    statusEl.classList.remove('connected');
+                    statusEl.classList.add('error');
+                    connectBtn.disabled = false;
+                    disconnectBtn.disabled = true;
+                    pingBtn.disabled = true;
+                    detectBtn.disabled = true;
+                    
+                    log(`Connection closed. Code: ${event.code}, Reason: ${event.reason}`, 'error');
+                    
+                    // Reset WebSocket
+                    ws = null;
+                });
+                
+                // Connection error
+                ws.addEventListener('error', (event) => {
+                    statusEl.textContent = 'Connection error';
+                    statusEl.classList.add('error');
+                    
+                    log('WebSocket error', 'error');
+                });
+                
+            } catch (e) {
+                statusEl.textContent = `Connection error: ${e.message}`;
+                statusEl.classList.add('error');
+                log(`Failed to connect: ${e.message}`, 'error');
+            }
+        });
+        
+        // Disconnect from WebSocket server
+        disconnectBtn.addEventListener('click', () => {
+            if (ws) {
+                ws.close();
+            }
+        });
+        
+        // Send ping message
+        pingBtn.addEventListener('click', () => {
+            if (ws && ws.readyState === WebSocket.OPEN) {
+                const message = {
+                    action: 'ping'
+                };
+                
+                ws.send(JSON.stringify(message));
+                log(`Sent: ${JSON.stringify(message)}`, 'sent');
+            } else {
+                log('Not connected to server', 'error');
+            }
+        });
+        
+        // Send detect message
+        detectBtn.addEventListener('click', () => {
+            if (ws && ws.readyState === WebSocket.OPEN) {
+                const message = {
+                    action: 'detect'
+                };
+                
+                log('Requesting UI element detection...', 'info');
+                ws.send(JSON.stringify(message));
+                log(`Sent: ${JSON.stringify(message)}`, 'sent');
+            } else {
+                log('Not connected to server', 'error');
+            }
+        });
+        
+        // Add log entry
+        function log(message, type) {
+            const entry = document.createElement('div');
+            entry.classList.add('log-entry');
+            
+            const time = document.createElement('span');
+            time.classList.add('time');
+            time.textContent = new Date().toLocaleTimeString();
+            
+            const content = document.createElement('span');
+            content.classList.add(type);
+            content.textContent = ' ' + message;
+            
+            entry.appendChild(time);
+            entry.appendChild(content);
+            
+            logEl.insertBefore(entry, logEl.firstChild);
+        }
+    </script>
+</body>
+</html>

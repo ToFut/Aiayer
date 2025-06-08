@@ -1,0 +1,417 @@
+{
+  "timestamp": 1748806352.201903,
+  "app_name": "Browser",
+  "view_name": "Test Webpage",
+  "elements": [
+    {
+      "element_id": "ocr_0",
+      "element_type": "button",
+      "element_text": "localhost",
+      "bounding_box": [
+        1412,
+        110,
+        1529,
+        139
+      ],
+      "center_point": null,
+      "state": "",
+      "role": "textfield",
+      "action": "",
+      "confidence": 0.9996454401428455,
+      "parent_component": "",
+      "interaction_hints": [],
+      "detected_by": [
+        "OCR",
+        "NLP"
+      ],
+      "accessibility_info": {},
+      "ml_confidence": 0.42,
+      "ocr_text": "localhost",
+      "nlp_intent": "search",
+      "dom_attributes": {},
+      "app_specific": {}
+    },
+    {
+      "element_id": "ocr_1",
+      "element_type": "button",
+      "element_text": "+",
+      "bounding_box": [
+        2790,
+        104,
+        2848,
+        140
+      ],
+      "center_point": null,
+      "state": "",
+      "role": "textfield",
+      "action": "",
+      "confidence": 0.889317047062832,
+      "parent_component": "",
+      "interaction_hints": [],
+      "detected_by": [
+        "OCR",
+        "NLP"
+      ],
+      "accessibility_info": {},
+      "ml_confidence": 0.42,
+      "ocr_text": "+",
+      "nlp_intent": "search",
+      "dom_attributes": {},
+      "app_specific": {}
+    },
+    {
+      "element_id": "ocr_2",
+      "element_type": "button",
+      "element_text": "AgentM_",
+      "bounding_box": [
+        2788,
+        190,
+        2886,
+        220
+      ],
+      "center_point": null,
+      "state": "",
+      "role": "textfield",
+      "action": "",
+      "confidence": 0.8519994852299708,
+      "parent_component": "",
+      "interaction_hints": [],
+      "detected_by": [
+        "OCR",
+        "NLP"
+      ],
+      "accessibility_info": {},
+      "ml_confidence": 0.42,
+      "ocr_text": "AgentM_",
+      "nlp_intent": "search",
+      "dom_attributes": {},
+      "app_specific": {}
+    },
+    {
+      "element_id": "ocr_3",
+      "element_type": "link",
+      "element_text": "AgentMode Real Automation Test Page",
+      "bounding_box": [
+        729,
+        387,
+        2321,
+        500
+      ],
+      "center_point": null,
+      "state": "",
+      "role": "textfield",
+      "action": "",
+      "confidence": 0.8588893615004188,
+      "parent_component": "",
+      "interaction_hints": [],
+      "detected_by": [
+        "OCR",
+        "NLP"
+      ],
+      "accessibility_info": {},
+      "ml_confidence": 0.4,
+      "ocr_text": "AgentMode Real Automation Test Page",
+      "nlp_intent": "search",
+      "dom_attributes": {},
+      "app_specific": {}
+    },
+    {
+      "element_id": "ocr_4",
+      "element_type": "button",
+      "element_text": "Search & Navigation",
+      "bounding_box": [
+        452,
+        645,
+        960,
+        710
+      ],
+      "center_point": null,
+      "state": "",
+      "role": "textfield",
+      "action": "",
+      "confidence": 0.9974459624145595,
+      "parent_component": "",
+      "interaction_hints": [],
+      "detected_by": [
+        "OCR",
+        "NLP"
+      ],
+      "accessibility_info": {},
+      "ml_confidence": 0.44,
+      "ocr_text": "Search & Navigation",
+      "nlp_intent": "search",
+      "dom_attributes": {},
+      "app_specific": {}
+    },
+    {
+      "element_id": "ocr_5",
+      "element_type": "button",
+      "element_text": "Search for anything",
+      "bounding_box": [
+        424,
+        773,
+        717,
+        813
+      ],
+      "center_point": null,
+      "state": "",
+      "role": "textfield",
+      "action": "",
+      "confidence": 0.8644328584478613,
+      "parent_component": "",
+      "interaction_hints": [],
+      "detected_by": [
+        "OCR",
+        "NLP"
+      ],
+      "accessibility_info": {},
+      "ml_confidence": 0.44,
+      "ocr_text": "Search for anything",
+      "nlp_intent": "search",
+      "dom_attributes": {},
+      "app_specific": {}
+    },
+    {
+      "element_id": "ocr_6",
+      "element_type": "button",
+      "element_text": "Search",
+      "bounding_box": [
+        1046,
+        784,
+        1146,
+        820
+      ],
+      "center_point": null,
+      "state": "",
+      "role": "textfield",
+      "action": "",
+      "confidence": 0.9999977126509447,
+      "parent_component": "",
+      "interaction_hints": [],
+      "detected_by": [
+        "OCR",
+        "NLP"
+      ],
+      "accessibility_info": {},
+      "ml_confidence": 0.44,
+      "ocr_text": "Search",
+      "nlp_intent": "search",
+      "dom_attributes": {},
+      "app_specific": {}
+    },
+    {
+      "element_id": "ocr_7",
+      "element_type": "button",
+      "element_text": "Search results will appear here_",
+      "bounding_box": [
+        428,
+        931,
+        875,
+        976
+      ],
+      "center_point": null,
+      "state": "",
+      "role": "textfield",
+      "action": "",
+      "confidence": 0.7225668867921595,
+      "parent_component": "",
+      "interaction_hints": [],
+      "detected_by": [
+        "OCR",
+        "NLP"
+      ],
+      "accessibility_info": {},
+      "ml_confidence": 0.44,
+      "ocr_text": "Search results will appear here_",
+      "nlp_intent": "search",
+      "dom_attributes": {},
+      "app_specific": {}
+    },
+    {
+      "element_id": "ocr_8",
+      "element_type": "button",
+      "element_text": "Contact Form",
+      "bounding_box": [
+        453,
+        1360,
+        787,
+        1414
+      ],
+      "center_point": null,
+      "state": "",
+      "role": "textfield",
+      "action": "",
+      "confidence": 0.828834091885051,
+      "parent_component": "",
+      "interaction_hints": [],
+      "detected_by": [
+        "OCR",
+        "NLP"
+      ],
+      "accessibility_info": {},
+      "ml_confidence": 0.47,
+      "ocr_text": "Contact Form",
+      "nlp_intent": "search",
+      "dom_attributes": {},
+      "app_specific": {}
+    },
+    {
+      "element_id": "ocr_9",
+      "element_type": "button",
+      "element_text": "Full Name:",
+      "bounding_box": [
+        387,
+        1449,
+        569,
+        1492
+      ],
+      "center_point": null,
+      "state": "",
+      "role": "textfield",
+      "action": "",
+      "confidence": 0.9810058822703509,
+      "parent_component": "",
+      "interaction_hints": [],
+      "detected_by": [
+        "OCR",
+        "NLP"
+      ],
+      "accessibility_info": {},
+      "ml_confidence": 0.42,
+      "ocr_text": "Full Name:",
+      "nlp_intent": "search",
+      "dom_attributes": {},
+      "app_specific": {}
+    },
+    {
+      "element_id": "ocr_10",
+      "element_type": "textfield",
+      "element_text": "Enter your full name",
+      "bounding_box": [
+        426,
+        1533,
+        721,
+        1577
+      ],
+      "center_point": null,
+      "state": "",
+      "role": "textfield",
+      "action": "",
+      "confidence": 0.625234962574516,
+      "parent_component": "",
+      "interaction_hints": [],
+      "detected_by": [
+        "OCR",
+        "NLP"
+      ],
+      "accessibility_info": {},
+      "ml_confidence": 0.76,
+      "ocr_text": "Enter your full name",
+      "nlp_intent": "search",
+      "dom_attributes": {},
+      "app_specific": {}
+    },
+    {
+      "element_id": "ocr_11",
+      "element_type": "textfield",
+      "element_text": "Email Address:",
+      "bounding_box": [
+        387,
+        1639,
+        632,
+        1677
+      ],
+      "center_point": null,
+      "state": "",
+      "role": "textfield",
+      "action": "",
+      "confidence": 0.8637689792077095,
+      "parent_component": "",
+      "interaction_hints": [],
+      "detected_by": [
+        "OCR",
+        "NLP"
+      ],
+      "accessibility_info": {},
+      "ml_confidence": 0.45,
+      "ocr_text": "Email Address:",
+      "nlp_intent": "search",
+      "dom_attributes": {},
+      "app_specific": {}
+    },
+    {
+      "element_id": "ocr_12",
+      "element_type": "textfield",
+      "element_text": "Enter your email",
+      "bounding_box": [
+        426,
+        1724,
+        666,
+        1765
+      ],
+      "center_point": null,
+      "state": "",
+      "role": "textfield",
+      "action": "",
+      "confidence": 0.9743502972763226,
+      "parent_component": "",
+      "interaction_hints": [],
+      "detected_by": [
+        "OCR",
+        "NLP"
+      ],
+      "accessibility_info": {},
+      "ml_confidence": 0.82,
+      "ocr_text": "Enter your email",
+      "nlp_intent": "search",
+      "dom_attributes": {},
+      "app_specific": {}
+    },
+    {
+      "element_id": "ocr_13",
+      "element_type": "button",
+      "element_text": "Phone Number:",
+      "bounding_box": [
+        387,
+        1829,
+        646,
+        1868
+      ],
+      "center_point": null,
+      "state": "",
+      "role": "textfield",
+      "action": "",
+      "confidence": 0.8677461875937138,
+      "parent_component": "",
+      "interaction_hints": [],
+      "detected_by": [
+        "OCR",
+        "NLP"
+      ],
+      "accessibility_info": {},
+      "ml_confidence": 0.42,
+      "ocr_text": "Phone Number:",
+      "nlp_intent": "search",
+      "dom_attributes": {},
+      "app_specific": {}
+    }
+  ],
+  "accessibility_tree": {
+    "focused_element": "textfield",
+    "available": true,
+    "method": "accessibility_api"
+  },
+  "ml_predictions": {
+    "total_elements": 14,
+    "classified_elements": 14,
+    "avg_confidence": 0.4828571428571428
+  },
+  "ocr_results": {
+    "text_content": {
+      "text": "localhost + AgentM_ AgentMode Real Automation Test Page Search & Navigation Search for anything Search Search results will appear here_ Contact Form Full Name: Enter your full name Email Address: Enter your email Phone Number:",
+      "regions": [
+        {
+          "text": "localhost",
+          "bbox": [
+            [
+              

@@ -1,0 +1,59 @@
+2025-05-29 02:12:20,877 - INFO - Connecting to backend at ws://localhost:8767
+2025-05-29 02:12:20,951 - INFO - Successfully connected to backend
+2025-05-29 02:12:20,951 - INFO - ============================================================
+2025-05-29 02:12:20,951 - INFO - STARTING COMPREHENSIVE SYSTEM SIMULATION
+2025-05-29 02:12:20,952 - INFO - ============================================================
+2025-05-29 02:12:20,952 - INFO - Testing 10 scenarios across all modes
+2025-05-29 02:12:20,952 - INFO - ------------------------------------------------------------
+2025-05-29 02:12:20,952 - INFO - Running test 1/10: agent_ui_interaction (agent mode)
+2025-05-29 02:12:20,952 - INFO - Sending message in agent mode: 'search for flights to Miami on Google'
+2025-05-29 02:12:20,953 - ERROR - Error from backend: Unknown error
+2025-05-29 02:12:20,953 - INFO - Test 1: ❌ FAILED - Quality: 0.00/1.0 - Time: 0.00s
+2025-05-29 02:12:22,964 - INFO - ------------------------------------------------------------
+2025-05-29 02:12:22,966 - INFO - Running test 2/10: agent_app_launch (agent mode)
+2025-05-29 02:12:22,966 - INFO - Sending message in agent mode: 'open Safari and go to YouTube'
+2025-05-29 02:12:23,040 - ERROR - Error from backend: Unknown error
+2025-05-29 02:12:23,044 - INFO - Test 2: ❌ FAILED - Quality: 0.00/1.0 - Time: 0.08s
+2025-05-29 02:12:25,046 - INFO - ------------------------------------------------------------
+2025-05-29 02:12:25,046 - INFO - Running test 3/10: agent_complex_task (agent mode)
+2025-05-29 02:12:25,046 - INFO - Sending message in agent mode: 'search for Omer Adam on Spotify and play his music'
+2025-05-29 02:12:25,047 - ERROR - Error from backend: Unknown error
+2025-05-29 02:12:25,047 - INFO - Test 3: ❌ FAILED - Quality: 0.00/1.0 - Time: 0.00s
+2025-05-29 02:12:27,049 - INFO - ------------------------------------------------------------
+2025-05-29 02:12:27,049 - INFO - Running test 4/10: ask_system_status (ask mode)
+2025-05-29 02:12:27,049 - INFO - Sending message in ask mode: 'what applications are currently running on my system?'
+2025-05-29 02:12:27,052 - ERROR - Error from backend: Unknown error
+2025-05-29 02:12:27,053 - INFO - Test 4: ❌ FAILED - Quality: 0.00/1.0 - Time: 0.00s
+2025-05-29 02:12:29,054 - INFO - ------------------------------------------------------------
+2025-05-29 02:12:29,055 - INFO - Running test 5/10: ask_memory_retrieval (ask mode)
+2025-05-29 02:12:29,055 - INFO - Sending message in ask mode: 'what websites have I visited recently?'
+2025-05-29 02:12:29,056 - ERROR - Error from backend: Unknown error
+2025-05-29 02:12:29,056 - INFO - Test 5: ❌ FAILED - Quality: 0.00/1.0 - Time: 0.00s
+2025-05-29 02:12:31,058 - INFO - ------------------------------------------------------------
+2025-05-29 02:12:31,058 - INFO - Running test 6/10: ask_context_understanding (ask mode)
+2025-05-29 02:12:31,059 - INFO - Sending message in ask mode: 'what's currently visible on my screen?'
+2025-05-29 02:12:31,061 - ERROR - Error from backend: Unknown error
+2025-05-29 02:12:31,061 - INFO - Test 6: ❌ FAILED - Quality: 0.00/1.0 - Time: 0.00s
+2025-05-29 02:12:33,062 - INFO - ------------------------------------------------------------
+2025-05-29 02:12:33,062 - INFO - Running test 7/10: ask_memory_integration (ask mode)
+2025-05-29 02:12:33,062 - INFO - Sending message in ask mode: 'how has my system usage changed in the last hour?'
+2025-05-29 02:12:33,063 - ERROR - Error from backend: Unknown error
+2025-05-29 02:12:33,063 - INFO - Test 7: ❌ FAILED - Quality: 0.00/1.0 - Time: 0.00s
+2025-05-29 02:12:35,063 - INFO - ------------------------------------------------------------
+2025-05-29 02:12:35,064 - INFO - Running test 8/10: suggest_productivity (suggest mode)
+2025-05-29 02:12:35,064 - INFO - Sending message in suggest mode: 'I need to organize my work better'
+2025-05-29 02:12:35,065 - ERROR - Error from backend: Unknown error
+2025-05-29 02:12:35,065 - INFO - Test 8: ❌ FAILED - Quality: 0.00/1.0 - Time: 0.00s
+2025-05-29 02:12:37,066 - INFO - ------------------------------------------------------------
+2025-05-29 02:12:37,067 - INFO - Running test 9/10: suggest_application (suggest mode)
+2025-05-29 02:12:37,067 - INFO - Sending message in suggest mode: 'I want to edit some photos'
+2025-05-29 02:12:37,068 - ERROR - Error from backend: Unknown error
+2025-05-29 02:12:37,069 - INFO - Test 9: ❌ FAILED - Quality: 0.00/1.0 - Time: 0.00s
+2025-05-29 02:12:39,070 - INFO - ------------------------------------------------------------
+2025-05-29 02:12:39,071 - INFO - Running test 10/10: suggest_content (suggest mode)
+2025-05-29 02:12:39,071 - INFO - Sending message in suggest mode: 'I'm bored and want to watch something interesting'
+2025-05-29 02:12:39,072 - ERROR - Error from backend: Unknown error
+2025-05-29 02:12:39,072 - INFO - Test 10: ❌ FAILED - Quality: 0.00/1.0 - Time: 0.00s
+2025-05-29 02:12:39,074 - INFO - ============================================================
+2025-05-29 02:12:39,074 - INFO - Simulation complete. Report saved to reports/simulation_results_1748499140.json
+2025-05-29 02:12:39,074 - INFO - ============================================================

@@ -1,0 +1,81 @@
+2025-06-03 01:51:08,463 - plan_persistence - INFO - Plan persistence manager initialized with 30 stored plans
+2025-06-03 01:51:08,463 - plan_persistence - INFO - Plan persistence service initialized
+2025-06-03 01:51:08,463 - real_do_button_executor - INFO - ✅ Plan persistence module loaded
+2025-06-03 01:51:09,004 - agent_workflow.input_controller - INFO - Detected screen size: 1470x956
+2025-06-03 01:51:09,157 - agent_workflow.input_controller - INFO - Standard mouse listener started successfully
+2025-06-03 01:51:09,157 - agent_workflow.input_controller - INFO - Keyboard listener started successfully
+2025-06-03 01:51:09,157 - agent_workflow.input_controller - INFO - Input controller initialized (safe mode)
+2025-06-03 01:51:09,158 - agent_workflow.input_controller - INFO - 🚨 Emergency shutdown: Press Ctrl+1 to immediately stop agent
+2025-06-03 01:51:09,229 - llava_processor - INFO - Connected to Ollama API v0.6.8
+2025-06-03 01:51:09,229 - total_screen_analyzer - INFO - LLaVA visual processor initialized for total screen analysis
+2025-06-03 01:51:09,229 - total_screen_analyzer - INFO - Total Screen Analyzer initialized with 8s interval
+2025-06-03 01:51:09,229 - adaptive_retry_automation_handler - INFO - 🔄 Adaptive retry automation system loaded
+2025-06-03 01:51:09,229 - universal_intelligent_automation_handler - INFO - ✅ Adaptive retry automation handler loaded successfully
+2025-06-03 01:51:09,229 - universal_intelligent_automation_handler - INFO - ✅ Plan persistence module loaded successfully
+2025-06-03 01:51:09,231 - agent_workflow.input_controller - INFO - Standard mouse listener started successfully
+2025-06-03 01:51:09,231 - agent_workflow.input_controller - INFO - Keyboard listener started successfully
+2025-06-03 01:51:09,231 - agent_workflow.input_controller - INFO - Input controller initialized (safe mode)
+2025-06-03 01:51:09,231 - agent_workflow.input_controller - INFO - 🚨 Emergency shutdown: Press Ctrl+1 to immediately stop agent
+2025-06-03 01:51:09,233 - llava_processor - INFO - Connected to Ollama API v0.6.8
+2025-06-03 01:51:09,233 - total_screen_analyzer - INFO - LLaVA visual processor initialized for total screen analysis
+2025-06-03 01:51:09,233 - total_screen_analyzer - INFO - Total Screen Analyzer initialized with 8s interval
+2025-06-03 01:51:09,233 - universal_intelligent_automation_handler - INFO - 🤖 Universal automation components loaded successfully
+2025-06-03 01:51:09,234 - real_do_button_executor - INFO - ✅ Universal automation handler loaded
+2025-06-03 01:51:09,234 - real_agent_automation_handler - INFO - ✅ Plan persistence module loaded successfully
+2025-06-03 01:51:09,236 - agent_workflow.input_controller - INFO - Standard mouse listener started successfully
+2025-06-03 01:51:09,236 - agent_workflow.input_controller - INFO - Keyboard listener started successfully
+2025-06-03 01:51:09,236 - agent_workflow.input_controller - INFO - Input controller initialized (safe mode)
+2025-06-03 01:51:09,237 - agent_workflow.input_controller - INFO - 🚨 Emergency shutdown: Press Ctrl+1 to immediately stop agent
+2025-06-03 01:51:09,238 - llava_processor - INFO - Connected to Ollama API v0.6.8
+2025-06-03 01:51:09,239 - total_screen_analyzer - INFO - LLaVA visual processor initialized for total screen analysis
+2025-06-03 01:51:09,239 - total_screen_analyzer - INFO - Total Screen Analyzer initialized with 8s interval
+2025-06-03 01:51:09,239 - real_agent_automation_handler - INFO - 🤖 Real automation components loaded successfully
+2025-06-03 01:51:09,239 - real_do_button_executor - WARNING - ⚠️ Real agent automation handler not available: cannot import name 'real_agent_automation_handler' from 'real_agent_automation_handler' (/Users/segevbin/Desktop/SensAI/Aiayer/real_agent_automation_handler.py)
+2025-06-03 01:51:09,239 - real_do_button_executor - INFO - Starting Real DO Button Executor (version 1.1)
+2025-06-03 01:51:09,239 - real_do_button_executor - INFO - Python version: 3.13.3 (main, Apr  8 2025, 13:54:08) [Clang 16.0.0 (clang-1600.0.26.6)]
+2025-06-03 01:51:09,239 - real_do_button_executor - INFO - Websockets version: 15.0.1
+2025-06-03 01:51:10,267 - real_do_button_executor - INFO - Port 8765 is available
+2025-06-03 01:51:10,267 - real_do_button_executor - INFO - 🚀 Starting Real DO Button Executor on 0.0.0.0:8765
+2025-06-03 01:51:10,280 - websockets.server - INFO - server listening on 0.0.0.0:8765
+2025-06-03 01:51:10,280 - real_do_button_executor - INFO - ✅ WebSocket server initialized successfully
+2025-06-03 01:51:10,280 - real_do_button_executor - INFO - ✅ Real DO Button Executor running on ws://0.0.0.0:8765
+2025-06-03 01:51:10,280 - real_do_button_executor - INFO - 🎯 Ready to handle DO button clicks with REAL AUTOMATION
+2025-06-03 01:51:10,281 - real_do_button_executor - INFO - 🤖 Universal automation handler available for real step execution
+2025-06-03 01:51:10,281 - real_do_button_executor - INFO - 📂 Plan persistence available for loading plans
+2025-06-03 01:51:10,281 - real_do_button_executor - INFO - Server status: 0 clients connected, 0 executions completed
+2025-06-03 01:51:14,135 - websockets.server - INFO - connection open
+2025-06-03 01:51:14,135 - real_do_button_executor - INFO - 🔌 Client client_4879675952 connected from 127.0.0.1
+2025-06-03 01:51:14,135 - real_do_button_executor - INFO - ✅ Welcome message sent to client_4879675952
+2025-06-03 01:51:14,137 - real_do_button_executor - INFO - 📩 Received from client_4879675952: agent_confirmation
+2025-06-03 01:51:14,137 - real_do_button_executor - INFO - 🎯 DO BUTTON: Processing DO for session task_1748929625_overlay_session_1748929540179
+2025-06-03 01:51:14,139 - plan_persistence - INFO - Plan task_1748929625_overlay_session_1748929540179 loaded successfully
+2025-06-03 01:51:14,139 - real_do_button_executor - INFO - Successfully loaded plan: task_1748929625_overlay_session_1748929540179
+2025-06-03 01:51:14,139 - real_do_button_executor - INFO - 🚀 Executing plan: Web Browsing: https://google.com
+2025-06-03 01:51:14,139 - universal_intelligent_automation_handler - INFO - 🔄 Executing step: hotkey - Open Spotlight search
+2025-06-03 01:51:14,139 - universal_intelligent_automation_handler - INFO - ✅ [SIMULATED] Pressing hotkey: cmd+space
+2025-06-03 01:51:14,440 - real_do_button_executor - INFO - ✅ Step 1 executed successfully: Open Spotlight search
+2025-06-03 01:51:14,742 - universal_intelligent_automation_handler - INFO - 🔄 Executing step: type_text - Type 'Safari' to search for browser
+2025-06-03 01:51:14,742 - universal_intelligent_automation_handler - INFO - ✅ [SIMULATED] Typing text: Safari
+2025-06-03 01:51:15,242 - real_do_button_executor - INFO - ✅ Step 2 executed successfully: Type 'Safari' to search for browser
+2025-06-03 01:51:15,543 - universal_intelligent_automation_handler - INFO - 🔄 Executing step: hotkey - Press Enter to launch Safari
+2025-06-03 01:51:15,543 - universal_intelligent_automation_handler - INFO - ✅ [SIMULATED] Pressing hotkey: return
+2025-06-03 01:51:15,845 - real_do_button_executor - INFO - ✅ Step 3 executed successfully: Press Enter to launch Safari
+2025-06-03 01:51:16,145 - universal_intelligent_automation_handler - INFO - 🔄 Executing step: wait - Wait for Safari to fully load
+2025-06-03 01:51:16,145 - universal_intelligent_automation_handler - INFO - ✅ [SIMULATED] Waiting for 1.0 seconds
+2025-06-03 01:51:17,146 - real_do_button_executor - INFO - ✅ Step 4 executed successfully: Wait for Safari to fully load
+2025-06-03 01:51:17,448 - universal_intelligent_automation_handler - INFO - 🔄 Executing step: navigate_url - Navigate to https://google.com
+2025-06-03 01:51:17,448 - universal_intelligent_automation_handler - INFO - ✅ [SIMULATED] Navigating to URL: None
+2025-06-03 01:51:18,649 - real_do_button_executor - INFO - ✅ Step 5 executed successfully: Navigate to https://google.com
+2025-06-03 01:51:18,950 - universal_intelligent_automation_handler - INFO - 🔄 Executing step: wait - Wait for page to load
+2025-06-03 01:51:18,950 - universal_intelligent_automation_handler - INFO - ✅ [SIMULATED] Waiting for 1.0 seconds
+2025-06-03 01:51:19,951 - real_do_button_executor - INFO - ✅ Step 6 executed successfully: Wait for page to load
+2025-06-03 01:51:20,253 - universal_intelligent_automation_handler - INFO - 🔄 Executing step: type_text - Search for 'segev in google'
+2025-06-03 01:51:20,253 - universal_intelligent_automation_handler - INFO - ✅ [SIMULATED] Typing text: segev in google
+2025-06-03 01:51:20,753 - real_do_button_executor - INFO - ✅ Step 7 executed successfully: Search for 'segev in google'
+2025-06-03 01:51:21,054 - universal_intelligent_automation_handler - INFO - 🔄 Executing step: hotkey - Press Enter to execute search
+2025-06-03 01:51:21,054 - universal_intelligent_automation_handler - INFO - ✅ [SIMULATED] Pressing hotkey: return
+2025-06-03 01:51:21,355 - real_do_button_executor - INFO - ✅ Step 8 executed successfully: Press Enter to execute search
+2025-06-03 01:51:21,657 - real_do_button_executor - INFO - Plan execution completed: 8/8 steps, 7.52s
+2025-06-03 01:51:21,658 - real_do_button_executor - INFO - Client client_4879675952 disconnected
+2025-06-03 01:52:10,283 - real_do_button_executor - INFO - Server status: 0 clients connected, 1 executions completed
+2025-06-03 01:53:10,286 - real_do_button_executor - INFO - Server status: 0 clients connected, 1 executions completed

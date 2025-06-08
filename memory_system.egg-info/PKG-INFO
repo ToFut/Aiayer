@@ -1,0 +1,63 @@
+Metadata-Version: 2.4
+Name: memory_system
+Version: 0.1.0
+Summary: Memory system for AI applications
+Home-page: https://github.com/sensai/aiayer
+Author: SensAI
+Author-email: info@sensai.ai
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+Requires-Dist: websockets
+Requires-Dist: aiohttp
+Requires-Dist: psutil
+Dynamic: author
+Dynamic: author-email
+Dynamic: classifier
+Dynamic: description
+Dynamic: description-content-type
+Dynamic: home-page
+Dynamic: requires-dist
+Dynamic: requires-python
+Dynamic: summary
+
+# Memory System
+
+A comprehensive memory management system for AI applications, providing short-term, long-term, and contextual memory capabilities.
+
+## Features
+
+- Short-term memory management
+- Long-term memory storage
+- Contextual memory tracking
+- Memory visualization dashboard
+- Real-time memory metrics
+- Memory system health monitoring
+
+## Installation
+
+```bash
+pip install -e .
+```
+
+## Usage
+
+```python
+from memory.memory_system import MemorySystem
+
+# Initialize the memory system
+memory_system = MemorySystem()
+
+# Start the memory system
+await memory_system.initialize()
+```
+
+## License
+
+MIT License 

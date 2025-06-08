@@ -5,14 +5,22 @@ export class Bridge {
         this.ws = null;
         this.messageHandlers = new Map();
         this.reconnectAttempts = 0;
-        this.maxReconnectAttempts = options.maxReconnectAttempts || 5;
+        this.maxReconnectAttempts = options.maxReconnectAttempts || 20; // Increased retry attempts
         this.reconnectDelay = options.reconnectDelay || 1000;
         this.systemContextData = null;
         this.wsUrl = options.url || 'ws://localhost:8767';  // Connect to enhanced backend with real responses
+        this.pingInterval = null; // For keeping connection alive
     }
 
     async connect() {
         try {
+            // Clear any existing ping interval
+            if (this.pingInterval) {
+                clearInterval(this.pingInterval);
+                this.pingInterval = null;
+            }
+            
+            console.log(`Connecting to backend at ${this.wsUrl}...`);
             this.ws = new WebSocket(this.wsUrl);
             
             this.ws.onopen = () => {
@@ -26,6 +34,14 @@ export class Bridge {
                     capabilities: ['overlay_display', 'user_interaction', 'context_tracking'],
                     timestamp: Date.now()
                 });
+                
+                // Setup ping interval to keep connection alive (every 15 seconds)
+                this.pingInterval = setInterval(() => {
+                    if (this.ws && this.ws.readyState === WebSocket.OPEN) {
+                        console.log('Sending ping to keep connection alive');
+                        this.send('ping', { timestamp: Date.now() });
+                    }
+                }, 15000);
                 
                 // Dispatch connection event
                 window.dispatchEvent(new CustomEvent('bridge-connected'));
@@ -70,13 +86,30 @@ export class Bridge {
                 }
             };
 
-            this.ws.onclose = () => {
-                console.log('Connection closed');
+            this.ws.onclose = (event) => {
+                console.log(`Connection closed: Code ${event.code}, Reason: ${event.reason || 'No reason provided'}`);
+                
+                // Cleanup ping interval
+                if (this.pingInterval) {
+                    clearInterval(this.pingInterval);
+                    this.pingInterval = null;
+                }
                 
                 // Dispatch disconnection event
-                window.dispatchEvent(new CustomEvent('bridge-disconnected'));
+                window.dispatchEvent(new CustomEvent('bridge-disconnected', { 
+                    detail: { 
+                        code: event.code, 
+                        reason: event.reason,
+                        wasClean: event.wasClean
+                    }
+                }));
                 
-                this.attemptReconnect();
+                // Don't attempt to reconnect if it was a normal closure
+                if (event.code !== 1000) {
+                    this.attemptReconnect();
+                } else {
+                    console.log('Clean closure, not attempting to reconnect');
+                }
             };
 
             this.ws.onerror = (error) => {
@@ -92,12 +125,38 @@ export class Bridge {
     }
 
     attemptReconnect() {
+        // Clear any existing ping interval
+        if (this.pingInterval) {
+            clearInterval(this.pingInterval);
+            this.pingInterval = null;
+        }
+        
         if (this.reconnectAttempts < this.maxReconnectAttempts) {
             this.reconnectAttempts++;
             console.log(`Attempting to reconnect (${this.reconnectAttempts}/${this.maxReconnectAttempts})...`);
-            setTimeout(() => this.connect(), this.reconnectDelay * this.reconnectAttempts);
+            
+            // Use exponential backoff with a maximum delay of 10 seconds
+            const delay = Math.min(this.reconnectDelay * Math.pow(1.5, this.reconnectAttempts - 1), 10000);
+            console.log(`Will retry in ${delay}ms`);
+            
+            setTimeout(() => {
+                console.log(`Reconnecting to ${this.wsUrl}...`);
+                this.connect();
+            }, delay);
         } else {
             console.error('Max reconnection attempts reached');
+            
+            // Dispatch reconnection failure event
+            window.dispatchEvent(new CustomEvent('bridge-reconnect-failed', {
+                detail: { attempts: this.reconnectAttempts, url: this.wsUrl }
+            }));
+            
+            // After a longer delay, try one more time
+            setTimeout(() => {
+                console.log('Making one final reconnection attempt after timeout...');
+                this.reconnectAttempts = 0;
+                this.connect();
+            }, 30000);
         }
     }
 
@@ -269,15 +328,38 @@ export class Bridge {
     
     // Request screen sharing to start
     requestScreenSharing() {
+        console.log('Requesting screen sharing...');
         this.send('start_screen_sharing', {
             resolution: 'auto',
             fps: 15,
+            compression: 85,
+            client_id: 'overlay_ui',
+            timestamp: Date.now()
+        });
+        
+        // Also try the screen_capture message format which might be supported
+        this.send('screen_capture', {
+            action: 'start',
+            resolution: 'auto',
+            fps: 15,
             compression: 85
+        });
+        
+        // Request one-time screenshot if continuous streaming isn't available
+        this.send('get_screenshot', {
+            format: 'jpeg',
+            quality: 85
         });
     }
     
     // Stop screen sharing
     stopScreenSharing() {
+        console.log('Stopping screen sharing...');
         this.send('stop_screen_sharing', {});
+        
+        // Also try the screen_capture message format which might be supported
+        this.send('screen_capture', {
+            action: 'stop'
+        });
     }
 }

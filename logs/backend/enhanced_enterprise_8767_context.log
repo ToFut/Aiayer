@@ -1,249 +1,224 @@
-2025-05-23 17:01:37,479 - memory.enhanced_semantic_search - INFO - Enhanced semantic search initialized with embedding dim: 384
-2025-05-23 17:01:37,480 - memory.enhanced_semantic_search - INFO - Hybrid retrieval enabled: True
-2025-05-23 17:01:37,632 - memory.semantic_search_agent - INFO - Loading 146 existing documents from storage
-2025-05-23 17:01:37,644 - memory.semantic_search_agent - INFO - EnterpriseVectorStore initialized with enterprise-grade features
-2025-05-23 17:01:37,645 - memory.semantic_search_agent - INFO - SemanticSearchAgent initialized with enterprise-grade capabilities
-2025-05-23 17:01:37,857 - agent_workflow.input_controller - INFO - Detected screen size: 1470x956
-2025-05-23 17:01:37,890 - memory.semantic_search_agent - INFO - Loading 146 existing documents from storage
-2025-05-23 17:01:37,897 - memory.semantic_search_agent - INFO - EnterpriseVectorStore initialized with enterprise-grade features
-2025-05-23 17:01:37,897 - memory.semantic_search_agent - INFO - SemanticSearchAgent initialized with enterprise-grade capabilities
-2025-05-23 17:01:37,898 - agent_workflow.input_controller - INFO - Input listeners started successfully
-2025-05-23 17:01:37,898 - agent_workflow.input_controller - INFO - 🚨 Emergency shutdown: Press Ctrl+1 to immediately stop agent
-2025-05-23 17:01:37,900 - llava_processor - INFO - Connected to Ollama API v0.6.8
-2025-05-23 17:01:37,900 - total_screen_analyzer - INFO - LLaVA visual processor initialized for total screen analysis
-2025-05-23 17:01:37,900 - total_screen_analyzer - INFO - Total Screen Analyzer initialized with 1s interval
-2025-05-23 17:01:37,900 - enhanced_agent_automation - INFO - Enhanced Agent Automation initialized with Total Screen Analyzer
-2025-05-23 17:01:37,900 - enhanced_automation_handler - INFO - Enhanced Automation Handler initialized
-2025-05-23 17:01:37,900 - __main__ - INFO - Automation handler initialized for Agent mode
-2025-05-23 17:01:37,900 - __main__ - INFO - Contextual AI Backend initialized - Ollama: True, Memory: Active
-2025-05-23 17:01:37,900 - __main__ - INFO - 🚀 Starting Enhanced Enterprise Backend 8767 with Contextual Memory...
-2025-05-23 17:01:37,900 - __main__ - INFO - 🧠 Contextual AI responses enabled
-2025-05-23 17:01:37,900 - __main__ - INFO - 🔍 Semantic memory integration active
-2025-05-23 17:01:37,900 - __main__ - INFO - 🎯 Modes: Agent, Ask, Suggest, General (all contextual)
-2025-05-23 17:01:37,902 - __main__ - INFO - ✅ Enhanced Enterprise Backend 8767 started successfully
-2025-05-23 17:01:37,902 - __main__ - INFO - 🌐 WebSocket server listening on ws://localhost:8767
-2025-05-23 17:01:37,902 - __main__ - INFO - 🤖 Ollama integration: ✅ Active
-2025-05-23 17:01:37,902 - __main__ - INFO - 🧠 Contextual memory system ready
-2025-05-23 17:01:37,903 - websockets.server - INFO - server listening on 127.0.0.1:8767
-2025-05-23 17:01:37,903 - websockets.server - INFO - server listening on [::1]:8767
-2025-05-23 17:02:15,249 - websockets.server - INFO - connection open
-2025-05-23 17:02:15,250 - __main__ - INFO - Client connected: client_1748044935250 from ::1
-/Users/segevbin/Desktop/SensAI/Aiayer/memory/semantic_search_agent.py:336: RuntimeWarning: divide by zero encountered in log
-  idf = np.log(self.total_documents / (self.document_frequencies[token] + 1))
-2025-05-23 17:02:15,256 - memory.semantic_search_agent - INFO - Document eae9c48286c27415d1d9155fd4f2115e91fb73ff9c14d2559f3041d1c2dabf73 added to enterprise vector store
-2025-05-23 17:02:15,256 - memory.semantic_search_agent - INFO - Memory added successfully: eae9c48286c27415d1d9155fd4f2115e91fb73ff9c14d2559f3041d1c2dabf73
-2025-05-23 17:02:15,257 - memory.semantic_search_agent - INFO - Document 2d85917b39628ea468633ef568ef0fc3b45c5d28517a5e23eaf35a9e18a2e5f1 added to enterprise vector store
-2025-05-23 17:02:15,257 - memory.semantic_search_agent - INFO - Memory added successfully: 2d85917b39628ea468633ef568ef0fc3b45c5d28517a5e23eaf35a9e18a2e5f1
-2025-05-23 17:02:15,258 - memory.semantic_search_agent - INFO - Document 2265393dbd5c34ccf99f7147f19324c8578e20147b03f8b7d1aa8c8bede3b0e6 added to enterprise vector store
-2025-05-23 17:02:15,258 - memory.semantic_search_agent - INFO - Memory added successfully: 2265393dbd5c34ccf99f7147f19324c8578e20147b03f8b7d1aa8c8bede3b0e6
-2025-05-23 17:02:15,259 - memory.semantic_search_agent - INFO - Document 317c70cde80eec01107b97ea65f88532e18de584a3dbb630b9415041c7585352 added to enterprise vector store
-2025-05-23 17:02:15,259 - memory.semantic_search_agent - INFO - Memory added successfully: 317c70cde80eec01107b97ea65f88532e18de584a3dbb630b9415041c7585352
-2025-05-23 17:02:15,260 - memory.semantic_search_agent - INFO - Document ebf25d67cd834f090ec1b9f1fa4f4e9b0a8095ad54424733949b6cf1db635c18 added to enterprise vector store
-2025-05-23 17:02:15,260 - memory.semantic_search_agent - INFO - Memory added successfully: ebf25d67cd834f090ec1b9f1fa4f4e9b0a8095ad54424733949b6cf1db635c18
-2025-05-23 17:02:15,260 - memory.semantic_search_agent - INFO - Document bb94ad875b1ceabbbe809d1c0fa7f6dc561e0829e8c1de099dc371061d156332 added to enterprise vector store
-2025-05-23 17:02:15,260 - memory.semantic_search_agent - INFO - Memory added successfully: bb94ad875b1ceabbbe809d1c0fa7f6dc561e0829e8c1de099dc371061d156332
-2025-05-23 17:02:15,261 - memory.semantic_search_agent - INFO - Document ebc9d72e1f83cae7a2ca38e27b80c50f8a330bde1397f9b253f0aaca3db57e39 added to enterprise vector store
-2025-05-23 17:02:15,261 - memory.semantic_search_agent - INFO - Memory added successfully: ebc9d72e1f83cae7a2ca38e27b80c50f8a330bde1397f9b253f0aaca3db57e39
-2025-05-23 17:02:15,262 - memory.semantic_search_agent - INFO - Document 346ba0724aaaef4fe1a41f4b5ed8e7a18eeddffe987b82b12d2585430146ce87 added to enterprise vector store
-2025-05-23 17:02:15,262 - memory.semantic_search_agent - INFO - Memory added successfully: 346ba0724aaaef4fe1a41f4b5ed8e7a18eeddffe987b82b12d2585430146ce87
-2025-05-23 17:02:15,263 - memory.semantic_search_agent - INFO - Document ddf03b83ac1dfa533f7c7495008899ad6a8a68d93b94d5bd93826e45869c21ec added to enterprise vector store
-2025-05-23 17:02:15,263 - memory.semantic_search_agent - INFO - Memory added successfully: ddf03b83ac1dfa533f7c7495008899ad6a8a68d93b94d5bd93826e45869c21ec
-2025-05-23 17:02:15,264 - memory.semantic_search_agent - INFO - Document 492a5b65c7713b3a90ba8fb50bcae162d810d6d0afa090d3ec098240f83ce665 added to enterprise vector store
-2025-05-23 17:02:15,264 - memory.semantic_search_agent - INFO - Memory added successfully: 492a5b65c7713b3a90ba8fb50bcae162d810d6d0afa090d3ec098240f83ce665
-2025-05-23 17:02:15,264 - __main__ - INFO - Enterprise contextual knowledge initialized
-2025-05-23 17:02:15,265 - memory.semantic_search_agent - INFO - Document c1da5ec4e55ca63cd7ca68220105e0090e694f6b0dcf1c8cb0966e9c1a33aa19 added to enterprise vector store
-2025-05-23 17:02:15,265 - memory.semantic_search_agent - INFO - Memory added successfully: c1da5ec4e55ca63cd7ca68220105e0090e694f6b0dcf1c8cb0966e9c1a33aa19
-2025-05-23 17:02:15,266 - memory.semantic_search_agent - INFO - Similarity search completed in 0.0010s, found 5 results
-2025-05-23 17:02:15,269 - memory.semantic_search_agent - INFO - Search completed successfully in 0.0043s, found 5 results
-2025-05-23 17:02:15,269 - __main__ - INFO - 🎯 [STREAMING] Executing Agent automation for: write my name in notepad
-2025-05-23 17:02:15,269 - enhanced_automation_handler - INFO - Handling user instruction: 'write my name in notepad'
-2025-05-23 17:02:15,269 - enhanced_automation_handler - INFO - Executing automation command: write my name in notepad
-2025-05-23 17:02:15,269 - enhanced_agent_automation - INFO - Executing command: 'write my name in notepad'
-2025-05-23 17:02:15,464 - enhanced_agent_automation - INFO - Analyzing current screen with multiple methods...
-2025-05-23 17:02:15,936 - enhanced_agent_automation - INFO - Running ultra-fast UI analysis for automation...
-2025-05-23 17:02:15,936 - enhanced_agent_automation - INFO - Starting fast analysis of 2940x1912 screen
-2025-05-23 17:02:20,733 - enhanced_agent_automation - INFO - Fast analysis completed in 4.80s: 51 UI elements, 260 text elements
-2025-05-23 17:02:20,733 - enhanced_agent_automation - INFO - Sample UI elements detected:
-2025-05-23 17:02:20,734 - enhanced_agent_automation - INFO -   1. widget at (1551, 1842) size: 16x11
-2025-05-23 17:02:20,734 - enhanced_agent_automation - INFO -   2. widget at (1533, 1842) size: 16x11
-2025-05-23 17:02:20,734 - enhanced_agent_automation - INFO -   3. button at (1338, 1838) size: 16x16
-2025-05-23 17:02:20,734 - enhanced_agent_automation - INFO - Skipping slow UI detector for maximum automation speed
-2025-05-23 17:02:20,734 - enhanced_agent_automation - INFO - Adding 51 UI elements from fast analysis
-2025-05-23 17:02:20,739 - enhanced_agent_automation - INFO - Before dedup: 51 UI elements, 254 text elements
-2025-05-23 17:02:20,740 - enhanced_agent_automation - INFO - After dedup: 42 UI elements, 160 text elements
-2025-05-23 17:02:20,740 - enhanced_agent_automation - INFO - Combined elements: 305 total, 202 unique
-2025-05-23 17:02:20,740 - enhanced_agent_automation - INFO - Screen analysis complete: 202 elements detected
-2025-05-23 17:02:20,741 - enhanced_automation_handler - WARNING - Automation command failed: write my name in notepad - Could not find target element on screen
-2025-05-23 17:02:20,741 - __main__ - WARNING - ⚠️ [STREAMING] Agent automation failed: Unknown automation error
-2025-05-23 17:02:24,030 - __main__ - ERROR - Ollama error: received 1000 (OK); then sent 1000 (OK)
-2025-05-23 17:02:24,031 - __main__ - INFO - 🎯 Executing Agent mode automation for: write my name in notepad
-2025-05-23 17:02:24,032 - enhanced_automation_handler - INFO - Handling user instruction: 'write my name in notepad'
-2025-05-23 17:02:24,032 - enhanced_automation_handler - INFO - Executing automation command: write my name in notepad
-2025-05-23 17:02:24,032 - enhanced_agent_automation - INFO - Executing command: 'write my name in notepad'
-2025-05-23 17:02:24,294 - enhanced_agent_automation - INFO - Analyzing current screen with multiple methods...
-2025-05-23 17:02:24,632 - enhanced_agent_automation - INFO - Running ultra-fast UI analysis for automation...
-2025-05-23 17:02:24,632 - enhanced_agent_automation - INFO - Starting fast analysis of 2940x1912 screen
-2025-05-23 17:02:30,195 - enhanced_agent_automation - INFO - Fast analysis completed in 5.56s: 44 UI elements, 286 text elements
-2025-05-23 17:02:30,195 - enhanced_agent_automation - INFO - Sample UI elements detected:
-2025-05-23 17:02:30,195 - enhanced_agent_automation - INFO -   1. widget at (1551, 1842) size: 16x11
-2025-05-23 17:02:30,195 - enhanced_agent_automation - INFO -   2. widget at (1533, 1842) size: 16x11
-2025-05-23 17:02:30,195 - enhanced_agent_automation - INFO -   3. button at (1338, 1838) size: 16x16
-2025-05-23 17:02:30,196 - enhanced_agent_automation - INFO - Skipping slow UI detector for maximum automation speed
-2025-05-23 17:02:30,196 - enhanced_agent_automation - INFO - Adding 44 UI elements from fast analysis
-2025-05-23 17:02:30,204 - enhanced_agent_automation - INFO - Before dedup: 44 UI elements, 282 text elements
-2025-05-23 17:02:30,204 - enhanced_agent_automation - INFO - After dedup: 39 UI elements, 185 text elements
-2025-05-23 17:02:30,204 - enhanced_agent_automation - INFO - Combined elements: 326 total, 224 unique
-2025-05-23 17:02:30,205 - enhanced_agent_automation - INFO - Screen analysis complete: 224 elements detected
-2025-05-23 17:02:30,206 - enhanced_agent_automation - INFO - Found 1 potential matches for 'notepad':
-2025-05-23 17:02:30,206 - enhanced_agent_automation - INFO -   1. notepad (text_element) - confidence: 1.00
-2025-05-23 17:02:30,206 - enhanced_agent_automation - INFO - === AUTOMATION EXECUTION PLAN ===
-2025-05-23 17:02:30,206 - enhanced_agent_automation - INFO - 🎯 AUTOMATION PLAN:
-Command: write my name in notepad
-Action: TYPE
-
-📍 TARGET ELEMENT:
-• Text: "notepad"
-• Type: text_element
-• Confidence: 1.00
-• Coordinates: (1027, 1333)
-• Source: total_screen_text
-
-⚡ EXECUTION DETAILS:
-• Will click at: (1027, 1333)
-• Risk level: medium
-• Reversible: False
-
-🔄 ALTERNATIVES FOUND:
-  None
-2025-05-23 17:02:30,206 - enhanced_agent_automation - INFO - ==================================
-2025-05-23 17:02:30,206 - enhanced_agent_automation - INFO - 🤖 Agent mode: Auto-approving execution for production use
-2025-05-23 17:02:30,206 - enhanced_agent_automation - INFO - 🚀 Executing approved plan: type
-2025-05-23 17:02:32,251 - agent_workflow.input_controller - INFO - Moved cursor to (1027, 956)
-2025-05-23 17:02:32,419 - agent_workflow.input_controller - INFO - Clicked at (1027, 956) with left button, 1 times
-2025-05-23 17:02:32,419 - agent_workflow.input_controller - INFO - Typed text: ''
-2025-05-23 17:02:32,419 - enhanced_agent_automation - INFO - ✅ Successfully typed '' in notepad
-2025-05-23 17:02:32,419 - enhanced_automation_handler - INFO - Automation command succeeded: write my name in notepad
-2025-05-23 17:02:32,419 - __main__ - INFO - ✅ Agent automation successful: Task completed
-2025-05-23 17:02:32,419 - __main__ - ERROR - Error in streaming chat request: received 1000 (OK); then sent 1000 (OK)
-2025-05-23 17:02:32,419 - __main__ - ERROR - Error processing message from client_1748044935250: received 1000 (OK); then sent 1000 (OK)
-2025-05-23 17:02:32,420 - __main__ - INFO - Client disconnected: client_1748044935250
-2025-05-23 17:05:22,257 - websockets.server - INFO - connection open
-2025-05-23 17:05:22,257 - __main__ - INFO - Client connected: client_1748045122257 from ::1
-2025-05-23 17:05:22,258 - websockets.server - INFO - connection open
-2025-05-23 17:05:22,258 - __main__ - INFO - Client connected: client_1748045122258 from ::1
-2025-05-23 17:05:22,261 - __main__ - INFO - Processing contextual register from client_1748045122257
-2025-05-23 17:05:22,261 - __main__ - INFO - Client registration: client_1748045122257 (ui v1.0.0)
-2025-05-23 17:05:30,959 - memory.semantic_search_agent - INFO - Document d7d5ffe278308c4b6be59195f778ab9d2482f39c866f89e80c47d96b3b9a32d0 added to enterprise vector store
-2025-05-23 17:05:30,959 - memory.semantic_search_agent - INFO - Memory added successfully: d7d5ffe278308c4b6be59195f778ab9d2482f39c866f89e80c47d96b3b9a32d0
-2025-05-23 17:05:30,962 - memory.semantic_search_agent - INFO - Similarity search completed in 0.0020s, found 5 results
-2025-05-23 17:05:30,968 - memory.semantic_search_agent - INFO - Search completed successfully in 0.0089s, found 5 results
-2025-05-23 17:05:30,970 - __main__ - INFO - 🎯 [STREAMING] Executing Agent automation for: write my name in Notepad
-2025-05-23 17:05:30,970 - enhanced_automation_handler - INFO - Handling user instruction: 'write my name in Notepad'
-2025-05-23 17:05:30,970 - enhanced_automation_handler - INFO - Executing automation command: write my name in Notepad
-2025-05-23 17:05:30,970 - enhanced_agent_automation - INFO - Executing command: 'write my name in Notepad'
-2025-05-23 17:05:31,293 - enhanced_agent_automation - INFO - Analyzing current screen with multiple methods...
-2025-05-23 17:05:31,625 - enhanced_agent_automation - INFO - Running ultra-fast UI analysis for automation...
-2025-05-23 17:05:31,625 - enhanced_agent_automation - INFO - Starting fast analysis of 2940x1912 screen
-2025-05-23 17:05:33,302 - enhanced_agent_automation - INFO - Fast analysis completed in 1.68s: 723 UI elements, 130 text elements
-2025-05-23 17:05:33,302 - enhanced_agent_automation - INFO - Sample UI elements detected:
-2025-05-23 17:05:33,302 - enhanced_agent_automation - INFO -   1. widget at (51, 1901) size: 24x11
-2025-05-23 17:05:33,303 - enhanced_agent_automation - INFO -   2. widget at (61, 1889) size: 37x13
-2025-05-23 17:05:33,303 - enhanced_agent_automation - INFO -   3. horizontal_panel at (0, 1844) size: 62x17
-2025-05-23 17:05:33,304 - enhanced_agent_automation - INFO - Skipping slow UI detector for maximum automation speed
-2025-05-23 17:05:33,304 - enhanced_agent_automation - INFO - Adding 723 UI elements from fast analysis
-2025-05-23 17:05:33,332 - enhanced_agent_automation - INFO - Before dedup: 723 UI elements, 119 text elements
-2025-05-23 17:05:33,332 - enhanced_agent_automation - INFO - After dedup: 675 UI elements, 94 text elements
-2025-05-23 17:05:33,332 - enhanced_agent_automation - INFO - Combined elements: 842 total, 769 unique
-2025-05-23 17:05:33,332 - enhanced_agent_automation - INFO - Screen analysis complete: 769 elements detected
-2025-05-23 17:05:33,337 - enhanced_agent_automation - INFO - Found 6 potential matches for 'notepad':
-2025-05-23 17:05:33,337 - enhanced_agent_automation - INFO -   1. Others (text_field) - confidence: 0.30
-2025-05-23 17:05:33,337 - enhanced_agent_automation - INFO -   2. Images (text_field) - confidence: 0.30
-2025-05-23 17:05:33,337 - enhanced_agent_automation - INFO -   3.  (text_field) - confidence: 0.30
-2025-05-23 17:05:33,337 - enhanced_agent_automation - INFO - === AUTOMATION EXECUTION PLAN ===
-2025-05-23 17:05:33,337 - enhanced_agent_automation - INFO - 🎯 AUTOMATION PLAN:
-Command: write my name in Notepad
-Action: TYPE
-
-📍 TARGET ELEMENT:
-• Text: "Others"
-• Type: text_field
-• Confidence: 0.30
-• Coordinates: (2839, 1164)
-• Source: total_screen_analyzer
-
-⚡ EXECUTION DETAILS:
-• Will click at: (2839, 1164)
-• Risk level: medium
-• Reversible: False
-
-🔄 ALTERNATIVES FOUND:
-  1. text_field - "Images" (confidence: 0.30)
-  2. text_field - "" (confidence: 0.30)
-2025-05-23 17:05:33,337 - enhanced_agent_automation - INFO - ==================================
-2025-05-23 17:05:33,337 - enhanced_agent_automation - INFO - 🤖 Agent mode: Auto-approving execution for production use
-2025-05-23 17:05:33,337 - enhanced_agent_automation - INFO - 🚀 Executing approved plan: type
-2025-05-23 17:05:34,874 - agent_workflow.input_controller - INFO - Moved cursor to (1470, 956)
-2025-05-23 17:05:35,095 - agent_workflow.input_controller - INFO - Clicked at (1470, 956) with left button, 1 times
-2025-05-23 17:05:35,095 - agent_workflow.input_controller - INFO - Typed text: ''
-2025-05-23 17:05:35,095 - enhanced_agent_automation - INFO - ✅ Successfully typed '' in Others
-2025-05-23 17:05:35,095 - enhanced_automation_handler - INFO - Automation command succeeded: write my name in Notepad
-2025-05-23 17:05:35,099 - memory.semantic_search_agent - INFO - Document ae58eee773d745b315f5d003b79d16ca5566bb62cb1fbbc480b0e2c300adf5d3 added to enterprise vector store
-2025-05-23 17:05:35,099 - memory.semantic_search_agent - INFO - Memory added successfully: ae58eee773d745b315f5d003b79d16ca5566bb62cb1fbbc480b0e2c300adf5d3
-2025-05-23 17:05:35,100 - __main__ - INFO - ✅ [STREAMING] Agent automation successful: Task completed
-2025-05-23 17:05:49,947 - memory.semantic_search_agent - INFO - Document f980c9bfd8ab4147309782b48fc0b8081e2ff9c25f112355fb4fad4df04213fb added to enterprise vector store
-2025-05-23 17:05:49,947 - memory.semantic_search_agent - INFO - Memory added successfully: f980c9bfd8ab4147309782b48fc0b8081e2ff9c25f112355fb4fad4df04213fb
-2025-05-23 17:05:49,948 - memory.semantic_search_agent - INFO - Similarity search completed in 0.0012s, found 5 results
-2025-05-23 17:05:49,955 - memory.semantic_search_agent - INFO - Search completed successfully in 0.0080s, found 5 results
-2025-05-23 17:05:49,957 - __main__ - INFO - 🎯 [STREAMING] Executing Agent automation for: write my name “SEGEV” in notepad opened in screen
-2025-05-23 17:05:49,957 - enhanced_automation_handler - INFO - Handling user instruction: 'write my name “SEGEV” in notepad opened in screen'
-2025-05-23 17:05:49,957 - enhanced_automation_handler - INFO - Executing automation command: write my name “SEGEV” in notepad opened in screen
-2025-05-23 17:05:49,957 - enhanced_agent_automation - INFO - Executing command: 'write my name “SEGEV” in notepad opened in screen'
-2025-05-23 17:05:50,256 - enhanced_agent_automation - INFO - Analyzing current screen with multiple methods...
-2025-05-23 17:05:50,555 - enhanced_agent_automation - INFO - Running ultra-fast UI analysis for automation...
-2025-05-23 17:05:50,555 - enhanced_agent_automation - INFO - Starting fast analysis of 2940x1912 screen
-2025-05-23 17:05:52,214 - enhanced_agent_automation - INFO - Fast analysis completed in 1.66s: 636 UI elements, 125 text elements
-2025-05-23 17:05:52,215 - enhanced_agent_automation - INFO - Sample UI elements detected:
-2025-05-23 17:05:52,215 - enhanced_agent_automation - INFO -   1. widget at (51, 1901) size: 24x11
-2025-05-23 17:05:52,215 - enhanced_agent_automation - INFO -   2. widget at (61, 1889) size: 37x13
-2025-05-23 17:05:52,215 - enhanced_agent_automation - INFO -   3. horizontal_panel at (0, 1844) size: 62x17
-2025-05-23 17:05:52,216 - enhanced_agent_automation - INFO - Skipping slow UI detector for maximum automation speed
-2025-05-23 17:05:52,216 - enhanced_agent_automation - INFO - Adding 636 UI elements from fast analysis
-2025-05-23 17:05:52,240 - enhanced_agent_automation - INFO - Before dedup: 636 UI elements, 111 text elements
-2025-05-23 17:05:52,240 - enhanced_agent_automation - INFO - After dedup: 612 UI elements, 89 text elements
-2025-05-23 17:05:52,240 - enhanced_agent_automation - INFO - Combined elements: 747 total, 701 unique
-2025-05-23 17:05:52,241 - enhanced_agent_automation - INFO - Screen analysis complete: 701 elements detected
-2025-05-23 17:05:52,245 - enhanced_agent_automation - INFO - Found 8 potential matches for 'notepad':
-2025-05-23 17:05:52,245 - enhanced_agent_automation - INFO -   1. Notepad (text_element) - confidence: 1.00
-2025-05-23 17:05:52,245 - enhanced_agent_automation - INFO -   2. Others (text_field) - confidence: 0.30
-2025-05-23 17:05:52,245 - enhanced_agent_automation - INFO -   3. Images (text_field) - confidence: 0.30
-2025-05-23 17:05:52,246 - enhanced_agent_automation - INFO - === AUTOMATION EXECUTION PLAN ===
-2025-05-23 17:05:52,246 - enhanced_agent_automation - INFO - 🎯 AUTOMATION PLAN:
-Command: write my name “SEGEV” in notepad opened in screen
-Action: TYPE
-
-📍 TARGET ELEMENT:
-• Text: "Notepad"
-• Type: text_element
-• Confidence: 1.00
-• Coordinates: (479, 699)
-• Source: total_screen_text
-
-⚡ EXECUTION DETAILS:
-• Will click at: (479, 699)
-• Risk level: medium
-• Reversible: False
-
-🔄 ALTERNATIVES FOUND:
-  1. text_field - "Others" (confidence: 0.30)
-  2. text_field - "Images" (confidence: 0.30)
-2025-05-23 17:05:52,246 - enhanced_agent_automation - INFO - ==================================
-2025-05-23 17:05:52,246 - enhanced_agent_automation - INFO - 🤖 Agent mode: Auto-approving execution for production use
-2025-05-23 17:05:52,246 - enhanced_agent_automation - INFO - 🚀 Executing approved plan: type
-2025-05-23 17:05:54,423 - agent_workflow.input_controller - INFO - Moved cursor to (479, 699)
-2025-05-23 17:05:54,694 - agent_workflow.input_controller - INFO - Clicked at (479, 699) with left button, 1 times
-2025-05-23 17:05:54,695 - agent_workflow.input_controller - INFO - Typed text: ''
-2025-05-23 17:05:54,695 - enhanced_agent_automation - INFO - ✅ Successfully typed '' in Notepad
-2025-05-23 17:05:54,695 - enhanced_automation_handler - INFO - Automation command succeeded: write my name “SEGEV” in notepad opened in screen
-2025-05-23 17:05:54,698 - memory.semantic_search_agent - INFO - Document 0d3d4d7c46fcdeb50ba2a623190333fa98bc993f96249338a68aaea650210e83 added to enterprise vector store
-2025-05-23 17:05:54,698 - memory.semantic_search_agent - INFO - Memory added successfully: 0d3d4d7c46fcdeb50ba2a623190333fa98bc993f96249338a68aaea650210e83
-2025-05-23 17:05:54,699 - __main__ - INFO - ✅ [STREAMING] Agent automation successful: Task completed
+2025-06-08 13:29:05,613 - agent_workflow.input_controller - INFO - Detected screen size: 1470x956
+2025-06-08 13:29:05,899 - agent_workflow.input_controller - INFO - Standard mouse listener started successfully
+2025-06-08 13:29:05,899 - agent_workflow.input_controller - INFO - Keyboard listener started successfully
+2025-06-08 13:29:05,899 - agent_workflow.input_controller - INFO - Input controller initialized (safe mode)
+2025-06-08 13:29:05,899 - agent_workflow.input_controller - INFO - 🚨 Emergency shutdown: Press Ctrl+1 to immediately stop agent
+2025-06-08 13:29:05,903 - llava_processor - INFO - Connected to Ollama API v0.6.8
+2025-06-08 13:29:05,903 - total_screen_analyzer - INFO - LLaVA visual processor initialized for total screen analysis
+2025-06-08 13:29:05,903 - total_screen_analyzer - INFO - Total Screen Analyzer initialized with 8s interval
+2025-06-08 13:29:05,903 - adaptive_retry_automation_handler - INFO - 🔄 Adaptive retry automation system loaded
+2025-06-08 13:29:05,903 - universal_intelligent_automation_handler - INFO - ✅ Adaptive retry automation handler loaded successfully
+2025-06-08 13:29:05,905 - plan_persistence - INFO - Loaded 17 plans from metadata
+2025-06-08 13:29:05,905 - plan_persistence - INFO - Plan persistence system initialized
+2025-06-08 13:29:05,905 - universal_intelligent_automation_handler - INFO - ✅ Plan persistence module loaded successfully
+2025-06-08 13:29:05,906 - agent_workflow.input_controller - INFO - Standard mouse listener started successfully
+2025-06-08 13:29:05,906 - agent_workflow.input_controller - INFO - Keyboard listener started successfully
+2025-06-08 13:29:05,906 - agent_workflow.input_controller - INFO - Input controller initialized (safe mode)
+2025-06-08 13:29:05,906 - agent_workflow.input_controller - INFO - 🚨 Emergency shutdown: Press Ctrl+1 to immediately stop agent
+2025-06-08 13:29:05,919 - llava_processor - INFO - Connected to Ollama API v0.6.8
+2025-06-08 13:29:05,919 - total_screen_analyzer - INFO - LLaVA visual processor initialized for total screen analysis
+2025-06-08 13:29:05,919 - total_screen_analyzer - INFO - Total Screen Analyzer initialized with 8s interval
+2025-06-08 13:29:05,919 - universal_intelligent_automation_handler - INFO - 🤖 Universal automation components loaded successfully
+2025-06-08 13:29:05,919 - fixed_universal_automation_handler - INFO - ✅ Adaptive retry automation handler loaded successfully
+2025-06-08 13:29:05,919 - fixed_universal_automation_handler - INFO - ✅ Plan persistence module loaded successfully
+2025-06-08 13:29:05,920 - agent_workflow.input_controller - INFO - Standard mouse listener started successfully
+2025-06-08 13:29:05,920 - agent_workflow.input_controller - INFO - Keyboard listener started successfully
+2025-06-08 13:29:05,920 - agent_workflow.input_controller - INFO - Input controller initialized (safe mode)
+2025-06-08 13:29:05,920 - agent_workflow.input_controller - INFO - 🚨 Emergency shutdown: Press Ctrl+1 to immediately stop agent
+2025-06-08 13:29:05,920 - __main__ - INFO - ✅ Input controller initialized (safe mode)
+2025-06-08 13:29:05,930 - accessibility_detector - WARNING - Windows accessibility APIs not available
+2025-06-08 13:29:05,930 - accessibility_detector - WARNING - Linux accessibility APIs (AT-SPI) not available
+2025-06-08 13:29:05,961 - __main__ - WARNING - ⚠️ Efficient system bridge not available, falling back to screen capture
+2025-06-08 13:29:05,962 - __main__ - INFO - 🔥 LLM Warmup Manager available for fast responses
+2025-06-08 13:29:05,973 - memory.semantic_search_agent - INFO - Loading 4735 existing documents from storage
+2025-06-08 13:29:06,321 - memory.semantic_search_agent - INFO - EnterpriseVectorStore initialized with enterprise-grade features
+2025-06-08 13:29:06,323 - memory.semantic_search_agent - INFO - SemanticSearchAgent initialized with enterprise-grade capabilities
+2025-06-08 13:29:06,324 - real_agent_automation_handler - INFO - ✅ Plan persistence module loaded successfully
+2025-06-08 13:29:06,324 - real_agent_automation_handler - INFO - 🤖 Basic automation handler initialized
+2025-06-08 13:29:06,324 - __main__ - INFO - ✅ Real Agent Automation Handler enabled
+2025-06-08 13:29:06,325 - agent_workflow.input_controller - INFO - Standard mouse listener started successfully
+2025-06-08 13:29:06,325 - agent_workflow.input_controller - INFO - Keyboard listener started successfully
+2025-06-08 13:29:06,325 - agent_workflow.input_controller - INFO - Input controller initialized (safe mode)
+2025-06-08 13:29:06,325 - agent_workflow.input_controller - INFO - 🚨 Emergency shutdown: Press Ctrl+1 to immediately stop agent
+2025-06-08 13:29:06,327 - llava_processor - INFO - Connected to Ollama API v0.6.8
+2025-06-08 13:29:06,327 - total_screen_analyzer - INFO - LLaVA visual processor initialized for total screen analysis
+2025-06-08 13:29:06,327 - total_screen_analyzer - INFO - Total Screen Analyzer initialized with 8s interval
+2025-06-08 13:29:06,327 - universal_intelligent_automation_handler - INFO - 🤖 Universal automation components loaded successfully
+2025-06-08 13:29:06,327 - __main__ - INFO - ✅ Universal Intelligent Automation Handler loaded
+2025-06-08 13:29:06,334 - brain.core.brain_router - INFO - ✅ Plan persistence module loaded in brain router
+2025-06-08 13:29:06,335 - __main__ - INFO - 🧠 Brain Router available for intelligent mode handling
+2025-06-08 13:29:07,361 - memory.semantic_search_agent - INFO - Loading 4735 existing documents from storage
+2025-06-08 13:29:07,590 - memory.semantic_search_agent - INFO - EnterpriseVectorStore initialized with enterprise-grade features
+2025-06-08 13:29:07,590 - memory.semantic_search_agent - INFO - SemanticSearchAgent initialized with enterprise-grade capabilities
+2025-06-08 13:29:07,591 - __main__ - INFO - ✅ Enhanced semantic search agent initialized
+2025-06-08 13:29:07,591 - __main__ - INFO - ✅ Initialized pending_plans dictionary
+2025-06-08 13:29:07,591 - agent_workflow.input_controller - INFO - Standard mouse listener started successfully
+2025-06-08 13:29:07,591 - agent_workflow.input_controller - INFO - Keyboard listener started successfully
+2025-06-08 13:29:07,591 - agent_workflow.input_controller - INFO - Input controller initialized (safe mode)
+2025-06-08 13:29:07,591 - agent_workflow.input_controller - INFO - 🚨 Emergency shutdown: Press Ctrl+1 to immediately stop agent
+2025-06-08 13:29:07,594 - llava_processor - INFO - Connected to Ollama API v0.6.8
+2025-06-08 13:29:07,595 - total_screen_analyzer - INFO - LLaVA visual processor initialized for total screen analysis
+2025-06-08 13:29:07,595 - total_screen_analyzer - INFO - Total Screen Analyzer initialized with 1s interval
+2025-06-08 13:29:07,595 - enhanced_agent_automation - INFO - Enhanced Agent Automation initialized with Total Screen Analyzer
+2025-06-08 13:29:07,595 - enhanced_automation_handler - INFO - Enhanced Automation Handler initialized
+2025-06-08 13:29:07,595 - __main__ - INFO - ✅ EnhancedAutomationHandler initialized for automation_handler
+2025-06-08 13:29:07,595 - __main__ - INFO - ✅ ContextualAIBackend initialized successfully
+2025-06-08 13:29:07,595 - __main__ - INFO - 🚀 Starting Enhanced Enterprise Backend with Context on 0.0.0.0:8767...
+2025-06-08 13:29:07,595 - brain.core.brain_router - INFO - BrainRouter initialized - The Central Intelligence Hub is online
+2025-06-08 13:29:07,602 - llm.model - INFO - ✅ LLM service started successfully with model llama3.2:1b
+2025-06-08 13:29:07,602 - llm.model - INFO - Sending Ollama request (attempt 1/3)
+2025-06-08 13:29:10,396 - llm.model - INFO - Ollama response time: 2.79s (status: 200)
+2025-06-08 13:29:10,397 - llm.model - INFO - Successfully parsed NDJSON response: 35 chars from 9 parts
+2025-06-08 13:29:10,397 - brain.core.brain_router - INFO - ✅ LLM service initialized and tested successfully
+2025-06-08 13:29:10,398 - __main__ - INFO - ✅ Brain Router initialized asynchronously
+2025-06-08 13:29:10,398 - __main__ - INFO - ✅ Brain Router initialized asynchronously
+2025-06-08 13:29:10,403 - websockets.server - INFO - server listening on 0.0.0.0:8767
+2025-06-08 13:29:10,404 - __main__ - INFO - ✅ Enhanced Enterprise Backend with Context started successfully
+2025-06-08 13:29:10,404 - __main__ - INFO - 🌐 WebSocket server listening on ws://0.0.0.0:8767
+2025-06-08 13:29:11,486 - websockets.server - INFO - connection open
+2025-06-08 13:29:11,487 - __main__ - INFO - Client connected: client_1749403751487 from 127.0.0.1 on path: None
+2025-06-08 13:29:11,488 - __main__ - INFO - Received message type: register from client_1749403751487
+2025-06-08 13:29:12,022 - websockets.server - INFO - connection open
+2025-06-08 13:29:12,022 - __main__ - INFO - Client connected: client_1749403752022 from 127.0.0.1 on path: None
+2025-06-08 13:29:12,022 - __main__ - INFO - Received message type: register from client_1749403752022
+2025-06-08 13:29:16,491 - websockets.server - INFO - connection open
+2025-06-08 13:29:16,491 - __main__ - INFO - Client connected: client_1749403756491 from 127.0.0.1 on path: None
+2025-06-08 13:29:16,492 - __main__ - INFO - Received message type: register from client_1749403756491
+2025-06-08 13:29:21,496 - websockets.server - INFO - connection open
+2025-06-08 13:29:21,496 - __main__ - INFO - Client connected: client_1749403761496 from 127.0.0.1 on path: None
+2025-06-08 13:29:21,497 - __main__ - INFO - Received message type: register from client_1749403761496
+2025-06-08 13:29:26,501 - websockets.server - INFO - connection open
+2025-06-08 13:29:26,501 - __main__ - INFO - Client connected: client_1749403766501 from 127.0.0.1 on path: None
+2025-06-08 13:29:26,502 - __main__ - INFO - Received message type: register from client_1749403766501
+2025-06-08 13:29:28,694 - websockets.server - INFO - connection open
+2025-06-08 13:29:28,694 - __main__ - INFO - Client connected: client_1749403768694 from 127.0.0.1 on path: None
+2025-06-08 13:29:28,703 - __main__ - INFO - Received message type: register from client_1749403768694
+2025-06-08 13:29:29,482 - websockets.server - INFO - connection open
+2025-06-08 13:29:29,482 - __main__ - INFO - Client connected: client_1749403769482 from 127.0.0.1 on path: None
+2025-06-08 13:29:29,483 - __main__ - INFO - Received message type: register from client_1749403769482
+2025-06-08 13:29:31,508 - websockets.server - INFO - connection open
+2025-06-08 13:29:31,508 - __main__ - INFO - Client connected: client_1749403771508 from 127.0.0.1 on path: None
+2025-06-08 13:29:31,510 - __main__ - INFO - Received message type: register from client_1749403771508
+2025-06-08 13:29:32,962 - __main__ - INFO - Received message type: sensor_data from client_1749403752022
+2025-06-08 13:29:32,962 - __main__ - INFO - Processing sensor data from client_1749403752022
+2025-06-08 13:29:36,514 - websockets.server - INFO - connection open
+2025-06-08 13:29:36,514 - __main__ - INFO - Client connected: client_1749403776514 from 127.0.0.1 on path: None
+2025-06-08 13:29:36,515 - __main__ - INFO - Received message type: register from client_1749403776514
+2025-06-08 13:29:41,519 - websockets.server - INFO - connection open
+2025-06-08 13:29:41,519 - __main__ - INFO - Client connected: client_1749403781519 from 127.0.0.1 on path: None
+2025-06-08 13:29:41,520 - __main__ - INFO - Received message type: register from client_1749403781519
+2025-06-08 13:29:41,940 - __main__ - INFO - Received message type: chat_request from client_1749403769482
+2025-06-08 13:29:41,946 - memory.semantic_search_agent - INFO - Document e2ded34fd2852459ac9d134d79d88dde2f04d5f2a4d48e8cc3d5f14a18131e10 added to enterprise vector store
+2025-06-08 13:29:41,946 - memory.semantic_search_agent - INFO - Memory added successfully: e2ded34fd2852459ac9d134d79d88dde2f04d5f2a4d48e8cc3d5f14a18131e10
+2025-06-08 13:29:41,947 - memory.semantic_search_agent - INFO - Document 4fec241be2334ca7249d5ed5f08d79a273ed6d8b1d6b065064c560e6e94ae443 added to enterprise vector store
+2025-06-08 13:29:41,947 - memory.semantic_search_agent - INFO - Memory added successfully: 4fec241be2334ca7249d5ed5f08d79a273ed6d8b1d6b065064c560e6e94ae443
+2025-06-08 13:29:41,948 - memory.semantic_search_agent - INFO - Document e0c8300d399afccd36f545cce998bf73339b7b0e1255a72911b99e5d610c8dc0 added to enterprise vector store
+2025-06-08 13:29:41,948 - memory.semantic_search_agent - INFO - Memory added successfully: e0c8300d399afccd36f545cce998bf73339b7b0e1255a72911b99e5d610c8dc0
+2025-06-08 13:29:41,949 - memory.semantic_search_agent - INFO - Document 084e30dbd176e9e3a2e6bb27d15afbca07460deb463ff38caf76f6f91d47f5a5 added to enterprise vector store
+2025-06-08 13:29:41,949 - memory.semantic_search_agent - INFO - Memory added successfully: 084e30dbd176e9e3a2e6bb27d15afbca07460deb463ff38caf76f6f91d47f5a5
+2025-06-08 13:29:41,951 - memory.semantic_search_agent - INFO - Document 6bb0e0b036a13cef744ae18789a8714710352a59153040b4b2f6b140eb8da9ec added to enterprise vector store
+2025-06-08 13:29:41,951 - memory.semantic_search_agent - INFO - Memory added successfully: 6bb0e0b036a13cef744ae18789a8714710352a59153040b4b2f6b140eb8da9ec
+2025-06-08 13:29:41,952 - memory.semantic_search_agent - INFO - Document f066bfc25faec598699118e02ad62471aa800ef3d7f38f0228c650f562594dae added to enterprise vector store
+2025-06-08 13:29:41,953 - memory.semantic_search_agent - INFO - Memory added successfully: f066bfc25faec598699118e02ad62471aa800ef3d7f38f0228c650f562594dae
+2025-06-08 13:29:41,954 - memory.semantic_search_agent - INFO - Document 4f8ac96eaed6d8b44644ab8198ae8ada0e8687481d54286f26a5deb41a32eee1 added to enterprise vector store
+2025-06-08 13:29:41,954 - memory.semantic_search_agent - INFO - Memory added successfully: 4f8ac96eaed6d8b44644ab8198ae8ada0e8687481d54286f26a5deb41a32eee1
+2025-06-08 13:29:41,956 - memory.semantic_search_agent - INFO - Document a458c226d88c2eb2d09c8c880519d866df22cc7ef977a50231a7e461219e5c2c added to enterprise vector store
+2025-06-08 13:29:41,956 - memory.semantic_search_agent - INFO - Memory added successfully: a458c226d88c2eb2d09c8c880519d866df22cc7ef977a50231a7e461219e5c2c
+2025-06-08 13:29:41,958 - memory.semantic_search_agent - INFO - Document e64373e480d2a685bbf36aa85398b35631bc4ef2ad14ef01fb73a62761b156a2 added to enterprise vector store
+2025-06-08 13:29:41,958 - memory.semantic_search_agent - INFO - Memory added successfully: e64373e480d2a685bbf36aa85398b35631bc4ef2ad14ef01fb73a62761b156a2
+2025-06-08 13:29:41,959 - memory.semantic_search_agent - INFO - Document 29813227b07067187b29fb4001aef2ae73ada414f2c69f96d40f241c461cad67 added to enterprise vector store
+2025-06-08 13:29:41,959 - memory.semantic_search_agent - INFO - Memory added successfully: 29813227b07067187b29fb4001aef2ae73ada414f2c69f96d40f241c461cad67
+2025-06-08 13:29:41,959 - __main__ - INFO - Enterprise contextual knowledge initialized
+2025-06-08 13:29:41,961 - memory.semantic_search_agent - INFO - Document d441459e2518e68453e616c65ac70491ec3f84a033697f9afff149f5550d362b added to enterprise vector store
+2025-06-08 13:29:41,961 - memory.semantic_search_agent - INFO - Memory added successfully: d441459e2518e68453e616c65ac70491ec3f84a033697f9afff149f5550d362b
+2025-06-08 13:29:41,971 - memory.semantic_search_agent - INFO - Similarity search completed in 0.0099s, found 5 results
+2025-06-08 13:29:41,976 - memory.semantic_search_agent - INFO - Search completed successfully in 0.0146s, found 5 results
+2025-06-08 13:29:41,977 - brain.core.brain_router - INFO - Processing Agent request: Search SEGEV in Google...
+2025-06-08 13:29:41,977 - brain.core.brain_router - INFO - Resources allocated for request overlay_session_1749403768688_1749403781.9763908: ['memory', 'llm', 'execution']
+2025-06-08 13:29:41,977 - brain.core.brain_router - INFO - 🧠 Using universal intelligent automation handler with real LLM planning
+2025-06-08 13:29:41,977 - brain.core.brain_router - INFO - ✅ Successfully imported universal_intelligent_automation_handler
+2025-06-08 13:29:41,978 - universal_intelligent_automation_handler - INFO - 🧠 Initializing OllamaLLM service for universal planning
+2025-06-08 13:29:42,001 - llm.model - INFO - ✅ LLM service started successfully with model llama3.2:latest
+2025-06-08 13:29:42,002 - universal_intelligent_automation_handler - INFO - ✅ OllamaLLM service initialized for universal planning (async)
+2025-06-08 13:29:42,002 - universal_intelligent_automation_handler - INFO - ✅ Ensured LLM service is initialized for real LLM plan generation
+2025-06-08 13:29:42,002 - universal_intelligent_automation_handler - INFO - ✅ Using real LLM service for plan generation
+2025-06-08 13:29:42,002 - universal_intelligent_automation_handler - INFO - 🧠 Using create_universal_automation_plan directly for real LLM plan generation
+2025-06-08 13:29:42,003 - universal_intelligent_automation_handler - INFO - 🧠 Attempting to create plan with advanced LLM reasoning
+2025-06-08 13:29:42,003 - universal_intelligent_automation_handler - WARNING - ⚠️ Advanced LLM planning failed: 'UniversalIntelligentAutomationHandler' object has no attribute '_create_advanced_llm_plan'
+2025-06-08 13:29:42,003 - universal_intelligent_automation_handler - INFO - 🔄 Falling back to emergency plan creation
+2025-06-08 13:29:42,003 - universal_intelligent_automation_handler - ERROR - Error creating universal automation plan: 'UniversalIntelligentAutomationHandler' object has no attribute '_create_emergency_llm_plan'
+2025-06-08 13:29:42,003 - universal_intelligent_automation_handler - WARNING - ⚠️ Plan creation failed with standard method
+2025-06-08 13:29:42,003 - brain.core.brain_router - WARNING - ⚠️ Universal automation handler returned invalid result: {'success': False, 'response': "Error creating automation plan: 'UniversalIntelligentAutomationHandler' object has no attribute '_create_emergency_llm_plan'", 'automation_available': True}
+2025-06-08 13:29:42,003 - brain.core.brain_router - INFO - 🔄 Falling back to direct LLM planning
+2025-06-08 13:29:42,003 - llm.model - INFO - Sending Ollama request (attempt 1/3)
+2025-06-08 13:29:43,705 - __main__ - INFO - Received message type: ping from client_1749403768694
+2025-06-08 13:29:44,195 - llm.model - INFO - Ollama response time: 2.19s (status: 200)
+2025-06-08 13:29:44,195 - llm.model - INFO - Successfully parsed NDJSON response: 3 chars from 3 parts
+2025-06-08 13:29:44,196 - brain.core.brain_router - INFO - ✅ Verified LLM model is generating real responses
+2025-06-08 13:29:44,196 - llm.model - INFO - Sending Ollama request (attempt 1/3)
+2025-06-08 13:29:46,528 - websockets.server - INFO - connection open
+2025-06-08 13:29:46,529 - __main__ - INFO - Client connected: client_1749403786529 from 127.0.0.1 on path: None
+2025-06-08 13:29:46,530 - __main__ - INFO - Received message type: register from client_1749403786529
+2025-06-08 13:29:48,092 - __main__ - INFO - Received message type: sensor_data from client_1749403752022
+2025-06-08 13:29:48,093 - __main__ - INFO - Processing sensor data from client_1749403752022
+2025-06-08 13:29:51,586 - websockets.server - INFO - connection open
+2025-06-08 13:29:51,587 - __main__ - INFO - Client connected: client_1749403791586 from 127.0.0.1 on path: None
+2025-06-08 13:29:51,592 - __main__ - INFO - Received message type: register from client_1749403791586
+2025-06-08 13:29:56,603 - websockets.server - INFO - connection open
+2025-06-08 13:29:56,604 - __main__ - INFO - Client connected: client_1749403796604 from 127.0.0.1 on path: None
+2025-06-08 13:29:56,605 - __main__ - INFO - Received message type: register from client_1749403796604
+2025-06-08 13:29:59,462 - __main__ - INFO - Received message type: ping from client_1749403768694
+2025-06-08 13:30:01,793 - websockets.server - INFO - connection open
+2025-06-08 13:30:01,960 - __main__ - INFO - Client connected: client_1749403801958 from 127.0.0.1 on path: None
+2025-06-08 13:30:02,033 - __main__ - INFO - Received message type: register from client_1749403801958
+2025-06-08 13:30:03,019 - llm.model - INFO - Ollama response time: 18.82s (status: 200)
+2025-06-08 13:30:03,022 - llm.model - INFO - Successfully parsed NDJSON response: 2871 chars from 679 parts
+2025-06-08 13:30:03,023 - brain.core.brain_router - INFO - Request processed successfully in 21.05s
+2025-06-08 13:30:03,039 - memory.semantic_search_agent - INFO - Document 1060a89fe7d5480243bc6e7725f20793f7c998e428b285fc5bf0ec87f5394be7 added to enterprise vector store
+2025-06-08 13:30:03,040 - memory.semantic_search_agent - INFO - Memory added successfully: 1060a89fe7d5480243bc6e7725f20793f7c998e428b285fc5bf0ec87f5394be7
+2025-06-08 13:30:07,068 - websockets.server - INFO - connection open
+2025-06-08 13:30:07,069 - __main__ - INFO - Client connected: client_1749403807069 from 127.0.0.1 on path: None
+2025-06-08 13:30:07,072 - __main__ - INFO - Received message type: register from client_1749403807069
+2025-06-08 13:30:12,094 - websockets.server - INFO - connection open
+2025-06-08 13:30:12,094 - __main__ - INFO - Client connected: client_1749403812094 from 127.0.0.1 on path: None
+2025-06-08 13:30:12,095 - __main__ - INFO - Received message type: register from client_1749403812094
+2025-06-08 13:30:14,408 - __main__ - INFO - Received message type: ping from client_1749403768694
+2025-06-08 13:30:17,097 - websockets.server - INFO - connection open
+2025-06-08 13:30:17,097 - __main__ - INFO - Client connected: client_1749403817097 from 127.0.0.1 on path: None
+2025-06-08 13:30:17,098 - __main__ - INFO - Received message type: register from client_1749403817097
+2025-06-08 13:30:20,600 - __main__ - INFO - Received message type: sensor_data from client_1749403752022
+2025-06-08 13:30:20,600 - __main__ - INFO - Processing sensor data from client_1749403752022
+2025-06-08 13:30:22,101 - websockets.server - INFO - connection open
+2025-06-08 13:30:22,101 - __main__ - INFO - Client connected: client_1749403822101 from 127.0.0.1 on path: None
+2025-06-08 13:30:22,102 - __main__ - INFO - Received message type: register from client_1749403822101
+2025-06-08 13:30:27,109 - websockets.server - INFO - connection open
+2025-06-08 13:30:27,109 - __main__ - INFO - Client connected: client_1749403827109 from 127.0.0.1 on path: None
+2025-06-08 13:30:27,113 - __main__ - INFO - Received message type: register from client_1749403827109
+2025-06-08 13:30:29,506 - __main__ - INFO - Received message type: ping from client_1749403768694
+2025-06-08 13:30:32,117 - websockets.server - INFO - connection open
+2025-06-08 13:30:32,117 - __main__ - INFO - Client connected: client_1749403832117 from 127.0.0.1 on path: None
+2025-06-08 13:30:32,117 - __main__ - INFO - Received message type: register from client_1749403832117
+2025-06-08 13:30:37,122 - websockets.server - INFO - connection open
+2025-06-08 13:30:37,122 - __main__ - INFO - Client connected: client_1749403837122 from 127.0.0.1 on path: None
+2025-06-08 13:30:37,122 - __main__ - INFO - Received message type: register from client_1749403837122
+2025-06-08 13:30:42,126 - websockets.server - INFO - connection open
+2025-06-08 13:30:42,126 - __main__ - INFO - Client connected: client_1749403842126 from 127.0.0.1 on path: None
+2025-06-08 13:30:42,127 - __main__ - INFO - Received message type: register from client_1749403842126
+2025-06-08 13:30:44,507 - __main__ - INFO - Received message type: ping from client_1749403768694
+2025-06-08 13:30:46,252 - __main__ - INFO - Received message type: query from client_1749403769482
+2025-06-08 13:30:46,773 - __main__ - INFO - Received message type: query from client_1749403769482
+2025-06-08 13:30:47,131 - websockets.server - INFO - connection open
+2025-06-08 13:30:47,131 - __main__ - INFO - Client connected: client_1749403847131 from 127.0.0.1 on path: None
+2025-06-08 13:30:47,132 - __main__ - INFO - Received message type: register from client_1749403847131
+2025-06-08 13:30:48,143 - __main__ - INFO - Received message type: sensor_data from client_1749403752022
+2025-06-08 13:30:48,143 - __main__ - INFO - Processing sensor data from client_1749403752022
+2025-06-08 13:30:52,138 - websockets.server - INFO - connection open
+2025-06-08 13:30:52,138 - __main__ - INFO - Client connected: client_1749403852138 from 127.0.0.1 on path: None
+2025-06-08 13:30:52,142 - __main__ - INFO - Received message type: register from client_1749403852138
+2025-06-08 13:30:57,147 - websockets.server - INFO - connection open
+2025-06-08 13:30:57,147 - __main__ - INFO - Client connected: client_1749403857147 from 127.0.0.1 on path: None
+2025-06-08 13:30:57,148 - __main__ - INFO - Received message type: register from client_1749403857147
+2025-06-08 13:30:59,606 - __main__ - INFO - Received message type: ping from client_1749403768694
+2025-06-08 13:31:02,152 - websockets.server - INFO - connection open
+2025-06-08 13:31:02,152 - __main__ - INFO - Client connected: client_1749403862152 from 127.0.0.1 on path: None
+2025-06-08 13:31:02,153 - __main__ - INFO - Received message type: register from client_1749403862152

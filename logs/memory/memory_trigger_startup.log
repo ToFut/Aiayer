@@ -1,0 +1,117 @@
+2025-06-01 14:50:01,640 - memory_trigger_startup - INFO - 🚀 Starting memory trigger service
+2025-06-01 14:50:01,879 - memory.enhanced_semantic_search - INFO - Enhanced semantic search initialized with embedding dim: 384
+2025-06-01 14:50:01,879 - memory.enhanced_semantic_search - INFO - Hybrid retrieval enabled: True
+2025-06-01 14:50:02,090 - memory.semantic_search_agent - INFO - Loading 1437 existing documents from storage
+2025-06-01 14:50:02,237 - memory.semantic_search_agent - INFO - EnterpriseVectorStore initialized with enterprise-grade features
+2025-06-01 14:50:02,267 - memory.semantic_search_agent - INFO - SemanticSearchAgent initialized with enterprise-grade capabilities
+2025-06-01 14:50:02,578 - agent_workflow.input_controller - INFO - Detected screen size: 1470x956
+2025-06-01 14:50:02,582 - agent_workflow.input_controller - INFO - Standard mouse listener started successfully
+2025-06-01 14:50:02,582 - agent_workflow.input_controller - INFO - Keyboard listener started successfully
+2025-06-01 14:50:02,583 - agent_workflow.input_controller - INFO - Input controller initialized (safe mode)
+2025-06-01 14:50:02,583 - agent_workflow.input_controller - INFO - 🚨 Emergency shutdown: Press Ctrl+1 to immediately stop agent
+2025-06-01 14:50:02,673 - llava_processor - INFO - Connected to Ollama API v0.6.8
+2025-06-01 14:50:02,674 - total_screen_analyzer - INFO - LLaVA visual processor initialized for total screen analysis
+2025-06-01 14:50:02,674 - total_screen_analyzer - INFO - Total Screen Analyzer initialized with 8s interval
+2025-06-01 14:50:02,674 - adaptive_retry_automation_handler - INFO - 🔄 Adaptive retry automation system loaded
+2025-06-01 14:50:02,674 - universal_intelligent_automation_handler - INFO - ✅ Adaptive retry automation handler loaded successfully
+2025-06-01 14:50:02,676 - plan_persistence - INFO - Plan persistence manager initialized with 17 stored plans
+2025-06-01 14:50:02,676 - plan_persistence - INFO - Plan persistence service initialized
+2025-06-01 14:50:02,676 - universal_intelligent_automation_handler - INFO - ✅ Plan persistence module loaded successfully
+2025-06-01 14:50:02,677 - agent_workflow.input_controller - INFO - Standard mouse listener started successfully
+2025-06-01 14:50:02,678 - agent_workflow.input_controller - INFO - Keyboard listener started successfully
+2025-06-01 14:50:02,678 - agent_workflow.input_controller - INFO - Input controller initialized (safe mode)
+2025-06-01 14:50:02,678 - agent_workflow.input_controller - INFO - 🚨 Emergency shutdown: Press Ctrl+1 to immediately stop agent
+2025-06-01 14:50:02,680 - llava_processor - INFO - Connected to Ollama API v0.6.8
+2025-06-01 14:50:02,680 - total_screen_analyzer - INFO - LLaVA visual processor initialized for total screen analysis
+2025-06-01 14:50:02,680 - total_screen_analyzer - INFO - Total Screen Analyzer initialized with 8s interval
+2025-06-01 14:50:02,680 - universal_intelligent_automation_handler - INFO - 🤖 Universal automation components loaded successfully
+2025-06-01 14:50:02,681 - brain.core.brain_router - INFO - ✅ Plan persistence module loaded in brain router
+2025-06-01 14:50:02,684 - brain.core.brain_router - INFO - BrainRouter initialized - The Central Intelligence Hub is online
+2025-06-01 14:50:02,827 - llm_suggestion_detector - INFO - LLM Suggestion Detector initialized
+2025-06-01 14:50:02,830 - memory_trigger - INFO - Loaded 11 trigger rules from config/trigger_rules.json
+2025-06-01 14:50:02,830 - memory_trigger - INFO - Loaded 11 active and 0 completed notifications
+2025-06-01 14:50:02,830 - memory_trigger - INFO - Loaded configuration from config/memory_trigger_config.json
+2025-06-01 14:50:02,830 - memory_trigger - INFO - Memory Trigger Service initialized
+2025-06-01 14:50:02,831 - sensors.process_sensor - INFO - Process sensor initialized with config: {'interval_sec': 5, 'max_memory_mb': 50, 'cleanup_threshold_mb': 25, 'max_errors': 3, 'exclude_patterns': ['system', 'kernel'], 'max_processes': 100}
+2025-06-01 14:50:02,831 - memory.memory_system - INFO - Memory logger initialized
+2025-06-01 14:50:02,831 - memory_diagnostics - INFO - Memory diagnostic logger initialized
+2025-06-01 14:50:02,831 - memory_diagnostics - INFO - MEMORY EVENT: logger_initialized - {"timestamp": "2025-06-01T14:50:02.831439"}
+2025-06-01 14:50:02,831 - memory.memory_system - INFO - Diagnostic logger initialized
+2025-06-01 14:50:02,831 - memory.conscious_memory - INFO - [ConsciousMemory] Initialized as middle layer for memory system
+2025-06-01 14:50:02,831 - memory.memory_system - INFO - Conscious memory initialized
+2025-06-01 14:50:02,831 - memory.enhanced_semantic_search - INFO - Enhanced semantic search initialized with embedding dim: 384
+2025-06-01 14:50:02,831 - memory.enhanced_semantic_search - INFO - Hybrid retrieval enabled: True
+2025-06-01 14:50:02,831 - memory.memory_system - INFO - Enhanced semantic search initialized
+2025-06-01 14:50:02,832 - memory.memory_system - INFO - 🔄 Loading memory state from /Users/segevbin/Desktop/SensAI/Aiayer/memory/memory/memory_state.json
+2025-06-01 14:50:02,832 - memory.memory_system - INFO -   - Found 16 short-term memory items
+2025-06-01 14:50:02,832 - memory.memory_system - INFO -   - No long-term memory found, initializing empty
+2025-06-01 14:50:02,832 - memory.memory_system - INFO -   - Found context memory with 6 items
+2025-06-01 14:50:02,832 - memory.memory_system - INFO - ✅ Successfully loaded memory state
+2025-06-01 14:50:02,832 - memory_diagnostics - INFO - MEMORY EVENT: memory_state_loaded - {"short_term_count": 16, "long_term_count": 0, "context_count": 6, "timestamp": "2025-06-01T14:50:02.832594"}
+2025-06-01 14:50:02,832 - memory.memory_system - INFO - Memory system initialized
+2025-06-01 14:50:02,832 - memory_trigger_startup - INFO - Created memory system
+2025-06-01 14:50:02,832 - memory_trigger - INFO - Loaded 11 trigger rules from config/trigger_rules.json
+2025-06-01 14:50:02,833 - memory_trigger - INFO - Loaded 11 active and 0 completed notifications
+2025-06-01 14:50:02,833 - memory_trigger - INFO - Loaded configuration from config/memory_trigger_config.json
+2025-06-01 14:50:02,833 - memory_trigger - INFO - Memory Trigger Service initialized
+2025-06-01 14:50:02,833 - memory_trigger_startup - INFO - Created memory trigger service
+2025-06-01 14:50:02,833 - memory_trigger - INFO - Memory Trigger Service started
+2025-06-01 14:50:02,833 - memory_trigger_startup - INFO - Started memory trigger service
+2025-06-01 14:50:02,833 - memory_trigger_startup - INFO - Memory trigger service running... (PID: 22636)
+2025-06-01 14:50:02,833 - plan_persistence - INFO - Auto-save task started with 60s interval
+2025-06-01 14:50:02,833 - memory_trigger - INFO - Starting memory monitoring cycle at 2025-06-01T14:50:02.833530
+2025-06-01 14:50:02,833 - memory_trigger - INFO - Retrieving recent memory items since 2025-06-01T13:50:02.833566
+2025-06-01 14:50:02,833 - memory_trigger - INFO - Successfully retrieved 4 short-term memory items
+2025-06-01 14:50:02,833 - memory_trigger - INFO - Successfully retrieved 1 application memory items
+2025-06-01 14:50:02,833 - memory_trigger - INFO - Total memory items retrieved: 5
+2025-06-01 14:50:02,833 - memory_trigger - INFO - Detected 2 patterns in memory items
+2025-06-01 14:50:02,833 - memory_trigger - INFO - Using 11 active trigger rules for pattern detection
+2025-06-01 14:50:02,834 - memory_trigger - WARNING - Task memory manager not available for pattern detection
+2025-06-01 14:50:02,834 - memory_trigger - INFO - Detected 1 patterns matching trigger rules
+2025-06-01 14:50:02,835 - memory_trigger - INFO - New notification created: aa47866f-3dfe-4c3c-8091-4e7378cea7e8 - Shopping Detection
+2025-06-01 14:50:02,835 - memory_trigger - INFO - Created notification aa47866f-3dfe-4c3c-8091-4e7378cea7e8 from rule shopping_detection
+2025-06-01 14:50:02,835 - memory_trigger - INFO - Created trigger notification aa47866f-3dfe-4c3c-8091-4e7378cea7e8 from rule shopping_detection
+2025-06-01 14:50:02,835 - memory_trigger - INFO - Found 3 web content items, generating suggestions
+2025-06-01 14:50:02,836 - memory_trigger - INFO - New notification created: 7a5ecff7-a6c6-4969-bbb6-2e66e76c2e69 - Web Content Suggestion
+2025-06-01 14:50:02,836 - memory_trigger - INFO - Created notification 7a5ecff7-a6c6-4969-bbb6-2e66e76c2e69 from rule web_content_1748803802_8076386693638630692
+2025-06-01 14:50:02,836 - memory_trigger - INFO - Created web content suggestion for form at https://accounts.google.com/signup
+2025-06-01 14:50:02,837 - memory_trigger - INFO - New notification created: 589b658b-61dc-49eb-9f71-4a501fda4450 - Web Content Suggestion
+2025-06-01 14:50:02,837 - memory_trigger - INFO - Created notification 589b658b-61dc-49eb-9f71-4a501fda4450 from rule web_content_1748803802_-8641375286657231377
+2025-06-01 14:50:02,837 - memory_trigger - INFO - Created web content suggestion for general at https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch
+2025-06-01 14:50:02,838 - memory_trigger - INFO - New notification created: 048fcee9-9c5b-48ae-9aa9-a11cb1a29818 - Web Content Suggestion
+2025-06-01 14:50:02,838 - memory_trigger - INFO - Created notification 048fcee9-9c5b-48ae-9aa9-a11cb1a29818 from rule web_content_1748803802_-217786982156677534
+2025-06-01 14:50:02,838 - memory_trigger - INFO - Created web content suggestion for shopping at https://www.amazon.com/products/smartphone
+2025-06-01 14:50:02,838 - memory_trigger - WARNING - Brain router not available, can't push notification
+2025-06-01 14:50:02,839 - memory_trigger - WARNING - Brain router not available, can't push notification
+2025-06-01 14:50:02,839 - memory_trigger - WARNING - Brain router not available, can't push notification
+2025-06-01 14:50:02,840 - memory_trigger - INFO - Memory monitoring cycle completed, next check in 60 seconds
+2025-06-01 14:51:02,812 - memory_trigger_startup - INFO - Memory trigger service running... (PID: 22636)
+2025-06-01 14:51:03,819 - memory_trigger - INFO - Starting memory monitoring cycle at 2025-06-01T14:51:03.819069
+2025-06-01 14:51:03,819 - memory_trigger - INFO - Retrieving recent memory items since 2025-06-01T13:51:03.819312
+2025-06-01 14:51:03,819 - memory_trigger - INFO - Successfully retrieved 4 short-term memory items
+2025-06-01 14:51:03,819 - memory_trigger - INFO - Successfully retrieved 1 application memory items
+2025-06-01 14:51:03,819 - memory_trigger - INFO - Total memory items retrieved: 5
+2025-06-01 14:51:03,819 - memory_trigger - INFO - Detected 2 patterns in memory items
+2025-06-01 14:51:03,820 - memory_trigger - INFO - Using 11 active trigger rules for pattern detection
+2025-06-01 14:51:03,820 - memory_trigger - WARNING - Task memory manager not available for pattern detection
+2025-06-01 14:51:03,820 - memory_trigger - INFO - Detected 2 patterns matching trigger rules
+2025-06-01 14:51:03,823 - memory_trigger - INFO - New notification created: e7409ac6-b2de-4428-8225-d0dee397bac2 - Repetitive Action Detection
+2025-06-01 14:51:03,823 - memory_trigger - INFO - Created notification e7409ac6-b2de-4428-8225-d0dee397bac2 from rule repetitive_action
+2025-06-01 14:51:03,824 - memory_trigger - INFO - Created trigger notification e7409ac6-b2de-4428-8225-d0dee397bac2 from rule repetitive_action
+2025-06-01 14:51:03,824 - memory_trigger - INFO - New notification created: 3a63eaed-44ff-435a-b08a-19730b2c9c30 - Shopping Detection
+2025-06-01 14:51:03,824 - memory_trigger - INFO - Created notification 3a63eaed-44ff-435a-b08a-19730b2c9c30 from rule shopping_detection
+2025-06-01 14:51:03,825 - memory_trigger - INFO - Created trigger notification 3a63eaed-44ff-435a-b08a-19730b2c9c30 from rule shopping_detection
+2025-06-01 14:51:03,825 - memory_trigger - INFO - Found 3 web content items, generating suggestions
+2025-06-01 14:51:03,826 - memory_trigger - INFO - New notification created: 8a532e9e-d082-4439-94bd-d3715da8707a - Web Content Suggestion
+2025-06-01 14:51:03,826 - memory_trigger - INFO - Created notification 8a532e9e-d082-4439-94bd-d3715da8707a from rule web_content_1748803863_8076386693638630692
+2025-06-01 14:51:03,826 - memory_trigger - INFO - Created web content suggestion for form at https://accounts.google.com/signup
+2025-06-01 14:51:03,827 - memory_trigger - INFO - New notification created: fc428ee6-a28b-4bdf-839c-a987ff8dc2ce - Web Content Suggestion
+2025-06-01 14:51:03,827 - memory_trigger - INFO - Created notification fc428ee6-a28b-4bdf-839c-a987ff8dc2ce from rule web_content_1748803863_-8641375286657231377
+2025-06-01 14:51:03,827 - memory_trigger - INFO - Created web content suggestion for general at https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch
+2025-06-01 14:51:03,828 - memory_trigger - INFO - New notification created: e368c720-5b06-4b3d-beac-544216c0f771 - Web Content Suggestion
+2025-06-01 14:51:03,828 - memory_trigger - INFO - Created notification e368c720-5b06-4b3d-beac-544216c0f771 from rule web_content_1748803863_-217786982156677534
+2025-06-01 14:51:03,828 - memory_trigger - INFO - Created web content suggestion for shopping at https://www.amazon.com/products/smartphone
+2025-06-01 14:51:03,828 - memory_trigger - WARNING - Brain router not available, can't push notification
+2025-06-01 14:51:03,829 - memory_trigger - WARNING - Brain router not available, can't push notification
+2025-06-01 14:51:03,830 - memory_trigger - WARNING - Brain router not available, can't push notification
+2025-06-01 14:51:03,830 - memory_trigger - INFO - Memory monitoring cycle completed, next check in 60 seconds

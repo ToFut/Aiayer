@@ -1,139 +1,140 @@
 #!/usr/bin/env python3
 """
-Test Fixed Message Flow
-Test the corrected message format between frontend and backend
+Test script for fixed message flow in enhanced_enterprise_backend_with_context.py
+This script tests all chat modes to verify that LLM responses are working correctly.
 """
-
 import asyncio
-import json
-import logging
 import websockets
+import json
 import time
+import sys
+import logging
+from datetime import datetime
 
-logging.basicConfig(level=logging.INFO)
+# Configure logging
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
+    handlers=[
+        logging.StreamHandler()
+    ]
+)
 logger = logging.getLogger(__name__)
 
-async def test_corrected_message_format():
-    """Test with the corrected message format"""
+async def test_message_flow():
+    """Test the message flow in the backend with all chat modes"""
+    uri = "ws://localhost:8767"
     
-    logger.info("🧪 Testing CORRECTED message format...")
+    modes_to_test = [
+        {"type": "chat_request", "mode": "General", "message": "Tell me about the system"},
+        {"type": "chat_request", "mode": "Ask", "message": "What files are currently on my desktop?"},
+        {"type": "chat_request", "mode": "Suggest", "message": "How can I improve my productivity?"},
+        {"type": "chat_request", "mode": "Agent", "message": "Open Safari browser"}
+    ]
+    
+    results = {}
     
     try:
-        async with websockets.connect("ws://localhost:8765") as websocket:
-            logger.info("✅ Connected to brain router")
+        print(f"Connecting to {uri}...")
+        async with websockets.connect(uri, max_size=10 * 1024 * 1024, ping_interval=None) as websocket:
+            print("✅ Connected to backend")
             
-            # Wait for welcome message
-            welcome = await asyncio.wait_for(websocket.recv(), timeout=5)
-            logger.info(f"📬 Welcome: {json.loads(welcome).get('type')}")
+            # Get connection established message
+            conn_msg = await websocket.recv()
+            print(f"📥 Connection: {json.loads(conn_msg).get('type')}")
             
-            # Test with CORRECTED format that matches what the frontend now sends
-            corrected_message = {
-                "type": "chat_request",  # Correct: brain router expects this
-                "mode": "Ask",           # Correct: brain router expects this
-                "message": "hello world",
-                "session_id": "test_corrected_format"
-            }
-            
-            logger.info("📤 Sending CORRECTED format message...")
-            logger.info(f"📝 Message: {corrected_message}")
-            
-            await websocket.send(json.dumps(corrected_message))
+            # Register client
+            register_msg = {"type": "register", "client_type": "test_client"}
+            await websocket.send(json.dumps(register_msg))
             
             try:
+                reg_response = await asyncio.wait_for(websocket.recv(), timeout=5.0)
+                print(f"📥 Registration: {json.loads(reg_response).get('type')}")
+            except asyncio.TimeoutError:
+                print("⚠️ No registration response received, continuing anyway")
+            
+            # Test each mode
+            for mode_test in modes_to_test:
+                mode_name = mode_test["mode"]
+                print(f"\n🧪 Testing {mode_name} mode...")
+                print(f"📤 Query: {mode_test['message']}")
+                
                 start_time = time.time()
-                response = await asyncio.wait_for(websocket.recv(), timeout=10)
-                elapsed = time.time() - start_time
                 
-                response_data = json.loads(response)
-                logger.info(f"✅ Response received in {elapsed:.2f}s")
-                logger.info(f"📝 Response success: {response_data.get('success')}")
-                logger.info(f"📝 Response mode: {response_data.get('mode')}")
-                logger.info(f"📝 Response content: {response_data.get('response', '')[:100]}...")
+                # Send request
+                await websocket.send(json.dumps(mode_test))
                 
-                if response_data.get('success'):
-                    logger.info("🎉 MESSAGE FORMAT FIX SUCCESSFUL!")
-                else:
-                    logger.error("❌ Still getting errors in response")
+                # Wait for response with longer timeout for LLM processing
+                try:
+                    response = await asyncio.wait_for(websocket.recv(), timeout=45.0)
+                    response_time = time.time() - start_time
                     
-            except asyncio.TimeoutError:
-                logger.error("❌ Still timing out with corrected format")
+                    response_data = json.loads(response)
+                    
+                    print(f"📥 Response received in {response_time:.1f}s")
+                    print(f"Type: {response_data.get('type')}")
+                    print(f"Mode: {response_data.get('mode')}")
+                    
+                    # Check for real LLM response
+                    if "response" in response_data:
+                        ai_response = response_data.get('response', '')
+                        print(f"🧠 Response: {ai_response[:150]}{'...' if len(ai_response) > 150 else ''}")
+                        
+                        # Check if it's real AI (not fallback)
+                        is_real_llm = not any(fallback in ai_response for fallback in [
+                            "🎯 Agent Mode:",
+                            "💭 Ask Mode:", 
+                            "💡 Suggest Mode:",
+                            "🤖 General Mode:"
+                        ])
+                        
+                        if is_real_llm:
+                            print("✅ REAL LLM RESPONSE!")
+                            results[mode_name] = "✅ Real LLM"
+                        else:
+                            print("⚠️ Using fallback response")
+                            results[mode_name] = "⚠️ Fallback"
+                    elif "error" in response_data:
+                        error_message = response_data.get("error", "Unknown error")
+                        print(f"❌ Error: {error_message}")
+                        results[mode_name] = f"❌ Error: {error_message[:50]}"
+                    else:
+                        print("❓ No response or error field found")
+                        print(f"Keys in response: {', '.join(response_data.keys())}")
+                        results[mode_name] = "❓ Unknown response format"
+                    
+                except asyncio.TimeoutError:
+                    print("⏰ Timeout waiting for response")
+                    results[mode_name] = "⏰ Timeout"
+                except Exception as e:
+                    print(f"❌ Error during test: {e}")
+                    results[mode_name] = f"❌ Error: {str(e)[:50]}"
                 
+                # Brief pause between tests
+                await asyncio.sleep(2)
+            
+            # Summary
+            print("\n" + "="*60)
+            print("🎯 TEST RESULTS:")
+            print("="*60)
+            
+            for mode, result in results.items():
+                print(f"{mode:8} mode: {result}")
+            
+            all_real_llm = all("✅ Real LLM" in result for result in results.values())
+            
+            if all_real_llm:
+                print(f"\n🎉 SUCCESS! All {len(results)} modes using REAL LLM responses!")
+                print("🚀 Message flow fixed successfully!")
+            else:
+                print(f"\n⚠️ Some modes still using fallbacks or have errors.")
+                print("Check the backend logs and model.py for issues.")
+                
+        print(f"\n📊 Total modes tested: {len(results)}")
+        
     except Exception as e:
-        logger.error(f"❌ Connection error: {e}")
-
-async def test_old_vs_new_format():
-    """Compare old (broken) vs new (fixed) format"""
-    
-    logger.info("\n🧪 Testing OLD vs NEW message formats...")
-    
-    try:
-        async with websockets.connect("ws://localhost:8765") as websocket:
-            # Wait for welcome
-            await websocket.recv()
-            
-            # Test 1: OLD FORMAT (what frontend was sending before fix)
-            logger.info("\n📤 Testing OLD (broken) format...")
-            old_format = {
-                "type": "ask_request",  # WRONG: brain router doesn't recognize this
-                "message": "test old format",
-                "user_id": "test_user",
-                "session_id": "old_format_test"
-            }
-            
-            await websocket.send(json.dumps(old_format))
-            
-            try:
-                response = await asyncio.wait_for(websocket.recv(), timeout=5)
-                logger.info("❌ Old format unexpectedly got response")
-            except asyncio.TimeoutError:
-                logger.info("✅ Old format correctly timed out (as expected)")
-            
-            # Test 2: NEW FORMAT (what frontend sends after fix)
-            logger.info("\n📤 Testing NEW (fixed) format...")
-            new_format = {
-                "type": "chat_request",  # CORRECT: brain router recognizes this
-                "mode": "Ask",          # CORRECT: brain router expects this
-                "message": "test new format",
-                "session_id": "new_format_test"
-            }
-            
-            await websocket.send(json.dumps(new_format))
-            
-            try:
-                start_time = time.time()
-                response = await asyncio.wait_for(websocket.recv(), timeout=5)
-                elapsed = time.time() - start_time
-                
-                response_data = json.loads(response)
-                logger.info(f"✅ New format got response in {elapsed:.2f}s")
-                logger.info(f"📝 Success: {response_data.get('success')}")
-                
-            except asyncio.TimeoutError:
-                logger.error("❌ New format still timing out - deeper issue")
-                
-    except Exception as e:
-        logger.error(f"❌ Comparison test error: {e}")
-
-async def main():
-    """Run all tests"""
-    
-    print("=" * 60)
-    print("🔧 TESTING MESSAGE FORMAT FIX")
-    print("=" * 60)
-    print("Issue: Frontend was sending 'ask_request' but backend expects 'chat_request'")
-    print("Fix: Updated frontend to send correct format")
-    print("=" * 60)
-    
-    await test_corrected_message_format()
-    await test_old_vs_new_format()
-    
-    print("\n" + "=" * 60)
-    print("📊 FIX VERIFICATION RESULTS")
-    print("=" * 60)
-    print("If new format works and old format times out:")
-    print("✅ MESSAGE FORMAT FIX IS SUCCESSFUL")
-    print("🎯 Frontend should now display responses instead of hanging")
-    print("=" * 60)
+        print(f"❌ Connection error: {e}")
+        print("Make sure the backend server is running on port 8767")
 
 if __name__ == "__main__":
-    asyncio.run(main())
+    asyncio.run(test_message_flow())

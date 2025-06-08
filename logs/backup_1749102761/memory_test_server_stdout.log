@@ -1,0 +1,238 @@
+2025-06-04 02:26:33,895 - memory.enhanced_semantic_search - INFO - Enhanced semantic search initialized with embedding dim: 384
+2025-06-04 02:26:33,896 - memory.enhanced_semantic_search - INFO - Hybrid retrieval enabled: True
+2025-06-04 02:26:37,117 - memory.semantic_search_agent - INFO - Loading 1782 existing documents from storage
+2025-06-04 02:26:37,360 - memory.semantic_search_agent - INFO - EnterpriseVectorStore initialized with enterprise-grade features
+2025-06-04 02:26:37,361 - memory.semantic_search_agent - INFO - SemanticSearchAgent initialized with enterprise-grade capabilities
+2025-06-04 02:26:37,361 - memory_test - INFO - Memory system modules imported successfully
+2025-06-04 02:26:37,363 - memory_test - INFO - Starting WebSocket server on ws://localhost:8769
+2025-06-04 02:26:37,395 - websockets.server - INFO - server listening on 127.0.0.1:8769
+2025-06-04 02:26:37,396 - websockets.server - INFO - server listening on [::1]:8769
+2025-06-04 02:31:28,808 - websockets.server - INFO - connection open
+2025-06-04 02:31:28,809 - memory_test - INFO - Client connected: 8cdaeaad-9d6f-4505-abf3-f43c5536ab10 from ::1
+2025-06-04 02:31:28,812 - memory_test - INFO - Received message: ping
+2025-06-04 02:31:28,814 - memory_test - INFO - Received message: get_system_stats
+2025-06-04 02:31:28,819 - memory_test - INFO - Received message: add_memory
+2025-06-04 02:31:28,854 - memory.semantic_search_agent - INFO - Document 74e1b7fdb74c3513bb90ec977a5064006d2350064da57bdf625638ef4b53d097 added to enterprise vector store
+2025-06-04 02:31:28,854 - memory.semantic_search_agent - INFO - Memory added successfully: 74e1b7fdb74c3513bb90ec977a5064006d2350064da57bdf625638ef4b53d097
+2025-06-04 02:31:28,855 - memory_test - INFO - Memory added: True in 35.28ms
+2025-06-04 02:31:28,856 - memory_test - INFO - Received message: search_memory
+2025-06-04 02:31:28,951 - memory.semantic_search_agent - INFO - Similarity search completed in 0.0440s, found 5 results
+2025-06-04 02:31:28,966 - memory.semantic_search_agent - INFO - Search completed successfully in 0.0589s, found 5 results
+2025-06-04 02:31:28,988 - memory_test - INFO - Memory search: 'test client websocket' found 5 results in 130.88ms
+2025-06-04 02:32:30,277 - websockets.server - INFO - connection open
+2025-06-04 02:32:30,285 - memory_test - INFO - Client connected: a881f6d2-39df-4c0a-9474-54bf665a7a9c from ::1
+2025-06-04 02:32:32,335 - memory_test - INFO - Received message: ping
+2025-06-04 02:32:33,741 - memory_test - INFO - Received message: get_system_stats
+2025-06-04 02:32:40,959 - memory_test - INFO - Received message: search_memory
+2025-06-04 02:32:41,025 - memory.semantic_search_agent - INFO - Similarity search completed in 0.0058s, found 5 results
+2025-06-04 02:32:41,041 - memory.semantic_search_agent - INFO - Search completed successfully in 0.0299s, found 5 results
+2025-06-04 02:32:41,063 - memory_test - INFO - Memory search: 'test websocket connection' found 5 results in 102.32ms
+2025-06-04 02:32:46,086 - memory_test - INFO - Received message: add_memory
+2025-06-04 02:32:46,092 - memory.semantic_search_agent - INFO - Document e465652f715a62afc0303bc6fdded49f256afaac2a545c3b7c0d312793be782a added to enterprise vector store
+2025-06-04 02:32:46,092 - memory.semantic_search_agent - INFO - Memory added successfully: e465652f715a62afc0303bc6fdded49f256afaac2a545c3b7c0d312793be782a
+2025-06-04 02:32:46,093 - memory_test - INFO - Memory added: True in 5.86ms
+2025-06-04 02:32:53,187 - memory_test - INFO - Received message: get_system_stats
+2025-06-04 02:40:53,922 - websockets.server - INFO - connection open
+2025-06-04 02:40:53,927 - memory_test - INFO - Client connected: c0eb6ff3-e846-4ccc-afa6-7b91f72b62ed from ::1
+2025-06-04 02:41:00,199 - memory_test - INFO - Received message: add_memory
+2025-06-04 02:41:00,256 - memory.semantic_search_agent - INFO - Document f93a13b195711159ddeb231fec6eeca981b42e2cbb123e73e7e9e3d064feb16c added to enterprise vector store
+2025-06-04 02:41:00,256 - memory.semantic_search_agent - INFO - Memory added successfully: f93a13b195711159ddeb231fec6eeca981b42e2cbb123e73e7e9e3d064feb16c
+2025-06-04 02:41:00,257 - memory_test - INFO - Memory added: True in 55.81ms
+2025-06-04 02:41:00,258 - memory_test - INFO - Received message: add_memory
+2025-06-04 02:41:00,261 - memory.semantic_search_agent - INFO - Document fafbc000988491172f8a777cc9b2d0218399b25b53ddc352addbe73be6d96abd added to enterprise vector store
+2025-06-04 02:41:00,261 - memory.semantic_search_agent - INFO - Memory added successfully: fafbc000988491172f8a777cc9b2d0218399b25b53ddc352addbe73be6d96abd
+2025-06-04 02:41:00,262 - memory_test - INFO - Memory added: True in 3.55ms
+2025-06-04 02:41:10,451 - memory_test - INFO - Received message: search_memory
+2025-06-04 02:41:10,524 - memory.semantic_search_agent - INFO - Similarity search completed in 0.0181s, found 5 results
+2025-06-04 02:41:10,534 - memory.semantic_search_agent - INFO - Search completed successfully in 0.0310s, found 5 results
+2025-06-04 02:41:10,557 - memory_test - INFO - Memory search: 'What am I doing' found 5 results in 103.56ms
+2025-06-04 02:41:22,982 - memory_test - INFO - Received message: search_memory
+2025-06-04 02:41:23,049 - memory.semantic_search_agent - INFO - Similarity search completed in 0.0060s, found 5 results
+2025-06-04 02:41:23,056 - memory.semantic_search_agent - INFO - Search completed successfully in 0.0187s, found 5 results
+2025-06-04 02:41:23,079 - memory_test - INFO - Memory search: 'Spotify' found 5 results in 94.12ms
+2025-06-04 02:41:38,159 - memory_test - INFO - Received message: search_memory
+2025-06-04 02:41:38,229 - memory.semantic_search_agent - INFO - Similarity search completed in 0.0100s, found 5 results
+2025-06-04 02:41:38,239 - memory.semantic_search_agent - INFO - Search completed successfully in 0.0262s, found 5 results
+2025-06-04 02:41:38,261 - memory_test - INFO - Memory search: 'Check if ask for Spotify' found 5 results in 100.1ms
+2025-06-04 02:44:11,867 - memory_test - INFO - Received message: search_memory
+2025-06-04 02:44:11,921 - memory.semantic_search_agent - INFO - Cache hit for search query
+2025-06-04 02:44:11,943 - memory_test - INFO - Memory search: 'Check if ask for Spotify' found 5 results in 73.23ms
+2025-06-04 02:44:13,382 - memory_test - INFO - Received message: search_memory
+2025-06-04 02:44:13,433 - memory.semantic_search_agent - INFO - Cache hit for search query
+2025-06-04 02:44:13,455 - memory_test - INFO - Memory search: 'Check if ask for Spotify' found 5 results in 72.26ms
+2025-06-04 02:44:18,059 - memory_test - INFO - Received message: search_memory
+2025-06-04 02:44:18,110 - memory.semantic_search_agent - INFO - Cache hit for search query
+2025-06-04 02:44:18,133 - memory_test - INFO - Memory search: 'Spotify' found 5 results in 73.1ms
+2025-06-04 02:44:22,962 - memory_test - INFO - Received message: search_memory
+2025-06-04 02:44:23,043 - memory.semantic_search_agent - INFO - Similarity search completed in 0.0215s, found 5 results
+2025-06-04 02:44:23,056 - memory.semantic_search_agent - INFO - Search completed successfully in 0.0425s, found 5 results
+2025-06-04 02:44:23,077 - memory_test - INFO - Memory search: 'Google' found 5 results in 114.73ms
+2025-06-04 02:44:27,894 - memory_test - INFO - Received message: search_memory
+2025-06-04 02:44:27,955 - memory.semantic_search_agent - INFO - Similarity search completed in 0.0055s, found 5 results
+2025-06-04 02:44:27,968 - memory.semantic_search_agent - INFO - Search completed successfully in 0.0204s, found 5 results
+2025-06-04 02:44:27,990 - memory_test - INFO - Memory search: 'Segev' found 5 results in 93.13ms
+2025-06-04 02:45:42,210 - memory_test - INFO - Client disconnected: c0eb6ff3-e846-4ccc-afa6-7b91f72b62ed - Code: 1006, Reason: 
+2025-06-04 02:45:42,217 - memory_test - INFO - Client disconnected: a881f6d2-39df-4c0a-9474-54bf665a7a9c - Code: 1006, Reason: 
+2025-06-04 09:58:48,929 - websockets.server - INFO - connection open
+2025-06-04 09:58:48,962 - memory_test - INFO - Client connected: bf2b2592-f393-482c-a6ed-2db66b01e7a3 from ::1
+2025-06-04 09:58:48,978 - memory_test - INFO - Received message: ping
+2025-06-04 09:58:48,979 - memory_test - INFO - Received message: get_system_stats
+2025-06-04 10:56:33,064 - websockets.server - INFO - connection open
+2025-06-04 10:56:33,078 - memory_test - INFO - Client connected: 0ad9a3d0-958f-4383-a41d-f09148f2e9ec from ::1
+2025-06-04 10:56:33,091 - memory_test - INFO - Received message: ping
+2025-06-04 10:56:33,092 - memory_test - INFO - Received message: get_system_stats
+2025-06-04 10:56:33,097 - memory_test - INFO - Received message: add_memory
+2025-06-04 10:56:33,134 - memory.semantic_search_agent - INFO - Document 62e936d7c69dc483d0a60d42a0df2618ca46368308ebc34fe825fbceb3153a74 added to enterprise vector store
+2025-06-04 10:56:33,134 - memory.semantic_search_agent - INFO - Memory added successfully: 62e936d7c69dc483d0a60d42a0df2618ca46368308ebc34fe825fbceb3153a74
+2025-06-04 10:56:33,135 - memory_test - INFO - Memory added: True in 37.16ms
+2025-06-04 10:56:33,135 - memory_test - INFO - Received message: search_memory
+2025-06-04 10:56:33,210 - memory.semantic_search_agent - INFO - Similarity search completed in 0.0231s, found 5 results
+2025-06-04 10:56:33,231 - memory.semantic_search_agent - INFO - Search completed successfully in 0.0443s, found 5 results
+2025-06-04 10:56:33,253 - memory_test - INFO - Memory search: 'test client websocket' found 5 results in 116.67ms
+2025-06-04 11:33:30,838 - websockets.server - INFO - connection open
+2025-06-04 11:33:30,971 - memory_test - INFO - Client connected: 2e42f063-72eb-4d2d-b298-7cf8cf63c5ae from ::1
+2025-06-04 11:33:33,171 - memory_test - INFO - Received message: get_system_stats
+2025-06-04 11:35:46,285 - memory_test - INFO - Client disconnected: 2e42f063-72eb-4d2d-b298-7cf8cf63c5ae - Code: 1006, Reason: 
+2025-06-04 11:58:12,196 - websockets.server - INFO - connection open
+2025-06-04 11:58:12,204 - memory_test - INFO - Client connected: 949be411-0ac3-4796-b721-bd47d7268707 from ::1
+2025-06-04 11:58:12,217 - memory_test - INFO - Received message: ping
+2025-06-04 11:58:12,218 - memory_test - INFO - Received message: add_memory
+2025-06-04 11:58:12,240 - memory.semantic_search_agent - INFO - Document d1fa56526355ca4224dc6da76f6e74f67fed96fe7eb88af35d2655931f4de5a3 added to enterprise vector store
+2025-06-04 11:58:12,240 - memory.semantic_search_agent - INFO - Memory added successfully: d1fa56526355ca4224dc6da76f6e74f67fed96fe7eb88af35d2655931f4de5a3
+2025-06-04 11:58:12,240 - memory_test - INFO - Memory added: True in 21.88ms
+2025-06-04 11:58:12,741 - memory_test - INFO - Received message: add_memory
+2025-06-04 11:58:12,746 - memory.semantic_search_agent - INFO - Document 7a81b260a60fb9e1b82298828fe02126465a5544c3f56b961dcef2c5078b130f added to enterprise vector store
+2025-06-04 11:58:12,746 - memory.semantic_search_agent - INFO - Memory added successfully: 7a81b260a60fb9e1b82298828fe02126465a5544c3f56b961dcef2c5078b130f
+2025-06-04 11:58:12,747 - memory_test - INFO - Memory added: True in 4.95ms
+2025-06-04 11:58:13,248 - memory_test - INFO - Received message: add_memory
+2025-06-04 11:58:13,250 - memory.semantic_search_agent - INFO - Document 2bc3bdd569f162cf506fc6f2449552adcd78cb9d7b176d307427d691276e935e added to enterprise vector store
+2025-06-04 11:58:13,250 - memory.semantic_search_agent - INFO - Memory added successfully: 2bc3bdd569f162cf506fc6f2449552adcd78cb9d7b176d307427d691276e935e
+2025-06-04 11:58:13,251 - memory_test - INFO - Memory added: True in 1.96ms
+2025-06-04 11:58:13,752 - memory_test - INFO - Received message: add_memory
+2025-06-04 11:58:13,754 - memory.semantic_search_agent - INFO - Document 09fde985b03fc90a49f863832a91408c8bfe92b176615a3a407cd03ab50e1f9c added to enterprise vector store
+2025-06-04 11:58:13,755 - memory.semantic_search_agent - INFO - Memory added successfully: 09fde985b03fc90a49f863832a91408c8bfe92b176615a3a407cd03ab50e1f9c
+2025-06-04 11:58:13,755 - memory_test - INFO - Memory added: True in 2.2ms
+2025-06-04 11:58:14,277 - memory_test - INFO - Received message: add_memory
+2025-06-04 11:58:14,287 - memory.semantic_search_agent - INFO - Document e6b57fdc37d983289d019e8579aa7782e07a4407a17a0f773588cc44591b587d added to enterprise vector store
+2025-06-04 11:58:14,287 - memory.semantic_search_agent - INFO - Memory added successfully: e6b57fdc37d983289d019e8579aa7782e07a4407a17a0f773588cc44591b587d
+2025-06-04 11:58:14,287 - memory_test - INFO - Memory added: True in 9.16ms
+2025-06-04 11:58:14,799 - memory_test - INFO - Received message: add_memory
+2025-06-04 11:58:14,808 - memory.semantic_search_agent - INFO - Document e117bd57b46ada5c49a992a308b1d4cc6d86498ce51f5f2a76c79f4a36c0c714 added to enterprise vector store
+2025-06-04 11:58:14,808 - memory.semantic_search_agent - INFO - Memory added successfully: e117bd57b46ada5c49a992a308b1d4cc6d86498ce51f5f2a76c79f4a36c0c714
+2025-06-04 11:58:14,810 - memory_test - INFO - Memory added: True in 9.39ms
+2025-06-04 11:58:15,314 - memory_test - INFO - Received message: add_memory
+2025-06-04 11:58:15,318 - memory.semantic_search_agent - INFO - Document 3fa6e3ca9261972260d7a45fca024f3740519b7ecee1e04632a70425dd80c180 added to enterprise vector store
+2025-06-04 11:58:15,318 - memory.semantic_search_agent - INFO - Memory added successfully: 3fa6e3ca9261972260d7a45fca024f3740519b7ecee1e04632a70425dd80c180
+2025-06-04 11:58:15,318 - memory_test - INFO - Memory added: True in 3.41ms
+2025-06-04 11:58:15,820 - memory_test - INFO - Received message: add_memory
+2025-06-04 11:58:15,824 - memory.semantic_search_agent - INFO - Document ae607c4f199d23df770ebfb8ee1a6abef526faaa9851c0c41a5aa96643bd49c2 added to enterprise vector store
+2025-06-04 11:58:15,824 - memory.semantic_search_agent - INFO - Memory added successfully: ae607c4f199d23df770ebfb8ee1a6abef526faaa9851c0c41a5aa96643bd49c2
+2025-06-04 11:58:15,824 - memory_test - INFO - Memory added: True in 3.8ms
+2025-06-04 11:58:16,339 - memory_test - INFO - Received message: add_memory
+2025-06-04 11:58:16,347 - memory.semantic_search_agent - INFO - Document 842ce41a246d07486a24b883ad48b29e8840a37a0f420c316e0add420cfdb97e added to enterprise vector store
+2025-06-04 11:58:16,347 - memory.semantic_search_agent - INFO - Memory added successfully: 842ce41a246d07486a24b883ad48b29e8840a37a0f420c316e0add420cfdb97e
+2025-06-04 11:58:16,348 - memory_test - INFO - Memory added: True in 6.52ms
+2025-06-04 11:58:16,865 - memory_test - INFO - Received message: search_memory
+2025-06-04 11:58:16,956 - memory.semantic_search_agent - INFO - Similarity search completed in 0.0366s, found 5 results
+2025-06-04 11:58:17,067 - memory.semantic_search_agent - INFO - Search completed successfully in 0.1508s, found 5 results
+2025-06-04 11:58:17,090 - memory_test - INFO - Memory search: 'Software development projects' found 5 results in 223.72ms
+2025-06-04 11:58:18,104 - memory_test - INFO - Received message: search_memory
+2025-06-04 11:58:18,175 - memory.semantic_search_agent - INFO - Similarity search completed in 0.0151s, found 5 results
+2025-06-04 11:58:18,189 - memory.semantic_search_agent - INFO - Search completed successfully in 0.0325s, found 5 results
+2025-06-04 11:58:18,213 - memory_test - INFO - Memory search: 'International travel experiences' found 5 results in 104.3ms
+2025-06-04 11:58:19,222 - memory_test - INFO - Received message: search_memory
+2025-06-04 11:58:19,278 - memory.semantic_search_agent - INFO - Similarity search completed in 0.0029s, found 5 results
+2025-06-04 11:58:19,281 - memory.semantic_search_agent - INFO - Search completed successfully in 0.0065s, found 5 results
+2025-06-04 11:58:19,301 - memory_test - INFO - Memory search: 'Culinary experiences and dishes' found 5 results in 77.98ms
+2025-06-04 11:58:20,406 - memory_test - INFO - Received message: search_memory
+2025-06-04 11:58:21,554 - memory.semantic_search_agent - INFO - Similarity search completed in 0.5165s, found 5 results
+2025-06-04 11:58:21,574 - memory.semantic_search_agent - INFO - Search completed successfully in 1.0568s, found 5 results
+2025-06-04 11:58:21,599 - memory_test - INFO - Memory search: 'Computer code and software' found 5 results in 1152.69ms
+2025-06-04 11:58:22,606 - memory_test - INFO - Received message: search_memory
+2025-06-04 11:58:22,662 - memory.semantic_search_agent - INFO - Similarity search completed in 0.0045s, found 5 results
+2025-06-04 11:58:22,668 - memory.semantic_search_agent - INFO - Search completed successfully in 0.0109s, found 5 results
+2025-06-04 11:58:22,690 - memory_test - INFO - Memory search: 'Vacation destinations' found 5 results in 83.38ms
+2025-06-04 11:58:23,703 - memory_test - INFO - Received message: search_memory
+2025-06-04 11:58:23,768 - memory.semantic_search_agent - INFO - Similarity search completed in 0.0090s, found 5 results
+2025-06-04 11:58:23,776 - memory.semantic_search_agent - INFO - Search completed successfully in 0.0174s, found 5 results
+2025-06-04 11:58:23,797 - memory_test - INFO - Memory search: 'Web development' found 5 results in 89.88ms
+2025-06-04 11:58:24,802 - memory_test - INFO - Received message: search_memory
+2025-06-04 11:58:24,870 - memory.semantic_search_agent - INFO - Similarity search completed in 0.0158s, found 5 results
+2025-06-04 11:58:24,874 - memory.semantic_search_agent - INFO - Search completed successfully in 0.0206s, found 5 results
+2025-06-04 11:58:24,895 - memory_test - INFO - Memory search: 'Asian cuisine' found 5 results in 93.12ms
+2025-06-04 11:59:16,064 - websockets.server - INFO - connection open
+2025-06-04 11:59:16,065 - memory_test - INFO - Client connected: 5a69e9d9-fcaf-46c1-b04a-d2d4a8e59862 from ::1
+2025-06-04 11:59:16,066 - memory_test - INFO - Received message: search_memory
+2025-06-04 11:59:16,139 - memory.semantic_search_agent - INFO - Similarity search completed in 0.0101s, found 5 results
+2025-06-04 11:59:16,153 - memory.semantic_search_agent - INFO - Search completed successfully in 0.0352s, found 5 results
+2025-06-04 11:59:16,174 - memory_test - INFO - Memory search: 'Python project' found 5 results in 107.97ms
+2025-06-04 11:59:17,180 - memory_test - INFO - Received message: search_memory
+2025-06-04 11:59:17,237 - memory.semantic_search_agent - INFO - Similarity search completed in 0.0046s, found 5 results
+2025-06-04 11:59:17,244 - memory.semantic_search_agent - INFO - Search completed successfully in 0.0125s, found 5 results
+2025-06-04 11:59:17,267 - memory_test - INFO - Memory search: 'JavaScript frontend' found 5 results in 85.7ms
+2025-06-04 11:59:18,272 - memory_test - INFO - Received message: search_memory
+2025-06-04 11:59:18,341 - memory.semantic_search_agent - INFO - Similarity search completed in 0.0162s, found 5 results
+2025-06-04 11:59:18,345 - memory.semantic_search_agent - INFO - Search completed successfully in 0.0212s, found 5 results
+2025-06-04 11:59:18,366 - memory_test - INFO - Memory search: 'cloud infrastructure' found 5 results in 93.33ms
+2025-06-04 11:59:19,371 - memory_test - INFO - Received message: search_memory
+2025-06-04 11:59:19,429 - memory.semantic_search_agent - INFO - Similarity search completed in 0.0039s, found 5 results
+2025-06-04 11:59:19,432 - memory.semantic_search_agent - INFO - Search completed successfully in 0.0080s, found 5 results
+2025-06-04 11:59:19,454 - memory_test - INFO - Memory search: 'trip to Japan' found 5 results in 80.61ms
+2025-06-04 11:59:20,458 - memory_test - INFO - Received message: search_memory
+2025-06-04 11:59:20,516 - memory.semantic_search_agent - INFO - Similarity search completed in 0.0064s, found 5 results
+2025-06-04 11:59:20,522 - memory.semantic_search_agent - INFO - Search completed successfully in 0.0130s, found 5 results
+2025-06-04 11:59:20,544 - memory_test - INFO - Memory search: 'beaches in Hawaii' found 5 results in 84.88ms
+2025-06-04 11:59:21,547 - memory_test - INFO - Received message: search_memory
+2025-06-04 11:59:21,601 - memory.semantic_search_agent - INFO - Similarity search completed in 0.0027s, found 5 results
+2025-06-04 11:59:21,604 - memory.semantic_search_agent - INFO - Search completed successfully in 0.0060s, found 5 results
+2025-06-04 11:59:21,628 - memory_test - INFO - Memory search: 'Barcelona' found 5 results in 77.95ms
+2025-06-04 11:59:22,634 - memory_test - INFO - Received message: search_memory
+2025-06-04 11:59:22,710 - memory.semantic_search_agent - INFO - Similarity search completed in 0.0218s, found 5 results
+2025-06-04 11:59:22,715 - memory.semantic_search_agent - INFO - Search completed successfully in 0.0307s, found 5 results
+2025-06-04 11:59:22,741 - memory_test - INFO - Memory search: 'Italian restaurant' found 5 results in 102.93ms
+2025-06-04 11:59:23,752 - memory_test - INFO - Received message: search_memory
+2025-06-04 11:59:23,850 - memory.semantic_search_agent - INFO - Similarity search completed in 0.0375s, found 5 results
+2025-06-04 11:59:23,882 - memory.semantic_search_agent - INFO - Search completed successfully in 0.0714s, found 5 results
+2025-06-04 11:59:23,904 - memory_test - INFO - Memory search: 'make sushi' found 5 results in 148.83ms
+2025-06-04 11:59:25,015 - memory_test - INFO - Received message: search_memory
+2025-06-04 11:59:25,153 - memory.semantic_search_agent - INFO - Similarity search completed in 0.0561s, found 5 results
+2025-06-04 11:59:25,220 - memory.semantic_search_agent - INFO - Search completed successfully in 0.1458s, found 5 results
+2025-06-04 11:59:25,407 - memory_test - INFO - Memory search: 'Thai curry' found 5 results in 224.7ms
+2025-06-04 12:13:32,506 - websockets.server - INFO - connection open
+2025-06-04 12:13:32,515 - memory_test - INFO - Client connected: 9a1a918e-bf2f-4e99-80bd-139c09d0e6d0 from ::1
+2025-06-04 12:13:32,522 - memory_test - INFO - Received message: search_memory
+2025-06-04 12:13:32,710 - memory.semantic_search_agent - INFO - Similarity search completed in 0.1141s, found 5 results
+2025-06-04 12:13:32,770 - memory.semantic_search_agent - INFO - Search completed successfully in 0.1951s, found 5 results
+2025-06-04 12:13:32,794 - memory_test - INFO - Memory search: 'Programming language used for data analysis' found 5 results in 269.06ms
+2025-06-04 12:13:33,800 - memory_test - INFO - Received message: search_memory
+2025-06-04 12:13:33,878 - memory.semantic_search_agent - INFO - Similarity search completed in 0.0219s, found 5 results
+2025-06-04 12:13:33,886 - memory.semantic_search_agent - INFO - Search completed successfully in 0.0342s, found 5 results
+2025-06-04 12:13:33,908 - memory_test - INFO - Memory search: 'Web technology making API calls' found 5 results in 106.57ms
+2025-06-04 12:13:35,133 - memory_test - INFO - Received message: search_memory
+2025-06-04 12:13:35,643 - memory.semantic_search_agent - INFO - Similarity search completed in 0.4265s, found 5 results
+2025-06-04 12:13:35,677 - memory.semantic_search_agent - INFO - Search completed successfully in 0.4784s, found 5 results
+2025-06-04 12:13:35,716 - memory_test - INFO - Memory search: 'System that needs to handle more traffic' found 5 results in 561.17ms
+2025-06-04 12:13:36,812 - memory_test - INFO - Received message: search_memory
+2025-06-04 12:13:36,884 - memory.semantic_search_agent - INFO - Similarity search completed in 0.0148s, found 5 results
+2025-06-04 12:13:36,890 - memory.semantic_search_agent - INFO - Search completed successfully in 0.0253s, found 5 results
+2025-06-04 12:13:36,912 - memory_test - INFO - Memory search: 'Asian country known for cuisine' found 5 results in 98.28ms
+2025-06-04 12:13:37,919 - memory_test - INFO - Received message: search_memory
+2025-06-04 12:13:37,986 - memory.semantic_search_agent - INFO - Similarity search completed in 0.0147s, found 5 results
+2025-06-04 12:13:37,997 - memory.semantic_search_agent - INFO - Search completed successfully in 0.0274s, found 5 results
+2025-06-04 12:13:38,019 - memory_test - INFO - Memory search: 'Pacific island with nice beaches' found 5 results in 99.23ms
+2025-06-04 12:13:39,041 - memory_test - INFO - Received message: search_memory
+2025-06-04 12:13:39,112 - memory.semantic_search_agent - INFO - Similarity search completed in 0.0064s, found 5 results
+2025-06-04 12:13:39,125 - memory.semantic_search_agent - INFO - Search completed successfully in 0.0208s, found 5 results
+2025-06-04 12:13:39,147 - memory_test - INFO - Memory search: 'Spanish city with Gothic architecture' found 5 results in 93.33ms
+2025-06-04 12:13:40,175 - memory_test - INFO - Received message: search_memory
+2025-06-04 12:13:40,241 - memory.semantic_search_agent - INFO - Similarity search completed in 0.0078s, found 5 results
+2025-06-04 12:13:40,252 - memory.semantic_search_agent - INFO - Search completed successfully in 0.0231s, found 5 results
+2025-06-04 12:13:40,276 - memory_test - INFO - Memory search: 'Restaurant serving pasta dishes' found 5 results in 98.35ms
+2025-06-04 12:13:41,283 - memory_test - INFO - Received message: search_memory
+2025-06-04 12:13:41,341 - memory.semantic_search_agent - INFO - Similarity search completed in 0.0047s, found 5 results
+2025-06-04 12:13:41,345 - memory.semantic_search_agent - INFO - Search completed successfully in 0.0101s, found 5 results
+2025-06-04 12:13:41,367 - memory_test - INFO - Memory search: 'Japanese food prepared at home' found 5 results in 82.3ms
+2025-06-04 12:13:42,371 - memory_test - INFO - Received message: search_memory
+2025-06-04 12:13:42,429 - memory.semantic_search_agent - INFO - Similarity search completed in 0.0063s, found 5 results
+2025-06-04 12:13:42,434 - memory.semantic_search_agent - INFO - Search completed successfully in 0.0119s, found 5 results
+2025-06-04 12:13:42,455 - memory_test - INFO - Memory search: 'Spicy food from Southeast Asia' found 5 results in 83.25ms

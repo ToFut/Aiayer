@@ -1,0 +1,24 @@
+2025-06-06 23:35:25,675 - __main__ - INFO - ==================================================
+2025-06-06 23:35:25,675 - __main__ - INFO - LLM MODEL NDJSON FIX TOOL
+2025-06-06 23:35:25,675 - __main__ - INFO - ==================================================
+2025-06-06 23:35:25,675 - __main__ - INFO - ✅ Created backup at /Users/segevbin/Desktop/SensAI/Aiayer/llm/model.py.bak.fix
+2025-06-06 23:35:25,675 - __main__ - INFO - Found 0 occurrences of ContentTypeError in the file
+2025-06-06 23:35:25,678 - __main__ - INFO - ✅ Successfully updated /Users/segevbin/Desktop/SensAI/Aiayer/llm/model.py
+2025-06-06 23:35:25,679 - __main__ - INFO - ✅ Created backup of backend file at /Users/segevbin/Desktop/SensAI/Aiayer/enhanced_enterprise_backend_with_context.py.bak.fix
+2025-06-06 23:35:25,682 - __main__ - INFO - ✅ Successfully updated backend file to handle LLM responses
+2025-06-06 23:35:25,682 - __main__ - INFO - 
+==================================================
+2025-06-06 23:35:25,682 - __main__ - INFO - FIX SUMMARY
+2025-06-06 23:35:25,682 - __main__ - INFO - ==================================================
+2025-06-06 23:35:25,682 - __main__ - INFO - Model.py fix: ✅ SUCCESS
+2025-06-06 23:35:25,682 - __main__ - INFO - Backend fix: ✅ SUCCESS
+2025-06-06 23:35:25,682 - __main__ - INFO - 
+✅✅✅ All fixes applied successfully!
+2025-06-06 23:35:25,682 - __main__ - INFO - 
+Next steps:
+1. Restart the backend server:
+   $ python enhanced_enterprise_backend_with_context.py
+   
+2. Test the system with the diagnostic tool:
+   $ python fix_message_flow.py
+        

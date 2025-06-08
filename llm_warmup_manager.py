@@ -126,36 +126,58 @@ class LLMWarmupManager:
             
             self.current_model = model_to_use
             
-            # Warmup request
-            warmup_request = {
-                "model": model_to_use,
-                "messages": [
-                    {"role": "user", "content": "Hi"}
-                ],
-                "stream": False
-            }
-            
-            start_time = time.time()
-            async with self.session.post(
-                f"{self.base_url}/api/chat",
-                json=warmup_request
-            ) as response:
+            # Forceful warmup request - send multiple messages to ensure model is loaded
+            for i in range(2):  # Try warming up twice to ensure it's ready
+                warmup_request = {
+                    "model": model_to_use,
+                    "messages": [
+                        {"role": "system", "content": "You are a helpful assistant."},
+                        {"role": "user", "content": f"Respond with 'LLM is warm and ready (test {i+1})' to confirm you're working."}
+                    ],
+                    "stream": False
+                }
                 
-                if response.status == 200:
-                    data = await response.json()
-                    elapsed = time.time() - start_time
-                    
-                    if 'message' in data:
-                        self.model_warm = True
-                        self.last_request_time = time.time()
-                        logger.info(f"✅ Model {model_to_use} warmed up in {elapsed:.2f}s")
-                        return True
-                    else:
-                        logger.error("❌ Invalid warmup response")
-                        return False
-                else:
-                    logger.error(f"❌ Warmup failed: HTTP {response.status}")
-                    return False
+                start_time = time.time()
+                try:
+                    async with self.session.post(
+                        f"{self.base_url}/api/chat",
+                        json=warmup_request,
+                        timeout=aiohttp.ClientTimeout(total=15)  # Increased timeout for first warmup
+                    ) as response:
+                        
+                        if response.status == 200:
+                            data = await response.json()
+                            elapsed = time.time() - start_time
+                            
+                            if 'message' in data and 'content' in data['message']:
+                                response_text = data['message']['content']
+                                
+                                # Verify it's not a mock response
+                                if "LLM is warm" in response_text or "ready" in response_text.lower():
+                                    self.model_warm = True
+                                    self.last_request_time = time.time()
+                                    logger.info(f"✅ Model {model_to_use} successfully warmed up in {elapsed:.2f}s")
+                                    logger.info(f"✅ Response: {response_text[:50]}")
+                                    return True
+                                else:
+                                    logger.warning(f"⚠️ Model responded but may not be fully warmed up: {response_text[:50]}...")
+                                    # Continue to next attempt
+                            else:
+                                logger.warning("⚠️ Warmup response doesn't contain message content")
+                                # Continue to next attempt
+                        else:
+                            logger.warning(f"⚠️ Warmup attempt {i+1} failed: HTTP {response.status}")
+                            # Continue to next attempt
+                except Exception as req_err:
+                    logger.warning(f"⚠️ Warmup request {i+1} failed: {req_err}")
+                    # Continue to next attempt
+                
+                # Short wait between attempts
+                await asyncio.sleep(1)
+            
+            # If we get here, both attempts failed
+            logger.error("❌ Failed to properly warm up the model after multiple attempts")
+            return False
                     
         except Exception as e:
             logger.error(f"❌ Warmup error: {e}")
@@ -222,27 +244,31 @@ class LLMWarmupManager:
                 }
             }
             
-            start_time = time.time()
-            async with self.session.post(
-                f"{self.base_url}/api/chat",
-                json=request_data
-            ) as response:
-                
-                if response.status == 200:
-                    data = await response.json()
-                    elapsed = time.time() - start_time
-                    self.last_request_time = time.time()
+            # Create a new session for each request to avoid connection issues
+            async with aiohttp.ClientSession(
+                timeout=aiohttp.ClientTimeout(total=30)
+            ) as request_session:
+                start_time = time.time()
+                async with request_session.post(
+                    f"{self.base_url}/api/chat",
+                    json=request_data
+                ) as response:
                     
-                    if 'message' in data and 'content' in data['message']:
-                        response_text = data['message']['content']
-                        logger.info(f"⚡ Fast response in {elapsed:.2f}s")
-                        return response_text
+                    if response.status == 200:
+                        data = await response.json()
+                        elapsed = time.time() - start_time
+                        self.last_request_time = time.time()
+                        
+                        if 'message' in data and 'content' in data['message']:
+                            response_text = data['message']['content']
+                            logger.info(f"⚡ Fast response in {elapsed:.2f}s")
+                            return response_text
+                        else:
+                            logger.error("❌ Invalid response format")
+                            return "Error: Invalid response format"
                     else:
-                        logger.error("❌ Invalid response format")
-                        return "Error: Invalid response format"
-                else:
-                    logger.error(f"❌ Request failed: HTTP {response.status}")
-                    return f"Error: HTTP {response.status}"
+                        logger.error(f"❌ Request failed: HTTP {response.status}")
+                        return f"Error: HTTP {response.status}"
                     
         except Exception as e:
             logger.error(f"❌ Fast generate error: {e}")

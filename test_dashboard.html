@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Memory Dashboard Test</title>
+    <script>
+        async function testDashboard() {
+            document.getElementById('console-log').innerHTML = '';
+            console.clear();
+            
+            // Log to our custom console
+            function logToConsole(message, type = 'log') {
+                const logElem = document.getElementById('console-log');
+                const line = document.createElement('div');
+                line.className = 'log-' + type;
+                line.textContent = message;
+                logElem.appendChild(line);
+                console[type](message);
+            }
+            
+            try {
+                logToConsole('Fetching data from http://localhost:8082/api/memory/metrics...');
+                const response = await fetch('http://localhost:8082/api/memory/metrics');
+                
+                if (!response.ok) {
+                    document.getElementById('result').textContent = 'Error: ' + response.status;
+                    logToConsole('Fetch failed with status: ' + response.status, 'error');
+                    return;
+                }
+                
+                logToConsole('Response received, parsing JSON...');
+                const data = await response.json();
+                logToConsole('JSON parsed successfully');
+                
+                // Check for counts
+                if (data.counts) {
+                    logToConsole('Counts found: ' + JSON.stringify(data.counts));
+                } else {
+                    logToConsole('Counts not found in data!', 'error');
+                }
+                
+                document.getElementById('result').textContent = 'Success! Short-term memory count: ' + 
+                    (data.counts?.short_term || 'not found');
+                
+                // Test accessing key elements that should be updated
+                const elements = ['short-term-count', 'context-count', 'long-term-count', 'conscious-insights'];
+                elements.forEach(id => {
+                    const elem = document.getElementById(id);
+                    if (elem) {
+                        logToConsole(`Element ${id} found in real dashboard: ${elem.tagName}`);
+                    } else {
+                        logToConsole(`Element ${id} NOT found in real dashboard!`, 'error');
+                    }
+                });
+                
+                // Display full data
+                document.getElementById('data').textContent = JSON.stringify(data, null, 2);
+                
+                // Try to directly update the test elements
+                logToConsole('Attempting to update test elements...');
+                try {
+                    document.getElementById('short-term-count').textContent = data.counts?.short_term || 'N/A';
+                    document.getElementById('context-count').textContent = data.counts?.context || 'N/A';
+                    document.getElementById('long-term-count').textContent = data.counts?.long_term || 'N/A';
+                    document.getElementById('conscious-insights').textContent = data.counts?.conscious || 'N/A';
+                    logToConsole('Test elements updated successfully');
+                } catch (updateError) {
+                    logToConsole('Error updating test elements: ' + updateError.message, 'error');
+                }
+            } catch (error) {
+                document.getElementById('result').textContent = 'Error: ' + error.message;
+                logToConsole('Error: ' + error.message, 'error');
+                logToConsole('Stack: ' + error.stack, 'error');
+            }
+        }
+    </script>
+</head>
+<body>
+    <h1>Memory Dashboard Test</h1>
+    <button onclick="testDashboard()">Test API</button>
+    <h2>Result:</h2>
+    <div id="result">Click the button to test</div>
+    
+    <h2>Console Log:</h2>
+    <div id="console-log" style="max-height: 200px; overflow: auto; background-color: #000; color: #0f0; padding: 10px; font-family: monospace;"></div>
+    
+    <h2>Data:</h2>
+    <pre id="data" style="max-height: 400px; overflow: auto; background-color: #f0f0f0; padding: 10px;"></pre>
+    
+    <h2>Test Elements:</h2>
+    <div>
+        <div id="short-term-count">0</div>
+        <div id="context-count">0</div>
+        <div id="long-term-count">0</div>
+        <div id="conscious-insights">0</div>
+    </div>
+</body>
+</html>
