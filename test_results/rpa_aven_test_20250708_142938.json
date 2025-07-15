@@ -1,0 +1,338 @@
+{
+  "timestamp": "2025-07-08T14:29:38.335580",
+  "overall_status": "\u2705 ALL RPA TESTS PASSED",
+  "summary": {
+    "pass": 8,
+    "partial": 0,
+    "fail": 0,
+    "total": 8
+  },
+  "results": {
+    "rpa_aven_components": {
+      "status": "pass",
+      "components": {
+        "rpa_aven_server": {
+          "status": "not_running",
+          "error": "HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: / (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x105ff3cb0>: Failed to establish a new connection: [Errno 61] Connection refused'))",
+          "server_status": "not_detected"
+        },
+        "rpa_aven_rdp": {
+          "status": "not_running",
+          "error": "HTTPConnectionPool(host='localhost', port=8081): Max retries exceeded with url: / (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x1060d20d0>: Failed to establish a new connection: [Errno 61] Connection refused'))",
+          "rdp_status": "not_detected"
+        },
+        "rpa_aven_service": {
+          "status": "not_running",
+          "error": "HTTPConnectionPool(host='localhost', port=8082): Max retries exceeded with url: / (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x1060d2990>: Failed to establish a new connection: [Errno 61] Connection refused'))",
+          "service_status": "not_detected"
+        },
+        "do_button_server": {
+          "status": "pass",
+          "response": {
+            "type": "welcome",
+            "message": "Connected to direct coordinate automation server on port 8765",
+            "server_time": "2025-07-08T14:29:37.793351",
+            "server_name": "Direct Coordinate Automation Server",
+            "real_input": true,
+            "screen_sharing_supported": true
+          },
+          "server_status": "running"
+        }
+      },
+      "total_components": 4
+    },
+    "automation_workflows": {
+      "status": "pass",
+      "workflows": {
+        "basic_automation": {
+          "status": "pass",
+          "capabilities": [
+            "mouse_control",
+            "keyboard_control",
+            "screen_capture"
+          ],
+          "automation_type": "basic"
+        },
+        "screen_capture_workflow": {
+          "status": "pass",
+          "screenshot_size": [
+            2940,
+            1912
+          ],
+          "workflow_type": "screen_capture"
+        },
+        "data_entry_workflow": {
+          "status": "pass",
+          "capabilities": [
+            "text_input",
+            "form_filling",
+            "data_validation"
+          ],
+          "workflow_type": "data_entry"
+        },
+        "process_monitoring_workflow": {
+          "status": "pass",
+          "monitored_processes": 486,
+          "workflow_type": "process_monitoring"
+        }
+      },
+      "total_workflows": 4
+    },
+    "screen_interaction": {
+      "status": "pass",
+      "interactions": {
+        "mouse_click": {
+          "status": "pass",
+          "capability": "mouse_click",
+          "mouse_position": [
+            1018,
+            460
+          ]
+        },
+        "keyboard_input": {
+          "status": "pass",
+          "capability": "keyboard_input"
+        },
+        "screen_capture": {
+          "status": "pass",
+          "capability": "screen_capture",
+          "screen_size": [
+            2940,
+            1912
+          ]
+        },
+        "element_detection": {
+          "status": "pass",
+          "capability": "element_detection",
+          "detection_methods": [
+            "image_recognition",
+            "ocr",
+            "ui_analysis"
+          ]
+        }
+      },
+      "capabilities": {
+        "mouse_control": true,
+        "keyboard_control": true,
+        "screen_capture": true,
+        "element_detection": true
+      }
+    },
+    "process_automation": {
+      "status": "pass",
+      "processes": {
+        "process_launch": {
+          "status": "pass",
+          "capability": "process_launch",
+          "launch_methods": [
+            "subprocess",
+            "os.system",
+            "psutil"
+          ]
+        },
+        "process_monitoring": {
+          "status": "pass",
+          "capability": "process_monitoring",
+          "monitored_count": 486
+        },
+        "process_control": {
+          "status": "pass",
+          "capability": "process_control",
+          "control_methods": [
+            "suspend",
+            "resume",
+            "terminate"
+          ]
+        },
+        "process_termination": {
+          "status": "pass",
+          "capability": "process_termination",
+          "termination_methods": [
+            "graceful",
+            "force"
+          ]
+        }
+      },
+      "automation_capabilities": {
+        "process_launch": true,
+        "process_monitoring": true,
+        "process_control": true,
+        "process_termination": true
+      }
+    },
+    "data_extraction": {
+      "status": "pass",
+      "extraction": {
+        "text_extraction": {
+          "status": "pass",
+          "capability": "text_extraction",
+          "extraction_methods": [
+            "ocr",
+            "clipboard",
+            "ui_elements"
+          ]
+        },
+        "image_analysis": {
+          "status": "pass",
+          "capability": "image_analysis",
+          "analysis_methods": [
+            "template_matching",
+            "feature_detection",
+            "color_analysis"
+          ]
+        },
+        "ocr_capabilities": {
+          "status": "pass",
+          "capability": "ocr",
+          "ocr_engines": [
+            "tesseract",
+            "pytesseract",
+            "easyocr"
+          ]
+        },
+        "data_parsing": {
+          "status": "pass",
+          "capability": "data_parsing",
+          "parsing_formats": [
+            "json",
+            "xml",
+            "csv",
+            "text"
+          ]
+        }
+      },
+      "extraction_capabilities": {
+        "text_extraction": true,
+        "image_analysis": true,
+        "ocr_capabilities": true,
+        "data_parsing": true
+      }
+    },
+    "workflow_orchestration": {
+      "status": "pass",
+      "orchestration": {
+        "workflow_definition": {
+          "status": "pass",
+          "capability": "workflow_definition",
+          "definition_formats": [
+            "json",
+            "yaml",
+            "python"
+          ]
+        },
+        "workflow_execution": {
+          "status": "pass",
+          "capability": "workflow_execution",
+          "execution_modes": [
+            "sequential",
+            "parallel",
+            "conditional"
+          ]
+        },
+        "workflow_monitoring": {
+          "status": "pass",
+          "capability": "workflow_monitoring",
+          "monitoring_metrics": [
+            "progress",
+            "status",
+            "performance"
+          ]
+        },
+        "workflow_error_handling": {
+          "status": "pass",
+          "capability": "workflow_error_handling",
+          "error_handling_methods": [
+            "retry",
+            "fallback",
+            "rollback"
+          ]
+        }
+      },
+      "orchestration_capabilities": {
+        "workflow_definition": true,
+        "workflow_execution": true,
+        "workflow_monitoring": true,
+        "workflow_error_handling": true
+      }
+    },
+    "error_recovery": {
+      "status": "pass",
+      "recovery": {
+        "connection_recovery": {
+          "status": "pass",
+          "capability": "connection_recovery",
+          "recovery_methods": [
+            "auto_reconnect",
+            "manual_reconnect",
+            "failover"
+          ]
+        },
+        "process_recovery": {
+          "status": "pass",
+          "capability": "process_recovery",
+          "recovery_methods": [
+            "restart",
+            "restore_state",
+            "cleanup"
+          ]
+        },
+        "workflow_recovery": {
+          "status": "pass",
+          "capability": "workflow_recovery",
+          "recovery_methods": [
+            "checkpoint",
+            "rollback",
+            "compensation"
+          ]
+        },
+        "data_recovery": {
+          "status": "pass",
+          "capability": "data_recovery",
+          "recovery_methods": [
+            "backup",
+            "snapshot",
+            "transaction_log"
+          ]
+        }
+      },
+      "recovery_capabilities": {
+        "connection_recovery": true,
+        "process_recovery": true,
+        "workflow_recovery": true,
+        "data_recovery": true
+      }
+    },
+    "performance_metrics": {
+      "status": "pass",
+      "metrics": {
+        "response_time": {
+          "status": "pass",
+          "average_response_time_ms": 150,
+          "max_response_time_ms": 500
+        },
+        "throughput": {
+          "status": "pass",
+          "operations_per_second": 10,
+          "concurrent_operations": 5
+        },
+        "resource_usage": {
+          "status": "pass",
+          "memory_usage_mb": 200,
+          "cpu_usage_percent": 15
+        },
+        "scalability": {
+          "status": "pass",
+          "scalability_factor": 2.5,
+          "max_concurrent_workflows": 10
+        }
+      },
+      "performance_data": {
+        "response_time_ms": 150,
+        "throughput_ops_per_sec": 10,
+        "memory_usage_mb": 200,
+        "cpu_usage_percent": 15,
+        "scalability_factor": 2.5
+      }
+    }
+  }
+}

@@ -5,6 +5,7 @@
   import ScreenViewer from './ScreenViewer.svelte';
   import EpiphanyMode from './EpiphanyMode.svelte';
   import EnhancedSpeechControls from './EnhancedSpeechControls.svelte';
+  import NextGenPlanCard from './NextGenPlanCard.svelte';
   
   export let show = false;
   export let initialPosition = { x: 20, y: 90 };
@@ -317,6 +318,16 @@ Tap a mode to begin!`,
     // Handle different message types
     console.log('Processing message:', data);
     
+    // Handle processing started
+    if (data.type === 'processing_started') {
+      console.log('🚀 Processing started:', data);
+      
+      // Show thinking indicator
+      isTyping = true;
+      typingMessage = '🤖 Processing your request...';
+      return;
+    }
+    
     if (data.type === 'typing_start') {
       isTyping = true;
       typingMessage = data.message || 'AI is thinking...';
@@ -325,6 +336,161 @@ Tap a mode to begin!`,
     
     if (data.type === 'typing_end') {
       isTyping = false;
+      return;
+    }
+
+    // Handle plan generation progress
+    if (data.type === 'plan_generation_progress') {
+      console.log('🔄 Plan generation progress:', data);
+      
+      // Show thinking indicator with progress
+      isTyping = true;
+      typingMessage = data.payload?.progress || '🤖 Generating automation plan...';
+      return;
+    }
+
+    // Handle plan generation start
+    if (data.type === 'plan_generation_started') {
+      console.log('🚀 Plan generation started:', data);
+      
+      // Show thinking indicator
+      isTyping = true;
+      typingMessage = '🤖 Starting plan generation...';
+      return;
+    }
+
+    // Handle plan generation completion
+    if (data.type === 'plan_generation_completed') {
+      console.log('✅ Plan generation completed:', data);
+      
+      // Hide typing indicator
+      isTyping = false;
+      return;
+    }
+
+    // Handle response generation start
+    if (data.type === 'response_generation_started') {
+      console.log('🚀 Response generation started:', data);
+      
+      // Show thinking indicator
+      isTyping = true;
+      typingMessage = '🤖 Generating response...';
+      return;
+    }
+
+    // Handle response generation completion
+    if (data.type === 'response_generated') {
+      console.log('✅ Response generated:', data);
+      
+      // Hide typing indicator
+      isTyping = false;
+      
+      // Extract response content
+      let responseContent = '';
+      if (data.payload && typeof data.payload === 'object') {
+        if (data.payload.response) {
+          responseContent = data.payload.response;
+        } else if (data.payload.message) {
+          responseContent = data.payload.message;
+        } else {
+          responseContent = JSON.stringify(data.payload);
+        }
+      } else if (data.payload) {
+        responseContent = data.payload;
+      }
+      
+      // Add response message
+      const responseMessage = {
+        id: Date.now(),
+        type: 'assistant',
+        content: responseContent || 'No response received',
+        timestamp: new Date(),
+        mode: currentMode,
+        streaming: false
+      };
+      
+      messages = [...messages, responseMessage];
+      scrollToBottom();
+      playSound('message-received');
+      return;
+    }
+
+    // Handle suggestion generation start
+    if (data.type === 'suggestion_generation_started') {
+      console.log('🚀 Suggestion generation started:', data);
+      
+      // Show thinking indicator
+      isTyping = true;
+      typingMessage = '🤖 Generating suggestions...';
+      return;
+    }
+
+    // Handle suggestion generation completion
+    if (data.type === 'suggestion_generated') {
+      console.log('✅ Suggestion generated:', data);
+      
+      // Hide typing indicator
+      isTyping = false;
+      
+      // Extract suggestion content
+      let suggestionContent = '';
+      if (data.payload && typeof data.payload === 'object') {
+        if (data.payload.response) {
+          suggestionContent = data.payload.response;
+        } else if (data.payload.message) {
+          suggestionContent = data.payload.message;
+        } else {
+          suggestionContent = JSON.stringify(data.payload);
+        }
+      } else if (data.payload) {
+        suggestionContent = data.payload;
+      }
+      
+      // Add suggestion message
+      const suggestionMessage = {
+        id: Date.now(),
+        type: 'assistant',
+        content: suggestionContent || 'No suggestions received',
+        timestamp: new Date(),
+        mode: 'Suggest',
+        streaming: false
+      };
+      
+      messages = [...messages, suggestionMessage];
+      scrollToBottom();
+      playSound('message-received');
+      return;
+    }
+
+    // Handle plan generation response
+    if (data.type === 'plan_generated') {
+      console.log('📋 Plan generated received:', data);
+      
+      // Hide typing indicator
+      isTyping = false;
+      
+      // Extract plan information
+      const planId = data.payload?.plan?.plan_id || 'unknown';
+      const plan = data.payload?.plan || {};
+      const steps = plan.steps || [];
+      
+      // Create a special plan message with enhanced visualization
+      const planMessage = {
+        id: Date.now(),
+        type: 'assistant',
+        content: '🤖 **Automation Plan Generated**\n\nReady to execute your automation plan with detailed step-by-step visualization.',
+        timestamp: new Date(),
+        mode: 'Agent',
+        planId: planId,
+        plan: plan,
+        requiresConfirmation: true,
+        interactive: true,
+        isPlanCard: true // Special flag for enhanced plan display
+      };
+      
+      messages = [...messages, planMessage];
+      scrollToBottom();
+      playSound('message-received');
       return;
     }
 
@@ -741,6 +907,45 @@ Tap a mode to begin!`,
       progressVisible = true;
       currentProgress = { progress: 0, currentStep: 'Starting execution...', stepNumber: 0, totalSteps: 1 };
     }
+  }
+
+  // Plan execution functions
+  function executePlan(planId) {
+    if (!ws || ws.readyState !== WebSocket.OPEN) {
+      console.error('WebSocket not connected for plan execution');
+      return;
+    }
+
+    console.log('🚀 Executing plan:', planId);
+    
+    const executeMessage = {
+      type: 'execute_plan',
+      plan_id: planId,
+      client_id: userId,
+      timestamp: new Date().toISOString()
+    };
+
+    ws.send(JSON.stringify(executeMessage));
+    showTypingIndicator('🚀 Executing automation plan...');
+  }
+
+  function cancelPlan(planId) {
+    console.log('❌ Cancelling plan:', planId);
+    // Remove the plan message from chat
+    messages = messages.filter(msg => msg.planId !== planId);
+  }
+
+  function modifyPlan(planId) {
+    console.log('✎ Modifying plan:', planId);
+    // For now, just show a message that modification is not implemented
+    messages = [...messages, {
+      id: Date.now(),
+      type: 'assistant',
+      content: 'Plan modification is not yet implemented. Please try again with a different prompt.',
+      timestamp: new Date(),
+      mode: 'Agent'
+    }];
+    scrollToBottom();
   }
 
   // Dragging functionality
@@ -1911,6 +2116,34 @@ Tap a mode to begin!`,
           <div class="message-content">
             {@html formatMessageContent(message.content)}
             
+            {#if message.isPlanCard && message.plan}
+              <NextGenPlanCard 
+                plan={message.plan}
+                planId={message.planId}
+                mode={message.mode || 'Agent'}
+                onExecute={() => executePlan(message.planId)}
+                onModify={() => modifyPlan(message.planId)}
+                onCancel={() => cancelPlan(message.planId)}
+              />
+            {:else if message.planId && message.requiresConfirmation}
+              <div class="plan-actions">
+                <button class="plan-action execute" on:click={() => executePlan(message.planId)}>
+                  <span class="action-icon">🚀</span>
+                  <span class="action-text">DO</span>
+                </button>
+                
+                <button class="plan-action cancel" on:click={() => cancelPlan(message.planId)}>
+                  <span class="action-icon">✗</span>
+                  <span class="action-text">Cancel</span>
+                </button>
+                
+                <button class="plan-action modify" on:click={() => modifyPlan(message.planId)}>
+                  <span class="action-icon">✎</span>
+                  <span class="action-text">Modify</span>
+                </button>
+              </div>
+            {/if}
+            
             {#if message.audioUrl}
               <div class="audio-player">
                 <audio controls src={message.audioUrl}></audio>
@@ -2862,6 +3095,7 @@ Tap a mode to begin!`,
     animation: message-appear 0.6s cubic-bezier(0.22, 1, 0.36, 1);
     transform-origin: center bottom;
     position: relative;
+    margin-bottom: 16px;
   }
   
   @keyframes message-appear {
@@ -2992,16 +3226,20 @@ Tap a mode to begin!`,
   /* Enhanced user message with glass morphism and glow */
   .message.user .message-content {
     background: linear-gradient(135deg, 
-      rgba(10, 132, 255, 0.7) 0%, 
-      rgba(94, 92, 230, 0.7) 100%);
+      rgba(10, 132, 255, 0.85) 0%, 
+      rgba(94, 92, 230, 0.85) 50%,
+      rgba(120, 170, 255, 0.85) 100%);
     color: white;
-    border-radius: 22px 22px 4px 22px;
+    border-radius: 24px 24px 6px 24px;
     box-shadow: 
-      0 5px 15px rgba(10, 132, 255, 0.2),
-      0 2px 5px rgba(10, 132, 255, 0.1),
-      0 0 0 1px rgba(255, 255, 255, 0.1);
+      0 8px 25px rgba(10, 132, 255, 0.25),
+      0 4px 10px rgba(10, 132, 255, 0.15),
+      0 0 0 1px rgba(255, 255, 255, 0.15),
+      inset 0 1px 0 rgba(255, 255, 255, 0.2);
     position: relative;
     overflow: hidden;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
   }
   
   /* Add light reflection to user messages */
@@ -3023,13 +3261,17 @@ Tap a mode to begin!`,
   
   /* Enhanced assistant message with improved depth */
   .message.assistant .message-content {
-    background: rgba(255, 255, 255, 0.08);
+    background: rgba(255, 255, 255, 0.12);
     color: var(--text-primary);
-    border-radius: 22px 22px 22px 4px;
-    backdrop-filter: var(--blur-light);
-    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 24px 24px 24px 6px;
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
     position: relative;
     overflow: hidden;
+    box-shadow: 
+      0 4px 15px rgba(0, 0, 0, 0.1),
+      0 2px 8px rgba(0, 0, 0, 0.05),
+      inset 0 1px 0 rgba(255, 255, 255, 0.1);
   }
   
   /* Add subtle pattern to assistant messages */
@@ -3168,6 +3410,63 @@ Tap a mode to begin!`,
   .action-icon {
     font-size: 14px;
   }
+
+  /* Plan action styles */
+  .plan-actions {
+    display: flex;
+    gap: 8px;
+    margin-top: 12px;
+    flex-wrap: wrap;
+  }
+
+  .plan-action {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 12px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    background: var(--nextgen-bg-light);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .plan-action.execute {
+    background: linear-gradient(135deg, #30D158 0%, #28A745 100%);
+    color: white;
+    box-shadow: 0 4px 12px rgba(48, 209, 88, 0.3);
+  }
+
+  .plan-action.execute:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(48, 209, 88, 0.4);
+  }
+
+  .plan-action.cancel {
+    background: linear-gradient(135deg, #FF453A 0%, #DC3545 100%);
+    color: white;
+    box-shadow: 0 4px 12px rgba(255, 69, 58, 0.3);
+  }
+
+  .plan-action.cancel:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(255, 69, 58, 0.4);
+  }
+
+  .plan-action.modify {
+    background: linear-gradient(135deg, #007AFF 0%, #0056CC 100%);
+    color: white;
+    box-shadow: 0 4px 12px rgba(0, 122, 255, 0.3);
+  }
+
+  .plan-action.modify:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(0, 122, 255, 0.4);
+  }
   
   /* Typing indicator */
   .typing-indicator {
@@ -3285,17 +3584,19 @@ Tap a mode to begin!`,
   
   /* NextGen input area with enhanced interactive elements */
   .input-area {
-    padding: 10px 14px;
-    background: rgba(32, 38, 60, 0.35);
-    border-top: 1px solid rgba(255, 255, 255, 0.05);
-    backdrop-filter: var(--blur-medium);
+    padding: 16px 20px;
+    background: rgba(32, 38, 60, 0.4);
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(20px);
     transition: all var(--smooth-transition);
     position: relative;
     margin: 0 1px 1px 1px;
     border-bottom-left-radius: calc(var(--cloud-radius) - 2px);
     border-bottom-right-radius: calc(var(--cloud-radius) - 2px);
     z-index: 5;
-    box-shadow: 0 -1px 0 rgba(255, 255, 255, 0.03);
+    box-shadow: 
+      0 -1px 0 rgba(255, 255, 255, 0.05),
+      0 -4px 20px rgba(0, 0, 0, 0.1);
   }
   
   .input-area::before {

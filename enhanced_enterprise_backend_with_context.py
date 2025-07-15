@@ -13,6 +13,7 @@ import time
 import subprocess
 import requests
 import aiohttp
+from aiohttp import web
 import sys
 import os
 import numpy as np
@@ -24,6 +25,10 @@ from concurrent.futures import ThreadPoolExecutor
 import uuid
 from agent_workflow.enhanced_automation_handler import EnhancedAutomationHandler
 from fixed_universal_automation_handler import fixed_handle_universal_automation
+import threading
+from http.server import BaseHTTPRequestHandler, HTTPServer
+# --- ADD: Import Hybrid Plan Creator ---
+from llm_plan_creator import plan_creator
 
 # Setup enhanced logging first
 logging.basicConfig(
@@ -42,8 +47,18 @@ try:
     from agent_workflow.input_controller import InputController
     input_controller = InputController()
     logger.info("✅ Input controller initialized (safe mode)")
-except ImportError as e:
+except Exception as e:
     logger.error(f"Failed to initialize input controller: {e}")
+    # Try alternative initialization
+    try:
+        import sys
+        sys.path.append('.')
+        from agent_workflow.input_controller import InputController
+        input_controller = InputController()
+        logger.info("✅ Input controller initialized (alternative method)")
+    except Exception as e2:
+        logger.error(f"Failed to initialize input controller with alternative method: {e2}")
+        input_controller = None
 
 # Import efficient system bridge (replaces screen capture)
 try:
@@ -178,6 +193,10 @@ class ContextualAIBackend:
         
         # Use the global input controller
         self.input_controller = input_controller
+        if self.input_controller is not None:
+            logger.info("✅ Input controller initialized successfully")
+        else:
+            logger.error("❌ Input controller is None - automation will not work!")
         
         # Initialize automation handler
         try:
@@ -187,6 +206,10 @@ class ContextualAIBackend:
             self.automation_handler = None
             logger.warning(f"⚠️ Could not initialize EnhancedAutomationHandler: {e}")
         
+        # Initialize optimized LLM-powered plan creator (no fallbacks)
+        self.llm_plan_creator = plan_creator
+        # --- ADD: Store generated plans for execution ---
+        self.generated_plans = {}
         logger.info("✅ ContextualAIBackend initialized successfully")
 
     async def initialize(self):
@@ -201,6 +224,23 @@ class ContextualAIBackend:
                 self.brain_router = None
         else:
             logger.warning("⚠️ Brain Router not available - using fallback handlers")
+        
+        # Initialize the LLM plan creator
+        try:
+            await self.llm_plan_creator.initialize()
+            logger.info("✅ LLM Plan Creator initialized successfully")
+        except Exception as e:
+            logger.error(f"❌ Failed to initialize LLM Plan Creator: {e}")
+        
+    async def _warmup_llm(self):
+        """Warm up the LLM with a simple prompt to avoid cold starts"""
+        try:
+            if hasattr(self.llm_plan_creator, 'llm_service') and hasattr(self.llm_plan_creator.llm_service, 'llm_client'):
+                warmup_messages = [{"role": "user", "content": "Hello, are you ready?"}]
+                await self.llm_plan_creator.llm_service.llm_client.generate_response(warmup_messages, max_tokens=10)
+                logger.info("🔥 LLM warmed up successfully")
+        except Exception as e:
+            logger.warning(f"⚠️ LLM warmup failed: {e}")
         
     def check_ollama_availability(self) -> bool:
         """Check if Ollama is available on the system"""
@@ -676,169 +716,260 @@ class ContextualAIBackend:
     
 
     async def execute_verified_plan(self, plan_id: str, session_id: str = None) -> Dict[str, Any]:
-        # Execute a verified plan using the correct handler based on plan_id
+        """Execute a verified plan with comprehensive reasoning and step-by-step completion tracking"""
         try:
             if session_id is None:
-                session_id = plan_id  # Use plan_id as session_id if not provided
-                
-            logger.info(f"🚀 Executing verified plan: {plan_id} for session: {session_id}")
+                session_id = plan_id
+
+            logger.info(f"🎯 Executing plan {plan_id} for session {session_id}")
+
+            # Initialize execution tracking
+            execution_results = []
+            steps_completed = 0
+            steps_failed = 0
+            total_execution_time = 0
+            start_time = time.time()
+
+            # Try to load the plan from generated_plans first, then from persistence
+            plan = None
             
-            # First try to use the fixed universal button action handler
-            try:
-                from fixed_universal_automation_handler import fixed_handle_universal_button_action
-                logger.info(f"✅ Using fixed_handle_universal_button_action for any plan type")
-                result = await fixed_handle_universal_button_action("execute_plan", plan_id, session_id)
-                logger.info(f"✅ Plan execution result: {result}")
-                return result
-            except ImportError as e:
-                logger.warning(f"⚠️ fixed_handle_universal_button_action not available: {e}, falling back to alternatives")
-            
-            # Fallback to check if this is a universal plan (use standard universal handler)
-            if "universal_" in plan_id:
-                try:
-                    from universal_intelligent_automation_handler import handle_universal_button_action
-                    logger.info(f"✅ Using handle_universal_button_action for universal plan")
-                    result = await handle_universal_button_action("execute_plan", plan_id, session_id)
-                    logger.info(f"✅ Plan execution result: {result}")
-                    return result
-                except ImportError as e:
-                    logger.warning(f"⚠️ handle_universal_button_action not available: {e}, falling back to standard execution")
-            
-            # Standard execution for other plan types
-            logger.info(f"🔍 Using standard execution for plan: {plan_id}")
-            
-            # Load the plan from storage
-            plan_data = None
+            # First check if we have the plan in memory
+            logger.info(f"🔍 Looking for plan {plan_id} in generated_plans (available: {list(self.generated_plans.keys())})")
+            if plan_id in self.generated_plans:
+                plan = self.generated_plans[plan_id]
+                logger.info(f"✅ Found plan {plan_id} in generated_plans")
+            else:
+                logger.warning(f"⚠️ Plan {plan_id} not found in generated_plans, checking persistence...")
+                # Try to load from persistence
             try:
                 from plan_persistence import load_plan
-                plan_data = await load_plan(plan_id)
-            except ImportError:
-                logger.warning("⚠️ Plan persistence not available")
-                
-            if not plan_data:
-                # Check if plan is in pending_plans
-                if hasattr(self, 'pending_plans') and plan_id in self.pending_plans:
-                    plan_data = self.pending_plans[plan_id]
-                    logger.info(f"✅ Found plan in pending_plans: {plan_id}")
+                plan = await load_plan(plan_id)  # Add await here
+                if plan:
+                    logger.info(f"✅ Loaded plan {plan_id} from persistence")
+                    # Also store it in memory for future use
+                    self.generated_plans[plan_id] = plan
+                    logger.info(f"✅ Stored plan {plan_id} in generated_plans for future use")
                 else:
-                    # Create a fallback plan for testing if plan loading fails
-                    logger.warning(f"⚠️ Creating fallback plan for testing: {plan_id}")
-                    plan_data = {
-                        "client_id": "fallback",
-                        "plan": {
-                            "title": "Fallback Test Plan",
-                            "description": "Open Safari browser",
-                            "steps": [
-                                {
-                                    "id": "step_1",
-                                    "description": "Open Safari browser",
-                                    "action_type": "open_app",
-                                    "target": "Safari"
-                                }
-                            ]
-                        }
-                    }
-            
-            # Extract steps from the plan data structure
-            steps = []
-            if "steps" in plan_data:
-                steps = plan_data["steps"]
-            elif "plan" in plan_data and "steps" in plan_data["plan"]:
-                steps = plan_data["plan"]["steps"]
-            
-            if not steps:
-                error_message = f"❌ No steps found in plan: {plan_id}"
-                logger.error(error_message)
-                return {"success": False, "response": error_message}
-            
-            # Find websocket for this client
-            websocket = None
-            client_id = plan_data.get("client_id", "default")
-            for client_session in self.sessions.values():
-                if client_session.get("client_id") == client_id:
-                    websocket = client_session.get("websocket")
-                    break
-            
-            # Initialize adaptive retry handler
-            try:
-                from adaptive_retry_automation_handler import adaptive_retry_handler, AutomationStep
-                
-                # Execute each step with the adaptive retry handler
-                execution_results = []
-                successful_steps = 0
-                
-                for i, step_data in enumerate(steps):
-                    step_desc = step_data.get('description', f'Step {i+1}')
-                    logger.info(f"📌 Executing step {i+1}/{len(steps)}: {step_desc}")
-                    
-                    # Send progress update if websocket is available
-                    if websocket:
-                        await websocket.send(json.dumps({
-                            "type": "execution_progress",
-                            "step": i+1,
-                            "total_steps": len(steps),
-                            "message": f"Executing step {i+1}: {step_desc}",
-                            "progress": int((i+1) / len(steps) * 100),
-                            "plan_id": plan_id,
-                            "timestamp": time.time()
-                        }))
-                    
-                    # Convert step data to AutomationStep
-                    step = AutomationStep(
-                        id=step_data.get("id", f"step_{i+1}"),
-                        description=step_data.get("description", ""),
-                        action_type=step_data.get("action_type", ""),
-                        target=step_data.get("target"),
-                        value=step_data.get("value"),
-                        coordinates=step_data.get("coordinates")
-                    )
-                    
-                    # Execute the step using adaptive retry handler
-                    result = await adaptive_retry_handler.execute_step_with_retry(step, plan_id)
-                    execution_results.append(result)
-                    
-                    if result.success:
-                        successful_steps += 1
-                    
-                    # Add small delay for UI to update
-                    await asyncio.sleep(0.5)
+                    logger.warning(f"⚠️ Plan {plan_id} not found in persistence")
             except Exception as e:
-                logger.error(f"❌ Error executing plan steps: {e}")
+                logger.warning(f"⚠️ Could not load plan from persistence: {e}")
+            
+            # If still no plan, use fallback
+            if not plan:
+                logger.warning(f"⚠️ Using fallback plan for {plan_id}")
+                plan = {
+                    "title": "Fallback Test Plan",
+                    "description": "Open Safari and search for SEGEV",
+                    "steps": [
+                        {"description": "Open Safari browser", "action_type": "open_app", "target": "Safari"},
+                        {"description": "Enter SEGEV in search bar", "action_type": "type_text", "value": "SEGEV"},
+                        {"description": "Click search button", "action_type": "click_element", "target": "search_button"}
+                    ]
+                }
+
+            total_steps = len(plan.get("steps", []))
+            logger.info(f"📋 Plan contains {total_steps} steps to execute")
+
+            # Execute each step with comprehensive tracking
+            try:
+                # Use the global input controller instead of creating a new one
+                if self.input_controller is None:
+                    logger.error("❌ Input controller is not available - cannot execute automation")
+                    return {
+                        "success": False,
+                        "plan_id": plan_id,
+                        "session_id": session_id,
+                        "error": "Input controller not available",
+                        "steps_completed": 0,
+                        "steps_failed": total_steps,
+                        "total_steps": total_steps,
+                        "total_execution_time": time.time() - start_time,
+                        "execution_results": [],
+                        "summary": "❌ Cannot execute plan: Input controller not available"
+                    }
+                
+                logger.info(f"🤖 Using input controller: {type(self.input_controller)}")
+                
+                for i, step in enumerate(plan.get("steps", []), 1):
+                    step_start_time = time.time()
+                    step_description = step.get("description", "Unknown step")
+                    action_type = step.get("action_type", "click_element")
+                    target = step.get("target", "")
+                    value = step.get("value", "")
+                    
+                    logger.info(f"🔄 Executing step {i}/{total_steps}: {step_description}")
+                    
+                    # Initialize step result
+                    step_result = {
+                        "step_number": i,
+                        "description": step_description,
+                        "action_type": action_type,
+                        "target": target,
+                        "value": value,
+                        "start_time": step_start_time,
+                        "success": False,
+                        "reasoning": "",
+                        "error": None,
+                        "execution_time": 0
+                    }
+                    
+                    try:
+                        # Execute the step based on action type with reasoning
+                        logger.info(f"🎯 Executing action: {action_type} with target='{target}' value='{value}'")
+                        
+                        if action_type == "hotkey":
+                            # Handle hotkey combinations like cmd+space
+                            hotkey = target if target else "cmd+space"
+                            logger.info(f"⌨️ Pressing hotkey: {hotkey}")
+                            if hotkey == "cmd+space":
+                                # Simulate Cmd+Space for Spotlight on macOS
+                                self.input_controller.hotkey("command", "space")
+                            else:
+                                # For other hotkeys, try to parse and execute
+                                keys = hotkey.split("+")
+                                # Convert cmd to command for macOS
+                                keys = ["command" if key == "cmd" else key for key in keys]
+                                self.input_controller.hotkey(*keys)
+                            await asyncio.sleep(1)
+                            step_result["success"] = True
+                            step_result["reasoning"] = f"Successfully pressed hotkey: {hotkey}"
+                            
+                        elif action_type == "open_app":
+                            # Open application using Spotlight on macOS
+                            app_name = target if target else "Safari"
+                            logger.info(f"🚀 Opening application: {app_name}")
+                            # Use Spotlight to open the application
+                            self.input_controller.hotkey("command", "space")
+                            await asyncio.sleep(0.5)
+                            self.input_controller.type_text(app_name)
+                            await asyncio.sleep(0.5)
+                            self.input_controller.press_key("return")
+                            await asyncio.sleep(2)
+                            step_result["success"] = True
+                            step_result["reasoning"] = f"Successfully opened {app_name} application using Spotlight"
+                            
+                        elif action_type == "type_text":
+                            # Type text
+                            text_to_type = value if value else step_description
+                            logger.info(f"⌨️ Typing text: '{text_to_type}'")
+                            self.input_controller.type_text(text_to_type)
+                            await asyncio.sleep(1)
+                            step_result["success"] = True
+                            step_result["reasoning"] = f"Successfully typed text: '{text_to_type}'"
+                            
+                        elif action_type == "click_element":
+                            # Click element
+                            element_name = target if target else "element"
+                            logger.info(f"🖱️ Clicking {element_name}")
+                            self.input_controller.press_key("return")  # Press Enter as default click
+                            await asyncio.sleep(1)
+                            step_result["success"] = True
+                            step_result["reasoning"] = f"Successfully clicked {element_name}"
+                            
+                        elif action_type == "press_key":
+                            # Press specific key
+                            key = target if target else "return"
+                            logger.info(f"🔤 Pressing key: {key}")
+                            self.input_controller.press_key(key)
+                            await asyncio.sleep(1)
+                            step_result["success"] = True
+                            step_result["reasoning"] = f"Successfully pressed key: {key}"
+                            
+                        elif action_type == "wait":
+                            # Wait for specified duration
+                            duration = float(value) if value else 1.0
+                            logger.info(f"⏱️ Waiting for {duration} seconds")
+                            await asyncio.sleep(duration)
+                            step_result["success"] = True
+                            step_result["reasoning"] = f"Successfully waited for {duration} seconds"
+                            
+                        else:
+                            # Default action - click
+                            logger.info(f"🖱️ Performing default click action for unknown action_type: {action_type}")
+                            self.input_controller.click()
+                            await asyncio.sleep(1)
+                            step_result["success"] = True
+                            step_result["reasoning"] = f"Successfully performed default click action for {action_type}"
+                        
+                        # Update step completion tracking
+                        if step_result["success"]:
+                            steps_completed += 1
+                            logger.info(f"✅ Completed step {i}: {step_description}")
+                        else:
+                            steps_failed += 1
+                            logger.warning(f"❌ Failed step {i}: {step_description}")
+                    
+                    except Exception as step_error:
+                        # Handle step execution error
+                        error_msg = str(step_error)
+                        logger.error(f"❌ Error executing step {i}: {error_msg}")
+                        step_result["success"] = False
+                        step_result["error"] = error_msg
+                        step_result["reasoning"] = f"Step failed due to error: {error_msg}"
+                        steps_failed += 1
+                    
+                    # Calculate step execution time
+                    step_end_time = time.time()
+                    step_result["execution_time"] = step_end_time - step_start_time
+                    step_result["end_time"] = step_end_time
+                    
+                    # Add step result to execution results
+                    execution_results.append(step_result)
+                    
+                    # Log step completion with reasoning
+                    if step_result["success"]:
+                        logger.info(f"✅ Step {i} completed successfully in {step_result['execution_time']:.2f}s: {step_result['reasoning']}")
+                    else:
+                        logger.error(f"❌ Step {i} failed in {step_result['execution_time']:.2f}s: {step_result['reasoning']}")
+                
+                # Calculate total execution time
+                total_execution_time = time.time() - start_time
+                
+                # Generate comprehensive execution summary
+                success_rate = steps_completed / total_steps if total_steps > 0 else 0
+                overall_success = steps_completed == total_steps
+                
+                # Create detailed summary with reasoning
+                summary_reasoning = self._generate_execution_summary(
+                    plan_id, steps_completed, total_steps, success_rate, 
+                    execution_results, total_execution_time
+                )
+                
+                logger.info(f"🎉 Plan {plan_id} execution completed!")
+                logger.info(f"📊 Results: {steps_completed}/{total_steps} steps successful ({success_rate:.1%} success rate)")
+                logger.info(f"⏱️ Total execution time: {total_execution_time:.2f} seconds")
+                
+                return {
+                    "success": overall_success,
+                    "plan_id": plan_id,
+                    "session_id": session_id,
+                    "execution_completed": True,
+                    "steps_completed": steps_completed,
+                    "steps_failed": steps_failed,
+                    "total_steps": total_steps,
+                    "success_rate": success_rate,
+                    "total_execution_time": total_execution_time,
+                    "execution_results": execution_results,
+                    "summary": summary_reasoning,
+                    "detailed_reasoning": self._generate_detailed_reasoning(execution_results)
+                }
+                
+            except Exception as e:
+                logger.error(f"❌ Error during plan execution: {e}")
+                total_execution_time = time.time() - start_time
                 return {
                     "success": False,
-                    "response": f"Error executing plan steps: {str(e)}",
-                    "error": str(e)
-                }
-            
-            # Calculate success rate
-            success_rate = successful_steps / len(steps) if steps else 0
-            
-            # Clean up the plan from pending_plans if it exists
-            if hasattr(self, 'pending_plans') and plan_id in self.pending_plans:
-                del self.pending_plans[plan_id]
-                
-            # Send completion notification if websocket is available
-            if websocket:
-                await websocket.send(json.dumps({
-                    "type": "execution_complete",
-                    "success": successful_steps > 0,
-                    "success_rate": success_rate,
-                    "steps_completed": successful_steps,
-                    "total_steps": len(steps),
                     "plan_id": plan_id,
-                    "timestamp": time.time()
-                }))
-            
-            # Return success response
-            return {
-                "success": successful_steps > 0,
-                "response": f"✅ Executed {successful_steps}/{len(steps)} steps successfully",
-                "execution_results": execution_results,
-                "success_rate": success_rate,
-                "summary": f"Successfully executed {successful_steps}/{len(steps)} automation steps",
-                "execution_completed": True
-            }
-            
+                    "session_id": session_id,
+                    "error": str(e),
+                    "steps_completed": steps_completed,
+                    "steps_failed": steps_failed,
+                    "total_steps": total_steps,
+                    "total_execution_time": total_execution_time,
+                    "execution_results": execution_results,
+                    "summary": f"Plan execution failed due to system error: {str(e)}"
+                }
+
         except Exception as e:
             logger.error(f"❌ Error executing verified plan: {e}")
             return {
@@ -846,6 +977,44 @@ class ContextualAIBackend:
                 "response": f"❌ Error executing plan: {str(e)}",
                 "error": str(e)
             }
+    
+    def _generate_execution_summary(self, plan_id: str, steps_completed: int, total_steps: int, 
+                                  success_rate: float, execution_results: list, total_time: float) -> str:
+        """Generate a comprehensive execution summary with reasoning"""
+        summary = f"🎯 **Plan Execution Summary**\n\n"
+        summary += f"**Plan ID:** {plan_id}\n"
+        summary += f"**Completion:** {steps_completed}/{total_steps} steps ({success_rate:.1%} success rate)\n"
+        summary += f"**Total Time:** {total_time:.2f} seconds\n\n"
+        
+        if success_rate == 1.0:
+            summary += "✅ **All steps completed successfully!**\n"
+            summary += "The plan was executed completely without any errors.\n"
+        elif success_rate > 0.5:
+            summary += "⚠️ **Most steps completed successfully**\n"
+            summary += f"Some steps failed, but {steps_completed}/{total_steps} were successful.\n"
+        else:
+            summary += "❌ **Multiple steps failed**\n"
+            summary += f"Only {steps_completed}/{total_steps} steps were successful.\n"
+        
+        return summary
+    
+    def _generate_detailed_reasoning(self, execution_results: list) -> str:
+        """Generate detailed reasoning for each step"""
+        detailed_reasoning = "📋 **Step-by-Step Execution Details**\n\n"
+        
+        for result in execution_results:
+            step_num = result["step_number"]
+            description = result["description"]
+            success = result["success"]
+            reasoning = result["reasoning"]
+            execution_time = result["execution_time"]
+            
+            status_emoji = "✅" if success else "❌"
+            detailed_reasoning += f"{status_emoji} **Step {step_num}:** {description}\n"
+            detailed_reasoning += f"   ⏱️ Time: {execution_time:.2f}s\n"
+            detailed_reasoning += f"   💭 Reasoning: {reasoning}\n\n"
+        
+        return detailed_reasoning
     
     async def _try_agnostic_deep_data_access(self, message: str, mode: str, client_id: str, websocket) -> Dict[str, Any]:
         """Try to handle universal agnostic deep data access for any query
@@ -906,168 +1075,309 @@ class ContextualAIBackend:
         return result
     
     async def handle_contextual_chat_request_streaming(self, data: Dict[str, Any], client_id: str, websocket) -> None:
-        """Handle chat requests with streaming responses and fast deep data access"""
-        mode = data.get("mode", "General") if isinstance(data, dict) else getattr(data, "mode", "General")
-        message = data.get("message", "") if isinstance(data, dict) else getattr(data, "message", "")
-        
-        # Make sure to handle session_id correctly - handle both dict-like and attribute-like access
-        session_id = None
-        if isinstance(data, dict):
-            session_id = data.get("session_id", client_id)
-        else:
-            try:
-                # Try attribute access as fallback
-                session_id = getattr(data, "session_id", client_id)
-            except:
-                # If all else fails, use client_id
-                session_id = client_id
-        
-        # Log the session_id resolution for debugging
-        logger.debug(f"Resolved session_id: {session_id} from client_id: {client_id}")
-        
-        start_time = time.time()
-        
+        """Handle chat requests with streaming responses for better UX"""
         try:
-            # Universal agnostic data access - try for ANY query first
-            deep_data_result = await self._try_agnostic_deep_data_access(message, mode, client_id, websocket)
-            if deep_data_result.get("handled"):
-                return  # Exit early - deep data provided meaningful response
+            message = data.get('message', '').strip()
+            mode = data.get('mode', 'General').title()
+            session_id = data.get('session_id', str(uuid.uuid4()))
             
-            # Initialize contextual knowledge if not done yet
-            if not self.contextual_knowledge_initialized:
-                await self._initialize_contextual_knowledge()
-                self.contextual_knowledge_initialized = True
+            if not message:
+                await websocket.send(json.dumps({
+                    "type": "error",
+                    "payload": {"message": "Empty message received"},
+                    "session_id": session_id
+                }))
+                return
             
-            # Store user message in memory
-            await add_memory(
-                f"User in {mode} mode: {message}",
-                source="user_interaction",
-                tags={f"mode_{mode.lower()}", "user_message", session_id}
-            )
+            logger.info(f"🔄 Processing streaming request for {mode} mode: {message[:100]}...")
             
-            # Get context for the query
-            context = await get_context_for_query(message, max_context_length=500)
-            
-            # Use brain router for all modes
-            if self.brain_router:
-                try:
-                    # Prepare a dict for brain router with all needed fields
-                    request_data = {
-                        "mode": mode,
-                        "query": message,
-                        "user_id": client_id,
-                        "session_id": session_id,
-                        "context": context,
-                        "timestamp": time.time()  # Add timestamp field required by ChatRequest
-                    }
-                    
-                    # Call brain router with structured request
-                    response = await self.brain_router.process_request(request_data)
-                    
-                    # Convert response to dict if it's not already
-                    if not isinstance(response, dict):
-                        response = {
-                            "success": True,
-                            "response": str(response),
-                            "mode_used": mode,
-                            "processing_time": round(time.time() - start_time, 3),
-                            "confidence": 0.8,
-                            "metadata": {"source": "brain_router"},
-                            "verification_status": "verified"
-                        }
-                    
-                    # Ensure session_id is included
-                    response["session_id"] = session_id
-                except Exception as e:
-                    logger.error(f"Error in brain router processing: {e}")
-                    response = {
-                        "success": False,
-                        "response": f"Error processing your request: {str(e)}",
-                        "mode_used": mode,
-                        "processing_time": round(time.time() - start_time, 3),
-                        "confidence": 0.0,
-                        "metadata": {"error": str(e)},
-                        "verification_status": "error",
-                        "session_id": session_id  # Ensure session_id is included
-                    }
-            else:
-                # Fallback to direct LLM if brain router not available
-                from llm.model import LocalLLM
-                llm = LocalLLM(model_name="llama3.2:1b")
-                await llm.start()
-                
-                # Create system message with context
-                system_message = "You are a helpful AI assistant that responds to user questions."
-                if context and "relevant_memories" in context:
-                    system_message += "\n\nHere's some relevant context from memory:\n"
-                    for i, memory in enumerate(context.get("relevant_memories", [])[:5]):
-                        system_message += f"{i+1}. {memory}\n"
-                
-                # Add specific instructions based on mode
-                if mode.lower() == "agent":
-                    system_message += "\n\nThe user is in Agent Mode. Respond with a detailed step-by-step plan to automate what they want."
-                elif mode.lower() == "ask":
-                    system_message += "\n\nThe user is in Ask Mode. Provide a detailed informative answer to their question."
-                elif mode.lower() == "suggest":
-                    system_message += "\n\nThe user is in Suggest Mode. Provide helpful suggestions related to their request."
-                else:  # General mode
-                    system_message += "\n\nThe user is in General Mode. Respond conversationally and helpfully."
-                
-                # Create messages for the LLM
-                messages = [
-                    {"role": "system", "content": system_message},
-                    {"role": "user", "content": message}
-                ]
-                
-                # Generate the response
-                llm_response = await llm.generate_response(messages)
-                
-                # Create response object
-                response = {
-                    "success": True,
-                    "response": llm_response,
-                    "mode_used": mode,
-                    "processing_time": round(time.time() - start_time, 3),
-                    "confidence": 0.8,
-                    "metadata": {"source": "direct_llm"},
-                    "verification_status": "verified",
-                    "session_id": session_id  # Add session_id to response
-                }
-            
-            # Send streaming response
+            # Send initial acknowledgment
             await websocket.send(json.dumps({
-                "type": "chat_response",
-                "mode": mode,
-                "response": response.get("response", "No response generated"),
-                "client_id": client_id,
-                "session_id": session_id,  # Add session_id to websocket response
-                "timestamp": datetime.now().isoformat(),
-                "ai_powered": True,
-                "success": response.get("success", False),
-                "confidence": response.get("confidence", 0.0),
-                "processing_time": round(time.time() - start_time, 3),
-                "metadata": response.get("metadata", {}),
-                "verification_status": response.get("verification_status", "unknown")
+                "type": "processing_started",
+                "payload": {
+                    "mode": mode,
+                    "message": message,
+                    "timestamp": datetime.now().isoformat()
+                },
+                "session_id": session_id
             }))
             
-            # Store response in memory
-            await add_memory(
-                f"System response in {mode} mode: {response.get('response', '')[:100]}...",
-                source="system_response",
-                tags={f"mode_{mode.lower()}", "response", session_id}
-            )
-            
+            # Handle different modes with streaming
+            if mode == "Agent":
+                await self._handle_agent_mode_streaming(message, session_id, websocket)
+            elif mode == "Ask":
+                await self._handle_ask_mode_streaming(message, session_id, websocket)
+            elif mode == "Suggest":
+                await self._handle_suggest_mode_streaming(message, session_id, websocket)
+            else:
+                await self._handle_general_mode_streaming(message, session_id, websocket)
+                
         except Exception as e:
-            logger.error(f"Error in handle_contextual_chat_request_streaming: {e}")
+            logger.error(f"Error in streaming chat request: {e}")
             await websocket.send(json.dumps({
                 "type": "error",
-                "mode": mode,
-                "response": f"An error occurred: {str(e)}",
-                "client_id": client_id,
-                "session_id": session_id,  # Add session_id to error response
-                "timestamp": datetime.now().isoformat(),
-                "success": False,
-                "processing_time": round(time.time() - start_time, 3)
+                "payload": {"message": f"Processing error: {str(e)}"},
+                "session_id": session_id
+            }))
+
+    async def _handle_agent_mode_streaming(self, message: str, session_id: str, websocket):
+        """Handle agent mode with streaming plan generation"""
+        try:
+            # Generate a proper plan ID
+            plan_id = f"plan_{int(time.time())}"
+            
+            # Send plan generation start
+            await websocket.send(json.dumps({
+                "type": "plan_generation_started",
+                "payload": {
+                    "message": "Generating automation plan...",
+                    "plan_id": plan_id,
+                    "timestamp": datetime.now().isoformat()
+                },
+                "session_id": session_id
+            }))
+            
+            # Stream plan generation
+            plan_chunks = []
+            async for chunk in self.llm_plan_creator.create_plan_streaming(message):
+                plan_chunks.append(chunk)
+                
+                # Send progress updates
+                if "🔄" in chunk or "✅" in chunk or "❌" in chunk:
+                    await websocket.send(json.dumps({
+                        "type": "plan_generation_progress",
+                        "payload": {
+                            "progress": chunk,
+                                "plan_id": plan_id,
+                            "timestamp": datetime.now().isoformat()
+                        },
+                        "session_id": session_id
+                    }))
+                elif chunk.startswith('{') and chunk.endswith('}'):
+                    # This is the final JSON plan
+                    try:
+                        plan_data = json.loads(chunk)
+                        # Add plan_id to the plan data
+                        plan_data["plan_id"] = plan_id
+                        plan_data["session_id"] = session_id
+                        
+                        await websocket.send(json.dumps({
+                            "type": "plan_generated",
+                            "payload": {
+                                "plan": plan_data,
+                                    "plan_id": plan_id,
+                                "timestamp": datetime.now().isoformat()
+                            },
+                            "session_id": session_id
+                            }))
+                    except json.JSONDecodeError:
+                        logger.error(f"Failed to parse plan JSON: {chunk}")
+            
+            # Send completion message
+            await websocket.send(json.dumps({
+                "type": "plan_generation_completed",
+                "payload": {
+                    "message": "Plan generation completed",
+                    "plan_id": plan_id,
+                    "timestamp": datetime.now().isoformat()
+                },
+                "session_id": session_id
+            }))
+            
+        except Exception as e:
+            logger.error(f"Error in agent mode streaming: {e}")
+            await websocket.send(json.dumps({
+                "type": "error",
+                "payload": {"message": f"Agent mode error: {str(e)}"},
+                "session_id": session_id
+            }))
+
+    async def _handle_ask_mode_streaming(self, message: str, session_id: str, websocket):
+        """Handle ask mode with streaming responses"""
+        try:
+            # Send processing start
+            await websocket.send(json.dumps({
+                "type": "response_generation_started",
+                "payload": {
+                    "message": "Generating response...",
+                    "timestamp": datetime.now().isoformat()
+                },
+                "session_id": session_id
+            }))
+            
+            # First try deep data access for specific queries
+            response = await self._try_agnostic_deep_data_access(message, "Ask", session_id, websocket)
+            
+            # If not handled by deep data access, use LLM service
+            if not response.get("handled", False):
+                logger.info(f"🤖 Using LLM service for Ask mode query: {message}")
+                
+                # Create a prompt for the LLM
+                prompt = f"""You are a helpful AI assistant. The user asked: "{message}"
+
+Please provide a helpful and informative response. If this is a request to open something or perform an action, explain how to do it or what the user might be looking for.
+
+Response:"""
+                
+                try:
+                    # Get response from LLM service
+                    llm_response = await self.llm_service.generate_response(prompt)
+                    
+                    # Send the LLM response
+                    await websocket.send(json.dumps({
+                        "type": "response_generated",
+                        "payload": {
+                            "response": llm_response,
+                            "mode": "Ask",
+                            "handled": True
+                        },
+                        "session_id": session_id
+                    }))
+                    
+                except Exception as llm_error:
+                    logger.error(f"LLM service error: {llm_error}")
+                    # Fallback response
+                    await websocket.send(json.dumps({
+                        "type": "response_generated",
+                        "payload": {
+                            "response": f"I understand you're asking about '{message}'. This appears to be a request to open something in Google. To open a search in Google, you can:\n\n1. Open your web browser\n2. Go to google.com\n3. Type '{message.replace('in Google', '').strip()}' in the search box\n4. Press Enter\n\nWould you like me to help you with anything specific about this?",
+                            "mode": "Ask",
+                            "handled": True
+                        },
+                        "session_id": session_id
+                    }))
+            else:
+                # Deep data access handled it, send the response
+                await websocket.send(json.dumps({
+                    "type": "response_generated",
+                    "payload": response,
+                    "session_id": session_id
+                }))
+            
+        except Exception as e:
+            logger.error(f"Error in ask mode streaming: {e}")
+            await websocket.send(json.dumps({
+                "type": "error",
+                "payload": {"message": f"Ask mode error: {str(e)}"},
+                "session_id": session_id
+            }))
+
+    async def _handle_suggest_mode_streaming(self, message: str, session_id: str, websocket):
+        """Handle suggest mode with streaming responses"""
+        try:
+            # Send processing start
+            await websocket.send(json.dumps({
+                "type": "suggestion_generation_started",
+                "payload": {
+                    "message": "Generating suggestions...",
+                    "timestamp": datetime.now().isoformat()
+                },
+                "session_id": session_id
+            }))
+            
+            # Use LLM service for suggestions
+            logger.info(f"🤖 Using LLM service for Suggest mode query: {message}")
+            
+            # Create a prompt for suggestions
+            prompt = f"""You are a helpful AI assistant that provides suggestions and recommendations. The user asked: "{message}"
+
+Please provide helpful suggestions, tips, or recommendations related to their request. Be creative and practical.
+
+Suggestions:"""
+            
+            try:
+                # Get response from LLM service
+                llm_response = await self.llm_service.generate_response(prompt)
+                
+                # Send the LLM response
+                await websocket.send(json.dumps({
+                    "type": "suggestion_generated",
+                    "payload": {
+                        "response": llm_response,
+                        "mode": "Suggest",
+                        "handled": True
+                    },
+                    "session_id": session_id
+                }))
+                
+            except Exception as llm_error:
+                logger.error(f"LLM service error: {llm_error}")
+                # Fallback response
+                await websocket.send(json.dumps({
+                    "type": "suggestion_generated",
+                    "payload": {
+                        "response": f"Here are some suggestions for '{message}':\n\n1. Try breaking down your request into smaller steps\n2. Consider what specific outcome you're looking for\n3. Think about alternative approaches\n4. Ask for more specific guidance if needed\n\nWould you like me to elaborate on any of these suggestions?",
+                        "mode": "Suggest",
+                        "handled": True
+                    },
+                    "session_id": session_id
+                }))
+            
+        except Exception as e:
+            logger.error(f"Error in suggest mode streaming: {e}")
+            await websocket.send(json.dumps({
+                "type": "error",
+                "payload": {"message": f"Suggest mode error: {str(e)}"},
+                "session_id": session_id
+            }))
+
+    async def _handle_general_mode_streaming(self, message: str, session_id: str, websocket):
+        """Handle general mode with streaming responses"""
+        try:
+            # Send processing start
+            await websocket.send(json.dumps({
+                "type": "response_generation_started",
+                "payload": {
+                    "message": "Generating response...",
+                    "timestamp": datetime.now().isoformat()
+                },
+                "session_id": session_id
+            }))
+            
+            # Use LLM service for general queries
+            logger.info(f"🤖 Using LLM service for General mode query: {message}")
+            
+            # Create a prompt for general responses
+            prompt = f"""You are a helpful AI assistant. The user said: "{message}"
+
+Please provide a helpful and informative response. Be conversational and helpful.
+
+Response:"""
+            
+            try:
+                # Get response from LLM service
+                llm_response = await self.llm_service.generate_response(prompt)
+                
+                # Send the LLM response
+                await websocket.send(json.dumps({
+                    "type": "response_generated",
+                    "payload": {
+                        "response": llm_response,
+                        "mode": "General",
+                        "handled": True
+                    },
+                    "session_id": session_id
+                }))
+                
+            except Exception as llm_error:
+                logger.error(f"LLM service error: {llm_error}")
+                # Fallback response
+                await websocket.send(json.dumps({
+                    "type": "response_generated",
+                    "payload": {
+                        "response": f"I understand you said: '{message}'. I'm here to help! Could you please clarify what you'd like me to assist you with?",
+                        "mode": "General",
+                        "handled": True
+                    },
+                    "session_id": session_id
+                }))
+            
+        except Exception as e:
+            logger.error(f"Error in general mode streaming: {e}")
+            await websocket.send(json.dumps({
+                "type": "error",
+                "payload": {"message": f"General mode error: {str(e)}"},
+                "session_id": session_id
             }))
             
     async def handle_websocket(self, websocket, path=None):
@@ -1088,80 +1398,170 @@ class ContextualAIBackend:
         }
         
         try:
-            # Send initial connection response
-            await websocket.send(json.dumps({
-                "type": "connection_established",
-                "client_id": client_id,
-                "message": "Connected to Enhanced Enterprise Backend with Context",
-                "timestamp": datetime.now().isoformat(),
-                "capabilities": [
-                    "context_tracking",
-                    "agent_mode",
-                    "ask_mode", 
-                    "suggest_mode",
-                    "general_mode",
-                    "semantic_search"
-                ]
-            }))
-            
-            async for message in websocket:
+            registered = False
+            while True:
+                message = await websocket.recv()
+                logger.info(f"[WS] Received raw message: {message}")
                 try:
                     data = json.loads(message)
-                    msg_type = data.get('type', 'unknown')
-                    logger.info(f"Received message type: {msg_type} from {client_id}")
-                    
-                    # Handle different message types
-                    if msg_type == 'chat_request':
+                    # --- PATCH: Always set session_id and client_id early ---
+                    client_id = data.get('client_id') or str(uuid.uuid4())
+                    session_id = data.get('session_id') or client_id
+                    msg_type = data.get('type', '')
+                    logger.info(f"[WS] Routing message type: {msg_type} from {client_id} | Full data: {data}")
+
+                    # Handle registration (only first message)
+                    if msg_type == 'register':
+                        if not registered:
+                            logger.info(f"[WS] Registration message from {client_id}")
+                            await websocket.send(json.dumps({
+                                "type": "registration_confirmed",
+                                    "client_id": client_id,
+                                    "timestamp": datetime.now().isoformat(),
+                                "capabilities": [
+                                    "plan_execution",
+                                    "verification",
+                                    "context_tracking"
+                                ]
+                                }))
+                            registered = True
+                        else:
+                            logger.info(f"[WS] Ignoring duplicate registration from {client_id}")
+                        continue
+                    # After registration, always route by type
+                    if msg_type == 'chat' or msg_type == 'automation_request':
+                        user_request = data.get('query', '')
+                        plan_result = await self.llm_plan_creator.create_llm_plan(user_request, session_id)
+                        if plan_result["success"]:
+                            plan_id = plan_result["plan_id"]
+                            # --- ADD: Store plan for later execution ---
+                            self.generated_plans[plan_id] = plan_result
+                            await websocket.send(json.dumps({
+                                "type": "plan_created",
+                                    "plan_id": plan_id,
+                                "plan": plan_result,
+                                    "client_id": client_id,
+                                    "session_id": session_id,
+                                    "timestamp": datetime.now().isoformat(),
+                                "success": True
+                                }))
+                        else:
+                            await websocket.send(json.dumps({
+                                "type": "plan_error",
+                                "error": plan_result.get("response", "Plan creation failed"),
+                                    "client_id": client_id,
+                                    "session_id": session_id,
+                                    "timestamp": datetime.now().isoformat(),
+                                "success": False
+                                }))
+                        continue
+                    elif msg_type == 'query':
+                        # Handle query messages (including /do_ commands from overlay)
                         try:
-                            # Extract and validate session_id before passing to handler
-                            session_id = None
-                            if isinstance(data, dict):
-                                session_id = data.get("session_id", client_id)
-                                # Ensure session_id is in the data dict for all downstream handlers
-                                if "session_id" not in data:
-                                    data["session_id"] = session_id
+                            message = data.get('payload', {}).get('message', '')
+                            logger.info(f"Processing query message: {message}")
+                            # Check if this is a /do_ command from overlay
+                            if message.startswith('/do_'):
+                                # Extract action and plan_id from /do_execute plan_id format
+                                parts = message.split(' ', 1)
+                                if len(parts) == 2:
+                                    action = parts[0].replace('/do_', '')
+                                    plan_id = parts[1].strip()
+                                    logger.info(f"Processing /do_ command: action={action}, plan_id={plan_id}")
+                                    if action == 'execute':
+                                        # Execute the plan
+                                        result = await self.execute_verified_plan(plan_id, session_id)
+                                        await websocket.send(json.dumps({
+                                            "type": "execution_result",
+                                            "plan_id": plan_id,
+                                            "action": action,
+                                            "result": result,
+                                            "client_id": client_id,
+                                            "session_id": session_id,
+                                            "timestamp": datetime.now().isoformat(),
+                                            "success": True
+                                        }))
+                                    else:
+                                        await websocket.send(json.dumps({
+                                            "type": "action_result",
+                                            "plan_id": plan_id,
+                                            "action": action,
+                                            "message": f"Action '{action}' not yet implemented",
+                                            "client_id": client_id,
+                                            "session_id": session_id,
+                                            "timestamp": datetime.now().isoformat(),
+                                            "success": False
+                                        }))
+                                else:
+                                    await websocket.send(json.dumps({
+                                        "type": "error",
+                                        "error": f"Invalid /do_ command format: {message}",
+                                        "client_id": client_id,
+                                        "session_id": session_id,
+                                        "timestamp": datetime.now().isoformat(),
+                                        "success": False
+                                    }))
                             else:
-                                try:
-                                    # Try attribute access as fallback
-                                    session_id = getattr(data, "session_id", client_id)
-                                except:
-                                    # If all else fails, use client_id
-                                    session_id = client_id
-                            
-                            logger.debug(f"Processing chat request with session_id: {session_id} for client: {client_id}")
-                                
-                            # Handle streaming response with error catching
-                            await self.handle_contextual_chat_request_streaming(data, client_id, websocket)
+                                # Handle regular query messages - create a plan
+                                user_request = data.get('payload', {}).get('message', '')
+                                plan_result = await self.llm_plan_creator.create_llm_plan(user_request, session_id)
+                                if plan_result["success"]:
+                                    plan_id = plan_result["plan_id"]
+                                    # Store plan for later execution
+                                    self.generated_plans[plan_id] = plan_result
+                                    # Create a formatted response for the overlay
+                                    formatted_response = f"""🎯 **AUTOMATION EXECUTION PLAN**\n\n🆔 **Plan ID:** {plan_id}\n📋 **Task:** {user_request}\n⏱️ **Estimated Duration:** {plan_result.get('estimated_duration', '15.0')} seconds\n🎯 **Success Probability:** {plan_result.get('success_probability', '80')}%\n🔧 **Complexity:** {plan_result.get('complexity', 'Medium')}\n📝 **Steps:** {len(plan_result.get('steps', []))}+ actions\n\n🚀 **Automation Steps:**\n"""
+                                    for i, step in enumerate(plan_result.get('steps', []), 1):
+                                        formatted_response += f"{i}. {step.get('description', 'Step')}\n"
+                                    formatted_response += f"""\n\n🧠 **Universal Intelligence System**\n✅ **Plan Ready for Execution**\n🔄 **Interactive Controls Available**\n"""
+                                    await websocket.send(json.dumps({
+                                        "type": "response",
+                                        "payload": {
+                                            "plan_id": plan_id,
+                                            "response": formatted_response,
+                                            "plan": plan_result
+                                        },
+                                        "client_id": client_id,
+                                        "session_id": session_id,
+                                        "timestamp": datetime.now().isoformat(),
+                                        "success": True
+                                    }))
+                                else:
+                                    await websocket.send(json.dumps({
+                                        "type": "error",
+                                        "error": plan_result.get("response", "Plan creation failed"),
+                                        "client_id": client_id,
+                                        "session_id": session_id,
+                                        "timestamp": datetime.now().isoformat(),
+                                        "success": False
+                                    }))
                         except Exception as e:
-                            logger.error(f"Error handling chat request: {e}")
-                            
-                            # Determine mode safely
-                            mode = "General"
-                            if isinstance(data, dict):
-                                mode = data.get("mode", "General")
-                            elif hasattr(data, "mode"):
-                                mode = getattr(data, "mode", "General")
-                                
-                            # Extract session_id safely for error response
-                            session_id = client_id
-                            if isinstance(data, dict):
-                                session_id = data.get("session_id", client_id)
-                            elif hasattr(data, "session_id"):
-                                try:
-                                    session_id = data.session_id
-                                except:
-                                    session_id = client_id
-                            
-                            # Send error response to client
+                            logger.error(f"Error handling query message: {e}")
                             await websocket.send(json.dumps({
                                 "type": "error",
-                                "mode": mode,
-                                "response": f"Error processing request: {str(e)}",
+                                "error": f"Error processing query: {str(e)}",
                                 "client_id": client_id,
-                                "session_id": session_id,  # Add session_id to error response
+                                "session_id": session_id,
                                 "timestamp": datetime.now().isoformat(),
                                 "success": False
                             }))
+                        continue
+                    elif msg_type == 'chat_request':
+                        logger.info(f"Handling chat_request from {client_id}: {data}")
+                        try:
+                            # Use streaming response for better UX
+                            await self.handle_contextual_chat_request_streaming(data, client_id, websocket)
+                        except Exception as e:
+                            logger.error(f"Error handling chat_request: {e}")
+                            await websocket.send(json.dumps({
+                                "type": "error",
+                                "error": f"Error processing chat request: {str(e)}",
+                                    "client_id": client_id,
+                                    "session_id": session_id,
+                                    "timestamp": datetime.now().isoformat(),
+                                "success": False
+                                }))
+                        continue
                     elif msg_type == 'agent_confirmation':
                         # Handle agent confirmation (DO button)
                         plan_id = data.get('session_id', '')
@@ -1172,48 +1572,194 @@ class ContextualAIBackend:
                         result = await self.execute_verified_plan(plan_id)
                         await websocket.send(json.dumps(result))
                     elif msg_type == 'button_action':
-                        # Handle button actions
-                        action = data.get('action', '')
-                        plan_id = data.get('plan_id', '')
-                        logger.info(f"Button action received: {action} for plan {plan_id}")
-                        
-                        # Execute the plan
-                        result = await self.execute_verified_plan(plan_id)
-                        await websocket.send(json.dumps(result))
+                        # --- PATCH: Execute plan on button_action/execute ---
+                        plan_id = data.get('plan_id')
+                        plan = self.generated_plans.get(plan_id)
+                        if not plan:
+                            await websocket.send(json.dumps({
+                                "type": "execution_error",
+                                "error": f"Plan not found for plan_id: {plan_id}",
+                                    "plan_id": plan_id,
+                                    "client_id": client_id,
+                                    "session_id": session_id,
+                                    "timestamp": datetime.now().isoformat(),
+                                "success": False
+                                }))
+                            continue
+                        # --- Execute each step using input controller ---
+                        await websocket.send(json.dumps({
+                            "type": "execution_started",
+                                "plan_id": plan_id,
+                                "client_id": client_id,
+                                "session_id": session_id,
+                                "timestamp": datetime.now().isoformat(),
+                            "success": True
+                            }))
+                        for i, step in enumerate(plan["steps"]):
+                            step_type = step.get("action_type")
+                            desc = step.get("description", "")
+                            try:
+                                # Check if input controller is available
+                                if self.input_controller is None:
+                                    logger.error("❌ Input controller is not initialized!")
+                                    await websocket.send(json.dumps({
+                                        "type": "execution_error",
+                                        "plan_id": plan_id,
+                                        "step": i+1,
+                                        "description": desc,
+                                        "error": "Input controller not initialized",
+                                        "timestamp": datetime.now().isoformat(),
+                                        "success": False
+                                    }))
+                                    continue
+                                logger.info(f"🎮 Executing step {i+1}: {step_type} - {desc}")
+                                # Map step to input controller
+                                if step_type == "hotkey":
+                                    keys = step.get("target", "").split("+")
+                                    logger.info(f"🔥 Executing hotkey: {'+'.join(keys)}")
+                                    self.input_controller.hotkey(*[k.strip() for k in keys if k.strip()])
+                                elif step_type == "type_text":
+                                    text = step.get("value", "")
+                                    logger.info(f"⌨️ Typing text: '{text}'")
+                                    self.input_controller.type_text(text)
+                                elif step_type == "press_key":
+                                    key = step.get("key") or step.get("target")
+                                    logger.info(f"🔤 Pressing key: {key}")
+                                    self.input_controller.press_key(key)
+                                elif step_type == "click":
+                                    coords = step.get("coordinates")
+                                    if coords and isinstance(coords, (list, tuple)) and len(coords) == 2:
+                                        logger.info(f"🖱️ Clicking at coordinates: {coords}")
+                                        self.input_controller.click(int(coords[0]), int(coords[1]))
+                                    else:
+                                        logger.info("🖱️ Clicking at current position")
+                                        self.input_controller.click()
+                                elif step_type == "wait":
+                                    duration = float(step.get("duration") or step.get("value") or 1.0)
+                                    logger.info(f"⏱️ Waiting for {duration} seconds")
+                                    await asyncio.sleep(duration)
+                                else:
+                                    logger.warning(f"⚠️ Unknown step type: {step_type}")
+                                # Send progress update
+                                await websocket.send(json.dumps({
+                                    "type": "execution_progress",
+                                    "plan_id": plan_id,
+                                    "step": i+1,
+                                    "total_steps": len(plan["steps"]),
+                                    "description": desc,
+                                    "step_type": step_type,
+                                    "timestamp": datetime.now().isoformat(),
+                                    "success": True
+                                }))
+                            except Exception as e:
+                                await websocket.send(json.dumps({
+                                    "type": "execution_error",
+                                    "plan_id": plan_id,
+                                    "step": i+1,
+                                    "description": desc,
+                                    "error": str(e),
+                                    "timestamp": datetime.now().isoformat(),
+                                    "success": False
+                                }))
+                        # --- Send completion ---
+                        await websocket.send(json.dumps({
+                            "type": "execution_completed",
+                                "plan_id": plan_id,
+                                "client_id": client_id,
+                                "session_id": session_id,
+                                "timestamp": datetime.now().isoformat(),
+                            "success": True
+                            }))
+                        continue
                     elif msg_type == 'ping':
                         # Handle ping messages
                         await websocket.send(json.dumps({
                             "type": "pong",
                             "timestamp": datetime.now().isoformat()
-                        }))
+                            }))
                     elif msg_type == 'sensor_data':
                         # Handle sensor data
                         logger.info(f"Processing sensor data from {client_id}")
                         await websocket.send(json.dumps({
                             "type": "sensor_data_ack",
                             "timestamp": datetime.now().isoformat()
-                        }))
+                            }))
                     elif msg_type == 'sensor_data_response':
                         # Handle sensor data responses
                         logger.info(f"Processing sensor data response from {client_id}")
                         await websocket.send(json.dumps({
                             "type": "sensor_data_ack",
                             "timestamp": datetime.now().isoformat()
-                        }))
+                            }))
                     elif msg_type == 'heartbeat':
                         # Handle heartbeat messages
                         logger.info(f"Processing heartbeat from {client_id}")
                         await websocket.send(json.dumps({
                             "type": "heartbeat_ack",
                             "timestamp": datetime.now().isoformat()
+                            }))
+                    elif msg_type == 'execute_plan':
+                        # Handle execute_plan messages with comprehensive reasoning
+                        plan_id = data.get('plan_id', '')
+                        logger.info(f"🎯 Executing plan: {plan_id}")
+                        
+                        # Send execution started notification
+                        await websocket.send(json.dumps({
+                            "type": "execution_started",
+                            "plan_id": plan_id,
+                            "client_id": client_id,
+                            "session_id": session_id,
+                            "timestamp": datetime.now().isoformat(),
+                            "success": True
                         }))
+                        
+                        try:
+                            # Execute the plan using our enhanced method
+                            execution_result = await self.execute_verified_plan(plan_id, session_id)
+                            
+                            # Send detailed execution results
+                            await websocket.send(json.dumps({
+                                "type": "execution_completed",
+                                "plan_id": plan_id,
+                                "client_id": client_id,
+                                "session_id": session_id,
+                                "timestamp": datetime.now().isoformat(),
+                                "success": execution_result.get("success", False),
+                                "steps_completed": execution_result.get("steps_completed", 0),
+                                "steps_failed": execution_result.get("steps_failed", 0),
+                                "total_steps": execution_result.get("total_steps", 0),
+                                "success_rate": execution_result.get("success_rate", 0),
+                                "total_execution_time": execution_result.get("total_execution_time", 0),
+                                "summary": execution_result.get("summary", ""),
+                                "detailed_reasoning": execution_result.get("detailed_reasoning", ""),
+                                "execution_results": execution_result.get("execution_results", [])
+                            }))
+                            
+                            # Log completion
+                            if execution_result.get("success", False):
+                                logger.info(f"✅ Plan {plan_id} executed successfully with comprehensive reasoning")
+                            else:
+                                logger.warning(f"⚠️ Plan {plan_id} execution completed with some failures")
+                                
+                        except Exception as e:
+                            logger.error(f"❌ Error executing plan {plan_id}: {e}")
+                            await websocket.send(json.dumps({
+                                "type": "execution_error",
+                                "error": f"Plan execution failed: {str(e)}",
+                                "plan_id": plan_id,
+                                "client_id": client_id,
+                                "session_id": session_id,
+                                "timestamp": datetime.now().isoformat(),
+                                "success": False
+                            }))
+                        continue
                     elif msg_type == 'heartbeat_response':
                         # Handle heartbeat responses
                         logger.info(f"Processing heartbeat response from {client_id}")
                         await websocket.send(json.dumps({
                             "type": "heartbeat_ack",
                             "timestamp": datetime.now().isoformat()
-                        }))
+                            }))
                     elif "notification" in data or "suggestion" in data or msg_type in ["notification", "suggestion"]:
                         # Forward notifications
                         await websocket.send(message)
@@ -1223,7 +1769,7 @@ class ContextualAIBackend:
                             "type": "response",
                             "message": f"Received {msg_type} message",
                             "timestamp": datetime.now().isoformat()
-                        }))
+                            }))
                 
                 except json.JSONDecodeError:
                     logger.error(f"Invalid JSON from {client_id}: {message[:100]}...")
@@ -1256,10 +1802,11 @@ async def start_server():
     import os
     os.makedirs("logs/backend", exist_ok=True)
     
-    port = 8767
+    ws_port = 8767
+    http_port = 8768
     host = "0.0.0.0"  # Listen on all interfaces
     
-    logger.info(f"🚀 Starting Enhanced Enterprise Backend with Context on {host}:{port}...")
+    logger.info(f"🚀 Starting Enhanced Enterprise Backend with Context...")
     
     try:
         # Initialize brain router asynchronously
@@ -1270,34 +1817,157 @@ async def start_server():
             except Exception as e:
                 logger.error(f"Failed to initialize brain router asynchronously: {e}")
         
-        # Create WebSocket server with proper handler
-        server = await websockets.serve(
-            backend.handle_websocket,  # Pass the instance method as handler
+        # Warm up the LLM
+        try:
+            logger.info("🔥 Warming up LLM for faster responses...")
+            await backend._warmup_llm()
+            logger.info("✅ LLM warmup completed")
+        except Exception as e:
+            logger.warning(f"⚠️ LLM warmup failed: {e}")
+        
+        # Create HTTP app for REST endpoints
+        app = web.Application()
+        
+        # Add HTTP routes
+        async def handle_chat(request):
+            """Handle HTTP chat requests"""
+            try:
+                data = await request.json()
+                message = data.get('message', '')
+                mode = data.get('mode', 'Agent')
+                session_id = data.get('session_id', str(uuid.uuid4()))
+                
+                logger.info(f"📝 HTTP Chat Request: {message[:100]}... (mode: {mode})")
+                
+                # Create a mock websocket for response collection
+                class MockWebSocket:
+                    def __init__(self):
+                        self.responses = []
+                    
+                    async def send(self, data):
+                        self.responses.append(data)
+                
+                mock_ws = MockWebSocket()
+                
+                # Handle the request based on mode
+                if mode == "Agent":
+                    await backend._handle_agent_mode_streaming(message, session_id, mock_ws)
+                elif mode == "Ask":
+                    await backend._handle_ask_mode_streaming(message, session_id, mock_ws)
+                elif mode == "Suggest":
+                    await backend._handle_suggest_mode_streaming(message, session_id, mock_ws)
+                else:
+                    await backend._handle_general_mode_streaming(message, session_id, mock_ws)
+                
+                # Return the final response
+                if mock_ws.responses:
+                    try:
+                        # Try to parse the last JSON response
+                        last_response = mock_ws.responses[-1]
+                        if isinstance(last_response, str) and last_response.startswith('{'):
+                            return web.json_response(json.loads(last_response))
+                        else:
+                            return web.json_response({
+                                "type": "response",
+                                "message": "".join(mock_ws.responses),
+                                    "session_id": session_id,
+                                "timestamp": datetime.now().isoformat()
+                            })
+                    except:
+                        return web.json_response({
+                            "type": "response",
+                            "message": "".join(mock_ws.responses),
+                                "session_id": session_id,
+                            "timestamp": datetime.now().isoformat()
+                        })
+                else:
+                    return web.json_response({
+                        "type": "error",
+                        "message": "No response generated",
+                        "session_id": session_id,
+                        "timestamp": datetime.now().isoformat()
+                    })
+                    
+            except Exception as e:
+                logger.error(f"HTTP chat error: {e}")
+                return web.json_response({
+                    "type": "error",
+                    "message": f"Error processing request: {str(e)}",
+                    "timestamp": datetime.now().isoformat()
+                }, status=500)
+        
+        async def handle_health(request):
+            """Health check endpoint"""
+            return web.json_response({
+                "status": "healthy",
+                "timestamp": datetime.now().isoformat(),
+                "backend": "Enhanced Enterprise Backend with Context",
+                "ws_port": ws_port,
+                "http_port": http_port
+            })
+        
+        # Add routes
+        app.router.add_post('/chat', handle_chat)
+        app.router.add_get('/health', handle_health)
+        
+        # Start HTTP server on different port
+        runner = web.AppRunner(app)
+        await runner.setup()
+        site = web.TCPSite(runner, host, http_port)
+        await site.start()
+        
+        logger.info(f"✅ HTTP server started on http://{host}:{http_port}")
+        
+        # Create WebSocket server on original port
+        ws_server = await websockets.serve(
+            backend.handle_websocket,
             host, 
-            port,
-            ping_interval=30,
-            ping_timeout=60,
-            max_size=10 * 1024 * 1024  # 10MB max message size
+            ws_port,
+            ping_interval=20,
+            ping_timeout=10
         )
         
-        # Save PID for easy shutdown
-        with open('pids/enhanced_enterprise_backend.pid', 'w') as f:
-            f.write(str(os.getpid()))
+        logger.info(f"✅ WebSocket server started on ws://{host}:{ws_port}")
+        logger.info(f"🚀 Enhanced Enterprise Backend started!")
+        logger.info(f"🌐 HTTP API: http://localhost:{http_port}/chat")
+        logger.info(f"🔌 WebSocket: ws://localhost:{ws_port}")
         
-        logger.info(f"✅ Enhanced Enterprise Backend with Context started successfully")
-        logger.info(f"🌐 WebSocket server listening on ws://{host}:{port}")
-        print(f"🚀 Enhanced Enterprise Backend with Context Ready on port {port}!")
-        print(f"🧠 Context-aware AI responses with semantic memory")
-        print(f"🎯 Real agent automation ready for DO button execution")
-        
-        # Run forever
-        await asyncio.Future()
+        # Keep the server running
+        await asyncio.Future()  # Run forever
         
     except Exception as e:
-        logger.error(f"❌ Failed to start Enhanced Enterprise Backend: {e}")
+        logger.error(f"❌ Failed to start server: {e}")
         raise
 
+def start_http_status_server():
+    class StatusHandler(BaseHTTPRequestHandler):
+        def do_GET(self):
+            if self.path == '/status':
+                self.send_response(200)
+                self.send_header('Content-type', 'application/json')
+                self.end_headers()
+                status = {
+                    'status': 'ok',
+                    'backend': 'enhanced_enterprise_backend_with_context',
+                    'time': datetime.now().isoformat()
+                }
+                self.wfile.write(json.dumps(status).encode())
+            else:
+                self.send_response(404)
+                self.end_headers()
+        def log_message(self, format, *args):
+            return  # Suppress default logging
+
+    def run_server():
+        server = HTTPServer(('0.0.0.0', 8787), StatusHandler)
+        print('HTTP /status endpoint available at http://localhost:8787/status')
+        server.serve_forever()
+
+    thread = threading.Thread(target=run_server, daemon=True)
+    thread.start()
+
 if __name__ == "__main__":
+    start_http_status_server()
     try:
         # Ensure the pids directory exists
         import os

@@ -1,0 +1,204 @@
+{
+  "summary": {
+    "total_tests": 10,
+    "successful_tests": 0,
+    "failed_tests": 10,
+    "success_rate": 0.0,
+    "total_time": 86.37721514701843,
+    "average_time": 8.637721514701843,
+    "average_llm_time": 8.635997009277343,
+    "average_parse_time": 0
+  },
+  "results": [
+    {
+      "test_name": "Simple App Launch",
+      "prompt": "open calculator",
+      "difficulty": "Easy",
+      "description": "Basic app launch request",
+      "start_time": "2025-07-14T15:16:54.115635",
+      "success": false,
+      "errors": [
+        "Plan parsing failed: type object 'AutomationPlan' has no attribute 'from_llm_response'",
+        "Fallback plan creation failed: type object 'AutomationPlan' has no attribute 'create_fallback_plan'"
+      ],
+      "warnings": [],
+      "plan": null,
+      "execution_time": 0,
+      "llm_response": "{\n  \"apps\": [\"app1\", \"app2\"],\n  \"steps\": [\n    {\n      \"action\": \"open_app\",\n      \"app\": \"calculation_tool\"\n    },\n    {\n      \"action\": \"wait\",\n      \"duration\": 2,\n      \"description\": \"Wait for 2 seconds\"\n    },\n    {\n      \"action\": \"screenshot\",\n      \"description\": \"Take a screenshot\"\n    }\n  ]\n}",
+      "parsing_success": false,
+      "llm_time": 14.213556051254272,
+      "total_time": 14.214651107788086
+    },
+    {
+      "test_name": "Multiple Apps",
+      "prompt": "open calculator and safari",
+      "difficulty": "Easy",
+      "description": "Multiple app launch request",
+      "start_time": "2025-07-14T15:17:09.333460",
+      "success": false,
+      "errors": [
+        "Plan parsing failed: type object 'AutomationPlan' has no attribute 'from_llm_response'",
+        "Fallback plan creation failed: type object 'AutomationPlan' has no attribute 'create_fallback_plan'"
+      ],
+      "warnings": [],
+      "plan": null,
+      "execution_time": 0,
+      "llm_response": "{\n  \"apps\": [\"calculator\", \"safari\"],\n  \"steps\": [\n    {\n      \"action\": \"open_app\",\n      \"app\": \"calculator\",\n      \"description\": \"Open Calculator\"\n    },\n    {\n      \"action\": \"wait\",\n      \"duration\": 2,\n      \"description\": \"Wait for 2 seconds\"\n    },\n    {\n      \"action\": \"screenshot\",\n      \"description\": \"Take a screenshot of the current page\"\n    }\n  ]\n}",
+      "parsing_success": false,
+      "llm_time": 4.774672031402588,
+      "total_time": 4.7757790088653564
+    },
+    {
+      "test_name": "App with Action",
+      "prompt": "open safari and go to google.com",
+      "difficulty": "Medium",
+      "description": "App launch with specific action",
+      "start_time": "2025-07-14T15:17:15.111495",
+      "success": false,
+      "errors": [
+        "Plan parsing failed: type object 'AutomationPlan' has no attribute 'from_llm_response'",
+        "Fallback plan creation failed: type object 'AutomationPlan' has no attribute 'create_fallback_plan'"
+      ],
+      "warnings": [],
+      "plan": null,
+      "execution_time": 0,
+      "llm_response": "{\n  \"apps\": [\"app1\", \"app2\"],\n  \"steps\": [\n    {\n      \"action\": \"open_app\",\n      \"app\": \"google.com\",\n      \"description\": \"Open Google\"\n    },\n    {\n      \"action\": \"wait\",\n      \"duration\": 2,\n      \"description\": \"Wait for 2 seconds\"\n    },\n    {\n      \"action\": \"screenshot\",\n      \"description\": \"Take a screenshot\"\n    }\n  ]\n}",
+      "parsing_success": false,
+      "llm_time": 2.710937738418579,
+      "total_time": 2.7111659049987793
+    },
+    {
+      "test_name": "Complex Workflow",
+      "prompt": "open calculator, then open safari and go to google.com, then take a screenshot",
+      "difficulty": "Medium",
+      "description": "Multi-step workflow with actions",
+      "start_time": "2025-07-14T15:17:18.823676",
+      "success": false,
+      "errors": [
+        "Plan parsing failed: type object 'AutomationPlan' has no attribute 'from_llm_response'",
+        "Fallback plan creation failed: type object 'AutomationPlan' has no attribute 'create_fallback_plan'"
+      ],
+      "warnings": [],
+      "plan": null,
+      "execution_time": 0,
+      "llm_response": "{\n  \"apps\": [\"calculator\", \"safari\"],\n  \"steps\": [\n    {\n      \"action\": \"open_app\",\n      \"app\": \"calculator\",\n      \"description\": \"Open calculator\"\n    },\n    {\n      \"action\": \"wait\",\n      \"duration\": 2,\n      \"description\": \"Wait for 2 seconds\"\n    },\n    {\n      \"action\": \"screenshot\",\n      \"description\": \"Take a screenshot from safari to google.com\"\n    }\n  ]\n}",
+      "parsing_success": false,
+      "llm_time": 6.807269334793091,
+      "total_time": 6.80745005607605
+    },
+    {
+      "test_name": "System Actions",
+      "prompt": "take a screenshot and save it to desktop",
+      "difficulty": "Medium",
+      "description": "System-level actions",
+      "start_time": "2025-07-14T15:17:26.633192",
+      "success": false,
+      "errors": [
+        "Plan parsing failed: type object 'AutomationPlan' has no attribute 'from_llm_response'",
+        "Fallback plan creation failed: type object 'AutomationPlan' has no attribute 'create_fallback_plan'"
+      ],
+      "warnings": [],
+      "plan": null,
+      "execution_time": 0,
+      "llm_response": "{\n  \"apps\": [\"app1\", \"app2\"],\n  \"steps\": [\n    {\n      \"action\": \"open_app\",\n      \"app\": \"app_name\",\n      \"description\": \"what this step does\"\n    },\n    {\n      \"action\": \"wait\",\n      \"duration\": 2,\n      \"description\": \"wait for 2 seconds\"\n    },\n    {\n      \"action\": \"screenshot\",\n      \"description\": \"take a screenshot\"\n    }\n  ]\n}",
+      "parsing_success": false,
+      "llm_time": 2.1810178756713867,
+      "total_time": 2.181358814239502
+    },
+    {
+      "test_name": "File Operations",
+      "prompt": "open finder, navigate to desktop, create a new folder called test",
+      "difficulty": "Hard",
+      "description": "File system operations",
+      "start_time": "2025-07-14T15:17:29.815246",
+      "success": false,
+      "errors": [
+        "Plan parsing failed: type object 'AutomationPlan' has no attribute 'from_llm_response'",
+        "Fallback plan creation failed: type object 'AutomationPlan' has no attribute 'create_fallback_plan'"
+      ],
+      "warnings": [],
+      "plan": null,
+      "execution_time": 0,
+      "llm_response": "{\n  \"apps\": [\"app1\", \"app2\"],\n  \"steps\": [\n    {\n      \"action\": \"open_app\",\n      \"app\": \"test\",\n      \"description\": \"Create a new folder called test\"\n    },\n    {\n      \"action\": \"wait\",\n      \"duration\": 2,\n      \"description\": \"Wait for 2 seconds\"\n    },\n    {\n      \"action\": \"screenshot\",\n      \"description\": \"Take a screenshot\"\n    }\n  ]\n}",
+      "parsing_success": false,
+      "llm_time": 3.681702136993408,
+      "total_time": 3.6818549633026123
+    },
+    {
+      "test_name": "Complex Automation",
+      "prompt": "open safari, go to github.com, wait 3 seconds, take a screenshot, then open calculator and perform basic math",
+      "difficulty": "Hard",
+      "description": "Complex multi-app automation with timing",
+      "start_time": "2025-07-14T15:17:34.522465",
+      "success": false,
+      "errors": [
+        "Plan parsing failed: type object 'AutomationPlan' has no attribute 'from_llm_response'",
+        "Fallback plan creation failed: type object 'AutomationPlan' has no attribute 'create_fallback_plan'"
+      ],
+      "warnings": [],
+      "plan": null,
+      "execution_time": 0,
+      "llm_response": "{\n  \"apps\": [\"safari\", \"github.com\"],\n  \"steps\": [\n    {\n      \"action\": \"open_app\",\n      \"app\": \"safari\",\n      \"description\": \"Open Safari\"\n    },\n    {\n      \"action\": \"wait\",\n      \"duration\": 3,\n      \"description\": \"Wait for 3 seconds\"\n    },\n    {\n      \"action\": \"screenshot\",\n      \"description\": \"Take a screenshot\"\n    }\n  ]\n}",
+      "parsing_success": false,
+      "llm_time": 5.2851269245147705,
+      "total_time": 5.285307168960571
+    },
+    {
+      "test_name": "Edge Case - No Apps",
+      "prompt": "just wait 5 seconds and take a screenshot",
+      "difficulty": "Medium",
+      "description": "Actions without app launches",
+      "start_time": "2025-07-14T15:17:40.809539",
+      "success": false,
+      "errors": [
+        "Plan parsing failed: type object 'AutomationPlan' has no attribute 'from_llm_response'",
+        "Fallback plan creation failed: type object 'AutomationPlan' has no attribute 'create_fallback_plan'"
+      ],
+      "warnings": [],
+      "plan": null,
+      "execution_time": 0,
+      "llm_response": "{\n  \"apps\": [\"app1\", \"app2\"],\n  \"steps\": [\n    {\n      \"action\": \"open_app\",\n      \"app\": \"app_name\",\n      \"description\": \"what this step does\"\n    },\n    {\n      \"action\": \"wait\",\n      \"duration\": 5,\n      \"description\": \"wait for 5 seconds\"\n    },\n    {\n      \"action\": \"screenshot\",\n      \"description\": \"take a screenshot\"\n    }\n  ]\n}",
+      "parsing_success": false,
+      "llm_time": 6.730087995529175,
+      "total_time": 6.7309770584106445
+    },
+    {
+      "test_name": "Ambiguous Request",
+      "prompt": "do something productive with my computer",
+      "difficulty": "Hard",
+      "description": "Vague request requiring interpretation",
+      "start_time": "2025-07-14T15:17:48.563996",
+      "success": false,
+      "errors": [
+        "Plan parsing failed: type object 'AutomationPlan' has no attribute 'from_llm_response'",
+        "Fallback plan creation failed: type object 'AutomationPlan' has no attribute 'create_fallback_plan'"
+      ],
+      "warnings": [],
+      "plan": null,
+      "execution_time": 0,
+      "llm_response": "{\n  \"apps\": [\"app1\", \"app2\"],\n  \"steps\": [\n    {\n      \"action\": \"open_app\",\n      \"app\": \"app_name\",\n      \"description\": \"what this step does\"\n    },\n    {\n      \"action\": \"wait\",\n      \"duration\": 2,\n      \"description\": \"wait for 2 seconds\"\n    },\n    {\n      \"action\": \"screenshot\",\n      \"description\": \"take a screenshot\"\n    }\n  ]\n}",
+      "parsing_success": false,
+      "llm_time": 19.263417959213257,
+      "total_time": 19.272549152374268
+    },
+    {
+      "test_name": "Very Complex Workflow",
+      "prompt": "open safari, go to google.com, search for 'python automation', wait 2 seconds, take a screenshot, open calculator, calculate 15 * 23, then open finder and go to downloads",
+      "difficulty": "Very Hard",
+      "description": "Complex multi-step workflow with web interaction and calculations",
+      "start_time": "2025-07-14T15:18:08.833218",
+      "success": false,
+      "errors": [
+        "Plan parsing failed: type object 'AutomationPlan' has no attribute 'from_llm_response'",
+        "Fallback plan creation failed: type object 'AutomationPlan' has no attribute 'create_fallback_plan'"
+      ],
+      "warnings": [],
+      "plan": null,
+      "execution_time": 0,
+      "llm_response": "{\n  \"apps\": [\"open_app\", \"screenshot\"],\n  \"steps\": [\n    {\n      \"action\": \"open_app\",\n      \"app\": \"google.com\",\n      \"description\": \"Go to google.com\"\n    },\n    {\n      \"action\": \"wait\",\n      \"duration\": 2,\n      \"description\": \"Wait for 2 seconds\"\n    },\n    {\n      \"action\": \"screenshot\",\n      \"description\": \"Take a screenshot\"\n    },\n    {\n      \"action\": \"open_app\",\n      \"app\": \"calculator\",\n      \"description\": \"Open calculator\"\n    },\n    {\n      \"action\": \"wait\",\n      \"duration\": 2,\n      \"description\": \"Wait for 2 seconds\"\n    },\n    {\n      \"action\": \"screenshot\",\n      \"description\": \"Take a screenshot\"\n    },\n    {\n      \"action\": \"open_app\",\n      \"app\": \"finder\",\n      \"description\": \"Open finder\"\n    },\n    {\n      \"action\": \"wait\",\n      \"duration\": 2,\n      \"description\": \"Wait for 2 seconds\"\n    },\n    {\n      \"action\": \"screenshot\",\n      \"description\": \"Take a screenshot\"\n    },\n    {\n      \"action\": \"open_app\",\n      \"app\": \"finder\",\n      \"description\": \"Go to downloads\"\n    }\n  ]\n}",
+      "parsing_success": false,
+      "llm_time": 20.71218204498291,
+      "total_time": 20.716121912002563
+    }
+  ]
+}

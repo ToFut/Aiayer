@@ -85,7 +85,8 @@ except ImportError as e:
 
 # Try to import real agent automation handler
 try:
-    from real_agent_automation_handler import real_agent_automation_handler
+    from real_agent_automation_handler import RealAgentAutomationHandler
+    real_agent_automation_handler = RealAgentAutomationHandler()
     REAL_AGENT_AUTOMATION_AVAILABLE = True
     logger.info("✅ Real agent automation handler loaded")
 except ImportError as e:
@@ -394,7 +395,7 @@ async def execute_plan_with_real_automation(plan_data, session_id, websocket):
         }))
         return False
 
-async def handler(websocket, path):
+async def handler(websocket):
     """WebSocket connection handler with enhanced plan loading and error handling"""
     global execution_count
     client_id = f"client_{id(websocket)}"
@@ -458,7 +459,16 @@ async def handler(websocket, path):
                 logger.info(f"📩 Received from {client_id}: {msg_type}")
                 
                 # Handle different message types
-                if msg_type == 'agent_confirmation':
+                if msg_type == 'register':
+                    # Send registration confirmation
+                    await websocket.send(json.dumps({
+                        "type": "register_confirmation",
+                        "message": "Successfully registered with DO button executor",
+                        "server_time": datetime.now().isoformat()
+                    }))
+                    logger.info(f"✅ Client {client_id} registered successfully")
+                
+                elif msg_type == 'agent_confirmation':
                     # Extract session_id and action with validation
                     session_id = data.get('session_id', '') or data.get('sessionId', '')
                     action = data.get('action', '').upper()
@@ -645,6 +655,16 @@ async def status_reporter():
         logger.info(f"Server status: {len(connected_clients)} clients connected, {execution_count} executions completed")
         await asyncio.sleep(60)  # Report every minute
 
+def is_port_available(port):
+    """Check if a port is available for use"""
+    try:
+        # Try to create a socket on the port
+        with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
+            s.bind(('0.0.0.0', port))
+            return True
+    except OSError:
+        return False
+
 def free_port(port):
     """Forcefully free a port if it's in use"""
     if sys.platform == "win32":
@@ -652,92 +672,70 @@ def free_port(port):
     else:  # Unix-like
         os.system(f"lsof -ti:{port} | xargs kill -9 2>/dev/null || true")
 
-async def main():
-    # Ensure port 8765 is available
-    port = 8765
-    host = "0.0.0.0"
-    
-    # Force free the port
-    free_port(port)
-    await asyncio.sleep(1)
-    
+def initialize_components():
+    """Initialize all required components for the DO button executor"""
     try:
-        # Verify port is available
-        test_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        test_socket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
-        test_socket.bind((host, port))
-        test_socket.close()
-        logger.info(f"Port {port} is available")
-    except OSError as e:
-        logger.error(f"❌ Port {port} is still in use after attempt to free it: {e}")
-        logger.error("Trying more aggressive port clearing...")
-        free_port(port)
-        await asyncio.sleep(2)
+        # Initialize plan persistence
+        if PLAN_PERSISTENCE_AVAILABLE:
+            logger.info("✅ Plan persistence module loaded")
         
-        try:
-            test_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-            test_socket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
-            test_socket.bind((host, port))
-            test_socket.close()
-            logger.info(f"Port {port} is now available")
-        except OSError as e:
-            logger.error(f"❌ Port {port} could not be freed: {e}")
-            sys.exit(1)
-    
-    # Start WebSocket server with enhanced error handling
-    logger.info(f"🚀 Starting Real DO Button Executor on {host}:{port}")
-    
+        # Initialize universal automation handler
+        if UNIVERSAL_AUTOMATION_AVAILABLE:
+            logger.info("✅ Universal automation handler loaded")
+        
+        # Initialize real agent automation handler
+        if REAL_AGENT_AUTOMATION_AVAILABLE:
+            logger.info("✅ Real agent automation handler loaded")
+        
+        return True
+    except Exception as e:
+        logger.error(f"❌ Error initializing components: {e}")
+        return False
+
+async def main():
     try:
+        # Initialize components
+        if not initialize_components():
+            logger.error("❌ Failed to initialize components")
+            return
+            
+        # Check if port is available
+        if not is_port_available(8765):
+            logger.error("❌ Port 8765 is already in use. Please stop any other DO button servers.")
+            return
+            
+        logger.info("Port 8765 is available")
+        logger.info("🚀 Starting Real DO Button Executor on 0.0.0.0:8765")
+        
+        # Create WebSocket server with proper configuration
         server = await websockets.serve(
             handler,
-            host,
-            port,
-            ping_interval=30,
-            ping_timeout=60,
-            close_timeout=30,
-            max_size=10 * 1024 * 1024,
-            max_queue=32,
-            compression=None,  # Disable compression to avoid handshake issues
-            max_message_size=10 * 1024 * 1024,  # 10MB max message size
-            process_request_timeout=30  # 30 second timeout for request processing
+            "0.0.0.0",
+            8765,
+            ping_interval=20,
+            ping_timeout=20,
+            close_timeout=10
         )
-        logger.info(f"✅ WebSocket server initialized successfully")
-    except Exception as e:
-        logger.error(f"❌ Failed to create WebSocket server: {e}")
-        logger.error(traceback.format_exc())
-        sys.exit(1)
-    
-    # Save PID
-    os.makedirs("pids", exist_ok=True)
-    with open('pids/real_do_button_executor.pid', 'w') as f:
-        f.write(str(os.getpid()))
-    
-    # Start monitoring tasks
-    heartbeat_task = asyncio.create_task(heartbeat())
-    status_task = asyncio.create_task(status_reporter())
-    
-    logger.info(f"✅ Real DO Button Executor running on ws://{host}:{port}")
-    logger.info(f"🎯 Ready to handle DO button clicks with REAL AUTOMATION")
-    
-    if UNIVERSAL_AUTOMATION_AVAILABLE:
-        logger.info(f"🤖 Universal automation handler available for real step execution")
-    elif REAL_AGENT_AUTOMATION_AVAILABLE:
-        logger.info(f"🤖 Real agent automation handler available for real step execution")
-    else:
-        logger.info(f"⚠️ No automation handlers available - execution will be simulated")
-    
-    if PLAN_PERSISTENCE_AVAILABLE:
-        logger.info(f"📂 Plan persistence available for loading plans")
-    else:
-        logger.info(f"⚠️ Plan persistence not available - plan loading will be limited")
-    
-    try:
-        # Keep running until manually stopped
+        
+        logger.info("✅ WebSocket server initialized successfully")
+        logger.info("✅ Real DO Button Executor running on ws://0.0.0.0:8765")
+        logger.info("🎯 Ready to handle DO button clicks with REAL AUTOMATION")
+        logger.info("🎮 REAL INPUT EXECUTION ENABLED - Will perform actual mouse and keyboard actions")
+        
+        if UNIVERSAL_AUTOMATION_AVAILABLE:
+            logger.info("🤖 Universal automation handler available as fallback")
+        if PLAN_PERSISTENCE_AVAILABLE:
+            logger.info("📂 Plan persistence available for loading plans")
+            
+        logger.info(f"Server status: {len(connected_clients)} clients connected, {execution_count} executions completed")
+        
+        # Keep the server running
         await asyncio.Future()
-    finally:
-        # Clean up resources
-        await session_manager.close()
-        logger.info("Cleaned up resources")
+        
+    except Exception as e:
+        logger.error(f"❌ Failed to create WebSocket server: {str(e)}")
+        logger.error(traceback.format_exc())
+        return
 
 if __name__ == "__main__":
     try:

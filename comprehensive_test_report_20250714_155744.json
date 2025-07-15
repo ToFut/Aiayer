@@ -1,0 +1,311 @@
+{
+  "summary": {
+    "total_tests": 10,
+    "successful_tests": 8,
+    "failed_tests": 2,
+    "success_rate": 80.0,
+    "total_time": 168.03954029083252,
+    "average_time": 16.80395402908325,
+    "average_llm_time": 10.422665774822235,
+    "average_parse_time": 0.0016351640224456787
+  },
+  "results": [
+    {
+      "test_name": "Simple App Launch",
+      "prompt": "open calculator",
+      "difficulty": "Easy",
+      "description": "Basic app launch request",
+      "start_time": "2025-07-14T15:54:41.858388",
+      "success": false,
+      "errors": [
+        "Unexpected error: "
+      ],
+      "warnings": [],
+      "plan": null,
+      "execution_time": 0,
+      "llm_response": null,
+      "parsing_success": false,
+      "total_time": 50.82079219818115
+    },
+    {
+      "test_name": "Multiple Apps",
+      "prompt": "open calculator and safari",
+      "difficulty": "Easy",
+      "description": "Multiple app launch request",
+      "start_time": "2025-07-14T15:55:33.682079",
+      "success": true,
+      "errors": [],
+      "warnings": [
+        "Missing expected apps: ['Calculator', 'Safari']"
+      ],
+      "plan": {
+        "task_id": "plan_1752533756",
+        "steps": [
+          {
+            "action": "open_app",
+            "app": "calculator"
+          }
+        ],
+        "completed": false
+      },
+      "execution_time": 0.10194611549377441,
+      "llm_response": "{\n  \"apps\": [\"calculator\", \"safari\"],\n  \"steps\": [\n    {\n      \"action\": \"open_app\",\n      \"app\": \"calculator\"\n    },\n    {\n      \"action\": \"wait\",\n      \"duration\": 2,\n      \"description\": \"wait for 2 seconds\"\n    },\n    {\n      \"action\": \"screenshot\",\n      \"description\": \"take a screenshot\"\n    }\n  ]\n}",
+      "parsing_success": true,
+      "llm_time": 22.87978196144104,
+      "parse_time": 0.003181934356689453,
+      "execution_result": {
+        "success": true,
+        "steps_executed": 1,
+        "execution_time": 0.1
+      },
+      "total_time": 22.985448122024536
+    },
+    {
+      "test_name": "App with Action",
+      "prompt": "open safari and go to google.com",
+      "difficulty": "Medium",
+      "description": "App launch with specific action",
+      "start_time": "2025-07-14T15:55:57.668711",
+      "success": true,
+      "errors": [],
+      "warnings": [
+        "Missing expected apps: ['Safari']"
+      ],
+      "plan": {
+        "task_id": "plan_1752533768",
+        "steps": [
+          {
+            "action": "open_app",
+            "app": "google.com"
+          }
+        ],
+        "completed": false
+      },
+      "execution_time": 0.10149788856506348,
+      "llm_response": "{\n  \"apps\": [\"app1\", \"app2\"],\n  \"steps\": [\n    {\n      \"action\": \"open_app\",\n      \"app\": \"google.com\"\n    },\n    {\n      \"action\": \"wait\",\n      \"duration\": 2,\n      \"description\": \"wait for 2 seconds\"\n    },\n    {\n      \"action\": \"screenshot\",\n      \"description\": \"take a screenshot\"\n    }\n  ]\n}",
+      "parsing_success": true,
+      "llm_time": 10.732017993927002,
+      "parse_time": 0.0002028942108154297,
+      "execution_result": {
+        "success": true,
+        "steps_executed": 1,
+        "execution_time": 0.1
+      },
+      "total_time": 10.834349870681763
+    },
+    {
+      "test_name": "Complex Workflow",
+      "prompt": "open calculator, then open safari and go to google.com, then take a screenshot",
+      "difficulty": "Medium",
+      "description": "Multi-step workflow with actions",
+      "start_time": "2025-07-14T15:56:11.948126",
+      "success": true,
+      "errors": [],
+      "warnings": [
+        "Missing expected apps: ['Safari']"
+      ],
+      "plan": {
+        "task_id": "plan_1752533784",
+        "steps": [
+          {
+            "action": "open_app",
+            "app": "calc",
+            "description": "Open calculator"
+          }
+        ],
+        "completed": false
+      },
+      "execution_time": 0.10187387466430664,
+      "llm_response": "{\n  \"apps\": [\"calc\", \"safari\"],\n  \"steps\": [\n    {\n      \"action\": \"open_app\",\n      \"app\": \"calc\",\n      \"description\": \"Open calculator\"\n    },\n    {\n      \"action\": \"wait\",\n      \"duration\": 2,\n      \"description\": \"Wait for 2 seconds\"\n    },\n    {\n      \"action\": \"screenshot\",\n      \"description\": \"Take a screenshot\"\n    }\n  ]\n}",
+      "parsing_success": true,
+      "llm_time": 12.290423154830933,
+      "parse_time": 0.0008780956268310547,
+      "execution_result": {
+        "success": true,
+        "steps_executed": 1,
+        "execution_time": 0.1
+      },
+      "total_time": 12.393842935562134
+    },
+    {
+      "test_name": "System Actions",
+      "prompt": "take a screenshot and save it to desktop",
+      "difficulty": "Medium",
+      "description": "System-level actions",
+      "start_time": "2025-07-14T15:56:27.593472",
+      "success": true,
+      "errors": [],
+      "warnings": [],
+      "plan": {
+        "task_id": "plan_1752533795",
+        "steps": [
+          {
+            "action": "open_app",
+            "app": "app_name",
+            "description": "what this step does"
+          }
+        ],
+        "completed": false
+      },
+      "execution_time": 0.10149502754211426,
+      "llm_response": "{\n  \"apps\": [\"app1\", \"app2\"],\n  \"steps\": [\n    {\n      \"action\": \"open_app\",\n      \"app\": \"app_name\",\n      \"description\": \"what this step does\"\n    },\n    {\n      \"action\": \"wait\",\n      \"duration\": 2,\n      \"description\": \"wait for 2 seconds\"\n    },\n    {\n      \"action\": \"screenshot\",\n      \"description\": \"take a screenshot\"\n    }\n  ]\n}",
+      "parsing_success": true,
+      "llm_time": 7.7640540599823,
+      "parse_time": 0.0045430660247802734,
+      "execution_result": {
+        "success": true,
+        "steps_executed": 1,
+        "execution_time": 0.1
+      },
+      "total_time": 7.872303009033203
+    },
+    {
+      "test_name": "File Operations",
+      "prompt": "open finder, navigate to desktop, create a new folder called test",
+      "difficulty": "Hard",
+      "description": "File system operations",
+      "start_time": "2025-07-14T15:56:36.467015",
+      "success": true,
+      "errors": [],
+      "warnings": [],
+      "plan": {
+        "task_id": "plan_1752533803",
+        "steps": [
+          {
+            "action": "open_app",
+            "app": "finders",
+            "description": "Open finder and navigate to desktop"
+          }
+        ],
+        "completed": false
+      },
+      "execution_time": 0.10071301460266113,
+      "llm_response": "{\n  \"apps\": [\"finder\"],\n  \"steps\": [\n    {\n      \"action\": \"open_app\",\n      \"app\": \"finders\",\n      \"description\": \"Open finder and navigate to desktop\"\n    },\n    {\n      \"action\": \"wait\",\n      \"duration\": 2,\n      \"description\": \"Wait for 2 seconds\"\n    },\n    {\n      \"action\": \"screenshot\",\n      \"description\": \"Take a screenshot of the desktop\"\n    }\n  ]\n}",
+      "parsing_success": true,
+      "llm_time": 6.795644044876099,
+      "parse_time": 0.000202178955078125,
+      "execution_result": {
+        "success": true,
+        "steps_executed": 1,
+        "execution_time": 0.1
+      },
+      "total_time": 6.896682977676392
+    },
+    {
+      "test_name": "Complex Automation",
+      "prompt": "open safari, go to github.com, wait 3 seconds, take a screenshot, then open calculator and perform basic math",
+      "difficulty": "Hard",
+      "description": "Complex multi-app automation with timing",
+      "start_time": "2025-07-14T15:56:44.364835",
+      "success": true,
+      "errors": [],
+      "warnings": [
+        "Missing expected apps: ['Safari', 'Calculator']"
+      ],
+      "plan": {
+        "task_id": "plan_1752533812",
+        "steps": [
+          {
+            "action": "open_app",
+            "app": "safari"
+          }
+        ],
+        "completed": false
+      },
+      "execution_time": 0.10156011581420898,
+      "llm_response": "{\n  \"apps\": [\"safari\", \"github.com\"],\n  \"steps\": [\n    {\n      \"action\": \"open_app\",\n      \"app\": \"safari\"\n    },\n    {\n      \"action\": \"wait\",\n      \"duration\": 3,\n      \"description\": \"waiting for a few seconds...\"\n    },\n    {\n      \"action\": \"screenshot\",\n      \"description\": \"taking a screenshot\"\n    },\n    {\n      \"action\": \"open_app\",\n      \"app\": \"calculator\"\n    }\n  ]\n}",
+      "parsing_success": true,
+      "llm_time": 7.940031051635742,
+      "parse_time": 0.0007421970367431641,
+      "execution_result": {
+        "success": true,
+        "steps_executed": 1,
+        "execution_time": 0.1
+      },
+      "total_time": 8.04264497756958
+    },
+    {
+      "test_name": "Edge Case - No Apps",
+      "prompt": "just wait 5 seconds and take a screenshot",
+      "difficulty": "Medium",
+      "description": "Actions without app launches",
+      "start_time": "2025-07-14T15:56:53.410560",
+      "success": false,
+      "errors": [
+        "Unexpected error: "
+      ],
+      "warnings": [],
+      "plan": null,
+      "execution_time": 0,
+      "llm_response": null,
+      "parsing_success": false,
+      "total_time": 33.00370407104492
+    },
+    {
+      "test_name": "Ambiguous Request",
+      "prompt": "do something productive with my computer",
+      "difficulty": "Hard",
+      "description": "Vague request requiring interpretation",
+      "start_time": "2025-07-14T15:57:27.421650",
+      "success": true,
+      "errors": [],
+      "warnings": [],
+      "plan": {
+        "task_id": "plan_1752533854",
+        "steps": [
+          {
+            "action": "open_app",
+            "app": "app_name",
+            "description": "what this step does"
+          }
+        ],
+        "completed": false
+      },
+      "execution_time": 0.10273504257202148,
+      "llm_response": "{\n  \"apps\": [\"app1\", \"app2\"],\n  \"steps\": [\n    {\n      \"action\": \"open_app\",\n      \"app\": \"app_name\",\n      \"description\": \"what this step does\"\n    },\n    {\n      \"action\": \"wait\",\n      \"duration\": 2,\n      \"description\": \"wait for 2 seconds\"\n    },\n    {\n      \"action\": \"screenshot\",\n      \"description\": \"take a screenshot\"\n    }\n  ]\n}",
+      "parsing_success": true,
+      "llm_time": 7.417480945587158,
+      "parse_time": 0.0013580322265625,
+      "execution_result": {
+        "success": true,
+        "steps_executed": 1,
+        "execution_time": 0.1
+      },
+      "total_time": 7.523154020309448
+    },
+    {
+      "test_name": "Very Complex Workflow",
+      "prompt": "open safari, go to google.com, search for 'python automation', wait 2 seconds, take a screenshot, open calculator, calculate 15 * 23, then open finder and go to downloads",
+      "difficulty": "Very Hard",
+      "description": "Complex multi-step workflow with web interaction and calculations",
+      "start_time": "2025-07-14T15:57:35.947066",
+      "success": true,
+      "errors": [],
+      "warnings": [
+        "Missing expected apps: ['Calculator', 'Finder']"
+      ],
+      "plan": {
+        "task_id": "plan_1752533863",
+        "steps": [
+          {
+            "action": "open_app",
+            "app": "google.com",
+            "description": "Go to google.com and open safari"
+          }
+        ],
+        "completed": false
+      },
+      "execution_time": 0.10245919227600098,
+      "llm_response": "{\n  \"apps\": [\"safari\", \"calculator\"],\n  \"steps\": [\n    {\n      \"action\": \"open_app\",\n      \"app\": \"google.com\",\n      \"description\": \"Go to google.com and open safari\"\n    },\n    {\n      \"action\": \"wait\",\n      \"duration\": 2,\n      \"description\": \"Wait for 2 seconds\"\n    },\n    {\n      \"action\": \"screenshot\",\n      \"description\": \"Take a screenshot of the current window\"\n    }\n  ]\n}",
+      "parsing_success": true,
+      "llm_time": 7.561892986297607,
+      "parse_time": 0.0019729137420654297,
+      "execution_result": {
+        "success": true,
+        "steps_executed": 1,
+        "execution_time": 0.1
+      },
+      "total_time": 7.66661810874939
+    }
+  ]
+}

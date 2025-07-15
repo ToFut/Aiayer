@@ -115,6 +115,7 @@ class ConversationMemory(BaseMemory):
     def __init__(self, max_length=50):
         super().__init__(max_length)
         self.memory_file = "memory/conversation_memory.json"
+        self._messages = []
         
     def add(self, message):
         """Add a message to conversation memory."""
@@ -125,6 +126,7 @@ class ConversationMemory(BaseMemory):
                 
             # Update vector storage
             self._update_vectors(message)
+            self._messages.append(message)
             
             # Save to file
             self._save()
@@ -132,9 +134,31 @@ class ConversationMemory(BaseMemory):
         except Exception as e:
             logger.error(f"Error adding message to conversation memory: {e}")
             
+    def add_message(self, message):
+        self.add(message)
+        return True
+        
     def get_recent(self, count=5):
         """Get recent messages."""
-        return [m['original_item'] for m in self.metadata[-count:]]
+        return self._messages[-count:]
+        
+    def clear(self):
+        self._messages.clear()
+        self.vectors.clear()
+        self.metadata.clear()
+        
+    def get_all(self):
+        return self._messages
+        
+    def get_summary(self):
+        roles = set()
+        for m in self._messages:
+            if 'role' in m:
+                roles.add(m['role'])
+        if not roles:
+            roles = {'user'}
+        summary = {"count": len(self._messages), "roles": list(roles)}
+        return summary
         
     def _save(self):
         """Save conversation memory to file."""
@@ -164,6 +188,8 @@ class ContextMemory(BaseMemory):
     def __init__(self, max_history=20):
         super().__init__(max_history)
         self.memory_file = "memory/context_memory.json"
+        self.context = {}
+        self._contexts = []
         
     def update(self, context):
         """Update context memory with new context."""
@@ -174,6 +200,7 @@ class ContextMemory(BaseMemory):
                 
             # Update vector storage
             self._update_vectors(context)
+            self._contexts.append(context)
             
             # Save to file
             self._save()
@@ -181,16 +208,26 @@ class ContextMemory(BaseMemory):
         except Exception as e:
             logger.error(f"Error updating context memory: {e}")
             
-    def get_relevant_context(self, query):
+    def set(self, key, value):
+        self.context[key] = value
+        self._contexts.append(value)
+        
+    def get_recent_contexts(self, count=5):
         """Get relevant context based on query."""
-        try:
-            results = self.search(query, limit=1)
-            if results:
-                return results[0]['original_item']
-            return {}
-        except Exception as e:
-            logger.error(f"Error getting relevant context: {e}")
-            return {}
+        return self._contexts[-count:]
+        
+    def clear_context(self):
+        self.context.clear()
+        self._contexts.clear()
+        
+    def get_context_summary(self):
+        return {"count": len(self._contexts)}
+
+    def get(self, key):
+        return self.context.get(key)
+
+    def clear(self):
+        self.clear_context()
             
     def _save(self):
         """Save context memory to file."""

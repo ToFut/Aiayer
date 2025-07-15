@@ -151,6 +151,23 @@ class LLMService:
             logger.error(f"Python path: {sys.path}")  # Add debug logging
             self.llm_client = None
             self.running = False
+
+    async def initialize(self) -> bool:
+        """Initialize the LLM service."""
+        try:
+            # The LLM client is already initialized in __init__
+            if self.llm_client is None:
+                self._initialize_llm()
+            
+            if self.llm_client is not None:
+                logger.info(f"LLM service initialized with model: {self.model_name}")
+                return True
+            else:
+                logger.error("Failed to initialize LLM client")
+                return False
+        except Exception as e:
+            logger.error(f"Error initializing LLM service: {e}")
+            return False
     
     async def start(self):
         """Start the LLM service and WebSocket server."""
@@ -182,6 +199,14 @@ class LLMService:
             self.ws_server.close()
             await self.ws_server.wait_closed()
         logger.info("LLM service stopped")
+
+    async def cleanup(self):
+        """Cleanup resources used by the LLM service."""
+        try:
+            await self.stop()
+            logger.info("LLM service cleaned up")
+        except Exception as e:
+            logger.error(f"Error cleaning up LLM service: {e}")
     
     async def _handle_websocket(self, websocket, path):
         """Handle WebSocket connections."""

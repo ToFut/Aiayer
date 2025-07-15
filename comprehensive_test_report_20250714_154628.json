@@ -1,0 +1,252 @@
+{
+  "summary": {
+    "total_tests": 10,
+    "successful_tests": 0,
+    "failed_tests": 10,
+    "success_rate": 0.0,
+    "total_time": 302.3167927265167,
+    "average_time": 30.23167927265167,
+    "average_llm_time": 19.7816521525383,
+    "average_parse_time": 0
+  },
+  "results": [
+    {
+      "test_name": "Simple App Launch",
+      "prompt": "open calculator",
+      "difficulty": "Easy",
+      "description": "Basic app launch request",
+      "start_time": "2025-07-14T15:41:15.414104",
+      "success": false,
+      "errors": [
+        "Plan parsing failed: Failed to parse plan JSON: Expecting ',' delimiter: line 8 column 6 (char 148)\nRaw: {\n  \"apps\": [\"app1\", \"app2\"],\n  \"steps\": [\n    {\n      \"action\": \"open_app\",\n      \"app\": \"calculator\",\n      \"description\": \"open calculator\"\n    }}]"
+      ],
+      "warnings": [
+        "Used fallback plan due to parsing failure"
+      ],
+      "plan": {
+        "task_id": "fallback_1752532894",
+        "steps": [
+          {
+            "action": "execute",
+            "description": "Fallback: open calculator"
+          }
+        ],
+        "completed": false
+      },
+      "execution_time": 0.10128402709960938,
+      "llm_response": "{\n  \"apps\": [\"app1\", \"app2\"],\n  \"steps\": [\n    {\n      \"action\": \"open_app\",\n      \"app\": \"calculator\",\n      \"description\": \"open calculator\"\n    },\n    {\n      \"action\": \"wait\",\n      \"duration\": 2,\n      \"description\": \"wait for 2 seconds\"\n    },\n    {\n      \"action\": \"screenshot\",\n      \"description\": \"take a screenshot\"\n    }\n  ]\n}",
+      "parsing_success": false,
+      "llm_time": 19.336177825927734,
+      "execution_result": {
+        "success": true,
+        "steps_executed": 1,
+        "execution_time": 0.1
+      },
+      "total_time": 19.43957495689392
+    },
+    {
+      "test_name": "Multiple Apps",
+      "prompt": "open calculator and safari",
+      "difficulty": "Easy",
+      "description": "Multiple app launch request",
+      "start_time": "2025-07-14T15:41:35.854494",
+      "success": false,
+      "errors": [
+        "Plan parsing failed: Failed to parse plan JSON: Expecting ',' delimiter: line 8 column 6 (char 140)\nRaw: {\n  \"apps\": [\"app1\", \"app2\"],\n  \"steps\": [\n    {\n      \"action\": \"open_app\",\n      \"app\": \"safari\",\n      \"description\": \"Open Safari\"\n    }}]"
+      ],
+      "warnings": [
+        "Used fallback plan due to parsing failure"
+      ],
+      "plan": {
+        "task_id": "fallback_1752532904",
+        "steps": [
+          {
+            "action": "execute",
+            "description": "Fallback: open calculator and safari"
+          }
+        ],
+        "completed": false
+      },
+      "execution_time": 0.15491986274719238,
+      "llm_response": "{\n  \"apps\": [\"app1\", \"app2\"],\n  \"steps\": [\n    {\n      \"action\": \"open_app\",\n      \"app\": \"safari\",\n      \"description\": \"Open Safari\"\n    },\n    {\n      \"action\": \"wait\",\n      \"duration\": 2,\n      \"description\": \"Wait for 2 seconds\"\n    },\n    {\n      \"action\": \"screenshot\",\n      \"description\": \"Take a screenshot of the entire screen\"\n    }\n  ]\n}",
+      "parsing_success": false,
+      "llm_time": 8.145734786987305,
+      "execution_result": {
+        "success": true,
+        "steps_executed": 1,
+        "execution_time": 0.1
+      },
+      "total_time": 8.304394960403442
+    },
+    {
+      "test_name": "App with Action",
+      "prompt": "open safari and go to google.com",
+      "difficulty": "Medium",
+      "description": "App launch with specific action",
+      "start_time": "2025-07-14T15:41:45.167217",
+      "success": false,
+      "errors": [
+        "Plan parsing failed: Failed to parse plan JSON: Expecting ',' delimiter: line 8 column 6 (char 144)\nRaw: {\n  \"apps\": [\"app1\", \"app2\"],\n  \"steps\": [\n    {\n      \"action\": \"open_app\",\n      \"app\": \"google.com\",\n      \"description\": \"Open Google\"\n    }}]"
+      ],
+      "warnings": [
+        "Used fallback plan due to parsing failure"
+      ],
+      "plan": {
+        "task_id": "fallback_1752532912",
+        "steps": [
+          {
+            "action": "execute",
+            "description": "Fallback: open safari and go to google.com"
+          }
+        ],
+        "completed": false
+      },
+      "execution_time": 0.10168600082397461,
+      "llm_response": "{\n  \"apps\": [\"app1\", \"app2\"],\n  \"steps\": [\n    {\n      \"action\": \"open_app\",\n      \"app\": \"google.com\",\n      \"description\": \"Open Google\"\n    },\n    {\n      \"action\": \"wait\",\n      \"duration\": 2,\n      \"description\": \"Wait for 2 seconds\"\n    },\n    {\n      \"action\": \"screenshot\",\n      \"description\": \"Take a screenshot of the screen\"\n    }\n  ]\n}",
+      "parsing_success": false,
+      "llm_time": 7.401869058609009,
+      "execution_result": {
+        "success": true,
+        "steps_executed": 1,
+        "execution_time": 0.1
+      },
+      "total_time": 7.505268812179565
+    },
+    {
+      "test_name": "Complex Workflow",
+      "prompt": "open calculator, then open safari and go to google.com, then take a screenshot",
+      "difficulty": "Medium",
+      "description": "Multi-step workflow with actions",
+      "start_time": "2025-07-14T15:41:53.673671",
+      "success": false,
+      "errors": [
+        "Unexpected error: "
+      ],
+      "warnings": [],
+      "plan": null,
+      "execution_time": 0,
+      "llm_response": null,
+      "parsing_success": false,
+      "total_time": 39.34873604774475
+    },
+    {
+      "test_name": "System Actions",
+      "prompt": "take a screenshot and save it to desktop",
+      "difficulty": "Medium",
+      "description": "System-level actions",
+      "start_time": "2025-07-14T15:42:34.026752",
+      "success": false,
+      "errors": [
+        "Unexpected error: "
+      ],
+      "warnings": [],
+      "plan": null,
+      "execution_time": 0,
+      "llm_response": null,
+      "parsing_success": false,
+      "total_time": 37.916220903396606
+    },
+    {
+      "test_name": "File Operations",
+      "prompt": "open finder, navigate to desktop, create a new folder called test",
+      "difficulty": "Hard",
+      "description": "File system operations",
+      "start_time": "2025-07-14T15:43:12.953413",
+      "success": false,
+      "errors": [
+        "Unexpected error: "
+      ],
+      "warnings": [],
+      "plan": null,
+      "execution_time": 0,
+      "llm_response": null,
+      "parsing_success": false,
+      "total_time": 35.91452693939209
+    },
+    {
+      "test_name": "Complex Automation",
+      "prompt": "open safari, go to github.com, wait 3 seconds, take a screenshot, then open calculator and perform basic math",
+      "difficulty": "Hard",
+      "description": "Complex multi-app automation with timing",
+      "start_time": "2025-07-14T15:43:49.872024",
+      "success": false,
+      "errors": [
+        "Unexpected error: "
+      ],
+      "warnings": [],
+      "plan": null,
+      "execution_time": 0,
+      "llm_response": null,
+      "parsing_success": false,
+      "total_time": 38.65284013748169
+    },
+    {
+      "test_name": "Edge Case - No Apps",
+      "prompt": "just wait 5 seconds and take a screenshot",
+      "difficulty": "Medium",
+      "description": "Actions without app launches",
+      "start_time": "2025-07-14T15:44:29.549869",
+      "success": false,
+      "errors": [
+        "Unexpected error: "
+      ],
+      "warnings": [],
+      "plan": null,
+      "execution_time": 0,
+      "llm_response": null,
+      "parsing_success": false,
+      "total_time": 36.25963521003723
+    },
+    {
+      "test_name": "Ambiguous Request",
+      "prompt": "do something productive with my computer",
+      "difficulty": "Hard",
+      "description": "Vague request requiring interpretation",
+      "start_time": "2025-07-14T15:45:06.818735",
+      "success": false,
+      "errors": [
+        "Plan parsing failed: Failed to parse plan JSON: Expecting ',' delimiter: line 8 column 6 (char 150)\nRaw: {\n  \"apps\": [\"app1\", \"app2\"],\n  \"steps\": [\n    {\n      \"action\": \"open_app\",\n      \"app\": \"app_name\",\n      \"description\": \"what this step does\"\n    }}]"
+      ],
+      "warnings": [
+        "Used fallback plan due to parsing failure"
+      ],
+      "plan": {
+        "task_id": "fallback_1752533151",
+        "steps": [
+          {
+            "action": "execute",
+            "description": "Fallback: do something productive with my computer"
+          }
+        ],
+        "completed": false
+      },
+      "execution_time": 0.10408878326416016,
+      "llm_response": "{\n  \"apps\": [\"app1\", \"app2\"],\n  \"steps\": [\n    {\n      \"action\": \"open_app\",\n      \"app\": \"app_name\",\n      \"description\": \"what this step does\"\n    },\n    {\n      \"action\": \"wait\",\n      \"duration\": 2,\n      \"description\": \"wait for 2 seconds\"\n    },\n    {\n      \"action\": \"screenshot\",\n      \"description\": \"take a screenshot\"\n    }\n  ]\n}",
+      "parsing_success": false,
+      "llm_time": 44.24282693862915,
+      "execution_result": {
+        "success": true,
+        "steps_executed": 1,
+        "execution_time": 0.1
+      },
+      "total_time": 44.355408906936646
+    },
+    {
+      "test_name": "Very Complex Workflow",
+      "prompt": "open safari, go to google.com, search for 'python automation', wait 2 seconds, take a screenshot, open calculator, calculate 15 * 23, then open finder and go to downloads",
+      "difficulty": "Very Hard",
+      "description": "Complex multi-step workflow with web interaction and calculations",
+      "start_time": "2025-07-14T15:45:52.176373",
+      "success": false,
+      "errors": [
+        "Unexpected error: "
+      ],
+      "warnings": [],
+      "plan": null,
+      "execution_time": 0,
+      "llm_response": null,
+      "parsing_success": false,
+      "total_time": 34.62018585205078
+    }
+  ]
+}

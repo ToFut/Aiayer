@@ -6,38 +6,54 @@ import os
 import sys
 
 def fix_indentation():
-    file_path = '/Users/segevbin/Desktop/SensAI/Aiayer/ultimate_do_button_server.py'
-    backup_path = '/Users/segevbin/Desktop/SensAI/Aiayer/ultimate_do_button_server.py.indentation_bak'
-    
-    # Create backup
-    with open(file_path, 'r') as src, open(backup_path, 'w') as dst:
-        dst.write(src.read())
-    print(f"Created backup at {backup_path}")
-    
-    # Read file line by line
-    with open(file_path, 'r') as f:
+    with open('enhanced_enterprise_backend_with_context.py', 'r') as f:
         lines = f.readlines()
     
-    # Restore from original backup
-    original_backup = '/Users/segevbin/Desktop/SensAI/Aiayer/ultimate_do_button_server.py.bak'
-    if os.path.exists(original_backup):
-        print(f"Restoring from original backup at {original_backup}")
-        with open(original_backup, 'r') as f:
-            original_content = f.read()
-        
-        with open(file_path, 'w') as f:
-            f.write(original_content)
-        
-        print(f"Original content restored to {file_path}")
-        return True
-    else:
-        print("Original backup not found, cannot restore")
-        return False
+    # Fix specific indentation issues
+    fixed_lines = []
+    for i, line in enumerate(lines):
+        # Fix line 1578 (around line 1578)
+        if i == 1577 and 'except Exception as e:' in line:
+            fixed_lines.append('                        except Exception as e:\n')
+        # Fix line 1580
+        elif i == 1579 and 'await websocket.send' in line:
+            fixed_lines.append('                            await websocket.send(json.dumps({\n')
+        # Fix line 1581
+        elif i == 1580 and '"type": "error"' in line:
+            fixed_lines.append('                                "type": "error",\n')
+        # Fix line 1582
+        elif i == 1581 and '"error":' in line:
+            fixed_lines.append('                                "error": f"Error processing chat request: {str(e)}",\n')
+        # Fix line 1583
+        elif i == 1582 and '"client_id":' in line:
+            fixed_lines.append('                                "client_id": client_id,\n')
+        # Fix line 1584
+        elif i == 1583 and '"session_id":' in line:
+            fixed_lines.append('                                "session_id": session_id,\n')
+        # Fix line 1585
+        elif i == 1584 and '"timestamp":' in line:
+            fixed_lines.append('                                "timestamp": datetime.now().isoformat(),\n')
+        # Fix line 1586
+        elif i == 1585 and '"success": False' in line:
+            fixed_lines.append('                                "success": False\n')
+        # Fix line 1587
+        elif i == 1586 and '}))' in line:
+            fixed_lines.append('                            }))\n')
+        # Fix line 1720
+        elif i == 1719 and 'await websocket.send' in line:
+            fixed_lines.append('                            await websocket.send(json.dumps({\n')
+        # Fix line 1725
+        elif i == 1724 and 'else:' in line:
+            fixed_lines.append('                            else:\n')
+        # Fix line 1727
+        elif i == 1726 and 'except Exception as e:' in line:
+            fixed_lines.append('                            except Exception as e:\n')
+        else:
+            fixed_lines.append(line)
+    
+    with open('enhanced_enterprise_backend_with_context.py', 'w') as f:
+        f.writelines(fixed_lines)
 
 if __name__ == "__main__":
-    success = fix_indentation()
-    if success:
-        print("✅ Fixed indentation issue by restoring from backup")
-    else:
-        print("❌ Failed to fix indentation issue")
-    sys.exit(0 if success else 1)
+    fix_indentation()
+    print("Fixed indentation issues!")

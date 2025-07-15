@@ -28,8 +28,9 @@ logger = logging.getLogger('process_sensor')
 class ProcessSensor:
     """Sensor for capturing process-related data."""
     
-    def __init__(self):
+    def __init__(self, *args, **kwargs):
         """Initialize the process sensor."""
+        self.sensor_type = "process"
         self.last_data = None
         logger.info("Process sensor initialized")
     
@@ -136,3 +137,10 @@ class ProcessSensor:
         except Exception as e:
             logger.error(f"Error getting network usage: {e}")
             return {'bytes_sent': None, 'bytes_recv': None, 'packets_sent': None, 'packets_recv': None}
+
+    def get_active_process(self):
+        return None
+    def get_window_title(self):
+        return None
+    def has_updates(self):
+        return False

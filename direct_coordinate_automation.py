@@ -706,6 +706,30 @@ async def websocket_handler(websocket, path=None):
                             "error": "Missing text for direct typing"
                         }))
                 
+                # Handle client registration
+                elif msg_type == 'register':
+                    client_type = data.get('client_type', 'unknown')
+                    client_id = data.get('client_id', f'client_{int(time.time() * 1000)}')
+                    
+                    logger.info(f"Client {client_id} registered as {client_type}")
+                    
+                    # Send registration confirmation
+                    await websocket.send(json.dumps({
+                        "type": "registration_confirmed",
+                        "payload": {
+                            "client_type": client_type,
+                            "client_id": client_id,
+                            "timestamp": datetime.now().isoformat()
+                        }
+                    }))
+                
+                # Handle ping messages for connection keep-alive
+                elif msg_type == 'ping':
+                    await websocket.send(json.dumps({
+                        "type": "pong",
+                        "timestamp": datetime.now().isoformat()
+                    }))
+                
                 # Get screen size
                 elif msg_type == 'get_screen_size':
                     if INPUT_CONTROLLER_AVAILABLE and input_controller:

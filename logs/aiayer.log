@@ -230,3 +230,39 @@ connector: <aiohttp.connector.TCPConnector object at 0x106ef9e80>
 2025-06-08 00:32:29,826 - memory.conscious_memory - INFO - [ConsciousMemory] Initialized as middle layer for memory system
 2025-06-08 00:32:30,107 - memory.conscious_memory - INFO - [ConsciousMemory] Initialized as middle layer for memory system
 2025-06-08 00:32:30,169 - memory.conscious_memory - INFO - [ConsciousMemory] Initialized as middle layer for memory system
+2025-07-14 12:39:05,422 - llm.model - INFO - ✅ LLM service started successfully with model llama3.2:1b
+2025-07-14 12:39:05,424 - llm.model - INFO - Sending Ollama request (attempt 1/3)
+2025-07-14 12:39:06,485 - asyncio - ERROR - Unclosed client session
+client_session: <aiohttp.client.ClientSession object at 0x106282120>
+2025-07-14 12:39:15,009 - llm.model - INFO - ✅ LLM service started successfully with model llama3.2:1b
+2025-07-14 12:39:15,012 - llm.model - INFO - Sending Ollama request (attempt 1/3)
+2025-07-14 12:39:21,199 - llm.model - INFO - Ollama response time: 6.19s (status: 200)
+2025-07-14 12:39:21,227 - llm.model - INFO - Successfully parsed NDJSON response: 2 chars from 3 parts
+2025-07-14 12:39:21,227 - llm.model - INFO - LLM service stopped
+2025-07-14 12:39:21,462 - asyncio - ERROR - Unclosed client session
+client_session: <aiohttp.client.ClientSession object at 0x10249a120>
+2025-07-14 12:39:21,462 - asyncio - ERROR - Unclosed connector
+connections: ['deque([(<aiohttp.client_proto.ResponseHandler object at 0x1024b3830>, 23158.764257125)])']
+connector: <aiohttp.connector.TCPConnector object at 0x102499d30>
+2025-07-14 12:44:31,435 - llm.model - INFO - ✅ LLM service started successfully with model llama3.2:1b
+2025-07-14 12:44:31,435 - llm.model - INFO - Sending Ollama request (attempt 1/3)
+2025-07-14 12:44:39,495 - llm.model - INFO - Ollama response time: 8.06s (status: 200)
+2025-07-14 12:44:39,495 - llm.model - INFO - Successfully parsed NDJSON response: 1 chars from 2 parts
+2025-07-14 12:44:39,496 - llm.model - INFO - Sending Ollama request (attempt 1/3)
+2025-07-14 12:44:40,711 - llm.model - INFO - Ollama response time: 1.22s (status: 200)
+2025-07-14 12:44:40,712 - llm.model - INFO - Successfully parsed NDJSON response: 296 chars from 62 parts
+2025-07-14 12:44:40,712 - llm.model - INFO - Sending Ollama request (attempt 1/3)
+2025-07-14 12:44:41,056 - llm.model - INFO - Ollama response time: 0.34s (status: 200)
+2025-07-14 12:44:41,056 - llm.model - INFO - Successfully parsed NDJSON response: 48 chars from 17 parts
+2025-07-14 12:44:41,056 - llm.model - INFO - Sending Ollama request (attempt 1/3)
+2025-07-14 12:44:41,238 - llm.model - INFO - Ollama response time: 0.18s (status: 200)
+2025-07-14 12:44:41,238 - llm.model - INFO - Successfully parsed NDJSON response: 31 chars from 8 parts
+2025-07-14 12:44:41,238 - llm.model - INFO - Sending Ollama request (attempt 1/3)
+2025-07-14 12:44:42,032 - llm.model - INFO - Ollama response time: 0.71s (status: 200)
+2025-07-14 12:44:42,047 - llm.model - INFO - Successfully parsed NDJSON response: 72 chars from 18 parts
+2025-07-14 12:44:42,047 - llm.model - INFO - LLM service stopped
+2025-07-14 12:44:42,203 - asyncio - ERROR - Unclosed client session
+client_session: <aiohttp.client.ClientSession object at 0x102582270>
+2025-07-14 12:44:42,204 - asyncio - ERROR - Unclosed connector
+connections: ['deque([(<aiohttp.client_proto.ResponseHandler object at 0x1025a3890>, 23479.379649166)])']
+connector: <aiohttp.connector.TCPConnector object at 0x102581e80>

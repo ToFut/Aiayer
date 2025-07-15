@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SensAI UI2HTML Overlay</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: white;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 30px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+        
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 2.5em;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        
+        .status {
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            font-weight: bold;
+            text-align: center;
+        }
+        
+        .status.connected {
+            background: rgba(34, 197, 94, 0.2);
+            border: 2px solid #22c55e;
+        }
+        
+        .status.disconnected {
+            background: rgba(239, 68, 68, 0.2);
+            border: 2px solid #ef4444;
+        }
+        
+        .status.connecting {
+            background: rgba(245, 158, 11, 0.2);
+            border: 2px solid #f59e0b;
+        }
+        
+        .chat-container {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+        
+        .message {
+            margin-bottom: 15px;
+            padding: 10px;
+            border-radius: 8px;
+        }
+        
+        .message.user {
+            background: rgba(59, 130, 246, 0.2);
+            border-left: 4px solid #3b82f6;
+        }
+        
+        .message.assistant {
+            background: rgba(34, 197, 94, 0.2);
+            border-left: 4px solid #22c55e;
+        }
+        
+        .message.system {
+            background: rgba(156, 163, 175, 0.2);
+            border-left: 4px solid #9ca3af;
+            font-style: italic;
+        }
+        
+        .input-container {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        
+        input[type="text"] {
+            flex: 1;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            font-size: 16px;
+        }
+        
+        input[type="text"]::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+        
+        button {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+        
+        button:hover {
+            transform: translateY(-2px);
+        }
+        
+        button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+        
+        .ui-context {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .ui-context h3 {
+            margin-top: 0;
+            color: #fbbf24;
+        }
+        
+        .quick-actions {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .quick-action {
+            padding: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            text-align: center;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        
+        .quick-action:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🤖 SensAI UI2HTML Overlay</h1>
+        
+        <div id="status" class="status disconnected">
+            🔴 Disconnected from Unified Backend
+        </div>
+        
+        <div class="ui-context">
+            <h3>📱 Current UI Context</h3>
+            <div id="ui-context">No UI context available</div>
+        </div>
+        
+        <div class="quick-actions">
+            <div class="quick-action" onclick="sendQuickMessage('What\'s on my screen?')">
+                👁️ What's on my screen?
+            </div>
+            <div class="quick-action" onclick="sendQuickMessage('Show me the current UI')">
+                📋 Show current UI
+            </div>
+            <div class="quick-action" onclick="sendQuickMessage('What can I do here?')">
+                ❓ What can I do here?
+            </div>
+            <div class="quick-action" onclick="queryMemory('Finder')">
+                🔍 Search UI memory
+            </div>
+        </div>
+        
+        <div class="chat-container" id="chat">
+            <div class="message system">
+                Welcome to SensAI UI2HTML Overlay! This connects to your unified backend for real-time UI understanding and contextual conversations.
+            </div>
+        </div>
+        
+        <div class="input-container">
+            <input type="text" id="messageInput" placeholder="Ask about your screen or UI..." onkeypress="handleKeyPress(event)">
+            <button onclick="sendMessage()" id="sendButton">Send</button>
+        </div>
+    </div>
+
+    <script>
+        let ws = null;
+        let isConnected = false;
+        
+        // Connect to unified backend
+        function connect() {
+            const statusEl = document.getElementById('status');
+            statusEl.className = 'status connecting';
+            statusEl.innerHTML = '🟡 Connecting to Unified Backend...';
+            
+            ws = new WebSocket('ws://localhost:8767');
+            
+            ws.onopen = function() {
+                console.log('Connected to unified backend');
+                isConnected = true;
+                statusEl.className = 'status connected';
+                statusEl.innerHTML = '🟢 Connected to Unified Backend';
+                
+                // Register with the backend
+                send({
+                    type: 'register',
+                    client_type: 'html_overlay'
+                });
+                
+                addMessage('system', 'Connected to unified backend! You can now ask questions about your UI.');
+            };
+            
+            ws.onmessage = function(event) {
+                const data = JSON.parse(event.data);
+                console.log('Received:', data);
+                
+                switch(data.type) {
+                    case 'registration_success':
+                        addMessage('system', 'Successfully registered with unified backend');
+                        break;
+                        
+                    case 'chat_response':
+                        addMessage('assistant', data.payload.response);
+                        updateUIContext(data.payload.ui_context);
+                        break;
+                        
+                    case 'current_ui_response':
+                        if (data.payload.error) {
+                            addMessage('system', 'No UI context available');
+                        } else {
+                            updateUIContext({
+                                current_app: data.payload.app_name,
+                                element_count: data.payload.element_count
+                            });
+                        }
+                        break;
+                        
+                    case 'ui_memory_results':
+                        const results = data.payload.results;
+                        addMessage('assistant', `Found ${results.length} UI snapshots in memory for "${data.payload.query}"`);
+                        break;
+                        
+                    case 'agent_execution_result':
+                        addMessage('assistant', `Agent execution: ${data.payload.success ? 'Success' : 'Failed'}`);
+                        break;
+                        
+                    case 'pong':
+                        console.log('Pong received');
+                        break;
+                        
+                    default:
+                        console.log('Unknown message type:', data.type);
+                }
+            };
+            
+            ws.onclose = function() {
+                console.log('Disconnected from unified backend');
+                isConnected = false;
+                statusEl.className = 'status disconnected';
+                statusEl.innerHTML = '🔴 Disconnected from Unified Backend';
+                addMessage('system', 'Disconnected from unified backend');
+                
+                // Try to reconnect after 5 seconds
+                setTimeout(connect, 5000);
+            };
+            
+            ws.onerror = function(error) {
+                console.error('WebSocket error:', error);
+                statusEl.className = 'status disconnected';
+                statusEl.innerHTML = '🔴 Connection Error';
+            };
+        }
+        
+        function send(data) {
+            if (ws && ws.readyState === WebSocket.OPEN) {
+                ws.send(JSON.stringify(data));
+            } else {
+                addMessage('system', 'Not connected to backend');
+            }
+        }
+        
+        function sendMessage() {
+            const input = document.getElementById('messageInput');
+            const message = input.value.trim();
+            
+            if (message) {
+                addMessage('user', message);
+                send({
+                    type: 'user_interaction',
+                    payload: {
+                        query: message,
+                        mode: 'chat'
+                    }
+                });
+                input.value = '';
+            }
+        }
+        
+        function sendQuickMessage(message) {
+            addMessage('user', message);
+            send({
+                type: 'user_interaction',
+                payload: {
+                    query: message,
+                    mode: 'chat'
+                }
+            });
+        }
+        
+        function queryMemory(query) {
+            addMessage('user', `Searching memory for: ${query}`);
+            send({
+                type: 'ui_memory_query',
+                payload: {
+                    query: query,
+                    limit: 3
+                }
+            });
+        }
+        
+        function handleKeyPress(event) {
+            if (event.key === 'Enter') {
+                sendMessage();
+            }
+        }
+        
+        function addMessage(type, text) {
+            const chat = document.getElementById('chat');
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message ${type}`;
+            messageDiv.textContent = text;
+            chat.appendChild(messageDiv);
+            chat.scrollTop = chat.scrollHeight;
+        }
+        
+        function updateUIContext(context) {
+            const contextEl = document.getElementById('ui-context');
+            if (context) {
+                contextEl.innerHTML = `
+                    <strong>App:</strong> ${context.current_app || 'Unknown'}<br>
+                    <strong>Elements:</strong> ${context.element_count || 0}<br>
+                    <strong>Memory Results:</strong> ${context.memory_results || 0}
+                `;
+            } else {
+                contextEl.textContent = 'No UI context available';
+            }
+        }
+        
+        // Start connection when page loads
+        window.onload = function() {
+            connect();
+        };
+    </script>
+</body>
+</html> 

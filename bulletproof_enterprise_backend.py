@@ -793,7 +793,7 @@ class BulletproofEnterpriseBackend:
             full_prompt = f"{system_prompt}\\n\\nUser: {message}\\n\\nAssistant:"
             
             payload = {
-                "model": "llama3.2:latest",
+                "model": "llama3.2:1b",
                 "prompt": full_prompt,
                 "stream": False,
                 "options": {
@@ -857,7 +857,7 @@ class BulletproofEnterpriseBackend:
             
         try:
             warm_payload = {
-                "model": "llama3.2:latest",
+                "model": "llama3.2:1b",
                 "prompt": "System ready",
                 "stream": False,
                 "options": {"num_predict": 1}

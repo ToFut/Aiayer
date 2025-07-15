@@ -1,195 +1,195 @@
 {
-  "timestamp": "2025-06-08T12:49:57.975021",
+  "timestamp": "2025-07-10T23:26:41.299515",
   "active_app": "Unknown",
   "active_window": "Unknown Window",
   "active_processes": [
     {
-      "name": "Cursor",
-      "pid": 8646,
-      "type": "other",
-      "memory_mb": 125.9,
-      "cpu_percent": 2.3,
-      "create_time": 1749359307.145646
-    },
-    {
-      "name": "Cursor Helper (Plugin): extension-host [3-3]",
-      "pid": 8954,
-      "type": "other",
-      "memory_mb": 67.6,
-      "cpu_percent": 0.7,
-      "create_time": 1749359313.842022
-    },
-    {
       "name": "Cursor Helper (Renderer)",
-      "pid": 8654,
+      "pid": 18459,
       "type": "other",
-      "memory_mb": 44.5,
-      "cpu_percent": 0.2,
-      "create_time": 1749359308.825032
+      "memory_mb": 459.4,
+      "cpu_percent": 35.6,
+      "create_time": 1752194235.541487
     },
     {
-      "name": "tesseract",
-      "pid": 58365,
+      "name": "Cursor Helper (Plugin): extension-host [1-1]",
+      "pid": 18743,
       "type": "other",
-      "memory_mb": 42.0,
+      "memory_mb": 116.5,
+      "cpu_percent": 4.0,
+      "create_time": 1752194236.842272
+    },
+    {
+      "name": "Cursor",
+      "pid": 18447,
+      "type": "other",
+      "memory_mb": 67.5,
+      "cpu_percent": 3.7,
+      "create_time": 1752194234.815023
+    },
+    {
+      "name": "AppleSpell",
+      "pid": 14483,
+      "type": "other",
+      "memory_mb": 66.4,
       "cpu_percent": 0,
-      "create_time": 1749401396.898073
+      "create_time": 1752178175.104906
     },
     {
       "name": "Cursor Helper (GPU)",
-      "pid": 8651,
+      "pid": 18453,
       "type": "other",
-      "memory_mb": 40.3,
-      "cpu_percent": 2.0,
-      "create_time": 1749359308.245324
-    },
-    {
-      "name": "git",
-      "pid": 58360,
-      "type": "other",
-      "memory_mb": 39.5,
-      "cpu_percent": 0,
-      "create_time": 1749401396.471975
-    },
-    {
-      "name": "com.apple.WebKit.GPU",
-      "pid": 54069,
-      "type": "other",
-      "memory_mb": 24.9,
-      "cpu_percent": 4.2,
-      "create_time": 1749399822.761238
-    },
-    {
-      "name": "ai-assistant-overlay",
-      "pid": 54059,
-      "type": "other",
-      "memory_mb": 24.6,
-      "cpu_percent": 2.2,
-      "create_time": 1749399821.711381
-    },
-    {
-      "name": "Notes",
-      "pid": 3892,
-      "type": "other",
-      "memory_mb": 18.5,
-      "cpu_percent": 0.1,
-      "create_time": 1749358212.224059
-    },
-    {
-      "name": "CursorUIViewService",
-      "pid": 776,
-      "type": "other",
-      "memory_mb": 18.4,
-      "cpu_percent": 0.2,
-      "create_time": 1749083180.30796
-    },
-    {
-      "name": "WindowManager",
-      "pid": 592,
-      "type": "other",
-      "memory_mb": 16.9,
-      "cpu_percent": 0.3,
-      "create_time": 1749083176.11057
-    },
-    {
-      "name": "Finder",
-      "pid": 599,
-      "type": "other",
-      "memory_mb": 16.8,
-      "cpu_percent": 0.2,
-      "create_time": 1749083176.165683
-    },
-    {
-      "name": "ControlCenter",
-      "pid": 596,
-      "type": "other",
-      "memory_mb": 15.8,
-      "cpu_percent": 0.3,
-      "create_time": 1749083176.142396
-    },
-    {
-      "name": "Safari",
-      "pid": 95213,
-      "type": "browser",
-      "memory_mb": 15.8,
-      "cpu_percent": 0.3,
-      "create_time": 1749357068.817232
+      "memory_mb": 58.8,
+      "cpu_percent": 13.7,
+      "create_time": 1752194235.280552
     },
     {
       "name": "Google Chrome",
-      "pid": 11926,
+      "pid": 670,
       "type": "browser",
-      "memory_mb": 15.7,
+      "memory_mb": 39.1,
       "cpu_percent": 0.1,
-      "create_time": 1749094877.407195
+      "create_time": 1751997342.164419
     },
     {
-      "name": "Cursor Helper (Plugin): extension-host [1-2]",
-      "pid": 8937,
-      "type": "other",
-      "memory_mb": 15.3,
-      "cpu_percent": 0,
-      "create_time": 1749359312.100619
+      "name": "Mail",
+      "pid": 666,
+      "type": "communication",
+      "memory_mb": 30.2,
+      "cpu_percent": 0.2,
+      "create_time": 1751997342.04936
     },
     {
-      "name": "searchpartyuseragent",
-      "pid": 1330,
+      "name": "DisplaysExt",
+      "pid": 11395,
       "type": "other",
-      "memory_mb": 14.2,
-      "cpu_percent": 0.1,
-      "create_time": 1749084989.988032
+      "memory_mb": 28.8,
+      "cpu_percent": 2.5,
+      "create_time": 1752171375.679535
+    },
+    {
+      "name": "Safari",
+      "pid": 661,
+      "type": "browser",
+      "memory_mb": 26.9,
+      "cpu_percent": 0.8,
+      "create_time": 1751997341.98922
+    },
+    {
+      "name": "Microsoft Excel",
+      "pid": 669,
+      "type": "productivity",
+      "memory_mb": 24.7,
+      "cpu_percent": 0.3,
+      "create_time": 1751997342.133525
+    },
+    {
+      "name": "NotificationCenter",
+      "pid": 623,
+      "type": "other",
+      "memory_mb": 23.6,
+      "cpu_percent": 0.2,
+      "create_time": 1751997340.781817
     },
     {
       "name": "mongod",
-      "pid": 707,
+      "pid": 3338,
       "type": "other",
-      "memory_mb": 13.8,
-      "cpu_percent": 0.3,
-      "create_time": 1749083177.300813
+      "memory_mb": 21.4,
+      "cpu_percent": 0.4,
+      "create_time": 1751997369.158747
     },
     {
-      "name": "ContextStoreAgent",
-      "pid": 48318,
+      "name": "com.apple.Virtualization.VirtualMachine",
+      "pid": 15790,
       "type": "other",
-      "memory_mb": 12.3,
+      "memory_mb": 20.4,
       "cpu_percent": 0.5,
-      "create_time": 1749396297.244909
+      "create_time": 1752001017.661274
     },
     {
-      "name": "suggestd",
-      "pid": 43465,
+      "name": "Docker Desktop",
+      "pid": 15784,
       "type": "other",
-      "memory_mb": 12.2,
+      "memory_mb": 16.4,
       "cpu_percent": 0,
-      "create_time": 1749394703.034326
+      "create_time": 1752001017.491514
+    },
+    {
+      "name": "ControlCenter",
+      "pid": 682,
+      "type": "other",
+      "memory_mb": 16.1,
+      "cpu_percent": 0.1,
+      "create_time": 1751997342.558471
+    },
+    {
+      "name": "sharingd",
+      "pid": 635,
+      "type": "other",
+      "memory_mb": 14.7,
+      "cpu_percent": 0.2,
+      "create_time": 1751997341.236686
+    },
+    {
+      "name": "Google Chrome Helper (GPU)",
+      "pid": 1642,
+      "type": "browser",
+      "memory_mb": 14.2,
+      "cpu_percent": 0,
+      "create_time": 1751997352.536875
+    },
+    {
+      "name": "loginwindow",
+      "pid": 373,
+      "type": "other",
+      "memory_mb": 13.3,
+      "cpu_percent": 0.4,
+      "create_time": 1751997338.022239
+    },
+    {
+      "name": "Cursor Helper (P",
+      "pid": 31676,
+      "type": "other",
+      "memory_mb": 12.8,
+      "cpu_percent": 0,
+      "create_time": 1752212631.738801
+    },
+    {
+      "name": "identityservicesd",
+      "pid": 617,
+      "type": "other",
+      "memory_mb": 12.7,
+      "cpu_percent": 0,
+      "create_time": 1751997340.703599
     }
   ],
   "active_apps": [
-    "Cursor",
-    "Cursor Helper (Plugin): extension-host [3-3]",
     "Cursor Helper (Renderer)",
-    "tesseract",
+    "Cursor Helper (Plugin): extension-host [1-1]",
+    "Cursor",
+    "AppleSpell",
     "Cursor Helper (GPU)",
-    "git",
-    "com.apple.WebKit.GPU",
-    "ai-assistant-overlay",
-    "Notes",
-    "CursorUIViewService",
-    "WindowManager",
-    "Finder",
-    "ControlCenter",
-    "Safari",
     "Google Chrome",
-    "Cursor Helper (Plugin): extension-host [1-2]",
-    "searchpartyuseragent",
+    "Mail",
+    "DisplaysExt",
+    "Safari",
+    "Microsoft Excel",
+    "NotificationCenter",
     "mongod",
-    "ContextStoreAgent",
-    "suggestd"
+    "com.apple.Virtualization.VirtualMachine",
+    "Docker Desktop",
+    "ControlCenter",
+    "sharingd",
+    "Google Chrome Helper (GPU)",
+    "loginwindow",
+    "Cursor Helper (P",
+    "identityservicesd"
   ],
   "system_info": {
     "cpu_count": 8,
     "memory_total_gb": 8.0,
-    "memory_used_percent": 86.0
+    "memory_used_percent": 75.4
   },
   "is_significant_action": true
 }

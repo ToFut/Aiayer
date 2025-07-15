@@ -710,7 +710,7 @@ class EnhancedEnterpriseBackend:
             prompt = f"{system_prompt}\n\nUser: {message}\nAssistant:"
             
             payload = {
-                "model": "llama3.2:latest",
+                "model": "llama3.2:1b",
                 "prompt": prompt,
                 "stream": False,
                 "options": {

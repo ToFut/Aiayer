@@ -285,7 +285,7 @@ class EnhancedBackendServer:
             
             # Cleanup memory system
             if self.memory_system:
-                await self.memory_system.cleanup()
+                await self.memory_system.stop()
                 
             # Cleanup LLM service
             if self.llm_service:
@@ -295,6 +295,31 @@ class EnhancedBackendServer:
             
         except Exception as e:
             logger.error(f"Error stopping backend server: {e}")
+            
+    async def execute_plan(self, plan):
+        """Execute an automation plan (mock implementation for testing)."""
+        try:
+            logger.info(f"Executing plan with {len(plan.steps)} steps")
+            
+            # Mock execution - just log the steps
+            for i, step in enumerate(plan.steps, 1):
+                logger.info(f"Executing step {i}: {step.get('description', 'Unknown step')}")
+                # Simulate execution time
+                await asyncio.sleep(0.1)
+            
+            logger.info("Plan execution completed successfully")
+            return {
+                "success": True,
+                "steps_executed": len(plan.steps),
+                "execution_time": 0.1 * len(plan.steps)
+            }
+            
+        except Exception as e:
+            logger.error(f"Error executing plan: {e}")
+            return {
+                "success": False,
+                "error": str(e)
+            }
 
 async def main():
     """Main function to run the backend server."""

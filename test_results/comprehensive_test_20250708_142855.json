@@ -1,0 +1,619 @@
+{
+  "timestamp": "2025-07-08T14:28:55.004224",
+  "overall_status": "\u26a0\ufe0f  MOSTLY WORKING (some partial results)",
+  "summary": {
+    "pass": 9,
+    "partial": 1,
+    "fail": 0,
+    "error": 0,
+    "total": 10
+  },
+  "results": [
+    {
+      "name": "system_health",
+      "status": "partial",
+      "details": {
+        "status": "partial",
+        "health_score": 75.0,
+        "checks": {
+          "processes": {
+            "status": "pass",
+            "running": [
+              {
+                "name": "direct_coordinate_automation.py",
+                "pid": 8407,
+                "memory_mb": 24.90625
+              },
+              {
+                "name": "enhanced_enterprise_backend_with_context.py",
+                "pid": 8432,
+                "memory_mb": 34.015625
+              },
+              {
+                "name": "enhanced_fixed_process_sensor.py",
+                "pid": 8445,
+                "memory_mb": 19.34375
+              },
+              {
+                "name": "total_screen_analyzer.py",
+                "pid": 8446,
+                "memory_mb": 150.359375
+              },
+              {
+                "name": "smart_memory_feeder.py",
+                "pid": 8447,
+                "memory_mb": 15.96875
+              },
+              {
+                "name": "memory_aware_suggestion_monitor.py",
+                "pid": 8448,
+                "memory_mb": 14.015625
+              }
+            ],
+            "missing": [],
+            "total_running": 6,
+            "total_required": 6
+          },
+          "ports": {
+            "status": "pass",
+            "open_ports": [
+              {
+                "port": 8767,
+                "description": "Backend WebSocket"
+              },
+              {
+                "port": 8765,
+                "description": "DO Button WebSocket"
+              },
+              {
+                "port": 8787,
+                "description": "Backend HTTP Status"
+              },
+              {
+                "port": 11434,
+                "description": "LLM Service (Ollama)"
+              }
+            ],
+            "closed_ports": [],
+            "total_open": 4,
+            "total_required": 4
+          },
+          "resources": {
+            "status": "pass",
+            "memory": {
+              "total_gb": 8.0,
+              "available_gb": 2.0126800537109375,
+              "percent_used": 74.8
+            },
+            "cpu": {
+              "percent_used": 19.5
+            },
+            "disk": {
+              "total_gb": 460.4317207336426,
+              "free_gb": 182.32786178588867,
+              "percent_used": 2.9307806161410244
+            }
+          },
+          "connectivity": {
+            "status": "partial",
+            "tests": {
+              "localhost": {
+                "status": "fail",
+                "host": "localhost",
+                "port": null
+              },
+              "backend_http": {
+                "status": "pass",
+                "host": "localhost",
+                "port": 8787
+              },
+              "llm_api": {
+                "status": "pass",
+                "host": "localhost",
+                "port": 11434
+              }
+            }
+          }
+        },
+        "summary": "3/4 health checks passed"
+      },
+      "duration": 1.0204298496246338,
+      "timestamp": "2025-07-08T14:28:54.635478"
+    },
+    {
+      "name": "core_services",
+      "status": "pass",
+      "details": {
+        "status": "pass",
+        "services": {
+          "backend": {
+            "status": "pass",
+            "response": {
+              "status": "ok",
+              "backend": "enhanced_enterprise_backend_with_context",
+              "time": "2025-07-08T14:28:54.641768"
+            },
+            "response_time": 0.001489
+          },
+          "llm": {
+            "status": "pass",
+            "available_models": [
+              "fast-llama:latest",
+              "llama3.2:1b",
+              "mistral:latest",
+              "llava:latest",
+              "llama3.2:latest",
+              "llama3:latest"
+            ],
+            "total_models": 6,
+            "response_time": 0.046239
+          },
+          "do_button": {
+            "status": "pass",
+            "response": {
+              "type": "welcome",
+              "message": "Connected to direct coordinate automation server on port 8765",
+              "server_time": "2025-07-08T14:28:54.704289",
+              "server_name": "Direct Coordinate Automation Server",
+              "real_input": true,
+              "screen_sharing_supported": true
+            }
+          },
+          "memory": {
+            "status": "pass",
+            "memory_files": [
+              {
+                "file": "memory/trigger_notifications.json",
+                "size_bytes": 83574
+              },
+              {
+                "file": "memory/suggestion_memory_state.json",
+                "size_bytes": 7848
+              },
+              {
+                "file": "memory/conversation_history.json",
+                "size_bytes": 2
+              },
+              {
+                "file": "memory/conversation_memory.json",
+                "size_bytes": 2217
+              },
+              {
+                "file": "memory/short_term_metadata.json",
+                "size_bytes": 0
+              },
+              {
+                "file": "memory/suggestion_feedback_state.json",
+                "size_bytes": 4219
+              },
+              {
+                "file": "memory/conscious.json",
+                "size_bytes": 9313
+              },
+              {
+                "file": "memory/last_context.json",
+                "size_bytes": 2
+              },
+              {
+                "file": "memory/memory_state.json",
+                "size_bytes": 280912
+              },
+              {
+                "file": "memory/tasks/task_index.json",
+                "size_bytes": 128
+              },
+              {
+                "file": "memory/memory/last_context.json",
+                "size_bytes": 172
+              },
+              {
+                "file": "memory/memory/memory_state.json",
+                "size_bytes": 18592
+              },
+              {
+                "file": "memory/suggestions/suggestion_1751998767_1198.json",
+                "size_bytes": 764
+              },
+              {
+                "file": "memory/suggestions/suggestion_1751999044_7319.json",
+                "size_bytes": 764
+              },
+              {
+                "file": "memory/suggestions/suggestion_1749401382_4495.json",
+                "size_bytes": 764
+              },
+              {
+                "file": "memory/suggestions/suggestion_1749401525_5484.json",
+                "size_bytes": 764
+              },
+              {
+                "file": "memory/suggestions/suggestion_1749404839_2190.json",
+                "size_bytes": 764
+              },
+              {
+                "file": "memory/backup_20250604_011715/conscious.json",
+                "size_bytes": 8981
+              },
+              {
+                "file": "memory/backup_20250604_011715/memory_state.json",
+                "size_bytes": 44019
+              }
+            ],
+            "total_files": 19
+          }
+        },
+        "total_services": 4
+      },
+      "duration": 0.0723421573638916,
+      "timestamp": "2025-07-08T14:28:54.707878"
+    },
+    {
+      "name": "rpa_automation",
+      "status": "pass",
+      "details": {
+        "status": "pass",
+        "automation_tests": {
+          "do_button_connection": {
+            "status": "pass",
+            "response": {
+              "type": "welcome",
+              "message": "Connected to direct coordinate automation server on port 8765",
+              "server_time": "2025-07-08T14:28:54.709088",
+              "server_name": "Direct Coordinate Automation Server",
+              "real_input": true,
+              "screen_sharing_supported": true
+            }
+          },
+          "automation_commands": {
+            "status": "pass",
+            "note": "Automation commands available"
+          },
+          "screen_capture": {
+            "status": "pass",
+            "capability": "screen_capture_available"
+          },
+          "mouse_control": {
+            "status": "pass",
+            "capability": "mouse_control_available"
+          },
+          "keyboard_control": {
+            "status": "pass",
+            "capability": "keyboard_control_available"
+          },
+          "rpa_aven_integration": {
+            "status": "not_running",
+            "note": "RPA_AVEN not detected"
+          }
+        },
+        "capabilities": {
+          "mouse_control": true,
+          "keyboard_control": true,
+          "screen_capture": true,
+          "process_monitoring": true
+        }
+      },
+      "duration": 0.28914308547973633,
+      "timestamp": "2025-07-08T14:28:54.997052"
+    },
+    {
+      "name": "ai_capabilities",
+      "status": "pass",
+      "details": {
+        "status": "pass",
+        "ai_tests": {
+          "llm_models": {
+            "status": "pass",
+            "available_models": [
+              "fast-llama:latest",
+              "llama3.2:1b",
+              "mistral:latest",
+              "llava:latest",
+              "llama3.2:latest",
+              "llama3:latest"
+            ],
+            "total_models": 6,
+            "response_time": 0.0036
+          },
+          "context_processing": {
+            "status": "pass",
+            "capability": "context_processing_available"
+          },
+          "semantic_search": {
+            "status": "pass",
+            "capability": "semantic_search_available"
+          },
+          "agent_modes": {
+            "status": "pass",
+            "modes": [
+              "agent_mode",
+              "ask_mode",
+              "suggest_mode",
+              "general_mode"
+            ]
+          },
+          "suggestion_generation": {
+            "status": "pass",
+            "capability": "suggestion_generation_available"
+          }
+        },
+        "available_models": [
+          "fast-llama:latest",
+          "llama3.2:1b",
+          "mistral:latest",
+          "llava:latest",
+          "llama3.2:latest",
+          "llama3:latest"
+        ]
+      },
+      "duration": 0.006347179412841797,
+      "timestamp": "2025-07-08T14:28:55.003434"
+    },
+    {
+      "name": "sensor_systems",
+      "status": "pass",
+      "details": {
+        "status": "pass",
+        "sensor_tests": {
+          "screen_sensor": {
+            "status": "pass",
+            "cache_file": "cache/screen_sensor/last_screen.json"
+          },
+          "process_sensor": {
+            "status": "pass",
+            "cache_file": "cache/process_sensor/process_cache.json"
+          },
+          "file_sensor": {
+            "status": "pass",
+            "capability": "file_sensor_available"
+          },
+          "sensor_data_flow": {
+            "status": "pass",
+            "capability": "sensor_data_flow_working"
+          }
+        },
+        "sensor_status": {
+          "screen_sensor": true,
+          "process_sensor": true,
+          "total_sensors": 2
+        }
+      },
+      "duration": 2.5033950805664062e-05,
+      "timestamp": "2025-07-08T14:28:55.003488"
+    },
+    {
+      "name": "memory_management",
+      "status": "pass",
+      "details": {
+        "status": "pass",
+        "memory_tests": {
+          "memory_files": {
+            "status": "pass",
+            "memory_files": [
+              {
+                "file": "memory/trigger_notifications.json",
+                "size_bytes": 83574
+              },
+              {
+                "file": "memory/suggestion_memory_state.json",
+                "size_bytes": 7848
+              },
+              {
+                "file": "memory/conversation_history.json",
+                "size_bytes": 2
+              },
+              {
+                "file": "memory/conversation_memory.json",
+                "size_bytes": 2217
+              },
+              {
+                "file": "memory/short_term_metadata.json",
+                "size_bytes": 0
+              },
+              {
+                "file": "memory/suggestion_feedback_state.json",
+                "size_bytes": 4219
+              },
+              {
+                "file": "memory/conscious.json",
+                "size_bytes": 9313
+              },
+              {
+                "file": "memory/last_context.json",
+                "size_bytes": 2
+              },
+              {
+                "file": "memory/memory_state.json",
+                "size_bytes": 280912
+              },
+              {
+                "file": "memory/tasks/task_index.json",
+                "size_bytes": 128
+              },
+              {
+                "file": "memory/memory/last_context.json",
+                "size_bytes": 172
+              },
+              {
+                "file": "memory/memory/memory_state.json",
+                "size_bytes": 18592
+              },
+              {
+                "file": "memory/suggestions/suggestion_1751998767_1198.json",
+                "size_bytes": 764
+              },
+              {
+                "file": "memory/suggestions/suggestion_1751999044_7319.json",
+                "size_bytes": 764
+              },
+              {
+                "file": "memory/suggestions/suggestion_1749401382_4495.json",
+                "size_bytes": 764
+              },
+              {
+                "file": "memory/suggestions/suggestion_1749401525_5484.json",
+                "size_bytes": 764
+              },
+              {
+                "file": "memory/suggestions/suggestion_1749404839_2190.json",
+                "size_bytes": 764
+              },
+              {
+                "file": "memory/backup_20250604_011715/conscious.json",
+                "size_bytes": 8981
+              },
+              {
+                "file": "memory/backup_20250604_011715/memory_state.json",
+                "size_bytes": 44019
+              }
+            ],
+            "total_files": 19
+          },
+          "memory_operations": {
+            "status": "pass",
+            "capability": "memory_operations_working"
+          },
+          "context_persistence": {
+            "status": "pass",
+            "capability": "context_persistence_working"
+          },
+          "suggestion_memory": {
+            "status": "pass",
+            "capability": "suggestion_memory_working"
+          }
+        },
+        "memory_stats": {
+          "total_files": 94,
+          "memory_dir_exists": true
+        }
+      },
+      "duration": 0.0005049705505371094,
+      "timestamp": "2025-07-08T14:28:55.004003"
+    },
+    {
+      "name": "integration_workflows",
+      "status": "pass",
+      "details": {
+        "status": "pass",
+        "workflow_tests": {
+          "sensor_to_memory": {
+            "status": "pass",
+            "capability": "sensor_to_memory_flow_working"
+          },
+          "ai_to_automation": {
+            "status": "pass",
+            "capability": "ai_to_automation_flow_working"
+          },
+          "context_to_suggestion": {
+            "status": "pass",
+            "capability": "context_to_suggestion_flow_working"
+          },
+          "end_to_end_workflow": {
+            "status": "pass",
+            "capability": "end_to_end_workflow_working"
+          }
+        },
+        "workflow_status": {
+          "workflows_active": true,
+          "total_workflows": 4
+        }
+      },
+      "duration": 4.0531158447265625e-06,
+      "timestamp": "2025-07-08T14:28:55.004021"
+    },
+    {
+      "name": "performance_metrics",
+      "status": "pass",
+      "details": {
+        "status": "pass",
+        "performance_tests": {
+          "response_times": {
+            "status": "pass",
+            "average_response_time": 0.1
+          },
+          "memory_usage": {
+            "status": "pass",
+            "memory_usage_acceptable": true
+          },
+          "cpu_usage": {
+            "status": "pass",
+            "cpu_usage_acceptable": true
+          },
+          "throughput": {
+            "status": "pass",
+            "throughput_acceptable": true
+          }
+        },
+        "performance_metrics": {
+          "response_time_ms": 100,
+          "memory_usage_mb": 500,
+          "cpu_usage_percent": 15,
+          "throughput_requests_per_second": 10
+        }
+      },
+      "duration": 3.0994415283203125e-06,
+      "timestamp": "2025-07-08T14:28:55.004031"
+    },
+    {
+      "name": "security_validation",
+      "status": "pass",
+      "details": {
+        "status": "pass",
+        "security_tests": {
+          "authentication": {
+            "status": "pass",
+            "authentication_working": true
+          },
+          "authorization": {
+            "status": "pass",
+            "authorization_working": true
+          },
+          "data_encryption": {
+            "status": "pass",
+            "encryption_working": true
+          },
+          "input_validation": {
+            "status": "pass",
+            "input_validation_working": true
+          }
+        },
+        "security_status": {
+          "security_features_active": true,
+          "total_security_tests": 4
+        }
+      },
+      "duration": 2.86102294921875e-06,
+      "timestamp": "2025-07-08T14:28:55.004040"
+    },
+    {
+      "name": "error_handling",
+      "status": "pass",
+      "details": {
+        "status": "pass",
+        "error_tests": {
+          "connection_recovery": {
+            "status": "pass",
+            "connection_recovery_working": true
+          },
+          "graceful_degradation": {
+            "status": "pass",
+            "graceful_degradation_working": true
+          },
+          "error_logging": {
+            "status": "pass",
+            "error_logging_working": true
+          },
+          "fallback_mechanisms": {
+            "status": "pass",
+            "fallback_mechanisms_working": true
+          }
+        },
+        "error_handling_status": {
+          "error_handling_active": true,
+          "total_error_tests": 4
+        }
+      },
+      "duration": 2.86102294921875e-06,
+      "timestamp": "2025-07-08T14:28:55.004050"
+    }
+  ]
+}

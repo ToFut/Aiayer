@@ -95,3 +95,26 @@ class SuggestionDetector:
 
 # Create singleton instance
 suggestion_detector = SuggestionDetector()
+
+async def process_ws_message(message: Dict[str, Any]) -> Dict[str, Any]:
+    """Process WebSocket message for suggestions"""
+    try:
+        if 'text' in message:
+            suggestions = await suggestion_detector.detect_suggestions(message['text'])
+            result = await suggestion_detector.process_suggestions(suggestions)
+            return {
+                'success': True,
+                'suggestions': suggestions,
+                'result': result
+            }
+        else:
+            return {
+                'success': False,
+                'error': 'No text in message'
+            }
+    except Exception as e:
+        logger.error(f"Error processing WebSocket message: {e}")
+        return {
+            'success': False,
+            'error': str(e)
+        }

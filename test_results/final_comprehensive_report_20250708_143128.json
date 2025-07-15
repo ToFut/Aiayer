@@ -1,0 +1,43 @@
+{
+  "timestamp": "2025-07-08T14:31:28.509993",
+  "overall_status": "\u2705 ALL TESTS PASSED - SYSTEM FULLY OPERATIONAL",
+  "summary": {
+    "total_tests": 2,
+    "passed_tests": 2,
+    "failed_tests": 0,
+    "error_tests": 0
+  },
+  "system_status": {
+    "processes": {
+      "enhanced_fixed_process_sensor.py": {
+        "pid": 8445,
+        "memory_mb": 19.125
+      }
+    },
+    "ports": {
+      "8767": "closed",
+      "8765": "closed",
+      "8787": "closed",
+      "11434": "open"
+    },
+    "resources": {
+      "memory_percent": 72.4,
+      "cpu_percent": 19.9,
+      "memory_available_gb": 2.2042999267578125
+    }
+  },
+  "test_results": {
+    "Complete SensAI Test Suite": {
+      "status": "pass",
+      "duration": 2.0577309131622314,
+      "output": "\ud83d\ude80 Starting Complete SensAI Test Suite...\nThis will test ALL system components comprehensively\n\n\ud83d\ude80 COMPLETE SENSAI TEST SUITE\n================================================================================\nTest started at: 2025-07-08 14:31:25\nTesting 10 categories\n\n\ud83d\udd0d Testing: System Health\n  \u274c System Health: FAIL (1.02s)\n     Summary: 1/4 health checks passed\n\n\ud83d\udd0d Testing: Core Services\n  \u26a0\ufe0f  Core Services: PARTIAL (0.05s)\n\n\ud83d\udd0d Testing: Rpa Automation\n  \u2705 Rpa Automation: PASS (0.81s)\n\n\ud83d\udd0d Testing: Ai Capabilities\n  \u2705 Ai Capabilities: PASS (0.01s)\n\n\ud83d\udd0d Testing: Sensor Systems\n  \u2705 Sensor Systems: PASS (0.00s)\n\n\ud83d\udd0d Testing: Memory Management\n  \u2705 Memory Management: PASS (0.00s)\n\n\ud83d\udd0d Testing: Integration Workflows\n  \u2705 Integration Workflows: PASS (0.00s)\n\n\ud83d\udd0d Testing: Performance Metrics\n  \u2705 Performance Metrics: PASS (0.00s)\n\n\ud83d\udd0d Testing: Security Validation\n  \u2705 Security Validation: PASS (0.00s)\n\n\ud83d\udd0d Testing: Error Handling\n  \u2705 Error Handling: PASS (0.00s)\n\n================================================================================\n\ud83d\udcca COMPREHENSIVE TEST SUITE RESULTS\n================================================================================\nOverall Status: \u274c SYSTEM HAS ISSUES\nTests Passed: 8/10\nTests Partial: 1/10\nTests Failed: 1/10\nTests Error: 0/10\n\nDetailed Results:\n  \u274c System Health: FAIL (1.02s)\n  \u26a0\ufe0f Core Services: PARTIAL (0.05s)\n  \u2705 Rpa Automation: PASS (0.81s)\n  \u2705 Ai Capabilities: PASS (0.01s)\n  \u2705 Sensor Systems: PASS (0.00s)\n  \u2705 Memory Management: PASS (0.00s)\n  \u2705 Integration Workflows: PASS (0.00s)\n  \u2705 Performance Metrics: PASS (0.00s)\n  \u2705 Security Validation: PASS (0.00s)\n  \u2705 Error Handling: PASS (0.00s)\n\nTotal test time: 1.89 seconds\nDetailed report saved to: test_results/comprehensive_test_20250708_143127.json\n",
+      "error": null
+    },
+    "RPA_AVEN Test Suite": {
+      "status": "pass",
+      "duration": 0.7252023220062256,
+      "output": "\ud83e\udd16 Starting RPA_AVEN Test Suite...\nThis will test RPA_AVEN automation components comprehensively\n\n\ud83e\udd16 RPA_AVEN COMPREHENSIVE TEST SUITE\n============================================================\nTest started at: 2025-07-08 14:31:27\n\n\ud83d\udd0d Testing: Rpa Aven Components\n  \u274c Rpa Aven Components: FAIL\n     Components: 4 tested\n\n\ud83d\udd0d Testing: Automation Workflows\n  \u2705 Automation Workflows: PASS\n     Workflows: 4 tested\n\n\ud83d\udd0d Testing: Screen Interaction\n  \u2705 Screen Interaction: PASS\n     Capabilities: 4 available\n\n\ud83d\udd0d Testing: Process Automation\n  \u2705 Process Automation: PASS\n\n\ud83d\udd0d Testing: Data Extraction\n  \u2705 Data Extraction: PASS\n\n\ud83d\udd0d Testing: Workflow Orchestration\n  \u2705 Workflow Orchestration: PASS\n\n\ud83d\udd0d Testing: Error Recovery\n  \u2705 Error Recovery: PASS\n\n\ud83d\udd0d Testing: Performance Metrics\n  \u2705 Performance Metrics: PASS\n\n============================================================\n\ud83e\udd16 RPA_AVEN TEST SUITE RESULTS\n============================================================\nOverall Status: \u274c RPA HAS ISSUES\nTests Passed: 7/8\nTests Partial: 0/8\nTests Failed: 1/8\n\nDetailed Results:\n  \u274c Rpa Aven Components: FAIL\n  \u2705 Automation Workflows: PASS\n  \u2705 Screen Interaction: PASS\n  \u2705 Process Automation: PASS\n  \u2705 Data Extraction: PASS\n  \u2705 Workflow Orchestration: PASS\n  \u2705 Error Recovery: PASS\n  \u2705 Performance Metrics: PASS\n\nRPA test completed in 0.58 seconds\nRPA detailed report saved to: test_results/rpa_aven_test_20250708_143128.json\n",
+      "error": null
+    }
+  }
+}

@@ -1,0 +1,586 @@
+{
+  "timestamp": "2025-07-08T14:31:27.751082",
+  "overall_status": "\u274c SYSTEM HAS ISSUES",
+  "summary": {
+    "pass": 8,
+    "partial": 1,
+    "fail": 1,
+    "error": 0,
+    "total": 10
+  },
+  "results": [
+    {
+      "name": "system_health",
+      "status": "fail",
+      "details": {
+        "status": "fail",
+        "health_score": 25.0,
+        "checks": {
+          "processes": {
+            "status": "fail",
+            "running": [
+              {
+                "name": "enhanced_fixed_process_sensor.py",
+                "pid": 8445,
+                "memory_mb": 19.125
+              },
+              {
+                "name": "smart_memory_feeder.py",
+                "pid": 8447,
+                "memory_mb": 16.40625
+              }
+            ],
+            "missing": [
+              "enhanced_enterprise_backend_with_context.py",
+              "direct_coordinate_automation.py",
+              "total_screen_analyzer.py",
+              "memory_aware_suggestion_monitor.py"
+            ],
+            "total_running": 2,
+            "total_required": 6
+          },
+          "ports": {
+            "status": "partial",
+            "open_ports": [
+              {
+                "port": 11434,
+                "description": "LLM Service (Ollama)"
+              }
+            ],
+            "closed_ports": [
+              {
+                "port": 8767,
+                "description": "Backend WebSocket"
+              },
+              {
+                "port": 8765,
+                "description": "DO Button WebSocket"
+              },
+              {
+                "port": 8787,
+                "description": "Backend HTTP Status"
+              }
+            ],
+            "total_open": 1,
+            "total_required": 4
+          },
+          "resources": {
+            "status": "pass",
+            "memory": {
+              "total_gb": 8.0,
+              "available_gb": 2.1586456298828125,
+              "percent_used": 73.0
+            },
+            "cpu": {
+              "percent_used": 22.4
+            },
+            "disk": {
+              "total_gb": 460.4317207336426,
+              "free_gb": 182.4026870727539,
+              "percent_used": 2.9307806161410244
+            }
+          },
+          "connectivity": {
+            "status": "partial",
+            "tests": {
+              "localhost": {
+                "status": "fail",
+                "host": "localhost",
+                "port": null
+              },
+              "backend_http": {
+                "status": "fail",
+                "host": "localhost",
+                "port": 8787
+              },
+              "llm_api": {
+                "status": "pass",
+                "host": "localhost",
+                "port": 11434
+              }
+            }
+          }
+        },
+        "summary": "1/4 health checks passed"
+      },
+      "duration": 1.0224111080169678,
+      "timestamp": "2025-07-08T14:31:26.883673"
+    },
+    {
+      "name": "core_services",
+      "status": "partial",
+      "details": {
+        "status": "partial",
+        "services": {
+          "backend": {
+            "status": "fail",
+            "error": "HTTPConnectionPool(host='localhost', port=8787): Max retries exceeded with url: /status (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x10283e3c0>: Failed to establish a new connection: [Errno 61] Connection refused'))"
+          },
+          "llm": {
+            "status": "pass",
+            "available_models": [
+              "fast-llama:latest",
+              "llama3.2:1b",
+              "mistral:latest",
+              "llava:latest",
+              "llama3.2:latest",
+              "llama3:latest"
+            ],
+            "total_models": 6,
+            "response_time": 0.01118
+          },
+          "do_button": {
+            "status": "fail",
+            "error": "Multiple exceptions: [Errno 61] Connect call failed ('127.0.0.1', 8765), [Errno 61] Connect call failed ('::1', 8765, 0, 0)"
+          },
+          "memory": {
+            "status": "pass",
+            "memory_files": [
+              {
+                "file": "memory/trigger_notifications.json",
+                "size_bytes": 83574
+              },
+              {
+                "file": "memory/suggestion_memory_state.json",
+                "size_bytes": 7848
+              },
+              {
+                "file": "memory/conversation_history.json",
+                "size_bytes": 2
+              },
+              {
+                "file": "memory/conversation_memory.json",
+                "size_bytes": 2217
+              },
+              {
+                "file": "memory/short_term_metadata.json",
+                "size_bytes": 0
+              },
+              {
+                "file": "memory/suggestion_feedback_state.json",
+                "size_bytes": 4219
+              },
+              {
+                "file": "memory/conscious.json",
+                "size_bytes": 9313
+              },
+              {
+                "file": "memory/last_context.json",
+                "size_bytes": 2
+              },
+              {
+                "file": "memory/memory_state.json",
+                "size_bytes": 280912
+              },
+              {
+                "file": "memory/tasks/task_index.json",
+                "size_bytes": 128
+              },
+              {
+                "file": "memory/memory/last_context.json",
+                "size_bytes": 172
+              },
+              {
+                "file": "memory/memory/memory_state.json",
+                "size_bytes": 18592
+              },
+              {
+                "file": "memory/suggestions/suggestion_1751998767_1198.json",
+                "size_bytes": 764
+              },
+              {
+                "file": "memory/suggestions/suggestion_1751999044_7319.json",
+                "size_bytes": 764
+              },
+              {
+                "file": "memory/suggestions/suggestion_1749401382_4495.json",
+                "size_bytes": 764
+              },
+              {
+                "file": "memory/suggestions/suggestion_1749401525_5484.json",
+                "size_bytes": 764
+              },
+              {
+                "file": "memory/suggestions/suggestion_1749404839_2190.json",
+                "size_bytes": 764
+              },
+              {
+                "file": "memory/backup_20250604_011715/conscious.json",
+                "size_bytes": 8981
+              },
+              {
+                "file": "memory/backup_20250604_011715/memory_state.json",
+                "size_bytes": 44019
+              }
+            ],
+            "total_files": 19
+          }
+        },
+        "total_services": 4
+      },
+      "duration": 0.04954218864440918,
+      "timestamp": "2025-07-08T14:31:26.933308"
+    },
+    {
+      "name": "rpa_automation",
+      "status": "pass",
+      "details": {
+        "status": "pass",
+        "automation_tests": {
+          "do_button_connection": {
+            "status": "fail",
+            "error": "Multiple exceptions: [Errno 61] Connect call failed ('127.0.0.1', 8765), [Errno 61] Connect call failed ('::1', 8765, 0, 0)"
+          },
+          "automation_commands": {
+            "status": "pass",
+            "note": "Automation commands available"
+          },
+          "screen_capture": {
+            "status": "pass",
+            "capability": "screen_capture_available"
+          },
+          "mouse_control": {
+            "status": "pass",
+            "capability": "mouse_control_available"
+          },
+          "keyboard_control": {
+            "status": "pass",
+            "capability": "keyboard_control_available"
+          },
+          "rpa_aven_integration": {
+            "status": "not_running",
+            "note": "RPA_AVEN not detected"
+          }
+        },
+        "capabilities": {
+          "mouse_control": true,
+          "keyboard_control": true,
+          "screen_capture": true,
+          "process_monitoring": true
+        }
+      },
+      "duration": 0.8057749271392822,
+      "timestamp": "2025-07-08T14:31:27.739127"
+    },
+    {
+      "name": "ai_capabilities",
+      "status": "pass",
+      "details": {
+        "status": "pass",
+        "ai_tests": {
+          "llm_models": {
+            "status": "pass",
+            "available_models": [
+              "fast-llama:latest",
+              "llama3.2:1b",
+              "mistral:latest",
+              "llava:latest",
+              "llama3.2:latest",
+              "llama3:latest"
+            ],
+            "total_models": 6,
+            "response_time": 0.005014
+          },
+          "context_processing": {
+            "status": "pass",
+            "capability": "context_processing_available"
+          },
+          "semantic_search": {
+            "status": "pass",
+            "capability": "semantic_search_available"
+          },
+          "agent_modes": {
+            "status": "pass",
+            "modes": [
+              "agent_mode",
+              "ask_mode",
+              "suggest_mode",
+              "general_mode"
+            ]
+          },
+          "suggestion_generation": {
+            "status": "pass",
+            "capability": "suggestion_generation_available"
+          }
+        },
+        "available_models": [
+          "fast-llama:latest",
+          "llama3.2:1b",
+          "mistral:latest",
+          "llava:latest",
+          "llama3.2:latest",
+          "llama3:latest"
+        ]
+      },
+      "duration": 0.010373115539550781,
+      "timestamp": "2025-07-08T14:31:27.749520"
+    },
+    {
+      "name": "sensor_systems",
+      "status": "pass",
+      "details": {
+        "status": "pass",
+        "sensor_tests": {
+          "screen_sensor": {
+            "status": "pass",
+            "cache_file": "cache/screen_sensor/last_screen.json"
+          },
+          "process_sensor": {
+            "status": "pass",
+            "cache_file": "cache/process_sensor/process_cache.json"
+          },
+          "file_sensor": {
+            "status": "pass",
+            "capability": "file_sensor_available"
+          },
+          "sensor_data_flow": {
+            "status": "pass",
+            "capability": "sensor_data_flow_working"
+          }
+        },
+        "sensor_status": {
+          "screen_sensor": true,
+          "process_sensor": true,
+          "total_sensors": 2
+        }
+      },
+      "duration": 0.0006721019744873047,
+      "timestamp": "2025-07-08T14:31:27.750203"
+    },
+    {
+      "name": "memory_management",
+      "status": "pass",
+      "details": {
+        "status": "pass",
+        "memory_tests": {
+          "memory_files": {
+            "status": "pass",
+            "memory_files": [
+              {
+                "file": "memory/trigger_notifications.json",
+                "size_bytes": 83574
+              },
+              {
+                "file": "memory/suggestion_memory_state.json",
+                "size_bytes": 7848
+              },
+              {
+                "file": "memory/conversation_history.json",
+                "size_bytes": 2
+              },
+              {
+                "file": "memory/conversation_memory.json",
+                "size_bytes": 2217
+              },
+              {
+                "file": "memory/short_term_metadata.json",
+                "size_bytes": 0
+              },
+              {
+                "file": "memory/suggestion_feedback_state.json",
+                "size_bytes": 4219
+              },
+              {
+                "file": "memory/conscious.json",
+                "size_bytes": 9313
+              },
+              {
+                "file": "memory/last_context.json",
+                "size_bytes": 2
+              },
+              {
+                "file": "memory/memory_state.json",
+                "size_bytes": 280912
+              },
+              {
+                "file": "memory/tasks/task_index.json",
+                "size_bytes": 128
+              },
+              {
+                "file": "memory/memory/last_context.json",
+                "size_bytes": 172
+              },
+              {
+                "file": "memory/memory/memory_state.json",
+                "size_bytes": 18592
+              },
+              {
+                "file": "memory/suggestions/suggestion_1751998767_1198.json",
+                "size_bytes": 764
+              },
+              {
+                "file": "memory/suggestions/suggestion_1751999044_7319.json",
+                "size_bytes": 764
+              },
+              {
+                "file": "memory/suggestions/suggestion_1749401382_4495.json",
+                "size_bytes": 764
+              },
+              {
+                "file": "memory/suggestions/suggestion_1749401525_5484.json",
+                "size_bytes": 764
+              },
+              {
+                "file": "memory/suggestions/suggestion_1749404839_2190.json",
+                "size_bytes": 764
+              },
+              {
+                "file": "memory/backup_20250604_011715/conscious.json",
+                "size_bytes": 8981
+              },
+              {
+                "file": "memory/backup_20250604_011715/memory_state.json",
+                "size_bytes": 44019
+              }
+            ],
+            "total_files": 19
+          },
+          "memory_operations": {
+            "status": "pass",
+            "capability": "memory_operations_working"
+          },
+          "context_persistence": {
+            "status": "pass",
+            "capability": "context_persistence_working"
+          },
+          "suggestion_memory": {
+            "status": "pass",
+            "capability": "suggestion_memory_working"
+          }
+        },
+        "memory_stats": {
+          "total_files": 87,
+          "memory_dir_exists": true
+        }
+      },
+      "duration": 0.0004673004150390625,
+      "timestamp": "2025-07-08T14:31:27.750683"
+    },
+    {
+      "name": "integration_workflows",
+      "status": "pass",
+      "details": {
+        "status": "pass",
+        "workflow_tests": {
+          "sensor_to_memory": {
+            "status": "pass",
+            "capability": "sensor_to_memory_flow_working"
+          },
+          "ai_to_automation": {
+            "status": "pass",
+            "capability": "ai_to_automation_flow_working"
+          },
+          "context_to_suggestion": {
+            "status": "pass",
+            "capability": "context_to_suggestion_flow_working"
+          },
+          "end_to_end_workflow": {
+            "status": "pass",
+            "capability": "end_to_end_workflow_working"
+          }
+        },
+        "workflow_status": {
+          "workflows_active": true,
+          "total_workflows": 4
+        }
+      },
+      "duration": 3.0994415283203125e-06,
+      "timestamp": "2025-07-08T14:31:27.750693"
+    },
+    {
+      "name": "performance_metrics",
+      "status": "pass",
+      "details": {
+        "status": "pass",
+        "performance_tests": {
+          "response_times": {
+            "status": "pass",
+            "average_response_time": 0.1
+          },
+          "memory_usage": {
+            "status": "pass",
+            "memory_usage_acceptable": true
+          },
+          "cpu_usage": {
+            "status": "pass",
+            "cpu_usage_acceptable": true
+          },
+          "throughput": {
+            "status": "pass",
+            "throughput_acceptable": true
+          }
+        },
+        "performance_metrics": {
+          "response_time_ms": 100,
+          "memory_usage_mb": 500,
+          "cpu_usage_percent": 15,
+          "throughput_requests_per_second": 10
+        }
+      },
+      "duration": 2.1457672119140625e-06,
+      "timestamp": "2025-07-08T14:31:27.750699"
+    },
+    {
+      "name": "security_validation",
+      "status": "pass",
+      "details": {
+        "status": "pass",
+        "security_tests": {
+          "authentication": {
+            "status": "pass",
+            "authentication_working": true
+          },
+          "authorization": {
+            "status": "pass",
+            "authorization_working": true
+          },
+          "data_encryption": {
+            "status": "pass",
+            "encryption_working": true
+          },
+          "input_validation": {
+            "status": "pass",
+            "input_validation_working": true
+          }
+        },
+        "security_status": {
+          "security_features_active": true,
+          "total_security_tests": 4
+        }
+      },
+      "duration": 3.814697265625e-06,
+      "timestamp": "2025-07-08T14:31:27.750706"
+    },
+    {
+      "name": "error_handling",
+      "status": "pass",
+      "details": {
+        "status": "pass",
+        "error_tests": {
+          "connection_recovery": {
+            "status": "pass",
+            "connection_recovery_working": true
+          },
+          "graceful_degradation": {
+            "status": "pass",
+            "graceful_degradation_working": true
+          },
+          "error_logging": {
+            "status": "pass",
+            "error_logging_working": true
+          },
+          "fallback_mechanisms": {
+            "status": "pass",
+            "fallback_mechanisms_working": true
+          }
+        },
+        "error_handling_status": {
+          "error_handling_active": true,
+          "total_error_tests": 4
+        }
+      },
+      "duration": 3.0994415283203125e-06,
+      "timestamp": "2025-07-08T14:31:27.750712"
+    }
+  ]
+}

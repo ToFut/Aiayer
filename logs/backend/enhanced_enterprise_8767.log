@@ -1,90 +1,496 @@
-2025-06-08 00:10:11,365 - agent_workflow.input_controller - INFO - Detected screen size: 1470x956
-2025-06-08 00:10:12,321 - agent_workflow.input_controller - INFO - Standard mouse listener started successfully
-2025-06-08 00:10:12,321 - agent_workflow.input_controller - INFO - Keyboard listener started successfully
-2025-06-08 00:10:12,321 - agent_workflow.input_controller - INFO - Input controller initialized (safe mode)
-2025-06-08 00:10:12,321 - agent_workflow.input_controller - INFO - 🚨 Emergency shutdown: Press Ctrl+1 to immediately stop agent
-2025-06-08 00:10:12,339 - llava_processor - INFO - Connected to Ollama API v0.6.8
-2025-06-08 00:10:12,339 - total_screen_analyzer - INFO - LLaVA visual processor initialized for total screen analysis
-2025-06-08 00:10:12,339 - total_screen_analyzer - INFO - Total Screen Analyzer initialized with 8s interval
-2025-06-08 00:10:12,339 - adaptive_retry_automation_handler - INFO - 🔄 Adaptive retry automation system loaded
-2025-06-08 00:10:12,339 - universal_intelligent_automation_handler - INFO - ✅ Adaptive retry automation handler loaded successfully
-2025-06-08 00:10:12,342 - plan_persistence - INFO - Loaded 17 plans from metadata
-2025-06-08 00:10:12,342 - plan_persistence - INFO - Plan persistence system initialized
-2025-06-08 00:10:12,342 - universal_intelligent_automation_handler - INFO - ✅ Plan persistence module loaded successfully
-2025-06-08 00:10:12,344 - agent_workflow.input_controller - INFO - Standard mouse listener started successfully
-2025-06-08 00:10:12,344 - agent_workflow.input_controller - INFO - Keyboard listener started successfully
-2025-06-08 00:10:12,344 - agent_workflow.input_controller - INFO - Input controller initialized (safe mode)
-2025-06-08 00:10:12,344 - agent_workflow.input_controller - INFO - 🚨 Emergency shutdown: Press Ctrl+1 to immediately stop agent
-2025-06-08 00:10:12,373 - llava_processor - INFO - Connected to Ollama API v0.6.8
-2025-06-08 00:10:12,373 - total_screen_analyzer - INFO - LLaVA visual processor initialized for total screen analysis
-2025-06-08 00:10:12,374 - total_screen_analyzer - INFO - Total Screen Analyzer initialized with 8s interval
-2025-06-08 00:10:12,374 - universal_intelligent_automation_handler - INFO - 🤖 Universal automation components loaded successfully
-2025-06-08 00:10:12,374 - fixed_universal_automation_handler - INFO - ✅ Adaptive retry automation handler loaded successfully
-2025-06-08 00:10:12,374 - fixed_universal_automation_handler - INFO - ✅ Plan persistence module loaded successfully
-2025-06-08 00:10:12,377 - agent_workflow.input_controller - INFO - Standard mouse listener started successfully
-2025-06-08 00:10:12,377 - agent_workflow.input_controller - INFO - Keyboard listener started successfully
-2025-06-08 00:10:12,377 - agent_workflow.input_controller - INFO - Input controller initialized (safe mode)
-2025-06-08 00:10:12,377 - agent_workflow.input_controller - INFO - 🚨 Emergency shutdown: Press Ctrl+1 to immediately stop agent
-2025-06-08 00:10:12,377 - __main__ - INFO - ✅ Input controller initialized (safe mode)
-2025-06-08 00:10:12,398 - accessibility_detector - WARNING - Windows accessibility APIs not available
-2025-06-08 00:10:12,398 - accessibility_detector - WARNING - Linux accessibility APIs (AT-SPI) not available
-2025-06-08 00:10:12,459 - __main__ - WARNING - ⚠️ Efficient system bridge not available, falling back to screen capture
-2025-06-08 00:10:12,460 - __main__ - INFO - 🔥 LLM Warmup Manager available for fast responses
-2025-06-08 00:10:12,463 - memory.enhanced_semantic_search - INFO - Enhanced semantic search initialized with embedding dim: 384
-2025-06-08 00:10:12,463 - memory.enhanced_semantic_search - INFO - Hybrid retrieval enabled: True
-2025-06-08 00:10:12,463 - memory_diagnostics - INFO - Memory diagnostic logger initialized
-2025-06-08 00:10:12,463 - memory_diagnostics - INFO - MEMORY EVENT: logger_initialized - {"timestamp": "2025-06-08T00:10:12.463684"}
-2025-06-08 00:10:12,463 - INFO - [ConsciousMemory] Initialized as middle layer for memory system
-2025-06-08 00:10:12,463 - memory.conscious_memory - INFO - [ConsciousMemory] Initialized as middle layer for memory system
-2025-06-08 00:10:12,463 - memory.enhanced_semantic_search - INFO - Enhanced semantic search initialized with embedding dim: 384
-2025-06-08 00:10:12,464 - memory.enhanced_semantic_search - INFO - Hybrid retrieval enabled: True
-2025-06-08 00:10:12,464 - memory_system - INFO - 🔄 Loading memory state from /Users/segevbin/Desktop/SensAI/Aiayer/memory/memory/memory_state.json
-2025-06-08 00:10:12,464 - memory_system - INFO -   - Found 16 short-term memory items
-2025-06-08 00:10:12,464 - memory_system - INFO -   - No long-term memory found, initializing empty
-2025-06-08 00:10:12,464 - memory_system - INFO -   - Found context memory with 6 items
-2025-06-08 00:10:12,464 - memory_system - INFO -   - Initialized new sensor data storage
-2025-06-08 00:10:12,464 - memory_system - INFO - ✅ Successfully loaded memory state
-2025-06-08 00:10:12,464 - memory_diagnostics - INFO - MEMORY EVENT: memory_state_loaded - {"short_term_count": 16, "long_term_count": 0, "context_count": 6, "timestamp": "2025-06-08T00:10:12.464548"}
-2025-06-08 00:10:12,464 - memory_system - INFO - Memory system initialized
-2025-06-08 00:10:12,485 - memory.semantic_search_agent - INFO - Loading 4460 existing documents from storage
-2025-06-08 00:10:13,216 - memory.semantic_search_agent - INFO - EnterpriseVectorStore initialized with enterprise-grade features
-2025-06-08 00:10:13,220 - memory.semantic_search_agent - INFO - SemanticSearchAgent initialized with enterprise-grade capabilities
-2025-06-08 00:10:13,223 - real_agent_automation_handler - INFO - ✅ Plan persistence module loaded successfully
-2025-06-08 00:10:13,226 - real_agent_automation_handler - INFO - 🤖 Basic automation handler initialized
-2025-06-08 00:10:13,226 - __main__ - INFO - ✅ Real Agent Automation Handler enabled
-2025-06-08 00:10:13,229 - agent_workflow.input_controller - INFO - Standard mouse listener started successfully
-2025-06-08 00:10:13,230 - agent_workflow.input_controller - INFO - Keyboard listener started successfully
-2025-06-08 00:10:13,230 - agent_workflow.input_controller - INFO - Input controller initialized (safe mode)
-2025-06-08 00:10:13,230 - agent_workflow.input_controller - INFO - 🚨 Emergency shutdown: Press Ctrl+1 to immediately stop agent
-2025-06-08 00:10:13,238 - llava_processor - INFO - Connected to Ollama API v0.6.8
-2025-06-08 00:10:13,238 - total_screen_analyzer - INFO - LLaVA visual processor initialized for total screen analysis
-2025-06-08 00:10:13,239 - total_screen_analyzer - INFO - Total Screen Analyzer initialized with 8s interval
-2025-06-08 00:10:13,239 - universal_intelligent_automation_handler - INFO - 🤖 Universal automation components loaded successfully
-2025-06-08 00:10:13,239 - __main__ - INFO - ✅ Universal Intelligent Automation Handler loaded
-2025-06-08 00:10:13,241 - brain.core.brain_router - INFO - ✅ Plan persistence module loaded in brain router
-2025-06-08 00:10:13,245 - __main__ - INFO - 🧠 Brain Router available for intelligent mode handling
-2025-06-08 00:10:14,317 - memory.semantic_search_agent - INFO - Loading 4460 existing documents from storage
-2025-06-08 00:10:14,847 - memory.semantic_search_agent - INFO - EnterpriseVectorStore initialized with enterprise-grade features
-2025-06-08 00:10:14,849 - memory.semantic_search_agent - INFO - SemanticSearchAgent initialized with enterprise-grade capabilities
-2025-06-08 00:10:14,849 - __main__ - INFO - ✅ Enhanced semantic search agent initialized
-2025-06-08 00:10:14,849 - __main__ - INFO - ✅ Initialized pending_plans dictionary
-2025-06-08 00:10:14,852 - agent_workflow.input_controller - INFO - Standard mouse listener started successfully
-2025-06-08 00:10:14,853 - agent_workflow.input_controller - INFO - Keyboard listener started successfully
-2025-06-08 00:10:14,853 - agent_workflow.input_controller - INFO - Input controller initialized (safe mode)
-2025-06-08 00:10:14,853 - agent_workflow.input_controller - INFO - 🚨 Emergency shutdown: Press Ctrl+1 to immediately stop agent
-2025-06-08 00:10:15,004 - llava_processor - INFO - Connected to Ollama API v0.6.8
-2025-06-08 00:10:15,004 - total_screen_analyzer - INFO - LLaVA visual processor initialized for total screen analysis
-2025-06-08 00:10:15,004 - total_screen_analyzer - INFO - Total Screen Analyzer initialized with 1s interval
-2025-06-08 00:10:15,005 - enhanced_agent_automation - INFO - Enhanced Agent Automation initialized with Total Screen Analyzer
-2025-06-08 00:10:15,005 - enhanced_automation_handler - INFO - Enhanced Automation Handler initialized
-2025-06-08 00:10:15,005 - __main__ - INFO - ✅ EnhancedAutomationHandler initialized for automation_handler
-2025-06-08 00:10:15,005 - __main__ - INFO - ✅ ContextualAIBackend initialized successfully
-2025-06-08 00:10:15,005 - __main__ - INFO - 🚀 Starting Enhanced Enterprise Backend with Context on 0.0.0.0:8767...
-2025-06-08 00:10:15,005 - brain.core.brain_router - INFO - BrainRouter initialized - The Central Intelligence Hub is online
-2025-06-08 00:10:15,025 - llm.model - INFO - ✅ LLM service started successfully with model llama3.2:1b
-2025-06-08 00:10:15,025 - brain.core.brain_router - INFO - ✅ LLM service initialized successfully
-2025-06-08 00:10:15,025 - __main__ - INFO - ✅ Brain Router initialized asynchronously
-2025-06-08 00:10:15,025 - __main__ - INFO - ✅ Brain Router initialized asynchronously
-2025-06-08 00:10:15,029 - websockets.server - INFO - server listening on 0.0.0.0:8767
-2025-06-08 00:10:15,029 - __main__ - INFO - ✅ Enhanced Enterprise Backend with Context started successfully
-2025-06-08 00:10:15,029 - __main__ - INFO - 🌐 WebSocket server listening on ws://0.0.0.0:8767
+2025-07-08 14:24:00,089 - agent_workflow.input_controller - INFO - Detected screen size: 1470x956
+2025-07-08 14:24:00,365 - agent_workflow.input_controller - INFO - Standard mouse listener started successfully
+2025-07-08 14:24:00,365 - agent_workflow.input_controller - INFO - Keyboard listener started successfully
+2025-07-08 14:24:00,365 - agent_workflow.input_controller - INFO - Input controller initialized (safe mode)
+2025-07-08 14:24:00,365 - agent_workflow.input_controller - INFO - 🚨 Emergency shutdown: Press Ctrl+1 to immediately stop agent
+2025-07-08 14:24:00,377 - llava_processor - INFO - Connected to Ollama API v0.6.8
+2025-07-08 14:24:00,377 - total_screen_analyzer - INFO - LLaVA visual processor initialized for total screen analysis
+2025-07-08 14:24:00,377 - total_screen_analyzer - INFO - Total Screen Analyzer initialized with 8s interval
+2025-07-08 14:24:00,377 - adaptive_retry_automation_handler - INFO - 🔄 Adaptive retry automation system loaded
+2025-07-08 14:24:00,377 - universal_intelligent_automation_handler - INFO - ✅ Adaptive retry automation handler loaded successfully
+2025-07-08 14:24:00,378 - plan_persistence - INFO - Loaded 17 plans from metadata
+2025-07-08 14:24:00,378 - plan_persistence - INFO - Plan persistence system initialized
+2025-07-08 14:24:00,378 - universal_intelligent_automation_handler - INFO - ✅ Plan persistence module loaded successfully
+2025-07-08 14:24:00,379 - agent_workflow.input_controller - INFO - Standard mouse listener started successfully
+2025-07-08 14:24:00,379 - agent_workflow.input_controller - INFO - Keyboard listener started successfully
+2025-07-08 14:24:00,379 - agent_workflow.input_controller - INFO - Input controller initialized (safe mode)
+2025-07-08 14:24:00,379 - agent_workflow.input_controller - INFO - 🚨 Emergency shutdown: Press Ctrl+1 to immediately stop agent
+2025-07-08 14:24:00,381 - llava_processor - INFO - Connected to Ollama API v0.6.8
+2025-07-08 14:24:00,381 - total_screen_analyzer - INFO - LLaVA visual processor initialized for total screen analysis
+2025-07-08 14:24:00,381 - total_screen_analyzer - INFO - Total Screen Analyzer initialized with 8s interval
+2025-07-08 14:24:00,381 - universal_intelligent_automation_handler - INFO - 🤖 Universal automation components loaded successfully
+2025-07-08 14:24:00,381 - fixed_universal_automation_handler - INFO - ✅ Adaptive retry automation handler loaded successfully
+2025-07-08 14:24:00,381 - fixed_universal_automation_handler - INFO - ✅ Plan persistence module loaded successfully
+2025-07-08 14:24:00,384 - agent_workflow.input_controller - INFO - Standard mouse listener started successfully
+2025-07-08 14:24:00,384 - agent_workflow.input_controller - INFO - Keyboard listener started successfully
+2025-07-08 14:24:00,384 - agent_workflow.input_controller - INFO - Input controller initialized (safe mode)
+2025-07-08 14:24:00,384 - agent_workflow.input_controller - INFO - 🚨 Emergency shutdown: Press Ctrl+1 to immediately stop agent
+2025-07-08 14:24:00,384 - __main__ - INFO - ✅ Input controller initialized (safe mode)
+2025-07-08 14:24:00,393 - accessibility_detector - WARNING - Windows accessibility APIs not available
+2025-07-08 14:24:00,393 - accessibility_detector - WARNING - Linux accessibility APIs (AT-SPI) not available
+2025-07-08 14:24:00,422 - __main__ - WARNING - ⚠️ Efficient system bridge not available, falling back to screen capture
+2025-07-08 14:24:00,422 - __main__ - INFO - 🔥 LLM Warmup Manager available for fast responses
+2025-07-08 14:24:00,435 - memory.semantic_search_agent - INFO - Loading 4776 existing documents from storage
+2025-07-08 14:24:00,756 - memory.semantic_search_agent - INFO - EnterpriseVectorStore initialized with enterprise-grade features
+2025-07-08 14:24:00,758 - memory.semantic_search_agent - INFO - SemanticSearchAgent initialized with enterprise-grade capabilities
+2025-07-08 14:24:00,758 - real_agent_automation_handler - INFO - ✅ Plan persistence module loaded successfully
+2025-07-08 14:24:00,759 - real_agent_automation_handler - INFO - 🤖 Basic automation handler initialized
+2025-07-08 14:24:00,759 - __main__ - INFO - ✅ Real Agent Automation Handler enabled
+2025-07-08 14:24:00,759 - agent_workflow.input_controller - INFO - Standard mouse listener started successfully
+2025-07-08 14:24:00,759 - agent_workflow.input_controller - INFO - Keyboard listener started successfully
+2025-07-08 14:24:00,759 - agent_workflow.input_controller - INFO - Input controller initialized (safe mode)
+2025-07-08 14:24:00,759 - agent_workflow.input_controller - INFO - 🚨 Emergency shutdown: Press Ctrl+1 to immediately stop agent
+2025-07-08 14:24:00,761 - llava_processor - INFO - Connected to Ollama API v0.6.8
+2025-07-08 14:24:00,761 - total_screen_analyzer - INFO - LLaVA visual processor initialized for total screen analysis
+2025-07-08 14:24:00,761 - total_screen_analyzer - INFO - Total Screen Analyzer initialized with 8s interval
+2025-07-08 14:24:00,761 - universal_intelligent_automation_handler - INFO - 🤖 Universal automation components loaded successfully
+2025-07-08 14:24:00,761 - __main__ - INFO - ✅ Universal Intelligent Automation Handler loaded
+2025-07-08 14:24:00,762 - brain.core.brain_router - INFO - ✅ Plan persistence module loaded in brain router
+2025-07-08 14:24:00,763 - __main__ - INFO - 🧠 Brain Router available for intelligent mode handling
+2025-07-08 14:24:01,788 - memory.semantic_search_agent - INFO - Loading 4776 existing documents from storage
+2025-07-08 14:24:02,008 - memory.semantic_search_agent - INFO - EnterpriseVectorStore initialized with enterprise-grade features
+2025-07-08 14:24:02,009 - memory.semantic_search_agent - INFO - SemanticSearchAgent initialized with enterprise-grade capabilities
+2025-07-08 14:24:02,009 - __main__ - INFO - ✅ Enhanced semantic search agent initialized
+2025-07-08 14:24:02,009 - __main__ - INFO - ✅ Initialized pending_plans dictionary
+2025-07-08 14:24:02,009 - agent_workflow.input_controller - INFO - Standard mouse listener started successfully
+2025-07-08 14:24:02,010 - agent_workflow.input_controller - INFO - Keyboard listener started successfully
+2025-07-08 14:24:02,010 - agent_workflow.input_controller - INFO - Input controller initialized (safe mode)
+2025-07-08 14:24:02,010 - agent_workflow.input_controller - INFO - 🚨 Emergency shutdown: Press Ctrl+1 to immediately stop agent
+2025-07-08 14:24:02,012 - llava_processor - INFO - Connected to Ollama API v0.6.8
+2025-07-08 14:24:02,012 - total_screen_analyzer - INFO - LLaVA visual processor initialized for total screen analysis
+2025-07-08 14:24:02,012 - total_screen_analyzer - INFO - Total Screen Analyzer initialized with 1s interval
+2025-07-08 14:24:02,012 - enhanced_agent_automation - INFO - Enhanced Agent Automation initialized with Total Screen Analyzer
+2025-07-08 14:24:02,012 - enhanced_automation_handler - INFO - Enhanced Automation Handler initialized
+2025-07-08 14:24:02,012 - __main__ - INFO - ✅ EnhancedAutomationHandler initialized for automation_handler
+2025-07-08 14:24:02,012 - __main__ - INFO - ✅ ContextualAIBackend initialized successfully
+2025-07-08 14:24:02,012 - __main__ - INFO - 🚀 Starting Enhanced Enterprise Backend with Context on 0.0.0.0:8767...
+2025-07-08 14:24:02,012 - brain.core.brain_router - INFO - BrainRouter initialized - The Central Intelligence Hub is online
+2025-07-08 14:24:02,022 - llm.model - INFO - ✅ LLM service started successfully with model llama3.2:1b
+2025-07-08 14:24:02,022 - llm.model - INFO - Sending Ollama request (attempt 1/3)
+2025-07-08 14:24:04,983 - llm.model - INFO - Ollama response time: 2.96s (status: 200)
+2025-07-08 14:24:04,984 - llm.model - INFO - Successfully parsed NDJSON response: 35 chars from 9 parts
+2025-07-08 14:24:04,984 - brain.core.brain_router - INFO - ✅ LLM service initialized and tested successfully
+2025-07-08 14:24:04,984 - __main__ - INFO - ✅ Brain Router initialized asynchronously
+2025-07-08 14:24:04,984 - __main__ - INFO - ✅ Brain Router initialized asynchronously
+2025-07-08 14:24:04,985 - websockets.server - INFO - server listening on 0.0.0.0:8767
+2025-07-08 14:24:04,986 - __main__ - INFO - ✅ Enhanced Enterprise Backend with Context started successfully
+2025-07-08 14:24:04,986 - __main__ - INFO - 🌐 WebSocket server listening on ws://0.0.0.0:8767
+2025-07-08 14:24:05,336 - websockets.server - INFO - connection open
+2025-07-08 14:24:05,336 - __main__ - INFO - Client connected: client_1751999045336 from 127.0.0.1 on path: None
+2025-07-08 14:24:05,336 - __main__ - INFO - Received message type: register from client_1751999045336
+2025-07-08 14:24:09,944 - websockets.server - INFO - connection open
+2025-07-08 14:24:09,944 - __main__ - INFO - Client connected: client_1751999049944 from 127.0.0.1 on path: None
+2025-07-08 14:24:09,945 - __main__ - INFO - Received message type: register from client_1751999049944
+2025-07-08 14:24:14,948 - websockets.server - INFO - connection open
+2025-07-08 14:24:14,948 - __main__ - INFO - Client connected: client_1751999054948 from 127.0.0.1 on path: None
+2025-07-08 14:24:14,948 - __main__ - INFO - Received message type: register from client_1751999054948
+2025-07-08 14:24:19,951 - websockets.server - INFO - connection open
+2025-07-08 14:24:19,952 - __main__ - INFO - Client connected: client_1751999059952 from 127.0.0.1 on path: None
+2025-07-08 14:24:19,952 - __main__ - INFO - Received message type: register from client_1751999059952
+2025-07-08 14:24:24,956 - websockets.server - INFO - connection open
+2025-07-08 14:24:24,956 - __main__ - INFO - Client connected: client_1751999064956 from 127.0.0.1 on path: None
+2025-07-08 14:24:24,957 - __main__ - INFO - Received message type: register from client_1751999064956
+2025-07-08 14:24:29,671 - __main__ - INFO - Received message type: sensor_data from client_1751999045336
+2025-07-08 14:24:29,671 - __main__ - INFO - Processing sensor data from client_1751999045336
+2025-07-08 14:24:29,960 - websockets.server - INFO - connection open
+2025-07-08 14:24:29,961 - __main__ - INFO - Client connected: client_1751999069961 from 127.0.0.1 on path: None
+2025-07-08 14:24:29,962 - __main__ - INFO - Received message type: register from client_1751999069961
+2025-07-08 14:24:30,323 - websockets.server - ERROR - opening handshake failed
+Traceback (most recent call last):
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/http11.py", line 138, in parse
+    request_line = yield from parse_line(read_line)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/http11.py", line 309, in parse_line
+    line = yield from read_line(MAX_LINE_LENGTH)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/streams.py", line 46, in read_line
+    raise EOFError(f"stream ends after {p} bytes, before end of line")
+EOFError: stream ends after 0 bytes, before end of line
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/server.py", line 545, in parse
+    request = yield from Request.parse(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^
+        self.reader.read_line,
+        ^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/http11.py", line 140, in parse
+    raise EOFError("connection closed while reading HTTP request line") from exc
+EOFError: connection closed while reading HTTP request line
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/asyncio/server.py", line 356, in conn_handler
+    await connection.handshake(
+    ...<3 lines>...
+    )
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/asyncio/server.py", line 207, in handshake
+    raise self.protocol.handshake_exc
+websockets.exceptions.InvalidMessage: did not receive a valid HTTP request
+2025-07-08 14:24:30,376 - websockets.server - INFO - connection open
+2025-07-08 14:24:30,376 - __main__ - INFO - Client connected: client_1751999070376 from 127.0.0.1 on path: None
+2025-07-08 14:24:30,376 - __main__ - INFO - Received message type: status from client_1751999070376
+2025-07-08 14:24:34,965 - websockets.server - INFO - connection open
+2025-07-08 14:24:34,966 - __main__ - INFO - Client connected: client_1751999074966 from 127.0.0.1 on path: None
+2025-07-08 14:24:34,967 - __main__ - INFO - Received message type: register from client_1751999074966
+2025-07-08 14:24:39,971 - websockets.server - INFO - connection open
+2025-07-08 14:24:39,971 - __main__ - INFO - Client connected: client_1751999079971 from 127.0.0.1 on path: None
+2025-07-08 14:24:39,973 - __main__ - INFO - Received message type: register from client_1751999079971
+2025-07-08 14:24:44,976 - websockets.server - INFO - connection open
+2025-07-08 14:24:44,976 - __main__ - INFO - Client connected: client_1751999084976 from 127.0.0.1 on path: None
+2025-07-08 14:24:44,977 - __main__ - INFO - Received message type: register from client_1751999084976
+2025-07-08 14:24:48,322 - websockets.server - ERROR - opening handshake failed
+Traceback (most recent call last):
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/http11.py", line 138, in parse
+    request_line = yield from parse_line(read_line)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/http11.py", line 309, in parse_line
+    line = yield from read_line(MAX_LINE_LENGTH)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/streams.py", line 46, in read_line
+    raise EOFError(f"stream ends after {p} bytes, before end of line")
+EOFError: stream ends after 0 bytes, before end of line
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/server.py", line 545, in parse
+    request = yield from Request.parse(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^
+        self.reader.read_line,
+        ^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/http11.py", line 140, in parse
+    raise EOFError("connection closed while reading HTTP request line") from exc
+EOFError: connection closed while reading HTTP request line
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/asyncio/server.py", line 356, in conn_handler
+    await connection.handshake(
+    ...<3 lines>...
+    )
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/asyncio/server.py", line 207, in handshake
+    raise self.protocol.handshake_exc
+websockets.exceptions.InvalidMessage: did not receive a valid HTTP request
+2025-07-08 14:24:48,417 - websockets.server - INFO - connection open
+2025-07-08 14:24:48,417 - __main__ - INFO - Client connected: client_1751999088417 from 127.0.0.1 on path: None
+2025-07-08 14:24:48,417 - __main__ - INFO - Received message type: status from client_1751999088417
+2025-07-08 14:24:49,980 - websockets.server - INFO - connection open
+2025-07-08 14:24:49,980 - __main__ - INFO - Client connected: client_1751999089980 from 127.0.0.1 on path: None
+2025-07-08 14:24:49,981 - __main__ - INFO - Received message type: register from client_1751999089980
+2025-07-08 14:24:54,985 - websockets.server - INFO - connection open
+2025-07-08 14:24:54,986 - __main__ - INFO - Client connected: client_1751999094986 from 127.0.0.1 on path: None
+2025-07-08 14:24:54,987 - __main__ - INFO - Received message type: register from client_1751999094986
+2025-07-08 14:24:59,990 - websockets.server - INFO - connection open
+2025-07-08 14:24:59,990 - __main__ - INFO - Client connected: client_1751999099990 from 127.0.0.1 on path: None
+2025-07-08 14:24:59,991 - __main__ - INFO - Received message type: register from client_1751999099990
+2025-07-08 14:25:00,755 - __main__ - INFO - Received message type: sensor_data from client_1751999045336
+2025-07-08 14:25:00,755 - __main__ - INFO - Processing sensor data from client_1751999045336
+2025-07-08 14:25:04,994 - websockets.server - INFO - connection open
+2025-07-08 14:25:04,994 - __main__ - INFO - Client connected: client_1751999104994 from 127.0.0.1 on path: None
+2025-07-08 14:25:04,995 - __main__ - INFO - Received message type: register from client_1751999104994
+2025-07-08 14:25:09,998 - websockets.server - INFO - connection open
+2025-07-08 14:25:09,999 - __main__ - INFO - Client connected: client_1751999109999 from 127.0.0.1 on path: None
+2025-07-08 14:25:09,999 - __main__ - INFO - Received message type: register from client_1751999109999
+2025-07-08 14:25:15,003 - websockets.server - INFO - connection open
+2025-07-08 14:25:15,003 - __main__ - INFO - Client connected: client_1751999115003 from 127.0.0.1 on path: None
+2025-07-08 14:25:15,003 - __main__ - INFO - Received message type: register from client_1751999115003
+2025-07-08 14:25:20,007 - websockets.server - INFO - connection open
+2025-07-08 14:25:20,007 - __main__ - INFO - Client connected: client_1751999120007 from 127.0.0.1 on path: None
+2025-07-08 14:25:20,008 - __main__ - INFO - Received message type: register from client_1751999120007
+2025-07-08 14:25:25,011 - websockets.server - INFO - connection open
+2025-07-08 14:25:25,012 - __main__ - INFO - Client connected: client_1751999125012 from 127.0.0.1 on path: None
+2025-07-08 14:25:25,012 - __main__ - INFO - Received message type: register from client_1751999125012
+2025-07-08 14:25:30,015 - websockets.server - INFO - connection open
+2025-07-08 14:25:30,016 - __main__ - INFO - Client connected: client_1751999130016 from 127.0.0.1 on path: None
+2025-07-08 14:25:30,016 - __main__ - INFO - Received message type: register from client_1751999130016
+2025-07-08 14:25:35,020 - websockets.server - INFO - connection open
+2025-07-08 14:25:35,021 - __main__ - INFO - Client connected: client_1751999135021 from 127.0.0.1 on path: None
+2025-07-08 14:25:35,022 - __main__ - INFO - Received message type: register from client_1751999135021
+2025-07-08 14:25:38,228 - __main__ - INFO - Received message type: sensor_data from client_1751999045336
+2025-07-08 14:25:38,228 - __main__ - INFO - Processing sensor data from client_1751999045336
+2025-07-08 14:25:40,025 - websockets.server - INFO - connection open
+2025-07-08 14:25:40,025 - __main__ - INFO - Client connected: client_1751999140025 from 127.0.0.1 on path: None
+2025-07-08 14:25:40,025 - __main__ - INFO - Received message type: register from client_1751999140025
+2025-07-08 14:25:45,029 - websockets.server - INFO - connection open
+2025-07-08 14:25:45,030 - __main__ - INFO - Client connected: client_1751999145030 from 127.0.0.1 on path: None
+2025-07-08 14:25:45,031 - __main__ - INFO - Received message type: register from client_1751999145030
+2025-07-08 14:25:50,035 - websockets.server - INFO - connection open
+2025-07-08 14:25:50,035 - __main__ - INFO - Client connected: client_1751999150035 from 127.0.0.1 on path: None
+2025-07-08 14:25:50,036 - __main__ - INFO - Received message type: register from client_1751999150035
+2025-07-08 14:25:55,040 - websockets.server - INFO - connection open
+2025-07-08 14:25:55,040 - __main__ - INFO - Client connected: client_1751999155040 from 127.0.0.1 on path: None
+2025-07-08 14:25:55,041 - __main__ - INFO - Received message type: register from client_1751999155040
+2025-07-08 14:26:00,044 - websockets.server - INFO - connection open
+2025-07-08 14:26:00,044 - __main__ - INFO - Client connected: client_1751999160044 from 127.0.0.1 on path: None
+2025-07-08 14:26:00,045 - __main__ - INFO - Received message type: register from client_1751999160044
+2025-07-08 14:26:05,048 - websockets.server - INFO - connection open
+2025-07-08 14:26:05,049 - __main__ - INFO - Client connected: client_1751999165049 from 127.0.0.1 on path: None
+2025-07-08 14:26:05,050 - __main__ - INFO - Received message type: register from client_1751999165049
+2025-07-08 14:26:10,053 - websockets.server - INFO - connection open
+2025-07-08 14:26:10,053 - __main__ - INFO - Client connected: client_1751999170053 from 127.0.0.1 on path: None
+2025-07-08 14:26:10,054 - __main__ - INFO - Received message type: register from client_1751999170053
+2025-07-08 14:26:15,057 - websockets.server - INFO - connection open
+2025-07-08 14:26:15,058 - __main__ - INFO - Client connected: client_1751999175058 from 127.0.0.1 on path: None
+2025-07-08 14:26:15,059 - __main__ - INFO - Received message type: register from client_1751999175058
+2025-07-08 14:26:15,830 - __main__ - INFO - Received message type: sensor_data from client_1751999045336
+2025-07-08 14:26:15,830 - __main__ - INFO - Processing sensor data from client_1751999045336
+2025-07-08 14:26:20,116 - websockets.server - INFO - connection open
+2025-07-08 14:26:20,116 - __main__ - INFO - Client connected: client_1751999180116 from 127.0.0.1 on path: None
+2025-07-08 14:26:20,118 - __main__ - INFO - Received message type: register from client_1751999180116
+2025-07-08 14:26:25,123 - websockets.server - INFO - connection open
+2025-07-08 14:26:25,124 - __main__ - INFO - Client connected: client_1751999185124 from 127.0.0.1 on path: None
+2025-07-08 14:26:25,124 - __main__ - INFO - Received message type: register from client_1751999185124
+2025-07-08 14:26:30,128 - websockets.server - INFO - connection open
+2025-07-08 14:26:30,128 - __main__ - INFO - Client connected: client_1751999190128 from 127.0.0.1 on path: None
+2025-07-08 14:26:30,128 - __main__ - INFO - Received message type: register from client_1751999190128
+2025-07-08 14:26:35,132 - websockets.server - INFO - connection open
+2025-07-08 14:26:35,132 - __main__ - INFO - Client connected: client_1751999195132 from 127.0.0.1 on path: None
+2025-07-08 14:26:35,133 - __main__ - INFO - Received message type: register from client_1751999195132
+2025-07-08 14:26:40,136 - websockets.server - INFO - connection open
+2025-07-08 14:26:40,136 - __main__ - INFO - Client connected: client_1751999200136 from 127.0.0.1 on path: None
+2025-07-08 14:26:40,137 - __main__ - INFO - Received message type: register from client_1751999200136
+2025-07-08 14:26:45,140 - websockets.server - INFO - connection open
+2025-07-08 14:26:45,141 - __main__ - INFO - Client connected: client_1751999205141 from 127.0.0.1 on path: None
+2025-07-08 14:26:45,142 - __main__ - INFO - Received message type: register from client_1751999205141
+2025-07-08 14:26:50,145 - websockets.server - INFO - connection open
+2025-07-08 14:26:50,145 - __main__ - INFO - Client connected: client_1751999210145 from 127.0.0.1 on path: None
+2025-07-08 14:26:50,146 - __main__ - INFO - Received message type: register from client_1751999210145
+2025-07-08 14:26:53,261 - __main__ - INFO - Received message type: sensor_data from client_1751999045336
+2025-07-08 14:26:53,261 - __main__ - INFO - Processing sensor data from client_1751999045336
+2025-07-08 14:26:55,149 - websockets.server - INFO - connection open
+2025-07-08 14:26:55,149 - __main__ - INFO - Client connected: client_1751999215149 from 127.0.0.1 on path: None
+2025-07-08 14:26:55,149 - __main__ - INFO - Received message type: register from client_1751999215149
+2025-07-08 14:27:00,153 - websockets.server - INFO - connection open
+2025-07-08 14:27:00,154 - __main__ - INFO - Client connected: client_1751999220154 from 127.0.0.1 on path: None
+2025-07-08 14:27:00,155 - __main__ - INFO - Received message type: register from client_1751999220154
+2025-07-08 14:27:05,158 - websockets.server - INFO - connection open
+2025-07-08 14:27:05,158 - __main__ - INFO - Client connected: client_1751999225158 from 127.0.0.1 on path: None
+2025-07-08 14:27:05,159 - __main__ - INFO - Received message type: register from client_1751999225158
+2025-07-08 14:27:10,162 - websockets.server - INFO - connection open
+2025-07-08 14:27:10,163 - __main__ - INFO - Client connected: client_1751999230163 from 127.0.0.1 on path: None
+2025-07-08 14:27:10,164 - __main__ - INFO - Received message type: register from client_1751999230163
+2025-07-08 14:27:15,167 - websockets.server - INFO - connection open
+2025-07-08 14:27:15,167 - __main__ - INFO - Client connected: client_1751999235167 from 127.0.0.1 on path: None
+2025-07-08 14:27:15,168 - __main__ - INFO - Received message type: register from client_1751999235167
+2025-07-08 14:27:20,170 - websockets.server - INFO - connection open
+2025-07-08 14:27:20,171 - __main__ - INFO - Client connected: client_1751999240171 from 127.0.0.1 on path: None
+2025-07-08 14:27:20,172 - __main__ - INFO - Received message type: register from client_1751999240171
+2025-07-08 14:27:25,175 - websockets.server - INFO - connection open
+2025-07-08 14:27:25,175 - __main__ - INFO - Client connected: client_1751999245175 from 127.0.0.1 on path: None
+2025-07-08 14:27:25,176 - __main__ - INFO - Received message type: register from client_1751999245175
+2025-07-08 14:27:29,931 - __main__ - INFO - Received message type: sensor_data from client_1751999045336
+2025-07-08 14:27:29,931 - __main__ - INFO - Processing sensor data from client_1751999045336
+2025-07-08 14:27:30,179 - websockets.server - INFO - connection open
+2025-07-08 14:27:30,179 - __main__ - INFO - Client connected: client_1751999250179 from 127.0.0.1 on path: None
+2025-07-08 14:27:30,180 - __main__ - INFO - Received message type: register from client_1751999250179
+2025-07-08 14:27:35,185 - websockets.server - INFO - connection open
+2025-07-08 14:27:35,187 - __main__ - INFO - Client connected: client_1751999255187 from 127.0.0.1 on path: None
+2025-07-08 14:27:35,188 - __main__ - INFO - Received message type: register from client_1751999255187
+2025-07-08 14:27:40,190 - websockets.server - INFO - connection open
+2025-07-08 14:27:40,190 - __main__ - INFO - Client connected: client_1751999260190 from 127.0.0.1 on path: None
+2025-07-08 14:27:40,192 - __main__ - INFO - Received message type: register from client_1751999260190
+2025-07-08 14:27:45,195 - websockets.server - INFO - connection open
+2025-07-08 14:27:45,196 - __main__ - INFO - Client connected: client_1751999265196 from 127.0.0.1 on path: None
+2025-07-08 14:27:45,196 - __main__ - INFO - Received message type: register from client_1751999265196
+2025-07-08 14:27:50,199 - websockets.server - INFO - connection open
+2025-07-08 14:27:50,199 - __main__ - INFO - Client connected: client_1751999270199 from 127.0.0.1 on path: None
+2025-07-08 14:27:50,201 - __main__ - INFO - Received message type: register from client_1751999270199
+2025-07-08 14:27:55,204 - websockets.server - INFO - connection open
+2025-07-08 14:27:55,205 - __main__ - INFO - Client connected: client_1751999275205 from 127.0.0.1 on path: None
+2025-07-08 14:27:55,206 - __main__ - INFO - Received message type: register from client_1751999275205
+2025-07-08 14:28:00,208 - websockets.server - INFO - connection open
+2025-07-08 14:28:00,209 - __main__ - INFO - Client connected: client_1751999280209 from 127.0.0.1 on path: None
+2025-07-08 14:28:00,209 - __main__ - INFO - Received message type: register from client_1751999280209
+2025-07-08 14:28:05,212 - websockets.server - INFO - connection open
+2025-07-08 14:28:05,212 - __main__ - INFO - Client connected: client_1751999285212 from 127.0.0.1 on path: None
+2025-07-08 14:28:05,213 - __main__ - INFO - Received message type: register from client_1751999285212
+2025-07-08 14:28:06,667 - __main__ - INFO - Received message type: sensor_data from client_1751999045336
+2025-07-08 14:28:06,667 - __main__ - INFO - Processing sensor data from client_1751999045336
+2025-07-08 14:28:10,216 - websockets.server - INFO - connection open
+2025-07-08 14:28:10,217 - __main__ - INFO - Client connected: client_1751999290217 from 127.0.0.1 on path: None
+2025-07-08 14:28:10,218 - __main__ - INFO - Received message type: register from client_1751999290217
+2025-07-08 14:28:15,221 - websockets.server - INFO - connection open
+2025-07-08 14:28:15,222 - __main__ - INFO - Client connected: client_1751999295222 from 127.0.0.1 on path: None
+2025-07-08 14:28:15,223 - __main__ - INFO - Received message type: register from client_1751999295222
+2025-07-08 14:28:20,225 - websockets.server - INFO - connection open
+2025-07-08 14:28:20,226 - __main__ - INFO - Client connected: client_1751999300226 from 127.0.0.1 on path: None
+2025-07-08 14:28:20,226 - __main__ - INFO - Received message type: register from client_1751999300226
+2025-07-08 14:28:25,229 - websockets.server - INFO - connection open
+2025-07-08 14:28:25,229 - __main__ - INFO - Client connected: client_1751999305229 from 127.0.0.1 on path: None
+2025-07-08 14:28:25,231 - __main__ - INFO - Received message type: register from client_1751999305229
+2025-07-08 14:28:30,234 - websockets.server - INFO - connection open
+2025-07-08 14:28:30,235 - __main__ - INFO - Client connected: client_1751999310235 from 127.0.0.1 on path: None
+2025-07-08 14:28:30,235 - __main__ - INFO - Received message type: register from client_1751999310235
+2025-07-08 14:28:35,238 - websockets.server - INFO - connection open
+2025-07-08 14:28:35,238 - __main__ - INFO - Client connected: client_1751999315238 from 127.0.0.1 on path: None
+2025-07-08 14:28:35,239 - __main__ - INFO - Received message type: register from client_1751999315238
+2025-07-08 14:28:40,242 - websockets.server - INFO - connection open
+2025-07-08 14:28:40,243 - __main__ - INFO - Client connected: client_1751999320243 from 127.0.0.1 on path: None
+2025-07-08 14:28:40,243 - __main__ - INFO - Received message type: register from client_1751999320243
+2025-07-08 14:28:42,168 - __main__ - INFO - Received message type: sensor_data from client_1751999045336
+2025-07-08 14:28:42,168 - __main__ - INFO - Processing sensor data from client_1751999045336
+2025-07-08 14:28:45,246 - websockets.server - INFO - connection open
+2025-07-08 14:28:45,246 - __main__ - INFO - Client connected: client_1751999325246 from 127.0.0.1 on path: None
+2025-07-08 14:28:45,247 - __main__ - INFO - Received message type: register from client_1751999325246
+2025-07-08 14:28:50,250 - websockets.server - INFO - connection open
+2025-07-08 14:28:50,252 - __main__ - INFO - Client connected: client_1751999330252 from 127.0.0.1 on path: None
+2025-07-08 14:28:50,253 - __main__ - INFO - Received message type: register from client_1751999330252
+2025-07-08 14:28:53,629 - websockets.server - ERROR - opening handshake failed
+Traceback (most recent call last):
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/http11.py", line 138, in parse
+    request_line = yield from parse_line(read_line)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/http11.py", line 309, in parse_line
+    line = yield from read_line(MAX_LINE_LENGTH)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/streams.py", line 46, in read_line
+    raise EOFError(f"stream ends after {p} bytes, before end of line")
+EOFError: stream ends after 0 bytes, before end of line
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/server.py", line 545, in parse
+    request = yield from Request.parse(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^
+        self.reader.read_line,
+        ^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/http11.py", line 140, in parse
+    raise EOFError("connection closed while reading HTTP request line") from exc
+EOFError: connection closed while reading HTTP request line
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/asyncio/server.py", line 356, in conn_handler
+    await connection.handshake(
+    ...<3 lines>...
+    )
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/asyncio/server.py", line 207, in handshake
+    raise self.protocol.handshake_exc
+websockets.exceptions.InvalidMessage: did not receive a valid HTTP request
+2025-07-08 14:28:55,256 - websockets.server - INFO - connection open
+2025-07-08 14:28:55,256 - __main__ - INFO - Client connected: client_1751999335256 from 127.0.0.1 on path: None
+2025-07-08 14:28:55,257 - __main__ - INFO - Received message type: register from client_1751999335256
+2025-07-08 14:29:00,260 - websockets.server - INFO - connection open
+2025-07-08 14:29:00,260 - __main__ - INFO - Client connected: client_1751999340260 from 127.0.0.1 on path: None
+2025-07-08 14:29:00,261 - __main__ - INFO - Received message type: register from client_1751999340260
+2025-07-08 14:29:05,264 - websockets.server - INFO - connection open
+2025-07-08 14:29:05,264 - __main__ - INFO - Client connected: client_1751999345264 from 127.0.0.1 on path: None
+2025-07-08 14:29:05,265 - __main__ - INFO - Received message type: register from client_1751999345264
+2025-07-08 14:29:10,268 - websockets.server - INFO - connection open
+2025-07-08 14:29:10,269 - __main__ - INFO - Client connected: client_1751999350269 from 127.0.0.1 on path: None
+2025-07-08 14:29:10,269 - __main__ - INFO - Received message type: register from client_1751999350269
+2025-07-08 14:29:15,272 - websockets.server - INFO - connection open
+2025-07-08 14:29:15,273 - __main__ - INFO - Client connected: client_1751999355273 from 127.0.0.1 on path: None
+2025-07-08 14:29:15,273 - __main__ - INFO - Received message type: register from client_1751999355273
+2025-07-08 14:29:15,501 - __main__ - INFO - Received message type: sensor_data from client_1751999045336
+2025-07-08 14:29:15,501 - __main__ - INFO - Processing sensor data from client_1751999045336
+2025-07-08 14:29:20,276 - websockets.server - INFO - connection open
+2025-07-08 14:29:20,276 - __main__ - INFO - Client connected: client_1751999360276 from 127.0.0.1 on path: None
+2025-07-08 14:29:20,278 - __main__ - INFO - Received message type: register from client_1751999360276
+2025-07-08 14:29:25,281 - websockets.server - INFO - connection open
+2025-07-08 14:29:25,281 - __main__ - INFO - Client connected: client_1751999365281 from 127.0.0.1 on path: None
+2025-07-08 14:29:25,282 - __main__ - INFO - Received message type: register from client_1751999365281
+2025-07-08 14:29:30,293 - websockets.server - INFO - connection open
+2025-07-08 14:29:30,293 - __main__ - INFO - Client connected: client_1751999370293 from 127.0.0.1 on path: None
+2025-07-08 14:29:30,294 - __main__ - INFO - Received message type: register from client_1751999370293
+2025-07-08 14:29:35,260 - websockets.server - ERROR - opening handshake failed
+Traceback (most recent call last):
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/http11.py", line 138, in parse
+    request_line = yield from parse_line(read_line)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/http11.py", line 309, in parse_line
+    line = yield from read_line(MAX_LINE_LENGTH)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/streams.py", line 46, in read_line
+    raise EOFError(f"stream ends after {p} bytes, before end of line")
+EOFError: stream ends after 0 bytes, before end of line
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/server.py", line 545, in parse
+    request = yield from Request.parse(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^
+        self.reader.read_line,
+        ^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/http11.py", line 140, in parse
+    raise EOFError("connection closed while reading HTTP request line") from exc
+EOFError: connection closed while reading HTTP request line
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/asyncio/server.py", line 356, in conn_handler
+    await connection.handshake(
+    ...<3 lines>...
+    )
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/asyncio/server.py", line 207, in handshake
+    raise self.protocol.handshake_exc
+websockets.exceptions.InvalidMessage: did not receive a valid HTTP request
+2025-07-08 14:29:35,297 - websockets.server - INFO - connection open
+2025-07-08 14:29:35,297 - __main__ - INFO - Client connected: client_1751999375297 from 127.0.0.1 on path: None
+2025-07-08 14:29:35,297 - __main__ - INFO - Received message type: register from client_1751999375297
+2025-07-08 14:29:36,399 - websockets.server - ERROR - opening handshake failed
+Traceback (most recent call last):
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/http11.py", line 138, in parse
+    request_line = yield from parse_line(read_line)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/http11.py", line 309, in parse_line
+    line = yield from read_line(MAX_LINE_LENGTH)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/streams.py", line 46, in read_line
+    raise EOFError(f"stream ends after {p} bytes, before end of line")
+EOFError: stream ends after 0 bytes, before end of line
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/server.py", line 545, in parse
+    request = yield from Request.parse(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^
+        self.reader.read_line,
+        ^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/http11.py", line 140, in parse
+    raise EOFError("connection closed while reading HTTP request line") from exc
+EOFError: connection closed while reading HTTP request line
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/asyncio/server.py", line 356, in conn_handler
+    await connection.handshake(
+    ...<3 lines>...
+    )
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/websockets/asyncio/server.py", line 207, in handshake
+    raise self.protocol.handshake_exc
+websockets.exceptions.InvalidMessage: did not receive a valid HTTP request
+2025-07-08 14:29:40,300 - websockets.server - INFO - connection open
+2025-07-08 14:29:40,301 - __main__ - INFO - Client connected: client_1751999380300 from 127.0.0.1 on path: None
+2025-07-08 14:29:40,301 - __main__ - INFO - Received message type: register from client_1751999380300
+2025-07-08 14:29:45,305 - websockets.server - INFO - connection open
+2025-07-08 14:29:45,305 - __main__ - INFO - Client connected: client_1751999385305 from 127.0.0.1 on path: None
+2025-07-08 14:29:45,306 - __main__ - INFO - Received message type: register from client_1751999385305
+2025-07-08 14:29:50,309 - websockets.server - INFO - connection open
+2025-07-08 14:29:50,310 - __main__ - INFO - Client connected: client_1751999390310 from 127.0.0.1 on path: None
+2025-07-08 14:29:50,310 - __main__ - INFO - Received message type: register from client_1751999390310
+2025-07-08 14:29:51,301 - __main__ - INFO - Received message type: sensor_data from client_1751999045336
+2025-07-08 14:29:51,301 - __main__ - INFO - Processing sensor data from client_1751999045336
+2025-07-08 14:29:55,316 - websockets.server - INFO - connection open
+2025-07-08 14:29:55,317 - __main__ - INFO - Client connected: client_1751999395317 from 127.0.0.1 on path: None
+2025-07-08 14:29:55,318 - __main__ - INFO - Received message type: register from client_1751999395317

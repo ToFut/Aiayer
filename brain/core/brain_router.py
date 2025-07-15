@@ -584,6 +584,34 @@ class BrainRouter:
             except Exception as e:
                 logger.error(f"❌ Error using universal automation handler: {e}")
             
+            # Fallback to rule-based automation handler
+            logger.info("🔄 Falling back to rule-based automation handler")
+            try:
+                from fixed_universal_automation_handler import create_rule_based_plan
+                rule_result = create_rule_based_plan(request.query, request.session_id)
+                
+                if rule_result and rule_result.get("success", False):
+                    logger.info("✅ Successfully created plan with rule-based automation handler")
+                    
+                    # Create BrainResponse with rule-based plan
+                    response = BrainResponse(
+                        success=rule_result.get("success", True),
+                        response=rule_result.get("response", ""),
+                        mode_used=request.mode,
+                        processing_time=time.time() - start_time,
+                        resources_used=["rule_based_automation", "memory"],
+                        confidence=rule_result.get("confidence", 0.8),
+                        metadata={"rule_based": True, "fallback": True},
+                        execution_plan=rule_result.get("execution_plan", None),
+                        session_id=request.session_id
+                    )
+                    
+                    return response
+                else:
+                    logger.warning(f"⚠️ Rule-based automation handler returned invalid result: {rule_result}")
+            except Exception as rule_error:
+                logger.error(f"❌ Error using rule-based automation handler: {rule_error}")
+            
             # Direct fallback to real LLM using the brain router's LLM service
             logger.info("🔄 Falling back to direct LLM planning")
             try:

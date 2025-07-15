@@ -1,0 +1,62 @@
+{
+  "screen_capture": {
+    "enabled": true,
+    "interval_seconds": 30,
+    "skip_unchanged": true,
+    "cache_duration": 60,
+    "compression_quality": 50,
+    "max_resolution": "1280x720",
+    "capture_active_window_only": true
+  },
+  "process_monitoring": {
+    "enabled": true,
+    "interval_seconds": 15,
+    "max_processes": 5,
+    "skip_system_processes": true
+  },
+  "memory_system": {
+    "enabled": true,
+    "max_entries": 50,
+    "cleanup_interval": 300,
+    "max_memory_mb": 50,
+    "disable_long_term_storage": true
+  },
+  "llm": {
+    "enabled": true,
+    "model": "llama3.2:1b",
+    "max_tokens": 500,
+    "timeout_seconds": 15,
+    "disable_streaming": false,
+    "cache_responses": true,
+    "cache_duration": 300
+  },
+  "ui_detection": {
+    "enabled": true,
+    "interval_seconds": 60,
+    "skip_complex_analysis": true,
+    "use_cached_results": true,
+    "max_analysis_time": 10
+  },
+  "background_services": {
+    "suggestion_monitor": false,
+    "memory_feeder": false,
+    "performance_monitor": false,
+    "health_monitor": true,
+    "screen_sharing": false
+  },
+  "performance_limits": {
+    "max_cpu_percent": 30,
+    "max_memory_mb": 200,
+    "max_concurrent_requests": 2,
+    "request_timeout": 10,
+    "enable_throttling": true
+  },
+  "caching": {
+    "enable_smart_caching": true,
+    "cache_screen_analysis": true,
+    "cache_llm_responses": true,
+    "cache_ui_detection": true,
+    "cache_duration": 300,
+    "max_cache_size_mb": 50
+  }
+}

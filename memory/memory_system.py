@@ -256,7 +256,7 @@ class MemorySystem:
     
     async def start_websocket_server(self):
         """Start the WebSocket server for client connections."""
-        async def handle_client(websocket):
+        async def handle_client(websocket, path=None):
             """Handle client WebSocket connections."""
             try:
                 logger.info(f"New client connected: {websocket.remote_address}")

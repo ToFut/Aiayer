@@ -26,9 +26,9 @@ class LLMService:
     def __init__(self):
         self.initialized = False
         self.model = OLLAMA_MODEL
-        self.timeout = 15  # Reduced from 30s to 15s
-        self.max_retries = 2  # Reduced from 3 to 2
-        self.base_delay = 0.5  # Reduced from 1s to 0.5s
+        self.timeout = 120  # Increased to 2 minutes for complex JSON generation
+        self.max_retries = 3  # Increased from 2 to 3
+        self.base_delay = 2.0  # Increased from 1s to 2s for better retry strategy
         self.background_tasks = set()
         self.response_cache = {}  # Add response caching
         
@@ -41,6 +41,14 @@ class LLMService:
         except Exception as e:
             logger.error(f"Error initializing LLM service: {e}")
             return False
+
+    async def cleanup(self):
+        """Cleanup resources used by the LLM service."""
+        try:
+            self.initialized = False
+            logger.info("LLM service cleaned up")
+        except Exception as e:
+            logger.error(f"Error cleaning up LLM service: {e}")
 
     async def generate_agent_response(self, query: str) -> AsyncGenerator[str, None]:
         """Generate a fast initial response for agent mode without heavy context."""
@@ -191,16 +199,29 @@ Create a numbered list of steps to accomplish this task:"""
                         prompt += f"{item['content']}\n"
             prompt += f"\nUser: {query}\nAssistant:"
 
+            # Use different settings for JSON generation
+            is_json_request = "json" in query.lower() or "plan" in query.lower()
+            
             payload = {
                 "model": self.model,
                 "prompt": prompt,
-                "stream": True
+                "stream": True,
+                "options": {
+                    "temperature": 0.1 if is_json_request else 0.7,  # Lower temperature for JSON
+                    "max_tokens": 2000 if is_json_request else 1000,  # More tokens for JSON
+                    "top_p": 0.9,
+                    "top_k": 40,
+                    "num_ctx": 4096 if is_json_request else 2048  # Larger context for JSON
+                }
             }
 
             for attempt in range(self.max_retries):
                 try:
+                    # Use longer timeout for JSON requests
+                    request_timeout = 90 if is_json_request else self.timeout
+                    
                     async with httpx.AsyncClient() as client:
-                        async with client.stream('POST', OLLAMA_API_URL, json=payload, timeout=self.timeout) as response:
+                        async with client.stream('POST', OLLAMA_API_URL, json=payload, timeout=request_timeout) as response:
                             response.raise_for_status()
                             async for line in response.aiter_lines():
                                 if line:
@@ -223,12 +244,121 @@ Create a numbered list of steps to accomplish this task:"""
 
         except Exception as e:
             logger.error(f"Error generating response: {e}")
-            raise
+            raise 
 
-    async def cleanup(self):
-        """Cleanup resources used by the LLM service."""
+    async def generate_response_with_fallback(self, query: str, context: Optional[List[Dict[str, Any]]] = None) -> AsyncGenerator[str, None]:
+        """Generate response with robust fallback mechanisms."""
         try:
-            self.initialized = False
-            logger.info("LLM service cleaned up")
+            # Enhanced prompt engineering for better responses
+            enhanced_prompt = f"""Create an automation plan for this user request: "{query}"
+
+IMPORTANT INSTRUCTIONS:
+1. Use SPECIFIC app names like "Calculator", "Safari", "Finder", "Terminal" - NOT generic names like "app1", "app2", "app"
+2. Create MULTIPLE steps for complex requests
+3. Use specific actions like "open_app", "navigate_to", "click", "type", "wait", "screenshot"
+4. Provide detailed descriptions for each step
+5. Return ONLY a single, complete, valid JSON object
+
+Return this EXACT JSON structure:
+{{
+  "apps": ["specific_app_name"],
+  "steps": [
+    {{
+      "action": "specific_action",
+      "app": "specific_app_name", 
+      "description": "detailed_description_of_what_this_step_does"
+    }}
+  ]
+}}
+
+CRITICAL: Ensure the JSON is complete and valid. No extra text, no explanations, just the JSON object."""
+
+            async for chunk in self.generate_response(enhanced_prompt, context):
+                yield chunk
+                
         except Exception as e:
-            logger.error(f"Error cleaning up LLM service: {e}") 
+            logger.error(f"Error in generate_response_with_fallback: {e}")
+            # Generate a fallback response
+            fallback_response = self._create_fallback_response(query)
+            yield fallback_response
+
+    def _create_fallback_response(self, query: str) -> str:
+        """Create a fallback response when LLM fails."""
+        try:
+            # Extract app names from the query
+            app_mapping = {
+                "calculator": "Calculator",
+                "safari": "Safari", 
+                "finder": "Finder",
+                "terminal": "Terminal",
+                "chrome": "Chrome",
+                "firefox": "Firefox",
+                "mail": "Mail",
+                "messages": "Messages",
+                "photos": "Photos",
+                "music": "Music",
+                "notes": "Notes",
+                "reminders": "Reminders",
+                "calendar": "Calendar",
+                "maps": "Maps",
+                "facetime": "FaceTime",
+                "camera": "Camera",
+                "preferences": "System Preferences",
+                "activity": "Activity Monitor",
+                "disk": "Disk Utility",
+                "console": "Console"
+            }
+            
+            query_lower = query.lower()
+            detected_apps = []
+            
+            for app_keyword, app_name in app_mapping.items():
+                if app_keyword in query_lower:
+                    detected_apps.append(app_name)
+            
+            # If no specific apps detected, use a generic approach
+            if not detected_apps:
+                if "open" in query_lower:
+                    detected_apps = ["Calculator"]  # Default fallback
+                else:
+                    detected_apps = []
+            
+            # Create a simple but valid plan
+            if detected_apps:
+                plan = {
+                    "apps": detected_apps,
+                    "steps": [
+                        {
+                            "action": "open_app",
+                            "app": detected_apps[0],
+                            "description": f"Open {detected_apps[0]} as requested"
+                        }
+                    ]
+                }
+            else:
+                plan = {
+                    "apps": [],
+                    "steps": [
+                        {
+                            "action": "wait",
+                            "duration": 2,
+                            "description": "Wait for system to be ready"
+                        }
+                    ]
+                }
+            
+            return json.dumps(plan, indent=2)
+            
+        except Exception as e:
+            logger.error(f"Error creating fallback response: {e}")
+            # Ultimate fallback
+            return json.dumps({
+                "apps": ["Calculator"],
+                "steps": [
+                    {
+                        "action": "open_app",
+                        "app": "Calculator",
+                        "description": "Open Calculator as fallback"
+                    }
+                ]
+            }, indent=2) 

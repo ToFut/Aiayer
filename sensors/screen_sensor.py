@@ -27,8 +27,9 @@ logger = logging.getLogger('screen_sensor')
 class ScreenSensor:
     """Sensor for capturing screen-related data."""
     
-    def __init__(self):
+    def __init__(self, *args, **kwargs):
         """Initialize the screen sensor."""
+        self.sensor_type = "screen"
         self.last_data = None
         logger.info("Screen sensor initialized")
     
@@ -60,6 +61,12 @@ class ScreenSensor:
                 'mouse_position': None
             }
     
+    def capture(self):
+        return None
+
+    def has_updates(self):
+        return False
+
     def _get_active_window(self) -> Optional[str]:
         """Get the active window name."""
         try:

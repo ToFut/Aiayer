@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document Intelligence Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" rel="stylesheet">
+    <style>
+        .sidebar {
+            width: 300px;
+            height: 100vh;
+            position: fixed;
+            left: 0;
+            top: 0;
+            background-color: #1a1a1a;
+            color: white;
+            padding: 1rem;
+            overflow-y: auto;
+        }
+        .main-content {
+            margin-left: 300px;
+            padding: 2rem;
+        }
+        .document-card {
+            transition: all 0.3s ease;
+        }
+        .document-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .analysis-panel {
+            position: fixed;
+            right: 0;
+            top: 0;
+            width: 400px;
+            height: 100vh;
+            background-color: white;
+            box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
+            padding: 1rem;
+            overflow-y: auto;
+            transform: translateX(100%);
+            transition: transform 0.3s ease;
+        }
+        .analysis-panel.active {
+            transform: translateX(0);
+        }
+    </style>
+</head>
+<body class="bg-gray-100">
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <div class="mb-8">
+            <h1 class="text-2xl font-bold mb-4">Document Intelligence</h1>
+            <button id="addFolderBtn" class="w-full bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-700">
+                <i class="fas fa-folder-plus mr-2"></i>Add Folder
+            </button>
+        </div>
+        
+        <div class="mb-6">
+            <h2 class="text-lg font-semibold mb-2">Watched Folders</h2>
+            <div id="folderList" class="space-y-2">
+                <!-- Folders will be listed here -->
+            </div>
+        </div>
+        
+        <div class="mb-6">
+            <h2 class="text-lg font-semibold mb-2">Quick Filters</h2>
+            <div class="space-y-2">
+                <button class="w-full text-left px-2 py-1 rounded hover:bg-gray-700" data-filter="all">
+                    <i class="fas fa-file-alt mr-2"></i>All Documents
+                </button>
+                <button class="w-full text-left px-2 py-1 rounded hover:bg-gray-700" data-filter="recent">
+                    <i class="fas fa-clock mr-2"></i>Recently Modified
+                </button>
+                <button class="w-full text-left px-2 py-1 rounded hover:bg-gray-700" data-filter="important">
+                    <i class="fas fa-star mr-2"></i>Important
+                </button>
+            </div>
+        </div>
+        
+        <div class="mb-6">
+            <h2 class="text-lg font-semibold mb-2">Document Types</h2>
+            <div id="fileTypeFilters" class="space-y-2">
+                <!-- File type filters will be added here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <div class="mb-6">
+            <div class="flex justify-between items-center">
+                <h2 class="text-2xl font-bold">Document Analysis</h2>
+                <div class="flex space-x-4">
+                    <div class="relative">
+                        <input type="text" id="searchInput" placeholder="Search documents..." 
+                               class="pl-10 pr-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        <i class="fas fa-search absolute left-3 top-3 text-gray-400"></i>
+                    </div>
+                    <button id="viewStatsBtn" class="bg-gray-200 px-4 py-2 rounded hover:bg-gray-300">
+                        <i class="fas fa-chart-bar mr-2"></i>View Statistics
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Statistics Overview -->
+        <div id="statsOverview" class="grid grid-cols-4 gap-4 mb-6">
+            <div class="bg-white p-4 rounded-lg shadow">
+                <h3 class="text-gray-500 text-sm">Total Documents</h3>
+                <p id="totalDocs" class="text-2xl font-bold">0</p>
+            </div>
+            <div class="bg-white p-4 rounded-lg shadow">
+                <h3 class="text-gray-500 text-sm">Analyzed Today</h3>
+                <p id="analyzedToday" class="text-2xl font-bold">0</p>
+            </div>
+            <div class="bg-white p-4 rounded-lg shadow">
+                <h3 class="text-gray-500 text-sm">Pending Analysis</h3>
+                <p id="pendingAnalysis" class="text-2xl font-bold">0</p>
+            </div>
+            <div class="bg-white p-4 rounded-lg shadow">
+                <h3 class="text-gray-500 text-sm">Automation Tasks</h3>
+                <p id="automationTasks" class="text-2xl font-bold">0</p>
+            </div>
+        </div>
+
+        <!-- Analysis Progress -->
+        <div id="analysisProgress" class="mb-6 hidden">
+            <div class="bg-white p-4 rounded-lg shadow">
+                <div class="flex justify-between items-center mb-2">
+                    <h3 class="text-gray-700 font-semibold">Current Analysis</h3>
+                    <span id="progressPercentage" class="text-blue-600 font-medium">0%</span>
+                </div>
+                <div class="w-full bg-gray-200 rounded-full h-2.5">
+                    <div id="progressBar" class="bg-blue-600 h-2.5 rounded-full" style="width: 0%"></div>
+                </div>
+                <p id="currentFile" class="text-sm text-gray-500 mt-2">No file being analyzed</p>
+                <p id="chunkProgress" class="text-sm text-gray-500">Processing chunk 0 of 0</p>
+            </div>
+        </div>
+
+        <!-- Document Grid -->
+        <div id="documentGrid" class="grid grid-cols-3 gap-6">
+            <!-- Document cards will be added here -->
+        </div>
+    </div>
+
+    <!-- Analysis Panel -->
+    <div id="analysisPanel" class="analysis-panel">
+        <div class="flex justify-between items-center mb-4">
+            <h2 class="text-xl font-bold">Document Analysis</h2>
+            <button id="closeAnalysisBtn" class="text-gray-500 hover:text-gray-700">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        
+        <div id="analysisContent" class="space-y-6">
+            <!-- Analysis content will be loaded here -->
+        </div>
+        
+        <div class="mt-6 pt-6 border-t">
+            <h3 class="text-lg font-semibold mb-4">Automation Suggestions</h3>
+            <div id="automationSuggestions" class="space-y-4">
+                <!-- Automation suggestions will be added here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Folder Modal -->
+    <div id="addFolderModal" class="fixed inset-0 bg-black bg-opacity-50 hidden">
+        <div class="bg-white rounded-lg p-6 max-w-md mx-auto mt-20">
+            <h2 class="text-xl font-bold mb-4">Add Folder to Watch</h2>
+            <div class="mb-4">
+                <label class="block text-gray-700 mb-2">Select Folder</label>
+                <input type="file" id="folderInput" webkitdirectory directory multiple class="w-full px-3 py-2 border rounded">
+            </div>
+            <div class="flex justify-end space-x-4">
+                <button id="cancelAddFolder" class="px-4 py-2 text-gray-600 hover:text-gray-800">Cancel</button>
+                <button id="confirmAddFolder" class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">Add Folder</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script>
+        // API Endpoints
+        const API = {
+            FOLDERS: '/api/folders',
+            DOCUMENTS: '/api/documents',
+            ANALYSIS: '/api/analysis',
+            STATS: '/api/stats',
+            AUTOMATION: '/api/automation'
+        };
+
+        // State
+        const state = {
+            watchedFolders: [],
+            currentDocuments: [],
+            supportedExtensions: [],
+            folderStats: {},
+            selectedDocument: null
+        };
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', async () => {
+            await loadSupportedExtensions();
+            await loadWatchedFolders();
+            setupEventListeners();
+            startPeriodicUpdates();
+        });
+
+        // Event Listeners
+        function setupEventListeners() {
+            // Add folder button
+            document.getElementById('addFolderBtn').addEventListener('click', () => {
+                document.getElementById('addFolderModal').classList.remove('hidden');
+            });
+
+            // Cancel add folder
+            document.getElementById('cancelAddFolder').addEventListener('click', () => {
+                document.getElementById('addFolderModal').classList.add('hidden');
+                document.getElementById('folderInput').value = '';
+            });
+
+            // Confirm add folder
+            document.getElementById('confirmAddFolder').addEventListener('click', async () => {
+                const folderInput = document.getElementById('folderInput');
+                if (folderInput.files.length > 0) {
+                    // Get the path of the first file's directory (works in Electron/desktop, not in browser for security)
+                    // In browser, you can only get the file names, not the full path
+                    // We'll send the list of files to the backend for processing
+                    const files = Array.from(folderInput.files);
+                    const filePaths = files.map(f => f.webkitRelativePath || f.name);
+                    await addFolderFiles(filePaths);
+                    document.getElementById('addFolderModal').classList.add('hidden');
+                    folderInput.value = '';
+                }
+            });
+
+            // Close analysis panel
+            document.getElementById('closeAnalysisBtn').addEventListener('click', () => {
+                document.getElementById('analysisPanel').classList.remove('active');
+            });
+
+            // Search input
+            document.getElementById('searchInput').addEventListener('input', debounce(handleSearch, 300));
+
+            // View stats button
+            document.getElementById('viewStatsBtn').addEventListener('click', showStatsOverview);
+        }
+
+        // API Functions
+        async function loadSupportedExtensions() {
+            try {
+                const response = await axios.get(`${API.DOCUMENTS}/extensions`);
+                state.supportedExtensions = response.data;
+                updateFileTypeFilters();
+            } catch (error) {
+                console.error('Error loading supported extensions:', error);
+            }
+        }
+
+        async function loadWatchedFolders() {
+            try {
+                const response = await axios.get(API.FOLDERS);
+                state.watchedFolders = response.data;
+                updateFolderList();
+                await loadFolderStats();
+            } catch (error) {
+                console.error('Error loading watched folders:', error);
+            }
+        }
+
+        async function addFolder(folderPath) {
+            try {
+                await axios.post(API.FOLDERS, { path: folderPath });
+                await loadWatchedFolders();
+            } catch (error) {
+                console.error('Error adding folder:', error);
+            }
+        }
+
+        async function loadFolderStats() {
+            try {
+                const response = await axios.get(API.STATS);
+                state.folderStats = response.data;
+                updateStatsOverview();
+            } catch (error) {
+                console.error('Error loading folder stats:', error);
+            }
+        }
+
+        async function loadDocumentAnalysis(docHash) {
+            try {
+                const response = await axios.get(`${API.ANALYSIS}/${docHash}`);
+                showAnalysisPanel(response.data);
+            } catch (error) {
+                console.error('Error loading document analysis:', error);
+            }
+        }
+
+        // UI Update Functions
+        function updateFolderList() {
+            const folderList = document.getElementById('folderList');
+            folderList.innerHTML = state.watchedFolders.map(folder => `
+                <div class="flex items-center justify-between p-2 rounded hover:bg-gray-700">
+                    <div class="flex items-center">
+                        <i class="fas fa-folder mr-2"></i>
+                        <span>${folder.path}</span>
+                    </div>
+                    <button class="text-red-400 hover:text-red-300" onclick="removeFolder('${folder.path}')">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+            `).join('');
+        }
+
+        function updateFileTypeFilters() {
+            const fileTypeFilters = document.getElementById('fileTypeFilters');
+            fileTypeFilters.innerHTML = state.supportedExtensions.map(ext => `
+                <button class="w-full text-left px-2 py-1 rounded hover:bg-gray-700" data-filter="${ext}">
+                    <i class="fas fa-file mr-2"></i>${ext.toUpperCase()}
+                </button>
+            `).join('');
+        }
+
+        function updateStatsOverview() {
+            const stats = state.folderStats;
+            document.getElementById('totalDocs').textContent = stats.total_documents || 0;
+            document.getElementById('analyzedToday').textContent = stats.analyzed_today || 0;
+            document.getElementById('pendingAnalysis').textContent = stats.pending_analysis || 0;
+            document.getElementById('automationTasks').textContent = stats.automation_tasks || 0;
+        }
+
+        function showAnalysisPanel(analysis) {
+            const panel = document.getElementById('analysisPanel');
+            const content = document.getElementById('analysisContent');
+            
+            content.innerHTML = `
+                <div class="mb-6">
+                    <h3 class="text-lg font-semibold mb-2">Summary</h3>
+                    <p>${analysis.summary}</p>
+                </div>
+                
+                <div class="mb-6">
+                    <h3 class="text-lg font-semibold mb-2">Topics</h3>
+                    <div class="flex flex-wrap gap-2">
+                        ${analysis.topics.map(topic => `
+                            <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded">${topic}</span>
+                        `).join('')}
+                    </div>
+                </div>
+                
+                <div class="mb-6">
+                    <h3 class="text-lg font-semibold mb-2">Entities</h3>
+                    <div class="space-y-2">
+                        <div>
+                            <h4 class="font-medium">People</h4>
+                            <div class="flex flex-wrap gap-2">
+                                ${analysis.entities.people.map(person => `
+                                    <span class="bg-green-100 text-green-800 px-2 py-1 rounded">${person}</span>
+                                `).join('')}
+                            </div>
+                        </div>
+                        <div>
+                            <h4 class="font-medium">Organizations</h4>
+                            <div class="flex flex-wrap gap-2">
+                                ${analysis.entities.organizations.map(org => `
+                                    <span class="bg-purple-100 text-purple-800 px-2 py-1 rounded">${org}</span>
+                                `).join('')}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="mb-6">
+                    <h3 class="text-lg font-semibold mb-2">Structure</h3>
+                    <div class="space-y-2">
+                        <div>
+                            <h4 class="font-medium">Headings</h4>
+                            <ul class="list-disc list-inside">
+                                ${analysis.structure.headings.map(heading => `
+                                    <li>${heading}</li>
+                                `).join('')}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="mb-6">
+                    <h3 class="text-lg font-semibold mb-2">Risks & Recommendations</h3>
+                    <div class="space-y-4">
+                        <div>
+                            <h4 class="font-medium text-red-600">Risks</h4>
+                            <ul class="list-disc list-inside">
+                                ${analysis.risks.map(risk => `
+                                    <li>${risk}</li>
+                                `).join('')}
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 class="font-medium text-green-600">Recommendations</h4>
+                            <ul class="list-disc list-inside">
+                                ${analysis.recommendations.map(rec => `
+                                    <li>${rec}</li>
+                                `).join('')}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            panel.classList.add('active');
+        }
+
+        // Utility Functions
+        function debounce(func, wait) {
+            let timeout;
+            return function executedFunction(...args) {
+                const later = () => {
+                    clearTimeout(timeout);
+                    func(...args);
+                };
+                clearTimeout(timeout);
+                timeout = setTimeout(later, wait);
+            };
+        }
+
+        function handleSearch(event) {
+            const query = event.target.value.toLowerCase();
+            // Implement search logic
+        }
+
+        function showStatsOverview() {
+            // Implement stats overview logic
+        }
+
+        // Periodic Updates
+        function startPeriodicUpdates() {
+            setInterval(async () => {
+                await loadFolderStats();
+            }, 5000); // Update every 5 seconds
+        }
+
+        // Add this function to send the file list to the backend
+        async function addFolderFiles(filePaths) {
+            try {
+                await axios.post('/api/folders/files', { files: filePaths });
+                await loadWatchedFolders();
+            } catch (error) {
+                console.error('Error adding folder files:', error);
+            }
+        }
+    </script>
+</body>
+</html> 

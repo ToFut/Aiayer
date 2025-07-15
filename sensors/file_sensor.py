@@ -25,14 +25,33 @@ logging.basicConfig(
 )
 logger = logging.getLogger('file_sensor')
 
+class FileEventHandler:
+    """Handler for file events"""
+    
+    def __init__(self, callback=None):
+        self.callback = callback or self._default_callback
+        self.logger = logging.getLogger('file_event_handler')
+    
+    def _default_callback(self, event):
+        """Default callback for file events"""
+        self.logger.info(f"File event: {event}")
+    
+    def handle_event(self, event):
+        """Handle a file event"""
+        try:
+            self.callback(event)
+        except Exception as e:
+            self.logger.error(f"Error handling file event: {e}")
+
 class FileSensor:
     """Sensor for capturing file-related data."""
     
-    def __init__(self):
-        """Initialize the file sensor."""
+    def __init__(self, paths=None):
+        self.paths = paths or []
         self.last_data = None
         self.watched_dirs = set()
         self.file_hashes = {}
+        self.sensor_type = "file"
         logger.info("File sensor initialized")
     
     async def get_data(self) -> Dict[str, Any]:
@@ -62,6 +81,11 @@ class FileSensor:
                 'directory_contents': {},
                 'file_metadata': {}
             }
+    
+    def get_recent_events(self):
+        return []
+    def has_updates(self):
+        return False
     
     def _get_watched_directories(self) -> list:
         """Get list of watched directories."""

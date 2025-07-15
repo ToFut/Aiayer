@@ -315,3 +315,732 @@
 2025-06-08 13:30:48,142 - total_screen_analyzer - INFO - Completed total screen analysis in 19.27s
 2025-06-08 13:30:48,143 - total_screen_analyzer - INFO - Sent total screen analysis: Cursor - general_computing
 2025-06-08 13:30:56,380 - total_screen_analyzer - INFO - Starting total screen analysis (hash: f3355723)
+2025-06-08 13:47:19,984 - llava_processor - INFO - Connected to Ollama API v0.6.8
+2025-06-08 13:47:19,984 - total_screen_analyzer - INFO - LLaVA visual processor initialized for total screen analysis
+2025-06-08 13:47:19,984 - total_screen_analyzer - INFO - Total Screen Analyzer initialized with 8s interval
+2025-06-08 13:47:19,984 - total_screen_analyzer - INFO - Starting Total Screen Analyzer
+2025-06-08 13:47:19,992 - total_screen_analyzer - ERROR - Connection error: Multiple exceptions: [Errno 61] Connect call failed ('::1', 8767, 0, 0), [Errno 61] Connect call failed ('127.0.0.1', 8767)
+2025-06-08 13:47:25,007 - total_screen_analyzer - INFO - Connected to bridge server at ws://localhost:8767
+2025-06-08 13:47:25,008 - total_screen_analyzer - INFO - Received welcome: connection_established
+2025-06-08 13:47:25,337 - total_screen_analyzer - INFO - Starting total screen analysis (hash: 3ac6c714)
+2025-06-08 13:47:45,044 - total_screen_analyzer - INFO - Lightweight vision analysis completed: 68 UI elements detected
+2025-06-08 13:47:45,064 - total_screen_analyzer - INFO - Completed total screen analysis in 19.73s
+2025-06-08 13:47:45,065 - total_screen_analyzer - INFO - Sent total screen analysis: Cursor - general_computing
+2025-06-08 13:47:53,624 - total_screen_analyzer - INFO - Starting total screen analysis (hash: 8cb33748)
+2025-06-08 13:48:01,121 - total_screen_analyzer - INFO - Lightweight vision analysis completed: 634 UI elements detected
+2025-06-08 13:48:01,135 - total_screen_analyzer - INFO - Completed total screen analysis in 7.51s
+2025-06-08 13:48:01,136 - total_screen_analyzer - INFO - Sent total screen analysis: Calendar - general_computing
+2025-06-08 13:48:09,386 - total_screen_analyzer - INFO - Starting total screen analysis (hash: 5e7ba680)
+2025-06-08 13:48:41,497 - total_screen_analyzer - INFO - Lightweight vision analysis completed: 94 UI elements detected
+2025-06-08 13:48:41,516 - total_screen_analyzer - INFO - Completed total screen analysis in 32.13s
+2025-06-08 13:48:41,517 - total_screen_analyzer - INFO - Sent total screen analysis: Cursor - general_computing
+2025-06-08 13:48:49,802 - total_screen_analyzer - INFO - Starting total screen analysis (hash: a6b7fa14)
+2025-06-08 13:48:52,128 - total_screen_analyzer - INFO - Lightweight vision analysis completed: 0 UI elements detected
+2025-06-08 13:48:52,131 - total_screen_analyzer - INFO - Completed total screen analysis in 2.33s
+2025-06-08 13:48:52,132 - total_screen_analyzer - INFO - Sent total screen analysis: Cursor - general_computing
+2025-06-08 13:50:30,996 - total_screen_analyzer - INFO - Starting total screen analysis (hash: 8b209e39)
+2025-06-08 13:50:56,167 - total_screen_analyzer - INFO - Lightweight vision analysis completed: 94 UI elements detected
+2025-06-08 13:50:56,182 - total_screen_analyzer - INFO - Completed total screen analysis in 25.19s
+2025-06-08 13:50:56,182 - total_screen_analyzer - INFO - Sent total screen analysis: Cursor - general_computing
+2025-06-08 13:51:04,403 - total_screen_analyzer - INFO - Starting total screen analysis (hash: 668d7167)
+2025-07-08 14:19:28,347 - llava_processor - INFO - Connected to Ollama API v0.6.8
+2025-07-08 14:19:28,348 - total_screen_analyzer - INFO - LLaVA visual processor initialized for total screen analysis
+2025-07-08 14:19:28,348 - total_screen_analyzer - INFO - Total Screen Analyzer initialized with 8s interval
+2025-07-08 14:19:28,348 - total_screen_analyzer - INFO - Starting Total Screen Analyzer
+2025-07-08 14:19:28,356 - total_screen_analyzer - ERROR - Connection error: Multiple exceptions: [Errno 61] Connect call failed ('127.0.0.1', 8767), [Errno 61] Connect call failed ('::1', 8767, 0, 0)
+2025-07-08 14:19:33,373 - total_screen_analyzer - INFO - Connected to bridge server at ws://localhost:8767
+2025-07-08 14:19:33,374 - total_screen_analyzer - INFO - Received welcome: connection_established
+2025-07-08 14:19:33,644 - total_screen_analyzer - INFO - Starting total screen analysis (hash: ab03aed6)
+2025-07-08 14:19:50,932 - total_screen_analyzer - INFO - Lightweight vision analysis completed: 70 UI elements detected
+2025-07-08 14:19:50,946 - total_screen_analyzer - INFO - Completed total screen analysis in 17.30s
+2025-07-08 14:19:50,947 - total_screen_analyzer - INFO - Sent total screen analysis: Cursor - general_computing
+2025-07-08 14:19:59,149 - total_screen_analyzer - INFO - Starting total screen analysis (hash: 501f332b)
+2025-07-08 14:20:21,079 - total_screen_analyzer - INFO - Lightweight vision analysis completed: 93 UI elements detected
+2025-07-08 14:20:21,096 - total_screen_analyzer - INFO - Completed total screen analysis in 21.95s
+2025-07-08 14:20:21,097 - total_screen_analyzer - INFO - Sent total screen analysis: Cursor - general_computing
+2025-07-08 14:20:29,328 - total_screen_analyzer - INFO - Starting total screen analysis (hash: daef5876)
+2025-07-08 14:20:53,930 - total_screen_analyzer - INFO - Lightweight vision analysis completed: 101 UI elements detected
+2025-07-08 14:20:53,945 - total_screen_analyzer - INFO - Completed total screen analysis in 24.62s
+2025-07-08 14:20:53,946 - total_screen_analyzer - INFO - Sent total screen analysis: Cursor - general_computing
+2025-07-08 14:21:02,163 - total_screen_analyzer - INFO - Starting total screen analysis (hash: dd451290)
+2025-07-08 14:21:24,868 - total_screen_analyzer - INFO - Lightweight vision analysis completed: 104 UI elements detected
+2025-07-08 14:21:24,883 - total_screen_analyzer - INFO - Completed total screen analysis in 22.72s
+2025-07-08 14:21:24,884 - total_screen_analyzer - INFO - Sent total screen analysis: Cursor - general_computing
+2025-07-08 14:21:33,102 - total_screen_analyzer - INFO - Starting total screen analysis (hash: 90104923)
+2025-07-08 14:24:05,328 - llava_processor - INFO - Connected to Ollama API v0.6.8
+2025-07-08 14:24:05,328 - total_screen_analyzer - INFO - LLaVA visual processor initialized for total screen analysis
+2025-07-08 14:24:05,328 - total_screen_analyzer - INFO - Total Screen Analyzer initialized with 8s interval
+2025-07-08 14:24:05,328 - total_screen_analyzer - INFO - Starting Total Screen Analyzer
+2025-07-08 14:24:05,336 - total_screen_analyzer - INFO - Connected to bridge server at ws://localhost:8767
+2025-07-08 14:24:05,336 - total_screen_analyzer - INFO - Received welcome: connection_established
+2025-07-08 14:24:05,737 - total_screen_analyzer - INFO - Starting total screen analysis (hash: 14164206)
+2025-07-08 14:24:29,657 - total_screen_analyzer - INFO - Lightweight vision analysis completed: 68 UI elements detected
+2025-07-08 14:24:29,671 - total_screen_analyzer - INFO - Completed total screen analysis in 23.93s
+2025-07-08 14:24:29,671 - total_screen_analyzer - INFO - Sent total screen analysis: Cursor - general_computing
+2025-07-08 14:24:37,894 - total_screen_analyzer - INFO - Starting total screen analysis (hash: ced44b9b)
+2025-07-08 14:25:00,738 - total_screen_analyzer - INFO - Lightweight vision analysis completed: 148 UI elements detected
+2025-07-08 14:25:00,753 - total_screen_analyzer - INFO - Completed total screen analysis in 22.86s
+2025-07-08 14:25:00,755 - total_screen_analyzer - INFO - Sent total screen analysis: Cursor - general_computing
+2025-07-08 14:25:08,984 - total_screen_analyzer - INFO - Starting total screen analysis (hash: 0e25a9e9)
+2025-07-08 14:25:38,211 - total_screen_analyzer - INFO - Lightweight vision analysis completed: 92 UI elements detected
+2025-07-08 14:25:38,227 - total_screen_analyzer - INFO - Completed total screen analysis in 29.24s
+2025-07-08 14:25:38,228 - total_screen_analyzer - INFO - Sent total screen analysis: Cursor - general_computing
+2025-07-08 14:25:46,448 - total_screen_analyzer - INFO - Starting total screen analysis (hash: 5882cb95)
+2025-07-08 14:26:15,813 - total_screen_analyzer - INFO - Lightweight vision analysis completed: 98 UI elements detected
+2025-07-08 14:26:15,828 - total_screen_analyzer - INFO - Completed total screen analysis in 29.38s
+2025-07-08 14:26:15,829 - total_screen_analyzer - INFO - Sent total screen analysis: Cursor - general_computing
+2025-07-08 14:26:24,052 - total_screen_analyzer - INFO - Starting total screen analysis (hash: 1fd3c025)
+2025-07-08 14:26:53,245 - total_screen_analyzer - INFO - Lightweight vision analysis completed: 95 UI elements detected
+2025-07-08 14:26:53,260 - total_screen_analyzer - INFO - Completed total screen analysis in 29.21s
+2025-07-08 14:26:53,261 - total_screen_analyzer - INFO - Sent total screen analysis: Cursor - general_computing
+2025-07-08 14:27:01,559 - total_screen_analyzer - INFO - Starting total screen analysis (hash: 2427583b)
+2025-07-08 14:27:29,911 - total_screen_analyzer - INFO - Lightweight vision analysis completed: 120 UI elements detected
+2025-07-08 14:27:29,930 - total_screen_analyzer - INFO - Completed total screen analysis in 28.37s
+2025-07-08 14:27:29,931 - total_screen_analyzer - INFO - Sent total screen analysis: Cursor - general_computing
+2025-07-08 14:27:38,155 - total_screen_analyzer - INFO - Starting total screen analysis (hash: 582de0a5)
+2025-07-08 14:28:06,650 - total_screen_analyzer - INFO - Lightweight vision analysis completed: 96 UI elements detected
+2025-07-08 14:28:06,665 - total_screen_analyzer - INFO - Completed total screen analysis in 28.51s
+2025-07-08 14:28:06,666 - total_screen_analyzer - INFO - Sent total screen analysis: Cursor - general_computing
+2025-07-08 14:28:14,875 - total_screen_analyzer - INFO - Starting total screen analysis (hash: caef8d9c)
+2025-07-08 14:28:42,151 - total_screen_analyzer - INFO - Lightweight vision analysis completed: 96 UI elements detected
+2025-07-08 14:28:42,166 - total_screen_analyzer - INFO - Completed total screen analysis in 27.29s
+2025-07-08 14:28:42,168 - total_screen_analyzer - INFO - Sent total screen analysis: Cursor - general_computing
+2025-07-08 14:28:50,413 - total_screen_analyzer - INFO - Starting total screen analysis (hash: 439ff4bc)
+2025-07-08 14:29:15,484 - total_screen_analyzer - INFO - Lightweight vision analysis completed: 97 UI elements detected
+2025-07-08 14:29:15,499 - total_screen_analyzer - INFO - Completed total screen analysis in 25.09s
+2025-07-08 14:29:15,500 - total_screen_analyzer - INFO - Sent total screen analysis: Cursor - general_computing
+2025-07-08 14:29:23,793 - total_screen_analyzer - INFO - Starting total screen analysis (hash: 76c781a7)
+2025-07-08 14:29:51,284 - total_screen_analyzer - INFO - Lightweight vision analysis completed: 110 UI elements detected
+2025-07-08 14:29:51,299 - total_screen_analyzer - INFO - Completed total screen analysis in 27.51s
+2025-07-08 14:29:51,301 - total_screen_analyzer - INFO - Sent total screen analysis: Cursor - general_computing
+2025-07-08 14:29:59,508 - total_screen_analyzer - INFO - Starting total screen analysis (hash: a3ca5b6f)
+2025-07-09 19:38:32,848 - llava_processor - INFO - Connected to Ollama API v0.6.8
+2025-07-09 19:38:32,848 - total_screen_analyzer - INFO - LLaVA visual processor initialized for total screen analysis
+2025-07-09 19:38:32,848 - total_screen_analyzer - INFO - Total Screen Analyzer initialized with 8s interval
+2025-07-09 19:38:32,848 - total_screen_analyzer - INFO - Starting Total Screen Analyzer
+2025-07-09 19:38:32,861 - total_screen_analyzer - INFO - Connected to bridge server at ws://localhost:8767
+2025-07-09 19:38:32,861 - total_screen_analyzer - INFO - Received welcome: connection_established
+2025-07-09 19:38:33,370 - total_screen_analyzer - INFO - Starting total screen analysis (hash: 9c19f457)
+2025-07-09 19:39:04,243 - total_screen_analyzer - INFO - Lightweight vision analysis completed: 72 UI elements detected
+2025-07-09 19:39:04,262 - total_screen_analyzer - INFO - Completed total screen analysis in 30.89s
+2025-07-09 19:39:04,263 - total_screen_analyzer - INFO - Sent total screen analysis: Cursor - general_computing
+2025-07-09 19:39:12,561 - total_screen_analyzer - INFO - Starting total screen analysis (hash: de8b80f3)
+2025-07-09 19:39:43,781 - total_screen_analyzer - INFO - Lightweight vision analysis completed: 63 UI elements detected
+2025-07-09 19:39:43,801 - total_screen_analyzer - INFO - Completed total screen analysis in 31.24s
+2025-07-09 19:39:43,803 - total_screen_analyzer - INFO - Sent total screen analysis: Cursor - general_computing
+2025-07-09 19:39:52,112 - total_screen_analyzer - INFO - Starting total screen analysis (hash: eb91903b)
+2025-07-09 19:40:29,828 - total_screen_analyzer - INFO - Lightweight vision analysis completed: 85 UI elements detected
+2025-07-09 19:40:29,847 - total_screen_analyzer - INFO - Completed total screen analysis in 37.73s
+2025-07-09 19:40:29,848 - total_screen_analyzer - INFO - Sent total screen analysis: Cursor - general_computing
+2025-07-09 19:40:38,169 - total_screen_analyzer - INFO - Starting total screen analysis (hash: 0bb91bf8)
+2025-07-09 19:41:32,661 - total_screen_analyzer - INFO - Lightweight vision analysis completed: 70 UI elements detected
+2025-07-09 19:41:32,689 - total_screen_analyzer - INFO - Completed total screen analysis in 54.52s
+2025-07-09 19:41:32,691 - total_screen_analyzer - INFO - Sent total screen analysis: Cursor - general_computing
+2025-07-09 19:41:41,193 - total_screen_analyzer - INFO - Starting total screen analysis (hash: 692be2b1)
+2025-07-09 19:42:09,917 - total_screen_analyzer - INFO - Lightweight vision analysis completed: 212 UI elements detected
+2025-07-09 19:42:09,991 - total_screen_analyzer - INFO - Completed total screen analysis in 28.80s
+2025-07-09 19:42:10,012 - total_screen_analyzer - INFO - Sent total screen analysis: Microsoft Excel - document_work
+2025-07-09 19:42:18,985 - total_screen_analyzer - INFO - Starting total screen analysis (hash: 8caee9ec)
+2025-07-09 19:43:16,201 - total_screen_analyzer - INFO - Lightweight vision analysis completed: 65 UI elements detected
+2025-07-09 19:43:16,226 - total_screen_analyzer - INFO - Completed total screen analysis in 57.24s
+2025-07-09 19:43:16,227 - total_screen_analyzer - INFO - Sent total screen analysis: Cursor - general_computing
+2025-07-09 19:43:24,570 - total_screen_analyzer - INFO - Starting total screen analysis (hash: 009bc160)
+2025-07-09 19:44:10,223 - total_screen_analyzer - INFO - Lightweight vision analysis completed: 63 UI elements detected
+2025-07-09 19:44:10,246 - total_screen_analyzer - INFO - Completed total screen analysis in 45.67s
+2025-07-09 19:44:10,248 - total_screen_analyzer - INFO - Sent total screen analysis: Cursor - general_computing
+2025-07-09 19:44:18,601 - total_screen_analyzer - INFO - Starting total screen analysis (hash: 02dd4673)
+2025-07-09 19:45:24,622 - total_screen_analyzer - INFO - Lightweight vision analysis completed: 77 UI elements detected
+2025-07-09 19:45:24,642 - total_screen_analyzer - INFO - Completed total screen analysis in 66.04s
+2025-07-09 19:45:24,643 - total_screen_analyzer - INFO - Sent total screen analysis: Cursor - general_computing
+2025-07-09 19:45:32,984 - total_screen_analyzer - INFO - Starting total screen analysis (hash: c2b4217b)
+2025-07-09 19:46:32,238 - total_screen_analyzer - INFO - Lightweight vision analysis completed: 91 UI elements detected
+2025-07-09 19:46:32,260 - total_screen_analyzer - INFO - Completed total screen analysis in 59.28s
+2025-07-09 19:46:32,262 - total_screen_analyzer - INFO - Sent total screen analysis: Cursor - general_computing
+2025-07-09 19:46:40,593 - total_screen_analyzer - INFO - Starting total screen analysis (hash: 3900076b)
+2025-07-09 19:47:38,940 - total_screen_analyzer - INFO - Lightweight vision analysis completed: 104 UI elements detected
+2025-07-09 19:47:38,960 - total_screen_analyzer - INFO - Completed total screen analysis in 58.37s
+2025-07-09 19:47:38,962 - total_screen_analyzer - INFO - Sent total screen analysis: Cursor - general_computing
+2025-07-09 19:47:47,289 - total_screen_analyzer - INFO - Starting total screen analysis (hash: 0bd0aec8)
+2025-07-09 19:48:47,869 - total_screen_analyzer - INFO - Lightweight vision analysis completed: 98 UI elements detected
+2025-07-09 19:48:47,893 - total_screen_analyzer - INFO - Completed total screen analysis in 60.60s
+2025-07-09 19:48:47,894 - total_screen_analyzer - INFO - Sent total screen analysis: Cursor - general_computing
+2025-07-09 19:48:56,226 - total_screen_analyzer - INFO - Starting total screen analysis (hash: 4352b691)
+2025-07-09 19:50:05,031 - total_screen_analyzer - INFO - Lightweight vision analysis completed: 84 UI elements detected
+2025-07-09 19:50:05,058 - total_screen_analyzer - INFO - Completed total screen analysis in 68.83s
+2025-07-09 19:50:05,061 - total_screen_analyzer - INFO - Sent total screen analysis: Cursor - general_computing
+2025-07-09 19:50:13,428 - total_screen_analyzer - INFO - Starting total screen analysis (hash: 81563138)
+2025-07-09 19:51:15,636 - total_screen_analyzer - INFO - Lightweight vision analysis completed: 84 UI elements detected
+2025-07-09 19:51:15,662 - total_screen_analyzer - INFO - Completed total screen analysis in 62.23s
+2025-07-09 19:51:15,665 - total_screen_analyzer - INFO - Sent total screen analysis: Cursor - general_computing
+2025-07-09 19:51:24,002 - total_screen_analyzer - INFO - Starting total screen analysis (hash: 11e57c58)
+2025-07-09 19:52:26,328 - total_screen_analyzer - INFO - Lightweight vision analysis completed: 88 UI elements detected
+2025-07-09 19:52:26,349 - total_screen_analyzer - INFO - Completed total screen analysis in 62.35s
+2025-07-09 19:52:26,350 - total_screen_analyzer - INFO - Sent total screen analysis: Cursor - general_computing
+2025-07-09 19:52:34,885 - total_screen_analyzer - INFO - Starting total screen analysis (hash: d9ae9737)
+2025-07-09 19:53:23,815 - total_screen_analyzer - INFO - Lightweight vision analysis completed: 86 UI elements detected
+2025-07-09 19:53:23,838 - total_screen_analyzer - INFO - Completed total screen analysis in 48.95s
+2025-07-09 19:53:23,840 - total_screen_analyzer - INFO - Sent total screen analysis: Cursor - general_computing
+2025-07-09 19:53:32,176 - total_screen_analyzer - INFO - Starting total screen analysis (hash: b04e4fdd)
+2025-07-09 19:54:21,628 - total_screen_analyzer - INFO - Lightweight vision analysis completed: 62 UI elements detected
+2025-07-09 19:54:21,650 - total_screen_analyzer - INFO - Completed total screen analysis in 49.47s
+2025-07-09 19:54:21,651 - total_screen_analyzer - INFO - Sent total screen analysis: Cursor - general_computing
+2025-07-09 19:54:30,110 - total_screen_analyzer - INFO - Starting total screen analysis (hash: 9ba8b899)
+2025-07-09 19:55:23,514 - llava_processor - INFO - Connected to Ollama API v0.6.8
+2025-07-09 19:55:23,514 - total_screen_analyzer - INFO - LLaVA visual processor initialized for total screen analysis
+2025-07-09 19:55:23,514 - total_screen_analyzer - INFO - Total Screen Analyzer initialized with 8s interval
+2025-07-09 19:55:23,514 - total_screen_analyzer - INFO - Starting Total Screen Analyzer
+2025-07-09 19:55:23,531 - total_screen_analyzer - INFO - Connected to bridge server at ws://localhost:8767
+2025-07-09 19:55:23,531 - total_screen_analyzer - INFO - Received welcome: connection_established
+2025-07-09 19:55:24,000 - total_screen_analyzer - INFO - Starting total screen analysis (hash: 1a69b8d6)
+2025-07-09 19:55:58,613 - total_screen_analyzer - INFO - Lightweight vision analysis completed: 63 UI elements detected
+2025-07-09 19:55:58,632 - total_screen_analyzer - INFO - Completed total screen analysis in 34.63s
+2025-07-09 19:55:58,633 - total_screen_analyzer - INFO - Sent total screen analysis: Cursor - general_computing
+2025-07-09 19:56:06,961 - total_screen_analyzer - INFO - Starting total screen analysis (hash: c60e36b1)
+2025-07-10 07:32:47,241 - llava_processor - INFO - Connected to Ollama API v0.6.8
+2025-07-10 07:32:47,242 - total_screen_analyzer - INFO - LLaVA visual processor initialized for total screen analysis
+2025-07-10 07:32:47,242 - total_screen_analyzer - INFO - Total Screen Analyzer initialized with 8s interval
+2025-07-10 07:32:47,242 - total_screen_analyzer - INFO - Starting Total Screen Analyzer
+2025-07-10 07:32:47,249 - total_screen_analyzer - INFO - Connected to bridge server at ws://localhost:8767
+2025-07-10 07:32:47,249 - total_screen_analyzer - INFO - Received welcome: connection_established
+2025-07-10 07:32:47,660 - total_screen_analyzer - INFO - Starting total screen analysis (hash: a0c22b21)
+2025-07-10 07:33:21,365 - total_screen_analyzer - INFO - Lightweight vision analysis completed: 82 UI elements detected
+2025-07-10 07:33:21,384 - total_screen_analyzer - INFO - Completed total screen analysis in 33.72s
+2025-07-10 07:33:21,384 - total_screen_analyzer - INFO - Sent total screen analysis: Cursor - general_computing
+2025-07-10 07:33:29,863 - total_screen_analyzer - INFO - Starting total screen analysis (hash: d5930594)
+2025-07-10 07:33:40,620 - total_screen_analyzer - INFO - Lightweight vision analysis completed: 263 UI elements detected
+2025-07-10 07:33:40,634 - total_screen_analyzer - INFO - Completed total screen analysis in 10.77s
+2025-07-10 07:33:40,636 - total_screen_analyzer - INFO - Sent total screen analysis: ai-assistant-overlay - general_computing
+2025-07-10 07:33:49,006 - total_screen_analyzer - INFO - Starting total screen analysis (hash: 57dce5da)
+2025-07-10 07:34:02,719 - total_screen_analyzer - INFO - Lightweight vision analysis completed: 261 UI elements detected
+2025-07-10 07:34:02,734 - total_screen_analyzer - INFO - Completed total screen analysis in 13.73s
+2025-07-10 07:34:02,735 - total_screen_analyzer - INFO - Sent total screen analysis: ai-assistant-overlay - document_work
+2025-07-10 07:34:11,065 - total_screen_analyzer - INFO - Starting total screen analysis (hash: 6a306861)
+2025-07-10 07:34:24,744 - total_screen_analyzer - INFO - Lightweight vision analysis completed: 257 UI elements detected
+2025-07-10 07:34:24,761 - total_screen_analyzer - INFO - Completed total screen analysis in 13.69s
+2025-07-10 07:34:24,761 - total_screen_analyzer - INFO - Sent total screen analysis: ai-assistant-overlay - document_work
+2025-07-10 07:34:33,053 - total_screen_analyzer - INFO - Starting total screen analysis (hash: eb665107)
+2025-07-10 07:34:44,484 - total_screen_analyzer - INFO - Lightweight vision analysis completed: 280 UI elements detected
+2025-07-10 07:34:44,502 - total_screen_analyzer - INFO - Completed total screen analysis in 11.45s
+2025-07-10 07:34:44,503 - total_screen_analyzer - INFO - Sent total screen analysis: ai-assistant-overlay - general_computing
+2025-07-10 07:34:52,798 - total_screen_analyzer - INFO - Starting total screen analysis (hash: c0ad31c7)
+2025-07-10 07:35:05,760 - total_screen_analyzer - INFO - Lightweight vision analysis completed: 263 UI elements detected
+2025-07-10 07:35:05,775 - total_screen_analyzer - INFO - Completed total screen analysis in 12.98s
+2025-07-10 07:35:05,776 - total_screen_analyzer - INFO - Sent total screen analysis: ai-assistant-overlay - document_work
+2025-07-10 07:35:14,002 - total_screen_analyzer - INFO - Starting total screen analysis (hash: e66b80bf)
+2025-07-10 07:35:49,876 - total_screen_analyzer - INFO - Lightweight vision analysis completed: 81 UI elements detected
+2025-07-10 07:35:49,892 - total_screen_analyzer - INFO - Completed total screen analysis in 35.89s
+2025-07-10 07:35:49,893 - total_screen_analyzer - INFO - Sent total screen analysis: Cursor - general_computing
+2025-07-10 07:35:58,117 - total_screen_analyzer - INFO - Starting total screen analysis (hash: 68d4dfbb)
+2025-07-10 07:36:40,395 - total_screen_analyzer - INFO - Lightweight vision analysis completed: 84 UI elements detected
+2025-07-10 07:36:40,414 - total_screen_analyzer - INFO - Completed total screen analysis in 42.30s
+2025-07-10 07:36:40,415 - total_screen_analyzer - INFO - Sent total screen analysis: Cursor - general_computing
+2025-07-10 07:36:48,655 - total_screen_analyzer - INFO - Starting total screen analysis (hash: 7045353c)
+2025-07-10 07:37:27,644 - total_screen_analyzer - INFO - Lightweight vision analysis completed: 79 UI elements detected
+2025-07-10 07:37:27,662 - total_screen_analyzer - INFO - Completed total screen analysis in 39.01s
+2025-07-10 07:37:27,663 - total_screen_analyzer - INFO - Sent total screen analysis: Cursor - general_computing
+2025-07-10 07:37:35,900 - total_screen_analyzer - INFO - Starting total screen analysis (hash: 9fc68209)
+2025-07-10 07:38:18,057 - total_screen_analyzer - INFO - Lightweight vision analysis completed: 87 UI elements detected
+2025-07-10 07:38:18,076 - total_screen_analyzer - INFO - Completed total screen analysis in 42.18s
+2025-07-10 07:38:18,077 - total_screen_analyzer - INFO - Sent total screen analysis: Cursor - general_computing
+2025-07-10 07:38:26,314 - total_screen_analyzer - INFO - Starting total screen analysis (hash: 4383632d)
+2025-07-10 07:39:08,406 - total_screen_analyzer - INFO - Lightweight vision analysis completed: 87 UI elements detected
+2025-07-10 07:39:08,421 - total_screen_analyzer - INFO - Completed total screen analysis in 42.11s
+2025-07-10 07:39:08,422 - total_screen_analyzer - INFO - Sent total screen analysis: Cursor - general_computing
+2025-07-10 07:39:16,660 - total_screen_analyzer - INFO - Starting total screen analysis (hash: a3372bb0)
+2025-07-10 07:39:58,542 - total_screen_analyzer - INFO - Lightweight vision analysis completed: 87 UI elements detected
+2025-07-10 07:39:58,561 - total_screen_analyzer - INFO - Completed total screen analysis in 41.90s
+2025-07-10 07:39:58,562 - total_screen_analyzer - INFO - Sent total screen analysis: Cursor - general_computing
+2025-07-10 07:40:06,800 - total_screen_analyzer - INFO - Starting total screen analysis (hash: aa01586f)
+2025-07-10 07:40:46,808 - total_screen_analyzer - INFO - Lightweight vision analysis completed: 87 UI elements detected
+2025-07-10 07:40:46,824 - total_screen_analyzer - INFO - Completed total screen analysis in 40.02s
+2025-07-10 07:40:46,826 - total_screen_analyzer - INFO - Sent total screen analysis: Cursor - general_computing
+2025-07-10 07:40:55,074 - total_screen_analyzer - INFO - Starting total screen analysis (hash: 9cba7e3e)
+2025-07-10 07:41:33,486 - total_screen_analyzer - INFO - Lightweight vision analysis completed: 84 UI elements detected
+2025-07-10 07:41:33,503 - total_screen_analyzer - INFO - Completed total screen analysis in 38.43s
+2025-07-10 07:41:33,505 - total_screen_analyzer - INFO - Sent total screen analysis: Cursor - general_computing
+2025-07-10 07:41:41,750 - total_screen_analyzer - INFO - Starting total screen analysis (hash: 8c4714d0)
+2025-07-10 07:42:24,401 - total_screen_analyzer - INFO - Lightweight vision analysis completed: 84 UI elements detected
+2025-07-10 07:42:24,418 - total_screen_analyzer - INFO - Completed total screen analysis in 42.67s
+2025-07-10 07:42:24,420 - total_screen_analyzer - INFO - Sent total screen analysis: Cursor - general_computing
+2025-07-10 07:42:32,665 - total_screen_analyzer - INFO - Starting total screen analysis (hash: de8c3eb1)
+2025-07-10 07:43:15,056 - total_screen_analyzer - INFO - Lightweight vision analysis completed: 84 UI elements detected
+2025-07-10 07:43:15,078 - total_screen_analyzer - INFO - Completed total screen analysis in 42.41s
+2025-07-10 07:43:15,082 - total_screen_analyzer - INFO - Sent total screen analysis: Cursor - general_computing
+2025-07-10 07:43:23,424 - total_screen_analyzer - INFO - Starting total screen analysis (hash: 86c9774a)
+2025-07-10 07:44:06,970 - total_screen_analyzer - INFO - Lightweight vision analysis completed: 79 UI elements detected
+2025-07-10 07:44:06,992 - total_screen_analyzer - INFO - Completed total screen analysis in 43.57s
+2025-07-10 07:44:06,994 - total_screen_analyzer - INFO - Sent total screen analysis: Cursor - general_computing
+2025-07-10 07:44:15,257 - total_screen_analyzer - INFO - Starting total screen analysis (hash: a24c63bb)
+2025-07-10 07:44:57,108 - total_screen_analyzer - INFO - Lightweight vision analysis completed: 85 UI elements detected
+2025-07-10 07:44:57,123 - total_screen_analyzer - INFO - Completed total screen analysis in 41.87s
+2025-07-10 07:44:57,125 - total_screen_analyzer - INFO - Sent total screen analysis: Cursor - general_computing
+2025-07-10 07:45:05,365 - total_screen_analyzer - INFO - Starting total screen analysis (hash: fb383e1f)
+2025-07-10 07:45:45,709 - total_screen_analyzer - INFO - Lightweight vision analysis completed: 84 UI elements detected
+2025-07-10 07:45:45,726 - total_screen_analyzer - INFO - Completed total screen analysis in 40.36s
+2025-07-10 07:45:45,727 - total_screen_analyzer - INFO - Sent total screen analysis: Cursor - general_computing
+2025-07-10 07:45:54,032 - total_screen_analyzer - INFO - Starting total screen analysis (hash: d01ff5f6)
+2025-07-10 07:46:38,524 - total_screen_analyzer - INFO - Lightweight vision analysis completed: 82 UI elements detected
+2025-07-10 07:46:38,547 - total_screen_analyzer - INFO - Completed total screen analysis in 44.51s
+2025-07-10 07:46:38,548 - total_screen_analyzer - INFO - Sent total screen analysis: Cursor - general_computing
+2025-07-10 07:46:46,798 - total_screen_analyzer - INFO - Starting total screen analysis (hash: 0a0583fc)
+2025-07-10 07:47:28,831 - total_screen_analyzer - INFO - Lightweight vision analysis completed: 85 UI elements detected
+2025-07-10 07:47:28,855 - total_screen_analyzer - INFO - Completed total screen analysis in 42.06s
+2025-07-10 07:47:28,857 - total_screen_analyzer - INFO - Sent total screen analysis: Cursor - general_computing
+2025-07-10 07:47:37,082 - total_screen_analyzer - INFO - Starting total screen analysis (hash: cda8c25f)
+2025-07-10 07:48:18,242 - total_screen_analyzer - INFO - Lightweight vision analysis completed: 85 UI elements detected
+2025-07-10 07:48:18,260 - total_screen_analyzer - INFO - Completed total screen analysis in 41.18s
+2025-07-10 07:48:18,262 - total_screen_analyzer - INFO - Sent total screen analysis: Cursor - general_computing
+2025-07-10 07:48:26,513 - total_screen_analyzer - INFO - Starting total screen analysis (hash: 75060f5e)
+2025-07-10 07:49:10,680 - total_screen_analyzer - INFO - Lightweight vision analysis completed: 83 UI elements detected
+2025-07-10 07:49:10,702 - total_screen_analyzer - INFO - Completed total screen analysis in 44.19s
+2025-07-10 07:49:10,705 - total_screen_analyzer - INFO - Sent total screen analysis: Cursor - general_computing
+2025-07-10 07:49:19,067 - total_screen_analyzer - INFO - Starting total screen analysis (hash: d6fd27b7)
+2025-07-10 07:50:07,829 - total_screen_analyzer - INFO - Lightweight vision analysis completed: 81 UI elements detected
+2025-07-10 07:50:07,850 - total_screen_analyzer - INFO - Completed total screen analysis in 48.78s
+2025-07-10 07:50:07,852 - total_screen_analyzer - INFO - Sent total screen analysis: Cursor - general_computing
+2025-07-10 07:50:16,210 - total_screen_analyzer - INFO - Starting total screen analysis (hash: 9c743245)
+2025-07-10 07:50:38,576 - total_screen_analyzer - INFO - Lightweight vision analysis completed: 251 UI elements detected
+2025-07-10 07:50:38,599 - total_screen_analyzer - INFO - Completed total screen analysis in 22.39s
+2025-07-10 07:50:38,602 - total_screen_analyzer - INFO - Sent total screen analysis: ai-assistant-overlay - document_work
+2025-07-10 07:50:46,963 - total_screen_analyzer - INFO - Starting total screen analysis (hash: 3261d1e9)
+2025-07-10 07:51:01,805 - total_screen_analyzer - INFO - Lightweight vision analysis completed: 261 UI elements detected
+2025-07-10 07:51:01,821 - total_screen_analyzer - INFO - Completed total screen analysis in 14.86s
+2025-07-10 07:51:01,822 - total_screen_analyzer - INFO - Sent total screen analysis: ai-assistant-overlay - general_computing
+2025-07-10 07:51:10,102 - total_screen_analyzer - INFO - Starting total screen analysis (hash: ddb3fab0)
+2025-07-10 07:51:48,127 - total_screen_analyzer - INFO - Lightweight vision analysis completed: 86 UI elements detected
+2025-07-10 07:51:48,142 - total_screen_analyzer - INFO - Completed total screen analysis in 38.04s
+2025-07-10 07:51:48,143 - total_screen_analyzer - INFO - Sent total screen analysis: Cursor - general_computing
+2025-07-10 07:51:56,370 - total_screen_analyzer - INFO - Starting total screen analysis (hash: efe8a098)
+2025-07-10 07:52:32,117 - total_screen_analyzer - INFO - Lightweight vision analysis completed: 83 UI elements detected
+2025-07-10 07:52:32,133 - total_screen_analyzer - INFO - Completed total screen analysis in 35.76s
+2025-07-10 07:52:32,135 - total_screen_analyzer - INFO - Sent total screen analysis: Cursor - general_computing
+2025-07-10 07:52:40,369 - total_screen_analyzer - INFO - Starting total screen analysis (hash: ad7a7152)
+2025-07-10 07:53:18,044 - total_screen_analyzer - INFO - Lightweight vision analysis completed: 92 UI elements detected
+2025-07-10 07:53:18,059 - total_screen_analyzer - INFO - Completed total screen analysis in 37.69s
+2025-07-10 07:53:18,061 - total_screen_analyzer - INFO - Sent total screen analysis: Cursor - general_computing
+2025-07-10 07:53:26,307 - total_screen_analyzer - INFO - Starting total screen analysis (hash: 04e0edaf)
+2025-07-10 07:54:03,626 - total_screen_analyzer - INFO - Lightweight vision analysis completed: 93 UI elements detected
+2025-07-10 07:54:03,641 - total_screen_analyzer - INFO - Completed total screen analysis in 37.33s
+2025-07-10 07:54:03,643 - total_screen_analyzer - INFO - Sent total screen analysis: Cursor - general_computing
+2025-07-10 07:54:11,889 - total_screen_analyzer - INFO - Starting total screen analysis (hash: 32253580)
+2025-07-10 07:54:50,622 - total_screen_analyzer - INFO - Lightweight vision analysis completed: 94 UI elements detected
+2025-07-10 07:54:50,646 - total_screen_analyzer - INFO - Completed total screen analysis in 38.76s
+2025-07-10 07:54:50,648 - total_screen_analyzer - INFO - Sent total screen analysis: Cursor - general_computing
+2025-07-10 07:54:58,866 - total_screen_analyzer - INFO - Starting total screen analysis (hash: 48b3b879)
+2025-07-10 07:55:39,398 - total_screen_analyzer - INFO - Lightweight vision analysis completed: 96 UI elements detected
+2025-07-10 07:55:39,421 - total_screen_analyzer - INFO - Completed total screen analysis in 40.55s
+2025-07-10 07:55:39,423 - total_screen_analyzer - INFO - Sent total screen analysis: Cursor - general_computing
+2025-07-10 07:55:47,666 - total_screen_analyzer - INFO - Starting total screen analysis (hash: d9d3e1b1)
+2025-07-10 07:56:26,565 - total_screen_analyzer - INFO - Lightweight vision analysis completed: 88 UI elements detected
+2025-07-10 07:56:26,582 - total_screen_analyzer - INFO - Completed total screen analysis in 38.92s
+2025-07-10 07:56:26,584 - total_screen_analyzer - INFO - Sent total screen analysis: Cursor - general_computing
+2025-07-10 07:56:34,851 - total_screen_analyzer - INFO - Starting total screen analysis (hash: 0aa0b6f0)
+2025-07-10 07:57:14,529 - total_screen_analyzer - INFO - Lightweight vision analysis completed: 90 UI elements detected
+2025-07-10 07:57:14,546 - total_screen_analyzer - INFO - Completed total screen analysis in 39.69s
+2025-07-10 07:57:14,548 - total_screen_analyzer - INFO - Sent total screen analysis: Cursor - general_computing
+2025-07-10 07:57:22,767 - total_screen_analyzer - INFO - Starting total screen analysis (hash: e1cc5d35)
+2025-07-10 07:58:03,508 - total_screen_analyzer - INFO - Lightweight vision analysis completed: 85 UI elements detected
+2025-07-10 07:58:03,527 - total_screen_analyzer - INFO - Completed total screen analysis in 40.76s
+2025-07-10 07:58:03,530 - total_screen_analyzer - ERROR - WebSocket connection closed: no close frame received or sent
+2025-07-10 07:58:03,542 - total_screen_analyzer - ERROR - Connection error: Multiple exceptions: [Errno 61] Connect call failed ('127.0.0.1', 8767), [Errno 61] Connect call failed ('::1', 8767, 0, 0)
+2025-07-10 07:58:08,545 - total_screen_analyzer - ERROR - Connection error: Multiple exceptions: [Errno 61] Connect call failed ('127.0.0.1', 8767), [Errno 61] Connect call failed ('::1', 8767, 0, 0)
+2025-07-10 07:58:13,548 - total_screen_analyzer - ERROR - Connection error: Multiple exceptions: [Errno 61] Connect call failed ('127.0.0.1', 8767), [Errno 61] Connect call failed ('::1', 8767, 0, 0)
+2025-07-10 07:58:18,551 - total_screen_analyzer - ERROR - Connection error: Multiple exceptions: [Errno 61] Connect call failed ('127.0.0.1', 8767), [Errno 61] Connect call failed ('::1', 8767, 0, 0)
+2025-07-10 07:58:23,554 - total_screen_analyzer - ERROR - Connection error: Multiple exceptions: [Errno 61] Connect call failed ('127.0.0.1', 8767), [Errno 61] Connect call failed ('::1', 8767, 0, 0)
+2025-07-10 07:58:28,557 - total_screen_analyzer - ERROR - Connection error: Multiple exceptions: [Errno 61] Connect call failed ('127.0.0.1', 8767), [Errno 61] Connect call failed ('::1', 8767, 0, 0)
+2025-07-10 07:58:33,566 - total_screen_analyzer - ERROR - Connection error: Multiple exceptions: [Errno 61] Connect call failed ('127.0.0.1', 8767), [Errno 61] Connect call failed ('::1', 8767, 0, 0)
+2025-07-10 07:58:38,570 - total_screen_analyzer - ERROR - Connection error: Multiple exceptions: [Errno 61] Connect call failed ('127.0.0.1', 8767), [Errno 61] Connect call failed ('::1', 8767, 0, 0)
+2025-07-10 07:58:43,573 - total_screen_analyzer - ERROR - Connection error: Multiple exceptions: [Errno 61] Connect call failed ('127.0.0.1', 8767), [Errno 61] Connect call failed ('::1', 8767, 0, 0)
+2025-07-10 07:58:48,578 - total_screen_analyzer - ERROR - Connection error: Multiple exceptions: [Errno 61] Connect call failed ('127.0.0.1', 8767), [Errno 61] Connect call failed ('::1', 8767, 0, 0)
+2025-07-10 07:58:53,583 - total_screen_analyzer - ERROR - Connection error: Multiple exceptions: [Errno 61] Connect call failed ('127.0.0.1', 8767), [Errno 61] Connect call failed ('::1', 8767, 0, 0)
+2025-07-10 07:58:58,587 - total_screen_analyzer - ERROR - Connection error: Multiple exceptions: [Errno 61] Connect call failed ('127.0.0.1', 8767), [Errno 61] Connect call failed ('::1', 8767, 0, 0)
+2025-07-10 07:59:03,592 - total_screen_analyzer - ERROR - Connection error: Multiple exceptions: [Errno 61] Connect call failed ('127.0.0.1', 8767), [Errno 61] Connect call failed ('::1', 8767, 0, 0)
+2025-07-10 07:59:08,603 - total_screen_analyzer - INFO - Connected to bridge server at ws://localhost:8767
+2025-07-10 07:59:08,603 - total_screen_analyzer - INFO - Received welcome: welcome
+2025-07-10 07:59:08,604 - total_screen_analyzer - INFO - Total Screen Analyzer registered as None
+2025-07-10 07:59:09,022 - total_screen_analyzer - INFO - Starting total screen analysis (hash: 84bcb2a8)
+2025-07-10 07:59:39,933 - total_screen_analyzer - INFO - Lightweight vision analysis completed: 59 UI elements detected
+2025-07-10 07:59:39,958 - total_screen_analyzer - INFO - Completed total screen analysis in 30.94s
+2025-07-10 07:59:39,960 - total_screen_analyzer - INFO - Sent total screen analysis: Cursor - general_computing
+2025-07-10 07:59:48,192 - total_screen_analyzer - INFO - Starting total screen analysis (hash: 03ccd511)
+2025-07-10 08:00:25,550 - total_screen_analyzer - INFO - Lightweight vision analysis completed: 79 UI elements detected
+2025-07-10 08:00:25,567 - total_screen_analyzer - INFO - Completed total screen analysis in 37.37s
+2025-07-10 08:00:25,569 - total_screen_analyzer - ERROR - WebSocket connection closed: received 1011 (internal error) keepalive ping timeout; then sent 1011 (internal error) keepalive ping timeout
+2025-07-10 08:00:25,572 - total_screen_analyzer - INFO - Connected to bridge server at ws://localhost:8767
+2025-07-10 08:00:25,572 - total_screen_analyzer - INFO - Received welcome: welcome
+2025-07-10 08:00:25,572 - total_screen_analyzer - INFO - Total Screen Analyzer registered as None
+2025-07-10 08:00:25,779 - total_screen_analyzer - INFO - Starting total screen analysis (hash: 1f60fec8)
+2025-07-10 08:00:45,260 - total_screen_analyzer - INFO - Lightweight vision analysis completed: 43 UI elements detected
+2025-07-10 08:00:45,285 - total_screen_analyzer - INFO - Completed total screen analysis in 19.51s
+2025-07-10 08:00:45,287 - total_screen_analyzer - ERROR - WebSocket connection closed: no close frame received or sent
+2025-07-10 08:00:45,288 - total_screen_analyzer - ERROR - Connection error: Multiple exceptions: [Errno 61] Connect call failed ('::1', 8767, 0, 0), [Errno 61] Connect call failed ('127.0.0.1', 8767)
+2025-07-10 08:00:50,291 - total_screen_analyzer - ERROR - Connection error: Multiple exceptions: [Errno 61] Connect call failed ('::1', 8767, 0, 0), [Errno 61] Connect call failed ('127.0.0.1', 8767)
+2025-07-10 08:00:55,294 - total_screen_analyzer - ERROR - Connection error: Multiple exceptions: [Errno 61] Connect call failed ('::1', 8767, 0, 0), [Errno 61] Connect call failed ('127.0.0.1', 8767)
+2025-07-10 08:01:00,299 - total_screen_analyzer - ERROR - Connection error: Multiple exceptions: [Errno 61] Connect call failed ('::1', 8767, 0, 0), [Errno 61] Connect call failed ('127.0.0.1', 8767)
+2025-07-10 08:01:05,302 - total_screen_analyzer - ERROR - Connection error: Multiple exceptions: [Errno 61] Connect call failed ('::1', 8767, 0, 0), [Errno 61] Connect call failed ('127.0.0.1', 8767)
+2025-07-10 08:01:10,305 - total_screen_analyzer - ERROR - Connection error: Multiple exceptions: [Errno 61] Connect call failed ('::1', 8767, 0, 0), [Errno 61] Connect call failed ('127.0.0.1', 8767)
+2025-07-10 08:01:15,308 - total_screen_analyzer - ERROR - Connection error: Multiple exceptions: [Errno 61] Connect call failed ('::1', 8767, 0, 0), [Errno 61] Connect call failed ('127.0.0.1', 8767)
+2025-07-10 08:01:20,313 - total_screen_analyzer - ERROR - Connection error: Multiple exceptions: [Errno 61] Connect call failed ('::1', 8767, 0, 0), [Errno 61] Connect call failed ('127.0.0.1', 8767)
+2025-07-10 08:01:25,316 - total_screen_analyzer - INFO - Connected to bridge server at ws://localhost:8767
+2025-07-10 08:01:25,317 - total_screen_analyzer - INFO - Received welcome: welcome
+2025-07-10 08:01:25,317 - total_screen_analyzer - INFO - Total Screen Analyzer registered as None
+2025-07-10 08:01:25,525 - total_screen_analyzer - INFO - Starting total screen analysis (hash: 7e6f49a4)
+2025-07-10 08:01:41,782 - total_screen_analyzer - INFO - Lightweight vision analysis completed: 50 UI elements detected
+2025-07-10 08:01:41,797 - total_screen_analyzer - INFO - Completed total screen analysis in 16.27s
+2025-07-10 08:01:41,798 - total_screen_analyzer - INFO - Sent total screen analysis: Cursor - general_computing
+2025-07-10 08:01:50,013 - total_screen_analyzer - INFO - Starting total screen analysis (hash: 03a16f16)
+2025-07-10 08:02:17,097 - total_screen_analyzer - INFO - Lightweight vision analysis completed: 59 UI elements detected
+2025-07-10 08:02:17,113 - total_screen_analyzer - INFO - Completed total screen analysis in 27.10s
+2025-07-10 08:02:17,114 - total_screen_analyzer - INFO - Sent total screen analysis: Cursor - general_computing
+2025-07-10 08:02:25,332 - total_screen_analyzer - INFO - Starting total screen analysis (hash: bcf76ea8)
+2025-07-10 08:02:49,988 - total_screen_analyzer - INFO - Lightweight vision analysis completed: 70 UI elements detected
+2025-07-10 08:02:50,005 - total_screen_analyzer - INFO - Completed total screen analysis in 24.67s
+2025-07-10 08:02:50,007 - total_screen_analyzer - ERROR - WebSocket connection closed: received 1011 (internal error) keepalive ping timeout; then sent 1011 (internal error) keepalive ping timeout
+2025-07-10 08:02:50,011 - total_screen_analyzer - INFO - Connected to bridge server at ws://localhost:8767
+2025-07-10 08:02:50,011 - total_screen_analyzer - INFO - Received welcome: welcome
+2025-07-10 08:02:50,011 - total_screen_analyzer - INFO - Total Screen Analyzer registered as None
+2025-07-10 08:02:50,217 - total_screen_analyzer - INFO - Starting total screen analysis (hash: a7a1d1db)
+2025-07-10 08:03:13,615 - total_screen_analyzer - INFO - Lightweight vision analysis completed: 66 UI elements detected
+2025-07-10 08:03:13,629 - total_screen_analyzer - INFO - Completed total screen analysis in 23.41s
+2025-07-10 08:03:13,630 - total_screen_analyzer - ERROR - WebSocket connection closed: no close frame received or sent
+2025-07-10 08:03:13,632 - total_screen_analyzer - INFO - Connected to bridge server at ws://localhost:8767
+2025-07-10 08:03:13,633 - total_screen_analyzer - INFO - Received welcome: welcome
+2025-07-10 08:03:13,633 - total_screen_analyzer - INFO - Total Screen Analyzer registered as None
+2025-07-10 08:03:13,844 - total_screen_analyzer - INFO - Starting total screen analysis (hash: dd84cde4)
+2025-07-10 08:03:38,188 - total_screen_analyzer - INFO - Lightweight vision analysis completed: 66 UI elements detected
+2025-07-10 08:03:38,206 - total_screen_analyzer - INFO - Completed total screen analysis in 24.36s
+2025-07-10 08:03:38,207 - total_screen_analyzer - INFO - Sent total screen analysis: Cursor - general_computing
+2025-07-10 08:03:46,426 - total_screen_analyzer - INFO - Starting total screen analysis (hash: 13167003)
+2025-07-10 08:04:12,013 - total_screen_analyzer - INFO - Lightweight vision analysis completed: 83 UI elements detected
+2025-07-10 08:04:12,030 - total_screen_analyzer - INFO - Completed total screen analysis in 25.60s
+2025-07-10 08:04:12,033 - total_screen_analyzer - INFO - Sent total screen analysis: Cursor - general_computing
+2025-07-10 08:04:20,285 - total_screen_analyzer - INFO - Starting total screen analysis (hash: bd9ac57b)
+2025-07-10 08:04:44,204 - total_screen_analyzer - INFO - Lightweight vision analysis completed: 69 UI elements detected
+2025-07-10 08:04:44,226 - total_screen_analyzer - INFO - Completed total screen analysis in 23.94s
+2025-07-10 08:04:44,227 - total_screen_analyzer - INFO - Sent total screen analysis: Cursor - general_computing
+2025-07-10 08:04:52,450 - total_screen_analyzer - INFO - Starting total screen analysis (hash: 1988568c)
+2025-07-10 08:05:17,214 - total_screen_analyzer - INFO - Lightweight vision analysis completed: 70 UI elements detected
+2025-07-10 08:05:17,229 - total_screen_analyzer - INFO - Completed total screen analysis in 24.78s
+2025-07-10 08:05:17,231 - total_screen_analyzer - ERROR - WebSocket connection closed: received 1011 (internal error) keepalive ping timeout; then sent 1011 (internal error) keepalive ping timeout
+2025-07-10 08:05:17,234 - total_screen_analyzer - INFO - Connected to bridge server at ws://localhost:8767
+2025-07-10 08:05:17,234 - total_screen_analyzer - INFO - Received welcome: welcome
+2025-07-10 08:05:17,235 - total_screen_analyzer - INFO - Total Screen Analyzer registered as None
+2025-07-10 08:05:17,450 - total_screen_analyzer - INFO - Starting total screen analysis (hash: aed48835)
+2025-07-10 08:05:41,848 - total_screen_analyzer - INFO - Lightweight vision analysis completed: 67 UI elements detected
+2025-07-10 08:05:41,864 - total_screen_analyzer - INFO - Completed total screen analysis in 24.41s
+2025-07-10 08:05:41,866 - total_screen_analyzer - INFO - Sent total screen analysis: Cursor - general_computing
+2025-07-10 08:05:50,088 - total_screen_analyzer - INFO - Starting total screen analysis (hash: 7d9924f4)
+2025-07-10 08:06:13,699 - total_screen_analyzer - INFO - Lightweight vision analysis completed: 70 UI elements detected
+2025-07-10 08:06:13,713 - total_screen_analyzer - INFO - Completed total screen analysis in 23.62s
+2025-07-10 08:06:13,715 - total_screen_analyzer - INFO - Sent total screen analysis: Cursor - general_computing
+2025-07-10 08:06:21,941 - total_screen_analyzer - INFO - Starting total screen analysis (hash: 6a8e6270)
+2025-07-10 08:06:45,193 - total_screen_analyzer - INFO - Lightweight vision analysis completed: 71 UI elements detected
+2025-07-10 08:06:45,214 - total_screen_analyzer - INFO - Completed total screen analysis in 23.27s
+2025-07-10 08:06:45,216 - total_screen_analyzer - INFO - Sent total screen analysis: Cursor - general_computing
+2025-07-10 08:06:53,539 - total_screen_analyzer - INFO - Starting total screen analysis (hash: 294b7d5e)
+2025-07-10 08:07:38,635 - total_screen_analyzer - INFO - Lightweight vision analysis completed: 74 UI elements detected
+2025-07-10 08:07:38,658 - total_screen_analyzer - INFO - Completed total screen analysis in 45.12s
+2025-07-10 08:07:38,660 - total_screen_analyzer - ERROR - WebSocket connection closed: received 1011 (internal error) keepalive ping timeout; then sent 1011 (internal error) keepalive ping timeout
+2025-07-10 08:07:38,664 - total_screen_analyzer - INFO - Connected to bridge server at ws://localhost:8767
+2025-07-10 08:07:38,664 - total_screen_analyzer - INFO - Received welcome: welcome
+2025-07-10 08:07:38,664 - total_screen_analyzer - INFO - Total Screen Analyzer registered as None
+2025-07-10 08:07:39,161 - total_screen_analyzer - INFO - Starting total screen analysis (hash: 4b6ba8ec)
+2025-07-10 08:08:22,353 - total_screen_analyzer - INFO - Lightweight vision analysis completed: 66 UI elements detected
+2025-07-10 08:08:22,383 - total_screen_analyzer - INFO - Completed total screen analysis in 43.22s
+2025-07-10 08:08:22,385 - total_screen_analyzer - ERROR - WebSocket connection closed: received 1011 (internal error) keepalive ping timeout; then sent 1011 (internal error) keepalive ping timeout
+2025-07-10 08:08:22,389 - total_screen_analyzer - INFO - Connected to bridge server at ws://localhost:8767
+2025-07-10 08:08:22,389 - total_screen_analyzer - INFO - Received welcome: welcome
+2025-07-10 08:08:22,389 - total_screen_analyzer - INFO - Total Screen Analyzer registered as None
+2025-07-10 08:08:22,756 - total_screen_analyzer - INFO - Starting total screen analysis (hash: 5b443bb7)
+2025-07-10 08:09:06,501 - total_screen_analyzer - INFO - Lightweight vision analysis completed: 67 UI elements detected
+2025-07-10 08:09:06,533 - total_screen_analyzer - INFO - Completed total screen analysis in 43.78s
+2025-07-10 08:09:06,536 - total_screen_analyzer - ERROR - WebSocket connection closed: received 1011 (internal error) keepalive ping timeout; then sent 1011 (internal error) keepalive ping timeout
+2025-07-10 08:09:06,539 - total_screen_analyzer - INFO - Connected to bridge server at ws://localhost:8767
+2025-07-10 08:09:06,540 - total_screen_analyzer - INFO - Received welcome: welcome
+2025-07-10 08:09:06,540 - total_screen_analyzer - INFO - Total Screen Analyzer registered as None
+2025-07-10 08:09:06,856 - total_screen_analyzer - INFO - Starting total screen analysis (hash: 50b2d8f4)
+2025-07-10 08:09:51,012 - total_screen_analyzer - INFO - Lightweight vision analysis completed: 67 UI elements detected
+2025-07-10 08:09:51,037 - total_screen_analyzer - INFO - Completed total screen analysis in 44.18s
+2025-07-10 08:09:51,040 - total_screen_analyzer - ERROR - WebSocket connection closed: received 1011 (internal error) keepalive ping timeout; then sent 1011 (internal error) keepalive ping timeout
+2025-07-10 08:09:51,043 - total_screen_analyzer - INFO - Connected to bridge server at ws://localhost:8767
+2025-07-10 08:09:51,044 - total_screen_analyzer - INFO - Received welcome: welcome
+2025-07-10 08:09:51,044 - total_screen_analyzer - INFO - Total Screen Analyzer registered as None
+2025-07-10 08:09:51,367 - total_screen_analyzer - INFO - Starting total screen analysis (hash: 46b2b236)
+2025-07-10 08:10:29,873 - total_screen_analyzer - INFO - Lightweight vision analysis completed: 63 UI elements detected
+2025-07-10 08:10:29,902 - total_screen_analyzer - INFO - Completed total screen analysis in 38.53s
+2025-07-10 08:10:29,904 - total_screen_analyzer - INFO - Sent total screen analysis: Cursor - general_computing
+2025-07-10 08:10:38,233 - total_screen_analyzer - INFO - Starting total screen analysis (hash: 27df0ba7)
+2025-07-10 22:30:50,285 - llava_processor - INFO - Connected to Ollama API v0.6.8
+2025-07-10 22:30:50,286 - total_screen_analyzer - INFO - LLaVA visual processor initialized for total screen analysis
+2025-07-10 22:30:50,286 - total_screen_analyzer - INFO - Total Screen Analyzer initialized with 8s interval
+2025-07-10 22:30:50,286 - total_screen_analyzer - INFO - Starting Total Screen Analyzer
+2025-07-10 22:30:50,297 - total_screen_analyzer - INFO - Connected to bridge server at ws://localhost:8767
+2025-07-10 22:30:50,297 - total_screen_analyzer - INFO - Received welcome: connection_established
+2025-07-10 22:30:51,110 - total_screen_analyzer - INFO - Starting total screen analysis (hash: 924b396d)
+2025-07-10 22:31:12,153 - total_screen_analyzer - INFO - Lightweight vision analysis completed: 1269 UI elements detected
+2025-07-10 22:31:12,177 - total_screen_analyzer - INFO - Completed total screen analysis in 21.07s
+2025-07-10 22:31:12,177 - total_screen_analyzer - INFO - Sent total screen analysis: ai-assistant-overlay - communication
+2025-07-10 22:31:20,849 - total_screen_analyzer - INFO - Starting total screen analysis (hash: 76a78f73)
+2025-07-10 22:31:38,613 - total_screen_analyzer - INFO - Lightweight vision analysis completed: 1267 UI elements detected
+2025-07-10 22:31:38,672 - total_screen_analyzer - INFO - Completed total screen analysis in 17.82s
+2025-07-10 22:31:38,676 - total_screen_analyzer - INFO - Sent total screen analysis: ai-assistant-overlay - communication
+2025-07-10 22:31:48,447 - total_screen_analyzer - INFO - Starting total screen analysis (hash: b04c05e0)
+2025-07-10 22:32:21,595 - total_screen_analyzer - INFO - Lightweight vision analysis completed: 1264 UI elements detected
+2025-07-10 22:32:21,635 - total_screen_analyzer - INFO - Completed total screen analysis in 33.19s
+2025-07-10 22:32:21,636 - total_screen_analyzer - INFO - Sent total screen analysis: ai-assistant-overlay - communication
+2025-07-10 22:32:30,770 - total_screen_analyzer - INFO - Starting total screen analysis (hash: 757c3686)
+2025-07-10 22:34:10,507 - llava_processor - INFO - Connected to Ollama API v0.6.8
+2025-07-10 22:34:10,507 - total_screen_analyzer - INFO - LLaVA visual processor initialized for total screen analysis
+2025-07-10 22:34:10,507 - total_screen_analyzer - INFO - Total Screen Analyzer initialized with 8s interval
+2025-07-10 22:34:10,507 - total_screen_analyzer - INFO - Starting Total Screen Analyzer
+2025-07-10 22:34:10,519 - total_screen_analyzer - INFO - Connected to bridge server at ws://localhost:8767
+2025-07-10 22:34:10,520 - total_screen_analyzer - INFO - Received welcome: connection_established
+2025-07-10 22:34:11,060 - total_screen_analyzer - INFO - Starting total screen analysis (hash: 1080fe0c)
+2025-07-10 22:34:54,443 - total_screen_analyzer - INFO - Lightweight vision analysis completed: 88 UI elements detected
+2025-07-10 22:34:54,486 - total_screen_analyzer - INFO - Completed total screen analysis in 43.42s
+2025-07-10 22:34:54,489 - total_screen_analyzer - INFO - Sent total screen analysis: Cursor - general_computing
+2025-07-10 22:35:03,121 - total_screen_analyzer - INFO - Starting total screen analysis (hash: 5117c4aa)
+2025-07-10 22:36:11,705 - total_screen_analyzer - INFO - Lightweight vision analysis completed: 88 UI elements detected
+2025-07-10 22:36:11,800 - total_screen_analyzer - INFO - Completed total screen analysis in 68.68s
+2025-07-10 22:36:11,810 - total_screen_analyzer - ERROR - WebSocket connection closed: received 1011 (internal error) keepalive ping timeout; then sent 1011 (internal error) keepalive ping timeout
+2025-07-10 22:36:11,874 - total_screen_analyzer - INFO - Connected to bridge server at ws://localhost:8767
+2025-07-10 22:36:11,874 - total_screen_analyzer - INFO - Received welcome: connection_established
+2025-07-10 22:36:13,797 - total_screen_analyzer - INFO - Starting total screen analysis (hash: bce5ab36)
+2025-07-10 22:37:22,304 - llava_processor - INFO - Connected to Ollama API v0.6.8
+2025-07-10 22:37:22,304 - total_screen_analyzer - INFO - LLaVA visual processor initialized for total screen analysis
+2025-07-10 22:37:22,305 - total_screen_analyzer - INFO - Total Screen Analyzer initialized with 8s interval
+2025-07-10 22:37:22,305 - total_screen_analyzer - INFO - Starting Total Screen Analyzer
+2025-07-10 22:37:22,317 - total_screen_analyzer - INFO - Connected to bridge server at ws://localhost:8767
+2025-07-10 22:37:22,317 - total_screen_analyzer - INFO - Received welcome: connection_established
+2025-07-10 22:37:22,650 - total_screen_analyzer - INFO - Starting total screen analysis (hash: ac7f2444)
+2025-07-10 22:38:03,373 - total_screen_analyzer - INFO - Lightweight vision analysis completed: 72 UI elements detected
+2025-07-10 22:38:03,394 - total_screen_analyzer - INFO - Completed total screen analysis in 40.74s
+2025-07-10 22:38:03,395 - total_screen_analyzer - INFO - Sent total screen analysis: Cursor - general_computing
+2025-07-10 22:38:16,177 - total_screen_analyzer - INFO - Starting total screen analysis (hash: 613b3153)
+2025-07-10 22:39:33,456 - llava_processor - INFO - Connected to Ollama API v0.6.8
+2025-07-10 22:39:33,456 - total_screen_analyzer - INFO - LLaVA visual processor initialized for total screen analysis
+2025-07-10 22:39:33,456 - total_screen_analyzer - INFO - Total Screen Analyzer initialized with 8s interval
+2025-07-10 22:39:33,456 - total_screen_analyzer - INFO - Starting Total Screen Analyzer
+2025-07-10 22:39:33,467 - total_screen_analyzer - INFO - Connected to bridge server at ws://localhost:8767
+2025-07-10 22:39:33,467 - total_screen_analyzer - INFO - Received welcome: connection_established
+2025-07-10 22:39:33,838 - total_screen_analyzer - INFO - Starting total screen analysis (hash: 60a174da)
+2025-07-10 22:40:22,997 - total_screen_analyzer - INFO - Lightweight vision analysis completed: 70 UI elements detected
+2025-07-10 22:40:23,036 - total_screen_analyzer - INFO - Completed total screen analysis in 49.20s
+2025-07-10 22:40:23,038 - total_screen_analyzer - INFO - Sent total screen analysis: Cursor - general_computing
+2025-07-10 22:40:31,919 - total_screen_analyzer - INFO - Starting total screen analysis (hash: f1f2a9a7)
+2025-07-10 22:41:01,411 - total_screen_analyzer - INFO - Lightweight vision analysis completed: 76 UI elements detected
+2025-07-10 22:41:01,445 - total_screen_analyzer - INFO - Completed total screen analysis in 29.52s
+2025-07-10 22:41:01,446 - total_screen_analyzer - INFO - Sent total screen analysis: Cursor - general_computing
+2025-07-10 22:41:09,777 - total_screen_analyzer - INFO - Starting total screen analysis (hash: b8c88a2b)
+2025-07-10 22:41:53,069 - total_screen_analyzer - INFO - Lightweight vision analysis completed: 73 UI elements detected
+2025-07-10 22:41:53,107 - total_screen_analyzer - INFO - Completed total screen analysis in 43.33s
+2025-07-10 22:41:53,111 - total_screen_analyzer - INFO - Sent total screen analysis: Cursor - general_computing
+2025-07-10 22:42:02,012 - total_screen_analyzer - INFO - Starting total screen analysis (hash: 6722662f)
+2025-07-10 22:42:26,854 - total_screen_analyzer - INFO - Lightweight vision analysis completed: 1301 UI elements detected
+2025-07-10 22:42:26,893 - total_screen_analyzer - INFO - Completed total screen analysis in 24.88s
+2025-07-10 22:42:26,895 - total_screen_analyzer - INFO - Sent total screen analysis: ai-assistant-overlay - general_computing
+2025-07-10 22:42:35,271 - total_screen_analyzer - INFO - Starting total screen analysis (hash: 1463f6b4)
+2025-07-10 22:43:21,434 - total_screen_analyzer - INFO - Lightweight vision analysis completed: 86 UI elements detected
+2025-07-10 22:43:21,455 - total_screen_analyzer - INFO - Completed total screen analysis in 46.18s
+2025-07-10 22:43:21,456 - total_screen_analyzer - INFO - Sent total screen analysis: Cursor - general_computing
+2025-07-10 22:43:29,783 - total_screen_analyzer - INFO - Starting total screen analysis (hash: 68070cc6)
+2025-07-10 22:44:13,444 - total_screen_analyzer - INFO - Lightweight vision analysis completed: 77 UI elements detected
+2025-07-10 22:44:13,467 - total_screen_analyzer - INFO - Completed total screen analysis in 43.68s
+2025-07-10 22:44:13,468 - total_screen_analyzer - INFO - Sent total screen analysis: Cursor - general_computing
+2025-07-10 22:44:21,804 - total_screen_analyzer - INFO - Starting total screen analysis (hash: 946b0548)
+2025-07-10 22:45:05,248 - total_screen_analyzer - INFO - Lightweight vision analysis completed: 82 UI elements detected
+2025-07-10 22:45:05,269 - total_screen_analyzer - INFO - Completed total screen analysis in 43.46s
+2025-07-10 22:45:05,271 - total_screen_analyzer - INFO - Sent total screen analysis: Cursor - general_computing
+2025-07-10 22:45:13,632 - total_screen_analyzer - INFO - Starting total screen analysis (hash: 90ec7163)
+2025-07-10 22:50:41,109 - llava_processor - INFO - Connected to Ollama API v0.6.8
+2025-07-10 22:50:41,110 - total_screen_analyzer - INFO - LLaVA visual processor initialized for total screen analysis
+2025-07-10 22:50:41,110 - total_screen_analyzer - INFO - Total Screen Analyzer initialized with 8s interval
+2025-07-10 22:50:41,110 - total_screen_analyzer - INFO - Starting Total Screen Analyzer
+2025-07-10 22:50:41,132 - total_screen_analyzer - INFO - Connected to bridge server at ws://localhost:8767
+2025-07-10 22:50:41,133 - total_screen_analyzer - INFO - Received welcome: connection_established
+2025-07-10 22:50:41,672 - total_screen_analyzer - INFO - Starting total screen analysis (hash: 367f9f7a)
+2025-07-10 22:51:29,711 - total_screen_analyzer - INFO - Lightweight vision analysis completed: 55 UI elements detected
+2025-07-10 22:51:29,733 - total_screen_analyzer - INFO - Completed total screen analysis in 48.06s
+2025-07-10 22:51:29,733 - total_screen_analyzer - INFO - Sent total screen analysis: Cursor - general_computing
+2025-07-10 22:51:38,054 - total_screen_analyzer - INFO - Starting total screen analysis (hash: 6b1be077)
+2025-07-10 22:52:16,825 - llava_processor - INFO - Connected to Ollama API v0.6.8
+2025-07-10 22:52:16,826 - total_screen_analyzer - INFO - LLaVA visual processor initialized for total screen analysis
+2025-07-10 22:52:16,826 - total_screen_analyzer - INFO - Total Screen Analyzer initialized with 8s interval
+2025-07-10 22:52:16,826 - total_screen_analyzer - INFO - Starting Total Screen Analyzer
+2025-07-10 22:52:16,838 - total_screen_analyzer - INFO - Connected to bridge server at ws://localhost:8767
+2025-07-10 22:52:16,838 - total_screen_analyzer - INFO - Received welcome: connection_established
+2025-07-10 22:52:17,214 - total_screen_analyzer - INFO - Starting total screen analysis (hash: 68197300)
+2025-07-10 22:52:55,184 - llava_processor - INFO - Connected to Ollama API v0.6.8
+2025-07-10 22:52:55,185 - total_screen_analyzer - INFO - LLaVA visual processor initialized for total screen analysis
+2025-07-10 22:52:55,185 - total_screen_analyzer - INFO - Total Screen Analyzer initialized with 8s interval
+2025-07-10 22:52:55,185 - total_screen_analyzer - INFO - Starting Total Screen Analyzer
+2025-07-10 22:52:55,196 - total_screen_analyzer - INFO - Connected to bridge server at ws://localhost:8767
+2025-07-10 22:52:55,197 - total_screen_analyzer - INFO - Received welcome: connection_established
+2025-07-10 22:52:56,039 - total_screen_analyzer - INFO - Starting total screen analysis (hash: 040c7f82)
+2025-07-10 22:53:18,753 - total_screen_analyzer - INFO - Lightweight vision analysis completed: 1623 UI elements detected
+2025-07-10 22:53:18,775 - total_screen_analyzer - INFO - Completed total screen analysis in 22.74s
+2025-07-10 22:53:18,775 - total_screen_analyzer - INFO - Sent total screen analysis: ai-assistant-overlay - general_computing
+2025-07-10 22:53:27,453 - total_screen_analyzer - INFO - Starting total screen analysis (hash: 70bc0157)
+2025-07-10 22:53:48,440 - total_screen_analyzer - INFO - Lightweight vision analysis completed: 1248 UI elements detected
+2025-07-10 22:53:48,461 - total_screen_analyzer - INFO - Completed total screen analysis in 21.01s
+2025-07-10 22:53:48,462 - total_screen_analyzer - INFO - Sent total screen analysis: ai-assistant-overlay - general_computing
+2025-07-10 22:53:56,781 - total_screen_analyzer - INFO - Starting total screen analysis (hash: fc691ae5)
+2025-07-10 22:54:35,766 - total_screen_analyzer - INFO - Lightweight vision analysis completed: 71 UI elements detected
+2025-07-10 22:54:35,787 - total_screen_analyzer - INFO - Completed total screen analysis in 39.01s
+2025-07-10 22:54:35,788 - total_screen_analyzer - INFO - Sent total screen analysis: Cursor - general_computing
+2025-07-10 22:54:44,119 - total_screen_analyzer - INFO - Starting total screen analysis (hash: 81c4ec44)
+2025-07-10 22:55:33,811 - total_screen_analyzer - INFO - Lightweight vision analysis completed: 74 UI elements detected
+2025-07-10 22:55:33,833 - total_screen_analyzer - INFO - Completed total screen analysis in 49.71s
+2025-07-10 22:55:33,834 - total_screen_analyzer - INFO - Sent total screen analysis: Cursor - general_computing
+2025-07-10 22:55:42,156 - total_screen_analyzer - INFO - Starting total screen analysis (hash: 0b0bfed6)
+2025-07-10 22:56:27,821 - total_screen_analyzer - INFO - Lightweight vision analysis completed: 86 UI elements detected
+2025-07-10 22:56:27,840 - total_screen_analyzer - INFO - Completed total screen analysis in 45.68s
+2025-07-10 22:56:27,842 - total_screen_analyzer - INFO - Sent total screen analysis: Cursor - general_computing
+2025-07-10 22:56:36,186 - total_screen_analyzer - INFO - Starting total screen analysis (hash: 02b41a8e)
+2025-07-10 22:57:19,284 - total_screen_analyzer - INFO - Lightweight vision analysis completed: 83 UI elements detected
+2025-07-10 22:57:19,308 - total_screen_analyzer - INFO - Completed total screen analysis in 43.12s
+2025-07-10 22:57:19,309 - total_screen_analyzer - INFO - Sent total screen analysis: Cursor - general_computing
+2025-07-10 22:57:27,634 - total_screen_analyzer - INFO - Starting total screen analysis (hash: 3b98c0e2)
+2025-07-10 22:58:15,409 - llava_processor - INFO - Connected to Ollama API v0.6.8
+2025-07-10 22:58:15,412 - total_screen_analyzer - INFO - LLaVA visual processor initialized for total screen analysis
+2025-07-10 22:58:15,412 - total_screen_analyzer - INFO - Total Screen Analyzer initialized with 8s interval
+2025-07-10 22:58:15,412 - total_screen_analyzer - INFO - Starting Total Screen Analyzer
+2025-07-10 22:58:15,425 - total_screen_analyzer - INFO - Connected to bridge server at ws://localhost:8767
+2025-07-10 22:58:15,425 - total_screen_analyzer - INFO - Received welcome: connection_established
+2025-07-10 22:58:15,828 - total_screen_analyzer - INFO - Starting total screen analysis (hash: 20f8450e)
+2025-07-10 22:59:01,413 - total_screen_analyzer - INFO - Lightweight vision analysis completed: 70 UI elements detected
+2025-07-10 22:59:01,453 - total_screen_analyzer - INFO - Completed total screen analysis in 45.62s
+2025-07-10 22:59:01,454 - total_screen_analyzer - INFO - Sent total screen analysis: Cursor - general_computing
+2025-07-10 22:59:10,062 - total_screen_analyzer - INFO - Starting total screen analysis (hash: 0b11bb4e)
+2025-07-10 23:00:01,184 - total_screen_analyzer - INFO - Lightweight vision analysis completed: 83 UI elements detected
+2025-07-10 23:00:01,205 - total_screen_analyzer - INFO - Completed total screen analysis in 51.14s
+2025-07-10 23:00:01,207 - total_screen_analyzer - INFO - Sent total screen analysis: Cursor - web_browsing
+2025-07-10 23:00:09,566 - total_screen_analyzer - INFO - Starting total screen analysis (hash: 7827c788)
+2025-07-10 23:00:51,620 - total_screen_analyzer - INFO - Lightweight vision analysis completed: 78 UI elements detected
+2025-07-10 23:00:51,642 - total_screen_analyzer - INFO - Completed total screen analysis in 42.07s
+2025-07-10 23:00:51,644 - total_screen_analyzer - INFO - Sent total screen analysis: Cursor - general_computing
+2025-07-10 23:00:59,969 - total_screen_analyzer - INFO - Starting total screen analysis (hash: f99b7c35)
+2025-07-10 23:01:45,598 - total_screen_analyzer - INFO - Lightweight vision analysis completed: 75 UI elements detected
+2025-07-10 23:01:45,619 - total_screen_analyzer - INFO - Completed total screen analysis in 45.65s
+2025-07-10 23:01:45,621 - total_screen_analyzer - INFO - Sent total screen analysis: Cursor - general_computing
+2025-07-10 23:01:53,937 - total_screen_analyzer - INFO - Starting total screen analysis (hash: 53b560f6)
+2025-07-10 23:02:37,916 - total_screen_analyzer - INFO - Lightweight vision analysis completed: 81 UI elements detected
+2025-07-10 23:02:37,938 - total_screen_analyzer - INFO - Completed total screen analysis in 44.00s
+2025-07-10 23:02:37,939 - total_screen_analyzer - ERROR - WebSocket connection closed: no close frame received or sent
+2025-07-10 23:02:37,942 - total_screen_analyzer - ERROR - Connection error: Multiple exceptions: [Errno 61] Connect call failed ('::1', 8767, 0, 0), [Errno 61] Connect call failed ('127.0.0.1', 8767)
+2025-07-10 23:02:42,946 - total_screen_analyzer - ERROR - Connection error: Multiple exceptions: [Errno 61] Connect call failed ('::1', 8767, 0, 0), [Errno 61] Connect call failed ('127.0.0.1', 8767)
+2025-07-10 23:02:47,962 - total_screen_analyzer - ERROR - Connection error: Multiple exceptions: [Errno 61] Connect call failed ('::1', 8767, 0, 0), [Errno 61] Connect call failed ('127.0.0.1', 8767)
+2025-07-10 23:02:52,971 - total_screen_analyzer - ERROR - Connection error: Multiple exceptions: [Errno 61] Connect call failed ('::1', 8767, 0, 0), [Errno 61] Connect call failed ('127.0.0.1', 8767)
+2025-07-10 23:02:57,985 - total_screen_analyzer - INFO - Connected to bridge server at ws://localhost:8767
+2025-07-10 23:02:57,985 - total_screen_analyzer - INFO - Received welcome: connection_established
+2025-07-10 23:02:58,711 - total_screen_analyzer - INFO - Starting total screen analysis (hash: 0665bfd4)
+2025-07-10 23:03:22,228 - total_screen_analyzer - INFO - Lightweight vision analysis completed: 1632 UI elements detected
+2025-07-10 23:03:22,253 - total_screen_analyzer - INFO - Completed total screen analysis in 23.54s
+2025-07-10 23:03:22,255 - total_screen_analyzer - INFO - Sent total screen analysis: ai-assistant-overlay - general_computing
+2025-07-10 23:03:30,946 - total_screen_analyzer - INFO - Starting total screen analysis (hash: 72e5d4bb)
+2025-07-10 23:03:51,097 - total_screen_analyzer - INFO - Lightweight vision analysis completed: 1225 UI elements detected
+2025-07-10 23:03:51,118 - total_screen_analyzer - INFO - Completed total screen analysis in 20.17s
+2025-07-10 23:03:51,119 - total_screen_analyzer - INFO - Sent total screen analysis: ai-assistant-overlay - communication
+2025-07-10 23:03:59,441 - total_screen_analyzer - INFO - Starting total screen analysis (hash: 2959ea32)
+2025-07-10 23:04:48,204 - total_screen_analyzer - INFO - Lightweight vision analysis completed: 38 UI elements detected
+2025-07-10 23:04:48,225 - total_screen_analyzer - INFO - Completed total screen analysis in 48.78s
+2025-07-10 23:04:48,226 - total_screen_analyzer - INFO - Sent total screen analysis: Cursor - general_computing
+2025-07-10 23:04:56,543 - total_screen_analyzer - INFO - Starting total screen analysis (hash: a07d94ea)
+2025-07-10 23:05:40,213 - total_screen_analyzer - INFO - Lightweight vision analysis completed: 45 UI elements detected
+2025-07-10 23:05:40,234 - total_screen_analyzer - INFO - Completed total screen analysis in 43.69s
+2025-07-10 23:05:40,236 - total_screen_analyzer - INFO - Sent total screen analysis: Cursor - general_computing
+2025-07-10 23:05:48,556 - total_screen_analyzer - INFO - Starting total screen analysis (hash: 829a275f)
+2025-07-10 23:06:32,283 - total_screen_analyzer - INFO - Lightweight vision analysis completed: 41 UI elements detected
+2025-07-10 23:06:32,306 - total_screen_analyzer - INFO - Completed total screen analysis in 43.75s
+2025-07-10 23:06:32,307 - total_screen_analyzer - INFO - Sent total screen analysis: Cursor - general_computing
+2025-07-10 23:06:40,639 - total_screen_analyzer - INFO - Starting total screen analysis (hash: db93c551)
+2025-07-10 23:07:23,590 - total_screen_analyzer - INFO - Lightweight vision analysis completed: 41 UI elements detected
+2025-07-10 23:07:23,611 - total_screen_analyzer - INFO - Completed total screen analysis in 42.97s
+2025-07-10 23:07:23,612 - total_screen_analyzer - INFO - Sent total screen analysis: Cursor - general_computing
+2025-07-10 23:07:31,927 - total_screen_analyzer - INFO - Starting total screen analysis (hash: 03069b7e)
+2025-07-10 23:08:12,619 - total_screen_analyzer - INFO - Lightweight vision analysis completed: 36 UI elements detected
+2025-07-10 23:08:12,640 - total_screen_analyzer - INFO - Completed total screen analysis in 40.71s
+2025-07-10 23:08:12,641 - total_screen_analyzer - INFO - Sent total screen analysis: Cursor - general_computing
+2025-07-10 23:08:20,983 - total_screen_analyzer - INFO - Starting total screen analysis (hash: 92639a86)
+2025-07-10 23:09:02,631 - total_screen_analyzer - INFO - Lightweight vision analysis completed: 61 UI elements detected
+2025-07-10 23:09:02,653 - total_screen_analyzer - INFO - Completed total screen analysis in 41.67s
+2025-07-10 23:09:02,655 - total_screen_analyzer - INFO - Sent total screen analysis: Cursor - general_computing
+2025-07-10 23:09:10,983 - total_screen_analyzer - INFO - Starting total screen analysis (hash: 7c0d1d2e)
+2025-07-10 23:10:17,682 - total_screen_analyzer - INFO - Lightweight vision analysis completed: 53 UI elements detected
+2025-07-10 23:10:17,706 - total_screen_analyzer - INFO - Completed total screen analysis in 66.72s
+2025-07-10 23:10:17,708 - total_screen_analyzer - ERROR - WebSocket connection closed: received 1011 (internal error) keepalive ping timeout; then sent 1011 (internal error) keepalive ping timeout
+2025-07-10 23:10:17,711 - total_screen_analyzer - INFO - Connected to bridge server at ws://localhost:8767
+2025-07-10 23:10:17,711 - total_screen_analyzer - INFO - Received welcome: connection_established
+2025-07-10 23:10:18,109 - total_screen_analyzer - INFO - Starting total screen analysis (hash: 1d26774e)
+2025-07-10 23:11:09,274 - total_screen_analyzer - INFO - Lightweight vision analysis completed: 64 UI elements detected
+2025-07-10 23:11:09,295 - total_screen_analyzer - INFO - Completed total screen analysis in 51.18s
+2025-07-10 23:11:09,296 - total_screen_analyzer - INFO - Sent total screen analysis: Cursor - general_computing
+2025-07-10 23:11:17,617 - total_screen_analyzer - INFO - Starting total screen analysis (hash: d0b36f41)
+2025-07-10 23:12:01,618 - total_screen_analyzer - INFO - Lightweight vision analysis completed: 55 UI elements detected
+2025-07-10 23:12:01,641 - total_screen_analyzer - INFO - Completed total screen analysis in 44.02s
+2025-07-10 23:12:01,643 - total_screen_analyzer - INFO - Sent total screen analysis: Cursor - web_browsing
+2025-07-10 23:12:09,979 - total_screen_analyzer - INFO - Starting total screen analysis (hash: bcf3c2b6)
+2025-07-10 23:12:53,591 - total_screen_analyzer - INFO - Lightweight vision analysis completed: 42 UI elements detected
+2025-07-10 23:12:53,612 - total_screen_analyzer - INFO - Completed total screen analysis in 43.63s
+2025-07-10 23:12:53,613 - total_screen_analyzer - INFO - Sent total screen analysis: Cursor - general_computing
+2025-07-10 23:13:01,920 - total_screen_analyzer - INFO - Starting total screen analysis (hash: 863b37ff)
+2025-07-10 23:13:39,965 - total_screen_analyzer - INFO - Lightweight vision analysis completed: 42 UI elements detected
+2025-07-10 23:13:39,985 - total_screen_analyzer - INFO - Completed total screen analysis in 38.06s
+2025-07-10 23:13:39,987 - total_screen_analyzer - INFO - Sent total screen analysis: Cursor - general_computing
+2025-07-10 23:13:48,293 - total_screen_analyzer - INFO - Starting total screen analysis (hash: 0d3662fe)
+2025-07-10 23:14:31,075 - total_screen_analyzer - INFO - Lightweight vision analysis completed: 41 UI elements detected
+2025-07-10 23:14:31,096 - total_screen_analyzer - INFO - Completed total screen analysis in 42.80s
+2025-07-10 23:14:31,097 - total_screen_analyzer - INFO - Sent total screen analysis: Cursor - general_computing
+2025-07-10 23:14:39,453 - total_screen_analyzer - INFO - Starting total screen analysis (hash: 5c395043)
+2025-07-10 23:15:24,227 - total_screen_analyzer - INFO - Lightweight vision analysis completed: 43 UI elements detected
+2025-07-10 23:15:24,248 - total_screen_analyzer - INFO - Completed total screen analysis in 44.79s
+2025-07-10 23:15:24,250 - total_screen_analyzer - INFO - Sent total screen analysis: Cursor - general_computing
+2025-07-10 23:15:32,586 - total_screen_analyzer - INFO - Starting total screen analysis (hash: 1c89bccf)
+2025-07-10 23:16:15,632 - total_screen_analyzer - INFO - Lightweight vision analysis completed: 50 UI elements detected
+2025-07-10 23:16:15,653 - total_screen_analyzer - INFO - Completed total screen analysis in 43.06s
+2025-07-10 23:16:15,654 - total_screen_analyzer - INFO - Sent total screen analysis: Cursor - general_computing
+2025-07-10 23:16:23,990 - total_screen_analyzer - INFO - Starting total screen analysis (hash: 76b7d2b4)
+2025-07-10 23:17:12,497 - total_screen_analyzer - INFO - Lightweight vision analysis completed: 80 UI elements detected
+2025-07-10 23:17:12,521 - total_screen_analyzer - INFO - Completed total screen analysis in 48.53s
+2025-07-10 23:17:12,523 - total_screen_analyzer - INFO - Sent total screen analysis: Cursor - general_computing
+2025-07-10 23:17:20,838 - total_screen_analyzer - INFO - Starting total screen analysis (hash: 93cfbfd5)
+2025-07-10 23:18:00,755 - total_screen_analyzer - INFO - Lightweight vision analysis completed: 39 UI elements detected
+2025-07-10 23:18:00,776 - total_screen_analyzer - INFO - Completed total screen analysis in 39.94s
+2025-07-10 23:18:00,778 - total_screen_analyzer - INFO - Sent total screen analysis: Cursor - general_computing
+2025-07-10 23:18:09,107 - total_screen_analyzer - INFO - Starting total screen analysis (hash: 530d8d7d)
+2025-07-10 23:18:59,922 - total_screen_analyzer - INFO - Lightweight vision analysis completed: 44 UI elements detected
+2025-07-10 23:18:59,948 - total_screen_analyzer - INFO - Completed total screen analysis in 50.84s
+2025-07-10 23:18:59,950 - total_screen_analyzer - INFO - Sent total screen analysis: Cursor - general_computing
+2025-07-10 23:19:08,259 - total_screen_analyzer - INFO - Starting total screen analysis (hash: 92009662)
+2025-07-10 23:19:47,922 - total_screen_analyzer - INFO - Lightweight vision analysis completed: 55 UI elements detected
+2025-07-10 23:19:47,943 - total_screen_analyzer - INFO - Completed total screen analysis in 39.68s
+2025-07-10 23:19:47,945 - total_screen_analyzer - ERROR - WebSocket connection closed: no close frame received or sent
+2025-07-10 23:19:47,949 - total_screen_analyzer - INFO - Connected to bridge server at ws://localhost:8767
+2025-07-10 23:19:47,950 - total_screen_analyzer - INFO - Received welcome: welcome
+2025-07-10 23:19:47,950 - total_screen_analyzer - INFO - Total Screen Analyzer registered as None
+2025-07-10 23:19:48,265 - total_screen_analyzer - INFO - Starting total screen analysis (hash: 94540218)
+2025-07-10 23:20:31,077 - total_screen_analyzer - INFO - Lightweight vision analysis completed: 71 UI elements detected
+2025-07-10 23:20:31,104 - total_screen_analyzer - INFO - Completed total screen analysis in 42.84s
+2025-07-10 23:20:31,106 - total_screen_analyzer - ERROR - WebSocket connection closed: received 1011 (internal error) keepalive ping timeout; then sent 1011 (internal error) keepalive ping timeout
+2025-07-10 23:20:31,110 - total_screen_analyzer - INFO - Connected to bridge server at ws://localhost:8767
+2025-07-10 23:20:31,110 - total_screen_analyzer - INFO - Received welcome: welcome
+2025-07-10 23:20:31,111 - total_screen_analyzer - INFO - Total Screen Analyzer registered as None
+2025-07-10 23:20:31,426 - total_screen_analyzer - INFO - Starting total screen analysis (hash: 61922222)
+2025-07-10 23:21:08,035 - total_screen_analyzer - INFO - Lightweight vision analysis completed: 60 UI elements detected
+2025-07-10 23:21:08,056 - total_screen_analyzer - INFO - Completed total screen analysis in 36.63s
+2025-07-10 23:21:08,057 - total_screen_analyzer - INFO - Sent total screen analysis: Cursor - general_computing
+2025-07-10 23:21:16,389 - total_screen_analyzer - INFO - Starting total screen analysis (hash: d5a997e1)
+2025-07-10 23:21:49,996 - total_screen_analyzer - INFO - Lightweight vision analysis completed: 59 UI elements detected
+2025-07-10 23:21:50,019 - total_screen_analyzer - INFO - Completed total screen analysis in 33.63s
+2025-07-10 23:21:50,023 - total_screen_analyzer - INFO - Sent total screen analysis: Cursor - general_computing
+2025-07-10 23:21:58,515 - total_screen_analyzer - INFO - Starting total screen analysis (hash: 9b5656d9)
+2025-07-10 23:22:42,431 - total_screen_analyzer - INFO - Lightweight vision analysis completed: 73 UI elements detected
+2025-07-10 23:22:42,452 - total_screen_analyzer - INFO - Completed total screen analysis in 43.93s
+2025-07-10 23:22:42,453 - total_screen_analyzer - ERROR - WebSocket connection closed: no close frame received or sent
+2025-07-10 23:22:42,458 - total_screen_analyzer - INFO - Connected to bridge server at ws://localhost:8767
+2025-07-10 23:22:42,458 - total_screen_analyzer - INFO - Received welcome: connection_established
+2025-07-10 23:22:42,801 - total_screen_analyzer - INFO - Starting total screen analysis (hash: a3a368e1)
+2025-07-10 23:23:28,679 - total_screen_analyzer - INFO - Lightweight vision analysis completed: 64 UI elements detected
+2025-07-10 23:23:28,700 - total_screen_analyzer - INFO - Completed total screen analysis in 45.90s
+2025-07-10 23:23:28,701 - total_screen_analyzer - INFO - Sent total screen analysis: Cursor - general_computing
+2025-07-10 23:23:37,015 - total_screen_analyzer - INFO - Starting total screen analysis (hash: 09175c26)

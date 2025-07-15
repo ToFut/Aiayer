@@ -1,0 +1,11 @@
+{
+  "max_concurrent_requests": 2,
+  "request_timeout": 10,
+  "max_memory_mb": 200,
+  "enable_throttling": true,
+  "screen_capture_interval": 30,
+  "process_monitor_interval": 15,
+  "disable_heavy_features": true,
+  "use_caching": true,
+  "cache_duration": 300
+}

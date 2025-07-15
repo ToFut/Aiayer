@@ -198,7 +198,7 @@ class EnhancedModeBackend:
             # Prepare Ollama request with mode-specific optimization
             model_config = self._get_model_config_for_mode(mode)
             ollama_payload = {
-                "model": "llama3.2:latest",
+                "model": "llama3.2:1b",
                 "prompt": f"System: {system_prompt}\n\nUser: {enhanced_message}\n\nAssistant:",
                 "stream": False,
                 "options": model_config

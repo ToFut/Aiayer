@@ -1,21 +1,21 @@
 {
-  "timestamp": 1749135837.961594,
+  "timestamp": 1751996880.8520691,
   "elements": [
     {
       "id": "element_0",
       "element_type": "label",
-      "confidence": 0.9998481724572542,
+      "confidence": 0.9999972979209448,
       "bounding_box": [
-        223,
-        347,
-        245,
-        359
+        233,
+        277,
+        289,
+        291
       ],
       "center": [
-        234,
-        353
+        261,
+        284
       ],
-      "text": "104",
+      "text": "threading",
       "placeholder": "",
       "attributes": {},
       "is_enabled": true,
@@ -25,7 +25,7 @@
       "can_type": false,
       "can_scroll": false,
       "detection_method": "ocr",
-      "detection_time": 1749135844.118568,
+      "detection_time": 1751996910.1499279,
       "model_name": "easyocr_optimized",
       "parent_id": null,
       "children": [],
@@ -35,29 +35,29 @@
     },
     {
       "id": "element_1",
-      "element_type": "label",
-      "confidence": 0.9997580134107794,
+      "element_type": "button",
+      "confidence": 0.9999805092811584,
       "bounding_box": [
-        223,
-        331,
-        245,
-        343
+        671,
+        193,
+        699,
+        205
       ],
       "center": [
-        234,
-        337
+        685,
+        199
       ],
-      "text": "103",
+      "text": "File",
       "placeholder": "",
       "attributes": {},
       "is_enabled": true,
       "is_visible": true,
       "is_focused": false,
-      "can_click": false,
+      "can_click": true,
       "can_type": false,
       "can_scroll": false,
       "detection_method": "ocr",
-      "detection_time": 1749135844.118528,
+      "detection_time": 1751996910.149717,
       "model_name": "easyocr_optimized",
       "parent_id": null,
       "children": [],
@@ -68,18 +68,18 @@
     {
       "id": "element_2",
       "element_type": "label",
-      "confidence": 0.9994925013966568,
+      "confidence": 0.9998824190017529,
       "bounding_box": [
-        265,
-        85,
-        315,
-        97
+        809,
+        147,
+        847,
+        159
       ],
       "center": [
-        290,
-        91
+        828,
+        153
       ],
-      "text": "functions",
+      "text": "handle",
       "placeholder": "",
       "attributes": {},
       "is_enabled": true,
@@ -89,7 +89,7 @@
       "can_type": false,
       "can_scroll": false,
       "detection_method": "ocr",
-      "detection_time": 1749135844.118015,
+      "detection_time": 1751996910.147767,
       "model_name": "easyocr_optimized",
       "parent_id": null,
       "children": [],
@@ -100,18 +100,18 @@
     {
       "id": "element_3",
       "element_type": "label",
-      "confidence": 0.9994306282318957,
+      "confidence": 0.9991872807224867,
       "bounding_box": [
-        223,
-        315,
-        245,
-        329
+        232,
+        246,
+        293,
+        260
       ],
       "center": [
-        234,
-        322
+        262,
+        253
       ],
-      "text": "102",
+      "text": "subprocess",
       "placeholder": "",
       "attributes": {},
       "is_enabled": true,
@@ -121,7 +121,7 @@
       "can_type": false,
       "can_scroll": false,
       "detection_method": "ocr",
-      "detection_time": 1749135844.1184719,
+      "detection_time": 1751996910.149812,
       "model_name": "easyocr_optimized",
       "parent_id": null,
       "children": [],
@@ -131,29 +131,29 @@
     },
     {
       "id": "element_4",
-      "element_type": "label",
-      "confidence": 0.9993907125855581,
+      "element_type": "button",
+      "confidence": 0.9989254977819964,
       "bounding_box": [
-        223,
-        375,
-        245,
-        387
+        191,
+        145,
+        231,
+        157
       ],
       "center": [
-        234,
-        381
+        211,
+        151
       ],
-      "text": "106",
+      "text": "Starts",
       "placeholder": "",
       "attributes": {},
       "is_enabled": true,
       "is_visible": true,
       "is_focused": false,
-      "can_click": false,
+      "can_click": true,
       "can_type": false,
       "can_scroll": false,
       "detection_method": "ocr",
-      "detection_time": 1749135844.1186738,
+      "detection_time": 1751996910.147718,
       "model_name": "easyocr_optimized",
       "parent_id": null,
       "children": [],
@@ -163,29 +163,29 @@
     },
     {
       "id": "element_5",
-      "element_type": "label",
-      "confidence": 0.9991885224721656,
+      "element_type": "text_field",
+      "confidence": 0.9984976102079508,
       "bounding_box": [
-        223,
-        301,
-        245,
-        315
+        1065,
+        237,
+        1181,
+        251
       ],
       "center": [
-        234,
-        308
+        1123,
+        244
       ],
-      "text": "101",
+      "text": "positional argument:",
       "placeholder": "",
       "attributes": {},
       "is_enabled": true,
       "is_visible": true,
       "is_focused": false,
       "can_click": false,
-      "can_type": false,
+      "can_type": true,
       "can_scroll": false,
       "detection_method": "ocr",
-      "detection_time": 1749135844.1184661,
+      "detection_time": 1751996910.149804,
       "model_name": "easyocr_optimized",
       "parent_id": null,
       "children": [],
@@ -195,29 +195,29 @@
     },
     {
       "id": "element_6",
-      "element_type": "button",
-      "confidence": 0.9989612887982783,
+      "element_type": "label",
+      "confidence": 0.9967173933982849,
       "bounding_box": [
-        421,
-        213,
-        443,
-        227
+        233,
+        217,
+        261,
+        231
       ],
       "center": [
-        432,
-        220
+        247,
+        224
       ],
-      "text": "USD",
+      "text": "time",
       "placeholder": "",
       "attributes": {},
       "is_enabled": true,
       "is_visible": true,
       "is_focused": false,
-      "can_click": true,
+      "can_click": false,
       "can_type": false,
       "can_scroll": false,
       "detection_method": "ocr",
-      "detection_time": 1749135844.11823,
+      "detection_time": 1751996910.1497679,
       "model_name": "easyocr_optimized",
       "parent_id": null,
       "children": [],
@@ -227,29 +227,29 @@
     },
     {
       "id": "element_7",
-      "element_type": "button",
-      "confidence": 0.9986435035911163,
+      "element_type": "label",
+      "confidence": 0.9961758677893683,
       "bounding_box": [
-        421,
-        405,
-        443,
-        417
+        907,
+        169,
+        945,
+        183
       ],
       "center": [
-        432,
-        411
+        926,
+        176
       ],
-      "text": "USD",
+      "text": "failed",
       "placeholder": "",
       "attributes": {},
       "is_enabled": true,
       "is_visible": true,
       "is_focused": false,
-      "can_click": true,
+      "can_click": false,
       "can_type": false,
       "can_scroll": false,
       "detection_method": "ocr",
-      "detection_time": 1749135844.1187599,
+      "detection_time": 1751996910.149695,
       "model_name": "easyocr_optimized",
       "parent_id": null,
       "children": [],
@@ -259,29 +259,29 @@
     },
     {
       "id": "element_8",
-      "element_type": "label",
-      "confidence": 0.997758960917599,
+      "element_type": "text_field",
+      "confidence": 0.9959664572257458,
       "bounding_box": [
-        309,
-        287,
-        353,
-        299
+        645,
+        83,
+        691,
+        97
       ],
       "center": [
-        331,
-        293
+        668,
+        90
       ],
-      "text": "console",
+      "text": "directly:",
       "placeholder": "",
       "attributes": {},
       "is_enabled": true,
       "is_visible": true,
       "is_focused": false,
       "can_click": false,
-      "can_type": false,
+      "can_type": true,
       "can_scroll": false,
       "detection_method": "ocr",
-      "detection_time": 1749135844.118413,
+      "detection_time": 1751996910.1476579,
       "model_name": "easyocr_optimized",
       "parent_id": null,
       "children": [],
@@ -291,29 +291,29 @@
     },
     {
       "id": "element_9",
-      "element_type": "label",
-      "confidence": 0.9972785163417239,
+      "element_type": "button",
+      "confidence": 0.9919478400155598,
       "bounding_box": [
-        223,
-        287,
-        245,
-        299
+        27,
+        291,
+        87,
+        303
       ],
       "center": [
-        234,
-        293
+        57,
+        297
       ],
-      "text": "100",
+      "text": "COMPLETE",
       "placeholder": "",
       "attributes": {},
       "is_enabled": true,
       "is_visible": true,
       "is_focused": false,
-      "can_click": false,
+      "can_click": true,
       "can_type": false,
       "can_scroll": false,
       "detection_method": "ocr",
-      "detection_time": 1749135844.1184,
+      "detection_time": 1751996910.1499672,
       "model_name": "easyocr_optimized",
       "parent_id": null,
       "children": [],
@@ -323,29 +323,29 @@
     },
     {
       "id": "element_10",
-      "element_type": "label",
-      "confidence": 0.9969365862510496,
+      "element_type": "button",
+      "confidence": 0.9865702940473741,
       "bounding_box": [
-        223,
-        419,
-        245,
-        431
+        821,
+        273,
+        857,
+        285
       ],
       "center": [
-        234,
-        425
+        839,
+        279
       ],
-      "text": "109",
+      "text": "Trying",
       "placeholder": "",
       "attributes": {},
       "is_enabled": true,
       "is_visible": true,
       "is_focused": false,
-      "can_click": false,
+      "can_click": true,
       "can_type": false,
       "can_scroll": false,
       "detection_method": "ocr",
-      "detection_time": 1749135844.1187751,
+      "detection_time": 1751996910.149905,
       "model_name": "easyocr_optimized",
       "parent_id": null,
       "children": [],
@@ -355,29 +355,29 @@
     },
     {
       "id": "element_11",
-      "element_type": "label",
-      "confidence": 0.9956911166712071,
+      "element_type": "button",
+      "confidence": 0.9860633518855598,
       "bounding_box": [
-        223,
-        389,
-        245,
-        403
+        905,
+        283,
+        967,
+        297
       ],
       "center": [
-        234,
-        396
+        936,
+        290
       ],
-      "text": "107",
+      "text": "Finder App",
       "placeholder": "",
       "attributes": {},
       "is_enabled": true,
       "is_visible": true,
       "is_focused": false,
-      "can_click": false,
+      "can_click": true,
       "can_type": false,
       "can_scroll": false,
       "detection_method": "ocr",
-      "detection_time": 1749135844.118696,
+      "detection_time": 1751996910.1499572,
       "model_name": "easyocr_optimized",
       "parent_id": null,
       "children": [],
@@ -387,29 +387,29 @@
     },
     {
       "id": "element_12",
-      "element_type": "label",
-      "confidence": 0.9920209308657882,
+      "element_type": "button",
+      "confidence": 0.9808677985932193,
       "bounding_box": [
-        223,
-        405,
-        245,
-        417
+        645,
+        61,
+        717,
+        75
       ],
       "center": [
-        234,
-        411
+        681,
+        68
       ],
-      "text": "108",
+      "text": "Discussing Aia",
       "placeholder": "",
       "attributes": {},
       "is_enabled": true,
       "is_visible": true,
       "is_focused": false,
-      "can_click": false,
+      "can_click": true,
       "can_type": false,
       "can_scroll": false,
       "detection_method": "ocr",
-      "detection_time": 1749135844.1187541,
+      "detection_time": 1751996910.1475961,
       "model_name": "easyocr_optimized",
       "parent_id": null,
       "children": [],
@@ -420,18 +420,18 @@
     {
       "id": "element_13",
       "element_type": "label",
-      "confidence": 0.9858746120217832,
+      "confidence": 0.9766150841658677,
       "bounding_box": [
-        569,
-        63,
-        591,
-        75
+        233,
+        233,
+        277,
+        245
       ],
       "center": [
-        580,
-        69
+        255,
+        239
       ],
-      "text": "env",
+      "text": "asyncio",
       "placeholder": "",
       "attributes": {},
       "is_enabled": true,
@@ -441,7 +441,7 @@
       "can_type": false,
       "can_scroll": false,
       "detection_method": "ocr",
-      "detection_time": 1749135844.11798,
+      "detection_time": 1751996910.149782,
       "model_name": "easyocr_optimized",
       "parent_id": null,
       "children": [],
@@ -452,18 +452,18 @@
     {
       "id": "element_14",
       "element_type": "label",
-      "confidence": 0.9855040907859802,
+      "confidence": 0.9678906545547662,
       "bounding_box": [
-        223,
-        361,
-        245,
-        373
+        813,
+        61,
+        923,
+        75
       ],
       "center": [
-        234,
-        367
+        868,
+        68
       ],
-      "text": "105",
+      "text": "Deep dive into AIAYER",
       "placeholder": "",
       "attributes": {},
       "is_enabled": true,
@@ -473,7 +473,7 @@
       "can_type": false,
       "can_scroll": false,
       "detection_method": "ocr",
-      "detection_time": 1749135844.118627,
+      "detection_time": 1751996910.147615,
       "model_name": "easyocr_optimized",
       "parent_id": null,
       "children": [],
@@ -483,29 +483,29 @@
     },
     {
       "id": "element_15",
-      "element_type": "button",
-      "confidence": 0.9801570793092745,
+      "element_type": "text_field",
+      "confidence": 0.9654849022975242,
       "bounding_box": [
-        401,
-        287,
-        453,
-        301
+        757,
+        169,
+        903,
+        181
       ],
       "center": [
-        427,
-        294
+        830,
+        175
       ],
-      "text": "Original",
+      "text": "server:connection handler",
       "placeholder": "",
       "attributes": {},
       "is_enabled": true,
       "is_visible": true,
       "is_focused": false,
-      "can_click": true,
-      "can_type": false,
+      "can_click": false,
+      "can_type": true,
       "can_scroll": false,
       "detection_method": "ocr",
-      "detection_time": 1749135844.118428,
+      "detection_time": 1751996910.149687,
       "model_name": "easyocr_optimized",
       "parent_id": null,
       "children": [],
@@ -515,29 +515,29 @@
     },
     {
       "id": "element_16",
-      "element_type": "button",
-      "confidence": 0.9759190361366386,
+      "element_type": "label",
+      "confidence": 0.9494393489274543,
       "bounding_box": [
-        401,
-        345,
-        481,
-        359
+        729,
+        61,
+        797,
+        73
       ],
       "center": [
-        441,
-        352
+        763,
+        67
       ],
-      "text": "Token Length:",
+      "text": "Error with Isre",
       "placeholder": "",
       "attributes": {},
       "is_enabled": true,
       "is_visible": true,
       "is_focused": false,
-      "can_click": true,
+      "can_click": false,
       "can_type": false,
       "can_scroll": false,
       "detection_method": "ocr",
-      "detection_time": 1749135844.1185868,
+      "detection_time": 1751996910.1476061,
       "model_name": "easyocr_optimized",
       "parent_id": null,
       "children": [],
@@ -547,29 +547,29 @@
     },
     {
       "id": "element_17",
-      "element_type": "label",
-      "confidence": 0.9741185303700067,
+      "element_type": "button",
+      "confidence": 0.9487216603744946,
       "bounding_box": [
-        221,
-        85,
-        257,
-        99
+        905,
+        273,
+        1011,
+        285
       ],
       "center": [
-        239,
-        92
+        958,
+        279
       ],
-      "text": "netlify",
+      "text": "Active Application",
       "placeholder": "",
       "attributes": {},
       "is_enabled": true,
       "is_visible": true,
       "is_focused": false,
-      "can_click": false,
+      "can_click": true,
       "can_type": false,
       "can_scroll": false,
       "detection_method": "ocr",
-      "detection_time": 1749135844.118004,
+      "detection_time": 1751996910.149921,
       "model_name": "easyocr_optimized",
       "parent_id": null,
       "children": [],
@@ -579,29 +579,29 @@
     },
     {
       "id": "element_18",
-      "element_type": "label",
-      "confidence": 0.97273636727007,
+      "element_type": "button",
+      "confidence": 0.9381172902782439,
       "bounding_box": [
-        310,
-        142,
-        340,
-        150
+        27,
+        101,
+        85,
+        115
       ],
       "center": [
-        325,
-        146
+        56,
+        108
       ],
-      "text": "const",
+      "text": "RPA_AVEN",
       "placeholder": "",
       "attributes": {},
       "is_enabled": true,
       "is_visible": true,
       "is_focused": false,
-      "can_click": false,
+      "can_click": true,
       "can_type": false,
       "can_scroll": false,
       "detection_method": "ocr",
-      "detection_time": 1749135844.118138,
+      "detection_time": 1751996910.147666,
       "model_name": "easyocr_optimized",
       "parent_id": null,
       "children": [],
@@ -612,18 +612,18 @@
     {
       "id": "element_19",
       "element_type": "label",
-      "confidence": 0.9701614044662751,
+      "confidence": 0.9375386834144592,
       "bounding_box": [
-        306,
-        102,
-        334,
-        110
+        667,
+        111,
+        695,
+        125
       ],
       "center": [
-        320,
-        106
+        681,
+        118
       ],
-      "text": "const",
+      "text": "tail",
       "placeholder": "",
       "attributes": {},
       "is_enabled": true,
@@ -633,7 +633,7 @@
       "can_type": false,
       "can_scroll": false,
       "detection_method": "ocr",
-      "detection_time": 1749135844.1180632,
+      "detection_time": 1751996910.1476748,
       "model_name": "easyocr_optimized",
       "parent_id": null,
       "children": [],
@@ -643,29 +643,29 @@
     },
     {
       "id": "element_20",
-      "element_type": "label",
-      "confidence": 0.9661649753317509,
+      "element_type": "button",
+      "confidence": 0.9267882403735246,
       "bounding_box": [
-        427,
-        125,
-        479,
-        139
+        15,
+        85,
+        55,
+        97
       ],
       "center": [
-        453,
-        132
+        35,
+        91
       ],
-      "text": "at least",
+      "text": "SENSAI",
       "placeholder": "",
       "attributes": {},
       "is_enabled": true,
       "is_visible": true,
       "is_focused": false,
-      "can_click": false,
+      "can_click": true,
       "can_type": false,
       "can_scroll": false,
       "detection_method": "ocr",
-      "detection_time": 1749135844.1181161,
+      "detection_time": 1751996910.147626,
       "model_name": "easyocr_optimized",
       "parent_id": null,
       "children": [],
@@ -675,326 +675,6 @@
     },
     {
       "id": "element_21",
-      "element_type": "label",
-      "confidence": 0.9647623616312875,
-      "bounding_box": [
-        309,
-        331,
-        353,
-        343
-      ],
-      "center": [
-        331,
-        337
-      ],
-      "text": "console",
-      "placeholder": "",
-      "attributes": {},
-      "is_enabled": true,
-      "is_visible": true,
-      "is_focused": false,
-      "can_click": false,
-      "can_type": false,
-      "can_scroll": false,
-      "detection_method": "ocr",
-      "detection_time": 1749135844.1185348,
-      "model_name": "easyocr_optimized",
-      "parent_id": null,
-      "children": [],
-      "verification_image": null,
-      "visual_features": null,
-      "text_embedding": null
-    },
-    {
-      "id": "element_22",
-      "element_type": "label",
-      "confidence": 0.9443895022925303,
-      "bounding_box": [
-        500,
-        142,
-        534,
-        150
-      ],
-      "center": [
-        517,
-        146
-      ],
-      "text": "amount",
-      "placeholder": "",
-      "attributes": {},
-      "is_enabled": true,
-      "is_visible": true,
-      "is_focused": false,
-      "can_click": false,
-      "can_type": false,
-      "can_scroll": false,
-      "detection_method": "ocr",
-      "detection_time": 1749135844.118173,
-      "model_name": "easyocr_optimized",
-      "parent_id": null,
-      "children": [],
-      "verification_image": null,
-      "visual_features": null,
-      "text_embedding": null
-    },
-    {
-      "id": "element_23",
-      "element_type": "label",
-      "confidence": 0.9437898445580495,
-      "bounding_box": [
-        235,
-        61,
-        349,
-        75
-      ],
-      "center": [
-        292,
-        68
-      ],
-      "text": "createReservation mjs",
-      "placeholder": "",
-      "attributes": {},
-      "is_enabled": true,
-      "is_visible": true,
-      "is_focused": false,
-      "can_click": false,
-      "can_type": false,
-      "can_scroll": false,
-      "detection_method": "ocr",
-      "detection_time": 1749135844.117957,
-      "model_name": "easyocr_optimized",
-      "parent_id": null,
-      "children": [],
-      "verification_image": null,
-      "visual_features": null,
-      "text_embedding": null
-    },
-    {
-      "id": "element_24",
-      "element_type": "button",
-      "confidence": 0.9403138756752014,
-      "bounding_box": [
-        567,
-        287,
-        595,
-        299
-      ],
-      "center": [
-        581,
-        293
-      ],
-      "text": "Safe",
-      "placeholder": "",
-      "attributes": {},
-      "is_enabled": true,
-      "is_visible": true,
-      "is_focused": false,
-      "can_click": true,
-      "can_type": false,
-      "can_scroll": false,
-      "detection_method": "ocr",
-      "detection_time": 1749135844.118443,
-      "model_name": "easyocr_optimized",
-      "parent_id": null,
-      "children": [],
-      "verification_image": null,
-      "visual_features": null,
-      "text_embedding": null
-    },
-    {
-      "id": "element_25",
-      "element_type": "label",
-      "confidence": 0.9391487172010609,
-      "bounding_box": [
-        32,
-        355,
-        119,
-        371
-      ],
-      "center": [
-        75,
-        363
-      ],
-      "text": "fetchListings mjs",
-      "placeholder": "",
-      "attributes": {},
-      "is_enabled": true,
-      "is_visible": true,
-      "is_focused": false,
-      "can_click": false,
-      "can_type": false,
-      "can_scroll": false,
-      "detection_method": "ocr",
-      "detection_time": 1749135844.1186209,
-      "model_name": "easyocr_optimized",
-      "parent_id": null,
-      "children": [],
-      "verification_image": null,
-      "visual_features": null,
-      "text_embedding": null
-    },
-    {
-      "id": "element_26",
-      "element_type": "label",
-      "confidence": 0.9346776745395998,
-      "bounding_box": [
-        33,
-        231,
-        181,
-        245
-      ],
-      "center": [
-        107,
-        238
-      ],
-      "text": "createlnstantReservation mjs",
-      "placeholder": "",
-      "attributes": {},
-      "is_enabled": true,
-      "is_visible": true,
-      "is_focused": false,
-      "can_click": false,
-      "can_type": false,
-      "can_scroll": false,
-      "detection_method": "ocr",
-      "detection_time": 1749135844.118312,
-      "model_name": "easyocr_optimized",
-      "parent_id": null,
-      "children": [],
-      "verification_image": null,
-      "visual_features": null,
-      "text_embedding": null
-    },
-    {
-      "id": "element_27",
-      "element_type": "text_field",
-      "confidence": 0.9320755148254959,
-      "bounding_box": [
-        33,
-        141,
-        135,
-        155
-      ],
-      "center": [
-        84,
-        148
-      ],
-      "text": "chargcPayment mjs",
-      "placeholder": "",
-      "attributes": {},
-      "is_enabled": true,
-      "is_visible": true,
-      "is_focused": false,
-      "can_click": false,
-      "can_type": true,
-      "can_scroll": false,
-      "detection_method": "ocr",
-      "detection_time": 1749135844.118131,
-      "model_name": "easyocr_optimized",
-      "parent_id": null,
-      "children": [],
-      "verification_image": null,
-      "visual_features": null,
-      "text_embedding": null
-    },
-    {
-      "id": "element_28",
-      "element_type": "button",
-      "confidence": 0.9268959616598605,
-      "bounding_box": [
-        33,
-        195,
-        117,
-        209
-      ],
-      "center": [
-        75,
-        202
-      ],
-      "text": "createGuest mjs",
-      "placeholder": "",
-      "attributes": {},
-      "is_enabled": true,
-      "is_visible": true,
-      "is_focused": false,
-      "can_click": true,
-      "can_type": false,
-      "can_scroll": false,
-      "detection_method": "ocr",
-      "detection_time": 1749135844.118208,
-      "model_name": "easyocr_optimized",
-      "parent_id": null,
-      "children": [],
-      "verification_image": null,
-      "visual_features": null,
-      "text_embedding": null
-    },
-    {
-      "id": "element_29",
-      "element_type": "label",
-      "confidence": 0.925256836334096,
-      "bounding_box": [
-        33,
-        213,
-        180,
-        227
-      ],
-      "center": [
-        106,
-        220
-      ],
-      "text": "createGuestyReservation mjs",
-      "placeholder": "",
-      "attributes": {},
-      "is_enabled": true,
-      "is_visible": true,
-      "is_focused": false,
-      "can_click": false,
-      "can_type": false,
-      "can_scroll": false,
-      "detection_method": "ocr",
-      "detection_time": 1749135844.118217,
-      "model_name": "easyocr_optimized",
-      "parent_id": null,
-      "children": [],
-      "verification_image": null,
-      "visual_features": null,
-      "text_embedding": null
-    },
-    {
-      "id": "element_30",
-      "element_type": "label",
-      "confidence": 0.919579806054618,
-      "bounding_box": [
-        33,
-        179,
-        107,
-        191
-      ],
-      "center": [
-        70,
-        185
-      ],
-      "text": "contactusmjs",
-      "placeholder": "",
-      "attributes": {},
-      "is_enabled": true,
-      "is_visible": true,
-      "is_focused": false,
-      "can_click": false,
-      "can_type": false,
-      "can_scroll": false,
-      "detection_method": "ocr",
-      "detection_time": 1749135844.1182039,
-      "model_name": "easyocr_optimized",
-      "parent_id": null,
-      "children": [],
-      "verification_image": null,
-      "visual_features": null,
-      "text_embedding": null
-    },
-    {
-      "id": "element_31",
       "element_type": "button",
       "confidence": 0.9,
       "bounding_box": [
@@ -1017,7 +697,7 @@
       "can_type": false,
       "can_scroll": false,
       "detection_method": "accessibility_api",
-      "detection_time": 1749135838.1757162,
+      "detection_time": 1751996883.2164412,
       "model_name": "",
       "parent_id": null,
       "children": [],
@@ -1026,7 +706,7 @@
       "text_embedding": null
     },
     {
-      "id": "element_32",
+      "id": "element_22",
       "element_type": "textfield",
       "confidence": 0.9,
       "bounding_box": [
@@ -1049,8 +729,328 @@
       "can_type": true,
       "can_scroll": false,
       "detection_method": "accessibility_api",
-      "detection_time": 1749135838.175722,
+      "detection_time": 1751996883.21647,
       "model_name": "",
+      "parent_id": null,
+      "children": [],
+      "verification_image": null,
+      "visual_features": null,
+      "text_embedding": null
+    },
+    {
+      "id": "element_23",
+      "element_type": "label",
+      "confidence": 0.8859224598884374,
+      "bounding_box": [
+        905,
+        249,
+        961,
+        263
+      ],
+      "center": [
+        933,
+        256
+      ],
+      "text": "System UI",
+      "placeholder": "",
+      "attributes": {},
+      "is_enabled": true,
+      "is_visible": true,
+      "is_focused": false,
+      "can_click": false,
+      "can_type": false,
+      "can_scroll": false,
+      "detection_method": "ocr",
+      "detection_time": 1751996910.149833,
+      "model_name": "easyocr_optimized",
+      "parent_id": null,
+      "children": [],
+      "verification_image": null,
+      "visual_features": null,
+      "text_embedding": null
+    },
+    {
+      "id": "element_24",
+      "element_type": "button",
+      "confidence": 0.873240053653717,
+      "bounding_box": [
+        822,
+        184,
+        844,
+        192
+      ],
+      "center": [
+        833,
+        188
+      ],
+      "text": "Last",
+      "placeholder": "",
+      "attributes": {},
+      "is_enabled": true,
+      "is_visible": true,
+      "is_focused": false,
+      "can_click": true,
+      "can_type": false,
+      "can_scroll": false,
+      "detection_method": "ocr",
+      "detection_time": 1751996910.1497102,
+      "model_name": "easyocr_optimized",
+      "parent_id": null,
+      "children": [],
+      "verification_image": null,
+      "visual_features": null,
+      "text_embedding": null
+    },
+    {
+      "id": "element_25",
+      "element_type": "button",
+      "confidence": 0.8641055438323436,
+      "bounding_box": [
+        233,
+        261,
+        273,
+        275
+      ],
+      "center": [
+        253,
+        268
+      ],
+      "text": "Signal",
+      "placeholder": "",
+      "attributes": {},
+      "is_enabled": true,
+      "is_visible": true,
+      "is_focused": false,
+      "can_click": true,
+      "can_type": false,
+      "can_scroll": false,
+      "detection_method": "ocr",
+      "detection_time": 1751996910.149854,
+      "model_name": "easyocr_optimized",
+      "parent_id": null,
+      "children": [],
+      "verification_image": null,
+      "visual_features": null,
+      "text_embedding": null
+    },
+    {
+      "id": "element_26",
+      "element_type": "label",
+      "confidence": 0.860390621915371,
+      "bounding_box": [
+        33,
+        129,
+        79,
+        143
+      ],
+      "center": [
+        56,
+        136
+      ],
+      "text": "lock pid",
+      "placeholder": "",
+      "attributes": {},
+      "is_enabled": true,
+      "is_visible": true,
+      "is_focused": false,
+      "can_click": false,
+      "can_type": false,
+      "can_scroll": false,
+      "detection_method": "ocr",
+      "detection_time": 1751996910.147694,
+      "model_name": "easyocr_optimized",
+      "parent_id": null,
+      "children": [],
+      "verification_image": null,
+      "visual_features": null,
+      "text_embedding": null
+    },
+    {
+      "id": "element_27",
+      "element_type": "text_field",
+      "confidence": 0.8288210090409065,
+      "bounding_box": [
+        659,
+        249,
+        703,
+        263
+      ],
+      "center": [
+        681,
+        256
+      ],
+      "text": "INFO:ui",
+      "placeholder": "",
+      "attributes": {},
+      "is_enabled": true,
+      "is_visible": true,
+      "is_focused": false,
+      "can_click": false,
+      "can_type": true,
+      "can_scroll": false,
+      "detection_method": "ocr",
+      "detection_time": 1751996910.1498182,
+      "model_name": "easyocr_optimized",
+      "parent_id": null,
+      "children": [],
+      "verification_image": null,
+      "visual_features": null,
+      "text_embedding": null
+    },
+    {
+      "id": "element_28",
+      "element_type": "label",
+      "confidence": 0.8189955905966106,
+      "bounding_box": [
+        190,
+        216,
+        229,
+        230
+      ],
+      "center": [
+        209,
+        223
+      ],
+      "text": "lmport",
+      "placeholder": "",
+      "attributes": {},
+      "is_enabled": true,
+      "is_visible": true,
+      "is_focused": false,
+      "can_click": false,
+      "can_type": false,
+      "can_scroll": false,
+      "detection_method": "ocr",
+      "detection_time": 1751996910.1497622,
+      "model_name": "easyocr_optimized",
+      "parent_id": null,
+      "children": [],
+      "verification_image": null,
+      "visual_features": null,
+      "text_embedding": null
+    },
+    {
+      "id": "element_29",
+      "element_type": "label",
+      "confidence": 0.8169432921368012,
+      "bounding_box": [
+        191,
+        129,
+        413,
+        143
+      ],
+      "center": [
+        302,
+        136
+      ],
+      "text": "Complete SensAI System Startup Script",
+      "placeholder": "",
+      "attributes": {},
+      "is_enabled": true,
+      "is_visible": true,
+      "is_focused": false,
+      "can_click": false,
+      "can_type": false,
+      "can_scroll": false,
+      "detection_method": "ocr",
+      "detection_time": 1751996910.147703,
+      "model_name": "easyocr_optimized",
+      "parent_id": null,
+      "children": [],
+      "verification_image": null,
+      "visual_features": null,
+      "text_embedding": null
+    },
+    {
+      "id": "element_30",
+      "element_type": "text_field",
+      "confidence": 0.8030194590663969,
+      "bounding_box": [
+        1015,
+        145,
+        1183,
+        161
+      ],
+      "center": [
+        1099,
+        153
+      ],
+      "text": "required posltional argument:",
+      "placeholder": "",
+      "attributes": {},
+      "is_enabled": true,
+      "is_visible": true,
+      "is_focused": false,
+      "can_click": false,
+      "can_type": true,
+      "can_scroll": false,
+      "detection_method": "ocr",
+      "detection_time": 1751996910.1477811,
+      "model_name": "easyocr_optimized",
+      "parent_id": null,
+      "children": [],
+      "verification_image": null,
+      "visual_features": null,
+      "text_embedding": null
+    },
+    {
+      "id": "element_31",
+      "element_type": "label",
+      "confidence": 0.8007226293680816,
+      "bounding_box": [
+        785,
+        205,
+        827,
+        217
+      ],
+      "center": [
+        806,
+        211
+      ],
+      "text": "handter",
+      "placeholder": "",
+      "attributes": {},
+      "is_enabled": true,
+      "is_visible": true,
+      "is_focused": false,
+      "can_click": false,
+      "can_type": false,
+      "can_scroll": false,
+      "detection_method": "ocr",
+      "detection_time": 1751996910.149748,
+      "model_name": "easyocr_optimized",
+      "parent_id": null,
+      "children": [],
+      "verification_image": null,
+      "visual_features": null,
+      "text_embedding": null
+    },
+    {
+      "id": "element_32",
+      "element_type": "label",
+      "confidence": 0.7980460408728284,
+      "bounding_box": [
+        809,
+        239,
+        945,
+        251
+      ],
+      "center": [
+        877,
+        245
+      ],
+      "text": "handle_websocket_clienti",
+      "placeholder": "",
+      "attributes": {},
+      "is_enabled": true,
+      "is_visible": true,
+      "is_focused": false,
+      "can_click": false,
+      "can_type": false,
+      "can_scroll": false,
+      "detection_method": "ocr",
+      "detection_time": 1751996910.149793,
+      "model_name": "easyocr_optimized",
       "parent_id": null,
       "children": [],
       "verification_image": null,
@@ -1060,18 +1060,18 @@
     {
       "id": "element_33",
       "element_type": "label",
-      "confidence": 0.8815407514681677,
+      "confidence": 0.7945913830320128,
       "bounding_box": [
-        32,
-        266,
-        146,
-        280
+        493,
+        61,
+        547,
+        75
       ],
       "center": [
-        89,
-        273
+        520,
+        68
       ],
-      "text": "createReservation mjs",
+      "text": "cd RPA_A",
       "placeholder": "",
       "attributes": {},
       "is_enabled": true,
@@ -1081,7 +1081,7 @@
       "can_type": false,
       "can_scroll": false,
       "detection_method": "ocr",
-      "detection_time": 1749135844.1183832,
+      "detection_time": 1751996910.147587,
       "model_name": "easyocr_optimized",
       "parent_id": null,
       "children": [],
@@ -1091,29 +1091,29 @@
     },
     {
       "id": "element_34",
-      "element_type": "label",
-      "confidence": 0.8753970433537976,
+      "element_type": "button",
+      "confidence": 0.7813177790296707,
       "bounding_box": [
-        339,
-        101,
-        385,
-        113
+        27,
+        255,
+        127,
+        269
       ],
       "center": [
-        362,
-        107
+        77,
+        262
       ],
-      "text": "handler",
+      "text": "CHAT_INTERFACES",
       "placeholder": "",
       "attributes": {},
       "is_enabled": true,
       "is_visible": true,
       "is_focused": false,
-      "can_click": false,
+      "can_click": true,
       "can_type": false,
       "can_scroll": false,
       "detection_method": "ocr",
-      "detection_time": 1749135844.118071,
+      "detection_time": 1751996910.1498408,
       "model_name": "easyocr_optimized",
       "parent_id": null,
       "children": [],
@@ -1124,18 +1124,18 @@
     {
       "id": "element_35",
       "element_type": "label",
-      "confidence": 0.8724598686081994,
+      "confidence": 0.7804259486142326,
       "bounding_box": [
-        885,
-        345,
-        943,
-        359
+        77,
+        201,
+        127,
+        215
       ],
       "center": [
-        914,
-        352
+        102,
+        208
       ],
-      "text": "undefined",
+      "text": "server sh",
       "placeholder": "",
       "attributes": {},
       "is_enabled": true,
@@ -1145,7 +1145,7 @@
       "can_type": false,
       "can_scroll": false,
       "detection_method": "ocr",
-      "detection_time": 1749135844.118613,
+      "detection_time": 1751996910.149733,
       "model_name": "easyocr_optimized",
       "parent_id": null,
       "children": [],
@@ -1156,18 +1156,18 @@
     {
       "id": "element_36",
       "element_type": "label",
-      "confidence": 0.8642060224682305,
+      "confidence": 0.7710619717055253,
       "bounding_box": [
-        33,
-        375,
-        139,
-        389
+        963,
+        261,
+        1019,
+        275
       ],
       "center": [
-        86,
-        382
+        991,
+        268
       ],
-      "text": "felchPricingData mjs",
+      "text": "System UI",
       "placeholder": "",
       "attributes": {},
       "is_enabled": true,
@@ -1177,7 +1177,7 @@
       "can_type": false,
       "can_scroll": false,
       "detection_method": "ocr",
-      "detection_time": 1749135844.118669,
+      "detection_time": 1751996910.149875,
       "model_name": "easyocr_optimized",
       "parent_id": null,
       "children": [],
@@ -1188,18 +1188,18 @@
     {
       "id": "element_37",
       "element_type": "label",
-      "confidence": 0.8588830016197914,
+      "confidence": 0.7339367181885196,
       "bounding_box": [
-        33,
-        161,
-        95,
-        173
+        917,
+        261,
+        959,
+        273
       ],
       "center": [
-        64,
-        167
+        938,
+        267
       ],
-      "text": "contact mjs",
+      "text": "UI wilh",
       "placeholder": "",
       "attributes": {},
       "is_enabled": true,
@@ -1209,7 +1209,7 @@
       "can_type": false,
       "can_scroll": false,
       "detection_method": "ocr",
-      "detection_time": 1749135844.118186,
+      "detection_time": 1751996910.149868,
       "model_name": "easyocr_optimized",
       "parent_id": null,
       "children": [],
@@ -1219,29 +1219,29 @@
     },
     {
       "id": "element_38",
-      "element_type": "label",
-      "confidence": 0.8498393693268143,
+      "element_type": "text_field",
+      "confidence": 0.7331308417644427,
       "bounding_box": [
-        475,
-        213,
-        561,
-        227
+        27,
+        273,
+        127,
+        287
       ],
       "center": [
-        518,
-        220
+        77,
+        280
       ],
-      "text": "Default to USD",
+      "text": "COMPLETE_SYSTE:",
       "placeholder": "",
       "attributes": {},
       "is_enabled": true,
       "is_visible": true,
       "is_focused": false,
       "can_click": false,
-      "can_type": false,
+      "can_type": true,
       "can_scroll": false,
       "detection_method": "ocr",
-      "detection_time": 1749135844.118284,
+      "detection_time": 1751996910.149884,
       "model_name": "easyocr_optimized",
       "parent_id": null,
       "children": [],
@@ -1252,18 +1252,18 @@
     {
       "id": "element_39",
       "element_type": "text_field",
-      "confidence": 0.8486721868035711,
+      "confidence": 0.7286166921430364,
       "bounding_box": [
-        401,
-        331,
-        451,
-        343
+        773,
+        260,
+        891,
+        273
       ],
       "center": [
-        426,
-        337
+        832,
+        266
       ],
-      "text": "API URL:",
+      "text": "craper: Successfully",
       "placeholder": "",
       "attributes": {},
       "is_enabled": true,
@@ -1273,7 +1273,7 @@
       "can_type": true,
       "can_scroll": false,
       "detection_method": "ocr",
-      "detection_time": 1749135844.118547,
+      "detection_time": 1751996910.149861,
       "model_name": "easyocr_optimized",
       "parent_id": null,
       "children": [],
@@ -1283,29 +1283,29 @@
     },
     {
       "id": "element_40",
-      "element_type": "text_field",
-      "confidence": 0.8482827538986212,
+      "element_type": "label",
+      "confidence": 0.7141804504861948,
       "bounding_box": [
-        531,
-        35,
-        623,
-        47
+        721,
+        111,
+        841,
+        125
       ],
       "center": [
-        577,
-        41
+        781,
+        118
       ],
-      "text": "chargePaymentmjs",
+      "text": "logs/uizhtml backend",
       "placeholder": "",
       "attributes": {},
       "is_enabled": true,
       "is_visible": true,
       "is_focused": false,
       "can_click": false,
-      "can_type": true,
+      "can_type": false,
       "can_scroll": false,
       "detection_method": "ocr",
-      "detection_time": 1749135844.117884,
+      "detection_time": 1751996910.147685,
       "model_name": "easyocr_optimized",
       "parent_id": null,
       "children": [],
@@ -1315,29 +1315,29 @@
     },
     {
       "id": "element_41",
-      "element_type": "text_field",
-      "confidence": 0.8400416072572857,
+      "element_type": "label",
+      "confidence": 0.713788211740037,
       "bounding_box": [
-        32,
-        249,
-        169,
-        263
+        717,
+        215,
+        855,
+        227
       ],
       "center": [
-        100,
-        256
+        786,
+        221
       ],
-      "text": "createPaymentMethod,mjs",
+      "text": "self.handler(connection}",
       "placeholder": "",
       "attributes": {},
       "is_enabled": true,
       "is_visible": true,
       "is_focused": false,
       "can_click": false,
-      "can_type": true,
+      "can_type": false,
       "can_scroll": false,
       "detection_method": "ocr",
-      "detection_time": 1749135844.1183648,
+      "detection_time": 1751996910.149775,
       "model_name": "easyocr_optimized",
       "parent_id": null,
       "children": [],
@@ -1348,18 +1348,18 @@
     {
       "id": "element_42",
       "element_type": "label",
-      "confidence": 0.8218183404814502,
+      "confidence": 0.7102787289965076,
       "bounding_box": [
-        435,
-        99,
-        477,
-        113
+        327,
+        143,
+        473,
+        157
       ],
       "center": [
-        456,
-        106
+        400,
+        150
       ],
-      "text": "(event)",
+      "text": "RPA_AVEN, AIAYER Backend",
       "placeholder": "",
       "attributes": {},
       "is_enabled": true,
@@ -1369,7 +1369,7 @@
       "can_type": false,
       "can_scroll": false,
       "detection_method": "ocr",
-      "detection_time": 1749135844.118078,
+      "detection_time": 1751996910.147735,
       "model_name": "easyocr_optimized",
       "parent_id": null,
       "children": [],
@@ -1379,29 +1379,29 @@
     },
     {
       "id": "element_43",
-      "element_type": "text_field",
-      "confidence": 0.806739055482914,
+      "element_type": "label",
+      "confidence": 0.6982429375000396,
       "bounding_box": [
-        665,
+        235,
         61,
-        765,
+        395,
         75
       ],
       "center": [
-        715,
+        315,
         68
       ],
-      "text": "PaymentStep tsx M",
+      "text": "Aiayer && python integrated_wS",
       "placeholder": "",
       "attributes": {},
       "is_enabled": true,
       "is_visible": true,
       "is_focused": false,
       "can_click": false,
-      "can_type": true,
+      "can_type": false,
       "can_scroll": false,
       "detection_method": "ocr",
-      "detection_time": 1749135844.117988,
+      "detection_time": 1751996910.147578,
       "model_name": "easyocr_optimized",
       "parent_id": null,
       "children": [],
@@ -1411,29 +1411,29 @@
     },
     {
       "id": "element_44",
-      "element_type": "button",
-      "confidence": 0.7850078992992875,
+      "element_type": "label",
+      "confidence": 0.6673163047474452,
       "bounding_box": [
-        567,
-        345,
-        655,
-        359
+        169,
+        85,
+        247,
+        99
       ],
       "center": [
-        611,
-        352
+        208,
+        92
       ],
-      "text": "VITE_API_TOKEN",
+      "text": "start_complete",
       "placeholder": "",
       "attributes": {},
       "is_enabled": true,
       "is_visible": true,
       "is_focused": false,
-      "can_click": true,
+      "can_click": false,
       "can_type": false,
       "can_scroll": false,
       "detection_method": "ocr",
-      "detection_time": 1749135844.118597,
+      "detection_time": 1751996910.147637,
       "model_name": "easyocr_optimized",
       "parent_id": null,
       "children": [],
@@ -1444,18 +1444,18 @@
     {
       "id": "element_45",
       "element_type": "label",
-      "confidence": 0.7763669446487125,
+      "confidence": 0.6656903689785455,
       "bounding_box": [
-        27,
-        103,
-        115,
-        115
+        707,
+        193,
+        839,
+        205
       ],
       "center": [
-        71,
-        109
+        773,
+        199
       ],
-      "text": "netlify ! functions",
+      "text": "{Users/ segevbin Desktop",
       "placeholder": "",
       "attributes": {},
       "is_enabled": true,
@@ -1465,7 +1465,7 @@
       "can_type": false,
       "can_scroll": false,
       "detection_method": "ocr",
-      "detection_time": 1749135844.118048,
+      "detection_time": 1751996910.149724,
       "model_name": "easyocr_optimized",
       "parent_id": null,
       "children": [],
@@ -1476,18 +1476,18 @@
     {
       "id": "element_46",
       "element_type": "label",
-      "confidence": 0.748329340551244,
+      "confidence": 0.6373876929283142,
       "bounding_box": [
-        453,
-        85,
-        511,
-        97
+        856,
+        160,
+        878,
+        168
       ],
       "center": [
-        482,
-        91
+        867,
+        164
       ],
-      "text": "[elhandler",
+      "text": "opem",
       "placeholder": "",
       "attributes": {},
       "is_enabled": true,
@@ -1497,7 +1497,7 @@
       "can_type": false,
       "can_scroll": false,
       "detection_method": "ocr",
-      "detection_time": 1749135844.118031,
+      "detection_time": 1751996910.149599,
       "model_name": "easyocr_optimized",
       "parent_id": null,
       "children": [],
@@ -1508,18 +1508,18 @@
     {
       "id": "element_47",
       "element_type": "text_field",
-      "confidence": 0.7481651027231915,
+      "confidence": 0.6348744207567445,
       "bounding_box": [
-        357,
-        215,
-        413,
-        227
+        88,
+        288,
+        127,
+        305
       ],
       "center": [
-        385,
-        221
+        107,
+        296
       ],
-      "text": "currency:",
+      "text": "SYSTE:",
       "placeholder": "",
       "attributes": {},
       "is_enabled": true,
@@ -1529,7 +1529,7 @@
       "can_type": true,
       "can_scroll": false,
       "detection_method": "ocr",
-      "detection_time": 1749135844.1182232,
+      "detection_time": 1751996910.149973,
       "model_name": "easyocr_optimized",
       "parent_id": null,
       "children": [],
@@ -1539,83 +1539,19 @@
     },
     {
       "id": "element_48",
-      "element_type": "label",
-      "confidence": 0.7465620922520901,
-      "bounding_box": [
-        346,
-        142,
-        404,
-        150
-      ],
-      "center": [
-        375,
-        146
-      ],
-      "text": "satermount",
-      "placeholder": "",
-      "attributes": {},
-      "is_enabled": true,
-      "is_visible": true,
-      "is_focused": false,
-      "can_click": false,
-      "can_type": false,
-      "can_scroll": false,
-      "detection_method": "ocr",
-      "detection_time": 1749135844.118146,
-      "model_name": "easyocr_optimized",
-      "parent_id": null,
-      "children": [],
-      "verification_image": null,
-      "visual_features": null,
-      "text_embedding": null
-    },
-    {
-      "id": "element_49",
-      "element_type": "label",
-      "confidence": 0.7454781445365302,
-      "bounding_box": [
-        33,
-        285,
-        177,
-        299
-      ],
-      "center": [
-        105,
-        292
-      ],
-      "text": "createReservationQuote,mjs",
-      "placeholder": "",
-      "attributes": {},
-      "is_enabled": true,
-      "is_visible": true,
-      "is_focused": false,
-      "can_click": false,
-      "can_type": false,
-      "can_scroll": false,
-      "detection_method": "ocr",
-      "detection_time": 1749135844.1183932,
-      "model_name": "easyocr_optimized",
-      "parent_id": null,
-      "children": [],
-      "verification_image": null,
-      "visual_features": null,
-      "text_embedding": null
-    },
-    {
-      "id": "element_50",
       "element_type": "text_field",
-      "confidence": 0.7448488954368058,
+      "confidence": 0.6343550075153667,
       "bounding_box": [
-        407,
-        61,
-        507,
-        75
+        659,
+        283,
+        703,
+        297
       ],
       "center": [
-        457,
-        68
+        681,
+        290
       ],
-      "text": "chargePayment mis",
+      "text": "INFO:uI",
       "placeholder": "",
       "attributes": {},
       "is_enabled": true,
@@ -1625,7 +1561,71 @@
       "can_type": true,
       "can_scroll": false,
       "detection_method": "ocr",
-      "detection_time": 1749135844.1179671,
+      "detection_time": 1751996910.149935,
+      "model_name": "easyocr_optimized",
+      "parent_id": null,
+      "children": [],
+      "verification_image": null,
+      "visual_features": null,
+      "text_embedding": null
+    },
+    {
+      "id": "element_49",
+      "element_type": "text_field",
+      "confidence": 0.6294277219967539,
+      "bounding_box": [
+        659,
+        169,
+        753,
+        183
+      ],
+      "center": [
+        706,
+        176
+      ],
+      "text": "EPROR:websockets",
+      "placeholder": "",
+      "attributes": {},
+      "is_enabled": true,
+      "is_visible": true,
+      "is_focused": false,
+      "can_click": false,
+      "can_type": true,
+      "can_scroll": false,
+      "detection_method": "ocr",
+      "detection_time": 1751996910.1496289,
+      "model_name": "easyocr_optimized",
+      "parent_id": null,
+      "children": [],
+      "verification_image": null,
+      "visual_features": null,
+      "text_embedding": null
+    },
+    {
+      "id": "element_50",
+      "element_type": "button",
+      "confidence": 0.6168788075447083,
+      "bounding_box": [
+        874,
+        286,
+        896,
+        294
+      ],
+      "center": [
+        885,
+        290
+      ],
+      "text": "Lhud",
+      "placeholder": "",
+      "attributes": {},
+      "is_enabled": true,
+      "is_visible": true,
+      "is_focused": false,
+      "can_click": true,
+      "can_type": false,
+      "can_scroll": false,
+      "detection_method": "ocr",
+      "detection_time": 1751996910.1499531,
       "model_name": "easyocr_optimized",
       "parent_id": null,
       "children": [],
@@ -1636,18 +1636,18 @@
     {
       "id": "element_51",
       "element_type": "label",
-      "confidence": 0.739522656833297,
+      "confidence": 0.615124092413773,
       "bounding_box": [
-        339,
-        345,
-        377,
-        359
+        776,
+        286,
+        816,
+        294
       ],
       "center": [
-        358,
-        352
+        796,
+        290
       ],
-      "text": "le. lug",
+      "text": "scraper",
       "placeholder": "",
       "attributes": {},
       "is_enabled": true,
@@ -1657,7 +1657,7 @@
       "can_type": false,
       "can_scroll": false,
       "detection_method": "ocr",
-      "detection_time": 1749135844.1185842,
+      "detection_time": 1751996910.149944,
       "model_name": "easyocr_optimized",
       "parent_id": null,
       "children": [],
@@ -1668,18 +1668,18 @@
     {
       "id": "element_52",
       "element_type": "label",
-      "confidence": 0.7375324844786761,
+      "confidence": 0.6138630221686354,
       "bounding_box": [
-        327,
-        125,
-        423,
-        139
+        287,
+        85,
+        341,
+        99
       ],
       "center": [
-        375,
-        132
+        314,
+        92
       ],
-      "text": "Ensure amount 15",
+      "text": "system py",
       "placeholder": "",
       "attributes": {},
       "is_enabled": true,
@@ -1689,7 +1689,7 @@
       "can_type": false,
       "can_scroll": false,
       "detection_method": "ocr",
-      "detection_time": 1749135844.1181078,
+      "detection_time": 1751996910.1476521,
       "model_name": "easyocr_optimized",
       "parent_id": null,
       "children": [],
@@ -1700,18 +1700,18 @@
     {
       "id": "element_53",
       "element_type": "label",
-      "confidence": 0.7246094327629896,
+      "confidence": 0.6023377647882915,
       "bounding_box": [
-        667,
-        345,
-        867,
-        359
+        190,
+        260,
+        229,
+        274
       ],
       "center": [
-        767,
-        352
+        209,
+        267
       ],
-      "text": "process env.VITE_API_TOKEN.length",
+      "text": "lmport",
       "placeholder": "",
       "attributes": {},
       "is_enabled": true,
@@ -1721,7 +1721,7 @@
       "can_type": false,
       "can_scroll": false,
       "detection_method": "ocr",
-      "detection_time": 1749135844.1186051,
+      "detection_time": 1751996910.149848,
       "model_name": "easyocr_optimized",
       "parent_id": null,
       "children": [],
@@ -1731,29 +1731,29 @@
     },
     {
       "id": "element_54",
-      "element_type": "text_field",
-      "confidence": 0.7234242985204462,
+      "element_type": "button",
+      "confidence": 0.5890485979700376,
       "bounding_box": [
-        343,
-        85,
-        443,
-        99
+        669,
+        35,
+        705,
+        47
       ],
       "center": [
-        393,
-        92
+        687,
+        41
       ],
-      "text": "chargePayment mjs",
+      "text": "Sansal",
       "placeholder": "",
       "attributes": {},
       "is_enabled": true,
       "is_visible": true,
       "is_focused": false,
-      "can_click": false,
-      "can_type": true,
+      "can_click": true,
+      "can_type": false,
       "can_scroll": false,
       "detection_method": "ocr",
-      "detection_time": 1749135844.118023,
+      "detection_time": 1751996910.147559,
       "model_name": "easyocr_optimized",
       "parent_id": null,
       "children": [],
@@ -1763,29 +1763,29 @@
     },
     {
       "id": "element_55",
-      "element_type": "label",
-      "confidence": 0.7219920428585913,
+      "element_type": "button",
+      "confidence": 0.57194869606403,
       "bounding_box": [
-        503,
-        287,
-        559,
-        301
+        860,
+        274,
+        900,
+        282
       ],
       "center": [
-        531,
-        294
+        880,
+        278
       ],
-      "text": "{{amount}",
+      "text": "Methnde",
       "placeholder": "",
       "attributes": {},
       "is_enabled": true,
       "is_visible": true,
       "is_focused": false,
-      "can_click": false,
+      "can_click": true,
       "can_type": false,
       "can_scroll": false,
       "detection_method": "ocr",
-      "detection_time": 1749135844.118436,
+      "detection_time": 1751996910.149912,
       "model_name": "easyocr_optimized",
       "parent_id": null,
       "children": [],
@@ -1795,51 +1795,19 @@
     },
     {
       "id": "element_56",
-      "element_type": "text_field",
-      "confidence": 0.6961990031700985,
-      "bounding_box": [
-        309,
-        169,
-        425,
-        183
-      ],
-      "center": [
-        367,
-        176
-      ],
-      "text": "const vlPaymentBody",
-      "placeholder": "",
-      "attributes": {},
-      "is_enabled": true,
-      "is_visible": true,
-      "is_focused": false,
-      "can_click": false,
-      "can_type": true,
-      "can_scroll": false,
-      "detection_method": "ocr",
-      "detection_time": 1749135844.118195,
-      "model_name": "easyocr_optimized",
-      "parent_id": null,
-      "children": [],
-      "verification_image": null,
-      "visual_features": null,
-      "text_embedding": null
-    },
-    {
-      "id": "element_57",
       "element_type": "label",
-      "confidence": 0.6879171206281509,
+      "confidence": 0.552258114828505,
       "bounding_box": [
-        509,
-        125,
-        733,
-        139
+        1016,
+        240,
+        1062,
+        248
       ],
       "center": [
-        621,
-        132
+        1039,
+        244
       ],
-      "text": "avoid \"amount must be not zero\" error",
+      "text": "required",
       "placeholder": "",
       "attributes": {},
       "is_enabled": true,
@@ -1849,7 +1817,39 @@
       "can_type": false,
       "can_scroll": false,
       "detection_method": "ocr",
-      "detection_time": 1749135844.118125,
+      "detection_time": 1751996910.1497998,
+      "model_name": "easyocr_optimized",
+      "parent_id": null,
+      "children": [],
+      "verification_image": null,
+      "visual_features": null,
+      "text_embedding": null
+    },
+    {
+      "id": "element_57",
+      "element_type": "text_field",
+      "confidence": 0.551990739579035,
+      "bounding_box": [
+        705,
+        251,
+        897,
+        263
+      ],
+      "center": [
+        801,
+        257
+      ],
+      "text": "scraper mac_scraper: ITying method",
+      "placeholder": "",
+      "attributes": {},
+      "is_enabled": true,
+      "is_visible": true,
+      "is_focused": false,
+      "can_click": false,
+      "can_type": true,
+      "can_scroll": false,
+      "detection_method": "ocr",
+      "detection_time": 1751996910.149825,
       "model_name": "easyocr_optimized",
       "parent_id": null,
       "children": [],
@@ -1860,18 +1860,18 @@
     {
       "id": "element_58",
       "element_type": "label",
-      "confidence": 0.6876440060115259,
+      "confidence": 0.5328479769894112,
       "bounding_box": [
-        367,
-        111,
-        413,
-        125
+        33,
+        149,
+        77,
+        161
       ],
       "center": [
-        390,
-        118
+        55,
+        155
       ],
-      "text": "payload",
+      "text": "go,wrork",
       "placeholder": "",
       "attributes": {},
       "is_enabled": true,
@@ -1881,7 +1881,7 @@
       "can_type": false,
       "can_scroll": false,
       "detection_method": "ocr",
-      "detection_time": 1749135844.1180851,
+      "detection_time": 1751996910.1477098,
       "model_name": "easyocr_optimized",
       "parent_id": null,
       "children": [],
@@ -1892,18 +1892,18 @@
     {
       "id": "element_59",
       "element_type": "label",
-      "confidence": 0.6772882901033341,
+      "confidence": 0.531792970153121,
       "bounding_box": [
         33,
-        339,
-        149,
-        353
+        183,
+        99,
+        197
       ],
       "center": [
-        91,
-        346
+        66,
+        190
       ],
-      "text": "fetchBaakedDates_mjs",
+      "text": "README.md",
       "placeholder": "",
       "attributes": {},
       "is_enabled": true,
@@ -1913,7 +1913,7 @@
       "can_type": false,
       "can_scroll": false,
       "detection_method": "ocr",
-      "detection_time": 1749135844.118562,
+      "detection_time": 1751996910.149703,
       "model_name": "easyocr_optimized",
       "parent_id": null,
       "children": [],
@@ -1924,18 +1924,18 @@
     {
       "id": "element_60",
       "element_type": "label",
-      "confidence": 0.6740179518854786,
+      "confidence": 0.5035019484994917,
       "bounding_box": [
-        449,
-        317,
-        495,
-        331
+        55,
+        219,
+        105,
+        233
       ],
       "center": [
-        472,
-        324
+        80,
+        226
       ],
-      "text": "paynent",
+      "text": "server sh",
       "placeholder": "",
       "attributes": {},
       "is_enabled": true,
@@ -1945,7 +1945,7 @@
       "can_type": false,
       "can_scroll": false,
       "detection_method": "ocr",
-      "detection_time": 1749135844.118499,
+      "detection_time": 1751996910.1497548,
       "model_name": "easyocr_optimized",
       "parent_id": null,
       "children": [],
@@ -1956,18 +1956,18 @@
     {
       "id": "element_61",
       "element_type": "label",
-      "confidence": 0.6472816629802803,
+      "confidence": 0.5031078551568108,
       "bounding_box": [
-        310,
-        318,
-        352,
-        326
+        522,
+        34,
+        569,
+        48
       ],
       "center": [
-        331,
-        322
+        545,
+        41
       ],
-      "text": "console",
+      "text": "_complete",
       "placeholder": "",
       "attributes": {},
       "is_enabled": true,
@@ -1977,7 +1977,7 @@
       "can_type": false,
       "can_scroll": false,
       "detection_method": "ocr",
-      "detection_time": 1749135844.118486,
+      "detection_time": 1751996910.147542,
       "model_name": "easyocr_optimized",
       "parent_id": null,
       "children": [],
@@ -1987,19 +1987,19 @@
     },
     {
       "id": "element_62",
-      "element_type": "label",
-      "confidence": 0.6460905062504253,
+      "element_type": "class_62",
+      "confidence": 0.48878031969070435,
       "bounding_box": [
-        496,
-        348,
-        538,
-        356
+        18,
+        28,
+        2940,
+        1891
       ],
       "center": [
-        517,
-        352
+        1479,
+        959
       ],
-      "text": "process",
+      "text": "start_complete_sensai_system py SensAI ver py cd Aiayer && python integrated_ws_server py cd RPA_A' Discussing Aia  Error with Deep dive into AIAYER 0 0 X SENSAI start_complete_sensai_system py directly: RPA_AVEN 1 #!Jusrlbingenv python3 Sei vive 2 WI tail -20 logs/uizhtml_backend . Output lock pid 3 Complete SensAI System Startup Script MMMA go.work 4 Starts all components: RPA_AVEN , AIAYER Backend, Neural UI Deti TypeError: WorkingBackend. handle_websocket_client() missing 1 required positional argument: 5 INFO:websockets. server:connection open go.work sum ERROR:websockets server: connection handler failed 6 READMEmd Traceback most recent call last): 7 import 05 File /Users/segevbin/Desktop/SensAI/Aiayer/. venv/lib/python3.13/site-packages/websockets/ S run_rpa_server sh 8 import sys y\" , line 376, in conn_handler $ run_server.sh 9 import time await self.handler(connection) Clnlnlllllll web 10 import asyncio TypeError: WorkingBackend. handle_websocket client() missing 1 required positional argument: 11 import subprocess INFO:ui_scraper.mac_scraper:Trying method: System UI CHAT_INTERFACES_ 12 import signal INFO:ui_scraper.mac_scraper:Successfully got UI with System UI COMPLETE_SYSTE: 13 import threading INFO:ui_scraper.mac _ scraper:Trying method: Active Application INFO:ui_scraper.mac_scraper:Trying method: Finder App COMPLETE_SYSTE 14 import json INFO ui_scraper.mac_scraper:Successfully got UI with Finder App demo_universal_sys 15 import logging INFO:ui_scraper.mac_ scraper: Trying method: Safari App 16 from pathlib import Path INFO:ui_scraper.mac_scraper:Successfully got UI with Safari App FINAL_SUCCESS_S_ INFO:ui_scraper mac scraper:Trying method: Terminal App 17 from typing import Dict, List, Optional INFO:ui_scraper.mac_ scraper:Successfully got UI with Terminal App optimize_system py 18 import requests venvsegevbin@Segevs-MacBook-Air SenSAI % performance_monit: 19 import websockets quick_demo py 20 1/1 Reject Accept 72 /72 Ask every time Move to background s run_rpa_server sh 21 # Configure 899+ 22 Innninn_hacicConfin can see the issuel The UIZHTML Backend has the same WebSocket handler problem it's missing the pat SENSAI_STARTUP Problems 24 Terminal cd Aiayer && python uifchat_serverpy Tv 0 X h parameter: Let me fix this: start_chat_interface._ Starting AIAYER Backend Read working_backend py start_complete sen:_ [INFO] Starting AIAYER Complete System. start_complete_syst: [INFO] AIAYER Complete System started successfully can see that the WebSocket handler already has the path parameter! The issue might be that the S start_complete [SFo]tSrgrsengASensaI overiay _ UIZHTML backend is actually running but the port check is failing: Let me check if the process is actually [INFO] Starting SenSAI [INFO] SensAI Overlay started successfully running and if the port is bound: start_real_working_ All SensAI components started successfully! $ start_sensai sh SENSAI SYSTEM STATUS ps aux grep working_backend grep ~V grep start_simple_compl__ RPA AVEN Server (Port 16901) RUNNING Ask every time Skip &a Run % < start_universal_auto_ Memory System (Port 8765) RUNNING LLM Service (Port 8767) STOPPED start_web_demo py Neural UI Detector (Port 8768) STOPPED start working_comp_ AIAYER Complete System RUNNING SensAI Overlay (Port 1421) RUNNING test_everything py Access URLS: test_input_controller RPA AVEN API: http://localhost: 16901 Waiting for approval: Stop 0#& Run #< test_macos_app_lau_ SenSAI Overlay: http://localhost:1421 AIAYER Complete System: Running (no web interface) Add Context NOTEPADS Emergency Controls: Plan, search; build anything OUTLINE Run: Istart_sensai.sh stop Stop all components TIMELINE Run: Istart_sensai.sh status Show system Status Check logs: /Users/segevbin/Desktop/SensAI/Logs DO Agent #1 Auto GO venvsegevbin@Segevs-MacBook-Air SensAI % Start a new chat for better results. New Chat PACKAGE OUTLINE 00 F En nn  L Isres log syst",
       "placeholder": "",
       "attributes": {},
       "is_enabled": true,
@@ -2008,9 +2008,9 @@
       "can_click": false,
       "can_type": false,
       "can_scroll": false,
-      "detection_method": "ocr",
-      "detection_time": 1749135844.118594,
-      "model_name": "easyocr_optimized",
+      "detection_method": "yolo",
+      "detection_time": 1751996883.187762,
+      "model_name": "yolov8",
       "parent_id": null,
       "children": [],
       "verification_image": null,
@@ -2019,29 +2019,29 @@
     },
     {
       "id": "element_63",
-      "element_type": "label",
-      "confidence": 0.6350577216979673,
+      "element_type": "button",
+      "confidence": 0.48679002677746086,
       "bounding_box": [
-        561,
-        315,
-        647,
-        329
+        498,
+        38,
+        522,
+        44
       ],
       "center": [
-        604,
-        322
+        510,
+        41
       ],
-      "text": "Guesty V1 API.",
+      "text": "Sam",
       "placeholder": "",
       "attributes": {},
       "is_enabled": true,
       "is_visible": true,
       "is_focused": false,
-      "can_click": false,
+      "can_click": true,
       "can_type": false,
       "can_scroll": false,
       "detection_method": "ocr",
-      "detection_time": 1749135844.118515,
+      "detection_time": 1751996910.143209,
       "model_name": "easyocr_optimized",
       "parent_id": null,
       "children": [],
@@ -2052,18 +2052,18 @@
     {
       "id": "element_64",
       "element_type": "label",
-      "confidence": 0.6180734872933836,
+      "confidence": 0.4776272044947182,
       "bounding_box": [
-        310,
-        348,
-        340,
-        356
+        752,
+        160,
+        850,
+        168
       ],
       "center": [
-        325,
-        352
+        801,
+        164
       ],
-      "text": "consc",
+      "text": "senvericonnection",
       "placeholder": "",
       "attributes": {},
       "is_enabled": true,
@@ -2073,7 +2073,7 @@
       "can_type": false,
       "can_scroll": false,
       "detection_method": "ocr",
-      "detection_time": 1749135844.118575,
+      "detection_time": 1751996910.147799,
       "model_name": "easyocr_optimized",
       "parent_id": null,
       "children": [],
@@ -2083,29 +2083,29 @@
     },
     {
       "id": "element_65",
-      "element_type": "button",
-      "confidence": 0.602144686610364,
+      "element_type": "text_field",
+      "confidence": 0.46706583808795643,
       "bounding_box": [
-        422,
-        142,
-        458,
-        150
+        661,
+        146,
+        806,
+        160
       ],
       "center": [
-        440,
-        146
+        733,
+        153
       ],
-      "text": "Amount",
+      "text": "TypeError: horklngBackend",
       "placeholder": "",
       "attributes": {},
       "is_enabled": true,
       "is_visible": true,
       "is_focused": false,
-      "can_click": true,
-      "can_type": false,
+      "can_click": false,
+      "can_type": true,
       "can_scroll": false,
       "detection_method": "ocr",
-      "detection_time": 1749135844.1181529,
+      "detection_time": 1751996910.147756,
       "model_name": "easyocr_optimized",
       "parent_id": null,
       "children": [],
@@ -2116,18 +2116,18 @@
     {
       "id": "element_66",
       "element_type": "label",
-      "confidence": 0.5995641922298987,
+      "confidence": 0.45259128725511355,
       "bounding_box": [
-        359,
-        287,
-        385,
-        301
+        683,
+        203,
+        733,
+        217
       ],
       "center": [
-        372,
-        294
+        708,
+        210
       ],
-      "text": "log(`",
+      "text": "line 376_",
       "placeholder": "",
       "attributes": {},
       "is_enabled": true,
@@ -2137,7 +2137,7 @@
       "can_type": false,
       "can_scroll": false,
       "detection_method": "ocr",
-      "detection_time": 1749135844.11842,
+      "detection_time": 1751996910.14974,
       "model_name": "easyocr_optimized",
       "parent_id": null,
       "children": [],
@@ -2147,51 +2147,19 @@
     },
     {
       "id": "element_67",
-      "element_type": "text_field",
-      "confidence": 0.595116677640135,
-      "bounding_box": [
-        357,
-        230,
-        439,
-        238
-      ],
-      "center": [
-        398,
-        234
-      ],
-      "text": "naymenthethnd:",
-      "placeholder": "",
-      "attributes": {},
-      "is_enabled": true,
-      "is_visible": true,
-      "is_focused": false,
-      "can_click": false,
-      "can_type": true,
-      "can_scroll": false,
-      "detection_method": "ocr",
-      "detection_time": 1749135844.118328,
-      "model_name": "easyocr_optimized",
-      "parent_id": null,
-      "children": [],
-      "verification_image": null,
-      "visual_features": null,
-      "text_embedding": null
-    },
-    {
-      "id": "element_68",
       "element_type": "label",
-      "confidence": 0.5920846290769879,
+      "confidence": 0.44471911520110224,
       "bounding_box": [
-        33,
-        321,
-        157,
-        335
+        258,
+        146,
+        322,
+        154
       ],
       "center": [
-        95,
-        328
+        290,
+        150
       ],
-      "text": "createReservationv3.mjs",
+      "text": "comconents;",
       "placeholder": "",
       "attributes": {},
       "is_enabled": true,
@@ -2201,7 +2169,39 @@
       "can_type": false,
       "can_scroll": false,
       "detection_method": "ocr",
-      "detection_time": 1749135844.118521,
+      "detection_time": 1751996910.147726,
+      "model_name": "easyocr_optimized",
+      "parent_id": null,
+      "children": [],
+      "verification_image": null,
+      "visual_features": null,
+      "text_embedding": null
+    },
+    {
+      "id": "element_68",
+      "element_type": "button",
+      "confidence": 0.41868044614260275,
+      "bounding_box": [
+        774,
+        274,
+        816,
+        282
+      ],
+      "center": [
+        795,
+        278
+      ],
+      "text": "Sctader",
+      "placeholder": "",
+      "attributes": {},
+      "is_enabled": true,
+      "is_visible": true,
+      "is_focused": false,
+      "can_click": true,
+      "can_type": false,
+      "can_scroll": false,
+      "detection_method": "ocr",
+      "detection_time": 1751996910.149899,
       "model_name": "easyocr_optimized",
       "parent_id": null,
       "children": [],
@@ -2212,18 +2212,18 @@
     {
       "id": "element_69",
       "element_type": "label",
-      "confidence": 0.5496322547726293,
+      "confidence": 0.4135514960050872,
       "bounding_box": [
-        33,
-        393,
-        171,
-        407
+        660,
+        160,
+        746,
+        168
       ],
       "center": [
-        102,
-        400
+        703,
+        164
       ],
-      "text": "generaledPdlAndEmall mjs",
+      "text": "nfupwebsockets",
       "placeholder": "",
       "attributes": {},
       "is_enabled": true,
@@ -2233,7 +2233,7 @@
       "can_type": false,
       "can_scroll": false,
       "detection_method": "ocr",
-      "detection_time": 1749135844.118687,
+      "detection_time": 1751996910.147789,
       "model_name": "easyocr_optimized",
       "parent_id": null,
       "children": [],
@@ -2243,51 +2243,19 @@
     },
     {
       "id": "element_70",
-      "element_type": "text_field",
-      "confidence": 0.5459431441783779,
-      "bounding_box": [
-        473,
-        329,
-        804,
-        343
-      ],
-      "center": [
-        638,
-        336
-      ],
-      "text": "5{GUESTY_API_URL}/reservaticns{S{reservationId}/payments",
-      "placeholder": "",
-      "attributes": {},
-      "is_enabled": true,
-      "is_visible": true,
-      "is_focused": false,
-      "can_click": false,
-      "can_type": true,
-      "can_scroll": false,
-      "detection_method": "ocr",
-      "detection_time": 1749135844.1185548,
-      "model_name": "easyocr_optimized",
-      "parent_id": null,
-      "children": [],
-      "verification_image": null,
-      "visual_features": null,
-      "text_embedding": null
-    },
-    {
-      "id": "element_71",
       "element_type": "button",
-      "confidence": 0.5437041825567324,
+      "confidence": 0.41175432865806694,
       "bounding_box": [
-        420,
-        362,
-        462,
-        370
+        722,
+        239,
+        806,
+        251
       ],
       "center": [
-        441,
-        366
+        764,
+        245
       ],
-      "text": "Pavment",
+      "text": "WlorkingBackend",
       "placeholder": "",
       "attributes": {},
       "is_enabled": true,
@@ -2297,7 +2265,39 @@
       "can_type": false,
       "can_scroll": false,
       "detection_method": "ocr",
-      "detection_time": 1749135844.118648,
+      "detection_time": 1751996910.149786,
+      "model_name": "easyocr_optimized",
+      "parent_id": null,
+      "children": [],
+      "verification_image": null,
+      "visual_features": null,
+      "text_embedding": null
+    },
+    {
+      "id": "element_71",
+      "element_type": "label",
+      "confidence": 0.41168222628188006,
+      "bounding_box": [
+        192,
+        292,
+        228,
+        300
+      ],
+      "center": [
+        210,
+        296
+      ],
+      "text": "moort",
+      "placeholder": "",
+      "attributes": {},
+      "is_enabled": true,
+      "is_visible": true,
+      "is_focused": false,
+      "can_click": false,
+      "can_type": false,
+      "can_scroll": false,
+      "detection_method": "ocr",
+      "detection_time": 1751996910.1499908,
       "model_name": "easyocr_optimized",
       "parent_id": null,
       "children": [],
@@ -2308,18 +2308,18 @@
     {
       "id": "element_72",
       "element_type": "label",
-      "confidence": 0.5429002693967658,
+      "confidence": 0.4114598773016763,
       "bounding_box": [
-        643,
-        287,
-        723,
-        301
+        33,
+        167,
+        99,
+        181
       ],
       "center": [
-        683,
-        294
+        66,
+        174
       ],
-      "text": "S{safekmount}",
+      "text": "go,wrork,sum",
       "placeholder": "",
       "attributes": {},
       "is_enabled": true,
@@ -2329,7 +2329,7 @@
       "can_type": false,
       "can_scroll": false,
       "detection_method": "ocr",
-      "detection_time": 1749135844.118452,
+      "detection_time": 1751996910.1496189,
       "model_name": "easyocr_optimized",
       "parent_id": null,
       "children": [],
@@ -2340,18 +2340,18 @@
     {
       "id": "element_73",
       "element_type": "label",
-      "confidence": 0.521346832375217,
+      "confidence": 0.3963979371732706,
       "bounding_box": [
-        264,
-        102,
-        298,
-        110
+        905,
+        147,
+        1001,
+        161
       ],
       "center": [
-        281,
-        106
+        953,
+        154
       ],
-      "text": "exdort",
+      "text": "client() missing",
       "placeholder": "",
       "attributes": {},
       "is_enabled": true,
@@ -2361,7 +2361,7 @@
       "can_type": false,
       "can_scroll": false,
       "detection_method": "ocr",
-      "detection_time": 1749135844.1180558,
+      "detection_time": 1751996910.147776,
       "model_name": "easyocr_optimized",
       "parent_id": null,
       "children": [],
@@ -2372,18 +2372,18 @@
     {
       "id": "element_74",
       "element_type": "label",
-      "confidence": 0.5151559423378338,
+      "confidence": 0.37966736748307156,
       "bounding_box": [
-        33,
-        303,
-        153,
-        317
+        706,
+        274,
+        770,
+        282
       ],
       "center": [
-        93,
-        310
+        738,
+        278
       ],
-      "text": "createReservations mjs",
+      "text": "scrander Mac",
       "placeholder": "",
       "attributes": {},
       "is_enabled": true,
@@ -2393,7 +2393,7 @@
       "can_type": false,
       "can_scroll": false,
       "detection_method": "ocr",
-      "detection_time": 1749135844.11846,
+      "detection_time": 1751996910.149892,
       "model_name": "easyocr_optimized",
       "parent_id": null,
       "children": [],
@@ -2404,18 +2404,18 @@
     {
       "id": "element_75",
       "element_type": "label",
-      "confidence": 0.4992304398455148,
+      "confidence": 0.3588863658254536,
       "bounding_box": [
-        519,
-        85,
-        581,
-        97
+        479,
+        143,
+        563,
+        157
       ],
       "center": [
-        550,
-        91
+        521,
+        150
       ],
-      "text": "[c]respcnse",
+      "text": "Neural UT Deti",
       "placeholder": "",
       "attributes": {},
       "is_enabled": true,
@@ -2425,7 +2425,7 @@
       "can_type": false,
       "can_scroll": false,
       "detection_method": "ocr",
-      "detection_time": 1749135844.11804,
+      "detection_time": 1751996910.147747,
       "model_name": "easyocr_optimized",
       "parent_id": null,
       "children": [],
@@ -2435,51 +2435,19 @@
     },
     {
       "id": "element_76",
-      "element_type": "text_field",
-      "confidence": 0.4838436635280153,
-      "bounding_box": [
-        468,
-        362,
-        496,
-        370
-      ],
-      "center": [
-        482,
-        366
-      ],
-      "text": "hody:",
-      "placeholder": "",
-      "attributes": {},
-      "is_enabled": true,
-      "is_visible": true,
-      "is_focused": false,
-      "can_click": false,
-      "can_type": true,
-      "can_scroll": false,
-      "detection_method": "ocr",
-      "detection_time": 1749135844.1186519,
-      "model_name": "easyocr_optimized",
-      "parent_id": null,
-      "children": [],
-      "verification_image": null,
-      "visual_features": null,
-      "text_embedding": null
-    },
-    {
-      "id": "element_77",
       "element_type": "label",
-      "confidence": 0.462066650390625,
+      "confidence": 0.3584258646483813,
       "bounding_box": [
-        357,
-        361,
-        379,
-        375
+        140,
+        64,
+        170,
+        72
       ],
       "center": [
-        368,
-        368
+        155,
+        68
       ],
-      "text": "loge",
+      "text": "eRd",
       "placeholder": "",
       "attributes": {},
       "is_enabled": true,
@@ -2489,424 +2457,8 @@
       "can_type": false,
       "can_scroll": false,
       "detection_method": "ocr",
-      "detection_time": 1749135844.1186402,
+      "detection_time": 1751996910.1475682,
       "model_name": "easyocr_optimized",
-      "parent_id": null,
-      "children": [],
-      "verification_image": null,
-      "visual_features": null,
-      "text_embedding": null
-    },
-    {
-      "id": "element_78",
-      "element_type": "button",
-      "confidence": 0.4619674632881479,
-      "bounding_box": [
-        15,
-        85,
-        55,
-        97
-      ],
-      "center": [
-        35,
-        91
-      ],
-      "text": "LP_WEB",
-      "placeholder": "",
-      "attributes": {},
-      "is_enabled": true,
-      "is_visible": true,
-      "is_focused": false,
-      "can_click": true,
-      "can_type": false,
-      "can_scroll": false,
-      "detection_method": "ocr",
-      "detection_time": 1749135844.117996,
-      "model_name": "easyocr_optimized",
-      "parent_id": null,
-      "children": [],
-      "verification_image": null,
-      "visual_features": null,
-      "text_embedding": null
-    },
-    {
-      "id": "element_79",
-      "element_type": "label",
-      "confidence": 0.44954015729623753,
-      "bounding_box": [
-        513,
-        361,
-        613,
-        375
-      ],
-      "center": [
-        563,
-        368
-      ],
-      "text": "JSON stringifyl {",
-      "placeholder": "",
-      "attributes": {},
-      "is_enabled": true,
-      "is_visible": true,
-      "is_focused": false,
-      "can_click": false,
-      "can_type": false,
-      "can_scroll": false,
-      "detection_method": "ocr",
-      "detection_time": 1749135844.1186612,
-      "model_name": "easyocr_optimized",
-      "parent_id": null,
-      "children": [],
-      "verification_image": null,
-      "visual_features": null,
-      "text_embedding": null
-    },
-    {
-      "id": "element_80",
-      "element_type": "label",
-      "confidence": 0.3838670747745443,
-      "bounding_box": [
-        479,
-        111,
-        521,
-        123
-      ],
-      "center": [
-        500,
-        117
-      ],
-      "text": "Vi API",
-      "placeholder": "",
-      "attributes": {},
-      "is_enabled": true,
-      "is_visible": true,
-      "is_focused": false,
-      "can_click": false,
-      "can_type": false,
-      "can_scroll": false,
-      "detection_method": "ocr",
-      "detection_time": 1749135844.118092,
-      "model_name": "easyocr_optimized",
-      "parent_id": null,
-      "children": [],
-      "verification_image": null,
-      "visual_features": null,
-      "text_embedding": null
-    },
-    {
-      "id": "element_81",
-      "element_type": "class_63",
-      "confidence": 0.3808209300041199,
-      "bounding_box": [
-        5,
-        35,
-        2891,
-        1885
-      ],
-      "center": [
-        1448,
-        960
-      ],
-      "text": "chargePayment mjs Ip_web 0 8? JS createReservation mjs M JS chargePayment mjs M X env PaymentStep.tsx M LP_WEB netlify functions JS chargePayment mjs > [e] handler [e] response netlify functions export const handler async (event F> { 353827 88 Adjust payload tormat tor VI API Eeria JS cache-images mjs 89 Ensure amount i5 at Zeast 1 to avoid amount must be not zero\" error JS chargePayment mjs M 90 const safeAmount amount 0 2 amount 1; JS contact mjs 91 92 const VIPaymentBody { JS contactus mjs 93 payment: { JS createGuest mjs 94 amount: safeAmount , JS createGuestyReservation mjs 95 currency: USD 11 Default to USD JS  createlnstantReservation mjs 96 paymentMethod: paymentBody- paymentMethod 97 JS createPaymentMethod mjs 98 } JS createReservation mjs M 99 JS createReservationQuote mjs 100 console. logC Original amount: ${amount}, Safe amount: S{safeAmount} lrd JS createReservations mjs 101 JS createReservationV3.mjs 102 console. loge Sending payment request to Guesty V1 API..\") ; 103 console. loge API URL : S{GUESTY_API_URL}/reservations/S{reservationId}/payments ); JS fetchBookedDates mjs 104 console. loge Token Length: process.env. VITE_API_TOKEN process.env. VITE_API_TOKEN. Length undefined' ) ; JS fetchListings mjs 105 console. log ( V1 Payment body: JSON. stringify( { JS fetchPricingData mjs 106 payment: { JS  generatedPdfAndEmail mjs 107 amount: safeAmount, 108 currency: USD JS getFeaturedProperties mjs 109 paymentMethod: { JS getParsedReviews mjs 110 paymentBody. paymentMethod JS getPaymentProvider mjs 111 id: paymentBody. paymentMethod. id 2 xxx paymentBody. paymentMethod. id.slice(-4) undefined JS getQuote mjs Problems Output Debug Console Terminal Ports node +v 0 @ JS instantBooking mjs Removed the mis leading totalAmountWithUpsells value JS propertyReviews mjs Clarified that calculatedPrice.total already includes upsell fees JS proxy mjs Ensured roundedTotal only uses calculatedPrice.total L JS qaCheckmjs The payment should now work correctly with the proper amount _ and we won t be double-counting the upsell fees. This fixes the \"amount must be not zero numberi error by ensuring we re using the correct total and that it 5 always at least 1. JS randomReviews mjs M JS redisClient mjs in charge paymentMethod. id is paymentmethod We recived before in payment method created reponses. 2.the reservationId in the url like https: / /open-api.guesty. cOm/v1/reservations/ {id}/payments 3. why not add upsell befor carhge payment? root caouse maybe in payment step its not calling to JS refreshToken mjs M upsell update make sure all working JS searchTags mjs API Error: 401 {\"type\" \"error\" ,\"error\": {\"type\":\"authentication_error\" 'message\" :\"OAuth token has expired. Please obtain new token or refresh your existing token.\"}} JS sendConfirmation.mjs JS sendConfirmations mjs JS sendlnvoice mjs for shortcuts Context left until auto-compact: 15% Auto-update failed Try claude doctor or npm 1 ~g @anthropic-ai/claude-code JS sendMessage mjs JS   sendVerificationCode mis NOTEPADS OUTLINE TIMELINE #K to generate a command",
-      "placeholder": "",
-      "attributes": {},
-      "is_enabled": true,
-      "is_visible": true,
-      "is_focused": false,
-      "can_click": false,
-      "can_type": false,
-      "can_scroll": false,
-      "detection_method": "yolo",
-      "detection_time": 1749135838.174783,
-      "model_name": "yolov8",
-      "parent_id": null,
-      "children": [],
-      "verification_image": null,
-      "visual_features": null,
-      "text_embedding": null
-    },
-    {
-      "id": "element_82",
-      "element_type": "label",
-      "confidence": 0.3574293851852417,
-      "bounding_box": [
-        357,
-        317,
-        383,
-        331
-      ],
-      "center": [
-        370,
-        324
-      ],
-      "text": "log(",
-      "placeholder": "",
-      "attributes": {},
-      "is_enabled": true,
-      "is_visible": true,
-      "is_focused": false,
-      "can_click": false,
-      "can_type": false,
-      "can_scroll": false,
-      "detection_method": "ocr",
-      "detection_time": 1749135844.118492,
-      "model_name": "easyocr_optimized",
-      "parent_id": null,
-      "children": [],
-      "verification_image": null,
-      "visual_features": null,
-      "text_embedding": null
-    },
-    {
-      "id": "element_83",
-      "element_type": "label",
-      "confidence": 0.35449818335350686,
-      "bounding_box": [
-        33,
-        411,
-        169,
-        425
-      ],
-      "center": [
-        101,
-        418
-      ],
-      "text": "getFeaturedproperlles mjs",
-      "placeholder": "",
-      "attributes": {},
-      "is_enabled": true,
-      "is_visible": true,
-      "is_focused": false,
-      "can_click": false,
-      "can_type": false,
-      "can_scroll": false,
-      "detection_method": "ocr",
-      "detection_time": 1749135844.1187682,
-      "model_name": "easyocr_optimized",
-      "parent_id": null,
-      "children": [],
-      "verification_image": null,
-      "visual_features": null,
-      "text_embedding": null
-    },
-    {
-      "id": "element_84",
-      "element_type": "label",
-      "confidence": 0.35074076514481956,
-      "bounding_box": [
-        33,
-        125,
-        127,
-        137
-      ],
-      "center": [
-        80,
-        131
-      ],
-      "text": "cacho-Imagos_mjs",
-      "placeholder": "",
-      "attributes": {},
-      "is_enabled": true,
-      "is_visible": true,
-      "is_focused": false,
-      "can_click": false,
-      "can_type": false,
-      "can_scroll": false,
-      "detection_method": "ocr",
-      "detection_time": 1749135844.1181,
-      "model_name": "easyocr_optimized",
-      "parent_id": null,
-      "children": [],
-      "verification_image": null,
-      "visual_features": null,
-      "text_embedding": null
-    },
-    {
-      "id": "element_85",
-      "element_type": "text_field",
-      "confidence": 0.3346872763464762,
-      "bounding_box": [
-        357,
-        391,
-        401,
-        403
-      ],
-      "center": [
-        379,
-        397
-      ],
-      "text": "arount:",
-      "placeholder": "",
-      "attributes": {},
-      "is_enabled": true,
-      "is_visible": true,
-      "is_focused": false,
-      "can_click": false,
-      "can_type": true,
-      "can_scroll": false,
-      "detection_method": "ocr",
-      "detection_time": 1749135844.1187441,
-      "model_name": "easyocr_optimized",
-      "parent_id": null,
-      "children": [],
-      "verification_image": null,
-      "visual_features": null,
-      "text_embedding": null
-    },
-    {
-      "id": "element_86",
-      "element_type": "label",
-      "confidence": 0.3289873873988613,
-      "bounding_box": [
-        310,
-        362,
-        352,
-        370
-      ],
-      "center": [
-        331,
-        366
-      ],
-      "text": "console",
-      "placeholder": "",
-      "attributes": {},
-      "is_enabled": true,
-      "is_visible": true,
-      "is_focused": false,
-      "can_click": false,
-      "can_type": false,
-      "can_scroll": false,
-      "detection_method": "ocr",
-      "detection_time": 1749135844.118634,
-      "model_name": "easyocr_optimized",
-      "parent_id": null,
-      "children": [],
-      "verification_image": null,
-      "visual_features": null,
-      "text_embedding": null
-    },
-    {
-      "id": "element_87",
-      "element_type": "label",
-      "confidence": 0.30912433665791017,
-      "bounding_box": [
-        498,
-        318,
-        538,
-        326
-      ],
-      "center": [
-        518,
-        322
-      ],
-      "text": "renmest",
-      "placeholder": "",
-      "attributes": {},
-      "is_enabled": true,
-      "is_visible": true,
-      "is_focused": false,
-      "can_click": false,
-      "can_type": false,
-      "can_scroll": false,
-      "detection_method": "ocr",
-      "detection_time": 1749135844.118506,
-      "model_name": "easyocr_optimized",
-      "parent_id": null,
-      "children": [],
-      "verification_image": null,
-      "visual_features": null,
-      "text_embedding": null
-    },
-    {
-      "id": "element_88",
-      "element_type": "text_field",
-      "confidence": 0.30555855728078274,
-      "bounding_box": [
-        334,
-        378,
-        380,
-        386
-      ],
-      "center": [
-        357,
-        382
-      ],
-      "text": "payMent:",
-      "placeholder": "",
-      "attributes": {},
-      "is_enabled": true,
-      "is_visible": true,
-      "is_focused": false,
-      "can_click": false,
-      "can_type": true,
-      "can_scroll": false,
-      "detection_method": "ocr",
-      "detection_time": 1749135844.118679,
-      "model_name": "easyocr_optimized",
-      "parent_id": null,
-      "children": [],
-      "verification_image": null,
-      "visual_features": null,
-      "text_embedding": null
-    },
-    {
-      "id": "element_89",
-      "element_type": "label",
-      "confidence": 0.30157554149627686,
-      "bounding_box": [
-        357,
-        331,
-        379,
-        345
-      ],
-      "center": [
-        368,
-        338
-      ],
-      "text": "loge",
-      "placeholder": "",
-      "attributes": {},
-      "is_enabled": true,
-      "is_visible": true,
-      "is_focused": false,
-      "can_click": false,
-      "can_type": false,
-      "can_scroll": false,
-      "detection_method": "ocr",
-      "detection_time": 1749135844.1185422,
-      "model_name": "easyocr_optimized",
-      "parent_id": null,
-      "children": [],
-      "verification_image": null,
-      "visual_features": null,
-      "text_embedding": null
-    },
-    {
-      "id": "element_90",
-      "element_type": "class_62",
-      "confidence": 0.27509939670562744,
-      "bounding_box": [
-        7,
-        54,
-        2905,
-        1882
-      ],
-      "center": [
-        1456,
-        968
-      ],
-      "text": "chargePayment mjs Ip_web 0   &   88 JS createReservation.mjs M JS chargePayment mjs M X env PaymentStep.tsx M LP_WEB netlify functions JS chargePayment mjs [e] handler [e] response netlify / functions export const handler async (event) F> { 38302772  3735372 88 Adjust payload tormat tor VI API #z JS cache-images mjs 89 11 Ensure amount is at least 1 to avoid amount must be not zero\" error 3 25 JS chargePayment mjs M 90 const safeAmount amount 0 amount 1; JS contact mjs 91 92 const VlPaymentBody { JS contactus mjs 93 payment: { JS createGuest mjs 94 amount: safeAmount, JS createGuestyReservation mjs 95 currency: USD 1/ Default to USD JS createlnstantReservation mjs 96 paymentMethod: paymentBody.paymentMethod 97 JS createPaymentMethod mjs 98 } JS  createReservation mjs M 99 JS  createReservationQuote mjs 100 console. log Original amount: ${amount}, Safe amount: #{safeAmount} ); eedn ledld JS createReservations mjs 101 37 JS createReservationV3.mjs 102 console. log' Sending payment request to Guesty V1 API. '); 103 console. log API URL: S{GUESTY_API_URL}/reservations/S{reservationId}/payments ); JS fetchBookedDates mjs 104 console. Log ( Token Length: process.env. VITE_API_TOKEN 2 process.env.VITE_API_TOKEN. length undefined' ) ; JS fetchListings mjs 105 console. log ( = V1 Payment body: JSON. stringify( { JS fetchPricingData mjs 106 payment: { JS generatedPdfAndEmail.mjs 107 amount: safeAmount , 108 currency: 'USD ' JS getFeaturedProperties mjs 109 paymentMethod: { JS getParsedReviews mjs 110 paymentBody. paymentMethod, JS getPaymentProvider mjs 111 id: paymentBody.paymentMethod. id xxx paymentBody. paymentMethod. id.slice(-4) undefined' JS getQuote mjs Problems Output Debug Console Terminal Ports node +v W X JS instantBooking mjs Removed the misleading totalAmountWithUpsells value JS propertyReviews mjs Clarified that calculatedPrice.total already includes upsell fees JS proxy mjs Ensured roundedTotal only uses calculatedPrice.total JS qaCheck mjs The payment should now work correctly with the proper amount and We won t be double-counting the upsell fees. This fixes the amount must be not zero numberi error by ensuring we re using the correct total and that it 5 a lways at least 1. JS randomReviews mjs M JS redisClient mjs in charge paymentMethod. id is paymentmethod we recived before in payment method created reponses. 2.the reservationId in the url like https: //open-api guesty.cOm/v1/reservations/ {id}/payments 3. why not add upsell befor carhge payment? root caouse maybe in payment step its not calling to JS refreshToken.mjs M upsell update, make sure all working JS searchTags mjs API Error: 401 {\"type\" \"error\",\"error\": {\"type\" 'authentication_error\" 'message\" : \"OAuth token has expired. Please obtain new token or refresh your existing token.\"}} JS   sendConfirmation mjs Js sendConfirmations mjs JS   sendlnvoice mjs for shortcuts Context left until auto-compact: 15% x Auto-update failed Try claude doctor or npm 1 ~g @anthropic-ai/claude-code JSsendMessage mjs JS   sendVerificationCode mis NOTEPADS OUTLINE TIMELINE J8K to generate a command aetiete",
-      "placeholder": "",
-      "attributes": {},
-      "is_enabled": true,
-      "is_visible": true,
-      "is_focused": false,
-      "can_click": false,
-      "can_type": false,
-      "can_scroll": false,
-      "detection_method": "yolo",
-      "detection_time": 1749135838.1748219,
-      "model_name": "yolov8",
       "parent_id": null,
       "children": [],
       "verification_image": null,
@@ -2916,11 +2468,11 @@
   ],
   "screen_width": 1470,
   "screen_height": 956,
-  "screenshot_path": "cache/neural_ui_detector/screenshot_1749135837.png",
+  "screenshot_path": "cache/neural_ui_detector/screenshot_1751996876.png",
   "detection_methods": [
     "yolo",
     "accessibility",
     "ocr"
   ],
-  "execution_time": 65.90115904808044
+  "execution_time": 90.7276439666748
 }

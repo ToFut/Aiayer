@@ -63,10 +63,10 @@ sensors:
 
 # LLM settings
 llm:
-  model_name: "ollam3.2:latest"  # Ollama model name
+  model_name: "llama3.2:1b"  # Ollama model name - using lighter model
   host: "localhost"
   port: 11434  # Default Ollama port
-  request_timeout_sec: 60
+  request_timeout_sec: 30  # Reduced timeout
   temperature: 0.7
   max_tokens: 1000  # Max output tokens
   top_p: 0.95

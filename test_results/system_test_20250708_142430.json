@@ -1,0 +1,270 @@
+{
+  "timestamp": "2025-07-08T14:24:30.658580",
+  "overall_status": "\u26a0\ufe0f  MOSTLY WORKING (some partial results)",
+  "summary": {
+    "pass": 6,
+    "partial": 2,
+    "fail": 0,
+    "total": 8
+  },
+  "results": {
+    "system_processes": {
+      "status": "pass",
+      "running": [
+        {
+          "name": "direct_coordinate_automation.py",
+          "pid": 8407,
+          "memory_mb": 34.8125
+        },
+        {
+          "name": "enhanced_enterprise_backend_with_context.py",
+          "pid": 8432,
+          "memory_mb": 59.234375
+        },
+        {
+          "name": "enhanced_fixed_process_sensor.py",
+          "pid": 8445,
+          "memory_mb": 27.203125
+        },
+        {
+          "name": "total_screen_analyzer.py",
+          "pid": 8446,
+          "memory_mb": 239.015625
+        },
+        {
+          "name": "smart_memory_feeder.py",
+          "pid": 8447,
+          "memory_mb": 24.640625
+        },
+        {
+          "name": "memory_aware_suggestion_monitor.py",
+          "pid": 8448,
+          "memory_mb": 25.609375
+        }
+      ],
+      "missing": [],
+      "total_running": 6,
+      "total_required": 6
+    },
+    "network_ports": {
+      "status": "partial",
+      "open_ports": [
+        {
+          "port": 8767,
+          "description": "Backend WebSocket"
+        },
+        {
+          "port": 8765,
+          "description": "DO Button WebSocket"
+        },
+        {
+          "port": 8787,
+          "description": "Backend HTTP Status"
+        },
+        {
+          "port": 11434,
+          "description": "LLM Service (Ollama)"
+        }
+      ],
+      "closed_ports": [
+        {
+          "port": 8080,
+          "description": "RPA_AVEN (if running)"
+        }
+      ],
+      "total_open": 4,
+      "total_required": 5
+    },
+    "llm_service": {
+      "status": "pass",
+      "available_models": [
+        "fast-llama:latest",
+        "llama3.2:1b",
+        "mistral:latest",
+        "llava:latest",
+        "llama3.2:latest",
+        "llama3:latest"
+      ],
+      "total_models": 6,
+      "response_time": 0.031674
+    },
+    "backend_communication": {
+      "status": "pass",
+      "details": {
+        "http": {
+          "status": "pass",
+          "response": {
+            "status": "ok",
+            "backend": "enhanced_enterprise_backend_with_context",
+            "time": "2025-07-08T14:24:30.362028"
+          },
+          "response_time": 0.001218
+        },
+        "websocket": {
+          "status": "pass",
+          "response": {
+            "type": "connection_established",
+            "client_id": "client_1751999070376",
+            "message": "Connected to Enhanced Enterprise Backend with Context",
+            "timestamp": "2025-07-08T14:24:30.376694",
+            "capabilities": [
+              "context_tracking",
+              "agent_mode",
+              "ask_mode",
+              "suggest_mode",
+              "general_mode",
+              "semantic_search"
+            ]
+          }
+        }
+      }
+    },
+    "rpa_automation": {
+      "status": "pass",
+      "details": {
+        "do_button": {
+          "status": "pass",
+          "response": {
+            "type": "welcome",
+            "message": "Connected to direct coordinate automation server on port 8765",
+            "server_time": "2025-07-08T14:24:30.378636",
+            "server_name": "Direct Coordinate Automation Server",
+            "real_input": true,
+            "screen_sharing_supported": true
+          }
+        },
+        "rpa_aven": {
+          "status": "not_running",
+          "note": "RPA_AVEN server not detected"
+        }
+      }
+    },
+    "sensor_systems": {
+      "status": "partial",
+      "existing_files": [
+        {
+          "file": "cache/process_sensor/process_cache.json",
+          "age_seconds": 2594275.1251957417,
+          "status": "stale"
+        }
+      ],
+      "missing_files": [
+        "cache/screen_sensor/last_screen.json"
+      ],
+      "total_sensors": 2
+    },
+    "memory_system": {
+      "status": "pass",
+      "memory_files": [
+        {
+          "file": "memory/trigger_notifications.json",
+          "age_seconds": 2594274.58157444,
+          "size_bytes": 83574
+        },
+        {
+          "file": "memory/suggestion_memory_state.json",
+          "age_seconds": 2594274.58305645,
+          "size_bytes": 7848
+        },
+        {
+          "file": "memory/conversation_history.json",
+          "age_seconds": 3962033.794015646,
+          "size_bytes": 2
+        },
+        {
+          "file": "memory/conversation_memory.json",
+          "age_seconds": 65275.97809243202,
+          "size_bytes": 2217
+        },
+        {
+          "file": "memory/short_term_metadata.json",
+          "age_seconds": 4212352.670833111,
+          "size_bytes": 0
+        },
+        {
+          "file": "memory/suggestion_feedback_state.json",
+          "age_seconds": 2594274.5833950043,
+          "size_bytes": 4219
+        },
+        {
+          "file": "memory/conscious.json",
+          "age_seconds": 2594274.5942423344,
+          "size_bytes": 9313
+        },
+        {
+          "file": "memory/last_context.json",
+          "age_seconds": 2594324.6913576126,
+          "size_bytes": 2
+        },
+        {
+          "file": "memory/memory_state.json",
+          "age_seconds": 24.200632095336914,
+          "size_bytes": 280912
+        },
+        {
+          "file": "memory/tasks/task_index.json",
+          "age_seconds": 7775.931391716003,
+          "size_bytes": 128
+        },
+        {
+          "file": "memory/memory/last_context.json",
+          "age_seconds": 4205535.877985716,
+          "size_bytes": 172
+        },
+        {
+          "file": "memory/memory/memory_state.json",
+          "age_seconds": 2594274.5882327557,
+          "size_bytes": 18592
+        },
+        {
+          "file": "memory/suggestions/suggestion_1751998767_1198.json",
+          "age_seconds": 302.4930832386017,
+          "size_bytes": 764
+        },
+        {
+          "file": "memory/suggestions/suggestion_1751999044_7319.json",
+          "age_seconds": 25.448972702026367,
+          "size_bytes": 764
+        },
+        {
+          "file": "memory/suggestions/suggestion_1749401382_4495.json",
+          "age_seconds": 2594274.5831255913,
+          "size_bytes": 764
+        },
+        {
+          "file": "memory/suggestions/suggestion_1749401525_5484.json",
+          "age_seconds": 2594274.582887888,
+          "size_bytes": 764
+        },
+        {
+          "file": "memory/suggestions/suggestion_1749404839_2190.json",
+          "age_seconds": 2594230.7392323017,
+          "size_bytes": 764
+        },
+        {
+          "file": "memory/backup_20250604_011715/conscious.json",
+          "age_seconds": 2594274.5952117443,
+          "size_bytes": 8981
+        },
+        {
+          "file": "memory/backup_20250604_011715/memory_state.json",
+          "age_seconds": 2594274.595005274,
+          "size_bytes": 44019
+        }
+      ],
+      "total_files": 19,
+      "memory_dir_exists": true
+    },
+    "automation_capabilities": {
+      "status": "pass",
+      "capabilities": {
+        "mouse_control": true,
+        "keyboard_control": true,
+        "screen_capture": true,
+        "process_monitoring": true
+      },
+      "available": 4,
+      "total": 4
+    }
+  }
+}

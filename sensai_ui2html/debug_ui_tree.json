@@ -1,0 +1,4412 @@
+{
+  "name": "macOS Comprehensive UI",
+  "type": "AXApplication",
+  "id": "comprehensive_ui",
+  "bounds": [
+    0,
+    0,
+    1920,
+    1080
+  ],
+  "children": [
+    {
+      "name": "macOS System UI",
+      "type": "AXApplication",
+      "id": "system_ui",
+      "bounds": [
+        0,
+        0,
+        1920,
+        1080
+      ],
+      "children": [
+        {
+          "name": "error_node",
+          "type": "Unknown",
+          "id": "error_1751940100335",
+          "bounds": [],
+          "children": []
+        }
+      ],
+      "source": "System UI"
+    },
+    {
+      "name": "Finder",
+      "type": "AXApplication",
+      "id": "AXApplication_-3619483791998275878_1751940100874",
+      "bounds": [
+        0.0,
+        956.0,
+        0.0,
+        -956.0
+      ],
+      "value": null,
+      "children": [
+        {
+          "name": "AXMenuBar",
+          "type": "AXMenuBar",
+          "id": "AXMenuBar_0_1751940100842",
+          "bounds": [
+            0.0,
+            0.0,
+            1470.0,
+            36.0
+          ],
+          "value": "",
+          "children": [
+            {
+              "name": "Apple",
+              "type": "AXMenuBarItem",
+              "id": "AXMenuBarItem_7431646379890939882_1751940100523",
+              "bounds": [
+                10.0,
+                0.0,
+                24.0,
+                36.0
+              ],
+              "value": "",
+              "children": [
+                {
+                  "name": "AXMenu",
+                  "type": "AXMenu",
+                  "id": "AXMenu_0_1751940100523",
+                  "bounds": [
+                    0.0,
+                    956.0,
+                    0.0,
+                    -956.0
+                  ],
+                  "value": "",
+                  "children": [
+                    {
+                      "name": "About This Mac",
+                      "type": "AXMenuItem",
+                      "id": "AXMenuItem_756241521604696226_1751940100377",
+                      "bounds": [
+                        0.0,
+                        956.0,
+                        0.0,
+                        -956.0
+                      ],
+                      "value": "",
+                      "children": []
+                    },
+                    {
+                      "name": "System Information",
+                      "type": "AXMenuItem",
+                      "id": "AXMenuItem_7775421067141616775_1751940100382",
+                      "bounds": [
+                        0.0,
+                        956.0,
+                        0.0,
+                        -956.0
+                      ],
+                      "value": "",
+                      "children": []
+                    },
+                    {
+                      "name": "AXMenuItem",
+                      "type": "AXMenuItem",
+                      "id": "AXMenuItem_0_1751940100384",
+                      "bounds": [
+                        0.0,
+                        956.0,
+                        0.0,
+                        -956.0
+                      ],
+                      "value": "",
+                      "children": []
+                    },
+                    {
+                      "name": "System Settings\u2026, 2 updates",
+                      "type": "AXMenuItem",
+                      "id": "AXMenuItem_3209804492827624017_1751940100387",
+                      "bounds": [
+                        0.0,
+                        956.0,
+                        0.0,
+                        -956.0
+                      ],
+                      "value": "",
+                      "children": []
+                    },
+                    {
+                      "name": "App Store",
+                      "type": "AXMenuItem",
+                      "id": "AXMenuItem_7945132335747011801_1751940100389",
+                      "bounds": [
+                        0.0,
+                        956.0,
+                        0.0,
+                        -956.0
+                      ],
+                      "value": "",
+                      "children": []
+                    },
+                    {
+                      "name": "AXMenuItem",
+                      "type": "AXMenuItem",
+                      "id": "AXMenuItem_0_1751940100391",
+                      "bounds": [
+                        0.0,
+                        956.0,
+                        0.0,
+                        -956.0
+                      ],
+                      "value": "",
+                      "children": []
+                    },
+                    {
+                      "name": "Recent Items",
+                      "type": "AXMenuItem",
+                      "id": "AXMenuItem_2202336904184581067_1751940100501",
+                      "bounds": [
+                        0.0,
+                        956.0,
+                        0.0,
+                        -956.0
+                      ],
+                      "value": "",
+                      "children": [
+                        {
+                          "name": "AXMenu",
+                          "type": "AXMenu",
+                          "id": "AXMenu_0_1751940100501",
+                          "bounds": [
+                            0.0,
+                            956.0,
+                            0.0,
+                            -956.0
+                          ],
+                          "value": "",
+                          "children": [
+                            {
+                              "name": "Applications",
+                              "type": "AXMenuItem",
+                              "id": "AXMenuItem_2439040835865969624_1751940100396",
+                              "bounds": [
+                                0.0,
+                                956.0,
+                                0.0,
+                                -956.0
+                              ],
+                              "value": "",
+                              "children": []
+                            },
+                            {
+                              "name": "Calculator",
+                              "type": "AXMenuItem",
+                              "id": "AXMenuItem_-1609717346760825142_1751940100398",
+                              "bounds": [
+                                0.0,
+                                956.0,
+                                0.0,
+                                -956.0
+                              ],
+                              "value": "",
+                              "children": []
+                            },
+                            {
+                              "name": "Show \u201cCalculator\u201d in Finder",
+                              "type": "AXMenuItem",
+                              "id": "AXMenuItem_2620789417676887822_1751940100401",
+                              "bounds": [
+                                0.0,
+                                956.0,
+                                0.0,
+                                -956.0
+                              ],
+                              "value": "",
+                              "children": []
+                            },
+                            {
+                              "name": "Cursor",
+                              "type": "AXMenuItem",
+                              "id": "AXMenuItem_-6288586491200590214_1751940100405",
+                              "bounds": [
+                                0.0,
+                                956.0,
+                                0.0,
+                                -956.0
+                              ],
+                              "value": "",
+                              "children": []
+                            },
+                            {
+                              "name": "Show \u201cCursor\u201d in Finder",
+                              "type": "AXMenuItem",
+                              "id": "AXMenuItem_-2230931404291504253_1751940100408",
+                              "bounds": [
+                                0.0,
+                                956.0,
+                                0.0,
+                                -956.0
+                              ],
+                              "value": "",
+                              "children": []
+                            },
+                            {
+                              "name": "FaceTime",
+                              "type": "AXMenuItem",
+                              "id": "AXMenuItem_-4673437255124838176_1751940100411",
+                              "bounds": [
+                                0.0,
+                                956.0,
+                                0.0,
+                                -956.0
+                              ],
+                              "value": "",
+                              "children": []
+                            },
+                            {
+                              "name": "Show \u201cFaceTime\u201d in Finder",
+                              "type": "AXMenuItem",
+                              "id": "AXMenuItem_-2369686443173327470_1751940100413",
+                              "bounds": [
+                                0.0,
+                                956.0,
+                                0.0,
+                                -956.0
+                              ],
+                              "value": "",
+                              "children": []
+                            },
+                            {
+                              "name": "Microsoft Excel",
+                              "type": "AXMenuItem",
+                              "id": "AXMenuItem_6573656619879405505_1751940100415",
+                              "bounds": [
+                                0.0,
+                                956.0,
+                                0.0,
+                                -956.0
+                              ],
+                              "value": "",
+                              "children": []
+                            },
+                            {
+                              "name": "Show \u201cMicrosoft Excel\u201d in Finder",
+                              "type": "AXMenuItem",
+                              "id": "AXMenuItem_7514413788237569097_1751940100417",
+                              "bounds": [
+                                0.0,
+                                956.0,
+                                0.0,
+                                -956.0
+                              ],
+                              "value": "",
+                              "children": []
+                            },
+                            {
+                              "name": "Microsoft Word",
+                              "type": "AXMenuItem",
+                              "id": "AXMenuItem_8975084462521620227_1751940100418",
+                              "bounds": [
+                                0.0,
+                                956.0,
+                                0.0,
+                                -956.0
+                              ],
+                              "value": "",
+                              "children": []
+                            },
+                            {
+                              "name": "Show \u201cMicrosoft Word\u201d in Finder",
+                              "type": "AXMenuItem",
+                              "id": "AXMenuItem_4439064257383880035_1751940100420",
+                              "bounds": [
+                                0.0,
+                                956.0,
+                                0.0,
+                                -956.0
+                              ],
+                              "value": "",
+                              "children": []
+                            },
+                            {
+                              "name": "Numbers",
+                              "type": "AXMenuItem",
+                              "id": "AXMenuItem_5434128125120204105_1751940100422",
+                              "bounds": [
+                                0.0,
+                                956.0,
+                                0.0,
+                                -956.0
+                              ],
+                              "value": "",
+                              "children": []
+                            },
+                            {
+                              "name": "Show \u201cNumbers\u201d in Finder",
+                              "type": "AXMenuItem",
+                              "id": "AXMenuItem_-152070807131743972_1751940100423",
+                              "bounds": [
+                                0.0,
+                                956.0,
+                                0.0,
+                                -956.0
+                              ],
+                              "value": "",
+                              "children": []
+                            },
+                            {
+                              "name": "Safari",
+                              "type": "AXMenuItem",
+                              "id": "AXMenuItem_2589320253924071654_1751940100425",
+                              "bounds": [
+                                0.0,
+                                956.0,
+                                0.0,
+                                -956.0
+                              ],
+                              "value": "",
+                              "children": []
+                            },
+                            {
+                              "name": "Show \u201cSafari\u201d in Finder",
+                              "type": "AXMenuItem",
+                              "id": "AXMenuItem_-3471247193092798416_1751940100427",
+                              "bounds": [
+                                0.0,
+                                956.0,
+                                0.0,
+                                -956.0
+                              ],
+                              "value": "",
+                              "children": []
+                            },
+                            {
+                              "name": "WeChat",
+                              "type": "AXMenuItem",
+                              "id": "AXMenuItem_584539134346710824_1751940100429",
+                              "bounds": [
+                                0.0,
+                                956.0,
+                                0.0,
+                                -956.0
+                              ],
+                              "value": "",
+                              "children": []
+                            },
+                            {
+                              "name": "Show \u201cWeChat\u201d in Finder",
+                              "type": "AXMenuItem",
+                              "id": "AXMenuItem_-5679583431178427948_1751940100430",
+                              "bounds": [
+                                0.0,
+                                956.0,
+                                0.0,
+                                -956.0
+                              ],
+                              "value": "",
+                              "children": []
+                            },
+                            {
+                              "name": "WhatsApp",
+                              "type": "AXMenuItem",
+                              "id": "AXMenuItem_-2614170189928907083_1751940100433",
+                              "bounds": [
+                                0.0,
+                                956.0,
+                                0.0,
+                                -956.0
+                              ],
+                              "value": "",
+                              "children": []
+                            },
+                            {
+                              "name": "Show \u201cWhatsApp\u201d in Finder",
+                              "type": "AXMenuItem",
+                              "id": "AXMenuItem_8772047761376304026_1751940100434",
+                              "bounds": [
+                                0.0,
+                                956.0,
+                                0.0,
+                                -956.0
+                              ],
+                              "value": "",
+                              "children": []
+                            },
+                            {
+                              "name": "zoom.us",
+                              "type": "AXMenuItem",
+                              "id": "AXMenuItem_-2376025512188655673_1751940100436",
+                              "bounds": [
+                                0.0,
+                                956.0,
+                                0.0,
+                                -956.0
+                              ],
+                              "value": "",
+                              "children": []
+                            },
+                            {
+                              "name": "Show \u201czoom.us\u201d in Finder",
+                              "type": "AXMenuItem",
+                              "id": "AXMenuItem_-3644106843514940743_1751940100438",
+                              "bounds": [
+                                0.0,
+                                956.0,
+                                0.0,
+                                -956.0
+                              ],
+                              "value": "",
+                              "children": []
+                            },
+                            {
+                              "name": "AXMenuItem",
+                              "type": "AXMenuItem",
+                              "id": "AXMenuItem_0_1751940100441",
+                              "bounds": [
+                                0.0,
+                                956.0,
+                                0.0,
+                                -956.0
+                              ],
+                              "value": "",
+                              "children": []
+                            },
+                            {
+                              "name": "Documents",
+                              "type": "AXMenuItem",
+                              "id": "AXMenuItem_6380432066835332619_1751940100450",
+                              "bounds": [
+                                0.0,
+                                956.0,
+                                0.0,
+                                -956.0
+                              ],
+                              "value": "",
+                              "children": []
+                            },
+                            {
+                              "name": "Aiayer",
+                              "type": "AXMenuItem",
+                              "id": "AXMenuItem_5030528174185834084_1751940100453",
+                              "bounds": [
+                                0.0,
+                                956.0,
+                                0.0,
+                                -956.0
+                              ],
+                              "value": "",
+                              "children": []
+                            },
+                            {
+                              "name": "Show \u201cAiayer\u201d in Finder",
+                              "type": "AXMenuItem",
+                              "id": "AXMenuItem_-716147785750186361_1751940100455",
+                              "bounds": [
+                                0.0,
+                                956.0,
+                                0.0,
+                                -956.0
+                              ],
+                              "value": "",
+                              "children": []
+                            },
+                            {
+                              "name": "Anti tremor glove calculation model  2.xlsx",
+                              "type": "AXMenuItem",
+                              "id": "AXMenuItem_4346297027181870293_1751940100457",
+                              "bounds": [
+                                0.0,
+                                956.0,
+                                0.0,
+                                -956.0
+                              ],
+                              "value": "",
+                              "children": []
+                            },
+                            {
+                              "name": "Show \u201cAnti tremor glove calculation model  2.xlsx\u201d in Finder",
+                              "type": "AXMenuItem",
+                              "id": "AXMenuItem_7710099862825241159_1751940100458",
+                              "bounds": [
+                                0.0,
+                                956.0,
+                                0.0,
+                                -956.0
+                              ],
+                              "value": "",
+                              "children": []
+                            },
+                            {
+                              "name": "Anti tremor glove calculation model .xlsx",
+                              "type": "AXMenuItem",
+                              "id": "AXMenuItem_-979221806989771625_1751940100460",
+                              "bounds": [
+                                0.0,
+                                956.0,
+                                0.0,
+                                -956.0
+                              ],
+                              "value": "",
+                              "children": []
+                            },
+                            {
+                              "name": "Show \u201cAnti tremor glove calculation model .xlsx\u201d in Finder",
+                              "type": "AXMenuItem",
+                              "id": "AXMenuItem_-3595552202491799738_1751940100462",
+                              "bounds": [
+                                0.0,
+                                956.0,
+                                0.0,
+                                -956.0
+                              ],
+                              "value": "",
+                              "children": []
+                            },
+                            {
+                              "name": "Peak_1031_ClientPortal_Detailed.xlsx",
+                              "type": "AXMenuItem",
+                              "id": "AXMenuItem_6088136910311558969_1751940100464",
+                              "bounds": [
+                                0.0,
+                                956.0,
+                                0.0,
+                                -956.0
+                              ],
+                              "value": "",
+                              "children": []
+                            },
+                            {
+                              "name": "Show \u201cPeak_1031_ClientPortal_Detailed.xlsx\u201d in Finder",
+                              "type": "AXMenuItem",
+                              "id": "AXMenuItem_-4539455774338912544_1751940100465",
+                              "bounds": [
+                                0.0,
+                                956.0,
+                                0.0,
+                                -956.0
+                              ],
+                              "value": "",
+                              "children": []
+                            },
+                            {
+                              "name": "affilaform",
+                              "type": "AXMenuItem",
+                              "id": "AXMenuItem_-661854361410722920_1751940100467",
+                              "bounds": [
+                                0.0,
+                                956.0,
+                                0.0,
+                                -956.0
+                              ],
+                              "value": "",
+                              "children": []
+                            },
+                            {
+                              "name": "Show \u201caffilaform\u201d in Finder",
+                              "type": "AXMenuItem",
+                              "id": "AXMenuItem_-8653645005090462574_1751940100469",
+                              "bounds": [
+                                0.0,
+                                956.0,
+                                0.0,
+                                -956.0
+                              ],
+                              "value": "",
+                              "children": []
+                            },
+                            {
+                              "name": "affiliate-whitelabel",
+                              "type": "AXMenuItem",
+                              "id": "AXMenuItem_-8488718163109639249_1751940100471",
+                              "bounds": [
+                                0.0,
+                                956.0,
+                                0.0,
+                                -956.0
+                              ],
+                              "value": "",
+                              "children": []
+                            },
+                            {
+                              "name": "Show \u201caffiliate-whitelabel\u201d in Finder",
+                              "type": "AXMenuItem",
+                              "id": "AXMenuItem_-4819373064176825227_1751940100473",
+                              "bounds": [
+                                0.0,
+                                956.0,
+                                0.0,
+                                -956.0
+                              ],
+                              "value": "",
+                              "children": []
+                            },
+                            {
+                              "name": "lp_web",
+                              "type": "AXMenuItem",
+                              "id": "AXMenuItem_386640045030263635_1751940100475",
+                              "bounds": [
+                                0.0,
+                                956.0,
+                                0.0,
+                                -956.0
+                              ],
+                              "value": "",
+                              "children": []
+                            },
+                            {
+                              "name": "Show \u201clp_web\u201d in Finder",
+                              "type": "AXMenuItem",
+                              "id": "AXMenuItem_8403022623604556146_1751940100480",
+                              "bounds": [
+                                0.0,
+                                956.0,
+                                0.0,
+                                -956.0
+                              ],
+                              "value": "",
+                              "children": []
+                            },
+                            {
+                              "name": "peakExchange",
+                              "type": "AXMenuItem",
+                              "id": "AXMenuItem_-2453862228567375661_1751940100482",
+                              "bounds": [
+                                0.0,
+                                956.0,
+                                0.0,
+                                -956.0
+                              ],
+                              "value": "",
+                              "children": []
+                            },
+                            {
+                              "name": "Show \u201cpeakExchange\u201d in Finder",
+                              "type": "AXMenuItem",
+                              "id": "AXMenuItem_-5582762286496156888_1751940100484",
+                              "bounds": [
+                                0.0,
+                                956.0,
+                                0.0,
+                                -956.0
+                              ],
+                              "value": "",
+                              "children": []
+                            },
+                            {
+                              "name": "peakdemo",
+                              "type": "AXMenuItem",
+                              "id": "AXMenuItem_6381501699581508261_1751940100486",
+                              "bounds": [
+                                0.0,
+                                956.0,
+                                0.0,
+                                -956.0
+                              ],
+                              "value": "",
+                              "children": []
+                            },
+                            {
+                              "name": "Show \u201cpeakdemo\u201d in Finder",
+                              "type": "AXMenuItem",
+                              "id": "AXMenuItem_-7050999437790704896_1751940100488",
+                              "bounds": [
+                                0.0,
+                                956.0,
+                                0.0,
+                                -956.0
+                              ],
+                              "value": "",
+                              "children": []
+                            },
+                            {
+                              "name": "simple_overlay.html",
+                              "type": "AXMenuItem",
+                              "id": "AXMenuItem_4380190269762727082_1751940100490",
+                              "bounds": [
+                                0.0,
+                                956.0,
+                                0.0,
+                                -956.0
+                              ],
+                              "value": "",
+                              "children": []
+                            },
+                            {
+                              "name": "Show \u201csimple_overlay.html\u201d in Finder",
+                              "type": "AXMenuItem",
+                              "id": "AXMenuItem_-4655077033771112788_1751940100492",
+                              "bounds": [
+                                0.0,
+                                956.0,
+                                0.0,
+                                -956.0
+                              ],
+                              "value": "",
+                              "children": []
+                            },
+                            {
+                              "name": "AXMenuItem",
+                              "type": "AXMenuItem",
+                              "id": "AXMenuItem_0_1751940100494",
+                              "bounds": [
+                                0.0,
+                                956.0,
+                                0.0,
+                                -956.0
+                              ],
+                              "value": "",
+                              "children": []
+                            },
+                            {
+                              "name": "Servers",
+                              "type": "AXMenuItem",
+                              "id": "AXMenuItem_-2974862379264784036_1751940100496",
+                              "bounds": [
+                                0.0,
+                                956.0,
+                                0.0,
+                                -956.0
+                              ],
+                              "value": "",
+                              "children": []
+                            },
+                            {
+                              "name": "AXMenuItem",
+                              "type": "AXMenuItem",
+                              "id": "AXMenuItem_0_1751940100499",
+                              "bounds": [
+                                0.0,
+                                956.0,
+                                0.0,
+                                -956.0
+                              ],
+                              "value": "",
+                              "children": []
+                            },
+                            {
+                              "name": "Clear Menu",
+                              "type": "AXMenuItem",
+                              "id": "AXMenuItem_2366556724310806378_1751940100501",
+                              "bounds": [
+                                0.0,
+                                956.0,
+                                0.0,
+                                -956.0
+                              ],
+                              "value": "",
+                              "children": []
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "name": "AXMenuItem",
+                      "type": "AXMenuItem",
+                      "id": "AXMenuItem_0_1751940100502",
+                      "bounds": [
+                        0.0,
+                        956.0,
+                        0.0,
+                        -956.0
+                      ],
+                      "value": "",
+                      "children": []
+                    },
+                    {
+                      "name": "Force Quit\u2026",
+                      "type": "AXMenuItem",
+                      "id": "AXMenuItem_7782218607448278565_1751940100504",
+                      "bounds": [
+                        0.0,
+                        956.0,
+                        0.0,
+                        -956.0
+                      ],
+                      "value": "",
+                      "children": []
+                    },
+                    {
+                      "name": "Force Quit Finder",
+                      "type": "AXMenuItem",
+                      "id": "AXMenuItem_8239822287452020851_1751940100505",
+                      "bounds": [
+                        0.0,
+                        956.0,
+                        0.0,
+                        -956.0
+                      ],
+                      "value": "",
+                      "children": []
+                    },
+                    {
+                      "name": "AXMenuItem",
+                      "type": "AXMenuItem",
+                      "id": "AXMenuItem_0_1751940100506",
+                      "bounds": [
+                        0.0,
+                        956.0,
+                        0.0,
+                        -956.0
+                      ],
+                      "value": "",
+                      "children": []
+                    },
+                    {
+                      "name": "Sleep",
+                      "type": "AXMenuItem",
+                      "id": "AXMenuItem_3432773279835286251_1751940100508",
+                      "bounds": [
+                        0.0,
+                        956.0,
+                        0.0,
+                        -956.0
+                      ],
+                      "value": "",
+                      "children": []
+                    },
+                    {
+                      "name": "Restart\u2026",
+                      "type": "AXMenuItem",
+                      "id": "AXMenuItem_-6995110914980677853_1751940100509",
+                      "bounds": [
+                        0.0,
+                        956.0,
+                        0.0,
+                        -956.0
+                      ],
+                      "value": "",
+                      "children": []
+                    },
+                    {
+                      "name": "Restart",
+                      "type": "AXMenuItem",
+                      "id": "AXMenuItem_550422722814957161_1751940100511",
+                      "bounds": [
+                        0.0,
+                        956.0,
+                        0.0,
+                        -956.0
+                      ],
+                      "value": "",
+                      "children": []
+                    },
+                    {
+                      "name": "Shut Down\u2026",
+                      "type": "AXMenuItem",
+                      "id": "AXMenuItem_-5148053372933905872_1751940100513",
+                      "bounds": [
+                        0.0,
+                        956.0,
+                        0.0,
+                        -956.0
+                      ],
+                      "value": "",
+                      "children": []
+                    },
+                    {
+                      "name": "Shut Down",
+                      "type": "AXMenuItem",
+                      "id": "AXMenuItem_7295833128100946658_1751940100514",
+                      "bounds": [
+                        0.0,
+                        956.0,
+                        0.0,
+                        -956.0
+                      ],
+                      "value": "",
+                      "children": []
+                    },
+                    {
+                      "name": "AXMenuItem",
+                      "type": "AXMenuItem",
+                      "id": "AXMenuItem_0_1751940100516",
+                      "bounds": [
+                        0.0,
+                        956.0,
+                        0.0,
+                        -956.0
+                      ],
+                      "value": "",
+                      "children": []
+                    },
+                    {
+                      "name": "Lock Screen",
+                      "type": "AXMenuItem",
+                      "id": "AXMenuItem_7149490835103678357_1751940100518",
+                      "bounds": [
+                        0.0,
+                        956.0,
+                        0.0,
+                        -956.0
+                      ],
+                      "value": "",
+                      "children": []
+                    },
+                    {
+                      "name": "Log Out Segev Binyamin Halfon\u2026",
+                      "type": "AXMenuItem",
+                      "id": "AXMenuItem_2129383569926119123_1751940100519",
+                      "bounds": [
+                        0.0,
+                        956.0,
+                        0.0,
+                        -956.0
+                      ],
+                      "value": "",
+                      "children": []
+                    },
+                    {
+                      "name": "Log Out Segev Binyamin Halfon",
+                      "type": "AXMenuItem",
+                      "id": "AXMenuItem_3463719840870755084_1751940100521",
+                      "bounds": [
+                        0.0,
+                        956.0,
+                        0.0,
+                        -956.0
+                      ],
+                      "value": "",
+                      "children": []
+                    },
+                    {
+                      "name": "AXMenuItem",
+                      "type": "AXMenuItem",
+                      "id": "AXMenuItem_0_1751940100523",
+                      "bounds": [
+                        0.0,
+                        956.0,
+                        0.0,
+                        -956.0
+                      ],
+                      "value": "",
+                      "children": []
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "Finder",
+              "type": "AXMenuBarItem",
+              "id": "AXMenuBarItem_-3619483791998275878_1751940100544",
+              "bounds": [
+                44.0,
+                0.0,
+                18.0,
+                36.0
+              ],
+              "value": "",
+              "children": [
+                {
+                  "name": "AXMenu",
+                  "type": "AXMenu",
+                  "id": "AXMenu_0_1751940100544",
+                  "bounds": [
+                    0.0,
+                    956.0,
+                    0.0,
+                    -956.0
+                  ],
+                  "value": "",
+                  "children": [
+                    {
+                      "name": "About Finder",
+                      "type": "AXMenuItem",
+                      "id": "AXMenuItem_1006670448255105939_1751940100526",
+                      "bounds": [
+                        0.0,
+                        956.0,
+                        0.0,
+                        -956.0
+                      ],
+                      "value": "",
+                      "children": []
+                    },
+                    {
+                      "name": "AXMenuItem",
+                      "type": "AXMenuItem",
+                      "id": "AXMenuItem_0_1751940100527",
+                      "bounds": [
+                        0.0,
+                        956.0,
+                        0.0,
+                        -956.0
+                      ],
+                      "value": "",
+                      "children": []
+                    },
+                    {
+                      "name": "Settings\u2026",
+                      "type": "AXMenuItem",
+                      "id": "AXMenuItem_4779248900913548182_1751940100528",
+                      "bounds": [
+                        0.0,
+                        956.0,
+                        0.0,
+                        -956.0
+                      ],
+                      "value": "",
+                      "children": []
+                    },
+                    {
+                      "name": "AXMenuItem",
+                      "type": "AXMenuItem",
+                      "id": "AXMenuItem_0_1751940100530",
+                      "bounds": [
+                        0.0,
+                        956.0,
+                        0.0,
+                        -956.0
+                      ],
+                      "value": "",
+                      "children": []
+                    },
+                    {
+                      "name": "Empty Trash\u2026",
+                      "type": "AXMenuItem",
+                      "id": "AXMenuItem_6369130427464503814_1751940100531",
+                      "bounds": [
+                        0.0,
+                        956.0,
+                        0.0,
+                        -956.0
+                      ],
+                      "value": "",
+                      "children": []
+                    },
+                    {
+                      "name": "Empty Trash",
+                      "type": "AXMenuItem",
+                      "id": "AXMenuItem_-2306011371384706317_1751940100532",
+                      "bounds": [
+                        0.0,
+                        956.0,
+                        0.0,
+                        -956.0
+                      ],
+                      "value": "",
+                      "children": []
+                    },
+                    {
+                      "name": "AXMenuItem",
+                      "type": "AXMenuItem",
+                      "id": "AXMenuItem_0_1751940100534",
+                      "bounds": [
+                        0.0,
+                        956.0,
+                        0.0,
+                        -956.0
+                      ],
+                      "value": "",
+                      "children": []
+                    },
+                    {
+                      "name": "Services",
+                      "type": "AXMenuItem",
+                      "id": "AXMenuItem_-2294258302564377823_1751940100538",
+                      "bounds": [
+                        0.0,
+                        956.0,
+                        0.0,
+                        -956.0
+                      ],
+                      "value": "",
+                      "children": [
+                        {
+                          "name": "AXMenu",
+                          "type": "AXMenu",
+                          "id": "AXMenu_0_1751940100538",
+                          "bounds": [
+                            0.0,
+                            956.0,
+                            0.0,
+                            -956.0
+                          ],
+                          "value": "",
+                          "children": [
+                            {
+                              "name": "No Services Apply",
+                              "type": "AXMenuItem",
+                              "id": "AXMenuItem_-6408029580577984158_1751940100537",
+                              "bounds": [
+                                0.0,
+                                956.0,
+                                0.0,
+                                -956.0
+                              ],
+                              "value": "",
+                              "children": []
+                            },
+                            {
+                              "name": "Services Settings\u2026",
+                              "type": "AXMenuItem",
+                              "id": "AXMenuItem_5494055158404269680_1751940100538",
+                              "bounds": [
+                                0.0,
+                                956.0,
+                                0.0,
+                                -956.0
+                              ],
+                              "value": "",
+                              "children": []
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "name": "AXMenuItem",
+                      "type": "AXMenuItem",
+                      "id": "AXMenuItem_0_1751940100540",
+                      "bounds": [
+                        0.0,
+                        956.0,
+                        0.0,
+                        -956.0
+                      ],
+                      "value": "",
+                      "children": []
+                    },
+                    {
+                      "name": "Hide Finder",
+                      "type": "AXMenuItem",
+                      "id": "AXMenuItem_8934728068758673356_1751940100541",
+                      "bounds": [
+                        0.0,
+                        956.0,
+                        0.0,
+                        -956.0
+                      ],
+                      "value": "",
+                      "children": []
+                    },
+                    {
+                      "name": "Hide Others",
+                      "type": "AXMenuItem",
+                      "id": "AXMenuItem_-3662139763610797999_1751940100543",
+                      "bounds": [
+                        0.0,
+                        956.0,
+                        0.0,
+                        -956.0
+                      ],
+                      "value": "",
+                      "children": []
+                    },
+                    {
+                      "name": "Show All",
+                      "type": "AXMenuItem",
+                      "id": "AXMenuItem_-5677633501940752733_1751940100544",
+                      "bounds": [
+                        0.0,
+                        956.0,
+                        0.0,
+                        -956.0
+                      ],
+                      "value": "",
+                      "children": []
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "File",
+              "type": "AXMenuBarItem",
+              "id": "AXMenuBarItem_5283471996503314301_1751940100648",
+              "bounds": [
+                106.0,
+                0.0,
+                -64.0,
+                36.0
+              ],
+              "value": "",
+              "children": [
+                {
+                  "name": "AXMenu",
+                  "type": "AXMenu",
+                  "id": "AXMenu_0_1751940100648",
+                  "bounds": [
+                    0.0,
+                    956.0,
+                    0.0,
+                    -956.0
+                  ],
+                  "value": "",
+                  "children": [
+                    {
+                      "name": "New Finder Window",
+                      "type": "AXMenuItem",
+                      "id": "AXMenuItem_-9035168030129656337_1751940100549",
+                      "bounds": [
+                        0.0,
+                        956.0,
+                        0.0,
+                        -956.0
+                      ],
+                      "value": "",
+                      "children": []
+                    },
+                    {
+                      "name": "New Folder",
+                      "type": "AXMenuItem",
+                      "id": "AXMenuItem_-8875079195835425966_1751940100550",
+                      "bounds": [
+                        0.0,
+                        956.0,
+                        0.0,
+                        -956.0
+                      ],
+                      "value": "",
+                      "children": []
+                    },
+                    {
+                      "name": "New Folder with Selection",
+                      "type": "AXMenuItem",
+                      "id": "AXMenuItem_-3570132982368646188_1751940100551",
+                      "bounds": [
+                        0.0,
+                        956.0,
+                        0.0,
+                        -956.0
+                      ],
+                      "value": "",
+                      "children": []
+                    },
+                    {
+                      "name": "New Smart Folder",
+                      "type": "AXMenuItem",
+                      "id": "AXMenuItem_-1880878083642009188_1751940100552",
+                      "bounds": [
+                        0.0,
+                        956.0,
+                        0.0,
+                        -956.0
+                      ],
+                      "value": "",
+                      "children": []
+                    },
+                    {
+                      "name": "New Tab",
+                      "type": "AXMenuItem",
+                      "id": "AXMenuItem_-5927179406733613138_1751940100553",
+                      "bounds": [
+                        0.0,
+                        956.0,
+                        0.0,
+                        -956.0
+                      ],
+                      "value": "",
+                      "children": []
+                    },
+                    {
+                      "name": "New Burn Folder",
+                      "type": "AXMenuItem",
+                      "id": "AXMenuItem_2195256597421863724_1751940100554",
+                      "bounds": [
+                        0.0,
+                        956.0,
+                        0.0,
+                        -956.0
+                      ],
+                      "value": "",
+                      "children": []
+                    },
+                    {
+                      "name": "Open",
+                      "type": "AXMenuItem",
+                      "id": "AXMenuItem_-885714100986161266_1751940100556",
+                      "bounds": [
+                        0.0,
+                        956.0,
+                        0.0,
+                        -956.0
+                      ],
+                      "value": "",
+                      "children": []
+                    },
+                    {
+                      "name": "Open in New Window",
+                      "type": "AXMenuItem",
+                      "id": "AXMenuItem_2132578553269827633_1751940100557",
+                      "bounds": [
+                        0.0,
+                        956.0,
+                        0.0,
+                        -956.0
+                      ],
+                      "value": "",
+                      "children": []
+                    },
+                    {
+                      "name": "Open in New Window and Close",
+                      "type": "AXMenuItem",
+                      "id": "AXMenuItem_-8151618450610604620_1751940100558",
+                      "bounds": [
+                        0.0,
+                        956.0,
+                        0.0,
+                        -956.0
+                      ],
+                      "value": "",
+                      "children": []
+                    },
+                    {
+                      "name": "Open With",
+                      "type": "AXMenuItem",
+                      "id": "AXMenuItem_615221735573647349_1751940100567",
+                      "bounds": [
+                        0.0,
+                        956.0,
+                        0.0,
+                        -956.0
+                      ],
+                      "value": "",
+                      "children": [
+                        {
+                          "name": "AXMenu",
+                          "type": "AXMenu",
+                          "id": "AXMenu_0_1751940100567",
+                          "bounds": [
+                            0.0,
+                            956.0,
+                            0.0,
+                            -956.0
+                          ],
+                          "value": "",
+                          "children": [
+                            {
+                              "name": "Microsoft Excel (default)",
+                              "type": "AXMenuItem",
+                              "id": "AXMenuItem_-7528921518991312098_1751940100561",
+                              "bounds": [
+                                0.0,
+                                956.0,
+                                0.0,
+                                -956.0
+                              ],
+                              "value": "",
+                              "children": []
+                            },
+                            {
+                              "name": "AXMenuItem",
+                              "type": "AXMenuItem",
+                              "id": "AXMenuItem_0_1751940100562",
+                              "bounds": [
+                                0.0,
+                                956.0,
+                                0.0,
+                                -956.0
+                              ],
+                              "value": "",
+                              "children": []
+                            },
+                            {
+                              "name": "Numbers",
+                              "type": "AXMenuItem",
+                              "id": "AXMenuItem_5434128125120204105_1751940100563",
+                              "bounds": [
+                                0.0,
+                                956.0,
+                                0.0,
+                                -956.0
+                              ],
+                              "value": "",
+                              "children": []
+                            },
+                            {
+                              "name": "AXMenuItem",
+                              "type": "AXMenuItem",
+                              "id": "AXMenuItem_0_1751940100565",
+                              "bounds": [
+                                0.0,
+                                956.0,
+                                0.0,
+                                -956.0
+                              ],
+                              "value": "",
+                              "children": []
+                            },
+                            {
+                              "name": "App Store\u2026",
+                              "type": "AXMenuItem",
+                              "id": "AXMenuItem_-2429423567048433068_1751940100566",
+                              "bounds": [
+                                0.0,
+                                956.0,
+                                0.0,
+                                -956.0
+                              ],
+                              "value": "",
+                              "children": []
+                            },
+                            {
+                              "name": "Other\u2026",
+                              "type": "AXMenuItem",
+                              "id": "AXMenuItem_-3554789478760759528_1751940100567",
+                              "bounds": [
+                                0.0,
+                                956.0,
+                                0.0,
+                                -956.0
+                              ],
+                              "value": "",
+                              "children": []
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "name": "Always Open With",
+                      "type": "AXMenuItem",
+                      "id": "AXMenuItem_263452950632694248_1751940100576",
+                      "bounds": [
+                        0.0,
+                        956.0,
+                        0.0,
+                        -956.0
+                      ],
+                      "value": "",
+                      "children": [
+                        {
+                          "name": "AXMenu",
+                          "type": "AXMenu",
+                          "id": "AXMenu_0_1751940100576",
+                          "bounds": [
+                            0.0,
+                            956.0,
+                            0.0,
+                            -956.0
+                          ],
+                          "value": "",
+                          "children": [
+                            {
+                              "name": "Microsoft Excel (default)",
+                              "type": "AXMenuItem",
+                              "id": "AXMenuItem_-7528921518991312098_1751940100571",
+                              "bounds": [
+                                0.0,
+                                956.0,
+                                0.0,
+                                -956.0
+                              ],
+                              "value": "",
+                              "children": []
+                            },
+                            {
+                              "name": "AXMenuItem",
+                              "type": "AXMenuItem",
+                              "id": "AXMenuItem_0_1751940100572",
+                              "bounds": [
+                                0.0,
+                                956.0,
+                                0.0,
+                                -956.0
+                              ],
+                              "value": "",
+                              "children": []
+                            },
+                            {
+                              "name": "Numbers",
+                              "type": "AXMenuItem",
+                              "id": "AXMenuItem_5434128125120204105_1751940100573",
+                              "bounds": [
+                                0.0,
+                                956.0,
+                                0.0,
+                                -956.0
+                              ],
+                              "value": "",
+                              "children": []
+                            },
+                            {
+                              "name": "AXMenuItem",
+                              "type": "AXMenuItem",
+                              "id": "AXMenuItem_0_1751940100574",
+                              "bounds": [
+                                0.0,
+                                956.0,
+                                0.0,
+                                -956.0
+                              ],
+                              "value": "",
+                              "children": []
+                            },
+                            {
+                              "name": "App Store\u2026",
+                              "type": "AXMenuItem",
+                              "id": "AXMenuItem_-2429423567048433068_1751940100575",
+                              "bounds": [
+                                0.0,
+                                956.0,
+                                0.0,
+                                -956.0
+                              ],
+                              "value": "",
+                              "children": []
+                            },
+                            {
+                              "name": "Other\u2026",
+                              "type": "AXMenuItem",
+                              "id": "AXMenuItem_-3554789478760759528_1751940100576",
+                              "bounds": [
+                                0.0,
+                                956.0,
+                                0.0,
+                                -956.0
+                              ],
+                              "value": "",
+                              "children": []
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "name": "Close Window",
+                      "type": "AXMenuItem",
+                      "id": "AXMenuItem_2482301851390021950_1751940100578",
+                      "bounds": [
+                        0.0,
+                        956.0,
+                        0.0,
+                        -956.0
+                      ],
+                      "value": "",
+                      "children": []
+                    },
+                    {
+                      "name": "Close All",
+                      "type": "AXMenuItem",
+                      "id": "AXMenuItem_3816350746591403922_1751940100579",
+                      "bounds": [
+                        0.0,
+                        956.0,
+                        0.0,
+                        -956.0
+                      ],
+                      "value": "",
+                      "children": []
+                    },
+                    {
+                      "name": "AXMenuItem",
+                      "type": "AXMenuItem",
+                      "id": "AXMenuItem_0_1751940100580",
+                      "bounds": [
+                        0.0,
+                        956.0,
+                        0.0,
+                        -956.0
+                      ],
+                      "value": "",
+                      "children": []
+                    },
+                    {
+                      "name": "Get Info",
+                      "type": "AXMenuItem",
+                      "id": "AXMenuItem_-8388674508662100897_1751940100582",
+                      "bounds": [
+                        0.0,
+                        956.0,
+                        0.0,
+                        -956.0
+                      ],
+                      "value": "",
+                      "children": []
+                    },
+                    {
+                      "name": "Show Inspector",
+                      "type": "AXMenuItem",
+                      "id": "AXMenuItem_8541056095461549645_1751940100584",
+                      "bounds": [
+                        0.0,
+                        956.0,
+                        0.0,
+                        -956.0
+                      ],
+                      "value": "",
+                      "children": []
+                    },
+                    {
+                      "name": "Get Summary Info",
+                      "type": "AXMenuItem",
+                      "id": "AXMenuItem_40653297707128182_1751940100585",
+                      "bounds": [
+                        0.0,
+                        956.0,
+                        0.0,
+                        -956.0
+                      ],
+                      "value": "",
+                      "children": []
+                    },
+                    {
+                      "name": "Rename",
+                      "type": "AXMenuItem",
+                      "id": "AXMenuItem_-4662339690533361513_1751940100587",
+                      "bounds": [
+                        0.0,
+                        956.0,
+                        0.0,
+                        -956.0
+                      ],
+                      "value": "",
+                      "children": []
+                    },
+                    {
+                      "name": "Compress",
+                      "type": "AXMenuItem",
+                      "id": "AXMenuItem_1661086140694133336_1751940100588",
+                      "bounds": [
+                        0.0,
+                        956.0,
+                        0.0,
+                        -956.0
+                      ],
+                      "value": "",
+                      "children": []
+                    },
+                    {
+                      "name": "Compress with password",
+                      "type": "AXMenuItem",
+                      "id": "AXMenuItem_3945573020398353946_1751940100590",
+                      "bounds": [
+                        0.0,
+                        956.0,
+                        0.0,
+                        -956.0
+                      ],
+                      "value": "",
+                      "children": []
+                    },
+                    {
+                      "name": "Duplicate",
+                      "type": "AXMenuItem",
+                      "id": "AXMenuItem_-3321665942530384938_1751940100591",
+                      "bounds": [
+                        0.0,
+                        956.0,
+                        0.0,
+                        -956.0
+                      ],
+                      "value": "",
+                      "children": []
+                    },
+                    {
+                      "name": "Duplicate Exactly",
+                      "type": "AXMenuItem",
+                      "id": "AXMenuItem_-2558248695440027340_1751940100593",
+                      "bounds": [
+                        0.0,
+                        956.0,
+                        0.0,
+                        -956.0
+                      ],
+                      "value": "",
+                      "children": []
+                    },
+                    {
+                      "name": "Make Alias",
+                      "type": "AXMenuItem",
+                      "id": "AXMenuItem_7202051496863123640_1751940100595",
+                      "bounds": [
+                        0.0,
+                        956.0,
+                        0.0,
+                        -956.0
+                      ],
+                      "value": "",
+                      "children": []
+                    },
+                    {
+                      "name": "QuickLook",
+                      "type": "AXMenuItem",
+                      "id": "AXMenuItem_-8585542438019339108_1751940100596",
+                      "bounds": [
+                        0.0,
+                        956.0,
+                        0.0,
+                        -956.0
+                      ],
+                      "value": "",
+                      "children": []
+                    },
+                    {
+                      "name": "Slideshow",
+                      "type": "AXMenuItem",
+                      "id": "AXMenuItem_8383665976945375775_1751940100598",
+                      "bounds": [
+                        0.0,
+                        956.0,
+                        0.0,
+                        -956.0
+                      ],
+                      "value": "",
+                      "children": []
+                    },
+                    {
+                      "name": "Print",
+                      "type": "AXMenuItem",
+                      "id": "AXMenuItem_6431491023297244882_1751940100600",
+                      "bounds": [
+                        0.0,
+                        956.0,
+                        0.0,
+                        -956.0
+                      ],
+                      "value": "",
+                      "children": []
+                    },
+                    {
+                      "name": "AXMenuItem",
+                      "type": "AXMenuItem",
+                      "id": "AXMenuItem_0_1751940100602",
+                      "bounds": [
+                        0.0,
+                        956.0,
+                        0.0,
+                        -956.0
+                      ],
+                      "value": "",
+                      "children": []
+                    },
+                    {
+                      "name": "Share\u2026",
+                      "type": "AXMenuItem",
+                      "id": "AXMenuItem_-6523657348887882993_1751940100603",
+                      "bounds": [
+                        0.0,
+                        956.0,
+                        0.0,
+                        -956.0
+                      ],
+                      "value": "",
+                      "children": []
+                    },
+                    {
+                      "name": "Burn Disc",
+                      "type": "AXMenuItem",
+                      "id": "AXMenuItem_-8389732380496935625_1751940100605",
+                      "bounds": [
+                        0.0,
+                        956.0,
+                        0.0,
+                        -956.0
+                      ],
+                      "value": "",
+                      "children": []
+                    },
+                    {
+                      "name": "AXMenuItem",
+                      "type": "AXMenuItem",
+                      "id": "AXMenuItem_0_1751940100607",
+                      "bounds": [
+                        0.0,
+                        956.0,
+                        0.0,
+                        -956.0
+                      ],
+                      "value": "",
+                      "children": []
+                    },
+                    {
+                      "name": "Show Original",
+                      "type": "AXMenuItem",
+                      "id": "AXMenuItem_-6362253410747388952_1751940100609",
+                      "bounds": [
+                        0.0,
+                        956.0,
+                        0.0,
+                        -956.0
+                      ],
+                      "value": "",
+                      "children": []
+                    },
+                    {
+                      "name": "Add to Sidebar",
+                      "type": "AXMenuItem",
+                      "id": "AXMenuItem_-2108188085686171166_1751940100611",
+                      "bounds": [
+                        0.0,
+                        956.0,
+                        0.0,
+                        -956.0
+                      ],
+                      "value": "",
+                      "children": []
+                    },
+                    {
+                      "name": "Add to Dock",
+                      "type": "AXMenuItem",
+                      "id": "AXMenuItem_8910805830735244961_1751940100613",
+                      "bounds": [
+                        0.0,
+                        956.0,
+                        0.0,
+                        -956.0
+                      ],
+                      "value": "",
+                      "children": []
+                    },
+                    {
+                      "name": "AXMenuItem",
+                      "type": "AXMenuItem",
+                      "id": "AXMenuItem_0_1751940100615",
+                      "bounds": [
+                        0.0,
+                        956.0,
+                        0.0,
+                        -956.0
+                      ],
+                      "value": "",
+                      "children": []
+                    },
+                    {
+                      "name": "Move to Trash",
+                      "type": "AXMenuItem",
+                      "id": "AXMenuItem_-4478461414119206340_1751940100617",
+                      "bounds": [
+                        0.0,
+                        956.0,
+                        0.0,
+                        -956.0
+                      ],
+                      "value": "",
+                      "children": []
+                    },
+                    {
+                      "name": "Delete Immediately\u2026",
+                      "type": "AXMenuItem",
+                      "id": "AXMenuItem_-7779762689769936977_1751940100619",
+                      "bounds": [
+                        0.0,
+                        956.0,
+                        0.0,
+                        -956.0
+                      ],
+                      "value": "",
+                      "children": []
+                    },
+                    {
+                      "name": "Eject",
+                      "type": "AXMenuItem",
+                      "id": "AXMenuItem_5963307478115554121_1751940100621",
+                      "bounds": [
+                        0.0,
+                        956.0,
+                        0.0,
+                        -956.0
+                      ],
+                      "value": "",
+                      "children": []
+                    },
+                    {
+                      "name": "Eject One",
+                      "type": "AXMenuItem",
+                      "id": "AXMenuItem_-547327056542819959_1751940100623",
+                      "bounds": [
+                        0.0,
+                        956.0,
+                        0.0,
+                        -956.0
+                      ],
+                      "value": "",
+                      "children": []
+                    },
+                    {
+                      "name": "Eject All",
+                      "type": "AXMenuItem",
+                      "id": "AXMenuItem_-7211237005239202806_1751940100625",
+                      "bounds": [
+                        0.0,
+                        956.0,
+                        0.0,
+                        -956.0
+                      ],
+                      "value": "",
+                      "children": []
+                    },
+                    {
+                      "name": "AXMenuItem",
+                      "type": "AXMenuItem",
+                      "id": "AXMenuItem_0_1751940100627",
+                      "bounds": [
+                        0.0,
+                        956.0,
+                        0.0,
+                        -956.0
+                      ],
+                      "value": "",
+                      "children": []
+                    },
+                    {
+                      "name": "AXMenuItem",
+                      "type": "AXMenuItem",
+                      "id": "AXMenuItem_4238894112_1751940100641",
+                      "bounds": [
+                        0.0,
+                        956.0,
+                        0.0,
+                        -956.0
+                      ],
+                      "value": "",
+                      "children": [
+                        {
+                          "name": "<atomacos.AXClasses.NativeUIElement AXRadioButton 1>",
+                          "type": "AXRadioGroup",
+                          "id": "AXRadioGroup_0_1751940100640",
+                          "bounds": [
+                            0.0,
+                            910.0,
+                            192.0,
+                            -864.0
+                          ],
+                          "value": "<atomacos.AXClasses.NativeUIElement AXRadioButton 1>",
+                          "children": [
+                            {
+                              "name": 1,
+                              "type": "AXRadioButton",
+                              "id": "AXRadioButton_0_1751940100631",
+                              "bounds": [
+                                0.0,
+                                934.0,
+                                24.0,
+                                -912.0
+                              ],
+                              "value": 1,
+                              "children": []
+                            },
+                            {
+                              "name": "AXRadioButton",
+                              "type": "AXRadioButton",
+                              "id": "AXRadioButton_0_1751940100632",
+                              "bounds": [
+                                0.0,
+                                934.0,
+                                24.0,
+                                -912.0
+                              ],
+                              "value": 0,
+                              "children": []
+                            },
+                            {
+                              "name": "AXRadioButton",
+                              "type": "AXRadioButton",
+                              "id": "AXRadioButton_0_1751940100634",
+                              "bounds": [
+                                0.0,
+                                934.0,
+                                24.0,
+                                -912.0
+                              ],
+                              "value": 0,
+                              "children": []
+                            },
+                            {
+                              "name": "AXRadioButton",
+                              "type": "AXRadioButton",
+                              "id": "AXRadioButton_0_1751940100635",
+                              "bounds": [
+                                0.0,
+                                934.0,
+                                24.0,
+                                -912.0
+                              ],
+                              "value": 0,
+                              "children": []
+                            },
+                            {
+                              "name": "AXRadioButton",
+                              "type": "AXRadioButton",
+                              "id": "AXRadioButton_0_1751940100636",
+                              "bounds": [
+                                0.0,
+                                934.0,
+                                24.0,
+                                -912.0
+                              ],
+                              "value": 0,
+                              "children": []
+                            },
+                            {
+                              "name": "AXRadioButton",
+                              "type": "AXRadioButton",
+                              "id": "AXRadioButton_0_1751940100637",
+                              "bounds": [
+                                0.0,
+                                934.0,
+                                24.0,
+                                -912.0
+                              ],
+                              "value": 0,
+                              "children": []
+                            },
+                            {
+                              "name": "AXRadioButton",
+                              "type": "AXRadioButton",
+                              "id": "AXRadioButton_0_1751940100638",
+                              "bounds": [
+                                0.0,
+                                934.0,
+                                24.0,
+                                -912.0
+                              ],
+                              "value": 0,
+                              "children": []
+                            },
+                            {
+                              "name": "AXRadioButton",
+                              "type": "AXRadioButton",
+                              "id": "AXRadioButton_0_1751940100639",
+                              "bounds": [
+                                0.0,
+                                934.0,
+                                24.0,
+                                -912.0
+                              ],
+                              "value": 0,
+                              "children": []
+                            }
+                          ]
+                        },
+                        {
+                          "name": "Tags\u2026",
+                          "type": "AXStaticText",
+                          "id": "AXStaticText_0_1751940100641",
+                          "bounds": [
+                            0.0,
+                            940.0,
+                            43.0,
+                            -924.0
+                          ],
+                          "value": "Tags\u2026",
+                          "children": []
+                        }
+                      ]
+                    },
+                    {
+                      "name": "AXMenuItem",
+                      "type": "AXMenuItem",
+                      "id": "AXMenuItem_0_1751940100643",
+                      "bounds": [
+                        0.0,
+                        956.0,
+                        0.0,
+                        -956.0
+                      ],
+                      "value": "",
+                      "children": []
+                    },
+                    {
+                      "name": "Find",
+                      "type": "AXMenuItem",
+                      "id": "AXMenuItem_338610720836132330_1751940100645",
+                      "bounds": [
+                        0.0,
+                        956.0,
+                        0.0,
+                        -956.0
+                      ],
+                      "value": "",
+                      "children": []
+                    },
+                    {
+                      "name": "Find by Name\u2026",
+                      "type": "AXMenuItem",
+                      "id": "AXMenuItem_-3203590740477055506_1751940100648",
+                      "bounds": [
+                        0.0,
+                        956.0,
+                        0.0,
+                        -956.0
+                      ],
+                      "value": "",
+                      "children": []
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "Edit",
+              "type": "AXMenuBarItem",
+              "id": "AXMenuBarItem_-3298249670045571822_1751940100679",
+              "bounds": [
+                148.0,
+                0.0,
+                -104.0,
+                36.0
+              ],
+              "value": "",
+              "children": [
+                {
+                  "name": "AXMenu",
+                  "type": "AXMenu",
+                  "id": "AXMenu_0_1751940100679",
+                  "bounds": [
+                    0.0,
+                    956.0,
+                    0.0,
+                    -956.0
+                  ],
+                  "value": "",
+                  "children": [
+                    {
+                      "name": "Undo Move of \u201cPeak.png\u201d",
+                      "type": "AXMenuItem",
+                      "id": "AXMenuItem_-651104024995591311_1751940100651",
+                      "bounds": [
+                        0.0,
+                        956.0,
+                        0.0,
+                        -956.0
+                      ],
+                      "value": "",
+                      "children": []
+                    },
+                    {
+                      "name": "Redo",
+                      "type": "AXMenuItem",
+                      "id": "AXMenuItem_6920030173927186034_1751940100652",
+                      "bounds": [
+                        0.0,
+                        956.0,
+                        0.0,
+                        -956.0
+                      ],
+                      "value": "",
+                      "children": []
+                    },
+                    {
+                      "name": "AXMenuItem",
+                      "type": "AXMenuItem",
+                      "id": "AXMenuItem_0_1751940100653",
+                      "bounds": [
+                        0.0,
+                        956.0,
+                        0.0,
+                        -956.0
+                      ],
+                      "value": "",
+                      "children": []
+                    },
+                    {
+                      "name": "Cut",
+                      "type": "AXMenuItem",
+                      "id": "AXMenuItem_-403494209290045056_1751940100654",
+                      "bounds": [
+                        0.0,
+                        956.0,
+                        0.0,
+                        -956.0
+                      ],
+                      "value": "",
+                      "children": []
+                    },
+                    {
+                      "name": "Copy",
+                      "type": "AXMenuItem",
+                      "id": "AXMenuItem_6137480371546478114_1751940100656",
+                      "bounds": [
+                        0.0,
+                        956.0,
+                        0.0,
+                        -956.0
+                      ],
+                      "value": "",
+                      "children": []
+                    },
+                    {
+                      "name": "Copy as Pathname",
+                      "type": "AXMenuItem",
+                      "id": "AXMenuItem_1754708863644893279_1751940100657",
+                      "bounds": [
+                        0.0,
+                        956.0,
+                        0.0,
+                        -956.0
+                      ],
+                      "value": "",
+                      "children": []
+                    },
+                    {
+                      "name": "Copy as Link",
+                      "type": "AXMenuItem",
+                      "id": "AXMenuItem_5119568674008627321_1751940100658",
+                      "bounds": [
+                        0.0,
+                        956.0,
+                        0.0,
+                        -956.0
+                      ],
+                      "value": "",
+                      "children": []
+                    },
+                    {
+                      "name": "Paste",
+                      "type": "AXMenuItem",
+                      "id": "AXMenuItem_635181841878997423_1751940100660",
+                      "bounds": [
+                        0.0,
+                        956.0,
+                        0.0,
+                        -956.0
+                      ],
+                      "value": "",
+                      "children": []
+                    },
+                    {
+                      "name": "Move Items Here",
+                      "type": "AXMenuItem",
+                      "id": "AXMenuItem_-4880896658578473849_1751940100661",
+                      "bounds": [
+                        0.0,
+                        956.0,
+                        0.0,
+                        -956.0
+                      ],
+                      "value": "",
+                      "children": []
+                    },
+                    {
+                      "name": "Paste Exactly",
+                      "type": "AXMenuItem",
+                      "id": "AXMenuItem_4790891022041642806_1751940100663",
+                      "bounds": [
+                        0.0,
+                        956.0,
+                        0.0,
+                        -956.0
+                      ],
+                      "value": "",
+                      "children": []
+                    },
+                    {
+                      "name": "Select All",
+                      "type": "AXMenuItem",
+                      "id": "AXMenuItem_-4549725522795242566_1751940100664",
+                      "bounds": [
+                        0.0,
+                        956.0,
+                        0.0,
+                        -956.0
+                      ],
+                      "value": "",
+                      "children": []
+                    },
+                    {
+                      "name": "Deselect All",
+                      "type": "AXMenuItem",
+                      "id": "AXMenuItem_-8300549176957320606_1751940100666",
+                      "bounds": [
+                        0.0,
+                        956.0,
+                        0.0,
+                        -956.0
+                      ],
+                      "value": "",
+                      "children": []
+                    },
+                    {
+                      "name": "AXMenuItem",
+                      "type": "AXMenuItem",
+                      "id": "AXMenuItem_0_1751940100667",
+                      "bounds": [
+                        0.0,
+                        956.0,
+                        0.0,
+                        -956.0
+                      ],
+                      "value": "",
+                      "children": []
+                    },
+                    {
+                      "name": "Show Clipboard",
+                      "type": "AXMenuItem",
+                      "id": "AXMenuItem_5782274481192790740_1751940100669",
+                      "bounds": [
+                        0.0,
+                        956.0,
+                        0.0,
+                        -956.0
+                      ],
+                      "value": "",
+                      "children": []
+                    },
+                    {
+                      "name": "AXMenuItem",
+                      "type": "AXMenuItem",
+                      "id": "AXMenuItem_0_1751940100670",
+                      "bounds": [
+                        0.0,
+                        956.0,
+                        0.0,
+                        -956.0
+                      ],
+                      "value": "",
+                      "children": []
+                    },
+                    {
+                      "name": "AutoFill",
+                      "type": "AXMenuItem",
+                      "id": "AXMenuItem_2831202923430169396_1751940100675",
+                      "bounds": [
+                        0.0,
+                        956.0,
+                        0.0,
+                        -956.0
+                      ],
+                      "value": "",
+                      "children": [
+                        {
+                          "name": "AXMenu",
+                          "type": "AXMenu",
+                          "id": "AXMenu_0_1751940100675",
+                          "bounds": [
+                            0.0,
+                            956.0,
+                            0.0,
+                            -956.0
+                          ],
+                          "value": "",
+                          "children": [
+                            {
+                              "name": "Contact\u2026",
+                              "type": "AXMenuItem",
+                              "id": "AXMenuItem_5941602029886706352_1751940100674",
+                              "bounds": [
+                                0.0,
+                                956.0,
+                                0.0,
+                                -956.0
+                              ],
+                              "value": "",
+                              "children": []
+                            },
+                            {
+                              "name": "Passwords\u2026",
+                              "type": "AXMenuItem",
+                              "id": "AXMenuItem_1548333838843166204_1751940100675",
+                              "bounds": [
+                                0.0,
+                                956.0,
+                                0.0,
+                                -956.0
+                              ],
+                              "value": "",
+                              "children": []
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "name": "Start Dictation",
+                      "type": "AXMenuItem",
+                      "id": "AXMenuItem_-7609962562541501984_1751940100677",
+                      "bounds": [
+                        0.0,
+                        956.0,
+                        0.0,
+                        -956.0
+                      ],
+                      "value": "",
+                      "children": []
+                    },
+                    {
+                      "name": "Emoji & Symbols",
+                      "type": "AXMenuItem",
+                      "id": "AXMenuItem_-912519572333533145_1751940100679",
+                      "bounds": [
+                        0.0,
+                        956.0,
+                        0.0,
+                        -956.0
+                      ],
+                      "value": "",
+                      "children": []
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "View",
+              "type": "AXMenuBarItem",
+              "id": "AXMenuBarItem_4676772535808221218_1751940100753",
+              "bounds": [
+                192.0,
+                0.0,
+                -142.0,
+                36.0
+              ],
+              "value": "",
+              "children": [
+                {
+                  "name": "AXMenu",
+                  "type": "AXMenu",
+                  "id": "AXMenu_0_1751940100753",
+                  "bounds": [
+                    0.0,
+                    956.0,
+                    0.0,
+                    -956.0
+                  ],
+                  "value": "",
+                  "children": [
+                    {
+                      "name": "as Icons",
+                      "type": "AXMenuItem",
+                      "id": "AXMenuItem_3044829193386239423_1751940100682",
+                      "bounds": [
+                        0.0,
+                        956.0,
+                        0.0,
+                        -956.0
+                      ],
+                      "value": "",
+                      "children": []
+                    },
+                    {
+                      "name": "as List",
+                      "type": "AXMenuItem",
+                      "id": "AXMenuItem_-3127329096491126863_1751940100683",
+                      "bounds": [
+                        0.0,
+                        956.0,
+                        0.0,
+                        -956.0
+                      ],
+                      "value": "",
+                      "children": []
+                    },
+                    {
+                      "name": "as Columns",
+                      "type": "AXMenuItem",
+                      "id": "AXMenuItem_-1440873016158426640_1751940100685",
+                      "bounds": [
+                        0.0,
+                        956.0,
+                        0.0,
+                        -956.0
+                      ],
+                      "value": "",
+                      "children": []
+                    },
+                    {
+                      "name": "as Gallery",
+                      "type": "AXMenuItem",
+                      "id": "AXMenuItem_-8151499852052417644_1751940100686",
+                      "bounds": [
+                        0.0,
+                        956.0,
+                        0.0,
+                        -956.0
+                      ],
+                      "value": "",
+                      "children": []
+                    },
+                    {
+                      "name": "AXMenuItem",
+                      "type": "AXMenuItem",
+                      "id": "AXMenuItem_0_1751940100687",
+                      "bounds": [
+                        0.0,
+                        956.0,
+                        0.0,
+                        -956.0
+                      ],
+                      "value": "",
+                      "children": []
+                    },
+                    {
+                      "name": "Use Groups",
+                      "type": "AXMenuItem",
+                      "id": "AXMenuItem_-7005835052081608774_1751940100688",
+                      "bounds": [
+                        0.0,
+                        956.0,
+                        0.0,
+                        -956.0
+                      ],
+                      "value": "",
+                      "children": []
+                    },
+                    {
+                      "name": "Group By",
+                      "type": "AXMenuItem",
+                      "id": "AXMenuItem_4117505537723656452_1751940100703",
+                      "bounds": [
+                        0.0,
+                        956.0,
+                        0.0,
+                        -956.0
+                      ],
+                      "value": "",
+                      "children": [
+                        {
+                          "name": "AXMenu",
+                          "type": "AXMenu",
+                          "id": "AXMenu_0_1751940100703",
+                          "bounds": [
+                            0.0,
+                            956.0,
+                            0.0,
+                            -956.0
+                          ],
+                          "value": "",
+                          "children": [
+                            {
+                              "name": "None",
+                              "type": "AXMenuItem",
+                              "id": "AXMenuItem_6540909079121945976_1751940100691",
+                              "bounds": [
+                                0.0,
+                                956.0,
+                                0.0,
+                                -956.0
+                              ],
+                              "value": "",
+                              "children": []
+                            },
+                            {
+                              "name": "AXMenuItem",
+                              "type": "AXMenuItem",
+                              "id": "AXMenuItem_0_1751940100692",
+                              "bounds": [
+                                0.0,
+                                956.0,
+                                0.0,
+                                -956.0
+                              ],
+                              "value": "",
+                              "children": []
+                            },
+                            {
+                              "name": "Name",
+                              "type": "AXMenuItem",
+                              "id": "AXMenuItem_-487979344535488628_1751940100693",
+                              "bounds": [
+                                0.0,
+                                956.0,
+                                0.0,
+                                -956.0
+                              ],
+                              "value": "",
+                              "children": []
+                            },
+                            {
+                              "name": "Kind",
+                              "type": "AXMenuItem",
+                              "id": "AXMenuItem_7546395165686284528_1751940100694",
+                              "bounds": [
+                                0.0,
+                                956.0,
+                                0.0,
+                                -956.0
+                              ],
+                              "value": "",
+                              "children": []
+                            },
+                            {
+                              "name": "Application",
+                              "type": "AXMenuItem",
+                              "id": "AXMenuItem_6825029989573656517_1751940100695",
+                              "bounds": [
+                                0.0,
+                                956.0,
+                                0.0,
+                                -956.0
+                              ],
+                              "value": "",
+                              "children": []
+                            },
+                            {
+                              "name": "Date Last Opened",
+                              "type": "AXMenuItem",
+                              "id": "AXMenuItem_6621563827357470668_1751940100697",
+                              "bounds": [
+                                0.0,
+                                956.0,
+                                0.0,
+                                -956.0
+                              ],
+                              "value": "",
+                              "children": []
+                            },
+                            {
+                              "name": "Date Added",
+                              "type": "AXMenuItem",
+                              "id": "AXMenuItem_-5396590893665257826_1751940100698",
+                              "bounds": [
+                                0.0,
+                                956.0,
+                                0.0,
+                                -956.0
+                              ],
+                              "value": "",
+                              "children": []
+                            },
+                            {
+                              "name": "Date Modified",
+                              "type": "AXMenuItem",
+                              "id": "AXMenuItem_3662963948290565499_1751940100699",
+                              "bounds": [
+                                0.0,
+                                956.0,
+                                0.0,
+                                -956.0
+                              ],
+                              "value": "",
+                              "children": []
+                            },
+                            {
+                              "name": "Date Created",
+                              "type": "AXMenuItem",
+                              "id": "AXMenuItem_9103202940471444349_1751940100700",
+                              "bounds": [
+                                0.0,
+                                956.0,
+                                0.0,
+                                -956.0
+                              ],
+                              "value": "",
+                              "children": []
+                            },
+                            {
+                              "name": "Size",
+                              "type": "AXMenuItem",
+                              "id": "AXMenuItem_1195085585743553349_1751940100702",
+                              "bounds": [
+                                0.0,
+                                956.0,
+                                0.0,
+                                -956.0
+                              ],
+                              "value": "",
+                              "children": []
+                            },
+                            {
+                              "name": "Tags",
+                              "type": "AXMenuItem",
+                              "id": "AXMenuItem_-5401133350461655869_1751940100703",
+                              "bounds": [
+                                0.0,
+                                956.0,
+                                0.0,
+                                -956.0
+                              ],
+                              "value": "",
+                              "children": []
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "name": "Sort By",
+                      "type": "AXMenuItem",
+                      "id": "AXMenuItem_-3147382209081163120_1751940100714",
+                      "bounds": [
+                        0.0,
+                        956.0,
+                        0.0,
+                        -956.0
+                      ],
+                      "value": "",
+                      "children": [
+                        {
+                          "name": "AXMenu",
+                          "type": "AXMenu",
+                          "id": "AXMenu_0_1751940100714",
+                          "bounds": [
+                            0.0,
+                            956.0,
+                            0.0,
+                            -956.0
+                          ],
+                          "value": "",
+                          "children": [
+                            {
+                              "name": "Name",
+                              "type": "AXMenuItem",
+                              "id": "AXMenuItem_-487979344535488628_1751940100706",
+                              "bounds": [
+                                0.0,
+                                956.0,
+                                0.0,
+                                -956.0
+                              ],
+                              "value": "",
+                              "children": []
+                            },
+                            {
+                              "name": "Kind",
+                              "type": "AXMenuItem",
+                              "id": "AXMenuItem_7546395165686284528_1751940100707",
+                              "bounds": [
+                                0.0,
+                                956.0,
+                                0.0,
+                                -956.0
+                              ],
+                              "value": "",
+                              "children": []
+                            },
+                            {
+                              "name": "Date Last Opened",
+                              "type": "AXMenuItem",
+                              "id": "AXMenuItem_6621563827357470668_1751940100708",
+                              "bounds": [
+                                0.0,
+                                956.0,
+                                0.0,
+                                -956.0
+                              ],
+                              "value": "",
+                              "children": []
+                            },
+                            {
+                              "name": "Date Added",
+                              "type": "AXMenuItem",
+                              "id": "AXMenuItem_-5396590893665257826_1751940100709",
+                              "bounds": [
+                                0.0,
+                                956.0,
+                                0.0,
+                                -956.0
+                              ],
+                              "value": "",
+                              "children": []
+                            },
+                            {
+                              "name": "Date Modified",
+                              "type": "AXMenuItem",
+                              "id": "AXMenuItem_3662963948290565499_1751940100711",
+                              "bounds": [
+                                0.0,
+                                956.0,
+                                0.0,
+                                -956.0
+                              ],
+                              "value": "",
+                              "children": []
+                            },
+                            {
+                              "name": "Date Created",
+                              "type": "AXMenuItem",
+                              "id": "AXMenuItem_9103202940471444349_1751940100712",
+                              "bounds": [
+                                0.0,
+                                956.0,
+                                0.0,
+                                -956.0
+                              ],
+                              "value": "",
+                              "children": []
+                            },
+                            {
+                              "name": "Size",
+                              "type": "AXMenuItem",
+                              "id": "AXMenuItem_1195085585743553349_1751940100713",
+                              "bounds": [
+                                0.0,
+                                956.0,
+                                0.0,
+                                -956.0
+                              ],
+                              "value": "",
+                              "children": []
+                            },
+                            {
+                              "name": "Tags",
+                              "type": "AXMenuItem",
+                              "id": "AXMenuItem_-5401133350461655869_1751940100714",
+                              "bounds": [
+                                0.0,
+                                956.0,
+                                0.0,
+                                -956.0
+                              ],
+                              "value": "",
+                              "children": []
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "name": "Clean Up",
+                      "type": "AXMenuItem",
+                      "id": "AXMenuItem_3267326812614825680_1751940100716",
+                      "bounds": [
+                        0.0,
+                        956.0,
+                        0.0,
+                        -956.0
+                      ],
+                      "value": "",
+                      "children": []
+                    },
+                    {
+                      "name": "Clean Up Selection",
+                      "type": "AXMenuItem",
+                      "id": "AXMenuItem_-1609990469408314071_1751940100717",
+                      "bounds": [
+                        0.0,
+                        956.0,
+                        0.0,
+                        -956.0
+                      ],
+                      "value": "",
+                      "children": []
+                    },
+                    {
+                      "name": "Clean Up By",
+                      "type": "AXMenuItem",
+                      "id": "AXMenuItem_-7174275963091654804_1751940100726",
+                      "bounds": [
+                        0.0,
+                        956.0,
+                        0.0,
+                        -956.0
+                      ],
+                      "value": "",
+                      "children": [
+                        {
+                          "name": "AXMenu",
+                          "type": "AXMenu",
+                          "id": "AXMenu_0_1751940100726",
+                          "bounds": [
+                            0.0,
+                            956.0,
+                            0.0,
+                            -956.0
+                          ],
+                          "value": "",
+                          "children": [
+                            {
+                              "name": "Name",
+                              "type": "AXMenuItem",
+                              "id": "AXMenuItem_-487979344535488628_1751940100720",
+                              "bounds": [
+                                0.0,
+                                956.0,
+                                0.0,
+                                -956.0
+                              ],
+                              "value": "",
+                              "children": []
+                            },
+                            {
+                              "name": "Kind",
+                              "type": "AXMenuItem",
+                              "id": "AXMenuItem_7546395165686284528_1751940100721",
+                              "bounds": [
+                                0.0,
+                                956.0,
+                                0.0,
+                                -956.0
+                              ],
+                              "value": "",
+                              "children": []
+                            },
+                            {
+                              "name": "Date Modified",
+                              "type": "AXMenuItem",
+                              "id": "AXMenuItem_3662963948290565499_1751940100722",
+                              "bounds": [
+                                0.0,
+                                956.0,
+                                0.0,
+                                -956.0
+                              ],
+                              "value": "",
+                              "children": []
+                            },
+                            {
+                              "name": "Date Created",
+                              "type": "AXMenuItem",
+                              "id": "AXMenuItem_9103202940471444349_1751940100723",
+                              "bounds": [
+                                0.0,
+                                956.0,
+                                0.0,
+                                -956.0
+                              ],
+                              "value": "",
+                              "children": []
+                            },
+                            {
+                              "name": "Size",
+                              "type": "AXMenuItem",
+                              "id": "AXMenuItem_1195085585743553349_1751940100724",
+                              "bounds": [
+                                0.0,
+                                956.0,
+                                0.0,
+                                -956.0
+                              ],
+                              "value": "",
+                              "children": []
+                            },
+                            {
+                              "name": "Tags",
+                              "type": "AXMenuItem",
+                              "id": "AXMenuItem_-5401133350461655869_1751940100726",
+                              "bounds": [
+                                0.0,
+                                956.0,
+                                0.0,
+                                -956.0
+                              ],
+                              "value": "",
+                              "children": []
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "name": "AXMenuItem",
+                      "type": "AXMenuItem",
+                      "id": "AXMenuItem_0_1751940100727",
+                      "bounds": [
+                        0.0,
+                        956.0,
+                        0.0,
+                        -956.0
+                      ],
+                      "value": "",
+                      "children": []
+                    },
+                    {
+                      "name": "Hide Tab Bar",
+                      "type": "AXMenuItem",
+                      "id": "AXMenuItem_6969046510132995034_1751940100728",
+                      "bounds": [
+                        0.0,
+                        956.0,
+                        0.0,
+                        -956.0
+                      ],
+                      "value": "",
+                      "children": []
+                    },
+                    {
+                      "name": "Show All Tabs",
+                      "type": "AXMenuItem",
+                      "id": "AXMenuItem_1082589851767508172_1751940100730",
+                      "bounds": [
+                        0.0,
+                        956.0,
+                        0.0,
+                        -956.0
+                      ],
+                      "value": "",
+                      "children": []
+                    },
+                    {
+                      "name": "AXMenuItem",
+                      "type": "AXMenuItem",
+                      "id": "AXMenuItem_0_1751940100731",
+                      "bounds": [
+                        0.0,
+                        956.0,
+                        0.0,
+                        -956.0
+                      ],
+                      "value": "",
+                      "children": []
+                    },
+                    {
+                      "name": "Hide Sidebar",
+                      "type": "AXMenuItem",
+                      "id": "AXMenuItem_-1911077871264396510_1751940100733",
+                      "bounds": [
+                        0.0,
+                        956.0,
+                        0.0,
+                        -956.0
+                      ],
+                      "value": "",
+                      "children": []
+                    },
+                    {
+                      "name": "Hide Preview",
+                      "type": "AXMenuItem",
+                      "id": "AXMenuItem_5705739792414241868_1751940100734",
+                      "bounds": [
+                        0.0,
+                        956.0,
+                        0.0,
+                        -956.0
+                      ],
+                      "value": "",
+                      "children": []
+                    },
+                    {
+                      "name": "AXMenuItem",
+                      "type": "AXMenuItem",
+                      "id": "AXMenuItem_0_1751940100736",
+                      "bounds": [
+                        0.0,
+                        956.0,
+                        0.0,
+                        -956.0
+                      ],
+                      "value": "",
+                      "children": []
+                    },
+                    {
+                      "name": "Hide Toolbar",
+                      "type": "AXMenuItem",
+                      "id": "AXMenuItem_-7796002103590791619_1751940100737",
+                      "bounds": [
+                        0.0,
+                        956.0,
+                        0.0,
+                        -956.0
+                      ],
+                      "value": "",
+                      "children": []
+                    },
+                    {
+                      "name": "Hide Path Bar",
+                      "type": "AXMenuItem",
+                      "id": "AXMenuItem_-6874675705916581013_1751940100739",
+                      "bounds": [
+                        0.0,
+                        956.0,
+                        0.0,
+                        -956.0
+                      ],
+                      "value": "",
+                      "children": []
+                    },
+                    {
+                      "name": "Hide Status Bar",
+                      "type": "AXMenuItem",
+                      "id": "AXMenuItem_-3431216479757743065_1751940100741",
+                      "bounds": [
+                        0.0,
+                        956.0,
+                        0.0,
+                        -956.0
+                      ],
+                      "value": "",
+                      "children": []
+                    },
+                    {
+                      "name": "AXMenuItem",
+                      "type": "AXMenuItem",
+                      "id": "AXMenuItem_0_1751940100742",
+                      "bounds": [
+                        0.0,
+                        956.0,
+                        0.0,
+                        -956.0
+                      ],
+                      "value": "",
+                      "children": []
+                    },
+                    {
+                      "name": "Customize Toolbar\u2026",
+                      "type": "AXMenuItem",
+                      "id": "AXMenuItem_-4309623065780105643_1751940100744",
+                      "bounds": [
+                        0.0,
+                        956.0,
+                        0.0,
+                        -956.0
+                      ],
+                      "value": "",
+                      "children": []
+                    },
+                    {
+                      "name": "AXMenuItem",
+                      "type": "AXMenuItem",
+                      "id": "AXMenuItem_0_1751940100746",
+                      "bounds": [
+                        0.0,
+                        956.0,
+                        0.0,
+                        -956.0
+                      ],
+                      "value": "",
+                      "children": []
+                    },
+                    {
+                      "name": "Show View Options",
+                      "type": "AXMenuItem",
+                      "id": "AXMenuItem_-3261791877743499034_1751940100747",
+                      "bounds": [
+                        0.0,
+                        956.0,
+                        0.0,
+                        -956.0
+                      ],
+                      "value": "",
+                      "children": []
+                    },
+                    {
+                      "name": "Show Preview Options",
+                      "type": "AXMenuItem",
+                      "id": "AXMenuItem_-8218565956794481981_1751940100749",
+                      "bounds": [
+                        0.0,
+                        956.0,
+                        0.0,
+                        -956.0
+                      ],
+                      "value": "",
+                      "children": []
+                    },
+                    {
+                      "name": "AXMenuItem",
+                      "type": "AXMenuItem",
+                      "id": "AXMenuItem_0_1751940100751",
+                      "bounds": [
+                        0.0,
+                        956.0,
+                        0.0,
+                        -956.0
+                      ],
+                      "value": "",
+                      "children": []
+                    },
+                    {
+                      "name": "Enter Full Screen",
+                      "type": "AXMenuItem",
+                      "id": "AXMenuItem_4202430467446807757_1751940100753",
+                      "bounds": [
+                        0.0,
+                        956.0,
+                        0.0,
+                        -956.0
+                      ],
+                      "value": "",
+                      "children": []
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "Go",
+              "type": "AXMenuBarItem",
+              "id": "AXMenuBarItem_4740041520465775331_1751940100806",
+              "bounds": [
+                242.0,
+                0.0,
+                -204.0,
+                36.0
+              ],
+              "value": "",
+              "children": [
+                {
+                  "name": "AXMenu",
+                  "type": "AXMenu",
+                  "id": "AXMenu_0_1751940100806",
+                  "bounds": [
+                    0.0,
+                    956.0,
+                    0.0,
+                    -956.0
+                  ],
+                  "value": "",
+                  "children": [
+                    {
+                      "name": "Back",
+                      "type": "AXMenuItem",
+                      "id": "AXMenuItem_-7907150242463578497_1751940100756",
+                      "bounds": [
+                        0.0,
+                        956.0,
+                        0.0,
+                        -956.0
+                      ],
+                      "value": "",
+                      "children": []
+                    },
+                    {
+                      "name": "Forward",
+                      "type": "AXMenuItem",
+                      "id": "AXMenuItem_-822631449549092078_1751940100757",
+                      "bounds": [
+                        0.0,
+                        956.0,
+                        0.0,
+                        -956.0
+                      ],
+                      "value": "",
+                      "children": []
+                    },
+                    {
+                      "name": "Enclosing Folder",
+                      "type": "AXMenuItem",
+                      "id": "AXMenuItem_-1267638343467531924_1751940100758",
+                      "bounds": [
+                        0.0,
+                        956.0,
+                        0.0,
+                        -956.0
+                      ],
+                      "value": "",
+                      "children": []
+                    },
+                    {
+                      "name": "Enclosing Folder",
+                      "type": "AXMenuItem",
+                      "id": "AXMenuItem_-1267638343467531924_1751940100759",
+                      "bounds": [
+                        0.0,
+                        956.0,
+                        0.0,
+                        -956.0
+                      ],
+                      "value": "",
+                      "children": []
+                    },
+                    {
+                      "name": "Open Enclosing Folder in New Window",
+                      "type": "AXMenuItem",
+                      "id": "AXMenuItem_-1232503345618778595_1751940100760",
+                      "bounds": [
+                        0.0,
+                        956.0,
+                        0.0,
+                        -956.0
+                      ],
+                      "value": "",
+                      "children": []
+                    },
+                    {
+                      "name": "Select Startup Disk",
+                      "type": "AXMenuItem",
+                      "id": "AXMenuItem_6778382692161899514_1751940100761",
+                      "bounds": [
+                        0.0,
+                        956.0,
+                        0.0,
+                        -956.0
+                      ],
+                      "value": "",
+                      "children": []
+                    },
+                    {
+                      "name": "AXMenuItem",
+                      "type": "AXMenuItem",
+                      "id": "AXMenuItem_0_1751940100763",
+                      "bounds": [
+                        0.0,
+                        956.0,
+                        0.0,
+                        -956.0
+                      ],
+                      "value": "",
+                      "children": []
+                    },
+                    {
+                      "name": "Recents",
+                      "type": "AXMenuItem",
+                      "id": "AXMenuItem_8116375134497511305_1751940100764",
+                      "bounds": [
+                        0.0,
+                        956.0,
+                        0.0,
+                        -956.0
+                      ],
+                      "value": "",
+                      "children": []
+                    },
+                    {
+                      "name": "Documents",
+                      "type": "AXMenuItem",
+                      "id": "AXMenuItem_6380432066835332619_1751940100765",
+                      "bounds": [
+                        0.0,
+                        956.0,
+                        0.0,
+                        -956.0
+                      ],
+                      "value": "",
+                      "children": []
+                    },
+                    {
+                      "name": "Desktop",
+                      "type": "AXMenuItem",
+                      "id": "AXMenuItem_-2810163261071266559_1751940100767",
+                      "bounds": [
+                        0.0,
+                        956.0,
+                        0.0,
+                        -956.0
+                      ],
+                      "value": "",
+                      "children": []
+                    },
+                    {
+                      "name": "Downloads",
+                      "type": "AXMenuItem",
+                      "id": "AXMenuItem_-5697960278179848152_1751940100768",
+                      "bounds": [
+                        0.0,
+                        956.0,
+                        0.0,
+                        -956.0
+                      ],
+                      "value": "",
+                      "children": []
+                    },
+                    {
+                      "name": "Home",
+                      "type": "AXMenuItem",
+                      "id": "AXMenuItem_-2476257392618233879_1751940100769",
+                      "bounds": [
+                        0.0,
+                        956.0,
+                        0.0,
+                        -956.0
+                      ],
+                      "value": "",
+                      "children": []
+                    },
+                    {
+                      "name": "Library",
+                      "type": "AXMenuItem",
+                      "id": "AXMenuItem_-7696043245615089577_1751940100771",
+                      "bounds": [
+                        0.0,
+                        956.0,
+                        0.0,
+                        -956.0
+                      ],
+                      "value": "",
+                      "children": []
+                    },
+                    {
+                      "name": "Computer",
+                      "type": "AXMenuItem",
+                      "id": "AXMenuItem_-8148896978919221474_1751940100772",
+                      "bounds": [
+                        0.0,
+                        956.0,
+                        0.0,
+                        -956.0
+                      ],
+                      "value": "",
+                      "children": []
+                    },
+                    {
+                      "name": "AirDrop",
+                      "type": "AXMenuItem",
+                      "id": "AXMenuItem_3110537262311563497_1751940100774",
+                      "bounds": [
+                        0.0,
+                        956.0,
+                        0.0,
+                        -956.0
+                      ],
+                      "value": "",
+                      "children": []
+                    },
+                    {
+                      "name": "Network",
+                      "type": "AXMenuItem",
+                      "id": "AXMenuItem_-8358955129825552638_1751940100775",
+                      "bounds": [
+                        0.0,
+                        956.0,
+                        0.0,
+                        -956.0
+                      ],
+                      "value": "",
+                      "children": []
+                    },
+                    {
+                      "name": "iCloud Drive",
+                      "type": "AXMenuItem",
+                      "id": "AXMenuItem_-8233781086403770887_1751940100777",
+                      "bounds": [
+                        0.0,
+                        956.0,
+                        0.0,
+                        -956.0
+                      ],
+                      "value": "",
+                      "children": []
+                    },
+                    {
+                      "name": "Shared",
+                      "type": "AXMenuItem",
+                      "id": "AXMenuItem_5276025796971363566_1751940100778",
+                      "bounds": [
+                        0.0,
+                        956.0,
+                        0.0,
+                        -956.0
+                      ],
+                      "value": "",
+                      "children": []
+                    },
+                    {
+                      "name": "Applications",
+                      "type": "AXMenuItem",
+                      "id": "AXMenuItem_2439040835865969624_1751940100780",
+                      "bounds": [
+                        0.0,
+                        956.0,
+                        0.0,
+                        -956.0
+                      ],
+                      "value": "",
+                      "children": []
+                    },
+                    {
+                      "name": "Utilities",
+                      "type": "AXMenuItem",
+                      "id": "AXMenuItem_2194230662151716050_1751940100781",
+                      "bounds": [
+                        0.0,
+                        956.0,
+                        0.0,
+                        -956.0
+                      ],
+                      "value": "",
+                      "children": []
+                    },
+                    {
+                      "name": "OneDrive",
+                      "type": "AXMenuItem",
+                      "id": "AXMenuItem_-8168793680223400364_1751940100783",
+                      "bounds": [
+                        0.0,
+                        956.0,
+                        0.0,
+                        -956.0
+                      ],
+                      "value": "",
+                      "children": []
+                    },
+                    {
+                      "name": "AXMenuItem",
+                      "type": "AXMenuItem",
+                      "id": "AXMenuItem_0_1751940100784",
+                      "bounds": [
+                        0.0,
+                        956.0,
+                        0.0,
+                        -956.0
+                      ],
+                      "value": "",
+                      "children": []
+                    },
+                    {
+                      "name": "Recent Folders",
+                      "type": "AXMenuItem",
+                      "id": "AXMenuItem_2210140913335212282_1751940100801",
+                      "bounds": [
+                        0.0,
+                        956.0,
+                        0.0,
+                        -956.0
+                      ],
+                      "value": "",
+                      "children": [
+                        {
+                          "name": "AXMenu",
+                          "type": "AXMenu",
+                          "id": "AXMenu_0_1751940100801",
+                          "bounds": [
+                            0.0,
+                            956.0,
+                            0.0,
+                            -956.0
+                          ],
+                          "value": "",
+                          "children": [
+                            {
+                              "name": "Desktop",
+                              "type": "AXMenuItem",
+                              "id": "AXMenuItem_-2810163261071266559_1751940100788",
+                              "bounds": [
+                                0.0,
+                                956.0,
+                                0.0,
+                                -956.0
+                              ],
+                              "value": "",
+                              "children": []
+                            },
+                            {
+                              "name": "Docker",
+                              "type": "AXMenuItem",
+                              "id": "AXMenuItem_2952521365700156772_1751940100789",
+                              "bounds": [
+                                0.0,
+                                956.0,
+                                0.0,
+                                -956.0
+                              ],
+                              "value": "",
+                              "children": []
+                            },
+                            {
+                              "name": "Documents",
+                              "type": "AXMenuItem",
+                              "id": "AXMenuItem_6380432066835332619_1751940100790",
+                              "bounds": [
+                                0.0,
+                                956.0,
+                                0.0,
+                                -956.0
+                              ],
+                              "value": "",
+                              "children": []
+                            },
+                            {
+                              "name": "Downloads",
+                              "type": "AXMenuItem",
+                              "id": "AXMenuItem_-5697960278179848152_1751940100791",
+                              "bounds": [
+                                0.0,
+                                956.0,
+                                0.0,
+                                -956.0
+                              ],
+                              "value": "",
+                              "children": []
+                            },
+                            {
+                              "name": "Images",
+                              "type": "AXMenuItem",
+                              "id": "AXMenuItem_1072948600837804476_1751940100792",
+                              "bounds": [
+                                0.0,
+                                956.0,
+                                0.0,
+                                -956.0
+                              ],
+                              "value": "",
+                              "children": []
+                            },
+                            {
+                              "name": "Others",
+                              "type": "AXMenuItem",
+                              "id": "AXMenuItem_-6940174179681371711_1751940100794",
+                              "bounds": [
+                                0.0,
+                                956.0,
+                                0.0,
+                                -956.0
+                              ],
+                              "value": "",
+                              "children": []
+                            },
+                            {
+                              "name": "peakdemo",
+                              "type": "AXMenuItem",
+                              "id": "AXMenuItem_6381501699581508261_1751940100795",
+                              "bounds": [
+                                0.0,
+                                956.0,
+                                0.0,
+                                -956.0
+                              ],
+                              "value": "",
+                              "children": []
+                            },
+                            {
+                              "name": "peakExchange",
+                              "type": "AXMenuItem",
+                              "id": "AXMenuItem_-2453862228567375661_1751940100796",
+                              "bounds": [
+                                0.0,
+                                956.0,
+                                0.0,
+                                -956.0
+                              ],
+                              "value": "",
+                              "children": []
+                            },
+                            {
+                              "name": "Recents",
+                              "type": "AXMenuItem",
+                              "id": "AXMenuItem_8116375134497511305_1751940100797",
+                              "bounds": [
+                                0.0,
+                                956.0,
+                                0.0,
+                                -956.0
+                              ],
+                              "value": "",
+                              "children": []
+                            },
+                            {
+                              "name": "Upsell",
+                              "type": "AXMenuItem",
+                              "id": "AXMenuItem_8905073443708053745_1751940100798",
+                              "bounds": [
+                                0.0,
+                                956.0,
+                                0.0,
+                                -956.0
+                              ],
+                              "value": "",
+                              "children": []
+                            },
+                            {
+                              "name": "AXMenuItem",
+                              "type": "AXMenuItem",
+                              "id": "AXMenuItem_0_1751940100800",
+                              "bounds": [
+                                0.0,
+                                956.0,
+                                0.0,
+                                -956.0
+                              ],
+                              "value": "",
+                              "children": []
+                            },
+                            {
+                              "name": "Clear Menu",
+                              "type": "AXMenuItem",
+                              "id": "AXMenuItem_2366556724310806378_1751940100801",
+                              "bounds": [
+                                0.0,
+                                956.0,
+                                0.0,
+                                -956.0
+                              ],
+                              "value": "",
+                              "children": []
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "name": "AXMenuItem",
+                      "type": "AXMenuItem",
+                      "id": "AXMenuItem_0_1751940100803",
+                      "bounds": [
+                        0.0,
+                        956.0,
+                        0.0,
+                        -956.0
+                      ],
+                      "value": "",
+                      "children": []
+                    },
+                    {
+                      "name": "Go to Folder\u2026",
+                      "type": "AXMenuItem",
+                      "id": "AXMenuItem_-5363861101990294598_1751940100805",
+                      "bounds": [
+                        0.0,
+                        956.0,
+                        0.0,
+                        -956.0
+                      ],
+                      "value": "",
+                      "children": []
+                    },
+                    {
+                      "name": "Connect to Server\u2026",
+                      "type": "AXMenuItem",
+                      "id": "AXMenuItem_-6788408765982200599_1751940100806",
+                      "bounds": [
+                        0.0,
+                        956.0,
+                        0.0,
+                        -956.0
+                      ],
+                      "value": "",
+                      "children": []
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "Window",
+              "type": "AXMenuBarItem",
+              "id": "AXMenuBarItem_9163522325920769516_1751940100838",
+              "bounds": [
+                280.0,
+                0.0,
+                -211.0,
+                36.0
+              ],
+              "value": "",
+              "children": [
+                {
+                  "name": "AXMenu",
+                  "type": "AXMenu",
+                  "id": "AXMenu_0_1751940100838",
+                  "bounds": [
+                    0.0,
+                    956.0,
+                    0.0,
+                    -956.0
+                  ],
+                  "value": "",
+                  "children": [
+                    {
+                      "name": "Minimize",
+                      "type": "AXMenuItem",
+                      "id": "AXMenuItem_7510792564806868970_1751940100810",
+                      "bounds": [
+                        0.0,
+                        956.0,
+                        0.0,
+                        -956.0
+                      ],
+                      "value": "",
+                      "children": []
+                    },
+                    {
+                      "name": "Minimize All",
+                      "type": "AXMenuItem",
+                      "id": "AXMenuItem_-8428336426217320438_1751940100811",
+                      "bounds": [
+                        0.0,
+                        956.0,
+                        0.0,
+                        -956.0
+                      ],
+                      "value": "",
+                      "children": []
+                    },
+                    {
+                      "name": "Zoom",
+                      "type": "AXMenuItem",
+                      "id": "AXMenuItem_-4560003403482051530_1751940100812",
+                      "bounds": [
+                        0.0,
+                        956.0,
+                        0.0,
+                        -956.0
+                      ],
+                      "value": "",
+                      "children": []
+                    },
+                    {
+                      "name": "Zoom All",
+                      "type": "AXMenuItem",
+                      "id": "AXMenuItem_-8790790672542647631_1751940100813",
+                      "bounds": [
+                        0.0,
+                        956.0,
+                        0.0,
+                        -956.0
+                      ],
+                      "value": "",
+                      "children": []
+                    },
+                    {
+                      "name": "Move Window to Left Side of Screen",
+                      "type": "AXMenuItem",
+                      "id": "AXMenuItem_-2230565247079284173_1751940100814",
+                      "bounds": [
+                        0.0,
+                        956.0,
+                        0.0,
+                        -956.0
+                      ],
+                      "value": "",
+                      "children": []
+                    },
+                    {
+                      "name": "Move Window to Right Side of Screen",
+                      "type": "AXMenuItem",
+                      "id": "AXMenuItem_-2794349453487015889_1751940100815",
+                      "bounds": [
+                        0.0,
+                        956.0,
+                        0.0,
+                        -956.0
+                      ],
+                      "value": "",
+                      "children": []
+                    },
+                    {
+                      "name": "Replace Tiled Window",
+                      "type": "AXMenuItem",
+                      "id": "AXMenuItem_3368170153255840570_1751940100817",
+                      "bounds": [
+                        0.0,
+                        956.0,
+                        0.0,
+                        -956.0
+                      ],
+                      "value": "",
+                      "children": []
+                    },
+                    {
+                      "name": "AXMenuItem",
+                      "type": "AXMenuItem",
+                      "id": "AXMenuItem_0_1751940100818",
+                      "bounds": [
+                        0.0,
+                        956.0,
+                        0.0,
+                        -956.0
+                      ],
+                      "value": "",
+                      "children": []
+                    },
+                    {
+                      "name": "Remove Window from Set",
+                      "type": "AXMenuItem",
+                      "id": "AXMenuItem_-6917370410414066648_1751940100819",
+                      "bounds": [
+                        0.0,
+                        956.0,
+                        0.0,
+                        -956.0
+                      ],
+                      "value": "",
+                      "children": []
+                    },
+                    {
+                      "name": "Cycle Through Windows",
+                      "type": "AXMenuItem",
+                      "id": "AXMenuItem_6653835184001312335_1751940100820",
+                      "bounds": [
+                        0.0,
+                        956.0,
+                        0.0,
+                        -956.0
+                      ],
+                      "value": "",
+                      "children": []
+                    },
+                    {
+                      "name": "Show Progress Window",
+                      "type": "AXMenuItem",
+                      "id": "AXMenuItem_-4925638069479948423_1751940100822",
+                      "bounds": [
+                        0.0,
+                        956.0,
+                        0.0,
+                        -956.0
+                      ],
+                      "value": "",
+                      "children": []
+                    },
+                    {
+                      "name": "AXMenuItem",
+                      "type": "AXMenuItem",
+                      "id": "AXMenuItem_0_1751940100823",
+                      "bounds": [
+                        0.0,
+                        956.0,
+                        0.0,
+                        -956.0
+                      ],
+                      "value": "",
+                      "children": []
+                    },
+                    {
+                      "name": "Show Previous Tab",
+                      "type": "AXMenuItem",
+                      "id": "AXMenuItem_883649711561857983_1751940100824",
+                      "bounds": [
+                        0.0,
+                        956.0,
+                        0.0,
+                        -956.0
+                      ],
+                      "value": "",
+                      "children": []
+                    },
+                    {
+                      "name": "Show Next Tab",
+                      "type": "AXMenuItem",
+                      "id": "AXMenuItem_4471148656086016746_1751940100826",
+                      "bounds": [
+                        0.0,
+                        956.0,
+                        0.0,
+                        -956.0
+                      ],
+                      "value": "",
+                      "children": []
+                    },
+                    {
+                      "name": "Move Tab to New Window",
+                      "type": "AXMenuItem",
+                      "id": "AXMenuItem_-8657903014863566867_1751940100827",
+                      "bounds": [
+                        0.0,
+                        956.0,
+                        0.0,
+                        -956.0
+                      ],
+                      "value": "",
+                      "children": []
+                    },
+                    {
+                      "name": "Merge All Windows",
+                      "type": "AXMenuItem",
+                      "id": "AXMenuItem_3877558943392323780_1751940100829",
+                      "bounds": [
+                        0.0,
+                        956.0,
+                        0.0,
+                        -956.0
+                      ],
+                      "value": "",
+                      "children": []
+                    },
+                    {
+                      "name": "AXMenuItem",
+                      "type": "AXMenuItem",
+                      "id": "AXMenuItem_0_1751940100830",
+                      "bounds": [
+                        0.0,
+                        956.0,
+                        0.0,
+                        -956.0
+                      ],
+                      "value": "",
+                      "children": []
+                    },
+                    {
+                      "name": "AXMenuItem",
+                      "type": "AXMenuItem",
+                      "id": "AXMenuItem_0_1751940100832",
+                      "bounds": [
+                        0.0,
+                        956.0,
+                        0.0,
+                        -956.0
+                      ],
+                      "value": "",
+                      "children": []
+                    },
+                    {
+                      "name": "Bring All to Front",
+                      "type": "AXMenuItem",
+                      "id": "AXMenuItem_-2063312462562150189_1751940100833",
+                      "bounds": [
+                        0.0,
+                        956.0,
+                        0.0,
+                        -956.0
+                      ],
+                      "value": "",
+                      "children": []
+                    },
+                    {
+                      "name": "Arrange in Front",
+                      "type": "AXMenuItem",
+                      "id": "AXMenuItem_-1846239630250146370_1751940100835",
+                      "bounds": [
+                        0.0,
+                        956.0,
+                        0.0,
+                        -956.0
+                      ],
+                      "value": "",
+                      "children": []
+                    },
+                    {
+                      "name": "AXMenuItem",
+                      "type": "AXMenuItem",
+                      "id": "AXMenuItem_0_1751940100837",
+                      "bounds": [
+                        0.0,
+                        956.0,
+                        0.0,
+                        -956.0
+                      ],
+                      "value": "",
+                      "children": []
+                    },
+                    {
+                      "name": "Downloads",
+                      "type": "AXMenuItem",
+                      "id": "AXMenuItem_-5697960278179848152_1751940100838",
+                      "bounds": [
+                        0.0,
+                        956.0,
+                        0.0,
+                        -956.0
+                      ],
+                      "value": "",
+                      "children": []
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "Help",
+              "type": "AXMenuBarItem",
+              "id": "AXMenuBarItem_-3821337978553174924_1751940100842",
+              "bounds": [
+                349.0,
+                0.0,
+                -301.0,
+                36.0
+              ],
+              "value": "",
+              "children": [
+                {
+                  "name": "AXMenu",
+                  "type": "AXMenu",
+                  "id": "AXMenu_0_1751940100842",
+                  "bounds": [
+                    0.0,
+                    956.0,
+                    0.0,
+                    -956.0
+                  ],
+                  "value": "",
+                  "children": [
+                    {
+                      "name": "Tips for Your Mac",
+                      "type": "AXMenuItem",
+                      "id": "AXMenuItem_-5967306425011459023_1751940100841",
+                      "bounds": [
+                        0.0,
+                        956.0,
+                        0.0,
+                        -956.0
+                      ],
+                      "value": "",
+                      "children": []
+                    },
+                    {
+                      "name": "macOS Help",
+                      "type": "AXMenuItem",
+                      "id": "AXMenuItem_-7912745575329992747_1751940100842",
+                      "bounds": [
+                        0.0,
+                        956.0,
+                        0.0,
+                        -956.0
+                      ],
+                      "value": "",
+                      "children": []
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "AXScrollArea",
+          "type": "AXScrollArea",
+          "id": "AXScrollArea_0_1751940100874",
+          "bounds": [
+            0.0,
+            0.0,
+            1470.0,
+            956.0
+          ],
+          "value": null,
+          "children": [
+            {
+              "name": "AXGroup",
+              "type": "AXGroup",
+              "id": "AXGroup_0_1751940100874",
+              "bounds": [
+                0.0,
+                0.0,
+                1470.0,
+                956.0
+              ],
+              "value": "",
+              "children": [
+                {
+                  "name": "Archives",
+                  "type": "AXImage",
+                  "id": "AXImage_-4151470715496718095_1751940100851",
+                  "bounds": [
+                    1397.0,
+                    253.0,
+                    -1333.0,
+                    -189.0
+                  ],
+                  "value": "",
+                  "children": []
+                },
+                {
+                  "name": "Documents",
+                  "type": "AXImage",
+                  "id": "AXImage_6380432066835332619_1751940100852",
+                  "bounds": [
+                    1393.0,
+                    605.0,
+                    -1329.0,
+                    -541.0
+                  ],
+                  "value": "",
+                  "children": []
+                },
+                {
+                  "name": "Images",
+                  "type": "AXImage",
+                  "id": "AXImage_1072948600837804476_1751940100853",
+                  "bounds": [
+                    1393.0,
+                    381.0,
+                    -1329.0,
+                    -317.0
+                  ],
+                  "value": "",
+                  "children": []
+                },
+                {
+                  "name": "Mocks",
+                  "type": "AXImage",
+                  "id": "AXImage_-8090520633341417986_1751940100854",
+                  "bounds": [
+                    1393.0,
+                    717.0,
+                    -1329.0,
+                    -653.0
+                  ],
+                  "value": "",
+                  "children": []
+                },
+                {
+                  "name": "Others",
+                  "type": "AXImage",
+                  "id": "AXImage_-6940174179681371711_1751940100855",
+                  "bounds": [
+                    1393.0,
+                    493.0,
+                    -1329.0,
+                    -429.0
+                  ],
+                  "value": "",
+                  "children": []
+                },
+                {
+                  "name": "saio-platform",
+                  "type": "AXImage",
+                  "id": "AXImage_5929519394545694241_1751940100856",
+                  "bounds": [
+                    1311.0,
+                    493.0,
+                    -1247.0,
+                    -429.0
+                  ],
+                  "value": "",
+                  "children": []
+                },
+                {
+                  "name": "Docker",
+                  "type": "AXImage",
+                  "id": "AXImage_2952521365700156772_1751940100858",
+                  "bounds": [
+                    1311.0,
+                    605.0,
+                    -1247.0,
+                    -541.0
+                  ],
+                  "value": "",
+                  "children": []
+                },
+                {
+                  "name": "Screenshot 2025-07-02 at 13.34.31",
+                  "type": "AXImage",
+                  "id": "AXImage_5061842503440305258_1751940100859",
+                  "bounds": [
+                    245.0,
+                    605.0,
+                    -181.0,
+                    -541.0
+                  ],
+                  "value": "",
+                  "children": []
+                },
+                {
+                  "name": "SensAI",
+                  "type": "AXImage",
+                  "id": "AXImage_1621087062133937188_1751940100860",
+                  "bounds": [
+                    1311.0,
+                    269.0,
+                    -1247.0,
+                    -205.0
+                  ],
+                  "value": "",
+                  "children": []
+                },
+                {
+                  "name": "Upsell",
+                  "type": "AXImage",
+                  "id": "AXImage_8905073443708053745_1751940100861",
+                  "bounds": [
+                    1311.0,
+                    381.0,
+                    -1247.0,
+                    -317.0
+                  ],
+                  "value": "",
+                  "children": []
+                },
+                {
+                  "name": "Mock V2",
+                  "type": "AXImage",
+                  "id": "AXImage_1807773605456039558_1751940100862",
+                  "bounds": [
+                    1311.0,
+                    717.0,
+                    -1247.0,
+                    -653.0
+                  ],
+                  "value": "",
+                  "children": []
+                },
+                {
+                  "name": "Mocks V1",
+                  "type": "AXImage",
+                  "id": "AXImage_-7294759625963441781_1751940100863",
+                  "bounds": [
+                    1229.0,
+                    269.0,
+                    -1165.0,
+                    -205.0
+                  ],
+                  "value": "",
+                  "children": []
+                },
+                {
+                  "name": "Mock Adds On",
+                  "type": "AXImage",
+                  "id": "AXImage_-3451418660070260833_1751940100864",
+                  "bounds": [
+                    1229.0,
+                    381.0,
+                    -1165.0,
+                    -317.0
+                  ],
+                  "value": "",
+                  "children": []
+                },
+                {
+                  "name": "Rehabit",
+                  "type": "AXImage",
+                  "id": "AXImage_5606266937815402216_1751940100865",
+                  "bounds": [
+                    983.0,
+                    269.0,
+                    -919.0,
+                    -205.0
+                  ],
+                  "value": "",
+                  "children": []
+                },
+                {
+                  "name": "Screenshot 2025-07-02 at 14.06.16",
+                  "type": "AXImage",
+                  "id": "AXImage_5186334648026829079_1751940100867",
+                  "bounds": [
+                    245.0,
+                    381.0,
+                    -181.0,
+                    -317.0
+                  ],
+                  "value": "",
+                  "children": []
+                },
+                {
+                  "name": "Screenshot 2025-07-02 at 15.12.08",
+                  "type": "AXImage",
+                  "id": "AXImage_2061421305543580670_1751940100868",
+                  "bounds": [
+                    327.0,
+                    605.0,
+                    -263.0,
+                    -541.0
+                  ],
+                  "value": "",
+                  "children": []
+                },
+                {
+                  "name": "Screenshot 2025-06-24 at 13.13.34",
+                  "type": "AXImage",
+                  "id": "AXImage_8620395400887980035_1751940100869",
+                  "bounds": [
+                    1147.0,
+                    269.0,
+                    -1083.0,
+                    -205.0
+                  ],
+                  "value": "",
+                  "children": []
+                },
+                {
+                  "name": "Screenshot 2025-07-02 at 15.20.08",
+                  "type": "AXImage",
+                  "id": "AXImage_507020157815897008_1751940100870",
+                  "bounds": [
+                    491.0,
+                    605.0,
+                    -427.0,
+                    -541.0
+                  ],
+                  "value": "",
+                  "children": []
+                },
+                {
+                  "name": "Screenshot 2025-07-02 at 15.20.14",
+                  "type": "AXImage",
+                  "id": "AXImage_-7688546553485550135_1751940100871",
+                  "bounds": [
+                    655.0,
+                    605.0,
+                    -591.0,
+                    -541.0
+                  ],
+                  "value": "",
+                  "children": []
+                },
+                {
+                  "name": "peakdemo",
+                  "type": "AXImage",
+                  "id": "AXImage_6381501699581508261_1751940100873",
+                  "bounds": [
+                    245.0,
+                    45.0,
+                    -181.0,
+                    19.0
+                  ],
+                  "value": "",
+                  "children": []
+                },
+                {
+                  "name": "peakExchange",
+                  "type": "AXImage",
+                  "id": "AXImage_-2453862228567375661_1751940100874",
+                  "bounds": [
+                    163.0,
+                    157.0,
+                    -99.0,
+                    -93.0
+                  ],
+                  "value": "",
+                  "children": []
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "source": "Finder App"
+    },
+    {
+      "name": "error_node",
+      "type": "Unknown",
+      "id": "error_1751940100903",
+      "bounds": [],
+      "children": [],
+      "source": "Safari App"
+    }
+  ]
+}

@@ -1,224 +1,372 @@
-2025-06-08 13:29:05,613 - agent_workflow.input_controller - INFO - Detected screen size: 1470x956
-2025-06-08 13:29:05,899 - agent_workflow.input_controller - INFO - Standard mouse listener started successfully
-2025-06-08 13:29:05,899 - agent_workflow.input_controller - INFO - Keyboard listener started successfully
-2025-06-08 13:29:05,899 - agent_workflow.input_controller - INFO - Input controller initialized (safe mode)
-2025-06-08 13:29:05,899 - agent_workflow.input_controller - INFO - 🚨 Emergency shutdown: Press Ctrl+1 to immediately stop agent
-2025-06-08 13:29:05,903 - llava_processor - INFO - Connected to Ollama API v0.6.8
-2025-06-08 13:29:05,903 - total_screen_analyzer - INFO - LLaVA visual processor initialized for total screen analysis
-2025-06-08 13:29:05,903 - total_screen_analyzer - INFO - Total Screen Analyzer initialized with 8s interval
-2025-06-08 13:29:05,903 - adaptive_retry_automation_handler - INFO - 🔄 Adaptive retry automation system loaded
-2025-06-08 13:29:05,903 - universal_intelligent_automation_handler - INFO - ✅ Adaptive retry automation handler loaded successfully
-2025-06-08 13:29:05,905 - plan_persistence - INFO - Loaded 17 plans from metadata
-2025-06-08 13:29:05,905 - plan_persistence - INFO - Plan persistence system initialized
-2025-06-08 13:29:05,905 - universal_intelligent_automation_handler - INFO - ✅ Plan persistence module loaded successfully
-2025-06-08 13:29:05,906 - agent_workflow.input_controller - INFO - Standard mouse listener started successfully
-2025-06-08 13:29:05,906 - agent_workflow.input_controller - INFO - Keyboard listener started successfully
-2025-06-08 13:29:05,906 - agent_workflow.input_controller - INFO - Input controller initialized (safe mode)
-2025-06-08 13:29:05,906 - agent_workflow.input_controller - INFO - 🚨 Emergency shutdown: Press Ctrl+1 to immediately stop agent
-2025-06-08 13:29:05,919 - llava_processor - INFO - Connected to Ollama API v0.6.8
-2025-06-08 13:29:05,919 - total_screen_analyzer - INFO - LLaVA visual processor initialized for total screen analysis
-2025-06-08 13:29:05,919 - total_screen_analyzer - INFO - Total Screen Analyzer initialized with 8s interval
-2025-06-08 13:29:05,919 - universal_intelligent_automation_handler - INFO - 🤖 Universal automation components loaded successfully
-2025-06-08 13:29:05,919 - fixed_universal_automation_handler - INFO - ✅ Adaptive retry automation handler loaded successfully
-2025-06-08 13:29:05,919 - fixed_universal_automation_handler - INFO - ✅ Plan persistence module loaded successfully
-2025-06-08 13:29:05,920 - agent_workflow.input_controller - INFO - Standard mouse listener started successfully
-2025-06-08 13:29:05,920 - agent_workflow.input_controller - INFO - Keyboard listener started successfully
-2025-06-08 13:29:05,920 - agent_workflow.input_controller - INFO - Input controller initialized (safe mode)
-2025-06-08 13:29:05,920 - agent_workflow.input_controller - INFO - 🚨 Emergency shutdown: Press Ctrl+1 to immediately stop agent
-2025-06-08 13:29:05,920 - __main__ - INFO - ✅ Input controller initialized (safe mode)
-2025-06-08 13:29:05,930 - accessibility_detector - WARNING - Windows accessibility APIs not available
-2025-06-08 13:29:05,930 - accessibility_detector - WARNING - Linux accessibility APIs (AT-SPI) not available
-2025-06-08 13:29:05,961 - __main__ - WARNING - ⚠️ Efficient system bridge not available, falling back to screen capture
-2025-06-08 13:29:05,962 - __main__ - INFO - 🔥 LLM Warmup Manager available for fast responses
-2025-06-08 13:29:05,973 - memory.semantic_search_agent - INFO - Loading 4735 existing documents from storage
-2025-06-08 13:29:06,321 - memory.semantic_search_agent - INFO - EnterpriseVectorStore initialized with enterprise-grade features
-2025-06-08 13:29:06,323 - memory.semantic_search_agent - INFO - SemanticSearchAgent initialized with enterprise-grade capabilities
-2025-06-08 13:29:06,324 - real_agent_automation_handler - INFO - ✅ Plan persistence module loaded successfully
-2025-06-08 13:29:06,324 - real_agent_automation_handler - INFO - 🤖 Basic automation handler initialized
-2025-06-08 13:29:06,324 - __main__ - INFO - ✅ Real Agent Automation Handler enabled
-2025-06-08 13:29:06,325 - agent_workflow.input_controller - INFO - Standard mouse listener started successfully
-2025-06-08 13:29:06,325 - agent_workflow.input_controller - INFO - Keyboard listener started successfully
-2025-06-08 13:29:06,325 - agent_workflow.input_controller - INFO - Input controller initialized (safe mode)
-2025-06-08 13:29:06,325 - agent_workflow.input_controller - INFO - 🚨 Emergency shutdown: Press Ctrl+1 to immediately stop agent
-2025-06-08 13:29:06,327 - llava_processor - INFO - Connected to Ollama API v0.6.8
-2025-06-08 13:29:06,327 - total_screen_analyzer - INFO - LLaVA visual processor initialized for total screen analysis
-2025-06-08 13:29:06,327 - total_screen_analyzer - INFO - Total Screen Analyzer initialized with 8s interval
-2025-06-08 13:29:06,327 - universal_intelligent_automation_handler - INFO - 🤖 Universal automation components loaded successfully
-2025-06-08 13:29:06,327 - __main__ - INFO - ✅ Universal Intelligent Automation Handler loaded
-2025-06-08 13:29:06,334 - brain.core.brain_router - INFO - ✅ Plan persistence module loaded in brain router
-2025-06-08 13:29:06,335 - __main__ - INFO - 🧠 Brain Router available for intelligent mode handling
-2025-06-08 13:29:07,361 - memory.semantic_search_agent - INFO - Loading 4735 existing documents from storage
-2025-06-08 13:29:07,590 - memory.semantic_search_agent - INFO - EnterpriseVectorStore initialized with enterprise-grade features
-2025-06-08 13:29:07,590 - memory.semantic_search_agent - INFO - SemanticSearchAgent initialized with enterprise-grade capabilities
-2025-06-08 13:29:07,591 - __main__ - INFO - ✅ Enhanced semantic search agent initialized
-2025-06-08 13:29:07,591 - __main__ - INFO - ✅ Initialized pending_plans dictionary
-2025-06-08 13:29:07,591 - agent_workflow.input_controller - INFO - Standard mouse listener started successfully
-2025-06-08 13:29:07,591 - agent_workflow.input_controller - INFO - Keyboard listener started successfully
-2025-06-08 13:29:07,591 - agent_workflow.input_controller - INFO - Input controller initialized (safe mode)
-2025-06-08 13:29:07,591 - agent_workflow.input_controller - INFO - 🚨 Emergency shutdown: Press Ctrl+1 to immediately stop agent
-2025-06-08 13:29:07,594 - llava_processor - INFO - Connected to Ollama API v0.6.8
-2025-06-08 13:29:07,595 - total_screen_analyzer - INFO - LLaVA visual processor initialized for total screen analysis
-2025-06-08 13:29:07,595 - total_screen_analyzer - INFO - Total Screen Analyzer initialized with 1s interval
-2025-06-08 13:29:07,595 - enhanced_agent_automation - INFO - Enhanced Agent Automation initialized with Total Screen Analyzer
-2025-06-08 13:29:07,595 - enhanced_automation_handler - INFO - Enhanced Automation Handler initialized
-2025-06-08 13:29:07,595 - __main__ - INFO - ✅ EnhancedAutomationHandler initialized for automation_handler
-2025-06-08 13:29:07,595 - __main__ - INFO - ✅ ContextualAIBackend initialized successfully
-2025-06-08 13:29:07,595 - __main__ - INFO - 🚀 Starting Enhanced Enterprise Backend with Context on 0.0.0.0:8767...
-2025-06-08 13:29:07,595 - brain.core.brain_router - INFO - BrainRouter initialized - The Central Intelligence Hub is online
-2025-06-08 13:29:07,602 - llm.model - INFO - ✅ LLM service started successfully with model llama3.2:1b
-2025-06-08 13:29:07,602 - llm.model - INFO - Sending Ollama request (attempt 1/3)
-2025-06-08 13:29:10,396 - llm.model - INFO - Ollama response time: 2.79s (status: 200)
-2025-06-08 13:29:10,397 - llm.model - INFO - Successfully parsed NDJSON response: 35 chars from 9 parts
-2025-06-08 13:29:10,397 - brain.core.brain_router - INFO - ✅ LLM service initialized and tested successfully
-2025-06-08 13:29:10,398 - __main__ - INFO - ✅ Brain Router initialized asynchronously
-2025-06-08 13:29:10,398 - __main__ - INFO - ✅ Brain Router initialized asynchronously
-2025-06-08 13:29:10,403 - websockets.server - INFO - server listening on 0.0.0.0:8767
-2025-06-08 13:29:10,404 - __main__ - INFO - ✅ Enhanced Enterprise Backend with Context started successfully
-2025-06-08 13:29:10,404 - __main__ - INFO - 🌐 WebSocket server listening on ws://0.0.0.0:8767
-2025-06-08 13:29:11,486 - websockets.server - INFO - connection open
-2025-06-08 13:29:11,487 - __main__ - INFO - Client connected: client_1749403751487 from 127.0.0.1 on path: None
-2025-06-08 13:29:11,488 - __main__ - INFO - Received message type: register from client_1749403751487
-2025-06-08 13:29:12,022 - websockets.server - INFO - connection open
-2025-06-08 13:29:12,022 - __main__ - INFO - Client connected: client_1749403752022 from 127.0.0.1 on path: None
-2025-06-08 13:29:12,022 - __main__ - INFO - Received message type: register from client_1749403752022
-2025-06-08 13:29:16,491 - websockets.server - INFO - connection open
-2025-06-08 13:29:16,491 - __main__ - INFO - Client connected: client_1749403756491 from 127.0.0.1 on path: None
-2025-06-08 13:29:16,492 - __main__ - INFO - Received message type: register from client_1749403756491
-2025-06-08 13:29:21,496 - websockets.server - INFO - connection open
-2025-06-08 13:29:21,496 - __main__ - INFO - Client connected: client_1749403761496 from 127.0.0.1 on path: None
-2025-06-08 13:29:21,497 - __main__ - INFO - Received message type: register from client_1749403761496
-2025-06-08 13:29:26,501 - websockets.server - INFO - connection open
-2025-06-08 13:29:26,501 - __main__ - INFO - Client connected: client_1749403766501 from 127.0.0.1 on path: None
-2025-06-08 13:29:26,502 - __main__ - INFO - Received message type: register from client_1749403766501
-2025-06-08 13:29:28,694 - websockets.server - INFO - connection open
-2025-06-08 13:29:28,694 - __main__ - INFO - Client connected: client_1749403768694 from 127.0.0.1 on path: None
-2025-06-08 13:29:28,703 - __main__ - INFO - Received message type: register from client_1749403768694
-2025-06-08 13:29:29,482 - websockets.server - INFO - connection open
-2025-06-08 13:29:29,482 - __main__ - INFO - Client connected: client_1749403769482 from 127.0.0.1 on path: None
-2025-06-08 13:29:29,483 - __main__ - INFO - Received message type: register from client_1749403769482
-2025-06-08 13:29:31,508 - websockets.server - INFO - connection open
-2025-06-08 13:29:31,508 - __main__ - INFO - Client connected: client_1749403771508 from 127.0.0.1 on path: None
-2025-06-08 13:29:31,510 - __main__ - INFO - Received message type: register from client_1749403771508
-2025-06-08 13:29:32,962 - __main__ - INFO - Received message type: sensor_data from client_1749403752022
-2025-06-08 13:29:32,962 - __main__ - INFO - Processing sensor data from client_1749403752022
-2025-06-08 13:29:36,514 - websockets.server - INFO - connection open
-2025-06-08 13:29:36,514 - __main__ - INFO - Client connected: client_1749403776514 from 127.0.0.1 on path: None
-2025-06-08 13:29:36,515 - __main__ - INFO - Received message type: register from client_1749403776514
-2025-06-08 13:29:41,519 - websockets.server - INFO - connection open
-2025-06-08 13:29:41,519 - __main__ - INFO - Client connected: client_1749403781519 from 127.0.0.1 on path: None
-2025-06-08 13:29:41,520 - __main__ - INFO - Received message type: register from client_1749403781519
-2025-06-08 13:29:41,940 - __main__ - INFO - Received message type: chat_request from client_1749403769482
-2025-06-08 13:29:41,946 - memory.semantic_search_agent - INFO - Document e2ded34fd2852459ac9d134d79d88dde2f04d5f2a4d48e8cc3d5f14a18131e10 added to enterprise vector store
-2025-06-08 13:29:41,946 - memory.semantic_search_agent - INFO - Memory added successfully: e2ded34fd2852459ac9d134d79d88dde2f04d5f2a4d48e8cc3d5f14a18131e10
-2025-06-08 13:29:41,947 - memory.semantic_search_agent - INFO - Document 4fec241be2334ca7249d5ed5f08d79a273ed6d8b1d6b065064c560e6e94ae443 added to enterprise vector store
-2025-06-08 13:29:41,947 - memory.semantic_search_agent - INFO - Memory added successfully: 4fec241be2334ca7249d5ed5f08d79a273ed6d8b1d6b065064c560e6e94ae443
-2025-06-08 13:29:41,948 - memory.semantic_search_agent - INFO - Document e0c8300d399afccd36f545cce998bf73339b7b0e1255a72911b99e5d610c8dc0 added to enterprise vector store
-2025-06-08 13:29:41,948 - memory.semantic_search_agent - INFO - Memory added successfully: e0c8300d399afccd36f545cce998bf73339b7b0e1255a72911b99e5d610c8dc0
-2025-06-08 13:29:41,949 - memory.semantic_search_agent - INFO - Document 084e30dbd176e9e3a2e6bb27d15afbca07460deb463ff38caf76f6f91d47f5a5 added to enterprise vector store
-2025-06-08 13:29:41,949 - memory.semantic_search_agent - INFO - Memory added successfully: 084e30dbd176e9e3a2e6bb27d15afbca07460deb463ff38caf76f6f91d47f5a5
-2025-06-08 13:29:41,951 - memory.semantic_search_agent - INFO - Document 6bb0e0b036a13cef744ae18789a8714710352a59153040b4b2f6b140eb8da9ec added to enterprise vector store
-2025-06-08 13:29:41,951 - memory.semantic_search_agent - INFO - Memory added successfully: 6bb0e0b036a13cef744ae18789a8714710352a59153040b4b2f6b140eb8da9ec
-2025-06-08 13:29:41,952 - memory.semantic_search_agent - INFO - Document f066bfc25faec598699118e02ad62471aa800ef3d7f38f0228c650f562594dae added to enterprise vector store
-2025-06-08 13:29:41,953 - memory.semantic_search_agent - INFO - Memory added successfully: f066bfc25faec598699118e02ad62471aa800ef3d7f38f0228c650f562594dae
-2025-06-08 13:29:41,954 - memory.semantic_search_agent - INFO - Document 4f8ac96eaed6d8b44644ab8198ae8ada0e8687481d54286f26a5deb41a32eee1 added to enterprise vector store
-2025-06-08 13:29:41,954 - memory.semantic_search_agent - INFO - Memory added successfully: 4f8ac96eaed6d8b44644ab8198ae8ada0e8687481d54286f26a5deb41a32eee1
-2025-06-08 13:29:41,956 - memory.semantic_search_agent - INFO - Document a458c226d88c2eb2d09c8c880519d866df22cc7ef977a50231a7e461219e5c2c added to enterprise vector store
-2025-06-08 13:29:41,956 - memory.semantic_search_agent - INFO - Memory added successfully: a458c226d88c2eb2d09c8c880519d866df22cc7ef977a50231a7e461219e5c2c
-2025-06-08 13:29:41,958 - memory.semantic_search_agent - INFO - Document e64373e480d2a685bbf36aa85398b35631bc4ef2ad14ef01fb73a62761b156a2 added to enterprise vector store
-2025-06-08 13:29:41,958 - memory.semantic_search_agent - INFO - Memory added successfully: e64373e480d2a685bbf36aa85398b35631bc4ef2ad14ef01fb73a62761b156a2
-2025-06-08 13:29:41,959 - memory.semantic_search_agent - INFO - Document 29813227b07067187b29fb4001aef2ae73ada414f2c69f96d40f241c461cad67 added to enterprise vector store
-2025-06-08 13:29:41,959 - memory.semantic_search_agent - INFO - Memory added successfully: 29813227b07067187b29fb4001aef2ae73ada414f2c69f96d40f241c461cad67
-2025-06-08 13:29:41,959 - __main__ - INFO - Enterprise contextual knowledge initialized
-2025-06-08 13:29:41,961 - memory.semantic_search_agent - INFO - Document d441459e2518e68453e616c65ac70491ec3f84a033697f9afff149f5550d362b added to enterprise vector store
-2025-06-08 13:29:41,961 - memory.semantic_search_agent - INFO - Memory added successfully: d441459e2518e68453e616c65ac70491ec3f84a033697f9afff149f5550d362b
-2025-06-08 13:29:41,971 - memory.semantic_search_agent - INFO - Similarity search completed in 0.0099s, found 5 results
-2025-06-08 13:29:41,976 - memory.semantic_search_agent - INFO - Search completed successfully in 0.0146s, found 5 results
-2025-06-08 13:29:41,977 - brain.core.brain_router - INFO - Processing Agent request: Search SEGEV in Google...
-2025-06-08 13:29:41,977 - brain.core.brain_router - INFO - Resources allocated for request overlay_session_1749403768688_1749403781.9763908: ['memory', 'llm', 'execution']
-2025-06-08 13:29:41,977 - brain.core.brain_router - INFO - 🧠 Using universal intelligent automation handler with real LLM planning
-2025-06-08 13:29:41,977 - brain.core.brain_router - INFO - ✅ Successfully imported universal_intelligent_automation_handler
-2025-06-08 13:29:41,978 - universal_intelligent_automation_handler - INFO - 🧠 Initializing OllamaLLM service for universal planning
-2025-06-08 13:29:42,001 - llm.model - INFO - ✅ LLM service started successfully with model llama3.2:latest
-2025-06-08 13:29:42,002 - universal_intelligent_automation_handler - INFO - ✅ OllamaLLM service initialized for universal planning (async)
-2025-06-08 13:29:42,002 - universal_intelligent_automation_handler - INFO - ✅ Ensured LLM service is initialized for real LLM plan generation
-2025-06-08 13:29:42,002 - universal_intelligent_automation_handler - INFO - ✅ Using real LLM service for plan generation
-2025-06-08 13:29:42,002 - universal_intelligent_automation_handler - INFO - 🧠 Using create_universal_automation_plan directly for real LLM plan generation
-2025-06-08 13:29:42,003 - universal_intelligent_automation_handler - INFO - 🧠 Attempting to create plan with advanced LLM reasoning
-2025-06-08 13:29:42,003 - universal_intelligent_automation_handler - WARNING - ⚠️ Advanced LLM planning failed: 'UniversalIntelligentAutomationHandler' object has no attribute '_create_advanced_llm_plan'
-2025-06-08 13:29:42,003 - universal_intelligent_automation_handler - INFO - 🔄 Falling back to emergency plan creation
-2025-06-08 13:29:42,003 - universal_intelligent_automation_handler - ERROR - Error creating universal automation plan: 'UniversalIntelligentAutomationHandler' object has no attribute '_create_emergency_llm_plan'
-2025-06-08 13:29:42,003 - universal_intelligent_automation_handler - WARNING - ⚠️ Plan creation failed with standard method
-2025-06-08 13:29:42,003 - brain.core.brain_router - WARNING - ⚠️ Universal automation handler returned invalid result: {'success': False, 'response': "Error creating automation plan: 'UniversalIntelligentAutomationHandler' object has no attribute '_create_emergency_llm_plan'", 'automation_available': True}
-2025-06-08 13:29:42,003 - brain.core.brain_router - INFO - 🔄 Falling back to direct LLM planning
-2025-06-08 13:29:42,003 - llm.model - INFO - Sending Ollama request (attempt 1/3)
-2025-06-08 13:29:43,705 - __main__ - INFO - Received message type: ping from client_1749403768694
-2025-06-08 13:29:44,195 - llm.model - INFO - Ollama response time: 2.19s (status: 200)
-2025-06-08 13:29:44,195 - llm.model - INFO - Successfully parsed NDJSON response: 3 chars from 3 parts
-2025-06-08 13:29:44,196 - brain.core.brain_router - INFO - ✅ Verified LLM model is generating real responses
-2025-06-08 13:29:44,196 - llm.model - INFO - Sending Ollama request (attempt 1/3)
-2025-06-08 13:29:46,528 - websockets.server - INFO - connection open
-2025-06-08 13:29:46,529 - __main__ - INFO - Client connected: client_1749403786529 from 127.0.0.1 on path: None
-2025-06-08 13:29:46,530 - __main__ - INFO - Received message type: register from client_1749403786529
-2025-06-08 13:29:48,092 - __main__ - INFO - Received message type: sensor_data from client_1749403752022
-2025-06-08 13:29:48,093 - __main__ - INFO - Processing sensor data from client_1749403752022
-2025-06-08 13:29:51,586 - websockets.server - INFO - connection open
-2025-06-08 13:29:51,587 - __main__ - INFO - Client connected: client_1749403791586 from 127.0.0.1 on path: None
-2025-06-08 13:29:51,592 - __main__ - INFO - Received message type: register from client_1749403791586
-2025-06-08 13:29:56,603 - websockets.server - INFO - connection open
-2025-06-08 13:29:56,604 - __main__ - INFO - Client connected: client_1749403796604 from 127.0.0.1 on path: None
-2025-06-08 13:29:56,605 - __main__ - INFO - Received message type: register from client_1749403796604
-2025-06-08 13:29:59,462 - __main__ - INFO - Received message type: ping from client_1749403768694
-2025-06-08 13:30:01,793 - websockets.server - INFO - connection open
-2025-06-08 13:30:01,960 - __main__ - INFO - Client connected: client_1749403801958 from 127.0.0.1 on path: None
-2025-06-08 13:30:02,033 - __main__ - INFO - Received message type: register from client_1749403801958
-2025-06-08 13:30:03,019 - llm.model - INFO - Ollama response time: 18.82s (status: 200)
-2025-06-08 13:30:03,022 - llm.model - INFO - Successfully parsed NDJSON response: 2871 chars from 679 parts
-2025-06-08 13:30:03,023 - brain.core.brain_router - INFO - Request processed successfully in 21.05s
-2025-06-08 13:30:03,039 - memory.semantic_search_agent - INFO - Document 1060a89fe7d5480243bc6e7725f20793f7c998e428b285fc5bf0ec87f5394be7 added to enterprise vector store
-2025-06-08 13:30:03,040 - memory.semantic_search_agent - INFO - Memory added successfully: 1060a89fe7d5480243bc6e7725f20793f7c998e428b285fc5bf0ec87f5394be7
-2025-06-08 13:30:07,068 - websockets.server - INFO - connection open
-2025-06-08 13:30:07,069 - __main__ - INFO - Client connected: client_1749403807069 from 127.0.0.1 on path: None
-2025-06-08 13:30:07,072 - __main__ - INFO - Received message type: register from client_1749403807069
-2025-06-08 13:30:12,094 - websockets.server - INFO - connection open
-2025-06-08 13:30:12,094 - __main__ - INFO - Client connected: client_1749403812094 from 127.0.0.1 on path: None
-2025-06-08 13:30:12,095 - __main__ - INFO - Received message type: register from client_1749403812094
-2025-06-08 13:30:14,408 - __main__ - INFO - Received message type: ping from client_1749403768694
-2025-06-08 13:30:17,097 - websockets.server - INFO - connection open
-2025-06-08 13:30:17,097 - __main__ - INFO - Client connected: client_1749403817097 from 127.0.0.1 on path: None
-2025-06-08 13:30:17,098 - __main__ - INFO - Received message type: register from client_1749403817097
-2025-06-08 13:30:20,600 - __main__ - INFO - Received message type: sensor_data from client_1749403752022
-2025-06-08 13:30:20,600 - __main__ - INFO - Processing sensor data from client_1749403752022
-2025-06-08 13:30:22,101 - websockets.server - INFO - connection open
-2025-06-08 13:30:22,101 - __main__ - INFO - Client connected: client_1749403822101 from 127.0.0.1 on path: None
-2025-06-08 13:30:22,102 - __main__ - INFO - Received message type: register from client_1749403822101
-2025-06-08 13:30:27,109 - websockets.server - INFO - connection open
-2025-06-08 13:30:27,109 - __main__ - INFO - Client connected: client_1749403827109 from 127.0.0.1 on path: None
-2025-06-08 13:30:27,113 - __main__ - INFO - Received message type: register from client_1749403827109
-2025-06-08 13:30:29,506 - __main__ - INFO - Received message type: ping from client_1749403768694
-2025-06-08 13:30:32,117 - websockets.server - INFO - connection open
-2025-06-08 13:30:32,117 - __main__ - INFO - Client connected: client_1749403832117 from 127.0.0.1 on path: None
-2025-06-08 13:30:32,117 - __main__ - INFO - Received message type: register from client_1749403832117
-2025-06-08 13:30:37,122 - websockets.server - INFO - connection open
-2025-06-08 13:30:37,122 - __main__ - INFO - Client connected: client_1749403837122 from 127.0.0.1 on path: None
-2025-06-08 13:30:37,122 - __main__ - INFO - Received message type: register from client_1749403837122
-2025-06-08 13:30:42,126 - websockets.server - INFO - connection open
-2025-06-08 13:30:42,126 - __main__ - INFO - Client connected: client_1749403842126 from 127.0.0.1 on path: None
-2025-06-08 13:30:42,127 - __main__ - INFO - Received message type: register from client_1749403842126
-2025-06-08 13:30:44,507 - __main__ - INFO - Received message type: ping from client_1749403768694
-2025-06-08 13:30:46,252 - __main__ - INFO - Received message type: query from client_1749403769482
-2025-06-08 13:30:46,773 - __main__ - INFO - Received message type: query from client_1749403769482
-2025-06-08 13:30:47,131 - websockets.server - INFO - connection open
-2025-06-08 13:30:47,131 - __main__ - INFO - Client connected: client_1749403847131 from 127.0.0.1 on path: None
-2025-06-08 13:30:47,132 - __main__ - INFO - Received message type: register from client_1749403847131
-2025-06-08 13:30:48,143 - __main__ - INFO - Received message type: sensor_data from client_1749403752022
-2025-06-08 13:30:48,143 - __main__ - INFO - Processing sensor data from client_1749403752022
-2025-06-08 13:30:52,138 - websockets.server - INFO - connection open
-2025-06-08 13:30:52,138 - __main__ - INFO - Client connected: client_1749403852138 from 127.0.0.1 on path: None
-2025-06-08 13:30:52,142 - __main__ - INFO - Received message type: register from client_1749403852138
-2025-06-08 13:30:57,147 - websockets.server - INFO - connection open
-2025-06-08 13:30:57,147 - __main__ - INFO - Client connected: client_1749403857147 from 127.0.0.1 on path: None
-2025-06-08 13:30:57,148 - __main__ - INFO - Received message type: register from client_1749403857147
-2025-06-08 13:30:59,606 - __main__ - INFO - Received message type: ping from client_1749403768694
-2025-06-08 13:31:02,152 - websockets.server - INFO - connection open
-2025-06-08 13:31:02,152 - __main__ - INFO - Client connected: client_1749403862152 from 127.0.0.1 on path: None
-2025-06-08 13:31:02,153 - __main__ - INFO - Received message type: register from client_1749403862152
+2025-07-10 22:58:06,941 - agent_workflow.input_controller - INFO - Detected screen size: 1470x956
+2025-07-10 22:58:07,346 - agent_workflow.input_controller - INFO - Standard mouse listener started successfully
+2025-07-10 22:58:07,346 - agent_workflow.input_controller - INFO - Keyboard listener started successfully
+2025-07-10 22:58:07,346 - agent_workflow.input_controller - INFO - Input controller initialized (safe mode)
+2025-07-10 22:58:07,346 - agent_workflow.input_controller - INFO - 🚨 Emergency shutdown: Press Ctrl+1 to immediately stop agent
+2025-07-10 22:58:07,352 - llava_processor - INFO - Connected to Ollama API v0.6.8
+2025-07-10 22:58:07,352 - total_screen_analyzer - INFO - LLaVA visual processor initialized for total screen analysis
+2025-07-10 22:58:07,352 - total_screen_analyzer - INFO - Total Screen Analyzer initialized with 8s interval
+2025-07-10 22:58:07,352 - adaptive_retry_automation_handler - INFO - 🔄 Adaptive retry automation system loaded
+2025-07-10 22:58:07,353 - universal_intelligent_automation_handler - INFO - ✅ Adaptive retry automation handler loaded successfully
+2025-07-10 22:58:07,355 - plan_persistence - INFO - Loaded 19 plans from metadata
+2025-07-10 22:58:07,355 - plan_persistence - INFO - Plan persistence system initialized
+2025-07-10 22:58:07,355 - universal_intelligent_automation_handler - INFO - ✅ Plan persistence module loaded successfully
+2025-07-10 22:58:07,356 - agent_workflow.input_controller - INFO - Standard mouse listener started successfully
+2025-07-10 22:58:07,357 - agent_workflow.input_controller - INFO - Keyboard listener started successfully
+2025-07-10 22:58:07,357 - agent_workflow.input_controller - INFO - Input controller initialized (safe mode)
+2025-07-10 22:58:07,357 - agent_workflow.input_controller - INFO - 🚨 Emergency shutdown: Press Ctrl+1 to immediately stop agent
+2025-07-10 22:58:07,359 - llava_processor - INFO - Connected to Ollama API v0.6.8
+2025-07-10 22:58:07,359 - total_screen_analyzer - INFO - LLaVA visual processor initialized for total screen analysis
+2025-07-10 22:58:07,359 - total_screen_analyzer - INFO - Total Screen Analyzer initialized with 8s interval
+2025-07-10 22:58:07,359 - universal_intelligent_automation_handler - INFO - 🤖 Universal automation components loaded successfully
+2025-07-10 22:58:07,359 - fixed_universal_automation_handler - INFO - ✅ Adaptive retry automation handler loaded successfully
+2025-07-10 22:58:07,360 - fixed_universal_automation_handler - INFO - ✅ Plan persistence module loaded successfully
+2025-07-10 22:58:07,365 - agent_workflow.input_controller - INFO - Standard mouse listener started successfully
+2025-07-10 22:58:07,365 - agent_workflow.input_controller - INFO - Keyboard listener started successfully
+2025-07-10 22:58:07,366 - agent_workflow.input_controller - INFO - Input controller initialized (safe mode)
+2025-07-10 22:58:07,366 - agent_workflow.input_controller - INFO - 🚨 Emergency shutdown: Press Ctrl+1 to immediately stop agent
+2025-07-10 22:58:07,366 - __main__ - INFO - ✅ Input controller initialized (safe mode)
+2025-07-10 22:58:07,382 - accessibility_detector - WARNING - Windows accessibility APIs not available
+2025-07-10 22:58:07,382 - accessibility_detector - WARNING - Linux accessibility APIs (AT-SPI) not available
+2025-07-10 22:58:07,427 - __main__ - WARNING - ⚠️ Efficient system bridge not available, falling back to screen capture
+2025-07-10 22:58:07,427 - __main__ - INFO - 🔥 LLM Warmup Manager available for fast responses
+2025-07-10 22:58:07,444 - memory.semantic_search_agent - INFO - Loading 4886 existing documents from storage
+2025-07-10 22:58:07,933 - memory.semantic_search_agent - INFO - EnterpriseVectorStore initialized with enterprise-grade features
+2025-07-10 22:58:07,935 - memory.semantic_search_agent - INFO - SemanticSearchAgent initialized with enterprise-grade capabilities
+2025-07-10 22:58:07,935 - real_agent_automation_handler - INFO - ✅ Plan persistence module loaded successfully
+2025-07-10 22:58:07,936 - real_agent_automation_handler - INFO - 🤖 Basic automation handler initialized
+2025-07-10 22:58:07,936 - __main__ - INFO - ✅ Real Agent Automation Handler enabled
+2025-07-10 22:58:07,937 - agent_workflow.input_controller - INFO - Standard mouse listener started successfully
+2025-07-10 22:58:07,937 - agent_workflow.input_controller - INFO - Keyboard listener started successfully
+2025-07-10 22:58:07,937 - agent_workflow.input_controller - INFO - Input controller initialized (safe mode)
+2025-07-10 22:58:07,937 - agent_workflow.input_controller - INFO - 🚨 Emergency shutdown: Press Ctrl+1 to immediately stop agent
+2025-07-10 22:58:07,940 - llava_processor - INFO - Connected to Ollama API v0.6.8
+2025-07-10 22:58:07,940 - total_screen_analyzer - INFO - LLaVA visual processor initialized for total screen analysis
+2025-07-10 22:58:07,940 - total_screen_analyzer - INFO - Total Screen Analyzer initialized with 8s interval
+2025-07-10 22:58:07,940 - universal_intelligent_automation_handler - INFO - 🤖 Universal automation components loaded successfully
+2025-07-10 22:58:07,940 - __main__ - INFO - ✅ Universal Intelligent Automation Handler loaded
+2025-07-10 22:58:07,942 - brain.core.brain_router - INFO - ✅ Plan persistence module loaded in brain router
+2025-07-10 22:58:07,944 - __main__ - INFO - 🧠 Brain Router available for intelligent mode handling
+2025-07-10 22:58:08,986 - memory.semantic_search_agent - INFO - Loading 4886 existing documents from storage
+2025-07-10 22:58:09,450 - memory.semantic_search_agent - INFO - EnterpriseVectorStore initialized with enterprise-grade features
+2025-07-10 22:58:09,450 - memory.semantic_search_agent - INFO - SemanticSearchAgent initialized with enterprise-grade capabilities
+2025-07-10 22:58:09,450 - __main__ - INFO - ✅ Enhanced semantic search agent initialized
+2025-07-10 22:58:09,450 - __main__ - INFO - ✅ Initialized pending_plans dictionary
+2025-07-10 22:58:09,451 - agent_workflow.input_controller - INFO - Standard mouse listener started successfully
+2025-07-10 22:58:09,451 - agent_workflow.input_controller - INFO - Keyboard listener started successfully
+2025-07-10 22:58:09,451 - agent_workflow.input_controller - INFO - Input controller initialized (safe mode)
+2025-07-10 22:58:09,451 - agent_workflow.input_controller - INFO - 🚨 Emergency shutdown: Press Ctrl+1 to immediately stop agent
+2025-07-10 22:58:09,458 - llava_processor - INFO - Connected to Ollama API v0.6.8
+2025-07-10 22:58:09,458 - total_screen_analyzer - INFO - LLaVA visual processor initialized for total screen analysis
+2025-07-10 22:58:09,458 - total_screen_analyzer - INFO - Total Screen Analyzer initialized with 1s interval
+2025-07-10 22:58:09,458 - enhanced_agent_automation - INFO - Enhanced Agent Automation initialized with Total Screen Analyzer
+2025-07-10 22:58:09,458 - enhanced_automation_handler - INFO - Enhanced Automation Handler initialized
+2025-07-10 22:58:09,458 - __main__ - INFO - ✅ EnhancedAutomationHandler initialized for automation_handler
+2025-07-10 22:58:09,459 - __main__ - INFO - ✅ ContextualAIBackend initialized successfully
+2025-07-10 22:58:09,459 - __main__ - INFO - 🚀 Starting Enhanced Enterprise Backend with Context on 0.0.0.0:8767...
+2025-07-10 22:58:09,459 - brain.core.brain_router - INFO - BrainRouter initialized - The Central Intelligence Hub is online
+2025-07-10 22:58:09,469 - llm.model - INFO - ✅ LLM service started successfully with model llama3.2:1b
+2025-07-10 22:58:09,469 - llm.model - INFO - Sending Ollama request (attempt 1/3)
+2025-07-10 22:58:14,286 - llm.model - INFO - Ollama response time: 4.82s (status: 200)
+2025-07-10 22:58:14,287 - llm.model - INFO - Successfully parsed NDJSON response: 35 chars from 9 parts
+2025-07-10 22:58:14,288 - brain.core.brain_router - INFO - ✅ LLM service initialized and tested successfully
+2025-07-10 22:58:14,288 - __main__ - INFO - ✅ Brain Router initialized asynchronously
+2025-07-10 22:58:14,288 - __main__ - INFO - ✅ Brain Router initialized asynchronously
+2025-07-10 22:58:14,299 - websockets.server - INFO - server listening on 0.0.0.0:8767
+2025-07-10 22:58:14,300 - __main__ - INFO - ✅ Enhanced Enterprise Backend with Context started successfully
+2025-07-10 22:58:14,300 - __main__ - INFO - 🌐 WebSocket server listening on ws://0.0.0.0:8767
+2025-07-10 22:58:14,729 - websockets.server - INFO - connection open
+2025-07-10 22:58:14,730 - __main__ - INFO - Client connected: client_1752213494730 from 127.0.0.1 on path: None
+2025-07-10 22:58:14,731 - __main__ - INFO - Received message type: register from 0a90b2e6-3621-4fda-b82e-7f5245e4d400
+2025-07-10 22:58:14,732 - __main__ - INFO - Client disconnected: 0a90b2e6-3621-4fda-b82e-7f5245e4d400
+2025-07-10 22:58:15,424 - websockets.server - INFO - connection open
+2025-07-10 22:58:15,425 - __main__ - INFO - Client connected: client_1752213495425 from 127.0.0.1 on path: None
+2025-07-10 22:58:15,426 - __main__ - INFO - Received message type: register from 407e8461-d189-46db-837a-7eb2b5039812
+2025-07-10 22:58:16,137 - websockets.server - INFO - connection open
+2025-07-10 22:58:16,137 - __main__ - INFO - Client connected: client_1752213496137 from 127.0.0.1 on path: None
+2025-07-10 22:58:16,145 - __main__ - INFO - Received message type: register from overlay_user_1752213167014
+2025-07-10 22:58:19,735 - websockets.server - INFO - connection open
+2025-07-10 22:58:19,735 - __main__ - INFO - Client connected: client_1752213499735 from 127.0.0.1 on path: None
+2025-07-10 22:58:19,736 - __main__ - INFO - Received message type: register from 3c612846-dccb-4e8f-9296-9143b3ea09fd
+2025-07-10 22:58:19,737 - __main__ - INFO - Client disconnected: 3c612846-dccb-4e8f-9296-9143b3ea09fd
+2025-07-10 22:58:23,419 - websockets.server - INFO - connection open
+2025-07-10 22:58:23,420 - __main__ - INFO - Client connected: client_1752213503420 from 127.0.0.1 on path: None
+2025-07-10 22:58:23,421 - __main__ - INFO - Received message type: register from 8bbee0e5-6674-4a90-8391-014d358c9af8
+2025-07-10 22:58:24,741 - websockets.server - INFO - connection open
+2025-07-10 22:58:24,741 - __main__ - INFO - Client connected: client_1752213504741 from 127.0.0.1 on path: None
+2025-07-10 22:58:24,742 - __main__ - INFO - Received message type: register from 64f719ec-e240-4c92-8fe0-07f9b8958495
+2025-07-10 22:58:24,743 - __main__ - INFO - Client disconnected: 64f719ec-e240-4c92-8fe0-07f9b8958495
+2025-07-10 22:58:29,745 - __main__ - INFO - Client disconnected: 8bbee0e5-6674-4a90-8391-014d358c9af8
+2025-07-10 22:58:29,745 - __main__ - INFO - Client disconnected: overlay_user_1752213167014
+2025-07-10 22:58:29,747 - websockets.server - INFO - connection open
+2025-07-10 22:58:29,747 - __main__ - INFO - Client connected: client_1752213509747 from 127.0.0.1 on path: None
+2025-07-10 22:58:29,749 - __main__ - INFO - Received message type: register from f8e14bd0-659c-4192-8772-00c15005d065
+2025-07-10 22:58:29,749 - __main__ - INFO - Client disconnected: f8e14bd0-659c-4192-8772-00c15005d065
+2025-07-10 22:58:29,865 - websockets.server - INFO - connection open
+2025-07-10 22:58:29,865 - __main__ - INFO - Client connected: client_1752213509865 from 127.0.0.1 on path: None
+2025-07-10 22:58:29,869 - __main__ - INFO - Received message type: register from dddae73b-2077-410c-b001-4f7667a613d7
+2025-07-10 22:58:30,895 - websockets.server - INFO - connection open
+2025-07-10 22:58:30,896 - __main__ - INFO - Client connected: client_1752213510896 from 127.0.0.1 on path: None
+2025-07-10 22:58:30,899 - __main__ - INFO - Received message type: register from overlay_user_1752213509861
+2025-07-10 22:58:33,230 - __main__ - INFO - Received message type: chat_request from overlay_user_1752213509861
+2025-07-10 22:58:33,235 - memory.semantic_search_agent - INFO - Document 27882b9a0ddb280ddec81691511c7ab5d7f52e8ef5c7617210072f8952838822 added to enterprise vector store
+2025-07-10 22:58:33,235 - memory.semantic_search_agent - INFO - Memory added successfully: 27882b9a0ddb280ddec81691511c7ab5d7f52e8ef5c7617210072f8952838822
+2025-07-10 22:58:33,238 - memory.semantic_search_agent - INFO - Document 226a53dd7dad8fb91874237dda38437e00b8bf4d444064ae876b9423004c0193 added to enterprise vector store
+2025-07-10 22:58:33,238 - memory.semantic_search_agent - INFO - Memory added successfully: 226a53dd7dad8fb91874237dda38437e00b8bf4d444064ae876b9423004c0193
+2025-07-10 22:58:33,239 - memory.semantic_search_agent - INFO - Document 70ed09b6ce930b83a8dd8a1184e7f5221fdec6d9df1dce92dda3899f22e6e81d added to enterprise vector store
+2025-07-10 22:58:33,239 - memory.semantic_search_agent - INFO - Memory added successfully: 70ed09b6ce930b83a8dd8a1184e7f5221fdec6d9df1dce92dda3899f22e6e81d
+2025-07-10 22:58:33,241 - memory.semantic_search_agent - INFO - Document ba98653e89dbe7d44471f6172714f4a90234522757c495b15ed22b333c663e3c added to enterprise vector store
+2025-07-10 22:58:33,241 - memory.semantic_search_agent - INFO - Memory added successfully: ba98653e89dbe7d44471f6172714f4a90234522757c495b15ed22b333c663e3c
+2025-07-10 22:58:33,242 - memory.semantic_search_agent - INFO - Document d2d0cbe75d3edf3f9ee706198d3d0e8285ab26d464697d91186422dd045af271 added to enterprise vector store
+2025-07-10 22:58:33,242 - memory.semantic_search_agent - INFO - Memory added successfully: d2d0cbe75d3edf3f9ee706198d3d0e8285ab26d464697d91186422dd045af271
+2025-07-10 22:58:33,245 - memory.semantic_search_agent - INFO - Document dd57f7cab8bfd6f7a8c6889c1c282f2f73105e3133a7ac884ebfa0042426076f added to enterprise vector store
+2025-07-10 22:58:33,245 - memory.semantic_search_agent - INFO - Memory added successfully: dd57f7cab8bfd6f7a8c6889c1c282f2f73105e3133a7ac884ebfa0042426076f
+2025-07-10 22:58:33,247 - memory.semantic_search_agent - INFO - Document 8b59c44acedd8dd7dd11f9342d7cb607388290dfd69a8b2741b1d6db14bcb29b added to enterprise vector store
+2025-07-10 22:58:33,247 - memory.semantic_search_agent - INFO - Memory added successfully: 8b59c44acedd8dd7dd11f9342d7cb607388290dfd69a8b2741b1d6db14bcb29b
+2025-07-10 22:58:33,249 - memory.semantic_search_agent - INFO - Document 3720ba1a3ac2f569cfeebacf618af746ee6d3efe0d9ca48ae2d08e38f6245ff7 added to enterprise vector store
+2025-07-10 22:58:33,249 - memory.semantic_search_agent - INFO - Memory added successfully: 3720ba1a3ac2f569cfeebacf618af746ee6d3efe0d9ca48ae2d08e38f6245ff7
+2025-07-10 22:58:33,251 - memory.semantic_search_agent - INFO - Document 958a3ecc520725c48cbb353441b5f160d558f98f42cfe5a669a8f807cfe5a353 added to enterprise vector store
+2025-07-10 22:58:33,251 - memory.semantic_search_agent - INFO - Memory added successfully: 958a3ecc520725c48cbb353441b5f160d558f98f42cfe5a669a8f807cfe5a353
+2025-07-10 22:58:33,252 - memory.semantic_search_agent - INFO - Document 20f9c13708883f9f9cd86009c2153297099d838a3b580f1aa854a55b2a5943e6 added to enterprise vector store
+2025-07-10 22:58:33,252 - memory.semantic_search_agent - INFO - Memory added successfully: 20f9c13708883f9f9cd86009c2153297099d838a3b580f1aa854a55b2a5943e6
+2025-07-10 22:58:33,252 - __main__ - INFO - Enterprise contextual knowledge initialized
+2025-07-10 22:58:33,255 - memory.semantic_search_agent - INFO - Document a277013e62bd64b30dfb55eb1adba5cad7f98b8b0ae81ad9d04e084090b02dd1 added to enterprise vector store
+2025-07-10 22:58:33,255 - memory.semantic_search_agent - INFO - Memory added successfully: a277013e62bd64b30dfb55eb1adba5cad7f98b8b0ae81ad9d04e084090b02dd1
+2025-07-10 22:58:33,280 - memory.semantic_search_agent - INFO - Similarity search completed in 0.0247s, found 5 results
+2025-07-10 22:58:33,287 - memory.semantic_search_agent - INFO - Search completed successfully in 0.0323s, found 5 results
+2025-07-10 22:58:33,288 - brain.core.brain_router - INFO - Processing Ask request: Write Segev in Google...
+2025-07-10 22:58:33,288 - brain.core.brain_router - INFO - Resources allocated for request overlay_session_1752213509861_1752213513.287901: ['memory', 'llm']
+2025-07-10 22:58:33,288 - llm.model - INFO - Sending Ollama request (attempt 1/3)
+2025-07-10 22:58:34,753 - websockets.server - INFO - connection open
+2025-07-10 22:58:34,753 - __main__ - INFO - Client connected: client_1752213514753 from 127.0.0.1 on path: None
+2025-07-10 22:58:34,754 - __main__ - INFO - Received message type: register from a12f4e0b-ad3f-4f14-8ab3-e94a29e5933c
+2025-07-10 22:58:34,755 - __main__ - INFO - Client disconnected: a12f4e0b-ad3f-4f14-8ab3-e94a29e5933c
+2025-07-10 22:58:38,037 - __main__ - INFO - Client disconnected: dddae73b-2077-410c-b001-4f7667a613d7
+2025-07-10 22:58:38,274 - websockets.server - INFO - connection open
+2025-07-10 22:58:38,275 - __main__ - INFO - Client connected: client_1752213518275 from 127.0.0.1 on path: None
+2025-07-10 22:58:38,285 - __main__ - INFO - Received message type: register from 6907c6ff-59c4-4b7b-b65b-7807b292e516
+2025-07-10 22:58:39,768 - websockets.server - INFO - connection open
+2025-07-10 22:58:39,769 - __main__ - INFO - Client connected: client_1752213519769 from 127.0.0.1 on path: None
+2025-07-10 22:58:39,772 - __main__ - INFO - Received message type: register from 9a99587b-5f5b-4a01-a850-3637c6594366
+2025-07-10 22:58:39,776 - __main__ - INFO - Client disconnected: 9a99587b-5f5b-4a01-a850-3637c6594366
+2025-07-10 22:58:40,072 - websockets.server - INFO - connection open
+2025-07-10 22:58:40,076 - __main__ - INFO - Client connected: client_1752213520076 from 127.0.0.1 on path: None
+2025-07-10 22:58:40,086 - __main__ - INFO - Received message type: register from overlay_user_1752213518260
+2025-07-10 22:58:44,787 - websockets.server - INFO - connection open
+2025-07-10 22:58:44,788 - __main__ - INFO - Client connected: client_1752213524788 from 127.0.0.1 on path: None
+2025-07-10 22:58:44,789 - __main__ - INFO - Received message type: register from 8daf84f7-b3fa-42f6-9ee5-40b80eae9d58
+2025-07-10 22:58:44,790 - __main__ - INFO - Client disconnected: 8daf84f7-b3fa-42f6-9ee5-40b80eae9d58
+2025-07-10 22:58:46,213 - __main__ - INFO - Received message type: chat_request from overlay_user_1752213518260
+2025-07-10 22:58:46,227 - memory.semantic_search_agent - INFO - Document d934ec68b5204404005768aac7d228ef5898e2347110a77509d33e58b8b14a49 added to enterprise vector store
+2025-07-10 22:58:46,227 - memory.semantic_search_agent - INFO - Memory added successfully: d934ec68b5204404005768aac7d228ef5898e2347110a77509d33e58b8b14a49
+2025-07-10 22:58:46,228 - memory.semantic_search_agent - INFO - Cache hit for search query
+2025-07-10 22:58:46,228 - brain.core.brain_router - INFO - Processing Agent request: Write Segev in Google...
+2025-07-10 22:58:46,229 - brain.core.brain_router - INFO - Resources allocated for request overlay_session_1752213518260_1752213526.228737: ['memory', 'llm', 'execution']
+2025-07-10 22:58:46,229 - brain.core.brain_router - INFO - 🧠 Using universal intelligent automation handler with real LLM planning
+2025-07-10 22:58:46,229 - brain.core.brain_router - INFO - ✅ Successfully imported universal_intelligent_automation_handler
+2025-07-10 22:58:46,229 - universal_intelligent_automation_handler - INFO - 🧠 Initializing OllamaLLM service for universal planning
+2025-07-10 22:58:46,269 - llm.model - INFO - ✅ LLM service started successfully with model llama3.2:1b
+2025-07-10 22:58:46,269 - universal_intelligent_automation_handler - INFO - ✅ OllamaLLM service initialized for universal planning (async)
+2025-07-10 22:58:46,270 - universal_intelligent_automation_handler - INFO - ✅ Ensured LLM service is initialized for real LLM plan generation
+2025-07-10 22:58:46,270 - universal_intelligent_automation_handler - INFO - ✅ Using real LLM service for plan generation
+2025-07-10 22:58:46,270 - universal_intelligent_automation_handler - INFO - 🧠 Using create_universal_automation_plan directly for real LLM plan generation
+2025-07-10 22:58:46,270 - universal_intelligent_automation_handler - INFO - 🧠 Using rule-based automation for fast response
+2025-07-10 22:58:46,288 - universal_intelligent_automation_handler - WARNING - ⚠️ Rule-based automation failed: UniversalAutomationPlan.__init__() got an unexpected keyword argument 'timestamp'
+2025-07-10 22:58:46,288 - universal_intelligent_automation_handler - INFO - 🔄 Falling back to emergency plan creation
+2025-07-10 22:58:46,289 - universal_intelligent_automation_handler - INFO - 🚨 Creating emergency plan as fallback
+2025-07-10 22:58:46,289 - universal_intelligent_automation_handler - INFO - ✅ Successfully created emergency plan
+2025-07-10 22:58:46,289 - universal_intelligent_automation_handler - INFO - 💾 Saved plan to persistent storage: emergency_plan_1752213526
+2025-07-10 22:58:46,289 - universal_intelligent_automation_handler - INFO - ✅ Successfully created plan with real LLM
+2025-07-10 22:58:46,289 - brain.core.brain_router - INFO - ✅ Successfully created plan with universal intelligent automation handler
+2025-07-10 22:58:46,289 - brain.core.brain_router - INFO - ✅ Confirmed real LLM was used for plan generation
+2025-07-10 22:58:46,292 - brain.core.brain_router - INFO - Request processed successfully in 0.02s
+2025-07-10 22:58:46,346 - memory.semantic_search_agent - INFO - Document eacec09f897e2302c5611e3b09c0458c3b976e2b8ff27e3037cf8b0be9b2bd53 added to enterprise vector store
+2025-07-10 22:58:46,347 - memory.semantic_search_agent - INFO - Memory added successfully: eacec09f897e2302c5611e3b09c0458c3b976e2b8ff27e3037cf8b0be9b2bd53
+2025-07-10 22:58:46,430 - agent_workflow.input_controller - INFO - Standard mouse listener started successfully
+2025-07-10 22:58:46,432 - agent_workflow.input_controller - INFO - Keyboard listener started successfully
+2025-07-10 22:58:46,433 - agent_workflow.input_controller - INFO - Input controller initialized (safe mode)
+2025-07-10 22:58:46,433 - agent_workflow.input_controller - INFO - 🚨 Emergency shutdown: Press Ctrl+1 to immediately stop agent
+2025-07-10 22:58:46,433 - enhanced_enterprise_backend_with_context - INFO - ✅ Input controller initialized (safe mode)
+2025-07-10 22:58:46,447 - enhanced_enterprise_backend_with_context - WARNING - ⚠️ Efficient system bridge not available, falling back to screen capture
+2025-07-10 22:58:46,448 - enhanced_enterprise_backend_with_context - INFO - 🔥 LLM Warmup Manager available for fast responses
+2025-07-10 22:58:46,448 - enhanced_enterprise_backend_with_context - INFO - ✅ Real Agent Automation Handler enabled
+2025-07-10 22:58:46,449 - agent_workflow.input_controller - INFO - Standard mouse listener started successfully
+2025-07-10 22:58:46,451 - agent_workflow.input_controller - INFO - Keyboard listener started successfully
+2025-07-10 22:58:46,451 - agent_workflow.input_controller - INFO - Input controller initialized (safe mode)
+2025-07-10 22:58:46,451 - agent_workflow.input_controller - INFO - 🚨 Emergency shutdown: Press Ctrl+1 to immediately stop agent
+2025-07-10 22:58:46,599 - llava_processor - INFO - Connected to Ollama API v0.6.8
+2025-07-10 22:58:46,600 - total_screen_analyzer - INFO - LLaVA visual processor initialized for total screen analysis
+2025-07-10 22:58:46,600 - total_screen_analyzer - INFO - Total Screen Analyzer initialized with 8s interval
+2025-07-10 22:58:46,600 - universal_intelligent_automation_handler - INFO - 🤖 Universal automation components loaded successfully
+2025-07-10 22:58:46,600 - enhanced_enterprise_backend_with_context - INFO - ✅ Universal Intelligent Automation Handler loaded
+2025-07-10 22:58:46,600 - enhanced_enterprise_backend_with_context - INFO - 🧠 Brain Router available for intelligent mode handling
+2025-07-10 22:58:46,600 - plan_persistence - INFO - ✅ Added plan to shared dictionary: emergency_plan_1752213526
+2025-07-10 22:58:46,601 - plan_persistence - INFO - ✅ Plan emergency_plan_1752213526 saved successfully to cache/plans/emergency_plan_1752213526.json
+2025-07-10 22:58:46,602 - plan_persistence - INFO - Saved metadata for 20 plans
+2025-07-10 22:58:49,800 - websockets.server - INFO - connection open
+2025-07-10 22:58:49,801 - __main__ - INFO - Client connected: client_1752213529801 from 127.0.0.1 on path: None
+2025-07-10 22:58:49,803 - __main__ - INFO - Received message type: register from 3e0ae960-8408-4fba-b504-9fdcd8c08902
+2025-07-10 22:58:49,804 - __main__ - INFO - Client disconnected: 3e0ae960-8408-4fba-b504-9fdcd8c08902
+2025-07-10 22:58:53,292 - __main__ - INFO - Received message type: ping from ce472aa1-a263-498f-bf29-9c1f893c9fae
+2025-07-10 22:58:54,166 - __main__ - INFO - Received message type: query from 9d8a7b79-573a-4af5-ad87-b78318b66305
+2025-07-10 22:58:54,167 - __main__ - INFO - Processing query message: /do_execute emergency_plan_1752213526
+2025-07-10 22:58:54,168 - __main__ - INFO - Processing /do_ command: action=execute, plan_id=emergency_plan_1752213526
+2025-07-10 22:58:54,171 - __main__ - INFO - 🎯 (FORCED SUCCESS) Executing plan emergency_plan_1752213526 for session 9d8a7b79-573a-4af5-ad87-b78318b66305
+2025-07-10 22:58:54,180 - __main__ - ERROR - ❌ Error executing verified plan: received 1000 (OK); then sent 1000 (OK)
+2025-07-10 22:58:54,280 - __main__ - INFO - Received message type: query from dca95052-1ce6-4b04-a3bc-4c979734f18d
+2025-07-10 22:58:54,281 - __main__ - INFO - Processing query message: /do_execute emergency_plan_1752213526
+2025-07-10 22:58:54,281 - __main__ - INFO - Processing /do_ command: action=execute, plan_id=emergency_plan_1752213526
+2025-07-10 22:58:54,281 - __main__ - INFO - 🎯 (FORCED SUCCESS) Executing plan emergency_plan_1752213526 for session dca95052-1ce6-4b04-a3bc-4c979734f18d
+2025-07-10 22:58:54,281 - __main__ - ERROR - ❌ Error executing verified plan: received 1000 (OK); then sent 1000 (OK)
+2025-07-10 22:58:54,790 - __main__ - INFO - Received message type: query from 3db4cf51-328c-4647-a332-af3e1d650445
+2025-07-10 22:58:54,790 - __main__ - INFO - Processing query message: /do_execute emergency_plan_1752213526
+2025-07-10 22:58:54,790 - __main__ - INFO - Processing /do_ command: action=execute, plan_id=emergency_plan_1752213526
+2025-07-10 22:58:54,790 - __main__ - INFO - 🎯 (FORCED SUCCESS) Executing plan emergency_plan_1752213526 for session 3db4cf51-328c-4647-a332-af3e1d650445
+2025-07-10 22:58:54,791 - __main__ - ERROR - ❌ Error executing verified plan: received 1000 (OK); then sent 1000 (OK)
+2025-07-10 22:58:54,839 - websockets.server - INFO - connection open
+2025-07-10 22:58:54,840 - __main__ - INFO - Client connected: client_1752213534840 from 127.0.0.1 on path: None
+2025-07-10 22:58:54,843 - __main__ - INFO - Received message type: register from 701e0eb2-9835-4db7-8e97-ee8e9e4caf95
+2025-07-10 22:58:54,845 - __main__ - INFO - Client disconnected: 701e0eb2-9835-4db7-8e97-ee8e9e4caf95
+2025-07-10 22:58:54,969 - __main__ - INFO - Received message type: query from 37ade2d6-f7a3-4b2d-b9cc-cf319c1d1911
+2025-07-10 22:58:54,969 - __main__ - INFO - Processing query message: /do_execute emergency_plan_1752213526
+2025-07-10 22:58:54,970 - __main__ - INFO - Processing /do_ command: action=execute, plan_id=emergency_plan_1752213526
+2025-07-10 22:58:54,970 - __main__ - INFO - 🎯 (FORCED SUCCESS) Executing plan emergency_plan_1752213526 for session 37ade2d6-f7a3-4b2d-b9cc-cf319c1d1911
+2025-07-10 22:58:54,970 - __main__ - ERROR - ❌ Error executing verified plan: received 1000 (OK); then sent 1000 (OK)
+2025-07-10 22:58:56,394 - llm.model - ERROR - Ollama request timed out after 22.5s
+2025-07-10 22:58:56,896 - llm.model - INFO - Sending Ollama request (attempt 2/3)
+2025-07-10 22:58:59,856 - websockets.server - INFO - connection open
+2025-07-10 22:58:59,858 - __main__ - INFO - Client connected: client_1752213539857 from 127.0.0.1 on path: None
+2025-07-10 22:58:59,861 - __main__ - INFO - Received message type: register from 20831f37-0078-4eca-946a-56e127cacabd
+2025-07-10 22:58:59,868 - __main__ - INFO - Client disconnected: 20831f37-0078-4eca-946a-56e127cacabd
+2025-07-10 22:59:01,454 - __main__ - INFO - Received message type: sensor_data from 4acbfd73-812b-4e46-bf4b-49145d826fe6
+2025-07-10 22:59:01,455 - __main__ - INFO - Processing sensor data from 4acbfd73-812b-4e46-bf4b-49145d826fe6
+2025-07-10 22:59:04,892 - websockets.server - INFO - connection open
+2025-07-10 22:59:04,894 - __main__ - INFO - Client connected: client_1752213544894 from 127.0.0.1 on path: None
+2025-07-10 22:59:04,902 - __main__ - INFO - Received message type: register from d7e2d1f6-1d31-4fa1-8be3-398e2b8d397f
+2025-07-10 22:59:04,904 - __main__ - INFO - Client disconnected: d7e2d1f6-1d31-4fa1-8be3-398e2b8d397f
+2025-07-10 22:59:08,364 - __main__ - INFO - Received message type: ping from 827efe4c-697b-4d2e-bc5b-37a5c4a33874
+2025-07-10 22:59:09,921 - websockets.server - INFO - connection open
+2025-07-10 22:59:09,923 - __main__ - INFO - Client connected: client_1752213549922 from 127.0.0.1 on path: None
+2025-07-10 22:59:09,925 - __main__ - INFO - Received message type: register from 20dfed46-6375-40c7-9b83-059954e87439
+2025-07-10 22:59:09,927 - __main__ - INFO - Client disconnected: 20dfed46-6375-40c7-9b83-059954e87439
+2025-07-10 22:59:12,397 - llm.model - ERROR - Ollama request timed out after 15s
+2025-07-10 22:59:13,398 - llm.model - INFO - Sending Ollama request (attempt 3/3)
+2025-07-10 22:59:14,943 - websockets.server - INFO - connection open
+2025-07-10 22:59:14,947 - __main__ - INFO - Client connected: client_1752213554947 from 127.0.0.1 on path: None
+2025-07-10 22:59:14,954 - __main__ - INFO - Received message type: register from 2906eb7d-aba4-4690-b2ce-b1a8dc88cce2
+2025-07-10 22:59:14,957 - __main__ - INFO - Client disconnected: 2906eb7d-aba4-4690-b2ce-b1a8dc88cce2
+2025-07-10 22:59:19,963 - websockets.server - INFO - connection open
+2025-07-10 22:59:19,963 - __main__ - INFO - Client connected: client_1752213559963 from 127.0.0.1 on path: None
+2025-07-10 22:59:19,965 - __main__ - INFO - Received message type: register from 544c4b7e-026f-40e0-aeac-37ed13fb0da4
+2025-07-10 22:59:19,966 - __main__ - INFO - Client disconnected: 544c4b7e-026f-40e0-aeac-37ed13fb0da4
+2025-07-10 22:59:20,032 - llm.model - INFO - Ollama response time: 46.74s (status: 200)
+2025-07-10 22:59:20,033 - llm.model - INFO - Successfully parsed NDJSON response: 478 chars from 108 parts
+2025-07-10 22:59:20,033 - brain.core.brain_router - INFO - Request processed successfully in 0.50s
+2025-07-10 22:59:20,034 - __main__ - ERROR - Error in handle_contextual_chat_request_streaming: received 1001 (going away); then sent 1001 (going away)
+2025-07-10 22:59:20,034 - __main__ - ERROR - Error handling chat request: received 1001 (going away); then sent 1001 (going away)
+2025-07-10 22:59:20,034 - __main__ - ERROR - Error processing message from overlay_user_1752213509861: received 1001 (going away); then sent 1001 (going away)
+2025-07-10 22:59:20,034 - __main__ - INFO - Client disconnected: overlay_user_1752213509861
+2025-07-10 22:59:23,448 - __main__ - INFO - Received message type: ping from 3faf072b-2c23-47e6-8ec4-e91c0d18bcf9
+2025-07-10 22:59:24,965 - websockets.server - INFO - connection open
+2025-07-10 22:59:24,966 - __main__ - INFO - Client connected: client_1752213564966 from 127.0.0.1 on path: None
+2025-07-10 22:59:24,967 - __main__ - INFO - Received message type: register from 63633980-55d5-461c-8b59-e1eef0c848a1
+2025-07-10 22:59:24,967 - __main__ - INFO - Client disconnected: 63633980-55d5-461c-8b59-e1eef0c848a1
+2025-07-10 22:59:29,967 - websockets.server - INFO - connection open
+2025-07-10 22:59:29,967 - __main__ - INFO - Client connected: client_1752213569967 from 127.0.0.1 on path: None
+2025-07-10 22:59:29,968 - __main__ - INFO - Received message type: register from 022286d3-78a0-4fe3-a727-b87d99496234
+2025-07-10 22:59:29,968 - __main__ - INFO - Client disconnected: 022286d3-78a0-4fe3-a727-b87d99496234
+2025-07-10 22:59:34,969 - websockets.server - INFO - connection open
+2025-07-10 22:59:34,969 - __main__ - INFO - Client connected: client_1752213574969 from 127.0.0.1 on path: None
+2025-07-10 22:59:34,970 - __main__ - INFO - Received message type: register from a1b4f950-5b43-43cb-ae12-b5ac9b6a3241
+2025-07-10 22:59:34,971 - __main__ - INFO - Client disconnected: a1b4f950-5b43-43cb-ae12-b5ac9b6a3241
+2025-07-10 22:59:38,463 - __main__ - INFO - Received message type: ping from 11c8a840-ef4b-4475-956f-c5e6a4b2a3ea
+2025-07-10 22:59:39,972 - websockets.server - INFO - connection open
+2025-07-10 22:59:39,973 - __main__ - INFO - Client connected: client_1752213579973 from 127.0.0.1 on path: None
+2025-07-10 22:59:39,973 - __main__ - INFO - Received message type: register from 6eb5b9cc-f985-4319-8898-ec628031742b
+2025-07-10 22:59:39,974 - __main__ - INFO - Client disconnected: 6eb5b9cc-f985-4319-8898-ec628031742b
+2025-07-10 22:59:44,977 - websockets.server - INFO - connection open
+2025-07-10 22:59:44,977 - __main__ - INFO - Client connected: client_1752213584977 from 127.0.0.1 on path: None
+2025-07-10 22:59:44,978 - __main__ - INFO - Received message type: register from 1aa7b253-e5d2-49b9-9e7c-9148746d092d
+2025-07-10 22:59:44,979 - __main__ - INFO - Client disconnected: 1aa7b253-e5d2-49b9-9e7c-9148746d092d
+2025-07-10 22:59:49,981 - websockets.server - INFO - connection open
+2025-07-10 22:59:49,982 - __main__ - INFO - Client connected: client_1752213589982 from 127.0.0.1 on path: None
+2025-07-10 22:59:49,983 - __main__ - INFO - Received message type: register from ec976f80-4186-4f63-a25c-ac842325fb44
+2025-07-10 22:59:49,984 - __main__ - INFO - Client disconnected: ec976f80-4186-4f63-a25c-ac842325fb44
+2025-07-10 22:59:53,550 - __main__ - INFO - Received message type: ping from e16f3e23-a3b0-4253-9d2c-e5b8b64abdbc
+2025-07-10 22:59:54,986 - websockets.server - INFO - connection open
+2025-07-10 22:59:54,986 - __main__ - INFO - Client connected: client_1752213594986 from 127.0.0.1 on path: None
+2025-07-10 22:59:54,987 - __main__ - INFO - Received message type: register from 3dc611df-ae9d-4a1f-a29c-519169d3f0a6
+2025-07-10 22:59:54,987 - __main__ - INFO - Client disconnected: 3dc611df-ae9d-4a1f-a29c-519169d3f0a6
+2025-07-10 22:59:59,989 - websockets.server - INFO - connection open
+2025-07-10 22:59:59,989 - __main__ - INFO - Client connected: client_1752213599989 from 127.0.0.1 on path: None
+2025-07-10 22:59:59,990 - __main__ - INFO - Received message type: register from 900e3a35-fd21-4b69-8ee9-0915370fb2ae
+2025-07-10 22:59:59,991 - __main__ - INFO - Client disconnected: 900e3a35-fd21-4b69-8ee9-0915370fb2ae
+2025-07-10 23:00:01,207 - __main__ - INFO - Received message type: sensor_data from e04ac45c-e7fd-4d84-a8a7-f97569a2a3e4
+2025-07-10 23:00:01,207 - __main__ - INFO - Processing sensor data from e04ac45c-e7fd-4d84-a8a7-f97569a2a3e4
+2025-07-10 23:00:04,997 - websockets.server - INFO - connection open
+2025-07-10 23:00:04,997 - __main__ - INFO - Client connected: client_1752213604997 from 127.0.0.1 on path: None
+2025-07-10 23:00:04,999 - __main__ - INFO - Received message type: register from 1087e14d-5b71-432b-a1f6-01cf831cfa55
+2025-07-10 23:00:05,000 - __main__ - INFO - Client disconnected: 1087e14d-5b71-432b-a1f6-01cf831cfa55
+2025-07-10 23:00:08,552 - __main__ - INFO - Received message type: ping from 8c27a273-36be-4d80-8e25-e0542c5f3861
+2025-07-10 23:00:10,002 - websockets.server - INFO - connection open
+2025-07-10 23:00:10,002 - __main__ - INFO - Client connected: client_1752213610002 from 127.0.0.1 on path: None
+2025-07-10 23:00:10,003 - __main__ - INFO - Received message type: register from 3f9420b6-1b88-4da4-be83-ff5bf8598b44
+2025-07-10 23:00:10,004 - __main__ - INFO - Client disconnected: 3f9420b6-1b88-4da4-be83-ff5bf8598b44
+2025-07-10 23:00:15,007 - websockets.server - INFO - connection open
+2025-07-10 23:00:15,008 - __main__ - INFO - Client connected: client_1752213615007 from 127.0.0.1 on path: None
+2025-07-10 23:00:15,008 - __main__ - INFO - Received message type: register from b6a94314-c3a0-4dd8-bc00-3f677b1c09f3
+2025-07-10 23:00:15,009 - __main__ - INFO - Client disconnected: b6a94314-c3a0-4dd8-bc00-3f677b1c09f3
+2025-07-10 23:00:20,012 - websockets.server - INFO - connection open
+2025-07-10 23:00:20,012 - __main__ - INFO - Client connected: client_1752213620012 from 127.0.0.1 on path: None
+2025-07-10 23:00:20,013 - __main__ - INFO - Received message type: register from be10312a-d6ef-4660-a710-fc1279c8f788
+2025-07-10 23:00:20,013 - __main__ - INFO - Client disconnected: be10312a-d6ef-4660-a710-fc1279c8f788
+2025-07-10 23:00:24,568 - __main__ - INFO - Received message type: ping from a152d62f-e4f3-4883-b78d-b9c06af2328d
+2025-07-10 23:00:25,016 - websockets.server - INFO - connection open
+2025-07-10 23:00:25,016 - __main__ - INFO - Client connected: client_1752213625016 from 127.0.0.1 on path: None
+2025-07-10 23:00:25,018 - __main__ - INFO - Received message type: register from 04f371ab-2b3a-4299-8fcc-48b678ae690a
+2025-07-10 23:00:25,019 - __main__ - INFO - Client disconnected: 04f371ab-2b3a-4299-8fcc-48b678ae690a
+2025-07-10 23:00:30,021 - websockets.server - INFO - connection open
+2025-07-10 23:00:30,024 - __main__ - INFO - Client connected: client_1752213630024 from 127.0.0.1 on path: None
+2025-07-10 23:00:30,024 - __main__ - INFO - Received message type: register from f412109c-3efc-4fc7-905c-9144c4cb52a2
+2025-07-10 23:00:30,025 - __main__ - INFO - Client disconnected: f412109c-3efc-4fc7-905c-9144c4cb52a2
+2025-07-10 23:00:35,028 - websockets.server - INFO - connection open
+2025-07-10 23:00:35,028 - __main__ - INFO - Client connected: client_1752213635028 from 127.0.0.1 on path: None
+2025-07-10 23:00:35,029 - __main__ - INFO - Received message type: register from ad35511e-a51b-4dd6-b128-6701c51a6c5e
+2025-07-10 23:00:35,030 - __main__ - INFO - Client disconnected: ad35511e-a51b-4dd6-b128-6701c51a6c5e
+2025-07-10 23:00:40,032 - websockets.server - INFO - connection open
+2025-07-10 23:00:40,033 - __main__ - INFO - Client connected: client_1752213640033 from 127.0.0.1 on path: None
+2025-07-10 23:00:40,033 - __main__ - INFO - Received message type: register from 7804fe57-5939-4cc3-92e9-b999bc56ce28
+2025-07-10 23:00:40,034 - __main__ - INFO - Client disconnected: 7804fe57-5939-4cc3-92e9-b999bc56ce28
+2025-07-10 23:00:40,568 - __main__ - INFO - Received message type: ping from 440b64ef-d30d-4393-84e5-a44106d34726
+2025-07-10 23:00:45,037 - websockets.server - INFO - connection open
+2025-07-10 23:00:45,037 - __main__ - INFO - Client connected: client_1752213645037 from 127.0.0.1 on path: None
+2025-07-10 23:00:45,039 - __main__ - INFO - Received message type: register from e6163f2a-6e83-412e-b74d-273dcbaa03f1
+2025-07-10 23:00:45,040 - __main__ - INFO - Client disconnected: e6163f2a-6e83-412e-b74d-273dcbaa03f1
+2025-07-10 23:00:50,043 - websockets.server - INFO - connection open
+2025-07-10 23:00:50,043 - __main__ - INFO - Client connected: client_1752213650043 from 127.0.0.1 on path: None
+2025-07-10 23:00:50,044 - __main__ - INFO - Received message type: register from 0353dde5-9a56-4ffd-ab85-8ae584c38db1
+2025-07-10 23:00:50,045 - __main__ - INFO - Client disconnected: 0353dde5-9a56-4ffd-ab85-8ae584c38db1
+2025-07-10 23:00:51,644 - __main__ - INFO - Received message type: sensor_data from 58ab0d24-9857-4a8a-abd7-884776da132f
+2025-07-10 23:00:51,644 - __main__ - INFO - Processing sensor data from 58ab0d24-9857-4a8a-abd7-884776da132f
+2025-07-10 23:00:55,048 - websockets.server - INFO - connection open
+2025-07-10 23:00:55,048 - __main__ - INFO - Client connected: client_1752213655048 from 127.0.0.1 on path: None
+2025-07-10 23:00:55,049 - __main__ - INFO - Received message type: register from aaba70c4-3e33-40c2-91d8-172a7e601dc2
+2025-07-10 23:00:55,050 - __main__ - INFO - Client disconnected: aaba70c4-3e33-40c2-91d8-172a7e601dc2
+2025-07-10 23:00:56,571 - __main__ - INFO - Received message type: ping from 2397a0c7-7938-4e5f-b022-605044465ad4
+2025-07-10 23:01:00,053 - websockets.server - INFO - connection open
+2025-07-10 23:01:00,053 - __main__ - INFO - Client connected: client_1752213660053 from 127.0.0.1 on path: None
+2025-07-10 23:01:00,054 - __main__ - INFO - Received message type: register from ba3aa066-707d-4f0d-b146-7e5d9312dbc6
+2025-07-10 23:01:00,054 - __main__ - INFO - Client disconnected: ba3aa066-707d-4f0d-b146-7e5d9312dbc6
+2025-07-10 23:01:05,058 - websockets.server - INFO - connection open
+2025-07-10 23:01:05,058 - __main__ - INFO - Client connected: client_1752213665058 from 127.0.0.1 on path: None
+2025-07-10 23:01:05,059 - __main__ - INFO - Received message type: register from 94cc234d-c8ac-4f88-a330-814fec8d7875
+2025-07-10 23:01:05,060 - __main__ - INFO - Client disconnected: 94cc234d-c8ac-4f88-a330-814fec8d7875
+2025-07-10 23:01:10,062 - websockets.server - INFO - connection open
+2025-07-10 23:01:10,063 - __main__ - INFO - Client connected: client_1752213670062 from 127.0.0.1 on path: None
+2025-07-10 23:01:10,063 - __main__ - INFO - Received message type: register from f10e01ef-e884-43c4-899c-6bbfa3fa1b8c
+2025-07-10 23:01:10,064 - __main__ - INFO - Client disconnected: f10e01ef-e884-43c4-899c-6bbfa3fa1b8c
+2025-07-10 23:01:12,567 - __main__ - INFO - Received message type: ping from 0dc776d7-22ef-4888-9c57-201199377f37
+2025-07-10 23:01:15,067 - websockets.server - INFO - connection open
+2025-07-10 23:01:15,067 - __main__ - INFO - Client connected: client_1752213675067 from 127.0.0.1 on path: None
+2025-07-10 23:01:15,068 - __main__ - INFO - Received message type: register from 20b27c4e-130f-4317-80fa-b833b6f4fc3f
+2025-07-10 23:01:15,069 - __main__ - INFO - Client disconnected: 20b27c4e-130f-4317-80fa-b833b6f4fc3f

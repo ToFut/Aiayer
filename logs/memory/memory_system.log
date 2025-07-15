@@ -82729,3 +82729,1483 @@ AttributeError: 'MemorySystem' object has no attribute 'logger'
 2025-06-08 01:07:57,573 - memory_system - INFO - Memory state saved successfully
 2025-06-08 01:08:05,645 - memory_system - INFO - Memory state saved successfully
 2025-06-08 01:08:14,047 - memory_system - INFO - Memory state saved successfully
+2025-07-08 12:05:43,085 - agent_workflow.input_controller - INFO - Detected screen size: 1470x956
+2025-07-08 12:05:43,483 - agent_workflow.input_controller - INFO - Standard mouse listener started successfully
+2025-07-08 12:05:43,484 - agent_workflow.input_controller - INFO - Keyboard listener started successfully
+2025-07-08 12:05:43,484 - agent_workflow.input_controller - INFO - Input controller initialized (safe mode)
+2025-07-08 12:05:43,484 - agent_workflow.input_controller - INFO - 🚨 Emergency shutdown: Press Ctrl+1 to immediately stop agent
+2025-07-08 12:05:43,708 - llava_processor - INFO - Connected to Ollama API v0.6.8
+2025-07-08 12:05:43,709 - total_screen_analyzer - INFO - LLaVA visual processor initialized for total screen analysis
+2025-07-08 12:05:43,709 - total_screen_analyzer - INFO - Total Screen Analyzer initialized with 8s interval
+2025-07-08 12:05:43,709 - adaptive_retry_automation_handler - INFO - 🔄 Adaptive retry automation system loaded
+2025-07-08 12:05:43,709 - universal_intelligent_automation_handler - INFO - ✅ Adaptive retry automation handler loaded successfully
+2025-07-08 12:05:43,710 - plan_persistence - INFO - Plan persistence system initialized
+2025-07-08 12:05:43,711 - universal_intelligent_automation_handler - INFO - ✅ Plan persistence module loaded successfully
+2025-07-08 12:05:43,712 - agent_workflow.input_controller - INFO - Standard mouse listener started successfully
+2025-07-08 12:05:43,713 - agent_workflow.input_controller - INFO - Keyboard listener started successfully
+2025-07-08 12:05:43,713 - agent_workflow.input_controller - INFO - Input controller initialized (safe mode)
+2025-07-08 12:05:43,713 - agent_workflow.input_controller - INFO - 🚨 Emergency shutdown: Press Ctrl+1 to immediately stop agent
+2025-07-08 12:05:43,716 - llava_processor - INFO - Connected to Ollama API v0.6.8
+2025-07-08 12:05:43,716 - total_screen_analyzer - INFO - LLaVA visual processor initialized for total screen analysis
+2025-07-08 12:05:43,717 - total_screen_analyzer - INFO - Total Screen Analyzer initialized with 8s interval
+2025-07-08 12:05:43,717 - universal_intelligent_automation_handler - INFO - 🤖 Universal automation components loaded successfully
+2025-07-08 12:05:43,719 - brain.core.brain_router - INFO - ✅ Plan persistence module loaded in brain router
+2025-07-08 12:05:43,922 - llm_suggestion_detector - INFO - LLM Suggestion Detector initialized
+2025-07-08 12:05:43,922 - proactive_task_identifier - ERROR - Failed to initialize: cannot import name 'process_ws_message' from 'llm_suggestion_detector' (/Users/segevbin/Desktop/SensAI/Aiayer/llm_suggestion_detector.py)
+2025-07-08 12:05:43,923 - proactive_task_identifier - INFO - 🔍 Analyzing UI for proactive tasks...
+2025-07-08 12:05:43,923 - proactive_task_identifier - ERROR - Error analyzing context: 'ContextAnalyzer' object has no attribute 'analyze_patterns'
+2025-07-08 12:05:43,923 - proactive_task_identifier - INFO - 🎯 Identified 10 proactive tasks
+2025-07-08 12:05:43,923 - proactive_task_identifier - INFO - 🔍 Analyzing UI for proactive tasks...
+2025-07-08 12:05:43,923 - proactive_task_identifier - ERROR - Error analyzing context: 'ContextAnalyzer' object has no attribute 'analyze_patterns'
+2025-07-08 12:05:43,923 - proactive_task_identifier - INFO - 🎯 Identified 10 proactive tasks
+2025-07-08 12:05:43,925 - plan_persistence - INFO - Loaded 17 plans from metadata
+2025-07-08 12:09:46,753 - agent_workflow.input_controller - INFO - Detected screen size: 1470x956
+2025-07-08 12:09:47,132 - agent_workflow.input_controller - INFO - Standard mouse listener started successfully
+2025-07-08 12:09:47,132 - agent_workflow.input_controller - INFO - Keyboard listener started successfully
+2025-07-08 12:09:47,132 - agent_workflow.input_controller - INFO - Input controller initialized (safe mode)
+2025-07-08 12:09:47,133 - agent_workflow.input_controller - INFO - 🚨 Emergency shutdown: Press Ctrl+1 to immediately stop agent
+2025-07-08 12:09:47,824 - llava_processor - INFO - Connected to Ollama API v0.6.8
+2025-07-08 12:09:47,824 - total_screen_analyzer - INFO - LLaVA visual processor initialized for total screen analysis
+2025-07-08 12:09:47,824 - total_screen_analyzer - INFO - Total Screen Analyzer initialized with 8s interval
+2025-07-08 12:09:47,824 - adaptive_retry_automation_handler - INFO - 🔄 Adaptive retry automation system loaded
+2025-07-08 12:09:47,824 - universal_intelligent_automation_handler - INFO - ✅ Adaptive retry automation handler loaded successfully
+2025-07-08 12:09:47,826 - plan_persistence - INFO - Plan persistence system initialized
+2025-07-08 12:09:47,826 - universal_intelligent_automation_handler - INFO - ✅ Plan persistence module loaded successfully
+2025-07-08 12:09:47,827 - agent_workflow.input_controller - INFO - Standard mouse listener started successfully
+2025-07-08 12:09:47,828 - agent_workflow.input_controller - INFO - Keyboard listener started successfully
+2025-07-08 12:09:47,828 - agent_workflow.input_controller - INFO - Input controller initialized (safe mode)
+2025-07-08 12:09:47,828 - agent_workflow.input_controller - INFO - 🚨 Emergency shutdown: Press Ctrl+1 to immediately stop agent
+2025-07-08 12:09:47,835 - llava_processor - INFO - Connected to Ollama API v0.6.8
+2025-07-08 12:09:47,835 - total_screen_analyzer - INFO - LLaVA visual processor initialized for total screen analysis
+2025-07-08 12:09:47,835 - total_screen_analyzer - INFO - Total Screen Analyzer initialized with 8s interval
+2025-07-08 12:09:47,835 - universal_intelligent_automation_handler - INFO - 🤖 Universal automation components loaded successfully
+2025-07-08 12:09:47,837 - brain.core.brain_router - INFO - ✅ Plan persistence module loaded in brain router
+2025-07-08 12:09:48,001 - llm_suggestion_detector - INFO - LLM Suggestion Detector initialized
+2025-07-08 12:09:48,001 - proactive_task_identifier - ERROR - Failed to initialize: cannot import name 'process_ws_message' from 'llm_suggestion_detector' (/Users/segevbin/Desktop/SensAI/Aiayer/llm_suggestion_detector.py)
+2025-07-08 12:09:48,002 - proactive_task_identifier - INFO - 🔍 Analyzing UI for proactive tasks...
+2025-07-08 12:09:48,002 - proactive_task_identifier - INFO - 🎯 Identified 10 proactive tasks
+2025-07-08 12:09:48,002 - proactive_task_identifier - INFO - 🔍 Analyzing UI for proactive tasks...
+2025-07-08 12:09:48,002 - proactive_task_identifier - INFO - 🎯 Identified 10 proactive tasks
+2025-07-08 12:09:48,012 - proactive_task_identifier - INFO - 🔍 Analyzing UI for proactive tasks...
+2025-07-08 12:09:48,013 - proactive_task_identifier - INFO - 🎯 Identified 10 proactive tasks
+2025-07-08 12:09:48,014 - plan_persistence - INFO - Loaded 17 plans from metadata
+2025-07-08 12:13:43,306 - agent_workflow.input_controller - INFO - Detected screen size: 1470x956
+2025-07-08 12:13:43,673 - agent_workflow.input_controller - INFO - Standard mouse listener started successfully
+2025-07-08 12:13:43,673 - agent_workflow.input_controller - INFO - Keyboard listener started successfully
+2025-07-08 12:13:43,673 - agent_workflow.input_controller - INFO - Input controller initialized (safe mode)
+2025-07-08 12:13:43,673 - agent_workflow.input_controller - INFO - 🚨 Emergency shutdown: Press Ctrl+1 to immediately stop agent
+2025-07-08 12:13:43,887 - llava_processor - INFO - Connected to Ollama API v0.6.8
+2025-07-08 12:13:43,887 - total_screen_analyzer - INFO - LLaVA visual processor initialized for total screen analysis
+2025-07-08 12:13:43,887 - total_screen_analyzer - INFO - Total Screen Analyzer initialized with 8s interval
+2025-07-08 12:13:43,887 - adaptive_retry_automation_handler - INFO - 🔄 Adaptive retry automation system loaded
+2025-07-08 12:13:43,887 - universal_intelligent_automation_handler - INFO - ✅ Adaptive retry automation handler loaded successfully
+2025-07-08 12:13:43,889 - plan_persistence - INFO - Plan persistence system initialized
+2025-07-08 12:13:43,889 - universal_intelligent_automation_handler - INFO - ✅ Plan persistence module loaded successfully
+2025-07-08 12:13:43,890 - agent_workflow.input_controller - INFO - Standard mouse listener started successfully
+2025-07-08 12:13:43,891 - agent_workflow.input_controller - INFO - Keyboard listener started successfully
+2025-07-08 12:13:43,891 - agent_workflow.input_controller - INFO - Input controller initialized (safe mode)
+2025-07-08 12:13:43,891 - agent_workflow.input_controller - INFO - 🚨 Emergency shutdown: Press Ctrl+1 to immediately stop agent
+2025-07-08 12:13:43,896 - llava_processor - INFO - Connected to Ollama API v0.6.8
+2025-07-08 12:13:43,897 - total_screen_analyzer - INFO - LLaVA visual processor initialized for total screen analysis
+2025-07-08 12:13:43,897 - total_screen_analyzer - INFO - Total Screen Analyzer initialized with 8s interval
+2025-07-08 12:13:43,897 - universal_intelligent_automation_handler - INFO - 🤖 Universal automation components loaded successfully
+2025-07-08 12:13:43,899 - brain.core.brain_router - INFO - ✅ Plan persistence module loaded in brain router
+2025-07-08 12:13:44,055 - llm_suggestion_detector - INFO - LLM Suggestion Detector initialized
+2025-07-08 12:13:44,055 - proactive_task_identifier - ERROR - Failed to initialize: No module named 'execution.memory.task_tracker'
+2025-07-08 12:13:44,056 - proactive_task_identifier - INFO - 🔍 Analyzing UI for proactive tasks...
+2025-07-08 12:13:44,056 - proactive_task_identifier - INFO - 🎯 Identified 10 proactive tasks
+2025-07-08 12:13:44,056 - plan_persistence - INFO - Loaded 17 plans from metadata
+2025-07-08 12:37:26,696 - memory.memory - INFO - Vector model disabled - using text-based search instead
+2025-07-08 12:37:26,725 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5002
+2025-07-08 12:37:26,726 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-07-08 12:37:26,736 - werkzeug - INFO -  * Restarting with watchdog (fsevents)
+2025-07-08 12:37:27,430 - memory.memory - INFO - Vector model disabled - using text-based search instead
+2025-07-08 12:37:27,443 - werkzeug - WARNING -  * Debugger is active!
+2025-07-08 12:37:27,451 - werkzeug - INFO -  * Debugger PIN: 853-474-554
+2025-07-08 12:38:24,535 - werkzeug - INFO - 127.0.0.1 - - [08/Jul/2025 12:38:24] "[33mGET /status HTTP/1.1[0m" 404 -
+2025-07-08 12:38:25,538 - root - INFO - Rendering index page
+2025-07-08 12:38:25,544 - werkzeug - INFO - 127.0.0.1 - - [08/Jul/2025 12:38:25] "GET / HTTP/1.1" 200 -
+2025-07-08 12:38:25,566 - werkzeug - INFO - 127.0.0.1 - - [08/Jul/2025 12:38:25] "[36mGET /static/js/chat.js HTTP/1.1[0m" 304 -
+2025-07-08 12:38:25,567 - werkzeug - INFO - 127.0.0.1 - - [08/Jul/2025 12:38:25] "[36mGET /static/css/chat.css HTTP/1.1[0m" 304 -
+2025-07-08 12:38:27,660 - werkzeug - INFO - 127.0.0.1 - - [08/Jul/2025 12:38:27] "POST /ask HTTP/1.1" 200 -
+2025-07-08 12:38:34,367 - werkzeug - INFO - 127.0.0.1 - - [08/Jul/2025 12:38:34] "POST /ask HTTP/1.1" 200 -
+2025-07-08 12:40:07,612 - root - INFO - Rendering index page
+2025-07-08 12:40:07,618 - werkzeug - INFO - 127.0.0.1 - - [08/Jul/2025 12:40:07] "GET / HTTP/1.1" 200 -
+2025-07-08 12:45:31,154 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/integrated_ws_server.py', reloading
+2025-07-08 12:45:31,178 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/integrated_ws_server.py', reloading
+2025-07-08 12:45:35,652 - werkzeug - INFO -  * Restarting with watchdog (fsevents)
+2025-07-08 12:45:44,986 - memory.memory - INFO - Vector model disabled - using text-based search instead
+2025-07-08 12:45:45,155 - werkzeug - WARNING -  * Debugger is active!
+2025-07-08 12:45:46,036 - werkzeug - INFO -  * Debugger PIN: 853-474-554
+2025-07-08 12:46:17,418 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/sensai_ui2html/__init__.py', reloading
+2025-07-08 12:46:18,739 - werkzeug - INFO -  * Restarting with watchdog (fsevents)
+2025-07-08 12:46:20,176 - memory.memory - INFO - Vector model disabled - using text-based search instead
+2025-07-08 12:46:20,191 - werkzeug - WARNING -  * Debugger is active!
+2025-07-08 12:46:20,199 - werkzeug - INFO -  * Debugger PIN: 853-474-554
+2025-07-08 12:48:08,861 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/integrated_ws_server.py', reloading
+2025-07-08 12:48:10,214 - werkzeug - INFO -  * Restarting with watchdog (fsevents)
+2025-07-08 12:48:12,138 - memory.memory - INFO - Vector model disabled - using text-based search instead
+2025-07-08 12:48:12,164 - werkzeug - WARNING -  * Debugger is active!
+2025-07-08 12:48:12,176 - werkzeug - INFO -  * Debugger PIN: 853-474-554
+2025-07-08 12:49:15,011 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/integration/rpa_ai_bridge.py', reloading
+2025-07-08 12:49:15,018 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/integration/rpa_ai_bridge.py', reloading
+2025-07-08 12:49:17,048 - werkzeug - INFO -  * Restarting with watchdog (fsevents)
+2025-07-08 12:49:18,642 - memory.memory - INFO - Vector model disabled - using text-based search instead
+2025-07-08 12:49:19,149 - werkzeug - WARNING -  * Debugger is active!
+2025-07-08 12:49:19,166 - werkzeug - INFO -  * Debugger PIN: 853-474-554
+2025-07-08 12:49:20,199 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/working_ws_server.py', reloading
+2025-07-08 12:49:20,200 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/working_ws_server.py', reloading
+2025-07-08 12:49:21,704 - werkzeug - INFO -  * Restarting with watchdog (fsevents)
+2025-07-08 12:49:22,660 - memory.memory - INFO - Vector model disabled - using text-based search instead
+2025-07-08 12:49:22,675 - werkzeug - WARNING -  * Debugger is active!
+2025-07-08 12:49:22,686 - werkzeug - INFO -  * Debugger PIN: 853-474-554
+2025-07-08 12:51:29,071 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/simple_working_ws.py', reloading
+2025-07-08 12:51:29,076 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/simple_working_ws.py', reloading
+2025-07-08 12:51:30,397 - werkzeug - INFO -  * Restarting with watchdog (fsevents)
+2025-07-08 12:51:31,491 - memory.memory - INFO - Vector model disabled - using text-based search instead
+2025-07-08 12:51:31,509 - werkzeug - WARNING -  * Debugger is active!
+2025-07-08 12:51:31,517 - werkzeug - INFO -  * Debugger PIN: 853-474-554
+2025-07-08 12:53:12,429 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/simple_working_ws.py', reloading
+2025-07-08 12:53:13,910 - werkzeug - INFO -  * Restarting with watchdog (fsevents)
+2025-07-08 12:53:15,773 - memory.memory - INFO - Vector model disabled - using text-based search instead
+2025-07-08 12:53:15,974 - werkzeug - WARNING -  * Debugger is active!
+2025-07-08 12:53:15,995 - werkzeug - INFO -  * Debugger PIN: 853-474-554
+2025-07-08 12:53:23,217 - root - INFO - Rendering index page
+2025-07-08 12:53:23,225 - werkzeug - INFO - 127.0.0.1 - - [08/Jul/2025 12:53:23] "GET / HTTP/1.1" 200 -
+2025-07-08 12:53:25,236 - root - INFO - Rendering index page
+2025-07-08 12:53:25,238 - werkzeug - INFO - 127.0.0.1 - - [08/Jul/2025 12:53:25] "GET / HTTP/1.1" 200 -
+2025-07-08 12:53:33,848 - root - INFO - Rendering index page
+2025-07-08 12:53:33,849 - werkzeug - INFO - 127.0.0.1 - - [08/Jul/2025 12:53:33] "GET / HTTP/1.1" 200 -
+2025-07-08 12:56:15,000 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/simple_working_ws.py', reloading
+2025-07-08 12:56:17,188 - werkzeug - INFO -  * Restarting with watchdog (fsevents)
+2025-07-08 12:56:19,060 - memory.memory - INFO - Vector model disabled - using text-based search instead
+2025-07-08 12:56:19,083 - werkzeug - WARNING -  * Debugger is active!
+2025-07-08 12:56:19,094 - werkzeug - INFO -  * Debugger PIN: 853-474-554
+2025-07-08 13:30:05,378 - memory_system - INFO - Memory system initialized
+2025-07-08 13:30:05,379 - memory_system - INFO - Initializing memory system...
+2025-07-08 13:30:05,380 - memory_system - INFO - Memory state loaded successfully
+2025-07-08 13:30:05,380 - memory_system - INFO -   - Found 20 short-term memory items
+2025-07-08 13:30:05,380 - memory_system - INFO -   - Found 0 long-term memory items
+2025-07-08 13:30:05,380 - memory_system - INFO -   - Found 1 context memory items
+2025-07-08 13:30:05,380 - memory_system - INFO -   - Loaded sensor data storage with 3 items
+2025-07-08 13:30:05,380 - memory_system - INFO - Initializing sensors...
+2025-07-08 13:30:05,411 - memory_system - ERROR - Error initializing sensors: No module named 'sensors.screen_sensor'; 'sensors' is not a package
+2025-07-08 13:30:05,411 - memory_system - ERROR - Traceback (most recent call last):
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/memory/memory_system.py", line 160, in initialize
+    from sensors.screen_sensor import ScreenSensor
+ModuleNotFoundError: No module named 'sensors.screen_sensor'; 'sensors' is not a package
+
+2025-07-08 13:33:36,780 - memory_system - INFO - Memory system initialized
+2025-07-08 13:33:36,780 - memory_system - INFO - Initializing memory system...
+2025-07-08 13:33:36,781 - memory_system - INFO - Memory state loaded successfully
+2025-07-08 13:33:36,782 - memory_system - INFO -   - Found 20 short-term memory items
+2025-07-08 13:33:36,782 - memory_system - INFO -   - Found 0 long-term memory items
+2025-07-08 13:33:36,782 - memory_system - INFO -   - Found 1 context memory items
+2025-07-08 13:33:36,782 - memory_system - INFO -   - Loaded sensor data storage with 3 items
+2025-07-08 13:33:36,782 - memory_system - INFO - Initializing sensors...
+2025-07-08 13:33:36,811 - memory_system - ERROR - Error initializing sensors: No module named 'sensors.screen_sensor'; 'sensors' is not a package
+2025-07-08 13:33:36,811 - memory_system - ERROR - Traceback (most recent call last):
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/memory/memory_system.py", line 160, in initialize
+    from sensors.screen_sensor import ScreenSensor
+ModuleNotFoundError: No module named 'sensors.screen_sensor'; 'sensors' is not a package
+
+2025-07-08 13:33:50,896 - memory_system - INFO - Memory system initialized
+2025-07-08 13:33:50,897 - memory_system - INFO - Initializing memory system...
+2025-07-08 13:33:50,898 - memory_system - INFO - Memory state loaded successfully
+2025-07-08 13:33:50,898 - memory_system - INFO -   - Found 20 short-term memory items
+2025-07-08 13:33:50,898 - memory_system - INFO -   - Found 0 long-term memory items
+2025-07-08 13:33:50,898 - memory_system - INFO -   - Found 1 context memory items
+2025-07-08 13:33:50,898 - memory_system - INFO -   - Loaded sensor data storage with 3 items
+2025-07-08 13:33:50,898 - memory_system - INFO - Initializing sensors...
+2025-07-08 13:33:50,914 - memory_system - ERROR - Error initializing sensors: No module named 'sensors.screen_sensor'; 'sensors' is not a package
+2025-07-08 13:33:50,914 - memory_system - ERROR - Traceback (most recent call last):
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/memory/memory_system.py", line 160, in initialize
+    from sensors.screen_sensor import ScreenSensor
+ModuleNotFoundError: No module named 'sensors.screen_sensor'; 'sensors' is not a package
+
+2025-07-08 13:43:04,338 - memory_system - INFO - Memory system initialized
+2025-07-08 13:43:04,338 - memory_system - INFO - Initializing memory system...
+2025-07-08 13:43:04,340 - memory_system - INFO - Memory state loaded successfully
+2025-07-08 13:43:04,340 - memory_system - INFO -   - Found 20 short-term memory items
+2025-07-08 13:43:04,340 - memory_system - INFO -   - Found 0 long-term memory items
+2025-07-08 13:43:04,340 - memory_system - INFO -   - Found 1 context memory items
+2025-07-08 13:43:04,340 - memory_system - INFO -   - Loaded sensor data storage with 3 items
+2025-07-08 13:43:04,340 - memory_system - INFO - Initializing sensors...
+2025-07-08 13:43:04,361 - memory_system - ERROR - Error initializing sensors: No module named 'sensors.screen_sensor'; 'sensors' is not a package
+2025-07-08 13:43:04,362 - memory_system - ERROR - Traceback (most recent call last):
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/memory/memory_system.py", line 160, in initialize
+    from sensors.screen_sensor import ScreenSensor
+ModuleNotFoundError: No module named 'sensors.screen_sensor'; 'sensors' is not a package
+
+2025-07-10 17:37:30,787 - memory_system - INFO - Memory system initialized
+2025-07-10 17:37:30,787 - memory_system - INFO - Initializing memory system...
+2025-07-10 17:37:30,788 - memory_system - INFO - Memory state loaded successfully
+2025-07-10 17:37:30,788 - memory_system - INFO -   - Found 20 short-term memory items
+2025-07-10 17:37:30,788 - memory_system - INFO -   - Found 0 long-term memory items
+2025-07-10 17:37:30,789 - memory_system - INFO -   - Found 1 context memory items
+2025-07-10 17:37:30,789 - memory_system - INFO -   - Loaded sensor data storage with 3 items
+2025-07-10 17:37:30,789 - memory_system - INFO - Initializing sensors...
+2025-07-10 17:37:30,818 - memory_system - ERROR - Error initializing sensors: No module named 'sensors.screen_sensor'; 'sensors' is not a package
+2025-07-10 17:37:30,818 - memory_system - ERROR - Traceback (most recent call last):
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/memory/memory_system.py", line 160, in initialize
+    from sensors.screen_sensor import ScreenSensor
+ModuleNotFoundError: No module named 'sensors.screen_sensor'; 'sensors' is not a package
+
+2025-07-10 22:28:34,276 - memory_system - INFO - Memory system initialized
+2025-07-10 22:28:34,277 - memory_system - INFO - Initializing memory system...
+2025-07-10 22:28:34,280 - memory_system - INFO - Memory state loaded successfully
+2025-07-10 22:28:34,280 - memory_system - INFO -   - Found 20 short-term memory items
+2025-07-10 22:28:34,280 - memory_system - INFO -   - Found 0 long-term memory items
+2025-07-10 22:28:34,280 - memory_system - INFO -   - Found 1 context memory items
+2025-07-10 22:28:34,280 - memory_system - INFO -   - Loaded sensor data storage with 3 items
+2025-07-10 22:28:34,280 - memory_system - INFO - Initializing sensors...
+2025-07-10 22:28:34,318 - memory_system - ERROR - Error initializing sensors: No module named 'sensors.screen_sensor'; 'sensors' is not a package
+2025-07-10 22:28:34,319 - memory_system - ERROR - Traceback (most recent call last):
+  File "/Users/segevbin/Desktop/SensAI/Aiayer/memory/memory_system.py", line 160, in initialize
+    from sensors.screen_sensor import ScreenSensor
+ModuleNotFoundError: No module named 'sensors.screen_sensor'; 'sensors' is not a package
+
+2025-07-10 23:02:42,767 - memory.memory - INFO - Vector model disabled - using text-based search instead
+2025-07-10 23:02:42,793 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5002
+2025-07-10 23:02:42,793 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-07-10 23:02:42,821 - werkzeug - INFO -  * Restarting with watchdog (fsevents)
+2025-07-10 23:02:43,811 - memory.memory - INFO - Vector model disabled - using text-based search instead
+2025-07-10 23:02:43,828 - werkzeug - WARNING -  * Debugger is active!
+2025-07-10 23:02:43,837 - werkzeug - INFO -  * Debugger PIN: 853-474-554
+2025-07-10 23:04:48,563 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/universal_intelligent_automation_handler.py', reloading
+2025-07-10 23:04:49,756 - werkzeug - INFO -  * Restarting with watchdog (fsevents)
+2025-07-10 23:04:51,093 - memory.memory - INFO - Vector model disabled - using text-based search instead
+2025-07-10 23:04:51,114 - werkzeug - WARNING -  * Debugger is active!
+2025-07-10 23:04:51,122 - werkzeug - INFO -  * Debugger PIN: 853-474-554
+2025-07-10 23:09:06,990 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/test_real_automation.py', reloading
+2025-07-10 23:09:08,148 - werkzeug - INFO -  * Restarting with watchdog (fsevents)
+2025-07-10 23:09:09,212 - memory.memory - INFO - Vector model disabled - using text-based search instead
+2025-07-10 23:09:09,230 - werkzeug - WARNING -  * Debugger is active!
+2025-07-10 23:09:09,244 - werkzeug - INFO -  * Debugger PIN: 853-474-554
+2025-07-10 23:12:09,823 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/test_complete_overlay_pipeline.py', reloading
+2025-07-10 23:12:09,834 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/test_complete_overlay_pipeline.py', reloading
+2025-07-10 23:12:11,049 - werkzeug - INFO -  * Restarting with watchdog (fsevents)
+2025-07-10 23:12:12,728 - memory.memory - INFO - Vector model disabled - using text-based search instead
+2025-07-10 23:12:12,750 - werkzeug - WARNING -  * Debugger is active!
+2025-07-10 23:12:12,761 - werkzeug - INFO -  * Debugger PIN: 853-474-554
+2025-07-10 23:14:44,139 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/test_complete_overlay_pipeline.py', reloading
+2025-07-10 23:14:45,338 - werkzeug - INFO -  * Restarting with watchdog (fsevents)
+2025-07-10 23:14:46,725 - memory.memory - INFO - Vector model disabled - using text-based search instead
+2025-07-10 23:14:46,752 - werkzeug - WARNING -  * Debugger is active!
+2025-07-10 23:14:46,764 - werkzeug - INFO -  * Debugger PIN: 853-474-554
+2025-07-10 23:14:53,592 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/test_complete_overlay_pipeline.py', reloading
+2025-07-10 23:14:54,769 - werkzeug - INFO -  * Restarting with watchdog (fsevents)
+2025-07-10 23:14:55,957 - memory.memory - INFO - Vector model disabled - using text-based search instead
+2025-07-10 23:14:55,982 - werkzeug - WARNING -  * Debugger is active!
+2025-07-10 23:14:55,989 - werkzeug - INFO -  * Debugger PIN: 853-474-554
+2025-07-10 23:15:00,366 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/test_complete_overlay_pipeline.py', reloading
+2025-07-10 23:15:01,515 - werkzeug - INFO -  * Restarting with watchdog (fsevents)
+2025-07-10 23:15:02,554 - memory.memory - INFO - Vector model disabled - using text-based search instead
+2025-07-10 23:15:02,572 - werkzeug - WARNING -  * Debugger is active!
+2025-07-10 23:15:02,579 - werkzeug - INFO -  * Debugger PIN: 853-474-554
+2025-07-10 23:15:27,791 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/test_complete_overlay_pipeline.py', reloading
+2025-07-10 23:15:28,935 - werkzeug - INFO -  * Restarting with watchdog (fsevents)
+2025-07-10 23:15:30,091 - memory.memory - INFO - Vector model disabled - using text-based search instead
+2025-07-10 23:15:30,108 - werkzeug - WARNING -  * Debugger is active!
+2025-07-10 23:15:30,116 - werkzeug - INFO -  * Debugger PIN: 853-474-554
+2025-07-10 23:17:20,848 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/debug_agent_mode.py', reloading
+2025-07-10 23:17:22,054 - werkzeug - INFO -  * Restarting with watchdog (fsevents)
+2025-07-10 23:17:23,172 - memory.memory - INFO - Vector model disabled - using text-based search instead
+2025-07-10 23:17:23,191 - werkzeug - WARNING -  * Debugger is active!
+2025-07-10 23:17:23,199 - werkzeug - INFO -  * Debugger PIN: 853-474-554
+2025-07-10 23:18:16,005 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/enhanced_enterprise_backend_with_context.py', reloading
+2025-07-10 23:18:17,173 - werkzeug - INFO -  * Restarting with watchdog (fsevents)
+2025-07-10 23:18:18,300 - memory.memory - INFO - Vector model disabled - using text-based search instead
+2025-07-10 23:18:18,319 - werkzeug - WARNING -  * Debugger is active!
+2025-07-10 23:18:18,327 - werkzeug - INFO -  * Debugger PIN: 853-474-554
+2025-07-10 23:21:37,306 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/enhanced_enterprise_backend_with_context.py', reloading
+2025-07-10 23:21:38,459 - werkzeug - INFO -  * Restarting with watchdog (fsevents)
+2025-07-10 23:21:39,568 - memory.memory - INFO - Vector model disabled - using text-based search instead
+2025-07-10 23:21:39,589 - werkzeug - WARNING -  * Debugger is active!
+2025-07-10 23:21:39,597 - werkzeug - INFO -  * Debugger PIN: 853-474-554
+2025-07-10 23:23:34,189 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/enhanced_enterprise_backend_with_context.py', reloading
+2025-07-10 23:23:35,342 - werkzeug - INFO -  * Restarting with watchdog (fsevents)
+2025-07-10 23:23:36,549 - memory.memory - INFO - Vector model disabled - using text-based search instead
+2025-07-10 23:23:36,570 - werkzeug - WARNING -  * Debugger is active!
+2025-07-10 23:23:36,578 - werkzeug - INFO -  * Debugger PIN: 853-474-554
+2025-07-10 23:23:37,236 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/debug_agent_mode.py', reloading
+2025-07-10 23:23:38,357 - werkzeug - INFO -  * Restarting with watchdog (fsevents)
+2025-07-10 23:23:39,217 - memory.memory - INFO - Vector model disabled - using text-based search instead
+2025-07-10 23:23:39,234 - werkzeug - WARNING -  * Debugger is active!
+2025-07-10 23:23:39,241 - werkzeug - INFO -  * Debugger PIN: 853-474-554
+2025-07-10 23:24:44,793 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/enhanced_enterprise_backend_with_context.py', reloading
+2025-07-10 23:24:45,965 - werkzeug - INFO -  * Restarting with watchdog (fsevents)
+2025-07-10 23:24:47,170 - memory.memory - INFO - Vector model disabled - using text-based search instead
+2025-07-10 23:24:47,187 - werkzeug - WARNING -  * Debugger is active!
+2025-07-10 23:24:47,197 - werkzeug - INFO -  * Debugger PIN: 853-474-554
+2025-07-10 23:25:58,479 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/enhanced_enterprise_backend_with_context.py', reloading
+2025-07-10 23:25:59,639 - werkzeug - INFO -  * Restarting with watchdog (fsevents)
+2025-07-10 23:26:01,139 - memory.memory - INFO - Vector model disabled - using text-based search instead
+2025-07-10 23:26:01,161 - werkzeug - WARNING -  * Debugger is active!
+2025-07-10 23:26:01,171 - werkzeug - INFO -  * Debugger PIN: 853-474-554
+2025-07-10 23:27:30,260 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/debug_agent_mode.py', reloading
+2025-07-10 23:27:30,276 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/debug_agent_mode.py', reloading
+2025-07-10 23:27:33,400 - werkzeug - INFO -  * Restarting with watchdog (fsevents)
+2025-07-10 23:27:42,935 - memory.memory - INFO - Vector model disabled - using text-based search instead
+2025-07-10 23:27:43,011 - werkzeug - WARNING -  * Debugger is active!
+2025-07-10 23:27:43,112 - werkzeug - INFO -  * Debugger PIN: 853-474-554
+2025-07-10 23:28:00,414 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/brain/core/brain_router.py', reloading
+2025-07-10 23:28:00,440 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/brain/core/brain_router.py', reloading
+2025-07-10 23:28:01,897 - werkzeug - INFO -  * Restarting with watchdog (fsevents)
+2025-07-10 23:28:03,227 - memory.memory - INFO - Vector model disabled - using text-based search instead
+2025-07-10 23:28:03,250 - werkzeug - WARNING -  * Debugger is active!
+2025-07-10 23:28:03,282 - werkzeug - INFO -  * Debugger PIN: 853-474-554
+2025-07-10 23:31:16,346 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/enhanced_enterprise_backend_with_context.py', reloading
+2025-07-10 23:31:17,577 - werkzeug - INFO -  * Restarting with watchdog (fsevents)
+2025-07-10 23:31:18,940 - memory.memory - INFO - Vector model disabled - using text-based search instead
+2025-07-10 23:31:18,959 - werkzeug - WARNING -  * Debugger is active!
+2025-07-10 23:31:18,967 - werkzeug - INFO -  * Debugger PIN: 853-474-554
+2025-07-10 23:31:45,201 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/enhanced_enterprise_backend_with_context.py', reloading
+2025-07-10 23:31:46,352 - werkzeug - INFO -  * Restarting with watchdog (fsevents)
+2025-07-10 23:31:47,402 - memory.memory - INFO - Vector model disabled - using text-based search instead
+2025-07-10 23:31:47,422 - werkzeug - WARNING -  * Debugger is active!
+2025-07-10 23:31:47,429 - werkzeug - INFO -  * Debugger PIN: 853-474-554
+2025-07-10 23:33:35,964 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/enhanced_enterprise_backend_with_context.py', reloading
+2025-07-10 23:33:37,145 - werkzeug - INFO -  * Restarting with watchdog (fsevents)
+2025-07-10 23:33:38,359 - memory.memory - INFO - Vector model disabled - using text-based search instead
+2025-07-10 23:33:38,392 - werkzeug - WARNING -  * Debugger is active!
+2025-07-10 23:33:38,477 - werkzeug - INFO -  * Debugger PIN: 853-474-554
+2025-07-10 23:35:10,058 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/enhanced_enterprise_backend_with_context.py', reloading
+2025-07-10 23:35:11,267 - werkzeug - INFO -  * Restarting with watchdog (fsevents)
+2025-07-10 23:35:12,607 - memory.memory - INFO - Vector model disabled - using text-based search instead
+2025-07-10 23:35:12,652 - werkzeug - WARNING -  * Debugger is active!
+2025-07-10 23:35:12,660 - werkzeug - INFO -  * Debugger PIN: 853-474-554
+2025-07-10 23:35:16,565 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/llm/model.py', reloading
+2025-07-10 23:35:17,691 - werkzeug - INFO -  * Restarting with watchdog (fsevents)
+2025-07-10 23:35:18,605 - memory.memory - INFO - Vector model disabled - using text-based search instead
+2025-07-10 23:35:18,625 - werkzeug - WARNING -  * Debugger is active!
+2025-07-10 23:35:18,633 - werkzeug - INFO -  * Debugger PIN: 853-474-554
+2025-07-10 23:38:49,465 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/test_backend_connection.py', reloading
+2025-07-10 23:38:49,466 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/test_backend_connection.py', reloading
+2025-07-10 23:38:50,616 - werkzeug - INFO -  * Restarting with watchdog (fsevents)
+2025-07-10 23:38:51,695 - memory.memory - INFO - Vector model disabled - using text-based search instead
+2025-07-10 23:38:51,713 - werkzeug - WARNING -  * Debugger is active!
+2025-07-10 23:38:51,730 - werkzeug - INFO -  * Debugger PIN: 853-474-554
+2025-07-10 23:39:20,054 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/enhanced_enterprise_backend_with_context.py', reloading
+2025-07-10 23:39:21,201 - werkzeug - INFO -  * Restarting with watchdog (fsevents)
+2025-07-10 23:39:22,249 - memory.memory - INFO - Vector model disabled - using text-based search instead
+2025-07-10 23:39:22,269 - werkzeug - WARNING -  * Debugger is active!
+2025-07-10 23:39:22,391 - werkzeug - INFO -  * Debugger PIN: 853-474-554
+2025-07-10 23:39:57,262 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/test_backend_connection.py', reloading
+2025-07-10 23:39:57,386 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/test_backend_connection.py', reloading
+2025-07-10 23:40:00,935 - werkzeug - INFO -  * Restarting with watchdog (fsevents)
+2025-07-10 23:40:04,381 - memory.memory - INFO - Vector model disabled - using text-based search instead
+2025-07-10 23:40:04,431 - werkzeug - WARNING -  * Debugger is active!
+2025-07-10 23:40:04,478 - werkzeug - INFO -  * Debugger PIN: 853-474-554
+2025-07-10 23:41:21,062 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/test_backend_connection.py', reloading
+2025-07-10 23:41:21,089 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/test_backend_connection.py', reloading
+2025-07-10 23:41:22,863 - werkzeug - INFO -  * Restarting with watchdog (fsevents)
+2025-07-10 23:41:27,812 - memory.memory - INFO - Vector model disabled - using text-based search instead
+2025-07-10 23:41:27,899 - werkzeug - WARNING -  * Debugger is active!
+2025-07-10 23:41:27,944 - werkzeug - INFO -  * Debugger PIN: 853-474-554
+2025-07-10 23:42:14,022 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/enhanced_enterprise_backend_with_context.py', reloading
+2025-07-10 23:42:14,368 - werkzeug - INFO -  * Restarting with watchdog (fsevents)
+2025-07-10 23:42:15,618 - memory.memory - INFO - Vector model disabled - using text-based search instead
+2025-07-10 23:42:15,656 - werkzeug - WARNING -  * Debugger is active!
+2025-07-10 23:42:15,680 - werkzeug - INFO -  * Debugger PIN: 853-474-554
+2025-07-10 23:42:24,614 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/enhanced_enterprise_backend_with_context.py', reloading
+2025-07-10 23:42:24,626 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/enhanced_enterprise_backend_with_context.py', reloading
+2025-07-10 23:42:25,771 - werkzeug - INFO -  * Restarting with watchdog (fsevents)
+2025-07-10 23:42:26,788 - memory.memory - INFO - Vector model disabled - using text-based search instead
+2025-07-10 23:42:26,807 - werkzeug - WARNING -  * Debugger is active!
+2025-07-10 23:42:26,813 - werkzeug - INFO -  * Debugger PIN: 853-474-554
+2025-07-10 23:43:23,290 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/llm/model.py', reloading
+2025-07-10 23:43:24,818 - werkzeug - INFO -  * Restarting with watchdog (fsevents)
+2025-07-10 23:43:25,941 - memory.memory - INFO - Vector model disabled - using text-based search instead
+2025-07-10 23:43:25,964 - werkzeug - WARNING -  * Debugger is active!
+2025-07-10 23:43:26,099 - werkzeug - INFO -  * Debugger PIN: 853-474-554
+2025-07-10 23:43:35,325 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/test_backend_connection.py', reloading
+2025-07-10 23:43:36,474 - werkzeug - INFO -  * Restarting with watchdog (fsevents)
+2025-07-10 23:43:37,594 - memory.memory - INFO - Vector model disabled - using text-based search instead
+2025-07-10 23:43:37,612 - werkzeug - WARNING -  * Debugger is active!
+2025-07-10 23:43:37,621 - werkzeug - INFO -  * Debugger PIN: 853-474-554
+2025-07-10 23:57:53,441 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/test_input_controller.py', reloading
+2025-07-10 23:57:53,442 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/test_input_controller.py', reloading
+2025-07-10 23:57:54,674 - werkzeug - INFO -  * Restarting with watchdog (fsevents)
+2025-07-10 23:57:55,972 - memory.memory - INFO - Vector model disabled - using text-based search instead
+2025-07-10 23:57:55,990 - werkzeug - WARNING -  * Debugger is active!
+2025-07-10 23:57:56,001 - werkzeug - INFO -  * Debugger PIN: 853-474-554
+2025-07-10 23:58:55,183 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/simple_input_test.py', reloading
+2025-07-10 23:58:55,184 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/simple_input_test.py', reloading
+2025-07-10 23:58:56,380 - werkzeug - INFO -  * Restarting with watchdog (fsevents)
+2025-07-10 23:58:57,506 - memory.memory - INFO - Vector model disabled - using text-based search instead
+2025-07-10 23:58:57,525 - werkzeug - WARNING -  * Debugger is active!
+2025-07-10 23:58:57,533 - werkzeug - INFO -  * Debugger PIN: 853-474-554
+2025-07-11 00:00:09,327 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/comprehensive_automation_test.py', reloading
+2025-07-11 00:00:09,336 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/comprehensive_automation_test.py', reloading
+2025-07-11 00:00:10,546 - werkzeug - INFO -  * Restarting with watchdog (fsevents)
+2025-07-11 00:00:11,778 - memory.memory - INFO - Vector model disabled - using text-based search instead
+2025-07-11 00:00:11,797 - werkzeug - WARNING -  * Debugger is active!
+2025-07-11 00:00:11,808 - werkzeug - INFO -  * Debugger PIN: 853-474-554
+2025-07-11 00:01:21,219 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/enhanced_enterprise_backend_with_context.py', reloading
+2025-07-11 00:01:22,371 - werkzeug - INFO -  * Restarting with watchdog (fsevents)
+2025-07-11 00:01:23,447 - memory.memory - INFO - Vector model disabled - using text-based search instead
+2025-07-11 00:01:23,466 - werkzeug - WARNING -  * Debugger is active!
+2025-07-11 00:01:23,474 - werkzeug - INFO -  * Debugger PIN: 853-474-554
+2025-07-11 00:01:26,579 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/enhanced_enterprise_backend_with_context.py', reloading
+2025-07-11 00:01:27,719 - werkzeug - INFO -  * Restarting with watchdog (fsevents)
+2025-07-11 00:01:28,708 - memory.memory - INFO - Vector model disabled - using text-based search instead
+2025-07-11 00:01:28,722 - werkzeug - WARNING -  * Debugger is active!
+2025-07-11 00:01:28,729 - werkzeug - INFO -  * Debugger PIN: 853-474-554
+2025-07-11 00:09:42,607 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/direct_input_test.py', reloading
+2025-07-11 00:09:42,609 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/direct_input_test.py', reloading
+2025-07-11 00:09:43,825 - werkzeug - INFO -  * Restarting with watchdog (fsevents)
+2025-07-11 00:09:44,943 - memory.memory - INFO - Vector model disabled - using text-based search instead
+2025-07-11 00:09:44,964 - werkzeug - WARNING -  * Debugger is active!
+2025-07-11 00:09:44,973 - werkzeug - INFO -  * Debugger PIN: 853-474-554
+2025-07-11 00:11:01,353 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/test_backend_execution.py', reloading
+2025-07-11 00:11:01,355 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/test_backend_execution.py', reloading
+2025-07-11 00:11:02,559 - werkzeug - INFO -  * Restarting with watchdog (fsevents)
+2025-07-11 00:11:03,742 - memory.memory - INFO - Vector model disabled - using text-based search instead
+2025-07-11 00:11:03,761 - werkzeug - WARNING -  * Debugger is active!
+2025-07-11 00:11:03,772 - werkzeug - INFO -  * Debugger PIN: 853-474-554
+2025-07-11 00:13:46,741 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/enhanced_enterprise_backend_with_context.py', reloading
+2025-07-11 00:13:47,904 - werkzeug - INFO -  * Restarting with watchdog (fsevents)
+2025-07-11 00:13:49,024 - memory.memory - INFO - Vector model disabled - using text-based search instead
+2025-07-11 00:13:49,044 - werkzeug - WARNING -  * Debugger is active!
+2025-07-11 00:13:49,052 - werkzeug - INFO -  * Debugger PIN: 853-474-554
+2025-07-11 00:13:55,677 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/enhanced_enterprise_backend_with_context.py', reloading
+2025-07-11 00:13:55,706 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/enhanced_enterprise_backend_with_context.py', reloading
+2025-07-11 00:13:56,892 - werkzeug - INFO -  * Restarting with watchdog (fsevents)
+2025-07-11 00:13:57,915 - memory.memory - INFO - Vector model disabled - using text-based search instead
+2025-07-11 00:13:57,933 - werkzeug - WARNING -  * Debugger is active!
+2025-07-11 00:13:57,942 - werkzeug - INFO -  * Debugger PIN: 853-474-554
+2025-07-11 00:14:01,858 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/enhanced_enterprise_backend_with_context.py', reloading
+2025-07-11 00:14:02,986 - werkzeug - INFO -  * Restarting with watchdog (fsevents)
+2025-07-11 00:14:03,999 - memory.memory - INFO - Vector model disabled - using text-based search instead
+2025-07-11 00:14:04,016 - werkzeug - WARNING -  * Debugger is active!
+2025-07-11 00:14:04,024 - werkzeug - INFO -  * Debugger PIN: 853-474-554
+2025-07-11 00:14:10,237 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/enhanced_enterprise_backend_with_context.py', reloading
+2025-07-11 00:14:11,371 - werkzeug - INFO -  * Restarting with watchdog (fsevents)
+2025-07-11 00:14:12,345 - memory.memory - INFO - Vector model disabled - using text-based search instead
+2025-07-11 00:14:12,363 - werkzeug - WARNING -  * Debugger is active!
+2025-07-11 00:14:12,371 - werkzeug - INFO -  * Debugger PIN: 853-474-554
+2025-07-11 00:18:56,786 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/debug_backend.py', reloading
+2025-07-11 00:18:56,787 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/debug_backend.py', reloading
+2025-07-11 00:18:58,009 - werkzeug - INFO -  * Restarting with watchdog (fsevents)
+2025-07-11 00:18:59,193 - memory.memory - INFO - Vector model disabled - using text-based search instead
+2025-07-11 00:18:59,213 - werkzeug - WARNING -  * Debugger is active!
+2025-07-11 00:18:59,221 - werkzeug - INFO -  * Debugger PIN: 853-474-554
+2025-07-11 00:19:15,185 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/enhanced_enterprise_backend_with_context.py', reloading
+2025-07-11 00:19:15,195 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/enhanced_enterprise_backend_with_context.py', reloading
+2025-07-11 00:19:16,342 - werkzeug - INFO -  * Restarting with watchdog (fsevents)
+2025-07-11 00:19:17,387 - memory.memory - INFO - Vector model disabled - using text-based search instead
+2025-07-11 00:19:17,407 - werkzeug - WARNING -  * Debugger is active!
+2025-07-11 00:19:17,416 - werkzeug - INFO -  * Debugger PIN: 853-474-554
+2025-07-14 12:16:45,669 - memory.memory - INFO - Vector model disabled - using text-based search instead
+2025-07-14 12:16:45,716 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5002
+2025-07-14 12:16:45,716 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-07-14 12:16:45,743 - werkzeug - INFO -  * Restarting with watchdog (fsevents)
+2025-07-14 12:16:48,313 - memory.memory - INFO - Vector model disabled - using text-based search instead
+2025-07-14 12:16:48,340 - werkzeug - WARNING -  * Debugger is active!
+2025-07-14 12:16:48,355 - werkzeug - INFO -  * Debugger PIN: 748-597-312
+2025-07-14 12:25:02,024 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/fixed_plan_creator.py', reloading
+2025-07-14 12:25:03,454 - werkzeug - INFO -  * Restarting with watchdog (fsevents)
+2025-07-14 12:25:04,850 - memory.memory - INFO - Vector model disabled - using text-based search instead
+2025-07-14 12:25:04,874 - werkzeug - WARNING -  * Debugger is active!
+2025-07-14 12:25:04,890 - werkzeug - INFO -  * Debugger PIN: 748-597-312
+2025-07-14 12:25:09,324 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/fixed_plan_creator.py', reloading
+2025-07-14 12:25:10,513 - werkzeug - INFO -  * Restarting with watchdog (fsevents)
+2025-07-14 12:25:11,578 - memory.memory - INFO - Vector model disabled - using text-based search instead
+2025-07-14 12:25:11,594 - werkzeug - WARNING -  * Debugger is active!
+2025-07-14 12:25:11,602 - werkzeug - INFO -  * Debugger PIN: 748-597-312
+2025-07-14 12:25:18,110 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/test_improved_plan_creator.py', reloading
+2025-07-14 12:25:18,111 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/test_improved_plan_creator.py', reloading
+2025-07-14 12:25:19,294 - werkzeug - INFO -  * Restarting with watchdog (fsevents)
+2025-07-14 12:25:20,378 - memory.memory - INFO - Vector model disabled - using text-based search instead
+2025-07-14 12:25:20,396 - werkzeug - WARNING -  * Debugger is active!
+2025-07-14 12:25:20,409 - werkzeug - INFO -  * Debugger PIN: 748-597-312
+2025-07-14 12:29:59,196 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/llm_plan_creator.py', reloading
+2025-07-14 12:29:59,205 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/llm_plan_creator.py', reloading
+2025-07-14 12:30:03,525 - werkzeug - INFO -  * Restarting with watchdog (fsevents)
+2025-07-14 12:30:09,890 - memory.memory - INFO - Vector model disabled - using text-based search instead
+2025-07-14 12:30:09,920 - werkzeug - WARNING -  * Debugger is active!
+2025-07-14 12:30:09,943 - werkzeug - INFO -  * Debugger PIN: 748-597-312
+2025-07-14 12:30:12,454 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/enhanced_enterprise_backend_with_context.py', reloading
+2025-07-14 12:30:17,193 - werkzeug - INFO -  * Restarting with watchdog (fsevents)
+2025-07-14 12:30:20,302 - memory.memory - INFO - Vector model disabled - using text-based search instead
+2025-07-14 12:30:20,374 - werkzeug - WARNING -  * Debugger is active!
+2025-07-14 12:30:20,523 - werkzeug - INFO -  * Debugger PIN: 748-597-312
+2025-07-14 12:30:32,550 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/enhanced_enterprise_backend_with_context.py', reloading
+2025-07-14 12:30:32,552 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/enhanced_enterprise_backend_with_context.py', reloading
+2025-07-14 12:30:34,152 - werkzeug - INFO -  * Restarting with watchdog (fsevents)
+2025-07-14 12:30:36,550 - memory.memory - INFO - Vector model disabled - using text-based search instead
+2025-07-14 12:30:36,581 - werkzeug - WARNING -  * Debugger is active!
+2025-07-14 12:30:36,600 - werkzeug - INFO -  * Debugger PIN: 748-597-312
+2025-07-14 12:30:53,411 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/enhanced_enterprise_backend_with_context.py', reloading
+2025-07-14 12:30:53,415 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/enhanced_enterprise_backend_with_context.py', reloading
+2025-07-14 12:30:54,596 - werkzeug - INFO -  * Restarting with watchdog (fsevents)
+2025-07-14 12:30:55,690 - memory.memory - INFO - Vector model disabled - using text-based search instead
+2025-07-14 12:30:55,710 - werkzeug - WARNING -  * Debugger is active!
+2025-07-14 12:30:55,718 - werkzeug - INFO -  * Debugger PIN: 748-597-312
+2025-07-14 12:31:03,363 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/enhanced_enterprise_backend_with_context.py', reloading
+2025-07-14 12:31:04,668 - werkzeug - INFO -  * Restarting with watchdog (fsevents)
+2025-07-14 12:31:13,543 - memory.memory - INFO - Vector model disabled - using text-based search instead
+2025-07-14 12:31:13,611 - werkzeug - WARNING -  * Debugger is active!
+2025-07-14 12:31:13,666 - werkzeug - INFO -  * Debugger PIN: 748-597-312
+2025-07-14 12:31:14,865 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/enhanced_enterprise_backend_with_context.py', reloading
+2025-07-14 12:31:15,110 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/enhanced_enterprise_backend_with_context.py', reloading
+2025-07-14 12:31:18,419 - werkzeug - INFO -  * Restarting with watchdog (fsevents)
+2025-07-14 12:31:20,714 - memory.memory - INFO - Vector model disabled - using text-based search instead
+2025-07-14 12:31:20,737 - werkzeug - WARNING -  * Debugger is active!
+2025-07-14 12:31:20,746 - werkzeug - INFO -  * Debugger PIN: 748-597-312
+2025-07-14 12:32:18,310 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/test_llm_plan_creator.py', reloading
+2025-07-14 12:32:18,313 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/test_llm_plan_creator.py', reloading
+2025-07-14 12:32:19,627 - werkzeug - INFO -  * Restarting with watchdog (fsevents)
+2025-07-14 12:32:21,096 - memory.memory - INFO - Vector model disabled - using text-based search instead
+2025-07-14 12:32:21,115 - werkzeug - WARNING -  * Debugger is active!
+2025-07-14 12:32:21,125 - werkzeug - INFO -  * Debugger PIN: 748-597-312
+2025-07-14 12:34:24,623 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/llm_plan_creator.py', reloading
+2025-07-14 12:34:31,815 - werkzeug - INFO -  * Restarting with watchdog (fsevents)
+2025-07-14 12:34:56,886 - memory.memory - INFO - Vector model disabled - using text-based search instead
+2025-07-14 12:34:56,975 - werkzeug - WARNING -  * Debugger is active!
+2025-07-14 12:34:57,023 - werkzeug - INFO -  * Debugger PIN: 748-597-312
+2025-07-14 12:36:49,622 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/test_improved_plan_creator.py', reloading
+2025-07-14 12:36:49,640 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/enhanced_enterprise_backend_with_context.py', reloading
+2025-07-14 12:36:49,644 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/test_llm_plan_creator.py', reloading
+2025-07-14 12:36:49,648 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/llm_plan_creator.py', reloading
+2025-07-14 12:36:49,653 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/fixed_plan_creator.py', reloading
+2025-07-14 12:36:49,655 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/test_improved_plan_creator.py', reloading
+2025-07-14 12:36:49,663 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/test_llm_plan_creator.py', reloading
+2025-07-14 12:36:49,665 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/pyautogui_minimal_test.py', reloading
+2025-07-14 12:36:49,668 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/test_execution.py', reloading
+2025-07-14 12:36:49,669 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/test_input_controller.py', reloading
+2025-07-14 12:36:49,670 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/test_safari_automation.py', reloading
+2025-07-14 12:36:49,671 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/test_connection.py', reloading
+2025-07-14 12:36:49,673 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/enhanced_enterprise_backend_with_context.py', reloading
+2025-07-14 12:36:49,674 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/llm_plan_creator.py', reloading
+2025-07-14 12:36:49,675 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/debug_backend.py', reloading
+2025-07-14 12:36:49,675 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/test_overlay_agent_mode_plan.py', reloading
+2025-07-14 12:36:49,676 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/test_simple_chat_request.py', reloading
+2025-07-14 12:36:49,676 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/debug_backend_connection.py', reloading
+2025-07-14 12:36:49,676 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/test_fixed_plan_creator.py', reloading
+2025-07-14 12:36:49,676 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/fixed_plan_creator.py', reloading
+2025-07-14 12:36:49,677 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/pyautogui_minimal_test.py', reloading
+2025-07-14 12:36:49,677 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/test_execution.py', reloading
+2025-07-14 12:36:49,678 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/test_input_controller.py', reloading
+2025-07-14 12:36:49,678 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/test_safari_automation.py', reloading
+2025-07-14 12:36:49,678 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/test_connection.py', reloading
+2025-07-14 12:36:49,679 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/test_overlay_agent_mode_plan.py', reloading
+2025-07-14 12:36:49,681 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/debug_backend.py', reloading
+2025-07-14 12:36:49,682 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/test_simple_chat_request.py', reloading
+2025-07-14 12:36:49,682 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/debug_backend_connection.py', reloading
+2025-07-14 12:36:49,683 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/test_fixed_plan_creator.py', reloading
+2025-07-14 12:36:52,463 - werkzeug - INFO -  * Restarting with watchdog (fsevents)
+2025-07-14 12:36:59,092 - memory.memory - INFO - Vector model disabled - using text-based search instead
+2025-07-14 12:36:59,118 - werkzeug - WARNING -  * Debugger is active!
+2025-07-14 12:36:59,135 - werkzeug - INFO -  * Debugger PIN: 748-597-312
+2025-07-14 12:37:47,781 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/test_llm_direct.py', reloading
+2025-07-14 12:37:47,783 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/test_llm_direct.py', reloading
+2025-07-14 12:37:50,268 - werkzeug - INFO -  * Restarting with watchdog (fsevents)
+2025-07-14 12:37:52,919 - memory.memory - INFO - Vector model disabled - using text-based search instead
+2025-07-14 12:37:52,954 - werkzeug - WARNING -  * Debugger is active!
+2025-07-14 12:37:52,973 - werkzeug - INFO -  * Debugger PIN: 748-597-312
+2025-07-14 12:43:50,547 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/llm/model.py', reloading
+2025-07-14 12:43:51,928 - werkzeug - INFO -  * Restarting with watchdog (fsevents)
+2025-07-14 12:43:53,474 - memory.memory - INFO - Vector model disabled - using text-based search instead
+2025-07-14 12:43:53,492 - werkzeug - WARNING -  * Debugger is active!
+2025-07-14 12:43:53,514 - werkzeug - INFO -  * Debugger PIN: 748-597-312
+2025-07-14 12:44:00,985 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/llm_plan_creator.py', reloading
+2025-07-14 12:44:02,192 - werkzeug - INFO -  * Restarting with watchdog (fsevents)
+2025-07-14 12:44:03,261 - memory.memory - INFO - Vector model disabled - using text-based search instead
+2025-07-14 12:44:03,282 - werkzeug - WARNING -  * Debugger is active!
+2025-07-14 12:44:03,297 - werkzeug - INFO -  * Debugger PIN: 748-597-312
+2025-07-14 12:44:11,470 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/test_llm_direct.py', reloading
+2025-07-14 12:44:12,605 - werkzeug - INFO -  * Restarting with watchdog (fsevents)
+2025-07-14 12:44:13,611 - memory.memory - INFO - Vector model disabled - using text-based search instead
+2025-07-14 12:44:13,628 - werkzeug - WARNING -  * Debugger is active!
+2025-07-14 12:44:13,636 - werkzeug - INFO -  * Debugger PIN: 748-597-312
+2025-07-14 12:48:25,754 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/enhanced_enterprise_backend_with_context.py', reloading
+2025-07-14 12:48:25,762 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/enhanced_enterprise_backend_with_context.py', reloading
+2025-07-14 12:48:26,991 - werkzeug - INFO -  * Restarting with watchdog (fsevents)
+2025-07-14 12:48:28,397 - memory.memory - INFO - Vector model disabled - using text-based search instead
+2025-07-14 12:48:28,420 - werkzeug - WARNING -  * Debugger is active!
+2025-07-14 12:48:28,429 - werkzeug - INFO -  * Debugger PIN: 748-597-312
+2025-07-14 12:49:00,985 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/enhanced_enterprise_backend_with_context.py', reloading
+2025-07-14 12:49:09,540 - werkzeug - INFO -  * Restarting with watchdog (fsevents)
+2025-07-14 12:49:18,975 - memory.memory - INFO - Vector model disabled - using text-based search instead
+2025-07-14 12:49:19,322 - werkzeug - WARNING -  * Debugger is active!
+2025-07-14 12:49:19,489 - werkzeug - INFO -  * Debugger PIN: 748-597-312
+2025-07-14 12:49:31,942 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/llm_plan_creator.py', reloading
+2025-07-14 12:49:33,195 - werkzeug - INFO -  * Restarting with watchdog (fsevents)
+2025-07-14 12:49:34,253 - memory.memory - INFO - Vector model disabled - using text-based search instead
+2025-07-14 12:49:34,271 - werkzeug - WARNING -  * Debugger is active!
+2025-07-14 12:49:34,279 - werkzeug - INFO -  * Debugger PIN: 748-597-312
+2025-07-14 12:49:43,554 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/enhanced_enterprise_backend_with_context.py', reloading
+2025-07-14 12:49:43,566 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/enhanced_enterprise_backend_with_context.py', reloading
+2025-07-14 12:49:44,717 - werkzeug - INFO -  * Restarting with watchdog (fsevents)
+2025-07-14 12:49:45,772 - memory.memory - INFO - Vector model disabled - using text-based search instead
+2025-07-14 12:49:45,789 - werkzeug - WARNING -  * Debugger is active!
+2025-07-14 12:49:45,796 - werkzeug - INFO -  * Debugger PIN: 748-597-312
+2025-07-14 12:49:55,954 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/enhanced_enterprise_backend_with_context.py', reloading
+2025-07-14 12:49:55,968 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/enhanced_enterprise_backend_with_context.py', reloading
+2025-07-14 12:49:57,095 - werkzeug - INFO -  * Restarting with watchdog (fsevents)
+2025-07-14 12:49:58,123 - memory.memory - INFO - Vector model disabled - using text-based search instead
+2025-07-14 12:49:58,142 - werkzeug - WARNING -  * Debugger is active!
+2025-07-14 12:49:58,151 - werkzeug - INFO -  * Debugger PIN: 748-597-312
+2025-07-14 12:54:56,705 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/test_llm_performance.py', reloading
+2025-07-14 12:54:56,722 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/test_llm_performance.py', reloading
+2025-07-14 12:55:09,939 - werkzeug - INFO -  * Restarting with watchdog (fsevents)
+2025-07-14 12:55:22,138 - memory.memory - INFO - Vector model disabled - using text-based search instead
+2025-07-14 12:55:22,368 - werkzeug - WARNING -  * Debugger is active!
+2025-07-14 12:55:22,604 - werkzeug - INFO -  * Debugger PIN: 748-597-312
+2025-07-14 12:58:27,032 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/llm_plan_creator.py', reloading
+2025-07-14 12:58:29,317 - werkzeug - INFO -  * Restarting with watchdog (fsevents)
+2025-07-14 12:59:04,152 - memory.memory - INFO - Vector model disabled - using text-based search instead
+2025-07-14 12:59:04,269 - werkzeug - WARNING -  * Debugger is active!
+2025-07-14 12:59:04,410 - werkzeug - INFO -  * Debugger PIN: 748-597-312
+2025-07-14 12:59:06,397 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/llm_plan_creator.py', reloading
+2025-07-14 12:59:06,404 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/llm_plan_creator.py', reloading
+2025-07-14 12:59:08,380 - werkzeug - INFO -  * Restarting with watchdog (fsevents)
+2025-07-14 12:59:10,204 - memory.memory - INFO - Vector model disabled - using text-based search instead
+2025-07-14 12:59:10,229 - werkzeug - WARNING -  * Debugger is active!
+2025-07-14 12:59:10,251 - werkzeug - INFO -  * Debugger PIN: 748-597-312
+2025-07-14 12:59:14,905 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/llm_plan_creator.py', reloading
+2025-07-14 12:59:17,148 - werkzeug - INFO -  * Restarting with watchdog (fsevents)
+2025-07-14 12:59:29,650 - memory.memory - INFO - Vector model disabled - using text-based search instead
+2025-07-14 12:59:29,871 - werkzeug - WARNING -  * Debugger is active!
+2025-07-14 12:59:30,113 - werkzeug - INFO -  * Debugger PIN: 748-597-312
+2025-07-14 12:59:43,263 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/llm_plan_creator.py', reloading
+2025-07-14 12:59:43,301 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/llm_plan_creator.py', reloading
+2025-07-14 12:59:45,011 - werkzeug - INFO -  * Restarting with watchdog (fsevents)
+2025-07-14 12:59:48,472 - memory.memory - INFO - Vector model disabled - using text-based search instead
+2025-07-14 12:59:48,496 - werkzeug - WARNING -  * Debugger is active!
+2025-07-14 12:59:48,521 - werkzeug - INFO -  * Debugger PIN: 748-597-312
+2025-07-14 13:02:42,537 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/llm_plan_creator.py', reloading
+2025-07-14 13:02:44,822 - werkzeug - INFO -  * Restarting with watchdog (fsevents)
+2025-07-14 13:02:48,311 - memory.memory - INFO - Vector model disabled - using text-based search instead
+2025-07-14 13:02:48,356 - werkzeug - WARNING -  * Debugger is active!
+2025-07-14 13:02:48,428 - werkzeug - INFO -  * Debugger PIN: 748-597-312
+2025-07-14 13:03:54,375 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/llm_plan_creator.py', reloading
+2025-07-14 13:03:54,380 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/llm_plan_creator.py', reloading
+2025-07-14 13:03:59,396 - werkzeug - INFO -  * Restarting with watchdog (fsevents)
+2025-07-14 13:04:02,836 - memory.memory - INFO - Vector model disabled - using text-based search instead
+2025-07-14 13:04:02,871 - werkzeug - WARNING -  * Debugger is active!
+2025-07-14 13:04:02,924 - werkzeug - INFO -  * Debugger PIN: 748-597-312
+2025-07-14 13:05:15,026 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/llm_plan_creator.py', reloading
+2025-07-14 13:05:15,035 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/llm_plan_creator.py', reloading
+2025-07-14 13:05:18,017 - werkzeug - INFO -  * Restarting with watchdog (fsevents)
+2025-07-14 13:05:21,596 - memory.memory - INFO - Vector model disabled - using text-based search instead
+2025-07-14 13:05:21,655 - werkzeug - WARNING -  * Debugger is active!
+2025-07-14 13:05:21,730 - werkzeug - INFO -  * Debugger PIN: 748-597-312
+2025-07-14 13:06:25,917 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/llm/model.py', reloading
+2025-07-14 13:06:27,259 - werkzeug - INFO -  * Restarting with watchdog (fsevents)
+2025-07-14 13:06:28,742 - memory.memory - INFO - Vector model disabled - using text-based search instead
+2025-07-14 13:06:28,762 - werkzeug - WARNING -  * Debugger is active!
+2025-07-14 13:06:28,774 - werkzeug - INFO -  * Debugger PIN: 748-597-312
+2025-07-14 13:09:34,566 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/test_full_chain.py', reloading
+2025-07-14 13:09:34,569 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/test_full_chain.py', reloading
+2025-07-14 13:09:35,851 - werkzeug - INFO -  * Restarting with watchdog (fsevents)
+2025-07-14 13:09:37,147 - memory.memory - INFO - Vector model disabled - using text-based search instead
+2025-07-14 13:09:37,165 - werkzeug - WARNING -  * Debugger is active!
+2025-07-14 13:09:37,174 - werkzeug - INFO -  * Debugger PIN: 748-597-312
+2025-07-14 13:10:12,803 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/enhanced_enterprise_backend_with_context.py', reloading
+2025-07-14 13:10:15,151 - werkzeug - INFO -  * Restarting with watchdog (fsevents)
+2025-07-14 13:10:19,022 - memory.memory - INFO - Vector model disabled - using text-based search instead
+2025-07-14 13:10:19,045 - werkzeug - WARNING -  * Debugger is active!
+2025-07-14 13:10:19,057 - werkzeug - INFO -  * Debugger PIN: 748-597-312
+2025-07-14 13:10:21,036 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/enhanced_enterprise_backend_with_context.py', reloading
+2025-07-14 13:10:22,246 - werkzeug - INFO -  * Restarting with watchdog (fsevents)
+2025-07-14 13:10:23,320 - memory.memory - INFO - Vector model disabled - using text-based search instead
+2025-07-14 13:10:23,339 - werkzeug - WARNING -  * Debugger is active!
+2025-07-14 13:10:23,349 - werkzeug - INFO -  * Debugger PIN: 748-597-312
+2025-07-14 13:11:28,441 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/test_full_chain_simple.py', reloading
+2025-07-14 13:11:28,472 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/test_full_chain_simple.py', reloading
+2025-07-14 13:11:29,791 - werkzeug - INFO -  * Restarting with watchdog (fsevents)
+2025-07-14 13:11:32,223 - memory.memory - INFO - Vector model disabled - using text-based search instead
+2025-07-14 13:11:32,271 - werkzeug - WARNING -  * Debugger is active!
+2025-07-14 13:11:32,328 - werkzeug - INFO -  * Debugger PIN: 748-597-312
+2025-07-14 13:13:01,636 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/test_execution_demo.py', reloading
+2025-07-14 13:13:01,637 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/test_execution_demo.py', reloading
+2025-07-14 13:13:02,846 - werkzeug - INFO -  * Restarting with watchdog (fsevents)
+2025-07-14 13:13:04,278 - memory.memory - INFO - Vector model disabled - using text-based search instead
+2025-07-14 13:13:04,297 - werkzeug - WARNING -  * Debugger is active!
+2025-07-14 13:13:04,310 - werkzeug - INFO -  * Debugger PIN: 748-597-312
+2025-07-14 13:13:24,814 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/llm_plan_creator.py', reloading
+2025-07-14 13:13:27,371 - werkzeug - INFO -  * Restarting with watchdog (fsevents)
+2025-07-14 13:13:32,674 - memory.memory - INFO - Vector model disabled - using text-based search instead
+2025-07-14 13:13:32,715 - werkzeug - WARNING -  * Debugger is active!
+2025-07-14 13:13:32,728 - werkzeug - INFO -  * Debugger PIN: 748-597-312
+2025-07-14 13:13:32,925 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/llm_plan_creator.py', reloading
+2025-07-14 13:13:34,181 - werkzeug - INFO -  * Restarting with watchdog (fsevents)
+2025-07-14 13:13:35,844 - memory.memory - INFO - Vector model disabled - using text-based search instead
+2025-07-14 13:13:35,866 - werkzeug - WARNING -  * Debugger is active!
+2025-07-14 13:13:35,882 - werkzeug - INFO -  * Debugger PIN: 748-597-312
+2025-07-14 13:13:53,176 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/llm_plan_creator.py', reloading
+2025-07-14 13:13:55,967 - werkzeug - INFO -  * Restarting with watchdog (fsevents)
+2025-07-14 13:14:06,249 - memory.memory - INFO - Vector model disabled - using text-based search instead
+2025-07-14 13:14:06,386 - werkzeug - WARNING -  * Debugger is active!
+2025-07-14 13:14:06,482 - werkzeug - INFO -  * Debugger PIN: 748-597-312
+2025-07-14 13:14:37,619 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/llm_plan_creator.py', reloading
+2025-07-14 13:14:38,853 - werkzeug - INFO -  * Restarting with watchdog (fsevents)
+2025-07-14 13:14:41,022 - memory.memory - INFO - Vector model disabled - using text-based search instead
+2025-07-14 13:14:41,079 - werkzeug - WARNING -  * Debugger is active!
+2025-07-14 13:14:41,203 - werkzeug - INFO -  * Debugger PIN: 748-597-312
+2025-07-14 13:17:26,567 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/llm_plan_creator.py', reloading
+2025-07-14 13:17:27,884 - werkzeug - INFO -  * Restarting with watchdog (fsevents)
+2025-07-14 13:17:29,300 - memory.memory - INFO - Vector model disabled - using text-based search instead
+2025-07-14 13:17:29,321 - werkzeug - WARNING -  * Debugger is active!
+2025-07-14 13:17:29,334 - werkzeug - INFO -  * Debugger PIN: 748-597-312
+2025-07-14 13:17:48,750 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/llm_plan_creator.py', reloading
+2025-07-14 13:17:48,752 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/llm_plan_creator.py', reloading
+2025-07-14 13:17:50,643 - werkzeug - INFO -  * Restarting with watchdog (fsevents)
+2025-07-14 13:17:52,916 - memory.memory - INFO - Vector model disabled - using text-based search instead
+2025-07-14 13:17:52,939 - werkzeug - WARNING -  * Debugger is active!
+2025-07-14 13:17:52,951 - werkzeug - INFO -  * Debugger PIN: 748-597-312
+2025-07-14 13:17:57,967 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/llm_plan_creator.py', reloading
+2025-07-14 13:17:59,620 - werkzeug - INFO -  * Restarting with watchdog (fsevents)
+2025-07-14 13:18:00,933 - memory.memory - INFO - Vector model disabled - using text-based search instead
+2025-07-14 13:18:00,953 - werkzeug - WARNING -  * Debugger is active!
+2025-07-14 13:18:00,971 - werkzeug - INFO -  * Debugger PIN: 748-597-312
+2025-07-14 13:18:06,623 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/llm_plan_creator.py', reloading
+2025-07-14 13:18:07,886 - werkzeug - INFO -  * Restarting with watchdog (fsevents)
+2025-07-14 13:18:11,630 - memory.memory - INFO - Vector model disabled - using text-based search instead
+2025-07-14 13:18:11,663 - werkzeug - WARNING -  * Debugger is active!
+2025-07-14 13:18:11,699 - werkzeug - INFO -  * Debugger PIN: 748-597-312
+2025-07-14 13:18:47,870 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/test_all_prompts.py', reloading
+2025-07-14 13:18:47,900 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/test_all_prompts.py', reloading
+2025-07-14 13:18:50,608 - werkzeug - INFO -  * Restarting with watchdog (fsevents)
+2025-07-14 13:18:56,526 - memory.memory - INFO - Vector model disabled - using text-based search instead
+2025-07-14 13:18:56,614 - werkzeug - WARNING -  * Debugger is active!
+2025-07-14 13:18:56,676 - werkzeug - INFO -  * Debugger PIN: 748-597-312
+2025-07-14 13:19:35,702 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/test_all_prompts.py', reloading
+2025-07-14 13:19:35,705 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/test_all_prompts.py', reloading
+2025-07-14 13:19:37,872 - werkzeug - INFO -  * Restarting with watchdog (fsevents)
+2025-07-14 13:20:21,710 - memory.memory - INFO - Vector model disabled - using text-based search instead
+2025-07-14 13:20:23,065 - werkzeug - WARNING -  * Debugger is active!
+2025-07-14 13:20:23,487 - werkzeug - INFO -  * Debugger PIN: 748-597-312
+2025-07-14 13:24:35,299 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/llm_direct_test.py', reloading
+2025-07-14 13:24:35,306 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/llm_direct_test.py', reloading
+2025-07-14 13:24:38,372 - werkzeug - INFO -  * Restarting with watchdog (fsevents)
+2025-07-14 13:24:43,011 - memory.memory - INFO - Vector model disabled - using text-based search instead
+2025-07-14 13:24:43,080 - werkzeug - WARNING -  * Debugger is active!
+2025-07-14 13:24:43,138 - werkzeug - INFO -  * Debugger PIN: 748-597-312
+2025-07-14 13:31:05,196 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/llm_plan_creator.py', reloading
+2025-07-14 13:31:05,308 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/llm_plan_creator.py', reloading
+2025-07-14 13:31:12,541 - werkzeug - INFO -  * Restarting with watchdog (fsevents)
+2025-07-14 13:31:15,562 - memory.memory - INFO - Vector model disabled - using text-based search instead
+2025-07-14 13:31:15,593 - werkzeug - WARNING -  * Debugger is active!
+2025-07-14 13:31:15,609 - werkzeug - INFO -  * Debugger PIN: 748-597-312
+2025-07-14 13:31:38,967 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/enhanced_enterprise_backend_with_context.py', reloading
+2025-07-14 13:31:40,635 - werkzeug - INFO -  * Restarting with watchdog (fsevents)
+2025-07-14 13:31:41,929 - memory.memory - INFO - Vector model disabled - using text-based search instead
+2025-07-14 13:31:41,949 - werkzeug - WARNING -  * Debugger is active!
+2025-07-14 13:31:41,960 - werkzeug - INFO -  * Debugger PIN: 748-597-312
+2025-07-14 13:32:46,321 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/enhanced_enterprise_backend_with_context.py', reloading
+2025-07-14 13:32:46,323 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/enhanced_enterprise_backend_with_context.py', reloading
+2025-07-14 13:32:49,105 - werkzeug - INFO -  * Restarting with watchdog (fsevents)
+2025-07-14 13:32:52,319 - memory.memory - INFO - Vector model disabled - using text-based search instead
+2025-07-14 13:32:52,339 - werkzeug - WARNING -  * Debugger is active!
+2025-07-14 13:32:52,359 - werkzeug - INFO -  * Debugger PIN: 748-597-312
+2025-07-14 13:33:08,100 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/enhanced_enterprise_backend_with_context.py', reloading
+2025-07-14 13:33:08,105 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/enhanced_enterprise_backend_with_context.py', reloading
+2025-07-14 13:33:10,353 - werkzeug - INFO -  * Restarting with watchdog (fsevents)
+2025-07-14 13:33:15,448 - memory.memory - INFO - Vector model disabled - using text-based search instead
+2025-07-14 13:33:15,483 - werkzeug - WARNING -  * Debugger is active!
+2025-07-14 13:33:15,503 - werkzeug - INFO -  * Debugger PIN: 748-597-312
+2025-07-14 13:33:23,735 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/enhanced_enterprise_backend_with_context.py', reloading
+2025-07-14 13:33:25,402 - werkzeug - INFO -  * Restarting with watchdog (fsevents)
+2025-07-14 13:33:27,305 - memory.memory - INFO - Vector model disabled - using text-based search instead
+2025-07-14 13:33:27,359 - werkzeug - WARNING -  * Debugger is active!
+2025-07-14 13:33:27,381 - werkzeug - INFO -  * Debugger PIN: 748-597-312
+2025-07-14 13:34:02,533 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/llm_plan_creator.py', reloading
+2025-07-14 13:34:03,693 - werkzeug - INFO -  * Restarting with watchdog (fsevents)
+2025-07-14 13:34:04,760 - memory.memory - INFO - Vector model disabled - using text-based search instead
+2025-07-14 13:34:04,779 - werkzeug - WARNING -  * Debugger is active!
+2025-07-14 13:34:04,787 - werkzeug - INFO -  * Debugger PIN: 748-597-312
+2025-07-14 13:34:10,539 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/enhanced_enterprise_backend_with_context.py', reloading
+2025-07-14 13:34:11,716 - werkzeug - INFO -  * Restarting with watchdog (fsevents)
+2025-07-14 13:34:12,783 - memory.memory - INFO - Vector model disabled - using text-based search instead
+2025-07-14 13:34:12,801 - werkzeug - WARNING -  * Debugger is active!
+2025-07-14 13:34:12,807 - werkzeug - INFO -  * Debugger PIN: 748-597-312
+2025-07-14 13:34:26,176 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/test_optimized_llm_only.py', reloading
+2025-07-14 13:34:26,181 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/test_optimized_llm_only.py', reloading
+2025-07-14 13:34:27,415 - werkzeug - INFO -  * Restarting with watchdog (fsevents)
+2025-07-14 13:34:28,709 - memory.memory - INFO - Vector model disabled - using text-based search instead
+2025-07-14 13:34:28,726 - werkzeug - WARNING -  * Debugger is active!
+2025-07-14 13:34:28,734 - werkzeug - INFO -  * Debugger PIN: 748-597-312
+2025-07-14 13:44:20,710 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/llm_plan_creator.py', reloading
+2025-07-14 13:44:20,713 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/llm_plan_creator.py', reloading
+2025-07-14 13:44:22,036 - werkzeug - INFO -  * Restarting with watchdog (fsevents)
+2025-07-14 13:44:24,260 - memory.memory - INFO - Vector model disabled - using text-based search instead
+2025-07-14 13:44:24,282 - werkzeug - WARNING -  * Debugger is active!
+2025-07-14 13:44:24,292 - werkzeug - INFO -  * Debugger PIN: 748-597-312
+2025-07-14 14:00:32,592 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/test_optimized_llm_only.py', reloading
+2025-07-14 14:00:34,161 - werkzeug - INFO -  * Restarting with watchdog (fsevents)
+2025-07-14 14:00:35,289 - memory.memory - INFO - Vector model disabled - using text-based search instead
+2025-07-14 14:00:35,309 - werkzeug - WARNING -  * Debugger is active!
+2025-07-14 14:00:35,317 - werkzeug - INFO -  * Debugger PIN: 748-597-312
+2025-07-14 14:14:28,094 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/test_streaming_direct.py', reloading
+2025-07-14 14:14:28,102 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/test_streaming_direct.py', reloading
+2025-07-14 14:14:35,092 - werkzeug - INFO -  * Restarting with watchdog (fsevents)
+2025-07-14 14:14:41,526 - memory.memory - INFO - Vector model disabled - using text-based search instead
+2025-07-14 14:14:41,585 - werkzeug - WARNING -  * Debugger is active!
+2025-07-14 14:14:41,623 - werkzeug - INFO -  * Debugger PIN: 748-597-312
+2025-07-14 14:14:48,801 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/llm_plan_creator.py', reloading
+2025-07-14 14:14:50,320 - werkzeug - INFO -  * Restarting with watchdog (fsevents)
+2025-07-14 14:14:55,582 - memory.memory - INFO - Vector model disabled - using text-based search instead
+2025-07-14 14:14:55,679 - werkzeug - WARNING -  * Debugger is active!
+2025-07-14 14:14:55,728 - werkzeug - INFO -  * Debugger PIN: 748-597-312
+2025-07-14 14:15:00,598 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/test_streaming_system.py', reloading
+2025-07-14 14:15:00,602 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/test_streaming_system.py', reloading
+2025-07-14 14:15:02,907 - werkzeug - INFO -  * Restarting with watchdog (fsevents)
+2025-07-14 14:15:08,404 - memory.memory - INFO - Vector model disabled - using text-based search instead
+2025-07-14 14:15:08,434 - werkzeug - WARNING -  * Debugger is active!
+2025-07-14 14:15:08,458 - werkzeug - INFO -  * Debugger PIN: 748-597-312
+2025-07-14 14:15:36,095 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/test_streaming_system.py', reloading
+2025-07-14 14:15:36,099 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/test_streaming_system.py', reloading
+2025-07-14 14:15:38,338 - werkzeug - INFO -  * Restarting with watchdog (fsevents)
+2025-07-14 14:15:45,336 - memory.memory - INFO - Vector model disabled - using text-based search instead
+2025-07-14 14:15:45,526 - werkzeug - WARNING -  * Debugger is active!
+2025-07-14 14:15:45,558 - werkzeug - INFO -  * Debugger PIN: 748-597-312
+2025-07-14 14:22:10,576 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/llm/model.py', reloading
+2025-07-14 14:22:11,933 - werkzeug - INFO -  * Restarting with watchdog (fsevents)
+2025-07-14 14:22:12,961 - memory.memory - INFO - Vector model disabled - using text-based search instead
+2025-07-14 14:22:12,982 - werkzeug - WARNING -  * Debugger is active!
+2025-07-14 14:22:13,089 - werkzeug - INFO -  * Debugger PIN: 748-597-312
+2025-07-14 14:22:32,560 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/llm/model.py', reloading
+2025-07-14 14:22:33,723 - werkzeug - INFO -  * Restarting with watchdog (fsevents)
+2025-07-14 14:22:34,462 - memory.memory - INFO - Vector model disabled - using text-based search instead
+2025-07-14 14:22:34,475 - werkzeug - WARNING -  * Debugger is active!
+2025-07-14 14:22:34,487 - werkzeug - INFO -  * Debugger PIN: 748-597-312
+2025-07-14 14:22:45,574 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/llm_plan_creator.py', reloading
+2025-07-14 14:22:46,764 - werkzeug - INFO -  * Restarting with watchdog (fsevents)
+2025-07-14 14:22:48,285 - memory.memory - INFO - Vector model disabled - using text-based search instead
+2025-07-14 14:22:48,306 - werkzeug - WARNING -  * Debugger is active!
+2025-07-14 14:22:48,320 - werkzeug - INFO -  * Debugger PIN: 748-597-312
+2025-07-14 14:25:38,959 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/llm_plan_creator.py', reloading
+2025-07-14 14:25:38,971 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/llm_plan_creator.py', reloading
+2025-07-14 14:25:40,274 - werkzeug - INFO -  * Restarting with watchdog (fsevents)
+2025-07-14 14:25:41,325 - memory.memory - INFO - Vector model disabled - using text-based search instead
+2025-07-14 14:25:41,350 - werkzeug - WARNING -  * Debugger is active!
+2025-07-14 14:25:41,362 - werkzeug - INFO -  * Debugger PIN: 748-597-312
+2025-07-14 14:26:49,331 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/llm_plan_creator.py', reloading
+2025-07-14 14:26:50,566 - werkzeug - INFO -  * Restarting with watchdog (fsevents)
+2025-07-14 14:26:51,700 - memory.memory - INFO - Vector model disabled - using text-based search instead
+2025-07-14 14:26:51,716 - werkzeug - WARNING -  * Debugger is active!
+2025-07-14 14:26:51,723 - werkzeug - INFO -  * Debugger PIN: 748-597-312
+2025-07-14 14:30:16,435 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/llm_plan_creator.py', reloading
+2025-07-14 14:30:17,860 - werkzeug - INFO -  * Restarting with watchdog (fsevents)
+2025-07-14 14:30:19,641 - memory.memory - INFO - Vector model disabled - using text-based search instead
+2025-07-14 14:30:19,658 - werkzeug - WARNING -  * Debugger is active!
+2025-07-14 14:30:19,700 - werkzeug - INFO -  * Debugger PIN: 748-597-312
+2025-07-14 14:30:42,557 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/llm_plan_creator.py', reloading
+2025-07-14 14:30:43,736 - werkzeug - INFO -  * Restarting with watchdog (fsevents)
+2025-07-14 14:30:44,546 - memory.memory - INFO - Vector model disabled - using text-based search instead
+2025-07-14 14:30:44,560 - werkzeug - WARNING -  * Debugger is active!
+2025-07-14 14:30:44,566 - werkzeug - INFO -  * Debugger PIN: 748-597-312
+2025-07-14 14:31:44,136 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/llm/model.py', reloading
+2025-07-14 14:31:45,420 - werkzeug - INFO -  * Restarting with watchdog (fsevents)
+2025-07-14 14:31:46,499 - memory.memory - INFO - Vector model disabled - using text-based search instead
+2025-07-14 14:31:46,517 - werkzeug - WARNING -  * Debugger is active!
+2025-07-14 14:31:46,526 - werkzeug - INFO -  * Debugger PIN: 748-597-312
+2025-07-14 14:32:07,208 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/test_simple_streaming.py', reloading
+2025-07-14 14:32:07,208 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/test_simple_streaming.py', reloading
+2025-07-14 14:32:08,373 - werkzeug - INFO -  * Restarting with watchdog (fsevents)
+2025-07-14 14:32:09,619 - memory.memory - INFO - Vector model disabled - using text-based search instead
+2025-07-14 14:32:09,640 - werkzeug - WARNING -  * Debugger is active!
+2025-07-14 14:32:09,651 - werkzeug - INFO -  * Debugger PIN: 748-597-312
+2025-07-14 14:32:09,724 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/test_simple_streaming.py', reloading
+2025-07-14 14:32:09,725 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/test_simple_streaming.py', reloading
+2025-07-14 14:32:10,837 - werkzeug - INFO -  * Restarting with watchdog (fsevents)
+2025-07-14 14:32:11,390 - memory.memory - INFO - Vector model disabled - using text-based search instead
+2025-07-14 14:32:11,407 - werkzeug - WARNING -  * Debugger is active!
+2025-07-14 14:32:11,414 - werkzeug - INFO -  * Debugger PIN: 748-597-312
+2025-07-14 14:33:21,548 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/test_streaming_system.py', reloading
+2025-07-14 14:33:22,784 - werkzeug - INFO -  * Restarting with watchdog (fsevents)
+2025-07-14 14:33:23,737 - memory.memory - INFO - Vector model disabled - using text-based search instead
+2025-07-14 14:33:23,753 - werkzeug - WARNING -  * Debugger is active!
+2025-07-14 14:33:23,763 - werkzeug - INFO -  * Debugger PIN: 748-597-312
+2025-07-14 14:34:50,201 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/llm_plan_creator.py', reloading
+2025-07-14 14:34:51,488 - werkzeug - INFO -  * Restarting with watchdog (fsevents)
+2025-07-14 14:34:52,760 - memory.memory - INFO - Vector model disabled - using text-based search instead
+2025-07-14 14:34:52,782 - werkzeug - WARNING -  * Debugger is active!
+2025-07-14 14:34:52,801 - werkzeug - INFO -  * Debugger PIN: 748-597-312
+2025-07-14 14:36:48,994 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/llm_plan_creator.py', reloading
+2025-07-14 14:36:52,167 - werkzeug - INFO -  * Restarting with watchdog (fsevents)
+2025-07-14 14:36:55,206 - memory.memory - INFO - Vector model disabled - using text-based search instead
+2025-07-14 14:36:55,241 - werkzeug - WARNING -  * Debugger is active!
+2025-07-14 14:36:55,258 - werkzeug - INFO -  * Debugger PIN: 748-597-312
+2025-07-14 14:45:13,049 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/json5/__init__.py', reloading
+2025-07-14 14:45:13,052 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/json5/__init__.py', reloading
+2025-07-14 14:45:13,053 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/json5/__main__.py', reloading
+2025-07-14 14:45:13,053 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/json5/__main__.py', reloading
+2025-07-14 14:45:13,053 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/json5/host.py', reloading
+2025-07-14 14:45:13,053 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/json5/host.py', reloading
+2025-07-14 14:45:13,053 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/json5/lib.py', reloading
+2025-07-14 14:45:13,053 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/json5/lib.py', reloading
+2025-07-14 14:45:13,053 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/json5/parser.py', reloading
+2025-07-14 14:45:13,053 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/json5/parser.py', reloading
+2025-07-14 14:45:13,053 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/json5/tool.py', reloading
+2025-07-14 14:45:13,053 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/json5/tool.py', reloading
+2025-07-14 14:45:13,053 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/json5/version.py', reloading
+2025-07-14 14:45:13,054 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/.venv/lib/python3.13/site-packages/json5/version.py', reloading
+2025-07-14 14:45:14,714 - werkzeug - INFO -  * Restarting with watchdog (fsevents)
+2025-07-14 14:45:16,199 - memory.memory - INFO - Vector model disabled - using text-based search instead
+2025-07-14 14:45:16,223 - werkzeug - WARNING -  * Debugger is active!
+2025-07-14 14:45:16,251 - werkzeug - INFO -  * Debugger PIN: 748-597-312
+2025-07-14 14:45:20,575 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/llm_plan_creator.py', reloading
+2025-07-14 14:45:21,687 - werkzeug - INFO -  * Restarting with watchdog (fsevents)
+2025-07-14 14:45:22,391 - memory.memory - INFO - Vector model disabled - using text-based search instead
+2025-07-14 14:45:22,406 - werkzeug - WARNING -  * Debugger is active!
+2025-07-14 14:45:22,412 - werkzeug - INFO -  * Debugger PIN: 748-597-312
+2025-07-14 14:47:04,746 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/llm_plan_creator.py', reloading
+2025-07-14 14:47:05,939 - werkzeug - INFO -  * Restarting with watchdog (fsevents)
+2025-07-14 14:47:06,944 - memory.memory - INFO - Vector model disabled - using text-based search instead
+2025-07-14 14:47:06,961 - werkzeug - WARNING -  * Debugger is active!
+2025-07-14 14:47:06,969 - werkzeug - INFO -  * Debugger PIN: 748-597-312
+2025-07-14 14:49:27,032 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/llm_plan_creator.py', reloading
+2025-07-14 14:49:28,357 - werkzeug - INFO -  * Restarting with watchdog (fsevents)
+2025-07-14 14:49:29,331 - memory.memory - INFO - Vector model disabled - using text-based search instead
+2025-07-14 14:49:29,350 - werkzeug - WARNING -  * Debugger is active!
+2025-07-14 14:49:29,382 - werkzeug - INFO -  * Debugger PIN: 748-597-312
+2025-07-14 14:51:30,846 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/llm_plan_creator.py', reloading
+2025-07-14 14:51:32,354 - werkzeug - INFO -  * Restarting with watchdog (fsevents)
+2025-07-14 14:51:34,179 - memory.memory - INFO - Vector model disabled - using text-based search instead
+2025-07-14 14:51:34,200 - werkzeug - WARNING -  * Debugger is active!
+2025-07-14 14:51:34,217 - werkzeug - INFO -  * Debugger PIN: 748-597-312
+2025-07-14 14:55:08,883 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/llm_plan_creator.py', reloading
+2025-07-14 14:55:10,253 - werkzeug - INFO -  * Restarting with watchdog (fsevents)
+2025-07-14 14:55:11,367 - memory.memory - INFO - Vector model disabled - using text-based search instead
+2025-07-14 14:55:11,389 - werkzeug - WARNING -  * Debugger is active!
+2025-07-14 14:55:11,413 - werkzeug - INFO -  * Debugger PIN: 748-597-312
+2025-07-14 14:56:46,424 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/llm_plan_creator.py', reloading
+2025-07-14 14:56:47,840 - werkzeug - INFO -  * Restarting with watchdog (fsevents)
+2025-07-14 14:56:49,274 - memory.memory - INFO - Vector model disabled - using text-based search instead
+2025-07-14 14:56:49,293 - werkzeug - WARNING -  * Debugger is active!
+2025-07-14 14:56:49,304 - werkzeug - INFO -  * Debugger PIN: 748-597-312
+2025-07-14 15:05:38,184 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/llm_plan_creator.py', reloading
+2025-07-14 15:05:38,340 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/llm_plan_creator.py', reloading
+2025-07-14 15:05:40,071 - werkzeug - INFO -  * Restarting with watchdog (fsevents)
+2025-07-14 15:05:41,285 - memory.memory - INFO - Vector model disabled - using text-based search instead
+2025-07-14 15:05:41,308 - werkzeug - WARNING -  * Debugger is active!
+2025-07-14 15:05:41,318 - werkzeug - INFO -  * Debugger PIN: 748-597-312
+2025-07-14 15:07:17,119 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/llm_plan_creator.py', reloading
+2025-07-14 15:07:19,769 - werkzeug - INFO -  * Restarting with watchdog (fsevents)
+2025-07-14 15:07:22,715 - memory.memory - INFO - Vector model disabled - using text-based search instead
+2025-07-14 15:07:22,737 - werkzeug - WARNING -  * Debugger is active!
+2025-07-14 15:07:22,759 - werkzeug - INFO -  * Debugger PIN: 748-597-312
+2025-07-14 15:08:25,827 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/llm_plan_creator.py', reloading
+2025-07-14 15:08:25,860 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/llm_plan_creator.py', reloading
+2025-07-14 15:08:27,610 - werkzeug - INFO -  * Restarting with watchdog (fsevents)
+2025-07-14 15:08:29,938 - memory.memory - INFO - Vector model disabled - using text-based search instead
+2025-07-14 15:08:29,969 - werkzeug - WARNING -  * Debugger is active!
+2025-07-14 15:08:29,985 - werkzeug - INFO -  * Debugger PIN: 748-597-312
+2025-07-14 15:14:36,348 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/test_comprehensive_chain.py', reloading
+2025-07-14 15:14:36,353 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/test_comprehensive_chain.py', reloading
+2025-07-14 15:14:37,829 - werkzeug - INFO -  * Restarting with watchdog (fsevents)
+2025-07-14 15:14:39,552 - memory.memory - INFO - Vector model disabled - using text-based search instead
+2025-07-14 15:14:39,595 - werkzeug - WARNING -  * Debugger is active!
+2025-07-14 15:14:39,612 - werkzeug - INFO -  * Debugger PIN: 748-597-312
+2025-07-14 15:14:39,699 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/test_comprehensive_chain.py', reloading
+2025-07-14 15:14:40,826 - werkzeug - INFO -  * Restarting with watchdog (fsevents)
+2025-07-14 15:14:41,393 - memory.memory - INFO - Vector model disabled - using text-based search instead
+2025-07-14 15:14:41,408 - werkzeug - WARNING -  * Debugger is active!
+2025-07-14 15:14:41,415 - werkzeug - INFO -  * Debugger PIN: 748-597-312
+2025-07-14 15:14:52,573 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/test_comprehensive_chain.py', reloading
+2025-07-14 15:14:53,717 - werkzeug - INFO -  * Restarting with watchdog (fsevents)
+2025-07-14 15:14:54,403 - memory.memory - INFO - Vector model disabled - using text-based search instead
+2025-07-14 15:14:54,418 - werkzeug - WARNING -  * Debugger is active!
+2025-07-14 15:14:54,432 - werkzeug - INFO -  * Debugger PIN: 748-597-312
+2025-07-14 15:14:58,096 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/test_comprehensive_chain.py', reloading
+2025-07-14 15:14:59,401 - werkzeug - INFO -  * Restarting with watchdog (fsevents)
+2025-07-14 15:15:00,126 - memory.memory - INFO - Vector model disabled - using text-based search instead
+2025-07-14 15:15:00,140 - werkzeug - WARNING -  * Debugger is active!
+2025-07-14 15:15:00,153 - werkzeug - INFO -  * Debugger PIN: 748-597-312
+2025-07-14 15:15:05,387 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/test_comprehensive_chain.py', reloading
+2025-07-14 15:15:06,509 - werkzeug - INFO -  * Restarting with watchdog (fsevents)
+2025-07-14 15:15:07,167 - memory.memory - INFO - Vector model disabled - using text-based search instead
+2025-07-14 15:15:07,182 - werkzeug - WARNING -  * Debugger is active!
+2025-07-14 15:15:07,187 - werkzeug - INFO -  * Debugger PIN: 748-597-312
+2025-07-14 15:16:43,279 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/test_comprehensive_chain.py', reloading
+2025-07-14 15:16:44,449 - werkzeug - INFO -  * Restarting with watchdog (fsevents)
+2025-07-14 15:16:45,495 - memory.memory - INFO - Vector model disabled - using text-based search instead
+2025-07-14 15:16:45,518 - werkzeug - WARNING -  * Debugger is active!
+2025-07-14 15:16:45,530 - werkzeug - INFO -  * Debugger PIN: 748-597-312
+2025-07-14 15:20:06,669 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/test_comprehensive_chain.py', reloading
+2025-07-14 15:20:08,096 - werkzeug - INFO -  * Restarting with watchdog (fsevents)
+2025-07-14 15:20:09,203 - memory.memory - INFO - Vector model disabled - using text-based search instead
+2025-07-14 15:20:09,220 - werkzeug - WARNING -  * Debugger is active!
+2025-07-14 15:20:09,230 - werkzeug - INFO -  * Debugger PIN: 748-597-312
+2025-07-14 15:25:16,488 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/backend/enhanced_backend_server.py', reloading
+2025-07-14 15:25:18,226 - werkzeug - INFO -  * Restarting with watchdog (fsevents)
+2025-07-14 15:25:24,037 - memory.memory - INFO - Vector model disabled - using text-based search instead
+2025-07-14 15:25:24,071 - werkzeug - WARNING -  * Debugger is active!
+2025-07-14 15:25:24,094 - werkzeug - INFO -  * Debugger PIN: 748-597-312
+2025-07-14 15:25:30,873 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/sensors/screen_sensor.py', reloading
+2025-07-14 15:25:32,097 - werkzeug - INFO -  * Restarting with watchdog (fsevents)
+2025-07-14 15:25:33,266 - memory.memory - INFO - Vector model disabled - using text-based search instead
+2025-07-14 15:25:33,292 - werkzeug - WARNING -  * Debugger is active!
+2025-07-14 15:25:33,301 - werkzeug - INFO -  * Debugger PIN: 748-597-312
+2025-07-14 15:25:41,616 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/test_comprehensive_chain.py', reloading
+2025-07-14 15:25:41,629 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/test_comprehensive_chain.py', reloading
+2025-07-14 15:25:42,760 - werkzeug - INFO -  * Restarting with watchdog (fsevents)
+2025-07-14 15:25:43,539 - memory.memory - INFO - Vector model disabled - using text-based search instead
+2025-07-14 15:25:43,554 - werkzeug - WARNING -  * Debugger is active!
+2025-07-14 15:25:43,559 - werkzeug - INFO -  * Debugger PIN: 748-597-312
+2025-07-14 15:30:21,996 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/test_comprehensive_chain.py', reloading
+2025-07-14 15:30:23,694 - werkzeug - INFO -  * Restarting with watchdog (fsevents)
+2025-07-14 15:30:25,416 - memory.memory - INFO - Vector model disabled - using text-based search instead
+2025-07-14 15:30:25,462 - werkzeug - WARNING -  * Debugger is active!
+2025-07-14 15:30:25,483 - werkzeug - INFO -  * Debugger PIN: 748-597-312
+2025-07-14 15:30:38,643 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/test_comprehensive_chain.py', reloading
+2025-07-14 15:30:39,900 - werkzeug - INFO -  * Restarting with watchdog (fsevents)
+2025-07-14 15:30:41,484 - memory.memory - INFO - Vector model disabled - using text-based search instead
+2025-07-14 15:30:41,514 - werkzeug - WARNING -  * Debugger is active!
+2025-07-14 15:30:41,531 - werkzeug - INFO -  * Debugger PIN: 748-597-312
+2025-07-14 15:33:06,042 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/test_comprehensive_chain.py', reloading
+2025-07-14 15:33:07,839 - werkzeug - INFO -  * Restarting with watchdog (fsevents)
+2025-07-14 15:33:09,119 - memory.memory - INFO - Vector model disabled - using text-based search instead
+2025-07-14 15:33:09,144 - werkzeug - WARNING -  * Debugger is active!
+2025-07-14 15:33:09,169 - werkzeug - INFO -  * Debugger PIN: 748-597-312
+2025-07-14 15:33:30,396 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/test_comprehensive_chain.py', reloading
+2025-07-14 15:33:33,136 - werkzeug - INFO -  * Restarting with watchdog (fsevents)
+2025-07-14 15:33:35,604 - memory.memory - INFO - Vector model disabled - using text-based search instead
+2025-07-14 15:33:35,672 - werkzeug - WARNING -  * Debugger is active!
+2025-07-14 15:33:35,706 - werkzeug - INFO -  * Debugger PIN: 748-597-312
+2025-07-14 15:40:56,954 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/test_comprehensive_chain.py', reloading
+2025-07-14 15:40:58,494 - werkzeug - INFO -  * Restarting with watchdog (fsevents)
+2025-07-14 15:40:59,866 - memory.memory - INFO - Vector model disabled - using text-based search instead
+2025-07-14 15:40:59,883 - werkzeug - WARNING -  * Debugger is active!
+2025-07-14 15:40:59,908 - werkzeug - INFO -  * Debugger PIN: 748-597-312
+2025-07-14 15:48:06,626 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/test_comprehensive_chain.py', reloading
+2025-07-14 15:48:06,886 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/test_comprehensive_chain.py', reloading
+2025-07-14 15:48:09,393 - werkzeug - INFO -  * Restarting with watchdog (fsevents)
+2025-07-14 15:48:14,630 - memory.memory - INFO - Vector model disabled - using text-based search instead
+2025-07-14 15:48:14,987 - werkzeug - WARNING -  * Debugger is active!
+2025-07-14 15:48:15,192 - werkzeug - INFO -  * Debugger PIN: 748-597-312
+2025-07-14 15:53:56,803 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/test_comprehensive_chain.py', reloading
+2025-07-14 15:53:56,861 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/test_comprehensive_chain.py', reloading
+2025-07-14 15:54:03,281 - werkzeug - INFO -  * Restarting with watchdog (fsevents)
+2025-07-14 15:54:16,343 - memory.memory - INFO - Vector model disabled - using text-based search instead
+2025-07-14 15:54:17,128 - werkzeug - WARNING -  * Debugger is active!
+2025-07-14 15:54:17,173 - werkzeug - INFO -  * Debugger PIN: 748-597-312
+2025-07-14 15:54:36,149 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/test_comprehensive_chain.py', reloading
+2025-07-14 15:54:44,797 - werkzeug - INFO -  * Restarting with watchdog (fsevents)
+2025-07-14 15:54:55,338 - memory.memory - INFO - Vector model disabled - using text-based search instead
+2025-07-14 15:54:56,925 - werkzeug - WARNING -  * Debugger is active!
+2025-07-14 15:54:57,523 - werkzeug - INFO -  * Debugger PIN: 748-597-312
+2025-07-14 15:55:45,037 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/test_json_parsing.py', reloading
+2025-07-14 15:55:46,745 - werkzeug - INFO -  * Restarting with watchdog (fsevents)
+2025-07-14 15:55:48,726 - memory.memory - INFO - Vector model disabled - using text-based search instead
+2025-07-14 15:55:48,759 - werkzeug - WARNING -  * Debugger is active!
+2025-07-14 15:55:48,781 - werkzeug - INFO -  * Debugger PIN: 748-597-312
+2025-07-14 15:56:09,146 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/backend/llm/llm_service.py', reloading
+2025-07-14 15:56:10,335 - werkzeug - INFO -  * Restarting with watchdog (fsevents)
+2025-07-14 15:56:11,620 - memory.memory - INFO - Vector model disabled - using text-based search instead
+2025-07-14 15:56:11,643 - werkzeug - WARNING -  * Debugger is active!
+2025-07-14 15:56:11,650 - werkzeug - INFO -  * Debugger PIN: 748-597-312
+2025-07-14 15:56:24,705 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/backend/llm/llm_service.py', reloading
+2025-07-14 15:56:24,718 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/backend/llm/llm_service.py', reloading
+2025-07-14 15:56:25,958 - werkzeug - INFO -  * Restarting with watchdog (fsevents)
+2025-07-14 15:56:26,912 - memory.memory - INFO - Vector model disabled - using text-based search instead
+2025-07-14 15:56:26,932 - werkzeug - WARNING -  * Debugger is active!
+2025-07-14 15:56:26,939 - werkzeug - INFO -  * Debugger PIN: 748-597-312
+2025-07-14 15:57:06,152 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/test_comprehensive_chain.py', reloading
+2025-07-14 15:57:06,176 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/test_comprehensive_chain.py', reloading
+2025-07-14 15:57:07,884 - werkzeug - INFO -  * Restarting with watchdog (fsevents)
+2025-07-14 15:57:11,359 - memory.memory - INFO - Vector model disabled - using text-based search instead
+2025-07-14 15:57:11,486 - werkzeug - WARNING -  * Debugger is active!
+2025-07-14 15:57:11,516 - werkzeug - INFO -  * Debugger PIN: 748-597-312
+2025-07-14 15:57:25,000 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/test_comprehensive_chain.py', reloading
+2025-07-14 15:57:25,019 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/test_comprehensive_chain.py', reloading
+2025-07-14 15:57:26,823 - werkzeug - INFO -  * Restarting with watchdog (fsevents)
+2025-07-14 15:57:28,637 - memory.memory - INFO - Vector model disabled - using text-based search instead
+2025-07-14 15:57:28,655 - werkzeug - WARNING -  * Debugger is active!
+2025-07-14 15:57:28,701 - werkzeug - INFO -  * Debugger PIN: 748-597-312
+2025-07-14 16:00:33,317 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/test_simple_chain.py', reloading
+2025-07-14 16:00:33,320 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/test_simple_chain.py', reloading
+2025-07-14 16:00:34,641 - werkzeug - INFO -  * Restarting with watchdog (fsevents)
+2025-07-14 16:00:35,900 - memory.memory - INFO - Vector model disabled - using text-based search instead
+2025-07-14 16:00:35,919 - werkzeug - WARNING -  * Debugger is active!
+2025-07-14 16:00:35,931 - werkzeug - INFO -  * Debugger PIN: 748-597-312
+2025-07-14 16:01:21,649 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/backend/llm/llm_service.py', reloading
+2025-07-14 16:01:22,800 - werkzeug - INFO -  * Restarting with watchdog (fsevents)
+2025-07-14 16:01:23,612 - memory.memory - INFO - Vector model disabled - using text-based search instead
+2025-07-14 16:01:23,627 - werkzeug - WARNING -  * Debugger is active!
+2025-07-14 16:01:23,646 - werkzeug - INFO -  * Debugger PIN: 748-597-312
+2025-07-14 16:01:32,792 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/backend/llm/llm_service.py', reloading
+2025-07-14 16:01:33,945 - werkzeug - INFO -  * Restarting with watchdog (fsevents)
+2025-07-14 16:01:34,704 - memory.memory - INFO - Vector model disabled - using text-based search instead
+2025-07-14 16:01:34,726 - werkzeug - WARNING -  * Debugger is active!
+2025-07-14 16:01:34,732 - werkzeug - INFO -  * Debugger PIN: 748-597-312
+2025-07-14 16:01:45,607 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/backend/llm/llm_service.py', reloading
+2025-07-14 16:01:46,761 - werkzeug - INFO -  * Restarting with watchdog (fsevents)
+2025-07-14 16:01:47,480 - memory.memory - INFO - Vector model disabled - using text-based search instead
+2025-07-14 16:01:47,493 - werkzeug - WARNING -  * Debugger is active!
+2025-07-14 16:01:47,498 - werkzeug - INFO -  * Debugger PIN: 748-597-312
+2025-07-14 16:02:13,960 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/test_comprehensive_chain.py', reloading
+2025-07-14 16:02:14,134 - werkzeug - INFO -  * Restarting with watchdog (fsevents)
+2025-07-14 16:02:15,184 - memory.memory - INFO - Vector model disabled - using text-based search instead
+2025-07-14 16:02:15,201 - werkzeug - WARNING -  * Debugger is active!
+2025-07-14 16:02:15,213 - werkzeug - INFO -  * Debugger PIN: 748-597-312
+2025-07-14 16:02:37,784 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/test_comprehensive_chain.py', reloading
+2025-07-14 16:02:38,929 - werkzeug - INFO -  * Restarting with watchdog (fsevents)
+2025-07-14 16:02:39,600 - memory.memory - INFO - Vector model disabled - using text-based search instead
+2025-07-14 16:02:39,617 - werkzeug - WARNING -  * Debugger is active!
+2025-07-14 16:02:39,623 - werkzeug - INFO -  * Debugger PIN: 748-597-312
+2025-07-14 16:02:58,798 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/test_comprehensive_chain.py', reloading
+2025-07-14 16:02:59,948 - werkzeug - INFO -  * Restarting with watchdog (fsevents)
+2025-07-14 16:03:00,686 - memory.memory - INFO - Vector model disabled - using text-based search instead
+2025-07-14 16:03:00,698 - werkzeug - WARNING -  * Debugger is active!
+2025-07-14 16:03:00,706 - werkzeug - INFO -  * Debugger PIN: 748-597-312
+2025-07-14 16:03:58,825 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/test_simple_chain.py', reloading
+2025-07-14 16:04:00,088 - werkzeug - INFO -  * Restarting with watchdog (fsevents)
+2025-07-14 16:04:01,231 - memory.memory - INFO - Vector model disabled - using text-based search instead
+2025-07-14 16:04:01,250 - werkzeug - WARNING -  * Debugger is active!
+2025-07-14 16:04:01,263 - werkzeug - INFO -  * Debugger PIN: 748-597-312
+2025-07-14 16:04:06,637 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/test_simple_chain.py', reloading
+2025-07-14 16:04:07,776 - werkzeug - INFO -  * Restarting with watchdog (fsevents)
+2025-07-14 16:04:08,529 - memory.memory - INFO - Vector model disabled - using text-based search instead
+2025-07-14 16:04:08,543 - werkzeug - WARNING -  * Debugger is active!
+2025-07-14 16:04:08,549 - werkzeug - INFO -  * Debugger PIN: 748-597-312
+2025-07-14 16:05:09,642 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/backend/llm/llm_service.py', reloading
+2025-07-14 16:05:10,890 - werkzeug - INFO -  * Restarting with watchdog (fsevents)
+2025-07-14 16:05:11,909 - memory.memory - INFO - Vector model disabled - using text-based search instead
+2025-07-14 16:05:11,926 - werkzeug - WARNING -  * Debugger is active!
+2025-07-14 16:05:11,932 - werkzeug - INFO -  * Debugger PIN: 748-597-312
+2025-07-14 16:05:32,680 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/llm/llm_service.py', reloading
+2025-07-14 16:05:34,018 - werkzeug - INFO -  * Restarting with watchdog (fsevents)
+2025-07-14 16:05:35,109 - memory.memory - INFO - Vector model disabled - using text-based search instead
+2025-07-14 16:05:35,129 - werkzeug - WARNING -  * Debugger is active!
+2025-07-14 16:05:35,139 - werkzeug - INFO -  * Debugger PIN: 748-597-312
+2025-07-14 16:05:42,014 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/llm/llm_service.py', reloading
+2025-07-14 16:05:43,251 - werkzeug - INFO -  * Restarting with watchdog (fsevents)
+2025-07-14 16:05:44,175 - memory.memory - INFO - Vector model disabled - using text-based search instead
+2025-07-14 16:05:44,200 - werkzeug - WARNING -  * Debugger is active!
+2025-07-14 16:05:44,216 - werkzeug - INFO -  * Debugger PIN: 748-597-312
+2025-07-14 16:06:26,294 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/test_simple_chain.py', reloading
+2025-07-14 16:06:26,302 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/test_simple_chain.py', reloading
+2025-07-14 16:06:27,573 - werkzeug - INFO -  * Restarting with watchdog (fsevents)
+2025-07-14 16:06:28,746 - memory.memory - INFO - Vector model disabled - using text-based search instead
+2025-07-14 16:06:28,764 - werkzeug - WARNING -  * Debugger is active!
+2025-07-14 16:06:28,771 - werkzeug - INFO -  * Debugger PIN: 748-597-312
+2025-07-14 16:11:39,497 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/deep_analysis.py', reloading
+2025-07-14 16:11:39,505 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/deep_analysis.py', reloading
+2025-07-14 16:11:40,977 - werkzeug - INFO -  * Restarting with watchdog (fsevents)
+2025-07-14 16:11:42,855 - memory.memory - INFO - Vector model disabled - using text-based search instead
+2025-07-14 16:11:42,885 - werkzeug - WARNING -  * Debugger is active!
+2025-07-14 16:11:42,900 - werkzeug - INFO -  * Debugger PIN: 748-597-312
+2025-07-14 16:13:02,368 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/backend/llm/llm_service.py', reloading
+2025-07-14 16:13:02,533 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/backend/llm/llm_service.py', reloading
+2025-07-14 16:13:03,793 - werkzeug - INFO -  * Restarting with watchdog (fsevents)
+2025-07-14 16:13:05,338 - memory.memory - INFO - Vector model disabled - using text-based search instead
+2025-07-14 16:13:05,366 - werkzeug - WARNING -  * Debugger is active!
+2025-07-14 16:13:05,440 - werkzeug - INFO -  * Debugger PIN: 748-597-312
+2025-07-14 16:13:15,630 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/test_simple_chain.py', reloading
+2025-07-14 16:13:16,858 - werkzeug - INFO -  * Restarting with watchdog (fsevents)
+2025-07-14 16:13:18,353 - memory.memory - INFO - Vector model disabled - using text-based search instead
+2025-07-14 16:13:18,376 - werkzeug - WARNING -  * Debugger is active!
+2025-07-14 16:13:18,404 - werkzeug - INFO -  * Debugger PIN: 748-597-312
+2025-07-14 16:14:27,851 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/test_simple_chain.py', reloading
+2025-07-14 16:14:29,140 - werkzeug - INFO -  * Restarting with watchdog (fsevents)
+2025-07-14 16:14:30,194 - memory.memory - INFO - Vector model disabled - using text-based search instead
+2025-07-14 16:14:30,211 - werkzeug - WARNING -  * Debugger is active!
+2025-07-14 16:14:30,221 - werkzeug - INFO -  * Debugger PIN: 748-597-312
+2025-07-14 16:15:04,424 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/test_simple_chain.py', reloading
+2025-07-14 16:15:04,430 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/test_simple_chain.py', reloading
+2025-07-14 16:15:06,002 - werkzeug - INFO -  * Restarting with watchdog (fsevents)
+2025-07-14 16:15:07,991 - memory.memory - INFO - Vector model disabled - using text-based search instead
+2025-07-14 16:15:08,052 - werkzeug - WARNING -  * Debugger is active!
+2025-07-14 16:15:08,086 - werkzeug - INFO -  * Debugger PIN: 748-597-312
+2025-07-14 16:15:51,646 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/test_simple_chain.py', reloading
+2025-07-14 16:15:52,907 - werkzeug - INFO -  * Restarting with watchdog (fsevents)
+2025-07-14 16:15:55,668 - memory.memory - INFO - Vector model disabled - using text-based search instead
+2025-07-14 16:15:55,695 - werkzeug - WARNING -  * Debugger is active!
+2025-07-14 16:15:55,721 - werkzeug - INFO -  * Debugger PIN: 748-597-312
+2025-07-14 16:18:27,412 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/test_simple_chain.py', reloading
+2025-07-14 16:18:29,793 - werkzeug - INFO -  * Restarting with watchdog (fsevents)
+2025-07-14 16:18:34,290 - memory.memory - INFO - Vector model disabled - using text-based search instead
+2025-07-14 16:18:34,311 - werkzeug - WARNING -  * Debugger is active!
+2025-07-14 16:18:34,337 - werkzeug - INFO -  * Debugger PIN: 748-597-312
+2025-07-14 16:22:02,313 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/test_streaming_demo.py', reloading
+2025-07-14 16:22:02,329 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/test_streaming_demo.py', reloading
+2025-07-14 16:22:04,464 - werkzeug - INFO -  * Restarting with watchdog (fsevents)
+2025-07-14 16:22:06,596 - memory.memory - INFO - Vector model disabled - using text-based search instead
+2025-07-14 16:22:06,728 - werkzeug - WARNING -  * Debugger is active!
+2025-07-14 16:22:06,747 - werkzeug - INFO -  * Debugger PIN: 748-597-312
+2025-07-14 16:24:57,601 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/llm_plan_creator.py', reloading
+2025-07-14 16:24:59,527 - werkzeug - INFO -  * Restarting with watchdog (fsevents)
+2025-07-14 16:25:01,339 - memory.memory - INFO - Vector model disabled - using text-based search instead
+2025-07-14 16:25:01,391 - werkzeug - WARNING -  * Debugger is active!
+2025-07-14 16:25:01,417 - werkzeug - INFO -  * Debugger PIN: 748-597-312
+2025-07-14 16:25:42,579 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/llm_plan_creator.py', reloading
+2025-07-14 16:25:43,763 - werkzeug - INFO -  * Restarting with watchdog (fsevents)
+2025-07-14 16:25:44,587 - memory.memory - INFO - Vector model disabled - using text-based search instead
+2025-07-14 16:25:44,602 - werkzeug - WARNING -  * Debugger is active!
+2025-07-14 16:25:44,616 - werkzeug - INFO -  * Debugger PIN: 748-597-312
+2025-07-14 16:26:48,945 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/llm_plan_creator.py', reloading
+2025-07-14 16:26:51,653 - werkzeug - INFO -  * Restarting with watchdog (fsevents)
+2025-07-14 16:26:54,758 - memory.memory - INFO - Vector model disabled - using text-based search instead
+2025-07-14 16:26:54,799 - werkzeug - WARNING -  * Debugger is active!
+2025-07-14 16:26:54,845 - werkzeug - INFO -  * Debugger PIN: 748-597-312
+2025-07-14 16:27:20,208 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/enhanced_enterprise_backend_with_context.py', reloading
+2025-07-14 16:27:20,212 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/enhanced_enterprise_backend_with_context.py', reloading
+2025-07-14 16:27:22,707 - werkzeug - INFO -  * Restarting with watchdog (fsevents)
+2025-07-14 16:27:24,958 - memory.memory - INFO - Vector model disabled - using text-based search instead
+2025-07-14 16:27:24,980 - werkzeug - WARNING -  * Debugger is active!
+2025-07-14 16:27:24,995 - werkzeug - INFO -  * Debugger PIN: 748-597-312
+2025-07-14 16:27:37,852 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/enhanced_enterprise_backend_with_context.py', reloading
+2025-07-14 16:27:39,030 - werkzeug - INFO -  * Restarting with watchdog (fsevents)
+2025-07-14 16:27:40,650 - memory.memory - INFO - Vector model disabled - using text-based search instead
+2025-07-14 16:27:40,763 - werkzeug - WARNING -  * Debugger is active!
+2025-07-14 16:27:40,790 - werkzeug - INFO -  * Debugger PIN: 748-597-312
+2025-07-14 16:27:50,020 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/enhanced_enterprise_backend_with_context.py', reloading
+2025-07-14 16:27:51,379 - werkzeug - INFO -  * Restarting with watchdog (fsevents)
+2025-07-14 16:27:52,358 - memory.memory - INFO - Vector model disabled - using text-based search instead
+2025-07-14 16:27:52,372 - werkzeug - WARNING -  * Debugger is active!
+2025-07-14 16:27:52,379 - werkzeug - INFO -  * Debugger PIN: 748-597-312
+2025-07-14 16:29:16,620 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/enhanced_enterprise_backend_with_context.py', reloading
+2025-07-14 16:29:18,001 - werkzeug - INFO -  * Restarting with watchdog (fsevents)
+2025-07-14 16:29:19,342 - memory.memory - INFO - Vector model disabled - using text-based search instead
+2025-07-14 16:29:19,362 - werkzeug - WARNING -  * Debugger is active!
+2025-07-14 16:29:19,375 - werkzeug - INFO -  * Debugger PIN: 748-597-312
+2025-07-14 16:29:26,622 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/enhanced_enterprise_backend_with_context.py', reloading
+2025-07-14 16:29:28,130 - werkzeug - INFO -  * Restarting with watchdog (fsevents)
+2025-07-14 16:29:29,064 - memory.memory - INFO - Vector model disabled - using text-based search instead
+2025-07-14 16:29:29,087 - werkzeug - WARNING -  * Debugger is active!
+2025-07-14 16:29:29,096 - werkzeug - INFO -  * Debugger PIN: 748-597-312
+2025-07-14 16:29:36,723 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/enhanced_enterprise_backend_with_context.py', reloading
+2025-07-14 16:29:38,155 - werkzeug - INFO -  * Restarting with watchdog (fsevents)
+2025-07-14 16:29:39,858 - memory.memory - INFO - Vector model disabled - using text-based search instead
+2025-07-14 16:29:39,888 - werkzeug - WARNING -  * Debugger is active!
+2025-07-14 16:29:39,913 - werkzeug - INFO -  * Debugger PIN: 748-597-312
+2025-07-14 16:30:46,205 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/enhanced_enterprise_backend_with_context.py', reloading
+2025-07-14 16:30:46,211 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/enhanced_enterprise_backend_with_context.py', reloading
+2025-07-14 16:30:47,688 - werkzeug - INFO -  * Restarting with watchdog (fsevents)
+2025-07-14 16:30:48,989 - memory.memory - INFO - Vector model disabled - using text-based search instead
+2025-07-14 16:30:49,006 - werkzeug - WARNING -  * Debugger is active!
+2025-07-14 16:30:49,018 - werkzeug - INFO -  * Debugger PIN: 748-597-312
+2025-07-14 16:31:17,605 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/enhanced_enterprise_backend_with_context.py', reloading
+2025-07-14 16:31:18,790 - werkzeug - INFO -  * Restarting with watchdog (fsevents)
+2025-07-14 16:31:19,540 - memory.memory - INFO - Vector model disabled - using text-based search instead
+2025-07-14 16:31:19,555 - werkzeug - WARNING -  * Debugger is active!
+2025-07-14 16:31:19,561 - werkzeug - INFO -  * Debugger PIN: 748-597-312
+2025-07-14 16:34:02,815 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/enhanced_enterprise_backend_with_context.py', reloading
+2025-07-14 16:34:02,839 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/enhanced_enterprise_backend_with_context.py', reloading
+2025-07-14 16:34:07,117 - werkzeug - INFO -  * Restarting with watchdog (fsevents)
+2025-07-14 16:34:13,400 - memory.memory - INFO - Vector model disabled - using text-based search instead
+2025-07-14 16:34:13,496 - werkzeug - WARNING -  * Debugger is active!
+2025-07-14 16:34:13,529 - werkzeug - INFO -  * Debugger PIN: 748-597-312
+2025-07-14 16:34:34,279 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/enhanced_enterprise_backend_with_context.py', reloading
+2025-07-14 16:34:34,554 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/enhanced_enterprise_backend_with_context.py', reloading
+2025-07-14 16:34:35,757 - werkzeug - INFO -  * Restarting with watchdog (fsevents)
+2025-07-14 16:34:38,634 - memory.memory - INFO - Vector model disabled - using text-based search instead
+2025-07-14 16:34:38,650 - werkzeug - WARNING -  * Debugger is active!
+2025-07-14 16:34:38,659 - werkzeug - INFO -  * Debugger PIN: 748-597-312
+2025-07-14 16:35:02,332 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/enhanced_enterprise_backend_with_context.py', reloading
+2025-07-14 16:35:06,003 - werkzeug - INFO -  * Restarting with watchdog (fsevents)
+2025-07-14 16:35:12,386 - memory.memory - INFO - Vector model disabled - using text-based search instead
+2025-07-14 16:35:12,441 - werkzeug - WARNING -  * Debugger is active!
+2025-07-14 16:35:12,477 - werkzeug - INFO -  * Debugger PIN: 748-597-312
+2025-07-14 16:36:14,730 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/enhanced_enterprise_backend_with_context.py', reloading
+2025-07-14 16:36:17,566 - werkzeug - INFO -  * Restarting with watchdog (fsevents)
+2025-07-14 16:36:23,556 - memory.memory - INFO - Vector model disabled - using text-based search instead
+2025-07-14 16:36:24,002 - werkzeug - WARNING -  * Debugger is active!
+2025-07-14 16:36:24,157 - werkzeug - INFO -  * Debugger PIN: 748-597-312
+2025-07-14 16:40:40,295 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/enhanced_enterprise_backend_with_context.py', reloading
+2025-07-14 16:40:45,209 - werkzeug - INFO -  * Restarting with watchdog (fsevents)
+2025-07-14 16:40:47,583 - memory.memory - INFO - Vector model disabled - using text-based search instead
+2025-07-14 16:40:47,742 - werkzeug - WARNING -  * Debugger is active!
+2025-07-14 16:40:47,797 - werkzeug - INFO -  * Debugger PIN: 748-597-312
+2025-07-14 16:41:32,573 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/llm_plan_creator.py', reloading
+2025-07-14 16:41:33,798 - werkzeug - INFO -  * Restarting with watchdog (fsevents)
+2025-07-14 16:41:34,786 - memory.memory - INFO - Vector model disabled - using text-based search instead
+2025-07-14 16:41:34,803 - werkzeug - WARNING -  * Debugger is active!
+2025-07-14 16:41:34,810 - werkzeug - INFO -  * Debugger PIN: 748-597-312
+2025-07-14 16:42:00,047 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/enhanced_enterprise_backend_with_context.py', reloading
+2025-07-14 16:42:01,375 - werkzeug - INFO -  * Restarting with watchdog (fsevents)
+2025-07-14 16:42:04,993 - memory.memory - INFO - Vector model disabled - using text-based search instead
+2025-07-14 16:42:05,240 - werkzeug - WARNING -  * Debugger is active!
+2025-07-14 16:42:05,251 - werkzeug - INFO -  * Debugger PIN: 748-597-312
+2025-07-14 16:42:55,085 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/enhanced_enterprise_backend_with_context.py', reloading
+2025-07-14 16:42:57,065 - werkzeug - INFO -  * Restarting with watchdog (fsevents)
+2025-07-14 16:42:58,539 - memory.memory - INFO - Vector model disabled - using text-based search instead
+2025-07-14 16:42:58,556 - werkzeug - WARNING -  * Debugger is active!
+2025-07-14 16:42:58,564 - werkzeug - INFO -  * Debugger PIN: 748-597-312
+2025-07-14 16:43:30,718 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/enhanced_enterprise_backend_with_context.py', reloading
+2025-07-14 16:43:30,725 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/enhanced_enterprise_backend_with_context.py', reloading
+2025-07-14 16:43:32,289 - werkzeug - INFO -  * Restarting with watchdog (fsevents)
+2025-07-14 16:43:34,394 - memory.memory - INFO - Vector model disabled - using text-based search instead
+2025-07-14 16:43:34,414 - werkzeug - WARNING -  * Debugger is active!
+2025-07-14 16:43:34,431 - werkzeug - INFO -  * Debugger PIN: 748-597-312
+2025-07-14 16:43:58,499 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/enhanced_enterprise_backend_with_context.py', reloading
+2025-07-14 16:43:58,503 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/enhanced_enterprise_backend_with_context.py', reloading
+2025-07-14 16:43:59,798 - werkzeug - INFO -  * Restarting with watchdog (fsevents)
+2025-07-14 16:44:00,863 - memory.memory - INFO - Vector model disabled - using text-based search instead
+2025-07-14 16:44:00,900 - werkzeug - WARNING -  * Debugger is active!
+2025-07-14 16:44:00,905 - werkzeug - INFO -  * Debugger PIN: 748-597-312
+2025-07-14 16:44:12,055 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/enhanced_enterprise_backend_with_context.py', reloading
+2025-07-14 16:44:13,404 - werkzeug - INFO -  * Restarting with watchdog (fsevents)
+2025-07-14 16:44:15,865 - memory.memory - INFO - Vector model disabled - using text-based search instead
+2025-07-14 16:44:15,911 - werkzeug - WARNING -  * Debugger is active!
+2025-07-14 16:44:15,939 - werkzeug - INFO -  * Debugger PIN: 748-597-312
+2025-07-14 16:47:15,272 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/enhanced_enterprise_backend_with_context.py', reloading
+2025-07-14 16:47:16,948 - werkzeug - INFO -  * Restarting with watchdog (fsevents)
+2025-07-14 16:47:18,464 - memory.memory - INFO - Vector model disabled - using text-based search instead
+2025-07-14 16:47:18,493 - werkzeug - WARNING -  * Debugger is active!
+2025-07-14 16:47:18,504 - werkzeug - INFO -  * Debugger PIN: 748-597-312
+2025-07-14 17:19:21,229 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/enhanced_enterprise_backend_with_context.py', reloading
+2025-07-14 17:19:21,255 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/enhanced_enterprise_backend_with_context.py', reloading
+2025-07-14 17:19:23,469 - werkzeug - INFO -  * Restarting with watchdog (fsevents)
+2025-07-14 17:19:25,943 - memory.memory - INFO - Vector model disabled - using text-based search instead
+2025-07-14 17:19:25,969 - werkzeug - WARNING -  * Debugger is active!
+2025-07-14 17:19:25,981 - werkzeug - INFO -  * Debugger PIN: 748-597-312
+2025-07-14 17:21:40,466 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/enhanced_enterprise_backend_with_context.py', reloading
+2025-07-14 17:21:40,728 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/enhanced_enterprise_backend_with_context.py', reloading
+2025-07-14 17:21:44,149 - werkzeug - INFO -  * Restarting with watchdog (fsevents)
+2025-07-14 17:21:48,572 - memory.memory - INFO - Vector model disabled - using text-based search instead
+2025-07-14 17:21:48,630 - werkzeug - WARNING -  * Debugger is active!
+2025-07-14 17:21:48,644 - werkzeug - INFO -  * Debugger PIN: 748-597-312
+2025-07-14 17:23:25,778 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/enhanced_enterprise_backend_with_context.py', reloading
+2025-07-14 17:23:27,242 - werkzeug - INFO -  * Restarting with watchdog (fsevents)
+2025-07-14 17:23:28,507 - memory.memory - INFO - Vector model disabled - using text-based search instead
+2025-07-14 17:23:28,528 - werkzeug - WARNING -  * Debugger is active!
+2025-07-14 17:23:28,542 - werkzeug - INFO -  * Debugger PIN: 748-597-312
+2025-07-14 17:26:05,743 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/pyautogui_minimal_test.py', reloading
+2025-07-14 17:26:05,988 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/pyautogui_minimal_test.py', reloading
+2025-07-14 17:26:09,293 - werkzeug - INFO -  * Restarting with watchdog (fsevents)
+2025-07-14 17:26:13,360 - memory.memory - INFO - Vector model disabled - using text-based search instead
+2025-07-14 17:26:13,812 - werkzeug - WARNING -  * Debugger is active!
+2025-07-14 17:26:13,865 - werkzeug - INFO -  * Debugger PIN: 748-597-312
+2025-07-14 17:28:07,517 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/debug_backend.py', reloading
+2025-07-14 17:28:10,760 - werkzeug - INFO -  * Restarting with watchdog (fsevents)
+2025-07-14 17:28:14,434 - memory.memory - INFO - Vector model disabled - using text-based search instead
+2025-07-14 17:28:15,405 - werkzeug - WARNING -  * Debugger is active!
+2025-07-14 17:28:15,676 - werkzeug - INFO -  * Debugger PIN: 748-597-312
+2025-07-14 17:37:17,113 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/enhanced_enterprise_backend_with_context.py', reloading
+2025-07-14 17:37:17,122 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/enhanced_enterprise_backend_with_context.py', reloading
+2025-07-14 17:37:18,642 - werkzeug - INFO -  * Restarting with watchdog (fsevents)
+2025-07-14 17:37:19,662 - memory.memory - INFO - Vector model disabled - using text-based search instead
+2025-07-14 17:37:19,681 - werkzeug - WARNING -  * Debugger is active!
+2025-07-14 17:37:19,692 - werkzeug - INFO -  * Debugger PIN: 748-597-312
+2025-07-14 17:37:32,048 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/enhanced_enterprise_backend_with_context.py', reloading
+2025-07-14 17:37:33,170 - werkzeug - INFO -  * Restarting with watchdog (fsevents)
+2025-07-14 17:37:33,986 - memory.memory - INFO - Vector model disabled - using text-based search instead
+2025-07-14 17:37:34,004 - werkzeug - WARNING -  * Debugger is active!
+2025-07-14 17:37:34,010 - werkzeug - INFO -  * Debugger PIN: 748-597-312
+2025-07-14 17:39:36,355 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/enhanced_enterprise_backend_with_context.py', reloading
+2025-07-14 17:39:42,018 - werkzeug - INFO -  * Restarting with watchdog (fsevents)
+2025-07-14 17:39:46,524 - memory.memory - INFO - Vector model disabled - using text-based search instead
+2025-07-14 17:39:46,585 - werkzeug - WARNING -  * Debugger is active!
+2025-07-14 17:39:46,617 - werkzeug - INFO -  * Debugger PIN: 748-597-312
+2025-07-14 17:41:40,609 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/enhanced_enterprise_backend_with_context.py', reloading
+2025-07-14 17:41:41,978 - werkzeug - INFO -  * Restarting with watchdog (fsevents)
+2025-07-14 17:41:44,566 - memory.memory - INFO - Vector model disabled - using text-based search instead
+2025-07-14 17:41:44,602 - werkzeug - WARNING -  * Debugger is active!
+2025-07-14 17:41:44,621 - werkzeug - INFO -  * Debugger PIN: 748-597-312
+2025-07-14 17:43:42,358 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/enhanced_enterprise_backend_with_context.py', reloading
+2025-07-14 17:43:42,451 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/enhanced_enterprise_backend_with_context.py', reloading
+2025-07-14 17:43:44,221 - werkzeug - INFO -  * Restarting with watchdog (fsevents)
+2025-07-14 17:43:46,630 - memory.memory - INFO - Vector model disabled - using text-based search instead
+2025-07-14 17:43:46,669 - werkzeug - WARNING -  * Debugger is active!
+2025-07-14 17:43:46,702 - werkzeug - INFO -  * Debugger PIN: 748-597-312
+2025-07-14 17:48:22,312 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/enhanced_enterprise_backend_with_context.py', reloading
+2025-07-14 17:48:24,151 - werkzeug - INFO -  * Restarting with watchdog (fsevents)
+2025-07-14 17:48:25,274 - memory.memory - INFO - Vector model disabled - using text-based search instead
+2025-07-14 17:48:25,323 - werkzeug - WARNING -  * Debugger is active!
+2025-07-14 17:48:25,331 - werkzeug - INFO -  * Debugger PIN: 748-597-312
+2025-07-14 17:48:44,833 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/fix_indentation.py', reloading
+2025-07-14 17:48:46,057 - werkzeug - INFO -  * Restarting with watchdog (fsevents)
+2025-07-14 17:48:50,223 - memory.memory - INFO - Vector model disabled - using text-based search instead
+2025-07-14 17:48:50,252 - werkzeug - WARNING -  * Debugger is active!
+2025-07-14 17:48:50,277 - werkzeug - INFO -  * Debugger PIN: 748-597-312
+2025-07-14 17:52:10,999 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/enhanced_enterprise_backend_with_context.py', reloading
+2025-07-14 17:52:13,096 - werkzeug - INFO -  * Restarting with watchdog (fsevents)
+2025-07-14 17:52:17,803 - memory.memory - INFO - Vector model disabled - using text-based search instead
+2025-07-14 17:52:17,845 - werkzeug - WARNING -  * Debugger is active!
+2025-07-14 17:52:17,885 - werkzeug - INFO -  * Debugger PIN: 748-597-312
+2025-07-14 17:52:54,274 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/fix_all_indentation.py', reloading
+2025-07-14 17:52:54,276 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/fix_all_indentation.py', reloading
+2025-07-14 17:52:55,528 - werkzeug - INFO -  * Restarting with watchdog (fsevents)
+2025-07-14 17:52:56,644 - memory.memory - INFO - Vector model disabled - using text-based search instead
+2025-07-14 17:52:56,664 - werkzeug - WARNING -  * Debugger is active!
+2025-07-14 17:52:56,682 - werkzeug - INFO -  * Debugger PIN: 748-597-312
+2025-07-14 17:54:27,451 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/fix_all_indentation.py', reloading
+2025-07-14 17:54:27,463 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/fix_all_indentation.py', reloading
+2025-07-14 17:54:31,325 - werkzeug - INFO -  * Restarting with watchdog (fsevents)
+2025-07-14 17:54:34,357 - memory.memory - INFO - Vector model disabled - using text-based search instead
+2025-07-14 17:54:34,407 - werkzeug - WARNING -  * Debugger is active!
+2025-07-14 17:54:34,443 - werkzeug - INFO -  * Debugger PIN: 748-597-312
+2025-07-14 17:54:35,131 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/enhanced_enterprise_backend_with_context.py', reloading
+2025-07-14 17:54:36,600 - werkzeug - INFO -  * Restarting with watchdog (fsevents)
+2025-07-14 17:54:45,337 - memory.memory - INFO - Vector model disabled - using text-based search instead
+2025-07-14 17:54:45,418 - werkzeug - WARNING -  * Debugger is active!
+2025-07-14 17:54:45,480 - werkzeug - INFO -  * Debugger PIN: 748-597-312
+2025-07-14 17:56:41,873 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/enhanced_enterprise_backend_with_context.py', reloading
+2025-07-14 17:56:44,474 - werkzeug - INFO -  * Restarting with watchdog (fsevents)
+2025-07-14 17:56:51,092 - memory.memory - INFO - Vector model disabled - using text-based search instead
+2025-07-14 17:56:51,189 - werkzeug - WARNING -  * Debugger is active!
+2025-07-14 17:56:51,219 - werkzeug - INFO -  * Debugger PIN: 748-597-312
+2025-07-14 17:57:33,594 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/enhanced_enterprise_backend_with_context.py', reloading
+2025-07-14 17:57:38,491 - werkzeug - INFO -  * Restarting with watchdog (fsevents)
+2025-07-14 17:57:43,070 - memory.memory - INFO - Vector model disabled - using text-based search instead
+2025-07-14 17:57:43,181 - werkzeug - WARNING -  * Debugger is active!
+2025-07-14 17:57:43,212 - werkzeug - INFO -  * Debugger PIN: 748-597-312
+2025-07-14 17:59:01,466 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/enhanced_enterprise_backend_with_context.py', reloading
+2025-07-14 17:59:04,091 - werkzeug - INFO -  * Restarting with watchdog (fsevents)
+2025-07-14 17:59:07,339 - memory.memory - INFO - Vector model disabled - using text-based search instead
+2025-07-14 17:59:07,368 - werkzeug - WARNING -  * Debugger is active!
+2025-07-14 17:59:07,394 - werkzeug - INFO -  * Debugger PIN: 748-597-312
+2025-07-14 17:59:25,919 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/enhanced_enterprise_backend_with_context.py', reloading
+2025-07-14 17:59:28,372 - werkzeug - INFO -  * Restarting with watchdog (fsevents)
+2025-07-14 17:59:31,812 - memory.memory - INFO - Vector model disabled - using text-based search instead
+2025-07-14 17:59:31,862 - werkzeug - WARNING -  * Debugger is active!
+2025-07-14 17:59:31,901 - werkzeug - INFO -  * Debugger PIN: 748-597-312
+2025-07-14 17:59:58,288 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/enhanced_enterprise_backend_with_context.py', reloading
+2025-07-14 17:59:58,296 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/enhanced_enterprise_backend_with_context.py', reloading
+2025-07-14 18:00:04,524 - werkzeug - INFO -  * Restarting with watchdog (fsevents)
+2025-07-14 18:00:23,613 - memory.memory - INFO - Vector model disabled - using text-based search instead
+2025-07-14 18:00:23,692 - werkzeug - WARNING -  * Debugger is active!
+2025-07-14 18:00:23,757 - werkzeug - INFO -  * Debugger PIN: 748-597-312
+2025-07-14 18:00:48,329 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/enhanced_enterprise_backend_with_context.py', reloading
+2025-07-14 18:00:48,741 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/enhanced_enterprise_backend_with_context.py', reloading
+2025-07-14 18:00:51,498 - werkzeug - INFO -  * Restarting with watchdog (fsevents)
+2025-07-14 18:00:55,972 - memory.memory - INFO - Vector model disabled - using text-based search instead
+2025-07-14 18:00:55,999 - werkzeug - WARNING -  * Debugger is active!
+2025-07-14 18:00:56,010 - werkzeug - INFO -  * Debugger PIN: 748-597-312
+2025-07-14 18:01:54,812 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/enhanced_enterprise_backend_with_context.py', reloading
+2025-07-14 18:01:56,111 - werkzeug - INFO -  * Restarting with watchdog (fsevents)
+2025-07-14 18:01:58,751 - memory.memory - INFO - Vector model disabled - using text-based search instead
+2025-07-14 18:01:58,772 - werkzeug - WARNING -  * Debugger is active!
+2025-07-14 18:01:58,784 - werkzeug - INFO -  * Debugger PIN: 748-597-312
+2025-07-14 18:03:24,205 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/enhanced_enterprise_backend_with_context.py', reloading
+2025-07-14 18:03:24,226 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/enhanced_enterprise_backend_with_context.py', reloading
+2025-07-14 18:03:26,727 - werkzeug - INFO -  * Restarting with watchdog (fsevents)
+2025-07-14 18:03:28,040 - memory.memory - INFO - Vector model disabled - using text-based search instead
+2025-07-14 18:03:28,059 - werkzeug - WARNING -  * Debugger is active!
+2025-07-14 18:03:28,077 - werkzeug - INFO -  * Debugger PIN: 748-597-312
+2025-07-14 18:03:46,681 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/enhanced_enterprise_backend_with_context.py', reloading
+2025-07-14 18:03:48,098 - werkzeug - INFO -  * Restarting with watchdog (fsevents)
+2025-07-14 18:03:49,770 - memory.memory - INFO - Vector model disabled - using text-based search instead
+2025-07-14 18:03:49,795 - werkzeug - WARNING -  * Debugger is active!
+2025-07-14 18:03:49,857 - werkzeug - INFO -  * Debugger PIN: 748-597-312
+2025-07-14 18:04:50,428 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/enhanced_enterprise_backend_with_context.py', reloading
+2025-07-14 18:04:53,562 - werkzeug - INFO -  * Restarting with watchdog (fsevents)
+2025-07-14 18:04:57,483 - memory.memory - INFO - Vector model disabled - using text-based search instead
+2025-07-14 18:04:57,556 - werkzeug - WARNING -  * Debugger is active!
+2025-07-14 18:04:57,673 - werkzeug - INFO -  * Debugger PIN: 748-597-312
+2025-07-14 18:05:56,618 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/enhanced_enterprise_backend_with_context.py', reloading
+2025-07-14 18:05:58,340 - werkzeug - INFO -  * Restarting with watchdog (fsevents)
+2025-07-14 18:05:59,736 - memory.memory - INFO - Vector model disabled - using text-based search instead
+2025-07-14 18:05:59,756 - werkzeug - WARNING -  * Debugger is active!
+2025-07-14 18:05:59,771 - werkzeug - INFO -  * Debugger PIN: 748-597-312
+2025-07-14 18:06:06,093 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/fix_syntax_error.py', reloading
+2025-07-14 18:06:06,095 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/fix_syntax_error.py', reloading
+2025-07-14 18:06:07,373 - werkzeug - INFO -  * Restarting with watchdog (fsevents)
+2025-07-14 18:06:08,621 - memory.memory - INFO - Vector model disabled - using text-based search instead
+2025-07-14 18:06:08,637 - werkzeug - WARNING -  * Debugger is active!
+2025-07-14 18:06:08,645 - werkzeug - INFO -  * Debugger PIN: 748-597-312
+2025-07-14 18:06:36,683 - werkzeug - INFO -  * Detected change in '/Users/segevbin/Desktop/SensAI/Aiayer/enhanced_enterprise_backend_with_context.py', reloading
+2025-07-14 18:06:37,870 - werkzeug - INFO -  * Restarting with watchdog (fsevents)
+2025-07-14 18:06:39,336 - memory.memory - INFO - Vector model disabled - using text-based search instead
+2025-07-14 18:06:39,361 - werkzeug - WARNING -  * Debugger is active!
+2025-07-14 18:06:39,443 - werkzeug - INFO -  * Debugger PIN: 748-597-312

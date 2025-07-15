@@ -1,0 +1,419 @@
+{
+  "summary": {
+    "total_tests": 10,
+    "successful_tests": 0,
+    "failed_tests": 10,
+    "success_rate": 0.0,
+    "total_time": 192.6204493045807,
+    "average_time": 19.262044930458067,
+    "average_llm_time": 19.249518823623657,
+    "average_parse_time": 0.008259868621826172
+  },
+  "results": [
+    {
+      "test_name": "Simple App Launch",
+      "prompt": "open calculator",
+      "difficulty": "Easy",
+      "description": "Basic app launch request",
+      "start_time": "2025-07-14T15:20:54.232322",
+      "success": false,
+      "errors": [
+        "Plan execution failed: 'EnhancedBackendServer' object has no attribute 'execute_plan'"
+      ],
+      "warnings": [
+        "Missing expected apps: ['Calculator']"
+      ],
+      "plan": {
+        "task_id": "plan_1752531670",
+        "steps": [
+          {
+            "action": "open_app",
+            "app": "calculator",
+            "description": "Open calculator app"
+          },
+          {
+            "action": "wait",
+            "duration": 2,
+            "description": "Wait for 2 seconds"
+          },
+          {
+            "action": "screenshot",
+            "description": "Take a screenshot of the current screen"
+          }
+        ],
+        "completed": false
+      },
+      "execution_time": 0,
+      "llm_response": "{\n  \"apps\": [\"calculator\"],\n  \"steps\": [\n    {\n      \"action\": \"open_app\",\n      \"app\": \"calculator\",\n      \"description\": \"Open calculator app\"\n    },\n    {\n      \"action\": \"wait\",\n      \"duration\": 2,\n      \"description\": \"Wait for 2 seconds\"\n    },\n    {\n      \"action\": \"screenshot\",\n      \"description\": \"Take a screenshot of the current screen\"\n    }\n  ]\n}",
+      "parsing_success": true,
+      "llm_time": 16.43717336654663,
+      "parse_time": 0.003259897232055664,
+      "total_time": 16.441473960876465
+    },
+    {
+      "test_name": "Multiple Apps",
+      "prompt": "open calculator and safari",
+      "difficulty": "Easy",
+      "description": "Multiple app launch request",
+      "start_time": "2025-07-14T15:21:11.699419",
+      "success": false,
+      "errors": [
+        "Plan execution failed: 'EnhancedBackendServer' object has no attribute 'execute_plan'"
+      ],
+      "warnings": [
+        "Missing expected apps: ['Calculator', 'Safari']"
+      ],
+      "plan": {
+        "task_id": "plan_1752531678",
+        "steps": [
+          {
+            "action": "open_app",
+            "app": "calc"
+          },
+          {
+            "action": "wait",
+            "duration": 2,
+            "description": "wait for 2 seconds"
+          },
+          {
+            "action": "screenshot",
+            "description": "take a screenshot"
+          }
+        ],
+        "completed": false
+      },
+      "execution_time": 0,
+      "llm_response": "{\n  \"apps\": [\"app1\", \"app2\"],\n  \"steps\": [\n    {\n      \"action\": \"open_app\",\n      \"app\": \"calc\"\n    },\n    {\n      \"action\": \"wait\",\n      \"duration\": 2,\n      \"description\": \"wait for 2 seconds\"\n    },\n    {\n      \"action\": \"screenshot\",\n      \"description\": \"take a screenshot\"\n    }\n  ]\n}",
+      "parsing_success": true,
+      "llm_time": 7.058837890625,
+      "parse_time": 0.0007698535919189453,
+      "total_time": 7.060381889343262
+    },
+    {
+      "test_name": "App with Action",
+      "prompt": "open safari and go to google.com",
+      "difficulty": "Medium",
+      "description": "App launch with specific action",
+      "start_time": "2025-07-14T15:21:19.760504",
+      "success": false,
+      "errors": [
+        "Plan execution failed: 'EnhancedBackendServer' object has no attribute 'execute_plan'"
+      ],
+      "warnings": [
+        "Missing expected apps: ['Safari']"
+      ],
+      "plan": {
+        "task_id": "plan_1752531707",
+        "steps": [
+          {
+            "action": "open_app",
+            "app": "google.com"
+          },
+          {
+            "action": "wait",
+            "duration": 2,
+            "description": "wait for 2 seconds"
+          },
+          {
+            "action": "screenshot",
+            "description": "take a screenshot"
+          }
+        ],
+        "completed": false
+      },
+      "execution_time": 0,
+      "llm_response": "{\n  \"apps\": [\"app1\", \"app2\"],\n  \"steps\": [\n    {\n      \"action\": \"open_app\",\n      \"app\": \"google.com\"\n    },\n    {\n      \"action\": \"wait\",\n      \"duration\": 2,\n      \"description\": \"wait for 2 seconds\"\n    },\n    {\n      \"action\": \"screenshot\",\n      \"description\": \"take a screenshot\"\n    }\n  ]\n}",
+      "parsing_success": true,
+      "llm_time": 27.40129780769348,
+      "parse_time": 0.001667022705078125,
+      "total_time": 27.404633045196533
+    },
+    {
+      "test_name": "Complex Workflow",
+      "prompt": "open calculator, then open safari and go to google.com, then take a screenshot",
+      "difficulty": "Medium",
+      "description": "Multi-step workflow with actions",
+      "start_time": "2025-07-14T15:21:48.170077",
+      "success": false,
+      "errors": [
+        "Plan execution failed: 'EnhancedBackendServer' object has no attribute 'execute_plan'"
+      ],
+      "warnings": [
+        "Missing expected apps: ['Calculator', 'Safari']"
+      ],
+      "plan": {
+        "task_id": "plan_1752531739",
+        "steps": [
+          {
+            "action": "open_app",
+            "app": "safari",
+            "description": "Open Safari"
+          },
+          {
+            "action": "wait",
+            "duration": 2,
+            "description": "Wait for 2 seconds"
+          },
+          {
+            "action": "screenshot",
+            "description": "Take a screenshot of the entire screen, then open Google.com"
+          }
+        ],
+        "completed": false
+      },
+      "execution_time": 0,
+      "llm_response": "{\n  \"apps\": [\"app1\", \"app2\"],\n  \"steps\": [\n    {\n      \"action\": \"open_app\",\n      \"app\": \"safari\",\n      \"description\": \"Open Safari\"\n    },\n    {\n      \"action\": \"wait\",\n      \"duration\": 2,\n      \"description\": \"Wait for 2 seconds\"\n    },\n    {\n      \"action\": \"screenshot\",\n      \"description\": \"Take a screenshot of the entire screen, then open Google.com\"\n    }\n  ]\n}",
+      "parsing_success": true,
+      "llm_time": 30.828490018844604,
+      "parse_time": 0.004576921463012695,
+      "total_time": 30.840540885925293
+    },
+    {
+      "test_name": "System Actions",
+      "prompt": "take a screenshot and save it to desktop",
+      "difficulty": "Medium",
+      "description": "System-level actions",
+      "start_time": "2025-07-14T15:22:20.012250",
+      "success": false,
+      "errors": [
+        "Plan execution failed: 'EnhancedBackendServer' object has no attribute 'execute_plan'"
+      ],
+      "warnings": [],
+      "plan": {
+        "task_id": "plan_1752531754",
+        "steps": [
+          {
+            "action": "open_app",
+            "app": "app_name",
+            "description": "what this step does"
+          },
+          {
+            "action": "wait",
+            "duration": 2,
+            "description": "wait for 2 seconds"
+          },
+          {
+            "action": "screenshot",
+            "description": "take a screenshot"
+          }
+        ],
+        "completed": false
+      },
+      "execution_time": 0,
+      "llm_response": "{\n  \"apps\": [\"app1\", \"app2\"],\n  \"steps\": [\n    {\n      \"action\": \"open_app\",\n      \"app\": \"app_name\",\n      \"description\": \"what this step does\"\n    },\n    {\n      \"action\": \"wait\",\n      \"duration\": 2,\n      \"description\": \"wait for 2 seconds\"\n    },\n    {\n      \"action\": \"screenshot\",\n      \"description\": \"take a screenshot\"\n    }\n  ]\n}",
+      "parsing_success": true,
+      "llm_time": 14.271852016448975,
+      "parse_time": 0.004838228225708008,
+      "total_time": 14.279830932617188
+    },
+    {
+      "test_name": "File Operations",
+      "prompt": "open finder, navigate to desktop, create a new folder called test",
+      "difficulty": "Hard",
+      "description": "File system operations",
+      "start_time": "2025-07-14T15:22:35.295690",
+      "success": false,
+      "errors": [
+        "Plan execution failed: 'EnhancedBackendServer' object has no attribute 'execute_plan'"
+      ],
+      "warnings": [
+        "Missing expected apps: ['Finder']"
+      ],
+      "plan": {
+        "task_id": "plan_1752531768",
+        "steps": [
+          {
+            "action": "open_app",
+            "app": "test"
+          },
+          {
+            "action": "wait",
+            "duration": 2000,
+            "description": "Wait for test to be open"
+          },
+          {
+            "action": "screenshot",
+            "description": "Take a screenshot of the test app"
+          }
+        ],
+        "completed": false
+      },
+      "execution_time": 0,
+      "llm_response": "{\n  \"apps\": [\"app1\", \"app2\"],\n  \"steps\": [\n    {\n      \"action\": \"open_app\",\n      \"app\": \"test\"\n    },\n    {\n      \"action\": \"wait\",\n      \"duration\": 2000,\n      \"description\": \"Wait for test to be open\"\n    },\n    {\n      \"action\": \"screenshot\",\n      \"description\": \"Take a screenshot of the test app\"\n    }\n  ]\n}",
+      "parsing_success": true,
+      "llm_time": 13.308100938796997,
+      "parse_time": 0.0011639595031738281,
+      "total_time": 13.310820817947388
+    },
+    {
+      "test_name": "Complex Automation",
+      "prompt": "open safari, go to github.com, wait 3 seconds, take a screenshot, then open calculator and perform basic math",
+      "difficulty": "Hard",
+      "description": "Complex multi-app automation with timing",
+      "start_time": "2025-07-14T15:22:49.652079",
+      "success": false,
+      "errors": [
+        "Plan execution failed: 'EnhancedBackendServer' object has no attribute 'execute_plan'"
+      ],
+      "warnings": [
+        "Missing expected apps: ['Safari', 'Calculator']"
+      ],
+      "plan": {
+        "task_id": "plan_1752531782",
+        "steps": [
+          {
+            "action": "open_app",
+            "app": "safari",
+            "description": "Open Safari"
+          },
+          {
+            "action": "wait",
+            "duration": 3,
+            "description": "Wait for 3 seconds"
+          },
+          {
+            "action": "screenshot",
+            "description": "Take a screenshot"
+          }
+        ],
+        "completed": false
+      },
+      "execution_time": 0,
+      "llm_response": "{\n  \"apps\": [\"github.com\"],\n  \"steps\": [\n    {\n      \"action\": \"open_app\",\n      \"app\": \"safari\",\n      \"description\": \"Open Safari\"\n    },\n    {\n      \"action\": \"wait\",\n      \"duration\": 3,\n      \"description\": \"Wait for 3 seconds\"\n    },\n    {\n      \"action\": \"screenshot\",\n      \"description\": \"Take a screenshot\"\n    }\n  ]\n}",
+      "parsing_success": true,
+      "llm_time": 12.884984016418457,
+      "parse_time": 0.012182950973510742,
+      "total_time": 12.909904956817627
+    },
+    {
+      "test_name": "Edge Case - No Apps",
+      "prompt": "just wait 5 seconds and take a screenshot",
+      "difficulty": "Medium",
+      "description": "Actions without app launches",
+      "start_time": "2025-07-14T15:23:03.601822",
+      "success": false,
+      "errors": [
+        "Plan execution failed: 'EnhancedBackendServer' object has no attribute 'execute_plan'"
+      ],
+      "warnings": [],
+      "plan": {
+        "task_id": "plan_1752531806",
+        "steps": [
+          {
+            "action": "open_app",
+            "app": "app_name",
+            "description": "what this step does"
+          },
+          {
+            "action": "wait",
+            "duration": 2,
+            "description": "wait for 2 seconds"
+          },
+          {
+            "action": "screenshot",
+            "description": "take a screenshot"
+          }
+        ],
+        "completed": false
+      },
+      "execution_time": 0,
+      "llm_response": "{\n  \"apps\": [\"app1\", \"app2\"],\n  \"steps\": [\n    {\n      \"action\": \"open_app\",\n      \"app\": \"app_name\",\n      \"description\": \"what this step does\"\n    },\n    {\n      \"action\": \"wait\",\n      \"duration\": 2,\n      \"description\": \"wait for 2 seconds\"\n    },\n    {\n      \"action\": \"screenshot\",\n      \"description\": \"take a screenshot\"\n    }\n  ]\n}",
+      "parsing_success": true,
+      "llm_time": 22.69459104537964,
+      "parse_time": 0.00444483757019043,
+      "total_time": 22.699513912200928
+    },
+    {
+      "test_name": "Ambiguous Request",
+      "prompt": "do something productive with my computer",
+      "difficulty": "Hard",
+      "description": "Vague request requiring interpretation",
+      "start_time": "2025-07-14T15:23:27.312396",
+      "success": false,
+      "errors": [
+        "Plan execution failed: 'EnhancedBackendServer' object has no attribute 'execute_plan'"
+      ],
+      "warnings": [],
+      "plan": {
+        "task_id": "plan_1752531830",
+        "steps": [
+          {
+            "action": "open_app",
+            "app": "app_name",
+            "description": "what this step does"
+          },
+          {
+            "action": "wait",
+            "duration": 2,
+            "description": "wait for 2 seconds"
+          },
+          {
+            "action": "screenshot",
+            "description": "take a screenshot"
+          }
+        ],
+        "completed": false
+      },
+      "execution_time": 0,
+      "llm_response": "{\n  \"apps\": [\"app1\", \"app2\"],\n  \"steps\": [\n    {\n      \"action\": \"open_app\",\n      \"app\": \"app_name\",\n      \"description\": \"what this step does\"\n    },\n    {\n      \"action\": \"wait\",\n      \"duration\": 2,\n      \"description\": \"wait for 2 seconds\"\n    },\n    {\n      \"action\": \"screenshot\",\n      \"description\": \"take a screenshot\"\n    }\n  ]\n}",
+      "parsing_success": true,
+      "llm_time": 22.95497703552246,
+      "parse_time": 0.0005950927734375,
+      "total_time": 22.9564688205719
+    },
+    {
+      "test_name": "Very Complex Workflow",
+      "prompt": "open safari, go to google.com, search for 'python automation', wait 2 seconds, take a screenshot, open calculator, calculate 15 * 23, then open finder and go to downloads",
+      "difficulty": "Very Hard",
+      "description": "Complex multi-step workflow with web interaction and calculations",
+      "start_time": "2025-07-14T15:23:51.270216",
+      "success": false,
+      "errors": [
+        "Plan execution failed: 'EnhancedBackendServer' object has no attribute 'execute_plan'"
+      ],
+      "warnings": [
+        "Missing expected apps: ['Safari', 'Calculator', 'Finder']"
+      ],
+      "plan": {
+        "task_id": "plan_1752531855",
+        "steps": [
+          {
+            "action": "open_app",
+            "app": "safari",
+            "description": "open safari"
+          },
+          {
+            "action": "wait",
+            "duration": 2,
+            "description": "wait for 2 seconds"
+          },
+          {
+            "action": "screenshot",
+            "description": "take a screenshot"
+          },
+          {
+            "action": "open_app",
+            "app": "calculator",
+            "description": "open calculator"
+          },
+          {
+            "action": "wait",
+            "duration": 2,
+            "description": "wait for 2 seconds"
+          },
+          {
+            "action": "screenshot",
+            "description": "take a screenshot"
+          }
+        ],
+        "completed": false
+      },
+      "execution_time": 0,
+      "llm_response": "{\n  \"apps\": [\"safari\", \"google.com\"],\n  \"steps\": [\n    {\n      \"action\": \"open_app\",\n      \"app\": \"safari\",\n      \"description\": \"open safari\"\n    },\n    {\n      \"action\": \"wait\",\n      \"duration\": 2,\n      \"description\": \"wait for 2 seconds\"\n    },\n    {\n      \"action\": \"screenshot\",\n      \"description\": \"take a screenshot\"\n    },\n    {\n      \"action\": \"open_app\",\n      \"app\": \"calculator\",\n      \"description\": \"open calculator\"\n    },\n    {\n      \"action\": \"wait\",\n      \"duration\": 2,\n      \"description\": \"wait for 2 seconds\"\n    },\n    {\n      \"action\": \"screenshot\",\n      \"description\": \"take a screenshot\"\n    }\n  ]\n}",
+      "parsing_success": true,
+      "llm_time": 24.654884099960327,
+      "parse_time": 0.04909992218017578,
+      "total_time": 24.716880083084106
+    }
+  ]
+}

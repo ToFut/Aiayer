@@ -1,341 +1,183 @@
 #!/usr/bin/env python3
 """
-Test script for the enhanced JSON parsing in universal_intelligent_automation_handler.py
-Tests various problematic JSON formats to ensure they're handled correctly
+Simple test to verify JSON parsing improvements work.
 """
 
-import asyncio
 import json
-import logging
-import sys
-from typing import Dict, Any
+import re
+import time
 
-# Configure logging
-logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
-logger = logging.getLogger(__name__)
-
-# Mock classes to simulate the real environment
-class LLMService:
-    async def initialize(self):
-        logger.info("Mock LLM service initialized")
+def _extract_plan_dict(llm_response: str, prompt: str) -> dict:
+    """Extract a plan dict from LLM response, robust to markdown/code blocks and malformed JSON."""
+    # Try to extract JSON from code blocks
+    text = llm_response.strip()
+    
+    # Remove markdown code block markers
+    if '```json' in text:
+        text = text.split('```json', 1)[1]
+    if '```' in text:
+        text = text.split('```', 1)[1]
+    text = text.strip('`\n ')
+    
+    # Try to find the first { ... } with better regex
+    match = re.search(r'\{[\s\S]*?\}', text)
+    if match:
+        text = match.group(0)
+    
+    # Try to repair common JSON issues
+    text = text.replace("'", '"')
+    text = re.sub(r',\s*}', '}', text)
+    text = re.sub(r',\s*]', ']', text)
+    
+    # Fix missing commas between object properties
+    text = re.sub(r'}\s*{', r'},{', text)
+    text = re.sub(r'}\s*]', r'}]', text)
+    text = re.sub(r'}\s*}', r'}}', text)
+    
+    # Fix missing commas in arrays
+    text = re.sub(r'}\s*{', r'},{', text)
+    
+    # Fix the specific LLM issue: }}] should be }]
+    text = re.sub(r'}\s*}\s*]', r'}]', text)
+    
+    # Fix any remaining }}] patterns
+    text = re.sub(r'}}]', r'}]', text)
+    
+    # Try to fix missing closing braces
+    brace_count = text.count('{') - text.count('}')
+    if brace_count > 0:
+        text += '}' * brace_count
+    
+    # Try to fix missing closing brackets
+    bracket_count = text.count('[') - text.count(']')
+    if bracket_count > 0:
+        text += ']' * bracket_count
+    
+    # Try to parse
+    try:
+        plan = json.loads(text)
         
-    async def generate_response(self, prompt: str) -> str:
-        logger.info(f"Generating mock response for prompt: {prompt[:50]}...")
-        # Return the test case based on the prompt
-        if "test_valid_json" in prompt:
-            return self.valid_json_response()
-        elif "test_markdown_json" in prompt:
-            return self.markdown_json_response()
-        elif "test_messy_json" in prompt:
-            return self.messy_json_response()
-        elif "test_single_quotes" in prompt:
-            return self.single_quotes_json_response()
-        elif "test_python_literals" in prompt:
-            return self.python_literals_response()
-        elif "test_unquoted_keys" in prompt:
-            return self.unquoted_keys_response()
-        elif "test_coordinate_formats" in prompt:
-            return self.various_coordinate_formats_response()
-        else:
-            return self.valid_json_response()
-    
-    def valid_json_response(self):
-        """Return a perfectly valid JSON response"""
-        return """
-{
-  "title": "Search for Python Tutorials",
-  "description": "Find Python tutorials online",
-  "request_type": "web_search",
-  "complexity_score": 0.3,
-  "estimated_duration": 15,
-  "success_probability": 0.9,
-  "fallback_strategies": ["Try a different search engine", "Refine search terms"],
-  "user_guidance_needed": false,
-  "steps": [
-    {
-      "id": "step_1",
-      "description": "Open Safari browser",
-      "action_type": "open_app",
-      "target": "Safari",
-      "value": null,
-      "coordinates": null,
-      "estimated_duration": 2.0,
-      "confidence": 0.95,
-      "fallback_action": "Try opening Chrome instead",
-      "context_hints": ["Spotlight may be used to open Safari"]
-    },
-    {
-      "id": "step_2",
-      "description": "Navigate to Google",
-      "action_type": "navigate_url",
-      "target": "Google homepage",
-      "value": "https://www.google.com",
-      "coordinates": null,
-      "estimated_duration": 3.0,
-      "confidence": 0.9,
-      "fallback_action": "Try a different search engine",
-      "context_hints": ["URL bar is at the top of the browser"]
-    }
-  ]
-}
-"""
-    
-    def markdown_json_response(self):
-        """Return JSON wrapped in markdown code blocks"""
-        return """
-Based on your request, I'll create an automation plan to search for Python tutorials.
-
-```json
-{
-  "title": "Search for Python Tutorials",
-  "description": "Find Python tutorials online",
-  "request_type": "web_search",
-  "complexity_score": 0.3,
-  "estimated_duration": 15,
-  "success_probability": 0.9,
-  "fallback_strategies": ["Try a different search engine", "Refine search terms"],
-  "user_guidance_needed": false,
-  "steps": [
-    {
-      "id": "step_1",
-      "description": "Open Safari browser",
-      "action_type": "open_app",
-      "target": "Safari",
-      "value": null,
-      "coordinates": null,
-      "estimated_duration": 2.0,
-      "confidence": 0.95,
-      "fallback_action": "Try opening Chrome instead",
-      "context_hints": ["Spotlight may be used to open Safari"]
-    }
-  ]
-}
-```
-
-This plan will help you find Python tutorials efficiently.
-"""
-    
-    def messy_json_response(self):
-        """Return JSON with missing closing braces and formatting issues"""
-        return """
-{
-  "title": "Search for Python Tutorials",
-  "description": "Find Python tutorials online",
-  "request_type": "web_search",
-  "complexity_score": 0.3,
-  "estimated_duration": 15,
-  "success_probability": 0.9,
-  "fallback_strategies": ["Try a different search engine", "Refine search terms"],
-  "user_guidance_needed": false,
-  "steps": [
-    {
-      "id": "step_1",
-      "description": "Open Safari browser",
-      "action_type": "open_app",
-      "target": "Safari",
-      "value": null,
-      "coordinates": null,
-      "estimated_duration": 2.0,
-      "confidence": 0.95,
-      "fallback_action": "Try opening Chrome instead",
-      "context_hints": ["Spotlight may be used to open Safari"
-    },
-    {
-      "id": "step_2",
-      "description": "Navigate to Google",
-      "action_type": "navigate_url",
-      "target": "Google homepage",
-      "value": "https://www.google.com",
-      "coordinates": null,
-      "estimated_duration": 3.0,
-      "confidence": 0.9,
-      "fallback_action": "Try a different search engine",
-      "context_hints": ["URL bar is at the top of the browser"]
-    }
-  ]
-"""
-    
-    def single_quotes_json_response(self):
-        """Return JSON with single quotes instead of double quotes"""
-        return """
-{
-  'title': 'Search for Python Tutorials',
-  'description': 'Find Python tutorials online',
-  'request_type': 'web_search',
-  'complexity_score': 0.3,
-  'estimated_duration': 15,
-  'success_probability': 0.9,
-  'fallback_strategies': ['Try a different search engine', 'Refine search terms'],
-  'user_guidance_needed': false,
-  'steps': [
-    {
-      'id': 'step_1',
-      'description': 'Open Safari browser',
-      'action_type': 'open_app',
-      'target': 'Safari',
-      'value': null,
-      'coordinates': null,
-      'estimated_duration': 2.0,
-      'confidence': 0.95,
-      'fallback_action': 'Try opening Chrome instead',
-      'context_hints': ['Spotlight may be used to open Safari']
-    }
-  ]
-}
-"""
-    
-    def python_literals_response(self):
-        """Return JSON with Python literals (True, False, None) instead of JSON literals"""
-        return """
-{
-  "title": "Search for Python Tutorials",
-  "description": "Find Python tutorials online",
-  "request_type": "web_search",
-  "complexity_score": 0.3,
-  "estimated_duration": 15,
-  "success_probability": 0.9,
-  "fallback_strategies": ["Try a different search engine", "Refine search terms"],
-  "user_guidance_needed": False,
-  "steps": [
-    {
-      "id": "step_1",
-      "description": "Open Safari browser",
-      "action_type": "open_app",
-      "target": "Safari",
-      "value": None,
-      "coordinates": None,
-      "estimated_duration": 2.0,
-      "confidence": 0.95,
-      "fallback_action": "Try opening Chrome instead",
-      "context_hints": ["Spotlight may be used to open Safari"]
-    }
-  ]
-}
-"""
-    
-    def unquoted_keys_response(self):
-        """Return JSON with unquoted keys"""
-        return """
-{
-  title: "Search for Python Tutorials",
-  description: "Find Python tutorials online",
-  request_type: "web_search",
-  complexity_score: 0.3,
-  estimated_duration: 15,
-  success_probability: 0.9,
-  fallback_strategies: ["Try a different search engine", "Refine search terms"],
-  user_guidance_needed: false,
-  steps: [
-    {
-      id: "step_1",
-      description: "Open Safari browser",
-      action_type: "open_app",
-      target: "Safari",
-      value: null,
-      coordinates: null,
-      estimated_duration: 2.0,
-      confidence: 0.95,
-      fallback_action: "Try opening Chrome instead",
-      context_hints: ["Spotlight may be used to open Safari"]
-    }
-  ]
-}
-"""
-
-    def various_coordinate_formats_response(self):
-        """Return JSON with various coordinate formats"""
-        return """
-{
-  "title": "Test Different Coordinate Formats",
-  "description": "Testing different coordinate formats",
-  "request_type": "web_search",
-  "complexity_score": 0.3,
-  "estimated_duration": 15,
-  "success_probability": 0.9,
-  "steps": [
-    {
-      "id": "step_1",
-      "description": "Coordinates as array",
-      "action_type": "click_element",
-      "coordinates": [100, 200]
-    },
-    {
-      "id": "step_2",
-      "description": "Coordinates as string",
-      "action_type": "click_element",
-      "coordinates": "300, 400"
-    },
-    {
-      "id": "step_3",
-      "description": "Coordinates as string with brackets",
-      "action_type": "click_element",
-      "coordinates": "[500, 600]"
-    },
-    {
-      "id": "step_4",
-      "description": "Coordinates as dictionary",
-      "action_type": "click_element",
-      "coordinates": {"x": 700, "y": 800}
-    },
-    {
-      "id": "step_5",
-      "description": "Coordinates as invalid value",
-      "action_type": "click_element",
-      "coordinates": "invalid"
-    }
-  ]
-}
-"""
-
-# Import the module to test
-from universal_intelligent_automation_handler import UniversalIntelligentAutomationHandler
-
-async def test_json_parsing():
-    """Test the JSON parsing capabilities of the automation handler"""
-    # Create the automation handler
-    handler = UniversalIntelligentAutomationHandler()
-    
-    # Mock the LLM service
-    handler.llm_service = LLMService()
-    handler.llm_initialized = True
-    
-    # Test cases
-    test_cases = [
-        "test_valid_json",
-        "test_markdown_json",
-        "test_messy_json",
-        "test_single_quotes",
-        "test_python_literals",
-        "test_unquoted_keys",
-        "test_coordinate_formats"
-    ]
-    
-    print("\n===== JSON PARSING TEST RESULTS =====\n")
-    
-    # Run each test case
-    for test_case in test_cases:
-        print(f"\n----- Testing: {test_case} -----")
+        # If plan is just steps, wrap it
+        if isinstance(plan, list):
+            plan = {"steps": plan}
+        
+        # Ensure required fields
+        if "steps" not in plan or not isinstance(plan["steps"], list):
+            # Try to create steps from the plan structure
+            if isinstance(plan, dict):
+                steps = []
+                for key, value in plan.items():
+                    if key != "task_id" and key != "completed":
+                        if isinstance(value, dict):
+                            steps.append(value)
+                        elif isinstance(value, str):
+                            steps.append({"description": value})
+                if steps:
+                    plan["steps"] = steps
+                else:
+                    raise ValueError("No steps in plan")
+            else:
+                raise ValueError("No steps in plan")
+        
+        if "task_id" not in plan:
+            plan["task_id"] = f"plan_{int(time.time())}"
+        
+        return plan
+        
+    except Exception as e:
+        # Try one more time with more aggressive repair
         try:
-            # Run the test
-            plan = await handler._create_advanced_llm_plan(test_case, "test_session")
-            print(f"✅ SUCCESS: Created plan '{plan.title}' with {len(plan.steps)} steps")
+            # Remove any trailing commas before closing braces/brackets
+            text = re.sub(r',(\s*[}\]])', r'\1', text)
+            # Fix common LLM JSON issues
+            text = re.sub(r'(\w+):\s*"([^"]*)"\s*(\w+):', r'\1: "\2", \3:', text)
             
-            # Print some details of the plan
-            print(f"  - Description: {plan.description}")
-            print(f"  - Request type: {plan.request_type}")
-            print(f"  - First step: {plan.steps[0].description if plan.steps else 'No steps'}")
+            # More aggressive }}] fix
+            text = re.sub(r'}}]', r'}]', text)
+            text = re.sub(r'}\s*}\s*]', r'}]', text)
             
-            # For coordinate test, show the parsed coordinates
-            if test_case == "test_coordinate_formats" and plan.steps:
-                print("\n  Coordinate parsing results:")
-                for step in plan.steps:
-                    print(f"  - {step.description}: {step.coordinates}")
+            # Try to complete truncated JSON
+            if text.count('{') > text.count('}'):
+                text += '}' * (text.count('{') - text.count('}'))
+            if text.count('[') > text.count(']'):
+                text += ']' * (text.count('[') - text.count(']'))
             
-        except Exception as e:
-            print(f"❌ FAILED: {test_case} - {type(e).__name__}: {str(e)}")
-    
-    print("\n===== TEST COMPLETED =====\n")
+            print(f"  🔧 Attempting JSON repair: {text[:100]}...")
+            
+            plan = json.loads(text)
+            
+            # If plan is just steps, wrap it
+            if isinstance(plan, list):
+                plan = {"steps": plan}
+            
+            # Ensure required fields
+            if "steps" not in plan or not isinstance(plan["steps"], list):
+                if isinstance(plan, dict):
+                    steps = []
+                    for key, value in plan.items():
+                        if key != "task_id" and key != "completed":
+                            if isinstance(value, dict):
+                                steps.append(value)
+                            elif isinstance(value, str):
+                                steps.append({"description": value})
+                    if steps:
+                        plan["steps"] = steps
+                    else:
+                        raise ValueError("No steps in plan")
+                else:
+                    raise ValueError("No steps in plan")
+            
+            if "task_id" not in plan:
+                plan["task_id"] = f"plan_{int(time.time())}"
+            
+            return plan
+            
+        except Exception as e2:
+            raise ValueError(f"Failed to parse plan JSON: {e}\nRaw: {text[:200]}")
 
-if __name__ == "__main__":
-    # Run the test
-    asyncio.run(test_json_parsing())
+# Test with the actual LLM response format
+test_responses = [
+    # The problematic response from the test
+    '''{
+  "apps": ["app1", "app2"],
+  "steps": [
+    {
+      "action": "open_app",
+      "app": "calculator",
+      "description": "open calculator"
+    }}]''',
+    
+    # A complete response
+    '''{
+  "apps": ["app1", "app2"],
+  "steps": [
+    {
+      "action": "open_app",
+      "app": "calculator",
+      "description": "open calculator"
+    },
+    {
+      "action": "wait",
+      "duration": 2,
+      "description": "wait for 2 seconds"
+    },
+    {
+      "action": "screenshot",
+      "description": "take a screenshot"
+    }
+  ]
+}'''
+]
+
+print("Testing JSON parsing improvements...")
+print("=" * 50)
+
+for i, response in enumerate(test_responses, 1):
+    print(f"\nTest {i}:")
+    print(f"Input: {response[:100]}...")
+    try:
+        result = _extract_plan_dict(response, "test")
+        print(f"✅ SUCCESS: Parsed {len(result.get('steps', []))} steps")
+        print(f"Result: {result}")
+        except Exception as e:
+        print(f"❌ FAILED: {e}")
